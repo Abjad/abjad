@@ -31,7 +31,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
     @property
     def _attribute_manifest(self):
         from abjad.tools import systemtools
-        from scoremanager import idetools
+        from ide import idetools
         return systemtools.AttributeManifest(
             systemtools.AttributeDetail(
                 name='avoid_dots',

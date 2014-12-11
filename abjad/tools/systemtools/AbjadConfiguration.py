@@ -511,8 +511,8 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         try:
-            import scoremanager
-            return scoremanager.__path__[0]
+            import ide
+            return ide.__path__[0]
         except ImportError:
             return None
 
@@ -523,8 +523,8 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         try:
-            import scoremanager
-            path = scoremanager.__path__[0]
+            import ide
+            path = ide.__path__[0]
             path, _ = os.path.split(path)
             return path
         except ImportError:

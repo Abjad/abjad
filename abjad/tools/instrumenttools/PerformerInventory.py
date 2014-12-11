@@ -120,7 +120,7 @@ class PerformerInventory(TypedList):
 
     @staticmethod
     def _make_item_creator_class():
-        from scoremanager.idetools.Controller import Controller
+        from ide.idetools.Controller import Controller
         class ItemCreator(Controller):
             ### CLASS VARIABLES ###
             __slots__ = ('_is_ranged', '_target')
@@ -132,7 +132,7 @@ class PerformerInventory(TypedList):
             ### PRIVATE METHODS ###
             def _run(self):
                 from abjad.tools import instrumenttools
-                from scoremanager import idetools
+                from ide import idetools
                 try_again = False
                 performers = []
                 controller = idetools.ControllerContext(controller=self)

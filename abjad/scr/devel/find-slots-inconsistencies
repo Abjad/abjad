@@ -6,7 +6,7 @@ from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.documentationtools import ClassCrawler
 from abjad.tools.documentationtools import InheritanceGraph
-from scoremanager.idetools.Controller import Controller
+from ide.idetools.Controller import Controller
 
 
 def shorten_class_name(abjad_class):

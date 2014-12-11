@@ -729,7 +729,7 @@ class IOManager(object):
 
             ::
 
-                >>> command = 'echo "hellow world"'
+                >>> command = 'echo "hello world"'
                 >>> IOManager.spawn_subprocess(command) # doctest: +SKIP
                 hello world
 

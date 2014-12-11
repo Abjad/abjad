@@ -95,7 +95,7 @@ class BuildApiScript(DeveloperScript):
             from abjad import abjad_configuration
             return os.path.join(
                 abjad_configuration.score_manager_root_directory,
-                'scoremanager',
+                'ide',
                 'docs',
                 'source',
                 'index.rst',
@@ -106,22 +106,22 @@ class BuildApiScript(DeveloperScript):
             from abjad import abjad_configuration
             code_path = os.path.join(
                 abjad_configuration.score_manager_root_directory,
-                'scoremanager',
+                'ide',
                 )
             docs_path = os.path.join(
                 abjad_configuration.score_manager_root_directory,
-                'scoremanager',
+                'ide',
                 'docs',
                 'source',
                 )
-            package_prefix = 'scoremanager.'
+            package_prefix = 'ide.'
             triple = (code_path, docs_path, package_prefix)
             all_triples = (triple,)
             return all_triples
 
         @property
         def root_package(self):
-            return 'scoremanager'
+            return 'ide'
 
         @property
         def tools_package_path_index(self):
@@ -267,7 +267,7 @@ class BuildApiScript(DeveloperScript):
             )
         return path
 
-    def _build_scoremanager_api(
+    def _build_ide_api(
         self,
         api_format='html',
         clean=False,
@@ -278,7 +278,7 @@ class BuildApiScript(DeveloperScript):
         api_title = 'Abjad IDE'
         docs_directory = os.path.join(
             abjad_configuration.score_manager_root_directory,
-            'scoremanager',
+            'ide',
             'docs',
             )
         self._build_api(
@@ -291,7 +291,7 @@ class BuildApiScript(DeveloperScript):
             )
         path = os.path.join(
             abjad_configuration.score_manager_root_directory,
-            'scoremanager',
+            'ide',
             'docs',
             'build',
             'html',
@@ -324,8 +324,8 @@ class BuildApiScript(DeveloperScript):
                 rst_only=rst_only,
                 )
             paths.append(path)
-        if args.scoremanager:
-            path = self._build_scoremanager_api(
+        if args.ide:
+            path = self._build_ide_api(
                 api_format=api_format,
                 clean=clean,
                 rst_only=rst_only,
@@ -350,7 +350,7 @@ class BuildApiScript(DeveloperScript):
             action='store_true',
             help='build the experimental API'
             )
-        parser.add_argument('-S', '--scoremanager',
+        parser.add_argument('-S', '--ide',
             action='store_true',
             help='build the Abjad IDE API'
             )
