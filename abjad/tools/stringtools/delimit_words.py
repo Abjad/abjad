@@ -50,16 +50,24 @@ def delimit_words(string):
             >>> stringtools.delimit_words('one < two')
             ['one', '<', 'two']
 
+    ..  container:: example
+
+        Works with exclamation points:
+
+            >>> stringtools.delimit_words('one! two!')
+            ['one', '!', 'two', '!']
+
     Returns list.
     '''
 
     assert isinstance(string, str), repr(string)
+    wordlike_characters = ('<', '>', '!')
     words = []
     current_word = ''
     for character in string:
         if (not character.isalpha() and 
             not character.isdigit() and
-            not character in ('<', '>')
+            not character in wordlike_characters
             ):
             if current_word:
                 words.append(current_word)
@@ -80,6 +88,12 @@ def delimit_words(string):
                 current_word = character
         elif character.isdigit():
             if current_word[-1].isdigit():
+                current_word = current_word + character
+            else:
+                words.append(current_word)
+                current_word = character
+        elif character in wordlike_characters:
+            if current_word[-1] in wordlike_characters:
                 current_word = current_word + character
             else:
                 words.append(current_word)
