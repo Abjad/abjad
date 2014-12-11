@@ -2,7 +2,7 @@
 
 
 def list_all_ide_classes(modules=None):
-    r'''Lists all public classes defined in Abjad.
+    r'''Lists all public classes defined in Abjad IDE.
 
     ::
 
