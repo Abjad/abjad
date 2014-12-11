@@ -266,6 +266,8 @@ class BowSpanner(Spanner):
         string_contact_point=None,
         ):
         if bow_motion_technique is not None:
+            # TODO: should we have schemetools.SchemeSymbol?
+            #       This could remove quoting="'"
             style = schemetools.Scheme(
                 bow_motion_technique.glissando_style,
                 quoting="'",

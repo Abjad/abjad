@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import lilypondnametools
+from abjad.tools import schemetools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -27,7 +28,6 @@ class LineSegment(AbjadObject):
         '_arrow_width',
         '_dash_fraction',
         '_dash_period',
-        '_left_arrow',
         '_left_broken_padding',
         '_left_hspace',
         '_left_padding',
@@ -46,7 +46,6 @@ class LineSegment(AbjadObject):
         arrow_width=None,
         dash_fraction=None,
         dash_period=None,
-        left_arrow=None,
         left_broken_padding=None,
         left_hspace=None,
         left_padding=None,
@@ -60,7 +59,6 @@ class LineSegment(AbjadObject):
         self._arrow_width = arrow_width
         self._dash_fraction = dash_fraction
         self._dash_period = dash_period
-        self._left_arrow = left_arrow
         self._left_broken_padding = left_broken_padding
         self._left_padding = left_padding
         self._left_hspace = left_hspace
@@ -103,18 +101,6 @@ class LineSegment(AbjadObject):
                     'dash-period',
                     ),
                 value=self.dash_period,
-                )
-            overrides.append(override_)
-        if self.left_arrow is not None:
-            override_ = lilypondnametools.LilyPondGrobOverride(
-                grob_name='TextSpanner',
-                is_once=True,
-                property_path=(
-                    'bound-details',
-                    'left',
-                    'arrow',
-                    ),
-                value=self.left_arrow,
                 )
             overrides.append(override_)
         if self.left_broken_padding is not None:
@@ -202,13 +188,14 @@ class LineSegment(AbjadObject):
                 )
             overrides.append(override_)
         if self.style is not None:
+            style = schemetools.Scheme(self.style, quoting="'")
             override_ = lilypondnametools.LilyPondGrobOverride(
                 grob_name='TextSpanner',
                 is_once=True,
                 property_path=(
                     'style',
                     ),
-                value=self.style,
+                value=style,
                 )
             overrides.append(override_)
         return overrides
@@ -238,15 +225,6 @@ class LineSegment(AbjadObject):
         Returns float or none.
         '''
         return self._dash_period
-
-    @property
-    def left_arrow(self):
-        r'''Is true when left end of line segment carries an arrow.
-        Otherwise false.
-
-        Returns true, false or none.
-        '''
-        return self._left_arrow
 
     @property
     def left_broken_padding(self):
