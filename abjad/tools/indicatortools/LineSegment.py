@@ -29,6 +29,7 @@ class LineSegment(AbjadObject):
         '_dash_fraction',
         '_dash_period',
         '_left_broken_padding',
+        '_left_broken_text',
         '_left_hspace',
         '_left_padding',
         '_left_stencil_align_direction_y',
@@ -47,6 +48,7 @@ class LineSegment(AbjadObject):
         dash_fraction=None,
         dash_period=None,
         left_broken_padding=None,
+        left_broken_text=None,
         left_hspace=None,
         left_padding=None,
         left_stencil_align_direction_y=None,
@@ -60,6 +62,7 @@ class LineSegment(AbjadObject):
         self._dash_fraction = dash_fraction
         self._dash_period = dash_period
         self._left_broken_padding = left_broken_padding
+        self._left_broken_text = left_broken_text
         self._left_padding = left_padding
         self._left_hspace = left_hspace
         self._left_stencil_align_direction_y = left_stencil_align_direction_y
@@ -111,6 +114,18 @@ class LineSegment(AbjadObject):
                     'bound-details',
                     'left-broken',
                     'padding',
+                    ),
+                value=self.left_broken_padding,
+                )
+            overrides.append(override_)
+        if self.left_broken_text is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'left-broken',
+                    'text',
                     ),
                 value=self.left_broken_padding,
                 )
@@ -233,6 +248,14 @@ class LineSegment(AbjadObject):
         Returns float or none.
         '''
         return self._left_broken_padding
+
+    @property
+    def left_broken_text(self):
+        r'''Gets left broken text of line segment.
+
+        Returns markup, false or none.
+        '''
+        return self._left_broken_text
 
     @property
     def left_hspace(self):
