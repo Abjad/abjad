@@ -92,6 +92,7 @@ class TextSpanner(Spanner):
             previous_line_segment is not None)
         current_annotations = self._get_annotations(component)
         current_markups = current_annotations[0]
+        current_markup = bool(current_markups)
         current_line_segment = current_annotations[1]
         current_event = (current_markups is not None or 
             current_line_segment is not None)
@@ -99,8 +100,11 @@ class TextSpanner(Spanner):
         # stop any previous segment
         if previous_segment and current_event:
             stop_spanner = True
-        # start spanner if first component or if line segment begins here
-        if self._is_my_first_leaf(component) or current_line_segment:
+        # start spanner if no markup
+        if self._is_my_first_leaf(component) and not current_markup:
+            start_spanner = True
+        # start spanner if existing line segment
+        elif current_line_segment:
             start_spanner = True
         # stop spanner if last component
         if self._is_my_last_leaf(component):
