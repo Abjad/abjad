@@ -85,6 +85,14 @@ class MeterFittingSession(AbjadValueObject):
                     winning_kernel = selected_kernels[-1]
             else:
                 for kernel in kernels:
+                    if self.maximum_repetitions and \
+                        1 < len(kernels) and \
+                        self.maximum_repetitions < len(selected_kernels):
+                        last_n_kernels = \
+                            selected_kernels[-self.maximum_repetitions:]
+                        if len(set(last_n_kernels)) == 1:
+                            if kernel == last_n_kernels[-1]:
+                                continue
                     initial_score = kernel(offset_counter)
                     lookahead_score = self._get_lookahead_score(
                         current_offset,
