@@ -31,7 +31,7 @@ def _rewrite_meter(
             offset_inventory,
             )
 
-        #print 'DEPTH:', depth
+        #print('DEPTH:', depth)
 
         logical_tie_duration = logical_tie._preprolated_duration
         logical_tie_timespan = logical_tie.get_timespan()
@@ -47,8 +47,8 @@ def _rewrite_meter(
             maximum_dot_count=maximum_dot_count,
             ):
 
-            #print 'UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
-            #print '\t', ' '.join([str(x) for x in offsets])
+            #print('UNACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
+            #print('\t', ' '.join([str(x) for x in offsets]))
             split_offset = None
             offsets = metertools.MeterManager.get_offsets_at_depth(
                 depth,
@@ -64,11 +64,11 @@ def _rewrite_meter(
                     split_offset = offset
                     break
 
-            #print '\tABS:', split_offset
+            #print('\tABS:', split_offset)
             if split_offset is not None:
                 split_offset -= logical_tie_start_offset
-                #print '\tREL:', split_offset
-                #print ''
+                #print('\tREL:', split_offset)
+                #print()
                 shards = mutate(logical_tie[:]).split([split_offset])
                 logical_ties = \
                     [selectiontools.LogicalTie(shard) for shard in shards]
@@ -80,7 +80,7 @@ def _rewrite_meter(
                         logical_tie=logical_tie,
                         )
             else:
-                #print ''
+                #print()
                 recurse(
                     boundary_depth=boundary_depth,
                     boundary_offsets=boundary_offsets,
@@ -95,7 +95,7 @@ def _rewrite_meter(
             logical_tie_stop_offset=logical_tie_stop_offset,
             ):
 
-            #print 'BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
+            #print('BOUNDARY CROSSING', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
             offsets = boundary_offsets
             if logical_tie_start_offset in boundary_offsets:
                 offsets = reversed(boundary_offsets)
@@ -105,10 +105,10 @@ def _rewrite_meter(
                     split_offset = offset
                     break
             assert split_offset is not None
-            #print '\tABS:', split_offset
+            #print('\tABS:', split_offset)
             split_offset -= logical_tie_start_offset
-            #print '\tREL:', split_offset
-            #print ''
+            #print('\tREL:', split_offset)
+            #print()
             shards = mutate(logical_tie[:]).split([split_offset])
             logical_ties = \
                 [selectiontools.LogicalTie(shard) for shard in shards]
@@ -121,9 +121,9 @@ def _rewrite_meter(
                     )
 
         else:
-            #print 'ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset
-            #print '\t', ' '.join([str(x) for x in offsets])
-            #print ''
+            #print('ACCEPTABLE:', logical_tie, logical_tie_start_offset, logical_tie_stop_offset)
+            #print('\t', ' '.join([str(x) for x in offsets]))
+            #print()
             logical_tie[:]._fuse()
 
     # Validate arguments.
@@ -171,7 +171,7 @@ def _rewrite_meter(
     items = tuple(iterator)
     for item in items:
         if isinstance(item, selectiontools.LogicalTie):
-            #print 'RECURSING:', item
+            #print('RECURSING:', item)
             recurse(
                 boundary_depth=boundary_depth,
                 boundary_offsets=boundary_offsets,
@@ -179,7 +179,7 @@ def _rewrite_meter(
                 logical_tie=item,
                 )
         else:
-            #print 'DESCENDING:', item
+            #print('DESCENDING:', item)
             preprolated_duration = sum([x._preprolated_duration for x in item])
             if preprolated_duration.numerator == 1:
                 preprolated_duration = mathtools.NonreducedFraction(
