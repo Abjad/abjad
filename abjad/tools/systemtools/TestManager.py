@@ -207,6 +207,28 @@ class TestManager(object):
             break
 
     @staticmethod
+    def clean_string(string):
+        r'''Cleans string.
+        '''
+        split_lines = string.split('\n')
+        if not split_lines[0] or split_lines[0].isspace():
+            split_lines.pop(0)
+        if not split_lines[-1] or split_lines[-1].isspace():
+            split_lines.pop(-1)
+        indent_width = 0
+        if split_lines:
+            for indent_width, character in enumerate(split_lines[0]):
+                if character != ' ':
+                    break
+        massaged_lines = []
+        for split_line in split_lines:
+            massaged_line = split_line[indent_width:]
+            #massaged_line = massaged_line.replace('    ', '\t')
+            massaged_lines.append(massaged_line)
+        massaged_string = '\n'.join(massaged_lines)
+        return massaged_string
+
+    @staticmethod
     def compare(string_1, string_2):
         r'''Compares `string_1` to `string_2`.
 
