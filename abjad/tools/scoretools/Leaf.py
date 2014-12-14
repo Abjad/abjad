@@ -220,6 +220,8 @@ class Leaf(Component):
         return ['grace body', result]
 
     def _format_leaf_body(leaf, bundle):
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         result = leaf._format_leaf_nucleus()[1]
         result.extend(bundle.right.stem_tremolos)
         result.extend(bundle.right.articulations)
@@ -235,7 +237,7 @@ class Leaf(Component):
             if len(markup) == 1:
                 result[0] += ' {}'.format(markup[0])
             else:
-                result.extend('\t{}'.format(x) for x in markup)
+                result.extend(indent + '{}'.format(x) for x in markup)
         trill_pitches = bundle.right.trill_pitches
         if trill_pitches:
             assert len(trill_pitches) == 1
@@ -245,6 +247,8 @@ class Leaf(Component):
     # TODO: subclass this properly for chord
     def _format_leaf_nucleus(leaf):
         from abjad.tools import scoretools
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         if not isinstance(leaf, scoretools.Chord):
             return ['nucleus', leaf._body]
         result = []
@@ -254,7 +258,7 @@ class Leaf(Component):
             for note_head in note_heads:
                 current_format = format(note_head)
                 format_list = current_format.split('\n')
-                format_list = ['\t' + x for x in format_list]
+                format_list = [indent + x for x in format_list]
                 result.extend(format_list)
             result.insert(0, '<')
             result.append('>')

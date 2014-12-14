@@ -12,16 +12,16 @@ def test_markuptools_MarkupCommand__get_format_pieces_01():
 
     assert combine._get_format_pieces() == [
         '\\combine',
-        '\t\\rotate',
-        '\t\t#60',
-        '\t\t\\line',
-        '\t\t\t{',
-        '\t\t\t\t\\rounded-box',
-        '\t\t\t\t\thello?',
-        '\t\t\t\twow!',
-        '\t\t\t}',
-        '\t\\draw-circle',
-        '\t\t#2.5',
-        '\t\t#0.1',
-        '\t\t##f'
+        '    \\rotate',
+        '        #60',
+        '        \\line',
+        '            {',
+        '                \\rounded-box',
+        '                    hello?',
+        '                wow!',
+        '            }',
+        '    \\draw-circle',
+        '        #2.5',
+        '        #0.1',
+        '        ##f'
     ]

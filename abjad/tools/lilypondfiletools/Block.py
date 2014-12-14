@@ -99,6 +99,8 @@ class Block(AbjadObject):
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         result = []
         if not self._get_formatted_user_attributes() and \
             not getattr(self, 'contexts', None) and \
@@ -114,35 +116,35 @@ class Block(AbjadObject):
         prototype = (scoretools.Leaf, markuptools.Markup)
         if len(self.items) == 1 and isinstance(self.items[0], prototype) and \
             self.name == 'score':
-            result.append('\t{')
+            result.append(indent + '{')
             pieces = self.items[0]._format_pieces
-            pieces = ['\t\t' + item for item in pieces]
+            pieces = [indent + indent + item for item in pieces]
             result.extend(pieces)
-            result.append('\t}')
+            result.append(indent + '}')
             result.append('}')
             return result
         for item in self.items:
             if isinstance(item, lilypondfiletools.ContextBlock):
                 pass
             elif isinstance(item, str):
-                string = '\t{}'.format(item)
+                string = indent + '{}'.format(item)
                 result.append(string)
             elif '_get_format_pieces' in dir(item):
                 pieces = item._get_format_pieces()
-                pieces = ['\t' + item for item in pieces]
+                pieces = [indent + item for item in pieces]
                 result.extend(pieces)
             elif '_format_pieces' in dir(item):
                 pieces = item._format_pieces
-                pieces = ['\t' + item for item in pieces]
+                pieces = [indent + item for item in pieces]
                 result.extend(pieces)
             else:
                 pass
         formatted_attributes = self._get_formatted_user_attributes()
-        formatted_attributes = ['\t' + x for x in formatted_attributes]
+        formatted_attributes = [indent + x for x in formatted_attributes]
         result.extend(formatted_attributes)
         formatted_context_blocks = getattr(
             self, '_formatted_context_blocks', [])
-        formatted_context_blocks = ['\t' + x for x in formatted_context_blocks]
+        formatted_context_blocks = [indent + x for x in formatted_context_blocks]
         result.extend(formatted_context_blocks)
         result.append('}')
         return result

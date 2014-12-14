@@ -11,18 +11,18 @@ def test_markuptools_Markup__get_format_pieces_01():
 
     assert markup._get_format_pieces() == [
         '^ \\markup {',
-        '\tX',
-        '\t\\draw-circle',
-        '\t\t#2.5',
-        '\t\t#0.1',
-        '\t\t##f',
-        '\tY',
-        '\t\\line',
-        '\t\t{',
-        '\t\t\t\\rounded-box',
-        '\t\t\t\thello?',
-        '\t\t\twow!',
-        '\t\t}',
-        '\tZ',
-        '\t}'
+        '    X',
+        '    \\draw-circle',
+        '        #2.5',
+        '        #0.1',
+        '        ##f',
+        '    Y',
+        '    \\line',
+        '        {',
+        '            \\rounded-box',
+        '                hello?',
+        '            wow!',
+        '        }',
+        '    Z',
+        '    }'
     ]

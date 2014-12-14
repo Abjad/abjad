@@ -347,7 +347,8 @@ class Markup(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
-        indent = '\t'
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         direction = ''
         if self.direction is not None:
             direction = stringtools.arg_to_tridirectional_lilypond_symbol(

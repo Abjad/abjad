@@ -30,6 +30,8 @@ class LilyPondFormatManager(object):
         'yellow',
         )
 
+    indent = '    '
+
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -237,7 +239,8 @@ class LilyPondFormatManager(object):
         result = r'{!s} = {!s}'.format(name, value_parts[0])
         result = [result]
         for part in value_parts[1:]:
-            result.append('\t' + part)
+            #result.append('\t' + part)
+            result.append(LilyPondFormatManager.indent + part)
         return '\n'.join(result)
 
     @staticmethod

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import lilypondnametools
 from abjad.tools.lilypondfiletools.Block import Block
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import set_
@@ -72,6 +71,7 @@ class ContextBlock(Block):
     @property
     def _format_pieces(self):
         from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         result = []
         string = '{} {{'.format(self._escaped_name)
         result.append(string)
@@ -79,30 +79,30 @@ class ContextBlock(Block):
         # CAUTION: source context name must come before type_ to allow
         # context redefinition.
         if self.source_context_name is not None:
-            string = '\t' + r'\{}'.format(self.source_context_name)
+            string = indent + r'\{}'.format(self.source_context_name)
             result.append(string)
         if self.name is not None:
-            string = '\t' + r'\name {}'.format(self.name)
+            string = indent + r'\name {}'.format(self.name)
             result.append(string)
         if self.type_ is not None:
-            string = '\t' + r'\type {}'.format(self.type_)
+            string = indent + r'\type {}'.format(self.type_)
             result.append(string)
         if self.alias is not None:
-            string = '\t' + r'\alias {}'.format(self.alias)
+            string = indent + r'\alias {}'.format(self.alias)
             result.append(string)
         for statement in self.remove_commands:
-            string = '\t' + r'\remove {}'.format(statement)
+            string = indent + r'\remove {}'.format(statement)
             result.append(string)
         # CAUTION: LilyPond \consists statements are order-significant!
         for statement in self.consists_commands:
-            string = '\t' + r'\consists {}'.format(statement)
+            string = indent + r'\consists {}'.format(statement)
             result.append(string)
         for statement in self.accepts_commands:
-            string = '\t' + r'\accepts {}'.format(statement)
+            string = indent + r'\accepts {}'.format(statement)
             result.append(string)
         overrides = override(self)._list_format_contributions('override')
         for statement in overrides:
-            string = '\t' + statement
+            string = indent + statement
             result.append(string)
         setting_contributions = []
         for key, value in set_(self)._get_attribute_tuples():
@@ -111,7 +111,7 @@ class ContextBlock(Block):
                     key, value)
             setting_contributions.append(setting_contribution)
         for setting_contribution in sorted(setting_contributions):
-            string = '\t' + setting_contribution
+            string = indent + setting_contribution
             result.append(string)
         result.append('}')
         return result

@@ -258,10 +258,12 @@ class Container(Component):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_content_pieces(self):
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         result = []
         for m in self._music:
             result.extend(format(m).split('\n'))
-        result = ['\t' + x for x in result]
+        result = [indent + x for x in result]
         return result
 
     def _format_contents_slot(self, bundle):
@@ -287,10 +289,12 @@ class Container(Component):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_slot_contributions_with_indent(self, slot):
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         result = []
         for contributor, contributions in slot:
             result.append(
-                (contributor, tuple(['\t' + x for x in contributions])))
+                (contributor, tuple([indent + x for x in contributions])))
         return tuple(result)
 
     def _get_spanners_that_dominate_component_pair(self, left, right):

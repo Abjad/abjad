@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 import copy
 from abjad.tools import systemtools
 from abjad.tools.scoretools.Container import Container
@@ -137,6 +136,7 @@ class Context(Container):
         return string
 
     def _format_open_brackets_slot(context, bundle):
+        indent = systemtools.LilyPondFormatManager.indent
         result = []
         if context.is_simultaneous:
             brackets_open = ['<<']
@@ -151,19 +151,19 @@ class Context(Container):
             contributions = tuple(contributions)
             identifier_pair = ('context_brackets', 'open')
             result.append((identifier_pair, contributions))
-            contributions = ['\t' + x for x in remove_commands]
+            contributions = [indent + x for x in remove_commands]
             contributions = tuple(contributions)
             identifier_pair = ('engraver removals', 'remove_commands')
             result.append((identifier_pair, contributions))
-            contributions = ['\t' + x for x in consists_commands]
+            contributions = [indent + x for x in consists_commands]
             contributions = tuple(contributions)
             identifier_pair = ('engraver consists', 'consists_commands')
             result.append((identifier_pair, contributions))
-            contributions = ['\t' + x for x in overrides]
+            contributions = [indent + x for x in overrides]
             contributions = tuple(contributions)
             identifier_pair = ('overrides', 'overrides')
             result.append((identifier_pair, contributions))
-            contributions = ['\t' + x for x in settings]
+            contributions = [indent + x for x in settings]
             contributions = tuple(contributions)
             identifier_pair = ('settings', 'settings')
             result.append((identifier_pair, contributions))

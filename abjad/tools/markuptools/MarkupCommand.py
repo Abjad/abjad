@@ -238,7 +238,8 @@ class MarkupCommand(AbjadObject):
     def _get_format_pieces(self):
         from abjad.tools import lilypondfiletools
         from abjad.tools import scoretools
-        indent = '\t'
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         def recurse(iterable):
             result = []
             for x in iterable:
