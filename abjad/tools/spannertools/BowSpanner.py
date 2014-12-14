@@ -197,6 +197,8 @@ class BowSpanner(Spanner):
         bow_contact_point=None,
         lilypond_format_bundle=None,
         ):
+        if bow_contact_point is None:
+            return
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='NoteHead',
             is_once=True,
@@ -232,8 +234,12 @@ class BowSpanner(Spanner):
         direction_change = None
         next_leaf = inspect_(leaf).get_leaf(1)
         this_contact_point = bow_contact_point
+        if this_contact_point is None:
+            return
         next_contact_point = inspect_(next_leaf).get_indicator(
             indicatortools.BowContactPoint)
+        if next_contact_point is None:
+            return
         if self._is_my_first_leaf(leaf):
             if this_contact_point < next_contact_point:
                 direction_change = Up
