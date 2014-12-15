@@ -34,6 +34,7 @@ class LineSegment(AbjadObject):
         '_left_padding',
         '_left_stencil_align_direction_y',
         '_right_arrow',
+        '_right_broken_arrow',
         '_right_broken_padding',
         '_right_padding',
         '_right_stencil_align_direction_y',
@@ -53,6 +54,7 @@ class LineSegment(AbjadObject):
         left_padding=None,
         left_stencil_align_direction_y=None,
         right_arrow=None,
+        right_broken_arrow=None,
         right_broken_padding=None,
         right_padding=None,
         right_stencil_align_direction_y=None,
@@ -67,6 +69,7 @@ class LineSegment(AbjadObject):
         self._left_hspace = left_hspace
         self._left_stencil_align_direction_y = left_stencil_align_direction_y
         self._right_arrow = right_arrow
+        self._right_broken_arrow = right_broken_arrow
         self._right_broken_padding = right_broken_padding
         self._right_padding = right_padding
         self._right_stencil_align_direction_y = right_stencil_align_direction_y
@@ -164,6 +167,18 @@ class LineSegment(AbjadObject):
                     'arrow',
                     ),
                 value=self.right_arrow,
+                )
+            overrides.append(override_)
+        if self.right_broken_arrow is not None:
+            override_ = lilypondnametools.LilyPondGrobOverride(
+                grob_name='TextSpanner',
+                is_once=True,
+                property_path=(
+                    'bound-details',
+                    'right-broken',
+                    'arrow',
+                    ),
+                value=self.right_broken_arrow,
                 )
             overrides.append(override_)
         if self.right_broken_padding is not None:
@@ -290,6 +305,14 @@ class LineSegment(AbjadObject):
         '''
         return self._right_arrow
 
+    @property
+    def right_broken_arrow(self):
+        r'''Gets right broken arrow of line segment.
+
+        Returns float or none.
+        '''
+        return self._right_broken_arrow
+        
     @property
     def right_broken_padding(self):
         r'''Gets right broken padding of line segment.
