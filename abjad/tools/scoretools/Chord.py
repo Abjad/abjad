@@ -44,19 +44,23 @@ class Chord(Leaf):
             parsed = lilypondparsertools.LilyPondParser()(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             args = [parsed[0]]
-        is_cautionary = []
-        is_forced = []
+        are_cautionary = []
+        are_forced = []
+        are_parenthesized = []
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
             if hasattr(leaf, 'written_pitch'):
                 written_pitches = [leaf.written_pitch]
-                is_cautionary = [leaf.note_head.is_cautionary]
-                is_forced = [leaf.note_head.is_forced]
+                are_cautionary = [leaf.note_head.is_cautionary]
+                are_forced = [leaf.note_head.is_forced]
+                are_parenthesized = [leaf.note_head.is_parenthesized]
             elif hasattr(leaf, 'written_pitches'):
                 written_pitches = leaf.written_pitches
-                is_cautionary = [x.is_cautionary for x in leaf.note_heads]
-                is_forced = [x.is_forced for x in leaf.note_heads]
+                are_cautionary = [x.is_cautionary for x in leaf.note_heads]
+                are_forced = [x.is_forced for x in leaf.note_heads]
+                are_parenthesized = [x.is_parenthesized for x in
+                    leaf.note_heads]
             else:
                 written_pitches = []
         elif len(args) == 2:
@@ -73,23 +77,33 @@ class Chord(Leaf):
             message = message.format(args)
             raise ValueError(message)
         Leaf.__init__(self, written_duration)
-        if not is_cautionary:
-            is_cautionary = [False] * len(written_pitches)
-        if not is_forced:
-            is_forced = [False] * len(written_pitches)
-        for written_pitch, cautionary, forced in zip(
-            written_pitches, is_cautionary, is_forced):
+        if not are_cautionary:
+            are_cautionary = [None] * len(written_pitches)
+        if not are_forced:
+            are_forced = [None] * len(written_pitches)
+        if not are_parenthesized:
+            are_parenthesized = [None] * len(written_pitches)
+        for written_pitch, is_cautionary, is_forced, is_parenthesized in zip(
+            written_pitches, are_cautionary, are_forced, are_parenthesized):
+            if not is_cautionary:
+                is_cautionary = None
+            if not is_forced:
+                is_forced = None
+            if not is_parenthesized:
+                is_parenthesized = None
             if written_pitch not in drums:
                 note_head = scoretools.NoteHead(
                     written_pitch=written_pitch,
-                    is_cautionary=cautionary,
-                    is_forced=forced
+                    is_cautionary=is_cautionary,
+                    is_forced=is_forced,
+                    is_parenthesized=is_parenthesized,
                     )
             else:
                 note_head = scoretools.DrumNoteHead(
                     written_pitch=written_pitch,
-                    is_cautionary=cautionary,
-                    is_forced=forced
+                    is_cautionary=is_cautionary,
+                    is_forced=is_forced,
+                    is_parenthesized=is_parenthesized,
                     )
             self._note_heads.append(note_head)
         if len(args) == 1 and isinstance(args[0], Leaf):
@@ -230,18 +244,12 @@ class Chord(Leaf):
                     [
                         scoretools.NoteHead(
                             written_pitch=pitchtools.NamedPitch("g'"),
-                            is_cautionary=False,
-                            is_forced=False,
                             ),
                         scoretools.NoteHead(
                             written_pitch=pitchtools.NamedPitch("c''"),
-                            is_cautionary=False,
-                            is_forced=False,
                             ),
                         scoretools.NoteHead(
                             written_pitch=pitchtools.NamedPitch("e''"),
-                            is_cautionary=False,
-                            is_forced=False,
                             ),
                         ]
                     )

@@ -23,6 +23,7 @@ class NoteHead(AbjadObject):
         '_client',
         '_is_cautionary',
         '_is_forced',
+        '_is_parenthesized',
         '_tweak',
         '_written_pitch',
         )
@@ -33,8 +34,9 @@ class NoteHead(AbjadObject):
         self,
         written_pitch=None,
         client=None,
-        is_cautionary=False,
-        is_forced=False,
+        is_cautionary=None,
+        is_forced=None,
+        is_parenthesized=None,
         tweak_pairs=(),
         ):
         from abjad.tools import scoretools
@@ -52,6 +54,7 @@ class NoteHead(AbjadObject):
         self.written_pitch = written_pitch
         self.is_cautionary = is_cautionary
         self.is_forced = is_forced
+        self.is_parenthesized = is_parenthesized
         for tweak_pair in tweak_pairs:
             key, value = tweak_pair
             setattr(self.tweak, key, copy.copy(value))
@@ -103,6 +106,7 @@ class NoteHead(AbjadObject):
             None,
             self.is_cautionary,
             self.is_forced,
+            self.is_parenthesized,
             self.tweak._get_attribute_pairs(),
             )
         return args
@@ -192,6 +196,8 @@ class NoteHead(AbjadObject):
         assert self.written_pitch
         result = []
         # format chord note head with optional tweaks
+        if self.is_parenthesized:
+            result.append(r'\parenthesize')
         if isinstance(self._client, scoretools.Chord):
             for key, value in vars(self.tweak).items():
                 if not key.startswith('_'):
@@ -252,8 +258,8 @@ class NoteHead(AbjadObject):
         ::
 
             >>> note_head = scoretools.NoteHead("cs''")
-            >>> note_head.is_cautionary
-            False
+            >>> note_head.is_cautionary is None
+            True
 
         Sets cautionary accidental flag:
 
@@ -268,7 +274,9 @@ class NoteHead(AbjadObject):
 
     @is_cautionary.setter
     def is_cautionary(self, arg):
-        self._is_cautionary = bool(arg)
+        if arg is not None:
+            arg = bool(arg)
+        self._is_cautionary = arg
 
     @property
     def is_forced(self):
@@ -279,8 +287,8 @@ class NoteHead(AbjadObject):
         ::
 
             >>> note_head = scoretools.NoteHead("cs''")
-            >>> note_head.is_forced
-            False
+            >>> note_head.is_forced is None
+            True
 
         Sets forced accidental flag:
 
@@ -295,7 +303,9 @@ class NoteHead(AbjadObject):
 
     @is_forced.setter
     def is_forced(self, arg):
-        self._is_forced = bool(arg)
+        if arg is not None:
+            arg = bool(arg)
+        self._is_forced = arg
 
     @property
     def named_pitch(self):
@@ -327,6 +337,35 @@ class NoteHead(AbjadObject):
         if self._tweak is None:
             self._tweak = lilypondnametools.LilyPondNameManager()
         return self._tweak
+
+    @property
+    def is_parenthesized(self):
+        r'''Gets and sets forced accidental flag.
+
+        Gets forced accidental flag:
+
+        ::
+
+            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head.is_parenthesized is None
+            True
+
+        Sets forced accidental flag:
+
+        ::
+
+            >>> note_head = scoretools.NoteHead("cs''")
+            >>> note_head.is_parenthesized = True
+
+        Returns boolean.
+        '''
+        return self._is_parenthesized
+
+    @is_parenthesized.setter
+    def is_parenthesized(self, arg):
+        if arg is not None:
+            arg = bool(arg)
+        self._is_parenthesized = arg
 
     @property
     def written_pitch(self):

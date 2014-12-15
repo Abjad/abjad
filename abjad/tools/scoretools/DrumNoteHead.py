@@ -22,8 +22,9 @@ class DrumNoteHead(NoteHead):
         self,
         written_pitch='snare',
         client=None,
-        is_cautionary=False,
-        is_forced=False,
+        is_cautionary=None,
+        is_forced=None,
+        is_parenthesized=None,
         tweak_pairs=(),
         ):
         from abjad.ly import drums
@@ -33,6 +34,7 @@ class DrumNoteHead(NoteHead):
             client=client,
             is_cautionary=is_cautionary,
             is_forced=is_forced,
+            is_parenthesized=is_parenthesized,
             tweak_pairs=tweak_pairs,
             )
         assert str(written_pitch) in drums
