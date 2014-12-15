@@ -26,33 +26,33 @@ class Glissando(Spanner):
                 f'8
             }
 
-    Formats nonlast leaves in spanner with LilyPond ``\glissando`` command.
+    Formats notes and chords with LilyPond ``\glissando`` command.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_include_repeated_pitches',
-        '_include_tied_leaves',
+        '_allow_repeated_pitches',
+        '_allow_ties',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        include_repeated_pitches=False,
-        include_tied_leaves=False,
+        allow_repeated_pitches=False,
+        allow_ties=False,
         overrides=None,
         ):
         Spanner.__init__(
             self,
             overrides=overrides,
             )
-        assert isinstance(include_tied_leaves, bool), repr(include_tied_leaves)
-        self._include_tied_leaves = include_tied_leaves
-        assert isinstance(include_repeated_pitches, bool), repr(
-            include_repeated_pitches)
-        self._include_repeated_pitches = include_repeated_pitches
+        assert isinstance(allow_ties, bool), repr(allow_ties)
+        self._allow_ties = allow_ties
+        assert isinstance(allow_repeated_pitches, bool), repr(
+            allow_repeated_pitches)
+        self._allow_repeated_pitches = allow_repeated_pitches
 
     ### PRIVATE METHODS ###
 
@@ -64,16 +64,16 @@ class Glissando(Spanner):
             pass
         elif not isinstance(leaf, prototype):
             pass
-        elif self.include_repeated_pitches and self.include_tied_leaves:
+        elif self.allow_repeated_pitches and self.allow_ties:
             should_attach_glissando = True
-        elif self.include_repeated_pitches and not self.include_tied_leaves:
+        elif self.allow_repeated_pitches and not self.allow_ties:
             should_attach_glissando = self._is_last_in_tie_chain(leaf)
-        elif not self.include_repeated_pitches and self.include_tied_leaves:
+        elif not self.allow_repeated_pitches and self.allow_ties:
             if self._next_leaf_changes_current_pitch(leaf):
                 should_attach_glissando = True
         elif (
-            not self.include_repeated_pitches and 
-            not self.include_tied_leaves):
+            not self.allow_repeated_pitches and 
+            not self.allow_ties):
             if self._next_leaf_changes_current_pitch(leaf):
                 if self._is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
@@ -102,19 +102,19 @@ class Glissando(Spanner):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def include_repeated_pitches(self):
-        r'''Is true when glissando should include repeated pitches.
+    def allow_repeated_pitches(self):
+        r'''Is true when glissando should allow repeated pitches.
         Otherwise false.
 
         ..  container:: example
 
-            **Example 1.** Does not include repeated pitches:
+            **Example 1.** Does not allow repeated pitches:
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     include_repeated_pitches=False,
+                ...     allow_repeated_pitches=False,
                 ...     )
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP 
@@ -137,111 +137,13 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Does include repeated pitches:
+            **Example 2.** Allows repeated pitches (but not ties):
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     include_repeated_pitches=True,
-                ...     )
-                >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    a8 \glissando
-                    a8 \glissando
-                    b8 ~
-                    b8 \glissando
-                    c'8 \glissando
-                    c'8 \glissando
-                    d'8 ~
-                    d'8
-                }
-
-        Defaults to false.
-        '''
-        return self._include_repeated_pitches
-        
-    @property
-    def include_tied_leaves(self):
-        r'''Is true when glissando should include tied leaves.
-        Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Includes neither repeated pitches nor ties:
-
-            ::
-
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
-                ...     include_repeated_pitches=False,
-                ...     include_tied_leaves=False,
-                ...     )
-                >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    a8
-                    a8 \glissando
-                    b8 ~
-                    b8 \glissando
-                    c'8
-                    c'8 \glissando
-                    d'8 ~
-                    d'8
-                }
-
-            This is default behavior.
-
-        ..  container:: example
-
-            **Example 2.** Same as above:
-
-            ::
-
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
-                ...     include_repeated_pitches=False,
-                ...     include_tied_leaves=True,
-                ...     )
-                >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    a8
-                    a8 \glissando
-                    b8 ~
-                    b8 \glissando
-                    c'8
-                    c'8 \glissando
-                    d'8 ~
-                    d'8
-                }
-
-            Including ties is blocked when repeated pitches
-            are not included (because ties all repeat a preceding pitch).
-
-        ..  container:: example
-
-            **Example 3.** Includes repeated pitches but not ties:
-
-            ::
-
-                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
-                >>> glissando = Glissando(
-                ...     include_repeated_pitches=True,
-                ...     include_tied_leaves=False,
+                ...     allow_repeated_pitches=True,
                 ...     )
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP 
@@ -262,14 +164,14 @@ class Glissando(Spanner):
 
         ..  container:: example
 
-            **Example 4.** Includes both repeated pitches and ties:
+            **Example 3.** Allows both repeated pitches and ties:
 
             ::
 
                 >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
                 >>> glissando = Glissando(
-                ...     include_repeated_pitches=True,
-                ...     include_tied_leaves=True,
+                ...     allow_repeated_pitches=True,
+                ...     allow_ties=True,
                 ...     )
                 >>> attach(glissando, staff[:])
                 >>> show(staff) # doctest: +SKIP 
@@ -288,6 +190,104 @@ class Glissando(Spanner):
                     d'8
                 }
 
+        Ties are excluded when repeated pitches are not allowed because all
+        ties comprise repeated pitches.
+
         Defaults to false.
         '''
-        return self._include_tied_leaves
+        return self._allow_repeated_pitches
+        
+    @property
+    def allow_ties(self):
+        r'''Is true when glissando should allow ties. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Does not allow repeated pitches (including ties):
+
+            ::
+
+                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = Glissando(
+                ...     allow_repeated_pitches=False,
+                ...     )
+                >>> attach(glissando, staff[:])
+                >>> show(staff) # doctest: +SKIP 
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    a8
+                    a8 \glissando
+                    b8 ~
+                    b8 \glissando
+                    c'8
+                    c'8 \glissando
+                    d'8 ~
+                    d'8
+                }
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Allows repeated pitches (but not ties):
+
+            ::
+
+                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = Glissando(
+                ...     allow_repeated_pitches=True,
+                ...     )
+                >>> attach(glissando, staff[:])
+                >>> show(staff) # doctest: +SKIP 
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    a8 \glissando
+                    a8 \glissando
+                    b8 ~
+                    b8 \glissando
+                    c'8 \glissando
+                    c'8 \glissando
+                    d'8 ~
+                    d'8
+                }
+
+        ..  container:: example
+
+            **Example 3.** Allows both repeated pitches and ties:
+
+            ::
+
+                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = Glissando(
+                ...     allow_repeated_pitches=True,
+                ...     allow_ties=True,
+                ...     )
+                >>> attach(glissando, staff[:])
+                >>> show(staff) # doctest: +SKIP 
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    a8 \glissando
+                    a8 \glissando
+                    b8 ~ \glissando
+                    b8 \glissando
+                    c'8 \glissando
+                    c'8 \glissando
+                    d'8 ~ \glissando
+                    d'8
+                }
+
+        Ties are excluded when repeated pitches are not allowed because all
+        ties comprise repeated pitches.
+
+        Defaults to false.
+        '''
+        return self._allow_ties

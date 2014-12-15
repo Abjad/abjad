@@ -49,7 +49,7 @@ def test_scoretools_Container___setitem___integer_02():
     voice = Voice("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, voice[:2])
-    glissando = spannertools.Glissando(include_repeated_pitches=True)
+    glissando = spannertools.Glissando(allow_repeated_pitches=True)
     attach(glissando, voice.select_leaves())
 
     assert systemtools.TestManager.compare(
