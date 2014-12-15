@@ -20,6 +20,7 @@ class Arrow(LineSegment):
             indicatortools.Arrow(
                 arrow_width=0.25,
                 dash_fraction=1,
+                left_broken_text=False,
                 left_hspace=0.25,
                 left_stencil_align_direction_y=Center,
                 right_arrow=True,
@@ -49,6 +50,7 @@ class Arrow(LineSegment):
                 \override TextSpanner #'staff-padding = #2
             } {
                 \once \override TextSpanner.arrow-width = 0.25
+                \once \override TextSpanner.bound-details.left-broken.text = ##f
                 \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                 \once \override TextSpanner.bound-details.left.text = \markup {
                     \concat
@@ -94,7 +96,7 @@ class Arrow(LineSegment):
         dash_fraction=1,
         dash_period=None,
         left_broken_padding=None,
-        left_broken_text=None,
+        left_broken_text=False,
         left_hspace=0.25,
         left_padding=None,
         left_stencil_align_direction_y=Center,
@@ -161,8 +163,8 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
-                    \once \override
-                    TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
                             {
@@ -222,8 +224,8 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.5
-                    \once \override
-                    TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
                             {
@@ -281,8 +283,8 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 1
-                    \once \override
-                    TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
+                    \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
                             {
@@ -352,6 +354,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -411,6 +414,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -468,6 +472,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -537,6 +542,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -601,6 +607,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -664,6 +671,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -699,13 +707,12 @@ class Arrow(LineSegment):
         return superclass.dash_period
 
     @property
-    def right_broken_arrow(self):
-        r'''Is true when arrow should appear immediately before line break.
-        Otherwise false.
+    def left_broken_text(self):
+        r'''Gets left broken text of arrow.
 
         ..  container:: example
 
-            **Example 1.** Right broken arrow set to none:
+            **Example 1.** Left broken text set to false:
 
             ..  container:: example
 
@@ -729,6 +736,7 @@ class Arrow(LineSegment):
                     indicatortools.Arrow(
                         arrow_width=0.25,
                         dash_fraction=1,
+                        left_broken_text=False,
                         left_hspace=0.25,
                         left_stencil_align_direction_y=Center,
                         right_arrow=True,
@@ -761,6 +769,206 @@ class Arrow(LineSegment):
                         c'4.
                         d'4.
                         \once \override TextSpanner.arrow-width = 0.25
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text = \markup {
+                            \concat
+                                {
+                                    \upright
+                                        pont.
+                                    \hspace
+                                        #0.25
+                                }
+                            }
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right.arrow = ##t
+                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-fraction = 1
+                        e'4. \startTextSpan
+                        f'4.
+                        \break
+                        g'4.
+                        a'4.
+                        b'4. \stopTextSpan ^ \markup {
+                            \upright
+                                ord.
+                            }
+                        c''4. \stopTextSpan
+                    }
+
+            Results in no text immediately after line break.
+            (This is default behavior.)
+
+        ..  container:: example
+
+            **Example 2.** Left broken text set explicitly:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
+                    >>> attach(TimeSignature((3, 8)), staff)
+                    >>> score = Score([staff])
+                    >>> command = indicatortools.LilyPondCommand('break', 'after')
+                    >>> attach(command, staff[3])
+
+                ::
+
+                    >>> start_markup = Markup('pont.').upright()
+                    >>> stop_markup = Markup('ord.').upright()
+                    >>> left_broken_markup = Markup('(pont./ord.)').upright()
+                    >>> arrow = indicatortools.Arrow(
+                    ...     left_broken_text=left_broken_markup,
+                    ... )
+
+                ::
+
+                    >>> print(format(arrow))
+                    indicatortools.Arrow(
+                        arrow_width=0.25,
+                        dash_fraction=1,
+                        left_broken_text=markuptools.Markup(
+                            contents=(
+                                markuptools.MarkupCommand(
+                                    'upright',
+                                    '(pont./ord.)'
+                                    ),
+                                ),
+                            ),
+                        left_hspace=0.25,
+                        left_stencil_align_direction_y=Center,
+                        right_arrow=True,
+                        right_broken_padding=0,
+                        right_padding=1.5,
+                        right_stencil_align_direction_y=Center,
+                        )
+
+                ::
+
+                    >>> attach(start_markup, staff[2], is_annotation=True)
+                    >>> attach(stop_markup, staff[6], is_annotation=True)
+                    >>> attach(arrow, staff[2])
+                    >>> attach(spannertools.TextSpanner(), staff[2:])
+
+                ::
+
+                    >>> override(staff).text_script.staff_padding = 1.25
+                    >>> override(staff).text_spanner.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript #'staff-padding = #1.25
+                        \override TextSpanner #'staff-padding = #2
+                    } {
+                        \time 3/8
+                        c'4.
+                        d'4.
+                        \once \override TextSpanner.arrow-width = 0.25
+                        \once \override TextSpanner.bound-details.left-broken.text = \markup {
+                            \upright
+                                (pont./ord.)
+                            }
+                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+                        \once \override TextSpanner.bound-details.left.text = \markup {
+                            \concat
+                                {
+                                    \upright
+                                        pont.
+                                    \hspace
+                                        #0.25
+                                }
+                            }
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
+                        \once \override TextSpanner.bound-details.right.arrow = ##t
+                        \once \override TextSpanner.bound-details.right.padding = 1.5
+                        \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+                        \once \override TextSpanner.dash-fraction = 1
+                        e'4. \startTextSpan
+                        f'4.
+                        \break
+                        g'4.
+                        a'4.
+                        b'4. \stopTextSpan ^ \markup {
+                            \upright
+                                ord.
+                            }
+                        c''4. \stopTextSpan
+                    }
+
+        Set to markup, boolean or none.
+        '''
+        return self._left_broken_text
+
+    @property
+    def right_broken_arrow(self):
+        r'''Is true when arrow should appear immediately before line break.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Right broken arrow set to none:
+
+            ..  container:: example
+
+                ::
+
+                    >>> staff = Staff("c'4. d' e' f' g' a' b' c''")
+                    >>> attach(TimeSignature((3, 8)), staff)
+                    >>> score = Score([staff])
+                    >>> command = indicatortools.LilyPondCommand('break', 'after')
+                    >>> attach(command, staff[3])
+
+                ::
+
+                    >>> start_markup = Markup('pont.').upright()
+                    >>> stop_markup = Markup('ord.').upright()
+                    >>> arrow = indicatortools.Arrow()
+
+                ::
+
+                    >>> print(format(arrow))
+                    indicatortools.Arrow(
+                        arrow_width=0.25,
+                        dash_fraction=1,
+                        left_broken_text=False,
+                        left_hspace=0.25,
+                        left_stencil_align_direction_y=Center,
+                        right_arrow=True,
+                        right_broken_padding=0,
+                        right_padding=1.5,
+                        right_stencil_align_direction_y=Center,
+                        )
+
+                ::
+
+                    >>> attach(start_markup, staff[2], is_annotation=True)
+                    >>> attach(stop_markup, staff[6], is_annotation=True)
+                    >>> attach(arrow, staff[2])
+                    >>> attach(spannertools.TextSpanner(), staff[2:])
+
+                ::
+
+                    >>> override(staff).text_script.staff_padding = 1.25
+                    >>> override(staff).text_spanner.staff_padding = 2
+                    >>> show(staff) # doctest: +SKIP
+
+                ..  doctest::
+
+                    >>> f(staff)
+                    \new Staff \with {
+                        \override TextScript #'staff-padding = #1.25
+                        \override TextSpanner #'staff-padding = #2
+                    } {
+                        \time 3/8
+                        c'4.
+                        d'4.
+                        \once \override TextSpanner.arrow-width = 0.25
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                         \once \override TextSpanner.bound-details.left.text = \markup {
                             \concat
@@ -819,6 +1027,7 @@ class Arrow(LineSegment):
                     indicatortools.Arrow(
                         arrow_width=0.25,
                         dash_fraction=1,
+                        left_broken_text=False,
                         left_hspace=0.25,
                         left_stencil_align_direction_y=Center,
                         right_arrow=True,
@@ -852,6 +1061,7 @@ class Arrow(LineSegment):
                         c'4.
                         d'4.
                         \once \override TextSpanner.arrow-width = 0.25
+                        \once \override TextSpanner.bound-details.left-broken.text = ##f
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                         \once \override TextSpanner.bound-details.left.text = \markup {
                             \concat
@@ -920,6 +1130,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -980,6 +1191,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -1037,6 +1249,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat
@@ -1094,6 +1307,7 @@ class Arrow(LineSegment):
                     \override TextSpanner #'staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
+                    \once \override TextSpanner.bound-details.left-broken.text = ##f
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \concat

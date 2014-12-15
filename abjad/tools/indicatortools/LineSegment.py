@@ -130,7 +130,7 @@ class LineSegment(AbjadObject):
                     'left-broken',
                     'text',
                     ),
-                value=self.left_broken_padding,
+                value=self.left_broken_text,
                 )
             overrides.append(override_)
         if self.left_padding is not None:
