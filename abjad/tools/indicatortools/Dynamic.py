@@ -167,7 +167,6 @@ class Dynamic(AbjadObject):
 
     ### PUBLIC PROPERTIES ###
 
-
     @property
     def name(self):
         r'''Name of dynamic.
@@ -180,6 +179,24 @@ class Dynamic(AbjadObject):
         Returns string.
         '''
         return self._name
+
+    @property
+    def ordinal(self):
+        r'''Ordinal of dynamic.
+
+        ::
+
+            >>> dynamic.ordinal
+            2
+        
+        Returns integer.
+        '''
+        name = self.name
+        if name in self._composite_dynamic_name_to_steady_state_dynamic_name:
+            name = self._composite_dynamic_name_to_steady_state_dynamic_name[
+                name]
+        ordinal = self._dynamic_name_to_dynamic_ordinal[name]
+        return ordinal
 
     ### PUBLIC METHODS ###
 
