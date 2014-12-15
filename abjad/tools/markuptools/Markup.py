@@ -643,6 +643,45 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    def center_align(self):
+        r'''LilyPond ``\center-align`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup_a = Markup('one')
+                >>> markup_b = Markup('two').center_align()
+                >>> markup_c = Markup('three')
+                >>> markup = Markup.column([markup_a, markup_b, markup_c])
+
+            ::
+
+                >>> print(format(markup))
+                ^ \markup {
+                    \column
+                        {
+                            one
+                            \center-align
+                                two
+                            three
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'center-align',
+            contents,
+            )
+        return new(self, contents=command)
+
     def circle(self):
         r'''LilyPond ``\circle`` markup command.
 
