@@ -85,9 +85,8 @@ class BowContactPoint(AbjadObject):
 
         Returns boolean.
         '''
-        if isinstance(expr, type(self)):
-            return self.contact_point == expr.contact_point
-        raise TypeError('unorderable types')
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.compare(self, expr)
 
     def __hash__(self):
         r'''Hashes bow contact point.
@@ -169,10 +168,11 @@ class BowContactPoint(AbjadObject):
                 >>> indicator = indicatortools.BowContactPoint((3, 4))
                 >>> print(format(indicator.markup, 'lilypond'))
                 \markup {
-                    \vcenter
-                        \fraction
-                            3
-                            4
+                    \center-align
+                        \vcenter
+                            \fraction
+                                3
+                                4
                     }
 
         Returns markup.
@@ -182,4 +182,5 @@ class BowContactPoint(AbjadObject):
             self.contact_point.denominator,
             )
         markup = markup.vcenter()
+        markup = markup.center_align()
         return markup

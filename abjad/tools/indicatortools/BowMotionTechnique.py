@@ -26,11 +26,15 @@ class BowMotionTechnique(AbjadValueObject):
         'circular',
         'jete',
         'ordinario',
+        None,
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, technique_name='ordinario'):
+    def __init__(
+        self,
+        technique_name=None,
+        ):
         assert technique_name in self._valid_technique_names
         self._technique_name = technique_name
 

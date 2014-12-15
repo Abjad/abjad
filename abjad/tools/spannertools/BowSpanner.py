@@ -72,48 +72,53 @@ class BowSpanner(Spanner):
                 \once \override NoteHead.Y-offset = -1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \vcenter
-                        \fraction
-                            1
-                            4
+                    \center-align
+                        \vcenter
+                            \fraction
+                                1
+                                4
                     }
                 c'4. ^\upbow \glissando
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
-                    \vcenter
-                        \fraction
-                            3
-                            4
+                    \center-align
+                        \vcenter
+                            \fraction
+                                3
+                                4
                     }
                 c'8 ^\downbow \glissando
                 \times 2/3 {
                     \once \override NoteHead.Y-offset = 0.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
                     \once \override NoteHead.text = \markup {
-                        \vcenter
-                            \fraction
-                                1
-                                2
+                        \center-align
+                            \vcenter
+                                \fraction
+                                    1
+                                    2
                         }
                     c'4 ^\upbow \glissando
                     \once \override Glissando.style = #'zigzag
                     \once \override NoteHead.Y-offset = 2.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
                     \once \override NoteHead.text = \markup {
-                        \vcenter
-                            \fraction
-                                1
-                                1
+                        \center-align
+                            \vcenter
+                                \fraction
+                                    1
+                                    1
                         }
                     c'4 ^\downbow \glissando
                     \once \override NoteHead.Y-offset = -2.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
                     \once \override NoteHead.text = \markup {
-                        \vcenter
-                            \fraction
-                                0
-                                1
+                        \center-align
+                            \vcenter
+                                \fraction
+                                    0
+                                    1
                         }
                     c'4
                 }
