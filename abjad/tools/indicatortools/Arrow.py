@@ -23,6 +23,7 @@ class Arrow(LineSegment):
                 left_hspace=0.25,
                 left_stencil_align_direction_y=Center,
                 right_arrow=True,
+                right_broken_padding=0,
                 right_padding=1.5,
                 right_stencil_align_direction_y=Center,
                 )
@@ -58,6 +59,7 @@ class Arrow(LineSegment):
                                 #0.25
                         }
                     }
+                \once \override TextSpanner.bound-details.right-broken.padding = 0
                 \once \override TextSpanner.bound-details.right.arrow = ##t
                 \once \override TextSpanner.bound-details.right.padding = 1.5
                 \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -98,7 +100,7 @@ class Arrow(LineSegment):
         left_stencil_align_direction_y=Center,
         right_arrow=True,
         right_broken_arrow=None,
-        right_broken_padding=None,
+        right_broken_padding=0,
         right_padding=1.5,
         right_stencil_align_direction_y=Center,
         style=None,
@@ -170,6 +172,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -230,6 +233,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -288,6 +292,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -357,6 +362,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -415,6 +421,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -471,6 +478,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -539,6 +547,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -602,6 +611,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -664,6 +674,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -721,6 +732,7 @@ class Arrow(LineSegment):
                         left_hspace=0.25,
                         left_stencil_align_direction_y=Center,
                         right_arrow=True,
+                        right_broken_padding=0,
                         right_padding=1.5,
                         right_stencil_align_direction_y=Center,
                         )
@@ -730,7 +742,7 @@ class Arrow(LineSegment):
                     >>> attach(start_markup, staff[2], is_annotation=True)
                     >>> attach(stop_markup, staff[6], is_annotation=True)
                     >>> attach(arrow, staff[2])
-                    >>> attach(spannertools.TextSpanner(), staff[2:-2])
+                    >>> attach(spannertools.TextSpanner(), staff[2:])
 
                 ::
 
@@ -759,6 +771,7 @@ class Arrow(LineSegment):
                                         #0.25
                                 }
                             }
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
                         \once \override TextSpanner.bound-details.right.arrow = ##t
                         \once \override TextSpanner.bound-details.right.padding = 1.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -767,9 +780,12 @@ class Arrow(LineSegment):
                         f'4.
                         \break
                         g'4.
-                        a'4. \stopTextSpan
-                        b'4.
-                        c''4.
+                        a'4.
+                        b'4. \stopTextSpan ^ \markup {
+                            \upright
+                                ord.
+                            }
+                        c''4. \stopTextSpan
                     }
 
             Results in arrow immediately before line break.
@@ -807,6 +823,7 @@ class Arrow(LineSegment):
                         left_stencil_align_direction_y=Center,
                         right_arrow=True,
                         right_broken_arrow=False,
+                        right_broken_padding=0,
                         right_padding=1.5,
                         right_stencil_align_direction_y=Center,
                         )
@@ -816,7 +833,7 @@ class Arrow(LineSegment):
                     >>> attach(start_markup, staff[2], is_annotation=True)
                     >>> attach(stop_markup, staff[6], is_annotation=True)
                     >>> attach(arrow, staff[2])
-                    >>> attach(spannertools.TextSpanner(), staff[2:-2])
+                    >>> attach(spannertools.TextSpanner(), staff[2:])
 
                 ::
 
@@ -846,6 +863,7 @@ class Arrow(LineSegment):
                                 }
                             }
                         \once \override TextSpanner.bound-details.right-broken.arrow = ##f
+                        \once \override TextSpanner.bound-details.right-broken.padding = 0
                         \once \override TextSpanner.bound-details.right.arrow = ##t
                         \once \override TextSpanner.bound-details.right.padding = 1.5
                         \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -854,9 +872,12 @@ class Arrow(LineSegment):
                         f'4.
                         \break
                         g'4.
-                        a'4. \stopTextSpan
-                        b'4.
-                        c''4.
+                        a'4.
+                        b'4. \stopTextSpan ^ \markup {
+                            \upright
+                                ord.
+                            }
+                        c''4. \stopTextSpan
                     }
 
         Set to true, false or none.
@@ -909,6 +930,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -968,6 +990,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -1024,6 +1047,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
@@ -1080,6 +1104,7 @@ class Arrow(LineSegment):
                                     #0.25
                             }
                         }
+                    \once \override TextSpanner.bound-details.right-broken.padding = 0
                     \once \override TextSpanner.bound-details.right.arrow = ##t
                     \once \override TextSpanner.bound-details.right.padding = 1.5
                     \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
