@@ -1199,6 +1199,35 @@ class Markup(AbjadObject):
             )
         return markuptools.Markup(contents=command, direction=direction)
 
+    @staticmethod
+    def null(direction=Up):
+        r'''LilyPond ``\null`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.null()
+
+            ::
+
+                >>> print(format(markup))
+                ^ \markup {
+                    \null
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand(
+            'null',
+            )
+        return Markup(contents=command, direction=direction)
+    
     def override(self, new_property):
         r'''LilyPond ``\override`` markup command.
 
