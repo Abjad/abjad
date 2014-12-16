@@ -1544,7 +1544,6 @@ class TempoSpanner(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_implicit_start_markup',
         '_left_broken_padding',
         '_left_broken_text',
         '_start_with_parenthesized_tempo',
@@ -1554,7 +1553,6 @@ class TempoSpanner(Spanner):
 
     def __init__(
         self,
-        implicit_start_markup=None,
         left_broken_padding=None,
         left_broken_text=None,
         start_with_parenthesized_tempo=True,
@@ -1564,9 +1562,6 @@ class TempoSpanner(Spanner):
             self,
             overrides=overrides,
             )
-        prototype = (markuptools.Markup, type(None))
-        assert isinstance(implicit_start_markup, prototype)
-        self._implicit_start_markup = implicit_start_markup
         assert isinstance(left_broken_padding, (int, float, type(None)))
         self._left_broken_padding = left_broken_padding
         prototype = (markuptools.Markup, type(None))
@@ -1879,9 +1874,7 @@ class TempoSpanner(Spanner):
         previous_tempo,
         ):
         #
-        if self.implicit_start_markup is not None:
-            markup = self.implicit_start_markup
-        elif self.start_with_parenthesized_tempo and previous_tempo:
+        if self.start_with_parenthesized_tempo and previous_tempo:
             markup = previous_tempo._to_markup()
             markup = markup.line()
             markup = markup.parenthesize()
@@ -1904,263 +1897,6 @@ class TempoSpanner(Spanner):
         lilypond_format_bundle.grob_overrides.append(override_string)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def implicit_start_markup(self):
-        r'''Gets implicit start markup of tempo spanner.
-
-        ..  container:: example
-
-            **Example 1.** Implicit start markup set to none:
-
-            ::
-
-                >>> staff = Staff("c'8. d' e'4. g'8. f' ef'4.")
-                >>> attach(TimeSignature((3, 8)), staff)
-                >>> score = Score([staff])
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff[0], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> attach(tempo, staff[2], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 120)
-                >>> attach(tempo, staff[5], is_annotation=True)
-
-            ::
-
-                >>> accelerando = indicatortools.Accelerando()
-                >>> attach(accelerando, staff[3], is_annotation=True)
-
-            ::
-
-                >>> attach(spannertools.TempoSpanner(), staff[:])
-
-            ::
-
-                >>> override(score).text_script.staff_padding = 1.25
-                >>> override(score).text_spanner.staff_padding = 2
-
-            ::
-
-                >>> show(score) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(score))
-                \new Score \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
-                } <<
-                    \new Staff {
-                        \time 3/8
-                        c'8. ^ \markup {
-                            \smaller
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
-                                " = 60"
-                            }
-                        d'8.
-                        e'4. ^ \markup {
-                            \smaller
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
-                                " = 90"
-                            }
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.padding = -2
-                        \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                            \override
-                                #'(padding . 0.45)
-                                \parenthesize
-                                    \large
-                                        \upright
-                                            accel.
-                            \hspace
-                                #0.75
-                            }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                        \once \override TextSpanner.bound-details.left.text = \markup {
-                            \override
-                                #'(padding . 0.45)
-                                \parenthesize
-                                    \line
-                                        {
-                                            \smaller
-                                                \general-align
-                                                    #Y
-                                                    #DOWN
-                                                    \note-by-number
-                                                        #2
-                                                        #0
-                                                        #1
-                                            \upright
-                                                " = 90"
-                                        }
-                            \hspace
-                                #0.75
-                            }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 2
-                        \once \override TextSpanner.bound-details.right.text = ##f
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        g'8. \startTextSpan
-                        f'8.
-                        ef'4. \stopTextSpan ^ \markup {
-                            \smaller
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
-                                " = 120"
-                            }
-                    }
-                >>
-
-            Results in parenthesized previous tempo indication.
-            (This is default behavior.)
-
-        ..  container:: example
-
-            **Example 2.** Implicit start markup set explicitly:
-
-            ::
-
-                >>> staff = Staff("c'8. d' e'4. g'8. f' ef'4.")
-                >>> attach(TimeSignature((3, 8)), staff)
-                >>> score = Score([staff])
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 4), 60)
-                >>> attach(tempo, staff[0], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 90)
-                >>> attach(tempo, staff[2], is_annotation=True)
-                >>> tempo = Tempo(Duration(1, 4), 120)
-                >>> attach(tempo, staff[5], is_annotation=True)
-
-            ::
-
-                >>> accelerando = indicatortools.Accelerando()
-                >>> attach(accelerando, staff[3], is_annotation=True)
-
-            ::
-
-                >>> markup = Markup('accel.').upright()
-                >>> tempo_spanner = spannertools.TempoSpanner(
-                ...     implicit_start_markup=markup,
-                ...     )
-                >>> attach(tempo_spanner, staff[:])
-
-            ::
-
-                >>> override(score).text_script.staff_padding = 1.25
-                >>> override(score).text_spanner.staff_padding = 2
-
-            ::
-
-                >>> show(score) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(score))
-                \new Score \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
-                } <<
-                    \new Staff {
-                        \time 3/8
-                        c'8. ^ \markup {
-                            \smaller
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
-                                " = 60"
-                            }
-                        d'8.
-                        e'4. ^ \markup {
-                            \smaller
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
-                                " = 90"
-                            }
-                        \once \override TextSpanner.arrow-width = 0.25
-                        \once \override TextSpanner.bound-details.left-broken.padding = -2
-                        \once \override TextSpanner.bound-details.left-broken.text = \markup {
-                            \override
-                                #'(padding . 0.45)
-                                \parenthesize
-                                    \large
-                                        \upright
-                                            accel.
-                            \hspace
-                                #0.75
-                            }
-                        \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
-                        \once \override TextSpanner.bound-details.left.text = \markup {
-                            \upright
-                                accel.
-                            }
-                        \once \override TextSpanner.bound-details.right-broken.arrow = ##f
-                        \once \override TextSpanner.bound-details.right-broken.padding = 0
-                        \once \override TextSpanner.bound-details.right-broken.text = ##f
-                        \once \override TextSpanner.bound-details.right.arrow = ##t
-                        \once \override TextSpanner.bound-details.right.padding = 2
-                        \once \override TextSpanner.bound-details.right.text = ##f
-                        \once \override TextSpanner.dash-fraction = 0.25
-                        \once \override TextSpanner.dash-period = 1.5
-                        g'8. \startTextSpan
-                        f'8.
-                        ef'4. \stopTextSpan ^ \markup {
-                            \smaller
-                                \general-align
-                                    #Y
-                                    #DOWN
-                                    \note-by-number
-                                        #2
-                                        #0
-                                        #1
-                            \upright
-                                " = 120"
-                            }
-                    }
-                >>
-
-        Returns markup or none.
-        '''
-        return self._implicit_start_markup
 
     @property
     def left_broken_padding(self):
