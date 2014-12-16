@@ -47,6 +47,7 @@ class Note(Leaf):
             args = [parsed[0]]
         is_cautionary = False
         is_forced = False
+        is_parenthesized = False
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
             written_duration = leaf.written_duration
@@ -54,11 +55,13 @@ class Note(Leaf):
                 written_pitch = leaf.written_pitch
                 is_cautionary = leaf.note_head.is_cautionary
                 is_forced = leaf.note_head.is_forced
+                is_parenthesized = leaf.note_head.is_parenthesized
             elif hasattr(leaf, 'written_pitches') and \
                 0 < len(leaf.written_pitches):
                 written_pitch = leaf.written_pitches[0]
                 is_cautionary = leaf.note_heads[0].is_cautionary
                 is_forced = leaf.note_heads[0].is_forced
+                is_parenthesized = leaf.note_heads[0].is_parenthesized
             else:
                 written_pitch = None
         elif len(args) == 2:
@@ -75,13 +78,15 @@ class Note(Leaf):
                 self.note_head = scoretools.NoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
-                    is_forced=is_forced
+                    is_forced=is_forced,
+                    is_parenthesized=is_parenthesized,
                     )
             else:
                 self.note_head = scoretools.DrumNoteHead(
                     written_pitch=written_pitch,
                     is_cautionary=is_cautionary,
-                    is_forced=is_forced
+                    is_forced=is_forced,
+                    is_parenthesized=is_parenthesized,
                     )
         else:
             self.note_head = None
@@ -101,15 +106,20 @@ class Note(Leaf):
 
     @property
     def _body(self):
-        result = ''
+        result = []
+        if self.note_head is not None and self.note_head.is_parenthesized:
+            result.append(r'\parenthesize')
+        body = ''
         if self.written_pitch:
-            result += str(self.written_pitch)
+            body += str(self.written_pitch)
             if self.note_head.is_forced:
-                result += '!'
+                body += '!'
             if self.note_head.is_cautionary:
-                result += '?'
-        result += self._formatted_duration
-        return [result]
+                body += '?'
+        body += self._formatted_duration
+        result.append(body)
+        result = ['\n'.join(result)]
+        return result
 
     @property
     def _compact_representation(self):
@@ -162,7 +172,7 @@ class Note(Leaf):
                 sounding_pitch = pitchtools.NamedPitch('C4')
             t_n = pitchtools.NamedPitch('C4') - sounding_pitch
             sounding_pitch = pitchtools.transpose_pitch_carrier_by_interval(
-                    self.written_pitch, t_n)
+                self.written_pitch, t_n)
             return sounding_pitch
 
     ### PUBLIC PROPERTIES ###

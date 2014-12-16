@@ -12,13 +12,38 @@ def test_scoretools_NoteHead_is_parenthesized_01():
     assert note_head.is_parenthesized == False
 
 
-def test_scoretools_NoteHead_is_parenthesized_01():
+def test_scoretools_NoteHead_is_parenthesized_02():
 
     note_head = scoretools.NoteHead(written_pitch="c'")
     note_head.is_parenthesized = True
-
     assert format(note_head) == systemtools.TestManager.clean_string(
         r'''
         \parenthesize
         c'
+        ''')
+
+
+def test_scoretools_NoteHead_is_parenthesized_03():
+
+    note = scoretools.Note("c'4")
+    note.note_head.is_parenthesized = True
+    assert format(note) == systemtools.TestManager.clean_string(
+        r'''
+        \parenthesize
+        c'4
+        ''')
+
+
+def test_scoretools_NoteHead_is_parenthesized_04():
+
+    chord = scoretools.Chord("<c' e' g'>4")
+    chord.note_heads[1].is_parenthesized = True
+    assert format(chord) == systemtools.TestManager.clean_string(
+        r'''
+        <
+            c'
+            \parenthesize
+            e'
+            g'
+        >4
         ''')
