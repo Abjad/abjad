@@ -56,6 +56,11 @@ class Glissando(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _copy_keyword_args(self, new):
+        Spanner._copy_keyword_args(self, new)
+        new._allow_repeated_pitches = self.allow_repeated_pitches
+        new._allow_ties = self.allow_ties
+
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (scoretools.Chord, scoretools.Note)
