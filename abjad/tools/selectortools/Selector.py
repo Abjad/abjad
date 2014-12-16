@@ -146,11 +146,14 @@ class Selector(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, seed=None):
         r'''Selects components from component or selection `expr`.
 
         Returns a selection of selections or containers.
         '''
+        if seed is None:
+            seed = 0
+        seed = int(seed)
         prototype = (
             scoretools.Component,
             selectiontools.Selection,
@@ -160,8 +163,11 @@ class Selector(AbjadValueObject):
         expr = (expr,)
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
-        for callback in callbacks:
-            expr = callback(expr)
+        for i, callback in enumerate(callbacks, seed):
+            try:
+                expr = callback(expr, seed=i)
+            except TypeError:
+                expr = callback(expr)
         return selectiontools.Selection(expr)
 
     def __getitem__(self, item):
@@ -970,6 +976,15 @@ class Selector(AbjadValueObject):
             start=1,
             apply_to_each=False,
             )
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+
+    def with_callback(self, callback):
+        r'''Configures selector with arbitrary `callback`.
+
+        Returns new selector.
+        '''
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
