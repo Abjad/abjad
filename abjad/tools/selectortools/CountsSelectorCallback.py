@@ -12,7 +12,7 @@ class CountsSelectorCallback(AbjadValueObject):
         >>> callback = selectortools.CountsSelectorCallback([3])
         >>> print(format(callback))
         selectortools.CountsSelectorCallback(
-            (3,),
+            counts=(3,),
             cyclic=False,
             fuse_overhang=False,
             overhang=False,
