@@ -328,4 +328,9 @@ class Glissando(Spanner):
 
     @property
     def parenthesize_repeated_pitches(self):
+        r'''Is true when glissando should parenthesize repeated pitches.
+        Otherwise false.
+
+        Defaults to false.
+        '''
         return self._parenthesize_repeated_pitches
