@@ -34,6 +34,7 @@ class Glissando(Spanner):
     __slots__ = (
         '_allow_repeated_pitches',
         '_allow_ties',
+        '_parenthesize_repeated_pitches',
         )
 
     ### INITIALIZER ###
@@ -43,16 +44,18 @@ class Glissando(Spanner):
         allow_repeated_pitches=False,
         allow_ties=False,
         overrides=None,
+        parenthesize_repeated_pitches=False,
         ):
         Spanner.__init__(
             self,
             overrides=overrides,
             )
-        assert isinstance(allow_ties, bool), repr(allow_ties)
+        allow_ties = bool(allow_ties)
+        allow_repeated_pitches = bool(allow_repeated_pitches)
+        parenthesize_repeated_pitches = bool(parenthesize_repeated_pitches)
         self._allow_ties = allow_ties
-        assert isinstance(allow_repeated_pitches, bool), repr(
-            allow_repeated_pitches)
         self._allow_repeated_pitches = allow_repeated_pitches
+        self._parenthesize_repeated_pitches = parenthesize_repeated_pitches
 
     ### PRIVATE METHODS ###
 
@@ -60,6 +63,7 @@ class Glissando(Spanner):
         Spanner._copy_keyword_args(self, new)
         new._allow_repeated_pitches = self.allow_repeated_pitches
         new._allow_ties = self.allow_ties
+        new._parenthesize_repeated_pitches = self.parenthesize_repeated_pitches
 
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
@@ -77,13 +81,17 @@ class Glissando(Spanner):
             if self._next_leaf_changes_current_pitch(leaf):
                 should_attach_glissando = True
         elif (
-            not self.allow_repeated_pitches and 
+            not self.allow_repeated_pitches and
             not self.allow_ties):
             if self._next_leaf_changes_current_pitch(leaf):
                 if self._is_last_in_tie_chain(leaf):
                     should_attach_glissando = True
         if should_attach_glissando:
             lilypond_format_bundle.right.spanner_starts.append('\glissando')
+        if not self._is_my_first_leaf(leaf):
+            if self.parenthesize_repeated_pitches:
+                if not self._previous_leaf_changes_current_pitch(leaf):
+                    self._parenthesize_leaf(leaf)
         return lilypond_format_bundle
 
     @staticmethod
@@ -94,15 +102,36 @@ class Glissando(Spanner):
     @staticmethod
     def _next_leaf_changes_current_pitch(leaf):
         next_leaf = inspect_(leaf).get_leaf(n=1)
-        if (isinstance(leaf, scoretools.Note) and 
+        if (isinstance(leaf, scoretools.Note) and
             isinstance(next_leaf, scoretools.Note) and
             leaf.written_pitch == next_leaf.written_pitch):
             return False
-        elif (isinstance(leaf, scoretools.Chord) and 
+        elif (isinstance(leaf, scoretools.Chord) and
             isinstance(next_leaf, scoretools.Chord) and
             leaf.written_pitches == next_leaf.written_pitches):
             return False
         return True
+
+    @staticmethod
+    def _previous_leaf_changes_current_pitch(leaf):
+        previous_leaf = inspect_(leaf).get_leaf(n=-1)
+        if (isinstance(leaf, scoretools.Note) and
+            isinstance(previous_leaf, scoretools.Note) and
+            leaf.written_pitch == previous_leaf.written_pitch):
+            return False
+        elif (isinstance(leaf, scoretools.Chord) and
+            isinstance(previous_leaf, scoretools.Chord) and
+            leaf.written_pitches == previous_leaf.written_pitches):
+            return False
+        return True
+
+    @staticmethod
+    def _parenthesize_leaf(leaf):
+        if isinstance(leaf, scoretools.Note):
+            leaf.note_head.is_parenthesized = True
+        elif isinstance(leaf, scoretools.Chord):
+            for note_head in leaf.note_heads:
+                note_head.is_parenthesized = True
 
     ### PUBLIC PROPERTIES ###
 
@@ -122,7 +151,7 @@ class Glissando(Spanner):
                 ...     allow_repeated_pitches=False,
                 ...     )
                 >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -151,7 +180,7 @@ class Glissando(Spanner):
                 ...     allow_repeated_pitches=True,
                 ...     )
                 >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -179,7 +208,7 @@ class Glissando(Spanner):
                 ...     allow_ties=True,
                 ...     )
                 >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -201,7 +230,7 @@ class Glissando(Spanner):
         Defaults to false.
         '''
         return self._allow_repeated_pitches
-        
+
     @property
     def allow_ties(self):
         r'''Is true when glissando should allow ties. Otherwise false.
@@ -217,7 +246,7 @@ class Glissando(Spanner):
                 ...     allow_repeated_pitches=False,
                 ...     )
                 >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -246,7 +275,7 @@ class Glissando(Spanner):
                 ...     allow_repeated_pitches=True,
                 ...     )
                 >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -274,7 +303,7 @@ class Glissando(Spanner):
                 ...     allow_ties=True,
                 ...     )
                 >>> attach(glissando, staff[:])
-                >>> show(staff) # doctest: +SKIP 
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -296,3 +325,7 @@ class Glissando(Spanner):
         Defaults to false.
         '''
         return self._allow_ties
+
+    @property
+    def parenthesize_repeated_pitches(self):
+        return self._parenthesize_repeated_pitches
