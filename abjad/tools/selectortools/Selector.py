@@ -189,6 +189,11 @@ class Selector(AbjadValueObject):
                 )
         else:
             raise ValueError(item)
+        return self._with_callback(callback)
+
+    ### PRIVATE METHODS ###
+
+    def _with_callback(self, callback):
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
@@ -230,12 +235,117 @@ class Selector(AbjadValueObject):
         '''
         from abjad.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(prototype)
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
+
+    def by_counts(
+        self,
+        counts,
+        cyclic=False,
+        fuse_overhang=False,
+        overhang=False,
+        rotate=False,
+        ):
+        r'''Configures selector to select components partitioned by `counts`.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_counts(
+                ...     [3],
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_counts(
+                ...     [3],
+                ...     cyclic=True,
+                ...     overhang=False,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
+                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_counts(
+                ...     [3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
+                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+                Selection(Note("g'8"), Note("a'8"))
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_counts(
+                ...     [3],
+                ...     cyclic=True,
+                ...     fuse_overhang=True,
+                ...     overhang=True,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
+                Selection(Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+
+        Returns new selector.
+        '''
+        from abjad.tools import selectortools
+        callback = selectortools.CountsSelectorCallback(
+            counts,
+            cyclic=cyclic,
+            fuse_overhang=fuse_overhang,
+            overhang=overhang,
+            rotate=rotate,
+            )
+        return self._with_callback(callback)
 
     def by_duration(self, *args):
-        r'''Configures selector to selector containers or selections of
+        r'''Configures selector to select containers or selections of
         duration `duration`.
 
         ..  container:: example
@@ -327,9 +437,7 @@ class Selector(AbjadValueObject):
         callback = selectortools.DurationSelectorCallback(
             duration=duration,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def by_leaves(self):
         r'''Configures selector to select leaves.
@@ -338,9 +446,7 @@ class Selector(AbjadValueObject):
         '''
         from abjad.tools import selectortools
         callback = selectortools.PrototypeSelectorCallback(scoretools.Leaf)
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def by_length(self, *args):
         r'''Configures selector to selector containers or selections of length
@@ -414,9 +520,7 @@ class Selector(AbjadValueObject):
         callback = selectortools.LengthSelectorCallback(
             length=length,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def by_logical_measure(self):
         r'''Configures selector to group components by logical measure.
@@ -425,9 +529,7 @@ class Selector(AbjadValueObject):
         '''
         from abjad.tools import selectortools
         callback = selectortools.LogicalMeasureSelectorCallback()
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def by_logical_tie(
         self,
@@ -613,9 +715,7 @@ class Selector(AbjadValueObject):
             only_with_head=only_with_head,
             only_with_tail=only_with_tail,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def by_run(
         self,
@@ -648,9 +748,7 @@ class Selector(AbjadValueObject):
         '''
         from abjad.tools import selectortools
         callback = selectortools.RunSelectorCallback(prototype)
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def first(self):
         r'''Configures selector to select first selection.
@@ -680,9 +778,7 @@ class Selector(AbjadValueObject):
             item=0,
             apply_to_each=False,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def flatten(self, depth=-1):
         r'''Configures selector to flatten its selections to `depth`.
@@ -715,9 +811,7 @@ class Selector(AbjadValueObject):
         '''
         from abjad.tools import selectortools
         callback = selectortools.FlattenSelectorCallback(depth=depth)
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def get_item(self, item, apply_to_each=True):
         r'''Configures selector to select `item`.
@@ -773,9 +867,7 @@ class Selector(AbjadValueObject):
             item=item,
             apply_to_each=apply_to_each,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def get_slice(self, start=None, stop=None, apply_to_each=True):
         r'''Configures selector to select `start`:`stop`.
@@ -841,9 +933,7 @@ class Selector(AbjadValueObject):
             stop=stop,
             apply_to_each=apply_to_each,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def last(self):
         r'''Configures selector to select the last selection.
@@ -873,9 +963,7 @@ class Selector(AbjadValueObject):
             item=-1,
             apply_to_each=False,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def middle(self):
         r'''Configures selector to select all but the first or last selection.
@@ -908,9 +996,7 @@ class Selector(AbjadValueObject):
             stop=-1,
             apply_to_each=False,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def most(self):
         r'''Configures selector to select all but the last selection.
@@ -942,9 +1028,7 @@ class Selector(AbjadValueObject):
             stop=-1,
             apply_to_each=False,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def rest(self):
         r'''Configures selector to select all but the first selection.
@@ -976,18 +1060,14 @@ class Selector(AbjadValueObject):
             start=1,
             apply_to_each=False,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def with_callback(self, callback):
         r'''Configures selector with arbitrary `callback`.
 
         Returns new selector.
         '''
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def with_next_leaf(self):
         r'''Configures selector to select the next leaf after each selection.
@@ -1017,9 +1097,7 @@ class Selector(AbjadValueObject):
         callback = selectortools.ExtraLeafSelectorCallback(
             with_next_leaf=True,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
 
     def with_previous_leaf(self):
         r'''Configures selector to select the previous leaf before each
@@ -1050,6 +1128,4 @@ class Selector(AbjadValueObject):
         callback = selectortools.ExtraLeafSelectorCallback(
             with_previous_leaf=True,
             )
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
+        return self._with_callback(callback)
