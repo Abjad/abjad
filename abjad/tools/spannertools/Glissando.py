@@ -331,6 +331,96 @@ class Glissando(Spanner):
         r'''Is true when glissando should parenthesize repeated pitches.
         Otherwise false.
 
+        ..  container:: example
+
+            **Example 1.** Does not parenthesize repeated pitches:
+
+            ::
+
+                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = Glissando()
+                >>> attach(glissando, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    a8
+                    a8 \glissando
+                    b8 ~
+                    b8 \glissando
+                    c'8
+                    c'8 \glissando
+                    d'8 ~
+                    d'8
+                }
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Spans and parenthesizes repeated pitches:
+
+            ::
+
+                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = Glissando(
+                ...     allow_repeated_pitches=True,
+                ...     parenthesize_repeated_pitches=True,
+                ...     )
+                >>> attach(glissando, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    a8 \glissando
+                    \parenthesize
+                    a8 \glissando
+                    b8 ~
+                    \parenthesize
+                    b8 \glissando
+                    c'8 \glissando
+                    \parenthesize
+                    c'8 \glissando
+                    d'8 ~
+                    \parenthesize
+                    d'8
+                }
+
+        ..  container:: example
+
+            **Example 3.** Parenthesizes (but does not span) repeated pitches:
+
+            ::
+
+                >>> staff = Staff("a8 a8 b8 ~ b8 c'8 c'8 d'8 ~ d'8")
+                >>> glissando = Glissando(
+                ...     parenthesize_repeated_pitches=True,
+                ...     )
+                >>> attach(glissando, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    a8
+                    \parenthesize
+                    a8 \glissando
+                    b8 ~
+                    \parenthesize
+                    b8 \glissando
+                    c'8
+                    \parenthesize
+                    c'8 \glissando
+                    d'8 ~
+                    \parenthesize
+                    d'8
+                }
+
         Defaults to false.
         '''
         return self._parenthesize_repeated_pitches
