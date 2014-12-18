@@ -33,6 +33,7 @@ def attach(
 
     if isinstance(indicator, indicatortools.IndicatorExpression):
         scope = scope or indicator.scope
+        is_annotation = is_annotation or indicator.is_annotation
         indicator._detach()
         indicator = indicator.indicator
 

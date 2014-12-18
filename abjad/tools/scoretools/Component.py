@@ -1,10 +1,8 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
-import types
 from abjad.tools import durationtools
 from abjad.tools import systemtools
-from abjad.tools import lilypondnametools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import timespantools
@@ -186,13 +184,12 @@ class Component(AbjadObject):
             new._lilypond_grob_name_manager = copy.copy(override(self))
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(set_(self))
-        for indicator in self._get_indicators():
+        for indicator in self._get_indicators(unwrap=False):
             new_indicator = copy.copy(indicator)
             attach(new_indicator, new)
         return new
 
     def _detach_grace_containers(self, kind=None):
-        from abjad.tools import scoretools
         grace_containers = self._get_grace_containers(kind=kind)
         for grace_container in grace_containers:
             detach(grace_container, self)
@@ -381,7 +378,7 @@ class Component(AbjadObject):
             )
         if isinstance(slot_identifier, int):
             assert slot_identifier in range(1, 7 + 1)
-            slot_index = slot_number - 1
+            slot_index = slot_identifier - 1
             slot_name = slot_names[slot_index]
         elif isinstance(slot_identifier, str):
             slot_name = slot_identifier.replace(' ', '_')
@@ -624,8 +621,7 @@ class Component(AbjadObject):
         return component in temporal_successors
 
     def _move_indicators(self, recipient_component):
-        from abjad.tools import indicatortools
-        for indicator in self._get_indicators():
+        for indicator in self._get_indicators(unwrap=False):
             detach(indicator, self)
             attach(indicator, recipient_component)
 
