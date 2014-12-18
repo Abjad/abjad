@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools.inspect_ import inspect_
@@ -65,11 +66,26 @@ class Glissando(Spanner):
         new._allow_ties = self.allow_ties
         new._parenthesize_repeated_pitches = self.parenthesize_repeated_pitches
 
+    def _get_annotations(self, leaf):
+        inspector = inspect_(leaf)
+        bend_after = None
+        prototype = indicatortools.BendAfter
+        if inspector.has_indicator(prototype):
+            bend_after = inspector.get_indicator(prototype)
+        return bend_after
+
     def _get_lilypond_format_bundle(self, leaf):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         prototype = (scoretools.Chord, scoretools.Note)
+        bend_after = self._get_annotations(leaf)
         should_attach_glissando = False
-        if self._is_my_last_leaf(leaf):
+        if not self._is_my_first_leaf(leaf):
+            if self.parenthesize_repeated_pitches:
+                if not self._previous_leaf_changes_current_pitch(leaf):
+                    self._parenthesize_leaf(leaf)
+        if bend_after:
+            lilypond_format_bundle.update(bend_after._lilypond_format_bundle)
+        elif self._is_my_last_leaf(leaf):
             pass
         elif not isinstance(leaf, prototype):
             pass
@@ -88,10 +104,6 @@ class Glissando(Spanner):
                     should_attach_glissando = True
         if should_attach_glissando:
             lilypond_format_bundle.right.spanner_starts.append('\glissando')
-        if not self._is_my_first_leaf(leaf):
-            if self.parenthesize_repeated_pitches:
-                if not self._previous_leaf_changes_current_pitch(leaf):
-                    self._parenthesize_leaf(leaf)
         return lilypond_format_bundle
 
     @staticmethod
