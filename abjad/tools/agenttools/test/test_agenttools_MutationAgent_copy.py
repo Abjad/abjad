@@ -1180,3 +1180,6 @@ def test_agenttools_MutationAgent_copy_23():
         }
         ''')
     assert inspect_(new_staff[0]).get_indicators() == (indicator,)
+
+    assert inspect_(old_staff[0]).get_indicators()[0] is not \
+        inspect_(new_staff[0]).get_indicators()[0]
