@@ -27,6 +27,29 @@ class Glissando(Spanner):
                 f'8
             }
 
+    ..  container:: example
+
+        Glissando avoids BendAfter indicators.
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> bend_after = indicatortools.BendAfter()
+            >>> attach(bend_after, staff[1], is_annotation=True)
+            >>> glissando = spannertools.Glissando()
+            >>> attach(glissando, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'8 \glissando
+                d'8 - \bendAfter #'-4.0
+                e'8 \glissando
+                f'8
+            }
+
     Formats notes and chords with LilyPond ``\glissando`` command.
     '''
 
