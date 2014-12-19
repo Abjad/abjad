@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-import numbers
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Multiplication(AbjadObject):
+class Multiplication(AbjadValueObject):
     r'''Multiplication operator.
 
     ..  container:: example
@@ -44,7 +43,7 @@ class Multiplication(AbjadObject):
 
             ::
 
-                >>> operator_ = pitchtools.Multiplication(index=5) 
+                >>> operator_ = pitchtools.Multiplication(index=5)
                 >>> pc = pitchtools.NumberedPitchClass(4)
                 >>> operator_(pc)
                 NumberedPitchClass(8)
@@ -55,7 +54,7 @@ class Multiplication(AbjadObject):
 
             ::
 
-                >>> operator_ = pitchtools.Multiplication(index=7) 
+                >>> operator_ = pitchtools.Multiplication(index=7)
                 >>> pitch = pitchtools.NumberedPitchClass(4)
                 >>> operator_(pitch)
                 NumberedPitchClass(4)

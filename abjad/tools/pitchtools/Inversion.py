@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-import numbers
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Inversion(AbjadObject):
+class Inversion(AbjadValueObject):
     r'''Inversion operator.
 
     ..  container:: example
@@ -36,7 +35,7 @@ class Inversion(AbjadObject):
 
             ::
 
-                >>> operator_ = pitchtools.Inversion() 
+                >>> operator_ = pitchtools.Inversion()
                 >>> pc = pitchtools.NumberedPitchClass(1)
                 >>> operator_(pc)
                 NumberedPitchClass(11)
@@ -47,7 +46,7 @@ class Inversion(AbjadObject):
 
             ::
 
-                >>> operator_ = pitchtools.Inversion() 
+                >>> operator_ = pitchtools.Inversion()
                 >>> pc = pitchtools.NumberedPitch(15)
                 >>> operator_(pc)
                 NumberedPitch(-15)

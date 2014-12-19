@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Rotation(AbjadObject):
+class Rotation(AbjadValueObject):
     r'''Rotation operator.
 
     ..  container:: example:
