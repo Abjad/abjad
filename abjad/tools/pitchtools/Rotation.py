@@ -85,7 +85,7 @@ class Rotation(AbjadValueObject):
             expr = pitchtools.PitchSegment(expr)
         return expr.rotate(self.index, transpose=self.transpose)
 
-    ### PUBLIC METHODS ###
+    ### PUBLIC PROPERTIES ###
 
     @property
     def index(self):
