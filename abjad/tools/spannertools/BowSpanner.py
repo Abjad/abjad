@@ -236,6 +236,7 @@ class BowSpanner(Spanner):
         leaf=None,
         lilypond_format_bundle=None,
         ):
+        cautionary_change = False
         direction_change = None
         next_leaf = inspect_(leaf).get_leaf(1)
         this_contact_point = bow_contact_point
@@ -260,13 +261,26 @@ class BowSpanner(Spanner):
             elif (this_contact_point < previous_contact_point and
                 this_contact_point < next_contact_point):
                 direction_change = Up
+            elif (this_contact_point == previous_contact_point):
+                if this_contact_point < next_contact_point:
+                    cautionary_change = True
+                    direction_change = Up
+                elif next_contact_point < this_contact_point:
+                    cautionary_change = True
+                    direction_change = Down
         if direction_change is None:
             return
-        if direction_change == Up:
-            articulation = indicatortools.Articulation('upbow', Up)
-        elif direction_change == Down:
-            articulation = indicatortools.Articulation('downbow', Up)
-        string = str(articulation)
+        if cautionary_change:
+            if direction_change == Up:
+                string = r'^ \parenthesize \upbow'
+            elif direction_change == Down:
+                string = r'^ \parenthesize \downbow'
+        else:
+            if direction_change == Up:
+                articulation = indicatortools.Articulation('upbow', Up)
+            elif direction_change == Down:
+                articulation = indicatortools.Articulation('downbow', Up)
+            string = str(articulation)
         lilypond_format_bundle.right.articulations.append(string)
 
     def _make_glissando_overrides(
