@@ -78,7 +78,7 @@ class BowSpanner(Spanner):
                                 1
                                 4
                     }
-                c'4. ^\upbow \glissando
+                c'4. ^\downbow \glissando
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
                 \once \override NoteHead.text = \markup {
@@ -88,7 +88,7 @@ class BowSpanner(Spanner):
                                 3
                                 4
                     }
-                c'8 ^\downbow \glissando
+                c'8 ^\upbow \glissando
                 \times 2/3 {
                     \once \override NoteHead.Y-offset = 0.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
@@ -99,7 +99,7 @@ class BowSpanner(Spanner):
                                     1
                                     2
                         }
-                    c'4 ^\upbow \glissando
+                    c'4 ^\downbow \glissando
                     \once \override Glissando.style = #'zigzag
                     \once \override NoteHead.Y-offset = 2.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
@@ -110,7 +110,7 @@ class BowSpanner(Spanner):
                                     1
                                     1
                         }
-                    c'4 ^\downbow \glissando
+                    c'4 ^\upbow \glissando
                     \once \override NoteHead.Y-offset = -2.0
                     \once \override NoteHead.stencil = #ly:text-interface::print
                     \once \override NoteHead.text = \markup {
@@ -248,26 +248,26 @@ class BowSpanner(Spanner):
             return
         if self._is_my_first_leaf(leaf):
             if this_contact_point < next_contact_point:
-                direction_change = Up
-            elif next_contact_point < this_contact_point:
                 direction_change = Down
+            elif next_contact_point < this_contact_point:
+                direction_change = Up
         else:
             previous_leaf = inspect_(leaf).get_leaf(-1)
             previous_contact_point = inspect_(previous_leaf
                 ).get_indicator(indicatortools.BowContactPoint)
             if (previous_contact_point < this_contact_point and
                 next_contact_point < this_contact_point):
-                direction_change = Down
+                direction_change = Up
             elif (this_contact_point < previous_contact_point and
                 this_contact_point < next_contact_point):
-                direction_change = Up
+                direction_change = Down
             elif (this_contact_point == previous_contact_point):
                 if this_contact_point < next_contact_point:
                     cautionary_change = True
-                    direction_change = Up
+                    direction_change = Down
                 elif next_contact_point < this_contact_point:
                     cautionary_change = True
-                    direction_change = Down
+                    direction_change = Up
         if direction_change is None:
             return
         if cautionary_change:
