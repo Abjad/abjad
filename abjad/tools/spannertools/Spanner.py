@@ -73,6 +73,7 @@ class Spanner(AbjadObject):
         if getattr(self, '_lilypond_setting_name_manager', None) is not None:
             new._lilypond_setting_name_manager = copy.copy(set_(self))
         self._copy_keyword_args(new)
+        new._name = self.name
         return new
 
     def __getitem__(self, expr):
