@@ -1,10 +1,9 @@
 # -*- encoding: utf-8 -*-
 import copy
-import types
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class IndicatorExpression(AbjadObject):
+class IndicatorExpression(AbjadValueObject):
     r'''An indicator expression.
     '''
 
@@ -15,6 +14,7 @@ class IndicatorExpression(AbjadObject):
         '_effective_context',
         '_indicator',
         '_is_annotation',
+        '_name',
         '_scope',
         )
 
@@ -22,9 +22,10 @@ class IndicatorExpression(AbjadObject):
 
     def __init__(
         self,
+        component=None,
         indicator=None,
         is_annotation=None,
-        component=None,
+        name=None,
         scope=None,
         ):
         from abjad.tools import scoretools
@@ -44,6 +45,9 @@ class IndicatorExpression(AbjadObject):
             is_annotation = bool(is_annotation)
         self._is_annotation = is_annotation
         self._component = component
+        if name is not None:
+            name = str(name)
+        self._name = name
         self._scope = scope
         self._effective_context = None
 
@@ -62,44 +66,24 @@ class IndicatorExpression(AbjadObject):
             component=None,
             indicator=copy.copy(self.indicator),
             is_annotation=self.is_annotation,
+            name=self.name,
             scope=self.scope,
             )
         return new
-
-    def __eq__(self, arg):
-        r'''Is true when arg is an indicator expression with indicator and
-        scope equal to those of this indicator expression. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(arg, type(self)):
-            if self.indicator == arg.indicator:
-                if self.scope == arg.scope:
-                    if self.is_annotation == arg.is_annotation:
-                        return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes indicator expression.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(IndicatorExpression, self).__hash__()
 
     def __repr__(self):
         '''Gets interpreter representation of indicator expression.
 
         Returns string.
         '''
-        result = '{}({!r}, {!s}, scope={!r}, is_annotation={!r})'
+        result = '{}({!r}, {!s}, scope={!r}, is_annotation={!r}, name={!r})'
         result = result.format(
             type(self).__name__,
             self.indicator,
             self.component,
             self.scope,
             self.is_annotation,
+            self.name,
             )
         return result
 
@@ -117,8 +101,6 @@ class IndicatorExpression(AbjadObject):
 
     def _bind_to_component(self, component):
         from abjad.tools import indicatortools
-        from abjad.tools import scoretools
-        #assert isinstance(component, scoretools.Component)
         self._warn_duplicate_indicator(component)
         self._unbind_component()
         self._component = component
@@ -133,7 +115,6 @@ class IndicatorExpression(AbjadObject):
         return self
 
     def _find_correct_effective_context(self):
-        from abjad.tools import scoretools
         scope = self.scope
         if scope is None:
             return None
@@ -283,6 +264,14 @@ class IndicatorExpression(AbjadObject):
         Returns boolean.
         '''
         return self._is_annotation
+
+    @property
+    def name(self):
+        r'''Indicator expression name.
+
+        Returns string.
+        '''
+        return self._name
 
     @property
     def scope(self):
