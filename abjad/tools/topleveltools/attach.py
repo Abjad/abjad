@@ -25,6 +25,9 @@ def attach(
         assert isinstance(indicator, prototype), repr(indicator)
         assert scope is None
         indicator._attach(component_expression)
+        if isinstance(indicator, spannertools.Spanner):
+            name = name or indicator.name
+            indicator._name = name
         return
 
     component = component_expression
