@@ -1,11 +1,7 @@
 # -*- encoding: utf-8 -*-
 import inspect
 import pytest
-from abjad.tools import documentationtools
-from abjad.tools import indicatortools
-from abjad.tools import pitchtools
-from abjad.tools import schemetools
-from abjad.tools import tonalanalysistools
+from abjad import *
 
 
 _allowed_to_be_empty_string = (
@@ -18,7 +14,13 @@ _allowed_to_be_empty_string = (
     tonalanalysistools.ChordSuspension,
     )
 
-classes = documentationtools.list_all_abjad_classes()
+ignored_classes = (
+    datastructuretools.Enumeration,
+    )
+
+classes = documentationtools.list_all_abjad_classes(
+    ignored_classes=ignored_classes,
+    )
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___str___01(class_):
     r'''All concrete classes have a string representation.

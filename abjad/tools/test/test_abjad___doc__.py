@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import inspect
 import pytest
-from abjad.tools import documentationtools
+from abjad import *
 
 
 ignored_names = (
@@ -23,23 +23,24 @@ ignored_names = (
     )
 
 ignored_classes = (
-    'LilyPondLexicalDefinition',
-    'LilyPondSyntacticalDefinition',
-    'ReducedLyParser',
-    'RhythmTreeParser',
-    'SchemeParser',
+    datastructuretools.Enumeration,
+    lilypondparsertools.LilyPondLexicalDefinition,
+    lilypondparsertools.LilyPondSyntacticalDefinition,
+    lilypondparsertools.ReducedLyParser,
+    lilypondparsertools.SchemeParser,
+    rhythmtreetools.RhythmTreeParser,
     )
 
 
-classes = documentationtools.list_all_abjad_classes()
+classes = documentationtools.list_all_abjad_classes(
+    ignored_classes=ignored_classes,
+    )
 @pytest.mark.parametrize('obj', classes)
 def test_abjad___doc___01(obj):
     r'''All classes have a docstring. All class methods have a docstring.
     '''
 
     assert obj.__doc__ is not None
-    if obj.__name__ in ignored_classes:
-        return
     for attr in inspect.classify_class_attrs(obj):
         if attr.name in ignored_names:
             continue

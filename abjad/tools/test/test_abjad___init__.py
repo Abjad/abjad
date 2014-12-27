@@ -3,21 +3,23 @@ import functools
 import inspect
 import pytest
 import abjad
-from abjad.tools import datastructuretools
-from abjad.tools import documentationtools
-from abjad.tools import durationtools
-from abjad.tools import mathtools
+from abjad import *
 
 
-classes = documentationtools.list_all_abjad_classes()
+ignored_classes = (
+    datastructuretools.Enumeration,
+    )
+
+classes = documentationtools.list_all_abjad_classes(
+    ignored_classes=ignored_classes,
+    )
+
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___init___01(class_):
     r'''All concrete classes initialize from empty input.
     '''
-
     if not inspect.isabstract(class_):
         instance = class_()
-
 
 valid_types = (
     bool,
@@ -32,12 +34,10 @@ valid_types = (
     mathtools.NegativeInfinity,
     )
 
-classes = documentationtools.list_all_abjad_classes()
 @pytest.mark.parametrize('obj', classes)
 def test_abjad___init___02(obj):
     r'''Make sure class initializer keyword argument values are immutable.
     '''
-
     for attr in inspect.classify_class_attrs(obj):
         if attr.defining_class is not obj:
             continue
