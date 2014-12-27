@@ -62,7 +62,7 @@ class StringContactPoint(AbjadObject):
 
             >>> indicator = indicatortools.StringContactPoint('sul tasto')
             >>> indicator.contact_point
-            'tasto'
+            'sul tasto'
 
         Returns string.
         '''
