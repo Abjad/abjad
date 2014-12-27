@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad import *
 from abjad.tools import indicatortools
 from abjad.tools import lilypondnametools
 from abjad.tools import schemetools
@@ -150,10 +149,6 @@ class BowSpanner(Spanner):
         prototype = indicatortools.BowContactPoint
         if inspector.has_indicator(prototype):
             bow_contact_point = inspector.get_indicator(prototype)
-        bow_pressure = None
-        prototype = indicatortools.BowPressure
-        if inspector.has_indicator(prototype):
-            bow_pressure = inspector.get_indicator(prototype)
         bow_motion_technique = None
         prototype = indicatortools.BowMotionTechnique
         if inspector.has_indicator(prototype):
@@ -164,7 +159,6 @@ class BowSpanner(Spanner):
             string_contact_point = inspector.get_indicator(prototype)
         return (
             bow_contact_point,
-            bow_pressure,
             bow_motion_technique,
             string_contact_point,
             )
@@ -173,9 +167,8 @@ class BowSpanner(Spanner):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         indicators = self._get_annotations(leaf)
         bow_contact_point = indicators[0]
-        bow_pressure = indicators[1]
-        bow_motion_technique = indicators[2]
-        string_contact_point = indicators[3]
+        bow_motion_technique = indicators[1]
+        string_contact_point = indicators[2]
         if self._is_my_only_leaf(leaf):
             return lilypond_format_bundle
         self._make_bow_contact_point_overrides(
@@ -190,7 +183,6 @@ class BowSpanner(Spanner):
                 lilypond_format_bundle=lilypond_format_bundle,
                 )
             self._make_glissando_overrides(
-                bow_pressure=bow_pressure,
                 bow_motion_technique=bow_motion_technique,
                 lilypond_format_bundle=lilypond_format_bundle,
                 string_contact_point=string_contact_point,
@@ -285,7 +277,6 @@ class BowSpanner(Spanner):
 
     def _make_glissando_overrides(
         self,
-        bow_pressure=None,
         bow_motion_technique=None,
         lilypond_format_bundle=None,
         string_contact_point=None,
