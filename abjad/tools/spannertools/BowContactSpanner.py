@@ -6,8 +6,8 @@ from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import inspect_
 
 
-class BowSpanner(Spanner):
-    r'''Bow spanner.
+class BowContactSpanner(Spanner):
+    r'''Bow contact spanner.
 
     ..  container:: example
 
@@ -46,7 +46,7 @@ class BowSpanner(Spanner):
 
         ::
 
-            >>> attach(spannertools.BowSpanner(), leaves)
+            >>> attach(spannertools.BowContactSpanner(), leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
