@@ -18,6 +18,18 @@ class BowSpanner(Spanner):
 
         ::
 
+            >>> leaves = staff.select_leaves()
+            >>> attach(indicatortools.BowMotionTechnique('jete'), leaves[0])
+            >>> attach(indicatortools.BowContactPoint((1, 4)), leaves[0])
+            >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
+            >>> attach(indicatortools.BowContactPoint((1, 2)), leaves[2])
+            >>> attach(indicatortools.BowMotionTechnique('circular'),
+            ...     leaves[3])
+            >>> attach(indicatortools.BowContactPoint((1, 1)), leaves[3])
+            >>> attach(indicatortools.BowContactPoint((0, 1)), leaves[4])
+
+        ::
+
             >>> attach(Clef('percussion'), staff)
             >>> override(staff).bar_line.transparent = True
             >>> override(staff).dots.staff_position = -8
@@ -31,18 +43,6 @@ class BowSpanner(Spanner):
             >>> override(staff).stem.length = 8
             >>> override(staff).stem.stem_begin_position = -9
             >>> override(staff).time_signature.stencil = False
-
-        ::
-
-            >>> leaves = staff.select_leaves()
-            >>> attach(indicatortools.BowMotionTechnique('jete'), leaves[0])
-            >>> attach(indicatortools.BowContactPoint((1, 4)), leaves[0])
-            >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
-            >>> attach(indicatortools.BowContactPoint((1, 2)), leaves[2])
-            >>> attach(indicatortools.BowMotionTechnique('circular'),
-            ...     leaves[3])
-            >>> attach(indicatortools.BowContactPoint((1, 1)), leaves[3])
-            >>> attach(indicatortools.BowContactPoint((0, 1)), leaves[4])
 
         ::
 
@@ -153,14 +153,9 @@ class BowSpanner(Spanner):
         prototype = indicatortools.BowMotionTechnique
         if inspector.has_indicator(prototype):
             bow_motion_technique = inspector.get_indicator(prototype)
-        string_contact_point = None
-        prototype = indicatortools.StringContactPoint
-        if inspector.has_indicator(prototype):
-            string_contact_point = inspector.get_indicator(prototype)
         return (
             bow_contact_point,
             bow_motion_technique,
-            string_contact_point,
             )
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -168,7 +163,6 @@ class BowSpanner(Spanner):
         indicators = self._get_annotations(leaf)
         bow_contact_point = indicators[0]
         bow_motion_technique = indicators[1]
-        string_contact_point = indicators[2]
         if self._is_my_only_leaf(leaf):
             return lilypond_format_bundle
         self._make_bow_contact_point_overrides(
@@ -185,7 +179,6 @@ class BowSpanner(Spanner):
             self._make_glissando_overrides(
                 bow_motion_technique=bow_motion_technique,
                 lilypond_format_bundle=lilypond_format_bundle,
-                string_contact_point=string_contact_point,
                 )
         return lilypond_format_bundle
 
@@ -279,7 +272,6 @@ class BowSpanner(Spanner):
         self,
         bow_motion_technique=None,
         lilypond_format_bundle=None,
-        string_contact_point=None,
         ):
         if bow_motion_technique is not None:
             # TODO: should we have schemetools.SchemeSymbol?
