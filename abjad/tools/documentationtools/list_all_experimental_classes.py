@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def list_all_experimental_classes(modules=None):
+def list_all_experimental_classes(modules=None, ignored_classes=None):
     r'''Lists all public classes defined in the Abjad experimental branch.
 
     ::
@@ -10,4 +10,7 @@ def list_all_experimental_classes(modules=None):
 
     '''
     from abjad.tools import documentationtools
-    return documentationtools.list_all_classes('experimental')
+    return documentationtools.list_all_classes(
+        modules='experimental',
+        ignored_classes=ignored_classes,
+        )

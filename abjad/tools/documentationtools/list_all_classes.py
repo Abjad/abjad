@@ -4,7 +4,7 @@ import importlib
 import types
 
 
-def list_all_classes(modules=None):
+def list_all_classes(modules=None, ignored_classes=None):
     r'''Lists all public classes defined in `path`.
 
     ::
@@ -42,4 +42,7 @@ def list_all_classes(modules=None):
             )
         for x in class_documenter():
             all_classes.add(x)
+    if ignored_classes:
+        ignored_classes = set(ignored_classes)
+        all_classes.difference_update(ignored_classes)
     return list(all_classes)
