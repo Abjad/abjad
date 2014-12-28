@@ -32,6 +32,8 @@ def new(expr, **kwargs):
             positional_argument_dictionary[key] = value
         elif key in keyword_argument_dictionary:
             keyword_argument_dictionary[key] = value
+        elif manager.accepts_kwargs(expr):
+            keyword_argument_dictionary[key] = value
         else:
             message = '{} has no key {!r}'.format(type(expr), key)
             raise KeyError(message)
