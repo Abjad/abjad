@@ -42,3 +42,24 @@ def test_spannertools_TextSpanner_format_01():
             f'4 \stopTextSpan ^ \markup { three }
         }
         ''')
+
+
+def test_spannertools_TextSpanner_format_02():
+    staff = scoretools.Staff("c'4 d'4 e'4 f'4")
+    markup_one = markuptools.Markup('one')
+    markup_two = markuptools.Markup('two')
+    markup_three = markuptools.Markup('three')
+    text_spanner = spannertools.TextSpanner()
+    attach(markup_one, staff[0], is_annotation=True)
+    attach(markup_two, staff[1], is_annotation=True)
+    attach(markup_three, staff[-1], is_annotation=True)
+    attach(text_spanner, staff[:])
+    assert format(staff) == systemtools.TestManager.clean_string(
+        r'''
+        \new Staff {
+            c'4 ^ \markup { one }
+            d'4 \stopTextSpan ^ \markup { two }
+            e'4
+            f'4 \stopTextSpan ^ \markup { three }
+        }
+        ''')
