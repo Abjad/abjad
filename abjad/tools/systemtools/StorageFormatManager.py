@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+import inspect
 import sys
 import types
 
@@ -9,6 +10,17 @@ class StorageFormatManager(object):
     '''
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def accepts_kwargs(subject):
+        r'''Is true when `subject` accepts **kwargs. Otherwise false.
+
+        Returns boolean.
+        '''
+        args, varargs, varkw, defaults = inspect.getargspec(subject.__init__)
+        if varkw is not None:
+            return True
+        return False
 
     @staticmethod
     def compare(object_one, object_two):
