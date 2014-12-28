@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class StringContactPoint(AbjadObject):
+class StringContactPoint(AbjadValueObject):
     r'''String contact point indicator.
 
     ::
