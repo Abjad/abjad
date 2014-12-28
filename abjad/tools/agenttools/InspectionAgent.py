@@ -166,6 +166,7 @@ class InspectionAgent(abctools.AbjadObject):
     def get_effective(
         self,
         prototype=None,
+        n=0,
         ):
         r'''Gets effective indicator that matches `prototype`
         and governs client.
@@ -174,6 +175,7 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_effective(
             prototype=prototype,
+            n=n,
             )
 
     def get_effective_staff(self):

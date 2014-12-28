@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import abc
+import bisect
 import copy
 from abjad.tools import durationtools
 from abjad.tools import systemtools
@@ -305,7 +307,7 @@ class Component(AbjadObject):
             parentage = self._get_parentage(include_self=False)
             return parentage.prolation * self._preprolated_duration
 
-    def _get_effective(self, prototype=None, unwrap=True):
+    def _get_effective(self, prototype=None, unwrap=True, n=0):
         from abjad.tools import indicatortools
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
@@ -335,16 +337,19 @@ class Component(AbjadObject):
                     candidate_expressions.insert(expression)
         #print candidate_expressions, 'CW'
         # elect most recent candidate expression
-        if candidate_expressions:
-            try:
-                start_offset = self._get_timespan().start_offset
-                expression = candidate_expressions.find_le(start_offset)
-                if unwrap:
-                    return expression.indicator
-                else:
-                    return expression
-            except ValueError:
-                pass
+        if not candidate_expressions:
+            return
+        start_offset = self._get_timespan().start_offset
+        index = bisect.bisect_right(candidate_expressions._keys, start_offset)
+        index = (index - 1) + int(n)
+        if index < 0:
+            return
+        elif len(candidate_expressions) <= index:
+            return
+        expression = candidate_expressions._items[index]
+        if unwrap:
+            expression = expression.indicator
+        return expression
 
     def _get_effective_staff(self):
         from abjad.tools import indicatortools

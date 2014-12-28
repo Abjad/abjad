@@ -407,3 +407,30 @@ def test_agenttools_InspectionAgent_get_effective_20():
     assert inspect_(staff[1]).get_effective(str) == 'color'
     assert inspect_(staff[2]).get_effective(str) == 'color'
     assert inspect_(staff[3]).get_effective(str) == 'color'
+
+
+def test_agenttools_InspectionAgent_get_effective_21():
+    staff = Staff("c'8 d'8 e'8 f'8 g'8")
+    attach('red', staff[0], scope=Staff)
+    attach('blue', staff[2], scope=Staff)
+    attach('yellow', staff[4], scope=Staff)
+
+    assert inspect_(staff[0]).get_effective(str, n=-1) is None
+    assert inspect_(staff[0]).get_effective(str, n=0) == 'red'
+    assert inspect_(staff[0]).get_effective(str, n=1) is 'blue'
+
+    assert inspect_(staff[1]).get_effective(str, n=-1) is None
+    assert inspect_(staff[1]).get_effective(str, n=0) == 'red'
+    assert inspect_(staff[1]).get_effective(str, n=1) == 'blue'
+
+    assert inspect_(staff[2]).get_effective(str, n=-1) == 'red'
+    assert inspect_(staff[2]).get_effective(str, n=0) == 'blue'
+    assert inspect_(staff[2]).get_effective(str, n=1) == 'yellow'
+
+    assert inspect_(staff[3]).get_effective(str, n=-1) == 'red'
+    assert inspect_(staff[3]).get_effective(str, n=0) == 'blue'
+    assert inspect_(staff[3]).get_effective(str, n=1) == 'yellow'
+
+    assert inspect_(staff[4]).get_effective(str, n=-1) == 'blue'
+    assert inspect_(staff[4]).get_effective(str, n=0) == 'yellow'
+    assert inspect_(staff[4]).get_effective(str, n=1) is None
