@@ -13,6 +13,18 @@ class AbjadValueObject(AbjadObject):
 
     ### SPECIAL METHODS ###
 
+    def __copy__(self, *args):
+        r'''Copies Abjad value object.
+
+        Returns new Abjad value object.
+        '''
+        specification = self._storage_format_specification
+        positional_arguments = specification.positional_argument_values
+        keyword_arguments = {}
+        for name in specification.keyword_argument_names:
+            keyword_arguments[name] = getattr(self, name)
+        return type(self)(*positional_arguments, **keyword_arguments)
+
     def __eq__(self, expr):
         r'''Is true when all initialization values of Abjad value object equal
         the initialization values of `expr`.
