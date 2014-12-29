@@ -22,8 +22,8 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
     comment = indicatortools.LilyPondComment('textual information after', 'after')
     attach(comment, t)
 
-    assert systemtools.TestManager.compare(
-        systemtools.LilyPondFormatManager.report_component_format_contributions(t),
+    assert systemtools.LilyPondFormatManager.report_component_format_contributions(t) == \
+        systemtools.TestManager.clean_string(
         r'''
         slot 1:
             comments:
@@ -40,5 +40,4 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
         slot 7:
             comments:
                 % textual information after
-        ''',
-        )
+        ''')

@@ -348,21 +348,24 @@ class Leaf(Component):
             return selectiontools.LogicalTie(music=self)
 
     def _process_contribution_packet(self, contribution_packet):
+        manager = systemtools.LilyPondFormatManager
+        indent = manager.indent
         result = ''
         for contributor, contributions in contribution_packet:
             if contributions:
                 if isinstance(contributor, tuple):
-                    contributor = '\t' + contributor[0] + ':\n'
+                    contributor = indent + contributor[0] + ':\n'
                 else:
-                    contributor = '\t' + contributor + ':\n'
+                    contributor = indent + contributor + ':\n'
                 result += contributor
                 for contribution in contributions:
-                    contribution = '\t\t' + contribution + '\n'
+                    contribution = (indent * 2) + contribution + '\n'
                     result += contribution
         return result
 
     def _report_format_contributors(self):
         manager = systemtools.LilyPondFormatManager
+        indent = manager.indent
         bundle = manager.bundle_format_contributions(self)
         report = ''
         report += 'slot 1:\n'
@@ -372,9 +375,9 @@ class Leaf(Component):
         packet = self._format_opening_slot(bundle)
         report += self._process_contribution_packet(packet)
         report += 'slot 4:\n'
-        report += '\tleaf body:\n'
+        report += indent + 'leaf body:\n'
         string = self._format_contents_slot(bundle)[0][1][0]
-        report += '\t\t' + string + '\n'
+        report += (indent * 2) + string + '\n'
         report += 'slot 5:\n'
         packet = self._format_closing_slot(bundle)
         report += self._process_contribution_packet(packet)
