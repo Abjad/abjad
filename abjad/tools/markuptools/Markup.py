@@ -3,10 +3,10 @@ from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
 from abjad.tools.topleveltools import new
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Markup(AbjadObject):
+class Markup(AbjadValueObject):
     r'''A LilyPond markup.
 
     ..  container:: example
@@ -167,38 +167,6 @@ class Markup(AbjadObject):
         markup = type(self)(contents=commands)
         return markup
 
-    def __copy__(self, *args):
-        r'''Copies markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> string = r'\bold { allegro ma non troppo }'
-                >>> markup = Markup(string)
-                >>> new_markup = copy.copy(markup)
-                >>> show(new_markup) # doctest: +SKIP
-
-        Returns new markup.
-        '''
-        return type(self)(
-            self.contents,
-            direction=self.direction,
-            stack_priority=self.stack_priority
-            )
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a markup with format equal to that
-        of this markup. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if format(self) == format(expr):
-                return True
-        return False
-
     def __format__(self, format_specification=''):
         r'''Formats markup.
 
@@ -230,13 +198,6 @@ class Markup(AbjadObject):
         elif format_specification == 'storage':
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
-
-    def __hash__(self):
-        r'''Hashes markup.
-
-        Returns integer.
-        '''
-        return hash((type(self).__name__, self.contents))
 
     def __illustrate__(self):
         r'''Illustrates markup.

@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import schemetools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class MarkupCommand(AbjadObject):
+class MarkupCommand(AbjadValueObject):
     r'''A LilyPond markup command.
 
     ..  container:: example
