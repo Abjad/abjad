@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Arpeggio(AbjadObject):
+class Arpeggio(AbjadValueObject):
     r'''An arpeggio indication.
 
     ::
@@ -43,30 +43,9 @@ class Arpeggio(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, direction=None):
-        assert direction in (Up, Down, Center, None)
+        if direction is not None:
+            assert direction in (Up, Down, Center)
         self._direction = direction
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is an arpeggio indication with a direction
-        equal to that of this arpeggio indication. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if expr.direction == self.direction:
-                return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes arpeggio.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Arpeggio, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 
