@@ -13,7 +13,7 @@ class StorageFormatManager(object):
 
     @staticmethod
     def accepts_kwargs(subject):
-        r'''Is true when `subject` accepts keyword arguments. Otherwise false.
+        r'''Is true when `subject` accepts \*\*kwargs. Otherwise false.
 
         Returns boolean.
         '''
