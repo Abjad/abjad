@@ -108,9 +108,6 @@ class StemTremolo(AbjadValueObject):
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            positional_argument_values=(
-                self.tremolo_flags,
-                ),
             )
 
     ### PUBLIC PROPERTIES ###
