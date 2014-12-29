@@ -159,22 +159,22 @@ class Leaf(Component):
             attach(new_grace_container, new)
         return new
 
-    def _format_after_grace_body(leaf):
+    def _format_after_grace_body(self):
         result = []
-        if leaf._after_grace is not None:
-            after_grace = leaf._after_grace
+        if self._after_grace is not None:
+            after_grace = self._after_grace
             if len(after_grace):
                 result.append(format(after_grace))
         return ['after grace body', result]
 
-    def _format_after_grace_opening(leaf):
+    def _format_after_grace_opening(self):
         result = []
-        if leaf._after_grace is not None:
-            if len(leaf._after_grace):
+        if self._after_grace is not None:
+            if len(self._after_grace):
                 result.append(r'\afterGrace')
         return ['after grace opening', result]
 
-    def _format_after_slot(leaf, bundle):
+    def _format_after_slot(self, bundle):
         result = []
         result.append(('spanners', bundle.after.spanners))
         result.append(('grob reverts', bundle.grob_reverts))
@@ -183,9 +183,9 @@ class Leaf(Component):
         result.append(('comments', bundle.after.comments))
         return result
 
-    def _format_before_slot(leaf, bundle):
+    def _format_before_slot(self, bundle):
         result = []
-        result.append(leaf._format_grace_body())
+        result.append(self._format_grace_body())
         result.append(('comments', bundle.before.comments))
         result.append(('commands', bundle.before.commands))
         result.append(('indicators', bundle.before.indicators))
@@ -194,35 +194,35 @@ class Leaf(Component):
         result.append(('spanners', bundle.before.spanners))
         return result
 
-    def _format_close_brackets_slot(leaf, bundle):
+    def _format_close_brackets_slot(self, bundle):
         return []
 
-    def _format_closing_slot(leaf, bundle):
+    def _format_closing_slot(self, bundle):
         result = []
-        result.append(leaf._format_after_grace_body())
+        result.append(self._format_after_grace_body())
         result.append(('spanners', bundle.closing.spanners))
         result.append(('commands', bundle.closing.commands))
         result.append(('indicators', bundle.closing.indicators))
         result.append(('comments', bundle.closing.comments))
         return result
 
-    def _format_contents_slot(leaf, bundle):
+    def _format_contents_slot(self, bundle):
         result = []
-        result.append(leaf._format_leaf_body(bundle))
+        result.append(self._format_leaf_body(bundle))
         return result
 
-    def _format_grace_body(leaf):
+    def _format_grace_body(self):
         result = []
-        if leaf._grace is not None:
-            grace = leaf._grace
+        if self._grace is not None:
+            grace = self._grace
             if len(grace):
                 result.append(format(grace))
         return ['grace body', result]
 
-    def _format_leaf_body(leaf, bundle):
+    def _format_leaf_body(self, bundle):
         from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
-        result = leaf._format_leaf_nucleus()[1]
+        result = self._format_leaf_nucleus()[1]
         result.extend(bundle.right.stem_tremolos)
         result.extend(bundle.right.articulations)
         result.extend(bundle.right.commands)
@@ -242,20 +242,20 @@ class Leaf(Component):
         if trill_pitches:
             assert len(trill_pitches) == 1
             result[-1] += ' {}'.format(trill_pitches[0])
-        return ['leaf body', result]
+        return ['self body', result]
 
     def _format_leaf_nucleus(self):
         return ['nucleus', self._body]
 
-    def _format_open_brackets_slot(leaf, bundle):
+    def _format_open_brackets_slot(self, bundle):
         return []
 
-    def _format_opening_slot(leaf, bundle):
+    def _format_opening_slot(self, bundle):
         result = []
         result.append(('comments', bundle.opening.comments))
         result.append(('indicators', bundle.opening.indicators))
         result.append(('commands', bundle.opening.commands))
-        result.append(leaf._format_after_grace_opening())
+        result.append(self._format_after_grace_opening())
         result.append(('spanners', bundle.opening.spanners))
         return result
 
@@ -269,8 +269,9 @@ class Leaf(Component):
             if new_component is None:
                 return
             candidates = new_component._get_descendants_starting_with()
-            candidates = \
-                [x for x in candidates if isinstance(x, scoretools.Leaf)]
+            candidates = [
+                x for x in candidates if isinstance(x, scoretools.Leaf)
+                ]
             for candidate in candidates:
                 if Selection._all_are_components_in_same_logical_voice(
                     [component, candidate]):
