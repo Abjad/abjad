@@ -2,8 +2,10 @@
 import copy
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
+from abjad.tools import mathtools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import inspect_
 
 
 class Chord(Leaf):
@@ -197,6 +199,30 @@ class Chord(Leaf):
             markup(bass)
         return treble, bass
 
+    def _format_before_slot(self, bundle):
+        result = []
+        result.append(self._format_grace_body())
+        result.append(('comments', bundle.before.comments))
+        commands = bundle.before.commands
+        if inspect_(self).has_indicator(indicatortools.Tremolo):
+            tremolo_command = self._format_repeat_tremolo_command()
+            commands = list(commands)
+            commands.append(tremolo_command)
+            commands = tuple(commands)
+        result.append(('commands', commands))
+        result.append(('indicators', bundle.before.indicators))
+        result.append(('grob overrides', bundle.grob_overrides))
+        result.append(('context settings', bundle.context_settings))
+        result.append(('spanners', bundle.before.spanners))
+        return result
+
+    def _format_close_brackets_slot(self, bundle):
+        result = []
+        if inspect_(self).has_indicator(indicatortools.Tremolo):
+            brackets_close = ['}']
+            result.append([('close brackets', ''), brackets_close])
+        return result
+
     def _format_leaf_nucleus(self):
         from abjad.tools import scoretools
         from abjad.tools import systemtools
@@ -213,11 +239,38 @@ class Chord(Leaf):
             result.append('>')
             result = '\n'.join(result)
             result += str(self._formatted_duration)
+        elif inspect_(self).has_indicator(indicatortools.Tremolo):
+            reattack_duration = self._get_tremolo_reattack_duration()
+            duration_string = reattack_duration.lilypond_duration_string
+            durated_pitches = []
+            for note_head in note_heads:
+                durated_pitch = format(note_head) + duration_string
+                durated_pitches.append(durated_pitch)
+            result = ' '.join(durated_pitches)
         else:
-            result.extend([format(x) for x in note_heads])
+            result.extend([format(_) for _ in note_heads])
             result = '<%s>%s' % (' '.join(result), self._formatted_duration)
         # single string, but wrapped in list bc contribution
         return ['nucleus', [result]]
+
+    def _format_open_brackets_slot(self, bundle):
+        result = []
+        if inspect_(self).has_indicator(indicatortools.Tremolo):
+            brackets_open = ['{']
+            result.append([('open brackets', ''), brackets_open])
+        return result
+
+    def _format_repeat_tremolo_command(self):
+        tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
+        reattack_duration = self._get_tremolo_reattack_duration()
+        repeat_count = self.written_duration / reattack_duration / 2
+        if not mathtools.is_integer_equivalent_expr(repeat_count):
+            message = 'can not tremolo duration {} with {} beams.'
+            message = message.format(self.written_duration, tremolo.beam_count)
+            raise Exception(message)
+        repeat_count = int(repeat_count)
+        command = r'\repeat tremolo {}'.format(repeat_count)
+        return command
 
     def _get_sounding_pitches(self):
         from abjad.tools import instrumenttools
@@ -236,6 +289,16 @@ class Chord(Leaf):
                 pitchtools.transpose_pitch_carrier_by_interval(
                 pitch, interval) for pitch in self.written_pitches]
             return tuple(sounding_pitches)
+
+    def _get_tremolo_reattack_duration(self):
+        tremolos = inspect_(self).get_indicators(indicatortools.Tremolo)
+        if not tremolos:
+            return
+        tremolo = tremolos[0]
+        exponent = 2 + tremolo.beam_count
+        denominator = 2 ** exponent
+        reattack_duration = durationtools.Duration(1, denominator)
+        return reattack_duration
 
     ### PUBLIC PROPERTIES ###
 

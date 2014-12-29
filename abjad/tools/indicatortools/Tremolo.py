@@ -3,15 +3,53 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class Tremolo(AbjadValueObject):
-    '''A (two-note) tremolo.
+    r'''A (two-note) tremolo.
     
-    ..  note:: Not yet implemented.
-
     ..  container:: example
+
+        **Example 1.** Chord with one tremolo beam:
 
         ::
 
-            >>> chord = Chord("<cs' e'>2")
+            >>> chord = Chord("<cs' e'>4")
+            >>> tremolo = indicatortools.Tremolo(beam_count=1)
+            >>> attach(tremolo, chord)
+            >>> show(chord) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(chord))
+            \repeat tremolo 1
+            {
+            cs'8 e'8
+            }
+
+    ..  container:: example
+
+        **Example 2.** Chord with two tremolo beams:
+
+        ::
+
+            >>> chord = Chord("<cs' e'>4")
+            >>> tremolo = indicatortools.Tremolo(beam_count=2)
+            >>> attach(tremolo, chord)
+            >>> show(chord) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(chord))
+            \repeat tremolo 2
+            {
+            cs'16 e'16
+            }
+
+    ..  container:: example
+
+        **Example 3.** Chord with three tremolo beams:
+
+        ::
+
+            >>> chord = Chord("<cs' e'>4")
             >>> tremolo = indicatortools.Tremolo(beam_count=3)
             >>> attach(tremolo, chord)
             >>> show(chord) # doctest: +SKIP
@@ -19,7 +57,10 @@ class Tremolo(AbjadValueObject):
         ..  doctest::
 
             >>> print(format(chord))
-            <cs' e'>2
+            \repeat tremolo 4
+            {
+            cs'32 e'32
+            }
 
     Tremolo affects the formatting of chords.
 

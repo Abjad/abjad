@@ -6,7 +6,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class ClefInventory(TypedList):
-    '''An ordered list of clefs.
+    r'''An ordered list of clefs.
 
     ::
 

@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StemTremolo(AbjadValueObject):
-    '''A stem tremolo.
+    r'''A stem tremolo.
 
     ::
 

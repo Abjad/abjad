@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TimeSignatureInventory(TypedList):
-    '''An ordered list of time signatures.
+    r'''An ordered list of time signatures.
 
     ::
 
