@@ -1001,6 +1001,32 @@ class Markup(AbjadObject):
             )
         return new(self, contents=command)
 
+    def halign(self, direction):
+        r'''LilyPond ``halign`` markup command.
+
+        ..  container:: example
+
+            ::
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.halign(0)
+                >>> print(format(markup))
+                \markup {
+                    \halign
+                        #0
+                        "Allegro assai"
+                    }
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'halign',
+            direction,
+            contents,
+            )
+        return new(self, contents=command)
+
     def hcenter_in(self, length):
         r'''LilyPond ``\hcenter-in`` markup command.
 
