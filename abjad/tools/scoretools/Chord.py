@@ -163,7 +163,6 @@ class Chord(Leaf):
         bass = copy.copy(self)
         detach(markuptools.Markup, treble)
         detach(markuptools.Markup, bass)
-
         if isinstance(treble, scoretools.Note):
             if treble.written_pitch < pitch:
                 treble = scoretools.Rest(treble)
@@ -175,7 +174,6 @@ class Chord(Leaf):
                     treble.note_heads.remove(note_head)
         else:
             raise TypeError
-
         if isinstance(bass, scoretools.Note):
             if pitch <= bass.written_pitch:
                 bass = scoretools.Rest(bass)
@@ -187,22 +185,39 @@ class Chord(Leaf):
                     bass.note_heads.remove(note_head)
         else:
             raise TypeError
-
         treble = self._cast_defective_chord(treble)
         bass = self._cast_defective_chord(bass)
-
         up_markup = self._get_markup(direction=Up)
         up_markup = [copy.copy(markup) for markup in up_markup]
-
         down_markup = self._get_markup(direction=Down)
         down_markup = [copy.copy(markup) for markup in down_markup]
-
         for markup in up_markup:
             markup(treble)
         for markup in down_markup:
             markup(bass)
-
         return treble, bass
+
+    def _format_leaf_nucleus(self):
+        from abjad.tools import scoretools
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
+        result = []
+        note_heads = self.note_heads
+        if any('\n' in format(x) for x in note_heads):
+            for note_head in note_heads:
+                current_format = format(note_head)
+                format_list = current_format.split('\n')
+                format_list = [indent + x for x in format_list]
+                result.extend(format_list)
+            result.insert(0, '<')
+            result.append('>')
+            result = '\n'.join(result)
+            result += str(self._formatted_duration)
+        else:
+            result.extend([format(x) for x in note_heads])
+            result = '<%s>%s' % (' '.join(result), self._formatted_duration)
+        # single string, but wrapped in list bc contribution
+        return ['nucleus', [result]]
 
     def _get_sounding_pitches(self):
         from abjad.tools import instrumenttools

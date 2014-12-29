@@ -244,31 +244,8 @@ class Leaf(Component):
             result[-1] += ' {}'.format(trill_pitches[0])
         return ['leaf body', result]
 
-    # TODO: subclass this properly for chord
-    def _format_leaf_nucleus(leaf):
-        from abjad.tools import scoretools
-        from abjad.tools import systemtools
-        indent = systemtools.LilyPondFormatManager.indent
-        if not isinstance(leaf, scoretools.Chord):
-            return ['nucleus', leaf._body]
-        result = []
-        chord = leaf
-        note_heads = chord.note_heads
-        if any('\n' in format(x) for x in note_heads):
-            for note_head in note_heads:
-                current_format = format(note_head)
-                format_list = current_format.split('\n')
-                format_list = [indent + x for x in format_list]
-                result.extend(format_list)
-            result.insert(0, '<')
-            result.append('>')
-            result = '\n'.join(result)
-            result += str(chord._formatted_duration)
-        else:
-            result.extend([format(x) for x in note_heads])
-            result = '<%s>%s' % (' '.join(result), chord._formatted_duration)
-        # single string, but wrapped in list bc contribution
-        return ['nucleus', [result]]
+    def _format_leaf_nucleus(self):
+        return ['nucleus', self._body]
 
     def _format_open_brackets_slot(leaf, bundle):
         return []
