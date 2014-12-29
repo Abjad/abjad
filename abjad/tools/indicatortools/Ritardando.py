@@ -64,38 +64,6 @@ class Ritardando(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies ritardando.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> markup = Markup(r'\bold { \italic { ritardando } }')
-                >>> ritardando_1 = indicatortools.Ritardando(markup=markup)
-                >>> ritardando_2 = copy.copy(ritardando_1)
-
-            ::
-
-                >>> str(ritardando_1) == str(ritardando_2)
-                True
-
-            ::
-
-                >>> ritardando_1 == ritardando_2
-                True
-
-            ::
-
-                >>> ritardando_1 is ritardando_2
-                False
-
-        Returns new ritardando.
-
-        '''
-        return type(self)(markup=self.markup)
-
     def __str__(self):
         r'''Gets string representation of ritardando.
 

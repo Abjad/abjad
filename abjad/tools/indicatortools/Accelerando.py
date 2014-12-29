@@ -66,38 +66,6 @@ class Accelerando(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies accelerando.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> markup = Markup(r'\bold { \italic { accelerando } }')
-                >>> accelerando_1 = indicatortools.Accelerando(markup=markup)
-                >>> accelerando_2 = copy.copy(accelerando_1)
-
-            ::
-
-                >>> str(accelerando_1) == str(accelerando_2)
-                True
-
-            ::
-
-                >>> accelerando_1 == accelerando_2
-                True
-
-            ::
-
-                >>> accelerando_1 is accelerando_2
-                False
-
-        Returns new accelerando.
-
-        '''
-        return type(self)(markup=self.markup)
-
     def __str__(self):
         r'''Gets string representation of accelerando.
 

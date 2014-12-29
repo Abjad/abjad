@@ -37,36 +37,6 @@ class BreathMark(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies breath_mark.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> breath_mark_1 = indicatortools.BreathMark()
-                >>> breath_mark_2 = copy.copy(breath_mark_1)
-
-            ::
-
-                >>> str(breath_mark_1) == str(breath_mark_2)
-                True
-
-            ::
-
-                >>> breath_mark_1 == breath_mark_2
-                True
-
-            ::
-
-                >>> breath_mark_1 is breath_mark_2
-                False
-
-        Returns new breath_mark.
-        '''
-        return type(self)()
-
     def __str__(self):
         r'''Gets string representation of breath mark.
 

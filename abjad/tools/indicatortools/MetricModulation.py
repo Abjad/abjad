@@ -552,44 +552,6 @@ class MetricModulation(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies metric modulation.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> metric_modulation_1 = indicatortools.MetricModulation(
-                ...     left_rhythm=Note("c'4"),
-                ...     right_rhythm=Note("c'4."),
-                ...     )
-                >>> metric_modulation_2 = copy.copy(metric_modulation_1)
-
-            ::
-
-                >>> str(metric_modulation_1) == str(metric_modulation_2)
-                True
-
-            ::
-
-                >>> metric_modulation_1 == metric_modulation_2
-                True
-
-            ::
-
-                >>> metric_modulation_1 is metric_modulation_2
-                False
-
-        Returns new metric modulation.
-        '''
-        return type(self)(
-            left_rhythm=self.left_rhythm,
-            right_rhythm=self.right_rhythm,
-            left_markup=self.left_markup,
-            right_markup=self.right_markup,
-            )
-
     def __eq__(self, expr):
         r'''Is true `expr` is another metric modulation with the same ratio as
         this metric modulation. Otherwise false.

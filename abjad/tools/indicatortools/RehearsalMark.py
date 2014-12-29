@@ -62,38 +62,6 @@ class RehearsalMark(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies rehearsal mark.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> markup = Markup(r'\bold { \italic { mark } }')
-                >>> mark_1 = indicatortools.RehearsalMark(markup=markup)
-                >>> mark_2 = copy.copy(mark_1)
-
-            ::
-
-                >>> str(mark_1) == str(mark_2)
-                True
-
-            ::
-
-                >>> mark_1 == mark_2
-                True
-
-            ::
-
-                >>> mark_1 is mark_2
-                False
-
-        Returns new rehearsal mark.
-
-        '''
-        return type(self)(markup=self.markup)
-
     def __str__(self):
         r'''Gets string representation of rehearsal mark.
 

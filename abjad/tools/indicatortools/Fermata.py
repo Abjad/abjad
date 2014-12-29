@@ -45,36 +45,6 @@ class Fermata(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies fermata.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> fermata_1 = indicatortools.Fermata(command='shortfermata')
-                >>> fermata_2 = copy.copy(fermata_1)
-
-            ::
-
-                >>> str(fermata_1) == str(fermata_2)
-                True
-
-            ::
-
-                >>> fermata_1 == fermata_2
-                True
-
-            ::
-
-                >>> fermata_1 is fermata_2
-                False
-
-        Returns new fermata.
-        '''
-        return type(self)(command=self.command)
-
     def __str__(self):
         r'''Gets string representation of fermata.
 

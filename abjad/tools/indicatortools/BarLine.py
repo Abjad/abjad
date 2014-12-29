@@ -47,15 +47,6 @@ class BarLine(AbjadValueObject):
         self._abbreviation = abbreviation
         self._default_scope = scoretools.Staff
 
-    ### SPECIAL METHODS ###
-
-    def __copy__(self, *args):
-        r'''Copies bar line.
-
-        Returns new bar line.
-        '''
-        return type(self)(self.abbreviation)
-
     ### PRIVATE PROPERTIES ###
 
     @property

@@ -47,15 +47,6 @@ class Annotation(AbjadValueObject):
         self._name = name
         self._value = value
 
-    ### SPECIAL METHODS ###
-
-    def __copy__(self, *args):
-        r'''Copies annotation.
-
-        Returns new annotation.
-        '''
-        return type(self)(self.name, self.value)
-
     ### PUBLIC PROPERTIES ###
 
     @property

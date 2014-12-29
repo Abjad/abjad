@@ -42,29 +42,6 @@ class StemTremolo(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies stem tremolo.
-
-        ::
-
-            >>> import copy
-            >>> stem_tremolo_1 = indicatortools.StemTremolo(16)
-            >>> stem_tremolo_2 = copy.copy(stem_tremolo_1)
-
-        ::
-
-            >>> stem_tremolo_1 == stem_tremolo_2
-            True
-
-        ::
-
-            >>> stem_tremolo_1 is not stem_tremolo_2
-            True
-
-        Returns new stem tremolo.
-        '''
-        return type(self)(self.tremolo_flags)
-
     def __format__(self, format_specification=''):
         r'''Formats stem tremolo.
 

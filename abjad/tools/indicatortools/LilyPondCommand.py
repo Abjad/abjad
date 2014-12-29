@@ -63,15 +63,6 @@ class LilyPondCommand(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies LilyPond command.
-
-        Returns new LilyPond command.
-        '''
-        new = type(self)(self._name)
-        new._format_slot = self.format_slot
-        return new
-
     def __format__(self, format_specification=''):
         r'''Formats LilyPond command.
 

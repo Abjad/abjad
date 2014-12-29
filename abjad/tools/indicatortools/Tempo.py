@@ -118,18 +118,6 @@ class Tempo(AbjadValueObject):
                 type(self)(new_duration, new_units_per_minute)
             return new_tempo_indication
 
-    def __copy__(self, *args):
-        r'''Copies tempo.
-
-        Returns new tempo.
-        '''
-        return type(self)(
-            textual_indication=self.textual_indication,
-            duration=self.duration,
-            units_per_minute=self.units_per_minute,
-            markup=self.markup,
-            )
-
     def __div__(self, expr):
         r'''Divides tempo by `expr`.
 

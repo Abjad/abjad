@@ -52,15 +52,6 @@ class LilyPondComment(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies LilyPond comment.
-
-        Returns new LilyPond comment.
-        '''
-        new = type(self)(self._contents_string)
-        new._format_slot = self.format_slot
-        return new
-
     def __str__(self):
         r'''Gets string format of LilyPond comment.
 

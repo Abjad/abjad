@@ -61,13 +61,6 @@ class StaffChange(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies staff change.
-
-        Returns new staff change.
-        '''
-        return type(self)(self.staff)
-
     def __str__(self):
         r'''Gets string format of staff change.
 

@@ -108,36 +108,6 @@ class Clef(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies clef.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> clef_1 = Clef('alto')
-                >>> clef_2 = copy.copy(clef_1)
-
-            ::
-
-                >>> clef_1, clef_2
-                (Clef(name='alto'), Clef(name='alto'))
-
-            ::
-
-                >>> clef_1 == clef_2
-                True
-
-            ::
-
-                >>> clef_1 is clef_2
-                False
-
-        Returns new clef.
-        '''
-        return type(self)(self.name)
-
     def __format__(self, format_specification=''):
         r'''Formats clef.
 

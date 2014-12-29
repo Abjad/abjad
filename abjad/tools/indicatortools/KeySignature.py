@@ -43,16 +43,6 @@ class KeySignature(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies key signature.
-
-        Returns new key signature.
-        '''
-        return type(self)(
-            self.tonic,
-            self.mode,
-            )
-
     def __str__(self):
         r'''String representation of key signature.
 

@@ -148,13 +148,6 @@ class Articulation(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies articulation.
-
-        Returns new articulation.
-        '''
-        return type(self)(self.name, self.direction)
-
     def __format__(self, format_specification=''):
         r'''Formats articulation.
 

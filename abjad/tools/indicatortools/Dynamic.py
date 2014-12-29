@@ -127,15 +127,6 @@ class Dynamic(AbjadValueObject):
         self._name = name
         self._default_scope = scoretools.Staff
 
-    ### SPECIAL METHODS ###
-
-    def __copy__(self, *args):
-        r'''Copies dynamic.
-
-        Returns new dynamic.
-        '''
-        return type(self)(self._name)
-
     ### PRIVATE PROPERTIES ###
 
     @property

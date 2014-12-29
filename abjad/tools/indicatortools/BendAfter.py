@@ -40,36 +40,6 @@ class BendAfter(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies bend after.
-
-        ..  container:: example
-
-            ::
-
-                >>> import copy
-                >>> bend_1 = indicatortools.BendAfter(bend_amount=-2)
-                >>> bend_2 = copy.copy(bend_1)
-
-            ::
-
-                >>> str(bend_1) == str(bend_2)
-                True
-
-            ::
-
-                >>> bend_1 == bend_2
-                True
-
-            ::
-
-                >>> bend_1 is bend_2
-                False
-
-        Returns new bend after.
-        '''
-        return type(self)(self.bend_amount)
-
     def __str__(self):
         r'''Gets string representation of bend after.
 
