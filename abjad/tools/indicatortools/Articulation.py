@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import stringtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Articulation(AbjadObject):
+class Articulation(AbjadValueObject):
     r'''An articulation.
 
     ..  container:: example
@@ -130,40 +130,19 @@ class Articulation(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        from abjad.tools import datastructuretools
-        assert len(args) in range(3), repr(args)
-        if 2 <= len(args):
-            assert isinstance(args[0], (str, type(None))), repr(args[0])
-            assert isinstance(args[1],
-                (str, type(None), datastructuretools.OrdinalConstant)), \
-                repr(args[1])
-            name, direction = args
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            name = args[0].name
-            direction = args[0].direction
-        elif len(args) == 1:
-            assert isinstance(args[0],
-                (str, type(None), datastructuretools.OrdinalConstant)), \
-                repr(args[0])
-            if args[0]:
-                splits = args[0].split('\\')
-                assert len(splits) in (1, 2), repr(splits)
-                if len(splits) == 1:
-                    name, direction = args[0], None
-                elif len(splits) == 2:
-                    name = splits[1]
-                    if splits[0]:
-                        direction = splits[0]
-                    else:
-                        direction = None
-            else:
-                name, direction = None, None
-        else:
-            name, direction = None, None
-        self._name = name
+    def __init__(self, name=None, direction=None):
+        if isinstance(name, type(self)):
+            expr = name
+            name = expr.name
+            direction = direction or expr.direction
+        name = str(name)
+        if '\\' in name:
+            direction, name = name.split('\\')
+            direction = direction.strip()
+            name = name.strip()
         direction = \
             stringtools.arg_to_tridirectional_ordinal_constant(direction)
+        self._name = name
         self._direction = direction
         self._format_slot = 'right'
 
@@ -175,18 +154,6 @@ class Articulation(AbjadObject):
         Returns new articulation.
         '''
         return type(self)(self.name, self.direction)
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is an articulation with name and direction
-        equal to that of this articulation. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if expr.name == self.name:
-                if self.direction == expr.direction:
-                    return True
-        return False
 
     def __format__(self, format_specification=''):
         r'''Formats articulation.
@@ -202,15 +169,6 @@ class Articulation(AbjadObject):
         elif format_specification == 'lilypond':
             return self._lilypond_format
         return str(self)
-
-    def __hash__(self):
-        r'''Hashes articulation.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Articulation, self).__hash__()
 
     def __illustrate__(self):
         r'''Illustrates articulation.

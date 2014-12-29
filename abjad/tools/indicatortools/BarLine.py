@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class BarLine(AbjadObject):
+class BarLine(AbjadValueObject):
     r'''A bar line.
 
     ::
@@ -55,25 +55,6 @@ class BarLine(AbjadObject):
         Returns new bar line.
         '''
         return type(self)(self.abbreviation)
-
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a bar line with an abbreviation equal
-        to that of this bar line. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(arg, type(self)):
-            return self.abbreviation == arg.abbreviation
-        return False
-
-    def __hash__(self):
-        r'''Hashes bar line.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(BarLine, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

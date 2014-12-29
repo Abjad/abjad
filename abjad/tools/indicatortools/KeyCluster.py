@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class KeyCluster(AbjadObject):
+class KeyCluster(AbjadValueObject):
     r'''A key cluster indication.
 
     ..  container:: example
@@ -62,31 +62,6 @@ class KeyCluster(AbjadObject):
         assert markup_direction in (Up, Center, Down)
         self._markup_direction = markup_direction
         self._suppress_markup = bool(suppress_markup)
-
-    ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a key cluster indication with black-key and
-        white-key inclusion equal to that of this key cluster indication.
-        Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if expr.include_black_keys == self.include_black_keys:
-                if expr.include_white_keys == self.include_white_keys:
-                    if expr.suppress_markup == self.suppress_markup:
-                        return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes key cluster.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(KeyCluster, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

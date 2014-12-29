@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class RehearsalMark(AbjadObject):
+class RehearsalMark(AbjadValueObject):
     r'''A rehearsal mark.
 
     ..  container:: example
@@ -93,62 +93,6 @@ class RehearsalMark(AbjadObject):
 
         '''
         return type(self)(markup=self.markup)
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is another rehearsal mark with `number` and 
-        `markup` equal to those of this rehearsal mark. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> mark_1 = indicatortools.RehearsalMark(number=None)
-                >>> mark_2 = indicatortools.RehearsalMark(number=None)
-                >>> mark_3 = indicatortools.RehearsalMark(number=2)
-
-            ::
-
-                >>> mark_1 == mark_1
-                True
-                >>> mark_1 == mark_2
-                True
-                >>> mark_1 == mark_3
-                False
-
-            ::
-
-                >>> mark_2 == mark_1
-                True
-                >>> mark_2 == mark_2
-                True
-                >>> mark_2 == mark_3
-                False
-
-            ::
-
-                >>> mark_3 == mark_1
-                False
-                >>> mark_3 == mark_2
-                False
-                >>> mark_3 == mark_3
-                True
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if self.number == expr.number:
-                if self.markup == expr.markup:
-                    return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes rehearsal mark.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(RehearsalMark, self).__hash__()
 
     def __str__(self):
         r'''Gets string representation of rehearsal mark.

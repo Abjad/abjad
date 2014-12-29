@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import new
 
 
-class Annotation(AbjadObject):
+class Annotation(AbjadValueObject):
     r'''An annotation.
 
     ::
@@ -37,23 +37,15 @@ class Annotation(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            self._name = copy.copy(args[0].name)
-            self._value = copy.copy(args[0].value)
-        elif len(args) == 1 and not isinstance(args[0], type(self)):
-            self._name = copy.copy(args[0])
-            self._value = None
-        elif len(args) == 2:
-            self._name = copy.copy(args[0])
-            self._value = copy.copy(args[1])
-        elif len(args) == 0:
-            self._name = 'annotation'
-            self._value = None
-        else:
-            message = 'can not initialize {}: {!r}'
-            message = message.format(type(self).__name__, args)
-            raise ValueError(message)
+    def __init__(self, name='annotation', value=None):
+        if isinstance(name, type(self)):
+            expr = name
+            name = expr.name
+            value = value or expr.value
+        name = copy.copy(name)
+        value = copy.copy(value)
+        self._name = name
+        self._value = value
 
     ### SPECIAL METHODS ###
 
@@ -63,47 +55,6 @@ class Annotation(AbjadObject):
         Returns new annotation.
         '''
         return type(self)(self.name, self.value)
-
-    def __eq__(self, arg):
-        r'''Is true when arg is an annotation with name and value
-        equal to those of this annotation. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(arg, type(self)):
-            if self.name == arg.name:
-                if self.value == self.value:
-                    return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes annotation.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Annotation, self).__hash__()
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self.name,
-                self.value
-                ),
-            )
 
     ### PUBLIC PROPERTIES ###
 

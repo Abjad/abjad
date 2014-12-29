@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class StringNumber(AbjadObject):
+class StringNumber(AbjadValueObject):
     r'''String number indicator.
 
     ::

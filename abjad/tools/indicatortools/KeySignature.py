@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class KeySignature(AbjadObject):
+class KeySignature(AbjadValueObject):
     r'''A key signature.
 
     ::
@@ -52,27 +52,6 @@ class KeySignature(AbjadObject):
             self.tonic,
             self.mode,
             )
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a key signature with tonic and mode equal
-        to that of this key signature. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if self.tonic == expr.tonic:
-                if self.mode == expr.mode:
-                    return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes key signature.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(KeySignature, self).__hash__()
 
     def __str__(self):
         r'''String representation of key signature.

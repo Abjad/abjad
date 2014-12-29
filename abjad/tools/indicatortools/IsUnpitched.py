@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class IsUnpitched(AbjadObject):
+class IsUnpitched(AbjadValueObject):
     r'''Is unpitched indicator.
 
     ::
@@ -14,5 +14,4 @@ class IsUnpitched(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()

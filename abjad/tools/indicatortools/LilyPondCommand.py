@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 # TODO: extend to attach to spanners
-class LilyPondCommand(AbjadObject):
+class LilyPondCommand(AbjadValueObject):
     r'''A LilyPond command.
 
     ::
@@ -72,16 +72,6 @@ class LilyPondCommand(AbjadObject):
         new._format_slot = self.format_slot
         return new
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a LilyPond command with a name equal to
-        that of this LilyPond command. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return self._name == expr._name
-        return False
-
     def __format__(self, format_specification=''):
         r'''Formats LilyPond command.
 
@@ -96,15 +86,6 @@ class LilyPondCommand(AbjadObject):
         elif format_specification == 'lilypond':
             return self._lilypond_format
         return str(self)
-
-    def __hash__(self):
-        r'''Hashes LilyPond command.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(LilyPondCommand, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

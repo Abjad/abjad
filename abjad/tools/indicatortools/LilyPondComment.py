@@ -1,9 +1,8 @@
 # -*- encoding: utf-8 -*-
-import copy
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class LilyPondComment(AbjadObject):
+class LilyPondComment(AbjadValueObject):
     r'''A LilyPond comment.
 
     ::
@@ -19,10 +18,6 @@ class LilyPondComment(AbjadObject):
         % this is a comment
         c'4
 
-    Initializes LilyPond comment from contents string;
-    or contents string and format slot;
-    or from other LilyPond comment;
-    or from other LilyPond comment and format slot.
     '''
 
     ### CLASS VARIABLES ###
@@ -34,28 +29,23 @@ class LilyPondComment(AbjadObject):
 
     _format_leaf_children = False
 
+    _valid_format_slots = (
+        'before',
+        'after',
+        'opening',
+        'closing',
+        'right',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            contents_string = copy.copy(args[0].contents_string)
-            format_slot = copy.copy(args[0].format_slot)
-        elif len(args) == 1 and not isinstance(args[0], type(self)):
-            contents_string = copy.copy(args[0])
-            format_slot = None
-        elif len(args) == 2 and isinstance(args[0], type(self)):
-            contents_string = copy.copy(args[0].contents_string)
-            format_slot = args[1]
-        elif len(args) == 2 and not isinstance(args[0], type(self)):
-            contents_string = args[0]
-            format_slot = args[1]
-        elif len(args) == 0:
-            contents_string = 'foo'
-            format_slot = None
+    def __init__(self, contents_string=None, format_slot=None):
+        if isinstance(contents_string, type(self)):
+            expr = contents_string
+            contents_string = expr.contents_string
+            format_slot = format_slot or expr.format_slot
         else:
-            message = 'can not initialize {} from {!r}.'
-            message = message.format(type(self).__name__, args)
-            raise ValueError(message)
+            contents_string = str(contents_string)
         format_slot = format_slot or 'before'
         self._contents_string = contents_string
         self._format_slot = format_slot
@@ -71,33 +61,12 @@ class LilyPondComment(AbjadObject):
         new._format_slot = self.format_slot
         return new
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a LilyPond comment with contents string
-        equal to that of this LilyPond comment. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return self._contents_string == expr._contents_string
-        return False
-
-    def __hash__(self):
-        r'''Hashes LilyPond comment.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(LilyPondComment, self).__hash__()
-
     def __str__(self):
         r'''Gets string format of LilyPond comment.
 
         Returns string.
         '''
-        from abjad.tools import stringtools
-        command = self.contents_string
-        return r'%% %s' % command
+        return r'% {}'.format(self.contents_string)
 
     ### PRIVATE PROPERTIES ###
 
@@ -116,17 +85,6 @@ class LilyPondComment(AbjadObject):
         format_slot = lilypond_format_bundle.get(self.format_slot)
         format_slot.comments.append(str(self))
         return lilypond_format_bundle
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = [self.contents_string]
-        if self.format_slot is not None:
-            positional_argument_values.append(self.format_slot)
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PUBLIC PROPERTIES ###
 

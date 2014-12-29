@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools.new import new
 
 
-class Ritardando(AbjadObject):
+class Ritardando(AbjadValueObject):
     r'''A ritardando.
 
     ..  container:: example
@@ -95,51 +95,6 @@ class Ritardando(AbjadObject):
 
         '''
         return type(self)(markup=self.markup)
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is another ritardando. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> ritardando_1 = indicatortools.Ritardando(
-                ...     markup=Markup('rit.')
-                ...     )
-                >>> ritardando_2 = indicatortools.Ritardando(
-                ...     markup=Markup('ritardando')
-                ...     )
-
-            ::
-
-                >>> ritardando_1 == ritardando_1
-                True
-                >>> ritardando_1 == ritardando_2
-                True
-
-            ::
-
-                >>> ritardando_2 == ritardando_1
-                True
-                >>> ritardando_2 == ritardando_2
-                True
-
-        Ignores markup of ritardando.
-                
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes ritardando.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Ritardando, self).__hash__()
 
     def __str__(self):
         r'''Gets string representation of ritardando.

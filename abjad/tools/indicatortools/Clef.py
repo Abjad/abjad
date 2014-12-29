@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Clef(AbjadObject):
+class Clef(AbjadValueObject):
     r'''A clef.
 
     ..  container:: example
@@ -138,34 +138,6 @@ class Clef(AbjadObject):
         '''
         return type(self)(self.name)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a clef with name equal to that of this clef.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> clef_1 = Clef('treble')
-                >>> clef_2 = Clef('alto')
-
-            ::
-
-                >>> clef_1 == clef_1
-                True
-                >>> clef_1 == clef_2
-                False
-                >>> clef_2 == clef_1
-                False
-                >>> clef_2 == clef_2
-                True
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return self._name == expr._name
-        return False
-
     def __format__(self, format_specification=''):
         r'''Formats clef.
 
@@ -188,15 +160,6 @@ class Clef(AbjadObject):
             return self._lilypond_format
         superclass = super(Clef, self)
         return superclass.__format__(format_specification=format_specification)
-
-    def __hash__(self):
-        r'''Hashes clef.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Clef, self).__hash__()
 
     def __ne__(self, arg):
         r'''Is true when clef of `arg` does not equal clef name of clef.

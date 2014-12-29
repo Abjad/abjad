@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class LaissezVibrer(AbjadObject):
+class LaissezVibrer(AbjadValueObject):
     r'''A *laissez vibrer* indication.
 
     ::
@@ -32,23 +32,6 @@ class LaissezVibrer(AbjadObject):
         pass
 
     ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a *laissez vibrer* indication. Otherwise
-        false.
-
-        Returns boolean.
-        '''
-        return isinstance(expr, type(self))
-
-    def __hash__(self):
-        r'''Hashes laissez vibrer.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(LaissezVibrer, self).__hash__()
 
     def __str__(self):
         r'''String representation of laissez vibrer.

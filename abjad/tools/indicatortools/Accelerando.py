@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools.new import new
 
 
-class Accelerando(AbjadObject):
+class Accelerando(AbjadValueObject):
     r'''An accelerando.
 
     ..  container:: example
@@ -97,51 +97,6 @@ class Accelerando(AbjadObject):
 
         '''
         return type(self)(markup=self.markup)
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is another accelerando. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> accelerando_1 = indicatortools.Accelerando(
-                ...     markup=Markup('accel.')
-                ...     )
-                >>> accelerando_2 = indicatortools.Accelerando(
-                ...     markup=Markup('accelerando')
-                ...     )
-
-            ::
-
-                >>> accelerando_1 == accelerando_1
-                True
-                >>> accelerando_1 == accelerando_2
-                True
-
-            ::
-
-                >>> accelerando_2 == accelerando_1
-                True
-                >>> accelerando_2 == accelerando_2
-                True
-
-        Ignores markup of accelerando.
-                
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes accelerando.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Accelerando, self).__hash__()
 
     def __str__(self):
         r'''Gets string representation of accelerando.

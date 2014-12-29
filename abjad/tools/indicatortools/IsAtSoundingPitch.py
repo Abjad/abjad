@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class IsAtSoundingPitch(AbjadObject):
+class IsAtSoundingPitch(AbjadValueObject):
     r'''Is at sounding pitch indicator.
 
     ::
@@ -14,5 +14,4 @@ class IsAtSoundingPitch(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()

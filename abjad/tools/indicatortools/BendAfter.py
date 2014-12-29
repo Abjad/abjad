@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class BendAfter(AbjadObject):
+class BendAfter(AbjadValueObject):
     r'''A fall or doit.
 
     ..  container:: example
@@ -69,61 +69,6 @@ class BendAfter(AbjadObject):
         Returns new bend after.
         '''
         return type(self)(self.bend_amount)
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a bend after indication with bend amount
-        equal to that of this bend after indication after. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> bend_1 = indicatortools.BendAfter(bend_amount=-4)
-                >>> bend_2 = indicatortools.BendAfter(bend_amount=-4)
-                >>> bend_3 = indicatortools.BendAfter(bend_amount=-2)
-
-            ::
-
-                >>> bend_1 == bend_1
-                True
-                >>> bend_1 == bend_2
-                True
-                >>> bend_1 == bend_3
-                False
-
-            ::
-
-                >>> bend_2 == bend_1
-                True
-                >>> bend_2 == bend_2
-                True
-                >>> bend_2 == bend_3
-                False
-
-            ::
-
-                >>> bend_3 == bend_1
-                False
-                >>> bend_3 == bend_2
-                False
-                >>> bend_3 == bend_3
-                True
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if self.bend_amount == expr.bend_amount:
-                return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes bend after.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(BendAfter, self).__hash__()
 
     def __str__(self):
         r'''Gets string representation of bend after.

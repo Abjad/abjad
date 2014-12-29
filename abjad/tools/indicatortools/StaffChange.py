@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class StaffChange(AbjadObject):
+class StaffChange(AbjadValueObject):
     r'''A staff change.
 
     ::
@@ -67,25 +67,6 @@ class StaffChange(AbjadObject):
         Returns new staff change.
         '''
         return type(self)(self.staff)
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a staff change with a staff value equal
-        to that of this staff change. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return self.staff is expr.staff
-        return False
-
-    def __hash__(self):
-        r'''Hashes staff change.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(StaffChange, self).__hash__()
 
     def __str__(self):
         r'''Gets string format of staff change.

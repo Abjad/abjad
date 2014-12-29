@@ -2,11 +2,11 @@
 import functools
 from abjad.tools import durationtools
 from abjad.tools import markuptools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
 @functools.total_ordering
-class BowContactPoint(AbjadObject):
+class BowContactPoint(AbjadValueObject):
     r'''Bow contact point.
 
     ..  container:: example
@@ -43,56 +43,6 @@ class BowContactPoint(AbjadObject):
         self._contact_point = contact_point
 
     ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        r'''Is true if `expr` is a bow contact point with the same contact
-        point as this bow contact point.
-
-        ..  container:: example
-
-            ::
-
-                >>> point_1 = indicatortools.BowContactPoint((1, 2))
-                >>> point_2 = indicatortools.BowContactPoint((1, 2))
-                >>> point_3 = indicatortools.BowContactPoint((2, 3))
-
-            ::
-
-                >>> point_1 == point_1
-                True
-                >>> point_1 == point_2
-                True
-                >>> point_1 == point_3
-                False
-
-            ::
-
-                >>> point_2 == point_1
-                True
-                >>> point_2 == point_2
-                True
-                >>> point_2 == point_3
-                False
-
-            ::
-
-                >>> point_3 == point_1
-                False
-                >>> point_3 == point_2
-                False
-                >>> point_3 == point_3
-                True
-
-        Returns boolean.
-        '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
-
-    def __hash__(self):
-        r'''Hashes bow contact point.
-        '''
-        from abjad.tools import systemtools
-        return hash(systemtools.StorageFormatManager.get_hash_values(self))
 
     def __lt__(self, expr):
         r'''Is true if `expr` is a bow contact point and this bow contact point

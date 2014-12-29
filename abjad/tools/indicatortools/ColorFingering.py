@@ -3,12 +3,12 @@ import functools
 from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools.new import new
 
 
 @functools.total_ordering
-class ColorFingering(AbjadObject):
+class ColorFingering(AbjadValueObject):
     r'''Color fingering.
 
     ..  container:: example
@@ -59,51 +59,6 @@ class ColorFingering(AbjadObject):
 
     ### SPECIAL METHODS ##
 
-    def __eq__(self, expr):
-        r'''Is true if `expr` is a color fingering with the same number
-        point as this color fingering.
-
-        ..  container:: example
-
-            ::
-
-                >>> fingering_1 = indicatortools.ColorFingering(1)
-                >>> fingering_2 = indicatortools.ColorFingering(1)
-                >>> fingering_3 = indicatortools.ColorFingering(2)
-
-            ::
-
-                >>> fingering_1 == fingering_1
-                True
-                >>> fingering_1 == fingering_2
-                True
-                >>> fingering_1 == fingering_3
-                False
-
-            ::
-
-                >>> fingering_2 == fingering_1
-                True
-                >>> fingering_2 == fingering_2
-                True
-                >>> fingering_2 == fingering_3
-                False
-
-            ::
-
-                >>> fingering_3 == fingering_1
-                False
-                >>> fingering_3 == fingering_2
-                False
-                >>> fingering_3 == fingering_3
-                True
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return self.number == expr.number
-        return False
-
     def __format__(self, format_specification=''):
         r'''Formats color fingering.
 
@@ -124,12 +79,6 @@ class ColorFingering(AbjadObject):
             return self._lilypond_format
         superclass = super(ColorFingering, self)
         return superclass.__format__(format_specification=format_specification)
-
-    def __hash__(self):
-        r'''Hashes color fingering.
-        '''
-        from abjad.tools import systemtools
-        return hash(systemtools.StorageFormatManager.get_hash_values(self))
 
     def __lt__(self, expr):
         r'''Is true if `expr` is a color fingering and the number of this color

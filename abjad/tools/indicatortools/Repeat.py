@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Repeat(AbjadObject):
+class Repeat(AbjadValueObject):
     r'''A repeat indicator.
 
     ..  container:: example

@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Fermata(AbjadObject):
+class Fermata(AbjadValueObject):
     r'''A fermata.
 
     ..  container:: example
@@ -74,61 +74,6 @@ class Fermata(AbjadObject):
         Returns new fermata.
         '''
         return type(self)(command=self.command)
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a fermata with command
-        equal to that of this fermata. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> fermata_1 = indicatortools.Fermata()
-                >>> fermata_2 = indicatortools.Fermata()
-                >>> fermata_3 = indicatortools.Fermata(command='shortfermata')
-
-            ::
-
-                >>> fermata_1 == fermata_1
-                True
-                >>> fermata_1 == fermata_2
-                True
-                >>> fermata_1 == fermata_3
-                False
-
-            ::
-
-                >>> fermata_2 == fermata_1
-                True
-                >>> fermata_2 == fermata_2
-                True
-                >>> fermata_2 == fermata_3
-                False
-
-            ::
-
-                >>> fermata_3 == fermata_1
-                False
-                >>> fermata_3 == fermata_2
-                False
-                >>> fermata_3 == fermata_3
-                True
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if self.command == expr.command:
-                return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes fermata.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Fermata, self).__hash__()
 
     def __str__(self):
         r'''Gets string representation of fermata.

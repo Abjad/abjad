@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import lilypondnametools
 from abjad.tools import schemetools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class LineSegment(AbjadObject):
+class LineSegment(AbjadValueObject):
     r'''A line segment.
 
     Line segments format as text spanners.

@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class BreathMark(AbjadObject):
+class BreathMark(AbjadValueObject):
     r'''A breath mark.
 
     ..  container:: example
@@ -66,45 +66,6 @@ class BreathMark(AbjadObject):
         Returns new breath_mark.
         '''
         return type(self)()
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a breath_mark. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> breath_mark_1 = indicatortools.BreathMark()
-                >>> breath_mark_2 = indicatortools.BreathMark()
-
-            ::
-
-                >>> breath_mark_1 == breath_mark_1
-                True
-                >>> breath_mark_1 == breath_mark_2
-                True
-
-            ::
-
-                >>> breath_mark_2 == breath_mark_1
-                True
-                >>> breath_mark_2 == breath_mark_2
-                True
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes breath mark.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(BreathMark, self).__hash__()
 
     def __str__(self):
         r'''Gets string representation of breath mark.

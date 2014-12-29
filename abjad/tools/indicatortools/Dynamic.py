@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Dynamic(AbjadObject):
+class Dynamic(AbjadValueObject):
     r'''A dynamic.
 
     ..  container:: example
@@ -135,25 +135,6 @@ class Dynamic(AbjadObject):
         Returns new dynamic.
         '''
         return type(self)(self._name)
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a dynamic with a name equal to that of this
-        dynamic. Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            return self._name == expr._name
-        return False
-
-    def __hash__(self):
-        r'''Hashes dynamic.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Dynamic, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

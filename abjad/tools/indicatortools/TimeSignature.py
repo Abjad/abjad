@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 # TODO: add more initializer examples.
 # TODO: add example of `suppress` keyword.
 # TODO: turn `suppress` into managed attribute.
-class TimeSignature(AbjadObject):
+class TimeSignature(AbjadValueObject):
     r'''A time signature.
 
     ::

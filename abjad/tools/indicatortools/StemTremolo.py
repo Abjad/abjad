@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class StemTremolo(AbjadObject):
+class StemTremolo(AbjadValueObject):
     '''A stem tremolo.
 
     ::
@@ -30,17 +30,10 @@ class StemTremolo(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        if len(args) == 1 and isinstance(args[0], type(self)):
-            tremolo_flags = args[0].tremolo_flags
-        elif len(args) == 1 and not isinstance(args[0], type(self)):
-            tremolo_flags = args[0]
-        elif len(args) == 0:
-            tremolo_flags = 16
-        else:
-            message = 'can not initialize {}: {!r}.'
-            message = message.format(type(self).__name__, args)
-            raise ValueError(message)
+    def __init__(self, tremolo_flags=16):
+        if isinstance(tremolo_flags, type(self)):
+            tremolo_flags = tremolo_flags.tremolo_flags
+        tremolo_flags = int(tremolo_flags)
         if not mathtools.is_nonnegative_integer_power_of_two(tremolo_flags):
             message = 'must be nonnegative integer power of 2: {!r}.'
             message = message.format(tremolo_flags)
@@ -72,44 +65,6 @@ class StemTremolo(AbjadObject):
         '''
         return type(self)(self.tremolo_flags)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a stem tremolo with a tremolo flag count
-        equal to that of this stem tremolo.  Otherwise false:
-
-        ::
-
-            >>> stem_tremolo_1 = indicatortools.StemTremolo(16)
-            >>> stem_tremolo_2 = indicatortools.StemTremolo(16)
-            >>> stem_tremolo_3 = indicatortools.StemTremolo(32)
-
-        ::
-
-            >>> stem_tremolo_1 == stem_tremolo_1
-            True
-            >>> stem_tremolo_1 == stem_tremolo_2
-            True
-            >>> stem_tremolo_1 == stem_tremolo_3
-            False
-            >>> stem_tremolo_2 == stem_tremolo_1
-            True
-            >>> stem_tremolo_2 == stem_tremolo_2
-            True
-            >>> stem_tremolo_2 == stem_tremolo_3
-            False
-            >>> stem_tremolo_3 == stem_tremolo_1
-            False
-            >>> stem_tremolo_3 == stem_tremolo_2
-            False
-            >>> stem_tremolo_3 == stem_tremolo_3
-            True
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if self.tremolo_flags == expr.tremolo_flags:
-                return True
-        return False
-
     def __format__(self, format_specification=''):
         r'''Formats stem tremolo.
 
@@ -126,15 +81,6 @@ class StemTremolo(AbjadObject):
         elif format_specification == 'storage':
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
-
-    def __hash__(self):
-        r'''Hashes stem tremolo.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(StemTremolo, self).__hash__()
 
     def __str__(self):
         r'''String representation of stem tremolo.

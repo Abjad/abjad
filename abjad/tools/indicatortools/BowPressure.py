@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class BowPressure(AbjadObject):
+class BowPressure(AbjadValueObject):
     r'''Bow pressure.
 
     ..  container:: example

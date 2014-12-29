@@ -6,12 +6,12 @@ import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import schemetools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import new
 
 
 @functools.total_ordering
-class Tempo(AbjadObject):
+class Tempo(AbjadValueObject):
     r'''A tempo indication.
 
     ::
@@ -169,21 +169,6 @@ class Tempo(AbjadObject):
             message = message.format(expr)
             raise TypeError(message)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a tempo with duration, textual indication
-        units-per-minute and markup all equal to those of this tempo.
-        Otherwise false.
-
-        Returns boolean.
-        '''
-        if isinstance(expr, type(self)):
-            if self.duration == expr.duration:
-                if self.textual_indication == expr.textual_indication:
-                    if self.units_per_minute == expr.units_per_minute:
-                        if self.markup == expr.markup:
-                            return True
-        return False
-
     def __format__(self, format_specification=''):
         r'''Formats tempo.
 
@@ -234,15 +219,6 @@ class Tempo(AbjadObject):
         elif format_specification == 'lilypond':
             return self._lilypond_format
         return str(self)
-
-    def __hash__(self):
-        r'''Hashes tempo.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Tempo, self).__hash__()
 
     def __lt__(self, arg):
         r'''Is true when `arg` is a tempo with quarters per minute greater than
