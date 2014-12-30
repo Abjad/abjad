@@ -7,46 +7,6 @@ class Tremolo(AbjadValueObject):
     
     ..  container:: example
 
-        **Example 1.** Chord with one tremolo beam:
-
-        ::
-
-            >>> chord = Chord("<cs' e'>4")
-            >>> tremolo = indicatortools.Tremolo(beam_count=1)
-            >>> attach(tremolo, chord)
-            >>> show(chord) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(chord))
-            \repeat tremolo 1
-            {
-            cs'8 e'8
-            }
-
-    ..  container:: example
-
-        **Example 2.** Chord with two tremolo beams:
-
-        ::
-
-            >>> chord = Chord("<cs' e'>4")
-            >>> tremolo = indicatortools.Tremolo(beam_count=2)
-            >>> attach(tremolo, chord)
-            >>> show(chord) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(chord))
-            \repeat tremolo 2
-            {
-            cs'16 e'16
-            }
-
-    ..  container:: example
-
-        **Example 3.** Chord with three tremolo beams:
-
         ::
 
             >>> chord = Chord("<cs' e'>4")
@@ -71,16 +31,20 @@ class Tremolo(AbjadValueObject):
 
     __slots__ = (
         '_beam_count',
+        '_is_slurred',
         )
 
     _format_slot = None
 
     ### INITIALIZER ###
 
-    def __init__(self, beam_count=3):
+    def __init__(self, beam_count=3, is_slurred=None):
         assert isinstance(beam_count, int), repr(beam_count)
         assert 0 < beam_count, repr(beam_count)
         self._beam_count = beam_count
+        prototype = (type(None), type(True))
+        assert isinstance(is_slurred, prototype), repr(is_slurred)
+        self._is_slurred = is_slurred
 
     ### SPECIAL METHODS ###
 
@@ -153,11 +117,111 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Tremolo with one beam:
+
             ::
 
-                >>> tremolo.beam_count
-                3
+                >>> chord = Chord("<cs' e'>4")
+                >>> tremolo = indicatortools.Tremolo(beam_count=1)
+                >>> attach(tremolo, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \repeat tremolo 1
+                {
+                cs'8 e'8
+                }
+
+        ..  container:: example
+
+            **Example 2.** Tremolo with two beams:
+
+            ::
+
+                >>> chord = Chord("<cs' e'>4")
+                >>> tremolo = indicatortools.Tremolo(beam_count=2)
+                >>> attach(tremolo, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \repeat tremolo 2
+                {
+                cs'16 e'16
+                }
+
+        ..  container:: example
+
+            **Example 3.** Tremolo with tree beams:
+
+            ::
+
+                >>> chord = Chord("<cs' e'>4")
+                >>> tremolo = indicatortools.Tremolo()
+                >>> attach(tremolo, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \repeat tremolo 4
+                {
+                cs'32 e'32
+                }
+
+            This is default behavior.
 
         Returns positive integer.
         '''
         return self._beam_count
+
+    @property
+    def is_slurred(self):
+        r'''Is true when tremolo is slurred. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Tremolo without slur:
+
+            ::
+
+                >>> chord = Chord("<cs' e'>4")
+                >>> tremolo = indicatortools.Tremolo()
+                >>> attach(tremolo, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \repeat tremolo 4
+                {
+                cs'32 e'32
+                }
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Tremolo with slur:
+
+            ::
+
+                >>> chord = Chord("<cs' e'>4")
+                >>> tremolo = indicatortools.Tremolo(is_slurred=True)
+                >>> attach(tremolo, chord)
+                >>> show(chord) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(chord))
+                \repeat tremolo 4
+                {
+                cs'32 \( e'32 \)
+                }
+                
+        Returns true or false.
+        '''
+        return self._is_slurred

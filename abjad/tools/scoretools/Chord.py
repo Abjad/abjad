@@ -246,6 +246,11 @@ class Chord(Leaf):
             for note_head in note_heads:
                 durated_pitch = format(note_head) + duration_string
                 durated_pitches.append(durated_pitch)
+            tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
+            if tremolo.is_slurred:
+                first_pitch = durated_pitches[0]
+                durated_pitches[0] = durated_pitches[0] + r' \('
+                durated_pitches[-1] = durated_pitches[-1] + r' \)'
             result = ' '.join(durated_pitches)
         else:
             result.extend([format(_) for _ in note_heads])
