@@ -164,7 +164,7 @@ class Selector(AbjadValueObject):
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
         for i, callback in enumerate(callbacks, seed):
-            print('EXPR', expr)
+            #print('EXPR', expr)
             try:
                 expr = callback(expr, seed=i)
             except TypeError:
