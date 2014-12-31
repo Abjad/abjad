@@ -2,6 +2,7 @@
 from abjad.tools import indicatortools
 from abjad.tools import lilypondnametools
 from abjad.tools import schemetools
+from abjad.tools import scoretools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import inspect_
 
@@ -123,6 +124,89 @@ class BowContactSpanner(Spanner):
                 }
             }
 
+    ..  container:: example
+
+        Use ``BowContactPoint(None)`` to indicate un-bowed actions, such as
+        pizzicato.
+
+        ::
+
+            >>> staff = Staff()
+            >>> staff.extend(r"c'4 c'4 c'4 c'4")
+
+        ::
+
+            >>> leaves = staff.select_leaves()
+            >>> attach(indicatortools.BowContactPoint(None), leaves[0])
+            >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
+            >>> attach(indicatortools.BowContactPoint((1, 2)), leaves[2])
+            >>> attach(indicatortools.BowContactPoint(None), leaves[3])
+
+        ::
+
+            >>> attach(Clef('percussion'), staff)
+            >>> override(staff).bar_line.transparent = True
+            >>> override(staff).dots.staff_position = -8
+            >>> override(staff).flag.Y_offset = -8.5
+            >>> override(staff).glissando.bound_details__left__padding = 1.5
+            >>> override(staff).glissando.bound_details__right__padding = 1.5
+            >>> override(staff).glissando.thickness = 2
+            >>> override(staff).script.staff_padding = 3
+            >>> override(staff).staff_symbol.transparent = True
+            >>> override(staff).stem.direction = Down
+            >>> override(staff).stem.length = 8
+            >>> override(staff).stem.stem_begin_position = -9
+            >>> override(staff).time_signature.stencil = False
+
+        ::
+
+            >>> attach(spannertools.BowContactSpanner(), leaves)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff \with {
+                \override BarLine #'transparent = ##t
+                \override Dots #'staff-position = #-8
+                \override Flag #'Y-offset = #-8.5
+                \override Glissando #'bound-details #'left #'padding = #1.5
+                \override Glissando #'bound-details #'right #'padding = #1.5
+                \override Glissando #'thickness = #2
+                \override Script #'staff-padding = #3
+                \override StaffSymbol #'transparent = ##t
+                \override Stem #'direction = #down
+                \override Stem #'length = #8
+                \override Stem #'stem-begin-position = #-9
+                \override TimeSignature #'stencil = ##f
+            } {
+                \clef "percussion"
+                \once \override NoteHead.style = #cross
+                c'4
+                \once \override NoteHead.Y-offset = 1.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \center-align
+                        \vcenter
+                            \fraction
+                                3
+                                4
+                    }
+                c'4 ^\upbow \glissando
+                \once \override NoteHead.Y-offset = 0.0
+                \once \override NoteHead.stencil = #ly:text-interface::print
+                \once \override NoteHead.text = \markup {
+                    \center-align
+                        \vcenter
+                            \fraction
+                                1
+                                2
+                    }
+                c'4
+                \once \override NoteHead.style = #cross
+                c'4
+            }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -163,13 +247,23 @@ class BowContactSpanner(Spanner):
         indicators = self._get_annotations(leaf)
         bow_contact_point = indicators[0]
         bow_motion_technique = indicators[1]
-        if self._is_my_only_leaf(leaf):
+        #print(leaf)
+        if bow_contact_point is None:
+            #print('\t', None)
             return lilypond_format_bundle
+        if bow_contact_point.contact_point is None:
+            #print('\t', 'PIZZ')
+            self._make_pizzicato_overrides(lilypond_format_bundle)
+            return lilypond_format_bundle
+        if self._is_my_only_leaf(leaf):
+            #print('\t', 'ONLY')
+            return lilypond_format_bundle
+        #print('\t', 'NORM')
         self._make_bow_contact_point_overrides(
             bow_contact_point=bow_contact_point,
             lilypond_format_bundle=lilypond_format_bundle,
             )
-        if not self._is_my_last_leaf(leaf):
+        if self._next_leaf_is_bowed(leaf):
             lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
             self._make_bow_direction_change_contributions(
                 bow_contact_point=bow_contact_point,
@@ -288,3 +382,35 @@ class BowContactSpanner(Spanner):
                 )
             string = '\n'.join(override_._override_format_pieces)
             lilypond_format_bundle.grob_overrides.append(string)
+
+    def _make_pizzicato_overrides(
+        self,
+        lilypond_format_bundle=None,
+        ):
+        override_ = lilypondnametools.LilyPondGrobOverride(
+            grob_name='NoteHead',
+            is_once=True,
+            property_path='style',
+            value='cross',
+            )
+        string = '\n'.join(override_._override_format_pieces)
+        lilypond_format_bundle.grob_overrides.append(string)
+
+    def _next_leaf_is_bowed(self, leaf):
+        if self._is_my_last_leaf(leaf):
+            return False
+        prototype = (
+            scoretools.MultimeasureRest,
+            scoretools.Rest,
+            scoretools.Skip,
+            )
+        next_leaf = inspect_(leaf).get_leaf(1)
+        if next_leaf is None or isinstance(next_leaf, prototype):
+            return False
+        next_contact_point = inspect_(next_leaf).get_indicator(
+            indicatortools.BowContactPoint)
+        if next_contact_point is None:
+            return False
+        elif next_contact_point.contact_point is None:
+            return False
+        return True
