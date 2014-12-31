@@ -181,7 +181,7 @@ class BowContactSpanner(Spanner):
                 \override TimeSignature #'stencil = ##f
             } {
                 \clef "percussion"
-                \once \override NoteHead.style = #cross
+                \once \override NoteHead.style = #'cross
                 c'4
                 \once \override NoteHead.Y-offset = 1.0
                 \once \override NoteHead.stencil = #ly:text-interface::print
@@ -203,7 +203,7 @@ class BowContactSpanner(Spanner):
                                 2
                     }
                 c'4
-                \once \override NoteHead.style = #cross
+                \once \override NoteHead.style = #'cross
                 c'4
             }
 
@@ -398,7 +398,7 @@ class BowContactSpanner(Spanner):
             grob_name='NoteHead',
             is_once=True,
             property_path='style',
-            value='cross',
+            value=schemetools.SchemeSymbol('cross'),
             )
         string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(string)
