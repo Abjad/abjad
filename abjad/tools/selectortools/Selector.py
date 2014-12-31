@@ -164,6 +164,7 @@ class Selector(AbjadValueObject):
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
         for i, callback in enumerate(callbacks, seed):
+            print('EXPR', expr)
             try:
                 expr = callback(expr, seed=i)
             except TypeError:
@@ -242,6 +243,7 @@ class Selector(AbjadValueObject):
         counts,
         cyclic=False,
         fuse_overhang=False,
+        nonempty=False,
         overhang=False,
         rotate=False,
         ):
@@ -339,6 +341,7 @@ class Selector(AbjadValueObject):
             counts,
             cyclic=cyclic,
             fuse_overhang=fuse_overhang,
+            nonempty=nonempty,
             overhang=overhang,
             rotate=rotate,
             )

@@ -18,6 +18,7 @@ class CountsSelectorCallback(AbjadValueObject):
                 ),
             cyclic=True,
             fuse_overhang=False,
+            nonempty=False,
             overhang=True,
             rotate=True,
             )
@@ -32,6 +33,7 @@ class CountsSelectorCallback(AbjadValueObject):
         '_fuse_overhang',
         '_overhang',
         '_rotate',
+        '_nonempty',
         )
 
     ### INITIALIZER ###
@@ -41,6 +43,7 @@ class CountsSelectorCallback(AbjadValueObject):
         counts=(3,),
         cyclic=True,
         fuse_overhang=False,
+        nonempty=False,
         overhang=True,
         rotate=True,
         ):
@@ -50,6 +53,7 @@ class CountsSelectorCallback(AbjadValueObject):
         self._fuse_overhang = bool(fuse_overhang)
         self._overhang = bool(overhang)
         self._rotate = bool(rotate)
+        self._nonempty = bool(nonempty)
 
     ### SPECIAL METHODS ###
 
@@ -78,12 +82,17 @@ class CountsSelectorCallback(AbjadValueObject):
                 if len(groups[-1]) != last_count:
                     last_group = groups.pop()
                     groups[-1] += last_group
+            subresult = []
             for j, group in enumerate(groups):
                 count = counts[j]
                 if count < 0:
                     continue
                 items = selectiontools.Selection(group)
-                result.append(items)
+                subresult.append(items)
+            if self.nonempty and not subresult:
+                group = selectiontools.Selection(groups[0])
+                subresult.append(group)
+            result.extend(subresult)
         return tuple(result)
 
     ### PUBLIC PROPERTIES ###
@@ -127,3 +136,11 @@ class CountsSelectorCallback(AbjadValueObject):
         Returns boolean.
         '''
         return self._rotate
+
+    @property
+    def nonempty(self):
+        r'''Gets counts selector callback nonempty flag.
+
+        Returns boolean.
+        '''
+        return self._nonempty
