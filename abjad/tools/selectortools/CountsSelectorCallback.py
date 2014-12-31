@@ -17,7 +17,7 @@ class CountsSelectorCallback(AbjadValueObject):
                 [3]
                 ),
             cyclic=True,
-            fuse_overhang=True,
+            fuse_overhang=False,
             overhang=True,
             rotate=True,
             )
@@ -40,7 +40,7 @@ class CountsSelectorCallback(AbjadValueObject):
         self,
         counts=(3,),
         cyclic=True,
-        fuse_overhang=True,
+        fuse_overhang=False,
         overhang=True,
         rotate=True,
         ):
