@@ -328,8 +328,10 @@ class BowContactSpanner(Spanner):
         previous_leaf = inspect_(leaf).get_leaf(-1)
         previous_contact_point = None
         if previous_leaf is not None:
-            previous_contact_point = inspect_(previous_leaf
-                ).get_indicator(indicatortools.BowContactPoint)
+            previous_contact_points = inspect_(previous_leaf
+                ).get_indicators(indicatortools.BowContactPoint)
+            if previous_contact_points:
+                previous_contact_point = previous_contact_points[0]
         if self._is_my_first_leaf(leaf) or \
             previous_contact_point is None or \
             previous_contact_point.contact_point is None:
