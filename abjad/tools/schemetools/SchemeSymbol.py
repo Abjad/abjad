@@ -20,6 +20,10 @@ class SchemeSymbol(Scheme):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(self, symbol=None):
@@ -43,3 +47,13 @@ class SchemeSymbol(Scheme):
             keyword_argument_names=(),
             positional_argument_values=positional_argument_values,
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def symbol(self):
+        r'''Gets symbol string.
+
+        Returns string.
+        '''
+        return self._value
