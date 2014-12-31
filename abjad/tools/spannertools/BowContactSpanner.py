@@ -375,11 +375,8 @@ class BowContactSpanner(Spanner):
         lilypond_format_bundle=None,
         ):
         if bow_motion_technique is not None:
-            # TODO: should we have schemetools.SchemeSymbol?
-            #       This could remove quoting="'"
-            style = schemetools.Scheme(
+            style = schemetools.SchemeSymbol(
                 bow_motion_technique.glissando_style,
-                quoting="'",
                 )
             override_ = lilypondnametools.LilyPondGrobOverride(
                 grob_name='Glissando',
@@ -394,11 +391,12 @@ class BowContactSpanner(Spanner):
         self,
         lilypond_format_bundle=None,
         ):
+        style = schemetools.SchemeSymbol('cross')
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='NoteHead',
             is_once=True,
             property_path='style',
-            value=schemetools.SchemeSymbol('cross'),
+            value=style,
             )
         string = '\n'.join(override_._override_format_pieces)
         lilypond_format_bundle.grob_overrides.append(string)
