@@ -84,13 +84,13 @@ class PianoPedalSpanner(Spanner):
     def _get_lilypond_format_bundle(self, leaf):
         from abjad.tools import lilypondnametools
         from abjad.tools import schemetools
-        from abjad.tools import systemtools
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
         if self._is_my_only_leaf(leaf):
+            style = schemetools.SchemeSymbol(self.style)
             context_setting = lilypondnametools.LilyPondContextSetting(
                 context_name='Staff',
                 context_property='pedalSustainStyle',
-                value=schemetools.Scheme(self.style, quoting="'"),
+                value=style,
                 )
             lilypond_format_bundle.update(context_setting)
             string = self._kinds[self.kind][0]
@@ -98,10 +98,11 @@ class PianoPedalSpanner(Spanner):
             string = self._kinds[self.kind][1]
             lilypond_format_bundle.right.spanner_starts.append(string)
         elif self._is_my_first_leaf(leaf):
+            style = schemetools.SchemeSymbol(self.style)
             context_setting = lilypondnametools.LilyPondContextSetting(
                 context_name='Staff',
                 context_property='pedalSustainStyle',
-                value=schemetools.Scheme(self.style, quoting="'"),
+                value=style,
                 )
             lilypond_format_bundle.update(context_setting)
             string = self._kinds[self.kind][0]
