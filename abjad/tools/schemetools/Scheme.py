@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import stringtools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class Scheme(AbjadObject):
+class Scheme(AbjadValueObject):
     r'''Abjad model of Scheme code.
 
     ::
@@ -48,11 +48,8 @@ class Scheme(AbjadObject):
         >>> print(format(scheme))
         #"nospaces"
 
-    The above is useful in certain \override situations,
-    as LilyPond's Scheme interpreter
-    will treat unquoted strings as symbols rather than strings.
-
-    Scheme is immutable.
+    The above is useful in certain \override situations, as LilyPond's Scheme
+    interpreter will treat unquoted strings as symbols rather than strings.
     '''
 
     ### CLASS VARIABLES ###
@@ -81,17 +78,6 @@ class Scheme(AbjadObject):
         self._value = args
 
     ### SPECIAL METHODS ###
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a scheme object with a value equal to that
-        of this scheme object. Otherwise false.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            if self._value == expr._value:
-                return True
-        return False
 
     def __format__(self, format_specification=''):
         r'''Formats scheme.
@@ -127,15 +113,6 @@ class Scheme(AbjadObject):
         Returns tuple.
         '''
         return (self._value,)
-
-    def __hash__(self):
-        r'''Hashes scheme.
-
-        Required to be explicitely re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Scheme, self).__hash__()
 
     def __str__(self):
         r'''String representation of scheme object.
