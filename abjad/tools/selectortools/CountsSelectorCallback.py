@@ -67,10 +67,10 @@ class CountsSelectorCallback(AbjadValueObject):
             seed = 0
         seed = int(seed)
         result = []
-        for i, subexpr in enumerate(expr, seed):
-            counts = self.counts
-            if self.rotate:
-                counts = sequencetools.rotate_sequence(-i)
+        counts = self.counts
+        if self.rotate:
+            counts = sequencetools.rotate_sequence(counts, -seed)
+        for subexpr in expr:
             groups = sequencetools.partition_sequence_by_counts(
                 subexpr,
                 [abs(_) for _ in counts],
@@ -83,8 +83,8 @@ class CountsSelectorCallback(AbjadValueObject):
                     last_group = groups.pop()
                     groups[-1] += last_group
             subresult = []
-            for j, group in enumerate(groups):
-                count = counts[j]
+            for i, group in enumerate(groups):
+                count = counts[i]
                 if count < 0:
                     continue
                 items = selectiontools.Selection(group)
@@ -93,6 +93,8 @@ class CountsSelectorCallback(AbjadValueObject):
                 group = selectiontools.Selection(groups[0])
                 subresult.append(group)
             result.extend(subresult)
+            if self.rotate:
+                counts = sequencetools.rotate_sequence(counts, -1)
         return tuple(result)
 
     ### PUBLIC PROPERTIES ###
