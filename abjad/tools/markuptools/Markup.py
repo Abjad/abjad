@@ -1046,6 +1046,38 @@ class Markup(AbjadValueObject):
             )
         return Markup(contents=command)
 
+    def huge(self):
+        r'''LilyPond ``\huge`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.huge()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \huge
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'huge',
+            contents,
+            )
+        return new(self, contents=command)
+
     def italic(self):
         r'''LilyPond ``\italic`` markup command.
 
