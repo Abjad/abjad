@@ -968,6 +968,7 @@ class Markup(AbjadValueObject):
         ..  container:: example
 
             ::
+
                 >>> markup = Markup('Allegro assai')
                 >>> markup = markup.halign(0)
                 >>> print(format(markup))
