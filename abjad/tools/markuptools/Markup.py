@@ -1460,6 +1460,38 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    def sans(self):
+        r'''LilyPond ``\sans`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.sans()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \sans
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'sans',
+            contents,
+            )
+        return new(self, contents=command)
+
     def scale(self, factor_pair):
         r'''LilyPond ``\scale`` markup command.
 
