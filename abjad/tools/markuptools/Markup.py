@@ -968,6 +968,7 @@ class Markup(AbjadValueObject):
         ..  container:: example
 
             ::
+
                 >>> markup = Markup('Allegro assai')
                 >>> markup = markup.halign(0)
                 >>> print(format(markup))
@@ -1045,6 +1046,38 @@ class Markup(AbjadValueObject):
             amount,
             )
         return Markup(contents=command)
+
+    def huge(self):
+        r'''LilyPond ``\huge`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.huge()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \huge
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'huge',
+            contents,
+            )
+        return new(self, contents=command)
 
     def italic(self):
         r'''LilyPond ``\italic`` markup command.
@@ -1423,6 +1456,38 @@ class Markup(AbjadValueObject):
         command = markuptools.MarkupCommand(
             'rotate',
             angle,
+            contents,
+            )
+        return new(self, contents=command)
+
+    def sans(self):
+        r'''LilyPond ``\sans`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.sans()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \sans
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'sans',
             contents,
             )
         return new(self, contents=command)
