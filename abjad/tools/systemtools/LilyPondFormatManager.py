@@ -108,8 +108,10 @@ class LilyPondFormatManager(object):
         # classify expressions attached to component
         for expression in expressions:
             # skip nonprinting indicators like annotation
-            if not hasattr(expression.indicator, '_lilypond_format') and \
-                not hasattr(expression.indicator, '_lilypond_format_bundle'):
+            indicator = expression.indicator
+            if not hasattr(indicator, '_lilypond_format') and \
+                not hasattr(indicator, '_lilypond_format_bundle') and \
+                not hasattr(indicator, '_get_lilypond_format_bundle'):
                 continue
             elif expression.is_annotation:
                 continue
@@ -167,13 +169,17 @@ class LilyPondFormatManager(object):
         # handle nonscoped expressions
         for nonscoped_expression in nonscoped_expressions:
             indicator = nonscoped_expression.indicator
-            indicator_format_bundle = getattr(
-                indicator,
-                '_lilypond_format_bundle',
-                None,
-                )
-            if indicator_format_bundle is not None:
-                bundle.update(indicator_format_bundle)
+            if hasattr(indicator, '_get_lilypond_format_bundle'):
+                indicator_bundle = indicator._get_lilypond_format_bundle(
+                    component)
+            else:
+                indicator_bundle = getattr(
+                    indicator,
+                    '_lilypond_format_bundle',
+                    None,
+                    )
+            if indicator_bundle is not None:
+                bundle.update(indicator_bundle)
 
     @staticmethod
     def _populate_spanner_format_contributions(component, bundle):
