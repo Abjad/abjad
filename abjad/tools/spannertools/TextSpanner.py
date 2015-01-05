@@ -13,34 +13,56 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
+        **Example 1.** A text spanner with no grob overrides:
+
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
             >>> text_spanner = spannertools.TextSpanner()
-            >>> grob = override(text_spanner).text_spanner
-            >>> left_markup = Markup('foo').italic().bold()
-            >>> grob.bound_details__left__text = left_markup
-            >>> right_markup = Markup.draw_line(0, -1)
-            >>> grob.bound_details__right__text = right_markup
-            >>> override(text_spanner).text_spanner.dash_fraction = 1
-            >>> attach(text_spanner, [staff])
+            >>> attach(text_spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
             >>> print(format(staff))
             \new Staff {
+                c'4 \startTextSpan
+                d'4
+                e'4
+                f'4 \stopTextSpan
+            }
+
+        This is (notationally unlikely) default behavior. 
+
+    ..  container:: example
+
+        **Example 2.** A text spanner with a grob override for left text:
+
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> text_spanner = spannertools.TextSpanner()
+            >>> markup = Markup('foo').italic().bold()
+            >>> override(text_spanner).text_spanner.bound_details__left__text = markup
+            >>> override(text_spanner).text_spanner.bound_details__left__stencil_align_dir_y = 0
+            >>> attach(text_spanner, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \override TextSpanner #'bound-details #'left #'stencil-align-dir-y = #0
                 \override TextSpanner #'bound-details #'left #'text = \markup {
-                    \bold \italic foo }
-                \override TextSpanner #'bound-details #'right #'text = \markup {
-                    \draw-line #'(0 . -1) }
-                \override TextSpanner #'dash-fraction = #1
-                c'8 \startTextSpan
-                d'8
-                e'8
-                f'8 \stopTextSpan
+                    \bold
+                        \italic
+                            foo
+                    }
+                c'4 \startTextSpan
+                d'4
+                e'4
+                f'4 \stopTextSpan
                 \revert TextSpanner #'bound-details
-                \revert TextSpanner #'dash-fraction
             }
 
     Formats LilyPond ``\startTextSpan`` command on first leaf in spanner.
@@ -106,7 +128,10 @@ class TextSpanner(Spanner):
         # start spanner if existing line segment
         elif current_line_segment:
             start_spanner = True
-        # stop spanner if last component
+        # stop spanner if last component and spanner started on first leaf
+        #if (self._is_my_last_leaf(component) and
+        #    self._spanner_starts_on_first_leaf()):
+        # stop spanner if last component:
         if self._is_my_last_leaf(component):
             stop_spanner = True
         if start_spanner:
@@ -170,3 +195,13 @@ class TextSpanner(Spanner):
             if any(_ is not None for _ in annotations):
                 return annotations
         return None, None
+
+    def _spanner_starts_on_first_leaf(self):
+        leaves = self._get_leaves()
+        first_leaf = leaves[0]
+        assert self._is_my_first_leaf(first_leaf)
+        annotations = self._get_annotations(first_leaf)
+        current_markup = bool(annotations[0])
+        if not current_markup:
+            return True
+        return False
