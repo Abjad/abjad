@@ -90,6 +90,28 @@ class TextSpanner(Spanner):
             }
 
         **Example 3b.** Text spanner interacting with annotated markup.
+        At the end of the spanner:
+
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> markup = Markup('tasto')
+            >>> attach(markup, staff[-1], is_annotation=True)
+            >>> text_spanner = spannertools.TextSpanner()
+            >>> attach(text_spanner, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'4 
+                d'4
+                e'4
+                f'4 ^ \markup { tasto }
+            }
+
+        **Example 3c.** Text spanner interacting with annotated markup.
         At the beginning and the end of the spanner:
 
         ::
@@ -113,35 +135,8 @@ class TextSpanner(Spanner):
                 f'4 ^ \markup { tasto }
             }
 
-        In both cases the text spanner is suppresssed and only the markup
+        In all cases the text spanner is suppresssed and only the markup
         appear.
-
-    ..  container:: example
-
-        **Example 4.** Text spanner interacting with annotated markup.
-        At the end of the spanner:
-
-        ::
-
-            >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> markup = Markup('tasto')
-            >>> attach(markup, staff[-1], is_annotation=True)
-            >>> text_spanner = spannertools.TextSpanner()
-            >>> attach(text_spanner, staff[:])
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(staff))
-            \new Staff {
-                c'4 \startTextSpan
-                d'4
-                e'4
-                f'4 \stopTextSpan ^ \markup { tasto }
-            }
-
-        .. note:: The output shown here is incorrect. A future revision
-            will suppress the text spanner and allow only the markup to appear.
 
     '''
 
@@ -261,6 +256,13 @@ class TextSpanner(Spanner):
         markup = bool(annotations[0])
         return markup
 
+    def _spanner_has_smart_events(self):
+        leaves = self._get_leaves()
+        for leaf in leaves:
+            if self._leaf_has_current_event(leaf):
+                return True
+        return False
+
     def _spanner_is_open_immediately_before_leaf(self, leaf):
         from abjad.tools import scoretools
         if not isinstance(leaf, scoretools.Leaf):
@@ -279,7 +281,8 @@ class TextSpanner(Spanner):
         annotations = self._get_annotations(leaf)
         markup = bool(annotations[0])
         line_segment = annotations[1]
-        if self._is_my_first_leaf(leaf) and not markup:
+        has_smart_events = self._spanner_has_smart_events()
+        if not has_smart_events and self._is_my_first_leaf(leaf):
             return True
         if line_segment:
             return True
