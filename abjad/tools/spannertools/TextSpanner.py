@@ -145,19 +145,21 @@ class TextSpanner(Spanner):
         current_line_segment = current_annotations[1]
         current_event = (current_markups is not None or 
             current_line_segment is not None)
+        leaves = self._get_leaves()
+        spanner_starts_on_first_leaf = self._spanner_starts_on_leaf(leaves[0])
         start_spanner, stop_spanner = False, False
         # stop any previous segment
+        #if previous_segment and current_event and spanner_starts_on_first_leaf:
         if previous_segment and current_event:
             stop_spanner = True
-        # start spanner if no markup
+        # start spanner if component is first leaf with no markup
         if self._is_my_first_leaf(component) and not current_markup:
             start_spanner = True
         # start spanner if existing line segment
         elif current_line_segment:
             start_spanner = True
         # stop spanner if last component and spanner started on first leaf
-        if (self._is_my_last_leaf(component) and
-            self._spanner_starts_on_first_leaf()):
+        if self._is_my_last_leaf(component) and spanner_starts_on_first_leaf:
             stop_spanner = True
         if start_spanner:
             contributions = override(self)._list_format_contributions(
@@ -221,12 +223,26 @@ class TextSpanner(Spanner):
                 return annotations
         return None, None
 
-    def _spanner_starts_on_first_leaf(self):
-        leaves = self._get_leaves()
-        first_leaf = leaves[0]
-        assert self._is_my_first_leaf(first_leaf)
-        annotations = self._get_annotations(first_leaf)
-        current_markup = bool(annotations[0])
-        if not current_markup:
+#    def _spanner_is_open(self, component):
+#        from abjad.tools import scoretools
+#        if not isinstance(component, scoretools.Leaf):
+#            return False
+#        leaves = self._get_leaves()
+#        index = leaves.index(component)
+#        for index in reversed(range(index)):
+#            previous_leaf = leaves[index]
+#            if self._spanner_starts_on_leaf(previous_leaf):
+#                return True
+#            if self._spanner_stops_on_leaf(previous_leaf):
+#                return False
+#        return False
+
+    def _spanner_starts_on_leaf(self, leaf):
+        annotations = self._get_annotations(leaf)
+        markup = bool(annotations[0])
+        line_segment = annotations[1]
+        if self._is_my_first_leaf(leaf) and not markup:
+            return True
+        if not self._is_my_first_leaf(leaf) and line_segment:
             return True
         return False
