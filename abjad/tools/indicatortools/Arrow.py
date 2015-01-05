@@ -794,7 +794,7 @@ class Arrow(LineSegment):
                             \upright
                                 ord.
                             }
-                        c''4. \stopTextSpan
+                        c''4.
                     }
 
             Results in no text immediately after line break.
@@ -897,7 +897,7 @@ class Arrow(LineSegment):
                             \upright
                                 ord.
                             }
-                        c''4. \stopTextSpan
+                        c''4.
                     }
 
         Set to markup, boolean or none.
@@ -993,7 +993,7 @@ class Arrow(LineSegment):
                             \upright
                                 ord.
                             }
-                        c''4. \stopTextSpan
+                        c''4.
                     }
 
             Results in arrow immediately before line break.
@@ -1087,7 +1087,7 @@ class Arrow(LineSegment):
                             \upright
                                 ord.
                             }
-                        c''4. \stopTextSpan
+                        c''4.
                     }
 
         Set to true, false or none.

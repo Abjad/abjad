@@ -65,9 +65,36 @@ class TextSpanner(Spanner):
                 \revert TextSpanner #'bound-details
             }
 
-    Formats LilyPond ``\startTextSpan`` command on first leaf in spanner.
+    ..  container:: example
 
-    Formats LilyPond ``\stopTextSpan`` command on last leaf in spanner.
+        **Example 3.** A text spanner interacting with annotated markup:
+
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> markup = Markup('pont.').italic().bold()
+            >>> attach(markup, staff[0], is_annotation=True)
+            >>> text_spanner = spannertools.TextSpanner()
+            >>> attach(text_spanner, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'4 ^ \markup {
+                    \bold
+                        \italic
+                            pont.
+                    }
+                d'4
+                e'4
+                f'4
+            }
+
+        Text spanner formats markup only: no spanner appears.
+
+
     '''
 
     ### CLASS VARIABLES ###
@@ -129,10 +156,8 @@ class TextSpanner(Spanner):
         elif current_line_segment:
             start_spanner = True
         # stop spanner if last component and spanner started on first leaf
-        #if (self._is_my_last_leaf(component) and
-        #    self._spanner_starts_on_first_leaf()):
-        # stop spanner if last component:
-        if self._is_my_last_leaf(component):
+        if (self._is_my_last_leaf(component) and
+            self._spanner_starts_on_first_leaf()):
             stop_spanner = True
         if start_spanner:
             contributions = override(self)._list_format_contributions(
