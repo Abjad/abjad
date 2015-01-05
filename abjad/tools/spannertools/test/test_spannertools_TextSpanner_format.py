@@ -48,8 +48,6 @@ def test_spannertools_TextSpanner_format_01():
 
 
 def test_spannertools_TextSpanner_format_02():
-    message = 'this test is correct; change code and then unskip.'
-    pytest.skip(message)
 
     staff = scoretools.Staff("c'4 d'4 e'4 f'4")
     markup_one = markuptools.Markup('one')

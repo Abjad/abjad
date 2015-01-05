@@ -67,12 +67,13 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 3.** A text spanner interacting with annotated markup:
+        **Example 3a.** Text spanner interacting with annotated markup.
+        At the beginning of the spanner:
 
         ::
 
             >>> staff = Staff("c'4 d'4 e'4 f'4")
-            >>> markup = Markup('pont.').italic().bold()
+            >>> markup = Markup('pont.')
             >>> attach(markup, staff[0], is_annotation=True)
             >>> text_spanner = spannertools.TextSpanner()
             >>> attach(text_spanner, staff[:])
@@ -82,18 +83,65 @@ class TextSpanner(Spanner):
 
             >>> print(format(staff))
             \new Staff {
-                c'4 ^ \markup {
-                    \bold
-                        \italic
-                            pont.
-                    }
+                c'4 ^ \markup { pont. }
                 d'4
                 e'4
                 f'4
             }
 
-        Text spanner formats markup only: no spanner appears.
+        **Example 3b.** Text spanner interacting with annotated markup.
+        At the beginning and the end of the spanner:
 
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> markup = Markup('pont.')
+            >>> attach(markup, staff[0], is_annotation=True)
+            >>> markup = Markup('tasto')
+            >>> attach(markup, staff[-1], is_annotation=True)
+            >>> text_spanner = spannertools.TextSpanner()
+            >>> attach(text_spanner, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'4 ^ \markup { pont. }
+                d'4
+                e'4
+                f'4 ^ \markup { tasto }
+            }
+
+        In both cases the text spanner is suppresssed and only the markup
+        appear.
+
+    ..  container:: example
+
+        **Example 4.** Text spanner interacting with annotated markup.
+        At the end of the spanner:
+
+        ::
+
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> markup = Markup('tasto')
+            >>> attach(markup, staff[-1], is_annotation=True)
+            >>> text_spanner = spannertools.TextSpanner()
+            >>> attach(text_spanner, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'4 \startTextSpan
+                d'4
+                e'4
+                f'4 \stopTextSpan ^ \markup { tasto }
+            }
+
+        .. note:: The output shown here is incorrect. A future revision
+            will suppress the text spanner and allow only the markup to appear.
 
     '''
 
