@@ -134,33 +134,12 @@ class TextSpanner(Spanner):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(
             component,
             )
-        previous_annotations = self._get_previous_annotations(component)
-        previous_markups = previous_annotations[0]
-        previous_line_segment = previous_annotations[1]
-        previous_segment = (previous_markups is not None or 
-            previous_line_segment is not None)
         current_annotations = self._get_annotations(component)
         current_markups = current_annotations[0]
         current_markup = bool(current_markups)
         current_line_segment = current_annotations[1]
-        current_event = (current_markups is not None or 
-            current_line_segment is not None)
-        leaves = self._get_leaves()
-        spanner_starts_on_first_leaf = self._spanner_starts_on_leaf(leaves[0])
-        start_spanner, stop_spanner = False, False
-        # stop any previous segment
-        #if previous_segment and current_event and spanner_starts_on_first_leaf:
-        if previous_segment and current_event:
-            stop_spanner = True
-        # start spanner if component is first leaf with no markup
-        if self._is_my_first_leaf(component) and not current_markup:
-            start_spanner = True
-        # start spanner if existing line segment
-        elif current_line_segment:
-            start_spanner = True
-        # stop spanner if last component and spanner started on first leaf
-        if self._is_my_last_leaf(component) and spanner_starts_on_first_leaf:
-            stop_spanner = True
+        start_spanner = self._spanner_starts_on_leaf(component)
+        stop_spanner = self._spanner_stops_on_leaf(component)
         if start_spanner:
             contributions = override(self)._list_format_contributions(
                 'override',
@@ -223,19 +202,30 @@ class TextSpanner(Spanner):
                 return annotations
         return None, None
 
-#    def _spanner_is_open(self, component):
-#        from abjad.tools import scoretools
-#        if not isinstance(component, scoretools.Leaf):
-#            return False
-#        leaves = self._get_leaves()
-#        index = leaves.index(component)
-#        for index in reversed(range(index)):
-#            previous_leaf = leaves[index]
-#            if self._spanner_starts_on_leaf(previous_leaf):
-#                return True
-#            if self._spanner_stops_on_leaf(previous_leaf):
-#                return False
-#        return False
+    def _leaf_has_current_event(self, leaf):
+        annotations = self._get_annotations(leaf)
+        markup = bool(annotations[0])
+        line_segment = bool(annotations[1])
+        return markup or line_segment
+
+    def _leaf_has_markup(self, leaf):
+        annotations = self._get_annotations(leaf)
+        markup = bool(annotations[0])
+        return markup
+
+    def _spanner_is_open_immediately_before_leaf(self, leaf):
+        from abjad.tools import scoretools
+        if not isinstance(leaf, scoretools.Leaf):
+            return False
+        leaves = self._get_leaves()
+        index = leaves.index(leaf)
+        for index in reversed(range(index)):
+            previous_leaf = leaves[index]
+            if self._spanner_starts_on_leaf(previous_leaf):
+                return True
+            if self._leaf_has_markup(previous_leaf):
+                return False
+        return False
 
     def _spanner_starts_on_leaf(self, leaf):
         annotations = self._get_annotations(leaf)
@@ -243,6 +233,17 @@ class TextSpanner(Spanner):
         line_segment = annotations[1]
         if self._is_my_first_leaf(leaf) and not markup:
             return True
-        if not self._is_my_first_leaf(leaf) and line_segment:
+        if line_segment:
+            return True
+        return False
+
+    def _spanner_stops_on_leaf(self, leaf):
+        annotations = self._get_annotations(leaf)
+        markup = bool(annotations[0])
+        line_segment = annotations[1]
+        spanner_is_open = self._spanner_is_open_immediately_before_leaf(leaf)
+        if spanner_is_open and self._leaf_has_current_event(leaf):
+            return True
+        if spanner_is_open and self._is_my_last_leaf(leaf):
             return True
         return False
