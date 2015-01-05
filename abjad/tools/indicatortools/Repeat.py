@@ -66,18 +66,19 @@ class Repeat(AbjadValueObject):
             self.repeat_count,
             )
 
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.before.commands.append(str(self))
+        return lilypond_format_bundle
+
     ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):
         return str(self)
-
-    @property
-    def _lilypond_format_bundle(self):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.before.commands.append(str(self))
-        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 

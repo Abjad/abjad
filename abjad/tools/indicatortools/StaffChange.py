@@ -73,6 +73,14 @@ class StaffChange(AbjadValueObject):
             schemetools.Scheme.format_scheme_value(self.staff.name),
             )
 
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.opening.commands.append(str(self))
+        return lilypond_format_bundle
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -82,13 +90,6 @@ class StaffChange(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return str(self)
-
-    @property
-    def _lilypond_format_bundle(self):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.opening.commands.append(str(self))
-        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 

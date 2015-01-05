@@ -59,6 +59,15 @@ class LilyPondComment(AbjadValueObject):
         '''
         return r'% {}'.format(self.contents_string)
 
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        format_slot = lilypond_format_bundle.get(self.format_slot)
+        format_slot.comments.append(str(self))
+        return lilypond_format_bundle
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -68,14 +77,6 @@ class LilyPondComment(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return str(self)
-
-    @property
-    def _lilypond_format_bundle(self):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        format_slot = lilypond_format_bundle.get(self.format_slot)
-        format_slot.comments.append(str(self))
-        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 

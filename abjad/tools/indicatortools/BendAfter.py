@@ -54,6 +54,14 @@ class BendAfter(AbjadValueObject):
         '''
         return r"- \bendAfter #'{}".format(self.bend_amount)
 
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.right.articulations.append(str(self))
+        return lilypond_format_bundle
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -63,13 +71,6 @@ class BendAfter(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return str(self)
-
-    @property
-    def _lilypond_format_bundle(self):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.right.articulations.append(str(self))
-        return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
 

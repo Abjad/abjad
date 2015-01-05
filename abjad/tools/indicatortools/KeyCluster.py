@@ -63,10 +63,9 @@ class KeyCluster(AbjadValueObject):
         self._markup_direction = markup_direction
         self._suppress_markup = bool(suppress_markup)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _lilypond_format_bundle(self):
+    def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import markuptools
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()

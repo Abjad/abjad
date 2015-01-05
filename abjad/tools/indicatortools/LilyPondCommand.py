@@ -78,6 +78,15 @@ class LilyPondCommand(AbjadValueObject):
             return self._lilypond_format
         return str(self)
 
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        format_slot = lilypond_format_bundle.get(self.format_slot)
+        format_slot.commands.append(self._lilypond_format)
+        return lilypond_format_bundle
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -94,14 +103,6 @@ class LilyPondCommand(AbjadValueObject):
             return '\\' + stringtools.to_lower_camel_case(command)
         else:
             return '\\' + command
-
-    @property
-    def _lilypond_format_bundle(self):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        format_slot = lilypond_format_bundle.get(self.format_slot)
-        format_slot.commands.append(self._lilypond_format)
-        return lilypond_format_bundle
 
     @property
     def _storage_format_specification(self):

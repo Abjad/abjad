@@ -173,7 +173,7 @@ class TextSpanner(Spanner):
             line_segment,
             )
 
-    def _get_lilypond_format_bundle(self, component):
+    def _get_lilypond_format_bundle(self, component=None):
         lilypond_format_bundle = self._get_basic_lilypond_format_bundle(
             component,
             )

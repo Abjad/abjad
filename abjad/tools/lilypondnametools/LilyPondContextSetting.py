@@ -68,10 +68,9 @@ class LilyPondContextSetting(AbjadObject):
         hash_values = systemtools.StorageFormatManager.get_hash_values(self)
         return hash(hash_values)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _lilypond_format_bundle(self):
+    def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         string = '\n'.join(self.format_pieces)

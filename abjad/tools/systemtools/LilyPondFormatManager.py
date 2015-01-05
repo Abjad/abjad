@@ -110,7 +110,6 @@ class LilyPondFormatManager(object):
             # skip nonprinting indicators like annotation
             indicator = expression.indicator
             if not hasattr(indicator, '_lilypond_format') and \
-                not hasattr(indicator, '_lilypond_format_bundle') and \
                 not hasattr(indicator, '_get_lilypond_format_bundle'):
                 continue
             elif expression.is_annotation:
@@ -172,12 +171,6 @@ class LilyPondFormatManager(object):
             if hasattr(indicator, '_get_lilypond_format_bundle'):
                 indicator_bundle = indicator._get_lilypond_format_bundle(
                     component)
-            else:
-                indicator_bundle = getattr(
-                    indicator,
-                    '_lilypond_format_bundle',
-                    None,
-                    )
             if indicator_bundle is not None:
                 bundle.update(indicator_bundle)
 

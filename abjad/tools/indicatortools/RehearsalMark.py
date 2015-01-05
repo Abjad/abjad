@@ -50,7 +50,6 @@ class RehearsalMark(AbjadValueObject):
 
     def __init__(self, number=None, markup=None):
         from abjad.tools import markuptools
-        from abjad.tools import scoretools
         # TODO: make default scope work
         #self._default_scope = scoretools.Score
         if markup is not None:
@@ -77,6 +76,14 @@ class RehearsalMark(AbjadValueObject):
         '''
         return self._lilypond_format
 
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        lilypond_format_bundle.opening.commands.append(str(self))
+        return lilypond_format_bundle
+        
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -110,13 +117,6 @@ class RehearsalMark(AbjadValueObject):
             result = r'\mark \default'
         return result
 
-    @property
-    def _lilypond_format_bundle(self):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        lilypond_format_bundle.opening.commands.append(str(self))
-        return lilypond_format_bundle
-        
     ### PUBLIC PROPERTIES ###
 
     @property

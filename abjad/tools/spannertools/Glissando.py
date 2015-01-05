@@ -107,7 +107,9 @@ class Glissando(Spanner):
                 if not self._previous_leaf_changes_current_pitch(leaf):
                     self._parenthesize_leaf(leaf)
         if bend_after:
-            lilypond_format_bundle.update(bend_after._lilypond_format_bundle)
+            lilypond_format_bundle.update(
+                bend_after._get_lilypond_format_bundle(),
+                )
         elif self._is_my_last_leaf(leaf):
             pass
         elif not isinstance(leaf, prototype):

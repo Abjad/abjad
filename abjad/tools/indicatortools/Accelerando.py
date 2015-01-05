@@ -133,8 +133,9 @@ class Accelerando(AbjadValueObject):
     def _lilypond_format(self):
         return str(self)
 
-    @property
-    def _lilypond_format_bundle(self):
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         markup = self._to_markup()
@@ -142,8 +143,6 @@ class Accelerando(AbjadValueObject):
         markup_format_pieces = markup._get_format_pieces()
         lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
-
-    ### PRIVATE METHODS ###
 
     def _to_markup(self):
         if self.markup is not None:

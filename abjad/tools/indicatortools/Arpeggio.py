@@ -53,8 +53,9 @@ class Arpeggio(AbjadValueObject):
     def _lilypond_format(self):
         return r'\arpeggio'
 
-    @property
-    def _lilypond_format_bundle(self):
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         lilypond_format_bundle.right.articulations.append(r'\arpeggio')

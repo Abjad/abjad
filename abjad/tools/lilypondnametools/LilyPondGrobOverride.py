@@ -92,10 +92,9 @@ class LilyPondGrobOverride(AbjadObject):
         hash_values = systemtools.StorageFormatManager.get_hash_values(self)
         return hash(hash_values)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _lilypond_format_bundle(self):
+    def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         if not self.is_once:
@@ -105,6 +104,8 @@ class LilyPondGrobOverride(AbjadObject):
             override_format = '\n'.join(self._override_format_pieces)
             lilypond_format_bundle.grob_overrides.append(override_format)
         return lilypond_format_bundle
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _override_format_pieces(self):

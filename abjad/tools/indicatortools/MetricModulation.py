@@ -871,16 +871,6 @@ class MetricModulation(AbjadObject):
     def _lilypond_format(self):
         return str(self)
 
-    @property
-    def _lilypond_format_bundle(self):
-        from abjad.tools import systemtools
-        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
-        markup = self._get_markup()
-        markup = new(markup, direction=Up)
-        markup_format_pieces = markup._get_format_pieces()
-        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
-        return lilypond_format_bundle
-
     ### PRIVATE METHODS ###
 
     def _get_left_markup(self):
@@ -888,6 +878,15 @@ class MetricModulation(AbjadObject):
             return self.left_markup
         markup = self._to_markup(self.left_rhythm)
         return markup
+
+    def _get_lilypond_format_bundle(self, component=None):
+        from abjad.tools import systemtools
+        lilypond_format_bundle = systemtools.LilyPondFormatBundle()
+        markup = self._get_markup()
+        markup = new(markup, direction=Up)
+        markup_format_pieces = markup._get_format_pieces()
+        lilypond_format_bundle.right.markup.extend(markup_format_pieces)
+        return lilypond_format_bundle
 
     def _get_markup(self):
         left_markup = self._get_left_markup()
