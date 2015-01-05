@@ -91,7 +91,7 @@ class LilyPondFormatManager(object):
             bundle.grob_reverts.extend(contributions)
 
     @staticmethod
-    def _populate_indicator_format_contributions(component, bundle):
+    def _collect_indicators(component):
         from abjad.tools import markuptools
         from abjad.tools.topleveltools import inspect_
         expressions = []
@@ -135,12 +135,56 @@ class LilyPondFormatManager(object):
             # store nonscoped expressions
             else:
                 nonscoped_expressions.append(expression)
-        # handle markup
+        indicators = (
+            up_markup,
+            down_markup,
+            neutral_markup,
+            scoped_expressions,
+            nonscoped_expressions,
+            )
+        return indicators
+
+    @staticmethod
+    def _populate_indicator_format_contributions(component, bundle):
+        manager = LilyPondFormatManager
+        (
+            up_markup,
+            down_markup,
+            neutral_markup,
+            scoped_expressions,
+            nonscoped_expressions,
+            ) = LilyPondFormatManager._collect_indicators(component)
+        manager._populate_markup_format_contributions(
+            component,
+            bundle,
+            up_markup,
+            down_markup,
+            neutral_markup,
+            )
+        manager._populate_scoped_expression_format_contributions(
+            component,
+            bundle,
+            scoped_expressions,
+            )
+        manager._populate_nonscoped_expression_format_contributions(
+            component,
+            bundle,
+            nonscoped_expressions,
+            )
+
+    @staticmethod
+    def _populate_markup_format_contributions(
+        component,
+        bundle,
+        up_markup,
+        down_markup,
+        neutral_markup,
+        ):
+        from abjad.tools import markuptools
         for markup_list in (up_markup, down_markup, neutral_markup):
             if not markup_list:
                 continue
             elif 1 < len(markup_list):
-                contents = []
                 direction = markup_list[0].direction
                 if direction is None:
                     direction = '-'
@@ -160,12 +204,24 @@ class LilyPondFormatManager(object):
                 else:
                     format_pieces = markup_list[0]._get_format_pieces()
                     bundle.right.markup.extend(format_pieces)
-        # handle scoped expressions
+
+    @staticmethod
+    def _populate_scoped_expression_format_contributions(
+        component,
+        bundle,
+        scoped_expressions,
+        ):
         for scoped_expression in scoped_expressions:
             format_pieces = scoped_expression._get_format_pieces()
             format_slot = scoped_expression.indicator._format_slot
             bundle.get(format_slot).indicators.extend(format_pieces)
-        # handle nonscoped expressions
+
+    @staticmethod
+    def _populate_nonscoped_expression_format_contributions(
+        component,
+        bundle,
+        nonscoped_expressions,
+        ):
         for nonscoped_expression in nonscoped_expressions:
             indicator = nonscoped_expression.indicator
             if hasattr(indicator, '_get_lilypond_format_bundle'):
@@ -175,7 +231,10 @@ class LilyPondFormatManager(object):
                 bundle.update(indicator_bundle)
 
     @staticmethod
-    def _populate_spanner_format_contributions(component, bundle):
+    def _populate_spanner_format_contributions(
+        component,
+        bundle,
+        ):
         pairs = []
         for spanner in component._get_parentage()._get_spanners():
             spanner_bundle = spanner._get_lilypond_format_bundle(component)
