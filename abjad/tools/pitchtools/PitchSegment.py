@@ -167,7 +167,7 @@ class PitchSegment(Segment):
             item_class=item_class,
             )
 
-    def invert(self, axis):
+    def invert(self, axis=None):
         r'''Inverts pitch segment about `axis`.
 
         Returns new pitch segment.
@@ -189,7 +189,7 @@ class PitchSegment(Segment):
         difference = -(pitchtools.NamedPitch(expr[0], 4) -
             pitchtools.NamedPitch(self[0], 4))
         new_pitches = (x + difference for x in self)
-        new_pitches = new(self, items=new_pitch)
+        new_pitches = new(self, items=new_pitches)
         return expr == new_pitches
 
     def make_notes(self, n=None, written_duration=None):
