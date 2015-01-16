@@ -21,8 +21,7 @@ class Inversion(AbjadValueObject):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 
@@ -36,8 +35,8 @@ class Inversion(AbjadValueObject):
             ::
 
                 >>> operator_ = pitchtools.Inversion()
-                >>> pc = pitchtools.NumberedPitchClass(1)
-                >>> operator_(pc)
+                >>> expr = pitchtools.NumberedPitchClass(1)
+                >>> operator_(expr)
                 NumberedPitchClass(11)
 
         ..  container:: example
@@ -47,11 +46,64 @@ class Inversion(AbjadValueObject):
             ::
 
                 >>> operator_ = pitchtools.Inversion()
-                >>> pc = pitchtools.NumberedPitch(15)
-                >>> operator_(pc)
+                >>> expr = pitchtools.NumberedPitch(15)
+                >>> operator_(expr)
                 NumberedPitch(-15)
 
-        ..  todo:: Implement named pitch-class inversion.
+        ..  container:: example
+
+            **Example 3.** Inverts named pitch:
+
+            ::
+
+                >>> operator_ = pitchtools.Inversion()
+                >>> expr = pitchtools.NamedPitch("d'")
+                >>> operator_(expr)
+                NamedPitch('bf')
+
+        ..  container:: example
+
+            **Example 4.** Inverts named pitch class:
+
+            ::
+
+                >>> operator_ = pitchtools.Inversion()
+                >>> expr = pitchtools.NamedPitchClass('d')
+                >>> operator_(expr)
+                NamedPitchClass('bf')
+
+        ..  container:: example
+
+            **Example 5.** Inverts pitch segment:
+
+            ::
+
+                >>> operator_ = pitchtools.Inversion()
+                >>> expr = pitchtools.PitchSegment("c' d' e'")
+                >>> operator_(expr)
+                PitchSegment(["c'", 'bf', 'af'])
+
+        ..  container:: example
+
+            **Example 6.** Inverts pitch class segment:
+
+            ::
+
+                >>> operator_ = pitchtools.Inversion()
+                >>> expr = pitchtools.PitchClassSegment("c d e")
+                >>> operator_(expr)
+                PitchClassSegment(['c', 'bf', 'af'])
+
+        ..  container:: example
+        
+            **Example 7.** Inverts pitch class set:
+
+            ::
+
+                >>> operator_ = pitchtools.Inversion()
+                >>> expr = pitchtools.PitchClassSet("c d e")
+                >>> operator_(expr)
+                PitchClassSet(['c', 'af', 'bf'])
 
         Returns new object with type equal to that of `expr`.
         '''
