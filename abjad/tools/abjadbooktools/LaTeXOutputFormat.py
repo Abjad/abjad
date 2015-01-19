@@ -10,9 +10,6 @@ class LaTeXOutputFormat(OutputFormat):
 
     def __init__(self):
         code_block_opening = '\\begin{lstlisting}'
-        code_block_opening += '[basicstyle=\\footnotesize\\ttfamily, '
-        code_block_opening += 'breaklines=True, tabsize=4, '
-        code_block_opening += 'showtabs=false, showspaces=false]\n'
         code_block_closing = '\n\\end{lstlisting}\n'
         code_indent = 0
         image_block = '\\includegraphics[scale={scale}]'
