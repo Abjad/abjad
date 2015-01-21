@@ -32,7 +32,7 @@ def make_reference_manual_lilypond_file(music=None):
                 \override TupletBracket #'padding = #2
                 \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                proportionalNotationDuration = #(ly:make-moment 1 32)
+                proportionalNotationDuration = #(ly:make-moment 1 24)
                 tupletFullLength = True
             }
         }
@@ -87,7 +87,7 @@ def make_reference_manual_lilypond_file(music=None):
     override(context_block).tuplet_bracket.minimum_length = 3
     scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
     override(context_block).tuplet_number.text = scheme
-    moment = schemetools.SchemeMoment((1, 32))
+    moment = schemetools.SchemeMoment((1, 24))
     set_(context_block).proportionalNotationDuration = moment
     set_(context_block).tupletFullLength = True
     lilypond_file.layout_block.items.append(context_block)
