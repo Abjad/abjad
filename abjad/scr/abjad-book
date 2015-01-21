@@ -1,6 +1,0 @@
-#!/usr/bin/env python
-
-
-if __name__ == '__main__':
-    from abjad.tools.abjadbooktools.run_abjad_book import run_abjad_book
-    run_abjad_book()
