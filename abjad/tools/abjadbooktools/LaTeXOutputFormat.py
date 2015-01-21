@@ -9,7 +9,7 @@ class LaTeXOutputFormat(OutputFormat):
     ### INITIALIZER ###
 
     def __init__(self):
-        code_block_opening = '\\begin{lstlisting}'
+        code_block_opening = '\\begin{lstlisting}\n'
         code_block_closing = '\n\\end{lstlisting}\n'
         code_indent = 0
         image_block = '\\includegraphics[scale={scale}]'
