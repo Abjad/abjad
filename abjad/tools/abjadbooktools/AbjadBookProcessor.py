@@ -381,6 +381,8 @@ class AbjadBookProcessor(AbjadObject):
         pipe.read_wait()
         pipe.write('from abjad import *\n')
         pipe.read_wait()
+        pipe.write('from __future__ import print_function\n')
+        pipe.read_wait()
         return pipe
 
     def _setup_tmp_directory(self, directory):
