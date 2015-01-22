@@ -77,8 +77,12 @@ class AbjadBookProcessor(AbjadObject):
         # Step out of the tmp directory, back to the original, and cleanup.
         os.chdir(self.directory)
         self._cleanup_image_files(
-            self.directory, tmp_directory, image_count, self.image_prefix,
-            self.output_format.image_format)
+            self.directory,
+            tmp_directory,
+            image_count,
+            self.image_prefix,
+            self.output_format.image_format,
+            )
         self._cleanup_tmp_directory(tmp_directory)
 
         return result
@@ -123,21 +127,18 @@ class AbjadBookProcessor(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _cleanup_image_files(self, directory, tmp_directory,
-        image_count, image_prefix, image_format):
-        #print 'CLEANUP IMAGE FILES'
+    def _cleanup_image_files(
+        self,
+        directory,
+        tmp_directory,
+        image_count,
+        image_prefix,
+        image_format,
+        ):
+        from abjad.tools import systemtools
         image_directory = os.path.join(directory, 'images')
         if not os.path.isdir(image_directory):
             os.mkdir(image_directory)
-        # remove old images
-        #for x in os.listdir(image_directory):
-        #    if x.startswith('{}-'.format(image_prefix)) and \
-        #        x.endswith(image_format):
-        #        # this should handle both 'index-1.png' and 'index-1-page3.png'
-        #        name = os.path.splitext(x)[0]
-        #        number = int(name.split('-')[1])
-        #        if image_count < number:
-        #            os.remove(os.path.join(image_directory, x))
         for x in os.listdir(tmp_directory):
             if x.endswith('.png'):
                 source = os.path.join(tmp_directory, x)
@@ -153,6 +154,10 @@ class AbjadBookProcessor(AbjadObject):
             elif x.endswith('.pdf'):
                 source = os.path.join(tmp_directory, x)
                 target = os.path.join(image_directory, x)
+                if systemtools.TestManager.compare_files(source, target):
+                    if self.verbose:
+                        print('\tKeeping old {}.'.format(x))
+                    continue
                 os.rename(source, target)
                 if self.verbose:
                     print('\tMoving {}.'.format(x))
