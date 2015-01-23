@@ -90,7 +90,7 @@ class CodeBlock(AbjadObject):
                 line = line.replace('<hide', '')
                 line = line.rstrip()
 
-            no_doc_template = False 
+            no_doc_template = False
             if '<no-doc-template' in line:
                 no_doc_template = True
                 line = line.replace('<no-doc-template', '')
@@ -118,19 +118,35 @@ class CodeBlock(AbjadObject):
             if line.startswith('show('):
                 image_count += 1
                 file_name = '{}-{}'.format(image_prefix, image_count)
+
+                line = line.rpartition(')')[0]
+                line = line[5:]
+
+                object_name = line
+                keywords = ''
                 if ',' in line:
-                    object_name = line.split(',')[0][5:].strip()
-                else:
-                    object_name = line.partition(')')[0][5:]
+                    object_name, _, keywords = line.partition(',')
                 file_path = file_name + '.ly'
                 if directory:
                     file_path = os.path.join(directory, file_path)
-                if no_doc_template:
+                if keywords and no_doc_template:
+                    command = '__result__ = persist({}).as_ly({!r}, {})'.format(
+                        object_name, file_path, keywords)
+                elif keywords:
+                    object_name = 'documentationtools.make_reference_manual_lilypond_file({}, {})'.format(
+                        object_name, keywords)
+                    command = '__result__ = persist({}).as_ly({!r})'.format(
+                        object_name, file_path)
+                elif no_doc_template:
                     command = '__result__ = persist({}).as_ly({!r})'.format(
                         object_name, file_path)
                 else:
-                    command = '__result__ = persist(documentationtools.make_reference_manual_lilypond_file({})).as_ly({!r})'.format(
+                    object_name = 'documentationtools.make_reference_manual_lilypond_file({})'.format(
+                        object_name)
+                    command = '__result__ = persist({}).as_ly({!r})'.format(
                         object_name, file_path)
+                print('COMMAND', command)
+
                 pipe.write(command)
                 grouped_results.append(result)
                 image_dict = {

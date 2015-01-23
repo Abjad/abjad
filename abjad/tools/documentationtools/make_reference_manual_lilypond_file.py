@@ -4,7 +4,7 @@ from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import set_
 
 
-def make_reference_manual_lilypond_file(music=None):
+def make_reference_manual_lilypond_file(music=None, **kwargs):
     r'''Makes reference manual LilyPond file.
 
         >>> score = Score([Staff('c d e f')])
@@ -58,7 +58,7 @@ def make_reference_manual_lilypond_file(music=None):
     from abjad.tools import schemetools
 
     assert '__illustrate__' in dir(music)
-    lilypond_file = music.__illustrate__()
+    lilypond_file = music.__illustrate__(**kwargs)
 
     # header
     lilypond_file.header_block.tagline = markuptools.Markup('""')
