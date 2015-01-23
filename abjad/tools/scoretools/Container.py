@@ -568,10 +568,14 @@ class Container(Component):
         return True
 
     def _initialize_music(self, music):
-        from abjad.tools import scoretools
         Selection = selectiontools.Selection
         if music is None:
             music = []
+        if all(isinstance(_, Selection) for _ in music):
+            result = []
+            for _ in music:
+                result.extend(_)
+            music = result
         if self._all_are_orphan_components(music):
             self._music = list(music)
             self[:]._set_parents(self)
