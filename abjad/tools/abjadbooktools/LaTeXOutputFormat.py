@@ -10,9 +10,9 @@ class LaTeXOutputFormat(OutputFormat):
 
     def __init__(self):
         code_block_opening = '\\begin{lstlisting}\n'
-        code_block_closing = '\n\\end{lstlisting}\n'
+        code_block_closing = '\n\end{lstlisting}\n'
         code_indent = 0
-        image_block = '\\includegraphics[scale={scale}]'
+        image_block = '\\noindent\\includegraphics[scale={scale}]'
         image_block += '{{images/{image_file_name}.pdf}}\n'
         image_format = 'pdf'
         OutputFormat.__init__(
