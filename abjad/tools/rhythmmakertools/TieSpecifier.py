@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
+import collections
 from abjad.tools import datastructuretools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
@@ -71,57 +73,40 @@ class TieSpecifier(AbjadValueObject):
     def _make_ties_across_divisions(self, music):
         if not self.tie_across_divisions:
             return
-        if self.tie_across_divisions == True:
-            for division_one, division_two in \
-                sequencetools.iterate_sequence_nwise(music):
-                leaf_one = next(iterate(division_one).by_class(
-                    prototype=scoretools.Leaf,
-                    reverse=True))
-                leaf_two = next(iterate(division_two).by_class(
-                    prototype=scoretools.Leaf))
-                leaves = [leaf_one, leaf_two]
-                prototype = (scoretools.Note, scoretools.Chord)
-                if not all(isinstance(x, prototype) for x in leaves):
-                    continue
-                logical_tie_one = inspect_(leaf_one).get_logical_tie()
-                logical_tie_two = inspect_(leaf_two).get_logical_tie()
-                for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
-                    detach(tie, leaf_one)
-                for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
-                    detach(tie, leaf_two)
-                combined_logical_tie = logical_tie_one + logical_tie_two
-                attach(spannertools.Tie(), combined_logical_tie)
-        elif isinstance(self.tie_across_divisions, (tuple, list)):
-            tie_across_divisions = datastructuretools.CyclicTuple(
-                self.tie_across_divisions
-                )
-            pairs = sequencetools.iterate_sequence_nwise(music)
-            for i, pair in enumerate(pairs):
-                indicator = tie_across_divisions[i]
-                if not bool(indicator):
-                    continue
-                division_one, division_two = pair
-                leaf_one = next(iterate(division_one).by_class(
-                    prototype=scoretools.Leaf,
-                    reverse=True,
-                    ))
-                leaf_two = next(iterate(division_two).by_class(
-                    prototype=scoretools.Leaf,
-                    ))
-                leaves = [leaf_one, leaf_two]
-                prototype = (scoretools.Note, scoretools.Chord)
-                if not all(isinstance(x, prototype) for x in leaves):
-                    continue
-                logical_tie_one = inspect_(leaf_one).get_logical_tie()
-                logical_tie_two = inspect_(leaf_two).get_logical_tie()
-                for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
-                    detach(tie, leaf_one)
-                for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
-                    detach(tie, leaf_two)
-                combined_logical_tie = logical_tie_one + logical_tie_two
-                attach(spannertools.Tie(), combined_logical_tie)
-        else:
-            raise TypeError(self.tie_across_divisions)
+        tie_across_divisions = self.tie_across_divisions
+        if not isinstance(tie_across_divisions, collections.Sequence):
+            tie_across_divisions = [tie_across_divisions]
+        tie_across_divisions = datastructuretools.CyclicTuple(
+            tie_across_divisions
+            )
+        pairs = sequencetools.iterate_sequence_nwise(music)
+        for i, pair in enumerate(pairs):
+            indicator = tie_across_divisions[i]
+            if not bool(indicator):
+                continue
+            division_one, division_two = pair
+            leaf_one = next(iterate(division_one).by_class(
+                prototype=scoretools.Leaf,
+                reverse=True,
+                ))
+            leaf_two = next(iterate(division_two).by_class(
+                prototype=scoretools.Leaf,
+                ))
+            leaves = [leaf_one, leaf_two]
+            prototype = (scoretools.Note, scoretools.Chord)
+            if not all(isinstance(x, prototype) for x in leaves):
+                continue
+            logical_tie_one = inspect_(leaf_one).get_logical_tie()
+            logical_tie_two = inspect_(leaf_two).get_logical_tie()
+            for tie in inspect_(leaf_one).get_spanners(spannertools.Tie):
+                detach(tie, leaf_one)
+            for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
+                detach(tie, leaf_two)
+            combined_logical_tie = logical_tie_one + logical_tie_two
+            tie_spanner = spannertools.Tie()
+            tie_spanner._unconstrain_contiguity()
+            attach(tie_spanner, combined_logical_tie)
+            tie_spanner._constrain_contiguity()
 
     ### PUBLIC PROPERTIES ###
 
