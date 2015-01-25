@@ -502,7 +502,7 @@ class TaleaRhythmMaker(RhythmMaker):
             part = selectiontools.SliceSelection(part)
             tie_spanner = spannertools.Tie()
             # voodoo to temporarily neuter the contiguity constraint
-            tie_spanner._contiguity_constraint = None
+            tie_spanner._unconstrain_contiguity()
             for component in part:
                 # TODO: make top-level detach() work here
                 for spanner in component._get_spanners(prototype=prototype):
@@ -510,6 +510,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 #detach(prototype, component)
             # TODO: remove usage of Spanner._extend()
             tie_spanner._extend(part)
+            tie_spanner._constrain_contiguity()
 
     def _burnish_division_part(self, division_part, token):
         from abjad.tools import scoretools
