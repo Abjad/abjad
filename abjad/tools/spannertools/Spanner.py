@@ -227,6 +227,11 @@ class Spanner(AbjadObject):
         '''
         component._spanners.remove(self)
 
+    def _constrain_contiguity(self):
+        r'''Not composer-safe.
+        '''
+        self._contiguity_constraint = 'logical_voice'
+
     def _copy(self, components):
         r'''Returns copy of spanner with `components`.
         `components` must be an iterable of components already
@@ -578,6 +583,11 @@ class Spanner(AbjadObject):
         r'''Not composer-safe.
         '''
         component._spanners.add(self)
+
+    def _unconstrain_contiguity(self):
+        r'''Not composer-safe.
+        '''
+        self._contiguity_constraint = None
 
     ### PUBLIC PROPERTIES ###
 
