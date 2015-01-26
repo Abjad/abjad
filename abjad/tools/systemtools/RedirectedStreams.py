@@ -49,8 +49,11 @@ class RedirectedStreams(ContextManager):
 
         Returns none.
         '''
-        self._stdout.flush()
-        self._stderr.flush()
+        try:
+            self._stdout.flush()
+            self._stderr.flush()
+        except:
+            pass
         sys.stdout = self.old_stdout
         sys.stderr = self.old_stderr
 

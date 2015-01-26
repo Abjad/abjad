@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import os
 
 
 def show(expr, return_timing=False, **kwargs):
