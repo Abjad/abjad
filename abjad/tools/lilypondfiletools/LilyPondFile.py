@@ -297,6 +297,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> for x in lilypond_file.file_initial_system_comments: # doctest: +SKIP
                 ...     x
+                ...
                 DateTimeToken('2014-01-04 17:16')
 
         Returns list.
@@ -313,6 +314,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> for x in lilypond_file.file_initial_system_includes:
                 ...     x
+                ...
                 LilyPondVersionToken('...')
                 LilyPondLanguageToken('english')
 
@@ -330,6 +332,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> for x in lilypond_file.file_initial_user_comments:
                 ...     x
+                ...
                 'File construct as an example.'
                 'Parts shown here for positioning.'
 
@@ -347,6 +350,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> for x in lilypond_file.file_initial_user_includes:
                 ...     x
+                ...
                 'external-settings-file-1.ly'
                 'external-settings-file-2.ly'
 
@@ -384,6 +388,7 @@ class LilyPondFile(AbjadObject):
 
                 >>> for item in lilypond_file.items:
                 ...     item
+                ...
                 <Block(name='header')>
                 <Block(name='layout')>
                 <Block(name='paper')>
