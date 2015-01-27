@@ -17,6 +17,7 @@ from .StorageFormatManager import StorageFormatManager
 from .StorageFormatSpecification import StorageFormatSpecification
 from .AttributeManifest import AttributeManifest
 from .TestManager import TestManager
+from .TemporaryDirectory import TemporaryDirectory
 from .TemporaryDirectoryChange import TemporaryDirectoryChange
 from .Timer import Timer
 from .UpdateManager import UpdateManager
