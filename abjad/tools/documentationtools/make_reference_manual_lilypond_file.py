@@ -13,11 +13,16 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
 
     ..  doctest::
 
-        >>> print(format(lilypond_file)) # doctest: +SKIP
-
-        \version "2.15.37"
+        >>> print(format(lilypond_file))
+        \version "2.19.15"
         \language "english"
-
+        <BLANKLINE>
+        #(set-global-staff-size 12)
+        <BLANKLINE>
+        \header {
+            tagline = \markup {}
+        }
+        <BLANKLINE>
         \layout {
             indent = #0
             ragged-right = ##t
@@ -33,14 +38,14 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
                 \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
                 proportionalNotationDuration = #(ly:make-moment 1 24)
-                tupletFullLength = True
+                tupletFullLength = ##t
             }
         }
-
+        <BLANKLINE>
         \paper {
-            left-margin = 1.0\in
+            left-margin = 1\in
         }
-
+        <BLANKLINE>
         \score {
             \new Score <<
                 \new Staff {
