@@ -11,12 +11,14 @@ class TemporaryDirectory(ContextManager):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_parent_directory_path',
         '_temporary_directory_path',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self):
+    def __init__(self, parent_directory_path=None):
+        self._parent_directory_path = parent_directory_path
         self._temporary_directory_path = None
 
     ### SPECIAL METHODS ###
@@ -26,7 +28,9 @@ class TemporaryDirectory(ContextManager):
 
         Creates and returns path to a temporary directory.
         '''
-        self._temporary_directory_path = tempfile.mkdtemp()
+        self._temporary_directory_path = tempfile.mkdtemp(
+            dir=self.parent_directory_path,
+            )
         return self._temporary_directory_path
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -37,6 +41,10 @@ class TemporaryDirectory(ContextManager):
         shutil.rmtree(self._temporary_directory_path)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def parent_directory_path(self):
+        return self._parent_directory_path
 
     @property
     def temporary_directory_path(self):
