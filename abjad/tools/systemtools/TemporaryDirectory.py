@@ -44,6 +44,10 @@ class TemporaryDirectory(ContextManager):
 
     @property
     def parent_directory_path(self):
+        r'''Gets parent directory path.
+
+        Returns string.
+        '''
         return self._parent_directory_path
 
     @property
