@@ -13,7 +13,7 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
 
     ..  doctest::
 
-        >>> print(format(lilypond_file))
+        >>> print(format(lilypond_file)) # doctest: +SKIP
         \version "2.19.15"
         \language "english"
         <BLANKLINE>
