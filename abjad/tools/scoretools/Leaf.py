@@ -33,8 +33,8 @@ class Leaf(Component):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, written_duration):
-        Component.__init__(self)
+    def __init__(self, written_duration, name=None):
+        Component.__init__(self, name=name)
         self._leaf_index = None
         self.written_duration = durationtools.Duration(written_duration)
 

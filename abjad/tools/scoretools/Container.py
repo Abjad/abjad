@@ -37,14 +37,15 @@ class Container(Component):
         '_formatter',
         '_music',
         '_named_children',
+        '_name',
         '_is_simultaneous',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, is_simultaneous=None):
+    def __init__(self, music=None, is_simultaneous=None, name=None):
         music = music or []
-        Component.__init__(self)
+        Component.__init__(self, name=name)
         self._named_children = {}
         self._is_simultaneous = False
         self._initialize_music(music)

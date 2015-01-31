@@ -36,6 +36,7 @@ class Component(AbjadObject):
         '_lilypond_grob_name_manager',
         '_lilypond_setting_name_manager',
         '_logical_measure_number',
+        '_name',
         '_offsets_are_current',
         '_offsets_in_seconds_are_current',
         '_parent',
@@ -52,7 +53,7 @@ class Component(AbjadObject):
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self):
+    def __init__(self, name=None):
         self._after_grace = None
         self._dependent_expressions = []
         self._grace = None
@@ -71,6 +72,9 @@ class Component(AbjadObject):
         self._stop_offset = None
         self._stop_offset_in_seconds = None
         self._timespan = timespantools.Timespan()
+        self._name = None 
+        if name is not None:
+            self.name = name  # name must be setup *after* parent
 
     ### SPECIAL METHODS ###
 
@@ -815,3 +819,30 @@ class Component(AbjadObject):
             offsets_in_seconds=offsets_in_seconds,
             indicators=indicators,
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def name(self):
+        r'''Gets and sets name of component.
+
+        Returns string or none.
+        '''
+        return self._name
+
+    @name.setter
+    def name(self, arg):
+        assert isinstance(arg, (str, type(None)))
+        old_name = self._name
+        for parent in self._get_parentage(include_self=False):
+            named_children = parent._named_children
+            if old_name is not None:
+                named_children[old_name].remove(self)
+                if not named_children[old_name]:
+                    del named_children[old_name]
+            if arg is not None:
+                if arg not in named_children:
+                    named_children[arg] = [self]
+                else:
+                    named_children[arg].append(self)
+        self._name = arg
