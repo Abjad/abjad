@@ -1,0 +1,18 @@
+How Abjad handles pitch. Motivation: pitch is handled a bunch of different ways
+in different music software systems. It seems like at least half (or even more)
+of articles describing music software systems spend at least a paragraph
+describing the way that pitch is represented. Perhaps it makes sense for us to
+detail the different ways that Abjad handles pitch and to explain why we
+reached the decisions we did concerning the representation of pitch. So that's
+a first category: pitch *representation*. Can we go one step further? Can we
+also explain some of the ways we implement pitch *transformation*? Abjad's
+rules regarding what happens when, for example, one pitch is subtracted from
+another (to produce an interval) are nontrivial but should be easy to
+understand when we lay out the entire regime. It seems like the decisions we
+have reached regarding pitch transformation should applicable to essentially
+any music software system and that, for whatever reasons, papers describing
+music software systems almost never discuss this topic. So the paper allows for
+a rich set of comparisons to the existing literature regarding pitch
+representation and also a novel contribution in the form of a discussion on
+pitch transformation. There are probably other systematic ways of thinking
+about pitch that such an article would allow us, finally, to document, too.
