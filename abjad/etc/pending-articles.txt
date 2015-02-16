@@ -21,3 +21,12 @@ about pitch that such an article would allow us, finally, to document, too.
 ourselves -- and developers of other music software systems -- to express the
 important notation-oriented problems solved during system development in an
 implementation-independent way?
+
+3. "From Music Representations to Operations on Music Representations."
+Motivation: isn't there an awful lot of literature on music representation?
+(How should pitch be represented?) And isn't there a dramatic silence on
+*operations* on things (like subtracting one named pitch from another named
+pitch?). We can address this point in a single paragraph attached to another
+article. Or we can raise this point directly as the topic of its own article.
+Possibly this makes for a very good verbal conference presentation that splits
+the difference between literature analysis and provocation.
