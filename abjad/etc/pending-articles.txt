@@ -16,3 +16,8 @@ a rich set of comparisons to the existing literature regarding pitch
 representation and also a novel contribution in the form of a discussion on
 pitch transformation. There are probably other systematic ways of thinking
 about pitch that such an article would allow us, finally, to document, too.
+
+2. "Implementation-independent analyses in music formalization." How do we get
+ourselves -- and developers of other music software systems -- to express the
+important notation-oriented problems solved during system development in an
+implementation-independent way?
