@@ -124,7 +124,7 @@ class MetricAccentKernel(AbjadValueObject):
             ::
 
                 >>> score = Score()
-                >>> score.append(Staff("c'4. d'8 e'2"))
+                >>> score.append(Staff("c'8 d'4. e'8 f'4."))
                 >>> score.append(Staff(r'\clef bass c4 b,4 a,2'))
 
             ..  doctest::
@@ -132,9 +132,10 @@ class MetricAccentKernel(AbjadValueObject):
                 >>> print(format(score))
                 \new Score <<
                     \new Staff {
-                        c'4.
-                        d'8
-                        e'2
+                        c'8
+                        d'4.
+                        e'8
+                        f'4.
                     }
                     \new Staff {
                         \clef "bass"
@@ -158,9 +159,10 @@ class MetricAccentKernel(AbjadValueObject):
                 ...     offset, count
                 ...
                 (Offset(0, 1), 2)
+                (Offset(1, 8), 2)
                 (Offset(1, 4), 2)
-                (Offset(3, 8), 2)
                 (Offset(1, 2), 4)
+                (Offset(5, 8), 2)
                 (Offset(1, 1), 2)
 
         ..  container:: example
@@ -204,6 +206,20 @@ class MetricAccentKernel(AbjadValueObject):
                 offset = durationtools.Offset(x)
                 counter[offset] += 1
         return counter
+
+    @staticmethod
+    def from_meter(meter, denominator=32, normalize=True):
+        r'''Create a metric accent kernel from `meter`.
+
+        Returns new metric accent kernel.
+        '''
+        from abjad.tools import metertools
+        if not isinstance(meter, metertools.Meter):
+            meter = metertools.Meter(meter)
+        return meter.generate_offset_kernel_to_denominator(
+            denominator=denominator,
+            normalize=normalize,
+            )
 
     ### PUBLIC PROPERTIES ###
 
