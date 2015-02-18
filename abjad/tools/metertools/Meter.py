@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import datastructuretools
+from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
@@ -11,7 +11,7 @@ from abjad.tools.abctools import AbjadObject
 
 class Meter(AbjadObject):
     '''A meter.
-    
+
     Meter models the common practice understanding of beats and other levels of
     rhythmic organization organized as a tree.
 
@@ -44,7 +44,7 @@ class Meter(AbjadObject):
     ..  container:: example
 
         **Example 2.** Here's a tree corresponding to ``3/4``:
-        
+
         ::
 
             >>> meter = metertools.Meter((3, 4))
@@ -143,7 +143,7 @@ class Meter(AbjadObject):
 
     Prime divisions greater than ``3`` are converted to sequences of ``2``
     and ``3`` summing to that prime.
-    
+
     ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2`` in the examples above.
     '''
 
@@ -163,9 +163,9 @@ class Meter(AbjadObject):
         arg = arg or (4, 4)
 
         def recurse(
-            node, 
-            factors, 
-            denominator, 
+            node,
+            factors,
+            denominator,
             decrease_durations_monotonically,
             ):
             if factors:
@@ -326,6 +326,12 @@ class Meter(AbjadObject):
 
                 >>> print(str(meter_graph))
                 digraph G {
+                    graph [fontname=Arial,
+                        penwidth=2];
+                    node [fontname=Arial,
+                        fontsize=12,
+                        penwidth=2];
+                    edge [penwidth=2];
                     node_0 [label="7/4",
                         shape=triangle];
                     node_1 [label="3/4",
@@ -348,99 +354,175 @@ class Meter(AbjadObject):
                         shape=box];
                     node_10 [label="1/4",
                         shape=box];
-                    node_11 [fillcolor=black,
-                        fontcolor=white,
-                        fontname=bold,
-                        fontsize=14,
-                        label=0,
-                        margin="0.02, 0.02",
-                        shape=circle,
-                        style=filled];
-                    node_12 [fillcolor=black,
-                        fontcolor=white,
-                        fontname=bold,
-                        fontsize=14,
-                        label="1/4",
-                        margin="0.02, 0.02",
-                        shape=circle,
-                        style=filled];
-                    node_13 [fillcolor=black,
-                        fontcolor=white,
-                        fontname=bold,
-                        fontsize=14,
-                        label="1/2",
-                        margin="0.02, 0.02",
-                        shape=circle,
-                        style=filled];
-                    node_14 [fillcolor=black,
-                        fontcolor=white,
-                        fontname=bold,
-                        fontsize=14,
-                        label="3/4",
-                        margin="0.02, 0.02",
-                        shape=circle,
-                        style=filled];
-                    node_15 [fillcolor=black,
-                        fontcolor=white,
-                        fontname=bold,
-                        fontsize=14,
-                        label=1,
-                        margin="0.02, 0.02",
-                        shape=circle,
-                        style=filled];
-                    node_16 [fillcolor=black,
-                        fontcolor=white,
-                        fontname=bold,
-                        fontsize=14,
-                        label="5/4",
-                        margin="0.02, 0.02",
-                        shape=circle,
-                        style=filled];
-                    node_17 [fillcolor=black,
-                        fontcolor=white,
-                        fontname=bold,
-                        fontsize=14,
-                        label="3/2",
-                        margin="0.02, 0.02",
-                        shape=circle,
-                        style=filled];
-                    node_18 [fillcolor=black,
-                        fontcolor=white,
-                        fontname=bold,
-                        fontsize=14,
-                        label="7/4",
-                        margin="0.02, 0.02",
-                        shape=circle,
-                        style=filled];
+                    subgraph cluster_11 {
+                        node_11_0 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 0 | <f_0_1> +++ }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_11_1 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 1/4 | <f_0_1> + }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_11_2 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 1/2 | <f_0_1> + }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_11_3 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 3/4 | <f_0_1> ++ }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_11_4 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 1 | <f_0_1> + }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_11_5 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 5/4 | <f_0_1> ++ }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_11_6 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 3/2 | <f_0_1> + }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_11_7 [label="{ <f_0_0> 7/4 | <f_0_1> +++ }",
+                            shape=Mrecord];
+                    }
                     node_0 -> node_1;
                     node_0 -> node_5;
                     node_0 -> node_8;
                     node_1 -> node_2;
                     node_1 -> node_3;
                     node_1 -> node_4;
-                    node_10 -> node_17 [style=dotted];
-                    node_10 -> node_18 [style=dotted];
-                    node_2 -> node_11 [style=dotted];
-                    node_2 -> node_12 [style=dotted];
-                    node_3 -> node_12 [style=dotted];
-                    node_3 -> node_13 [style=dotted];
-                    node_4 -> node_13 [style=dotted];
-                    node_4 -> node_14 [style=dotted];
+                    node_10 -> node_11_6 [style=dotted];
+                    node_10 -> node_11_7 [style=dotted];
+                    node_2 -> node_11_0 [style=dotted];
+                    node_2 -> node_11_1 [style=dotted];
+                    node_3 -> node_11_1 [style=dotted];
+                    node_3 -> node_11_2 [style=dotted];
+                    node_4 -> node_11_2 [style=dotted];
+                    node_4 -> node_11_3 [style=dotted];
                     node_5 -> node_6;
                     node_5 -> node_7;
-                    node_6 -> node_14 [style=dotted];
-                    node_6 -> node_15 [style=dotted];
-                    node_7 -> node_15 [style=dotted];
-                    node_7 -> node_16 [style=dotted];
+                    node_6 -> node_11_3 [style=dotted];
+                    node_6 -> node_11_4 [style=dotted];
+                    node_7 -> node_11_4 [style=dotted];
+                    node_7 -> node_11_5 [style=dotted];
                     node_8 -> node_10;
                     node_8 -> node_9;
-                    node_9 -> node_16 [style=dotted];
-                    node_9 -> node_17 [style=dotted];
+                    node_9 -> node_11_5 [style=dotted];
+                    node_9 -> node_11_6 [style=dotted];
                 }
 
         Returns Graphviz graph.
         '''
-        return self.root_node.__graph__(with_offsets=True)
+        def make_offset_node(
+            offset,
+            leaf_one=None,
+            leaf_two=None,
+            is_last=False,
+            ):
+            if not is_last:
+                offset_node = documentationtools.GraphvizNode(
+                    attributes={
+                        'shape': 'Mrecord',
+                        'style': 'filled',
+                        'color': 'white',
+                        'fontname': 'Arial bold',
+                        'fontcolor': 'white',
+                        'fillcolor': 'black',
+                        },
+                    )
+            else:
+                offset_node = documentationtools.GraphvizNode(
+                    attributes={
+                        'shape': 'Mrecord',
+                        },
+                    )
+            offset_field = documentationtools.GraphvizField(
+                label=str(offset),
+                )
+            weight_field = documentationtools.GraphvizField(
+                label='+' * offsets[offset],
+                )
+            group = documentationtools.GraphvizGroup()
+            group.extend([offset_field, weight_field])
+            offset_node.append(group)
+            offset_subgraph.append(offset_node)
+            leaf_one_node = node_mapping[leaf_one]
+            edge = documentationtools.GraphvizEdge(
+                attributes={'style': 'dotted'},
+                )
+            edge(leaf_one_node, offset_node)
+            if leaf_two:
+                leaf_two_node = node_mapping[leaf_two]
+                edge = documentationtools.GraphvizEdge(
+                    attributes={'style': 'dotted'},
+                    )
+                edge(leaf_two_node, offset_node)
+        from abjad.tools import metertools
+        offsets = metertools.MetricAccentKernel.count_offsets_in_expr(
+            sequencetools.flatten_sequence(self.depthwise_offset_inventory))
+        graph = documentationtools.GraphvizGraph(
+            name='G',
+            attributes={
+                'fontname': 'Arial',
+                'penwidth': 2,
+                },
+            edge_attributes={
+                'penwidth': 2,
+                },
+            node_attributes={
+                'fontname': 'Arial',
+                'fontsize': 12,
+                'penwidth': 2,
+                },
+            )
+        node_mapping = {}
+        for node in self._root_node.nodes:
+            graphviz_node = documentationtools.GraphvizNode()
+            graphviz_node.attributes['label'] = str(node.preprolated_duration)
+            if isinstance(node, rhythmtreetools.RhythmTreeContainer):
+                graphviz_node.attributes['shape'] = 'triangle'
+            else:
+                graphviz_node.attributes['shape'] = 'box'
+            graph.append(graphviz_node)
+            node_mapping[node] = graphviz_node
+            if node.parent is not None:
+                documentationtools.GraphvizEdge()(
+                    node_mapping[node.parent],
+                    node_mapping[node],
+                    )
+        leaves = self._root_node.leaves
+        offset = leaves[0].start_offset
+        offset_subgraph = documentationtools.GraphvizSubgraph()
+        graph.append(offset_subgraph)
+        make_offset_node(offset, leaves[0])
+        for one, two in sequencetools.iterate_sequence_nwise(leaves):
+            offset = one.stop_offset
+            make_offset_node(offset, one, two)
+        offset = leaves[-1].stop_offset
+        make_offset_node(offset, leaves[-1], is_last=True)
+        return graph
 
     def __hash__(self):
         r'''Hashes meter.
@@ -500,9 +582,6 @@ class Meter(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_recurser(self):
-        return recurse
-
     @staticmethod
     def _make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
         r'''Make test rhythm number `rhythm_number` that fits `grid_length`.
@@ -522,7 +601,7 @@ class Meter(AbjadObject):
                 ...         4, rhythm_number, denominator=4)
                 ...     measure = Measure((4, 4), notes)
                 ...     print('{}\t{}'.format(rhythm_number, str(measure)))
-                ... 
+                ...
                 0	Measure((4, 4), "c'1")
                 1	Measure((4, 4), "c'2. c'4")
                 2	Measure((4, 4), "c'2 c'4 c'4")
@@ -544,7 +623,7 @@ class Meter(AbjadObject):
                 ...         5, rhythm_number, denominator=4)
                 ...     measure = Measure((5, 4), notes)
                 ...     print('{}\t{}'.format(rhythm_number, str(measure)))
-                ... 
+                ...
                 0	Measure((5, 4), "c'1 ~ c'4")
                 1	Measure((5, 4), "c'1 c'4")
                 2	Measure((5, 4), "c'2. c'4 c'4")
@@ -698,14 +777,12 @@ class Meter(AbjadObject):
         Returns dictionary.
         '''
         inventory = []
-        for depth, nodes in sorted(
-            self.root_node.depthwise_inventory.items()):
-            offsets = []
+        all_offsets = set()
+        all_offsets.add(durationtools.Offset(self.numerator, self.denominator))
+        for depth, nodes in sorted(self.root_node.depthwise_inventory.items()):
             for node in nodes:
-                offsets.append(durationtools.Offset(node.start_offset))
-            offsets.append(
-                durationtools.Offset(self.numerator, self.denominator))
-            inventory.append(tuple(offsets))
+                all_offsets.add(durationtools.Offset(node.start_offset))
+            inventory.append(tuple(sorted(all_offsets)))
         return tuple(inventory)
 
     @property
@@ -906,7 +983,7 @@ class Meter(AbjadObject):
                 >>> for x in metertools.Meter.fit_meters_to_expr(
                 ...     expr, meters):
                 ...     print(x.implied_time_signature)
-                ... 
+                ...
                 4/4
                 4/4
                 4/4
@@ -922,7 +999,7 @@ class Meter(AbjadObject):
                 >>> for x in metertools.Meter.fit_meters_to_expr(
                 ...     expr, meters):
                 ...     print(x.implied_time_signature)
-                ... 
+                ...
                 3/4
                 4/4
                 3/4
@@ -954,8 +1031,8 @@ class Meter(AbjadObject):
         ):
         r'''Generates a dictionary of all offsets in a meter up
         to `denominator`.
-        
-        Keys are the offsets and the values are the normalized weights of 
+
+        Keys are the offsets and the values are the normalized weights of
         those offsets.
 
         ..  container:: example
@@ -966,7 +1043,7 @@ class Meter(AbjadObject):
                 >>> kernel = meter.generate_offset_kernel_to_denominator(8)
                 >>> for offset, weight in sorted(kernel.kernel.items()):
                 ...     print('{!s}\t{!s}'.format(offset, weight))
-                ... 
+                ...
                 0       3/16
                 1/8     1/16
                 1/4     1/8

@@ -2,7 +2,6 @@
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import scoretools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
@@ -238,7 +237,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     return True
         return False
 
-    def __graph__(self, with_offsets=False):
+    def __graph__(self):
         r'''The GraphvizGraph representation of the RhythmTreeContainer:
 
         ::
@@ -292,37 +291,6 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     node_mapping[node.parent],
                     node_mapping[node],
                     )
-        if with_offsets:
-            def make_offset_node(offset, leaf_one=None, leaf_two=None):
-                offset_node = documentationtools.GraphvizNode()
-                offset_node.attributes['fillcolor'] = 'black'
-                offset_node.attributes['fontcolor'] = 'white'
-                offset_node.attributes['fontname'] = 'bold'
-                offset_node.attributes['fontsize'] = 14
-                offset_node.attributes['label'] = str(offset)
-                offset_node.attributes['margin'] = (0.02, 0.02)
-                offset_node.attributes['shape'] = 'circle'
-                offset_node.attributes['style'] = 'filled'
-                graph.append(offset_node)
-                leaf_one_node = node_mapping[leaf_one]
-                edge = documentationtools.GraphvizEdge(
-                    attributes={'style': 'dotted'},
-                    )
-                edge(leaf_one_node, offset_node)
-                if leaf_two:
-                    leaf_two_node = node_mapping[leaf_two]
-                    edge = documentationtools.GraphvizEdge(
-                        attributes={'style': 'dotted'},
-                        )
-                    edge(leaf_two_node, offset_node)
-            leaves = self.leaves
-            offset = leaves[0].start_offset
-            make_offset_node(offset, leaves[0])
-            for one, two in sequencetools.iterate_sequence_nwise(leaves):
-                offset = one.stop_offset 
-                make_offset_node(offset, one, two)
-            offset = leaves[-1].stop_offset
-            make_offset_node(offset, leaves[-1])
         return graph
 
     def __hash__(self):
