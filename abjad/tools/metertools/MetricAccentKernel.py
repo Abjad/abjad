@@ -36,7 +36,7 @@ class MetricAccentKernel(AbjadValueObject):
 
             >>> offsets = [(0, 8), (1, 8), (1, 8), (3, 8)]
             >>> kernel(offsets)
-            0.5
+            Multiplier(1, 2)
 
     '''
 
@@ -64,14 +64,28 @@ class MetricAccentKernel(AbjadValueObject):
     def __call__(self, expr):
         r'''Calls metrical accent kernal on `expr`.
 
+        ::
+
+            >>> upper_staff = Staff("c'8 d'4. e'8 f'4.")
+            >>> lower_staff = Staff(r'\clef bass c4 b,4 a,2')
+            >>> score = Score([upper_staff, lower_staff])
+
+        ::
+
+            >>> kernel = metertools.MetricAccentKernel.from_meter((4, 4))
+            >>> kernel(score)
+            Multiplier(10, 33)
+
         Returns float.
         '''
         offset_count = self.count_offsets_in_expr(expr)
-        response = 0.
+        response = durationtools.Multiplier(0, 1)
         for offset, count in offset_count.items():
             if offset in self._kernel:
-                response += (self._kernel[offset] * count)
-        return float(response)
+                weight = self._kernel[offset]
+                weighted_count = weight * count
+                response += weighted_count
+        return response
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a metrical accent kernal with a kernal equal
@@ -123,9 +137,9 @@ class MetricAccentKernel(AbjadValueObject):
 
             ::
 
-                >>> score = Score()
-                >>> score.append(Staff("c'8 d'4. e'8 f'4."))
-                >>> score.append(Staff(r'\clef bass c4 b,4 a,2'))
+                >>> upper_staff = Staff("c'8 d'4. e'8 f'4.")
+                >>> lower_staff = Staff(r'\clef bass c4 b,4 a,2')
+                >>> score = Score([upper_staff, lower_staff])
 
             ..  doctest::
 
