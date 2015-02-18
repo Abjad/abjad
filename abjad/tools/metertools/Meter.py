@@ -319,8 +319,12 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> graph = meter.__graph__()
-                >>> print(str(graph))
+                >>> meter_graph = meter.__graph__()
+                >>> graph(meter_graph) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(str(meter_graph))
                 digraph G {
                     node_0 [label="7/4",
                         shape=triangle];
@@ -344,25 +348,99 @@ class Meter(AbjadObject):
                         shape=box];
                     node_10 [label="1/4",
                         shape=box];
+                    node_11 [fillcolor=black,
+                        fontcolor=white,
+                        fontname=bold,
+                        fontsize=14,
+                        label=0,
+                        margin="0.02, 0.02",
+                        shape=circle,
+                        style=filled];
+                    node_12 [fillcolor=black,
+                        fontcolor=white,
+                        fontname=bold,
+                        fontsize=14,
+                        label="1/4",
+                        margin="0.02, 0.02",
+                        shape=circle,
+                        style=filled];
+                    node_13 [fillcolor=black,
+                        fontcolor=white,
+                        fontname=bold,
+                        fontsize=14,
+                        label="1/2",
+                        margin="0.02, 0.02",
+                        shape=circle,
+                        style=filled];
+                    node_14 [fillcolor=black,
+                        fontcolor=white,
+                        fontname=bold,
+                        fontsize=14,
+                        label="3/4",
+                        margin="0.02, 0.02",
+                        shape=circle,
+                        style=filled];
+                    node_15 [fillcolor=black,
+                        fontcolor=white,
+                        fontname=bold,
+                        fontsize=14,
+                        label=1,
+                        margin="0.02, 0.02",
+                        shape=circle,
+                        style=filled];
+                    node_16 [fillcolor=black,
+                        fontcolor=white,
+                        fontname=bold,
+                        fontsize=14,
+                        label="5/4",
+                        margin="0.02, 0.02",
+                        shape=circle,
+                        style=filled];
+                    node_17 [fillcolor=black,
+                        fontcolor=white,
+                        fontname=bold,
+                        fontsize=14,
+                        label="3/2",
+                        margin="0.02, 0.02",
+                        shape=circle,
+                        style=filled];
+                    node_18 [fillcolor=black,
+                        fontcolor=white,
+                        fontname=bold,
+                        fontsize=14,
+                        label="7/4",
+                        margin="0.02, 0.02",
+                        shape=circle,
+                        style=filled];
                     node_0 -> node_1;
                     node_0 -> node_5;
                     node_0 -> node_8;
                     node_1 -> node_2;
                     node_1 -> node_3;
                     node_1 -> node_4;
+                    node_10 -> node_17 [style=dotted];
+                    node_10 -> node_18 [style=dotted];
+                    node_2 -> node_11 [style=dotted];
+                    node_2 -> node_12 [style=dotted];
+                    node_3 -> node_12 [style=dotted];
+                    node_3 -> node_13 [style=dotted];
+                    node_4 -> node_13 [style=dotted];
+                    node_4 -> node_14 [style=dotted];
                     node_5 -> node_6;
                     node_5 -> node_7;
+                    node_6 -> node_14 [style=dotted];
+                    node_6 -> node_15 [style=dotted];
+                    node_7 -> node_15 [style=dotted];
+                    node_7 -> node_16 [style=dotted];
                     node_8 -> node_10;
                     node_8 -> node_9;
+                    node_9 -> node_16 [style=dotted];
+                    node_9 -> node_17 [style=dotted];
                 }
-
-            ::
-
-                >>> topleveltools.graph(meter) # doctest: +SKIP
 
         Returns Graphviz graph.
         '''
-        return self.root_node.__graph__()
+        return self.root_node.__graph__(with_offsets=True)
 
     def __hash__(self):
         r'''Hashes meter.
