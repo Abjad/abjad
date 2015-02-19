@@ -966,7 +966,7 @@ class Meter(AbjadObject):
         meters,
         denominator=32,
         discard_final_orphan_downbeat=True,
-        maximum_repetitions=None,
+        maximum_run_length=None,
         starting_offset=None,
         ):
         r'''Finds the best-matching sequence of meters for the offsets
@@ -1023,7 +1023,7 @@ class Meter(AbjadObject):
         from abjad.tools import metertools
         session = metertools.MeterFittingSession(
             kernel_denominator=denominator,
-            maximum_repetitions=maximum_repetitions,
+            maximum_run_length=maximum_run_length,
             meters=meters,
             offset_counter=expr,
             )
