@@ -354,7 +354,8 @@ class Meter(AbjadObject):
                         shape=box];
                     node_10 [label="1/4",
                         shape=box];
-                    subgraph cluster_11 {
+                    subgraph cluster_cluster_offsets {
+                        graph [style=rounded];
                         node_11_0 [color=white,
                             fillcolor=black,
                             fontcolor=white,
@@ -514,7 +515,12 @@ class Meter(AbjadObject):
                     )
         leaves = self._root_node.leaves
         offset = leaves[0].start_offset
-        offset_subgraph = documentationtools.GraphvizSubgraph()
+        offset_subgraph = documentationtools.GraphvizSubgraph(
+            name='cluster_offsets',
+            attributes={
+                'style': 'rounded',
+                },
+            )
         graph.append(offset_subgraph)
         make_offset_node(offset, leaves[0])
         for one, two in sequencetools.iterate_sequence_nwise(leaves):
