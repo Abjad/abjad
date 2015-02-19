@@ -1149,7 +1149,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> show(score) # doctest: +SKIP
 
-            Here we establish a meter without specifying and boundary
+            Here we establish a meter without specifying any boundary
             depth:
 
             ::
