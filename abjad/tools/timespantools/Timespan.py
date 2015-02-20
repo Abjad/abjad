@@ -1580,12 +1580,14 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> timespan.split_at_offset(Offset(12))
+            >>> timespan.split_at_offset(Offset(12))[0]
             Timespan(start_offset=Offset(0, 1), stop_offset=Offset(5, 1))
 
         Returns one or two newly constructed timespans.
         '''
+        from abjad.tools import timespantools
         offset = durationtools.Offset(offset)
+        result = timespantools.TimespanInventory()
         if self.start_offset < offset < self.stop_offset:
             left = new(self,
                 start_offset=self.start_offset,
@@ -1595,9 +1597,11 @@ class Timespan(BoundedObject):
                 start_offset=offset,
                 stop_offset=self.stop_offset,
                 )
-            return left, right
+            result.append(left)
+            result.append(right)
         else:
-            return new(self)
+            result.append(new(self))
+        return result
 
     def split_at_offsets(self, offsets):
         r'''Split into one or more parts when `offsets` happens during
@@ -1609,35 +1613,58 @@ class Timespan(BoundedObject):
 
         ::
 
-            >>> shards = timespan.split_at_offsets((1, 3, 7))
-            >>> for shard in shards:
-            ...     shard
-            ...
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(1, 1))
-            Timespan(start_offset=Offset(1, 1), stop_offset=Offset(3, 1))
-            Timespan(start_offset=Offset(3, 1), stop_offset=Offset(7, 1))
-            Timespan(start_offset=Offset(7, 1), stop_offset=Offset(10, 1))
+            >>> result = timespan.split_at_offsets((1, 3, 7))
+            >>> print(format(result))
+            timespantools.TimespanInventory(
+                [
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(1, 1),
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(1, 1),
+                        stop_offset=durationtools.Offset(3, 1),
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(3, 1),
+                        stop_offset=durationtools.Offset(7, 1),
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(7, 1),
+                        stop_offset=durationtools.Offset(10, 1),
+                        ),
+                    ]
+                )
 
-        Otherwise return a tuple containing a copy of timespan:
+        Otherwise return a timespan inventory containing a copy of timespan:
 
         ::
 
-            >>> timespan.split_at_offsets((-100,))
-            (Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1)),)
+            >>> result = timespan.split_at_offsets((-100,))
+            >>> print(format(result))
+            timespantools.TimespanInventory(
+                [
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(10, 1),
+                        ),
+                    ]
+                )
 
         Returns one or more newly constructed timespans.
         '''
+        from abjad.tools import timespantools
         offsets = [durationtools.Offset(offset) for offset in offsets]
         offsets = [offset for offset in offsets
             if self.start_offset < offset < self.stop_offset]
         offsets = sorted(set(offsets))
-        results = []
+        result = timespantools.TimespanInventory()
         right = new(self)
         for offset in offsets:
             left, right = right.split_at_offset(offset)
-            results.append(left)
-        results.append(right)
-        return tuple(results)
+            result.append(left)
+        result.append(right)
+        return result
 
     def starts_after_offset(self, offset):
         r'''Is true when timespan overlaps start of `timespan`. Otherwise false:
