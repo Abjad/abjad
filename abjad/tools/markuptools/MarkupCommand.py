@@ -256,7 +256,7 @@ class MarkupCommand(AbjadValueObject):
                 elif isinstance(x, lilypondfiletools.Block):
                     result.extend(x._format_pieces)
                 elif isinstance(x, str) and '\n' in x:
-                    result.append('"')
+                    result.append('#"')
                     result.extend(x.splitlines())
                     result.append('"')
                 else:

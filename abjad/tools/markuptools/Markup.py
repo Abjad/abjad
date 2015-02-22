@@ -1414,7 +1414,7 @@ class Markup(AbjadValueObject):
                 >>> print(format(markup))
                 \markup {
                     \postscript
-                        "
+                        #"
                         1.0 1.0 moveto
                         2.5 setlinewidth
                         [ 2.0 1.0 ] 0.0 setdash

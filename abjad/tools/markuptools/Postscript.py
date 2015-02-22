@@ -55,6 +55,18 @@ class Postscript(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __add__(self, expr):
+        r'''Adds postscript to `expr`.
+
+        Returns new postscript.
+        '''
+        assert isinstance(expr, type(self))
+        self_operators = self.operators or ()
+        expr_operators = expr.operators or ()
+        operators = self_operators + expr_operators
+        operators = operators or None
+        return type(self)(operators)
+
     def __str__(self):
         r'''Gets string representation of Postscript.
 
