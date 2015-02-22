@@ -202,7 +202,18 @@ class Timespan(BoundedObject):
 
         Returns integer.
         '''
-        return super(Timespan, self).__hash__()
+        from abjad.tools import systemtools
+        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        return hash(hash_values)
+
+    def __illustrate__(self, range_=None):
+        r'''Illustrates timespan.
+
+        Returns LilyPond file.
+        '''
+        from abjad.tools import timespantools
+        timespan_inventory = timespantools.TimespanInventory([self])
+        return timespan_inventory.__illustrate__(range_=range_)
 
     def __le__(self, expr):
         r'''Is true when `expr` start offset is less than or equal to

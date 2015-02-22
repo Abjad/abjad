@@ -167,7 +167,8 @@ class TimespanInventory(TypedList):
         else:
             minimum, maximum = self.start_offset, self.stop_offset
         minimum, maximum = float(minimum), float(maximum)
-        scale = 50. / (maximum - minimum)
+        scale = 75. / (maximum - minimum)
+        minimum *= scale
         inventories = self.explode()
         ps = markuptools.Postscript()
         ps = ps.setlinewidth(0.2)
