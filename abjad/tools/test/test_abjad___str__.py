@@ -6,10 +6,11 @@ from abjad import *
 
 _allowed_to_be_empty_string = (
     indicatortools.Articulation,
+    markuptools.Postscript,
+    pitchtools.Accidental,
     pitchtools.PitchArray,
     pitchtools.PitchArrayColumn,
     pitchtools.PitchArrayRow,
-    pitchtools.Accidental,
     schemetools.SchemeColor,
     tonalanalysistools.ChordSuspension,
     )
