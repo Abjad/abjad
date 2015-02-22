@@ -143,7 +143,7 @@ class TimespanInventory(TypedList):
         self[:] = sorted(new_timespans)
         return self
 
-    def __illustrate__(self):
+    def __illustrate__(self, range_=None):
         r'''Illustrates timespan inventory.
 
         Returns LilyPond file.
@@ -153,17 +153,21 @@ class TimespanInventory(TypedList):
             ps = ps.moveto(start, depth)
             ps = ps.lineto(stop, depth)
             ps = ps.stroke()
-            ps = ps.moveto(start, depth + 0.5)
-            ps = ps.lineto(start, depth - 0.5)
+            ps = ps.moveto(start, depth + 0.75)
+            ps = ps.lineto(start, depth - 0.75)
             ps = ps.stroke()
-            ps = ps.moveto(stop, depth + 0.5)
-            ps = ps.lineto(stop, depth - 0.5)
+            ps = ps.moveto(stop, depth + 0.75)
+            ps = ps.lineto(stop, depth - 0.75)
             ps = ps.stroke()
             return ps
         if not self:
             return markuptools.Markup.null().__illustrate__()
-        total_duration = self.duration
-        scale = 100 / total_duration
+        if range_ is not None:
+            minimum, maximum = range_
+        else:
+            minimum, maximum = self.start_offset, self.stop_offset
+        minimum, maximum = float(minimum), float(maximum)
+        scale = 50. / (maximum - minimum)
         inventories = self.explode()
         ps = markuptools.Postscript()
         ps = ps.setlinewidth(0.2)
@@ -171,20 +175,28 @@ class TimespanInventory(TypedList):
         for i, inventory in enumerate(inventories, 1):
             depth = i * -2
             for timespan in inventory:
-                start = float(timespan.start_offset) * scale
-                stop = float(timespan.stop_offset) * scale
-                offset_mapping[start] = depth
-                offset_mapping[stop] = depth
+                start = (float(timespan.start_offset) * scale) - minimum
+                stop = (float(timespan.stop_offset) * scale) - minimum
+                offset_mapping[timespan.start_offset] = depth
+                offset_mapping[timespan.stop_offset] = depth
                 ps += make_line(start, stop, depth)
         ps = ps.setlinewidth(0.1)
-        ps = ps.setdash([0.1, 0.3])
+        ps = ps.setdash([0.1, 0.2])
         for offset in sorted(offset_mapping):
             depth = offset_mapping[offset]
+            offset = (float(offset) * scale) - minimum
             ps = ps.moveto(offset, 0)
             ps = ps.lineto(offset, depth)
             ps = ps.stroke()
-            
         markup = markuptools.Markup.postscript(ps)
+        for offset in sorted(offset_mapping):
+            offset = durationtools.Multiplier(offset)
+            numerator, denominator = offset.numerator, offset.denominator
+            fraction = markuptools.Markup.fraction(numerator, denominator)
+            fraction = fraction.center_align().fontsize(-3).sans()
+            x_translation = (float(offset) * scale) - minimum
+            fraction = fraction.translate((x_translation, 1))
+            markup = markuptools.Markup.combine(markup, fraction)
         return markup.__illustrate__()
 
     def __sub__(self, timespan):
