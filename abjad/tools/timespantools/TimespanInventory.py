@@ -148,44 +148,43 @@ class TimespanInventory(TypedList):
 
         Returns LilyPond file.
         '''
-        def make_line(duration):
-            line_length = float(duration) * scale
-            line = markuptools.Markup.draw_line(line_length, 0)
-            return line
+        def make_line(start, stop, depth):
+            ps = markuptools.Postscript()
+            ps = ps.moveto(start, depth)
+            ps = ps.lineto(stop, depth)
+            ps = ps.stroke()
+            ps = ps.moveto(start, depth + 0.5)
+            ps = ps.lineto(start, depth - 0.5)
+            ps = ps.stroke()
+            ps = ps.moveto(stop, depth + 0.5)
+            ps = ps.lineto(stop, depth - 0.5)
+            ps = ps.stroke()
+            return ps
         if not self:
             return markuptools.Markup.null().__illustrate__()
         total_duration = self.duration
         scale = 100 / total_duration
-        vline = markuptools.Markup.draw_line(0, 1).vcenter()
         inventories = self.explode()
-        inventory_markups = []
+        ps = markuptools.Postscript()
+        ps = ps.setlinewidth(0.2)
+        offset_mapping = {}
         for i, inventory in enumerate(inventories, 1):
-            line = make_line(inventory[0].duration)
-            pieces = [vline, line, vline]
-            for one, two in sequencetools.iterate_sequence_nwise(inventory):
-                if one.stop_offset < two.start_offset:
-                    hspace_length = float(two.start_offset - one.stop_offset)
-                    hspace_length *= scale
-                    hspace = markuptools.Markup.hspace(hspace_length)
-                    pieces.append(hspace)
-                    pieces.append(vline)
-                line = make_line(two.duration)
-                pieces.append(line)
-                pieces.append(vline)
-            inventory_markup = markuptools.Markup.concat(pieces)
-            if inventory.start_offset != 0:
-                x_translation = float(inventory.start_offset) * scale
-                translation = (x_translation, 0)
-                inventory_markup = inventory_markup.translate(translation)
-            inventory_markups.append(inventory_markup)
-        if 1 < len(inventory_markups):
-            markup = inventory_markups[0]
-            for i, inventory_markup in enumerate(inventory_markups[1:], 1):
-                inventory_markup = inventory_markup.translate((0, i * -2))
-                markup = markuptools.Markup.combine(markup, inventory_markup)
-        elif 1 == len(inventory_markups):
-            markup = inventory_markups[0]
-        markup = markup.override(('thickness', 2))
+            depth = i * -2
+            for timespan in inventory:
+                start = float(timespan.start_offset) * scale
+                stop = float(timespan.stop_offset) * scale
+                offset_mapping[start] = depth
+                offset_mapping[stop] = depth
+                ps += make_line(start, stop, depth)
+        ps = ps.setlinewidth(0.1)
+        ps = ps.setdash([0.1, 0.3])
+        for offset in sorted(offset_mapping):
+            depth = offset_mapping[offset]
+            ps = ps.moveto(offset, 0)
+            ps = ps.lineto(offset, depth)
+            ps = ps.stroke()
+            
+        markup = markuptools.Markup.postscript(ps)
         return markup.__illustrate__()
 
     def __sub__(self, timespan):
