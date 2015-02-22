@@ -1,8 +1,7 @@
 # -*- encoding: utf-8 -*-
 import collections
-import copy
-import math
 from abjad.tools import durationtools
+from abjad.tools import markuptools
 from abjad.tools import sequencetools
 from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.topleveltools import new
@@ -143,6 +142,51 @@ class TimespanInventory(TypedList):
             new_timespans.extend(result)
         self[:] = sorted(new_timespans)
         return self
+
+    def __illustrate__(self):
+        r'''Illustrates timespan inventory.
+
+        Returns LilyPond file.
+        '''
+        def make_line(duration):
+            line_length = float(duration) * scale
+            line = markuptools.Markup.draw_line(line_length, 0)
+            return line
+        if not self:
+            return markuptools.Markup.null().__illustrate__()
+        total_duration = self.duration
+        scale = 100 / total_duration
+        vline = markuptools.Markup.draw_line(0, 1).vcenter()
+        inventories = self.explode()
+        inventory_markups = []
+        for i, inventory in enumerate(inventories, 1):
+            line = make_line(inventory[0].duration)
+            pieces = [vline, line, vline]
+            for one, two in sequencetools.iterate_sequence_nwise(inventory):
+                if one.stop_offset < two.start_offset:
+                    hspace_length = float(two.start_offset - one.stop_offset)
+                    hspace_length *= scale
+                    hspace = markuptools.Markup.hspace(hspace_length)
+                    pieces.append(hspace)
+                    pieces.append(vline)
+                line = make_line(two.duration)
+                pieces.append(line)
+                pieces.append(vline)
+            inventory_markup = markuptools.Markup.concat(pieces)
+            if inventory.start_offset != 0:
+                x_translation = float(inventory.start_offset) * scale
+                translation = (x_translation, 0)
+                inventory_markup = inventory_markup.translate(translation)
+            inventory_markups.append(inventory_markup)
+        if 1 < len(inventory_markups):
+            markup = inventory_markups[0]
+            for i, inventory_markup in enumerate(inventory_markups[1:], 1):
+                inventory_markup = inventory_markup.translate((0, i * -2))
+                markup = markuptools.Markup.combine(markup, inventory_markup)
+        elif 1 == len(inventory_markups):
+            markup = inventory_markups[0]
+        markup = markup.override(('thickness', 2))
+        return markup.__illustrate__()
 
     def __sub__(self, timespan):
         r'''Delete material that intersects `timespan`:
@@ -1369,7 +1413,7 @@ class TimespanInventory(TypedList):
 
                 >>> for exploded_inventory in timespan_inventory.explode():
                 ...     print(format(exploded_inventory))
-                ... 
+                ...
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
@@ -1441,7 +1485,7 @@ class TimespanInventory(TypedList):
                 >>> for exploded_inventory in timespan_inventory.explode(
                 ...     inventory_count=2):
                 ...     print(format(exploded_inventory))
-                ... 
+                ...
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
@@ -1509,7 +1553,7 @@ class TimespanInventory(TypedList):
                 >>> for exploded_inventory in timespan_inventory.explode(
                 ...     inventory_count=6):
                 ...     print(format(exploded_inventory))
-                ... 
+                ...
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
@@ -1789,7 +1833,7 @@ class TimespanInventory(TypedList):
 
                 >>> for inventory in timespan_inventory_1.partition():
                 ...     print(format(inventory))
-                ... 
+                ...
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
@@ -1843,7 +1887,7 @@ class TimespanInventory(TypedList):
 
                 >>> for inventory in timespan_inventory_2.partition():
                 ...     print(format(inventory))
-                ... 
+                ...
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
@@ -1875,7 +1919,7 @@ class TimespanInventory(TypedList):
                 >>> for inventory in timespan_inventory_1.partition(
                 ...     include_tangent_timespans=True):
                 ...     print(format(inventory))
-                ... 
+                ...
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
@@ -2564,7 +2608,6 @@ class TimespanInventory(TypedList):
 
         Returns inventories.
         '''
-        from abjad.tools import timespantools
         offset = durationtools.Offset(offset)
         before_inventory = type(self)()
         during_inventory = type(self)()
@@ -2608,7 +2651,7 @@ class TimespanInventory(TypedList):
 
                 >>> for inventory in timespan_inventory.split_at_offsets(offsets):
                 ...     print(format(inventory))
-                ... 
+                ...
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
