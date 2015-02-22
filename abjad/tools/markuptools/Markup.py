@@ -1393,6 +1393,52 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    @staticmethod
+    def postscript(postscript):
+        r'''LilyPond ``\postscript`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> postscript = markuptools.Postscript()
+                >>> postscript = postscript.moveto(1, 1)
+                >>> postscript = postscript.setlinewidth(2.5)
+                >>> postscript = postscript.setdash((2, 1))
+                >>> postscript = postscript.lineto(3, -4)
+                >>> postscript = postscript.stroke()
+                >>> markup = markuptools.Markup.postscript(postscript)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \postscript
+                        "
+                        1.0 1.0 moveto
+                        2.5 setlinewidth
+                        [ 2.0 1.0 ] 0.0 setdash
+                        3.0 -4.0 lineto
+                        stroke
+                        "
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        if isinstance(postscript, markuptools.Postscript):
+            postscript = str(postscript)
+        assert isinstance(postscript, str)
+        command = markuptools.MarkupCommand(
+            'postscript',
+            postscript,
+            )
+        return Markup(contents=command)
+
     def raise_(self, amount):
         r'''LilyPond ``\raise`` markup command.
 
