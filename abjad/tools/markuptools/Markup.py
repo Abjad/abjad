@@ -231,7 +231,8 @@ class Markup(AbjadValueObject):
         from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.header_block.tagline = markuptools.Markup('""')
-        lilypond_file.items.append(self)
+        markup = new(self, direction=None)
+        lilypond_file.items.append(markup)
         return lilypond_file
 
     def __str__(self):
@@ -720,8 +721,43 @@ class Markup(AbjadValueObject):
         return Markup(contents=command, direction=direction)
 
     @staticmethod
+    def combine(markup_one, markup_two):
+        r'''LilyPond ``\combine`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup_one = Markup('a few words')
+                >>> markup_two = Markup.draw_line(10, 0)
+                >>> markup = Markup.combine(markup_one, markup_two)
+                >>> print(format(markup))
+                \markup {
+                    \combine
+                        "a few words"
+                        \draw-line
+                            #'(10 . 0)
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents_one = Markup._parse_markup_command_argument(markup_one)
+        contents_two = Markup._parse_markup_command_argument(markup_two)
+        command = markuptools.MarkupCommand(
+            'combine',
+            contents_one,
+            contents_two,
+            )
+        return Markup(contents=command)
+
+    @staticmethod
     def concat(markup_list):
-        r'''Lilypond ``\concat`` markup command.
+        r'''LilyPond ``\concat`` markup command.
 
         ..  container:: example
 
@@ -743,6 +779,10 @@ class Markup(AbjadValueObject):
                                 #"scripts.upbow"
                         }
                     }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
