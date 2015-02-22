@@ -1183,6 +1183,45 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    @staticmethod
+    def left_column(markups, direction=Up):
+        r'''LilyPond ``\left-column`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> city = Markup('Los Angeles')
+                >>> date = Markup('May - August 2014')
+                >>> markup = Markup.left_column([city, date])
+
+            ::
+
+                >>> print(format(markup))
+                ^ \markup {
+                    \left-column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = []
+        for markup in markups:
+            contents.extend(markup.contents)
+        command = markuptools.MarkupCommand(
+            'left-column',
+            contents,
+            )
+        return Markup(contents=command, direction=direction)
+
     def line(self, *markups):
         r'''LilyPond ``\line`` markup command.
 
@@ -1806,6 +1845,37 @@ class Markup(AbjadValueObject):
             contents,
             )
         return new(self, contents=command)
+
+    @staticmethod
+    def vspace(amount):
+        r'''LilyPond ``\vspace`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.vspace(0.75)
+
+            ::
+
+                >>> f(markup)
+                \markup {
+                    \vspace
+                        #0.75
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand(
+            'vspace',
+            amount,
+            )
+        return Markup(contents=command)
 
     def with_color(self, color):
         r'''LilyPond ``\with-color`` markup command.
