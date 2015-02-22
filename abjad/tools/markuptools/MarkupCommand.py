@@ -255,6 +255,10 @@ class MarkupCommand(AbjadValueObject):
                     result.extend(x._format_pieces)
                 elif isinstance(x, lilypondfiletools.Block):
                     result.extend(x._format_pieces)
+                elif isinstance(x, str) and '\n' in x:
+                    result.append('"')
+                    result.extend(x.splitlines())
+                    result.append('"')
                 else:
                     formatted = schemetools.Scheme.format_scheme_value(
                         x,
