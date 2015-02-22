@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
 from abjad.tools import durationtools
+from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.topleveltools import new
@@ -708,6 +709,28 @@ class Timespan(BoundedObject):
         return result
 
     ### PRIVATE METHODS ###
+
+    def _as_postscript(
+        self,
+        postscript_x_offset,
+        postscript_y_offset,
+        postscript_scale,
+        ):
+        start = (float(self.start_offset) * postscript_scale)
+        start -= postscript_x_offset
+        stop = (float(self.stop_offset) * postscript_scale)
+        stop -= postscript_x_offset
+        ps = markuptools.Postscript()
+        ps = ps.moveto(start, postscript_y_offset)
+        ps = ps.lineto(stop, postscript_y_offset)
+        ps = ps.stroke()
+        ps = ps.moveto(start, postscript_y_offset + 0.75)
+        ps = ps.lineto(start, postscript_y_offset - 0.75)
+        ps = ps.stroke()
+        ps = ps.moveto(stop, postscript_y_offset + 0.75)
+        ps = ps.lineto(stop, postscript_y_offset - 0.75)
+        ps = ps.stroke()
+        return ps
 
     def _can_fuse(self, expr):
         if isinstance(expr, type(self)):

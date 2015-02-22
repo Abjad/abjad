@@ -143,23 +143,11 @@ class TimespanInventory(TypedList):
         self[:] = sorted(new_timespans)
         return self
 
-    def __illustrate__(self, range_=None):
+    def __illustrate__(self, key=None, range_=None):
         r'''Illustrates timespan inventory.
 
         Returns LilyPond file.
         '''
-        def make_line(start, stop, depth):
-            ps = markuptools.Postscript()
-            ps = ps.moveto(start, depth)
-            ps = ps.lineto(stop, depth)
-            ps = ps.stroke()
-            ps = ps.moveto(start, depth + 0.75)
-            ps = ps.lineto(start, depth - 0.75)
-            ps = ps.stroke()
-            ps = ps.moveto(stop, depth + 0.75)
-            ps = ps.lineto(stop, depth - 0.75)
-            ps = ps.stroke()
-            return ps
         if not self:
             return markuptools.Markup.null().__illustrate__()
         if range_ is not None:
@@ -167,38 +155,34 @@ class TimespanInventory(TypedList):
         else:
             minimum, maximum = self.start_offset, self.stop_offset
         minimum, maximum = float(minimum), float(maximum)
-        scale = 125. / (maximum - minimum)
-        minimum *= scale
-        minimum -= 1
-        inventories = self.explode()
-        ps = markuptools.Postscript()
-        ps = ps.setlinewidth(0.2)
-        offset_mapping = {}
-        for i, inventory in enumerate(inventories, 1):
-            depth = i * -2
-            for timespan in inventory:
-                start = (float(timespan.start_offset) * scale) - minimum
-                stop = (float(timespan.stop_offset) * scale) - minimum
-                offset_mapping[timespan.start_offset] = depth
-                offset_mapping[timespan.stop_offset] = depth
-                ps += make_line(start, stop, depth)
-        ps = ps.setlinewidth(0.1)
-        ps = ps.setdash([0.1, 0.2])
-        for offset in sorted(offset_mapping):
-            depth = offset_mapping[offset]
-            offset = (float(offset) * scale) - minimum
-            ps = ps.moveto(offset, 0)
-            ps = ps.lineto(offset, depth)
-            ps = ps.stroke()
-        markup = markuptools.Markup.postscript(ps)
-        for offset in sorted(offset_mapping):
-            offset = durationtools.Multiplier(offset)
-            numerator, denominator = offset.numerator, offset.denominator
-            fraction = markuptools.Markup.fraction(numerator, denominator)
-            fraction = fraction.center_align().fontsize(-3).sans()
-            x_translation = (float(offset) * scale) - minimum
-            fraction = fraction.translate((x_translation, 1))
-            markup = markuptools.Markup.combine(markup, fraction)
+        postscript_scale = 125. / (maximum - minimum)
+        postscript_x_offset = (minimum * postscript_scale) - 1
+        if key is None:
+            markup = self._make_timespan_inventory_markup(
+                self, postscript_x_offset, postscript_scale)
+        else:
+            inventories = {}
+            for timespan in self:
+                value = getattr(timespan, key)
+                if value not in inventories:
+                    inventories[value] = type(self)()
+                inventories[value].append(timespan)
+            markups = []
+            for i, item in enumerate(sorted(inventories.items())):
+                value, timespans = item
+                timespans.sort()
+                if 0 < i:
+                    vspace_markup = markuptools.Markup.vspace(1)
+                    markups.append(vspace_markup)
+                value_markup = markuptools.Markup('{}:'.format(value))
+                value_markup = value_markup.sans().fontsize(-1)
+                markups.append(value_markup)
+                vspace_markup = markuptools.Markup.vspace(0.5)
+                markups.append(vspace_markup)
+                timespan_markup = self._make_timespan_inventory_markup(
+                    timespans, postscript_x_offset, postscript_scale)
+                markups.append(timespan_markup)
+            markup = markuptools.Markup.left_column(markups)
         return markup.__illustrate__()
 
     def __sub__(self, timespan):
@@ -264,6 +248,46 @@ class TimespanInventory(TypedList):
         from abjad.tools import timespantools
         start_offset, stop_offset = self._get_offsets(expr)
         return timespantools.Timespan(start_offset, stop_offset)
+
+    @staticmethod
+    def _make_timespan_inventory_markup(
+        timespan_inventory,
+        postscript_x_offset,
+        postscript_scale,
+        ):
+        inventories = timespan_inventory.explode()
+        ps = markuptools.Postscript()
+        ps = ps.setlinewidth(0.2)
+        offset_mapping = {}
+        for i, inventory in enumerate(inventories, 1):
+            postscript_y_offset = i * -2
+            for timespan in inventory:
+                offset_mapping[timespan.start_offset] = postscript_y_offset
+                offset_mapping[timespan.stop_offset] = postscript_y_offset
+                ps += timespan._as_postscript(
+                    postscript_x_offset,
+                    postscript_y_offset,
+                    postscript_scale,
+                    )
+        ps = ps.setlinewidth(0.1)
+        ps = ps.setdash([0.1, 0.2])
+        for offset in sorted(offset_mapping):
+            postscript_y_offset = offset_mapping[offset]
+            offset = (float(offset) * postscript_scale) - postscript_x_offset
+            ps = ps.moveto(offset, 0)
+            ps = ps.lineto(offset, postscript_y_offset)
+            ps = ps.stroke()
+        markup = markuptools.Markup.postscript(ps)
+        for offset in sorted(offset_mapping):
+            offset = durationtools.Multiplier(offset)
+            numerator, denominator = offset.numerator, offset.denominator
+            fraction = markuptools.Markup.fraction(numerator, denominator)
+            fraction = fraction.center_align().fontsize(-3).sans()
+            x_translation = (float(offset) * postscript_scale)
+            x_translation -= postscript_x_offset
+            fraction = fraction.translate((x_translation, 1))
+            markup = markuptools.Markup.combine(markup, fraction)
+        return markup
 
     ### PUBLIC PROPERTIES ###
 
