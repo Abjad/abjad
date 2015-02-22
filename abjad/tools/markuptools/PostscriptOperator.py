@@ -23,55 +23,10 @@ class PostscriptOperator(AbjadValueObject):
         '_arguments',
         )
 
-    _operator_names = (
-        'add',
-        'arc',
-        'begin',
-        'bind',
-        'clip',
-        'charpath',
-        'closepath',
-        'curveto',
-        'def',
-        'div',
-        'dup',
-        'end',
-        'exch',
-        'fill',
-        'for',
-        'findfont',
-        'grestore',
-        'gsave',
-        'if',
-        'ifelse',
-        'index',
-        'lineto',
-        'moveto',
-        'mul',
-        'newpath',
-        'pop',
-        'restore',
-        'rlineto',
-        'rmoveto',
-        'rotate',
-        'save',
-        'scale',
-        'scalefont',
-        'setfont',
-        'setgray',
-        'setlinewidth',
-        'show',
-        'showpage',
-        'stroke',
-        'sub',
-        'translate',
-        )
-
     ### INITIALIZER ###
 
     def __init__(self, name='stroke', *arguments):
         name = str(name)
-        assert name in self._operator_names
         self._name = name
         if arguments:
             self._arguments = tuple(arguments)
@@ -93,10 +48,10 @@ class PostscriptOperator(AbjadValueObject):
         '''
         def recurse(arguments):
             parts = []
-            for argument in self.arguments:
+            for argument in arguments:
                 if isinstance(argument, (int, float, str)):
                     parts.append(str(argument))
-                elif isinstance(collections.Sequence):
+                elif isinstance(argument, collections.Sequence):
                     parts.append('[')
                     parts.extend(recurse(argument))
                     parts.append(']')
