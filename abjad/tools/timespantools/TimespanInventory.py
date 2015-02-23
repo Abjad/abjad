@@ -12,20 +12,57 @@ class TimespanInventory(TypedList):
 
     ..  container:: example
 
-        **Example 1:**
+        **Example 1.** Contiguous timespan inventory:
 
         ::
 
             >>> timespan_inventory_1 = timespantools.TimespanInventory([
-            ...     timespantools.Timespan(0, 16),
-            ...     timespantools.Timespan(5, 12),
-            ...     timespantools.Timespan(-2, 8),
-            ...     timespantools.Timespan(15, 20),
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10),
             ...     ])
 
         ::
 
             >>> print(format(timespan_inventory_1))
+            timespantools.TimespanInventory(
+                [
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(0, 1),
+                        stop_offset=durationtools.Offset(3, 1),
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(3, 1),
+                        stop_offset=durationtools.Offset(6, 1),
+                        ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(6, 1),
+                        stop_offset=durationtools.Offset(10, 1),
+                        ),
+                    ]
+                )
+
+        ::
+
+            >>> show(timespan_inventory_1, scale=0.5) # doctest: +SKIP
+
+    ..  container:: example
+
+        **Example 2:** Overlapping timespan inventory:
+
+        ::
+
+            >>> timespan_inventory_2 = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 16),
+            ...     timespantools.Timespan(5, 12),
+            ...     timespantools.Timespan(-2, 8),
+            ...     timespantools.Timespan(15, 20),
+            ...     timespantools.Timespan(24, 30),
+            ...     ])
+
+        ::
+
+            >>> print(format(timespan_inventory_2))
             timespantools.TimespanInventory(
                 [
                     timespantools.Timespan(
@@ -44,24 +81,28 @@ class TimespanInventory(TypedList):
                         start_offset=durationtools.Offset(15, 1),
                         stop_offset=durationtools.Offset(20, 1),
                         ),
+                    timespantools.Timespan(
+                        start_offset=durationtools.Offset(24, 1),
+                        stop_offset=durationtools.Offset(30, 1),
+                        ),
                     ]
                 )
 
         ::
 
-            >>> show(timespan_inventory_1, scale=0.5) # doctest: +SKIP
+            >>> show(timespan_inventory_2, scale=0.5) # doctest: +SKIP
 
     ..  container:: example
 
-        **Example 2.** Empty timespan inventory:
+        **Example 3.** Empty timespan inventory:
 
         ::
 
-            >>> timespan_inventory_2 = timespantools.TimespanInventory()
+            >>> timespan_inventory_3 = timespantools.TimespanInventory()
 
         ::
 
-            >>> print(format(timespan_inventory_2))
+            >>> print(format(timespan_inventory_3))
             timespantools.TimespanInventory(
                 []
                 )
@@ -560,7 +601,7 @@ class TimespanInventory(TypedList):
         ::
 
             >>> timespan_inventory_2.axis
-            Offset(10, 1)
+            Offset(14, 1)
 
         None when empty:
 
@@ -586,7 +627,7 @@ class TimespanInventory(TypedList):
         ::
 
             >>> timespan_inventory_2.duration
-            Duration(20, 1)
+            Duration(32, 1)
 
         Zero when empty:
 
@@ -660,7 +701,7 @@ class TimespanInventory(TypedList):
         ::
 
             >>> timespan_inventory_2.start_offset
-            Offset(0, 1)
+            Offset(-2, 1)
 
         Negative infinity when empty:
 
@@ -689,7 +730,7 @@ class TimespanInventory(TypedList):
         ::
 
             >>> timespan_inventory_2.stop_offset
-            Offset(20, 1)
+            Offset(30, 1)
 
         Infinity when empty:
 
@@ -717,7 +758,7 @@ class TimespanInventory(TypedList):
         ::
 
             >>> timespan_inventory_2.timespan
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(20, 1))
+            Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(30, 1))
 
         ::
 
@@ -1527,15 +1568,23 @@ class TimespanInventory(TypedList):
                     [
                         timespantools.Timespan(
                             start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                            stop_offset=durationtools.Offset(16, 1),
                             ),
                         timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                            start_offset=durationtools.Offset(5, 1),
+                            stop_offset=durationtools.Offset(12, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(-2, 1),
+                            stop_offset=durationtools.Offset(8, 1),
                             ),
                         timespantools.Timespan(
                             start_offset=durationtools.Offset(15, 1),
                             stop_offset=durationtools.Offset(20, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(24, 1),
+                            stop_offset=durationtools.Offset(30, 1),
                             ),
                         ]
                     )
@@ -1546,12 +1595,16 @@ class TimespanInventory(TypedList):
                 ...     timespan_inventory_2.count_offsets().items()):
                 ...     offset, count
                 ...
+                (Offset(-2, 1), 1)
                 (Offset(0, 1), 1)
-                (Offset(3, 1), 1)
-                (Offset(6, 1), 1)
-                (Offset(10, 1), 1)
+                (Offset(5, 1), 1)
+                (Offset(8, 1), 1)
+                (Offset(12, 1), 1)
                 (Offset(15, 1), 1)
+                (Offset(16, 1), 1)
                 (Offset(20, 1), 1)
+                (Offset(24, 1), 1)
+                (Offset(30, 1), 1)
 
         ..  container:: example
 
@@ -2065,15 +2118,23 @@ class TimespanInventory(TypedList):
                     [
                         timespantools.Timespan(
                             start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                            stop_offset=durationtools.Offset(16, 1),
                             ),
                         timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                            start_offset=durationtools.Offset(5, 1),
+                            stop_offset=durationtools.Offset(12, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(-2, 1),
+                            stop_offset=durationtools.Offset(8, 1),
                             ),
                         timespantools.Timespan(
                             start_offset=durationtools.Offset(15, 1),
                             stop_offset=durationtools.Offset(20, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(24, 1),
+                            stop_offset=durationtools.Offset(30, 1),
                             ),
                         ]
                     )
@@ -2086,20 +2147,28 @@ class TimespanInventory(TypedList):
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
-                            start_offset=durationtools.Offset(0, 1),
-                            stop_offset=durationtools.Offset(10, 1),
+                            start_offset=durationtools.Offset(-2, 1),
+                            stop_offset=durationtools.Offset(8, 1),
                             ),
                         timespantools.Timespan(
-                            start_offset=durationtools.Offset(3, 1),
-                            stop_offset=durationtools.Offset(6, 1),
+                            start_offset=durationtools.Offset(0, 1),
+                            stop_offset=durationtools.Offset(16, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(5, 1),
+                            stop_offset=durationtools.Offset(12, 1),
+                            ),
+                        timespantools.Timespan(
+                            start_offset=durationtools.Offset(15, 1),
+                            stop_offset=durationtools.Offset(20, 1),
                             ),
                         ]
                     )
                 timespantools.TimespanInventory(
                     [
                         timespantools.Timespan(
-                            start_offset=durationtools.Offset(15, 1),
-                            stop_offset=durationtools.Offset(20, 1),
+                            start_offset=durationtools.Offset(24, 1),
+                            stop_offset=durationtools.Offset(30, 1),
                             ),
                         ]
                     )
