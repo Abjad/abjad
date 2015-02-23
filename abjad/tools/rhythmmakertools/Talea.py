@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import datastructuretools
+from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -96,6 +96,34 @@ class Talea(AbjadValueObject):
         from abjad.tools import systemtools
         hash_values = systemtools.StorageFormatManager.get_hash_values(self)
         return hash(hash_values)
+
+    def __iter__(self):
+        r'''Iterates talea.
+
+        ..  container:: example
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    denominator=16,
+                ...    )
+                >>> for duration in talea:
+                ...     duration
+                ...
+                Duration(1, 8)
+                Duration(1, 16)
+                Duration(3, 16)
+                Duration(1, 8)
+                Duration(1, 4)
+                Duration(1, 16)
+                Duration(1, 16)
+
+        Yields durations.
+        '''
+        for count in self.counts:
+            duration = durationtools.Duration(count, self.denominator)
+            yield duration
 
     def __len__(self):
         r'''Gets length of talea.
