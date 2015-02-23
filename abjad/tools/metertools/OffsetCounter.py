@@ -7,6 +7,31 @@ from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 class OffsetCounter(TypedCounter):
     r'''An offset counter.
 
+    ..  container:: example
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 16),
+            ...     timespantools.Timespan(5, 12),
+            ...     timespantools.Timespan(-2, 8),
+            ...     ])
+            >>> timespan_operand = timespantools.Timespan(6, 10)
+            >>> timespan_inventory = timespan_inventory - timespan_operand
+            >>> offset_counter = timespan_inventory.count_offsets()
+            >>> print(format(offset_counter))
+            metertools.OffsetCounter(
+                {
+                    durationtools.Offset(-2, 1): 1,
+                    durationtools.Offset(0, 1): 1,
+                    durationtools.Offset(5, 1): 1,
+                    durationtools.Offset(6, 1): 3,
+                    durationtools.Offset(10, 1): 2,
+                    durationtools.Offset(12, 1): 1,
+                    durationtools.Offset(16, 1): 1,
+                    }
+                )
+
     '''
 
     ### CLASS VARIABLES ###
@@ -15,8 +40,138 @@ class OffsetCounter(TypedCounter):
 
     ### SPECIAL METHODS ###
 
-    def __illustrate__(self, range_=None):
+    def __illustrate__(self, range_=None, scale=None):
         r'''Illustrates offset counter.
+
+        ..  container:: example
+
+            ::
+
+                >>> timespan_inventory = timespantools.TimespanInventory([
+                ...     timespantools.Timespan(0, 16),
+                ...     timespantools.Timespan(5, 12),
+                ...     timespantools.Timespan(-2, 8),
+                ...     ])
+                >>> timespan_operand = timespantools.Timespan(6, 10)
+                >>> timespan_inventory = timespan_inventory - timespan_operand
+                >>> offset_counter = timespan_inventory.count_offsets()
+                >>> show(offset_counter, scale=0.5) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> illustration = offset_counter.__illustrate__()
+                >>> print(format(illustration))
+                % ...
+                <BLANKLINE>
+                \version "..."
+                \language "english"
+                <BLANKLINE>
+                \header {
+                    tagline = \markup {}
+                }
+                <BLANKLINE>
+                \layout {}
+                <BLANKLINE>
+                \paper {}
+                <BLANKLINE>
+                \markup {
+                    \combine
+                        \combine
+                            \combine
+                                \combine
+                                    \combine
+                                        \combine
+                                            \combine
+                                                \postscript
+                                                    #"
+                                                    0.2 setlinewidth
+                                                    [ 2.0 1.0 ] 0.0 setdash
+                                                    1.0 -1.0 moveto
+                                                    0.0 -2.0 rlineto
+                                                    stroke
+                                                    14.8888888889 -1.0 moveto
+                                                    0.0 -2.0 rlineto
+                                                    stroke
+                                                    49.6111111111 -1.0 moveto
+                                                    0.0 -2.0 rlineto
+                                                    stroke
+                                                    56.5555555556 -1.0 moveto
+                                                    0.0 -8.0 rlineto
+                                                    stroke
+                                                    84.3333333333 -1.0 moveto
+                                                    0.0 -5.0 rlineto
+                                                    stroke
+                                                    98.2222222222 -1.0 moveto
+                                                    0.0 -2.0 rlineto
+                                                    stroke
+                                                    126.0 -1.0 moveto
+                                                    0.0 -2.0 rlineto
+                                                    stroke
+                                                    "
+                                                \translate
+                                                    #'(1.0 . 1)
+                                                    \sans
+                                                        \fontsize
+                                                            #-3
+                                                            \center-align
+                                                                \fraction
+                                                                    -2
+                                                                    1
+                                            \translate
+                                                #'(14.8888888889 . 1)
+                                                \sans
+                                                    \fontsize
+                                                        #-3
+                                                        \center-align
+                                                            \fraction
+                                                                0
+                                                                1
+                                        \translate
+                                            #'(49.6111111111 . 1)
+                                            \sans
+                                                \fontsize
+                                                    #-3
+                                                    \center-align
+                                                        \fraction
+                                                            5
+                                                            1
+                                    \translate
+                                        #'(56.5555555556 . 1)
+                                        \sans
+                                            \fontsize
+                                                #-3
+                                                \center-align
+                                                    \fraction
+                                                        6
+                                                        1
+                                \translate
+                                    #'(84.3333333333 . 1)
+                                    \sans
+                                        \fontsize
+                                            #-3
+                                            \center-align
+                                                \fraction
+                                                    10
+                                                    1
+                            \translate
+                                #'(98.2222222222 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                12
+                                                1
+                        \translate
+                            #'(126.0 . 1)
+                            \sans
+                                \fontsize
+                                    #-3
+                                    \center-align
+                                        \fraction
+                                            16
+                                            1
+                    }
 
         Returns LilyPond file.
         '''
@@ -28,7 +183,11 @@ class OffsetCounter(TypedCounter):
             minimum, maximum = min(self), max(self)
         minimum = float(durationtools.Offset(minimum))
         maximum = float(durationtools.Offset(maximum))
+        if scale is None:
+            scale = 1.
+        assert 0 < scale
         postscript_scale = 125. / (maximum - minimum)
+        postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
         ps = markuptools.Postscript()
         ps = ps.setlinewidth(0.2)
