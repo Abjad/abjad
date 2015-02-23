@@ -82,8 +82,9 @@ class ShellDirective(sphinx.util.compat.Directive):
 
 
 def on_builder_inited(app):
-    tmp_directory = app.builder._abjad_book_tempdir = \
-        os.path.abspath(tempfile.mkdtemp(dir=app.builder.outdir))
+    app.builder._abjad_book_tempdir = os.path.abspath(
+        tempfile.mkdtemp(dir=app.builder.outdir)
+        )
     if hasattr(app.builder, 'imgpath'):
         img_directory = os.path.join(app.builder.outdir, '_images')
         if not os.path.exists(img_directory):
@@ -99,11 +100,18 @@ def rewrite_literal_block_line(line):
         'redo(',
         )):
         return '', False
-    elif not line.startswith(('show(', 'topleveltools.graph(')):
+    elif not line.startswith((
+        'show(',
+        'topleveltools.graph(',
+        'graph(',
+        )):
         return line, False
     if line.startswith('show('):
         object_name = line[5:]
         kind = 'lilypond'
+    elif line.startswith('graph('):
+        object_name = line[len('graph('):]
+        kind = 'graphviz'
     elif line.startswith('topleveltools.graph('):
         object_name = line[len('topleveltools.graph('):]
         kind = 'graphviz'
