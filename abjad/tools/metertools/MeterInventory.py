@@ -40,13 +40,14 @@ class MeterInventory(TypedList):
 
     ### SPECIAL METHODS ###
 
-    def __illustrate__(self, denominator=16):
+    def __illustrate__(self, denominator=16, range_=None):
         r'''Illustrates meter inventory.
 
         Returns LilyPond file.
         '''
         from abjad.tools import metertools
         durations = [_.duration for _ in self]
+        total_duration = sum(durations)
         offsets = mathtools.cumulative_sums(durations, start=0)
         timespan_inventory = timespantools.TimespanInventory()
         for one, two in sequencetools.iterate_sequence_nwise(offsets):
@@ -55,8 +56,15 @@ class MeterInventory(TypedList):
                 stop_offset=two,
                 )
             timespan_inventory.append(timespan)
-        postscript_x_offset = -1.0
-        postscript_scale = 75. / float(timespan_inventory.duration)
+
+        if range_ is not None:
+            minimum, maximum = range_
+        else:
+            minimum, maximum = 0, total_duration
+        minimum = float(durationtools.Offset(minimum))
+        maximum = float(durationtools.Offset(maximum))
+        postscript_scale = 125. / (maximum - minimum)
+        postscript_x_offset = (minimum * postscript_scale) - 1
         timespan_markup = timespan_inventory._make_timespan_inventory_markup(
             timespan_inventory,
             postscript_x_offset,
