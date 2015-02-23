@@ -18,7 +18,7 @@ class OffsetCounter(TypedCounter):
             ...     ])
             >>> timespan_operand = timespantools.Timespan(6, 10)
             >>> timespan_inventory = timespan_inventory - timespan_operand
-            >>> offset_counter = timespan_inventory.count_offsets()
+            >>> offset_counter = metertools.OffsetCounter(timespan_inventory)
             >>> print(format(offset_counter))
             metertools.OffsetCounter(
                 {
@@ -38,6 +38,23 @@ class OffsetCounter(TypedCounter):
 
     __slots__ = ()
 
+    ### INITIALIZER ###
+
+    def __init__(self, items=None):
+        TypedCounter.__init__(self, item_class=durationtools.Offset)
+        if items:
+            for item in items:
+                if hasattr(item, 'start_offset') and \
+                    hasattr(item, 'stop_offset'):
+                    self[item.start_offset] += 1
+                    self[item.stop_offset] += 1
+                elif hasattr(item, '_get_timespan'):
+                    self[item._get_timespan().start_offset] += 1
+                    self[item._get_timespan().stop_offset] += 1
+                else:
+                    offset = durationtools.Offset(item)
+                    self[offset] += 1
+
     ### SPECIAL METHODS ###
 
     def __illustrate__(self, range_=None, scale=None):
@@ -54,7 +71,9 @@ class OffsetCounter(TypedCounter):
                 ...     ])
                 >>> timespan_operand = timespantools.Timespan(6, 10)
                 >>> timespan_inventory = timespan_inventory - timespan_operand
-                >>> offset_counter = timespan_inventory.count_offsets()
+                >>> offset_counter = metertools.OffsetCounter(
+                ...     timespan_inventory,
+                ...     )
                 >>> show(offset_counter, scale=0.5) # doctest: +SKIP
 
             ..  doctest::
