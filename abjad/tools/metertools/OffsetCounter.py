@@ -108,19 +108,19 @@ class OffsetCounter(TypedCounter):
                                                     1.0 -1.0 moveto
                                                     0.0 -2.0 rlineto
                                                     stroke
-                                                    14.8888888889 -1.0 moveto
+                                                    14.888... -1.0 moveto
                                                     0.0 -2.0 rlineto
                                                     stroke
-                                                    49.6111111111 -1.0 moveto
+                                                    49.6111... -1.0 moveto
                                                     0.0 -2.0 rlineto
                                                     stroke
-                                                    56.5555555556 -1.0 moveto
+                                                    56.555... -1.0 moveto
                                                     0.0 -8.0 rlineto
                                                     stroke
-                                                    84.3333333333 -1.0 moveto
+                                                    84.333... -1.0 moveto
                                                     0.0 -5.0 rlineto
                                                     stroke
-                                                    98.2222222222 -1.0 moveto
+                                                    98.222... -1.0 moveto
                                                     0.0 -2.0 rlineto
                                                     stroke
                                                     126.0 -1.0 moveto
@@ -137,7 +137,7 @@ class OffsetCounter(TypedCounter):
                                                                     -2
                                                                     1
                                             \translate
-                                                #'(14.8888888889 . 1)
+                                                #'(14.888... . 1)
                                                 \sans
                                                     \fontsize
                                                         #-3
@@ -146,7 +146,7 @@ class OffsetCounter(TypedCounter):
                                                                 0
                                                                 1
                                         \translate
-                                            #'(49.6111111111 . 1)
+                                            #'(49.6111... . 1)
                                             \sans
                                                 \fontsize
                                                     #-3
@@ -155,7 +155,7 @@ class OffsetCounter(TypedCounter):
                                                             5
                                                             1
                                     \translate
-                                        #'(56.5555555556 . 1)
+                                        #'(56.555... . 1)
                                         \sans
                                             \fontsize
                                                 #-3
@@ -164,7 +164,7 @@ class OffsetCounter(TypedCounter):
                                                         6
                                                         1
                                 \translate
-                                    #'(84.3333333333 . 1)
+                                    #'(84.333... . 1)
                                     \sans
                                         \fontsize
                                             #-3
@@ -173,7 +173,7 @@ class OffsetCounter(TypedCounter):
                                                     10
                                                     1
                             \translate
-                                #'(98.2222222222 . 1)
+                                #'(98.222... . 1)
                                 \sans
                                     \fontsize
                                         #-3
