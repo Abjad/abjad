@@ -72,7 +72,10 @@ class MeterFittingSession(AbjadValueObject):
 
     def __call__(self):
         r'''Fits meters.
+
+        Returns meter inventory.
         '''
+        from abjad.tools import metertools
         selected_kernels = []
         current_offset = durationtools.Offset(0)
         while current_offset < self.ordered_offsets[-1]:
@@ -109,7 +112,8 @@ class MeterFittingSession(AbjadValueObject):
                 winning_kernel = kernel_scores[-1].kernel
             selected_kernels.append(winning_kernel)
             current_offset += winning_kernel.duration
-        selected_meters = tuple(self.kernels[_] for _ in selected_kernels)
+        selected_meters = (self.kernels[_] for _ in selected_kernels)
+        selected_meters = metertools.MeterInventory(selected_meters)
         return selected_meters
 
     ### PRIVATE METHODS ###
