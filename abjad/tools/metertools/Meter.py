@@ -40,6 +40,10 @@ class Meter(AbjadObject):
                 1/4
                 1/4
                 1/4))
+        
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
 
     ..  container:: example
 
@@ -72,6 +76,10 @@ class Meter(AbjadObject):
                     1/8
                     1/8))))
 
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
+
     ..  container:: example
 
         **Example 4.** Here's one possible tree corresponding to ``7/4``:
@@ -91,6 +99,10 @@ class Meter(AbjadObject):
                 (2/4 (
                     1/4
                     1/4))))
+
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
 
     ..  container:: example
 
@@ -114,6 +126,10 @@ class Meter(AbjadObject):
                     1/4
                     1/4
                     1/4))))
+
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
 
     ..  container:: example
 
@@ -140,6 +156,10 @@ class Meter(AbjadObject):
                     1/8
                     1/8
                     1/8))))
+
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
 
     Prime divisions greater than ``3`` are converted to sequences of ``2``
     and ``3`` summing to that prime.

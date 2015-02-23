@@ -14,10 +14,10 @@ class MeterInventory(TypedList):
 
         ::
 
-            >>> inventory = metertools.MeterInventory([
+            >>> meter_inventory = metertools.MeterInventory([
             ...     (3, 4), (5, 16), (7, 8),
             ...     ])
-            >>> print(format(inventory))
+            >>> print(format(meter_inventory))
             metertools.MeterInventory(
                 [
                     metertools.Meter(
@@ -31,6 +31,10 @@ class MeterInventory(TypedList):
                         ),
                     ]
                 )
+
+        ::
+
+            >>> show(meter_inventory, scale=0.5) # doctest: +SKIP
 
     '''
 

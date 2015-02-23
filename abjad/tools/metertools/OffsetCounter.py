@@ -32,6 +32,10 @@ class OffsetCounter(TypedCounter):
                     }
                 )
 
+        ::
+
+            >>> show(offset_counter, scale=0.5) # doctest: +SKIP
+
     '''
 
     ### CLASS VARIABLES ###
