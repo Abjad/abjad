@@ -143,8 +143,183 @@ class TimespanInventory(TypedList):
         self[:] = sorted(new_timespans)
         return self
 
-    def __illustrate__(self, key=None, range_=None):
+    def __illustrate__(self, key=None, range_=None, scale=None):
         r'''Illustrates timespan inventory.
+
+        ..  container:: example
+
+            ::
+
+                >>> timespan_inventory = timespantools.TimespanInventory([
+                ...     timespantools.Timespan(0, 16),
+                ...     timespantools.Timespan(5, 12),
+                ...     timespantools.Timespan(-2, 8),
+                ...     ])
+                >>> timespan_operand = timespantools.Timespan(6, 10)
+                >>> timespan_inventory = timespan_inventory - timespan_operand
+                >>> show(timespan_inventory, scale=0.5) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> illustration = timespan_inventory.__illustrate__()
+                >>> print(format(illustration))
+                % ...
+                <BLANKLINE>
+                \version "..."
+                \language "english"
+                <BLANKLINE>
+                \header {
+                    tagline = \markup {}
+                }
+                <BLANKLINE>
+                \layout {}
+                <BLANKLINE>
+                \paper {}
+                <BLANKLINE>
+                \markup {
+                    \combine
+                        \combine
+                            \combine
+                                \combine
+                                    \combine
+                                        \combine
+                                            \combine
+                                                \postscript
+                                                    #"
+                                                    0.2 setlinewidth
+                                                    1.0 -2.0 moveto
+                                                    56.5555555556 -2.0 lineto
+                                                    stroke
+                                                    1.0 -1.25 moveto
+                                                    1.0 -2.75 lineto
+                                                    stroke
+                                                    56.5555555556 -1.25 moveto
+                                                    56.5555555556 -2.75 lineto
+                                                    stroke
+                                                    14.8888888889 -4.0 moveto
+                                                    56.5555555556 -4.0 lineto
+                                                    stroke
+                                                    14.8888888889 -3.25 moveto
+                                                    14.8888888889 -4.75 lineto
+                                                    stroke
+                                                    56.5555555556 -3.25 moveto
+                                                    56.5555555556 -4.75 lineto
+                                                    stroke
+                                                    84.3333333333 -4.0 moveto
+                                                    126.0 -4.0 lineto
+                                                    stroke
+                                                    84.3333333333 -3.25 moveto
+                                                    84.3333333333 -4.75 lineto
+                                                    stroke
+                                                    126.0 -3.25 moveto
+                                                    126.0 -4.75 lineto
+                                                    stroke
+                                                    49.6111111111 -6.0 moveto
+                                                    56.5555555556 -6.0 lineto
+                                                    stroke
+                                                    49.6111111111 -5.25 moveto
+                                                    49.6111111111 -6.75 lineto
+                                                    stroke
+                                                    56.5555555556 -5.25 moveto
+                                                    56.5555555556 -6.75 lineto
+                                                    stroke
+                                                    84.3333333333 -6.0 moveto
+                                                    98.2222222222 -6.0 lineto
+                                                    stroke
+                                                    84.3333333333 -5.25 moveto
+                                                    84.3333333333 -6.75 lineto
+                                                    stroke
+                                                    98.2222222222 -5.25 moveto
+                                                    98.2222222222 -6.75 lineto
+                                                    stroke
+                                                    0.1 setlinewidth
+                                                    [ 0.1 0.2 ] 0.0 setdash
+                                                    1.0 0.0 moveto
+                                                    1.0 -2.0 lineto
+                                                    stroke
+                                                    14.8888888889 0.0 moveto
+                                                    14.8888888889 -4.0 lineto
+                                                    stroke
+                                                    49.6111111111 0.0 moveto
+                                                    49.6111111111 -6.0 lineto
+                                                    stroke
+                                                    56.5555555556 0.0 moveto
+                                                    56.5555555556 -6.0 lineto
+                                                    stroke
+                                                    84.3333333333 0.0 moveto
+                                                    84.3333333333 -6.0 lineto
+                                                    stroke
+                                                    98.2222222222 0.0 moveto
+                                                    98.2222222222 -6.0 lineto
+                                                    stroke
+                                                    126.0 0.0 moveto
+                                                    126.0 -4.0 lineto
+                                                    stroke
+                                                    "
+                                                \translate
+                                                    #'(1.0 . 1)
+                                                    \sans
+                                                        \fontsize
+                                                            #-3
+                                                            \center-align
+                                                                \fraction
+                                                                    -2
+                                                                    1
+                                            \translate
+                                                #'(14.8888888889 . 1)
+                                                \sans
+                                                    \fontsize
+                                                        #-3
+                                                        \center-align
+                                                            \fraction
+                                                                0
+                                                                1
+                                        \translate
+                                            #'(49.6111111111 . 1)
+                                            \sans
+                                                \fontsize
+                                                    #-3
+                                                    \center-align
+                                                        \fraction
+                                                            5
+                                                            1
+                                    \translate
+                                        #'(56.5555555556 . 1)
+                                        \sans
+                                            \fontsize
+                                                #-3
+                                                \center-align
+                                                    \fraction
+                                                        6
+                                                        1
+                                \translate
+                                    #'(84.3333333333 . 1)
+                                    \sans
+                                        \fontsize
+                                            #-3
+                                            \center-align
+                                                \fraction
+                                                    10
+                                                    1
+                            \translate
+                                #'(98.2222222222 . 1)
+                                \sans
+                                    \fontsize
+                                        #-3
+                                        \center-align
+                                            \fraction
+                                                12
+                                                1
+                        \translate
+                            #'(126.0 . 1)
+                            \sans
+                                \fontsize
+                                    #-3
+                                    \center-align
+                                        \fraction
+                                            16
+                                            1
+                    }
 
         Returns LilyPond file.
         '''
@@ -154,8 +329,12 @@ class TimespanInventory(TypedList):
             minimum, maximum = range_
         else:
             minimum, maximum = self.start_offset, self.stop_offset
+        if scale is None:
+            scale = 1.
+        assert 0 < scale
         minimum, maximum = float(minimum), float(maximum)
         postscript_scale = 125. / (maximum - minimum)
+        postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
         if key is None:
             markup = self._make_timespan_inventory_markup(
