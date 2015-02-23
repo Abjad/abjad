@@ -21,7 +21,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** Here's a tree corresponding to ``4/4``:
+        **Example 1.**
 
         ::
 
@@ -47,7 +47,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 2.** Here's a tree corresponding to ``3/4``:
+        **Example 2.**
 
         ::
 
@@ -60,7 +60,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 3.** Here's the three corresponding to ``6/8``:
+        **Example 3.**
 
         ::
 
@@ -82,7 +82,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 4.** Here's one possible tree corresponding to ``7/4``:
+        **Example 4.**
 
         ::
 
@@ -106,7 +106,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 5.** Here's another tree corresponding to ``7/4``:
+        **Example 5.**
 
         ::
 
@@ -133,7 +133,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 6.** Here's a tree corresponding to ``12/8``:
+        **Example 6.**
 
         ::
 
