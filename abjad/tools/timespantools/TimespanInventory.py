@@ -1419,7 +1419,8 @@ class TimespanInventory(TypedList):
 
         Returns counter.
         '''
-        counter = collections.Counter()
+        from abjad.tools import metertools
+        counter = metertools.OffsetCounter()
         for timespan in self:
             counter[timespan.start_offset] += 1
             counter[timespan.stop_offset] += 1
