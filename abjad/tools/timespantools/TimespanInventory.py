@@ -254,6 +254,7 @@ class TimespanInventory(TypedList):
         timespan_inventory,
         postscript_x_offset,
         postscript_scale,
+        draw_offsets=True,
         ):
         inventories = timespan_inventory.explode()
         ps = markuptools.Postscript()
@@ -269,11 +270,15 @@ class TimespanInventory(TypedList):
                     postscript_y_offset,
                     postscript_scale,
                     )
+        if not draw_offsets:
+            markup = markuptools.Markup.postscript(ps)
+            return markup
         ps = ps.setlinewidth(0.1)
         ps = ps.setdash([0.1, 0.2])
         for offset in sorted(offset_mapping):
             postscript_y_offset = offset_mapping[offset]
-            offset = (float(offset) * postscript_scale) - postscript_x_offset
+            offset = (float(offset) * postscript_scale)
+            offset -= postscript_x_offset
             ps = ps.moveto(offset, 0)
             ps = ps.lineto(offset, postscript_y_offset)
             ps = ps.stroke()
