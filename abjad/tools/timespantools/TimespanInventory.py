@@ -1599,11 +1599,7 @@ class TimespanInventory(TypedList):
         Returns counter.
         '''
         from abjad.tools import metertools
-        counter = metertools.OffsetCounter()
-        for timespan in self:
-            counter[timespan.start_offset] += 1
-            counter[timespan.stop_offset] += 1
-        return counter
+        return metertools.OffsetCounter(self)
 
     def explode(self, inventory_count=None):
         r'''Explode timespans into inventories, avoiding overlap, and

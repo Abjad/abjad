@@ -203,23 +203,8 @@ class MetricAccentKernel(AbjadValueObject):
 
         Returns counter.
         '''
-        if isinstance(expr, datastructuretools.TypedCounter):
-            if expr.item_class is durationtools.Offset:
-                return expr
-        counter = datastructuretools.TypedCounter(
-            item_class=durationtools.Offset,
-            )
-        for x in expr:
-            if hasattr(x, 'start_offset') and hasattr(x, 'stop_offset'):
-                counter[x.start_offset] += 1
-                counter[x.stop_offset] += 1
-            elif hasattr(x, '_get_timespan'):
-                counter[x._get_timespan().start_offset] += 1
-                counter[x._get_timespan().stop_offset] += 1
-            else:
-                offset = durationtools.Offset(x)
-                counter[offset] += 1
-        return counter
+        from abjad.tools import metertools
+        return metertools.OffsetCounter(expr)
 
     @staticmethod
     def from_meter(meter, denominator=32, normalize=True):
