@@ -169,24 +169,28 @@ def process_literal_block_pairs(literal_block_pairs):
                         del(environment['__abjad_book__'])
                     try:
                         exec('\n'.join(lines_to_execute), environment)
-                    except Exception as e:
+                    except Exception:
                         traceback.print_exc()
-                    kind, obj = environment['__abjad_book__']
-                    new_abjad_book_block = abjad_book_block()
-                    new_abjad_book_block['kind'] = kind
-                    if kind == 'lilypond':
-                        lilypond_file = documentationtools.make_reference_manual_lilypond_file(obj)
-                        new_abjad_book_block['code'] = format(lilypond_file)
-                        new_abjad_book_block['raw_code'] = format(obj)
-                    elif kind == 'graphviz':
-                        graphviz_graph = documentationtools.make_reference_manual_graphviz_graph(obj)
-                        new_abjad_book_block['code'] = str(graphviz_graph)
                     text = '\n'.join(original_lines[previous_line_number:i + 1])
                     new_literal_block = literal_block.deepcopy()
                     new_literal_block.rawsource = text
                     new_literal_block[0].rawsource = text
                     new_literal_block[0].text = text
-                    replacement_blocks.extend([new_literal_block, new_abjad_book_block])
+                    replacement_blocks.append(new_literal_block)
+                    if '__abjad_book__' not in environment:
+                        print('ERROR: no __abjad_book__ variable found')
+                    else:
+                        kind, obj = environment['__abjad_book__']
+                        new_abjad_book_block = abjad_book_block()
+                        new_abjad_book_block['kind'] = kind
+                        if kind == 'lilypond':
+                            lilypond_file = documentationtools.make_reference_manual_lilypond_file(obj)
+                            new_abjad_book_block['code'] = format(lilypond_file)
+                            new_abjad_book_block['raw_code'] = format(obj)
+                        elif kind == 'graphviz':
+                            graphviz_graph = documentationtools.make_reference_manual_graphviz_graph(obj)
+                            new_abjad_book_block['code'] = str(graphviz_graph)
+                        replacement_blocks.append(new_abjad_book_block)
                     lines_to_execute = []
                     previous_line_number = i + 1
             if lines_to_execute:
