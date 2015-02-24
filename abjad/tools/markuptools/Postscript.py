@@ -113,7 +113,7 @@ class Postscript(AbjadValueObject):
         if isinstance(argument, str):
             if argument.startswith('/'):
                 return argument
-            return '( {} )'.format(argument)
+            return '({})'.format(argument)
         elif isinstance(argument, collections.Sequence):
             if not argument:
                 return '[ ]'
@@ -164,7 +164,7 @@ class Postscript(AbjadValueObject):
                 2 1 scale
                 newpath
                 0 0 moveto
-                ( This is text. ) true charpath
+                (This is text.) true charpath
                 0.5 setlinewidth
                 0.25 setgray
                 stroke
@@ -310,7 +310,7 @@ class Postscript(AbjadValueObject):
                 setfont
                 newpath
                 100 200 moveto
-                ( This is text. ) show
+                (This is text.) show
 
         Returns new Postscript.
         '''
@@ -628,7 +628,7 @@ class Postscript(AbjadValueObject):
                 2 1 scale
                 newpath
                 0 0 moveto
-                ( This is text. ) true charpath
+                (This is text.) true charpath
                 0.5 setlinewidth
                 0.25 setgray
                 stroke
@@ -669,7 +669,7 @@ class Postscript(AbjadValueObject):
                 2 1 scale
                 newpath
                 0 0 moveto
-                ( This is text. ) true charpath
+                (This is text.) true charpath
                 0.5 setlinewidth
                 0.25 setgray
                 stroke
@@ -702,7 +702,7 @@ class Postscript(AbjadValueObject):
                 setfont
                 newpath
                 100 200 moveto
-                ( This is text. ) show
+                (This is text.) show
 
         Returns new Postscript.
         '''
@@ -779,7 +779,7 @@ class Postscript(AbjadValueObject):
                 setfont
                 newpath
                 100 200 moveto
-                ( This is text. ) show
+                (This is text.) show
 
         Returns new Postscript.
         '''
@@ -944,7 +944,7 @@ class Postscript(AbjadValueObject):
                 setfont
                 newpath
                 100 200 moveto
-                ( This is text. ) show
+                (This is text.) show
 
         Returns new Postscript.
         '''
@@ -1012,7 +1012,7 @@ class Postscript(AbjadValueObject):
                 2 1 scale
                 newpath
                 0 0 moveto
-                ( This is text. ) true charpath
+                (This is text.) true charpath
                 0.5 setlinewidth
                 0.25 setgray
                 stroke
