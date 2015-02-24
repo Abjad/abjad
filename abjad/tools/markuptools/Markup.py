@@ -1454,10 +1454,10 @@ class Markup(AbjadValueObject):
                 \markup {
                     \postscript
                         #"
-                        1.0 1.0 moveto
+                        1 1 moveto
                         2.5 setlinewidth
-                        [ 2.0 1.0 ] 0.0 setdash
-                        3.0 -4.0 lineto
+                        [ 2 1 ] 0 setdash
+                        3 -4 lineto
                         stroke
                         "
                     }

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import collections
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -46,23 +45,14 @@ class PostscriptOperator(AbjadValueObject):
 
         Returns string.
         '''
-        def recurse(arguments):
-            parts = []
-            for argument in arguments:
-                if isinstance(argument, (int, float, str)):
-                    parts.append(str(argument))
-                elif isinstance(argument, collections.Sequence):
-                    parts.append('[')
-                    parts.extend(recurse(argument))
-                    parts.append(']')
-                else:
-                    raise ValueError(argument)
-            return parts
+        from abjad.tools import markuptools
         parts = []
         if self.arguments:
-            parts.extend(recurse(self.arguments))
+            for argument in self.arguments:
+                parts.append(markuptools.Postscript._format_argument(argument))
         parts.append(self.name)
-        return ' '.join(parts)
+        string = ' '.join(parts)
+        return string
 
     ### PRIVATE PROPERTIES ###
 
