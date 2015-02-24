@@ -2,7 +2,6 @@
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools import new
 
 
 class InciseSpecifier(AbjadValueObject):

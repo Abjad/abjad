@@ -135,8 +135,6 @@ class RhythmMaker(AbjadValueObject):
     def __illustrate__(self, divisions=None):
         r'''Illustrates rhythm-maker.
 
-        Defaults `divisions` to ``3/8``, ``4/8``, ``3/16``, ``4/16``.
-
         Returns LilyPond file.
         '''
         from abjad.tools import rhythmmakertools
