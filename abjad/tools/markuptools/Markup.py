@@ -1900,7 +1900,7 @@ class Markup(AbjadValueObject):
 
                 >>> show(markup) # doctest: +SKIP
 
-        Returns markup.
+        Returns new markup.
         '''
         from abjad.tools import markuptools
         contents = self._parse_markup_command_argument(self)
@@ -1908,6 +1908,40 @@ class Markup(AbjadValueObject):
         command = markuptools.MarkupCommand(
             'with-color',
             color,
+            contents,
+            )
+        return new(self, contents=command)
+
+    def with_dimensions(self, x_extent, y_extent):
+        r'''LilyPond ``with-dimensions`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.with_dimensions((1, -1), (-0.5, 0.5))
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \with-dimensions
+                        #'(1 . -1)
+                        #'(-0.5 . 0.5)
+                        "Allegro assai"
+                    }
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        x_extent = schemetools.SchemePair(x_extent)
+        y_extent = schemetools.SchemePair(y_extent)
+        command = markuptools.MarkupCommand(
+            'with-dimensions',
+            x_extent,
+            y_extent,
             contents,
             )
         return new(self, contents=command)
