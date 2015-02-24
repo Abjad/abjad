@@ -205,17 +205,17 @@ class TimespanInventory(TypedList):
                                                 \postscript
                                                     #"
                                                     0.2 setlinewidth
-                                                    1.0 -2.0 moveto
-                                                    56.555... -2.0 lineto
+                                                    1 -2 moveto
+                                                    56.555... -2 lineto
                                                     stroke
-                                                    1.0 -1.25 moveto
-                                                    1.0 -2.75 lineto
+                                                    1 -1.25 moveto
+                                                    1 -2.75 lineto
                                                     stroke
                                                     56.555... -1.25 moveto
                                                     56.555... -2.75 lineto
                                                     stroke
-                                                    14.888... -4.0 moveto
-                                                    56.555... -4.0 lineto
+                                                    14.888... -4 moveto
+                                                    56.555... -4 lineto
                                                     stroke
                                                     14.888... -3.25 moveto
                                                     14.888... -4.75 lineto
@@ -223,17 +223,17 @@ class TimespanInventory(TypedList):
                                                     56.555... -3.25 moveto
                                                     56.555... -4.75 lineto
                                                     stroke
-                                                    84.333... -4.0 moveto
-                                                    126.0 -4.0 lineto
+                                                    84.333... -4 moveto
+                                                    126 -4 lineto
                                                     stroke
                                                     84.333... -3.25 moveto
                                                     84.333... -4.75 lineto
                                                     stroke
-                                                    126.0 -3.25 moveto
-                                                    126.0 -4.75 lineto
+                                                    126 -3.25 moveto
+                                                    126 -4.75 lineto
                                                     stroke
-                                                    49.611... -6.0 moveto
-                                                    56.555... -6.0 lineto
+                                                    49.611... -6 moveto
+                                                    56.555... -6 lineto
                                                     stroke
                                                     49.611... -5.25 moveto
                                                     49.611... -6.75 lineto
@@ -241,8 +241,8 @@ class TimespanInventory(TypedList):
                                                     56.555... -5.25 moveto
                                                     56.555... -6.75 lineto
                                                     stroke
-                                                    84.333... -6.0 moveto
-                                                    98.222... -6.0 lineto
+                                                    84.333... -6 moveto
+                                                    98.222... -6 lineto
                                                     stroke
                                                     84.333... -5.25 moveto
                                                     84.333... -6.75 lineto
@@ -251,27 +251,27 @@ class TimespanInventory(TypedList):
                                                     98.222... -6.75 lineto
                                                     stroke
                                                     0.1 setlinewidth
-                                                    [ 0.1 0.2 ] 0.0 setdash
-                                                    1.0 0.0 moveto
-                                                    1.0 -2.0 lineto
+                                                    [ 0.1 0.2 ] 0 setdash
+                                                    1 0 moveto
+                                                    1 -2 lineto
                                                     stroke
-                                                    14.888... 0.0 moveto
-                                                    14.888... -4.0 lineto
+                                                    14.888... 0 moveto
+                                                    14.888... -4 lineto
                                                     stroke
-                                                    49.611... 0.0 moveto
-                                                    49.611... -6.0 lineto
+                                                    49.611... 0 moveto
+                                                    49.611... -6 lineto
                                                     stroke
-                                                    56.555... 0.0 moveto
-                                                    56.555... -6.0 lineto
+                                                    56.555... 0 moveto
+                                                    56.555... -6 lineto
                                                     stroke
-                                                    84.333... 0.0 moveto
-                                                    84.333... -6.0 lineto
+                                                    84.333... 0 moveto
+                                                    84.333... -6 lineto
                                                     stroke
-                                                    98.222... 0.0 moveto
-                                                    98.222... -6.0 lineto
+                                                    98.222... 0 moveto
+                                                    98.222... -6 lineto
                                                     stroke
-                                                    126.0 0.0 moveto
-                                                    126.0 -4.0 lineto
+                                                    126 0 moveto
+                                                    126 -4 lineto
                                                     stroke
                                                     "
                                                 \translate

@@ -81,17 +81,17 @@ class MeterInventory(TypedList):
                                     \postscript
                                         #"
                                         0.2 setlinewidth
-                                        1.0 -2.0 moveto
-                                        49.387... -2.0 lineto
+                                        1 -2 moveto
+                                        49.387... -2 lineto
                                         stroke
-                                        1.0 -1.25 moveto
-                                        1.0 -2.75 lineto
+                                        1 -1.25 moveto
+                                        1 -2.75 lineto
                                         stroke
                                         49.387... -1.25 moveto
                                         49.387... -2.75 lineto
                                         stroke
-                                        49.387... -2.0 moveto
-                                        69.548... -2.0 lineto
+                                        49.387... -2 moveto
+                                        69.548... -2 lineto
                                         stroke
                                         49.387... -1.25 moveto
                                         49.387... -2.75 lineto
@@ -99,119 +99,119 @@ class MeterInventory(TypedList):
                                         69.548... -1.25 moveto
                                         69.548... -2.75 lineto
                                         stroke
-                                        69.548... -2.0 moveto
-                                        126.0 -2.0 lineto
+                                        69.548... -2 moveto
+                                        126 -2 lineto
                                         stroke
                                         69.548... -1.25 moveto
                                         69.548... -2.75 lineto
                                         stroke
-                                        126.0 -1.25 moveto
-                                        126.0 -2.75 lineto
+                                        126 -1.25 moveto
+                                        126 -2.75 lineto
                                         stroke
                                         "
                                     \postscript
                                         #"
-                                        1.0 -4.0 moveto
-                                        0.0 -6.153... rlineto
+                                        1 -4 moveto
+                                        0 -6.153... rlineto
                                         stroke
-                                        5.032... -4.0 moveto
-                                        0.0 -1.538... rlineto
+                                        5.032... -4 moveto
+                                        0 -1.538... rlineto
                                         stroke
-                                        9.064... -4.0 moveto
-                                        0.0 -3.076... rlineto
+                                        9.064... -4 moveto
+                                        0 -3.076... rlineto
                                         stroke
-                                        13.096... -4.0 moveto
-                                        0.0 -1.538... rlineto
+                                        13.096... -4 moveto
+                                        0 -1.538... rlineto
                                         stroke
-                                        17.129... -4.0 moveto
-                                        0.0 -4.615... rlineto
+                                        17.129... -4 moveto
+                                        0 -4.615... rlineto
                                         stroke
-                                        21.161... -4.0 moveto
-                                        0.0 -1.538... rlineto
+                                        21.161... -4 moveto
+                                        0 -1.538... rlineto
                                         stroke
-                                        25.193... -4.0 moveto
-                                        0.0 -3.076... rlineto
+                                        25.193... -4 moveto
+                                        0 -3.076... rlineto
                                         stroke
-                                        29.225... -4.0 moveto
-                                        0.0 -1.538... rlineto
+                                        29.225... -4 moveto
+                                        0 -1.538... rlineto
                                         stroke
-                                        33.258... -4.0 moveto
-                                        0.0 -4.615... rlineto
+                                        33.258... -4 moveto
+                                        0 -4.615... rlineto
                                         stroke
-                                        37.290... -4.0 moveto
-                                        0.0 -1.538... rlineto
+                                        37.290... -4 moveto
+                                        0 -1.538... rlineto
                                         stroke
-                                        41.322... -4.0 moveto
-                                        0.0 -3.076... rlineto
+                                        41.322... -4 moveto
+                                        0 -3.076... rlineto
                                         stroke
-                                        45.354... -4.0 moveto
-                                        0.0 -1.538... rlineto
+                                        45.354... -4 moveto
+                                        0 -1.538... rlineto
                                         stroke
-                                        49.387... -4.0 moveto
-                                        0.0 -6.153... rlineto
+                                        49.387... -4 moveto
+                                        0 -6.153... rlineto
                                         stroke
-                                        49.387... -4.0 moveto
-                                        0.0 -10.0 rlineto
+                                        49.387... -4 moveto
+                                        0 -10 rlineto
                                         stroke
-                                        53.419... -4.0 moveto
-                                        0.0 -5.0 rlineto
+                                        53.419... -4 moveto
+                                        0 -5 rlineto
                                         stroke
-                                        57.451... -4.0 moveto
-                                        0.0 -5.0 rlineto
+                                        57.451... -4 moveto
+                                        0 -5 rlineto
                                         stroke
-                                        61.483... -4.0 moveto
-                                        0.0 -5.0 rlineto
+                                        61.483... -4 moveto
+                                        0 -5 rlineto
                                         stroke
-                                        65.516... -4.0 moveto
-                                        0.0 -5.0 rlineto
+                                        65.516... -4 moveto
+                                        0 -5 rlineto
                                         stroke
-                                        69.548... -4.0 moveto
-                                        0.0 -10.0 rlineto
+                                        69.548... -4 moveto
+                                        0 -10 rlineto
                                         stroke
-                                        69.548... -4.0 moveto
-                                        0.0 -5.517... rlineto
+                                        69.548... -4 moveto
+                                        0 -5.517... rlineto
                                         stroke
-                                        73.580... -4.0 moveto
-                                        0.0 -1.379... rlineto
+                                        73.580... -4 moveto
+                                        0 -1.379... rlineto
                                         stroke
-                                        77.612... -4.0 moveto
-                                        0.0 -2.758... rlineto
+                                        77.612... -4 moveto
+                                        0 -2.758... rlineto
                                         stroke
-                                        81.645... -4.0 moveto
-                                        0.0 -1.379... rlineto
+                                        81.645... -4 moveto
+                                        0 -1.379... rlineto
                                         stroke
-                                        85.677... -4.0 moveto
-                                        0.0 -2.758... rlineto
+                                        85.677... -4 moveto
+                                        0 -2.758... rlineto
                                         stroke
-                                        89.709... -4.0 moveto
-                                        0.0 -1.379... rlineto
+                                        89.709... -4 moveto
+                                        0 -1.379... rlineto
                                         stroke
-                                        93.741... -4.0 moveto
-                                        0.0 -4.137... rlineto
+                                        93.741... -4 moveto
+                                        0 -4.137... rlineto
                                         stroke
-                                        97.774... -4.0 moveto
-                                        0.0 -1.379... rlineto
+                                        97.774... -4 moveto
+                                        0 -1.379... rlineto
                                         stroke
-                                        101.806... -4.0 moveto
-                                        0.0 -2.758... rlineto
+                                        101.806... -4 moveto
+                                        0 -2.758... rlineto
                                         stroke
-                                        105.838... -4.0 moveto
-                                        0.0 -1.379... rlineto
+                                        105.838... -4 moveto
+                                        0 -1.379... rlineto
                                         stroke
-                                        109.870... -4.0 moveto
-                                        0.0 -4.137... rlineto
+                                        109.870... -4 moveto
+                                        0 -4.137... rlineto
                                         stroke
-                                        113.903... -4.0 moveto
-                                        0.0 -1.379... rlineto
+                                        113.903... -4 moveto
+                                        0 -1.379... rlineto
                                         stroke
-                                        117.935... -4.0 moveto
-                                        0.0 -2.758... rlineto
+                                        117.935... -4 moveto
+                                        0 -2.758... rlineto
                                         stroke
-                                        121.967... -4.0 moveto
-                                        0.0 -1.379... rlineto
+                                        121.967... -4 moveto
+                                        0 -1.379... rlineto
                                         stroke
-                                        126.0 -4.0 moveto
-                                        0.0 -5.517... rlineto
+                                        126 -4 moveto
+                                        0 -5.517... rlineto
                                         stroke
                                         "
                                 \translate

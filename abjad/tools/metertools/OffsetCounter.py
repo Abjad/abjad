@@ -108,27 +108,27 @@ class OffsetCounter(TypedCounter):
                                                 \postscript
                                                     #"
                                                     0.2 setlinewidth
-                                                    [ 2.0 1.0 ] 0.0 setdash
-                                                    1.0 -1.0 moveto
-                                                    0.0 -2.0 rlineto
+                                                    [ 2 1 ] 0 setdash
+                                                    1 -1 moveto
+                                                    0 -2 rlineto
                                                     stroke
-                                                    14.888... -1.0 moveto
-                                                    0.0 -2.0 rlineto
+                                                    14.888... -1 moveto
+                                                    0 -2 rlineto
                                                     stroke
-                                                    49.6111... -1.0 moveto
-                                                    0.0 -2.0 rlineto
+                                                    49.6111... -1 moveto
+                                                    0 -2 rlineto
                                                     stroke
-                                                    56.555... -1.0 moveto
-                                                    0.0 -8.0 rlineto
+                                                    56.555... -1 moveto
+                                                    0 -8 rlineto
                                                     stroke
-                                                    84.333... -1.0 moveto
-                                                    0.0 -5.0 rlineto
+                                                    84.333... -1 moveto
+                                                    0 -5 rlineto
                                                     stroke
-                                                    98.222... -1.0 moveto
-                                                    0.0 -2.0 rlineto
+                                                    98.222... -1 moveto
+                                                    0 -2 rlineto
                                                     stroke
-                                                    126.0 -1.0 moveto
-                                                    0.0 -2.0 rlineto
+                                                    126 -1 moveto
+                                                    0 -2 rlineto
                                                     stroke
                                                     "
                                                 \translate
