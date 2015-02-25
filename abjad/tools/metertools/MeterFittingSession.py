@@ -90,7 +90,7 @@ class MeterFittingSession(AbjadValueObject):
                 for kernel in kernels:
                     if self.maximum_run_length and \
                         1 < len(kernels) and \
-                        self.maximum_run_length < len(selected_kernels):
+                        self.maximum_run_length <= len(selected_kernels):
                         last_n_kernels = \
                             selected_kernels[-self.maximum_run_length:]
                         if len(set(last_n_kernels)) == 1:
