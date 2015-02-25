@@ -154,6 +154,54 @@ class Postscript(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
+    def as_markup(self):
+        r'''Converts postscript to markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> postscript = markuptools.Postscript()
+                >>> postscript = postscript.newpath()
+                >>> postscript = postscript.moveto(100, 200)
+                >>> postscript = postscript.lineto(200, 250)
+                >>> postscript = postscript.lineto(100, 300)
+                >>> postscript = postscript.closepath()
+                >>> postscript = postscript.gsave()
+                >>> postscript = postscript.setgray(0.5)
+                >>> postscript = postscript.fill()
+                >>> postscript = postscript.grestore()
+                >>> postscript = postscript.setlinewidth(4)
+                >>> postscript = postscript.setgray(0.75)
+                >>> postscript = postscript.stroke()
+
+            ::
+
+                >>> markup = postscript.as_markup()
+                >>> print(format(markup))
+                \markup {
+                    \postscript
+                        #"
+                        newpath
+                        100 200 moveto
+                        200 250 lineto
+                        100 300 lineto
+                        closepath
+                        gsave
+                        0.5 setgray
+                        fill
+                        grestore
+                        4 setlinewidth
+                        0.75 setgray
+                        stroke
+                        "
+                    }
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        return markuptools.Markup.postscript(self)
+
     def charpath(self, text, modify_font=True):
         r'''Postscript ``charpath`` operator.
 
