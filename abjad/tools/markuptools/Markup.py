@@ -1405,20 +1405,148 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Positive extents.
+
+            The following postscript describes a filled box between the
+            x-coordinates of 0 and 10 and the y-coordinates of 0 and 10.
+            Normally, this would be drawn off the edge of the page.
+
             ::
 
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.pad_to_box((1, -1), (-0.5, 0.5))
-
-            ::
-
-                >>> print(format(markup))
+                >>> up_postscript = markuptools.Postscript()
+                >>> up_postscript = up_postscript.newpath()
+                >>> up_postscript = up_postscript.moveto(0, 0)
+                >>> up_postscript = up_postscript.rlineto(10, 0)
+                >>> up_postscript = up_postscript.rlineto(0, 10)
+                >>> up_postscript = up_postscript.rlineto(-10, 0)
+                >>> up_postscript = up_postscript.closepath()
+                >>> up_postscript = up_postscript.setgray(0.75)
+                >>> up_postscript = up_postscript.fill()
+                >>> up_postscript_markup = up_postscript.as_markup()
+                >>> print(format(up_postscript_markup))
                 \markup {
-                    \pad-to-box
-                        #'(1 . -1)
-                        #'(-0.5 . 0.5)
-                        "Allegro assai"
+                    \postscript
+                        #"
+                        newpath
+                        0 0 moveto
+                        10 0 rlineto
+                        0 10 rlineto
+                        -10 0 rlineto
+                        closepath
+                        0.75 setgray
+                        fill
+                        "
                     }
+
+            Notice how the top half of the square is cut off. The coordinates
+            of the postscript put most of the drawing off the edge of the page.
+            LilyPond does not know what the size of the postscript is, so it
+            does not attempt to reposition it:
+
+            ::
+
+                >>> show(up_postscript_markup) # doctest: +SKIP
+        
+            Wrapping the postscript in a box shows that LilyPond believes the
+            postscript has effectively no x or y extent:
+
+            ::
+
+                >>> show(up_postscript_markup.box()) # doctest: +SKIP
+
+            By giving the postscript markup explicit extents, we can instruct
+            LilyPond to position it properly:
+
+            ::
+
+                >>> up_postscript_markup = up_postscript_markup.pad_to_box(
+                ...     (0, 10), (0, 10))
+                >>> show(up_postscript_markup) # doctest: +SKIP
+
+            Boxing also shows that extents have been applied correctly:
+
+            ::
+
+                >>> show(up_postscript_markup.box()) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** Negative extents.
+
+            LilyPond does not appear to handle negative extents in the same was
+            as it handles positive extents.
+
+            The following postscript describes a box of the same shape as in
+            the previous example. However, this box's x- and y-coordinates
+            range between 0 and 10 and 0 and -10 respectively.
+
+            ::
+
+                >>> down_postscript = markuptools.Postscript()
+                >>> down_postscript = down_postscript.newpath()
+                >>> down_postscript = down_postscript.moveto(0, 0)
+                >>> down_postscript = down_postscript.rlineto(10, 0)
+                >>> down_postscript = down_postscript.rlineto(0, -10)
+                >>> down_postscript = down_postscript.rlineto(-10, 0)
+                >>> down_postscript = down_postscript.closepath()
+                >>> down_postscript = down_postscript.setgray(0.75)
+                >>> down_postscript = down_postscript.fill()
+                >>> down_postscript_markup = down_postscript.as_markup()
+                >>> print(format(down_postscript_markup))
+                \markup {
+                    \postscript
+                        #"
+                        newpath
+                        0 0 moveto
+                        10 0 rlineto
+                        0 -10 rlineto
+                        -10 0 rlineto
+                        closepath
+                        0.75 setgray
+                        fill
+                        "
+                    }
+
+            This time, the entire markup appears to display, without being cut
+            off:
+
+            ::
+
+                >>> show(down_postscript_markup) # doctest: +SKIP
+
+            However, boxing the markup shows that LilyPond still believes it to
+            be of 0-height and 0-width. Notice that the box appears in a
+            different corner of the grey square than in the previous example.
+            This corner is the markup *origin*. The grey box in example 2
+            *descends* from the origin, while the grey box in example 1
+            *ascends* from it.
+
+            ::
+
+                >>> show(down_postscript_markup.box()) # doctest: +SKIP
+
+            Giving the postscript markup positive extents does not work:
+
+            ::
+
+                >>> markup = down_postscript_markup.pad_to_box(
+                ...     (0, 10), (0, 10))
+                >>> show(markup.box()) # doctest: +SKIP
+
+            Likewise, giving the postscript markup negative extents also
+            does not work. The negative extents are treated as 0. In this case,
+            the postscript markup is treated as though it had a height of 0:
+
+            ::
+
+                >>> markup = down_postscript_markup.pad_to_box(
+                ...     (0, 10), (0, -10))
+                >>> show(markup.box()) # doctest: +SKIP
+
+            Unfortunately, this means that any part of a postscript-created
+            markup that uses negative coordinates cannot be treated properly by
+            LilyPond's markup spacing logic. To avoid this, only use positive
+            coordinates in postscript.
 
         Returns new markup.
         '''
@@ -1435,7 +1563,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     def parenthesize(self):
-        r'''LilyPond ``\parenthesie`` markup command.
+        r'''LilyPond ``\parenthesize`` markup command.
 
         ..  container:: example
 
@@ -1949,22 +2077,94 @@ class Markup(AbjadValueObject):
     def with_dimensions(self, x_extent, y_extent):
         r'''LilyPond ``with-dimensions`` markup command.
 
+        ..  note::
+
+            See the API entry for ``Markup.pad_to_box()`` for an extensive
+            discussion of setting explicit markup extents.
+
         ..  container:: example
 
-            ::
-
-                >>> markup = Markup('Allegro assai')
-                >>> markup = markup.with_dimensions((1, -1), (-0.5, 0.5))
+            **Example 1.**
 
             ::
 
-                >>> print(format(markup))
-                \markup {
-                    \with-dimensions
-                        #'(1 . -1)
-                        #'(-0.5 . 0.5)
-                        "Allegro assai"
-                    }
+                >>> up_postscript = markuptools.Postscript()
+                >>> up_postscript = up_postscript.newpath()
+                >>> up_postscript = up_postscript.moveto(0, 0)
+                >>> up_postscript = up_postscript.rlineto(10, 0)
+                >>> up_postscript = up_postscript.rlineto(0, 10)
+                >>> up_postscript = up_postscript.rlineto(-10, 0)
+                >>> up_postscript = up_postscript.closepath()
+                >>> up_postscript = up_postscript.setgray(0.75)
+                >>> up_postscript = up_postscript.fill()
+                >>> up_markup = up_postscript.as_markup()
+
+            ::
+
+                >>> show(up_markup.box()) # doctest: +SKIP
+
+            ::
+
+                >>> up_markup = up_markup.with_dimensions((0, 10), (0, 10))
+                >>> up_markup = up_markup.box()
+                >>> show(up_markup) # doctest: +SKIP
+
+            ::
+
+                >>> up_markup = up_postscript.as_markup()
+                >>> up_markup = up_markup.with_dimensions((0, 20), (0, 20))
+                >>> up_markup = up_markup.box()
+                >>> show(up_markup) # doctest: +SKIP
+
+            ::
+
+                >>> up_markup = up_postscript.as_markup()
+                >>> up_markup = up_markup.with_dimensions((0, 20), (0, -20))
+                >>> up_markup = up_markup.box()
+                >>> show(up_markup) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.**
+
+            ::
+
+                >>> down_postscript = markuptools.Postscript()
+                >>> down_postscript = down_postscript.newpath()
+                >>> down_postscript = down_postscript.moveto(0, 0)
+                >>> down_postscript = down_postscript.rlineto(10, 0)
+                >>> down_postscript = down_postscript.rlineto(0, -10)
+                >>> down_postscript = down_postscript.rlineto(-10, 0)
+                >>> down_postscript = down_postscript.closepath()
+                >>> down_postscript = down_postscript.setgray(0.75)
+                >>> down_postscript = down_postscript.fill()
+                >>> down_markup = down_postscript.as_markup()
+
+            ::
+
+                >>> show(down_markup.box()) # doctest: +SKIP
+
+            ::
+
+                >>> down_markup = down_markup.with_dimensions((0, 10), (0, 10))
+                >>> down_markup = down_markup.box()
+                >>> show(down_markup) # doctest: +SKIP
+
+            ::
+
+                >>> down_markup = down_postscript.as_markup()
+                >>> down_markup = down_markup.with_dimensions(
+                ...     (0, 10), (0, -10))
+                >>> down_markup = down_markup.box()
+                >>> show(down_markup) # doctest: +SKIP
+
+            ::
+
+                >>> down_markup = down_postscript.as_markup()
+                >>> down_markup = down_markup.with_dimensions(
+                ...     (-5, 15), (5, -15))
+                >>> down_markup = down_markup.box()
+                >>> show(down_markup) # doctest: +SKIP
 
         Returns new markup.
         '''
