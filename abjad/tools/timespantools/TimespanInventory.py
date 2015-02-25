@@ -195,148 +195,153 @@ class TimespanInventory(TypedList):
                 \paper {}
                 <BLANKLINE>
                 \markup {
-                    \combine
-                        \combine
+                    \column
+                        {
                             \combine
                                 \combine
                                     \combine
                                         \combine
                                             \combine
-                                                \postscript
-                                                    #"
-                                                    0.2 setlinewidth
-                                                    1 -2 moveto
-                                                    56.555... -2 lineto
-                                                    stroke
-                                                    1 -1.25 moveto
-                                                    1 -2.75 lineto
-                                                    stroke
-                                                    56.555... -1.25 moveto
-                                                    56.555... -2.75 lineto
-                                                    stroke
-                                                    14.888... -4 moveto
-                                                    56.555... -4 lineto
-                                                    stroke
-                                                    14.888... -3.25 moveto
-                                                    14.888... -4.75 lineto
-                                                    stroke
-                                                    56.555... -3.25 moveto
-                                                    56.555... -4.75 lineto
-                                                    stroke
-                                                    84.333... -4 moveto
-                                                    126 -4 lineto
-                                                    stroke
-                                                    84.333... -3.25 moveto
-                                                    84.333... -4.75 lineto
-                                                    stroke
-                                                    126 -3.25 moveto
-                                                    126 -4.75 lineto
-                                                    stroke
-                                                    49.611... -6 moveto
-                                                    56.555... -6 lineto
-                                                    stroke
-                                                    49.611... -5.25 moveto
-                                                    49.611... -6.75 lineto
-                                                    stroke
-                                                    56.555... -5.25 moveto
-                                                    56.555... -6.75 lineto
-                                                    stroke
-                                                    84.333... -6 moveto
-                                                    98.222... -6 lineto
-                                                    stroke
-                                                    84.333... -5.25 moveto
-                                                    84.333... -6.75 lineto
-                                                    stroke
-                                                    98.222... -5.25 moveto
-                                                    98.222... -6.75 lineto
-                                                    stroke
-                                                    0.1 setlinewidth
-                                                    [ 0.1 0.2 ] 0 setdash
-                                                    1 0 moveto
-                                                    1 -2 lineto
-                                                    stroke
-                                                    14.888... 0 moveto
-                                                    14.888... -4 lineto
-                                                    stroke
-                                                    49.611... 0 moveto
-                                                    49.611... -6 lineto
-                                                    stroke
-                                                    56.555... 0 moveto
-                                                    56.555... -6 lineto
-                                                    stroke
-                                                    84.333... 0 moveto
-                                                    84.333... -6 lineto
-                                                    stroke
-                                                    98.222... 0 moveto
-                                                    98.222... -6 lineto
-                                                    stroke
-                                                    126 0 moveto
-                                                    126 -4 lineto
-                                                    stroke
-                                                    "
+                                                \combine
+                                                    \translate
+                                                        #'(1.0 . 1)
+                                                        \sans
+                                                            \fontsize
+                                                                #-3
+                                                                \center-align
+                                                                    \fraction
+                                                                        -2
+                                                                        1
+                                                    \translate
+                                                        #'(14.8888... . 1)
+                                                        \sans
+                                                            \fontsize
+                                                                #-3
+                                                                \center-align
+                                                                    \fraction
+                                                                        0
+                                                                        1
                                                 \translate
-                                                    #'(1.0 . 1)
+                                                    #'(49.6111... . 1)
                                                     \sans
                                                         \fontsize
                                                             #-3
                                                             \center-align
                                                                 \fraction
-                                                                    -2
+                                                                    5
                                                                     1
                                             \translate
-                                                #'(14.888... . 1)
+                                                #'(56.5555... . 1)
                                                 \sans
                                                     \fontsize
                                                         #-3
                                                         \center-align
                                                             \fraction
-                                                                0
+                                                                6
                                                                 1
                                         \translate
-                                            #'(49.6111... . 1)
+                                            #'(84.3333... . 1)
                                             \sans
                                                 \fontsize
                                                     #-3
                                                     \center-align
                                                         \fraction
-                                                            5
+                                                            10
                                                             1
                                     \translate
-                                        #'(56.555... . 1)
+                                        #'(98.2222... . 1)
                                         \sans
                                             \fontsize
                                                 #-3
                                                 \center-align
                                                     \fraction
-                                                        6
+                                                        12
                                                         1
                                 \translate
-                                    #'(84.333... . 1)
+                                    #'(126.0 . 1)
                                     \sans
                                         \fontsize
                                             #-3
                                             \center-align
                                                 \fraction
-                                                    10
+                                                    16
                                                     1
-                            \translate
-                                #'(98.222... . 1)
-                                \sans
-                                    \fontsize
-                                        #-3
-                                        \center-align
-                                            \fraction
-                                                12
-                                                1
-                        \translate
-                            #'(126.0 . 1)
-                            \sans
-                                \fontsize
-                                    #-3
-                                    \center-align
-                                        \fraction
-                                            16
-                                            1
+                            \pad-to-box
+                                #'(0 . 96.2222...)
+                                #'(0 . 8.5)
+                                \postscript
+                                    #"
+                                    0.2 setlinewidth
+                                    1 6.5 moveto
+                                    56.5555... 6.5 lineto
+                                    stroke
+                                    1 7.25 moveto
+                                    1 5.75 lineto
+                                    stroke
+                                    56.5555... 7.25 moveto
+                                    56.5555... 5.75 lineto
+                                    stroke
+                                    14.8888... 3.5 moveto
+                                    56.5555... 3.5 lineto
+                                    stroke
+                                    14.8888... 4.25 moveto
+                                    14.8888... 2.75 lineto
+                                    stroke
+                                    56.5555... 4.25 moveto
+                                    56.5555... 2.75 lineto
+                                    stroke
+                                    84.3333... 3.5 moveto
+                                    126 3.5 lineto
+                                    stroke
+                                    84.3333... 4.25 moveto
+                                    84.3333... 2.75 lineto
+                                    stroke
+                                    126 4.25 moveto
+                                    126 2.75 lineto
+                                    stroke
+                                    49.6111... 0.5 moveto
+                                    56.5555... 0.5 lineto
+                                    stroke
+                                    49.6111... 1.25 moveto
+                                    49.6111... -0.25 lineto
+                                    stroke
+                                    56.5555... 1.25 moveto
+                                    56.5555... -0.25 lineto
+                                    stroke
+                                    84.3333... 0.5 moveto
+                                    98.2222... 0.5 lineto
+                                    stroke
+                                    84.3333... 1.25 moveto
+                                    84.3333... -0.25 lineto
+                                    stroke
+                                    98.2222... 1.25 moveto
+                                    98.2222... -0.25 lineto
+                                    stroke
+                                    0.1 setlinewidth
+                                    [ 0.1 0.2 ] 0 setdash
+                                    1 8.5 moveto
+                                    1 7 lineto
+                                    stroke
+                                    14.8888... 8.5 moveto
+                                    14.8888... 4 lineto
+                                    stroke
+                                    49.6111... 8.5 moveto
+                                    49.6111... 1 lineto
+                                    stroke
+                                    56.5555... 8.5 moveto
+                                    56.5555... 1 lineto
+                                    stroke
+                                    84.3333... 8.5 moveto
+                                    84.3333... 1 lineto
+                                    stroke
+                                    98.2222... 8.5 moveto
+                                    98.2222... 1 lineto
+                                    stroke
+                                    126 8.5 moveto
+                                    126 4 lineto
+                                    stroke
+                                    "
+                        }
                     }
 
         Returns LilyPond file.
@@ -350,7 +355,8 @@ class TimespanInventory(TypedList):
         if scale is None:
             scale = 1.
         assert 0 < scale
-        minimum, maximum = float(minimum), float(maximum)
+        minimum = float(durationtools.Offset(minimum))
+        maximum = float(durationtools.Offset(maximum))
         postscript_scale = 125. / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
@@ -369,10 +375,10 @@ class TimespanInventory(TypedList):
                 value, timespans = item
                 timespans.sort()
                 if 0 < i:
-                    vspace_markup = markuptools.Markup.vspace(1)
+                    vspace_markup = markuptools.Markup.vspace(0.5)
                     markups.append(vspace_markup)
                 value_markup = markuptools.Markup('{}:'.format(value))
-                value_markup = value_markup.sans().fontsize(-1)
+                value_markup = value_markup.line().sans().fontsize(-1)
                 markups.append(value_markup)
                 vspace_markup = markuptools.Markup.vspace(0.5)
                 markups.append(vspace_markup)
@@ -457,11 +463,12 @@ class TimespanInventory(TypedList):
         ps = markuptools.Postscript()
         ps = ps.setlinewidth(0.2)
         offset_mapping = {}
-        for i, inventory in enumerate(inventories, 1):
-            postscript_y_offset = i * -2
+        height = ((len(inventories) - 1) * 3) + 1
+        for level, inventory in enumerate(inventories, 0):
+            postscript_y_offset = height - (level * 3) - 0.5
             for timespan in inventory:
-                offset_mapping[timespan.start_offset] = postscript_y_offset
-                offset_mapping[timespan.stop_offset] = postscript_y_offset
+                offset_mapping[timespan.start_offset] = level
+                offset_mapping[timespan.stop_offset] = level
                 ps += timespan._as_postscript(
                     postscript_x_offset,
                     postscript_y_offset,
@@ -473,13 +480,20 @@ class TimespanInventory(TypedList):
         ps = ps.setlinewidth(0.1)
         ps = ps.setdash([0.1, 0.2])
         for offset in sorted(offset_mapping):
-            postscript_y_offset = offset_mapping[offset]
-            offset = (float(offset) * postscript_scale)
-            offset -= postscript_x_offset
-            ps = ps.moveto(offset, 0)
-            ps = ps.lineto(offset, postscript_y_offset)
+            level = offset_mapping[offset]
+            x_offset = (float(offset) * postscript_scale)
+            x_offset -= postscript_x_offset
+            ps = ps.moveto(x_offset, height + 1.5)
+            ps = ps.lineto(x_offset, height - (level * 3))
             ps = ps.stroke()
-        markup = markuptools.Markup.postscript(ps)
+        x_extent = float(timespan_inventory.stop_offset)
+        x_extent *= postscript_scale
+        x_extent += postscript_x_offset
+        x_extent = (0, x_extent)
+        y_extent = (0, height + 1.5)
+        lines_markup = markuptools.Markup.postscript(ps)
+        lines_markup = lines_markup.pad_to_box(x_extent, y_extent)
+        fraction_markups = []
         for offset in sorted(offset_mapping):
             offset = durationtools.Multiplier(offset)
             numerator, denominator = offset.numerator, offset.denominator
@@ -488,7 +502,12 @@ class TimespanInventory(TypedList):
             x_translation = (float(offset) * postscript_scale)
             x_translation -= postscript_x_offset
             fraction = fraction.translate((x_translation, 1))
-            markup = markuptools.Markup.combine(markup, fraction)
+            fraction_markups.append(fraction)
+        fraction_markup = fraction_markups[0]
+        for markup in fraction_markups[1:]:
+            fraction_markup = markuptools.Markup.combine(
+                fraction_markup, markup)
+        markup = markuptools.Markup.column([fraction_markup, lines_markup])
         return markup
 
     ### PUBLIC PROPERTIES ###
