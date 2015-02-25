@@ -7,54 +7,73 @@ from abjad.tools.abctools import AbjadValueObject
 class Postscript(AbjadValueObject):
     r'''A Postscript session.
 
-        ..  container:: example
+    ..  note::
 
-            ::
+        The markup resulting from the ``\postscript`` markup command is both
+        0-height and 0-width. Make sure to wrap the ``\postscript`` command
+        with a ``\pad-to-box`` or ``\with-dimensions`` markup command to give
+        it explicit height and width. Likewise, use only positive coordinates
+        in your postscript markup if at all possible. When specifying explicit
+        extents with ``\pad-to-box`` or ``\with-dimensions``, negative extents
+        will *not* be interpreted by LilyPond as resulting in positive height
+        or width, and may have unexpected behavior.
 
-                >>> postscript = markuptools.Postscript()
-                >>> postscript = postscript.moveto(1, 1)
-                >>> postscript = postscript.setlinewidth(2.5)
-                >>> postscript = postscript.setdash((2, 1))
-                >>> postscript = postscript.lineto(3, -4)
-                >>> postscript = postscript.stroke()
-                >>> print(format(postscript))
-                markuptools.Postscript(
-                    operators=(
-                        markuptools.PostscriptOperator('moveto', 1.0, 1.0),
-                        markuptools.PostscriptOperator('setlinewidth', 2.5),
-                        markuptools.PostscriptOperator('setdash', (2.0, 1.0), 0.0),
-                        markuptools.PostscriptOperator('lineto', 3.0, -4.0),
-                        markuptools.PostscriptOperator('stroke'),
-                        ),
-                    )
+    ..  note::
 
-            ::
+        LilyPond will fail to render if *any* of the font commands are used. To
+        create text, use ``.show('text')`` preceded by ``.scale()`` or
+        ``.rotate()`` to provide the appropriate transformation.
+        ``.charpath()`` is also useable. However, ``.findfont()``,
+        ``.scalefont()``, ``.setfont()`` will cause LilyPond to error.
 
-                >>> print(str(postscript))
-                1 1 moveto
-                2.5 setlinewidth
-                [ 2 1 ] 0 setdash
-                3 -4 lineto
-                stroke
+    ..  container:: example
 
-            ::
+        ::
 
-                >>> postscript = markuptools.Postscript()
-                >>> postscript = postscript.newpath()
-                >>> postscript = postscript.moveto(0, 0)
-                >>> postscript = postscript.rlineto(0, -10)
-                >>> postscript = postscript.rlineto(10, 0)
-                >>> postscript = postscript.rlineto(0, 10)
-                >>> postscript = postscript.rlineto(-10, 0)
-                >>> postscript = postscript.closepath()
-                >>> postscript = postscript.gsave()
-                >>> postscript = postscript.setrgbcolor(0.5, 1, 0.5)
-                >>> postscript = postscript.fill()
-                >>> postscript = postscript.grestore()
-                >>> postscript = postscript.setrgbcolor(1, 0, 0)
-                >>> postscript = postscript.setlinewidth(1)
-                >>> postscript = postscript.stroke()
-                >>> show(postscript) # doctest: +SKIP
+            >>> postscript = markuptools.Postscript()
+            >>> postscript = postscript.moveto(1, 1)
+            >>> postscript = postscript.setlinewidth(2.5)
+            >>> postscript = postscript.setdash((2, 1))
+            >>> postscript = postscript.lineto(3, -4)
+            >>> postscript = postscript.stroke()
+            >>> print(format(postscript))
+            markuptools.Postscript(
+                operators=(
+                    markuptools.PostscriptOperator('moveto', 1.0, 1.0),
+                    markuptools.PostscriptOperator('setlinewidth', 2.5),
+                    markuptools.PostscriptOperator('setdash', (2.0, 1.0), 0.0),
+                    markuptools.PostscriptOperator('lineto', 3.0, -4.0),
+                    markuptools.PostscriptOperator('stroke'),
+                    ),
+                )
+
+        ::
+
+            >>> print(str(postscript))
+            1 1 moveto
+            2.5 setlinewidth
+            [ 2 1 ] 0 setdash
+            3 -4 lineto
+            stroke
+
+        ::
+
+            >>> postscript = markuptools.Postscript()
+            >>> postscript = postscript.newpath()
+            >>> postscript = postscript.moveto(0, 0)
+            >>> postscript = postscript.rlineto(0, -10)
+            >>> postscript = postscript.rlineto(10, 0)
+            >>> postscript = postscript.rlineto(0, 10)
+            >>> postscript = postscript.rlineto(-10, 0)
+            >>> postscript = postscript.closepath()
+            >>> postscript = postscript.gsave()
+            >>> postscript = postscript.setrgbcolor(0.5, 1, 0.5)
+            >>> postscript = postscript.fill()
+            >>> postscript = postscript.grestore()
+            >>> postscript = postscript.setrgbcolor(1, 0, 0)
+            >>> postscript = postscript.setlinewidth(1)
+            >>> postscript = postscript.stroke()
+            >>> show(postscript) # doctest: +SKIP
 
     '''
 
