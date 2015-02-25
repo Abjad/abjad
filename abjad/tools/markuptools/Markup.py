@@ -1400,6 +1400,40 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    def pad_to_box(self, x_extent, y_extent):
+        r'''LilyPond ``pad-to-box`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.pad_to_box((1, -1), (-0.5, 0.5))
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \pad-to-box
+                        #'(1 . -1)
+                        #'(-0.5 . 0.5)
+                        "Allegro assai"
+                    }
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        x_extent = schemetools.SchemePair(x_extent)
+        y_extent = schemetools.SchemePair(y_extent)
+        command = markuptools.MarkupCommand(
+            'pad-to-box',
+            x_extent,
+            y_extent,
+            contents,
+            )
+        return new(self, contents=command)
+
     def parenthesize(self):
         r'''LilyPond ``\parenthesie`` markup command.
 
