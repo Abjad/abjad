@@ -120,7 +120,7 @@ class PitchClassSegment(Segment):
             item_class=item_class,
             )
 
-    def invert(self):
+    def invert(self, axis=None):
         r'''Inverts pitch-class segment:
 
         ::
@@ -133,7 +133,7 @@ class PitchClassSegment(Segment):
 
         Returns new pitch-class segment.
         '''
-        items = (pc.invert() for pc in self)
+        items = (pc.invert(axis=axis) for pc in self)
         return new(self, items=items)
 
     def is_equivalent_under_transposition(self, expr):

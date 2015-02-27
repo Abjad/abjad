@@ -21,7 +21,17 @@ class Inversion(AbjadValueObject):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = ()
+    __slots__ = (
+        '_axis',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self, axis=None):
+        from abjad.tools import pitchtools
+        if axis is not None:
+            axis = pitchtools.NamedPitch(axis)
+        self._axis = axis
 
     ### SPECIAL METHODS ###
 
@@ -108,9 +118,19 @@ class Inversion(AbjadValueObject):
         Returns new object with type equal to that of `expr`.
         '''
         if hasattr(expr, 'invert'):
-            result = expr.invert()
+            result = expr.invert(axis=self.axis)
         else:
             message = 'do not know how to invert: {!r}.'
             message = message.format(expr)
             raise TypeError(message)
         return result
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def axis(self):
+        r'''Gets axis of inversion.
+
+        Returns named pitch or none.
+        '''
+        return self._axis

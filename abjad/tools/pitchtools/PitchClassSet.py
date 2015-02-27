@@ -123,7 +123,7 @@ class PitchClassSet(Set):
             item_class=item_class,
             )
 
-    def invert(self):
+    def invert(self, axis=None):
         r'''Inverts pitch-class set.
 
         ::
@@ -135,7 +135,7 @@ class PitchClassSet(Set):
 
         Returns numbered pitch-class set.
         '''
-        return type(self)([pc.invert() for pc in self])
+        return type(self)([pc.invert(axis=axis) for pc in self])
 
     def is_transposed_subset(self, pcset):
         r'''Is true when pitch-class set is transposed subset of `pcset`.
