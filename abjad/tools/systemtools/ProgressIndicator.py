@@ -10,17 +10,17 @@ class ProgressIndicator(ContextManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, message=''):
+    def __init__(self, message='', total=None):
         self._message = message
         self._progress = 0
+        self._total = total
 
     ### SPECIAL METHODS ###
 
     def __enter__(self):
         r'''Enters progress indicator.
         '''
-        print('{}: {}'.format(self._message, self._progress), end=' ')
-        return self
+        self._print()
 
     def __exit__(self, exc_type, exc_value, traceback):
         r'''Exits progress indicator.
@@ -42,15 +42,24 @@ class ProgressIndicator(ContextManager):
         '''
         return '<{}()>'.format(type(self).__name__)
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def message(self):
-        r'''Gets message of progress indicator.
-
-        Returns string.
-        '''
-        return self._message
+    def _print(self):
+        message = self.message or 'Progress'
+        if self.total is not None:
+            message = '{}: {} / {}'.format(
+                message,
+                self.progress,
+                self.total,
+                )
+            print(message, end=' ')
+        else:
+            message = '{}: {}'.format(
+                message,
+                self.progress,
+                )
+            print(message, end=' ')
+        return self
 
     ### PUBLIC METHODS ###
 
@@ -62,4 +71,30 @@ class ProgressIndicator(ContextManager):
         self._progress += 1
         sys.stdout.flush()
         print('\r', end=' ')
-        print('{}: {}'.format(self._message, self._progress), end=' ')
+        self._print()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def message(self):
+        r'''Gets message of progress indicator.
+
+        Returns string.
+        '''
+        return self._message
+
+    @property
+    def progress(self):
+        r'''Gets progress.
+
+        Returns integer.
+        '''
+        return self._progress
+
+    @property
+    def total(self):
+        r'''Gets total count.
+
+        Returns integer or none.
+        '''
+        return self._total
