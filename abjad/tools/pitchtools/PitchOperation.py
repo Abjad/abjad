@@ -8,7 +8,6 @@ class PitchOperation(AbjadValueObject):
 
     ::
 
-        >>> import consort
         >>> pitch_operation = pitchtools.PitchOperation(
         ...     operators=(
         ...         pitchtools.Rotation(1),
