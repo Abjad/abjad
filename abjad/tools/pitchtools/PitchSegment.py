@@ -255,6 +255,24 @@ class PitchSegment(Segment):
                 note.written_pitch = pitch
         return result
 
+    def multiply(self, index):
+        r'''Multiplies pitch segment.
+
+        ::
+
+            >>> result = named_pitch_segment.multiply(3)
+            >>> result
+            PitchSegment(['fs,', 'eqs', "fs'", "a'", 'gqs', "a'"])
+
+        ::
+
+            >>> show(result) # doctest: +SKIP
+
+        Returns new pitch segment.
+        '''
+        items = (x.multiply(index) for x in self)
+        return new(self, items=items)
+
     def retrograde(self):
         r'''Retrograde of pitch segment.
 
