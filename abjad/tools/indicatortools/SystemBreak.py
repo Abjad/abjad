@@ -10,8 +10,7 @@ class SystemBreak(AbjadValueObject):
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> break_ = indicatortools.SystemBreak()
         >>> attach(break_, staff[-1])
-        >>> score = Score([staff])
-        >>> show(score) # doctest: +SKIP
+        >>> show(staff) # doctest: +SKIP
 
     ::
 
@@ -20,16 +19,14 @@ class SystemBreak(AbjadValueObject):
 
     ..  doctest::
 
-        >>> print(format(score))
-        \new Score <<
-            \new Staff {
-                c'4
-                d'4
-                e'4
-                f'4
-                \break
-            }
-        >>
+        >>> print(format(staff))
+        \new Staff {
+            c'4
+            d'4
+            e'4
+            f'4
+            \break
+        }
 
     '''
 
@@ -45,7 +42,7 @@ class SystemBreak(AbjadValueObject):
 
     def __init__(self):
         from abjad.tools import scoretools
-        self._default_scope = scoretools.Score
+        self._default_scope = scoretools.Staff
 
     ### PRIVATE PROPERTIES ###
 
