@@ -52,13 +52,13 @@ class ProgressIndicator(ContextManager):
                 self.progress,
                 self.total,
                 )
-            print(message, end=' ')
+            print(message, end='')
         else:
             message = '{}: {}'.format(
                 message,
                 self.progress,
                 )
-            print(message, end=' ')
+            print(message, end='')
         return self
 
     ### PUBLIC METHODS ###
@@ -70,7 +70,7 @@ class ProgressIndicator(ContextManager):
         '''
         self._progress += 1
         sys.stdout.flush()
-        print('\r', end=' ')
+        print('\r', end='')
         self._print()
 
     ### PUBLIC PROPERTIES ###
