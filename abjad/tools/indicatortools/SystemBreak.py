@@ -2,13 +2,13 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Break(AbjadValueObject):
+class SystemBreak(AbjadValueObject):
     r'''A line break.
 
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> break_ = indicatortools.Break()
+        >>> break_ = indicatortools.SystemBreak()
         >>> attach(break_, staff[-1])
         >>> score = Score([staff])
         >>> show(score) # doctest: +SKIP
@@ -16,7 +16,7 @@ class Break(AbjadValueObject):
     ::
 
         >>> break_
-        Break()
+        SystemBreak()
 
     ..  doctest::
 
