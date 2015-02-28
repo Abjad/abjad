@@ -44,11 +44,12 @@ class Timer(ContextManager):
         '_exit_message',
         '_start_time',
         '_stop_time',
+        '_verbose',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, exit_message=None, enter_message=None):
+    def __init__(self, exit_message=None, enter_message=None, verbose=True):
         if enter_message is not None:
             enter_message = str(enter_message)
         self._enter_message = enter_message
@@ -57,6 +58,7 @@ class Timer(ContextManager):
         self._exit_message = exit_message
         self._start_time = None
         self._stop_time = None
+        self._verbose = bool(verbose)
 
     ### SPECIAL METHODS ###
 
@@ -65,7 +67,7 @@ class Timer(ContextManager):
 
         Returns context manager.
         '''
-        if self.enter_message:
+        if self.enter_message and self.verbose:
             print(self.enter_message)
         self._stop_time = None
         self._start_time = time.time()
@@ -77,7 +79,7 @@ class Timer(ContextManager):
         Returns none.
         '''
         self._stop_time = time.time()
-        if self.exit_message:
+        if self.exit_message and self.verbose:
             print(self.exit_message, self.elapsed_time)
 
     ### PUBLIC PROPERTIES ###
@@ -125,3 +127,11 @@ class Timer(ContextManager):
         Returns time.
         '''
         return self._stop_time
+
+    @property
+    def verbose(self):
+        r'''Is true if timer should print messages. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._verbose
