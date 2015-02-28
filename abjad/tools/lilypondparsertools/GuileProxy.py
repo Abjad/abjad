@@ -1,13 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import indicatortools
-from abjad.tools import scoretools
-from abjad.tools import indicatortools
-from abjad.tools import scoretools
 from abjad.tools import pitchtools
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 
@@ -19,6 +13,10 @@ class GuileProxy(AbjadObject):
 
     Not composer-safe.
     '''
+
+    ### CLASS VARIABLES ###
+
+    _function_name_mapping = {}
 
     ### INITIALIZER ###
 
@@ -34,6 +32,10 @@ class GuileProxy(AbjadObject):
         '''
         if hasattr(self, function_name[1:]):
             result = getattr(self, function_name[1:])(*args)
+            return result
+        elif function_name[1:] in self._function_name_mapping:
+            function_name = function_name[1:]
+            result = getattr(self, function_name)(*args)
             return result
         message = 'LilyPondParser can not emulate music function: {}.'
         message = message.format(function_name)

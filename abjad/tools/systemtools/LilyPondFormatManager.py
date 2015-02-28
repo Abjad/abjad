@@ -227,8 +227,8 @@ class LilyPondFormatManager(object):
             if hasattr(indicator, '_get_lilypond_format_bundle'):
                 indicator_bundle = indicator._get_lilypond_format_bundle(
                     component)
-            if indicator_bundle is not None:
-                bundle.update(indicator_bundle)
+                if indicator_bundle is not None:
+                    bundle.update(indicator_bundle)
 
     @staticmethod
     def _populate_spanner_format_contributions(
