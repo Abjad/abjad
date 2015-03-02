@@ -34,8 +34,8 @@ class BeamSpecifier(AbjadValueObject):
         ::
 
             >>> specifier = rhythmmakertools.BeamSpecifier(
-            ...     beam_each_division=True,
-            ...     beam_divisions_together=True
+            ...     beam_each_division=False,
+            ...     beam_divisions_together=False
             ...     )
 
     Beam specifiers are immutable.
