@@ -1396,12 +1396,16 @@ class MutationAgent(abctools.AbjadObject):
 
         Operates in place and returns none.
         '''
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools.metertools._rewrite_meter \
             import _rewrite_meter
-        assert isinstance(self._client, selectiontools.Selection)
+        selection = self._client
+        if isinstance(selection, scoretools.Container):
+            selection = selection[:]
+        assert isinstance(selection, selectiontools.Selection)
         result = _rewrite_meter(
-            self._client,
+            selection,
             meter,
             boundary_depth=boundary_depth,
             initial_offset=initial_offset,
