@@ -929,7 +929,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def fraction(numerator, denominator):
+    def fraction(*args):
         r'''LilyPond ``\fraction`` markup command.
 
         ..  container:: example
@@ -954,6 +954,8 @@ class Markup(AbjadValueObject):
         Returns new markup
         '''
         from abjad.tools import markuptools
+        fraction = mathtools.NonreducedFraction(*args)
+        numerator, denominator = fraction.numerator, fraction.denominator
         command = markuptools.MarkupCommand(
             'fraction',
             str(numerator),
