@@ -11,8 +11,8 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
     __slots__ = (
         '_decrease_durations_monotonically',
+        '_forbid_meter_rewriting',
         '_forbidden_written_duration',
-        '_permit_meter_rewriting',
         '_spell_metrically',
         )
 
@@ -21,8 +21,8 @@ class DurationSpellingSpecifier(AbjadValueObject):
     def __init__(
         self,
         decrease_durations_monotonically=True,
+        forbid_meter_rewriting=None,
         forbidden_written_duration=None,
-        permit_meter_rewriting=None,
         spell_metrically=None,
         ):
         assert isinstance(decrease_durations_monotonically, bool)
@@ -34,9 +34,9 @@ class DurationSpellingSpecifier(AbjadValueObject):
         if spell_metrically is not None and spell_metrically != 'unassignable':
             assert isinstance(spell_metrically, bool)
         self._spell_metrically = spell_metrically
-        if permit_meter_rewriting is not None:
-            permit_meter_rewriting = bool(permit_meter_rewriting)
-        self._permit_meter_rewriting = permit_meter_rewriting
+        if forbid_meter_rewriting is not None:
+            forbid_meter_rewriting = bool(forbid_meter_rewriting)
+        self._forbid_meter_rewriting = forbid_meter_rewriting
 
     ### SPECIAL METHODS ###
 
@@ -97,8 +97,8 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 editor=idetools.getters.get_boolean,
                 ),
             systemtools.AttributeDetail(
-                name='permit_meter_rewriting',
-                command='pmr',
+                name='forbid_meter_rewriting',
+                command='fmr',
                 editor=idetools.getters.get_boolean,
                 ),
             )
@@ -143,22 +143,22 @@ class DurationSpellingSpecifier(AbjadValueObject):
         return self._forbidden_written_duration
 
     @property
-    def permit_meter_rewriting(self):
-        r'''Is true when meter rewriting is permitted.
+    def forbid_meter_rewriting(self):
+        r'''Is true when meter rewriting is forbidden.
 
         ..  container:: example
 
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> specifier.permit_meter_rewriting is None
+                >>> specifier.forbid_meter_rewriting is None
                 True
 
-        Defaults to true.
+        Defaults to none.
 
         Returns boolean or none.
         '''
-        return self._permit_meter_rewriting
+        return self._forbid_meter_rewriting
 
     @property
     def spell_metrically(self):
