@@ -44,7 +44,6 @@ def test_systemtools_StorageFormatManager_get_import_statements_04():
         duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
             decrease_durations_monotonically=True,
             forbidden_written_duration=durationtools.Duration(1, 2),
-            permit_meter_rewriting=True,
             ),
         tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
             avoid_dots=True,
