@@ -161,7 +161,7 @@ class TimespanInventory(TypedList):
         self[:] = sorted(new_timespans)
         return self
 
-    def __illustrate__(self, key=None, range_=None, scale=None):
+    def __illustrate__(self, key=None, range_=None, sortkey=None, scale=None):
         r'''Illustrates timespan inventory.
 
         ..  container:: example
@@ -362,7 +362,11 @@ class TimespanInventory(TypedList):
         postscript_x_offset = (minimum * postscript_scale) - 1
         if key is None:
             markup = self._make_timespan_inventory_markup(
-                self, postscript_x_offset, postscript_scale)
+                self,
+                postscript_x_offset,
+                postscript_scale,
+                sortkey=sortkey,
+                )
         else:
             inventories = {}
             for timespan in self:
@@ -383,7 +387,11 @@ class TimespanInventory(TypedList):
                 vspace_markup = markuptools.Markup.vspace(0.5)
                 markups.append(vspace_markup)
                 timespan_markup = self._make_timespan_inventory_markup(
-                    timespans, postscript_x_offset, postscript_scale)
+                    timespans,
+                    postscript_x_offset,
+                    postscript_scale,
+                    sortkey=sortkey,
+                    )
                 markups.append(timespan_markup)
             markup = markuptools.Markup.left_column(markups)
         return markup.__illustrate__()
@@ -458,13 +466,25 @@ class TimespanInventory(TypedList):
         postscript_x_offset,
         postscript_scale,
         draw_offsets=True,
+        sortkey=None,
         ):
-        inventories = timespan_inventory.explode()
+        exploded_inventories = []
+        if not sortkey:
+            exploded_inventories.extend(timespan_inventory.explode())
+        else:
+            sorted_inventories = {}
+            for timespan in timespan_inventory:
+                value = getattr(timespan, sortkey)
+                if value not in sorted_inventories:
+                    sorted_inventories[value] = TimespanInventory()
+                sorted_inventories[value].append(timespan)
+            for key, inventory in sorted(sorted_inventories.items()):
+                exploded_inventories.extend(inventory.explode())
         ps = markuptools.Postscript()
         ps = ps.setlinewidth(0.2)
         offset_mapping = {}
-        height = ((len(inventories) - 1) * 3) + 1
-        for level, inventory in enumerate(inventories, 0):
+        height = ((len(exploded_inventories) - 1) * 3) + 1
+        for level, inventory in enumerate(exploded_inventories, 0):
             postscript_y_offset = height - (level * 3) - 0.5
             for timespan in inventory:
                 offset_mapping[timespan.start_offset] = level
