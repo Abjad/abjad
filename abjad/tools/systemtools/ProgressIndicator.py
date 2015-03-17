@@ -10,10 +10,11 @@ class ProgressIndicator(ContextManager):
 
     ### INITIALIZER ###
 
-    def __init__(self, message='', total=None):
+    def __init__(self, message='', total=None, verbose=True):
         self._message = message
         self._progress = 0
         self._total = total
+        self._verbose = bool(verbose)
 
     ### SPECIAL METHODS ###
 
@@ -21,11 +22,13 @@ class ProgressIndicator(ContextManager):
         r'''Enters progress indicator.
         '''
         self._print()
+        return self
 
     def __exit__(self, exc_type, exc_value, traceback):
         r'''Exits progress indicator.
         '''
-        print()
+        if self.verbose:
+            print()
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.
@@ -45,6 +48,8 @@ class ProgressIndicator(ContextManager):
     ### PRIVATE METHODS ###
 
     def _print(self):
+        if not self.verbose:
+            return
         message = self.message or 'Progress'
         if self.total is not None:
             message = '{}: {} / {}'.format(
@@ -59,7 +64,6 @@ class ProgressIndicator(ContextManager):
                 self.progress,
                 )
             print(message, end='')
-        return self
 
     ### PUBLIC METHODS ###
 
@@ -69,8 +73,9 @@ class ProgressIndicator(ContextManager):
         count.
         '''
         self._progress += 1
-        sys.stdout.flush()
-        print('\r', end='')
+        if self.verbose:
+            sys.stdout.flush()
+            print('\r', end='')
         self._print()
 
     ### PUBLIC PROPERTIES ###
@@ -98,3 +103,11 @@ class ProgressIndicator(ContextManager):
         Returns integer or none.
         '''
         return self._total
+
+    @property
+    def verbose(self):
+        r'''Is true if progress indicator prints status. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._verbose
