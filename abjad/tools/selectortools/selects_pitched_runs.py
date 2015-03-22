@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def selects_pitched_runs():
+def selects_pitched_runs(expr=None):
     r'''Selects first logical tie in pitched runs.
 
     ..  container:: example
@@ -55,4 +55,6 @@ def selects_pitched_runs():
     selector = selectortools.Selector()
     selector = selector.by_leaves()
     selector = selector.by_run((scoretools.Note, scoretools.Chord))
-    return selector
+    if expr is None:
+        return selector
+    return selector(expr)

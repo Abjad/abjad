@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def selects_all_but_first_logical_tie_in_pitched_runs():
+def selects_all_but_first_logical_tie_in_pitched_runs(expr=None):
     r'''Selects all but first logical tie in pitched runs.
 
     ..  container:: example
@@ -80,4 +80,6 @@ def selects_all_but_first_logical_tie_in_pitched_runs():
     selector = selector.by_logical_tie(flatten=False)
     selector = selector[1:]
     selector = selector.flatten(depth=1)
-    return selector
+    if expr is None:
+        return selector
+    return selector(expr)

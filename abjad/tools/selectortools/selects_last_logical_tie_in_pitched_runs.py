@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def selects_last_logical_tie_in_pitched_runs():
+def selects_last_logical_tie_in_pitched_runs(expr=None):
     r'''Selects last logical tie in pitched runs.
 
     ..  container:: example
@@ -65,4 +65,6 @@ def selects_last_logical_tie_in_pitched_runs():
     selector = selectortools.selects_pitched_runs()
     selector = selector.by_logical_tie(flatten=False)
     selector = selector[-1]
-    return selector
+    if expr is None:
+        return selector
+    return selector(expr)
