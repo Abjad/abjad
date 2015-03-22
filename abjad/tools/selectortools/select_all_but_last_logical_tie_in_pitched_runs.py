@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 
 
-def selects_all_but_last_logical_tie_in_pitched_runs(expr=None):
+def select_all_but_last_logical_tie_in_pitched_runs(expr=None):
     r'''Selects all but last logical tie in pitched runs.
 
     ..  container:: example
 
         ::
 
-            >>> selector = selectortools.selects_all_but_last_logical_tie_in_pitched_runs()
+            >>> selector = selectortools.select_all_but_last_logical_tie_in_pitched_runs()
             >>> print(format(selector))
             selectortools.Selector(
                 callbacks=(
@@ -76,7 +76,7 @@ def selects_all_but_last_logical_tie_in_pitched_runs(expr=None):
 
     '''
     from abjad.tools import selectortools
-    selector = selectortools.selects_pitched_runs()
+    selector = selectortools.select_pitched_runs()
     selector = selector.by_logical_tie(flatten=False)
     selector = selector[:-1]
     selector = selector.flatten(depth=1)

@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 
 
-def selects_last_logical_tie_in_pitched_runs(expr=None):
-    r'''Selects last logical tie in pitched runs.
+def select_first_logical_tie_in_pitched_runs(expr=None):
+    r'''Selects first logical tie in pitched runs.
 
     ..  container:: example
 
         ::
-
-            >>> selector = selectortools.selects_last_logical_tie_in_pitched_runs()
+        
+            >>> selector = selectortools.select_first_logical_tie_in_pitched_runs()
             >>> print(format(selector))
             selectortools.Selector(
                 callbacks=(
@@ -29,11 +29,13 @@ def selects_last_logical_tie_in_pitched_runs(expr=None):
                         only_with_tail=False,
                         ),
                     selectortools.ItemSelectorCallback(
-                        item=-1,
+                        item=0,
                         apply_to_each=True,
                         ),
                     ),
                 )
+
+
 
         ::
 
@@ -57,14 +59,14 @@ def selects_last_logical_tie_in_pitched_runs(expr=None):
             >>> for x in selector(staff):
             ...     x
             ...
-            LogicalTie(Note("d'8"), Note("d'4"))
-            LogicalTie(Note("f'4."),)
+            LogicalTie(Note("c'4."),)
+            LogicalTie(Note("e'4"), Note("e'8"))
 
     '''
     from abjad.tools import selectortools
-    selector = selectortools.selects_pitched_runs()
+    selector = selectortools.select_pitched_runs()
     selector = selector.by_logical_tie(flatten=False)
-    selector = selector[-1]
+    selector = selector[0]
     if expr is None:
         return selector
     return selector(expr)

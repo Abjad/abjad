@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 
 
-def selects_all_but_first_logical_tie_in_pitched_runs(expr=None):
-    r'''Selects all but first logical tie in pitched runs.
+def select_last_logical_tie_in_pitched_runs(expr=None):
+    r'''Selects last logical tie in pitched runs.
 
     ..  container:: example
 
         ::
 
-            >>> selector = selectortools.selects_all_but_first_logical_tie_in_pitched_runs()
+            >>> selector = selectortools.select_last_logical_tie_in_pitched_runs()
             >>> print(format(selector))
             selectortools.Selector(
                 callbacks=(
@@ -28,39 +28,28 @@ def selects_all_but_first_logical_tie_in_pitched_runs(expr=None):
                         only_with_head=False,
                         only_with_tail=False,
                         ),
-                    selectortools.SliceSelectorCallback(
-                        start=1,
+                    selectortools.ItemSelectorCallback(
+                        item=-1,
                         apply_to_each=True,
-                        ),
-                    selectortools.FlattenSelectorCallback(
-                        depth=1,
                         ),
                     ),
                 )
 
         ::
 
-            >>> staff = Staff("c' d' ~ d' e' r f' g' r a' b' ~ b' c''")
-            >>> tuplet = Tuplet((2, 3), staff[2:5])
-            >>> tuplet = Tuplet((2, 3), staff[5:8])
+            >>> staff = Staff()
+            >>> staff.extend(r"c'4. d'8 ~ \times 2/3 { d'4 r4 e'4 ~ } e'8 f'4.")
             >>> print(format(staff))
             \new Staff {
-                c'4
-                d'4 ~
+                c'4.
+                d'8 ~
                 \times 2/3 {
                     d'4
-                    e'4
                     r4
+                    e'4 ~
                 }
-                f'4
-                g'4
-                \times 2/3 {
-                    r4
-                    a'4
-                    b'4 ~
-                }
-                b'4
-                c''4
+                e'8
+                f'4.
             }
 
         ::
@@ -68,18 +57,14 @@ def selects_all_but_first_logical_tie_in_pitched_runs(expr=None):
             >>> for x in selector(staff):
             ...     x
             ...
-            LogicalTie(Note("d'4"), Note("d'4"))
-            LogicalTie(Note("e'4"),)
-            LogicalTie(Note("g'4"),)
-            LogicalTie(Note("b'4"), Note("b'4"))
-            LogicalTie(Note("c''4"),)
+            LogicalTie(Note("d'8"), Note("d'4"))
+            LogicalTie(Note("f'4."),)
 
     '''
     from abjad.tools import selectortools
-    selector = selectortools.selects_pitched_runs()
+    selector = selectortools.select_pitched_runs()
     selector = selector.by_logical_tie(flatten=False)
-    selector = selector[1:]
-    selector = selector.flatten(depth=1)
+    selector = selector[-1]
     if expr is None:
         return selector
     return selector(expr)

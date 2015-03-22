@@ -1,14 +1,14 @@
 # -*- encoding: utf-8 -*-
 
 
-def selects_pitched_runs(expr=None):
+def select_pitched_runs(expr=None):
     r'''Selects first logical tie in pitched runs.
 
     ..  container:: example
 
         ::
 
-            >>> selector = selectortools.selects_pitched_runs()
+            >>> selector = selectortools.select_pitched_runs()
             >>> print(format(selector))
             selectortools.Selector(
                 callbacks=(
