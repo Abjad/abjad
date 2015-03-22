@@ -560,9 +560,11 @@ class StorageFormatManager(object):
             for value in subject:
                 result.update(manager.get_types(value))
 
+        arguments.append(subject)
         for argument in arguments:
             if not isinstance(argument, type_type):
-                result.update(manager.get_types(argument))
+                if argument is not subject:
+                    result.update(manager.get_types(argument))
             if isinstance(argument, type_type):
                 if not issubclass(argument, abctools.AbjadObject):
                     continue
@@ -573,24 +575,10 @@ class StorageFormatManager(object):
                 ):
                 continue
             if not isinstance(argument, type_type):
-                result.update(manager.get_types(argument))
+                if argument is not subject:
+                    result.update(manager.get_types(argument))
                 argument = type(argument)
             result.add(argument)
-
-        if isinstance(subject, str):
-            return result
-        elif isinstance(subject, type_type) and \
-            issubclass(subject, abctools.AbjadObject):
-            result.add(subject)
-        elif type(subject).__module__ in (
-            '__builtin__',
-            'abc',
-            ):
-            return result
-        elif not isinstance(subject, type_type):
-            result.add(type(subject))
-        else:
-            result.add(subject)
 
         result = sorted(result, key=lambda x: (x.__module__, x.__name__))
 
