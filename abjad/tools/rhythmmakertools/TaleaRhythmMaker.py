@@ -11,7 +11,6 @@ from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
-from abjad.tools.topleveltools import new
 
 
 class TaleaRhythmMaker(RhythmMaker):
@@ -513,7 +512,6 @@ class TaleaRhythmMaker(RhythmMaker):
             tie_spanner._constrain_contiguity()
 
     def _burnish_division_part(self, division_part, token):
-        from abjad.tools import scoretools
         assert len(division_part) == len(token)
         new_division_part = []
         for number, i in zip(division_part, token):
@@ -632,6 +630,7 @@ class TaleaRhythmMaker(RhythmMaker):
             middle_part = self._burnish_division_part(middle_part, middle)
             burnished_division = left_part + middle_part
             burnished_divisions.append(burnished_division)
+
             # middle divisions
             for division in divisions[1:-1]:
                 middle_part = division
@@ -639,6 +638,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 middle_part = self._burnish_division_part(middle_part, middle)
                 burnished_division = middle_part
                 burnished_divisions.append(burnished_division)
+
             # last division:
             available_right_length = len(divisions[-1])
             right_length = min([right_length, available_right_length])
@@ -656,6 +656,7 @@ class TaleaRhythmMaker(RhythmMaker):
             right_part = self._burnish_division_part(right_part, right)
             burnished_division = middle_part + right_part
             burnished_divisions.append(burnished_division)
+
         unburnished_weights = [mathtools.weight(x) for x in divisions]
         burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
         assert burnished_weights == unburnished_weights
