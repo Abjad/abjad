@@ -499,6 +499,30 @@ class StorageFormatManager(object):
     def get_types(subject, result=None):
         r'''Gets all non-builtin types referenced in storage format.
 
+        ..  container:: example
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                ...         left_classes=[Rest],
+                ...         left_counts=[1],
+                ...         right_classes=[Rest],
+                ...         right_counts=[2],
+                ...         outer_divisions_only=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> types = systemtools.StorageFormatManager.get_types(maker)
+                >>> for _ in types:
+                ...     _
+                ...
+                <class 'abjad.tools.rhythmmakertools.BurnishSpecifier.BurnishSpecifier'>
+                <class 'abjad.tools.rhythmmakertools.EvenDivisionRhythmMaker.EvenDivisionRhythmMaker'>
+                <class 'abjad.tools.scoretools.Rest.Rest'>
+
         Returns tuple of types.
         '''
         from abjad.tools import abctools
@@ -555,6 +579,9 @@ class StorageFormatManager(object):
 
         if isinstance(subject, str):
             return result
+        elif isinstance(subject, type_type) and \
+            issubclass(subject, abctools.AbjadObject):
+            result.add(subject)
         elif type(subject).__module__ in (
             '__builtin__',
             'abc',
@@ -564,6 +591,8 @@ class StorageFormatManager(object):
             result.add(type(subject))
         else:
             result.add(subject)
+
+        result = sorted(result, key=lambda x: (x.__module__, x.__name__))
 
         return result
 
