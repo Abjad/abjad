@@ -5,6 +5,8 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
+from abjad.tools import sequencetools
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -19,6 +21,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_burnish_specifier',
         '_denominators',
         '_extra_counts_per_division',
         )
@@ -32,10 +35,12 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         denominators=[8],
         extra_counts_per_division=None,
         beam_specifier=None,
+        burnish_specifier=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
+        from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
@@ -55,6 +60,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 ]
             extra_counts_per_division = tuple(extra_counts_per_division)
         self._extra_counts_per_division = extra_counts_per_division
+        prototype = (rhythmmakertools.BurnishSpecifier, type(None))
+        assert isinstance(burnish_specifier, prototype)
+        self._burnish_specifier = burnish_specifier
 
     ### SPECIAL METHODS ###
 
@@ -191,6 +199,186 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
+    def _apply_burnish_specifier(self, selections, seed):
+        if self.burnish_specifier is None:
+            return
+        left_classes = self.burnish_specifier.left_classes
+        middle_classes = self.burnish_specifier.middle_classes
+        right_classes = self.burnish_specifier.right_classes
+        left_counts = self.burnish_specifier.left_counts
+        right_counts = self.burnish_specifier.right_counts
+        left_classes = left_classes or ()
+        left_classes = sequencetools.rotate_sequence(left_classes, seed)
+        left_classes = datastructuretools.CyclicTuple(left_classes)
+        if middle_classes == () or middle_classes is None:
+            middle_classes = (0,)
+        middle_classes = sequencetools.rotate_sequence(middle_classes, seed)
+        middle_classes = datastructuretools.CyclicTuple(middle_classes)
+        right_classes = right_classes or ()
+        right_classes = sequencetools.rotate_sequence(right_classes, seed)
+        right_classes = datastructuretools.CyclicTuple(right_classes)
+        left_counts = left_counts or (0,)
+        left_counts = sequencetools.rotate_sequence(left_counts, seed)
+        left_counts = datastructuretools.CyclicTuple(left_counts)
+        right_counts = right_counts or (0,)
+        right_counts = sequencetools.rotate_sequence(right_counts, seed)
+        right_counts = datastructuretools.CyclicTuple(right_counts)
+        if self.burnish_specifier.outer_divisions_only:
+            procedure = self._burnish_outer_selections
+        else:
+            procedure = self._burnish_each_selection
+        procedure(
+            selections,
+            left_classes,
+            middle_classes,
+            right_classes,
+            left_counts,
+            right_counts,
+            )
+
+    def _burnish_division_part(self, division_part, token):
+        assert len(division_part) == len(token)
+        new_division_part = []
+        for leaf, burnishing in zip(division_part, token):
+            if burnishing in (-1, scoretools.Rest):
+                new_division_part.append(scoretools.Rest(leaf))
+            elif burnishing == 0:
+                new_division_part.append(leaf)
+            elif burnishing in (1, scoretools.Note):
+                new_division_part.append(scoretools.Note(leaf))
+            else:
+                raise ValueError
+        new_division_part = type(division_part)(new_division_part)
+        return new_division_part
+
+    def _burnish_each_selection(
+        self,
+        selections,
+        left_classes,
+        middle_classes,
+        right_classes,
+        left_counts,
+        right_counts,
+        ):
+        lefts_index, rights_index = 0, 0
+        for selection_index, selection in enumerate(selections):
+            tuplet = selection[0]
+            original_duration = inspect_(tuplet).get_duration()
+            leaves = tuplet[:]
+            leaf_count = len(leaves)
+            left_length = left_counts[selection_index]
+            left = left_classes[lefts_index:lefts_index + left_length]
+            lefts_index += left_length
+            right_length = right_counts[selection_index]
+            right = right_classes[rights_index:rights_index + right_length]
+            rights_index += right_length
+            available_left_length = leaf_count
+            left_length = min([left_length, available_left_length])
+            available_right_length = leaf_count - left_length
+            right_length = min([right_length, available_right_length])
+            middle_length = leaf_count - left_length - right_length
+            left = left[:left_length]
+            middle = middle_length * [middle_classes[selection_index]]
+            right = right[:right_length]
+            left_part, middle_part, right_part = \
+                sequencetools.partition_sequence_by_counts(
+                    leaves,
+                    [left_length, middle_length, right_length],
+                    cyclic=False,
+                    overhang=False,
+                    )
+            left_part = self._burnish_division_part(left_part, left)
+            middle_part = self._burnish_division_part(middle_part, middle)
+            right_part = self._burnish_division_part(right_part, right)
+            burnished_leaves = left_part + middle_part + right_part
+            tuplet[:] = burnished_leaves
+            assert inspect_(tuplet).get_duration() == original_duration
+
+    def _burnish_outer_selections(
+        self,
+        selections,
+        left_classes,
+        middle_classes,
+        right_classes,
+        left_counts,
+        right_counts,
+        ):
+        if len(selections) == 1:
+            self._burnish_each_selection(
+                selections,
+                left_classes,
+                middle_classes,
+                right_classes,
+                left_counts,
+                right_counts,
+                )
+            return
+        left_length = 0
+        if left_counts:
+            left_length = left_counts[0]
+        left = left_classes[:left_length]
+        right_length = 0
+        if right_counts:
+            right_length = right_counts[0]
+        right = right_classes[:right_length]
+
+        # first selection
+        tuplet = selections[0][0]
+        original_duration = inspect_(tuplet).get_duration()
+        leaves = tuplet[:]
+        available_left_length = len(leaves)
+        left_length = min([left_length, available_left_length])
+        middle_length = len(leaves) - left_length
+        left = left[:left_length]
+        if not middle_classes:
+            middle_classes = [1]
+        middle = [middle_classes[0]]
+        middle = middle_length * middle
+        left_part, middle_part = \
+            sequencetools.partition_sequence_by_counts(
+                leaves,
+                [left_length, middle_length],
+                cyclic=False,
+                overhang=False,
+                )
+        left_part = self._burnish_division_part(left_part, left)
+        middle_part = self._burnish_division_part(middle_part, middle)
+        burnished_leaves = left_part + middle_part
+        tuplet[:] = burnished_leaves
+        assert inspect_(tuplet).get_duration() == original_duration
+
+        # middle selections
+        for selection in selections[1:-1]:
+            tuplet = selection[0]
+            original_duration = inspect_(tuplet).get_duration()
+            leaves = tuplet[:]
+            middle = len(leaves) * [middle_classes[0]]
+            burnished_leaves = self._burnish_division_part(leaves, middle)
+            tuplet[:] = burnished_leaves
+            assert inspect_(tuplet).get_duration() == original_duration
+
+        # last selection
+        tuplet = selections[-1][0]
+        original_duration = inspect_(tuplet).get_duration()
+        leaves = tuplet[:]
+        available_right_length = len(leaves)
+        right_length = min([right_length, available_right_length])
+        middle_length = len(leaves) - right_length
+        right = right[:right_length]
+        middle = middle_length * [middle_classes[0]]
+        middle_part, right_part = \
+            sequencetools.partition_sequence_by_counts(
+                leaves,
+                [middle_length, right_length],
+                cyclic=False,
+                overhang=False,
+                )
+        middle_part = self._burnish_division_part(middle_part, middle)
+        right_part = self._burnish_division_part(right_part, right)
+        burnished_leaves = middle_part + right_part
+        tuplet[:] = burnished_leaves
+        assert inspect_(tuplet).get_duration() == original_duration
+
     def _make_music(self, divisions, seeds):
         #assert not seeds, repr(seeds)
         if seeds is None:
@@ -240,10 +428,152 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 tuplet.preferred_denominator = preferred_denominator
             selection = selectiontools.Selection(tuplet)
             selections.append(selection)
+        self._apply_burnish_specifier(selections, seeds)
         self._apply_beam_specifier(selections)
         return selections
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def burnish_specifier(self):
+        r'''Gets burnish specifier of rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** Forces the first leaf and the last two leaves to be
+            rests:
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                ...         left_classes=[Rest],
+                ...         left_counts=[1],
+                ...         right_classes=[Rest],
+                ...         right_counts=[2],
+                ...         outer_divisions_only=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            r8
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8 ]
+                            r8
+                            r8
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Forces the first leaf of every division to be a
+            rest:
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
+                ...         left_classes=[Rest],
+                ...         left_counts=[1],
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            r8
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            r8
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            r8
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            r8
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+        Returns burnish specifier or none.
+        '''
+        return self._burnish_specifier
 
     @property
     def denominators(self):
