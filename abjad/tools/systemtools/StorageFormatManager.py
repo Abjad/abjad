@@ -30,11 +30,11 @@ class StorageFormatManager(object):
         '''
         if not isinstance(object_two, type(object_one)):
             return False
-        if StorageFormatManager.get_positional_argument_values(object_one) != \
-            StorageFormatManager.get_positional_argument_values(object_two):
+        if (StorageFormatManager.get_positional_argument_values(object_one) !=
+            StorageFormatManager.get_positional_argument_values(object_two)):
             return False
-        if StorageFormatManager.get_keyword_argument_values(object_one) != \
-            StorageFormatManager.get_keyword_argument_values(object_two):
+        if (StorageFormatManager.get_keyword_argument_values(object_one) !=
+            StorageFormatManager.get_keyword_argument_values(object_two)):
             return False
         return True
 
