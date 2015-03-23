@@ -51,10 +51,13 @@ from abjad.tools.markuptools import Markup
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.scoretools import Chord
 from abjad.tools.scoretools import Container
+from abjad.tools.scoretools import Context
 from abjad.tools.scoretools import Measure
+from abjad.tools.scoretools import MultimeasureRest
 from abjad.tools.scoretools import Note
 from abjad.tools.scoretools import Rest
 from abjad.tools.scoretools import Score
+from abjad.tools.scoretools import Skip
 from abjad.tools.scoretools import Staff
 from abjad.tools.scoretools import StaffGroup
 from abjad.tools.scoretools import Tuplet
@@ -67,6 +70,7 @@ from abjad.tools.spannertools import Glissando
 from abjad.tools.spannertools import Hairpin
 from abjad.tools.spannertools import Slur
 from abjad.tools.spannertools import Tie
+from abjad.tools.timespantools import Timespan
 from fractions import Fraction
 
 # import some frequently used functions for direct user access
