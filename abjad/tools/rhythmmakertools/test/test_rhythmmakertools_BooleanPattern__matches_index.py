@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_rhythmmakertools_OutputMask__matches_index_01():
+def test_rhythmmakertools_BooleanPattern__matches_index_01():
 
     mask = rhythmmakertools.BooleanPattern(
         indices=[0, 1],
@@ -20,7 +20,7 @@ def test_rhythmmakertools_OutputMask__matches_index_01():
     assert not mask._matches_index(7, length)
 
 
-def test_rhythmmakertools_OutputMask__matches_index_02():
+def test_rhythmmakertools_BooleanPattern__matches_index_02():
 
     mask = rhythmmakertools.BooleanPattern(
         indices=[0, 1],
@@ -38,7 +38,7 @@ def test_rhythmmakertools_OutputMask__matches_index_02():
     assert not mask._matches_index(7, length)
 
 
-def test_rhythmmakertools_OutputMask__matches_index_03():
+def test_rhythmmakertools_BooleanPattern__matches_index_03():
 
     mask = rhythmmakertools.BooleanPattern(
         indices=[0, 1, 2, 3, 4, 5, 6, 7],
@@ -56,7 +56,7 @@ def test_rhythmmakertools_OutputMask__matches_index_03():
     assert mask._matches_index(7, length)
 
 
-def test_rhythmmakertools_OutputMask__matches_index_04():
+def test_rhythmmakertools_BooleanPattern__matches_index_04():
 
     mask = rhythmmakertools.BooleanPattern(
         indices=[0, 1, 2, 3, 4, 5, 6, 7],
@@ -74,7 +74,7 @@ def test_rhythmmakertools_OutputMask__matches_index_04():
     assert not mask._matches_index(7, length)
 
 
-def test_rhythmmakertools_OutputMask__matches_index_05():
+def test_rhythmmakertools_BooleanPattern__matches_index_05():
 
     mask = rhythmmakertools.BooleanPattern(
         indices=[-2, -1],
@@ -92,7 +92,7 @@ def test_rhythmmakertools_OutputMask__matches_index_05():
     assert not mask._matches_index(7, length)
 
 
-def test_rhythmmakertools_OutputMask__matches_index_06():
+def test_rhythmmakertools_BooleanPattern__matches_index_06():
 
     mask = rhythmmakertools.BooleanPattern(
         indices=[-2, -1],
