@@ -1,16 +1,10 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import datastructuretools
-from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import new
 
 
 class NoteRhythmMaker(RhythmMaker):
@@ -737,13 +731,13 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Masks every other division:
+            **Example 2.** Silences every other division:
 
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
                 ...     output_masks=[
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.SilenceMask(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
@@ -785,7 +779,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Masks every output division:
+            **Example 3.** Silences every output division:
 
             ::
 
