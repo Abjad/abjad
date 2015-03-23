@@ -28,7 +28,13 @@ class TieSpecifier(AbjadValueObject):
         self,
         tie_across_divisions=False,
         ):
-        assert isinstance(tie_across_divisions, (bool, tuple, list))
+        from abjad.tools import rhythmmakertools
+        prototype = (
+            bool,
+            collections.Sequence,
+            rhythmmakertools.BooleanPattern,
+            )
+        assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions
 
     ### SPECIAL METHODS ###
@@ -70,19 +76,22 @@ class TieSpecifier(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _make_ties_across_divisions(self, music):
+    def _make_ties_across_divisions(self, divisions):
+        from abjad.tools import rhythmmakertools
         if not self.tie_across_divisions:
             return
+        length = len(divisions)
         tie_across_divisions = self.tie_across_divisions
-        if not isinstance(tie_across_divisions, collections.Sequence):
+        if isinstance(tie_across_divisions, bool):
             tie_across_divisions = [tie_across_divisions]
-        tie_across_divisions = datastructuretools.CyclicTuple(
-            tie_across_divisions
-            )
-        pairs = sequencetools.iterate_sequence_nwise(music)
+        if not isinstance(tie_across_divisions,
+            rhythmmakertools.BooleanPattern):
+            tie_across_divisions = \
+                rhythmmakertools.BooleanPattern.from_sequence(
+                    tie_across_divisions)
+        pairs = sequencetools.iterate_sequence_nwise(divisions)
         for i, pair in enumerate(pairs):
-            indicator = tie_across_divisions[i]
-            if not bool(indicator):
+            if not tie_across_divisions._matches_index(i, length):
                 continue
             division_one, division_two = pair
             leaf_one = next(iterate(division_one).by_class(
