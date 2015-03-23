@@ -212,17 +212,31 @@ class RhythmMaker(AbjadValueObject):
         length = len(selections)
         output_masks = self.output_masks
         for i, selection in enumerate(selections):
-            if not any(_._matches_index(i, length) for _ in output_masks):
+            matching_output_mask = None
+            for output_mask in reversed(output_masks):
+                if output_mask._matches_index(i, length):
+                    matching_output_mask = output_mask
+                    break
+            if not matching_output_mask:
                 new_selections.append(selection)
                 continue
             duration = selection.get_duration()
-            new_selection = scoretools.make_leaves(
-                [None],
-                [duration],
-                decrease_durations_monotonically=\
-                    decrease_durations_monotonically,
-                forbidden_written_duration=forbidden_written_duration,
-                )
+            if isinstance(matching_output_mask, rhythmmakertools.SustainMask):
+                new_selection = scoretools.make_leaves(
+                    [0],
+                    [duration],
+                    decrease_durations_monotonically=\
+                        decrease_durations_monotonically,
+                    forbidden_written_duration=forbidden_written_duration,
+                    )
+            else:
+                new_selection = scoretools.make_leaves(
+                    [None],
+                    [duration],
+                    decrease_durations_monotonically=\
+                        decrease_durations_monotonically,
+                    forbidden_written_duration=forbidden_written_duration,
+                    )
             for component in iterate(selection).by_class():
                 detach(spannertools.Tie, component)
             new_selections.append(new_selection)
