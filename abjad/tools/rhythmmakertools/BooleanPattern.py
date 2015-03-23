@@ -97,6 +97,34 @@ class BooleanPattern(AbjadValueObject):
                         return True
         return False
 
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_sequence(cls, sequence):
+        r'''Creates a boolean pattern from a sequence.
+
+        ..  container:: example
+
+            ::
+
+                >>> mask = [1, 0, 0, 1, 1]
+                >>> mask = rhythmmakertools.BooleanPattern.from_sequence(mask)
+                >>> print(format(mask))
+                rhythmmakertools.BooleanPattern(
+                    indices=(0, 3, 4),
+                    period=5,
+                    )
+
+        Returns boolean sequence.
+        '''
+        sequence = [bool(_) for _ in sequence]
+        period = len(sequence)
+        indices = [i for i, x in enumerate(sequence) if x]
+        return cls(
+            period=period,
+            indices=indices,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
