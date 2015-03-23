@@ -2,7 +2,7 @@
 
 
 def mask_none():
-    r'''Makes boolean pattern equal to all ones.
+    r'''Makes silence mask equal to all ones.
 
     ..  container:: example
 
@@ -15,7 +15,7 @@ def mask_none():
         ::
 
             >>> print(format(mask))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.SilenceMask(
                 indices=(),
                 period=1,
                 )
@@ -36,7 +36,7 @@ def mask_none():
             >>> print(format(maker))
             rhythmmakertools.NoteRhythmMaker(
                 output_masks=(
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.SilenceMask(
                         indices=(),
                         period=1,
                         ),
@@ -47,7 +47,7 @@ def mask_none():
     '''
     from abjad.tools import rhythmmakertools
 
-    return rhythmmakertools.BooleanPattern(
+    return rhythmmakertools.SilenceMask(
         indices=[],
         period=1,
         )
