@@ -599,7 +599,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...         beam_each_division=False,
                 ...         ),
                 ...     output_masks=[
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.SilenceMask(
                 ...             indices=[1],
                 ...             period=2,
                 ...             ),
