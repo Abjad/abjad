@@ -173,7 +173,6 @@ def test_rhythmmakertools_BooleanPattern__matches_index_10():
 
     length = 10
     assert not mask._matches_index(0, length)
-
     assert not mask._matches_index(1, length)
     assert mask._matches_index(2, length)
     assert mask._matches_index(3, length)
@@ -182,6 +181,5 @@ def test_rhythmmakertools_BooleanPattern__matches_index_10():
     assert mask._matches_index(6, length)
     assert not mask._matches_index(7, length)
     assert mask._matches_index(8, length)
-
     assert not mask._matches_index(9, length)
     assert not mask._matches_index(10, length)
