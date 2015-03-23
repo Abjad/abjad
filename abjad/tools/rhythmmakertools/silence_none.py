@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 
-def mask_all():
-    r'''Makes silence mask equal to all zeros.
+def silence_none():
+    r'''Makes silence mask equal to all ones.
 
     ..  container:: example
 
@@ -10,23 +10,23 @@ def mask_all():
 
         ::
 
-            >>> mask = rhythmmakertools.mask_all()
+            >>> mask = rhythmmakertools.silence_none()
 
         ::
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(0,),
+                indices=(),
                 period=1,
                 )
 
     ..  container:: example
 
-        **Example 2.** Makes rest rhythm-maker:
+        **Example 2.** Makes note rhythm-maker. Effectively applies no mask:
 
         ::
 
-            >>> mask = rhythmmakertools.mask_all()
+            >>> mask = rhythmmakertools.silence_none()
             >>> maker = rhythmmakertools.NoteRhythmMaker(
             ...     output_masks=[mask],
             ...     )
@@ -37,7 +37,7 @@ def mask_all():
             rhythmmakertools.NoteRhythmMaker(
                 output_masks=(
                     rhythmmakertools.SilenceMask(
-                        indices=(0,),
+                        indices=(),
                         period=1,
                         ),
                     ),
@@ -48,6 +48,6 @@ def mask_all():
     from abjad.tools import rhythmmakertools
 
     return rhythmmakertools.SilenceMask(
-        indices=[0],
+        indices=[],
         period=1,
         )

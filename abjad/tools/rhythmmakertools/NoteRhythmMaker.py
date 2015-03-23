@@ -790,7 +790,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     output_masks=[rhythmmakertools.mask_all()],
+                ...     output_masks=[rhythmmakertools.silence_all()],
                 ...     )
 
             ::
