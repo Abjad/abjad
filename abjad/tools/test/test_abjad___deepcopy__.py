@@ -9,6 +9,7 @@ from abjad.tools import quantizationtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
 from abjad.tools import systemtools
+from abjad.tools import tonalanalysistools
 
 
 # TODO: make these work
@@ -21,6 +22,7 @@ _classes_to_fix = (
     quantizationtools.ParallelJobHandlerWorker,
     rhythmtreetools.RhythmTreeParser,
     systemtools.RedirectedStreams,
+    tonalanalysistools.RootedChordClass
     )
 
 classes = documentationtools.list_all_abjad_classes()

@@ -35,6 +35,7 @@ _classes_to_fix = (
     systemtools.LilyPondFormatBundle.SlotContributions,
     systemtools.RedirectedStreams,
     tonalanalysistools.TonalAnalysisAgent,
+    tonalanalysistools.RootedChordClass
     )
 
 classes = documentationtools.list_all_abjad_classes()
