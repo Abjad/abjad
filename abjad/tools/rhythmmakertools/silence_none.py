@@ -35,11 +35,13 @@ def silence_none():
 
             >>> print(format(maker))
             rhythmmakertools.NoteRhythmMaker(
-                output_masks=(
-                    rhythmmakertools.SilenceMask(
-                        indices=(),
-                        period=1,
-                        ),
+                output_masks=rhythmmakertools.BooleanPatternInventory(
+                    (
+                        rhythmmakertools.SilenceMask(
+                            indices=(),
+                            period=1,
+                            ),
+                        )
                     ),
                 )
 

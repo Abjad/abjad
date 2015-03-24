@@ -10,7 +10,6 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import new
 
 
 class RhythmMaker(AbjadValueObject):
@@ -50,9 +49,11 @@ class RhythmMaker(AbjadValueObject):
         self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
         if output_masks is not None:
-            output_masks = tuple(output_masks)
-            prototype = rhythmmakertools.BooleanPattern
-            assert (isinstance(_, prototype) for _ in output_masks)
+            if isinstance(output_masks, rhythmmakertools.BooleanPattern):
+                output_masks = (output_masks,)
+            output_masks = rhythmmakertools.BooleanPatternInventory(
+                items=output_masks,
+                )
         self._output_masks = output_masks
         prototype = (rhythmmakertools.TieSpecifier, type(None))
         assert isinstance(tie_specifier, prototype)
@@ -212,11 +213,7 @@ class RhythmMaker(AbjadValueObject):
         length = len(selections)
         output_masks = self.output_masks
         for i, selection in enumerate(selections):
-            matching_output_mask = None
-            for output_mask in reversed(output_masks):
-                if output_mask._matches_index(i, length):
-                    matching_output_mask = output_mask
-                    break
+            matching_output_mask = output_masks.get_matching_pattern(i, length)            
             if not matching_output_mask:
                 new_selections.append(selection)
                 continue
