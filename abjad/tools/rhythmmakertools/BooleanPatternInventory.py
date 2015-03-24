@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.datastructuretools.TypedList import TypedList
+from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
-class BooleanPatternInventory(TypedList):
+class BooleanPatternInventory(TypedTuple):
     r'''An ordered list of boolean patterns.
 
     ::
@@ -17,7 +17,7 @@ class BooleanPatternInventory(TypedList):
 
         >>> print(format(inventory))
         rhythmmakertools.BooleanPatternInventory(
-            [
+            (
                 rhythmmakertools.BooleanPattern(
                     indices=(0, 1, 7),
                     period=10,
@@ -31,7 +31,7 @@ class BooleanPatternInventory(TypedList):
                     start=1,
                     stop=-1,
                     ),
-                ]
+                )
             )
 
     '''
