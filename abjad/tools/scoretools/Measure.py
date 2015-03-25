@@ -191,6 +191,15 @@ class Measure(FixedDurationContainer):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _compact_representation(self):
+        if not self:
+            return '| {!s} |'.format(self.time_signature)
+        return '| {!s} {} |'.format(
+            self.time_signature,
+            self._contents_summary,
+            )
+
+    @property
     def _lilypond_format(self):
         self._check_duration()
         return self._format_component()

@@ -143,12 +143,20 @@ class Container(Component):
             return duration
 
     @property
+    def _compact_representation(self):
+        if not self:
+            return '{ }'
+        return '{{ {} }}'.format(self._contents_summary)
+
+    @property
     def _contents_summary(self):
         if 0 < len(self):
             result = []
             for x in self._music:
                 if hasattr(x, '_compact_representation_with_tie'):
                     result.append(x._compact_representation_with_tie)
+                elif hasattr(x, '_compact_representation'):
+                    result.append(x._compact_representation)
                 else:
                     result.append(str(x))
             return ' '.join(result)
