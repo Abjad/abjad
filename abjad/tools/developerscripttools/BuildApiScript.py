@@ -350,7 +350,7 @@ class BuildApiScript(DeveloperScript):
             action='store_true',
             help='build the experimental API'
             )
-        parser.add_argument('-S', '--ide',
+        parser.add_argument('-I', '--ide',
             action='store_true',
             help='build the Abjad IDE API'
             )

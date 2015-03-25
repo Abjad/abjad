@@ -10,34 +10,41 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class TimeSignature(AbjadValueObject):
     r'''A time signature.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> time_signature = TimeSignature((4, 8))
-        >>> attach(time_signature, staff[0])
-        >>> show(staff) # doctest: +SKIP
+        **Example 1.** Initializes from an integer pair:
 
-    ..  doctest::
+        ::
 
-        >>> print(format(staff))
-        \new Staff {
-            \time 4/8
-            c'8
-            d'8
-            e'8
-            f'8
-        }
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> time_signature = TimeSignature((4, 8))
+            >>> attach(time_signature, staff[0])
+            >>> show(staff) # doctest: +SKIP
 
-    Time signatures are scoped to the **staff** by default.
+        ..  doctest::
 
-    Set the scope of time signatures to the **score** like this:
+            >>> print(format(staff))
+            \new Staff {
+                \time 4/8
+                c'8
+                d'8
+                e'8
+                f'8
+            }
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> time_signature = TimeSignature((4, 8))
-        >>> attach(time_signature, staff[0], scope=Score)
-        >>> show(staff) # doctest: +SKIP
+        **Example 2.** Sets the scope of time signatures to the 
+        **score** context:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> time_signature = TimeSignature((4, 8))
+            >>> attach(time_signature, staff[0], scope=Score)
+            >>> show(staff) # doctest: +SKIP
+
+        Time signatures are scoped to the **staff** context by default.
 
     '''
 
@@ -76,8 +83,8 @@ class TimeSignature(AbjadValueObject):
             numerator, denominator = args[0].numerator, args[0].denominator
         elif len(args) == 1 and isinstance(args[0], tuple):
             numerator, denominator = args[0][0], args[0][1]
-        elif len(args) == 1 and hasattr(args[0], 'numerator') and \
-            hasattr(args[0], 'denominator'):
+        elif (len(args) == 1 and hasattr(args[0], 'numerator') and
+            hasattr(args[0], 'denominator')):
             numerator, denominator = args[0].numerator, args[0].denominator
         else:
             message = 'invalid time_signature initialization: {!r}.'
@@ -107,6 +114,53 @@ class TimeSignature(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __add__(self, arg):
+        r'''Adds time signature to `arg`.
+
+        ..  container:: example
+
+            **Example 1.** Adds two time signatures with the same denominator:
+
+            >>> TimeSignature((3, 4)) + TimeSignature((3, 4))
+            TimeSignature((6, 4))
+
+        ..  container:: example
+
+            **Example 2.** Adds two time signatures with different
+            denominators:
+
+            >>> TimeSignature((3, 4)) + TimeSignature((6, 8))
+            TimeSignature((12, 8))
+
+            Returns new time signature in terms of greatest denominator.
+
+        ..  container:: example
+
+            **Example 3.** Adds time signature to an integer:
+
+            >>> TimeSignature((3, 4)) + 1
+            TimeSignature((7, 4))
+
+            Coerces integer to ``1/1``.
+
+        Returns new time signature.
+        '''
+        arg = type(self)(arg)
+        nonreduced_1 = mathtools.NonreducedFraction(
+            self.numerator,
+            self.denominator,
+            )
+        nonreduced_2 = mathtools.NonreducedFraction(
+            arg.numerator,
+            arg.denominator,
+            )
+        result = nonreduced_1 + nonreduced_2
+        result = type(self)((
+            result.numerator,
+            result.denominator,
+            ))
+        return result
+
     def __copy__(self, *args):
         r'''Copies time signature.
 
@@ -118,16 +172,16 @@ class TimeSignature(AbjadValueObject):
             )
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a time signature with numerator and denominator
-        equal to this time signature. Also true when `arg` is a tuple with
-        first and second elements equal to numerator and denominator of this
-        time signature. Otherwise false.
+        r'''Is true when `arg` is a time signature with numerator and 
+        denominator equal to this time signature. Also true when `arg` is a 
+        tuple with first and second elements equal to numerator and denominator
+        of this time signature. Otherwise false.
 
         Returns boolean.
         '''
         if isinstance(arg, type(self)):
-            return self.numerator == arg.numerator and \
-                self.denominator == arg.denominator
+            return (self.numerator == arg.numerator and
+                self.denominator == arg.denominator)
         elif isinstance(arg, tuple):
             return self.numerator == arg[0] and self.denominator == arg[1]
         else:
@@ -202,6 +256,22 @@ class TimeSignature(AbjadValueObject):
             return self.duration < arg.duration
         else:
             raise TypeError
+
+    def __radd__(self, arg):
+        r'''Adds `arg` to time signature.
+
+        ..  container:: example
+
+            **Example 1.** Adds integer to time signature:
+
+            >>> 1 + TimeSignature((3, 4))
+            TimeSignature((7, 4))
+
+            Coerces integer to ``1/1``.
+
+        Returns new time signature.
+        '''
+        return self.__add__(arg)
 
     def __str__(self):
         r'''String representation of time signature.
