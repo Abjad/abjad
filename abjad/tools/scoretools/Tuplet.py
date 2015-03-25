@@ -133,6 +133,12 @@ class Tuplet(Container):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _compact_representation(self):
+        if not self:
+            return '{{ {!s} }}'.format(self.multiplier)
+        return '{{ {!s} {} }}'.format(self.multiplier, self._contents_summary)
+
+    @property
     def _has_power_of_two_denominator(self):
         if self.multiplier:
             return mathtools.is_nonnegative_integer_power_of_two(
