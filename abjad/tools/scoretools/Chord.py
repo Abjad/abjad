@@ -127,6 +127,14 @@ class Chord(Leaf):
         return '<{}>{}'.format(self._summary, self._formatted_duration)
 
     @property
+    def _compact_representation_with_tie(self):
+        logical_tie = self._get_logical_tie()
+        if 1 < len(logical_tie) and not self is logical_tie[-1]:
+            return '{} ~'.format(self._body[0])
+        else:
+            return self._body[0]
+
+    @property
     def _lilypond_format(self):
         return super(Chord, self)._lilypond_format
 
@@ -224,7 +232,6 @@ class Chord(Leaf):
         return result
 
     def _format_leaf_nucleus(self):
-        from abjad.tools import scoretools
         from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
         result = []
@@ -248,7 +255,6 @@ class Chord(Leaf):
                 durated_pitches.append(durated_pitch)
             tremolo = inspect_(self).get_indicator(indicatortools.Tremolo)
             if tremolo.is_slurred:
-                first_pitch = durated_pitches[0]
                 durated_pitches[0] = durated_pitches[0] + r' \('
                 durated_pitches[-1] = durated_pitches[-1] + r' \)'
             result = ' '.join(durated_pitches)
