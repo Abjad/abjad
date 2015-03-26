@@ -7,28 +7,32 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 class CyclicTuple(AbjadObject, tuple):
     '''A cylic tuple.
 
-    ::
+    ..  container:: example
 
-        >>> cyclic_tuple = datastructuretools.CyclicTuple('abcd')
+        **Example 1.** Initializes from string:
 
-    ::
+        ::
 
-        >>> cyclic_tuple
-        CyclicTuple(['a', 'b', 'c', 'd'])
+            >>> cyclic_tuple = datastructuretools.CyclicTuple('abcd')
 
-    ::
+        ::
 
-        >>> for x in range(8):
-        ...     print(x, cyclic_tuple[x])
-        ... 
-        0 a
-        1 b
-        2 c
-        3 d
-        4 a
-        5 b
-        6 c
-        7 d
+            >>> cyclic_tuple
+            CyclicTuple(['a', 'b', 'c', 'd'])
+
+        ::
+
+            >>> for x in range(8):
+            ...     print(x, cyclic_tuple[x])
+            ... 
+            0 a
+            1 b
+            2 c
+            3 d
+            4 a
+            5 b
+            6 c
+            7 d
 
     Cyclic tuples overload the item-getting method of built-in tuples.
 
