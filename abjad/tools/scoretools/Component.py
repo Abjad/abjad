@@ -181,6 +181,13 @@ class Component(AbjadObject):
             name_dictionary[self.name].append(self)
         return name_dictionary
 
+    def _check_for_cycles(self, components):
+        parentage = self._get_parentage()
+        for component in components:
+            if component in parentage:
+                return True
+        return False
+
     def _copy_with_children_and_indicators_but_without_spanners(self):
         return self._copy_with_indicators_but_without_children_or_spanners()
 
