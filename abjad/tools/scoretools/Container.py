@@ -396,7 +396,7 @@ class Container(Component):
                 message = 'must attach grace container to note or chord.'
                 raise Exception(message)
             if self._check_for_cycles([expr]):
-                raise ParentageError
+                raise ParentageError('Attempted to induce cycles.')
             old = self[i]
             selection = selectiontools.ContiguousSelection(old)
             spanners_receipt = selection._get_dominant_spanners()
@@ -438,7 +438,7 @@ class Container(Component):
                 message = 'must attach grace container to note or chord.'
                 raise Exception(message)
             if self._check_for_cycles(expr):
-                raise ParentageError
+                raise ParentageError('Attempted to induce cycles.')
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
                 start, stop = 0, 0
