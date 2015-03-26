@@ -39,8 +39,19 @@ class Context(Container):
 
     ### INITIALIZER ###
 
-    def __init__(self, music=None, context_name='Context', name=None):
-        Container.__init__(self, music=music, name=name)
+    def __init__(
+        self,
+        music=None,
+        context_name='Context',
+        is_simultaneous=None,
+        name=None,
+        ):
+        Container.__init__(
+            self,
+            is_simultaneous=is_simultaneous,
+            music=music,
+            name=name,
+            )
         self.context_name = context_name
         self._consists_commands = []
         self._remove_commands = []
