@@ -775,8 +775,42 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Metrical hiearchy with durations that increase
-            monotonically:
+            **Example 1.** An asymmetric meter with beats arranged greatest to
+            least:
+
+            ::
+
+                >>> meter = metertools.Meter(
+                ...     (7, 4),
+                ...     decrease_durations_monotonically=True,
+                ...     )
+
+            ::
+
+                >>> meter.decrease_durations_monotonically
+                True
+
+            ::
+
+                >>> print(meter.pretty_rtm_format)
+                (7/4 (
+                    (3/4 (
+                        1/4
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))))
+
+            This is default beahvior.
+
+        ..  container:: example
+
+            **Example 2.** The same asymmetric meter with unequal beats 
+            arranged least to greatest:
 
             ::
 
@@ -805,37 +839,6 @@ class Meter(AbjadObject):
                         1/4
                         1/4))))
 
-        ..  container:: example
-
-            **Example 2.** Meter with durations that
-            decrease monotonically:
-
-            ::
-
-                >>> meter = \
-                ...     metertools.Meter((7, 4),
-                ...     decrease_durations_monotonically=True)
-
-            ::
-
-                >>> meter.decrease_durations_monotonically
-                True
-
-            ::
-
-                >>> print(meter.pretty_rtm_format)
-                (7/4 (
-                    (3/4 (
-                        1/4
-                        1/4
-                        1/4))
-                    (2/4 (
-                        1/4
-                        1/4))
-                    (2/4 (
-                        1/4
-                        1/4))))
-
         Returns boolean.
         '''
         return self._decrease_durations_monotonically
@@ -848,6 +851,7 @@ class Meter(AbjadObject):
 
             ::
 
+                >>> meter = metertools.Meter((7, 4))
                 >>> meter.denominator
                 4
 
@@ -891,8 +895,6 @@ class Meter(AbjadObject):
 
                 >>> meter.duration
                 Duration(7, 4)
-
-        ..  todo:: rename to just ``duration``.
 
         Returns duration.
         '''
