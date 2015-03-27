@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def silence_all():
+def silence_all(use_multimeasure_rests=None):
     r'''Makes silence mask equal to all zeros.
 
     ..  container:: example
@@ -45,6 +45,34 @@ def silence_all():
                     ),
                 )
 
+    ..  container:: example
+
+        **Example 3.** Makes rest rhythm-maker with multimeasure rests:
+
+        ::
+
+            >>> mask = rhythmmakertools.silence_all(
+            ...     use_multimeasure_rests=True,
+            ...     )
+            >>> maker = rhythmmakertools.NoteRhythmMaker(
+            ...     output_masks=[mask],
+            ...     )
+
+        ::
+
+            >>> print(format(maker))
+            rhythmmakertools.NoteRhythmMaker(
+                output_masks=rhythmmakertools.BooleanPatternInventory(
+                    (
+                        rhythmmakertools.SilenceMask(
+                            indices=(0,),
+                            period=1,
+                            use_multimeasure_rests=True,
+                            ),
+                        )
+                    ),
+                )
+
     Returns boolean pattern.
     '''
     from abjad.tools import rhythmmakertools
@@ -52,4 +80,5 @@ def silence_all():
     return rhythmmakertools.SilenceMask(
         indices=[0],
         period=1,
+        use_multimeasure_rests=use_multimeasure_rests,
         )
