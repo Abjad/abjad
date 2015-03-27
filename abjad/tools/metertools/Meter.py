@@ -932,23 +932,6 @@ class Meter(AbjadObject):
         return self._numerator
 
     @property
-    def preprolated_duration(self):
-        r'''Gets preprolated duration of meter.
-
-        ..  container:: example
-
-            ::
-
-                >>> meter.preprolated_duration
-                Duration(7, 4)
-
-        ..  todo:: rename to just ``duration``.
-
-        Returns duration.
-        '''
-        return durationtools.Duration(self.numerator, self.denominator)
-
-    @property
     def pretty_rtm_format(self):
         r'''Gets pretty RTM format of meter.
 
