@@ -26,4 +26,77 @@ class SilenceMask(BooleanPattern):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_use_multimeasure_rests',
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        indices=None,
+        period=None,
+        start=None,
+        stop=None,
+        use_multimeasure_rests=None,
+        ):
+        superclass = super(SilenceMask, self)
+        superclass.__init__(
+            indices=indices,
+            period=period,
+            start=start,
+            stop=stop,
+            )
+        if use_multimeasure_rests is not None:
+            assert isinstance(use_multimeasure_rests, type(True))
+        self._use_multimeasure_rests = use_multimeasure_rests
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def use_multimeasure_rests(self):
+        r'''Is true when silence mask should use multimeasure rests.
+
+        ..  container:: example
+
+            **Example 1.** Without multimeasure rests:
+
+            ::
+
+                >>> mask = rhythmmakertools.SilenceMask(
+                ...     indices=[0, 1, 7],
+                ...     period=16,
+                ...     start=1,
+                ...     stop=-1,
+                ...     use_multimeasure_rests=False,
+                ...     )
+
+            ::
+
+                >>> mask.use_multimeasure_rests
+                False
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** With multimeasure rests:
+
+            ::
+
+                >>> mask = rhythmmakertools.SilenceMask(
+                ...     indices=[0, 1, 7],
+                ...     period=16,
+                ...     start=1,
+                ...     stop=-1,
+                ...     use_multimeasure_rests=True,
+                ...     )
+
+            ::
+
+                >>> mask.use_multimeasure_rests
+                True
+
+        Set to true, false or none.
+        '''
+        return self._use_multimeasure_rests
