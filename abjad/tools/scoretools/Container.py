@@ -376,10 +376,8 @@ class Container(Component):
         constitutes a composer-unsafe use of this method.
         Only private methods should set this keyword.
         '''
-        from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools import spannertools
         # cache indicators attached to components in expr
         expr_indicators = []
         for component in iterate(expr).by_class():
@@ -391,32 +389,11 @@ class Container(Component):
                 expr = self._parse_string(expr)[:]
                 assert len(expr) == 1, repr(expr)
                 expr = expr[0]
-            assert all(isinstance(x, scoretools.Component) for x in [expr])
-            if any(isinstance(x, scoretools.GraceContainer) for x in [expr]):
-                message = 'must attach grace container to note or chord.'
-                raise Exception(message)
-            if self._check_for_cycles([expr]):
-                raise ParentageError('Attempted to induce cycles.')
-            old = self[i]
-            selection = selectiontools.ContiguousSelection(old)
-            spanners_receipt = selection._get_dominant_spanners()
-            for child in iterate([old]).by_class():
-                for spanner in child._get_spanners():
-                    spanner._remove(child)
+            else:
+                expr = [expr]
             if i < 0:
                 i = len(self) + i
-            del(self[i])
-            # must withdraw from spanners before withdrawing from parentage!
-            # otherwise begin / end assessments don't work!
-            if withdraw_components_in_expr_from_crossing_spanners:
-                selection = selectiontools.SliceSelection([expr])
-                selection._withdraw_from_crossing_spanners()
-            expr._set_parent(self)
-            self._music.insert(i, expr)
-            for spanner, index in spanners_receipt:
-                spanner._insert(index, expr)
-                expr._spanners.add(spanner)
-        # slice assignment
+            i = slice(i, i + 1)
         else:
             if isinstance(expr, str):
                 expr = self._parse_string(expr)[:]
@@ -424,48 +401,51 @@ class Container(Component):
                 len(expr) == 1 and \
                 isinstance(expr[0], str):
                 expr = self._parse_string(expr[0])[:]
-            prototype = (scoretools.Component, selectiontools.Selection)
-            assert all(isinstance(x, prototype) for x in expr)
-            new_expr = []
-            for item in expr:
-                if isinstance(item, selectiontools.Selection):
-                    new_expr.extend(item)
-                else:
-                    new_expr.append(item)
-            expr = new_expr
-            assert all(isinstance(x, scoretools.Component) for x in expr)
-            if any(isinstance(x, scoretools.GraceContainer) for x in expr):
-                message = 'must attach grace container to note or chord.'
-                raise Exception(message)
-            if self._check_for_cycles(expr):
-                raise ParentageError('Attempted to induce cycles.')
-            if i.start == i.stop and i.start is not None \
-                and i.stop is not None and i.start <= -len(self):
-                start, stop = 0, 0
+
+        prototype = (scoretools.Component, selectiontools.Selection)
+        assert all(isinstance(x, prototype) for x in expr)
+
+        new_expr = []
+        for item in expr:
+            if isinstance(item, selectiontools.Selection):
+                new_expr.extend(item)
             else:
-                start, stop, stride = i.indices(len(self))
-            old = self[start:stop]
-            spanners_receipt = self._get_spanners_that_dominate_slice(
-                start, stop)
-            for component in old:
-                for child in iterate([component]).by_class():
-                    for spanner in child._get_spanners():
-                        spanner._remove(child)
-            del(self[start:stop])
-            # must withdraw before setting in self!
-            # otherwise circular withdraw ensues!
-            if withdraw_components_in_expr_from_crossing_spanners:
-                selection = selectiontools.SliceSelection(expr)
-                if selection._all_are_contiguous_components_in_same_logical_voice(
-                    selection):
-                    selection._withdraw_from_crossing_spanners()
-            self._music.__setitem__(slice(start, start), expr)
-            for component in expr:
-                component._set_parent(self)
-            for spanner, index in spanners_receipt:
-                for component in reversed(expr):
-                    spanner._insert(index, component)
-                    component._spanners.add(spanner)
+                new_expr.append(item)
+        expr = new_expr
+
+        assert all(isinstance(x, scoretools.Component) for x in expr)
+        if any(isinstance(x, scoretools.GraceContainer) for x in expr):
+            message = 'must attach grace container to note or chord.'
+            raise Exception(message)
+        if self._check_for_cycles(expr):
+            raise ParentageError('Attempted to induce cycles.')
+        if i.start == i.stop and i.start is not None \
+            and i.stop is not None and i.start <= -len(self):
+            start, stop = 0, 0
+        else:
+            start, stop, stride = i.indices(len(self))
+        old = self[start:stop]
+        spanners_receipt = self._get_spanners_that_dominate_slice(
+            start, stop)
+        for component in old:
+            for child in iterate([component]).by_class():
+                for spanner in child._get_spanners():
+                    spanner._remove(child)
+        del(self[start:stop])
+        # must withdraw before setting in self!
+        # otherwise circular withdraw ensues!
+        if withdraw_components_in_expr_from_crossing_spanners:
+            selection = selectiontools.SliceSelection(expr)
+            if selection._all_are_contiguous_components_in_same_logical_voice(
+                selection):
+                selection._withdraw_from_crossing_spanners()
+        self._music.__setitem__(slice(start, start), expr)
+        for component in expr:
+            component._set_parent(self)
+        for spanner, index in spanners_receipt:
+            for component in reversed(expr):
+                spanner._insert(index, component)
+                component._spanners.add(spanner)
         for indicator in expr_indicators:
             if hasattr(indicator, '_update_effective_context'):
                 indicator._update_effective_context()
