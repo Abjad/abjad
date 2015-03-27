@@ -1383,7 +1383,8 @@ class MutationAgent(abctools.AbjadObject):
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             d'16
-                            e'8.
+                            e'8 ~
+                            e'16
                             f'16 ~
                         }
                     }
@@ -1398,8 +1399,7 @@ class MutationAgent(abctools.AbjadObject):
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools.metertools._rewrite_meter \
-            import _rewrite_meter
+        from abjad.tools.metertools._rewrite_meter import _rewrite_meter
         selection = self._client
         if isinstance(selection, scoretools.Container):
             selection = selection[:]

@@ -156,17 +156,20 @@ class Meter(AbjadObject):
             >>> meter = metertools.Meter((5, 4))
             >>> print(meter.pretty_rtm_format)
             (5/4 (
-                1/4
-                1/4
-                1/4
-                1/4
-                1/4))
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))))
 
         ::
 
             >>> graph(meter) # doctest: +SKIP
 
-        `5/4` comprises five beats.
+        `5/4` comprises two unequal beats. By default unequal beats
+        are arranged from greatest to least.
 
     ..  container:: example
 
@@ -253,8 +256,10 @@ class Meter(AbjadObject):
             ):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                preprolated_duration = node.preprolated_duration.__div__(factor)
-                if factor in (2, 3, 4, 5):
+                preprolated_duration = \
+                    node.preprolated_duration.__div__(factor)
+                #if factor in (2, 3, 4, 5):
+                if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
                             child = rhythmtreetools.RhythmTreeContainer(
@@ -326,8 +331,8 @@ class Meter(AbjadObject):
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
 
-        elif isinstance(arg, (tuple, scoretools.Measure)) or \
-            (hasattr(arg, 'numerator') and hasattr(arg, 'denominator')):
+        elif (isinstance(arg, (tuple, scoretools.Measure)) or
+            (hasattr(arg, 'numerator') and hasattr(arg, 'denominator'))):
             if isinstance(arg, tuple):
                 fraction = mathtools.NonreducedFraction(arg)
             elif isinstance(arg, scoretools.Measure):
@@ -633,8 +638,10 @@ class Meter(AbjadObject):
             (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
             (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
             (NonreducedFraction(2, 4), NonreducedFraction(3, 4))
+            (NonreducedFraction(0, 4), NonreducedFraction(3, 4))
             (NonreducedFraction(3, 4), NonreducedFraction(4, 4))
             (NonreducedFraction(4, 4), NonreducedFraction(5, 4))
+            (NonreducedFraction(3, 4), NonreducedFraction(5, 4))
             (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
 
         Yields pairs.

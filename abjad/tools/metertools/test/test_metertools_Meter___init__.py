@@ -34,7 +34,7 @@ def test_metertools_Meter___init___05():
 
     time_signature = TimeSignature((5, 8))
     assert metertools.Meter(time_signature).rtm_format == \
-        '(5/8 (1/8 1/8 1/8 1/8 1/8))'
+        '(5/8 ((3/8 (1/8 1/8 1/8)) (2/8 (1/8 1/8))))'
 
 
 def test_metertools_Meter___init___06():
@@ -55,8 +55,7 @@ def test_metertools_Meter___init___08():
 
     time_signature = TimeSignature((10, 4))
     assert metertools.Meter(time_signature).rtm_format == \
-        '(10/4 ((5/4 (1/4 1/4 1/4 1/4 1/4)) (5/4 (1/4 1/4 1/4 1/4 1/4))))'
-
+        '(10/4 ((5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)))) (5/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4))))))'
 
 def test_metertools_Meter___init___09():
 
