@@ -204,8 +204,8 @@ class RhythmMaker(AbjadValueObject):
         if not self.output_masks:
             return selections
         new_selections = []
-        duration_spelling_specifier = self.duration_spelling_specifier or \
-            rhythmmakertools.DurationSpellingSpecifier()
+        duration_spelling_specifier = (self.duration_spelling_specifier or
+            rhythmmakertools.DurationSpellingSpecifier())
         decrease_durations_monotonically = \
             duration_spelling_specifier.decrease_durations_monotonically
         forbidden_written_duration = \
@@ -227,12 +227,23 @@ class RhythmMaker(AbjadValueObject):
                     forbidden_written_duration=forbidden_written_duration,
                     )
             else:
+                prototype = (
+                    rhythmmakertools.SilenceMask,
+                    rhythmmakertools.BooleanPattern,
+                    )
+                assert isinstance(matching_output_mask, prototype)
+                use_multimeasure_rests = getattr(
+                    matching_output_mask,
+                    'use_multimeasure_rests',
+                    False,
+                    )
                 new_selection = scoretools.make_leaves(
                     [None],
                     [duration],
                     decrease_durations_monotonically=\
                         decrease_durations_monotonically,
                     forbidden_written_duration=forbidden_written_duration,
+                    use_multimeasure_rests=use_multimeasure_rests,
                     )
             for component in iterate(selection).by_class():
                 detach(spannertools.Tie, component)
