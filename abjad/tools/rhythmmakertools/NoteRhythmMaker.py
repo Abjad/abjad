@@ -91,6 +91,8 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
+            **Example 1.** Calls rhythm-maker on divisions:
+
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
@@ -309,6 +311,135 @@ class NoteRhythmMaker(RhythmMaker):
 
     ### PUBLIC PROPERTIES ###
 
+    @property
+    def beam_specifier(self):
+        r'''Gets beam specifier of note rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** Beams each division:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_each_division=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 32), (5, 32)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/32
+                        c'8 ~ [
+                        c'32 ]
+                    }
+                    {
+                        c'8 ~ [
+                        c'32 ]
+                    }
+                }
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Beams divisions together:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_divisions_together=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 32), (5, 32)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/32
+                        c'8 ~ [
+                        c'32 ]
+                    }
+                    {
+                        c'8 ~ [
+                        c'32 ]
+                    }
+                }
+
+            .. todo:: Example should beam divisions together.
+
+        ..  container:: example
+
+            **Example 3.** Makes no beams:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_divisions_together=False,
+                ...         beam_each_division=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 32), (5, 32)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/32
+                        c'8 ~ [
+                        c'32 ]
+                    }
+                    {
+                        c'8 ~ [
+                        c'32 ]
+                    }
+                }
+
+            .. todo:: Example should make no beams.
+
+        Returns beam specifier.
+        '''
+        self._beam_specifier
+    
     @property
     def burnish_specifier(self):
         r'''Gets burnish specifier of note rhythm-maker.
@@ -587,8 +718,8 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Spells metrically all divisions metrically
-            when `spell_metrically` is true:
+            **Example 3.** Spells all divisions metrically when 
+            `spell_metrically` is true:
 
             ::
 
@@ -634,7 +765,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4.** Spells unassignable durations metrically when
+            **Example 4.** Spells only unassignable durations metrically when
             `spell_metrically` is ``'unassignable'``:
 
             ::
