@@ -5,6 +5,7 @@ from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import attach
 
 
 def make_leaves(
@@ -14,6 +15,7 @@ def make_leaves(
     forbidden_written_duration=None,
     is_diminution=True,
     metrical_hiearchy=None,
+    use_multimeasure_rests=False,
     ):
     r'''Makes leaves.
 
@@ -357,6 +359,46 @@ def make_leaves(
                 }
             }
 
+    ..  container:: example
+
+        **Example 14.** None-valued elements in `pitches` result in
+        multimeasure rests when the multimeasure rest keyword is set:
+
+        ::
+
+            >>> pitches = [None]
+            >>> durations = [Duration(3, 8), Duration(5, 8)]
+            >>> leaves = scoretools.make_leaves(
+            ...     pitches,
+            ...     durations,
+            ...     use_multimeasure_rests=True,
+            ...     )
+            >>> leaves
+            Selection(MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8'))
+
+        ::
+
+            >>> staff = Staff([
+            ...     Measure((3, 8), [leaves[0]]),
+            ...     Measure((5, 8), [leaves[1]]),
+            ...     ])
+            >>> staff.context_name = 'RhythmicStaff'
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new RhythmicStaff {
+                {
+                    \time 3/8
+                    R1 * 3/8
+                }
+                {
+                    \time 5/8
+                    R1 * 5/8
+                }
+            }
+
     Returns selection of leaves.
     '''
     from abjad.tools import scoretools
@@ -397,13 +439,13 @@ def make_leaves(
                     duration,
                     decrease_durations_monotonically=decrease_durations_monotonically,
                     forbidden_written_duration=forbidden_written_duration,
+                    use_multimeasure_rests=use_multimeasure_rests,
                     )
                 result.extend(leaves)
         else:
             # compute tuplet prolation
             denominator = duration_group[0].denominator
-            numerator = \
-                mathtools.greatest_power_of_two_less_equal(denominator)
+            numerator = mathtools.greatest_power_of_two_less_equal(denominator)
             multiplier = (numerator, denominator)
             ratio = 1 / durationtools.Duration(*multiplier)
             duration_group = [ratio * durationtools.Duration(duration)
@@ -416,6 +458,7 @@ def make_leaves(
                     duration,
                     decrease_durations_monotonically=\
                         decrease_durations_monotonically,
+                    use_multimeasure_rests=use_multimeasure_rests,
                     )
                 tuplet_leaves.extend(leaves)
             tuplet = scoretools.Tuplet(multiplier, tuplet_leaves)
@@ -434,6 +477,7 @@ def _make_leaf_on_pitch(
     duration,
     decrease_durations_monotonically=True,
     forbidden_written_duration=None,
+    use_multimeasure_rests=False,
     ):
     from abjad.tools import scoretools
     note_types = (numbers.Number, str, pitchtools.NamedPitch)
@@ -455,13 +499,20 @@ def _make_leaf_on_pitch(
             forbidden_written_duration=forbidden_written_duration,
             pitches=pitch,
             )
-    elif isinstance(pitch, rest_types):
+    elif isinstance(pitch, rest_types) and not use_multimeasure_rests:
         leaves = scoretools.make_tied_leaf(
             scoretools.Rest,
             duration,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             pitches=None,
+            )
+    elif isinstance(pitch, rest_types) and use_multimeasure_rests:
+        multimeasure_rest = scoretools.MultimeasureRest((1))
+        multiplier = durationtools.Multiplier(duration)
+        attach(multiplier, multimeasure_rest)
+        leaves = (
+            multimeasure_rest,
             )
     else:
         message = 'unknown pitch {!r}.'
