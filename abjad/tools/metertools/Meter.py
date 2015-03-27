@@ -153,6 +153,27 @@ class Meter(AbjadObject):
 
         ::
 
+            >>> meter = metertools.Meter((5, 4))
+            >>> print(meter.pretty_rtm_format)
+            (5/4 (
+                1/4
+                1/4
+                1/4
+                1/4
+                1/4))
+
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
+
+        `5/4` comprises five beats.
+
+    ..  container:: example
+
+        **Example 6.** Another asymmetric meter:
+
+        ::
+
             >>> meter = metertools.Meter((7, 4))
             >>> print(meter.pretty_rtm_format)
             (7/4 (
@@ -176,7 +197,7 @@ class Meter(AbjadObject):
 
     ..  container:: example
 
-        **Example 6.** The same asymmetric meter structured differently:
+        **Example 7.** The same asymmetric meter structured differently:
 
         ::
 
