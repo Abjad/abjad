@@ -38,6 +38,7 @@ class SilenceMask(BooleanPattern):
         period=None,
         start=None,
         stop=None,
+        invert=None,
         use_multimeasure_rests=None,
         ):
         superclass = super(SilenceMask, self)
@@ -46,6 +47,7 @@ class SilenceMask(BooleanPattern):
             period=period,
             start=start,
             stop=stop,
+            invert=None,
             )
         if use_multimeasure_rests is not None:
             assert isinstance(use_multimeasure_rests, type(True))
