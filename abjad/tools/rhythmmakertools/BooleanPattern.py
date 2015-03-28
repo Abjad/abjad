@@ -29,6 +29,7 @@ class BooleanPattern(AbjadValueObject):
 
     __slots__ = (
         '_indices',
+        '_invert',
         '_period',
         '_start',
         '_stop',
@@ -42,6 +43,7 @@ class BooleanPattern(AbjadValueObject):
         period=None,
         start=None,
         stop=None,
+        invert=None,
         ):
         if indices is not None:
             assert all(isinstance(_, int) for _ in indices), repr(indices)
@@ -56,6 +58,9 @@ class BooleanPattern(AbjadValueObject):
         if stop is not None:
             stop = int(stop)
         self._stop = stop
+        if invert is not None:
+            invert = bool(invert)
+        self._invert = invert
 
     ### PRIVATE PROPERTIES ###
 
@@ -84,6 +89,7 @@ class BooleanPattern(AbjadValueObject):
             nonnegative_index = index
         else:
             nonnegative_index = total_length - abs(index)
+        invert = bool(self.invert)
         if self.start is not None or self.stop is not None:
             start, stop, _ = slice(self.start, self.stop).indices(total_length)
             if stop <= start:
@@ -97,24 +103,24 @@ class BooleanPattern(AbjadValueObject):
             for index in self.indices:
                 if 0 <= index:
                     if index == nonnegative_index and index < total_length:
-                        return True
+                        return True ^ invert
                 else:
                     index = total_length - abs(index)
                     if index == nonnegative_index and index < total_length:
-                        return True
+                        return True ^ invert
         else:
             nonnegative_index = nonnegative_index % self.period
             for index in self.indices:
                 if 0 <= index:
                     index = index % self.period
                     if index == nonnegative_index and index < total_length:
-                        return True
+                        return True ^ invert
                 else:
                     index = total_length - abs(index)
                     index = index % self.period
                     if index == nonnegative_index and index < total_length:
-                        return True
-        return False
+                        return True ^ invert
+        return False ^ invert
 
     ### PUBLIC METHODS ###
 
@@ -167,6 +173,29 @@ class BooleanPattern(AbjadValueObject):
         Set to integers or none.
         '''
         return self._indices
+
+    @property
+    def invert(self):
+        r'''Gets inversion flag of ouput mask.
+
+        ..  container:: example
+
+            ::
+
+                >>> mask = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=16,
+                ...     invert=True
+                ...     )
+
+            ::
+
+                >>> mask.invert
+                True
+
+        Set to boolean or none.
+        '''
+        return self._invert
 
     @property
     def period(self):

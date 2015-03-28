@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import abctools
-from abjad.tools import mathtools
 from abjad.tools.durationtools.Duration import Duration
 
 
@@ -13,6 +11,10 @@ class Multiplier(Duration):
         Multiplier(2, 3)
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 
