@@ -71,15 +71,15 @@ class MeterManager(abctools.AbjadObject):
         if not any(logical_tie_start_offset < x < logical_tie_stop_offset
             for x in boundary_offsets):
             return False
-        if logical_tie_start_offset in boundary_offsets and \
-            logical_tie_stop_offset in boundary_offsets:
+        if (logical_tie_start_offset in boundary_offsets and
+            logical_tie_stop_offset in boundary_offsets):
             return False
         return True
 
     @staticmethod
     def iterate_rewrite_inputs(expr):
-        r'''Iterate topmost masked logical ties, rest groups and containers in
-        `expr`, masked by `expr`:
+        r'''Iterates topmost masked logical ties, rest groups and containers
+        in `expr`, masked by `expr`.
 
         ::
 
@@ -88,11 +88,12 @@ class MeterManager(abctools.AbjadObject):
 
         ::
 
-            >>> string = "abj: | 2/4 c'4 d'4 ~ |"
-            >>> string += "| 4/4 d'8. r16 r8. e'16 ~ "
-            >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ |"
-            >>> string += "| 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ |"
-            >>> string += "| 2/4 b'4 c''4 |"
+            >>> string = "abj: ! 2/4 c'4 d'4 ~ !"
+            >>> string += "! 4/4 d'8. r16 r8. e'16 ~ "
+            >>> string += "2/3 { e'8 ~ e'8 f'8 ~ } f'4 ~ !"
+            >>> string += "! 4/4 f'8 g'8 ~ g'4 a'4 ~ a'8 b'8 ~ !"
+            >>> string += "! 2/4 b'4 c''4 !"
+            >>> string = string.replace('!', '|')
             >>> staff = scoretools.Staff(string)
 
         ..  doctest::

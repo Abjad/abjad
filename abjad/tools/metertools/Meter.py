@@ -12,16 +12,60 @@ from abjad.tools.abctools import AbjadObject
 class Meter(AbjadObject):
     '''A meter.
 
-    Meter models the common practice understanding of beats and other levels of
-    rhythmic organization organized as a tree.
-
-    Meter tree structure corresponds to the monotonically increasing sequence
-    of factors in the numerator of a given time signature. Successively deeper
-    levels of the tree divide time by successive factors.
+    Meter models a common practice understanding of beats and other levels of
+    rhythmic organization structured as a tree. Meter structure corresponds to
+    the monotonically increasing sequence of factors in the numerator of a
+    given time signature. Successively deeper levels of the tree divide time by
+    successive factors.
 
     ..  container:: example
 
-        **Example 1.**
+        **Example 1.** Duple meter:
+
+        ::
+
+            >>> meter = metertools.Meter((2, 4))
+
+        ::
+
+            >>> meter
+            Meter('(2/4 (1/4 1/4))')
+
+        ::
+
+            >>> print(meter.pretty_rtm_format)
+            (2/4 (
+                1/4
+                1/4))
+        
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
+
+        `2/4` comprises two beats.
+
+    ..  container:: example
+
+        **Example 2.** Triple meter:
+
+        ::
+
+            >>> meter = metertools.Meter((3, 4))
+            >>> print(meter.pretty_rtm_format)
+            (3/4 (
+                1/4
+                1/4
+                1/4))
+
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
+
+        `3/4` comprises three beats.
+
+    ..  container:: example
+
+        **Example 3.** Quadruple meter:
 
         ::
 
@@ -45,22 +89,11 @@ class Meter(AbjadObject):
 
             >>> graph(meter) # doctest: +SKIP
 
-    ..  container:: example
-
-        **Example 2.**
-
-        ::
-
-            >>> meter = metertools.Meter((3, 4))
-            >>> print(meter.pretty_rtm_format)
-            (3/4 (
-                1/4
-                1/4
-                1/4))
+        `4/4` comprises four beats.
 
     ..  container:: example
 
-        **Example 3.**
+        **Example 3.** Compound triple meter:
 
         ::
 
@@ -80,60 +113,11 @@ class Meter(AbjadObject):
 
             >>> graph(meter) # doctest: +SKIP
 
-    ..  container:: example
-
-        **Example 4.**
-
-        ::
-
-            >>> meter = metertools.Meter((7, 4))
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))))
-
-        ::
-
-            >>> graph(meter) # doctest: +SKIP
+        `6/8` comprises two beats of three parts each.
 
     ..  container:: example
 
-        **Example 5.**
-
-        ::
-
-            >>> meter = metertools.Meter(
-            ...     (7, 4),
-            ...     decrease_durations_monotonically=False,
-            ...     )
-            >>> print(meter.pretty_rtm_format)
-            (7/4 (
-                (2/4 (
-                    1/4
-                    1/4))
-                (2/4 (
-                    1/4
-                    1/4))
-                (3/4 (
-                    1/4
-                    1/4
-                    1/4))))
-
-        ::
-
-            >>> graph(meter) # doctest: +SKIP
-
-    ..  container:: example
-
-        **Example 6.**
+        **Example 4.** Another compound triple meter:
 
         ::
 
@@ -161,10 +145,92 @@ class Meter(AbjadObject):
 
             >>> graph(meter) # doctest: +SKIP
 
-    Prime divisions greater than ``3`` are converted to sequences of ``2``
-    and ``3`` summing to that prime.
+        `12/8` comprises four beats of three parts each.
 
-    ``5`` becomes ``3+2`` and ``7`` becomes ``3+2+2`` in the examples above.
+    ..  container:: example
+
+        **Example 5.** An asymmetric meter:
+
+        ::
+
+            >>> meter = metertools.Meter((5, 4))
+            >>> print(meter.pretty_rtm_format)
+            (5/4 (
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))))
+
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
+
+        `5/4` comprises two unequal beats. By default unequal beats
+        are arranged from greatest to least.
+
+    ..  container:: example
+
+        **Example 6.** Another asymmetric meter:
+
+        ::
+
+            >>> meter = metertools.Meter((7, 4))
+            >>> print(meter.pretty_rtm_format)
+            (7/4 (
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))))
+
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
+
+        `7/4` comprises three unequal beats. Beats are arranged from
+        greatest to least by default.
+
+    ..  container:: example
+
+        **Example 7.** The same asymmetric meter structured differently:
+
+        ::
+
+            >>> meter = metertools.Meter(
+            ...     (7, 4),
+            ...     decrease_durations_monotonically=False,
+            ...     )
+            >>> print(meter.pretty_rtm_format)
+            (7/4 (
+                (2/4 (
+                    1/4
+                    1/4))
+                (2/4 (
+                    1/4
+                    1/4))
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))))
+
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
+
+        `7/4` with beats arragned from least to greatest.
+
+    Prime divisions greater than ``3`` are converted to sequences of ``2``
+    and ``3`` summing to that prime. Summands are arranged from greatest
+    to least by default. This means that ``5`` becomes ``3+2`` and ``7`` 
+    becomes ``3+2+2`` in the examples above.
     '''
 
     ### CLASS VARIABLES ###
@@ -190,8 +256,10 @@ class Meter(AbjadObject):
             ):
             if factors:
                 factor, factors = factors[0], factors[1:]
-                preprolated_duration = node.preprolated_duration.__div__(factor)
-                if factor in (2, 3, 4, 5):
+                preprolated_duration = \
+                    node.preprolated_duration.__div__(factor)
+                #if factor in (2, 3, 4, 5):
+                if factor in (2, 3, 4):
                     if factors:
                         for _ in range(factor):
                             child = rhythmtreetools.RhythmTreeContainer(
@@ -263,8 +331,8 @@ class Meter(AbjadObject):
             numerator = root.preprolated_duration.numerator
             denominator = root.preprolated_duration.denominator
 
-        elif isinstance(arg, (tuple, scoretools.Measure)) or \
-            (hasattr(arg, 'numerator') and hasattr(arg, 'denominator')):
+        elif (isinstance(arg, (tuple, scoretools.Measure)) or
+            (hasattr(arg, 'numerator') and hasattr(arg, 'denominator'))):
             if isinstance(arg, tuple):
                 fraction = mathtools.NonreducedFraction(arg)
             elif isinstance(arg, scoretools.Measure):
@@ -570,8 +638,10 @@ class Meter(AbjadObject):
             (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
             (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
             (NonreducedFraction(2, 4), NonreducedFraction(3, 4))
+            (NonreducedFraction(0, 4), NonreducedFraction(3, 4))
             (NonreducedFraction(3, 4), NonreducedFraction(4, 4))
             (NonreducedFraction(4, 4), NonreducedFraction(5, 4))
+            (NonreducedFraction(3, 4), NonreducedFraction(5, 4))
             (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
 
         Yields pairs.
@@ -705,8 +775,42 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Metrical hiearchy with durations that increase
-            monotonically:
+            **Example 1.** An asymmetric meter with beats arranged greatest to
+            least:
+
+            ::
+
+                >>> meter = metertools.Meter(
+                ...     (7, 4),
+                ...     decrease_durations_monotonically=True,
+                ...     )
+
+            ::
+
+                >>> meter.decrease_durations_monotonically
+                True
+
+            ::
+
+                >>> print(meter.pretty_rtm_format)
+                (7/4 (
+                    (3/4 (
+                        1/4
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))
+                    (2/4 (
+                        1/4
+                        1/4))))
+
+            This is default beahvior.
+
+        ..  container:: example
+
+            **Example 2.** The same asymmetric meter with unequal beats 
+            arranged least to greatest:
 
             ::
 
@@ -735,37 +839,6 @@ class Meter(AbjadObject):
                         1/4
                         1/4))))
 
-        ..  container:: example
-
-            **Example 2.** Meter with durations that
-            decrease monotonically:
-
-            ::
-
-                >>> meter = \
-                ...     metertools.Meter((7, 4),
-                ...     decrease_durations_monotonically=True)
-
-            ::
-
-                >>> meter.decrease_durations_monotonically
-                True
-
-            ::
-
-                >>> print(meter.pretty_rtm_format)
-                (7/4 (
-                    (3/4 (
-                        1/4
-                        1/4
-                        1/4))
-                    (2/4 (
-                        1/4
-                        1/4))
-                    (2/4 (
-                        1/4
-                        1/4))))
-
         Returns boolean.
         '''
         return self._decrease_durations_monotonically
@@ -778,6 +851,7 @@ class Meter(AbjadObject):
 
             ::
 
+                >>> meter = metertools.Meter((7, 4))
                 >>> meter.denominator
                 4
 
@@ -822,8 +896,6 @@ class Meter(AbjadObject):
                 >>> meter.duration
                 Duration(7, 4)
 
-        ..  todo:: rename to just ``duration``.
-
         Returns duration.
         '''
         return durationtools.Duration(self.numerator, self.denominator)
@@ -858,23 +930,6 @@ class Meter(AbjadObject):
         Returns positive integer.
         '''
         return self._numerator
-
-    @property
-    def preprolated_duration(self):
-        r'''Gets preprolated duration of meter.
-
-        ..  container:: example
-
-            ::
-
-                >>> meter.preprolated_duration
-                Duration(7, 4)
-
-        ..  todo:: rename to just ``duration``.
-
-        Returns duration.
-        '''
-        return durationtools.Duration(self.numerator, self.denominator)
 
     @property
     def pretty_rtm_format(self):
