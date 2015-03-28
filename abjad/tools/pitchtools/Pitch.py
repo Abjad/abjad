@@ -241,7 +241,6 @@ class Pitch(AbjadObject):
         Returns boolean.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         from abjad.tools import pitchtools
         return isinstance(
             expr, (
