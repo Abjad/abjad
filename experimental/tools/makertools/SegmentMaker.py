@@ -54,7 +54,8 @@ class SegmentMaker(AbjadObject):
 
         Returns LilyPond file.
         '''
-        return self()
+        lilypond_file, sticky_settings = self()
+        return lilypond_file
 
     ### PUBLIC PROPERTIES ###
 
