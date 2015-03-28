@@ -25,7 +25,7 @@ class SegmentMaker(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self):
+    def __call__(self, metadata=None):
         r'''Calls segment-maker.
 
         Returns LilyPond file.
