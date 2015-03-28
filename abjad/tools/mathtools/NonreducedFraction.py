@@ -57,10 +57,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_numerator',
-        '_denominator',
-        )
+    __slots__ = ()
 
     ### CONSTRUCTOR ###
 

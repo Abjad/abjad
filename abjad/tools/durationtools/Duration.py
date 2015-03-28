@@ -123,11 +123,14 @@ class Duration(AbjadObject, fractions.Fraction):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### CONSTRUCTOR ###
 
     def __new__(cls, *args):
-        from abjad.tools import sequencetools
-        if (len(args) == 1 and 
+        if (len(args) == 1 and
             isinstance(args[0], mathtools.NonreducedFraction)):
             return fractions.Fraction.__new__(cls, *args[0].pair)
         elif len(args) == 1 and hasattr(args[0], 'duration'):
@@ -535,7 +538,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...         string = '{!s}\t{}'
             ...         string = string.format(sixteenths, '--')
             ...         print(string)
-            ... 
+            ...
             1/16    0
             2/16    0
             3/16    1
@@ -575,7 +578,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     result = duration.equal_or_greater_assignable
             ...     sixteenths = duration.with_denominator(16)
             ...     print('{!s}\t{!s}'.format(sixteenths, result))
-            ... 
+            ...
             1/16    1/16
             2/16    1/8
             3/16    3/16
@@ -615,7 +618,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     result = duration.equal_or_greater_power_of_two
             ...     sixteenths = duration.with_denominator(16)
             ...     print('{!s}\t{!s}'.format(sixteenths, result))
-            ... 
+            ...
             1/16    1/16
             2/16    1/8
             3/16    1/4
@@ -649,7 +652,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     result = duration.equal_or_lesser_assignable
             ...     sixteenths = duration.with_denominator(16)
             ...     print('{!s}\t{!s}'.format(sixteenths, result))
-            ... 
+            ...
             1/16    1/16
             2/16    1/8
             3/16    3/16
@@ -690,7 +693,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     result = duration.equal_or_lesser_power_of_two
             ...     sixteenths = duration.with_denominator(16)
             ...     print('{!s}\t{!s}'.format(sixteenths, result))
-            ... 
+            ...
             1/16    1/16
             2/16    1/8
             3/16    1/8
@@ -723,7 +726,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     duration = Duration(n, 64)
             ...     sixty_fourths = duration.with_denominator(64)
             ...     print('{!s}\t{}'.format(sixty_fourths, duration.flag_count))
-            ... 
+            ...
             1/64    4
             2/64    3
             3/64    3
@@ -759,7 +762,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     duration = Duration(1, n)
             ...     result = duration.has_power_of_two_denominator
             ...     print('{!s}\t{}'.format(duration, result))
-            ... 
+            ...
             1       True
             1/2     True
             1/3     False
@@ -792,7 +795,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     duration = Duration(1, denominator)
             ...     result = duration.implied_prolation
             ...     print('{!s}\t{!s}'.format(duration, result))
-            ... 
+            ...
             1       1
             1/2     1
             1/3     2/3
@@ -827,7 +830,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     duration = Duration(numerator, 16)
             ...     sixteenths = duration.with_denominator(16)
             ...     print('{!s}\t{}'.format(sixteenths, duration.is_assignable))
-            ... 
+            ...
             0/16    False
             1/16    True
             2/16    True
@@ -866,8 +869,6 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns string.
         '''
-        from abjad.tools import durationtools
-
         if not self.is_assignable:
             raise AssignabilityError(self)
         undotted_rational = self.equal_or_lesser_power_of_two
@@ -917,7 +918,7 @@ class Duration(AbjadObject, fractions.Fraction):
             ...     string = '{!s}\t{}'
             ...     string = string.format(duration, duration.prolation_string)
             ...     print(string)
-            ... 
+            ...
             1       1:1
             2       1:2
             1/2     2:1
@@ -1064,7 +1065,7 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> duration = Duration(1, 4)
             >>> for denominator in (4, 8, 16, 32):
             ...     print(duration.with_denominator(denominator))
-            ... 
+            ...
             1/4
             2/8
             4/16

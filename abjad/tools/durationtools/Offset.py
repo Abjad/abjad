@@ -13,6 +13,10 @@ class Offset(Duration):
     Offset inherits from duration (which inherits from built-in ``Fraction``).
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### SPECIAL METHODS ###
 
     def __sub__(self, expr):
