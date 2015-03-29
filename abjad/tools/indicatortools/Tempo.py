@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import fractions
 import functools
 import math
@@ -74,10 +75,14 @@ class Tempo(AbjadValueObject):
             except TypeError:
                 duration = durationtools.Duration(*duration)
         prototype = (
-            int, float, durationtools.Duration, list, tuple, type(None),
+            int, 
+            float, 
+            durationtools.Duration, 
+            collections.Sequence, 
+            type(None),
             )
         assert isinstance(units_per_minute, prototype)
-        if isinstance(units_per_minute, (list, tuple)):
+        if isinstance(units_per_minute, collections.Sequence):
             assert len(units_per_minute) == 2
             prototype = (int, float, durationtools.Duration)
             assert all(isinstance(x, prototype) for x in units_per_minute)
