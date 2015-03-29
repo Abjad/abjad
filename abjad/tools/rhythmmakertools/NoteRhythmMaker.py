@@ -1011,6 +1011,107 @@ class NoteRhythmMaker(RhythmMaker):
         return superclass.output_masks
 
     @property
+    def tie_specifier(self):
+        r'''Gets tie specifier of note rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** Does not tie across divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Ties across divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2 ~
+                    }
+                    {
+                        \time 3/8
+                        c'4. ~
+                    }
+                    {
+                        \time 4/8
+                        c'2 ~
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        Returns tie specifier.
+        '''
+        superclass = super(NoteRhythmMaker, self)
+        return superclass.tie_specifier
+
+    @property
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of note rhythm-maker.
 
