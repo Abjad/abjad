@@ -124,6 +124,14 @@ class Clef(AbjadValueObject):
                     name='treble',
                     )
 
+        ..  container:: example
+
+            ::
+
+                >>> clef = Clef('treble')
+                >>> print(format(clef, 'lilypond'))
+                \clef "treble"
+
         Returns string.
         '''
         if format_specification == 'lilypond':
