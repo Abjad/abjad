@@ -88,7 +88,7 @@ class MeterInventory(TypedList):
                                                         3
                                                         4
                                     \translate
-                                        #'(49.3870967742 . 1)
+                                        #'(49.387... . 1)
                                         \sans
                                             \fontsize
                                                 #-3
@@ -97,7 +97,7 @@ class MeterInventory(TypedList):
                                                         5
                                                         16
                                 \translate
-                                    #'(69.5483870968 . 1)
+                                    #'(69.548... . 1)
                                     \sans
                                         \fontsize
                                             #-3
@@ -110,28 +110,28 @@ class MeterInventory(TypedList):
                                     #"
                                     0.2 setlinewidth
                                     1 0.5 moveto
-                                    49.3870967742 0.5 lineto
+                                    49.387... 0.5 lineto
                                     stroke
                                     1 1.25 moveto
                                     1 -0.25 lineto
                                     stroke
-                                    49.3870967742 1.25 moveto
-                                    49.3870967742 -0.25 lineto
+                                    49.387... 1.25 moveto
+                                    49.387... -0.25 lineto
                                     stroke
-                                    49.3870967742 0.5 moveto
-                                    69.5483870968 0.5 lineto
+                                    49.387... 0.5 moveto
+                                    69.548... 0.5 lineto
                                     stroke
-                                    49.3870967742 1.25 moveto
-                                    49.3870967742 -0.25 lineto
+                                    49.387... 1.25 moveto
+                                    49.387... -0.25 lineto
                                     stroke
-                                    69.5483870968 1.25 moveto
-                                    69.5483870968 -0.25 lineto
+                                    69.548... 1.25 moveto
+                                    69.548... -0.25 lineto
                                     stroke
-                                    69.5483870968 0.5 moveto
+                                    69.548... 0.5 moveto
                                     126 0.5 lineto
                                     stroke
-                                    69.5483870968 1.25 moveto
-                                    69.5483870968 -0.25 lineto
+                                    69.548... 1.25 moveto
+                                    69.548... -0.25 lineto
                                     stroke
                                     126 1.25 moveto
                                     126 -0.25 lineto
@@ -140,106 +140,106 @@ class MeterInventory(TypedList):
                                 \postscript
                                     #"
                                     1 -2 moveto
-                                    0 -6.15384615385 rlineto
+                                    0 -6.153... rlineto
                                     stroke
-                                    5.03225806452 -2 moveto
-                                    0 -1.53846153846 rlineto
+                                    5.032... -2 moveto
+                                    0 -1.538... rlineto
                                     stroke
-                                    9.06451612903 -2 moveto
-                                    0 -3.07692307692 rlineto
+                                    9.064... -2 moveto
+                                    0 -3.076... rlineto
                                     stroke
-                                    13.0967741935 -2 moveto
-                                    0 -1.53846153846 rlineto
+                                    13.096... -2 moveto
+                                    0 -1.538... rlineto
                                     stroke
-                                    17.1290322581 -2 moveto
-                                    0 -4.61538461538 rlineto
+                                    17.129... -2 moveto
+                                    0 -4.615... rlineto
                                     stroke
-                                    21.1612903226 -2 moveto
-                                    0 -1.53846153846 rlineto
+                                    21.161... -2 moveto
+                                    0 -1.538... rlineto
                                     stroke
-                                    25.1935483871 -2 moveto
-                                    0 -3.07692307692 rlineto
+                                    25.193... -2 moveto
+                                    0 -3.076... rlineto
                                     stroke
-                                    29.2258064516 -2 moveto
-                                    0 -1.53846153846 rlineto
+                                    29.225... -2 moveto
+                                    0 -1.538... rlineto
                                     stroke
-                                    33.2580645161 -2 moveto
-                                    0 -4.61538461538 rlineto
+                                    33.258... -2 moveto
+                                    0 -4.615... rlineto
                                     stroke
-                                    37.2903225806 -2 moveto
-                                    0 -1.53846153846 rlineto
+                                    37.290... -2 moveto
+                                    0 -1.538... rlineto
                                     stroke
-                                    41.3225806452 -2 moveto
-                                    0 -3.07692307692 rlineto
+                                    41.322... -2 moveto
+                                    0 -3.076... rlineto
                                     stroke
-                                    45.3548387097 -2 moveto
-                                    0 -1.53846153846 rlineto
+                                    45.354... -2 moveto
+                                    0 -1.538... rlineto
                                     stroke
-                                    49.3870967742 -2 moveto
-                                    0 -6.15384615385 rlineto
+                                    49.387... -2 moveto
+                                    0 -6.153... rlineto
                                     stroke
-                                    49.3870967742 -2 moveto
-                                    0 -10.9090909091 rlineto
+                                    49.387... -2 moveto
+                                    0 -10.909... rlineto
                                     stroke
-                                    53.4193548387 -2 moveto
-                                    0 -3.63636363636 rlineto
+                                    53.419... -2 moveto
+                                    0 -3.636... rlineto
                                     stroke
-                                    57.4516129032 -2 moveto
-                                    0 -3.63636363636 rlineto
+                                    57.451... -2 moveto
+                                    0 -3.636... rlineto
                                     stroke
-                                    61.4838709677 -2 moveto
-                                    0 -7.27272727273 rlineto
+                                    61.483... -2 moveto
+                                    0 -7.272... rlineto
                                     stroke
-                                    65.5161290323 -2 moveto
-                                    0 -3.63636363636 rlineto
+                                    65.516... -2 moveto
+                                    0 -3.636... rlineto
                                     stroke
-                                    69.5483870968 -2 moveto
-                                    0 -10.9090909091 rlineto
+                                    69.548... -2 moveto
+                                    0 -10.909... rlineto
                                     stroke
-                                    69.5483870968 -2 moveto
-                                    0 -5.51724137931 rlineto
+                                    69.548... -2 moveto
+                                    0 -5.517... rlineto
                                     stroke
-                                    73.5806451613 -2 moveto
-                                    0 -1.37931034483 rlineto
+                                    73.580... -2 moveto
+                                    0 -1.379... rlineto
                                     stroke
-                                    77.6129032258 -2 moveto
-                                    0 -2.75862068966 rlineto
+                                    77.612... -2 moveto
+                                    0 -2.758... rlineto
                                     stroke
-                                    81.6451612903 -2 moveto
-                                    0 -1.37931034483 rlineto
+                                    81.645... -2 moveto
+                                    0 -1.379... rlineto
                                     stroke
-                                    85.6774193548 -2 moveto
-                                    0 -2.75862068966 rlineto
+                                    85.677... -2 moveto
+                                    0 -2.758... rlineto
                                     stroke
-                                    89.7096774194 -2 moveto
-                                    0 -1.37931034483 rlineto
+                                    89.709... -2 moveto
+                                    0 -1.379... rlineto
                                     stroke
-                                    93.7419354839 -2 moveto
-                                    0 -4.13793103448 rlineto
+                                    93.741... -2 moveto
+                                    0 -4.137... rlineto
                                     stroke
-                                    97.7741935484 -2 moveto
-                                    0 -1.37931034483 rlineto
+                                    97.774... -2 moveto
+                                    0 -1.379... rlineto
                                     stroke
-                                    101.806451613 -2 moveto
-                                    0 -2.75862068966 rlineto
+                                    101.806... -2 moveto
+                                    0 -2.758... rlineto
                                     stroke
-                                    105.838709677 -2 moveto
-                                    0 -1.37931034483 rlineto
+                                    105.838... -2 moveto
+                                    0 -1.379... rlineto
                                     stroke
-                                    109.870967742 -2 moveto
-                                    0 -4.13793103448 rlineto
+                                    109.870... -2 moveto
+                                    0 -4.137... rlineto
                                     stroke
-                                    113.903225806 -2 moveto
-                                    0 -1.37931034483 rlineto
+                                    113.903... -2 moveto
+                                    0 -1.379... rlineto
                                     stroke
-                                    117.935483871 -2 moveto
-                                    0 -2.75862068966 rlineto
+                                    117.935... -2 moveto
+                                    0 -2.758... rlineto
                                     stroke
-                                    121.967741935 -2 moveto
-                                    0 -1.37931034483 rlineto
+                                    121.967... -2 moveto
+                                    0 -1.379... rlineto
                                     stroke
                                     126 -2 moveto
-                                    0 -5.51724137931 rlineto
+                                    0 -5.517... rlineto
                                     stroke
                                     "
                         }
