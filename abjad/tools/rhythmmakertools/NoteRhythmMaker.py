@@ -244,7 +244,7 @@ class NoteRhythmMaker(RhythmMaker):
         elif left_count <= len(selections):
             right_count = len(selections) - left_count
             middle_count = 0
-        else:  
+        else:
             left_count = len(selections)
             right_count = 0
             middle_count = 0
@@ -384,11 +384,19 @@ class NoteRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/32
-                        c'8 ~ [
-                        c'32 ]
+                        \set stemLeftBeamCount = #0
+                        \set stemRightBeamCount = #1
+                        c'8 [ ~
+                        \set stemLeftBeamCount = #3
+                        \set stemRightBeamCount = #1
+                        c'32
                     }
                     {
-                        c'8 ~ [
+                        \set stemLeftBeamCount = #1
+                        \set stemRightBeamCount = #1
+                        c'8 ~
+                        \set stemLeftBeamCount = #3
+                        \set stemRightBeamCount = #0
                         c'32 ]
                     }
                 }
@@ -425,12 +433,12 @@ class NoteRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/32
-                        c'8 ~ [
-                        c'32 ]
+                        c'8 ~
+                        c'32
                     }
                     {
-                        c'8 ~ [
-                        c'32 ]
+                        c'8 ~
+                        c'32
                     }
                 }
 
@@ -438,8 +446,9 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns beam specifier.
         '''
-        self._beam_specifier
-    
+        superclass = super(NoteRhythmMaker, self)
+        return superclass.beam_specifier
+
     @property
     def burnish_specifier(self):
         r'''Gets burnish specifier of note rhythm-maker.
@@ -678,7 +687,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Forbids notes with written duration greater than or 
+            **Example 2.** Forbids notes with written duration greater than or
             equal to ``1/2``:
 
             ::
@@ -718,7 +727,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Spells all divisions metrically when 
+            **Example 3.** Spells all divisions metrically when
             `spell_metrically` is true:
 
             ::
