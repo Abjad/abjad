@@ -127,6 +127,39 @@ class Dynamic(AbjadValueObject):
         self._name = name
         self._default_scope = scoretools.Staff
 
+    ### SPECIAL METHODS ###
+
+    def __format__(self, format_specification=''):
+        r'''Formats dynamic.
+
+        Set `format_specification` to `''`, `'lilypond'` or `'storage'`.
+        Interprets `''` equal to `'storage'`.
+
+        ..  container:: example
+
+            ::
+
+                >>> dynamic = Dynamic('f')
+                >>> print(format(dynamic))
+                indicatortools.Dynamic(
+                    name='f',
+                    )
+
+        ..  container:: example
+
+            ::
+
+                >>> dynamic = Dynamic('f')
+                >>> print(format(dynamic, 'lilypond'))
+                \f
+
+        Returns string.
+        '''
+        if format_specification == 'lilypond':
+            return self._lilypond_format
+        superclass = super(Dynamic, self)
+        return superclass.__format__(format_specification=format_specification)
+
     ### PRIVATE PROPERTIES ###
 
     @property
