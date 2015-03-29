@@ -401,8 +401,6 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-            .. todo:: Example should beam divisions together.
-
         ..  container:: example
 
             **Example 3.** Makes no beams:
@@ -441,8 +439,6 @@ class NoteRhythmMaker(RhythmMaker):
                         c'32
                     }
                 }
-
-            .. todo:: Example should make no beams.
 
         Returns beam specifier.
         '''
