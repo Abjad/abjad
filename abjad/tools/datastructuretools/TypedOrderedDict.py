@@ -259,15 +259,6 @@ class TypedOrderedDict(TypedCollection):
         '''
         return key in self._collection
 
-    # TODO: why are there two definitions of items()
-    def items(self):
-        r'''Aliases OrderedDict.items().
-
-        Returns list.
-        '''
-        return list(self._collection.items())
-
-    # TODO: why are there two definitions of items()
     def items(self):
         r'''Aliases OrderedDict.items().
 
