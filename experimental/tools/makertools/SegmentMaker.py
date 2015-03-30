@@ -11,6 +11,7 @@ class SegmentMaker(AbjadObject):
 
     __slots__ = (
         '_lilypond_file',
+        '_metadata',
         '_name',
         )
 
@@ -30,11 +31,11 @@ class SegmentMaker(AbjadObject):
 
         Returns LilyPond file.
         '''
+        self._metadata = metadata
         lilypond_file = self._make_lilypond_file()
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
         self._lilypond_file = lilypond_file
-        sticky_settings = {}
-        return self._lilypond_file, sticky_settings
+        return self._lilypond_file, self._metadata
 
     def __eq__(self, expr):
         r'''Is true if `expr` is a segment-maker with equivalent properties.
@@ -54,7 +55,7 @@ class SegmentMaker(AbjadObject):
 
         Returns LilyPond file.
         '''
-        lilypond_file, sticky_settings = self()
+        lilypond_file, metadata = self()
         return lilypond_file
 
     ### PUBLIC PROPERTIES ###

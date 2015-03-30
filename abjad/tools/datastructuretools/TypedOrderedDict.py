@@ -9,6 +9,8 @@ class TypedOrderedDict(TypedCollection):
 
     ..  container:: example
 
+        **Example 1.** Initializes from list of pairs:
+
         ::
 
             >>> dictionary = datastructuretools.TypedOrderedDict([
@@ -19,6 +21,74 @@ class TypedOrderedDict(TypedCollection):
         ::
 
             >>> print(format(dictionary))
+            datastructuretools.TypedOrderedDict(
+                [
+                    ('color', 'red'),
+                    (
+                        'directive',
+                        markuptools.Markup(
+                            contents=(
+                                markuptools.MarkupCommand(
+                                    'italic',
+                                    'Allegretto'
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ]
+                )
+
+    ..  container:: example
+
+        **Example 2.** Initializes from built-in dictionary:
+
+        ::
+
+            >>> dictionary = {
+            ...     'color': 'red',
+            ...     'directive': Markup(r'\italic Allegretto'),
+            ...     }
+            >>> dictionary = datastructuretools.TypedOrderedDict(
+            ...     dictionary
+            ...     )
+
+        ::
+
+            >>> print(format(dictionary))
+            datastructuretools.TypedOrderedDict(
+                [
+                    ('color', 'red'),
+                    (
+                        'directive',
+                        markuptools.Markup(
+                            contents=(
+                                markuptools.MarkupCommand(
+                                    'italic',
+                                    'Allegretto'
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ]
+                )
+
+    ..  container:: example
+
+        **Example 3.** Initializes from other typed ordered dictionary:
+
+        ::
+
+            >>> dictionary_1 = datastructuretools.TypedOrderedDict([
+            ...     ('color', 'red'),
+            ...     ('directive', Markup(r'\italic Allegretto')),
+            ...     ])
+            >>> dictionary_2 = datastructuretools.TypedOrderedDict(
+            ...     dictionary_1
+            ...     )
+
+        ::
+
+            >>> print(format(dictionary_2))
             datastructuretools.TypedOrderedDict(
                 [
                     ('color', 'red'),
@@ -52,7 +122,7 @@ class TypedOrderedDict(TypedCollection):
             items=items,
             )
         if isinstance(items, collections.Mapping):
-            items = items.items()
+            items = list(items.items())
         items = items or []
         the_items = []
         for item in items:
@@ -189,6 +259,7 @@ class TypedOrderedDict(TypedCollection):
         '''
         return key in self._collection
 
+    # TODO: why are there two definitions of items()
     def items(self):
         r'''Aliases OrderedDict.items().
 
@@ -196,6 +267,7 @@ class TypedOrderedDict(TypedCollection):
         '''
         return list(self._collection.items())
 
+    # TODO: why are there two definitions of items()
     def items(self):
         r'''Aliases OrderedDict.items().
 
