@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
-from abjad.tools.topleveltools import new
 
 
 class TypedOrderedDict(TypedCollection):
@@ -119,9 +118,10 @@ class TypedOrderedDict(TypedCollection):
         TypedCollection.__init__(
             self,
             item_class=item_class,
-            items=items,
             )
-        if isinstance(items, collections.Mapping):
+        if isinstance(items, dict):
+            items = sorted(items.items())   
+        elif isinstance(items, collections.Mapping):
             items = list(items.items())
         items = items or []
         the_items = []

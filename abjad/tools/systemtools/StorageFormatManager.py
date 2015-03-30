@@ -48,6 +48,7 @@ class StorageFormatManager(object):
 
         Returns list.
         '''
+        from abjad.tools import datastructuretools
         result = []
         prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
             is_indented)
@@ -106,7 +107,10 @@ class StorageFormatManager(object):
                 else:
                     result[-1] = result[-1].rstrip()
             result.append('{}{}'.format(prefix, braces[1]))
-        elif isinstance(value, collections.OrderedDict):
+        elif isinstance(value, (
+            collections.OrderedDict,
+            datastructuretools.TypedOrderedDict,
+            )):
             result.append('[{}'.format(infix))
             for item in list(value.items()):
                 item_pieces = StorageFormatManager.format_one_value(
