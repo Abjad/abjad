@@ -185,20 +185,10 @@ class PersistenceAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        from abjad.tools import datastructuretools
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager
         result = ['# -*- encoding: utf-8 -*-']
-        # TODO: this is a work-around to take care of the fact that
-        # StorageFormatManager.get_types(d) returns collections.OrderedDict
-        # when d is a TypedOrderedDict. Fix StorageFormatManager.get_types().
-        # then remove this suite.
-        #result.extend(manager.get_import_statements(self._client))
         import_statements = manager.get_import_statements(self._client)
-        if isinstance(self._client, datastructuretools.TypedOrderedDict):
-            if 'import collections' in import_statements:
-                import_statements = list(import_statements)
-                import_statements.remove('import collections')
         result.extend(import_statements)
         result.extend(('', ''))
         if '_storage_format_specification' in dir(self._client):

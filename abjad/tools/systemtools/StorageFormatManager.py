@@ -55,7 +55,6 @@ class StorageFormatManager(object):
         if isinstance(value, types.MethodType):
             return result
         if isinstance(value, type):
-        #if type(value) is abc.ABCMeta:
             if as_storage_format:
                 value = '{}.{}'.format(
                     StorageFormatManager.get_tools_package_name(value),
@@ -535,7 +534,9 @@ class StorageFormatManager(object):
 
             ::
 
-                >>> dictionary = datastructuretools.TypedOrderedDict()
+                >>> dictionary = datastructuretools.TypedOrderedDict(
+                ...     item_class=pitchtools.NamedPitch,
+                ...     )
 
             ::
 
@@ -544,14 +545,13 @@ class StorageFormatManager(object):
                 ...     _
                 ...
                 <class 'abjad.tools.datastructuretools.TypedOrderedDict.TypedOrderedDict'>
-                <class 'collections.OrderedDict'>
+                <class 'abjad.tools.pitchtools.NamedPitch.NamedPitch'>
 
             .. todo:: Shouldn't the above example **not** return OrderedDict?
 
         Returns tuple of types.
         '''
         from abjad.tools import abctools
-        from abjad.tools import datastructuretools
 
         if sys.version_info[0] == 2:
             type_type = types.TypeType
