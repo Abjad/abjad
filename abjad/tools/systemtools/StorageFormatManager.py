@@ -505,6 +505,8 @@ class StorageFormatManager(object):
 
         ..  container:: example
 
+            **Example 1.**
+
             ::
 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
@@ -526,6 +528,25 @@ class StorageFormatManager(object):
                 <class 'abjad.tools.rhythmmakertools.BurnishSpecifier.BurnishSpecifier'>
                 <class 'abjad.tools.rhythmmakertools.EvenDivisionRhythmMaker.EvenDivisionRhythmMaker'>
                 <class 'abjad.tools.scoretools.Rest.Rest'>
+
+        ..  container:: example
+
+            **Example 2.**
+
+            ::
+
+                >>> dictionary = datastructuretools.TypedOrderedDict()
+
+            ::
+
+                >>> types = systemtools.StorageFormatManager.get_types(dictionary)
+                >>> for _ in types:
+                ...     _
+                ...
+                <class 'abjad.tools.datastructuretools.TypedOrderedDict.TypedOrderedDict'>
+                <class 'collections.OrderedDict'>
+
+            .. todo:: Shouldn't the above example **not** return OrderedDict?
 
         Returns tuple of types.
         '''
