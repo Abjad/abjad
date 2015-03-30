@@ -644,6 +644,45 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    @staticmethod
+    def center_column(markups, direction=Up):
+        r'''LilyPond ``\center-column`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> city = Markup('Los Angeles')
+                >>> date = Markup('May - August 2014')
+                >>> markup = Markup.center_column([city, date])
+
+            ::
+
+                >>> print(format(markup))
+                ^ \markup {
+                    \center-column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = []
+        for markup in markups:
+            contents.extend(markup.contents)
+        command = markuptools.MarkupCommand(
+            'center-column',
+            contents,
+            )
+        return Markup(contents=command, direction=direction)
+
     def circle(self):
         r'''LilyPond ``\circle`` markup command.
 
