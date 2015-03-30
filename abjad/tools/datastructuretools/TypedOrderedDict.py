@@ -121,10 +121,8 @@ class TypedOrderedDict(TypedCollection):
             item_class=item_class,
             items=items,
             )
-        if isinstance(items, type(self)):
+        if isinstance(items, collections.Mapping):
             items = list(items.items())
-        elif isinstance(items, collections.Mapping):
-            items = items.items()
         items = items or []
         the_items = []
         for item in items:
@@ -261,6 +259,7 @@ class TypedOrderedDict(TypedCollection):
         '''
         return key in self._collection
 
+    # TODO: why are there two definitions of items()
     def items(self):
         r'''Aliases OrderedDict.items().
 
@@ -268,6 +267,7 @@ class TypedOrderedDict(TypedCollection):
         '''
         return list(self._collection.items())
 
+    # TODO: why are there two definitions of items()
     def items(self):
         r'''Aliases OrderedDict.items().
 
