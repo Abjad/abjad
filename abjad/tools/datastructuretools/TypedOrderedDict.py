@@ -11,100 +11,100 @@ class TypedOrderedDict(TypedCollection):
 
         **Example 1.** Initializes from list of pairs:
 
-            ::
+        ::
 
-                >>> dictionary = datastructuretools.TypedOrderedDict([
-                ...     ('color', 'red'),
-                ...     ('directive', Markup(r'\italic Allegretto')),
-                ...     ])
+            >>> dictionary = datastructuretools.TypedOrderedDict([
+            ...     ('color', 'red'),
+            ...     ('directive', Markup(r'\italic Allegretto')),
+            ...     ])
 
-            ::
+        ::
 
-                >>> print(format(dictionary))
-                datastructuretools.TypedOrderedDict(
-                    [
-                        ('color', 'red'),
-                        (
-                            'directive',
-                            markuptools.Markup(
-                                contents=(
-                                    markuptools.MarkupCommand(
-                                        'italic',
-                                        'Allegretto'
-                                        ),
+            >>> print(format(dictionary))
+            datastructuretools.TypedOrderedDict(
+                [
+                    ('color', 'red'),
+                    (
+                        'directive',
+                        markuptools.Markup(
+                            contents=(
+                                markuptools.MarkupCommand(
+                                    'italic',
+                                    'Allegretto'
                                     ),
                                 ),
                             ),
-                        ]
-                    )
+                        ),
+                    ]
+                )
 
     ..  container:: example
 
         **Example 2.** Initializes from built-in dictionary:
 
-            ::
+        ::
 
-                >>> dictionary = {
-                ...     'color': 'red',
-                ...     'directive': Markup(r'\italic Allegretto'),
-                ...     }
-                >>> dictionary = datastructuretools.TypedOrderedDict(
-                ...     dictionary
-                ...     )
+            >>> dictionary = {
+            ...     'color': 'red',
+            ...     'directive': Markup(r'\italic Allegretto'),
+            ...     }
+            >>> dictionary = datastructuretools.TypedOrderedDict(
+            ...     dictionary
+            ...     )
 
-            ::
+        ::
 
-                >>> print(format(dictionary))
-                datastructuretools.TypedOrderedDict(
-                    [
-                        ('color', 'red'),
-                        (
-                            'directive',
-                            markuptools.Markup(
-                                contents=(
-                                    markuptools.MarkupCommand(
-                                        'italic',
-                                        'Allegretto'
-                                        ),
+            >>> print(format(dictionary))
+            datastructuretools.TypedOrderedDict(
+                [
+                    ('color', 'red'),
+                    (
+                        'directive',
+                        markuptools.Markup(
+                            contents=(
+                                markuptools.MarkupCommand(
+                                    'italic',
+                                    'Allegretto'
                                     ),
                                 ),
                             ),
-                        ]
-                    )
+                        ),
+                    ]
+                )
+
+    ..  container:: example
 
         **Example 3.** Initializes from other typed ordered dictionary:
 
-            ::
+        ::
 
-                >>> dictionary_1 = datastructuretools.TypedOrderedDict([
-                ...     ('color', 'red'),
-                ...     ('directive', Markup(r'\italic Allegretto')),
-                ...     ])
-                >>> dictionary_2 = datastructuretools.TypedOrderedDict(
-                ...     dictionary_1
-                ...     )
+            >>> dictionary_1 = datastructuretools.TypedOrderedDict([
+            ...     ('color', 'red'),
+            ...     ('directive', Markup(r'\italic Allegretto')),
+            ...     ])
+            >>> dictionary_2 = datastructuretools.TypedOrderedDict(
+            ...     dictionary_1
+            ...     )
 
-            ::
+        ::
 
-                >>> print(format(dictionary_2))
-                datastructuretools.TypedOrderedDict(
-                    [
-                        ('color', 'red'),
-                        (
-                            'directive',
-                            markuptools.Markup(
-                                contents=(
-                                    markuptools.MarkupCommand(
-                                        'italic',
-                                        'Allegretto'
-                                        ),
+            >>> print(format(dictionary_2))
+            datastructuretools.TypedOrderedDict(
+                [
+                    ('color', 'red'),
+                    (
+                        'directive',
+                        markuptools.Markup(
+                            contents=(
+                                markuptools.MarkupCommand(
+                                    'italic',
+                                    'Allegretto'
                                     ),
                                 ),
                             ),
-                        ]
-                    )
-
-            .. todo:: Make this work.
+                        ),
+                    ]
+                )
 
     '''
 
@@ -121,7 +121,9 @@ class TypedOrderedDict(TypedCollection):
             item_class=item_class,
             items=items,
             )
-        if isinstance(items, collections.Mapping):
+        if isinstance(items, type(self)):
+            items = list(items.items())
+        elif isinstance(items, collections.Mapping):
             items = items.items()
         items = items or []
         the_items = []
