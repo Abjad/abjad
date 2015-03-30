@@ -306,6 +306,25 @@ class Container(Component):
                 (contributor, tuple([indent + x for x in contributions])))
         return tuple(result)
 
+    def _get_spanners_that_span_slice(self, start, stop):
+        if start == stop:
+            if start == 0:
+                left = None
+            else:
+                left = self[start - 1]
+            if len(self) <= stop:
+                right = None
+            else:
+                right = self[stop]
+            if left is None:
+                left = self._get_sibling(-1)
+            if right is None:
+                right = self._get_sibling(1)
+            print(left, right)
+        else:
+            selection = self[start:stop]
+            print(selection)
+
     def _get_spanners_that_dominate_component_pair(self, left, right):
         r'''Returns spanners that dominant component pair.
         Returns set (spanner, index) pairs.
@@ -319,12 +338,11 @@ class Container(Component):
         This version is useful for finding spanners that dominant
         a zero-length slice between components, as in staff[2:2].
         '''
-        from abjad.tools import spannertools
-        Selection = selectiontools.Selection
         if left is None or right is None:
             return set([])
-        assert Selection._all_are_contiguous_components_in_same_logical_voice(
-            [left, right])
+        #Selection = selectiontools.Selection
+        #assert Selection._all_are_contiguous_components_in_same_logical_voice(
+        #    [left, right])
         left_contained = left._get_descendants()._get_spanners()
         right_contained = right._get_descendants()._get_spanners()
         dominant_spanners = left_contained & right_contained
@@ -343,7 +361,6 @@ class Container(Component):
         return receipt
 
     def _get_spanners_that_dominate_slice(self, start, stop):
-        from abjad.tools import spannertools
         if start == stop:
             if start == 0:
                 left = None
@@ -353,6 +370,10 @@ class Container(Component):
                 right = None
             else:
                 right = self[stop]
+            if left is None:
+                left = self._get_sibling(-1)
+            if right is None:
+                right = self._get_sibling(1)
             spanners_receipt = \
                 self._get_spanners_that_dominate_component_pair(left, right)
         else:
@@ -370,11 +391,11 @@ class Container(Component):
         expr,
         withdraw_components_in_expr_from_crossing_spanners=True,
         ):
-        r'''This method exists beacuse __setitem__ can not accept keywords.
+        r'''This method exists because __setitem__ can not accept keywords.
         Note that setting
-        withdraw_components_in_expr_from_crossing_spanners=False
-        constitutes a composer-unsafe use of this method.
-        Only private methods should set this keyword.
+        withdraw_components_in_expr_from_crossing_spanners=False constitutes a
+        composer-unsafe use of this method. Only private methods should set
+        this keyword.
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
@@ -427,11 +448,14 @@ class Container(Component):
         old = self[start:stop]
         spanners_receipt = self._get_spanners_that_dominate_slice(
             start, stop)
+        #print('RECEIPT', spanners_receipt, self, expr)
+
         for component in old:
             for child in iterate([component]).by_class():
                 for spanner in child._get_spanners():
                     spanner._remove(child)
         del(self[start:stop])
+
         # must withdraw before setting in self!
         # otherwise circular withdraw ensues!
         if withdraw_components_in_expr_from_crossing_spanners:
@@ -446,6 +470,7 @@ class Container(Component):
             for component in reversed(expr):
                 spanner._insert(index, component)
                 component._spanners.add(spanner)
+
         for indicator in expr_indicators:
             if hasattr(indicator, '_update_effective_context'):
                 indicator._update_effective_context()
@@ -1104,14 +1129,11 @@ class Container(Component):
         Returns none.
         '''
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
-        assert isinstance(component, scoretools.Component)
         assert isinstance(i, int)
         if not fracture_spanners:
             self.__setitem__(slice(i, i), [component])
             return
+        assert isinstance(component, scoretools.Component)
         component._set_parent(self)
         self._music.insert(i, component)
         previous_leaf = component._get_leaf(-1)

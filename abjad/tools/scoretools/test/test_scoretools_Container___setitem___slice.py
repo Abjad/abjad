@@ -550,3 +550,40 @@ def test_scoretools_Container___setitem___slice_13():
         }
         '''
         )
+
+
+def test_scoretools_Container___setitem___slice_14():
+
+    staff = Staff("c'8 { d'8 e'8 } f'8")
+    beam = Beam()
+    attach(beam, staff.select_leaves())
+    assert beam.components == staff.select_leaves()
+
+    staff[1].append("g'8")
+    assert beam.components == staff.select_leaves()
+
+    staff[1].insert(0, "b'8")
+    assert beam.components == staff.select_leaves()
+
+    staff.insert(1, "a'8")
+    assert beam.components == staff.select_leaves()
+
+    staff.insert(3, "fs'8")
+    assert beam.components == staff.select_leaves()
+
+    assert format(staff) == systemtools.TestManager.clean_string(
+        r'''
+        \new Staff {
+            c'8 [
+            a'8
+            {
+                b'8
+                d'8
+                e'8
+                g'8
+            }
+            fs'8
+            f'8 ]
+        }
+        ''',
+        )
