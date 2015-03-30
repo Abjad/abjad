@@ -120,7 +120,7 @@ class TypedOrderedDict(TypedCollection):
             item_class=item_class,
             )
         if isinstance(items, dict):
-            items = sorted(items.items())   
+            items = sorted(items.items())
         elif isinstance(items, collections.Mapping):
             items = list(items.items())
         items = items or []
@@ -223,6 +223,26 @@ class TypedOrderedDict(TypedCollection):
         '''
         new_item = self._item_coercer(expr)
         self._collection[i] = new_item
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        names = manager.get_signature_keyword_argument_names(self)
+        keyword_argument_names = list(names)
+        if 'items' in keyword_argument_names:
+            keyword_argument_names.remove('items')
+        keyword_argument_names = tuple(keyword_argument_names)
+        positional_argument_values = (
+            list(self._collection.items()),
+            )
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names,
+            positional_argument_values=positional_argument_values,
+            )
 
     ### PUBLIC METHODS ###
 
