@@ -808,10 +808,13 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         from abjad.tools import selectiontools
+        if not isinstance(classes, collections.Sequence):
+            classes = (classes,)
         sequence = selectiontools.SliceSelection(self._client)
         current_group = ()
         for group in sequence.group_by(type):
-            if type(group[0]) in classes:
+            if any(isinstance(group[0], class_) for class_ in classes):
+            #if type(group[0]) in classes:
                 current_group = current_group + group
             elif current_group:
                 yield current_group
