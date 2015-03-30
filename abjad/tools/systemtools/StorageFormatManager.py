@@ -551,6 +551,7 @@ class StorageFormatManager(object):
         Returns tuple of types.
         '''
         from abjad.tools import abctools
+        from abjad.tools import datastructuretools
 
         if sys.version_info[0] == 2:
             type_type = types.TypeType
