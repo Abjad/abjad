@@ -3,8 +3,6 @@ import fractions
 import math
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import sequencetools
-from abjad.tools import systemtools
 from abjad.tools.scoretools.Container import Container
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
@@ -201,6 +199,31 @@ class Tuplet(Container):
             return ''
 
     ### PRIVATE METHODS ###
+
+    def _as_graphviz_node(self):
+        from abjad.tools import documentationtools
+        score_index = self._get_parentage().score_index
+        score_index = '_'.join(str(_) for _ in score_index)
+        class_name = type(self).__name__
+        if score_index:
+            name = '{}_{}'.format(class_name, score_index)
+        else:
+            name = class_name
+        node = documentationtools.GraphvizNode(name=name)
+        group = documentationtools.GraphvizGroup()
+        class_field = documentationtools.GraphvizField(
+            label=type(self).__name__,
+            )
+        multiplier_field = documentationtools.GraphvizField(
+            label='* {!s}'.format(self.multiplier),
+            )
+        timespan = inspect_(self).get_timespan()
+        offset_field = documentationtools.GraphvizField(
+            label='{!s}'.format(timespan.start_offset),
+            )
+        group.extend([class_field, multiplier_field, offset_field])
+        node.append(group)
+        return node
 
     def _extract(self, scale_contents=False):
         if scale_contents:
