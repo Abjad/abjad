@@ -135,7 +135,7 @@ class Container(Component):
         node.append(group)
         return node
 
-    def __graph__(self, spanner=None):
+    def __graph__(self, spanner=None, **kwargs):
         r'''Graphviz graph representation of container.
 
         Returns Graphviz graph.

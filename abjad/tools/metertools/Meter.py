@@ -400,7 +400,7 @@ class Meter(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    def __graph__(self):
+    def __graph__(self, **kwargs):
         r'''Gets Graphviz format of meter.
 
         ..  container:: example

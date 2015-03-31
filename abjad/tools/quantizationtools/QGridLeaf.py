@@ -73,7 +73,7 @@ class QGridLeaf(RhythmTreeNode):
             self.is_divisible,
             )
 
-    def __graph__(self):
+    def __graph__(self, **kwargs):
         r'''Graphviz graph of q-grid leaf.
 
         Returns Graphviz graph.

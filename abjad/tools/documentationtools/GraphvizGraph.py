@@ -176,7 +176,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ### SPECIAL METHODS ###
 
-    def __graph__(self):
+    def __graph__(self, **kwargs):
         r'''Gets graphviz graph.
 
         Returns graphviz graph.

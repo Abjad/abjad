@@ -83,7 +83,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
                     return True
         return False
 
-    def __graph__(self):
+    def __graph__(self, **kwargs):
         r'''Graphviz graph of rhythm tree leaf.
         '''
         from abjad.tools import documentationtools

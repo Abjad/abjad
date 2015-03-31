@@ -267,7 +267,7 @@ class PayloadTree(AbjadObject):
         '''
         return vars(self)
 
-    def __graph__(self):
+    def __graph__(self, **kwargs):
         r'''The GraphvizGraph representation of payload tree.
 
         ::

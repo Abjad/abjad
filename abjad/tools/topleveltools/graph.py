@@ -3,7 +3,7 @@ import os
 import subprocess
 
 
-def graph(expr, image_format='pdf', layout='dot'):
+def graph(expr, image_format='pdf', layout='dot', **kwargs):
     r'''Graphs `expr` with graphviz and opens resulting image in
     the default image viewer.
 
@@ -31,7 +31,7 @@ def graph(expr, image_format='pdf', layout='dot'):
         graphviz_format = expr
     else:
         assert '__graph__' in dir(expr)
-        graphviz_graph = expr.__graph__()
+        graphviz_graph = expr.__graph__(**kwargs)
         graphviz_format = str(graphviz_graph)
 
     assert image_format in ('pdf', 'png')

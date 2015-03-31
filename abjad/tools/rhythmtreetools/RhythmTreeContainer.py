@@ -237,7 +237,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     return True
         return False
 
-    def __graph__(self):
+    def __graph__(self, **kwargs):
         r'''The GraphvizGraph representation of the RhythmTreeContainer:
 
         ::
