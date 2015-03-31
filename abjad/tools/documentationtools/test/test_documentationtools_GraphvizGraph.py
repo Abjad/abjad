@@ -5,17 +5,6 @@ from abjad import systemtools
 
 def test_documentationtools_GraphvizGraph_01():
 
-    r'''
-    digraph structs {
-        node [shape=record];
-        struct1 [label="<f0> left|<f1> mid&#92; dle|<f2> right"];
-        struct2 [label="<f0> one|<f1> two"];
-        struct3 [label="hello&#92;nworld |{ b |{c|<here> d|e}| f}| g | h"];
-        struct1:f1 -> struct2:f0;
-        struct1:f2 -> struct3:here;
-    }
-    '''
-
     graph = documentationtools.GraphvizGraph()
     graph.node_attributes['shape'] = 'record'
 
@@ -69,10 +58,9 @@ def test_documentationtools_GraphvizGraph_01():
 
     graphviz_format = str(graph)
 
-    assert systemtools.TestManager.compare(
-        graphviz_format,
+    assert graphviz_format == systemtools.TestManager.clean_string(
         '''
-        digraph Graph {
+        digraph G {
             node [shape=record];
             node_0 [label="<f_0> left | <f_1> middle | <f_2> right"];
             node_1 [label="<f_0> one | <f_1> two"];
@@ -80,5 +68,5 @@ def test_documentationtools_GraphvizGraph_01():
             node_0:f_1 -> node_1:f_0;
             node_0:f_2 -> node_2:f_1_1_1;
         }
-        ''',
-        ), graphviz_format
+        '''
+        )

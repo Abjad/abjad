@@ -138,7 +138,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
     ::
 
         >>> print(str(graph))
-        digraph Graph {
+        digraph G {
             subgraph cluster_0 {
                 node_0_0;
                 node_0_1;
@@ -225,10 +225,17 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             edge_parents[last_parent].append(edge)
 
         def recurse(node, indent=0, prefix='subgraph'):
-            indent_one = indent * '\t'
-            indent_two = (indent + 1) * '\t'
-            result = ['{}{} {} {{'.format(indent_one, prefix,
-                self._format_value(node.canonical_name))]
+            indent_one = indent * '    '
+            indent_two = (indent + 1) * '    '
+            result = []
+
+            string = '{}{} {} {{'.format(
+                indent_one,
+                prefix,
+                self._format_value(node.canonical_name)
+                )
+            result.append(string)
+
             if len(node.attributes):
                 contributions = self._format_attribute_list(node.attributes)
                 contributions[0] = 'graph {}'.format(contributions[0])
@@ -243,21 +250,25 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                     self._format_attribute_list(node.edge_attributes)
                 contributions[0] = 'edge {}'.format(contributions[0])
                 result.extend(indent_two + x for x in contributions)
+
             for child in node:
                 if isinstance(child, type(self)):
-                    result.extend(recurse(child, indent=indent+1))
+                    lines = recurse(child, indent=indent + 1)
                 else:
-                    result.extend(indent_two + x \
-                        for x in child._graphviz_format_contributions)
+                    lines = (indent_two + line for line in
+                        child._graphviz_format_contributions)
+                result.extend(lines)
+
+            key = lambda x: (x.tail.canonical_name, x.head.canonical_name)
             if node in edge_parents:
                 edge_contributions = []
-                for edge in sorted(edge_parents[node],
-                    key=lambda x: (
-                    x.tail.canonical_name, x.head.canonical_name)):
-                    edge_contributions.extend(indent_two + x \
-                        for x in edge._graphviz_format_contributions)
+                for edge in sorted(edge_parents[node], key=key):
+                    for line in edge._graphviz_format_contributions:
+                        edge_contributions.append(indent_two + line)
                 result.extend(edge_contributions)
+
             result.append('{}}}'.format(indent_one))
+
             return result
 
         if self.is_digraph:
@@ -285,7 +296,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         '''
         if self.name is not None:
             return self.name
-        return 'Graph'
+        return 'G'
 
     @property
     def edge_attributes(self):
