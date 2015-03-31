@@ -12,17 +12,14 @@ class SegmentMaker(AbjadObject):
     __slots__ = (
         '_lilypond_file',
         '_metadata',
-        '_name',
         )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        name=None,
         ):
         self._lilypond_file = None
-        self._name = name
 
     ### SPECIAL METHODS ###
 
@@ -69,11 +66,3 @@ class SegmentMaker(AbjadObject):
         Returns LilyPond file.
         '''
         return self._lilypond_file
-
-    @property
-    def name(self):
-        r'''Gets segment name.
-
-        Returns string or none.
-        '''
-        return self._name
