@@ -502,8 +502,6 @@ class Meter(AbjadObject):
                     node_1 -> node_2;
                     node_1 -> node_3;
                     node_1 -> node_4;
-                    node_10 -> node_11_6 [style=dotted];
-                    node_10 -> node_11_7 [style=dotted];
                     node_2 -> node_11_0 [style=dotted];
                     node_2 -> node_11_1 [style=dotted];
                     node_3 -> node_11_1 [style=dotted];
@@ -516,10 +514,12 @@ class Meter(AbjadObject):
                     node_6 -> node_11_4 [style=dotted];
                     node_7 -> node_11_4 [style=dotted];
                     node_7 -> node_11_5 [style=dotted];
-                    node_8 -> node_10;
                     node_8 -> node_9;
+                    node_8 -> node_10;
                     node_9 -> node_11_5 [style=dotted];
                     node_9 -> node_11_6 [style=dotted];
+                    node_10 -> node_11_6 [style=dotted];
+                    node_10 -> node_11_7 [style=dotted];
                 }
 
         Returns Graphviz graph.

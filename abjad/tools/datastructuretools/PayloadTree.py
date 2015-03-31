@@ -307,17 +307,17 @@ class PayloadTree(AbjadObject):
                 node_12 [label=7,
                     shape=box];
                 node_0 -> node_1;
-                node_0 -> node_10;
                 node_0 -> node_4;
                 node_0 -> node_7;
+                node_0 -> node_10;
                 node_1 -> node_2;
                 node_1 -> node_3;
-                node_10 -> node_11;
-                node_10 -> node_12;
                 node_4 -> node_5;
                 node_4 -> node_6;
                 node_7 -> node_8;
                 node_7 -> node_9;
+                node_10 -> node_11;
+                node_10 -> node_12;
             }
 
         ::
