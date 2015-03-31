@@ -55,6 +55,27 @@ class GraphvizEdge(GraphvizObject):
         self._tail = None
         self._head = None
 
+    def _get_highest_parent(self):
+        from abjad.tools import documentationtools
+        highest_parent = None
+        if isinstance(self.tail, documentationtools.GraphvizField):
+            tail_parentage = list(self.tail.struct.proper_parentage)
+        else:
+            tail_parentage = list(self.tail.proper_parentage)
+        if isinstance(self.head, documentationtools.GraphvizField):
+            head_parentage = list(self.head.struct.proper_parentage)
+        else:
+            head_parentage = list(self.head.proper_parentage)
+        while len(tail_parentage) and len(head_parentage) and \
+            tail_parentage[-1] is head_parentage[-1]:
+            highest_parent = tail_parentage[-1]
+            tail_parentage.pop()
+            head_parentage.pop()
+        if highest_parent is None:
+            message = 'highest parent can not be none.'
+            raise Exception(message)
+        return highest_parent
+
     ### PRIVATE PROPERTIES ###
 
     @property
