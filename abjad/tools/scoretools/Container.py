@@ -2,6 +2,8 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
+from abjad.tools import sequencetools
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.scoretools.Component import Component
 
@@ -110,6 +112,93 @@ class Container(Component):
         message = 'can not get container item {!r}.'
         message = message.format(i)
         raise ValueError(message)
+
+    def _as_graphviz_node(self):
+        from abjad.tools import documentationtools
+        score_index = self._get_parentage().score_index
+        score_index = '_'.join(str(_) for _ in score_index)
+        class_name = type(self).__name__
+        if score_index:
+            name = '{}_{}'.format(class_name, score_index)
+        else:
+            name = class_name
+        node = documentationtools.GraphvizNode(name=name)
+        group = documentationtools.GraphvizGroup()
+        class_field = documentationtools.GraphvizField(
+            label=type(self).__name__,
+            )
+        timespan = inspect_(self).get_timespan()
+        offset_field = documentationtools.GraphvizField(
+            label='{!s}'.format(timespan.start_offset),
+            )
+        group.extend([class_field, offset_field])
+        node.append(group)
+        return node
+
+    def __graph__(self, spanner=None):
+        r'''Graphviz graph representation of container.
+
+        Returns Graphviz graph.
+        '''
+        def recurse(component, leaf_cluster):
+            component_node = component._as_graphviz_node()
+            node_mapping[component] = component_node
+            node_order = [component_node.name]
+            if isinstance(component, scoretools.Container):
+                graph.append(component_node)
+                this_leaf_cluster = documentationtools.GraphvizSubgraph(
+                    name=component_node.name,
+                    )
+                all_are_leaves = True
+                pending_node_order = []
+                for child in component:
+                    if not isinstance(child, scoretools.Leaf):
+                        all_are_leaves = False
+                    child_node, child_node_order = recurse(
+                        child, this_leaf_cluster)
+                    pending_node_order.extend(child_node_order)
+                    edge = documentationtools.GraphvizEdge()
+                    edge(component_node, child_node)
+                if all_are_leaves:
+                    pending_node_order.reverse()
+                node_order.extend(pending_node_order)
+                if len(this_leaf_cluster):
+                    leaf_cluster.append(this_leaf_cluster)
+            else:
+                leaf_cluster.append(component_node)
+            return component_node, node_order
+        from abjad.tools import documentationtools
+        from abjad.tools import scoretools
+        node_order = []
+        node_mapping = {}
+        graph = documentationtools.GraphvizGraph(
+            name='G',
+            attributes={
+                'ordering': 'in',
+                'style': 'rounded',
+                },
+            node_attributes={'shape': 'Mrecord'},
+            )
+        leaf_cluster = documentationtools.GraphvizSubgraph(name='leaves')
+        component_node, node_order = recurse(self, leaf_cluster)
+        if len(leaf_cluster) == 1:
+            graph.append(leaf_cluster[0])
+        elif len(leaf_cluster):
+            graph.append(leaf_cluster)
+        graph._node_order = node_order
+        if spanner:
+            for component_one, component_two in \
+                sequencetools.iterate_sequence_nwise(spanner.components):
+                node_one = node_mapping[component_one]
+                node_two = node_mapping[component_two]
+                edge = documentationtools.GraphvizEdge(
+                    attributes={
+                        'constraint': False,
+                        'penwidth': 4,
+                        },
+                    )
+                edge(node_one, node_two)
+        return graph
 
     def __len__(self):
         r'''Number of items in container.
@@ -380,6 +469,24 @@ class Container(Component):
             selection = self[start:stop]
             spanners_receipt = selection._get_dominant_spanners()
         return spanners_receipt
+
+    def _iterate_bottom_up(self):
+        def recurse(node):
+            if isinstance(node, Container):
+                for x in node:
+                    for y in recurse(x):
+                        yield y
+            yield node
+        return recurse(self)
+
+    def _iterate_top_down(self):
+        def recurse(node):
+            yield node
+            if isinstance(node, Container):
+                for x in node:
+                    for y in recurse(x):
+                        yield y
+        return recurse(self)
 
     def _scale_contents(self, multiplier):
         for expr in iterate(self[:]).by_topmost_logical_ties_and_components():
