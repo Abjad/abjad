@@ -827,6 +827,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> print(result)
                 1 / 4 beamed quarter notes
+                0 / 1 conflicting clefs
                 0 / 1 discontiguous spanners
                 0 / 5 duplicate ids
                 0 / 0 intermarked hairpins
