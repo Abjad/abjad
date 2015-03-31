@@ -163,7 +163,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         edge_attributes=None,
         is_digraph=True,
         name=None,
-        node_attributes=None
+        node_attributes=None,
         ):
         TreeContainer.__init__(self, children=children, name=name)
         GraphvizObject.__init__(self, attributes=attributes)
@@ -172,6 +172,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         self._verify_attributes(edge_attributes, '_edge_attributes')
         self._verify_attributes(node_attributes, '_node_attributes')
         self._is_digraph = bool(is_digraph)
+        self._node_order = None
 
     ### SPECIAL METHODS ###
 
@@ -200,29 +201,16 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 edges.update(node._edges)
             elif isinstance(node, documentationtools.GraphvizNode):
                 edges.update(node.all_edges)
+        edges = sorted(edges, key=lambda edge: (
+            edge.tail.graph_order, edge.head.graph_order,
+            ))
 
         edge_parents = {}
         for edge in edges:
-            last_parent = None
-            if isinstance(edge.tail, documentationtools.GraphvizField):
-                tail_parentage = list(edge.tail.struct.proper_parentage)
-            else:
-                tail_parentage = list(edge.tail.proper_parentage)
-            if isinstance(edge.head, documentationtools.GraphvizField):
-                head_parentage = list(edge.head.struct.proper_parentage)
-            else:
-                head_parentage = list(edge.head.proper_parentage)
-            while len(tail_parentage) and len(head_parentage) and \
-                tail_parentage[-1] is head_parentage[-1]:
-                last_parent = tail_parentage[-1]
-                tail_parentage.pop()
-                head_parentage.pop()
-            if last_parent is None:
-                message = 'last parent can not be none.'
-                raise Exception(message)
-            if last_parent not in edge_parents:
-                edge_parents[last_parent] = []
-            edge_parents[last_parent].append(edge)
+            highest_parent = edge._get_highest_parent()
+            if highest_parent not in edge_parents:
+                edge_parents[highest_parent] = []
+            edge_parents[highest_parent].append(edge)
 
         def recurse(node, indent=0, prefix='subgraph'):
             indent_one = indent * '    '
@@ -251,6 +239,10 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 contributions[0] = 'edge {}'.format(contributions[0])
                 result.extend(indent_two + x for x in contributions)
 
+            if indent == 0 and self._node_order:
+                for node_name in self._node_order:
+                    result.append('{}{};'.format(indent_two, node_name))
+
             for child in node:
                 if isinstance(child, type(self)):
                     lines = recurse(child, indent=indent + 1)
@@ -259,10 +251,9 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                         child._graphviz_format_contributions)
                 result.extend(lines)
 
-            key = lambda x: (x.tail.canonical_name, x.head.canonical_name)
             if node in edge_parents:
                 edge_contributions = []
-                for edge in sorted(edge_parents[node], key=key):
+                for edge in edge_parents[node]:
                     for line in edge._graphviz_format_contributions:
                         edge_contributions.append(indent_two + line)
                 result.extend(edge_contributions)
