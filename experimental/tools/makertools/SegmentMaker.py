@@ -11,7 +11,8 @@ class SegmentMaker(AbjadObject):
 
     __slots__ = (
         '_lilypond_file',
-        '_metadata',
+        '_previous_segment_metadata',
+        '_segment_metadata',
         )
 
     ### INITIALIZER ###
@@ -23,12 +24,21 @@ class SegmentMaker(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, metadata=None):
+    def __call__(
+        self, 
+        segment_metadata=None, 
+        previous_segment_metadata=None,
+        ):
         r'''Calls segment-maker.
 
         Returns LilyPond file.
         '''
-        self._metadata = metadata
+        segment_metadata = datastructuretools.TypedOrderedDict(
+            segment_metadata)
+        previous_segment_metadata = datastructuretools.TypedOrderedDict(
+            previous_segment_metadata)
+        self._segment_metadata = segment_metadata
+        self._previous_segment_metadata = previous_segment_metadata
         lilypond_file = self._make_lilypond_file()
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
         self._lilypond_file = lilypond_file
