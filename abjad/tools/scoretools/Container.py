@@ -127,11 +127,12 @@ class Container(Component):
         class_field = documentationtools.GraphvizField(
             label=type(self).__name__,
             )
-        timespan = inspect_(self).get_timespan()
-        offset_field = documentationtools.GraphvizField(
-            label='{!s}'.format(timespan.start_offset),
-            )
-        group.extend([class_field, offset_field])
+        group.append(class_field)
+#        timespan = inspect_(self).get_timespan()
+#        offset_field = documentationtools.GraphvizField(
+#            label='{!s}'.format(timespan.start_offset),
+#            )
+#        group.append(offset_field)
         node.append(group)
         return node
 
@@ -148,6 +149,8 @@ class Container(Component):
                 graph.append(component_node)
                 this_leaf_cluster = documentationtools.GraphvizSubgraph(
                     name=component_node.name,
+                    attributes={
+                        },
                     )
                 all_are_leaves = True
                 pending_node_order = []
@@ -177,7 +180,14 @@ class Container(Component):
                 'ordering': 'in',
                 'style': 'rounded',
                 },
-            node_attributes={'shape': 'Mrecord'},
+            edge_attributes={
+                },
+            node_attributes={
+                'fillcolor': 'white',
+                'fontname': 'Arial',
+                'shape': 'Mrecord',
+                'style': 'filled',
+                },
             )
         leaf_cluster = documentationtools.GraphvizSubgraph(name='leaves')
         component_node, node_order = recurse(self, leaf_cluster)
@@ -198,6 +208,16 @@ class Container(Component):
                         },
                     )
                 edge(node_one, node_two)
+            for component in spanner.components:
+                node = node_mapping[component]
+                node.attributes['penwidth'] = 3
+                node.attributes['fillcolor'] = 'grey90'
+                if isinstance(component, Container):
+                    for child in iterate(component).depth_first():
+                        if child is component:
+                            continue
+                        node = node_mapping[child]
+                        node.attributes['fillcolor'] = 'grey95'
         return graph
 
     def __len__(self):

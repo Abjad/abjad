@@ -254,6 +254,37 @@ class Measure(FixedDurationContainer):
                     return False
         return True
 
+    def _as_graphviz_node(self):
+        from abjad.tools import documentationtools
+        score_index = self._get_parentage().score_index
+        score_index = '_'.join(str(_) for _ in score_index)
+        class_name = type(self).__name__
+        if score_index:
+            name = '{}_{}'.format(class_name, score_index)
+        else:
+            name = class_name
+        node = documentationtools.GraphvizNode(name=name)
+        group = documentationtools.GraphvizGroup()
+        class_field = documentationtools.GraphvizField(
+            label=type(self).__name__,
+            )
+        group.append(class_field)
+        fraction = mathtools.NonreducedFraction(
+            self.time_signature.numerator,
+            self.time_signature.denominator,
+            )
+        time_signature_field = documentationtools.GraphvizField(
+            label='{!s}'.format(fraction),
+            )
+        group.append(time_signature_field)
+#        timespan = inspect_(self).get_timespan()
+#        offset_field = documentationtools.GraphvizField(
+#            label='{!s}'.format(timespan.start_offset),
+#            )
+#        group.append(offset_field)
+        node.append(group)
+        return node
+
     def _check_duration(self):
         effective_time_signature = self.time_signature
         if effective_time_signature.has_non_power_of_two_denominator and \

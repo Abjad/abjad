@@ -153,14 +153,16 @@ class Leaf(Component):
         class_field = documentationtools.GraphvizField(
             label=type(self).__name__,
             )
+        group.append(class_field)
         body_field = documentationtools.GraphvizField(
             label=self._body[0],
             )
-        timespan = inspect_(self).get_timespan()
-        offset_field = documentationtools.GraphvizField(
-            label='{!s}'.format(timespan.start_offset),
-            )
-        group.extend([class_field, body_field, offset_field])
+        group.append(body_field)
+#        timespan = inspect_(self).get_timespan()
+#        offset_field = documentationtools.GraphvizField(
+#            label='{!s}'.format(timespan.start_offset),
+#            )
+#        group.append(offset_field)
         node.append(group)
         return node
 

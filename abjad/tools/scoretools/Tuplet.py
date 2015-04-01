@@ -214,14 +214,16 @@ class Tuplet(Container):
         class_field = documentationtools.GraphvizField(
             label=type(self).__name__,
             )
+        group.append(class_field)
         multiplier_field = documentationtools.GraphvizField(
             label='* {!s}'.format(self.multiplier),
             )
-        timespan = inspect_(self).get_timespan()
-        offset_field = documentationtools.GraphvizField(
-            label='{!s}'.format(timespan.start_offset),
-            )
-        group.extend([class_field, multiplier_field, offset_field])
+        group.append(multiplier_field)
+#        timespan = inspect_(self).get_timespan()
+#        offset_field = documentationtools.GraphvizField(
+#            label='{!s}'.format(timespan.start_offset),
+#            )
+#        group.append(offset_field)
         node.append(group)
         return node
 
