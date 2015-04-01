@@ -25,31 +25,33 @@ class GraphvizObject(AbjadObject):
 
     def _format_attribute(self, name, value):
         from abjad.tools import documentationtools
+        result = []
         if isinstance(value, documentationtools.GraphvizTable):
-            result = []
-            lines = str(value).splitlines()
-            result.append('{}={}'.format(name, lines[0]))
-            for line in lines[1:]:
-                result.append('    ' + line)
-            result = '\n'.join(result)
-            return result
-        return '{}={}'.format(
-            name,
-            self._format_value(value, quote_keywords=True),
-            )
+            result.extend(str(value).splitlines())
+            result[0] = '{}={}'.format(name, result[0])
+        else:
+            result.append('{}={}'.format(
+                name,
+                self._format_value(value, quote_keywords=True),
+                ))
+        result = '\n'.join(result)
+        return result
 
     def _format_attribute_list(self, attributes):
-        result = []
+        formatted_attributes = []
         for k, v in sorted(attributes.items()):
-            result.append(self._format_attribute(k, v))
+            formatted_attributes.append(self._format_attribute(k, v))
+        result = []
+        for i, formatted_attribute in enumerate(formatted_attributes):
+            if i < len(formatted_attributes) - 1:
+                formatted_attribute = formatted_attribute + ','
+            lines = formatted_attribute.splitlines()
+            result.extend(lines)
+        for i, line in enumerate(result):
+            if 0 < i:
+                result[i] = '    ' + line
         result[0] = '[' + result[0]
         result[-1] = result[-1] + '];'
-        if 1 < len(result):
-            for i, x in enumerate(result):
-                if i < len(result) - 1:
-                    result[i] = result[i] + ','
-                if 0 < i:
-                    result[i] = '\t' + result[i]
         return result
 
     def _format_value(self, value, quote_keywords=False):
