@@ -212,6 +212,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
                 edge_parents[highest_parent] = []
             edge_parents[highest_parent].append(edge)
 
+        visited_edges = set()
+
         def recurse(node, indent=0, prefix='subgraph'):
             indent_one = indent * '    '
             indent_two = (indent + 1) * '    '
@@ -254,8 +256,11 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
             if node in edge_parents:
                 edge_contributions = []
                 for edge in edge_parents[node]:
+                    if edge in visited_edges:
+                        continue
                     for line in edge._graphviz_format_contributions:
                         edge_contributions.append(indent_two + line)
+                    visited_edges.add(edge)
                 result.extend(edge_contributions)
 
             result.append('{}}}'.format(indent_one))
