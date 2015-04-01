@@ -8,7 +8,6 @@ from abjad.tools import systemtools
 from abjad.tools import timespantools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
@@ -149,21 +148,27 @@ class Leaf(Component):
         else:
             name = class_name
         node = documentationtools.GraphvizNode(name=name)
-        group = documentationtools.GraphvizGroup()
-        class_field = documentationtools.GraphvizField(
-            label=type(self).__name__,
+        table = documentationtools.GraphvizTable([
+            documentationtools.GraphvizTableRow([
+                documentationtools.GraphvizTableCell(
+                    label=type(self).__name__,
+                    attributes={'border': 0},
+                    ),
+                ]),
+            documentationtools.GraphvizTableHorizontalRule(),
+            documentationtools.GraphvizTableRow([
+                documentationtools.GraphvizTableCell(
+                    label=self._body[0],
+                    attributes={'border': 0},
+                    ),
+                ]),
+            ],
+            attributes={
+                'cellpadding': 5,
+                'style': 'rounded',
+                },
             )
-        group.append(class_field)
-        body_field = documentationtools.GraphvizField(
-            label=self._body[0],
-            )
-        group.append(body_field)
-#        timespan = inspect_(self).get_timespan()
-#        offset_field = documentationtools.GraphvizField(
-#            label='{!s}'.format(timespan.start_offset),
-#            )
-#        group.append(offset_field)
-        node.append(group)
+        node.append(table)
         return node
 
     def _copy_override_and_set_from_leaf(self, leaf):

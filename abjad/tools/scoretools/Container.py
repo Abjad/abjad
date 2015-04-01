@@ -3,7 +3,6 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.scoretools.Component import Component
 
@@ -113,29 +112,6 @@ class Container(Component):
         message = message.format(i)
         raise ValueError(message)
 
-    def _as_graphviz_node(self):
-        from abjad.tools import documentationtools
-        score_index = self._get_parentage().score_index
-        score_index = '_'.join(str(_) for _ in score_index)
-        class_name = type(self).__name__
-        if score_index:
-            name = '{}_{}'.format(class_name, score_index)
-        else:
-            name = class_name
-        node = documentationtools.GraphvizNode(name=name)
-        group = documentationtools.GraphvizGroup()
-        class_field = documentationtools.GraphvizField(
-            label=type(self).__name__,
-            )
-        group.append(class_field)
-#        timespan = inspect_(self).get_timespan()
-#        offset_field = documentationtools.GraphvizField(
-#            label='{!s}'.format(timespan.start_offset),
-#            )
-#        group.append(offset_field)
-        node.append(group)
-        return node
-
     def __graph__(self, spanner=None, **kwargs):
         r'''Graphviz graph representation of container.
 
@@ -185,8 +161,7 @@ class Container(Component):
             node_attributes={
                 'fillcolor': 'white',
                 'fontname': 'Arial',
-                'shape': 'Mrecord',
-                'style': 'filled',
+                'shape': 'none',
                 },
             )
         leaf_cluster = documentationtools.GraphvizSubgraph(name='leaves')
@@ -332,6 +307,32 @@ class Container(Component):
         '''
         self._set_item(slice(len(self), len(self)), [component],
             withdraw_components_in_expr_from_crossing_spanners=False)
+
+    def _as_graphviz_node(self):
+        from abjad.tools import documentationtools
+        score_index = self._get_parentage().score_index
+        score_index = '_'.join(str(_) for _ in score_index)
+        class_name = type(self).__name__
+        if score_index:
+            name = '{}_{}'.format(class_name, score_index)
+        else:
+            name = class_name
+        node = documentationtools.GraphvizNode(name=name)
+        table = documentationtools.GraphvizTable([
+            documentationtools.GraphvizTableRow([
+                documentationtools.GraphvizTableCell(
+                    label=type(self).__name__,
+                    attributes={'border': 0},
+                    ),
+                ])
+            ],
+            attributes={
+                'cellpadding': 5,
+                'style': 'rounded',
+                },
+            )
+        node.append(table)
+        return node
 
     def _copy_with_children_and_indicators_but_without_spanners(self):
         new = self._copy_with_indicators_but_without_children_or_spanners()

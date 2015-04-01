@@ -264,25 +264,31 @@ class Measure(FixedDurationContainer):
         else:
             name = class_name
         node = documentationtools.GraphvizNode(name=name)
-        group = documentationtools.GraphvizGroup()
-        class_field = documentationtools.GraphvizField(
-            label=type(self).__name__,
-            )
-        group.append(class_field)
         fraction = mathtools.NonreducedFraction(
             self.time_signature.numerator,
             self.time_signature.denominator,
             )
-        time_signature_field = documentationtools.GraphvizField(
-            label='{!s}'.format(fraction),
+        table = documentationtools.GraphvizTable([
+            documentationtools.GraphvizTableRow([
+                documentationtools.GraphvizTableCell(
+                    label=type(self).__name__,
+                    attributes={'border': 0},
+                    ),
+                ]),
+            documentationtools.GraphvizTableHorizontalRule(),
+            documentationtools.GraphvizTableRow([
+                documentationtools.GraphvizTableCell(
+                    label=str(fraction),
+                    attributes={'border': 0},
+                    ),
+                ]),
+            ],
+            attributes={
+                'cellpadding': 5,
+                'style': 'rounded',
+                },
             )
-        group.append(time_signature_field)
-#        timespan = inspect_(self).get_timespan()
-#        offset_field = documentationtools.GraphvizField(
-#            label='{!s}'.format(timespan.start_offset),
-#            )
-#        group.append(offset_field)
-        node.append(group)
+        node.append(table)
         return node
 
     def _check_duration(self):

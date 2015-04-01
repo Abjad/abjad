@@ -210,21 +210,27 @@ class Tuplet(Container):
         else:
             name = class_name
         node = documentationtools.GraphvizNode(name=name)
-        group = documentationtools.GraphvizGroup()
-        class_field = documentationtools.GraphvizField(
-            label=type(self).__name__,
+        table = documentationtools.GraphvizTable([
+            documentationtools.GraphvizTableRow([
+                documentationtools.GraphvizTableCell(
+                    label=type(self).__name__,
+                    attributes={'border': 0},
+                    ),
+                ]),
+            documentationtools.GraphvizTableHorizontalRule(),
+            documentationtools.GraphvizTableRow([
+                documentationtools.GraphvizTableCell(
+                    label='* {!s}'.format(self.multiplier),
+                    attributes={'border': 0},
+                    ),
+                ]),
+            ],
+            attributes={
+                'cellpadding': 5,
+                'style': 'rounded',
+                },
             )
-        group.append(class_field)
-        multiplier_field = documentationtools.GraphvizField(
-            label='* {!s}'.format(self.multiplier),
-            )
-        group.append(multiplier_field)
-#        timespan = inspect_(self).get_timespan()
-#        offset_field = documentationtools.GraphvizField(
-#            label='{!s}'.format(timespan.start_offset),
-#            )
-#        group.append(offset_field)
-        node.append(group)
+        node.append(table)
         return node
 
     def _extract(self, scale_contents=False):
