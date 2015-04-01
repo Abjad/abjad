@@ -8,42 +8,61 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class BeatDivisionMaker(AbjadValueObject):
-    r'''Beat division maker.
+    r'''Beat division-maker.
 
     ..  container:: example
 
-        **Example 1.** Outputs divisions equal to beat-groups of input:
+        **Example 1.** Makes measures:
+
+        ::
+
+            >>> maker = makertools.BeatDivisionMaker(
+            ...     depths=[0],
+            ...     )
+            >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
+            >>> for list_ in lists:
+            ...     list_
+            [Division(7, 4)]
+            [Division(6, 4)]
+            [Division(5, 4)]
+            [Division(4, 4)]
+
+    ..  container:: example
+
+        **Example 2.** Makes beat groups:
 
         ::
 
             >>> maker = makertools.BeatDivisionMaker(
             ...     depths=[1],
             ...     )
-            >>> lists = maker([(7, 4), (6, 4)])
+            >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
             >>> for list_ in lists:
             ...     list_
             [Division(3, 4), Division(2, 4), Division(2, 4)]
             [Division(3, 4), Division(3, 4)]
+            [Division(3, 4), Division(2, 4)]
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4)]
 
     ..  container:: example
 
-        **Example 2.** Outputs divisions equal to beats of input:
+        **Example 3.** Makes beats:
 
         ::
 
             >>> maker = makertools.BeatDivisionMaker(
             ...     depths=[2],
             ...     )
-            >>> lists = maker([(7, 4), (6, 4)])
+            >>> lists = maker([(7, 4), (6, 4), (5, 4)])
             >>> for list_ in lists:
             ...     list_
             [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4)]
             [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4)]
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4)]
 
     ..  container:: example
 
-        **Example 3.** Outputs divisions at depths ``0`` and ``1`` 
-        alternately:
+        **Example 4.** Makes alternating measures and beat groups:
 
         ::
 
@@ -60,8 +79,10 @@ class BeatDivisionMaker(AbjadValueObject):
 
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a (possibly empty) nested 
-    list of divisions as output (structured one output list per input
-    division).
+    list of divisions as output. Ouput is structured one output list per input
+    division.
+
+    Treats input as meters.
 
     Follows the two-step configure-once / call-repeatedly pattern shown here.
     '''
@@ -97,11 +118,12 @@ class BeatDivisionMaker(AbjadValueObject):
                 >>> maker = makertools.BeatDivisionMaker(
                 ...     depths=[1],
                 ...     )
-                >>> lists = maker([(7, 4), (6, 4)])
+                >>> lists = maker([(7, 4), (6, 4), (5, 4)])
                 >>> for list_ in lists:
                 ...     list_
                 [Division(3, 4), Division(2, 4), Division(2, 4)]
                 [Division(3, 4), Division(3, 4)]
+                [Division(3, 4), Division(2, 4)]
 
             Returns list of division lists.
 
