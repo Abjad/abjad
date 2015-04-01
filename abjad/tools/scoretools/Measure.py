@@ -256,19 +256,13 @@ class Measure(FixedDurationContainer):
 
     def _as_graphviz_node(self):
         from abjad.tools import documentationtools
-        score_index = self._get_parentage().score_index
-        score_index = '_'.join(str(_) for _ in score_index)
-        class_name = type(self).__name__
-        if score_index:
-            name = '{}_{}'.format(class_name, score_index)
-        else:
-            name = class_name
-        node = documentationtools.GraphvizNode(name=name)
+        from abjad.tools import scoretools
+        node = scoretools.Component._as_graphviz_node(self)
         fraction = mathtools.NonreducedFraction(
             self.time_signature.numerator,
             self.time_signature.denominator,
             )
-        table = documentationtools.GraphvizTable([
+        node[0].extend([
             documentationtools.GraphvizTableRow([
                 documentationtools.GraphvizTableCell(
                     label=type(self).__name__,
@@ -282,13 +276,7 @@ class Measure(FixedDurationContainer):
                     attributes={'border': 0},
                     ),
                 ]),
-            ],
-            attributes={
-                'cellpadding': 5,
-                'style': 'rounded',
-                },
-            )
-        node.append(table)
+            ])
         return node
 
     def _check_duration(self):

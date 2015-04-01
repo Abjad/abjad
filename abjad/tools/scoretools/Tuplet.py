@@ -202,15 +202,9 @@ class Tuplet(Container):
 
     def _as_graphviz_node(self):
         from abjad.tools import documentationtools
-        score_index = self._get_parentage().score_index
-        score_index = '_'.join(str(_) for _ in score_index)
-        class_name = type(self).__name__
-        if score_index:
-            name = '{}_{}'.format(class_name, score_index)
-        else:
-            name = class_name
-        node = documentationtools.GraphvizNode(name=name)
-        table = documentationtools.GraphvizTable([
+        from abjad.tools import scoretools
+        node = scoretools.Component._as_graphviz_node(self)
+        node[0].extend([
             documentationtools.GraphvizTableRow([
                 documentationtools.GraphvizTableCell(
                     label=type(self).__name__,
@@ -224,13 +218,7 @@ class Tuplet(Container):
                     attributes={'border': 0},
                     ),
                 ]),
-            ],
-            attributes={
-                'cellpadding': 5,
-                'style': 'rounded',
-                },
-            )
-        node.append(table)
+            ])
         return node
 
     def _extract(self, scale_contents=False):
