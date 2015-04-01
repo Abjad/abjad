@@ -3,7 +3,15 @@ import os
 import subprocess
 
 
-def graph(expr, image_format='pdf', layout='dot', **kwargs):
+def graph(
+    expr,
+    image_format='pdf',
+    layout='dot',
+    graph_attributes=None,
+    node_attributes=None,
+    edge_attributes=None,
+    **kwargs
+    ):
     r'''Graphs `expr` with graphviz and opens resulting image in
     the default image viewer.
 
@@ -32,6 +40,12 @@ def graph(expr, image_format='pdf', layout='dot', **kwargs):
     else:
         assert '__graph__' in dir(expr)
         graphviz_graph = expr.__graph__(**kwargs)
+        if graph_attributes:
+            graph.attributes.update(graph_attributes)
+        if node_attributes:
+            graph.node_attributes.update(node_attributes)
+        if edge_attributes:
+            graph.edge_attributes.update(edge_attributes)
         graphviz_format = str(graphviz_graph)
 
     assert image_format in ('pdf', 'png')

@@ -148,6 +148,7 @@ class Container(Component):
             else:
                 leaf_cluster.append(component_node)
             return component_node, node_order
+
         from abjad.tools import documentationtools
         from abjad.tools import scoretools
         node_order = []
@@ -155,7 +156,6 @@ class Container(Component):
         graph = documentationtools.GraphvizGraph(
             name='G',
             attributes={
-                'ordering': 'in',
                 'style': 'rounded',
                 },
             edge_attributes={
@@ -172,6 +172,7 @@ class Container(Component):
         elif len(leaf_cluster):
             graph.append(leaf_cluster)
         graph._node_order = node_order
+
         if spanner:
             for component_one, component_two in \
                 sequencetools.iterate_sequence_nwise(spanner.components):
@@ -180,7 +181,7 @@ class Container(Component):
                 edge = documentationtools.GraphvizEdge(
                     attributes={
                         'constraint': False,
-                        'penwidth': 4,
+                        'penwidth': 5,
                         },
                     )
                 edge(node_one, node_two)
@@ -196,6 +197,7 @@ class Container(Component):
                         node = node_mapping[child]
                         table = node[0]
                         table.attributes['bgcolor'] = 'grey80'
+
         return graph
 
     def __len__(self):
