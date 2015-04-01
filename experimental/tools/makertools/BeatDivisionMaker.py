@@ -90,6 +90,7 @@ class BeatDivisionMaker(AbjadValueObject):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = (
+        '_decrease_durations_monotonically',
         '_depths',
         )
 
@@ -97,12 +98,17 @@ class BeatDivisionMaker(AbjadValueObject):
 
     def __init__(
         self,
+        decrease_durations_monotonically=True,
         depths=None,
         ):
         if depths is not None:
             depths = depths or ()
             assert mathtools.all_are_nonnegative_integers(depths), repr(depths)
         self._depths = depths
+        prototype = (type(None), type(True))
+        assert isinstance(decrease_durations_monotonically, prototype)
+        self._decrease_durations_monotonically = \
+            decrease_durations_monotonically
 
     ### SPECIAL METHODS ###
 
@@ -152,7 +158,11 @@ class BeatDivisionMaker(AbjadValueObject):
         for i, input_division in enumerate(input_divisions):
             input_division = durationtools.Division(input_division)
             depth = depths[i]
-            meter = metertools.Meter(input_division)
+            meter = metertools.Meter(
+                input_division,
+                decrease_durations_monotonically=\
+                    self.decrease_durations_monotonically,
+                )
             durations = meter.get_durations_at_depth(depth)
             denominator = input_division.denominator
             output_division_list = [
@@ -173,6 +183,49 @@ class BeatDivisionMaker(AbjadValueObject):
         return depths
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def decrease_durations_monotonically(self):
+        r'''Is true when beat-group durations should decrease monotonically.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Decreases beat-group durations monotonically:
+
+            >>> maker = makertools.BeatDivisionMaker(
+            ...     decrease_durations_monotonically=True,
+            ...     depths=[1],
+            ...     )
+            >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
+            >>> for list_ in lists:
+            ...     list_
+            [Division(3, 4), Division(2, 4), Division(2, 4)]
+            [Division(3, 4), Division(3, 4)]
+            [Division(3, 4), Division(2, 4)]
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4)]
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Increases beat-group durations monotonically:
+
+            >>> maker = makertools.BeatDivisionMaker(
+            ...     decrease_durations_monotonically=False,
+            ...     depths=[1],
+            ...     )
+            >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
+            >>> for list_ in lists:
+            ...     list_
+            [Division(2, 4), Division(2, 4), Division(3, 4)]
+            [Division(3, 4), Division(3, 4)]
+            [Division(2, 4), Division(3, 4)]
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4)]
+
+        Set to true or false.
+        '''
+        return self._decrease_durations_monotonically
 
     @property
     def depths(self):
