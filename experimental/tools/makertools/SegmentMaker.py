@@ -58,12 +58,12 @@ class SegmentMaker(AbjadObject):
         hash_values = systemtools.StorageFormatManager.get_hash_values(self)
         return hash(hash_values)
 
-    def __illustrate__(self):
+    def __illustrate__(self, **kwargs):
         r'''Illustrates segment-maker.
 
         Returns LilyPond file.
         '''
-        lilypond_file, metadata = self()
+        lilypond_file, metadata = self(**kwargs)
         return lilypond_file
 
     ### PUBLIC PROPERTIES ###
