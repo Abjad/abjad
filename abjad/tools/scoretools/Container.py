@@ -159,7 +159,6 @@ class Container(Component):
             edge_attributes={
                 },
             node_attributes={
-                'fillcolor': 'white',
                 'fontname': 'Arial',
                 'shape': 'none',
                 },
@@ -185,14 +184,16 @@ class Container(Component):
                 edge(node_one, node_two)
             for component in spanner.components:
                 node = node_mapping[component]
-                node.attributes['penwidth'] = 3
-                node.attributes['fillcolor'] = 'grey90'
+                table = node[0]
+                table.attributes['border'] = 4
+                table.attributes['bgcolor'] = 'grey80'
                 if isinstance(component, Container):
                     for child in iterate(component).depth_first():
                         if child is component:
                             continue
                         node = node_mapping[child]
-                        node.attributes['fillcolor'] = 'grey95'
+                        table = node[0]
+                        table.attributes['bgcolor'] = 'grey80'
         return graph
 
     def __len__(self):
