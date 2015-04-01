@@ -3,13 +3,23 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeAssociativeList(Scheme):
-    '''Abjad model of Scheme associative list:
+    '''Abjad model of Scheme associative list.
 
-    ::
+    ..  container:: example
 
-        >>> schemetools.SchemeAssociativeList(
-        ...     ('space', 2), ('padding', 0.5))
-        SchemeAssociativeList(SchemePair('space', 2), SchemePair('padding', 0.5), quoting="'")
+        ::
+
+            >>> scheme_alist = schemetools.SchemeAssociativeList(
+            ...     ('space', 2),
+            ...     ('padding', 0.5),
+            ...     )
+            >>> scheme_alist
+            SchemeAssociativeList(SchemePair('space', 2), SchemePair('padding', 0.5), quoting="'")
+
+        ::
+
+            >>> print(format(scheme_alist))
+            #'((space . 2) (padding . 0.5))
 
     Scheme associative lists are immutable.
     '''
