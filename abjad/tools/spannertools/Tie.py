@@ -32,7 +32,7 @@ class Tie(Spanner):
 
     __slots__ = (
         '_direction',
-        '_use_messiaen_style',
+        '_use_messiaen_style_ties',
         )
 
     ### INITIALIZER ###
@@ -41,7 +41,7 @@ class Tie(Spanner):
         self,
         direction=None,
         overrides=None,
-        use_messiaen_style=None,
+        use_messiaen_style_ties=None,
         ):
         Spanner.__init__(
             self,
@@ -50,13 +50,13 @@ class Tie(Spanner):
         direction = stringtools.arg_to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
-        self._use_messiaen_style = use_messiaen_style
+        self._use_messiaen_style_ties = use_messiaen_style_ties
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         new._direction = self.direction
-        new._use_messiaen_style = self.use_messiaen_style
+        new._use_messiaen_style_ties = self.use_messiaen_style_ties
 
     def _format_right_of_leaf(self, leaf):
         from abjad.tools import scoretools
@@ -67,7 +67,7 @@ class Tie(Spanner):
             scoretools.Skip,
             scoretools.MultimeasureRest,
             )
-        if not self.use_messiaen_style:
+        if not self.use_messiaen_style_ties:
             if self._is_my_last_leaf(leaf):
                 return result
             elif isinstance(leaf, prototype):
@@ -180,7 +180,7 @@ class Tie(Spanner):
         return self._direction
 
     @property
-    def use_messiaen_style(self):
+    def use_messiaen_style_ties(self):
         r'''Is true when tie should use Messiaen-style ties with
         the LilyPond ``\repeatTie`` command.
 
@@ -191,7 +191,7 @@ class Tie(Spanner):
             ::
 
                 >>> staff = Staff("c'8 c'8 c'8 c'8")
-                >>> tie = Tie(direction=Up, use_messiaen_style=True)
+                >>> tie = Tie(direction=Up, use_messiaen_style_ties=True)
                 >>> attach(tie, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
@@ -209,4 +209,4 @@ class Tie(Spanner):
 
         Returns true, false or none.
         '''
-        return self._use_messiaen_style
+        return self._use_messiaen_style_ties
