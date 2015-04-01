@@ -24,6 +24,15 @@ class GraphvizObject(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _format_attribute(self, name, value):
+        from abjad.tools import documentationtools
+        if isinstance(value, documentationtools.GraphvizTable):
+            result = []
+            lines = str(value).splitlines()
+            result.append('{}={}'.format(name, lines[0]))
+            for line in lines[1:]:
+                result.append('    ' + line)
+            result = '\n'.join(result)
+            return result
         return '{}={}'.format(
             name,
             self._format_value(value, quote_keywords=True),
