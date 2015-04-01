@@ -20,7 +20,7 @@ class TieSpecifier(AbjadValueObject):
 
     __slots__ = (
         '_tie_across_divisions',
-        '_use_messiaen_style',
+        '_use_messiaen_style_ties',
         )
 
     ### INITIALIZER ###
@@ -28,7 +28,7 @@ class TieSpecifier(AbjadValueObject):
     def __init__(
         self,
         tie_across_divisions=False,
-        use_messiaen_style=None,
+        use_messiaen_style_ties=None,
         ):
         from abjad.tools import rhythmmakertools
         prototype = (
@@ -40,8 +40,8 @@ class TieSpecifier(AbjadValueObject):
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions
         prototype = (type(None), type(True))
-        assert isinstance(use_messiaen_style, prototype)
-        self._use_messiaen_style = use_messiaen_style
+        assert isinstance(use_messiaen_style_ties, prototype)
+        self._use_messiaen_style_ties = use_messiaen_style_ties
 
     ### SPECIAL METHODS ###
 
@@ -118,7 +118,9 @@ class TieSpecifier(AbjadValueObject):
             for tie in inspect_(leaf_two).get_spanners(spannertools.Tie):
                 detach(tie, leaf_two)
             combined_logical_tie = logical_tie_one + logical_tie_two
-            tie_spanner = spannertools.Tie()
+            tie_spanner = spannertools.Tie(
+                use_messiaen_style_ties=self.use_messiaen_style_ties,
+                )
             tie_spanner._unconstrain_contiguity()
             attach(tie_spanner, combined_logical_tie)
             tie_spanner._constrain_contiguity()
@@ -135,10 +137,10 @@ class TieSpecifier(AbjadValueObject):
         return self._tie_across_divisions
 
     @property
-    def use_messiaen_style(self):
+    def use_messiaen_style_ties(self):
         r'''Is true when ties should be Messiaen-style with the LilyPond
         ``\repeatTie`` command. Otherwise false.
 
         Set to true, false or none.
         '''
-        return self._use_messiaen_style
+        return self._use_messiaen_style_ties
