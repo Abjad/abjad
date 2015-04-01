@@ -20,6 +20,7 @@ class TieSpecifier(AbjadValueObject):
 
     __slots__ = (
         '_tie_across_divisions',
+        '_use_messiaen_style',
         )
 
     ### INITIALIZER ###
@@ -27,6 +28,7 @@ class TieSpecifier(AbjadValueObject):
     def __init__(
         self,
         tie_across_divisions=False,
+        use_messiaen_style=None,
         ):
         from abjad.tools import rhythmmakertools
         prototype = (
@@ -37,6 +39,9 @@ class TieSpecifier(AbjadValueObject):
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions
+        prototype = (type(None), type(True))
+        assert isinstance(use_messiaen_style, prototype)
+        self._use_messiaen_style = use_messiaen_style
 
     ### SPECIAL METHODS ###
 
@@ -128,3 +133,12 @@ class TieSpecifier(AbjadValueObject):
         Set to true, false or to a boolean vector.
         '''
         return self._tie_across_divisions
+
+    @property
+    def use_messiaen_style(self):
+        r'''Is true when ties should be Messiaen-style with the LilyPond
+        ``\repeatTie`` command. Otherwise false.
+
+        Set to true, false or none.
+        '''
+        return self._use_messiaen_style
