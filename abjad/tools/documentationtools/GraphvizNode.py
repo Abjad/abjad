@@ -94,8 +94,16 @@ class GraphvizNode(TreeContainer, GraphvizObject):
         '''
         from abjad.tools import documentationtools
         edges = set(self.edges)
+        prototype = (
+            documentationtools.GraphvizGroup,
+            documentationtools.GraphvizTable,
+            documentationtools.GraphvizTableCell,
+            documentationtools.GraphvizTableRow,
+            documentationtools.GraphvizTableHorizontalRule,
+            documentationtools.GraphvizTableVerticalRule,
+            )
         for node in self.nodes[1:]:
-            if isinstance(node, documentationtools.GraphvizGroup):
+            if isinstance(node, prototype):
                 continue
             edges.update(node.edges)
         return tuple(edges)
