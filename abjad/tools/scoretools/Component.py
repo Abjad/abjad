@@ -170,6 +170,31 @@ class Component(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _as_graphviz_node(self):
+        from abjad.tools import documentationtools
+        score_index = self._get_parentage().score_index
+        score_index = '_'.join(str(_) for _ in score_index)
+        class_name = type(self).__name__
+        if score_index:
+            name = '{}_{}'.format(class_name, score_index)
+        else:
+            name = class_name
+        node = documentationtools.GraphvizNode(
+            name=name,
+            attributes={
+                'margin': 0.05,
+                },
+            )
+        table = documentationtools.GraphvizTable(
+            attributes={
+                'border': 2,
+                'cellpadding': 5,
+                'style': 'rounded',
+                },
+            )
+        node.append(table)
+        return node
+
     def _cache_named_children(self):
         name_dictionary = {}
         if hasattr(self, '_named_children'):
