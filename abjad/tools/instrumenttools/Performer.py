@@ -440,7 +440,7 @@ class Performer(AbjadObject):
                 ('alto', 'alto')
                 ('baritone', 'bar.')
                 ('bass', 'bass')
-                ('bassist', 'vb.')
+                ('bassist', 'cb.')
                 ('bassoonist', 'bsn.')
                 ('cellist', 'vc.')
                 ('clarinetist', 'cl.')
