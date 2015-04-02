@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import indicatortools
-from abjad.tools import markuptools
-from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
@@ -23,7 +21,7 @@ class Contrabass(Instrument):
         \new Staff {
             \clef "bass"
             \set Staff.instrumentName = \markup { Contrabass }
-            \set Staff.shortInstrumentName = \markup { Vb. }
+            \set Staff.shortInstrumentName = \markup { Cb. }
             c'4
             d'4
             e'4
@@ -43,7 +41,7 @@ class Contrabass(Instrument):
     def __init__(
         self,
         instrument_name='contrabass',
-        short_instrument_name='vb.',
+        short_instrument_name='cb.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=('bass', 'treble'),
@@ -167,7 +165,7 @@ class Contrabass(Instrument):
             ::
 
                 >>> contrabass.short_instrument_name
-                'vb.'
+                'cb.'
 
         Returns string.
         '''
@@ -182,7 +180,7 @@ class Contrabass(Instrument):
             ::
 
                 >>> contrabass.short_instrument_name_markup
-                Markup(contents=('Vb.',))
+                Markup(contents=('Cb.',))
 
             ::
 
