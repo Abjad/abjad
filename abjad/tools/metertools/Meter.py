@@ -384,14 +384,20 @@ class Meter(AbjadObject):
     def __format__(self, format_specification=''):
         r'''Formats meter.
 
+        ..  container:: example
+
+            **Example 1.** Gets storage format of ``7/4``:
+
+            ::
+
+                >>> meter = metertools.Meter((7, 4))
+                >>> print(format(meter))
+                metertools.Meter(
+                    '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
+                    )
+
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
-
-            >>> meter = metertools.Meter((7, 4))
-            >>> print(format(meter))
-            metertools.Meter(
-                '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
-                )
 
         Returns string.
         '''
@@ -405,8 +411,11 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Graphs ``7/4``:
+
             ::
 
+                >>> meter = metertools.Meter((7, 4))
                 >>> meter_graph = meter.__graph__()
                 >>> graph(meter_graph) # doctest: +SKIP
 
@@ -626,23 +635,25 @@ class Meter(AbjadObject):
     def __iter__(self):
         r'''Iterates meter.
 
-        ::
+        ..  container:: example
 
-            >>> meter = metertools.Meter((5, 4))
+            **Example 1.** Iterates ``5/4``:
 
-        ::
+            ::
 
-            >>> for x in meter:
-            ...    x
-            ...
-            (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
-            (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
-            (NonreducedFraction(2, 4), NonreducedFraction(3, 4))
-            (NonreducedFraction(0, 4), NonreducedFraction(3, 4))
-            (NonreducedFraction(3, 4), NonreducedFraction(4, 4))
-            (NonreducedFraction(4, 4), NonreducedFraction(5, 4))
-            (NonreducedFraction(3, 4), NonreducedFraction(5, 4))
-            (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
+
+                >>> meter = metertools.Meter((5, 4))
+                >>> for x in meter:
+                ...    x
+                ...
+                (NonreducedFraction(0, 4), NonreducedFraction(1, 4))
+                (NonreducedFraction(1, 4), NonreducedFraction(2, 4))
+                (NonreducedFraction(2, 4), NonreducedFraction(3, 4))
+                (NonreducedFraction(0, 4), NonreducedFraction(3, 4))
+                (NonreducedFraction(3, 4), NonreducedFraction(4, 4))
+                (NonreducedFraction(4, 4), NonreducedFraction(5, 4))
+                (NonreducedFraction(3, 4), NonreducedFraction(5, 4))
+                (NonreducedFraction(0, 4), NonreducedFraction(5, 4))
 
         Yields pairs.
         '''
@@ -662,6 +673,31 @@ class Meter(AbjadObject):
             stop_offset = mathtools.NonreducedFraction(x.stop_offset
                 ).with_denominator(self.denominator)
             yield start_offset, stop_offset
+
+    def __str__(self):
+        r'''Gets string format of meter.
+
+        ..  container:: example
+
+            **Example 1.** Gets string format of meters over ``8``:
+
+            ::
+
+                >>> for numerator in range(1, 9):
+                ...     meter = metertools.Meter((numerator, 8))
+                ...     print(str(meter))
+                1/8
+                2/8
+                3/8
+                4/8
+                5/8
+                6/8
+                7/8
+                8/8
+
+        Returns string.
+        '''
+        return '{}/{}'.format(self.numerator, self.denominator)
 
     ### PRIVATE PROPERTIES ###
 
