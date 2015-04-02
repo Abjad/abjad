@@ -1336,7 +1336,7 @@ class Meter(AbjadObject):
 
         return metertools.MetricAccentKernel(kernel)
 
-    def get_beats(self, beat_duration):
+    def get_beats(self, beat_duration, beat_group_specifier=None):
         r'''Decomposes meter into beats based on `beat_duration`.
 
         ..  container:: example
@@ -1512,17 +1512,20 @@ class Meter(AbjadObject):
         beats = []
         if self.duration < 2 * beat_duration:
             beats.append(self.duration)
-            return beats
-        remaining_duration = self.duration
-        while beat_duration <= remaining_duration:
-            beats.append(beat_duration)
-            remaining_duration -= beat_duration
-        if remaining_duration == 0:
-            return beats
-        if self.decrease_durations_monotonically:
-            beats[0] += remaining_duration
         else:
-            beats[-1] += remaining_duration
+            remaining_duration = self.duration
+            while beat_duration <= remaining_duration:
+                beats.append(beat_duration)
+                remaining_duration -= beat_duration
+            if remaining_duration == 0:
+                pass
+            elif self.decrease_durations_monotonically:
+                beats[0] += remaining_duration
+            else:
+                beats[-1] += remaining_duration
+        if beat_group_specifier is not None:
+            # TODO
+            pass
         return beats
 
     def get_durations_at_depth(self, depth=0):
