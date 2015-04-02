@@ -273,6 +273,7 @@ class NumberedInterval(Interval):
         from abjad.tools import pitchtools
         direction_number = mathtools.sign(self.number)
         if staff_positions == 1:
+            quality_string = None
             if self.number % 12 == 11:
                 quality_string = 'augmented'
             elif self.number % 12 == 0:
@@ -281,6 +282,9 @@ class NumberedInterval(Interval):
                 quality_string = 'augmented'
             if not direction_number == 0:
                 staff_positions *= direction_number
+            if quality_string is None:
+                # TODO: handle double-augmented named intervals
+                return pitchtools.NamedInterval(self.number)
             named_interval = pitchtools.NamedInterval(
                 quality_string, staff_positions)
             return named_interval
