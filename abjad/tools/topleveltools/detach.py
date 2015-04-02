@@ -1,17 +1,18 @@
 # -*- encoding: utf-8 -*-
-import types
 
 
-def detach(prototype, component_expression):
+def detach(prototype, component_expression=None):
     r'''Detaches from `component_expression` all items matching `prototype`.
 
     Returns tuple of zero or more detached items.
     '''
-    from abjad.tools import indicatortools
     from abjad.tools import scoretools
     from abjad.tools import spannertools
     from abjad.tools import topleveltools
-
+    if isinstance(prototype, spannertools.Spanner):
+        prototype._detach()
+        return
+    assert component_expression is not None
     spanners = []
     grace_containers = []
     inspector = topleveltools.inspect_(component_expression)
