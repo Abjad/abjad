@@ -140,6 +140,9 @@ class Leaf(Component):
 
     def _as_graphviz_node(self):
         from abjad.tools import documentationtools
+        lilypond_format = self._compact_representation
+        lilypond_format = lilypond_format.replace('<', '&lt;')
+        lilypond_format = lilypond_format.replace('>', '&gt;')
         node = Component._as_graphviz_node(self)
         node[0].extend([
             documentationtools.GraphvizTableRow([
@@ -151,7 +154,7 @@ class Leaf(Component):
             documentationtools.GraphvizTableHorizontalRule(),
             documentationtools.GraphvizTableRow([
                 documentationtools.GraphvizTableCell(
-                    label=self._body[0],
+                    label=lilypond_format,
                     attributes={'border': 0},
                     ),
                 ]),
