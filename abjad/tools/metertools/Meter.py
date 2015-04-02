@@ -1068,6 +1068,32 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Compound meters written over ``4``:
+
+            ::
+
+                >>> for numerator in range(1, 13):
+                ...     meter = metertools.Meter((numerator, 4))
+                ...     string = True if meter.is_compound else ''
+                ...     print(str(meter), string)
+                ...
+                1/4 
+                2/4 
+                3/4 
+                4/4 
+                5/4 
+                6/4     True
+                7/4 
+                8/4 
+                9/4     True
+                10/4 
+                11/4 
+                12/4    True
+
+        ..  container:: example
+
+            **Example 2.** Compound meters written over ``8``:
+
             ::
 
                 >>> for numerator in range(1, 13):
@@ -1088,8 +1114,8 @@ class Meter(AbjadObject):
                 11/8 
                 12/8    True
 
-            Compound meters defined equal to those meters with a numerator
-            divisible by ``3`` but not equal to ``3``.
+        Compound meters defined equal to those meters with a numerator
+        divisible by ``3`` (but not equal to ``3``).
 
         Returns true or false.
         '''
@@ -1097,6 +1123,67 @@ class Meter(AbjadObject):
             if not self.numerator == 3:
                 return True
         return False
+
+    @property
+    def is_simple(self):
+        r'''Is true when meter is simple. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Simple meters written over ``4``:
+
+            ::
+
+                >>> for numerator in range(1, 13):
+                ...     meter = metertools.Meter((numerator, 4))
+                ...     string = True if meter.is_simple else ''
+                ...     print(str(meter), string)
+                ...
+                1/4     True
+                2/4     True
+                3/4     True
+                4/4     True
+                5/4     True
+                6/4 
+                7/4     True
+                8/4     True
+                9/4 
+                10/4    True
+                11/4    True
+                12/4 
+
+        ..  container:: example
+
+            **Example 2.** Simple meters written over ``8``:
+
+            ::
+
+                >>> for numerator in range(1, 13):
+                ...     meter = metertools.Meter((numerator, 8))
+                ...     string = True if meter.is_simple else ''
+                ...     print(str(meter), string)
+                ...
+                1/8     True
+                2/8     True
+                3/8     True
+                4/8     True
+                5/8     True
+                6/8 
+                7/8     True
+                8/8     True
+                9/8 
+                10/8    True
+                11/8    True
+                12/8 
+
+        Simple meters defined equal to those meters with a numerator
+        not divisible by ``3``.
+        
+        Meters with numerator equal to ``3`` are also defined as simple.
+
+        Returns true or false.
+        '''
+        return not self.is_compound
 
     @property
     def numerator(self):
