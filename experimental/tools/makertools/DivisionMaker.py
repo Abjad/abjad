@@ -10,21 +10,11 @@ class DivisionMaker(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.** Makes quarter-valued divisions with remainder at right:
+
         ::
 
             >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
-
-        ::
-
-            >>> print(format(maker, 'storage'))
-            makertools.DivisionMaker(
-                pattern=(
-                    durationtools.Division(1, 4),
-                    ),
-                )
-
-        ::
-
             >>> lists = maker([(7, 8), (7, 8), (7, 16)])
             >>> for list_ in lists:
             ...     list_
@@ -32,10 +22,27 @@ class DivisionMaker(AbjadValueObject):
             [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
             [Division(1, 4), Division(3, 16)]
 
+    ..  container:: example
+
+        **Example 2.** Makes quarter-valued divisions with remainder at left:
+
+        ::
+
+            >>> maker = makertools.DivisionMaker(
+            ...     pattern=[(1, 4)],
+            ...     remainder=Left,
+            ...     )
+            >>> lists = maker([(7, 8), (7, 8), (7, 16)])
+            >>> for list_ in lists:
+            ...     list_
+            [Division(1, 8), Division(1, 4), Division(1, 4), Division(1, 4)]
+            [Division(1, 8), Division(1, 4), Division(1, 4), Division(1, 4)]
+            [Division(3, 16), Division(1, 4)]
+
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a (possibly empty) nested 
-    list of divisions as output (structured one output list per input
-    division).
+    list of divisions as output. Output structured one output list per input
+    division.
 
     Follows the two-step configure-once / call-repeatedly pattern shown here.
     '''
@@ -86,7 +93,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Calls division-maker on division with no remainder:
+            **Example 1.** Calls division-maker on division with no remainder:
 
             ::
 
@@ -101,7 +108,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Calls division-maker cyclically on each division.
+            **Example 2.** Calls division-maker cyclically on each division.
             Positions remainders to the right of each output list:
 
             ::
@@ -119,7 +126,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Calls division-maker with pattern set to none:
+            **Example 3.** Calls division-maker with pattern set to none:
 
             ::
 
@@ -133,7 +140,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Calls division-maker on nothing:
+            **Example 4.** Calls division-maker on nothing:
 
             ::
 
@@ -145,7 +152,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            Call division-maker on multiple divisions:
+            **Example 5.** Calls division-maker on multiple divisions:
 
             ::
 
@@ -276,7 +283,7 @@ class DivisionMaker(AbjadValueObject):
                 [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
                 [Division(1, 4), Division(3, 16)]
 
-            Defaults to ``cyclic=True``.
+            This is default behavior.
 
         ..  container:: example
 
@@ -322,7 +329,7 @@ class DivisionMaker(AbjadValueObject):
                 [Division(7, 8)]
                 [Division(7, 16)]
 
-            Defaults to ``pattern=()``.
+            This is default behavior.
 
         ..  container:: example
 
@@ -369,7 +376,7 @@ class DivisionMaker(AbjadValueObject):
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
 
-            Defaults to ``pattern_rotation_index=0``.
+            This is default behavior.
 
         ..  container:: example
 
@@ -438,7 +445,7 @@ class DivisionMaker(AbjadValueObject):
                 ...     list_
                 [Division(4, 16), Division(1, 16), Division(7, 16)]
 
-            Defaults to ``remainder=Right``.
+            This is default behavior.
 
         ..  container:: example
 
@@ -454,7 +461,7 @@ class DivisionMaker(AbjadValueObject):
                 ...     list_
                 [Division(4, 16), Division(1, 16), Division(4, 16), Division(1, 16), Division(1, 8)]
 
-            Defaults to ``remainder=Right``.
+            This is default behavior.
 
         ..  container:: example
 
