@@ -1,7 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import indicatortools
-from abjad.tools import markuptools
-from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 

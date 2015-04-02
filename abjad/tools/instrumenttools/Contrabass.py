@@ -43,7 +43,7 @@ class Contrabass(Instrument):
     def __init__(
         self,
         instrument_name='contrabass',
-        short_instrument_name='vb.',
+        short_instrument_name='cb.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
         allowable_clefs=('bass', 'treble'),
