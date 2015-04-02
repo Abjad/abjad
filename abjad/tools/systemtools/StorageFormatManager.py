@@ -273,6 +273,32 @@ class StorageFormatManager(object):
     def get_import_statements(subject):
         r'''Gets import statements for `subject`.
 
+        ..  container:: example
+
+            **Example 1.** Gets import statements for object in Abjad mainline:
+
+            ::
+
+                >>> note = Note("c'4")
+                >>> systemtools.StorageFormatManager.get_import_statements(
+                ...     note
+                ...     )
+                ('from abjad.tools import scoretools',)
+
+        ..  container:: example
+
+            **Example 2.** Gets import statements for object in Abjad
+            experimental branch:
+
+            ::
+
+                >>> from experimental import makertools
+                >>> division_maker = makertools.DivisionMaker(pattern=[(1, 4)])
+                >>> systemtools.StorageFormatManager.get_import_statements(
+                ...     division_maker
+                ...     )
+                ('from abjad.tools import durationtools', 'from experimental.tools import makertools')
+
         Returns tuple of strings.
         '''
         manager = StorageFormatManager
@@ -282,12 +308,16 @@ class StorageFormatManager(object):
             root_package_name = manager.get_root_package_name(class_)
             if root_package_name in ('builtins', '__builtin__'):
                 continue
-            if root_package_name != 'abjad':
-                import_statement = 'import {}'.format(root_package_name)
-            else:
+            elif root_package_name == 'abjad':
                 tools_package_name = manager.get_tools_package_name(class_)
                 import_statement = 'from abjad.tools import {}'.format(
                     tools_package_name)
+            elif root_package_name == 'experimental':
+                tools_package_name = manager.get_tools_package_name(class_)
+                import_statement = 'from experimental.tools import {}'.format(
+                    tools_package_name)
+            else:
+                import_statement = 'import {}'.format(root_package_name)
             import_statements.add(import_statement)
         return tuple(sorted(import_statements))
 
