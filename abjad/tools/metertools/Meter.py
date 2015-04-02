@@ -1063,6 +1063,42 @@ class Meter(AbjadObject):
             self.root_node.preprolated_duration)
 
     @property
+    def is_compound(self):
+        r'''Is true when meter is compound. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> for numerator in range(1, 13):
+                ...     meter = metertools.Meter((numerator, 8))
+                ...     string = True if meter.is_compound else ''
+                ...     print(str(meter), string)
+                ...
+                1/8 
+                2/8 
+                3/8 
+                4/8 
+                5/8 
+                6/8     True
+                7/8 
+                8/8 
+                9/8     True
+                10/8 
+                11/8 
+                12/8    True
+
+            Compound meters defined equal to those meters with a numerator
+            divisible by ``3`` but not equal to ``3``.
+
+        Returns true or false.
+        '''
+        if 3 in mathtools.divisors(self.numerator):
+            if not self.numerator == 3:
+                return True
+        return False
+
+    @property
     def numerator(self):
         r'''Gets numerator of meter.
 
@@ -1070,6 +1106,7 @@ class Meter(AbjadObject):
 
             ::
 
+                >>> meter = metertools.Meter((7, 4))
                 >>> meter.numerator
                 7
 
@@ -1085,6 +1122,7 @@ class Meter(AbjadObject):
 
             ::
 
+                >>> meter = metertools.Meter((7, 4))
                 >>> print(meter.pretty_rtm_format)
                 (7/4 (
                     (3/4 (
@@ -1110,6 +1148,7 @@ class Meter(AbjadObject):
 
             ::
 
+                >>> meter = metertools.Meter((7, 4))
                 >>> print(format(meter.root_node))
                 rhythmtreetools.RhythmTreeContainer(
                     children=(
@@ -1172,6 +1211,7 @@ class Meter(AbjadObject):
 
             ::
 
+                >>> meter = metertools.Meter((7, 4))
                 >>> meter.rtm_format
                 '(7/4 ((3/4 (1/4 1/4 1/4)) (2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
 
