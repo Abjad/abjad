@@ -1446,6 +1446,195 @@ class Meter(AbjadObject):
 
         return metertools.MetricAccentKernel(kernel)
 
+    def get_beats(self, beat_duration):
+        r'''Decomposes meter into beats based on `beat_duration`.
+
+        ..  container:: example
+
+            **Example 1a.** Gets quarter-note-durated beats of ``6/8``:
+
+            ::
+
+                >>> beat_duration = Duration(1, 4)
+                >>> metertools.Meter((6, 8)).get_beats(beat_duration)
+                [Duration(1, 4), Duration(1, 4), Duration(1, 4)]
+
+            This interprets the meter as simple.
+
+            **Example 1b.** Gets dotted-quarter-note-durated beats of ``6/8``:
+
+            ::
+
+                >>> beat_duration = Duration(3, 8)
+                >>> metertools.Meter((6, 8)).get_beats(beat_duration)
+                [Duration(3, 8), Duration(3, 8)]
+
+            This interprets the meter as compound.
+
+        ..  container:: example
+
+            **Example 2.** Gets quarter-note-durated beats of very short 
+            meters:
+
+            ::
+
+                >>> beat_duration = Duration(1, 4)
+                >>> metertools.Meter((1, 16)).get_beats(beat_duration)
+                [Duration(1, 16)]
+
+            ::
+
+                >>> metertools.Meter((1, 4)).get_beats(beat_duration)
+                [Duration(1, 4)]
+
+            ::
+
+                >>> metertools.Meter((5, 16)).get_beats(beat_duration)
+                [Duration(5, 16)]
+
+            ::
+
+                >>> metertools.Meter((7, 16)).get_beats(beat_duration)
+                [Duration(7, 16)]
+
+            Meters less than two complete beats decompose into a single beat.
+
+        ..  container:: example
+
+            **Example 3a.** Gets quarter-note-durated beats of meters written 
+            over ``8``. Large beats at the beginning:
+
+            ::
+
+                >>> beat_duration = Duration(1, 4)
+                >>> for numerator in range(1, 9):
+                ...     meter = metertools.Meter(
+                ...         (numerator, 8),
+                ...         decrease_durations_monotonically=True,
+                ...     )
+                ...     beats = meter.get_beats(beat_duration)
+                ...     beats = ' + '.join(str(_) for _ in beats)
+                ...     message = '{}: {}'.format(str(meter), beats)
+                ...     print(message)
+                1/8: 1/8
+                2/8: 1/4
+                3/8: 3/8
+                4/8: 1/4 + 1/4
+                5/8: 3/8 + 1/4
+                6/8: 1/4 + 1/4 + 1/4
+                7/8: 3/8 + 1/4 + 1/4
+                8/8: 1/4 + 1/4 + 1/4 + 1/4
+
+            **Example 3b.** Gets quarter-note-durated beats of meters written 
+            over ``8``. Large beats at the end:
+
+            ::
+
+                >>> beat_duration = Duration(1, 4)
+                >>> for numerator in range(1, 9):
+                ...     meter = metertools.Meter(
+                ...         (numerator, 8),
+                ...         decrease_durations_monotonically=False,
+                ...         )
+                ...     beats = meter.get_beats(beat_duration)
+                ...     beats = ' + '.join(str(_) for _ in beats)
+                ...     message = '{}: {}'.format(str(meter), beats)
+                ...     print(message)
+                1/8: 1/8
+                2/8: 1/4
+                3/8: 3/8
+                4/8: 1/4 + 1/4
+                5/8: 1/4 + 3/8
+                6/8: 1/4 + 1/4 + 1/4
+                7/8: 1/4 + 1/4 + 3/8
+                8/8: 1/4 + 1/4 + 1/4 + 1/4
+
+        ..  container:: example
+
+            **Example 4.** Gets quarter-note-durated beats of meters written 
+            over ``4``:
+
+            ::
+
+                >>> beat_duration = Duration(1, 4)
+                >>> for numerator in range(1, 9):
+                ...     meter = metertools.Meter((numerator, 4))
+                ...     beats = meter.get_beats(beat_duration)
+                ...     beats = ' + '.join(str(_) for _ in beats)
+                ...     message = '{}: {}'.format(str(meter), beats)
+                ...     print(message)
+                1/4: 1/4
+                2/4: 1/4 + 1/4
+                3/4: 1/4 + 1/4 + 1/4
+                4/4: 1/4 + 1/4 + 1/4 + 1/4
+                5/4: 1/4 + 1/4 + 1/4 + 1/4 + 1/4
+                6/4: 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4
+                7/4: 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4
+                8/4: 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4 + 1/4
+
+            Each meter decomposes into an integer number of beats.
+
+        ..  container:: example
+
+            **Example 5a.** Gets dotted-quarter-note-durated beats of ``9/8``:
+
+            ::
+
+                >>> beat_duration = Duration(3, 8)
+                >>> metertools.Meter((9, 8)).get_beats(beat_duration)
+                [Duration(3, 8), Duration(3, 8), Duration(3, 8)]
+
+            This interprets meter as compound.
+
+            **Example 5b.** Gets quarter-note-durated beats of ``9/8``.
+            Large beats at the beginning:
+
+            ::
+
+                >>> beat_duration = Duration(1, 4)
+                >>> meter = metertools.Meter(
+                ...     (9, 8),
+                ...     decrease_durations_monotonically=True,
+                ...     )
+                >>> meter.get_beats(beat_duration)
+                [Duration(3, 8), Duration(1, 4), Duration(1, 4), Duration(1, 4)]
+
+            This interprets meter as asymmetric.
+
+            **Example 5c.** Gets quarter-note-durated beats of ``9/8``.
+            Large beats at the end:
+
+            ::
+
+                >>> beat_duration = Duration(1, 4)
+                >>> meter = metertools.Meter(
+                ...     (9, 8),
+                ...     decrease_durations_monotonically=False,
+                ...     )
+                >>> meter.get_beats(beat_duration)
+                [Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(3, 8)]
+
+            This also interprets meter as asymmetric.
+
+        Returns list of durations.
+        '''
+        beat_duration = durationtools.Duration(beat_duration)
+        beats = []
+        if self.duration < 2 * beat_duration:
+            beats.append(self.duration)
+            return beats
+        remaining_duration = self.duration
+        while beat_duration <= remaining_duration:
+            beats.append(beat_duration)
+            remaining_duration -= beat_duration
+        if remaining_duration == 0:
+            return beats
+        if self.decrease_durations_monotonically:
+            beats[0] += remaining_duration
+        else:
+            beats[-1] += remaining_duration
+        return beats
+
     def get_durations_at_depth(self, depth=0):
         r'''Gets durations at `depth` in meter.
 
