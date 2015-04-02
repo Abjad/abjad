@@ -1336,7 +1336,7 @@ class Meter(AbjadObject):
 
         return metertools.MetricAccentKernel(kernel)
 
-    def get_beats(self, beat_duration, beat_group_specifier=None):
+    def get_beats(self, beat_duration, beat_grouping_specifier=None):
         r'''Decomposes meter into beats based on `beat_duration`.
 
         ..  container:: example
@@ -1506,7 +1506,29 @@ class Meter(AbjadObject):
 
             This also interprets meter as asymmetric.
 
-        Returns list of durations.
+        ..  container:: example
+
+            **Example 6.** Gets quarter-note-durated beats of ``7/4`` grouped
+            into pairs:
+
+            ::
+
+                >>> specifier = metertools.BeatGroupingSpecifier(
+                ...     counts=[2],
+                ...     fuse_remainder=True,
+                ...     remainder_direction=Right,
+                ...     )
+                >>> beat_duration = Duration(1, 4)
+                >>> metertools.Meter((7, 4)).get_beats(
+                ...     beat_duration,
+                ...     beat_grouping_specifier=specifier,
+                ...     )
+                [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
+
+        Returns list of durations when beat grouping specifier is none.
+        
+        Returns list of duration lists when beat goruping specifier is not
+        none.
         '''
         beat_duration = durationtools.Duration(beat_duration)
         beats = []
@@ -1523,10 +1545,11 @@ class Meter(AbjadObject):
                 beats[0] += remaining_duration
             else:
                 beats[-1] += remaining_duration
-        if beat_group_specifier is not None:
-            # TODO
-            pass
-        return beats
+        if beat_grouping_specifier is not None:
+            beat_groups = beat_grouping_specifier(beats)
+            return beat_groups
+        else:
+            return beats
 
     def get_durations_at_depth(self, depth=0):
         r'''Gets durations at `depth` in meter.
