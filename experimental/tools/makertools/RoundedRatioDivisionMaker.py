@@ -12,8 +12,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Outputs divisions with ratios equal to ``2:1``
-        of input divisions:
+        **Example 1.** Makes divisions with ``2:1`` ratios:
 
         ::
 
@@ -28,8 +27,8 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Outputs divisions with ratios equal alternately to 
-        ``2:1`` and ``1:1:1`` of input divisions:
+        **Example 2.** Makes divisions with alternating ``2:1`` and ``1:1:1``
+        ratios:
 
         ::
 
@@ -46,8 +45,8 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a (possibly empty) nested 
-    list of divisions as output (structured one output list per input
-    division).
+    list of divisions as output. Output structured one output list per input
+    division.
 
     Follows the two-step configure-once / call-repeatedly pattern shown here.
     '''
