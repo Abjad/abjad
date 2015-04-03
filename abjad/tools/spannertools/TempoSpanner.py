@@ -37,7 +37,7 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
+            >>> override(score).text_script.staff_padding = 4.25
 
         ::
 
@@ -47,12 +47,13 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
+                \override TextScript #'staff-padding = #4.25
             } <<
                 \new Staff {
                     \time 3/8
                     c'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -61,11 +62,21 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                     d'8.
                     e'4. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -74,10 +85,20 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     g'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -86,11 +107,21 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 72"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    72
+                                }
                         }
                     f'8.
                     ef'4. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -99,7 +130,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                 }
             >>
@@ -136,8 +176,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -147,8 +187,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
@@ -166,7 +206,8 @@ class TempoSpanner(Spanner):
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -175,7 +216,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         \hspace
                             #1.25
                         }
@@ -190,7 +240,8 @@ class TempoSpanner(Spanner):
                     c'8. \startTextSpan
                     d'8.
                     e'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -199,10 +250,20 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     g'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -211,11 +272,21 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 72"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    72
+                                }
                         }
                     f'8.
                     ef'4. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -224,7 +295,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                 }
             >>
@@ -261,8 +341,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -272,13 +352,14 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
                     c'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -287,11 +368,21 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                     d'8.
                     e'4. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -300,7 +391,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
@@ -316,7 +416,8 @@ class TempoSpanner(Spanner):
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -325,7 +426,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 72"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    72
+                                }
                         \hspace
                             #1.25
                         }
@@ -340,7 +450,8 @@ class TempoSpanner(Spanner):
                     g'8. \startTextSpan
                     f'8.
                     ef'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -349,7 +460,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                 }
             >>
@@ -388,8 +508,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -399,8 +519,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
@@ -418,7 +538,8 @@ class TempoSpanner(Spanner):
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -427,7 +548,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         \hspace
                             #1.25
                         }
@@ -442,7 +572,8 @@ class TempoSpanner(Spanner):
                     c'8. \startTextSpan
                     d'8.
                     e'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -451,7 +582,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
@@ -467,7 +607,8 @@ class TempoSpanner(Spanner):
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -476,7 +617,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 72"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    72
+                                }
                         \hspace
                             #1.25
                         }
@@ -491,7 +641,8 @@ class TempoSpanner(Spanner):
                     g'8. \startTextSpan
                     f'8.
                     ef'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -500,7 +651,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                 }
             >>
@@ -535,8 +695,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -546,8 +706,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
@@ -582,7 +742,8 @@ class TempoSpanner(Spanner):
                     c'8. \startTextSpan
                     d'8.
                     e'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -591,10 +752,20 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     g'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -603,11 +774,21 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 72"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    72
+                                }
                         }
                     f'8.
                     ef'4. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -616,7 +797,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                 }
             >>
@@ -651,8 +841,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -662,8 +852,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
@@ -698,7 +888,8 @@ class TempoSpanner(Spanner):
                     c'8. \startTextSpan
                     d'8.
                     e'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -707,10 +898,20 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     g'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -719,11 +920,21 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 72"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    72
+                                }
                         }
                     f'8.
                     ef'4. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -732,7 +943,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                 }
             >>
@@ -767,8 +987,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -778,13 +998,14 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
                     c'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -793,11 +1014,21 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                     d'8.
                     e'4. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -806,7 +1037,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
@@ -827,7 +1067,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 \line
                                     {
-                                        \smaller
+                                        \fontsize
+                                            #-3
                                             \general-align
                                                 #Y
                                                 #DOWN
@@ -836,7 +1077,16 @@ class TempoSpanner(Spanner):
                                                     #0
                                                     #1
                                         \upright
-                                            " = 90"
+                                            \fontsize
+                                                #3
+                                                {
+                                                    \hspace
+                                                        #0.5
+                                                    =
+                                                    \hspace
+                                                        #0.1
+                                                    90
+                                                }
                                     }
                         \hspace
                             #0.75
@@ -852,7 +1102,8 @@ class TempoSpanner(Spanner):
                     g'8. \startTextSpan
                     f'8.
                     ef'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -861,7 +1112,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 120"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    120
+                                }
                         }
                 }
             >>
@@ -896,8 +1156,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -907,13 +1167,14 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
                     c'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -922,11 +1183,21 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                     d'8.
                     e'4. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -935,7 +1206,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.padding = -2
@@ -956,7 +1236,8 @@ class TempoSpanner(Spanner):
                             \parenthesize
                                 \line
                                     {
-                                        \smaller
+                                        \fontsize
+                                            #-3
                                             \general-align
                                                 #Y
                                                 #DOWN
@@ -965,7 +1246,16 @@ class TempoSpanner(Spanner):
                                                     #0
                                                     #1
                                         \upright
-                                            " = 90"
+                                            \fontsize
+                                                #3
+                                                {
+                                                    \hspace
+                                                        #0.5
+                                                    =
+                                                    \hspace
+                                                        #0.1
+                                                    90
+                                                }
                                     }
                         \hspace
                             #0.75
@@ -981,7 +1271,8 @@ class TempoSpanner(Spanner):
                     g'8. \startTextSpan
                     f'8.
                     ef'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -990,7 +1281,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                 }
             >>
@@ -1025,8 +1325,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -1036,8 +1336,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
@@ -1057,7 +1357,8 @@ class TempoSpanner(Spanner):
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -1066,7 +1367,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         \hspace
                             #1.25
                         }
@@ -1084,7 +1394,8 @@ class TempoSpanner(Spanner):
                     g'4.
                     a'4.
                     b'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -1093,7 +1404,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     c''4.
                 }
@@ -1129,8 +1449,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -1140,8 +1460,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
@@ -1161,7 +1481,8 @@ class TempoSpanner(Spanner):
                         }
                     \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                     \once \override TextSpanner.bound-details.left.text = \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -1170,7 +1491,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         \hspace
                             #1.25
                         }
@@ -1188,7 +1518,8 @@ class TempoSpanner(Spanner):
                     g'4.
                     a'4.
                     b'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -1197,7 +1528,16 @@ class TempoSpanner(Spanner):
                                     #0
                                     #1
                         \upright
-                            " = 60"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    60
+                                }
                         }
                     c''4.
                 }
@@ -1231,8 +1571,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -1242,13 +1582,14 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
                     c'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -1257,14 +1598,24 @@ class TempoSpanner(Spanner):
                                     #1
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     d'8.
                     e'4.
                     g'8. ^ \markup {
                         \line
                             {
-                                \smaller
+                                \fontsize
+                                    #-3
                                     \general-align
                                         #Y
                                         #DOWN
@@ -1273,7 +1624,16 @@ class TempoSpanner(Spanner):
                                             #1
                                             #1
                                 \upright
-                                    " = 60"
+                                    \fontsize
+                                        #3
+                                        {
+                                            \hspace
+                                                #0.5
+                                            =
+                                            \hspace
+                                                #0.1
+                                            60
+                                        }
                                 \hspace
                                     #0.5
                                 \raise
@@ -1383,8 +1743,8 @@ class TempoSpanner(Spanner):
 
         ::
 
-            >>> override(score).text_script.staff_padding = 1.25
-            >>> override(score).text_spanner.staff_padding = 2
+            >>> override(score).text_script.staff_padding = 4.25
+            >>> override(score).text_spanner.staff_padding = 5
 
         ::
 
@@ -1394,13 +1754,14 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript #'staff-padding = #4.25
+                \override TextSpanner #'staff-padding = #5
             } <<
                 \new Staff {
                     \time 3/8
                     c'8. ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -1409,7 +1770,16 @@ class TempoSpanner(Spanner):
                                     #1
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                     d'8.
                     e'4.
@@ -1429,7 +1799,8 @@ class TempoSpanner(Spanner):
                     \once \override TextSpanner.bound-details.left.text = \markup {
                         \line
                             {
-                                \smaller
+                                \fontsize
+                                    #-3
                                     \general-align
                                         #Y
                                         #DOWN
@@ -1438,7 +1809,16 @@ class TempoSpanner(Spanner):
                                             #1
                                             #1
                                 \upright
-                                    " = 60"
+                                    \fontsize
+                                        #3
+                                        {
+                                            \hspace
+                                                #0.5
+                                            =
+                                            \hspace
+                                                #0.1
+                                            60
+                                        }
                                 \hspace
                                     #0.5
                                 \raise
@@ -1525,7 +1905,8 @@ class TempoSpanner(Spanner):
                     g'8. \startTextSpan
                     f'8.
                     ef'4. \stopTextSpan ^ \markup {
-                        \smaller
+                        \fontsize
+                            #-3
                             \general-align
                                 #Y
                                 #DOWN
@@ -1534,7 +1915,16 @@ class TempoSpanner(Spanner):
                                     #1
                                     #1
                         \upright
-                            " = 90"
+                            \fontsize
+                                #3
+                                {
+                                    \hspace
+                                        #0.5
+                                    =
+                                    \hspace
+                                        #0.1
+                                    90
+                                }
                         }
                 }
             >>
@@ -1932,8 +2322,8 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> override(score).text_script.staff_padding = 1.25
-                >>> override(score).text_spanner.staff_padding = 2
+                >>> override(score).text_script.staff_padding = 4.25
+                >>> override(score).text_spanner.staff_padding = 5
 
             ::
 
@@ -1943,8 +2333,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript #'staff-padding = #4.25
+                    \override TextSpanner #'staff-padding = #5
                 } <<
                     \new Staff {
                         \time 3/8
@@ -1964,7 +2354,8 @@ class TempoSpanner(Spanner):
                             }
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                         \once \override TextSpanner.bound-details.left.text = \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -1973,7 +2364,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 90"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        90
+                                    }
                             \hspace
                                 #1.25
                             }
@@ -1991,7 +2391,8 @@ class TempoSpanner(Spanner):
                         g'4.
                         a'4.
                         b'4. \stopTextSpan ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2000,7 +2401,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 60"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        60
+                                    }
                             }
                         c''4.
                     }
@@ -2041,8 +2451,8 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> override(score).text_script.staff_padding = 1.25
-                >>> override(score).text_spanner.staff_padding = 2
+                >>> override(score).text_script.staff_padding = 4.25
+                >>> override(score).text_spanner.staff_padding = 5
 
             ::
 
@@ -2052,8 +2462,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript #'staff-padding = #4.25
+                    \override TextSpanner #'staff-padding = #5
                 } <<
                     \new Staff {
                         \time 3/8
@@ -2073,7 +2483,8 @@ class TempoSpanner(Spanner):
                             }
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                         \once \override TextSpanner.bound-details.left.text = \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2082,7 +2493,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 90"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        90
+                                    }
                             \hspace
                                 #1.25
                             }
@@ -2100,7 +2520,8 @@ class TempoSpanner(Spanner):
                         g'4.
                         a'4.
                         b'4. \stopTextSpan ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2109,7 +2530,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 60"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        60
+                                    }
                             }
                         c''4.
                     }
@@ -2153,8 +2583,8 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> override(score).text_script.staff_padding = 1.25
-                >>> override(score).text_spanner.staff_padding = 2
+                >>> override(score).text_script.staff_padding = 4.25
+                >>> override(score).text_spanner.staff_padding = 5
 
             ::
 
@@ -2164,8 +2594,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript #'staff-padding = #4.25
+                    \override TextSpanner #'staff-padding = #5
                 } <<
                     \new Staff {
                         \time 3/8
@@ -2185,7 +2615,8 @@ class TempoSpanner(Spanner):
                             }
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                         \once \override TextSpanner.bound-details.left.text = \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2194,7 +2625,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 90"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        90
+                                    }
                             \hspace
                                 #1.25
                             }
@@ -2212,7 +2652,8 @@ class TempoSpanner(Spanner):
                         g'4.
                         a'4.
                         b'4. \stopTextSpan ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2221,7 +2662,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 60"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        60
+                                    }
                             }
                         c''4.
                     }
@@ -2264,8 +2714,8 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> override(score).text_script.staff_padding = 1.25
-                >>> override(score).text_spanner.staff_padding = 2
+                >>> override(score).text_script.staff_padding = 4.25
+                >>> override(score).text_spanner.staff_padding = 5
 
             ::
 
@@ -2275,8 +2725,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript #'staff-padding = #4.25
+                    \override TextSpanner #'staff-padding = #5
                 } <<
                     \new Staff {
                         \time 3/8
@@ -2289,7 +2739,8 @@ class TempoSpanner(Spanner):
                             }
                         \once \override TextSpanner.bound-details.left.stencil-align-dir-y = -0.5
                         \once \override TextSpanner.bound-details.left.text = \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2298,7 +2749,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 90"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        90
+                                    }
                             \hspace
                                 #1.25
                             }
@@ -2316,7 +2776,8 @@ class TempoSpanner(Spanner):
                         g'4.
                         a'4.
                         b'4. \stopTextSpan ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2325,7 +2786,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 60"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        60
+                                    }
                             }
                         c''4.
                     }
@@ -2371,8 +2841,8 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> override(score).text_script.staff_padding = 1.25
-                >>> override(score).text_spanner.staff_padding = 2
+                >>> override(score).text_script.staff_padding = 4.25
+                >>> override(score).text_spanner.staff_padding = 5
 
             ::
 
@@ -2382,13 +2852,14 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript #'staff-padding = #4.25
+                    \override TextSpanner #'staff-padding = #5
                 } <<
                     \new Staff {
                         \time 3/8
                         c'8. ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2397,11 +2868,21 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 60"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        60
+                                    }
                             }
                         d'8.
                         e'4. ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2410,7 +2891,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 90"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        90
+                                    }
                             }
                         \once \override TextSpanner.arrow-width = 0.25
                         \once \override TextSpanner.bound-details.left-broken.padding = -2
@@ -2431,7 +2921,8 @@ class TempoSpanner(Spanner):
                                 \parenthesize
                                     \line
                                         {
-                                            \smaller
+                                            \fontsize
+                                                #-3
                                                 \general-align
                                                     #Y
                                                     #DOWN
@@ -2440,7 +2931,16 @@ class TempoSpanner(Spanner):
                                                         #0
                                                         #1
                                             \upright
-                                                " = 90"
+                                                \fontsize
+                                                    #3
+                                                    {
+                                                        \hspace
+                                                            #0.5
+                                                        =
+                                                        \hspace
+                                                            #0.1
+                                                        90
+                                                    }
                                         }
                             \hspace
                                 #0.75
@@ -2456,7 +2956,8 @@ class TempoSpanner(Spanner):
                         g'8. \startTextSpan
                         f'8.
                         ef'4. \stopTextSpan ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2465,7 +2966,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 120"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        120
+                                    }
                             }
                     }
                 >>
@@ -2505,8 +3015,8 @@ class TempoSpanner(Spanner):
 
             ::
 
-                >>> override(score).text_script.staff_padding = 1.25
-                >>> override(score).text_spanner.staff_padding = 2
+                >>> override(score).text_script.staff_padding = 4.25
+                >>> override(score).text_spanner.staff_padding = 5
 
             ::
 
@@ -2516,13 +3026,14 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript #'staff-padding = #4.25
+                    \override TextSpanner #'staff-padding = #5
                 } <<
                     \new Staff {
                         \time 3/8
                         c'8. ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2531,11 +3042,21 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 60"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        60
+                                    }
                             }
                         d'8.
                         e'4. ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2544,7 +3065,16 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 90"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        90
+                                    }
                             }
                         \once \override TextSpanner.arrow-width = 0.25
                         \once \override TextSpanner.bound-details.left-broken.padding = -2
@@ -2577,7 +3107,8 @@ class TempoSpanner(Spanner):
                         g'8. \startTextSpan
                         f'8.
                         ef'4. \stopTextSpan ^ \markup {
-                            \smaller
+                            \fontsize
+                                #-3
                                 \general-align
                                     #Y
                                     #DOWN
@@ -2586,11 +3117,20 @@ class TempoSpanner(Spanner):
                                         #0
                                         #1
                             \upright
-                                " = 120"
+                                \fontsize
+                                    #3
+                                    {
+                                        \hspace
+                                            #0.5
+                                        =
+                                        \hspace
+                                            #0.1
+                                        120
+                                    }
                             }
                     }
                 >>
-
+                
         Returns true, false or none.
         '''
         return self._start_with_parenthesized_tempo

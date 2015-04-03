@@ -428,11 +428,13 @@ class Tempo(AbjadValueObject):
             self.duration.dot_count,
             1,
             )
-        lhs = lhs.general_align('Y', Down).smaller()
-        rhs = ' = {}'.format(self.units_per_minute)
-        # tuple work-around preserves initial whitespace
-        rhs = markuptools.Markup((rhs,))
-        rhs = rhs.upright()
+        lhs = lhs.general_align('Y', Down).fontsize(-3)
+        left_space = markuptools.Markup.hspace(0.5)
+        equals = markuptools.Markup('=')
+        right_space = markuptools.Markup.hspace(0.1)
+        units = markuptools.Markup(self.units_per_minute)
+        rhs = left_space + equals + right_space + units
+        rhs = rhs.fontsize(3).upright()
         markup = lhs + rhs
         return markup
 
