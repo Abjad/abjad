@@ -233,9 +233,12 @@ class Context(Container):
         return self._context_name
 
     @context_name.setter
-    def context_name(self, arg):
-        assert isinstance(arg, str)
-        self._context_name = arg
+    def context_name(self, expr):
+        if expr is None:
+            expr = type(self).__name__
+        else:
+            expr = str(expr)
+        self._context_name = expr
 
     @property
     def is_nonsemantic(self):
