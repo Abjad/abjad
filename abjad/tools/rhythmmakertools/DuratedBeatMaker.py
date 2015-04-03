@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadValueObject
 from abjad.tools import durationtools
 
 
-class DurationBeatMaker(AbjadValueObject):
+class DuratedBeatMaker(AbjadValueObject):
     r'''Beat maker.
 
     Models one way of decomposing meters into beats.
@@ -19,7 +19,7 @@ class DurationBeatMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = rhythmmakertools.DurationBeatMaker(
+            >>> maker = rhythmmakertools.DuratedBeatMaker(
             ...     compound_beat_duration=Duration(1, 4),
             ...     simple_beat_duration=Duration(1, 4),
             ...     )
@@ -48,7 +48,7 @@ class DurationBeatMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = rhythmmakertools.DurationBeatMaker(
+            >>> maker = rhythmmakertools.DuratedBeatMaker(
             ...     compound_beat_duration=Duration(3, 8),
             ...     simple_beat_duration=Duration(3, 8),
             ...     )
@@ -78,7 +78,7 @@ class DurationBeatMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = rhythmmakertools.DurationBeatMaker(
+            >>> maker = rhythmmakertools.DuratedBeatMaker(
             ...     compound_beat_duration=Duration(3, 8),
             ...     simple_beat_duration=Duration(1, 4),
             ...     )
@@ -150,7 +150,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=Duration(1, 4),
                 ...     simple_beat_duration=Duration(1, 4),
                 ...     )
@@ -237,7 +237,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=None,
                 ...     simple_beat_duration=None,
                 ...     )
@@ -270,7 +270,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     )
 
@@ -303,7 +303,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     simple_beat_duration=Duration(1, 4),
                 ...     )
@@ -344,7 +344,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     fuse_remainder=False,
                 ...     simple_beat_duration=Duration(1, 4),
@@ -377,7 +377,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     fuse_remainder=True,
                 ...     simple_beat_duration=Duration(1, 4),
@@ -420,7 +420,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     remainder_direction=Left,
                 ...     simple_beat_duration=Duration(1, 4),
@@ -453,7 +453,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     remainder_direction=Right,
                 ...     simple_beat_duration=Duration(1, 4),
@@ -496,7 +496,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=None,
                 ...     simple_beat_duration=None,
                 ...     )
@@ -529,7 +529,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     simple_beat_duration=Duration(1, 4),
                 ...     )
 
@@ -562,7 +562,7 @@ class DurationBeatMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = rhythmmakertools.DurationBeatMaker(
+                >>> maker = rhythmmakertools.DuratedBeatMaker(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     simple_beat_duration=Duration(1, 4),
                 ...     )

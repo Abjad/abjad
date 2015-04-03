@@ -12,7 +12,7 @@ class BeatGrouper(AbjadValueObject):
 
         ::
 
-            >>> beat_maker = rhythmmakertools.DurationBeatMaker(
+            >>> beat_maker = rhythmmakertools.DuratedBeatMaker(
             ...     compound_beat_duration=Duration(3, 8),
             ...     simple_beat_duration=Duration(1, 4),
             ...     )

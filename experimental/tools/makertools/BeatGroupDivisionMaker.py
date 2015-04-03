@@ -33,7 +33,7 @@ class BeatGroupDivisionMaker(AbjadValueObject):
         ::
 
             >>> maker = makertools.BeatGroupDivisionMaker(
-            ...     beat_maker=rhythmmakertools.DurationBeatMaker(
+            ...     beat_maker=rhythmmakertools.DuratedBeatMaker(
             ...         compound_beat_duration=Duration(3, 8),
             ...         simple_beat_duration=Duration(1, 4),
             ...         ),
@@ -62,7 +62,7 @@ class BeatGroupDivisionMaker(AbjadValueObject):
             ...         fuse_remainder=True,
             ...         remainder_direction=Right,
             ...     ),
-            ...     beat_maker=rhythmmakertools.DurationBeatMaker(
+            ...     beat_maker=rhythmmakertools.DuratedBeatMaker(
             ...         compound_beat_duration=Duration(3, 8),
             ...         simple_beat_duration=Duration(1, 4),
             ...         ),
@@ -164,7 +164,7 @@ class BeatGroupDivisionMaker(AbjadValueObject):
         from abjad.tools import rhythmmakertools
         if self.beat_maker is not None:
             return self.beat_maker
-        maker = rhythmmakertools.DurationBeatMaker()
+        maker = rhythmmakertools.DuratedBeatMaker()
         return maker
 
     ### PUBLIC PROPERTIES ###
