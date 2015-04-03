@@ -109,6 +109,7 @@ class BeatGrouper(AbjadValueObject):
 
     __slots__ = (
         '_counts',
+        '_fuse_assignable_total_duration',
         '_fuse_remainder',
         '_remainder_direction',
         )
@@ -118,10 +119,12 @@ class BeatGrouper(AbjadValueObject):
     def __init__(
         self,
         counts=None,
+        fuse_assignable_total_duration=False,
         fuse_remainder=False,
         remainder_direction=Right,
         ):
         self._counts = counts
+        self._fuse_assignable_total_duration = fuse_assignable_total_duration
         self._fuse_remainder = fuse_remainder
         self._remainder_direction = remainder_direction
 
@@ -172,6 +175,10 @@ class BeatGrouper(AbjadValueObject):
 
     def _beat_list_to_grouped_beat_list(self, beat_list):
         assert isinstance(beat_list, (list, tuple)), repr(beat_list)
+        total_duration = sum(beat_list)
+        if (total_duration.is_assignable and 
+            self.fuse_assignable_total_duration):
+            return [[total_duration]]
         if self.counts is None:
             beat_group = list(beat_list)
             grouped_beat_list = [beat_group]
@@ -222,6 +229,7 @@ class BeatGrouper(AbjadValueObject):
                 >>> grouper = rhythmmakertools.BeatGrouper()
                 >>> print(format(grouper))
                 rhythmmakertools.BeatGrouper(
+                    fuse_assignable_total_duration=False,
                     fuse_remainder=False,
                     remainder_direction=Right,
                     )
@@ -241,7 +249,7 @@ class BeatGrouper(AbjadValueObject):
             ::
 
                 >>> rhythmmakertools.BeatGrouper()
-                BeatGrouper(fuse_remainder=False, remainder_direction=Right)
+                BeatGrouper(fuse_assignable_total_duration=False, fuse_remainder=False, remainder_direction=Right)
 
         Returns string.
         '''
@@ -306,6 +314,133 @@ class BeatGrouper(AbjadValueObject):
         Set to positive integers or none.
         '''
         return self._counts
+
+    @property
+    def fuse_assignable_total_duration(self):
+        r'''Is true when assignable total duration of all input beats should
+        be fused into a single duration. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Groups beats into pairs. Does not fuse assignable
+            total durations:
+
+            ::
+
+                >>> grouper = rhythmmakertools.BeatGrouper(
+                ...     counts=[2],
+                ...     fuse_assignable_total_duration=False,
+                ...     )
+
+            ::
+
+                >>> beat_list = 5 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
+                >>> [len(beat_group) for beat_group in _]
+                [2, 2, 1]
+
+            ::
+
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+                >>> [len(beat_group) for beat_group in _]
+                [2, 2, 2]
+
+            ::
+
+                >>> beat_list = 7 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
+                >>> [len(beat_group) for beat_group in _]
+                [2, 2, 2, 1]
+
+            ::
+
+                >>> beat_list = 8 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+                >>> [len(beat_group) for beat_group in _]
+                [2, 2, 2, 2]
+
+            ::
+
+                >>> beat_list = 9 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
+                >>> [len(beat_group) for beat_group in _]
+                [2, 2, 2, 2, 1]
+
+        ..  container:: example
+
+            **Example 2.** Groups beats into pairs. Fuse assignable total
+            durations:
+
+            ::
+
+                >>> grouper = rhythmmakertools.BeatGrouper(
+                ...     counts=[2],
+                ...     fuse_assignable_total_duration=True,
+                ...     )
+
+            ::
+
+                >>> beat_list = 5 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
+                >>> [len(beat_group) for beat_group in _]
+                [2, 2, 1]
+
+            ::
+
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(3, 2)]]
+                >>> [len(beat_group) for beat_group in _]
+                [1]
+
+            ::
+
+                >>> beat_list = 7 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(7, 4)]]
+                >>> [len(beat_group) for beat_group in _]
+                [1]
+
+            ::
+
+                >>> beat_list = 8 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(2, 1)]]
+                >>> [len(beat_group) for beat_group in _]
+                [1]
+
+            ::
+
+                >>> beat_list = 9 * [Duration(1, 4)]
+                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists[0]
+                [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
+                >>> [len(beat_group) for beat_group in _]
+                [2, 2, 2, 2, 1]
+
+        Overrides all other settings when total duration is assignable.
+
+        Defaults to false.
+
+        Set to true or false.
+        '''
+        return self._fuse_assignable_total_duration
 
     @property
     def fuse_remainder(self):
