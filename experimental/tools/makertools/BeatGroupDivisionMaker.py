@@ -7,7 +7,7 @@ from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class BeatDivisionMaker(AbjadValueObject):
+class BeatGroupDivisionMaker(AbjadValueObject):
     r'''Beat division-maker.
 
     ..  container:: example
@@ -16,7 +16,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.BeatDivisionMaker(
+            >>> maker = makertools.BeatGroupDivisionMaker(
             ...     depths=[0],
             ...     )
             >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
@@ -33,7 +33,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.BeatDivisionMaker(
+            >>> maker = makertools.BeatGroupDivisionMaker(
             ...     depths=[1],
             ...     )
             >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
@@ -50,7 +50,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.BeatDivisionMaker(
+            >>> maker = makertools.BeatGroupDivisionMaker(
             ...     depths=[2],
             ...     )
             >>> lists = maker([(7, 4), (6, 4), (5, 4)])
@@ -66,7 +66,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.BeatDivisionMaker(
+            >>> maker = makertools.BeatGroupDivisionMaker(
             ...     depths=[0, 1],
             ...     )
             >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
@@ -121,7 +121,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.BeatDivisionMaker(
+                >>> maker = makertools.BeatGroupDivisionMaker(
                 ...     depths=[1],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4), (5, 4)])
@@ -139,7 +139,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.BeatDivisionMaker(
+                >>> maker = makertools.BeatGroupDivisionMaker(
                 ...     depths=[1],
                 ...     )
                 >>> lists = maker([])
@@ -193,7 +193,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
             **Example 1.** Decreases beat-group durations monotonically:
 
-            >>> maker = makertools.BeatDivisionMaker(
+            >>> maker = makertools.BeatGroupDivisionMaker(
             ...     decrease_durations_monotonically=True,
             ...     depths=[1],
             ...     )
@@ -211,7 +211,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
             **Example 2.** Increases beat-group durations monotonically:
 
-            >>> maker = makertools.BeatDivisionMaker(
+            >>> maker = makertools.BeatGroupDivisionMaker(
             ...     decrease_durations_monotonically=False,
             ...     depths=[1],
             ...     )
@@ -237,7 +237,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.BeatDivisionMaker(
+                >>> maker = makertools.BeatGroupDivisionMaker(
                 ...     depths=[0],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
@@ -254,7 +254,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.BeatDivisionMaker(
+                >>> maker = makertools.BeatGroupDivisionMaker(
                 ...     depths=[1],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
@@ -273,7 +273,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.BeatDivisionMaker(
+                >>> maker = makertools.BeatGroupDivisionMaker(
                 ...     depths=[2],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
@@ -289,7 +289,7 @@ class BeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.BeatDivisionMaker(
+                >>> maker = makertools.BeatGroupDivisionMaker(
                 ...     depths=[0, 1],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
