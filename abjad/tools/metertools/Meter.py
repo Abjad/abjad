@@ -1513,7 +1513,7 @@ class Meter(AbjadObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[2],
                 ...     fuse_remainder=True,
                 ...     remainder_direction=Right,
