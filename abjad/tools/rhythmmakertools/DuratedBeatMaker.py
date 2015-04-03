@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools import durationtools
+from abjad.tools import metertools
 
 
 class DuratedBeatMaker(AbjadValueObject):
@@ -189,6 +190,7 @@ class DuratedBeatMaker(AbjadValueObject):
 
     def _meter_to_beat_list(self, meter):
         beat_list = []
+        meter = metertools.Meter(meter)
         if meter.is_simple:
             if self.simple_beat_duration is not None:
                 beat_duration = self.simple_beat_duration
