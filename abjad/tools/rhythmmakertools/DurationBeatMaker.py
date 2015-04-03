@@ -248,33 +248,33 @@ class DurationBeatMaker(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _meter_to_beat_list(self, meter):
-        beats = []
+        beat_list = []
         if meter.is_simple:
             if self.simple_beat_duration is not None:
                 beat_duration = self.simple_beat_duration
             else:
-                beats = [meter.duration]
-                return beats
+                beat_list = [meter.duration]
+                return beat_list
         elif meter.is_compound:
             if self.compound_beat_duration is not None:
                 beat_duration = self.compound_beat_duration
             else:
-                beats = [meter.duration]
-                return beats
+                beat_list = [meter.duration]
+                return beat_list
         if meter.duration < 2 * beat_duration:
-            beats.append(meter.duration)
+            beat_list.append(meter.duration)
         else:
             remaining_duration = meter.duration
             while beat_duration <= remaining_duration:
-                beats.append(beat_duration)
+                beat_list.append(beat_duration)
                 remaining_duration -= beat_duration
             if remaining_duration == 0:
                 pass
             elif meter.decrease_durations_monotonically:
-                beats[0] += remaining_duration
+                beat_list[0] += remaining_duration
             else:
-                beats[-1] += remaining_duration
-        return beats
+                beat_list[-1] += remaining_duration
+        return beat_list
 
     ### PUBLIC PROPERTIES ###
 

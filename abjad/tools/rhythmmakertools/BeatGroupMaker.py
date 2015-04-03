@@ -4,10 +4,20 @@ from abjad.tools import sequencetools
 
 
 class BeatGroupMaker(AbjadValueObject):
-    r'''Beat grouping specifier.
+    r'''Beat group maker.
 
-    Beat grouping specifier models different ways that a conductor might
-    chose to group together the beats of a measure.
+    ..  container:: example
+
+        **Example 1.**
+
+        ::
+
+            >>> beat_maker = rhythmmakertools.DurationBeatMaker(
+            ...     compound_beat_duration=Duration(3, 8),
+            ...     simple_beat_duration=Duration(1, 4),
+            ...     )
+
+    Groups beats into conductors' groups.
     '''
 
     ### CLASS VARIABLES ###
@@ -32,81 +42,90 @@ class BeatGroupMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, beats):
-        r'''Calls beat grouping specifier on `beats`.
+    def __call__(self, beat_lists):
+        r'''Calls beat grouping specifier on `beat_lists`.
 
         ..  container:: example
 
-            **Example 1.** Groups beats into pairs:
+            **Example 1.** Groups beat list elements into pairs:
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=[2],
                 ...     )
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
         ..  container:: example
 
-            **Example 2.** Groups beats into groups of three:
+            **Example 2.** Groups beat list elements into groups of three:
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=[3],
                 ...     )
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [3, 3]
 
         Returns list of beat lists.
         '''
-        assert isinstance(beats, (list, tuple)), repr(beats)
+        grouped_beat_lists = []
+        for beat_list in beat_lists:
+            grouped_beat_list = self._beat_list_to_grouped_beat_list(beat_list)
+            grouped_beat_lists.append(grouped_beat_list)
+        return grouped_beat_lists
+
+    def _beat_list_to_grouped_beat_list(self, beat_list):
+        assert isinstance(beat_list, (list, tuple)), repr(beat_list)
         if self.counts is None:
-            beat_group = list(beats)
-            beat_groups = [beat_group]
-            return beat_groups
-        beat_groups = sequencetools.partition_sequence_by_counts(
-            beats,
+            beat_group = list(beat_list)
+            grouped_beat_list = [beat_group]
+            return grouped_beat_list
+        grouped_beat_list = sequencetools.partition_sequence_by_counts(
+            beat_list,
             counts=self.counts,
             cyclic=True,
             overhang=False,
             )
-        beats_included = sum([len(_) for _ in beat_groups])
-        if beats_included == len(beats):
-            return beat_groups
-        remainder_length = len(beats) - beats_included
+        beats_included = sum([len(_) for _ in grouped_beat_list])
+        if beats_included == len(beat_list):
+            return grouped_beat_list
+        remainder_length = len(beat_list) - beats_included
         if self.remainder_direction == Left:
-            beat_groups = sequencetools.partition_sequence_by_counts(
-                beats[remainder_length:],
+            grouped_beat_list = sequencetools.partition_sequence_by_counts(
+                beat_list[remainder_length:],
                 counts=self.counts,
                 cyclic=True,
                 overhang=False
                 )
-            remainder = beats[:remainder_length]
+            remainder = beat_list[:remainder_length]
             if self.fuse_remainder:
-                beat_groups[0] = remainder + beat_groups[0]
+                grouped_beat_list[0] = remainder + grouped_beat_list[0]
             else:
-                beat_groups.insert(0, remainder)
+                grouped_beat_list.insert(0, remainder)
         else:
-            beat_groups = sequencetools.partition_sequence_by_counts(
-                beats[:-remainder_length],
+            grouped_beat_list = sequencetools.partition_sequence_by_counts(
+                beat_list[:-remainder_length],
                 counts=self.counts,
                 cyclic=True,
                 overhang=False
                 )
-            remainder = beats[-remainder_length:]
+            remainder = beat_list[-remainder_length:]
             if self.fuse_remainder:
-                beat_groups[-1] = beat_groups[-1] + remainder
+                grouped_beat_list[-1] = grouped_beat_list[-1] + remainder
             else:
-                beat_groups.append(remainder)
-        return beat_groups
+                grouped_beat_list.append(remainder)
+        return grouped_beat_list
 
     def __format__(self, format_specification=''):
         r'''Formats beat grouping specifier.
@@ -155,11 +174,12 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=None,
                 ...     )
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [6]
@@ -170,11 +190,12 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=[2],
                 ...     )
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
@@ -185,11 +206,12 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=[3],
                 ...     )
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [3, 3]
@@ -212,7 +234,7 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=[2],
                 ...     fuse_remainder=False,
                 ...     remainder_direction=Right,
@@ -220,45 +242,48 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> beats = 5 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 5 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 1]
 
             ::
 
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
             ::
 
-                >>> beats = 7 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 7 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 1]
 
             ::
 
-                >>> beats = 8 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 8 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2]
 
             ::
 
-                >>> beats = 9 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 9 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2, 1]
-
-            This is default behavior.
 
         ..  container:: example
 
@@ -267,7 +292,7 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=[2],
                 ...     fuse_remainder=True,
                 ...     remainder_direction=Right,
@@ -275,40 +300,45 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> beats = 5 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 5 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 3]
 
             ::
 
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
             ::
 
-                >>> beats = 7 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 7 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 3]
 
             ::
 
-                >>> beats = 8 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 8 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2]
 
             ::
 
-                >>> beats = 9 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 9 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 3]
@@ -329,39 +359,43 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=[2],
                 ...     remainder_direction=Right,
                 ...     )
 
             ::
 
-                >>> beats = 4 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 4 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2]
 
             ::
 
-                >>> beats = 5 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 5 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 1]
 
             ::
 
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
             ::
 
-                >>> beats = 7 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 7 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 1]
@@ -372,39 +406,43 @@ class BeatGroupMaker(AbjadValueObject):
 
             ::
 
-                >>> specifier = rhythmmakertools.BeatGroupMaker(
+                >>> maker = rhythmmakertools.BeatGroupMaker(
                 ...     counts=[2],
                 ...     remainder_direction=Left,
                 ...     )
 
             ::
 
-                >>> beats = 4 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 4 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2]
 
             ::
 
-                >>> beats = 5 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 5 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [1, 2, 2]
 
             ::
 
-                >>> beats = 6 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 6 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
             ::
 
-                >>> beats = 7 * [Duration(1, 4)]
-                >>> specifier(beats)
+                >>> beat_list = 7 * [Duration(1, 4)]
+                >>> grouped_beat_lists = maker([beat_list])
+                >>> grouped_beat_lists[0]
                 [[Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
                 >>> [len(beat_group) for beat_group in _]
                 [1, 2, 2, 2]
