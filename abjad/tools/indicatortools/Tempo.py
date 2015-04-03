@@ -15,27 +15,29 @@ from abjad.tools.topleveltools import new
 class Tempo(AbjadValueObject):
     r'''A tempo indication.
 
-    ::
+    ..  container:: example
 
-        >>> score = Score([])
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> score.append(staff)
-        >>> tempo = Tempo(Duration(1, 8), 52)
-        >>> attach(tempo, staff[0])
-        >>> show(score) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> score = Score([])
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score.append(staff)
+            >>> tempo = Tempo(Duration(1, 8), 52)
+            >>> attach(tempo, staff[0])
+            >>> show(score) # doctest: +SKIP
 
-        >>> print(format(score))
-        \new Score <<
-            \new Staff {
-                \tempo 8=52
-                c'8
-                d'8
-                e'8
-                f'8
-            }
-        >>
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    \tempo 8=52
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
 
     Tempo indications are scoped to the **score context** by default.
     '''
@@ -128,7 +130,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Divides tempo by number:
+            **Example 1.** Divides tempo by number:
 
             ::
 
@@ -137,7 +139,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Divides tempo by other tempo:
+            **Example 2.** Divides tempo by other tempo:
 
             ::
 
@@ -170,7 +172,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Works without markup:
+            **Example 1.** Works without markup:
             
             ::
 
@@ -184,7 +186,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Works without markup:
+            **Example 2.** Works with markup:
             
             ::
 
@@ -225,11 +227,13 @@ class Tempo(AbjadValueObject):
     def __mul__(self, multiplier):
         r'''Multiplies tempo by `multiplier`.
 
-        ::
+        ..  container:: example
 
-            >>> tempo = Tempo(Duration(1, 4), 84)
-            >>> tempo * 2
-            Tempo(duration=Duration(1, 4), units_per_minute=168)
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> tempo * 2
+                Tempo(duration=Duration(1, 4), units_per_minute=168)
 
         Returns new tempo.
         '''
@@ -248,11 +252,13 @@ class Tempo(AbjadValueObject):
     def __rmul__(self, multiplier):
         r'''Multiplies `multiplier` by tempo.
 
-        ::
+        ..  container::: example
 
-            >>> tempo = Tempo(Duration(1, 4), 84)
-            >>> 2 * tempo
-            Tempo(duration=Duration(1, 4), units_per_minute=168)
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> 2 * tempo
+                Tempo(duration=Duration(1, 4), units_per_minute=168)
 
         Returns new tempo.
         '''
@@ -269,12 +275,15 @@ class Tempo(AbjadValueObject):
         return new_tempo
 
     def __str__(self):
-        r'''String representation of tempo.
+        r'''Gets string representation of tempo.
 
-        ::
+        ..  container:: example
 
-            >>> str(tempo)
-            '4=84'
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> str(tempo)
+                '4=84'
 
         Returns string.
         '''
@@ -283,9 +292,12 @@ class Tempo(AbjadValueObject):
     def __sub__(self, expr):
         r'''Subtracts `expr` from tempo.
 
-        ::
+        ..  container:: example
 
-            >>> tempo - 20
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> tempo - 20
 
         Returns new tempo.
         '''
@@ -423,12 +435,15 @@ class Tempo(AbjadValueObject):
 
     @property
     def duration(self):
-        r'''Duration of tempo.
+        r'''Gets duration of tempo.
 
-        ::
+        ..  container:: example
 
-            >>> tempo.duration
-            Duration(1, 4)
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> tempo.duration
+                Duration(1, 4)
 
         Returns duration.
         '''
@@ -436,28 +451,35 @@ class Tempo(AbjadValueObject):
 
     @property
     def is_imprecise(self):
-        r'''True if tempo is entirely textual or if tempo's
-        units_per_minute is a range.
+        r'''Is true if tempo is entirely textual or if tempo's
+        units_per_minute is a range. Otherwise false.
 
-        ::
 
-            >>> Tempo(Duration(1, 4), 60).is_imprecise
-            False
-            >>> Tempo(4, 60, 'Langsam').is_imprecise
-            False
-            >>> Tempo(textual_indication='Langsam').is_imprecise
-            True
-            >>> Tempo(4, (35, 50), 'Langsam').is_imprecise
-            True
-            >>> Tempo(Duration(1, 4), (35, 50)).is_imprecise
-            True
+        ..  container:: example
 
-        Otherwise false:
+            **Example 1.** Imprecise tempi:
 
-        ::
+            ::
 
-            >>> Tempo(Duration(1, 4), 60).is_imprecise
-            False
+                >>> Tempo(Duration(1, 4), 60).is_imprecise
+                False
+                >>> Tempo(4, 60, 'Langsam').is_imprecise
+                False
+                >>> Tempo(textual_indication='Langsam').is_imprecise
+                True
+                >>> Tempo(4, (35, 50), 'Langsam').is_imprecise
+                True
+                >>> Tempo(Duration(1, 4), (35, 50)).is_imprecise
+                True
+
+        ..  container:: example
+
+            **Example 2.** Precise tempo:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60).is_imprecise
+                False
 
         Returns boolean.
         '''
@@ -469,7 +491,7 @@ class Tempo(AbjadValueObject):
 
     @property
     def markup(self):
-        r'''Optional markup of tempo.
+        r'''Gets optional tempo markup.
 
         ..  container:: example
 
@@ -514,13 +536,15 @@ class Tempo(AbjadValueObject):
 
     @property
     def quarters_per_minute(self):
-        r'''Quarters per minute of tempo.
+        r'''Gets quarters per minute of tempo.
 
-        ::
+        ..  container:: example
 
-            >>> tempo = Tempo(Duration(1, 8), 52)
-            >>> tempo.quarters_per_minute
-            Fraction(104, 1)
+            ::
+
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.quarters_per_minute
+                Fraction(104, 1)
 
         Returns tuple when tempo `units_per_minute` is a range.
 
@@ -542,12 +566,15 @@ class Tempo(AbjadValueObject):
 
     @property
     def textual_indication(self):
-        r'''Optional textual indication of tempo.
+        r'''Gets optional textual indication of tempo.
 
-        ::
+        ..  container:: example
 
-            >>> tempo.textual_indication is None
-            True
+            ::
+
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.textual_indication is None
+                True
 
         Returns string or none.
         '''
@@ -555,12 +582,15 @@ class Tempo(AbjadValueObject):
 
     @property
     def units_per_minute(self):
-        r'''Units per minute of tempo.
+        r'''Gets units per minute of tempo.
 
-        ::
+        ..  container:: example
 
-            >>> tempo.units_per_minute
-            52
+            ::
+
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.units_per_minute
+                52
 
         Returns number.
         '''
@@ -569,18 +599,22 @@ class Tempo(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     def duration_to_milliseconds(self, duration):
-        r'''Millisecond value of `duration` under a given tempo.
+        r'''Gets millisecond value of `duration` under a given tempo.
 
-        ::
+        ..  container:: example
 
-            >>> duration = (1, 4)
-            >>> tempo = Tempo((1, 4), 60)
-            >>> tempo.duration_to_milliseconds(duration)
-            Duration(1000, 1)
+            ::
+
+                >>> duration = (1, 4)
+                >>> tempo = Tempo((1, 4), 60)
+                >>> tempo.duration_to_milliseconds(duration)
+                Duration(1000, 1)
 
         Returns duration.
         '''
         duration = durationtools.Duration(duration)
+        # TODO: rewrite formula without line breaks;
+        #       use two or three temporary variables instead. 
         whole_note_duration = 1000 \
             * durationtools.Multiplier(
                 self.duration.denominator,
@@ -607,8 +641,7 @@ class Tempo(AbjadValueObject):
         ..  container:: example
 
             Rewrites tempo ``58`` MM by ratios of the form ``n:d`` such that
-            ``1 <= n <= 8`` and ``1 <= d <= 8``:
-            ...
+            ``1 <= n <= 8`` and ``1 <= d <= 8``. Viz:
 
             ::
 
@@ -631,7 +664,7 @@ class Tempo(AbjadValueObject):
         ..  container:: example
 
             Rewrites tempo ``58`` MM by ratios of the form ``n:d`` such that
-            ``1 <= n <= 30`` and ``1 <= d <= 30``:
+            ``1 <= n <= 30`` and ``1 <= d <= 30``. Viz:
 
             ::
 
@@ -703,12 +736,12 @@ class Tempo(AbjadValueObject):
         return pairs
 
     def rewrite_duration(self, duration, new_tempo):
-        r'''Rewrite `duration` under `new_tempo`.
+        r'''Rewrites `duration` under `new_tempo`.
 
         Given `duration` governed by this tempo
-        return new duration governed by `new_tempo`.
+        returns new duration governed by `new_tempo`.
 
-        Ensure that `duration` and new duration
+        Ensures that `duration` and new duration
         consume the same amount of time in seconds.
 
         ..  container:: example
