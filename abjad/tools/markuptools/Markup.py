@@ -11,7 +11,7 @@ class Markup(AbjadValueObject):
 
     ..  container:: example
 
-        Initializes from string:
+        **Example 1.** Initializes from string:
 
         ::
 
@@ -26,7 +26,7 @@ class Markup(AbjadValueObject):
 
     ..  container:: example
 
-        Initializes from other markup:
+        **Example 2.** Initializes from other markup:
 
         ::
 
@@ -46,7 +46,7 @@ class Markup(AbjadValueObject):
 
     ..  container:: example
 
-        Attaches markup to score components:
+        **Example 3.** Attaches markup to score components:
 
         ::
 
@@ -1392,6 +1392,41 @@ class Markup(AbjadValueObject):
         from abjad.tools import markuptools
         command = markuptools.MarkupCommand('natural')
         return Markup(contents=command)
+
+    @staticmethod
+    def note_by_number(log, dot_count, stem_direction, direction=Up):
+        r'''LilyPond ``\note-by-number`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.note_by_number(3, 2, 1)
+
+            ::
+
+                >>> print(format(markup))
+                ^ \markup {
+                    \note-by-number
+                        #3
+                        #2
+                        #1
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand(
+            'note-by-number',
+            log,
+            dot_count,
+            stem_direction,
+            )
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
     def null(direction=Up):
