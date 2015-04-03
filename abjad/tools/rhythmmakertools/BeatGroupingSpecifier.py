@@ -41,7 +41,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[2],
                 ...     )
                 >>> beats = 6 * [Duration(1, 4)]
@@ -56,7 +56,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[3],
                 ...     )
                 >>> beats = 6 * [Duration(1, 4)]
@@ -115,9 +115,9 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier()
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier()
                 >>> print(format(specifier))
-                metertools.BeatGroupingSpecifier(
+                rhythmmakertools.BeatGroupingSpecifier(
                     fuse_remainder=False,
                     remainder_direction=Right,
                     )
@@ -136,7 +136,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> metertools.BeatGroupingSpecifier()
+                >>> rhythmmakertools.BeatGroupingSpecifier()
                 BeatGroupingSpecifier(fuse_remainder=False, remainder_direction=Right)
 
         Returns string.
@@ -155,7 +155,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=None,
                 ...     )
                 >>> beats = 6 * [Duration(1, 4)]
@@ -170,7 +170,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[2],
                 ...     )
                 >>> beats = 6 * [Duration(1, 4)]
@@ -185,7 +185,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[3],
                 ...     )
                 >>> beats = 6 * [Duration(1, 4)]
@@ -212,7 +212,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[2],
                 ...     fuse_remainder=False,
                 ...     remainder_direction=Right,
@@ -267,7 +267,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[2],
                 ...     fuse_remainder=True,
                 ...     remainder_direction=Right,
@@ -329,7 +329,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[2],
                 ...     remainder_direction=Right,
                 ...     )
@@ -372,7 +372,7 @@ class BeatGroupingSpecifier(AbjadValueObject):
 
             ::
 
-                >>> specifier = metertools.BeatGroupingSpecifier(
+                >>> specifier = rhythmmakertools.BeatGroupingSpecifier(
                 ...     counts=[2],
                 ...     remainder_direction=Left,
                 ...     )
