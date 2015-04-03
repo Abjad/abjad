@@ -932,6 +932,33 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    @staticmethod
+    def flat():
+        r'''LilyPond ``\flat`` markup command. 
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.flat()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \flat
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand('flat')
+        return Markup(contents=command)
+
     def fontsize(self, fontsize):
         r'''LilyPond ``\fontsize`` markup command.
 
@@ -1338,6 +1365,33 @@ class Markup(AbjadValueObject):
             glyph_scheme,
             )
         return markuptools.Markup(contents=command, direction=direction)
+
+    @staticmethod
+    def natural():
+        r'''LilyPond ``\natural`` markup command. 
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.natural()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \natural
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand('natural')
+        return Markup(contents=command)
 
     @staticmethod
     def null(direction=Up):
@@ -1854,6 +1908,33 @@ class Markup(AbjadValueObject):
             contents,
             )
         return new(self, contents=command)
+
+    @staticmethod
+    def sharp():
+        r'''LilyPond ``\sharp`` markup command. 
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.sharp()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \sharp
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand('sharp')
+        return Markup(contents=command)
 
     def smaller(self):
         r'''LilyPond ``\smaller`` markup command.
