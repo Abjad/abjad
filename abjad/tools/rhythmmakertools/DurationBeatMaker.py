@@ -122,11 +122,13 @@ class DurationBeatMaker(AbjadValueObject):
         compound_beat_duration=None,
         simple_beat_duration=None,
         ):
-        simple_beat_duration = durationtools.Duration(simple_beat_duration)
-        compound_beat_duration = durationtools.Duration(compound_beat_duration)
+        if simple_beat_duration is not None:
+            simple_beat_duration = durationtools.Duration(simple_beat_duration)
         self._simple_beat_duration = simple_beat_duration
+        if compound_beat_duration is not None:
+            compound_beat_duration = durationtools.Duration(
+                compound_beat_duration)
         self._compound_beat_duration = compound_beat_duration
-
 
     ### SPECIAL METHODS ###
 
