@@ -123,8 +123,8 @@ class Markup(AbjadValueObject):
             new_contents = (str(contents),)
         self._contents = new_contents
         self._format_slot = 'right'
-        direction = \
-            stringtools.arg_to_tridirectional_ordinal_constant(direction)
+        direction = stringtools.arg_to_tridirectional_ordinal_constant(
+            direction)
         self._direction = direction
         assert isinstance(stack_priority, int), repr(stack_priority)
         self._stack_priority = stack_priority

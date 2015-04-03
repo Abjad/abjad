@@ -423,12 +423,17 @@ class Tempo(AbjadValueObject):
         if self.markup is not None:
             return self.markup
         duration_log = int(math.log(self.duration.denominator, 2))
-        dot_count = self.duration.dot_count
-        units_per_minute = self.units_per_minute
-        string = r'\smaller \general-align #Y #DOWN'
-        string += r' \note-by-number #{} #{} #1 \upright " = {}"'
-        string = string.format(duration_log, dot_count, units_per_minute)
-        markup = markuptools.Markup(string)
+        lhs = markuptools.Markup.note_by_number(
+            duration_log, 
+            self.duration.dot_count,
+            1,
+            )
+        lhs = lhs.general_align('Y', Down).smaller()
+        rhs = ' = {}'.format(self.units_per_minute)
+        # tuple work-around preserves initial whitespace
+        rhs = markuptools.Markup((rhs,))
+        rhs = rhs.upright()
+        markup = lhs + rhs
         return markup
 
     ### PUBLIC PROPERTIES ###
