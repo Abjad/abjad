@@ -8,7 +8,7 @@ class BeatGrouper(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.**
+        Beat lists for examples:
 
         ::
 
@@ -16,6 +16,91 @@ class BeatGrouper(AbjadValueObject):
             ...     compound_beat_duration=Duration(3, 8),
             ...     simple_beat_duration=Duration(1, 4),
             ...     )
+            >>> meters = [
+            ...     metertools.Meter((4, 4)),
+            ...     metertools.Meter((5, 4)),
+            ...     metertools.Meter((6, 4)),
+            ...     metertools.Meter((7, 4)),
+            ...     ]
+            >>> beat_lists = beat_maker(meters)
+            >>> for beat_list in beat_lists:
+            ...     beat_list
+            [Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4)]
+            [Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4)]
+            [Duration(3, 8), Duration(3, 8), Duration(3, 8), Duration(3, 8)]
+            [Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4), Duration(1, 4)]
+
+    ..  container:: example
+
+        **Example 1a.** Beat lists grouped in pairs. Remainder at right:
+
+        ::
+
+            >>> grouper = rhythmmakertools.BeatGrouper(
+            ...     counts=[2],
+            ...     fuse_remainder=False,
+            ...     remainder_direction=Right,
+            ...     )
+            >>> grouped_beat_lists = grouper(beat_lists)
+            >>> for grouped_beat_list in grouped_beat_lists:
+            ...     grouped_beat_list
+            [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+            [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
+            [[Duration(3, 8), Duration(3, 8)], [Duration(3, 8), Duration(3, 8)]]
+            [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4)]]
+
+        **Example 1b.** Beat lists grouped in pairs. Remainder fused at right:
+
+        ::
+
+            >>> grouper = rhythmmakertools.BeatGrouper(
+            ...     counts=[2],
+            ...     fuse_remainder=True,
+            ...     remainder_direction=Right,
+            ...     )
+            >>> grouped_beat_lists = grouper(beat_lists)
+            >>> for grouped_beat_list in grouped_beat_lists:
+            ...     grouped_beat_list
+            [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+            [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
+            [[Duration(3, 8), Duration(3, 8)], [Duration(3, 8), Duration(3, 8)]]
+            [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4), Duration(1, 4)]]
+
+    ..  container:: example
+
+        **Example 2a.** Beat lists grouped in pairs. Remainder at left:
+
+        ::
+
+            >>> grouper = rhythmmakertools.BeatGrouper(
+            ...     counts=[2],
+            ...     fuse_remainder=False,
+            ...     remainder_direction=Left,
+            ...     )
+            >>> grouped_beat_lists = grouper(beat_lists)
+            >>> for grouped_beat_list in grouped_beat_lists:
+            ...     grouped_beat_list
+            [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+            [[Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+            [[Duration(3, 8), Duration(3, 8)], [Duration(3, 8), Duration(3, 8)]]
+            [[Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+
+        **Example 1b.** Beat lists grouped in pairs. Remainder fused at left:
+
+        ::
+
+            >>> grouper = rhythmmakertools.BeatGrouper(
+            ...     counts=[2],
+            ...     fuse_remainder=True,
+            ...     remainder_direction=Left,
+            ...     )
+            >>> grouped_beat_lists = grouper(beat_lists)
+            >>> for grouped_beat_list in grouped_beat_lists:
+            ...     grouped_beat_list
+            [[Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+            [[Duration(1, 4), Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
+            [[Duration(3, 8), Duration(3, 8)], [Duration(3, 8), Duration(3, 8)]]
+            [[Duration(1, 4), Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)], [Duration(1, 4), Duration(1, 4)]]
 
     Groups beats into conductors' groups.
     '''
