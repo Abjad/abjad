@@ -89,7 +89,6 @@ class BeatGroupDivisionMaker(AbjadValueObject):
     __slots__ = (
         '_beat_grouper',
         '_beat_maker',
-        '_decrease_durations_monotonically',
         )
 
     ### INITIALIZER ###
@@ -98,14 +97,9 @@ class BeatGroupDivisionMaker(AbjadValueObject):
         self,
         beat_grouper=None,
         beat_maker=None,
-        decrease_durations_monotonically=True,
         ):
         self._beat_grouper = beat_grouper
         self._beat_maker = beat_maker
-        prototype = (type(None), type(True))
-        assert isinstance(decrease_durations_monotonically, prototype)
-        self._decrease_durations_monotonically = \
-            decrease_durations_monotonically
 
     ### SPECIAL METHODS ###
 
@@ -126,6 +120,12 @@ class BeatGroupDivisionMaker(AbjadValueObject):
             Returns empty list.
 
         Returns (possibly empty) list of division lists.
+
+        Result structured one output division list per input division.
+
+        Each input division corresponds to a meter.
+        Each output division list corresponds to the beat groups of an input
+        meter.
         '''
         input_divisions = divisions or []
         if not input_divisions:
@@ -133,11 +133,7 @@ class BeatGroupDivisionMaker(AbjadValueObject):
         output_division_lists = []
         meters = []
         for input_division in input_divisions:
-            meter = metertools.Meter(
-                input_division,
-                decrease_durations_monotonically=\
-                    self.decrease_durations_monotonically,
-                )
+            meter = metertools.Meter(input_division)
             meters.append(meter)
         beat_lists = []
         for meter in meters:
@@ -188,12 +184,3 @@ class BeatGroupDivisionMaker(AbjadValueObject):
         Returns beat maker or none.
         '''
         return self._beat_maker
-
-    @property
-    def decrease_durations_monotonically(self):
-        r'''Is true when beat-group durations should decrease monotonically.
-        Otherwise false.
-
-        Set to true or false.
-        '''
-        return self._decrease_durations_monotonically
