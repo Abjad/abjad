@@ -102,7 +102,7 @@ class StaffLinesSpanner(Spanner):
                     grob_name='StaffSymbol',
                     is_once=True,
                     property_path='line-positions',
-                    value=schemetools.SchemeVector(*self.lines),
+                    value=schemetools.SchemeVector(self.lines),
                     )
                 string = '\n'.join(override._override_format_pieces)
                 result.append(string)
