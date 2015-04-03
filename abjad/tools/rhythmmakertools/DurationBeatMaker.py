@@ -131,7 +131,111 @@ class DurationBeatMaker(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, meters):
-        r'''Calls beat-maker on `meter`.
+        r'''Calls beat-maker on `meters`.
+
+        ..  container:: example
+
+            **Example 1.** Makes quarter-note-durated beats from very short 
+            meters:
+
+            ::
+
+                >>> maker = rhythmmakertools.DurationBeatMaker(
+                ...     compound_beat_duration=Duration(1, 4),
+                ...     simple_beat_duration=Duration(1, 4),
+                ...     )
+
+            ::
+
+                >>> maker([metertools.Meter((1, 16))])
+                [[Duration(1, 16)]]
+
+            ::
+
+                >>> maker([metertools.Meter((1, 4))])
+                [[Duration(1, 4)]]
+
+            ::
+
+                >>> maker([metertools.Meter((5, 16))])
+                [[Duration(5, 16)]]
+
+            ::
+
+                >>> maker([metertools.Meter((7, 16))])
+                [[Duration(7, 16)]]
+
+            Meters less than two complete beats decompose into a single beat.
+
+        ..  container:: example
+
+            **Example 2a.** Makes quarter-note- and dotted-quarter-note-durated
+            beats. Large beats at the beginning:
+
+            ::
+
+                >>> maker = rhythmmakertools.DurationBeatMaker(
+                ...     compound_beat_duration=Duration(3, 8),
+                ...     simple_beat_duration=Duration(1, 4),
+                ...     )
+
+            ::
+
+                >>> for numerator in range(1, 13):
+                ...     meter = metertools.Meter(
+                ...         (numerator, 8),
+                ...         decrease_durations_monotonically=True,
+                ...     )
+                ...     beats = maker([meter])[0]
+                ...     beats = ' + '.join(str(_) for _ in beats)
+                ...     message = '{}: {}'.format(str(meter), beats)
+                ...     print(message)
+                1/8: 1/8
+                2/8: 1/4
+                3/8: 3/8
+                4/8: 1/4 + 1/4
+                5/8: 3/8 + 1/4
+                6/8: 3/8 + 3/8
+                7/8: 3/8 + 1/4 + 1/4
+                8/8: 1/4 + 1/4 + 1/4 + 1/4
+                9/8: 3/8 + 3/8 + 3/8
+                10/8: 1/4 + 1/4 + 1/4 + 1/4 + 1/4
+                11/8: 3/8 + 1/4 + 1/4 + 1/4 + 1/4
+                12/8: 3/8 + 3/8 + 3/8 + 3/8
+
+            **Example 2b.** Makes quarter-note- and dotted-quarter-note-durated
+            beats. Large beats at the end:
+
+            ::
+
+                >>> maker = rhythmmakertools.DurationBeatMaker(
+                ...     compound_beat_duration=Duration(3, 8),
+                ...     simple_beat_duration=Duration(1, 4),
+                ...     )
+
+            ::
+
+                >>> for numerator in range(1, 13):
+                ...     meter = metertools.Meter(
+                ...         (numerator, 8),
+                ...         decrease_durations_monotonically=False,
+                ...     )
+                ...     beats = maker([meter])[0]
+                ...     beats = ' + '.join(str(_) for _ in beats)
+                ...     message = '{}: {}'.format(str(meter), beats)
+                ...     print(message)
+                1/8: 1/8
+                2/8: 1/4
+                3/8: 3/8
+                4/8: 1/4 + 1/4
+                5/8: 1/4 + 3/8
+                6/8: 3/8 + 3/8
+                7/8: 1/4 + 1/4 + 3/8
+                8/8: 1/4 + 1/4 + 1/4 + 1/4
+                9/8: 3/8 + 3/8 + 3/8
+                10/8: 1/4 + 1/4 + 1/4 + 1/4 + 1/4
+                11/8: 1/4 + 1/4 + 1/4 + 1/4 + 3/8
+                12/8: 3/8 + 3/8 + 3/8 + 3/8
 
         Returns list of beat lists.
         '''
