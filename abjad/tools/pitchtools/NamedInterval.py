@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 import functools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
@@ -416,6 +415,16 @@ class NamedInterval(Interval):
             ...     NamedPitch(12),
             ...     )
             NamedInterval('+M9')
+
+        ::
+
+            ..  todo:: Improve this behavior.
+
+            >>> pitchtools.NamedInterval.from_pitch_carriers(
+            ...     NamedPitch("cs'"),
+            ...     NamedPitch("cf'"),
+            ...     )
+            NamedInterval('-M2')
 
         Returns named interval.
         '''
