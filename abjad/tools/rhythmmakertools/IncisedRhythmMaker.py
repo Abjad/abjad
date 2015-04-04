@@ -75,7 +75,7 @@ class IncisedRhythmMaker(RhythmMaker):
         '_split_divisions_by_counts',
         )
 
-    _class_name_abbreviatio = 'In'
+    _class_name_abbreviation = 'In'
 
     _human_readable_class_name = 'incised rhythm-maker'
 
