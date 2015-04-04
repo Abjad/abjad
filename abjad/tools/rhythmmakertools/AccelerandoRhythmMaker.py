@@ -9,6 +9,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import new
 
 
@@ -23,7 +24,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
             ...     start_duration=Duration(1, 8),
-            ...     stop_duration=Duration(1, 16),
+            ...     stop_duration=Duration(1, 20),
             ...     written_duration=Duration(1, 8),
             ...     )
 
@@ -44,20 +45,22 @@ class AccelerandoRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 {
                     \time 5/8
-                    c'8 * 31/32 [
-                    c'8 * 119/128
-                    c'8 * 13/16
-                    c'8 * 11/16
-                    c'8 * 75/128
-                    c'8 * 67/128
-                    c'8 * 63/128 ]
+                    c'8 * 61/64 [
+                    c'8 * 115/128
+                    c'8 * 49/64
+                    c'8 * 5/8
+                    c'8 * 33/64
+                    c'8 * 57/128
+                    c'8 * 13/32
+                    c'8 * 25/64 ]
                 }
                 {
                     \time 3/8
-                    c'8 * 63/64 [
-                    c'8 * 55/64
-                    c'8 * 41/64
-                    c'8 * 33/64 ]
+                    c'8 * 117/128 [
+                    c'8 * 99/128
+                    c'8 * 69/128
+                    c'8 * 13/32
+                    c'8 * 47/128 ]
                 }
             }
 
@@ -68,7 +71,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         ::
 
             >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
-            ...     start_duration=Duration(1, 16),
+            ...     start_duration=Duration(1, 20),
             ...     stop_duration=Duration(1, 8),
             ...     written_duration=Duration(1, 8),
             ...     )
@@ -90,22 +93,24 @@ class AccelerandoRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 {
                     \time 5/8
-                    c'8 * 57/128 [
-                    c'8 * 59/128
-                    c'8 * 63/128
-                    c'8 * 35/64
-                    c'8 * 5/8
-                    c'8 * 23/32
-                    c'8 * 105/128
-                    c'8 * 57/64 ]
+                    c'8 * 45/128 [
+                    c'8 * 23/64
+                    c'8 * 25/64
+                    c'8 * 55/128
+                    c'8 * 1/2
+                    c'8 * 75/128
+                    c'8 * 89/128
+                    c'8 * 103/128
+                    c'8 * 113/128 ]
                 }
                 {
                     \time 3/8
-                    c'8 * 7/16 [
-                    c'8 * 15/32
-                    c'8 * 71/128
-                    c'8 * 89/128
-                    c'8 * 27/32 ]
+                    c'8 * 5/16 [
+                    c'8 * 43/128
+                    c'8 * 51/128
+                    c'8 * 65/128
+                    c'8 * 85/128
+                    c'8 * 25/32 ]
                 }
             }
 
@@ -171,6 +176,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
             )
 
     ### PRIVATE METHODS ###
+
+    def _fix_rounding_error(self, selection, total_duration):
+        selection_duration = selection.get_duration()
+        if not selection_duration == total_duration:
+            needed_duration = total_duration - selection[:-1].get_duration()
+            multiplier = needed_duration / self.written_duration
+            multiplier = durationtools.Multiplier(multiplier)
+            detach(durationtools.Multiplier, selection[-1])
+            attach(multiplier, selection[-1])
 
     @staticmethod
     def _interpolate_cosine(y1, y2, mu):
@@ -376,6 +390,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
             attach(multiplier, note)
             notes.append(note)
         selection = selectiontools.Selection(notes)
+        self._fix_rounding_error(selection, total_duration)
+        pair = (selection.get_duration(), total_duration)
+        assert pair[0] == pair[1], repr(pair)
         return selection
 
     def _make_music(self, divisions, seeds):
