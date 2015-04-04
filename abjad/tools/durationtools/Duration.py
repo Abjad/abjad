@@ -11,7 +11,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from integer numerator:
+        **Example 1.** Initializes from integer numerator:
 
         ::
 
@@ -20,7 +20,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from integer numerator and denominator:
+        **Example 2.** Initializes from integer numerator and denominator:
 
         ::
 
@@ -29,7 +29,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from integer-equivalent numeric numerator:
+        **Example 3.** Initializes from integer-equivalent numeric numerator:
 
         ::
 
@@ -38,7 +38,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from integer-equivalent numeric numerator and denominator:
+        **Example 4.** Initializes from integer-equivalent numeric numerator 
+        and denominator:
 
         ::
 
@@ -47,7 +48,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from integer-equivalent singleton:
+        **Example 5.** Initializes from integer-equivalent singleton:
 
         ::
 
@@ -56,7 +57,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from integer-equivalent pair:
+        **Example 6.** Initializes from integer-equivalent pair:
 
         ::
 
@@ -65,7 +66,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from other duration:
+        **Example 7.** Initializes from other duration:
 
         ::
 
@@ -74,7 +75,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Intializes from fraction:
+        **Example 8.** Intializes from fraction:
 
         ::
 
@@ -83,7 +84,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from solidus string:
+        **Example 9.** Initializes from solidus string:
 
         ::
 
@@ -92,7 +93,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Initializes from nonreduced fraction:
+        **Example 10.** Initializes from nonreduced fraction:
 
         ::
 
@@ -101,7 +102,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Durations inherit from built-in fraction:
+        **Example 11.** Durations inherit from built-in fraction:
 
         ::
 
@@ -110,7 +111,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        Durations are numeric:
+        **Example 12.** Durations are numeric:
 
         ::
 
@@ -125,7 +126,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### CONSTRUCTOR ###
 
@@ -148,15 +150,15 @@ class Duration(AbjadObject, fractions.Fraction):
                 cls, args[0].numerator, args[0].denominator)
         except AttributeError:
             pass
-        if len(args) == 1 and \
-            mathtools.is_integer_equivalent_singleton(args[0]):
+        if (len(args) == 1 and
+            mathtools.is_integer_equivalent_singleton(args[0])):
             self = fractions.Fraction.__new__(cls, int(args[0][0]))
-        elif len(args) == 1 and \
-            mathtools.is_fraction_equivalent_pair(args[0]):
+        elif (len(args) == 1 and
+            mathtools.is_fraction_equivalent_pair(args[0])):
             self = fractions.Fraction.__new__(
                 cls, int(args[0][0]), int(args[0][1]))
-        elif len(args) == 1 and \
-            isinstance(args[0], str) and not '/' in args[0]:
+        elif (len(args) == 1 and
+            isinstance(args[0], str) and not '/' in args[0]):
             result = Duration._initialize_from_lilypond_duration_string(
                 args[0])
             self = fractions.Fraction.__new__(cls, result)
@@ -200,8 +202,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns duration.
         '''
-        if len(args) == 1 and \
-            isinstance(args[0], mathtools.NonreducedFraction):
+        if (len(args) == 1 and
+            isinstance(args[0], mathtools.NonreducedFraction)):
             result = args[0].__radd__(self)
         else:
             result = type(self)(fractions.Fraction.__add__(self, *args))
@@ -325,8 +327,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns duration or nonreduced fraction.
         '''
-        if len(args) == 1 and \
-            isinstance(args[0], mathtools.NonreducedFraction):
+        if (len(args) == 1 and
+            isinstance(args[0], mathtools.NonreducedFraction)):
             result = args[0].__rmul__(self)
         else:
             result = type(self)(fractions.Fraction.__mul__(self, *args))
@@ -428,8 +430,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns new duration.
         '''
-        if len(args) == 1 and \
-            isinstance(args[0], mathtools.NonreducedFraction):
+        if (len(args) == 1 and
+            isinstance(args[0], mathtools.NonreducedFraction)):
             return args[0].__rsub__(self)
         else:
             return type(self)(fractions.Fraction.__sub__(self, *args))
