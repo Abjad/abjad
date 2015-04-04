@@ -12,7 +12,7 @@ def test_indicatortools_Tempo__to_markup_01():
         r'''
         \markup {
             \fontsize
-                #-3
+                #-6
                 \general-align
                     #Y
                     #DOWN
@@ -21,16 +21,10 @@ def test_indicatortools_Tempo__to_markup_01():
                         #0
                         #1
             \upright
-                \fontsize
-                    #3
-                    {
-                        \hspace
-                            #0.5
-                        =
-                        \hspace
-                            #0.1
-                        60
-                    }
+                {
+                    =
+                    60
+                }
             }
         '''
         ), format(markup)
@@ -46,7 +40,7 @@ def test_indicatortools_Tempo__to_markup_02():
         r'''
         \markup {
             \fontsize
-                #-3
+                #-6
                 \general-align
                     #Y
                     #DOWN
@@ -55,16 +49,10 @@ def test_indicatortools_Tempo__to_markup_02():
                         #1
                         #1
             \upright
-                \fontsize
-                    #3
-                    {
-                        \hspace
-                            #0.5
-                        =
-                        \hspace
-                            #0.1
-                        60
-                    }
+                {
+                    =
+                    60
+                }
             }
         '''
         ), format(markup)
