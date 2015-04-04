@@ -83,7 +83,7 @@ class BooleanPattern(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _matches_index(self, index, total_length):
+    def _matches_index(self, index, total_length, seed=None):
         assert 0 <= total_length
         if 0 <= index:
             nonnegative_index = index
@@ -101,25 +101,20 @@ class BooleanPattern(AbjadValueObject):
             nonnegative_index -= start
         if self.period is None:
             for index in self.indices:
-                if 0 <= index:
-                    if index == nonnegative_index and index < total_length:
-                        return True ^ invert
-                else:
+                if index < 0:
                     index = total_length - abs(index)
-                    if index == nonnegative_index and index < total_length:
-                        return True ^ invert
+                if index == nonnegative_index and index < total_length:
+                    return True ^ invert
         else:
+            if seed is not None:
+                nonnegative_index += seed
             nonnegative_index = nonnegative_index % self.period
             for index in self.indices:
-                if 0 <= index:
-                    index = index % self.period
-                    if index == nonnegative_index and index < total_length:
-                        return True ^ invert
-                else:
+                if index < 0:
                     index = total_length - abs(index)
                     index = index % self.period
-                    if index == nonnegative_index and index < total_length:
-                        return True ^ invert
+                if index == nonnegative_index and index < total_length:
+                    return True ^ invert
         return False ^ invert
 
     ### PUBLIC METHODS ###
