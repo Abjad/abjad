@@ -435,7 +435,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections, seeds)
         self._apply_beam_specifier(selections)
-        selections = self._apply_output_masks(selections)
+        selections = self._apply_output_masks(selections, seeds)
         return selections
 
     ### PUBLIC PROPERTIES ###

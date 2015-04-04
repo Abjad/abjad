@@ -199,7 +199,7 @@ class RhythmMaker(AbjadValueObject):
                 beam = spannertools.MultipartBeam()
                 attach(beam, cell)
 
-    def _apply_output_masks(self, selections):
+    def _apply_output_masks(self, selections, seed):
         from abjad.tools import rhythmmakertools
         if not self.output_masks:
             return selections
@@ -213,7 +213,8 @@ class RhythmMaker(AbjadValueObject):
         length = len(selections)
         output_masks = self.output_masks
         for i, selection in enumerate(selections):
-            matching_output_mask = output_masks.get_matching_pattern(i, length)            
+            matching_output_mask = output_masks.get_matching_pattern(
+                i, length, seed=seed)
             if not matching_output_mask:
                 new_selections.append(selection)
                 continue

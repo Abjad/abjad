@@ -729,7 +729,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         rest = scoretools.Rest(note)
                         mutate(note).replace(rest)
                     detach(spannertools.Tie, logical_tie.head)
-        selections = self._apply_output_masks(selections)
+        selections = self._apply_output_masks(selections, seeds)
         return selections
 
     def _make_numeric_map(self, divisions, talea, extra_counts_per_division):

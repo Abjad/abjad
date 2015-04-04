@@ -287,7 +287,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 beam = spannertools.MultipartBeam()
                 attach(beam, x)
         selections = [selectiontools.Selection(x) for x in result]
-        selections = self._apply_output_masks(selections)
+        selections = self._apply_output_masks(selections, seeds)
         return selections
 
     def _make_numeric_map_part(

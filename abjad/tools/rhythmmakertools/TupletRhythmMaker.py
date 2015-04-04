@@ -255,7 +255,7 @@ class TupletRhythmMaker(RhythmMaker):
             tuplets.append(tuplet)
         selections = [selectiontools.Selection(x) for x in tuplets]
         self._apply_beam_specifier(selections)
-        selections = self._apply_output_masks(selections)
+        selections = self._apply_output_masks(selections, seeds)
         return selections
 
     def _make_tuplet(
