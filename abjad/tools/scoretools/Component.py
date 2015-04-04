@@ -348,8 +348,8 @@ class Component(AbjadObject):
         from abjad.tools import datastructuretools
         from abjad.tools import scoretools
         # return time signature attached to measure regardless of scope
-        if prototype == indicatortools.TimeSignature or \
-            prototype == (indicatortools.TimeSignature,):
+        if (prototype == indicatortools.TimeSignature or
+            prototype == (indicatortools.TimeSignature,)):
             if isinstance(self, scoretools.Measure):
                 if self._has_indicator(indicatortools.TimeSignature):
                     indicator = self._get_indicator(
@@ -433,11 +433,11 @@ class Component(AbjadObject):
     def _get_grace_containers(self, kind=None):
         from abjad.tools import scoretools
         result = []
-        if kind in (None, 'grace') and \
-            getattr(self, '_grace', None) is not None:
+        if (kind in (None, 'grace') and
+            getattr(self, '_grace', None) is not None):
             result.append(self._grace)
-        if kind in (None, 'after') and \
-            getattr(self, '_after_grace', None) is not None:
+        if (kind in (None, 'after') and
+            getattr(self, '_after_grace', None) is not None):
             result.append(self._after_grace)
         elif kind == scoretools.GraceContainer:
             if self._grace is not None:
