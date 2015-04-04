@@ -42,7 +42,7 @@ class BooleanPatternInventory(TypedTuple):
 
     ### PUBLIC METHODS ###
 
-    def get_matching_pattern(self, index, total_length):
+    def get_matching_pattern(self, index, total_length, seed=None):
         r'''Gets pattern matching `index`.
 
         ::
@@ -63,10 +63,28 @@ class BooleanPatternInventory(TypedTuple):
             9 BooleanPattern(indices=(-2, -1))
             10 BooleanPattern(indices=(0, 1, 7), period=10)
 
+        ::
+
+            >>> for i in range(11):
+            ...     match = inventory.get_matching_pattern(i, 10, seed=1)
+            ...     print(i, match)
+            ...
+            0 BooleanPattern(indices=(0, 1, 7), period=10)
+            1 None
+            2 BooleanPattern(indices=(2,), period=3, start=1, stop=-1)
+            3 None
+            4 None
+            5 BooleanPattern(indices=(2,), period=3, start=1, stop=-1)
+            6 BooleanPattern(indices=(0, 1, 7), period=10)
+            7 None
+            8 BooleanPattern(indices=(2,), period=3, start=1, stop=-1)
+            9 BooleanPattern(indices=(-2, -1))
+            10 BooleanPattern(indices=(0, 1, 7), period=10)
+
         Returns pattern or none.
         '''
         for pattern in reversed(self):
-            if pattern._matches_index(index, total_length):
+            if pattern._matches_index(index, total_length, seed=seed):
                 return pattern
 
     ### PRIVATE PROPERTIES ###
