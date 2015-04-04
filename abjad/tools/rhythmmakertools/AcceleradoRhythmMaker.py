@@ -12,7 +12,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import new
 
 
-class InterpolatedRhythmMaker(RhythmMaker):
+class AcceleradoRhythmMaker(RhythmMaker):
     r'''Interpolated rhythm-maker.
     '''
 
@@ -74,7 +74,7 @@ class InterpolatedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.InterpolatedRhythmMaker._interpolate_cosine(
+            >>> rhythmmakertools.AcceleradoRhythmMaker._interpolate_cosine(
             ...     y1=0,
             ...     y2=1,
             ...     mu=0.5,
@@ -99,7 +99,7 @@ class InterpolatedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.InterpolatedRhythmMaker._interpolate_divide(
+            >>> rhythmmakertools.AcceleradoRhythmMaker._interpolate_divide(
             ...     total_duration=10,
             ...     start_duration=1,
             ...     stop_duration=1,
@@ -111,7 +111,7 @@ class InterpolatedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.InterpolatedRhythmMaker._interpolate_divide(
+            >>> rhythmmakertools.AcceleradoRhythmMaker._interpolate_divide(
             ...     total_duration=10,
             ...     start_duration=5,
             ...     stop_duration=1,
@@ -146,13 +146,13 @@ class InterpolatedRhythmMaker(RhythmMaker):
         partial_sum = 0
         while partial_sum < total_duration:
             if exponent == 'cosine':
-                duration = InterpolatedRhythmMaker._interpolate_cosine(
+                duration = AcceleradoRhythmMaker._interpolate_cosine(
                     start_duration, 
                     stop_duration, 
                     partial_sum / total_duration,
                     )
             else:
-                duration = InterpolatedRhythmMaker._interpolate_exponential(
+                duration = AcceleradoRhythmMaker._interpolate_exponential(
                     start_duration, 
                     stop_duration, 
                     partial_sum / total_duration, 
@@ -175,7 +175,7 @@ class InterpolatedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> durations = rhythmmakertools.InterpolatedRhythmMaker._interpolate_divide_multiple(
+            >>> durations = rhythmmakertools.AcceleradoRhythmMaker._interpolate_divide_multiple(
             ...     total_durations=[100, 50],
             ...     reference_durations=[20, 10, 20],
             ...     )
@@ -207,7 +207,7 @@ class InterpolatedRhythmMaker(RhythmMaker):
         assert len(total_durations) == len(reference_durations) - 1
         durations = []
         for i in range(len(total_durations)):
-            durations_ = InterpolatedRhythmMaker._interpolate_divide(
+            durations_ = AcceleradoRhythmMaker._interpolate_divide(
                 total_durations[i], 
                 reference_durations[i], 
                 reference_durations[i+1], 
@@ -224,7 +224,7 @@ class InterpolatedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.InterpolatedRhythmMaker._interpolate_exponential(
+            >>> rhythmmakertools.AcceleradoRhythmMaker._interpolate_exponential(
             ...     y1=0,
             ...     y2=1,
             ...     mu=0.5,
@@ -252,7 +252,7 @@ class InterpolatedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> notes = rhythmmakertools.InterpolatedRhythmMaker._make_music(
+            >>> notes = rhythmmakertools.AcceleradoRhythmMaker._make_music(
             ...     start_duration=Duration(1, 4),
             ...     stop_duration=Duration(1, 16),
             ...     total_duration=Duration(4, 4),
@@ -297,7 +297,7 @@ class InterpolatedRhythmMaker(RhythmMaker):
         start_duration = durationtools.Duration(start_duration)
         stop_duration = durationtools.Duration(stop_duration)
         written_duration = durationtools.Duration(written_duration)
-        multipliers = InterpolatedRhythmMaker._interpolate_divide(
+        multipliers = AcceleradoRhythmMaker._interpolate_divide(
             total_duration=total_duration,
             start_duration=start_duration,
             stop_duration=stop_duration,
