@@ -12,8 +12,105 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import new
 
 
-class AcceleradoRhythmMaker(RhythmMaker):
-    r'''Interpolated rhythm-maker.
+class AccelerandoRhythmMaker(RhythmMaker):
+    r'''Accelerando rhythm-maker.
+
+    ..  container:: example
+
+        **Example 1.** Makes an accelerando for each input division:
+
+        ::
+
+            >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+            ...     start_duration=Duration(1, 8),
+            ...     stop_duration=Duration(1, 16),
+            ...     written_duration=Duration(1, 8),
+            ...     )
+
+        ::
+
+            >>> divisions = [(5, 8), (3, 8)]
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/8
+                    c'8 * 31/32 [
+                    c'8 * 119/128
+                    c'8 * 13/16
+                    c'8 * 11/16
+                    c'8 * 75/128
+                    c'8 * 67/128
+                    c'8 * 63/128 ]
+                }
+                {
+                    \time 3/8
+                    c'8 * 63/64 [
+                    c'8 * 55/64
+                    c'8 * 41/64
+                    c'8 * 33/64 ]
+                }
+            }
+
+    ..  container:: example
+
+        **Example 2.** Makes a ritardando for each input division:
+
+        ::
+
+            >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+            ...     start_duration=Duration(1, 16),
+            ...     stop_duration=Duration(1, 8),
+            ...     written_duration=Duration(1, 8),
+            ...     )
+
+        ::
+
+            >>> divisions = [(5, 8), (3, 8)]
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 5/8
+                    c'8 * 57/128 [
+                    c'8 * 59/128
+                    c'8 * 63/128
+                    c'8 * 35/64
+                    c'8 * 5/8
+                    c'8 * 23/32
+                    c'8 * 105/128
+                    c'8 * 57/64 ]
+                }
+                {
+                    \time 3/8
+                    c'8 * 7/16 [
+                    c'8 * 15/32
+                    c'8 * 71/128
+                    c'8 * 89/128
+                    c'8 * 27/32 ]
+                }
+            }
+
+    Usage follows the two-step configure-once / call-repeatedly pattern shown
+    here.
     '''
 
     ### CLASS VARIABLES ###
@@ -22,13 +119,12 @@ class AcceleradoRhythmMaker(RhythmMaker):
         '_exponent',
         '_start_duration',
         '_stop_duration',
-        '_total_duration',
         '_written_duration',
         )
 
-    _class_name_abbreviation = 'Int'
+    _class_name_abbreviation = 'Acc'
 
-    _human_readable_class_name = 'interpolated rhythm-maker'
+    _human_readable_class_name = 'accelerando rhythm-maker'
 
     ### INITIALIZER ###
 
@@ -37,8 +133,11 @@ class AcceleradoRhythmMaker(RhythmMaker):
         beam_specifier=None,
         duration_spelling_specifier=None,
         output_masks=None,
+        start_duration=None,
+        stop_duration=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
+        written_duration=None,
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
@@ -49,6 +148,12 @@ class AcceleradoRhythmMaker(RhythmMaker):
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
+        start_duration = durationtools.Duration(start_duration)
+        self._start_duration = start_duration
+        stop_duration = durationtools.Duration(stop_duration)
+        self._stop_duration = stop_duration
+        written_duration = durationtools.Duration(written_duration)
+        self._written_duration = written_duration
 
     ### SPECIAL METHODS ###
 
@@ -74,7 +179,7 @@ class AcceleradoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.AcceleradoRhythmMaker._interpolate_cosine(
+            >>> rhythmmakertools.AccelerandoRhythmMaker._interpolate_cosine(
             ...     y1=0,
             ...     y2=1,
             ...     mu=0.5,
@@ -99,7 +204,7 @@ class AcceleradoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.AcceleradoRhythmMaker._interpolate_divide(
+            >>> rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide(
             ...     total_duration=10,
             ...     start_duration=1,
             ...     stop_duration=1,
@@ -111,7 +216,7 @@ class AcceleradoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.AcceleradoRhythmMaker._interpolate_divide(
+            >>> rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide(
             ...     total_duration=10,
             ...     start_duration=5,
             ...     stop_duration=1,
@@ -146,13 +251,13 @@ class AcceleradoRhythmMaker(RhythmMaker):
         partial_sum = 0
         while partial_sum < total_duration:
             if exponent == 'cosine':
-                duration = AcceleradoRhythmMaker._interpolate_cosine(
+                duration = AccelerandoRhythmMaker._interpolate_cosine(
                     start_duration, 
                     stop_duration, 
                     partial_sum / total_duration,
                     )
             else:
-                duration = AcceleradoRhythmMaker._interpolate_exponential(
+                duration = AccelerandoRhythmMaker._interpolate_exponential(
                     start_duration, 
                     stop_duration, 
                     partial_sum / total_duration, 
@@ -175,7 +280,7 @@ class AcceleradoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> durations = rhythmmakertools.AcceleradoRhythmMaker._interpolate_divide_multiple(
+            >>> durations = rhythmmakertools.AccelerandoRhythmMaker._interpolate_divide_multiple(
             ...     total_durations=[100, 50],
             ...     reference_durations=[20, 10, 20],
             ...     )
@@ -207,7 +312,7 @@ class AcceleradoRhythmMaker(RhythmMaker):
         assert len(total_durations) == len(reference_durations) - 1
         durations = []
         for i in range(len(total_durations)):
-            durations_ = AcceleradoRhythmMaker._interpolate_divide(
+            durations_ = AccelerandoRhythmMaker._interpolate_divide(
                 total_durations[i], 
                 reference_durations[i], 
                 reference_durations[i+1], 
@@ -224,7 +329,7 @@ class AcceleradoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> rhythmmakertools.AcceleradoRhythmMaker._interpolate_exponential(
+            >>> rhythmmakertools.AccelerandoRhythmMaker._interpolate_exponential(
             ...     y1=0,
             ...     y2=1,
             ...     mu=0.5,
@@ -240,48 +345,8 @@ class AcceleradoRhythmMaker(RhythmMaker):
         result = (y1 * (1 - mu ** exponent) + y2 * mu ** exponent)
         return result
 
-    #def _make_music(self, divisions, seeds):
-    @staticmethod
-    def _make_music(
-        start_duration=None,
-        stop_duration=None,
-        total_duration=None,
-        written_duration=None,
-        ):
-        r'''Makes accelerating notes with LilyPond multipliers:
-
-        ::
-
-            >>> notes = rhythmmakertools.AcceleradoRhythmMaker._make_music(
-            ...     start_duration=Duration(1, 4),
-            ...     stop_duration=Duration(1, 16),
-            ...     total_duration=Duration(4, 4),
-            ...     written_duration=Duration(1, 8),
-            ...     )
-
-        ::
-
-            >>> staff = Staff(notes)
-            >>> attach(Beam(), staff[:])
-            >>> attach(Slur(), staff[:])
-
-        ::
-
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> f(staff)
-            \new Staff {
-                c'8 * 245/128 [ (
-                c'8 * 109/64
-                c'8 * 161/128
-                c'8 * 115/128
-                c'8 * 87/128
-                c'8 * 9/16
-                c'8 * 1/2
-                c'8 * 61/128 ] )
-            }
+    def _make_accelerando(self, total_duration):
+        r'''Makes notes with LilyPond multipliers.
 
         Returns as many interpolation values as necessary to fill `total` 
         duration requested.
@@ -294,24 +359,50 @@ class AcceleradoRhythmMaker(RhythmMaker):
         Returns selection of notes.
         '''
         total_duration = durationtools.Duration(total_duration)
-        start_duration = durationtools.Duration(start_duration)
-        stop_duration = durationtools.Duration(stop_duration)
-        written_duration = durationtools.Duration(written_duration)
-        multipliers = AcceleradoRhythmMaker._interpolate_divide(
+        durations = AccelerandoRhythmMaker._interpolate_divide(
             total_duration=total_duration,
-            start_duration=start_duration,
-            stop_duration=stop_duration,
+            start_duration=self.start_duration,
+            stop_duration=self.stop_duration,
             )
-        multipliers = [
-            durationtools.Multiplier(int(round(_ * 2**10)), 2**10) 
-            for _ in multipliers
+        durations = [
+            durationtools.Duration(int(round(_ * 2**10)), 2**10) 
+            for _ in durations
             ]
         notes = []
-        for i, multiplier in enumerate(multipliers):
-            note = scoretools.Note(0, written_duration)
-            multiplier = multiplier / written_duration
+        for i, duration in enumerate(durations):
+            note = scoretools.Note(0, self.written_duration)
+            multiplier = duration / self.written_duration
             multiplier = durationtools.Multiplier(multiplier)
             attach(multiplier, note)
             notes.append(note)
         selection = selectiontools.Selection(notes)
         return selection
+
+    def _make_music(self, divisions, seeds):
+        selections = []
+        for i, division in enumerate(divisions):
+            accelerando = self._make_accelerando(division)
+            selections.append(accelerando)
+        self._apply_beam_specifier(selections)
+        selections = self._apply_output_masks(selections, seeds)
+        return selections
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def start_duration(self):
+        r'''Gets start duration of accelerando rhythm-maker.
+        '''
+        return self._start_duration
+
+    @property
+    def stop_duration(self):
+        r'''Gets stop duration of accelerando rhythm-maker.
+        '''
+        return self._stop_duration
+
+    @property
+    def written_duration(self):
+        r'''Gets written duration of accelerando rhythm-maker.
+        '''
+        return self._written_duration
