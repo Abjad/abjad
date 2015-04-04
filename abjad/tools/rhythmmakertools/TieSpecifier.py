@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from __future__ import print_function
 import collections
-from abjad.tools import datastructuretools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -27,11 +26,12 @@ class TieSpecifier(AbjadValueObject):
 
     def __init__(
         self,
-        tie_across_divisions=False,
+        tie_across_divisions=None,
         use_messiaen_style_ties=None,
         ):
         from abjad.tools import rhythmmakertools
         prototype = (
+            type(None),
             bool,
             collections.Sequence,
             rhythmmakertools.BooleanPattern,
@@ -39,7 +39,7 @@ class TieSpecifier(AbjadValueObject):
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions
-        prototype = (type(None), type(True))
+        prototype = (type(None), bool)
         assert isinstance(use_messiaen_style_ties, prototype)
         self._use_messiaen_style_ties = use_messiaen_style_ties
 
