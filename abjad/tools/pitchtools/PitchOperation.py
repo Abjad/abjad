@@ -79,6 +79,137 @@ class PitchOperation(AbjadValueObject):
             expr = transform(expr)
         return expr
 
+    ### PRIVATE METHODS ###
+
+    def _with_operator(self, operator):
+        operators = self.operators or ()
+        operators = operators + (operator,)
+        return type(self)(operators)
+
+    ### PUBLIC METHODS ###
+
+    def invert(self, axis=None):
+        r'''Configures pitch operation to invert pitches by `index`.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_operation = pitchtools.PitchOperation()
+                >>> pitch_operation = pitch_operation.invert(2)
+                >>> print(format(pitch_operation))
+                pitchtools.PitchOperation(
+                    operators=(
+                        pitchtools.Inversion(
+                            axis=pitchtools.NamedPitch("d'"),
+                            ),
+                        ),
+                    )
+
+        Returns new pitch operation.
+        '''
+        from abjad.tools import pitchtools
+        operator = pitchtools.Inversion(axis=axis)
+        return self._with_operator(operator)
+
+    def multiply(self, index=1):
+        r'''Configures pitch operation to multiply pitch-classes by `index`.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_operation = pitchtools.PitchOperation()
+                >>> pitch_operation = pitch_operation.multiply(3)
+                >>> print(format(pitch_operation))
+                pitchtools.PitchOperation(
+                    operators=(
+                        pitchtools.Multiplication(
+                            index=3,
+                            ),
+                        ),
+                    )
+
+        Returns new pitch operation.
+        '''
+        from abjad.tools import pitchtools
+        operator = pitchtools.Multiplication(index=index)
+        return self._with_operator(operator)
+
+    def retrograde(self):
+        r'''Configures pitch operation to retrograde pitches.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_operation = pitchtools.PitchOperation()
+                >>> pitch_operation = pitch_operation.retrograde()
+                >>> print(format(pitch_operation))
+                pitchtools.PitchOperation(
+                    operators=(
+                        pitchtools.Retrogression(),
+                        ),
+                    )
+
+        Returns new pitch operation.
+        '''
+        from abjad.tools import pitchtools
+        operator = pitchtools.Retrogression()
+        return self._with_operator(operator)
+
+    def rotate(self, index=0, transpose=True):
+        r'''Configures pitch operation to rotate pitches by `index`.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_operation = pitchtools.PitchOperation()
+                >>> pitch_operation = pitch_operation.rotate(-1)
+                >>> print(format(pitch_operation))
+                pitchtools.PitchOperation(
+                    operators=(
+                        pitchtools.Rotation(
+                            index=-1,
+                            transpose=True,
+                            ),
+                        ),
+                    )
+
+        Returns new pitch operation.
+        '''
+        from abjad.tools import pitchtools
+        operator = pitchtools.Rotation(
+            index=index,
+            transpose=transpose,
+            )
+        return self._with_operator(operator)
+
+    def transpose(self, index=0):
+        r'''Configures pitch operation to transpose pitches by `index`.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_operation = pitchtools.PitchOperation()
+                >>> pitch_operation = pitch_operation.transpose(1)
+                >>> print(format(pitch_operation))
+                pitchtools.PitchOperation(
+                    operators=(
+                        pitchtools.Transposition(
+                            index=1,
+                            ),
+                        ),
+                    )
+
+        Returns new pitch operation.
+        '''
+        from abjad.tools import pitchtools
+        operator = pitchtools.Transposition(index=index)
+        return self._with_operator(operator)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -87,6 +218,9 @@ class PitchOperation(AbjadValueObject):
 
         ::
 
+            >>> pitch_operation = pitchtools.PitchOperation()
+            >>> pitch_operation = pitch_operation.rotate(1)
+            >>> pitch_operation = pitch_operation.transpose(2)
             >>> for operator in pitch_operation.operators:
             ...     print(format(operator))
             ...

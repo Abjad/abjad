@@ -608,6 +608,17 @@ class InspectionAgent(abctools.AbjadObject):
             prototype=prototype,
             )
 
+    def has_spanner(
+        self,
+        prototype=None,
+        ):
+        r'''Is true when client has one or more
+        spanners that match `prototype`. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._client._has_spanner(prototype=prototype)
+
     def get_timespan(self,
         in_seconds=False,
         ):
