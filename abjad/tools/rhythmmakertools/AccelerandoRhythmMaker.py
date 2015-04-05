@@ -20,7 +20,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
-        **Example 1.** Makes an accelerando for each input division:
+        **Example 1.** Makes accelerando for each input division:
 
         ::
 
@@ -32,7 +32,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> divisions = [(5, 8), (3, 8)]
+            >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
             >>> music = maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
@@ -66,11 +66,32 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     c'16 * 13/16
                     c'16 * 47/64 ]
                 }
+                {
+                    \time 5/8
+                    \once \override Beam #'grow-direction = #right
+                    c'16 * 61/32 [
+                    c'16 * 115/64
+                    c'16 * 49/32
+                    c'16 * 5/4
+                    c'16 * 33/32
+                    c'16 * 57/64
+                    c'16 * 13/16
+                    c'16 * 25/32 ]
+                }
+                {
+                    \time 3/8
+                    \once \override Beam #'grow-direction = #right
+                    c'16 * 117/64 [
+                    c'16 * 99/64
+                    c'16 * 69/64
+                    c'16 * 13/16
+                    c'16 * 47/64 ]
+                }
             }
 
     ..  container:: example
 
-        **Example 2.** Makes a ritardando for each input division:
+        **Example 2.** Makes ritardando for each input division:
 
         ::
 
@@ -82,7 +103,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> divisions = [(5, 8), (3, 8)]
+            >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
             >>> music = maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
@@ -118,10 +139,32 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     c'16 * 85/64
                     c'16 * 25/16 ]
                 }
+                {
+                    \time 5/8
+                    \once \override Beam #'grow-direction = #left
+                    c'16 * 45/64 [
+                    c'16 * 23/32
+                    c'16 * 25/32
+                    c'16 * 55/64
+                    c'16 * 1
+                    c'16 * 75/64
+                    c'16 * 89/64
+                    c'16 * 103/64
+                    c'16 * 113/64 ]
+                }
+                {
+                    \time 3/8
+                    \once \override Beam #'grow-direction = #left
+                    c'16 * 5/8 [
+                    c'16 * 43/64
+                    c'16 * 51/64
+                    c'16 * 65/64
+                    c'16 * 85/64
+                    c'16 * 25/16 ]
+                }
             }
 
-    Set `written_duration` to `1/16` (or less) to create two (or more) beams
-    for feater beaming.
+    Set `written_duration` to `1/16` or less for multiple beams.
 
     Usage follows the two-step configure-once / call-repeatedly pattern shown
     here.
@@ -440,6 +483,287 @@ class AccelerandoRhythmMaker(RhythmMaker):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def beam_specifier(self):
+        r'''Gets beam specifier of accelerando rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** Beams each division:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_each_division=True,
+                ...         ),
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Beams divisions together (without feathering):
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_divisions_together=True,
+                ...         ),
+                ...     feather_beams=False,
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \set stemLeftBeamCount = #0
+                        \set stemRightBeamCount = #2
+                        c'16 * 61/32 [
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 115/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 49/32
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 5/4
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 33/32
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 57/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 13/16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #1
+                        c'16 * 25/32
+                    }
+                    {
+                        \time 3/8
+                        \set stemLeftBeamCount = #1
+                        \set stemRightBeamCount = #2
+                        c'16 * 117/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 99/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 69/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 13/16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #1
+                        c'16 * 47/64
+                    }
+                    {
+                        \time 5/8
+                        \set stemLeftBeamCount = #1
+                        \set stemRightBeamCount = #2
+                        c'16 * 61/32
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 115/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 49/32
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 5/4
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 33/32
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 57/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 13/16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #1
+                        c'16 * 25/32
+                    }
+                    {
+                        \time 3/8
+                        \set stemLeftBeamCount = #1
+                        \set stemRightBeamCount = #2
+                        c'16 * 117/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 99/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 69/64
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #2
+                        c'16 * 13/16
+                        \set stemLeftBeamCount = #2
+                        \set stemRightBeamCount = #0
+                        c'16 * 47/64 ]
+                    }
+                }
+
+            It is important to leave feathering turned off here
+            because LilyPond feathers conjoint beams poorly.
+
+        ..  container:: example
+
+            **Example 3.** Makes no beams:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_divisions_together=False,
+                ...         beam_each_division=False,
+                ...         ),
+                ...     feather_beams=False,
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'16 * 61/32
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32
+                    }
+                    {
+                        \time 3/8
+                        c'16 * 117/64
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64
+                    }
+                    {
+                        \time 5/8
+                        c'16 * 61/32
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32
+                    }
+                    {
+                        \time 3/8
+                        c'16 * 117/64
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64
+                    }
+                }
+
+        Returns beam specifier.
+        '''
+        superclass = super(AccelerandoRhythmMaker, self)
+        return superclass.beam_specifier
+
+    @property
     def feather_beams(self):
         r'''Is true when multibeam figures should be feathered. Otherwise
         false.
@@ -459,7 +783,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> divisions = [(5, 8), (3, 8)]
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> music = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -472,6 +796,27 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
                     {
                         \time 5/8
                         \once \override Beam #'grow-direction = #right
@@ -510,7 +855,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> divisions = [(5, 8), (3, 8)]
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
                 >>> music = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -542,6 +887,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 13/16
                         c'16 * 47/64 ]
                     }
+                    {
+                        \time 5/8
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
                 }
 
         Defaults to true.
@@ -549,6 +913,159 @@ class AccelerandoRhythmMaker(RhythmMaker):
         Set to true or false.
         '''
         return self._feather_beams
+
+    @property
+    def output_masks(self):
+        r'''Gets output masks of accelerando rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No output masks:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     output_masks=None,
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=False,
+                ...         ),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Silences every other division:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     output_masks=[
+                ...         rhythmmakertools.SilenceMask(
+                ...             indices=[1],
+                ...             period=2,
+                ...             ),
+                ...         ],
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=False,
+                ...         ),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                }
+
+        '''
+        superclass = super(AccelerandoRhythmMaker, self)
+        return superclass.output_masks
 
     @property
     def start_duration(self):
@@ -561,6 +1078,244 @@ class AccelerandoRhythmMaker(RhythmMaker):
         r'''Gets stop duration of accelerando rhythm-maker.
         '''
         return self._stop_duration
+
+    @property
+    def tie_specifier(self):
+        r'''Gets tie specifier of rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** Does not tie across divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     feather_beams=True,
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=False,
+                ...         ),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Ties across divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     feather_beams=True,
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=True,
+                ...         ),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ~ ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ~ ]
+                    }
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ~ ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Patterns ties across divisions:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...      indices=[0],
+                ...      period=2,
+                ...  )
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     feather_beams=True,
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         ),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ~ ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ~ ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                }
+
+        Returns tie specifier.
+        '''
+        superclass = super(AccelerandoRhythmMaker, self)
+        return superclass.tie_specifier
 
     @property
     def written_duration(self):
