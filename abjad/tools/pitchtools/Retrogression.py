@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import sequencetools
+from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -60,6 +62,17 @@ class Retrogression(AbjadValueObject):
                 >>> operator_(pitch_class)
                 NumberedPitchClass(6)
 
+        ..  container:: example
+
+            **Example 3.** Periodic retrogression.
+
+            ::
+
+                >>> operator_ = pitchtools.Retrogression(period=3)
+                >>> pitches = pitchtools.PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> operator_(pitches)
+                PitchSegment(["e'", "d'", "c'", "a'", "g'", "f'", "c''", "b'"])
+
         Returns new object with type equal to that of `expr`.
         '''
         from abjad.tools import pitchtools
@@ -70,7 +83,19 @@ class Retrogression(AbjadValueObject):
             pitchtools.PitchClassSegment,
             )):
             expr = pitchtools.PitchSegment(expr)
-        return type(expr)(reversed(expr))
+        if not self.period:
+            return type(expr)(reversed(expr))
+        result = new(expr, items=())
+        for shard in sequencetools.partition_sequence_by_counts(
+            expr,
+            [self.period],
+            cyclic=True,
+            overhang=True,
+            ):
+            shard = type(expr)(shard)
+            shard = type(expr)(reversed(shard))
+            result = result + shard
+        return result
 
     ### PUBLIC PROPERTIES ###
 

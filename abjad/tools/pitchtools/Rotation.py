@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import sequencetools
+from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -78,6 +80,35 @@ class Rotation(AbjadValueObject):
                 >>> operator_(pitch_class)
                 NumberedPitchClass(6)
 
+        ..  container:: example
+
+            **Example 4.** Periodic rotation without transposition.
+
+            ::
+
+                >>> operator_ = pitchtools.Rotation(
+                ...     index=1,
+                ...     period=3,
+                ...     transpose=False,
+                ...     )
+                >>> pitches = pitchtools.PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> operator_(pitches)
+                PitchSegment(["e'", "c'", "d'", "a'", "f'", "g'", "c''", "b'"])
+
+        ..  container:: example
+
+            **Example 5.** Periodic rotation with transposition.
+
+            ::
+
+                >>> operator_ = pitchtools.Rotation(
+                ...     index=1,
+                ...     period=3,
+                ...     )
+                >>> pitches = pitchtools.PitchSegment("c' d' e' f' g' a' b' c''")
+                >>> operator_(pitches)
+                PitchSegment(["c'", 'af', 'bf', "f'", "df'", "ef'", "b'", "as'"])
+
         Returns new object with type equal to that of `expr`.
         '''
         from abjad.tools import pitchtools
@@ -88,7 +119,20 @@ class Rotation(AbjadValueObject):
             pitchtools.PitchClassSegment,
             )):
             expr = pitchtools.PitchSegment(expr)
-        return expr.rotate(self.index, transpose=self.transpose)
+        if not self.period:
+            return expr.rotate(self.index, transpose=self.transpose)
+        result = new(expr, items=())
+        for shard in sequencetools.partition_sequence_by_counts(
+            expr,
+            [self.period],
+            cyclic=True,
+            overhang=True,
+            ):
+            shard = type(expr)(shard)
+            shard = shard.rotate(self.index, transpose=self.transpose)
+            result = result + shard
+        return result
+
 
     ### PUBLIC PROPERTIES ###
 
