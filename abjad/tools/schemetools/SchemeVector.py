@@ -4,12 +4,31 @@ from abjad.tools.schemetools.Scheme import Scheme
 
 
 class SchemeVector(Scheme):
-    '''Abjad model of Scheme vector:
+    '''Abjad model of Scheme vector.
 
-    ::
+    ..  container:: example
 
-        >>> schemetools.SchemeVector(True, True, False)
-        SchemeVector(True, True, False)
+        **Example 1.** Scheme vector of boolean values:
+
+        ::
+
+            >>> scheme = schemetools.SchemeVector(True, True, False)
+            >>> scheme
+            SchemeVector(True, True, False)
+            >>> print(format(scheme))
+            #'(#t #t #f)
+
+    ..  container:: example
+
+        **Example 2.** Scheme vector of symbols:
+
+        ::
+
+            >>> scheme = schemetools.SchemeVector('foo', 'bar', 'blah')
+            >>> scheme
+            SchemeVector('foo', 'bar', 'blah')
+            >>> print(format(scheme))
+            #'(foo bar blah)
 
     Scheme vectors and Scheme vector constants differ in only
     their LilyPond input format.
