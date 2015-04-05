@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import numbers
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
@@ -1034,6 +1035,8 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** With Abjad direction constant:
+
             ::
 
                 >>> markup = Markup('Allegro assai')
@@ -1046,18 +1049,36 @@ class Markup(AbjadValueObject):
                         "Allegro assai"
                     }
 
+        ..  container:: example
+
+            **Example 2.** With numeric direction value:
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.general_align('Y', 0.75)
+                >>> print(format(markup))
+                \markup {
+                    \general-align
+                        #Y
+                        #0.75
+                        "Allegro assai"
+                    }
+
         Returns new markup.
         '''
         from abjad.tools import markuptools
         contents = self._parse_markup_command_argument(self)
         axis = schemetools.Scheme(axis)
-        # TODO: make schemetools.Scheme(direction) work
+        # TODO: make schemetools.Scheme(Up) work
         if direction == Up:
             direction = schemetools.Scheme('UP')
         elif direction == Down:
             direction = schemetools.Scheme('DOWN')
         elif direction == Center:
             direction = schemetools.Scheme('CENTER')
+        elif isinstance(direction, numbers.Number):
+            direction = schemetools.Scheme(str(direction))
         else:
             message = 'unknown direction: {!r}.'
             message = message.format(direction)
