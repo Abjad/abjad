@@ -417,9 +417,10 @@ class MetricModulation(AbjadObject):
                     }
                 }
 
-    Attach metric modulations to generate score output.
 
     ..  container:: example
+
+        **Example 6.** Attach metric modulations to generate score output:
 
         ::
 
@@ -433,6 +434,7 @@ class MetricModulation(AbjadObject):
             ...     right_rhythm=Note("c8."),
             ...     )
             >>> attach(metric_modulation, staff[3])
+            >>> override(staff).text_script.staff_padding = 2.5
 
         ::
 
@@ -876,7 +878,7 @@ class MetricModulation(AbjadObject):
     def _get_left_markup(self):
         if self.left_markup is not None:
             return self.left_markup
-        markup = self._to_markup(self.left_rhythm)
+        markup = durationtools.Duration._to_score_markup(self.left_rhythm)
         return markup
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -903,7 +905,7 @@ class MetricModulation(AbjadObject):
     def _get_right_markup(self):
         if self.right_markup is not None:
             return self.right_markup
-        markup = self._to_markup(self.right_rhythm)
+        markup = durationtools.Duration._to_score_markup(self.right_rhythm)
         return markup
 
     def _initialize_rhythm(self, rhythm):
@@ -921,37 +923,6 @@ class MetricModulation(AbjadObject):
             raise TypeError(message)
         assert isinstance(selection, selectiontools.Selection)
         return selection
-
-    def _make_score_block(self, selection):
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import scoretools
-        selection = copy.deepcopy(selection)
-        staff = scoretools.Staff(selection)
-        staff.context_name = 'RhythmicStaff'
-        staff.remove_commands.append('Time_signature_engraver')
-        staff.remove_commands.append('Staff_symbol_engraver')
-        override(staff).stem.direction = Up
-        override(staff).stem.length = 4
-        override(staff).tuplet_bracket.bracket_visibility = True
-        override(staff).tuplet_bracket.direction = Up
-        override(staff).tuplet_bracket.padding = 1.25
-        override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
-        scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
-        override(staff).tuplet_number.text = scheme
-        set_(staff).font_size = -2
-        set_(staff).tuplet_full_length = True
-        layout_block = lilypondfiletools.Block(name='layout')
-        layout_block.indent = 0
-        layout_block.ragged_right = True
-        score = scoretools.Score([staff])
-        set_(score).proportional_notation_duration = False
-        return score, layout_block
-
-    def _to_markup(self, selection):
-        staff, layout_block = self._make_score_block(selection)
-        command = markuptools.MarkupCommand('score', [staff, layout_block])
-        markup = markuptools.Markup(command)
-        return markup
 
     ### PUBLIC PROPERTIES ###
 

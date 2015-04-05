@@ -1,9 +1,12 @@
 # -*- encoding: utf-8 -*-
+import copy
 import fractions
 import math
 import re
 from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.topleveltools.override import override
+from abjad.tools.topleveltools.set_ import set_
 
 
 class Duration(AbjadObject, fractions.Fraction):
@@ -518,6 +521,41 @@ class Duration(AbjadObject, fractions.Fraction):
             addend = multiplier * body_duration
             rational += addend
         return rational
+
+    @staticmethod
+    def _make_markup_score_block(selection):
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import schemetools
+        from abjad.tools import scoretools
+        selection = copy.deepcopy(selection)
+        staff = scoretools.Staff(selection)
+        staff.context_name = 'RhythmicStaff'
+        staff.remove_commands.append('Time_signature_engraver')
+        staff.remove_commands.append('Staff_symbol_engraver')
+        override(staff).stem.direction = Up
+        override(staff).stem.length = 4
+        override(staff).tuplet_bracket.bracket_visibility = True
+        override(staff).tuplet_bracket.direction = Up
+        override(staff).tuplet_bracket.padding = 1.25
+        override(staff).tuplet_bracket.shorten_pair = (-1, -1.5)
+        scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
+        override(staff).tuplet_number.text = scheme
+        set_(staff).font_size = -2
+        set_(staff).tuplet_full_length = True
+        layout_block = lilypondfiletools.Block(name='layout')
+        layout_block.indent = 0
+        layout_block.ragged_right = True
+        score = scoretools.Score([staff])
+        set_(score).proportional_notation_duration = False
+        return score, layout_block
+
+    @staticmethod
+    def _to_score_markup(selection):
+        from abjad.tools import markuptools
+        staff, layout_block = Duration._make_markup_score_block(selection)
+        command = markuptools.MarkupCommand('score', [staff, layout_block])
+        markup = markuptools.Markup(command)
+        return markup
 
     ### PUBLIC PROPERTIES ###
 
@@ -1058,6 +1096,153 @@ class Duration(AbjadObject, fractions.Fraction):
         else:
             clock_string = "{}'{}\"".format(minutes, remaining_seconds)
         return clock_string
+
+    def to_score_markup(self):
+        r'''Changes duration to score markup.
+
+        ..  container:: example
+
+            **Example 1.** Changes assignable duration to score markup:
+
+            ::
+
+                >>> markup = Duration(3, 16).to_score_markup()
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(markup)
+                \markup {
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #4
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #-2
+                                    tupletFullLength = ##t
+                                } {
+                                    c'8.
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
+                            }
+                        }
+                    }
+
+        ..  container:: example
+
+            **Example 2.** Changes nonassignable duration to score markup:
+
+            ::
+
+                >>> markup = Duration(5, 16).to_score_markup()
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(markup)
+                \markup {
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #4
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #-2
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4 ~
+                                    c'16
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
+                            }
+                        }
+                    }
+
+        ..  container:: example
+
+            **Example 3.** Override tuplet number text like this:
+
+            ::
+
+                >>> tuplet = Tuplet((4, 5), "c'8 c' c' c' c'")
+                >>> staff = Staff([tuplet], context_name='RhythmicStaff')
+                >>> markup = Duration(4, 8).to_score_markup()
+                >>> override(tuplet).tuplet_number.text = markup
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new RhythmicStaff {
+                    \override TupletNumber #'text = \markup {
+                        \score
+                            {
+                                \new Score \with {
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #4
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        fontSize = #-2
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'2
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                        }
+                    \times 4/5 {
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                        c'8
+                    }
+                    \revert TupletNumber #'text
+                }
+
+        Returns markup.
+        '''
+        from abjad.tools import scoretools
+        notes = scoretools.make_leaves([0], [self])
+        markup = self._to_score_markup(notes)
+        return markup
 
     def with_denominator(self, denominator):
         r'''Change this duration to new duration with `denominator`.
