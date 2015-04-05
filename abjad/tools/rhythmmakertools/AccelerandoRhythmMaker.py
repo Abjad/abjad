@@ -10,7 +10,9 @@ from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import new
+from abjad.tools.topleveltools import override
 
 
 class AccelerandoRhythmMaker(RhythmMaker):
@@ -25,7 +27,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
             ...     start_duration=Duration(1, 8),
             ...     stop_duration=Duration(1, 20),
-            ...     written_duration=Duration(1, 8),
+            ...     written_duration=Duration(1, 16),
             ...     )
 
         ::
@@ -45,22 +47,24 @@ class AccelerandoRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 {
                     \time 5/8
-                    c'8 * 61/64 [
-                    c'8 * 115/128
-                    c'8 * 49/64
-                    c'8 * 5/8
-                    c'8 * 33/64
-                    c'8 * 57/128
-                    c'8 * 13/32
-                    c'8 * 25/64 ]
+                    \once \override Beam #'grow-direction = #right
+                    c'16 * 61/32 [
+                    c'16 * 115/64
+                    c'16 * 49/32
+                    c'16 * 5/4
+                    c'16 * 33/32
+                    c'16 * 57/64
+                    c'16 * 13/16
+                    c'16 * 25/32 ]
                 }
                 {
                     \time 3/8
-                    c'8 * 117/128 [
-                    c'8 * 99/128
-                    c'8 * 69/128
-                    c'8 * 13/32
-                    c'8 * 47/128 ]
+                    \once \override Beam #'grow-direction = #right
+                    c'16 * 117/64 [
+                    c'16 * 99/64
+                    c'16 * 69/64
+                    c'16 * 13/16
+                    c'16 * 47/64 ]
                 }
             }
 
@@ -73,7 +77,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
             ...     start_duration=Duration(1, 20),
             ...     stop_duration=Duration(1, 8),
-            ...     written_duration=Duration(1, 8),
+            ...     written_duration=Duration(1, 16),
             ...     )
 
         ::
@@ -93,26 +97,31 @@ class AccelerandoRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 {
                     \time 5/8
-                    c'8 * 45/128 [
-                    c'8 * 23/64
-                    c'8 * 25/64
-                    c'8 * 55/128
-                    c'8 * 1/2
-                    c'8 * 75/128
-                    c'8 * 89/128
-                    c'8 * 103/128
-                    c'8 * 113/128 ]
+                    \once \override Beam #'grow-direction = #left
+                    c'16 * 45/64 [
+                    c'16 * 23/32
+                    c'16 * 25/32
+                    c'16 * 55/64
+                    c'16 * 1
+                    c'16 * 75/64
+                    c'16 * 89/64
+                    c'16 * 103/64
+                    c'16 * 113/64 ]
                 }
                 {
                     \time 3/8
-                    c'8 * 5/16 [
-                    c'8 * 43/128
-                    c'8 * 51/128
-                    c'8 * 65/128
-                    c'8 * 85/128
-                    c'8 * 25/32 ]
+                    \once \override Beam #'grow-direction = #left
+                    c'16 * 5/8 [
+                    c'16 * 43/64
+                    c'16 * 51/64
+                    c'16 * 65/64
+                    c'16 * 85/64
+                    c'16 * 25/16 ]
                 }
             }
+
+    Set `written_duration` to `1/16` (or less) to create two (or more) beams
+    for feater beaming.
 
     Usage follows the two-step configure-once / call-repeatedly pattern shown
     here.
@@ -122,6 +131,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     __slots__ = (
         '_exponent',
+        '_feather_beams',
         '_start_duration',
         '_stop_duration',
         '_written_duration',
@@ -137,6 +147,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         self,
         beam_specifier=None,
         duration_spelling_specifier=None,
+        feather_beams=True,
         output_masks=None,
         start_duration=None,
         stop_duration=None,
@@ -153,6 +164,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
+        assert isinstance(feather_beams, bool), repr(feather_beams)
+        self._feather_beams = feather_beams
         start_duration = durationtools.Duration(start_duration)
         self._start_duration = start_duration
         stop_duration = durationtools.Duration(stop_duration)
@@ -359,6 +372,20 @@ class AccelerandoRhythmMaker(RhythmMaker):
         result = (y1 * (1 - mu ** exponent) + y2 * mu ** exponent)
         return result
 
+    def _is_accelerando(self, selection):
+        first_duration = inspect_(selection[0]).get_duration()
+        last_duration = inspect_(selection[-1]).get_duration()
+        if last_duration < first_duration:
+            return True
+        return False
+
+    def _is_ritardando(self, selection):
+        first_duration = inspect_(selection[0]).get_duration()
+        last_duration = inspect_(selection[-1]).get_duration()
+        if first_duration < last_duration:
+            return True
+        return False
+
     def _make_accelerando(self, total_duration):
         r'''Makes notes with LilyPond multipliers.
 
@@ -393,6 +420,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
         self._fix_rounding_error(selection, total_duration)
         pair = (selection.get_duration(), total_duration)
         assert pair[0] == pair[1], repr(pair)
+        if not self.feather_beams:
+            pass
+        elif self._is_accelerando(selection):
+            override(selection[0]).beam.grow_direction = Right
+        elif self._is_ritardando(selection):
+            override(selection[0]).beam.grow_direction = Left
         return selection
 
     def _make_music(self, divisions, seeds):
@@ -405,6 +438,117 @@ class AccelerandoRhythmMaker(RhythmMaker):
         return selections
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def feather_beams(self):
+        r'''Is true when multibeam figures should be feathered. Otherwise
+        false.
+
+        ..  container:: example
+
+            **Example 1.** Feathers multiple beams:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     feather_beams=True,
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Does not feather multiple beams:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     feather_beams=False,
+                ...     start_duration=Duration(1, 8),
+                ...     stop_duration=Duration(1, 20),
+                ...     written_duration=Duration(1, 16),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
+                    {
+                        \time 3/8
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
+                }
+
+        Defaults to true.
+
+        Set to true or false.
+        '''
+        return self._feather_beams
 
     @property
     def start_duration(self):
