@@ -136,7 +136,7 @@ class PitchOperation(AbjadValueObject):
         operator = pitchtools.Multiplication(index=index)
         return self._with_operator(operator)
 
-    def retrograde(self):
+    def retrograde(self, period=None):
         r'''Configures pitch operation to retrograde pitches.
 
         ..  container:: example
@@ -155,10 +155,10 @@ class PitchOperation(AbjadValueObject):
         Returns new pitch operation.
         '''
         from abjad.tools import pitchtools
-        operator = pitchtools.Retrogression()
+        operator = pitchtools.Retrogression(period=period)
         return self._with_operator(operator)
 
-    def rotate(self, index=0, transpose=True):
+    def rotate(self, index=0, transpose=True, period=None):
         r'''Configures pitch operation to rotate pitches by `index`.
 
         ..  container:: example
@@ -183,6 +183,7 @@ class PitchOperation(AbjadValueObject):
         operator = pitchtools.Rotation(
             index=index,
             transpose=transpose,
+            period=period,
             )
         return self._with_operator(operator)
 
