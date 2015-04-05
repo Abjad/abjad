@@ -80,7 +80,6 @@ class ReplaceInFilesScript(DirectoryScript):
             '*.gif',
             '*.jpg',
             '*.jpeg',
-            '*.ly',
             '*.nb',
             '*.pdf',
             '*.pickle',
@@ -89,7 +88,6 @@ class ReplaceInFilesScript(DirectoryScript):
             '*.ps',
             '*.pyc',
             '*.rtf',
-            '*.tex',
             '*.txt',
         ]
 
