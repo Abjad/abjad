@@ -23,7 +23,6 @@ class Segment(TypedTuple):
         item_class=None,
         ):
         from abjad.tools import datastructuretools
-        from abjad.tools import pitchtools
         prototype = (
             collections.Iterator,
             types.GeneratorType,

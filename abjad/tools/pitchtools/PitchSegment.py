@@ -39,16 +39,17 @@ class PitchSegment(Segment):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        items=(-2, -1.5, 6, 7, -1.5, 7),
+        items=None,
         item_class=None,
         ):
+        if not items and not item_class:
+            item_class = self._named_item_class
         Segment.__init__(
             self,
             items=items,
@@ -75,7 +76,6 @@ class PitchSegment(Segment):
         from abjad.tools import markuptools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        from abjad.tools import spannertools
         from abjad.tools.topleveltools import attach
         from abjad.tools.topleveltools import iterate
         from abjad.tools.topleveltools import override
