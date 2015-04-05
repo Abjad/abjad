@@ -27,13 +27,18 @@ class Rotation(AbjadValueObject):
     __slots__ = (
         '_index',
         '_transpose',
+        '_period',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, index=0, transpose=True):
+    def __init__(self, index=0, transpose=True, period=None):
         self._index = int(index)
         self._transpose = bool(transpose)
+        if period is not None:
+            period = abs(int(period))
+            assert 0 < period
+        self._period = period
 
     ### SPECIAL METHODS ###
 
@@ -102,6 +107,22 @@ class Rotation(AbjadValueObject):
         Returns integer.
         '''
         return self._index
+
+    @property
+    def period(self):
+        r'''Gets period of rotation.
+
+        ..  container:: example
+
+            ::
+
+                >>> operator_ = pitchtools.Rotation(index=2, period=3)
+                >>> operator_.period
+                3
+
+        Returns integer or none.
+        '''
+        return self._period
 
     @property
     def transpose(self):

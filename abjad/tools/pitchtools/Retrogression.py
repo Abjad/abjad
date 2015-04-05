@@ -22,14 +22,16 @@ class Retrogression(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_index',
-        '_transpose',
+        '_period',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self):
-        pass
+    def __init__(self, period=None):
+        if period is not None:
+            period = abs(int(period))
+            assert 0 < period
+        self._period = period
 
     ### SPECIAL METHODS ###
 
@@ -69,3 +71,21 @@ class Retrogression(AbjadValueObject):
             )):
             expr = pitchtools.PitchSegment(expr)
         return type(expr)(reversed(expr))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def period(self):
+        r'''Gets optional period of retrogression.
+
+        ..  container:: example
+
+            ::
+
+                >>> operator_ = pitchtools.Retrogression(period=3)
+                >>> operator_.period
+                3
+
+        Returns integer or none.
+        '''
+        return self._period
