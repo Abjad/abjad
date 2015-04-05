@@ -1189,9 +1189,11 @@ class Duration(AbjadObject, fractions.Fraction):
 
             ::
 
-                >>> tuplet = Tuplet((4, 5), "c'8 c' c' c' c'")
+                >>> tuplet = Tuplet((5, 7), "c'16 c' c' c' c' c' c'")
+                >>> attach(Beam(), tuplet[:])
                 >>> staff = Staff([tuplet], context_name='RhythmicStaff')
-                >>> markup = Duration(4, 8).to_score_markup()
+                >>> duration = inspect_(tuplet).get_duration()
+                >>> markup = duration.to_score_markup()
                 >>> override(tuplet).tuplet_number.text = markup
                 >>> show(staff) # doctest: +SKIP
 
@@ -1218,7 +1220,8 @@ class Duration(AbjadObject, fractions.Fraction):
                                         fontSize = #-2
                                         tupletFullLength = ##t
                                     } {
-                                        c'2
+                                        c'4 ~
+                                        c'16
                                     }
                                 >>
                                 \layout {
@@ -1227,12 +1230,14 @@ class Duration(AbjadObject, fractions.Fraction):
                                 }
                             }
                         }
-                    \times 4/5 {
-                        c'8
-                        c'8
-                        c'8
-                        c'8
-                        c'8
+                    \times 5/7 {
+                        c'16 [
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16
+                        c'16 ]
                     }
                     \revert TupletNumber #'text
                 }

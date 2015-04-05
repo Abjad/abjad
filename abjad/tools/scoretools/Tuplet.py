@@ -6,6 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools.scoretools.Container import Container
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import override
 
 
 class Tuplet(Container):
@@ -268,11 +269,14 @@ class Tuplet(Container):
         return self._format_slot_contributions_with_indent(result)
 
     def _format_lilypond_fraction_command_string(self):
-        if not self.is_invisible:
-            if (self.is_augmentation or
-                (not self._has_power_of_two_denominator) or
-                self.force_fraction):
-                return r"\tweak #'text #tuplet-number::calc-fraction-text"
+        if self.is_invisible:
+            return ''
+        if 'text' in vars(override(self).tuplet_number):
+            return''
+        if (self.is_augmentation or
+            not self._has_power_of_two_denominator or
+            self.force_fraction):
+            return r"\tweak #'text #tuplet-number::calc-fraction-text"
         return ''
 
     def _format_open_brackets_slot(self, bundle):
@@ -388,6 +392,60 @@ class Tuplet(Container):
                     c'8
                     d'8
                     e'8
+                }
+
+        ..  container:: example
+
+            **Example 3.** Ignored when tuplet number text is overridden
+            explicitly:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> duration = inspect_(tuplet).get_duration()
+                >>> markup = duration.to_score_markup()
+                >>> override(tuplet).tuplet_number.text = markup
+                >>> staff = Staff([tuplet])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \override TupletNumber #'text = \markup {
+                        \score
+                            {
+                                \new Score \with {
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #4
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        fontSize = #-2
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'4
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                        }
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \revert TupletNumber #'text
                 }
 
         Returns boolean or none.
