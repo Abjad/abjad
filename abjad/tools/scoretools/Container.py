@@ -69,10 +69,10 @@ class Container(Component):
                 return False
 
     def __delitem__(self, i):
-        r'''Delete container `i`.
-        Detach component(s) from parentage.
-        Withdraw component(s) from crossing spanners.
-        Preserve spanners that component(s) cover(s).
+        r'''Deletes container `i`.
+        Detaches component(s) from parentage.
+        Withdraws component(s) from crossing spanners.
+        Preserves spanners that component(s) cover(s).
 
         Returns none.
         '''
@@ -200,18 +200,18 @@ class Container(Component):
         return graph
 
     def __len__(self):
-        r'''Number of items in container.
+        r'''Gets number of items in container.
 
         Returns nonnegative integer.
         '''
         return len(self._music)
 
     def __setitem__(self, i, expr):
-        r'''Set container `i` equal to `expr`.
-        Find spanners that dominate self[i] and children of self[i].
-        Replace contents at self[i] with 'expr'.
-        Reattach spanners to new contents.
-        This operation always leaves score tree in tact.
+        r'''Sets container `i` equal to `expr`.
+        Finds spanners that dominate self[i] and children of self[i].
+        Replaces contents at self[i] with 'expr'.
+        Reattaches spanners to new contents.
+        Always leaves score tree in tact.
 
         Returns none.
         '''
@@ -537,9 +537,9 @@ class Container(Component):
         else:
             if isinstance(expr, str):
                 expr = self._parse_string(expr)[:]
-            elif isinstance(expr, list) and \
-                len(expr) == 1 and \
-                isinstance(expr[0], str):
+            elif (isinstance(expr, list) and
+                len(expr) == 1 and
+                isinstance(expr[0], str)):
                 expr = self._parse_string(expr[0])[:]
 
         prototype = (scoretools.Component, selectiontools.Selection)
@@ -559,8 +559,10 @@ class Container(Component):
             raise Exception(message)
         if self._check_for_cycles(expr):
             raise ParentageError('Attempted to induce cycles.')
-        if i.start == i.stop and i.start is not None \
-            and i.stop is not None and i.start <= -len(self):
+        if (i.start == i.stop and 
+            i.start is not None and
+            i.stop is not None and
+            i.start <= -len(self)):
             start, stop = 0, 0
         else:
             start, stop, stride = i.indices(len(self))
@@ -598,11 +600,11 @@ class Container(Component):
 
     @property
     def is_simultaneous(self):
-        r'''Simultaneity status of container.
+        r'''Is true when container is simultaneous. Otherwise false.
 
         ..  container:: example
 
-            **Example 1.** Get simultaneity status of container:
+            **Example 1.** Gets simultaneity status of container:
 
             ::
 
@@ -632,7 +634,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 2.** Set simultaneity status of container:
+            **Example 2.** Sets simultaneity status of container:
 
             ::
 
@@ -674,7 +676,11 @@ class Container(Component):
                     }
                 >>
 
-        Returns boolean.
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
         '''
         return self._is_simultaneous
 
@@ -729,9 +735,9 @@ class Container(Component):
             parsed = self._parse_string(music)
             self._music = []
             self.is_simultaneous = parsed.is_simultaneous
-            if parsed.is_simultaneous or \
+            if (parsed.is_simultaneous or
                 not Selection._all_are_contiguous_components_in_same_logical_voice(
-                parsed[:]):
+                parsed[:])):
                 while len(parsed):
                     self.append(parsed.pop(0))
             else:
@@ -769,8 +775,8 @@ class Container(Component):
         elif user_input.startswith('rtm:'):
             parsed = rhythmtreetools.parse_rtm_syntax(user_input[4:])
         else:
-            if not user_input.startswith('<<') or \
-                not user_input.endswith('>>'):
+            if (not user_input.startswith('<<') or
+                not user_input.endswith('>>')):
                 user_input = '{{ {} }}'.format(user_input)
             parsed = lilypondparsertools.LilyPondParser()(user_input)
             if isinstance(parsed, lilypondfiletools.LilyPondFile):
@@ -993,10 +999,10 @@ class Container(Component):
         right_logical_tie._fuse_leaves_by_immediate_parent()
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
-            if tie_split_notes and \
-                isinstance(leaf_left_of_split, scoretools.Note):
-                if leaf_left_of_split._get_parentage().root is \
-                    leaf_right_of_split._get_parentage().root:
+            if (tie_split_notes and
+                isinstance(leaf_left_of_split, scoretools.Note)):
+                if (leaf_left_of_split._get_parentage().root is
+                    leaf_right_of_split._get_parentage().root):
                     leaves_around_split = \
                         (leaf_left_of_split, leaf_right_of_split)
                     selection = selectiontools.ContiguousSelection(
@@ -1011,6 +1017,8 @@ class Container(Component):
         r'''Appends `component` to container.
 
         ..  container:: example
+
+            **Example 1.** Appends note to container:
 
             ::
 
@@ -1049,6 +1057,8 @@ class Container(Component):
         r'''Extends container with `expr`.
 
         ..  container:: example
+
+            **Example 1.** Extends container with three notes:
 
             ::
 
@@ -1094,6 +1104,8 @@ class Container(Component):
 
         ..  container:: example
 
+            **Example 1.** Gets index of last element in container:
+
             ::
 
                 >>> container = Container("c'4 d'4 f'4 e'4")
@@ -1135,7 +1147,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 1.** Insert note. Do not fracture spanners:
+            **Example 1.** Inserts note. Does not fracture spanners:
 
             ::
 
@@ -1191,7 +1203,7 @@ class Container(Component):
 
         ..  container:: example
 
-            **Example 2.** Insert note. Fracture spanners:
+            **Example 2.** Inserts note. Fractures spanners:
 
             ::
 
@@ -1271,6 +1283,8 @@ class Container(Component):
 
         ..  container:: example
 
+            **Example 1.** Pops last element from container:
+
             ::
 
                 >>> container = Container("c'4 ( d'4 f'4 ) e'4")
@@ -1311,6 +1325,8 @@ class Container(Component):
         r'''Removes `component` from container.
 
         ..  container:: example
+
+            **Example 1.** Removes note from container:
 
             ::
 
@@ -1356,6 +1372,8 @@ class Container(Component):
         r'''Reverses contents of container.
 
         ..  container:: example
+
+            **Example 1.** Reverses staff:
 
             ::
 
@@ -1408,6 +1426,8 @@ class Container(Component):
         r'''Selects leaves in container.
 
         ..  container:: example
+
+            **Example 1.** Selects leaves from container:
 
             ::
 
