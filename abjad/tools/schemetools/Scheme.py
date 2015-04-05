@@ -6,50 +6,70 @@ from abjad.tools.abctools import AbjadValueObject
 class Scheme(AbjadValueObject):
     r'''Abjad model of Scheme code.
 
-    ::
+    ..  container:: example
 
-        >>> scheme = schemetools.Scheme(True)
-        >>> format(scheme)
-        '##t'
+        **Example 1.** A Scheme boolean value:
 
-    Scheme can represent nested structures:
+        ::
 
-    ::
+            >>> scheme = schemetools.Scheme(True)
+            >>> print(format(scheme))
+            ##t
 
-        >>> scheme = schemetools.Scheme(
-        ...     ('left', (1, 2, False)), ('right', (1, 2, 3.3)))
-        >>> format(scheme)
-        '#((left (1 2 #f)) (right (1 2 3.3)))'
+    ..  container:: example
 
-    Scheme wraps variable-length arguments into a tuple:
+        **Example 2.** A nested Scheme expession:
 
-    ::
+        ::
 
-        >>> scheme_1 = schemetools.Scheme(1, 2, 3)
-        >>> scheme_2 = schemetools.Scheme((1, 2, 3))
-        >>> format(scheme_1) == format(scheme_2)
-        True
+            >>> scheme = schemetools.Scheme(
+            ...     ('left', (1, 2, False)),
+            ...     ('right', (1, 2, 3.3))
+            ...     )
+            >>> print(format(scheme))
+            #((left (1 2 #f)) (right (1 2 3.3)))
 
-    Scheme also takes an optional `quoting` keyword,
-    by which Scheme's various quote, unquote, unquote-splicing characters
-    can be prepended to the formatted result:
+    ..  container:: example
 
-    ::
+        **Example 3.** A variable-length argument:
 
-        >>> scheme = schemetools.Scheme((1, 2, 3), quoting="'#")
-        >>> format(scheme)
-        "#'#(1 2 3)"
+        ::
 
-    Scheme can also force quotes around strings which contain no whitespace:
+            >>> scheme_1 = schemetools.Scheme(1, 2, 3)
+            >>> scheme_2 = schemetools.Scheme((1, 2, 3))
+            >>> format(scheme_1) == format(scheme_2)
+            True
 
-    ::
+        Scheme wraps nested variable-length arguments in a tuple.
 
-        >>> scheme = schemetools.Scheme('nospaces', force_quotes=True)
-        >>> print(format(scheme))
-        #"nospaces"
+    ..  container:: example
 
-    The above is useful in certain \override situations, as LilyPond's Scheme
-    interpreter will treat unquoted strings as symbols rather than strings.
+        **Example 4.** A quoted Scheme expression:
+
+        ::
+
+            >>> scheme = schemetools.Scheme((1, 2, 3), quoting="'#")
+            >>> print(format(scheme))
+            #'#(1 2 3)
+
+        Use the `quoting` keyword to prepend Scheme's various quote, unquote, 
+        unquote-splicing characters to formatted output.
+
+    ..  container:: example
+
+        **Example 5.** A Scheme expression with forced quotes:
+
+        ::
+
+            >>> scheme = schemetools.Scheme('nospaces', force_quotes=True)
+            >>> print(format(scheme))
+            #"nospaces"
+
+        Use this in certain \override situations when LilyPond's Scheme
+        interpreter treats unquoted strings as symbols instead of strings.
+        The string must contain no whitespace for this to work.
+
+    Scheme objects are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -85,18 +105,26 @@ class Scheme(AbjadValueObject):
         Set `format_specification` to `''`', `'lilypond'` or ``'storage'``.
         Interprets `''` equal to `'lilypond'`.
 
-        ::
+        ..  container:: example
 
-            >>> scheme = schemetools.Scheme('foo')
-            >>> format(scheme)
-            '#foo'
+            **Example 1.** Scheme LilyPond format:
 
-        ::
+            ::
 
-            >>> print(format(scheme, 'storage'))
-            schemetools.Scheme(
-                'foo'
-                )
+                >>> scheme = schemetools.Scheme('foo')
+                >>> format(scheme)
+                '#foo'
+
+        ..  container:: example
+
+            **Example 2.** Scheme storage format:
+
+            ::
+
+                >>> print(format(scheme, 'storage'))
+                schemetools.Scheme(
+                    'foo'
+                    )
 
         Returns string.
         '''
@@ -178,34 +206,42 @@ class Scheme(AbjadValueObject):
     def format_scheme_value(value, force_quotes=False):
         r'''Formats `value` as Scheme would.
 
-        ::
+        ..  container:: example
 
-            >>> schemetools.Scheme.format_scheme_value(1)
-            '1'
+            **Example 1.** Some basic values:
 
-        ::
+            ::
 
-            >>> schemetools.Scheme.format_scheme_value('foo')
-            'foo'
+                >>> schemetools.Scheme.format_scheme_value(1)
+                '1'
 
-        ::
+            ::
 
-            >>> schemetools.Scheme.format_scheme_value('bar baz')
-            '"bar baz"'
+                >>> schemetools.Scheme.format_scheme_value('foo')
+                'foo'
 
-        ::
+            ::
 
-            >>> schemetools.Scheme.format_scheme_value([1.5, True, False])
-            '(1.5 #t #f)'
+                >>> schemetools.Scheme.format_scheme_value('bar baz')
+                '"bar baz"'
 
-        Strings without whitespace can be forcibly quoted via the
-        `force_quotes` keyword:
+            ::
 
-        ::
+                >>> schemetools.Scheme.format_scheme_value([1.5, True, False])
+                '(1.5 #t #f)'
 
-            >>> schemetools.Scheme.format_scheme_value(
-            ...     'foo', force_quotes=True)
-            '"foo"'
+        ..  container:: example
+
+            **Example 2.** Strings without whitespace can be forcibly quoted
+            via the `force_quotes` keyword:
+
+            ::
+
+                >>> schemetools.Scheme.format_scheme_value(
+                ...     'foo',
+                ...     force_quotes=True,
+                ...     )
+                '"foo"'
 
         Returns string.
         '''
