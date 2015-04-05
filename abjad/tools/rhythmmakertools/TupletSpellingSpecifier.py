@@ -59,7 +59,9 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
         Defaults to false.
 
-        Returns boolean.
+        Set to true or false.
+
+        Returns true or false.
         '''
         return self._avoid_dots
 
@@ -70,7 +72,9 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
         Defaults to true.
 
-        Returns boolean.
+        Set to true or false.
+
+        Returns true or false.
         '''
         return self._is_diminution
 
@@ -80,6 +84,8 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
         Defaults to false.
 
-        Returns boolean.
+        Set to true or false
+
+        Returns true or false.
         '''
         return self._simplify_tuplets
