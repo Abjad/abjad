@@ -196,11 +196,11 @@ class AccelerandoRhythmMaker(RhythmMaker):
         beam_specifier=None,
         duration_spelling_specifier=None,
         output_masks=None,
-        start_duration=None,
-        stop_duration=None,
+        start_duration=durationtools.Duration(1, 8),
+        stop_duration=durationtools.Duration(1, 16),
         tie_specifier=None,
         tuplet_spelling_specifier=None,
-        written_duration=None,
+        written_duration=durationtools.Duration(1, 8),
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
