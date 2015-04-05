@@ -443,7 +443,9 @@ class MetricModulation(AbjadObject):
         ..  doctest::
 
             >>> print(format(staff))
-            \new Staff {
+            \new Staff \with {
+                \override TextScript #'staff-padding = #2.5
+            } {
                 \time 3/4
                 c'4
                 d'4
