@@ -69,6 +69,25 @@ class Scheme(AbjadValueObject):
         interpreter treats unquoted strings as symbols instead of strings.
         The string must contain no whitespace for this to work.
 
+    ..  container:: example
+
+        **Example 6.** A Scheme expression of LilyPond functions:
+
+        ::
+
+            >>> function_1 = 'tuplet-number::append-note-wrapper'
+            >>> function_2 = 'tuplet-number::calc-denominator-text'
+            >>> string = schemetools.Scheme('4', force_quotes=True)
+            >>> scheme = schemetools.Scheme(
+            ...     function_1,
+            ...     function_2,
+            ...     string,
+            ...     )
+            >>> scheme
+            Scheme('tuplet-number::append-note-wrapper', 'tuplet-number::calc-denominator-text', Scheme('4', force_quotes=True))
+            >>> print(format(scheme))
+            #(tuplet-number::append-note-wrapper tuplet-number::calc-denominator-text "4")
+
     Scheme objects are immutable.
     '''
 
