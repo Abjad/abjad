@@ -10,10 +10,9 @@ from abjad.tools.scoretools.Component import Component
 class Container(Component):
     r'''An iterable container of music.
 
-    **Example**:
-
     ..  container:: example
 
+        **Example 1.** A container:
         ::
 
             >>> container = Container("c'4 e'4 d'4 e'8 f'8")
@@ -1440,20 +1439,3 @@ class Container(Component):
                 music)
             selection = selectiontools.ContiguousSelection(music=music)
         return selection
-
-    def select_notes_and_chords(self):
-        r'''Selects notes and chords in container.
-
-        ..  container:: example
-
-            ::
-
-                >>> container.select_notes_and_chords()
-                Selection(Note("c'8"), Note("d'8"), Note("e'8"))
-
-        Returns leaf selection.
-        '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        generator = iterate(self).by_class((scoretools.Note, scoretools.Chord))
-        return selectiontools.Selection(generator)
