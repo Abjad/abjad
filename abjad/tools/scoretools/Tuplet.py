@@ -13,7 +13,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        A tuplet:
+        **Example 1.** A tuplet:
 
             >>> tuplet = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
             >>> show(tuplet) # doctest: +SKIP
@@ -29,7 +29,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        A nested tuplet:
+        **Example 2.** A nested tuplet:
 
             >>> second_tuplet = Tuplet((4, 7), "g'4. ( a'16 )")
             >>> tuplet.insert(1, second_tuplet)
@@ -52,7 +52,7 @@ class Tuplet(Container):
 
     ..  container:: example
 
-        A doubly nested tuplet:
+        **Example 3.** A doubly nested tuplet:
 
             >>> third_tuplet = Tuplet((4, 5), [])
             >>> third_tuplet.extend("e''32 [ ef''32 d''32 cs''32 cqs''32 ]")
@@ -269,9 +269,9 @@ class Tuplet(Container):
 
     def _format_lilypond_fraction_command_string(self):
         if not self.is_invisible:
-            if self.is_augmentation or \
-                (not self._has_power_of_two_denominator) or \
-                self.force_fraction:
+            if (self.is_augmentation or
+                (not self._has_power_of_two_denominator) or
+                self.force_fraction):
                 return r"\tweak #'text #tuplet-number::calc-fraction-text"
         return ''
 
@@ -349,7 +349,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Gets forced fraction formatting of tuplet:
+            **Example 1.** Gets forced fraction formatting of tuplet:
 
             ::
 
@@ -373,7 +373,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Sets forced fraction formatting of tuplet:
+            **Example 2.** Sets forced fraction formatting of tuplet:
 
             ::
 
@@ -432,7 +432,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Augmented tuplet:
+            **Example 1.** Augmented tuplet:
 
             ::
 
@@ -446,7 +446,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Diminished tuplet:
+            **Example 2.** Diminished tuplet:
 
             ::
 
@@ -460,7 +460,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Trivial tuplet:
+            **Example 3.** Trivial tuplet:
 
             ::
 
@@ -486,7 +486,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Augmented tuplet:
+            **Example 1.** Augmented tuplet:
 
             ::
 
@@ -500,7 +500,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Diminished tuplet:
+            **Example 2.** Diminished tuplet:
 
             ::
 
@@ -514,7 +514,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Trivial tuplet:
+            **Example 3.** Trivial tuplet:
 
             ::
 
@@ -539,7 +539,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Gets tuplet invisibility flag:
+            **Example 1.** Gets tuplet invisibility flag:
 
             ::
 
@@ -562,7 +562,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Sets tuplet invisibility flag:
+            **Example 2.** Sets tuplet invisibility flag:
 
             ::
 
@@ -660,7 +660,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Gets tuplet multiplier:
+            **Example 1.** Gets tuplet multiplier:
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
                 >>> show(tuplet) # doctest: +SKIP
@@ -672,7 +672,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Sets tuplet multiplier:
+            **Example 2.** Sets tuplet multiplier:
 
                 >>> tuplet.multiplier = Multiplier(4, 3)
                 >>> show(tuplet) # doctest: +SKIP
@@ -714,7 +714,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Gets preferred denominator of tuplet:
+            **Example 1.** Gets preferred denominator of tuplet:
 
             ::
 
@@ -734,7 +734,7 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Sets preferred denominator of tuplet:
+            **Example 2.** Sets preferred denominator of tuplet:
 
             ::
 
@@ -1707,7 +1707,8 @@ class Tuplet(Container):
 
         ..  container:: example
 
-            Sets preferred denominator of tuplet to at least ``8``:
+            **Example 1.** Sets preferred denominator of tuplet to ``8`` at
+            least:
 
             ::
 
@@ -1762,6 +1763,8 @@ class Tuplet(Container):
         r'''Changes tuplet to fixed-duration tuplet.
 
         ..  container:: example
+
+            **Example 1.** Changes tuplet to fixed-duration tuplet:
 
             ::
 
