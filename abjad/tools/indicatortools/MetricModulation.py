@@ -33,7 +33,7 @@ class MetricModulation(AbjadObject):
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -63,7 +63,7 @@ class MetricModulation(AbjadObject):
                 \hspace
                     #-0.5
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -111,7 +111,7 @@ class MetricModulation(AbjadObject):
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -144,7 +144,7 @@ class MetricModulation(AbjadObject):
                 \hspace
                     #-0.5
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -192,7 +192,7 @@ class MetricModulation(AbjadObject):
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -222,7 +222,7 @@ class MetricModulation(AbjadObject):
                 \hspace
                     #-0.5
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -274,7 +274,7 @@ class MetricModulation(AbjadObject):
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -304,7 +304,7 @@ class MetricModulation(AbjadObject):
                 \hspace
                     #-0.5
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -355,7 +355,7 @@ class MetricModulation(AbjadObject):
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -385,7 +385,7 @@ class MetricModulation(AbjadObject):
                 \hspace
                     #-0.5
                 \scale
-                    #'(0.5 . 0.5)
+                    #'(0.75 . 0.75)
                     \score
                         {
                             \new Score \with {
@@ -453,7 +453,7 @@ class MetricModulation(AbjadObject):
                 f'4
                     ^ \markup {
                         \scale
-                            #'(0.5 . 0.5)
+                            #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
@@ -483,7 +483,7 @@ class MetricModulation(AbjadObject):
                         \hspace
                             #-0.5
                         \scale
-                            #'(0.5 . 0.5)
+                            #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
@@ -685,7 +685,7 @@ class MetricModulation(AbjadObject):
                 >>> print(format(metric_modulation))
                 \markup {
                     \scale
-                        #'(0.5 . 0.5)
+                        #'(0.75 . 0.75)
                         \score
                             {
                                 \new Score \with {
@@ -718,7 +718,7 @@ class MetricModulation(AbjadObject):
                     \hspace
                         #-0.5
                     \scale
-                        #'(0.5 . 0.5)
+                        #'(0.75 . 0.75)
                         \score
                             {
                                 \new Score \with {
@@ -772,7 +772,7 @@ class MetricModulation(AbjadObject):
                 >>> print(str(metric_modulation))
                 \markup {
                     \scale
-                        #'(0.5 . 0.5)
+                        #'(0.75 . 0.75)
                         \score
                             {
                                 \new Score \with {
@@ -805,7 +805,7 @@ class MetricModulation(AbjadObject):
                     \hspace
                         #-0.5
                     \scale
-                        #'(0.5 . 0.5)
+                        #'(0.75 . 0.75)
                         \score
                             {
                                 \new Score \with {
@@ -891,14 +891,16 @@ class MetricModulation(AbjadObject):
         lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
 
-    def _get_markup(self):
-        pair = (0.5, 0.5)
+    def _get_markup(self, music_scale_pair=(0.75, 0.75)):
+        assert isinstance(music_scale_pair, (tuple, type(None)))
         left_markup = self._get_left_markup()
-        left_markup = left_markup.scale(pair)
+        if music_scale_pair:
+            left_markup = left_markup.scale(music_scale_pair)
         equal = markuptools.Markup('=')
         right_space = markuptools.Markup.hspace(-0.5)
         right_markup = self._get_right_markup()
-        right_markup = right_markup.scale(pair)
+        if music_scale_pair:
+            right_markup = right_markup.scale(music_scale_pair)
         markup = left_markup + equal + right_space + right_markup
         return markup
 

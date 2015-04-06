@@ -1729,17 +1729,20 @@ class TempoSpanner(Spanner):
         ):
         assert tempo is not None or metric_modulation is not None
         if tempo is None:
-            return metric_modulation._get_markup()
+            return metric_modulation._get_markup(
+                music_scale_pair=(0.5, 0.5),
+                )
         if metric_modulation is None:
             return tempo._to_markup()
         tempo_markup = tempo._to_markup()
         tempo_markup = tempo_markup + tempo_markup.hspace(0.5)
-        modulation_markup = metric_modulation._get_markup()
+        modulation_markup = metric_modulation._get_markup(
+            music_scale_pair=(0.5, 0.5),
+            )
         modulation_markup = modulation_markup.line()
         modulation_markup = modulation_markup.parenthesize()
         modulation_markup = modulation_markup.override(('padding', 0.5))
         modulation_markup = modulation_markup.general_align('Y', Down)
-        #markup = tempo_markup.line(modulation_markup)
         markup = tempo_markup + modulation_markup
         return markup
 
