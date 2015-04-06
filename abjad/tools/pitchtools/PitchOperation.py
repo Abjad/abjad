@@ -90,8 +90,9 @@ class PitchOperation(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def duplicate(self, count=None, period=None):
-        r'''Configures pitch operation to duplicate pitches by `count`.
+    def duplicate(self, counts=None, indices=None, period=None):
+        r'''Configures pitch operation to duplicate pitches by `counts`, with
+        optional `indices` and `period`.
 
         ..  container:: example
 
@@ -103,7 +104,7 @@ class PitchOperation(AbjadValueObject):
                 pitchtools.PitchOperation(
                     operators=(
                         sequencetools.Duplication(
-                            count=1,
+                            counts=1,
                             ),
                         ),
                     )
@@ -111,7 +112,8 @@ class PitchOperation(AbjadValueObject):
         Returns new pitch operation.
         '''
         operator = sequencetools.Duplication(
-            count=count,
+            counts=counts,
+            indices=indices,
             period=period,
             )
         return self._with_operator(operator)
