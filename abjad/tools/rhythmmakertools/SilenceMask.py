@@ -36,8 +36,6 @@ class SilenceMask(BooleanPattern):
         self,
         indices=None,
         period=None,
-        start=None,
-        stop=None,
         invert=None,
         use_multimeasure_rests=None,
         ):
@@ -45,8 +43,6 @@ class SilenceMask(BooleanPattern):
         superclass.__init__(
             indices=indices,
             period=period,
-            start=start,
-            stop=stop,
             invert=None,
             )
         if use_multimeasure_rests is not None:
@@ -68,8 +64,6 @@ class SilenceMask(BooleanPattern):
                 >>> mask = rhythmmakertools.SilenceMask(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
-                ...     start=1,
-                ...     stop=-1,
                 ...     use_multimeasure_rests=False,
                 ...     )
 
@@ -89,8 +83,6 @@ class SilenceMask(BooleanPattern):
                 >>> mask = rhythmmakertools.SilenceMask(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
-                ...     start=1,
-                ...     stop=-1,
                 ...     use_multimeasure_rests=True,
                 ...     )
 

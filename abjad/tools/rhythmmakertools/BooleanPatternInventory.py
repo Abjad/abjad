@@ -22,8 +22,6 @@ class BooleanPatternInventory(TypedTuple):
             ...     rhythmmakertools.BooleanPattern(
             ...         indices=[2],
             ...         period=3,
-            ...         start=1,
-            ...         stop=-1,
             ...         ),
             ...     ])
 
@@ -42,8 +40,6 @@ class BooleanPatternInventory(TypedTuple):
                     rhythmmakertools.BooleanPattern(
                         indices=(2,),
                         period=3,
-                        start=1,
-                        stop=-1,
                         ),
                     )
                 )
