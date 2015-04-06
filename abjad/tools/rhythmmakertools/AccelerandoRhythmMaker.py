@@ -30,6 +30,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...         ),
             ...     start_duration=Duration(1, 8),
             ...     stop_duration=Duration(1, 20),
+            ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+            ...         use_note_duration_bracket=True,
+            ...         ),
             ...     written_duration=Duration(1, 16),
             ...     )
 
@@ -238,6 +241,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...         ),
             ...     start_duration=Duration(1, 20),
             ...     stop_duration=Duration(1, 8),
+            ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+            ...         use_note_duration_bracket=True,
+            ...         ),
             ...     written_duration=Duration(1, 16),
             ...     )
 
@@ -743,11 +749,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
         elif self._is_ritardando(selection):
             override(selection[0]).beam.grow_direction = Left
         tuplet = scoretools.Tuplet((1, 1), selection)
-        tuplet.force_times_command = True
-        duration = inspect_(tuplet).get_duration()
-        markup = duration.to_score_markup()
-        markup = markup.scale((0.75, 0.75))
-        override(tuplet).tuplet_number.text = markup
+        tuplet_spelling_specifier = self.tuplet_spelling_specifier or \
+            rhythmmakertools.TupletSpellingSpecifier()
+        if tuplet_spelling_specifier.use_note_duration_bracket:
+            tuplet.force_times_command = True
+            duration = inspect_(tuplet).get_duration()
+            markup = duration.to_score_markup()
+            markup = markup.scale((0.75, 0.75))
+            override(tuplet).tuplet_number.text = markup
         selection = selectiontools.Selection([tuplet])
         return selection
 
@@ -779,6 +788,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     start_duration=Duration(1, 8),
                 ...     stop_duration=Duration(1, 20),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
+                ...         ),
                 ...     written_duration=Duration(1, 16),
                 ...     )
 
@@ -988,6 +1000,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     start_duration=Duration(1, 8),
                 ...     stop_duration=Duration(1, 20),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
+                ...         ),
                 ...     written_duration=Duration(1, 16),
                 ...     )
 
@@ -1248,6 +1263,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     start_duration=Duration(1, 8),
                 ...     stop_duration=Duration(1, 20),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
+                ...         ),
                 ...     written_duration=Duration(1, 16),
                 ...     )
 
@@ -1462,6 +1480,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     output_masks=None,
                 ...     start_duration=Duration(1, 8),
                 ...     stop_duration=Duration(1, 20),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
+                ...         ),
                 ...     written_duration=Duration(1, 16),
                 ...     )
 
@@ -1676,6 +1697,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         ],
                 ...     start_duration=Duration(1, 8),
                 ...     stop_duration=Duration(1, 20),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
+                ...         ),
                 ...     written_duration=Duration(1, 16),
                 ...     )
 
@@ -1830,6 +1854,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     stop_duration=Duration(1, 20),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
+                ...         ),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     written_duration=Duration(1, 16),
                 ...     )
@@ -2041,6 +2068,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     stop_duration=Duration(1, 20),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
+                ...         ),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     written_duration=Duration(1, 16),
                 ...     )
@@ -2256,6 +2286,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     stop_duration=Duration(1, 20),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
+                ...         ),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
                 ...         ),
                 ...     written_duration=Duration(1, 16),
                 ...     )
