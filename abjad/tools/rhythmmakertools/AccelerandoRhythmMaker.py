@@ -491,6 +491,11 @@ class AccelerandoRhythmMaker(RhythmMaker):
         elif self._is_ritardando(selection):
             override(selection[0]).beam.grow_direction = Left
         tuplet = scoretools.Tuplet((1, 1), selection)
+        tuplet.force_times_command = True
+        duration = inspect_(tuplet).get_duration()
+        markup = duration.to_score_markup()
+        markup = markup.scale((0.75, 0.75))
+        override(tuplet).tuplet_number.text = markup
         selection = selectiontools.Selection([tuplet])
         return selection
 

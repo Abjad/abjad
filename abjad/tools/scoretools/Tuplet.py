@@ -88,6 +88,7 @@ class Tuplet(Container):
 
     __slots__ = (
         '_force_fraction',
+        '_force_times_command',
         '_is_invisible',
         '_multiplier',
         '_preferred_denominator',
@@ -103,6 +104,7 @@ class Tuplet(Container):
         multiplier = multiplier or durationtools.Multiplier(2, 3)
         self.multiplier = multiplier
         self._force_fraction = None
+        self._force_times_command = False
         self._is_invisible = None
         self._preferred_denominator = None
         self._signifier = '*'
@@ -290,7 +292,7 @@ class Tuplet(Container):
                 result.append([contributor, contributions])
             else:
                 contributor = ('self_brackets', 'open')
-                if self.multiplier != 1:
+                if self.force_times_command or self.multiplier != 1:
                     contributions = []
                     fraction_command_string = \
                         self._format_lilypond_fraction_command_string()
@@ -457,7 +459,138 @@ class Tuplet(Container):
         if isinstance(arg, (bool, type(None))):
             self._force_fraction = arg
         else:
-            message = 'bad type for tuplet force fraction: {!r}.'
+            message = 'must be true or false: {!r}.'
+            message = message.format(arg)
+            raise TypeError(message)
+
+    @property
+    def force_times_command(self):
+        r'''Is true when trivial tuplets print LilyPond ``\times`` command.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Trivial tuplets normally print as a LilyPond
+            container enclosed in ``{`` and ``}`` but without the LilyPond
+            ``\times`` command:
+
+            ::
+
+                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet.force_times_command
+                False
+
+            ::
+
+                >>> f(trivial_tuplet)
+                {
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            ::
+
+                >>> show(trivial_tuplet) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** But it is possible to force a trivial tuplet to
+            format the LilyPond ``\times`` command:
+
+            ::
+
+                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet.force_times_command = True
+
+            ::
+
+                >>> f(trivial_tuplet)
+                \times 1/1 {
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            ::
+
+                >>> show(trivial_tuplet) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 3.** This makes it possible to override tuplet number
+            text:
+
+            ::
+
+                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet.force_times_command = True
+                >>> duration = inspect_(trivial_tuplet).get_duration()
+                >>> markup = duration.to_score_markup()
+                >>> markup = markup.scale((0.75, 0.75))
+                >>> override(trivial_tuplet).tuplet_number.text = markup
+                >>> staff = Staff([trivial_tuplet])
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \override TupletNumber #'text = \markup {
+                        \scale
+                            #'(0.75 . 0.75)
+                            \score
+                                {
+                                    \new Score \with {
+                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        proportionalNotationDuration = ##f
+                                    } <<
+                                        \new RhythmicStaff \with {
+                                            \remove Time_signature_engraver
+                                            \remove Staff_symbol_engraver
+                                            \override Stem #'direction = #up
+                                            \override Stem #'length = #5
+                                            \override TupletBracket #'bracket-visibility = ##t
+                                            \override TupletBracket #'direction = #up
+                                            \override TupletBracket #'padding = #1.25
+                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            tupletFullLength = ##t
+                                        } {
+                                            c'2.
+                                        }
+                                    >>
+                                    \layout {
+                                        indent = #0
+                                        ragged-right = ##t
+                                    }
+                                }
+                        }
+                    \times 1/1 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \revert TupletNumber #'text
+                }
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._force_times_command
+
+    @force_times_command.setter
+    def force_times_command(self, arg):
+        if isinstance(arg, (bool, type(None))):
+            self._force_times_command = arg
+        else:
+            message = 'must be true or false: {!r}.'
             message = message.format(arg)
             raise TypeError(message)
 
