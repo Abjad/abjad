@@ -12,7 +12,6 @@ from abjad.tools.topleveltools.set_ import set_
 class Duration(AbjadObject, fractions.Fraction):
     r'''A duration.
 
-
     ..  container:: example
 
         **Example 1.** Initializes from integer numerator:
@@ -547,6 +546,7 @@ class Duration(AbjadObject, fractions.Fraction):
         layout_block.indent = 0
         layout_block.ragged_right = True
         score = scoretools.Score([staff])
+        override(score).spacing_spanner.spacing_increment = 0.5
         set_(score).proportional_notation_duration = False
         return score, layout_block
 
@@ -1117,6 +1117,7 @@ class Duration(AbjadObject, fractions.Fraction):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -1157,6 +1158,7 @@ class Duration(AbjadObject, fractions.Fraction):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -1207,6 +1209,7 @@ class Duration(AbjadObject, fractions.Fraction):
                             \score
                                 {
                                     \new Score \with {
+                                        \override SpacingSpanner #'spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {

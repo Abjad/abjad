@@ -37,6 +37,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -67,6 +68,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -115,6 +117,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -148,6 +151,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -196,6 +200,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -226,6 +231,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -278,6 +284,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -308,6 +315,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -359,6 +367,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -389,6 +398,7 @@ class MetricModulation(AbjadObject):
                     \score
                         {
                             \new Score \with {
+                                \override SpacingSpanner #'spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
@@ -457,6 +467,7 @@ class MetricModulation(AbjadObject):
                             \score
                                 {
                                     \new Score \with {
+                                        \override SpacingSpanner #'spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
@@ -487,6 +498,7 @@ class MetricModulation(AbjadObject):
                             \score
                                 {
                                     \new Score \with {
+                                        \override SpacingSpanner #'spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
@@ -689,6 +701,7 @@ class MetricModulation(AbjadObject):
                         \score
                             {
                                 \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
@@ -722,6 +735,7 @@ class MetricModulation(AbjadObject):
                         \score
                             {
                                 \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
@@ -776,6 +790,7 @@ class MetricModulation(AbjadObject):
                         \score
                             {
                                 \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
@@ -809,6 +824,7 @@ class MetricModulation(AbjadObject):
                         \score
                             {
                                 \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
