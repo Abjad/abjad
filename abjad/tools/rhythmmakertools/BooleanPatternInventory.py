@@ -12,8 +12,13 @@ class BooleanPatternInventory(TypedTuple):
         ::
 
             >>> inventory = rhythmmakertools.BooleanPatternInventory([
-            ...     rhythmmakertools.BooleanPattern([0, 1, 7], period=10),
-            ...     rhythmmakertools.BooleanPattern([-2, -1]),
+            ...     rhythmmakertools.BooleanPattern(
+            ...         indices=[0, 1, 7],
+            ...         period=10,
+            ...         ),
+            ...     rhythmmakertools.BooleanPattern(
+            ...         indices=[-2, -1],
+            ...         ),
             ...     rhythmmakertools.BooleanPattern(
             ...         indices=[2],
             ...         period=3,

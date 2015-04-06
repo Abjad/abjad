@@ -40,15 +40,18 @@ class BooleanPattern(AbjadValueObject):
     def __init__(
         self,
         indices=None,
+        invert=None,
         period=None,
         start=None,
         stop=None,
-        invert=None,
         ):
         if indices is not None:
             assert all(isinstance(_, int) for _ in indices), repr(indices)
             indices = tuple(indices)
         self._indices = indices
+        if invert is not None:
+            invert = bool(invert)
+        self._invert = invert
         if period is not None:
             assert mathtools.is_positive_integer(period), repr(period)
         self._period = period
@@ -58,9 +61,6 @@ class BooleanPattern(AbjadValueObject):
         if stop is not None:
             stop = int(stop)
         self._stop = stop
-        if invert is not None:
-            invert = bool(invert)
-        self._invert = invert
 
     ### PRIVATE PROPERTIES ###
 
