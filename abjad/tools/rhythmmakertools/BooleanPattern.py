@@ -830,7 +830,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern.start is None
+                >>> pattern.stop is None
                 True
 
             ::
@@ -940,6 +940,97 @@ class BooleanPattern(AbjadValueObject):
                 13 
                 14 
                 15 
+
+        ..  container:: example
+
+            **Example 4a.** Pattern that matches eight out of every eight
+            indices, but with the last three indices (of any number of total
+            indices) set to false:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 2, 3, 4, 5, 6, 7],
+                ...     period=8,
+                ...     stop=-3,
+                ...     )
+
+            ::
+
+                >>> total_length = 5
+                >>> for index in range(5):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+
+            ::
+
+                >>> total_length = 10
+                >>> for index in range(10):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 True
+                3 True
+                4 True
+                5 True
+                6 True
+                7 
+                8 
+                9 
+
+            **Example 4b.** Same pattern inverted:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 2, 3, 4, 5, 6, 7],
+                ...     invert=True,
+                ...     period=8,
+                ...     stop=-3,
+                ...     )
+
+            ::
+
+                >>> total_length = 5
+                >>> for index in range(5):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 
+                1 
+                2 
+                3 
+                4 
+
+            .. todo:: This is wrong because output is not inverted correctly.
+
+            ::
+
+                >>> total_length = 10
+                >>> for index in range(10):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 
+                1 
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 
+                8 
+                9 
+
+            .. todo:: This is wrong because output is not inverted correctly.
 
         Defaults to none.
 
