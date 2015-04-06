@@ -222,7 +222,7 @@ class Duplication(AbjadValueObject):
         length = len(expr)
         j = 0
         for i, x in enumerate(expr):
-            if pattern._matches_index(i, length):
+            if pattern.matches_index(i, length):
                 count = counts[j]
                 result.extend([x] * count)
                 j += 1

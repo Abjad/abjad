@@ -8,7 +8,7 @@ class BooleanPattern(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Pattern that picks three indices out of every eight:
+        **Example 1.** Pattern that matches three indices out of every eight:
 
         ::
 
@@ -21,7 +21,7 @@ class BooleanPattern(AbjadValueObject):
 
             >>> total_length = 16
             >>> for index in range(16):
-            ...     match = pattern._matches_index(index, total_length)
+            ...     match = pattern.matches_index(index, total_length)
             ...     match = match or ''
             ...     print(index, match)
             0 True
@@ -43,7 +43,7 @@ class BooleanPattern(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Pattern that picks three indices out of every
+        **Example 2.** Pattern that matches three indices out of every
         sixteen:
 
         ::
@@ -57,7 +57,7 @@ class BooleanPattern(AbjadValueObject):
 
             >>> total_length = 16
             >>> for index in range(16):
-            ...     match = pattern._matches_index(index, total_length)
+            ...     match = pattern.matches_index(index, total_length)
             ...     match = match or ''
             ...     print(index, match)
             0 True
@@ -135,9 +135,167 @@ class BooleanPattern(AbjadValueObject):
                 ),
             )
 
-    ### PRIVATE METHODS ###
+    ### PUBLIC METHODS ###
 
-    def _matches_index(self, index, total_length, seed=None):
+    @classmethod
+    def from_sequence(cls, sequence):
+        r'''Makes boolean pattern from sequence.
+
+        ..  container:: example
+
+            **Example 1.** Pattern that matches three indices out of every
+            five:
+
+            ::
+
+                >>> pattern = [1, 0, 0, 1, 1]
+                >>> pattern = rhythmmakertools.BooleanPattern.from_sequence(pattern)
+                >>> print(format(pattern))
+                rhythmmakertools.BooleanPattern(
+                    indices=(0, 3, 4),
+                    period=5,
+                    )
+                    
+            ::
+
+                >>> total_length = 10
+                >>> for index in range(10):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 
+                2 
+                3 True
+                4 True
+                5 True
+                6 
+                7 
+                8 True
+                9 True
+
+        ..  container:: example
+
+            **Example 2.** Pattern that matches three indices out of every
+            six:
+
+            ::
+
+                >>> pattern = [1, 0, 0, 1, 1, 0]
+                >>> pattern = rhythmmakertools.BooleanPattern.from_sequence(pattern)
+                >>> print(format(pattern))
+                rhythmmakertools.BooleanPattern(
+                    indices=(0, 3, 4),
+                    period=6,
+                    )
+                    
+            ::
+
+                >>> total_length = 12
+                >>> for index in range(12):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 
+                2 
+                3 True
+                4 True
+                5 
+                6 True
+                7 
+                8 
+                9 True
+                10 True
+                11 
+
+        Returns boolean pattern.
+        '''
+        sequence = [bool(_) for _ in sequence]
+        period = len(sequence)
+        indices = [i for i, x in enumerate(sequence) if x]
+        return cls(
+            period=period,
+            indices=indices,
+            )
+
+    def matches_index(self, index, total_length, seed=None):
+        r'''Is true when pattern matches `index` taken under `total_length`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Pattern that matches three indices out of every eight:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+        ..  container:: example
+
+            **Example 2.** Pattern that matches three indices out of every
+            sixteen:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=16,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8
+                9
+                10 
+                11 
+                12 
+                13 
+                14 
+                15
+
+        Returns true or false.
+        '''
         assert 0 <= total_length
         if 0 <= index:
             nonnegative_index = index
@@ -171,90 +329,6 @@ class BooleanPattern(AbjadValueObject):
                     return True ^ invert
         return False ^ invert
 
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_sequence(cls, sequence):
-        r'''Makes boolean pattern from sequence.
-
-        ..  container:: example
-
-            **Example 1.** Pattern that picks three indices out of every
-            five:
-
-            ::
-
-                >>> pattern = [1, 0, 0, 1, 1]
-                >>> pattern = rhythmmakertools.BooleanPattern.from_sequence(pattern)
-                >>> print(format(pattern))
-                rhythmmakertools.BooleanPattern(
-                    indices=(0, 3, 4),
-                    period=5,
-                    )
-                    
-            ::
-
-                >>> total_length = 10
-                >>> for index in range(10):
-                ...     match = pattern._matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 
-                2 
-                3 True
-                4 True
-                5 True
-                6 
-                7 
-                8 True
-                9 True
-
-        ..  container:: example
-
-            **Example 2.** Pattern that picks three indices out of every
-            six:
-
-            ::
-
-                >>> pattern = [1, 0, 0, 1, 1, 0]
-                >>> pattern = rhythmmakertools.BooleanPattern.from_sequence(pattern)
-                >>> print(format(pattern))
-                rhythmmakertools.BooleanPattern(
-                    indices=(0, 3, 4),
-                    period=6,
-                    )
-                    
-            ::
-
-                >>> total_length = 12
-                >>> for index in range(12):
-                ...     match = pattern._matches_index(index, total_length)
-                ...     match = match or ''
-                ...     print(index, match)
-                0 True
-                1 
-                2 
-                3 True
-                4 True
-                5 
-                6 True
-                7 
-                8 
-                9 True
-                10 True
-                11 
-
-        Returns boolean pattern.
-        '''
-        sequence = [bool(_) for _ in sequence]
-        period = len(sequence)
-        indices = [i for i, x in enumerate(sequence) if x]
-        return cls(
-            period=period,
-            indices=indices,
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -263,7 +337,7 @@ class BooleanPattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that picks three indices out of every
+            **Example 1.** Pattern that matches three indices out of every
             eight:
 
             ::
@@ -280,7 +354,7 @@ class BooleanPattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Pattern that picks three indices out of every
+            **Example 2.** Pattern that matches three indices out of every
             sixteen:
 
             ::
@@ -309,7 +383,7 @@ class BooleanPattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that picks three indices out of every
+            **Example 1.** Pattern that matches three indices out of every
             eight:
 
             ::
@@ -328,7 +402,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
@@ -351,7 +425,7 @@ class BooleanPattern(AbjadValueObject):
         ..  container:: example
 
             **Example 2.** Pattern that rejects three indices from every eight;
-            equivalently, pattern picks ``8-3=5`` indices out of every eight:
+            equivalently, pattern matches ``8-3=5`` indices out of every eight:
 
             ::
 
@@ -370,7 +444,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 
@@ -422,7 +496,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
@@ -462,7 +536,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
@@ -496,7 +570,7 @@ class BooleanPattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that picks three indices out of every eight:
+            **Example 1.** Pattern that matches three indices out of every eight:
 
             ::
 
@@ -514,7 +588,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
@@ -555,7 +629,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 
@@ -591,7 +665,7 @@ class BooleanPattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that picks three indices out of every
+            **Example 1.** Pattern that matches three indices out of every
             eight:
 
             ::
@@ -610,7 +684,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
@@ -632,7 +706,8 @@ class BooleanPattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Same pattern but with the last index set to false:
+            **Example 2.** Same pattern but with the last index set to return
+            false:
 
             ::
 
@@ -651,7 +726,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
@@ -693,7 +768,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> total_length = 16
                 >>> for index in range(16):
-                ...     match = pattern._matches_index(index, total_length)
+                ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True

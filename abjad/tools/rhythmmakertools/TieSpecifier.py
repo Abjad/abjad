@@ -97,7 +97,7 @@ class TieSpecifier(AbjadValueObject):
                     tie_across_divisions)
         pairs = sequencetools.iterate_sequence_nwise(divisions)
         for i, pair in enumerate(pairs):
-            if not tie_across_divisions._matches_index(i, length):
+            if not tie_across_divisions.matches_index(i, length):
                 continue
             division_one, division_two = pair
             leaf_one = next(iterate(division_one).by_class(

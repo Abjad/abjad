@@ -92,7 +92,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         if not self.patterns:
             return True
         for pattern in self.patterns:
-            if pattern._matches_index(index, total):
+            if pattern.matches_index(index, total):
                 return True
         return False
 

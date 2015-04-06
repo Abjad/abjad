@@ -111,7 +111,7 @@ class BooleanPatternInventory(TypedTuple):
         Returns pattern or none.
         '''
         for pattern in reversed(self):
-            if pattern._matches_index(index, total_length, seed=seed):
+            if pattern.matches_index(index, total_length, seed=seed):
                 return pattern
 
     ### PRIVATE PROPERTIES ###
