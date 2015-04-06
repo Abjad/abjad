@@ -227,12 +227,10 @@ class RhythmMaker(AbjadValueObject):
                         decrease_durations_monotonically,
                     forbidden_written_duration=forbidden_written_duration,
                     )
+            elif isinstance(matching_output_mask, rhythmmakertools.NullMask):
+                new_selections.append(selection)
+                continue
             else:
-                prototype = (
-                    rhythmmakertools.SilenceMask,
-                    rhythmmakertools.BooleanPattern,
-                    )
-                assert isinstance(matching_output_mask, prototype)
                 use_multimeasure_rests = getattr(
                     matching_output_mask,
                     'use_multimeasure_rests',

@@ -1005,6 +1005,61 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 5.** Silences every other output division except for the
+            first and last:
+
+            ::
+
+                >>> rest_mask = rhythmmakertools.SilenceMask(
+                ...     indices=[0],
+                ...     period=2,
+                ...     )
+                >>> null_mask = rhythmmakertools.NullMask(
+                ...     indices=[0, -1],
+                ...     )
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     output_masks=[rest_mask, null_mask],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8), (2, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 2/8
+                        c'4
+                    }
+                }
+
         Set to output masks or none.
         '''
         superclass = super(NoteRhythmMaker, self)
