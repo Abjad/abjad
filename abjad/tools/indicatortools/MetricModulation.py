@@ -527,7 +527,6 @@ class MetricModulation(AbjadObject):
                 d'4
             }
 
-    ..  todo:: Teach ``TempoSpanner`` about metric modulations.
     '''
 
     ### CLASS VARIABLES ###
