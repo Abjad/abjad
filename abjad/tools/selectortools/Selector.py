@@ -334,6 +334,57 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"))
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
 
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_counts(
+                ...     [1, 2, 3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"),)
+                Selection(Rest('r8'), Note("d'8"))
+                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+                Selection(Note("g'8"),)
+                Selection(Note("a'8"), Note("b'8"))
+                Selection(Rest('r8'), Note("c''8"))
+        
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_counts(
+                ...     [1, 2, 3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     rotate=True,
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff, rotation=1):
+                ...     x
+                ...
+                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
+                Selection(Note("e'8"),)
+                Selection(Rest('r8'), Note("f'8"))
+                Selection(Note("g'8"), Note("a'8"), Note("b'8"))
+                Selection(Rest('r8'),)
+                Selection(Note("c''8"),) 
+
         Returns new selector.
         '''
         from abjad.tools import selectortools
