@@ -103,9 +103,9 @@ class Tuplet(Container):
         Container.__init__(self, music)
         multiplier = multiplier or durationtools.Multiplier(2, 3)
         self.multiplier = multiplier
-        self._force_fraction = None
+        self._force_fraction = False
         self._force_times_command = False
-        self._is_invisible = None
+        self._is_invisible = False
         self._preferred_denominator = None
         self._signifier = '*'
 
@@ -374,8 +374,8 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet.force_fraction is None
-                True
+                >>> tuplet.force_fraction
+                False
 
         ..  container:: example
 
@@ -456,7 +456,7 @@ class Tuplet(Container):
 
     @force_fraction.setter
     def force_fraction(self, arg):
-        if isinstance(arg, (bool, type(None))):
+        if isinstance(arg, (bool)):
             self._force_fraction = arg
         else:
             message = 'must be true or false: {!r}.'
@@ -748,8 +748,8 @@ class Tuplet(Container):
 
             ::
 
-                >>> tuplet.is_invisible is None
-                True
+                >>> tuplet.is_invisible
+                False
 
         ..  container:: example
 
@@ -809,7 +809,7 @@ class Tuplet(Container):
 
     @is_invisible.setter
     def is_invisible(self, arg):
-        assert isinstance(arg, (bool, type(None)))
+        assert isinstance(arg, bool), repr(arg)
         self._is_invisible = arg
 
     @property
