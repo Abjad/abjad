@@ -422,7 +422,7 @@ class Tuplet(Container):
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem #'direction = #up
-                                        \override Stem #'length = #4
+                                        \override Stem #'length = #5
                                         \override TupletBracket #'bracket-visibility = ##t
                                         \override TupletBracket #'direction = #up
                                         \override TupletBracket #'padding = #1.25
