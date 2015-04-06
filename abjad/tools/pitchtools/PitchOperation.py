@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -51,6 +52,7 @@ class PitchOperation(AbjadValueObject):
             pitchtools.Transposition,
             pitchtools.Rotation,
             pitchtools.Retrogression,
+            sequencetools.Duplication,
             )
         if operators is not None:
             if not isinstance(operators, collections.Sequence):
@@ -87,6 +89,32 @@ class PitchOperation(AbjadValueObject):
         return type(self)(operators)
 
     ### PUBLIC METHODS ###
+
+    def duplicate(self, count=None, period=None):
+        r'''Configures pitch operation to duplicate pitches by `count`.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch_operation = pitchtools.PitchOperation()
+                >>> pitch_operation = pitch_operation.duplicate(1)
+                >>> print(format(pitch_operation))
+                pitchtools.PitchOperation(
+                    operators=(
+                        sequencetools.Duplication(
+                            count=1,
+                            ),
+                        ),
+                    )
+
+        Returns new pitch operation.
+        '''
+        operator = sequencetools.Duplication(
+            count=count,
+            period=period,
+            )
+        return self._with_operator(operator)
 
     def invert(self, axis=None):
         r'''Configures pitch operation to invert pitches by `index`.
