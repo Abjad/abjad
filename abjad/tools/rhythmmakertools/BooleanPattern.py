@@ -4,24 +4,78 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class BooleanPattern(AbjadValueObject):
-    r'''Output mask.
+    r'''Boolean pattern.
 
     ..  container:: example
 
+        **Example 1.** Pattern that picks three indices out of every eight:
+
         ::
 
-            >>> mask = rhythmmakertools.BooleanPattern(
+            >>> pattern = rhythmmakertools.BooleanPattern(
+            ...     indices=[0, 1, 7],
+            ...     period=8,
+            ...     )
+
+        ::
+
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern._matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 
+            3 
+            4 
+            5 
+            6 
+            7 True
+            8 True
+            9 True
+            10 
+            11 
+            12 
+            13 
+            14 
+            15 True
+
+    ..  container:: example
+
+        **Example 2.** Pattern that picks three indices out of every
+        sixteen:
+
+        ::
+
+            >>> pattern = rhythmmakertools.BooleanPattern(
             ...     indices=[0, 1, 7],
             ...     period=16,
             ...     )
 
         ::
 
-            >>> print(format(mask))
-            rhythmmakertools.BooleanPattern(
-                indices=(0, 1, 7),
-                period=16,
-                )
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern._matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 
+            3 
+            4 
+            5 
+            6 
+            7 True
+            8
+            9
+            10 
+            11 
+            12 
+            13 
+            14 
+            15
 
     '''
 
@@ -121,21 +175,77 @@ class BooleanPattern(AbjadValueObject):
 
     @classmethod
     def from_sequence(cls, sequence):
-        r'''Creates a boolean pattern from a sequence.
+        r'''Makes boolean pattern from sequence.
 
         ..  container:: example
 
+            **Example 1.** Pattern that picks three indices out of every
+            five:
+
             ::
 
-                >>> mask = [1, 0, 0, 1, 1]
-                >>> mask = rhythmmakertools.BooleanPattern.from_sequence(mask)
-                >>> print(format(mask))
+                >>> pattern = [1, 0, 0, 1, 1]
+                >>> pattern = rhythmmakertools.BooleanPattern.from_sequence(pattern)
+                >>> print(format(pattern))
                 rhythmmakertools.BooleanPattern(
                     indices=(0, 3, 4),
                     period=5,
                     )
+                    
+            ::
 
-        Returns boolean sequence.
+                >>> total_length = 10
+                >>> for index in range(10):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 
+                2 
+                3 True
+                4 True
+                5 True
+                6 
+                7 
+                8 True
+                9 True
+
+        ..  container:: example
+
+            **Example 2.** Pattern that picks three indices out of every
+            six:
+
+            ::
+
+                >>> pattern = [1, 0, 0, 1, 1, 0]
+                >>> pattern = rhythmmakertools.BooleanPattern.from_sequence(pattern)
+                >>> print(format(pattern))
+                rhythmmakertools.BooleanPattern(
+                    indices=(0, 3, 4),
+                    period=6,
+                    )
+                    
+            ::
+
+                >>> total_length = 12
+                >>> for index in range(12):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 
+                2 
+                3 True
+                4 True
+                5 
+                6 True
+                7 
+                8 
+                9 True
+                10 True
+                11 
+
+        Returns boolean pattern.
         '''
         sequence = [bool(_) for _ in sequence]
         period = len(sequence)
@@ -149,115 +259,464 @@ class BooleanPattern(AbjadValueObject):
 
     @property
     def indices(self):
-        r'''Gets indices of ouput mask.
+        r'''Gets indices of pattern.
 
         ..  container:: example
 
+            **Example 1.** Pattern that picks three indices out of every
+            eight:
+
             ::
 
-                >>> mask = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern.indices
+                (0, 1, 7)
+
+        ..  container:: example
+
+            **Example 2.** Pattern that picks three indices out of every
+            sixteen:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
 
             ::
 
-                >>> mask.indices
+                >>> pattern.indices
                 (0, 1, 7)
 
+        Defaults to none.
+
         Set to integers or none.
+
+        Returns integers or none.
         '''
         return self._indices
 
     @property
     def invert(self):
-        r'''Gets inversion flag of ouput mask.
+        r'''Gets inversion flag of pattern.
 
         ..  container:: example
 
+            **Example 1.** Pattern that picks three indices out of every
+            eight:
+
             ::
 
-                >>> mask = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.BooleanPattern(
                 ...     indices=[0, 1, 7],
-                ...     period=16,
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern.invert is None
+                True
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+        ..  container:: example
+
+            **Example 2.** Pattern that rejects three indices from every eight;
+            equivalently, pattern picks ``8-3=5`` indices out of every eight:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
                 ...     invert=True
                 ...     )
 
             ::
 
-                >>> mask.invert
+                >>> pattern.invert
                 True
 
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 
+                1 
+                2 True
+                3 True
+                4 True
+                5 True
+                6 True
+                7 
+                8 
+                9 
+                10 True
+                11 True
+                12 True
+                13 True
+                14 True
+                15 
+
+        Defaults to none.
+
         Set to boolean or none.
+
+        Returns boolean or none.
         '''
         return self._invert
 
     @property
     def period(self):
-        r'''Gets period of ouput mask.
+        r'''Gets period of pattern.
 
         ..  container:: example
 
+            **Example 1.** Pattern with a period of eight:
+
             ::
 
-                >>> mask = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern.period
+                8
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+        ..  container:: example
+
+            **Example 2.** Same pattern with a period of sixteen:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
 
             ::
 
-                >>> mask.period
+                >>> pattern.period
                 16
 
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 
+                9 
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 
+
+        Defaults to none.
+
         Set to positive integer or none.
+
+        Returns positive integer or none.
         '''
         return self._period
 
     @property
     def start(self):
-        r'''Gets start index of ouput mask.
+        r'''Gets start index of pattern.
 
         ..  container:: example
 
+            **Example 1.** Pattern that picks three indices out of every eight:
+
             ::
 
-                >>> mask = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.BooleanPattern(
                 ...     indices=[0, 1, 7],
-                ...     period=16,
-                ...     start=1,
-                ...     stop=-1,
+                ...     period=8,
                 ...     )
 
             ::
 
-                >>> mask.start
+                >>> pattern.start is None
+                True
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+        ..  container:: example
+
+            **Example 2.** Same pattern starting (offset by) one index later:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     start=1,
+                ...     )
+
+            ::
+
+                >>> pattern.start
                 1
 
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 
+                1 True
+                2 True
+                3 
+                4 
+                5 
+                6 
+                7 
+                8 True
+                9 True
+                10 True
+                11 
+                12 
+                13 
+                14 
+                15 
+
+            .. todo:: This looks wrong. Is this the intended behavior?
+
+        Defaults to none.
+
         Set to integer or none.
+
+        Returns integer or none.
         '''
         return self._start
 
     @property
     def stop(self):
-        r'''Gets stop index of ouput mask.
+        r'''Gets stop index of pattern.
 
         ..  container:: example
 
+            **Example 1.** Pattern that picks three indices out of every
+            eight:
+
             ::
 
-                >>> mask = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.BooleanPattern(
                 ...     indices=[0, 1, 7],
-                ...     period=16,
-                ...     start=1,
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern.start is None
+                True
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+        ..  container:: example
+
+            **Example 2.** Same pattern but with the last index set to false:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
                 ...     stop=-1,
                 ...     )
 
             ::
 
-                >>> mask.stop
+                >>> pattern.stop
                 -1
 
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 
+
+        ..  container:: example
+
+            **Example 3.** Same pattern but with the last ten indices set to
+            false:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     stop=-10,
+                ...     )
+
+            ::
+
+                >>> pattern.stop
+                -10
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern._matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7
+                8
+                9
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 
+
+        Defaults to none.
+
         Set to integer or none.
+
+        Returns integer or none.
         '''
         return self._stop
