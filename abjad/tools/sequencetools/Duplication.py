@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import collections
-from abjad.tools import mathtools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -12,13 +11,13 @@ class Duplication(AbjadValueObject):
 
         ::
 
-            >>> operator_ = sequencetools.Duplication(count=2, period=4)
+            >>> operator_ = sequencetools.Duplication(counts=2, period=4)
 
         ::
 
             >>> print(format(operator_))
             sequencetools.Duplication(
-                count=2,
+                counts=2,
                 period=4,
                 )
 
@@ -27,7 +26,8 @@ class Duplication(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_count',
+        '_counts',
+        '_indices',
         '_period',
         )
 
@@ -35,13 +35,23 @@ class Duplication(AbjadValueObject):
 
     def __init__(
         self,
-        count=None,
+        counts=None,
+        indices=None,
         period=None,
         ):
-        if count is not None:
-            count = int(count)
-            assert 0 <= count
-        self._count = count
+        if counts is not None:
+            if isinstance(counts, collections.Sequence):
+                assert len(counts)
+                counts = tuple(int(_) for _ in counts)
+                assert all(0 <= counts for _ in counts)
+            else:
+                counts = int(counts)
+                assert 0 <= counts
+        self._counts = counts
+        if indices is not None:
+            assert all(isinstance(_, int) for _ in indices), repr(indices)
+            indices = tuple(indices)
+        self._indices = indices
         if period is not None:
             period = int(period)
             assert 0 < period
@@ -58,7 +68,7 @@ class Duplication(AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(count=1)
+                >>> operator_ = sequencetools.Duplication(counts=1)
                 >>> numbers = [1, 2, 3, 4]
                 >>> operator_(numbers)
                 [1, 2, 3, 4, 1, 2, 3, 4]
@@ -69,7 +79,7 @@ class Duplication(AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(count=2)
+                >>> operator_ = sequencetools.Duplication(counts=2)
                 >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
                 >>> operator_(pitch_classes)
                 PitchClassSegment([0, 1, 4, 7, 0, 1, 4, 7, 0, 1, 4, 7])
@@ -80,7 +90,7 @@ class Duplication(AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(count=1, period=3)
+                >>> operator_ = sequencetools.Duplication(counts=1, period=3)
                 >>> pitches = pitchtools.PitchSegment("c' d' e' f' g' a' b' c''")
                 >>> for pitch in operator_(pitches):
                 ...     pitch
@@ -102,46 +112,164 @@ class Duplication(AbjadValueObject):
                 NamedPitch("b'")
                 NamedPitch("c''")
 
+        ..  container:: example
+
+            **Example 4.** Duplicate indices.
+
+            ::
+
+                >>> operator_ = sequencetools.Duplication(
+                ...     counts=1,
+                ...     indices=(0, -1),
+                ...     )
+                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
+                >>> operator_(pitch_classes)
+                PitchClassSegment([0, 0, 1, 4, 7, 7])
+
+        ..  container:: example
+
+            **Example 5.** Duplicate indices periodically.
+
+            ::
+
+                >>> operator_ = sequencetools.Duplication(
+                ...     counts=1,
+                ...     indices=(0,),
+                ...     period=2,
+                ...     )
+                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7, 9])
+                >>> operator_(pitch_classes)
+                PitchClassSegment([0, 0, 1, 4, 4, 7, 9, 9])
+
+        ..  container:: example
+
+            **Example 6.** Duplicate indices periodically with different
+            counts.
+
+            ::
+
+                >>> operator_ = sequencetools.Duplication(
+                ...     counts=(1, 2),
+                ...     indices=(0,),
+                ...     period=2,
+                ...     )
+                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7, 9])
+                >>> operator_(pitch_classes)
+                PitchClassSegment([0, 0, 1, 4, 4, 4, 7, 9, 9])
+
+        ..  container:: example
+
+            **Example 7.** Cyclic counts.
+
+            ::
+
+                >>> operator_ = sequencetools.Duplication(counts=(0, 1, 2, 3))
+                >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7, 9])
+                >>> operator_(pitch_classes)
+                PitchClassSegment([0, 1, 1, 4, 4, 4, 7, 7, 7, 7, 9])
+                
         Returns new object with type equal to that of `expr`.
         '''
         from abjad.tools import datastructuretools
+        from abjad.tools import rhythmmakertools
         from abjad.tools import sequencetools
+
         if not isinstance(expr, collections.Sequence):
             expr = (expr,)
-        count = (self.count or 1) + 1
-        if not self.period:
-            return type(expr)(expr * count)
-        if isinstance(expr, datastructuretools.TypedCollection):
-            result = new(expr, items=())
+
+        counts = self.counts
+        if isinstance(counts, int):
+            counts = counts + 1
         else:
-            result = type(expr)()
-        for shard in sequencetools.partition_sequence_by_counts(
-            expr,
-            [self.period],
-            cyclic=True,
-            overhang=True,
-            ):
-            shard = type(expr)(shard) * count
-            result = result + shard
+            counts = [_ + 1 for _ in counts]
+
+        if not self.period and not self.indices:
+            if isinstance(counts, int):
+                return type(expr)(expr * counts)
+            else:
+                counts = datastructuretools.CyclicTuple(counts)
+                result = []
+                for i, x in enumerate(expr):
+                    count = counts[i]
+                    result.extend([x] * count)
+                if isinstance(expr, datastructuretools.TypedCollection):
+                    result = new(expr, items=result)
+                else:
+                    result = type(expr)(result)
+                return result
+
+        if isinstance(counts, int):
+            counts = [counts]
+        counts = datastructuretools.CyclicTuple(counts)
+
+        if not self.indices:
+            if isinstance(expr, datastructuretools.TypedCollection):
+                result = new(expr, items=())
+            else:
+                result = type(expr)()
+            iterator = sequencetools.partition_sequence_by_counts(
+                expr, [self.period], cyclic=True, overhang=True)
+            for i, shard in enumerate(iterator):
+                shard = type(expr)(shard) * counts[i]
+                result = result + shard
+            return result
+
+        pattern = rhythmmakertools.BooleanPattern(
+            indices=self.indices,
+            period=self.period,
+            )
+        result = []
+        length = len(expr)
+        j = 0
+        for i, x in enumerate(expr):
+            if pattern._matches_index(i, length):
+                count = counts[j]
+                result.extend([x] * count)
+                j += 1
+            else:
+                result.append(x)
+        if isinstance(expr, datastructuretools.TypedCollection):
+            result = new(expr, items=result)
+        else:
+            result = type(expr)(result)
         return result
 
     ### PUBLIC PROPERTIES ###
 
     @property
-    def count(self):
-        r'''Gets count of duplication.
+    def counts(self):
+        r'''Gets counts of duplication.
 
         ..  container:: example
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(count=1, period=3)
-                >>> operator_.count
+                >>> operator_ = sequencetools.Duplication(counts=1, period=3)
+                >>> operator_.counts
                 1
 
         Returns integer or none.
         '''
-        return self._count
+        return self._counts
+
+    @property
+    def indices(self):
+        r'''Gets indices of duplication.
+
+        ..  container:: example
+
+            ::
+
+                >>> operator_ = sequencetools.Duplication(
+                ...     counts=1,
+                ...     indices=(0, -1),
+                ...     )
+                >>> operator_.indices
+                (0, -1)
+
+        Returns integer or none.
+        '''
+        return self._indices
 
     @property
     def period(self):
@@ -151,7 +279,7 @@ class Duplication(AbjadValueObject):
 
             ::
 
-                >>> operator_ = sequencetools.Duplication(count=1, period=3)
+                >>> operator_ = sequencetools.Duplication(counts=1, period=3)
                 >>> operator_.period
                 3
 
