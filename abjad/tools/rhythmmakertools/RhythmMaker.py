@@ -22,7 +22,7 @@ class RhythmMaker(AbjadValueObject):
         '_beam_specifier',
         '_duration_spelling_specifier',
         '_output_masks',
-        '_seeds',
+        '_rotation',
         '_tie_specifier',
         '_tuplet_spelling_specifier',
         )
@@ -64,7 +64,7 @@ class RhythmMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls rhythm-maker.
 
         Makes music as a list of selections.
@@ -78,9 +78,9 @@ class RhythmMaker(AbjadValueObject):
         Returns list of selections.
         '''
         divisions = [durationtools.Division(x) for x in divisions]
-        seeds = self._to_tuple(seeds)
-        self._seeds = seeds
-        selections = self._make_music(divisions, seeds)
+        rotation = self._to_tuple(rotation)
+        self._rotation = rotation
+        selections = self._make_music(divisions, rotation)
         self._simplify_tuplets(selections)
         self._tie_across_divisions(selections)
         self._validate_selections(selections)
@@ -199,7 +199,7 @@ class RhythmMaker(AbjadValueObject):
                 beam = spannertools.MultipartBeam()
                 attach(beam, cell)
 
-    def _apply_output_masks(self, selections, seed):
+    def _apply_output_masks(self, selections, rotation):
         from abjad.tools import rhythmmakertools
         if not self.output_masks:
             return selections
@@ -214,7 +214,7 @@ class RhythmMaker(AbjadValueObject):
         output_masks = self.output_masks
         for i, selection in enumerate(selections):
             matching_output_mask = output_masks.get_matching_pattern(
-                i, length, seed=seed)
+                i, length, rotation=rotation)
             if not matching_output_mask:
                 new_selections.append(selection)
                 continue
@@ -270,7 +270,7 @@ class RhythmMaker(AbjadValueObject):
         return False
 
     @abc.abstractmethod
-    def _make_music(self, divisions, seeds):
+    def _make_music(self, divisions, rotation):
         pass
 
     def _make_secondary_divisions(
@@ -391,9 +391,9 @@ class RhythmMaker(AbjadValueObject):
             expr = tuple(expr)
         return expr
 
-    def _trivial_helper(self, talea, seeds):
-        if isinstance(seeds, int) and len(talea):
-            return sequencetools.rotate_sequence(talea, seeds)
+    def _trivial_helper(self, talea, rotation):
+        if isinstance(rotation, int) and len(talea):
+            return sequencetools.rotate_sequence(talea, rotation)
         return talea
 
     def _validate_selections(self, selections):

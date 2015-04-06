@@ -68,7 +68,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls even division rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -161,7 +161,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         return RhythmMaker.__call__(
             self,
             divisions,
-            seeds=seeds,
+            rotation=rotation,
             )
 
     ### PRIVATE PROPERTIES ###
@@ -201,7 +201,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _apply_burnish_specifier(self, selections, seed):
+    def _apply_burnish_specifier(self, selections, rotation):
         if self.burnish_specifier is None:
             return selections
         left_classes = self.burnish_specifier.left_classes
@@ -210,20 +210,20 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         left_counts = self.burnish_specifier.left_counts
         right_counts = self.burnish_specifier.right_counts
         left_classes = left_classes or ()
-        left_classes = sequencetools.rotate_sequence(left_classes, seed)
+        left_classes = sequencetools.rotate_sequence(left_classes, rotation)
         left_classes = datastructuretools.CyclicTuple(left_classes)
         if middle_classes == () or middle_classes is None:
             middle_classes = (0,)
-        middle_classes = sequencetools.rotate_sequence(middle_classes, seed)
+        middle_classes = sequencetools.rotate_sequence(middle_classes, rotation)
         middle_classes = datastructuretools.CyclicTuple(middle_classes)
         right_classes = right_classes or ()
-        right_classes = sequencetools.rotate_sequence(right_classes, seed)
+        right_classes = sequencetools.rotate_sequence(right_classes, rotation)
         right_classes = datastructuretools.CyclicTuple(right_classes)
         left_counts = left_counts or (0,)
-        left_counts = sequencetools.rotate_sequence(left_counts, seed)
+        left_counts = sequencetools.rotate_sequence(left_counts, rotation)
         left_counts = datastructuretools.CyclicTuple(left_counts)
         right_counts = right_counts or (0,)
-        right_counts = sequencetools.rotate_sequence(right_counts, seed)
+        right_counts = sequencetools.rotate_sequence(right_counts, rotation)
         right_counts = datastructuretools.CyclicTuple(right_counts)
         if self.burnish_specifier.outer_divisions_only:
             procedure = self._burnish_outer_selections
@@ -384,10 +384,10 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         assert inspect_(tuplet).get_duration() == original_duration
         return selections
 
-    def _make_music(self, divisions, seeds):
-        #assert not seeds, repr(seeds)
-        if seeds is None:
-            seeds = 0
+    def _make_music(self, divisions, rotation):
+        #assert not rotation, repr(rotation)
+        if rotation is None:
+            rotation = 0
         selections = []
         divisions = [durationtools.Division(_) for _ in divisions]
         denominators = datastructuretools.CyclicTuple(self.denominators)
@@ -395,7 +395,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         extra_counts_per_division = datastructuretools.CyclicTuple(
             extra_counts_per_division
             )
-        for i, division in enumerate(divisions, seeds):
+        for i, division in enumerate(divisions, rotation):
             # not yet extended to work with non-power-of-two divisions
             assert mathtools.is_positive_integer_power_of_two(
                 division.denominator), repr(division)
@@ -433,9 +433,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 tuplet.preferred_denominator = preferred_denominator
             selection = selectiontools.Selection(tuplet)
             selections.append(selection)
-        selections = self._apply_burnish_specifier(selections, seeds)
+        selections = self._apply_burnish_specifier(selections, rotation)
         self._apply_beam_specifier(selections)
-        selections = self._apply_output_masks(selections, seeds)
+        selections = self._apply_output_masks(selections, rotation)
         return selections
 
     ### PUBLIC PROPERTIES ###

@@ -126,7 +126,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls incised rhythm-maker on `divisions`.
 
         Returns list of selections.
@@ -134,7 +134,7 @@ class IncisedRhythmMaker(RhythmMaker):
         return RhythmMaker.__call__(
             self,
             divisions,
-            seeds=seeds,
+            rotation=rotation,
             )
 
     ### PRIVATE METHODS ###
@@ -209,9 +209,9 @@ class IncisedRhythmMaker(RhythmMaker):
                 message = 'must incise divisions or output.'
                 raise Exception(message)
 
-    def _make_music(self, divisions, seeds):
+    def _make_music(self, divisions, rotation):
         from abjad.tools import rhythmmakertools
-        input_ = self._prepare_input(seeds)
+        input_ = self._prepare_input(rotation)
         prefix_talea = input_[0]
         prefix_counts = input_[1]
         suffix_talea = input_[2]
@@ -287,7 +287,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 beam = spannertools.MultipartBeam()
                 attach(beam, x)
         selections = [selectiontools.Selection(x) for x in result]
-        selections = self._apply_output_masks(selections, seeds)
+        selections = self._apply_output_masks(selections, rotation)
         return selections
 
     def _make_numeric_map_part(
@@ -400,7 +400,7 @@ class IncisedRhythmMaker(RhythmMaker):
             selections.append(selection)
         return selections
 
-    def _prepare_input(self, seeds):
+    def _prepare_input(self, rotation):
         from abjad.tools import rhythmmakertools
         helper_functions = self.helper_functions or {}
         incise_specifier = self.incise_specifier
@@ -409,31 +409,31 @@ class IncisedRhythmMaker(RhythmMaker):
         prefix_talea = incise_specifier.prefix_talea or ()
         helper = helper_functions.get('prefix_talea')
         helper = self._none_to_trivial_helper(helper)
-        prefix_talea = helper(prefix_talea, seeds)
+        prefix_talea = helper(prefix_talea, rotation)
         prefix_talea = datastructuretools.CyclicTuple(prefix_talea)
 
         prefix_counts = incise_specifier.prefix_counts or (0,)
         helper = helper_functions.get('prefix_counts')
         helper = self._none_to_trivial_helper(helper)
-        prefix_counts = helper(prefix_counts, seeds)
+        prefix_counts = helper(prefix_counts, rotation)
         prefix_counts = datastructuretools.CyclicTuple(prefix_counts)
 
         suffix_talea = incise_specifier.suffix_talea or ()
         helper = helper_functions.get('suffix_talea')
         helper = self._none_to_trivial_helper(helper)
-        suffix_talea = helper(suffix_talea, seeds)
+        suffix_talea = helper(suffix_talea, rotation)
         suffix_talea = datastructuretools.CyclicTuple(suffix_talea)
 
         suffix_counts = incise_specifier.suffix_counts or (0,)
         helper = helper_functions.get('suffix_counts')
         helper = self._none_to_trivial_helper(helper)
-        suffix_counts = helper(suffix_counts, seeds)
+        suffix_counts = helper(suffix_counts, rotation)
         suffix_counts = datastructuretools.CyclicTuple(suffix_counts)
 
         extra_counts_per_division = self.extra_counts_per_division or ()
         helper = helper_functions.get('extra_counts_per_division')
         helper = self._none_to_trivial_helper(helper)
-        extra_counts_per_division = helper(extra_counts_per_division, seeds)
+        extra_counts_per_division = helper(extra_counts_per_division, rotation)
         if extra_counts_per_division:
             extra_counts_per_division = datastructuretools.CyclicTuple(
                 extra_counts_per_division)
@@ -443,7 +443,7 @@ class IncisedRhythmMaker(RhythmMaker):
         split_divisions_by_counts = self.split_divisions_by_counts or ()
         helper = helper_functions.get('split_divisions_by_counts')
         helper = self._none_to_trivial_helper(helper)
-        split_divisions_by_counts = helper(split_divisions_by_counts, seeds)
+        split_divisions_by_counts = helper(split_divisions_by_counts, rotation)
         split_divisions_by_counts = datastructuretools.CyclicTuple(
             split_divisions_by_counts)
 

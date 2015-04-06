@@ -59,7 +59,7 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls skip rhythm-maker on `divisions`.
 
         Returns list of selections.
@@ -67,7 +67,7 @@ class SkipRhythmMaker(RhythmMaker):
         return RhythmMaker.__call__(
             self,
             divisions,
-            seeds=seeds,
+            rotation=rotation,
             )
 
     def __format__(self, format_specification=''):
@@ -89,7 +89,7 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, divisions, seeds):
+    def _make_music(self, divisions, rotation):
         result = []
         for division in divisions:
             assert isinstance(division, durationtools.Division), repr(division)

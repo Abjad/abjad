@@ -489,17 +489,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls interpolated rhythm-maker on `divisions`.
 
-        Ignores `seeds`.
+        Ignores `rotation`.
 
         Returns list of selections.
         '''
         return RhythmMaker.__call__(
             self,
             divisions,
-            seeds=seeds,
+            rotation=rotation,
             )
 
     ### PRIVATE METHODS ###
@@ -761,13 +761,13 @@ class AccelerandoRhythmMaker(RhythmMaker):
         selection = selectiontools.Selection([tuplet])
         return selection
 
-    def _make_music(self, divisions, seeds):
+    def _make_music(self, divisions, rotation):
         selections = []
         for i, division in enumerate(divisions):
             accelerando = self._make_accelerando(division)
             selections.append(accelerando)
         self._apply_beam_specifier(selections)
-        selections = self._apply_output_masks(selections, seeds)
+        selections = self._apply_output_masks(selections, rotation)
         return selections
 
     ### PUBLIC PROPERTIES ###

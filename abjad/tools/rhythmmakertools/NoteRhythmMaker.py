@@ -86,7 +86,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls note rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -108,7 +108,7 @@ class NoteRhythmMaker(RhythmMaker):
         return RhythmMaker.__call__(
             self,
             divisions,
-            seeds=seeds,
+            rotation=rotation,
             )
 
     def __eq__(self, arg):
@@ -276,7 +276,7 @@ class NoteRhythmMaker(RhythmMaker):
         new_selection = selectiontools.Selection(new_selection)
         return new_selection
 
-    def _make_music(self, divisions, seeds):
+    def _make_music(self, divisions, rotation):
         from abjad.tools import rhythmmakertools
         selections = []
         duration_specifier = self.duration_spelling_specifier
@@ -306,7 +306,7 @@ class NoteRhythmMaker(RhythmMaker):
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections)
         self._apply_beam_specifier(selections)
-        selections = self._apply_output_masks(selections, seeds)
+        selections = self._apply_output_masks(selections, rotation)
         return selections
 
     ### PUBLIC PROPERTIES ###

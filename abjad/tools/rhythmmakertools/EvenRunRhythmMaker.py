@@ -105,7 +105,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls even-run rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -127,7 +127,7 @@ class EvenRunRhythmMaker(RhythmMaker):
         return RhythmMaker.__call__(
             self,
             divisions,
-            seeds=seeds,
+            rotation=rotation,
             )
 
     def __format__(self, format_specification=''):
@@ -181,7 +181,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             result = scoretools.Tuplet(multiplier, notes)
         return result
 
-    def _make_music(self, divisions, seeds):
+    def _make_music(self, divisions, rotation):
         from abjad.tools import rhythmmakertools
         selections = []
         for division in divisions:

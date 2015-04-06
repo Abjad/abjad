@@ -89,11 +89,11 @@ class TaleaRhythmMaker(RhythmMaker):
     # voice 2 starts reading talea at second event of talea;
     # voice 3 starts reading talea at third event of talea;
     # voice 4 starts reading talea at fourth event of talea.
-    def helper(talea, seeds):
-        assert len(seeds) == 2
+    def helper(talea, rotation):
+        assert len(rotation) == 2
         if not talea:
             return talea
-        voice_index, measure_index = seeds
+        voice_index, measure_index = rotation
         talea = sequencetools.rotate_sequence(talea, -voice_index)
         return talea
 
@@ -102,11 +102,11 @@ class TaleaRhythmMaker(RhythmMaker):
     # voice 2 starts reading talea 1/4 of way through talea;
     # voice 3 starts reading talea 2/4 of way through talea;
     # voice 4 starts reading talea 3/4 of way through talea.
-    def quarter_rotation_helper(talea, seeds):
-        assert len(seeds) == 2
+    def quarter_rotation_helper(talea, rotation):
+        assert len(rotation) == 2
         if not talea:
             return talea
-        voice_index, measure_index = seeds
+        voice_index, measure_index = rotation
         index_of_rotation = -voice_index * (len(talea) // 4)
         index_of_rotation += -4 * measure_index
         talea = sequencetools.rotate_sequence(talea, index_of_rotation)
@@ -213,7 +213,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls talea rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -244,7 +244,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return RhythmMaker.__call__(
             self,
             divisions,
-            seeds=seeds,
+            rotation=rotation,
             )
 
     def __format__(self, format_specification=''):
@@ -680,7 +680,7 @@ class TaleaRhythmMaker(RhythmMaker):
             leaf_lists.append(leaf_list)
         return leaf_lists
 
-    def _make_music(self, divisions, seeds):
+    def _make_music(self, divisions, rotation):
         octuplet = self._prepare_input()
         talea = octuplet[0]
         extra_counts_per_division = octuplet[1]
@@ -729,7 +729,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         rest = scoretools.Rest(note)
                         mutate(note).replace(rest)
                     detach(spannertools.Tie, logical_tie.head)
-        selections = self._apply_output_masks(selections, seeds)
+        selections = self._apply_output_masks(selections, rotation)
         return selections
 
     def _make_numeric_map(self, divisions, talea, extra_counts_per_division):
@@ -776,7 +776,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return prolated_divisions
 
     def _prepare_input(self):
-        seeds = self._seeds
+        rotation = self._rotation
         helper_functions = self.helper_functions or {}
         if self.talea is not None:
             talea = self.talea.counts or ()
@@ -784,14 +784,14 @@ class TaleaRhythmMaker(RhythmMaker):
             talea = ()
         talea_helper = self._none_to_trivial_helper(
             helper_functions.get('talea'))
-        talea = talea_helper(talea, seeds)
+        talea = talea_helper(talea, rotation)
         talea = datastructuretools.CyclicTuple(talea)
 
         extra_counts_per_division = self.extra_counts_per_division or ()
         prolation_addenda_helper = self._none_to_trivial_helper(
             helper_functions.get('extra_counts_per_division'))
         extra_counts_per_division = prolation_addenda_helper(
-            extra_counts_per_division, seeds)
+            extra_counts_per_division, rotation)
         extra_counts_per_division = datastructuretools.CyclicTuple(
             extra_counts_per_division)
 
@@ -812,39 +812,39 @@ class TaleaRhythmMaker(RhythmMaker):
         left_classes = left_classes or ()
         lefts_helper = self._none_to_trivial_helper(
             helper_functions.get('left_classes'))
-        left_classes = lefts_helper(left_classes, seeds)
+        left_classes = lefts_helper(left_classes, rotation)
         left_classes = datastructuretools.CyclicTuple(left_classes)
 
         if middle_classes == () or middle_classes is None:
             middle_classes = (0,)
         middles_helper = self._none_to_trivial_helper(
             helper_functions.get('middle_classes'))
-        middle_classes = middles_helper(middle_classes, seeds)
+        middle_classes = middles_helper(middle_classes, rotation)
         middle_classes = datastructuretools.CyclicTuple(middle_classes)
 
         right_classes = right_classes or ()
         rights_helper = self._none_to_trivial_helper(
             helper_functions.get('right_classes'))
-        right_classes = rights_helper(right_classes, seeds)
+        right_classes = rights_helper(right_classes, rotation)
         right_classes = datastructuretools.CyclicTuple(right_classes)
 
         left_counts = left_counts or (0,)
         left_lengths_helper = self._none_to_trivial_helper(
             helper_functions.get('left_counts'))
-        left_counts = left_lengths_helper(left_counts, seeds)
+        left_counts = left_lengths_helper(left_counts, rotation)
         left_counts = datastructuretools.CyclicTuple(left_counts)
 
         right_counts = right_counts or (0,)
         right_lengths_helper = self._none_to_trivial_helper(
             helper_functions.get('right_counts'))
-        right_counts = right_lengths_helper(right_counts, seeds)
+        right_counts = right_lengths_helper(right_counts, rotation)
         right_counts = datastructuretools.CyclicTuple(right_counts)
 
         split_divisions_by_counts = self.split_divisions_by_counts or ()
         secondary_divisions_helper = self._none_to_trivial_helper(
             helper_functions.get('split_divisions_by_counts'))
         split_divisions_by_counts = secondary_divisions_helper(
-            split_divisions_by_counts, seeds)
+            split_divisions_by_counts, rotation)
         split_divisions_by_counts = datastructuretools.CyclicTuple(
             split_divisions_by_counts)
 

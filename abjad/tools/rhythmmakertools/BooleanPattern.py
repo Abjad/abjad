@@ -212,7 +212,7 @@ class BooleanPattern(AbjadValueObject):
             indices=indices,
             )
 
-    def matches_index(self, index, total_length, seed=None):
+    def matches_index(self, index, total_length, rotation=None):
         r'''Is true when pattern matches `index` taken under `total_length`.
         Otherwise false.
 
@@ -269,7 +269,7 @@ class BooleanPattern(AbjadValueObject):
                 ...     match = pattern.matches_index(
                 ...         index,
                 ...         total_length,
-                ...         seed=1,
+                ...         rotation=1,
                 ...         )
                 ...     match = match or ''
                 ...     print(index, match)
@@ -307,7 +307,7 @@ class BooleanPattern(AbjadValueObject):
                 ...     match = pattern.matches_index(
                 ...         index,
                 ...         total_length,
-                ...         seed=2,
+                ...         rotation=2,
                 ...         )
                 ...     match = match or ''
                 ...     print(index, match)
@@ -381,7 +381,7 @@ class BooleanPattern(AbjadValueObject):
                 ...     match = pattern.matches_index(
                 ...         index,
                 ...         total_length,
-                ...         seed=1,
+                ...         rotation=1,
                 ...         )
                 ...     match = match or ''
                 ...     print(index, match)
@@ -419,7 +419,7 @@ class BooleanPattern(AbjadValueObject):
                 ...     match = pattern.matches_index(
                 ...         index,
                 ...         total_length,
-                ...         seed=2,
+                ...         rotation=2,
                 ...         )
                 ...     match = match or ''
                 ...     print(index, match)
@@ -455,8 +455,8 @@ class BooleanPattern(AbjadValueObject):
                 if index == nonnegative_index and index < total_length:
                     return True ^ invert
         else:
-            if seed is not None:
-                nonnegative_index += seed
+            if rotation is not None:
+                nonnegative_index += rotation
             nonnegative_index = nonnegative_index % self.period
             for index in self.indices:
                 if index < 0:

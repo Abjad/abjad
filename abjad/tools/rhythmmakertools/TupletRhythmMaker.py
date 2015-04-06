@@ -166,7 +166,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, seeds=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls tuplet rhythm-maker on `divisions`.
 
         ..  container:: example
@@ -187,7 +187,7 @@ class TupletRhythmMaker(RhythmMaker):
         return RhythmMaker.__call__(
             self,
             divisions,
-            seeds=seeds,
+            rotation=rotation,
             )
 
     def __format__(self, format_specification=''):
@@ -213,15 +213,15 @@ class TupletRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, divisions, seeds):
+    def _make_music(self, divisions, rotation):
         from abjad.tools import rhythmmakertools
         tuplets = []
         for division in divisions:
             assert isinstance(division, durationtools.Division), repr(division)
-        if not isinstance(seeds, int):
-            seeds = 0
+        if not isinstance(rotation, int):
+            rotation = 0
         tuplet_ratios = datastructuretools.CyclicTuple(
-            sequencetools.rotate_sequence(self.tuplet_ratios, seeds)
+            sequencetools.rotate_sequence(self.tuplet_ratios, rotation)
             )
         tuplet_spelling_specifier = self.tuplet_spelling_specifier
         if tuplet_spelling_specifier is None:
@@ -255,7 +255,7 @@ class TupletRhythmMaker(RhythmMaker):
             tuplets.append(tuplet)
         selections = [selectiontools.Selection(x) for x in tuplets]
         self._apply_beam_specifier(selections)
-        selections = self._apply_output_masks(selections, seeds)
+        selections = self._apply_output_masks(selections, rotation)
         return selections
 
     def _make_tuplet(

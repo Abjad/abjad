@@ -84,7 +84,7 @@ class BooleanPatternInventory(TypedTuple):
 
     ### PUBLIC METHODS ###
 
-    def get_matching_pattern(self, index, total_length, seed=None):
+    def get_matching_pattern(self, index, total_length, rotation=None):
         r'''Gets pattern matching `index`.
 
         ..  container:: example
@@ -148,12 +148,12 @@ class BooleanPatternInventory(TypedTuple):
         ..  container:: example
 
             **Example 2a.** Gets patterns that match the first ten indices,
-            with seed set to ``1``:
+            with rotation set to ``1``:
 
             ::
 
                 >>> for i in range(10):
-                ...     match = inventory.get_matching_pattern(i, 10, seed=1)
+                ...     match = inventory.get_matching_pattern(i, 10, rotation=1)
                 ...     print(i, match)
                 ...
                 0 BooleanPattern(indices=(1,), period=2)
@@ -169,13 +169,13 @@ class BooleanPatternInventory(TypedTuple):
 
             Matching indices of first pattern offset by ``1``.
 
-            **Example 1b.** Gets patterns that match next ten indices with seed
+            **Example 1b.** Gets patterns that match next ten indices with rotation
             set to ``1``:
 
             ::
 
                 >>> for i in range(10, 20):
-                ...     match = inventory.get_matching_pattern(i, 10, seed=1)
+                ...     match = inventory.get_matching_pattern(i, 10, rotation=1)
                 ...     print(i, match)
                 ...
                 10 BooleanPattern(indices=(1,), period=2)
@@ -194,10 +194,10 @@ class BooleanPatternInventory(TypedTuple):
         Returns pattern or none.
         '''
         for pattern in reversed(self):
-            if pattern.matches_index(index, total_length, seed=seed):
+            if pattern.matches_index(index, total_length, rotation=rotation):
                 return pattern
 
-    def get_matching_payload(self, index, total_length, seed=None):
+    def get_matching_payload(self, index, total_length, rotation=None):
         r'''Gets payload attached to pattern matching `index`.
 
         ..  container:: example
@@ -263,7 +263,7 @@ class BooleanPatternInventory(TypedTuple):
                 14 EvenDivisionRhythmMaker(denominators=(8,))
 
         '''
-        pattern = self.get_matching_pattern(index, total_length, seed=seed)
+        pattern = self.get_matching_pattern(index, total_length, rotation=rotation)
         payload = None
         if pattern:
             payload = pattern.payload
