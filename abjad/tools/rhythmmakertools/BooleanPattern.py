@@ -84,6 +84,7 @@ class BooleanPattern(AbjadValueObject):
     __slots__ = (
         '_indices',
         '_invert',
+        '_payload',
         '_period',
         '_start',
         '_stop',
@@ -95,6 +96,7 @@ class BooleanPattern(AbjadValueObject):
         self,
         indices=None,
         invert=None,
+        payload=None,
         period=None,
         start=None,
         stop=None,
@@ -108,6 +110,7 @@ class BooleanPattern(AbjadValueObject):
         self._invert = invert
         if period is not None:
             assert mathtools.is_positive_integer(period), repr(period)
+        self._payload = payload
         self._period = period
         if start is not None:
             start = int(start)
@@ -624,6 +627,53 @@ class BooleanPattern(AbjadValueObject):
         Returns boolean or none.
         '''
         return self._invert
+
+    @property
+    def payload(self):
+        r'''Gets payload of pattern.
+
+        ..  container:: example
+
+            **Example 1.** Pattern with rhythm-maker payload assigned to three
+            of every eight indices:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     payload=maker,
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> total_length = 10
+                >>> for index in range(10):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     if match:
+                ...         payload = pattern.payload
+                ...     else:
+                ...         payload = ''
+                ...     print(index, payload)
+                0 NoteRhythmMaker()
+                1 NoteRhythmMaker()
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 NoteRhythmMaker()
+                8 NoteRhythmMaker()
+                9 NoteRhythmMaker()
+
+        Defaults to none.
+
+        Set to any object.
+
+        Returns arbitrary object.
+        '''
+        return self._payload
 
     @property
     def period(self):
