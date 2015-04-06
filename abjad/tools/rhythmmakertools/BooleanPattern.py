@@ -458,11 +458,11 @@ class BooleanPattern(AbjadValueObject):
         if self.start is not None or self.stop is not None:
             start, stop, _ = slice(self.start, self.stop).indices(total_length)
             if stop <= start:
-                return False
+                return False ^ invert
             if self.start is not None and nonnegative_index < start:
-                return False
+                return False ^ invert
             if self.stop is not None and stop <= nonnegative_index:
-                return False
+                return False ^ invert
             nonnegative_index -= start
         if self.period is None:
             for index in self.indices:
@@ -1006,11 +1006,9 @@ class BooleanPattern(AbjadValueObject):
                 ...     print(index, match)
                 0 
                 1 
-                2 
-                3 
-                4 
-
-            .. todo:: This is wrong because output is not inverted correctly.
+                2  True
+                3  True
+                4  True
 
             ::
 
@@ -1026,11 +1024,9 @@ class BooleanPattern(AbjadValueObject):
                 4 
                 5 
                 6 
-                7 
-                8 
-                9 
-
-            .. todo:: This is wrong because output is not inverted correctly.
+                7  True
+                8  True
+                9  True
 
         Defaults to none.
 
