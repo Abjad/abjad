@@ -43,7 +43,7 @@ class Duplication(AbjadValueObject):
             if isinstance(counts, collections.Sequence):
                 assert len(counts)
                 counts = tuple(int(_) for _ in counts)
-                assert all(0 <= counts for _ in counts)
+                assert all(0 <= _ for _ in counts)
             else:
                 counts = int(counts)
                 assert 0 <= counts
