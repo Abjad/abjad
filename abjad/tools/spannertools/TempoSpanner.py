@@ -10,7 +10,6 @@ from abjad.tools.topleveltools import new
 class TempoSpanner(Spanner):
     r'''Tempo spanner.
 
-
     ..  container:: example
 
         **Example 1.** With tempo indicators only:
@@ -1450,7 +1449,6 @@ class TempoSpanner(Spanner):
                                                                 \override TupletBracket #'padding = #1.25
                                                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                                                fontSize = #0
                                                                 tupletFullLength = ##t
                                                             } {
                                                                 c4.
@@ -1481,7 +1479,6 @@ class TempoSpanner(Spanner):
                                                                 \override TupletBracket #'padding = #1.25
                                                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                                                fontSize = #0
                                                                 tupletFullLength = ##t
                                                             } {
                                                                 c4
@@ -1619,7 +1616,6 @@ class TempoSpanner(Spanner):
                                                                 \override TupletBracket #'padding = #1.25
                                                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                                                fontSize = #0
                                                                 tupletFullLength = ##t
                                                             } {
                                                                 c4.
@@ -1650,7 +1646,6 @@ class TempoSpanner(Spanner):
                                                                 \override TupletBracket #'padding = #1.25
                                                                 \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                                                 \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                                                fontSize = #0
                                                                 tupletFullLength = ##t
                                                             } {
                                                                 c4
@@ -1739,18 +1734,10 @@ class TempoSpanner(Spanner):
             return tempo._to_markup()
         tempo_markup = tempo._to_markup()
         tempo_markup = tempo_markup + tempo_markup.hspace(0.5)
-        modulation_markup = metric_modulation._get_markup(font_size=0)
+        modulation_markup = metric_modulation._get_markup()
         modulation_markup = modulation_markup.line()
         modulation_markup = modulation_markup.parenthesize()
         modulation_markup = modulation_markup.override(('padding', 0.5))
-        #
-        #
-        #
-        #
-        #modulation_markup = modulation_markup.override(('thickness', 0.75))
-        #pair = (0.75, 0.75)
-        #modulation_markup = modulation_markup.scale(pair)
-        #modulation_markup = modulation_markup.raise_(0.35)
         modulation_markup = modulation_markup.general_align('Y', Down)
         #markup = tempo_markup.line(modulation_markup)
         markup = tempo_markup + modulation_markup

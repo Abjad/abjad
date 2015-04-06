@@ -13,7 +13,6 @@ from abjad.tools.topleveltools.set_ import set_
 class MetricModulation(AbjadObject):
     r'''A metric modulation.
 
-
     ..  container:: example
 
         **Example 1.** With notes:
@@ -50,7 +49,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     c'4
@@ -81,7 +79,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     c'4.
@@ -130,7 +127,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     \tweak #'edge-height #'(0.7 . 0)
@@ -164,7 +160,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     c'4
@@ -213,7 +208,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     c16.
@@ -244,7 +238,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     \tweak #'edge-height #'(0.7 . 0)
@@ -297,7 +290,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     c'4
@@ -328,7 +320,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     c'4 ~
@@ -380,7 +371,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     c'4
@@ -411,7 +401,6 @@ class MetricModulation(AbjadObject):
                                     \override TupletBracket #'padding = #1.25
                                     \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                     \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #0
                                     tupletFullLength = ##t
                                 } {
                                     \tweak #'edge-height #'(0.7 . 0)
@@ -480,7 +469,6 @@ class MetricModulation(AbjadObject):
                                             \override TupletBracket #'padding = #1.25
                                             \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                             \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                            fontSize = #0
                                             tupletFullLength = ##t
                                         } {
                                             c4
@@ -511,7 +499,6 @@ class MetricModulation(AbjadObject):
                                             \override TupletBracket #'padding = #1.25
                                             \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                             \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                            fontSize = #0
                                             tupletFullLength = ##t
                                         } {
                                             c8.
@@ -714,7 +701,6 @@ class MetricModulation(AbjadObject):
                                         \override TupletBracket #'padding = #1.25
                                         \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                        fontSize = #0
                                         tupletFullLength = ##t
                                     } {
                                         \tweak #'edge-height #'(0.7 . 0)
@@ -748,7 +734,6 @@ class MetricModulation(AbjadObject):
                                         \override TupletBracket #'padding = #1.25
                                         \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                        fontSize = #0
                                         tupletFullLength = ##t
                                     } {
                                         c'4.
@@ -803,7 +788,6 @@ class MetricModulation(AbjadObject):
                                         \override TupletBracket #'padding = #1.25
                                         \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                        fontSize = #0
                                         tupletFullLength = ##t
                                     } {
                                         \tweak #'edge-height #'(0.7 . 0)
@@ -837,7 +821,6 @@ class MetricModulation(AbjadObject):
                                         \override TupletBracket #'padding = #1.25
                                         \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
                                         \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                        fontSize = #0
                                         tupletFullLength = ##t
                                     } {
                                         c'4
@@ -893,13 +876,10 @@ class MetricModulation(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_left_markup(self, font_size=-3):
+    def _get_left_markup(self):
         if self.left_markup is not None:
             return self.left_markup
-        markup = durationtools.Duration._to_score_markup(
-            self.left_rhythm,
-            font_size=font_size,
-            )
+        markup = durationtools.Duration._to_score_markup(self.left_rhythm)
         return markup
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -911,36 +891,29 @@ class MetricModulation(AbjadObject):
         lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
 
-    # TODO: change to self._get_markup(self, scale=(1.0, 1.0))
-    def _get_markup(self, font_size=-3):
+    def _get_markup(self):
         pair = (0.5, 0.5)
-        left_markup = self._get_left_markup(font_size=0)
+        left_markup = self._get_left_markup()
         left_markup = left_markup.scale(pair)
         equal = markuptools.Markup('=')
         right_space = markuptools.Markup.hspace(-0.5)
-        right_markup = self._get_right_markup(font_size=0)
+        right_markup = self._get_right_markup()
         right_markup = right_markup.scale(pair)
         markup = left_markup + equal + right_space + right_markup
         return markup
 
-    #
-    def _get_right_markup(self, font_size=-3):
+    def _get_right_markup(self):
         if self.right_markup is not None:
             return self.right_markup
-        markup = durationtools.Duration._to_score_markup(
-            self.right_rhythm,
-            font_size=font_size,
-            )
+        markup = durationtools.Duration._to_score_markup(self.right_rhythm)
         return markup
 
     def _initialize_rhythm(self, rhythm):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         if isinstance(rhythm, scoretools.Component):
-            #rhythm = copy.copy(rhythm)
             selection = selectiontools.Selection([rhythm])
         elif isinstance(rhythm, selectiontools.Selection):
-            #selection = copy.copy(rhythm)
             selection = rhythm
         else:
             message = 'rhythm must be duration, component or selection: {!r}.'
