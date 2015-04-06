@@ -225,7 +225,7 @@ class BooleanPattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that matches three indices out of every 
+            **Example 1a.** Pattern that matches three indices out of every 
             eight:
 
             ::
@@ -259,9 +259,85 @@ class BooleanPattern(AbjadValueObject):
                 14 
                 15 True
 
+            **Example 1b.** Pattern that matches three indices out of every 
+            eight, offset ``1`` to the left:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(
+                ...         index,
+                ...         total_length,
+                ...         seed=1,
+                ...         )
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 
+                2 
+                3 
+                4 
+                5 
+                6 True
+                7 True
+                8 True
+                9 
+                10 
+                11 
+                12 
+                13 
+                14 True
+                15 True
+
+            **Example 1c.** Pattern that matches three indices out of every 
+            eight, offset ``2`` to the left:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(
+                ...         index,
+                ...         total_length,
+                ...         seed=2,
+                ...         )
+                ...     match = match or ''
+                ...     print(index, match)
+                0 
+                1 
+                2 
+                3 
+                4 
+                5 True
+                6 True
+                7 True
+                8 
+                9 
+                10 
+                11 
+                12 
+                13 True
+                14 True
+                15 True
+
         ..  container:: example
 
-            **Example 2.** Pattern that matches three indices out of every
+            **Example 2a.** Pattern that matches three indices out of every
             sixteen:
 
             ::
@@ -294,6 +370,82 @@ class BooleanPattern(AbjadValueObject):
                 13 
                 14 
                 15
+
+            **Example 2b.** Pattern that matches three indices out of every
+            sixteen, offset ``1`` to the left:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=16,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(
+                ...         index,
+                ...         total_length,
+                ...         seed=1,
+                ...         )
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 
+                2 
+                3 
+                4 
+                5 
+                6 True
+                7 
+                8 
+                9 
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+            **Example 2c.** Pattern that matches three indices out of every
+            sixteen, offset ``2`` to the left:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=16,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(
+                ...         index,
+                ...         total_length,
+                ...         seed=2,
+                ...         )
+                ...     match = match or ''
+                ...     print(index, match)
+                0 
+                1 
+                2 
+                3 
+                4 
+                5 True
+                6 
+                7 
+                8 
+                9 
+                10 
+                11 
+                12 
+                13 
+                14 True
+                15 True
 
         Returns true or false.
         '''
