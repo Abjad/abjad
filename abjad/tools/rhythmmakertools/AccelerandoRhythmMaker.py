@@ -46,49 +46,57 @@ class AccelerandoRhythmMaker(RhythmMaker):
         ..  doctest::
 
             >>> staff = maker._get_rhythmic_staff(lilypond_file)
-            >>> f(staff)
+            >>> print(format(staff))
             \new RhythmicStaff {
                 {
                     \time 5/8
-                    \once \override Beam #'grow-direction = #right
-                    c'16 * 61/32 [
-                    c'16 * 115/64
-                    c'16 * 49/32
-                    c'16 * 5/4
-                    c'16 * 33/32
-                    c'16 * 57/64
-                    c'16 * 13/16
-                    c'16 * 25/32 ]
+                    {
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
                 }
                 {
                     \time 3/8
-                    \once \override Beam #'grow-direction = #right
-                    c'16 * 117/64 [
-                    c'16 * 99/64
-                    c'16 * 69/64
-                    c'16 * 13/16
-                    c'16 * 47/64 ]
+                    {
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
                 }
                 {
                     \time 5/8
-                    \once \override Beam #'grow-direction = #right
-                    c'16 * 61/32 [
-                    c'16 * 115/64
-                    c'16 * 49/32
-                    c'16 * 5/4
-                    c'16 * 33/32
-                    c'16 * 57/64
-                    c'16 * 13/16
-                    c'16 * 25/32 ]
+                    {
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 61/32 [
+                        c'16 * 115/64
+                        c'16 * 49/32
+                        c'16 * 5/4
+                        c'16 * 33/32
+                        c'16 * 57/64
+                        c'16 * 13/16
+                        c'16 * 25/32 ]
+                    }
                 }
                 {
                     \time 3/8
-                    \once \override Beam #'grow-direction = #right
-                    c'16 * 117/64 [
-                    c'16 * 99/64
-                    c'16 * 69/64
-                    c'16 * 13/16
-                    c'16 * 47/64 ]
+                    {
+                        \once \override Beam #'grow-direction = #right
+                        c'16 * 117/64 [
+                        c'16 * 99/64
+                        c'16 * 69/64
+                        c'16 * 13/16
+                        c'16 * 47/64 ]
+                    }
                 }
             }
 
@@ -120,53 +128,61 @@ class AccelerandoRhythmMaker(RhythmMaker):
         ..  doctest::
 
             >>> staff = maker._get_rhythmic_staff(lilypond_file)
-            >>> f(staff)
+            >>> print(format(staff))
             \new RhythmicStaff {
                 {
                     \time 5/8
-                    \once \override Beam #'grow-direction = #left
-                    c'16 * 45/64 [
-                    c'16 * 23/32
-                    c'16 * 25/32
-                    c'16 * 55/64
-                    c'16 * 1
-                    c'16 * 75/64
-                    c'16 * 89/64
-                    c'16 * 103/64
-                    c'16 * 113/64 ]
+                    {
+                        \once \override Beam #'grow-direction = #left
+                        c'16 * 45/64 [
+                        c'16 * 23/32
+                        c'16 * 25/32
+                        c'16 * 55/64
+                        c'16 * 1
+                        c'16 * 75/64
+                        c'16 * 89/64
+                        c'16 * 103/64
+                        c'16 * 113/64 ]
+                    }
                 }
                 {
                     \time 3/8
-                    \once \override Beam #'grow-direction = #left
-                    c'16 * 5/8 [
-                    c'16 * 43/64
-                    c'16 * 51/64
-                    c'16 * 65/64
-                    c'16 * 85/64
-                    c'16 * 25/16 ]
+                    {
+                        \once \override Beam #'grow-direction = #left
+                        c'16 * 5/8 [
+                        c'16 * 43/64
+                        c'16 * 51/64
+                        c'16 * 65/64
+                        c'16 * 85/64
+                        c'16 * 25/16 ]
+                    }
                 }
                 {
                     \time 5/8
-                    \once \override Beam #'grow-direction = #left
-                    c'16 * 45/64 [
-                    c'16 * 23/32
-                    c'16 * 25/32
-                    c'16 * 55/64
-                    c'16 * 1
-                    c'16 * 75/64
-                    c'16 * 89/64
-                    c'16 * 103/64
-                    c'16 * 113/64 ]
+                    {
+                        \once \override Beam #'grow-direction = #left
+                        c'16 * 45/64 [
+                        c'16 * 23/32
+                        c'16 * 25/32
+                        c'16 * 55/64
+                        c'16 * 1
+                        c'16 * 75/64
+                        c'16 * 89/64
+                        c'16 * 103/64
+                        c'16 * 113/64 ]
+                    }
                 }
                 {
                     \time 3/8
-                    \once \override Beam #'grow-direction = #left
-                    c'16 * 5/8 [
-                    c'16 * 43/64
-                    c'16 * 51/64
-                    c'16 * 65/64
-                    c'16 * 85/64
-                    c'16 * 25/16 ]
+                    {
+                        \once \override Beam #'grow-direction = #left
+                        c'16 * 5/8 [
+                        c'16 * 43/64
+                        c'16 * 51/64
+                        c'16 * 65/64
+                        c'16 * 85/64
+                        c'16 * 25/16 ]
+                    }
                 }
             }
 
@@ -474,6 +490,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
             override(selection[0]).beam.grow_direction = Right
         elif self._is_ritardando(selection):
             override(selection[0]).beam.grow_direction = Left
+        tuplet = scoretools.Tuplet((1, 1), selection)
+        selection = selectiontools.Selection([tuplet])
         return selection
 
     def _make_music(self, divisions, seeds):
@@ -520,49 +538,57 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                 }
 
@@ -595,97 +621,105 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \set stemLeftBeamCount = #0
-                        \set stemRightBeamCount = #2
-                        c'16 * 61/32 [
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 115/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 49/32
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 5/4
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 33/32
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 57/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 13/16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #1
-                        c'16 * 25/32
+                        {
+                            \set stemLeftBeamCount = #0
+                            \set stemRightBeamCount = #2
+                            c'16 * 61/32 [
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 115/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 49/32
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 5/4
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 33/32
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 57/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 13/16
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #1
+                            c'16 * 25/32
+                        }
                     }
                     {
                         \time 3/8
-                        \set stemLeftBeamCount = #1
-                        \set stemRightBeamCount = #2
-                        c'16 * 117/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 99/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 69/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 13/16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #1
-                        c'16 * 47/64
+                        {
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #2
+                            c'16 * 117/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 99/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 69/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 13/16
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #1
+                            c'16 * 47/64
+                        }
                     }
                     {
                         \time 5/8
-                        \set stemLeftBeamCount = #1
-                        \set stemRightBeamCount = #2
-                        c'16 * 61/32
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 115/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 49/32
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 5/4
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 33/32
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 57/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 13/16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #1
-                        c'16 * 25/32
+                        {
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #2
+                            c'16 * 61/32
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 115/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 49/32
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 5/4
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 33/32
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 57/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 13/16
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #1
+                            c'16 * 25/32
+                        }
                     }
                     {
                         \time 3/8
-                        \set stemLeftBeamCount = #1
-                        \set stemRightBeamCount = #2
-                        c'16 * 117/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 99/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 69/64
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #2
-                        c'16 * 13/16
-                        \set stemLeftBeamCount = #2
-                        \set stemRightBeamCount = #0
-                        c'16 * 47/64 ]
+                        {
+                            \set stemLeftBeamCount = #1
+                            \set stemRightBeamCount = #2
+                            c'16 * 117/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 99/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 69/64
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #2
+                            c'16 * 13/16
+                            \set stemLeftBeamCount = #2
+                            \set stemRightBeamCount = #0
+                            c'16 * 47/64 ]
+                        }
                     }
                 }
 
@@ -721,45 +755,53 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        c'16 * 61/32
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32
+                        {
+                            c'16 * 61/32
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32
+                        }
                     }
                     {
                         \time 3/8
-                        c'16 * 117/64
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64
+                        {
+                            c'16 * 117/64
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64
+                        }
                     }
                     {
                         \time 5/8
-                        c'16 * 61/32
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32
+                        {
+                            c'16 * 61/32
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32
+                        }
                     }
                     {
                         \time 3/8
-                        c'16 * 117/64
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64
+                        {
+                            c'16 * 117/64
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64
+                        }
                     }
                 }
 
@@ -801,49 +843,57 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                 }
 
@@ -881,19 +931,21 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
                     }
                     {
                         \time 3/8
@@ -901,15 +953,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
                     }
                     {
                         \time 3/8
@@ -968,49 +1022,57 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                 }
 
@@ -1045,49 +1107,57 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ~ ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ~ ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ~ ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ~ ]
+                        }
                     }
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ~ ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ~ ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                 }
 
@@ -1126,49 +1196,57 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ~ ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ~ ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                     {
                         \time 5/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 61/32 [
-                        c'16 * 115/64
-                        c'16 * 49/32
-                        c'16 * 5/4
-                        c'16 * 33/32
-                        c'16 * 57/64
-                        c'16 * 13/16
-                        c'16 * 25/32 ~ ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ~ ]
+                        }
                     }
                     {
                         \time 3/8
-                        \once \override Beam #'grow-direction = #right
-                        c'16 * 117/64 [
-                        c'16 * 99/64
-                        c'16 * 69/64
-                        c'16 * 13/16
-                        c'16 * 47/64 ]
+                        {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
                     }
                 }
 
