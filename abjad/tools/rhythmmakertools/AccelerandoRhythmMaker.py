@@ -28,12 +28,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...     beam_specifier=rhythmmakertools.BeamSpecifier(
             ...         use_feather_beams=True,
             ...         ),
-            ...     start_duration=Duration(1, 8),
-            ...     stop_duration=Duration(1, 20),
+            ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+            ...         start_duration=Duration(1, 8),
+            ...         stop_duration=Duration(1, 20),
+            ...         written_duration=Duration(1, 16),
+            ...         ),
             ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
             ...         use_note_duration_bracket=True,
             ...         ),
-            ...     written_duration=Duration(1, 16),
             ...     )
 
         ::
@@ -239,12 +241,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...     beam_specifier=rhythmmakertools.BeamSpecifier(
             ...         use_feather_beams=True,
             ...         ),
-            ...     start_duration=Duration(1, 20),
-            ...     stop_duration=Duration(1, 8),
+            ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+            ...         start_duration=Duration(1, 20),
+            ...         stop_duration=Duration(1, 8),
+            ...         written_duration=Duration(1, 16),
+            ...         ),
             ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
             ...         use_note_duration_bracket=True,
             ...         ),
-            ...     written_duration=Duration(1, 16),
             ...     )
 
         ::
@@ -454,9 +458,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     __slots__ = (
         '_exponent',
-        '_start_duration',
-        '_stop_duration',
-        '_written_duration',
+        '_interpolation_specifier',
         )
 
     _class_name_abbreviation = 'Acc'
@@ -469,12 +471,10 @@ class AccelerandoRhythmMaker(RhythmMaker):
         self,
         beam_specifier=None,
         duration_spelling_specifier=None,
+        interpolation_specifier=None,
         output_masks=None,
-        start_duration=durationtools.Duration(1, 8),
-        stop_duration=durationtools.Duration(1, 16),
         tie_specifier=None,
         tuplet_spelling_specifier=None,
-        written_duration=durationtools.Duration(1, 8),
         ):
         from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
@@ -485,12 +485,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
-        start_duration = durationtools.Duration(start_duration)
-        self._start_duration = start_duration
-        stop_duration = durationtools.Duration(stop_duration)
-        self._stop_duration = stop_duration
-        written_duration = durationtools.Duration(written_duration)
-        self._written_duration = written_duration
+        self._interpolation_specifier = interpolation_specifier
 
     ### SPECIAL METHODS ###
 
@@ -510,10 +505,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _fix_rounding_error(self, selection, total_duration):
+        from abjad.tools import rhythmmakertools
+        interpolation_specifier = self.interpolation_specifier or \
+            rhythmmakertools.InterpolationSpecifier()
         selection_duration = selection.get_duration()
         if not selection_duration == total_duration:
             needed_duration = total_duration - selection[:-1].get_duration()
-            multiplier = needed_duration / self.written_duration
+            multiplier = needed_duration / \
+                interpolation_specifier.written_duration
             multiplier = durationtools.Multiplier(multiplier)
             detach(durationtools.Multiplier, selection[-1])
             attach(multiplier, selection[-1])
@@ -720,10 +719,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
         '''
         from abjad.tools import rhythmmakertools
         total_duration = durationtools.Duration(total_duration)
+        interpolation_specifier = self.interpolation_specifier or \
+            rhythmmakertools.InterpolationSpecifier()
         durations = AccelerandoRhythmMaker._interpolate_divide(
             total_duration=total_duration,
-            start_duration=self.start_duration,
-            stop_duration=self.stop_duration,
+            start_duration=interpolation_specifier.start_duration,
+            stop_duration=interpolation_specifier.stop_duration,
             )
         durations = [
             durationtools.Duration(int(round(_ * 2**10)), 2**10) 
@@ -731,8 +732,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ]
         notes = []
         for i, duration in enumerate(durations):
-            note = scoretools.Note(0, self.written_duration)
-            multiplier = duration / self.written_duration
+            note = scoretools.Note(0, interpolation_specifier.written_duration)
+            multiplier = duration / interpolation_specifier.written_duration
             multiplier = durationtools.Multiplier(multiplier)
             attach(multiplier, note)
             notes.append(note)
@@ -786,12 +787,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         beam_each_division=True,
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -998,12 +1001,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         beam_divisions_together=True,
                 ...         use_feather_beams=False,
                 ...         ),
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -1261,12 +1266,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         beam_divisions_together=False,
                 ...         beam_each_division=False,
                 ...         ),
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -1464,6 +1471,18 @@ class AccelerandoRhythmMaker(RhythmMaker):
         return superclass.beam_specifier
 
     @property
+    def interpolation_specifier(self):
+        r'''Gets interpolation specifier of accelerando rhythm-maker.
+
+        Defaults to none.
+
+        Set to interpolation specifier or none.
+
+        Returns interpolation specifier or none.
+        '''
+        return self._interpolation_specifier
+
+    @property
     def output_masks(self):
         r'''Gets output masks of accelerando rhythm-maker.
 
@@ -1477,13 +1496,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     output_masks=None,
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -1689,18 +1710,20 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     output_masks=[
                 ...         rhythmmakertools.SilenceMask(
                 ...             indices=[1],
                 ...             period=2,
                 ...             ),
                 ...         ],
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -1825,18 +1848,6 @@ class AccelerandoRhythmMaker(RhythmMaker):
         return superclass.output_masks
 
     @property
-    def start_duration(self):
-        r'''Gets start duration of accelerando rhythm-maker.
-        '''
-        return self._start_duration
-
-    @property
-    def stop_duration(self):
-        r'''Gets stop duration of accelerando rhythm-maker.
-        '''
-        return self._stop_duration
-
-    @property
     def tie_specifier(self):
         r'''Gets tie specifier of rhythm-maker.
 
@@ -1850,15 +1861,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -2064,15 +2077,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -2282,15 +2297,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -2505,15 +2522,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=True,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -2719,15 +2738,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     start_duration=Duration(1, 8),
-                ...     stop_duration=Duration(1, 20),
+                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         use_note_duration_bracket=False,
                 ...         ),
-                ...     written_duration=Duration(1, 16),
                 ...     )
 
             ::
@@ -2801,9 +2822,3 @@ class AccelerandoRhythmMaker(RhythmMaker):
         '''
         superclass = super(AccelerandoRhythmMaker, self)
         return superclass.tuplet_spelling_specifier
-
-    @property
-    def written_duration(self):
-        r'''Gets written duration of accelerando rhythm-maker.
-        '''
-        return self._written_duration
