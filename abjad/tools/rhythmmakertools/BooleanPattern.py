@@ -225,7 +225,8 @@ class BooleanPattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that matches three indices out of every eight:
+            **Example 1.** Pattern that matches three indices out of every 
+            eight:
 
             ::
 

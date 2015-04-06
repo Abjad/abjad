@@ -3,11 +3,11 @@ from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
 class BooleanPatternInventory(TypedTuple):
-    r'''An ordered list of boolean patterns.
+    r'''Ordered list of boolean patterns.
 
     ..  container:: example
 
-        **Example 1.** Inventory of three boolean patterns:
+        **Example 1.** Inventory of three patterns:
 
         ::
 
@@ -48,6 +48,37 @@ class BooleanPatternInventory(TypedTuple):
                     )
                 )
 
+    ..  container:: example
+
+        **Example 2.** Inventory of two patterns:
+
+        ::
+
+            >>> inventory = rhythmmakertools.BooleanPatternInventory([
+            ...     rhythmmakertools.BooleanPattern(
+            ...         indices=[1],
+            ...         period=2,
+            ...         ),
+            ...     rhythmmakertools.BooleanPattern(
+            ...         indices=[-3, -2, -1],
+            ...         ),
+            ...     ])
+
+        ::
+
+            >>> print(format(inventory))
+            rhythmmakertools.BooleanPatternInventory(
+                (
+                    rhythmmakertools.BooleanPattern(
+                        indices=(1,),
+                        period=2,
+                        ),
+                    rhythmmakertools.BooleanPattern(
+                        indices=(-3, -2, -1),
+                        ),
+                    )
+                )
+
     '''
 
     ### CLASS VARIABLES ###
@@ -62,51 +93,107 @@ class BooleanPatternInventory(TypedTuple):
 
         ..  container:: example
 
-            **Example 1.** Gets pattern that matches each of the 10 indices of
-            the inventory take over a period of 10:
+            Inventory of two patterns:
 
             ::
 
-                >>> for i in range(11):
+                >>> inventory = rhythmmakertools.BooleanPatternInventory([
+                ...     rhythmmakertools.BooleanPattern(
+                ...         indices=[1],
+                ...         period=2,
+                ...         ),
+                ...     rhythmmakertools.BooleanPattern(
+                ...         indices=[-3, -2, -1],
+                ...         ),
+                ...     ])
+
+            **Example 1a.** Gets patterns that match the first ten indices:
+
+            ::
+
+                >>> for i in range(10):
                 ...     match = inventory.get_matching_pattern(i, 10)
                 ...     print(i, match)
                 ...
-                0 BooleanPattern(indices=(0, 1, 7), period=10)
-                1 BooleanPattern(indices=(0, 1, 7), period=10)
+                0 None
+                1 BooleanPattern(indices=(1,), period=2)
                 2 None
-                3 BooleanPattern(indices=(2,), period=3, start=1, stop=-1)
+                3 BooleanPattern(indices=(1,), period=2)
                 4 None
-                5 None
-                6 BooleanPattern(indices=(2,), period=3, start=1, stop=-1)
-                7 BooleanPattern(indices=(0, 1, 7), period=10)
-                8 BooleanPattern(indices=(-2, -1))
-                9 BooleanPattern(indices=(-2, -1))
-                10 BooleanPattern(indices=(0, 1, 7), period=10)
+                5 BooleanPattern(indices=(1,), period=2)
+                6 None
+                7 BooleanPattern(indices=(-3, -2, -1))
+                8 BooleanPattern(indices=(-3, -2, -1))
+                9 BooleanPattern(indices=(-3, -2, -1))
 
-            The pattern at index ``10`` is the same as the pattern at index
-            ``0``.
+            Last three indices match the second pattern.
 
-        ..  container:: example
-
-            **Examle 2.** What is going on here?
+            **Example 1b.** Gets patterns that match next ten indices:
 
             ::
 
-                >>> for i in range(11):
+                >>> for i in range(10, 20):
+                ...     match = inventory.get_matching_pattern(i, 10)
+                ...     print(i, match)
+                ...
+                10 None
+                11 BooleanPattern(indices=(1,), period=2)
+                12 None
+                13 BooleanPattern(indices=(1,), period=2)
+                14 None
+                15 BooleanPattern(indices=(1,), period=2)
+                16 None
+                17 BooleanPattern(indices=(1,), period=2)
+                18 None
+                19 BooleanPattern(indices=(1,), period=2)
+
+            Last three indices no longer match the second pattern.
+
+        ..  container:: example
+
+            **Example 2a.** Gets patterns that match the first ten indices,
+            with seed set to ``1``:
+
+            ::
+
+                >>> for i in range(10):
                 ...     match = inventory.get_matching_pattern(i, 10, seed=1)
                 ...     print(i, match)
                 ...
-                0 BooleanPattern(indices=(0, 1, 7), period=10)
+                0 BooleanPattern(indices=(1,), period=2)
                 1 None
-                2 BooleanPattern(indices=(2,), period=3, start=1, stop=-1)
+                2 BooleanPattern(indices=(1,), period=2)
                 3 None
-                4 None
-                5 BooleanPattern(indices=(2,), period=3, start=1, stop=-1)
-                6 BooleanPattern(indices=(0, 1, 7), period=10)
-                7 None
-                8 BooleanPattern(indices=(2,), period=3, start=1, stop=-1)
-                9 BooleanPattern(indices=(-2, -1))
-                10 BooleanPattern(indices=(0, 1, 7), period=10)
+                4 BooleanPattern(indices=(1,), period=2)
+                5 None
+                6 BooleanPattern(indices=(1,), period=2)
+                7 BooleanPattern(indices=(-3, -2, -1))
+                8 BooleanPattern(indices=(-3, -2, -1))
+                9 BooleanPattern(indices=(-3, -2, -1))
+
+            Matching indices of first pattern offset by ``1``.
+
+            **Example 1b.** Gets patterns that match next ten indices with seed
+            set to ``1``:
+
+            ::
+
+                >>> for i in range(10, 20):
+                ...     match = inventory.get_matching_pattern(i, 10, seed=1)
+                ...     print(i, match)
+                ...
+                10 BooleanPattern(indices=(1,), period=2)
+                11 None
+                12 BooleanPattern(indices=(1,), period=2)
+                13 None
+                14 BooleanPattern(indices=(1,), period=2)
+                15 None
+                16 BooleanPattern(indices=(1,), period=2)
+                17 None
+                18 BooleanPattern(indices=(1,), period=2)
+                19 None
+
+            Matching indices of first pattern offset by ``1``.
 
         Returns pattern or none.
         '''
