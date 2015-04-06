@@ -133,7 +133,6 @@ class Rotation(AbjadValueObject):
             result = result + shard
         return result
 
-
     ### PUBLIC PROPERTIES ###
 
     @property
