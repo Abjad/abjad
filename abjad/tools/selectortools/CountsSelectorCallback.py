@@ -57,19 +57,19 @@ class CountsSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, seed=None):
+    def __call__(self, expr, rotation=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple in which each item is a selection or component.
         '''
         assert isinstance(expr, tuple), repr(tuple)
-        if seed is None:
-            seed = 0
-        seed = int(seed)
+        if rotation is None:
+            rotation = 0
+        rotation = int(rotation)
         result = []
         counts = self.counts
         if self.rotate:
-            counts = sequencetools.rotate_sequence(counts, -seed)
+            counts = sequencetools.rotate_sequence(counts, -rotation)
         for subexpr in expr:
             groups = sequencetools.partition_sequence_by_counts(
                 subexpr,

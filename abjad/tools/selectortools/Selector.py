@@ -146,14 +146,14 @@ class Selector(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, seed=None):
+    def __call__(self, expr, rotation=None):
         r'''Selects components from component or selection `expr`.
 
         Returns a selection of selections or containers.
         '''
-        if seed is None:
-            seed = 0
-        seed = int(seed)
+        if rotation is None:
+            rotation = 0
+        rotation = int(rotation)
         prototype = (
             scoretools.Component,
             selectiontools.Selection,
@@ -163,10 +163,10 @@ class Selector(AbjadValueObject):
         expr = (expr,)
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
-        for i, callback in enumerate(callbacks, seed):
+        for i, callback in enumerate(callbacks, rotation):
             #print('EXPR', expr)
             try:
-                expr = callback(expr, seed=i)
+                expr = callback(expr, rotation=i)
             except TypeError:
                 expr = callback(expr)
         return selectiontools.Selection(expr)
