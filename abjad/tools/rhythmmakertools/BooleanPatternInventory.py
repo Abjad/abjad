@@ -201,6 +201,78 @@ class BooleanPatternInventory(TypedTuple):
             if pattern.matches_index(index, total_length, seed=seed):
                 return pattern
 
+    def get_matching_payload(self, index, total_length, seed=None):
+        r'''Gets payload attached to pattern matching `index`.
+
+        ..  container:: example
+
+            **Example 1.** Inventory of two patterns. Underlying notes with
+            even divisions assigned to the last three indices:
+
+            ::
+
+                >>> inventory = rhythmmakertools.BooleanPatternInventory([
+                ...     rhythmmakertools.BooleanPattern(
+                ...         indices=[0],
+                ...         payload=rhythmmakertools.NoteRhythmMaker(),
+                ...         period=1,
+                ...         ),
+                ...     rhythmmakertools.BooleanPattern(
+                ...         indices=[-3, -2, -1],
+                ...         payload=rhythmmakertools.EvenDivisionRhythmMaker(),
+                ...         ),
+                ...     ])
+
+            Over ten indices:
+
+            ::
+
+                >>> for i in range(10):
+                ...     match = inventory.get_matching_payload(i, 10)
+                ...     print(i, match)
+                ...
+                0 NoteRhythmMaker()
+                1 NoteRhythmMaker()
+                2 NoteRhythmMaker()
+                3 NoteRhythmMaker()
+                4 NoteRhythmMaker()
+                5 NoteRhythmMaker()
+                6 NoteRhythmMaker()
+                7 EvenDivisionRhythmMaker(denominators=(8,))
+                8 EvenDivisionRhythmMaker(denominators=(8,))
+                9 EvenDivisionRhythmMaker(denominators=(8,))
+
+            Over fifteen indices:
+
+            ::
+
+                >>> for i in range(15):
+                ...     match = inventory.get_matching_payload(i, 15)
+                ...     print(i, match)
+                ...
+                0 NoteRhythmMaker()
+                1 NoteRhythmMaker()
+                2 NoteRhythmMaker()
+                3 NoteRhythmMaker()
+                4 NoteRhythmMaker()
+                5 NoteRhythmMaker()
+                6 NoteRhythmMaker()
+                7 NoteRhythmMaker()
+                8 NoteRhythmMaker()
+                9 NoteRhythmMaker()
+                10 NoteRhythmMaker()
+                11 NoteRhythmMaker()
+                12 EvenDivisionRhythmMaker(denominators=(8,))
+                13 EvenDivisionRhythmMaker(denominators=(8,))
+                14 EvenDivisionRhythmMaker(denominators=(8,))
+
+        '''
+        pattern = self.get_matching_pattern(index, total_length, seed=seed)
+        payload = None
+        if pattern:
+            payload = pattern.payload
+        return payload
+
     ### PRIVATE PROPERTIES ###
 
     @property
