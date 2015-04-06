@@ -13,6 +13,7 @@ from abjad.tools.topleveltools.set_ import set_
 class MetricModulation(AbjadObject):
     r'''A metric modulation.
 
+
     ..  container:: example
 
         **Example 1.** With notes:
@@ -32,63 +33,65 @@ class MetricModulation(AbjadObject):
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                c'4
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
+                =
                 \hspace
                     #-0.5
-                " = "
-                \hspace
-                    #-1
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                c'4.
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4.
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
                 }
 
     ..  container:: example
@@ -110,66 +113,68 @@ class MetricModulation(AbjadObject):
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                \tweak #'edge-height #'(0.7 . 0)
-                                \times 4/5 {
-                                    c'4
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    \tweak #'edge-height #'(0.7 . 0)
+                                    \times 4/5 {
+                                        c'4
+                                    }
                                 }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
+                =
                 \hspace
                     #-0.5
-                " = "
-                \hspace
-                    #-1
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                c'4
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
                 }
 
     ..  container:: example
@@ -191,66 +196,68 @@ class MetricModulation(AbjadObject):
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                c16.
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    c16.
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
+                =
                 \hspace
                     #-0.5
-                " = "
-                \hspace
-                    #-1
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                \tweak #'edge-height #'(0.7 . 0)
-                                \times 2/3 {
-                                    c8
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    \tweak #'edge-height #'(0.7 . 0)
+                                    \times 2/3 {
+                                        c8
+                                    }
                                 }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
                 }
 
     ..  container:: example
@@ -273,64 +280,66 @@ class MetricModulation(AbjadObject):
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                c'4
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
+                =
                 \hspace
                     #-0.5
-                " = "
-                \hspace
-                    #-1
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                c'4 ~
-                                c'16
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4 ~
+                                    c'16
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
                 }
 
     ..  container:: example
@@ -354,67 +363,69 @@ class MetricModulation(AbjadObject):
 
             >>> print(format(metric_modulation, 'lilypond'))
             \markup {
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                c'4
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    c'4
+                                }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
+                =
                 \hspace
                     #-0.5
-                " = "
-                \hspace
-                    #-1
-                \score
-                    {
-                        \new Score \with {
-                            proportionalNotationDuration = ##f
-                        } <<
-                            \new RhythmicStaff \with {
-                                \remove Time_signature_engraver
-                                \remove Staff_symbol_engraver
-                                \override Stem #'direction = #up
-                                \override Stem #'length = #4
-                                \override TupletBracket #'bracket-visibility = ##t
-                                \override TupletBracket #'direction = #up
-                                \override TupletBracket #'padding = #1.25
-                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                fontSize = #-3
-                                tupletFullLength = ##t
-                            } {
-                                \tweak #'edge-height #'(0.7 . 0)
-                                \times 2/3 {
-                                    c'4 ~
-                                    c'16
+                \scale
+                    #'(0.5 . 0.5)
+                    \score
+                        {
+                            \new Score \with {
+                                proportionalNotationDuration = ##f
+                            } <<
+                                \new RhythmicStaff \with {
+                                    \remove Time_signature_engraver
+                                    \remove Staff_symbol_engraver
+                                    \override Stem #'direction = #up
+                                    \override Stem #'length = #5
+                                    \override TupletBracket #'bracket-visibility = ##t
+                                    \override TupletBracket #'direction = #up
+                                    \override TupletBracket #'padding = #1.25
+                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    fontSize = #0
+                                    tupletFullLength = ##t
+                                } {
+                                    \tweak #'edge-height #'(0.7 . 0)
+                                    \times 2/3 {
+                                        c'4 ~
+                                        c'16
+                                    }
                                 }
+                            >>
+                            \layout {
+                                indent = #0
+                                ragged-right = ##t
                             }
-                        >>
-                        \layout {
-                            indent = #0
-                            ragged-right = ##t
                         }
-                    }
                 }
 
 
@@ -452,69 +463,70 @@ class MetricModulation(AbjadObject):
                 e'4
                 f'4
                     ^ \markup {
-                        \score
-                            {
-                                \new Score \with {
-                                    proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #4
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                        fontSize = #-3
-                                        tupletFullLength = ##t
-                                    } {
-                                        c4
+                        \scale
+                            #'(0.5 . 0.5)
+                            \score
+                                {
+                                    \new Score \with {
+                                        proportionalNotationDuration = ##f
+                                    } <<
+                                        \new RhythmicStaff \with {
+                                            \remove Time_signature_engraver
+                                            \remove Staff_symbol_engraver
+                                            \override Stem #'direction = #up
+                                            \override Stem #'length = #5
+                                            \override TupletBracket #'bracket-visibility = ##t
+                                            \override TupletBracket #'direction = #up
+                                            \override TupletBracket #'padding = #1.25
+                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            fontSize = #0
+                                            tupletFullLength = ##t
+                                        } {
+                                            c4
+                                        }
+                                    >>
+                                    \layout {
+                                        indent = #0
+                                        ragged-right = ##t
                                     }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
                                 }
-                            }
+                        =
                         \hspace
                             #-0.5
-                        " = "
-                        \hspace
-                            #-1
-                        \score
-                            {
-                                \new Score \with {
-                                    proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #4
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                        fontSize = #-3
-                                        tupletFullLength = ##t
-                                    } {
-                                        c8.
+                        \scale
+                            #'(0.5 . 0.5)
+                            \score
+                                {
+                                    \new Score \with {
+                                        proportionalNotationDuration = ##f
+                                    } <<
+                                        \new RhythmicStaff \with {
+                                            \remove Time_signature_engraver
+                                            \remove Staff_symbol_engraver
+                                            \override Stem #'direction = #up
+                                            \override Stem #'length = #5
+                                            \override TupletBracket #'bracket-visibility = ##t
+                                            \override TupletBracket #'direction = #up
+                                            \override TupletBracket #'padding = #1.25
+                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            fontSize = #0
+                                            tupletFullLength = ##t
+                                        } {
+                                            c8.
+                                        }
+                                    >>
+                                    \layout {
+                                        indent = #0
+                                        ragged-right = ##t
                                     }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
                                 }
-                            }
                         }
                 e'4
                 d'4
             }
 
-    ..  todo:: Teach ``TempoSpanner`` about metric modulations.
     '''
 
     ### CLASS VARIABLES ###
@@ -685,66 +697,68 @@ class MetricModulation(AbjadObject):
                 >>> metric_modulation = lilypond_file.items[-1]
                 >>> print(format(metric_modulation))
                 \markup {
-                    \score
-                        {
-                            \new Score \with {
-                                proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem #'direction = #up
-                                    \override Stem #'length = #4
-                                    \override TupletBracket #'bracket-visibility = ##t
-                                    \override TupletBracket #'direction = #up
-                                    \override TupletBracket #'padding = #1.25
-                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #-3
-                                    tupletFullLength = ##t
-                                } {
-                                    \tweak #'edge-height #'(0.7 . 0)
-                                    \times 2/3 {
-                                        c'4
+                    \scale
+                        #'(0.5 . 0.5)
+                        \score
+                            {
+                                \new Score \with {
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        fontSize = #0
+                                        tupletFullLength = ##t
+                                    } {
+                                        \tweak #'edge-height #'(0.7 . 0)
+                                        \times 2/3 {
+                                            c'4
+                                        }
                                     }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
                                 }
-                            >>
-                            \layout {
-                                indent = #0
-                                ragged-right = ##t
                             }
-                        }
+                    =
                     \hspace
                         #-0.5
-                    " = "
-                    \hspace
-                        #-1
-                    \score
-                        {
-                            \new Score \with {
-                                proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem #'direction = #up
-                                    \override Stem #'length = #4
-                                    \override TupletBracket #'bracket-visibility = ##t
-                                    \override TupletBracket #'direction = #up
-                                    \override TupletBracket #'padding = #1.25
-                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #-3
-                                    tupletFullLength = ##t
-                                } {
-                                    c'4.
+                    \scale
+                        #'(0.5 . 0.5)
+                        \score
+                            {
+                                \new Score \with {
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        fontSize = #0
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'4.
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
                                 }
-                            >>
-                            \layout {
-                                indent = #0
-                                ragged-right = ##t
                             }
-                        }
                     }
 
         Returns LilyPond file.
@@ -772,66 +786,68 @@ class MetricModulation(AbjadObject):
 
                 >>> print(str(metric_modulation))
                 \markup {
-                    \score
-                        {
-                            \new Score \with {
-                                proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem #'direction = #up
-                                    \override Stem #'length = #4
-                                    \override TupletBracket #'bracket-visibility = ##t
-                                    \override TupletBracket #'direction = #up
-                                    \override TupletBracket #'padding = #1.25
-                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #-3
-                                    tupletFullLength = ##t
-                                } {
-                                    \tweak #'edge-height #'(0.7 . 0)
-                                    \times 2/3 {
-                                        c'4
+                    \scale
+                        #'(0.5 . 0.5)
+                        \score
+                            {
+                                \new Score \with {
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        fontSize = #0
+                                        tupletFullLength = ##t
+                                    } {
+                                        \tweak #'edge-height #'(0.7 . 0)
+                                        \times 2/3 {
+                                            c'4
+                                        }
                                     }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
                                 }
-                            >>
-                            \layout {
-                                indent = #0
-                                ragged-right = ##t
                             }
-                        }
+                    =
                     \hspace
                         #-0.5
-                    " = "
-                    \hspace
-                        #-1
-                    \score
-                        {
-                            \new Score \with {
-                                proportionalNotationDuration = ##f
-                            } <<
-                                \new RhythmicStaff \with {
-                                    \remove Time_signature_engraver
-                                    \remove Staff_symbol_engraver
-                                    \override Stem #'direction = #up
-                                    \override Stem #'length = #4
-                                    \override TupletBracket #'bracket-visibility = ##t
-                                    \override TupletBracket #'direction = #up
-                                    \override TupletBracket #'padding = #1.25
-                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                    fontSize = #-3
-                                    tupletFullLength = ##t
-                                } {
-                                    c'4
+                    \scale
+                        #'(0.5 . 0.5)
+                        \score
+                            {
+                                \new Score \with {
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        fontSize = #0
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'4
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
                                 }
-                            >>
-                            \layout {
-                                indent = #0
-                                ragged-right = ##t
                             }
-                        }
                     }
 
         Returns string.
@@ -877,10 +893,13 @@ class MetricModulation(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_left_markup(self):
+    def _get_left_markup(self, font_size=-3):
         if self.left_markup is not None:
             return self.left_markup
-        markup = durationtools.Duration._to_score_markup(self.left_rhythm)
+        markup = durationtools.Duration._to_score_markup(
+            self.left_rhythm,
+            font_size=font_size,
+            )
         return markup
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -892,22 +911,26 @@ class MetricModulation(AbjadObject):
         lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
 
-    def _get_markup(self):
-        left_markup = self._get_left_markup()
-        right_markup = self._get_right_markup()
-        commands = []
-        commands.extend(left_markup.contents)
-        commands.append(markuptools.MarkupCommand('hspace', -0.5))
-        commands.append(' = ')
-        commands.append(markuptools.MarkupCommand('hspace', -1))
-        commands.extend(right_markup.contents)
-        markup = markuptools.Markup(contents=commands)
+    # TODO: change to self._get_markup(self, scale=(1.0, 1.0))
+    def _get_markup(self, font_size=-3):
+        pair = (0.5, 0.5)
+        left_markup = self._get_left_markup(font_size=0)
+        left_markup = left_markup.scale(pair)
+        equal = markuptools.Markup('=')
+        right_space = markuptools.Markup.hspace(-0.5)
+        right_markup = self._get_right_markup(font_size=0)
+        right_markup = right_markup.scale(pair)
+        markup = left_markup + equal + right_space + right_markup
         return markup
 
-    def _get_right_markup(self):
+    #
+    def _get_right_markup(self, font_size=-3):
         if self.right_markup is not None:
             return self.right_markup
-        markup = durationtools.Duration._to_score_markup(self.right_rhythm)
+        markup = durationtools.Duration._to_score_markup(
+            self.right_rhythm,
+            font_size=font_size,
+            )
         return markup
 
     def _initialize_rhythm(self, rhythm):

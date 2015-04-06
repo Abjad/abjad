@@ -12,6 +12,7 @@ from abjad.tools.topleveltools.set_ import set_
 class Duration(AbjadObject, fractions.Fraction):
     r'''A duration.
 
+
     ..  container:: example
 
         **Example 1.** Initializes from integer numerator:
@@ -533,7 +534,8 @@ class Duration(AbjadObject, fractions.Fraction):
         staff.remove_commands.append('Time_signature_engraver')
         staff.remove_commands.append('Staff_symbol_engraver')
         override(staff).stem.direction = Up
-        override(staff).stem.length = 4
+        #override(staff).stem.length = 4
+        override(staff).stem.length = 5
         override(staff).tuplet_bracket.bracket_visibility = True
         override(staff).tuplet_bracket.direction = Up
         override(staff).tuplet_bracket.padding = 1.25
@@ -1125,7 +1127,7 @@ class Duration(AbjadObject, fractions.Fraction):
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem #'direction = #up
-                                    \override Stem #'length = #4
+                                    \override Stem #'length = #5
                                     \override TupletBracket #'bracket-visibility = ##t
                                     \override TupletBracket #'direction = #up
                                     \override TupletBracket #'padding = #1.25
@@ -1166,7 +1168,7 @@ class Duration(AbjadObject, fractions.Fraction):
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
                                     \override Stem #'direction = #up
-                                    \override Stem #'length = #4
+                                    \override Stem #'length = #5
                                     \override TupletBracket #'bracket-visibility = ##t
                                     \override TupletBracket #'direction = #up
                                     \override TupletBracket #'padding = #1.25
@@ -1214,7 +1216,7 @@ class Duration(AbjadObject, fractions.Fraction):
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
                                         \override Stem #'direction = #up
-                                        \override Stem #'length = #4
+                                        \override Stem #'length = #5
                                         \override TupletBracket #'bracket-visibility = ##t
                                         \override TupletBracket #'direction = #up
                                         \override TupletBracket #'padding = #1.25
