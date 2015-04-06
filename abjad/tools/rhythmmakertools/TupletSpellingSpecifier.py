@@ -12,6 +12,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         '_avoid_dots',
         '_is_diminution',
         '_simplify_tuplets',
+        '_use_note_duration_bracket',
         )
 
     ### INITIALIZER ###
@@ -21,10 +22,12 @@ class TupletSpellingSpecifier(AbjadValueObject):
         avoid_dots=False,
         is_diminution=True,
         simplify_tuplets=False,
+        use_note_duration_bracket=False,
         ):
         self._avoid_dots = bool(avoid_dots)
         self._is_diminution = bool(is_diminution)
         self._simplify_tuplets = bool(simplify_tuplets)
+        self._use_note_duration_bracket = bool(use_note_duration_bracket)
 
     ### PRIVATE PROPERTIES ###
 
@@ -89,3 +92,16 @@ class TupletSpellingSpecifier(AbjadValueObject):
         Returns true or false.
         '''
         return self._simplify_tuplets
+
+    @property
+    def use_note_duration_bracket(self):
+        r'''Is true when tuplet should override tuplet number text with note
+        duration bracket giving tuplet duration. Otherwise false.
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._use_note_duration_bracket
