@@ -23,7 +23,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     __slots__ = (
         '_burnish_specifier',
         '_denominators',
+        '_denominators_generator',
         '_extra_counts_per_division',
+        '_extra_counts_per_division_generator',
         )
 
     _human_readable_class_name = 'even division rhythm-maker'
@@ -54,6 +56,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             denominators), repr(denominators)
         denominators = tuple(denominators)
         self._denominators = denominators
+        self._denominators_generator = self._make_cyclic_tuple_generator(
+            denominators)
         if extra_counts_per_division is not None:
             assert mathtools.all_are_integer_equivalent_exprs(
                 extra_counts_per_division), repr(extra_counts_per_division)
@@ -65,35 +69,32 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         prototype = (rhythmmakertools.BurnishSpecifier, type(None))
         assert isinstance(burnish_specifier, prototype)
         self._burnish_specifier = burnish_specifier
+        extra_counts_per_division = extra_counts_per_division or (0,)
+        self._extra_counts_per_division_generator = \
+            self._make_cyclic_tuple_generator(extra_counts_per_division)
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, remember_state=False, rotation=None):
         r'''Calls even division rhythm-maker on `divisions`.
 
         ..  container:: example
 
+            **Example 1a.** Fills divisions with alternating eighth and
+            sixteenth notes. Calls rhythm-maker and forgets state between
+            calls:
+
+            ::
+
+
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     denominators=[16, 16, 8],
-                ...     extra_counts_per_division=[1, 0],
+                ...     denominators=[8, 16],
                 ...     )
 
             ::
 
-                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> selections = maker(divisions)
-
-            ::
-
-                >>> for selection in selections:
-                ...     selection
-                Selection(FixedDurationTuplet(Duration(3, 8), "c'16 c'16 c'16 c'16 c'16 c'16 c'16"),)
-                Selection(FixedDurationTuplet(Duration(1, 2), "c'16 c'16 c'16 c'16 c'16 c'16 c'16 c'16"),)
-                Selection(FixedDurationTuplet(Duration(3, 8), "c'8 c'8 c'8 c'8"),)
-                Selection(FixedDurationTuplet(Duration(1, 2), "c'16 c'16 c'16 c'16 c'16 c'16 c'16 c'16"),)
-
-            ::
-
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> selections = maker(divisions, remember_state=False)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -103,10 +104,278 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+            Rhythm-maker reads configuration all over from the beginning;
+            output is the same as before:
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> selections = maker(divisions, remember_state=False)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+            **Example 1b.** Calls rhythm-maker and remembers state for
+            subsequent calls:
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> selections = maker(divisions, remember_state=True)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+            Rhythm-maker resumes from state of previous call; output differs
+            from before:
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> selections = maker(divisions, remember_state=True)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2a.** Adds extra counts per division according to a
+            pattern of three elements. Calls rhythm-maker and forgets state
+            between calls:
+
+            ::
+
+
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[16],
+                ...     extra_counts_per_division=[0, 1, 2],
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> selections = maker(divisions, remember_state=False)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 6/7 {
                             c'16 [
@@ -119,8 +388,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \time 4/8
-                        {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/8 {
                             c'16 [
                             c'16
                             c'16
@@ -132,20 +401,19 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 3/4 {
-                            c'8 [
-                            c'8
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        \time 4/8
                         {
                             c'16 [
                             c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'16 [
                             c'16
                             c'16
                             c'16
@@ -156,11 +424,251 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
+            Rhythm-maker reads configuration all over from the beginning;
+            output same as before:
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> selections = maker(divisions, remember_state=False)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/8 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+            **Example 2b.** Calls rhythm-maker and remembers state for
+            subsequent calls:
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> selections = maker(divisions, remember_state=True)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/8 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+            Rhythm-maker resumes from state of previous call; output differs
+            from before:
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> selections = maker(divisions, remember_state=True)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     selections,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/8 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/8 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+        The `remember_state` keyword defaults to false.
+
+        Set to true or false.
+
         Returns list of of selections.
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
         return superclass.__call__(
             divisions,
+            remember_state=remember_state,
             rotation=rotation,
             )
 
@@ -384,23 +892,27 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         assert inspect_(tuplet).get_duration() == original_duration
         return selections
 
-    def _make_music(self, divisions, rotation):
-        #assert not rotation, repr(rotation)
+    def _make_music(self, divisions, rotation, remember_state=False):
         if rotation is None:
             rotation = 0
         selections = []
         divisions = [durationtools.Division(_) for _ in divisions]
-        denominators = datastructuretools.CyclicTuple(self.denominators)
-        extra_counts_per_division = self.extra_counts_per_division or (0,)
-        extra_counts_per_division = datastructuretools.CyclicTuple(
-            extra_counts_per_division
-            )
+        if not remember_state:
+            denominators = datastructuretools.CyclicTuple(self.denominators)
+            extra_counts_per_division = self.extra_counts_per_division or (0,)
+            extra_counts_per_division = datastructuretools.CyclicTuple(
+                extra_counts_per_division
+                )
         for i, division in enumerate(divisions, rotation):
             # not yet extended to work with non-power-of-two divisions
             assert mathtools.is_positive_integer_power_of_two(
                 division.denominator), repr(division)
-            denominator = denominators[i]
-            extra_count = extra_counts_per_division[i]
+            if remember_state:
+                denominator = self._denominators_generator.next()
+                extra_count = self._extra_counts_per_division_generator.next()
+            else:
+                denominator = denominators[i]
+                extra_count = extra_counts_per_division[i]
             basic_duration = durationtools.Duration(1, denominator)
             unprolated_note_count = None
             if division < 2 * basic_duration:
@@ -474,7 +986,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -539,7 +1051,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -609,7 +1121,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -673,7 +1185,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -729,7 +1241,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -780,7 +1292,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -865,7 +1377,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -934,7 +1446,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1003,7 +1515,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1071,7 +1583,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1140,7 +1652,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1209,7 +1721,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1284,7 +1796,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1361,7 +1873,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1439,7 +1951,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1519,7 +2031,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1585,7 +2097,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1641,7 +2153,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1692,7 +2204,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
+                >>> print(format(staff))
                 \new RhythmicStaff {
                     {
                         \time 4/8

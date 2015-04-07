@@ -680,7 +680,7 @@ class TaleaRhythmMaker(RhythmMaker):
             leaf_lists.append(leaf_list)
         return leaf_lists
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions, rotation, remember_state=False):
         octuplet = self._prepare_input()
         talea = octuplet[0]
         extra_counts_per_division = octuplet[1]

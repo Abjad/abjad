@@ -181,7 +181,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             result = scoretools.Tuplet(multiplier, notes)
         return result
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions, rotation, remember_state=False):
         from abjad.tools import rhythmmakertools
         selections = []
         for division in divisions:

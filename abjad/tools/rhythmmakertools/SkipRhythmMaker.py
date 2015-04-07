@@ -89,7 +89,7 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions, rotation, remember_state=False):
         result = []
         for division in divisions:
             assert isinstance(division, durationtools.Division), repr(division)

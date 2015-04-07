@@ -276,7 +276,7 @@ class NoteRhythmMaker(RhythmMaker):
         new_selection = selectiontools.Selection(new_selection)
         return new_selection
 
-    def _make_music(self, divisions, rotation):
+    def _make_music(self, divisions, rotation, remember_state=False):
         from abjad.tools import rhythmmakertools
         selections = []
         duration_specifier = self.duration_spelling_specifier

@@ -64,7 +64,7 @@ class RhythmMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, rotation=None):
+    def __call__(self, divisions, remember_state=False, rotation=None):
         r'''Calls rhythm-maker.
 
         Makes music as a list of selections.
@@ -80,7 +80,11 @@ class RhythmMaker(AbjadValueObject):
         divisions = [durationtools.Division(x) for x in divisions]
         rotation = self._to_tuple(rotation)
         self._rotation = rotation
-        selections = self._make_music(divisions, rotation)
+        selections = self._make_music(
+            divisions, 
+            rotation, 
+            remember_state=remember_state,
+            )
         self._simplify_tuplets(selections)
         self._tie_across_divisions(selections)
         self._validate_selections(selections)
@@ -268,6 +272,14 @@ class RhythmMaker(AbjadValueObject):
             prototype = (-1, 0, 1)
             return all(_ in prototype for _ in expr)
         return False
+
+    @staticmethod
+    def _make_cyclic_tuple_generator(iterable):
+        cyclic_tuple = datastructuretools.CyclicTuple(iterable)
+        i = 0
+        while True:
+            yield cyclic_tuple[i]
+            i += 1
 
     @abc.abstractmethod
     def _make_music(self, divisions, rotation):
