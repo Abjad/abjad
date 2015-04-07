@@ -124,8 +124,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         Returns a list of selections. Each selection holds a single container
         filled with notes.
         '''
-        return RhythmMaker.__call__(
-            self,
+        superclass = super(EvenRunRhythmMaker, self)
+        return superclass.__call__(
             divisions,
             rotation=rotation,
             )
