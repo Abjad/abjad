@@ -158,8 +158,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         Returns list of of selections.
         '''
-        return RhythmMaker.__call__(
-            self,
+        superclass = super(EvenDivisionRhythmMaker, self)
+        return superclass.__call__(
             divisions,
             rotation=rotation,
             )
