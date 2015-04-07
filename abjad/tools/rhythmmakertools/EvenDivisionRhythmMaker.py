@@ -2233,7 +2233,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier of even division rhythm-maker.
 
-        ..  note:: note yet implemented.
+        ..  note:: not yet implemented.
 
         Returns tuplet spelling specifier or none.
         '''
