@@ -104,7 +104,25 @@ class Tempo(AbjadValueObject):
     def __add__(self, expr):
         r'''Adds tempo to `expr`.
 
-        Returns new tempo.
+        ..  container:: example
+
+            **Example 1.** Adds one tempo to another:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60) + Tempo(Duration(1, 4), 90)
+                Tempo(duration=Duration(1, 4), units_per_minute=150)
+
+        ..  container:: example
+
+            **Example 2.** Returns none when `expr` is not a tempo:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60) + 90 is None
+                True
+
+        Returns new tempo or none.
         '''
         if isinstance(expr, type(self)):
             if self.is_imprecise or expr.is_imprecise:
