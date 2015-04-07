@@ -131,7 +131,7 @@ class TypedOrderedDict(TypedCollection):
             value = self._item_coercer(item[1])
             the_item = (key, value)
             the_items.append(the_item)
-        self._collection = collections.OrderedDict(items)
+        self._collection = collections.OrderedDict(the_items)
 
     ### SPECIAL METHODS ###
 
