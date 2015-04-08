@@ -228,58 +228,11 @@ class DivisionMaker(AbjadValueObject):
         cyclic=True,
         counts=None,
         ):
-        r'''Fuses divisions by `counts`.
+        r'''Fuses divisions (or division lists) by `counts`.
 
         ..  container:: example
 
-            **Example 1.** Fuses nothing:
- 
-            ::
-
-                >>> division_maker = makertools.DivisionMaker()
-
-            ::
-
-                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
-                >>> divisions = division_maker(time_signatures)
-                >>> for division in divisions:
-                ...     division
-                Division(7, 8)
-                Division(7, 8)
-                Division(7, 16)
-
-            ::
-
-                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-                >>> music = rhythm_maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     time_signatures=time_signatures,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 7/8
-                        c'2..
-                    }
-                    {
-                        c'2..
-                    }
-                    {
-                        \time 7/16
-                        c'4..
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 2.** Fuses every two divisions together:
+            **Example 1.** Fuses every two divisions together:
  
             ::
 
@@ -290,8 +243,8 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = [(7, 8), (7, 8), (7, 16)]
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
                 [Division(14, 8)]
@@ -305,7 +258,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     time_signatures=time_signatures,
+                ...     time_signatures=input_divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
