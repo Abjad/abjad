@@ -115,3 +115,10 @@ class DivisionMaker(AbjadValueObject):
             counts=counts,
             )
         return self._with_callback(callback)
+
+    def with_callback(self, callback):
+        r'''Configures division-maker with arbitrary `callback`.
+
+        Returns new division-maker.
+        '''
+        return self._with_callback(callback)
