@@ -140,17 +140,33 @@ class DivisionMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions=None):
-        r'''Makes divisions from `divisions`.
+    def __call__(self, expr=None):
+        r'''Makes divisions from `expr`.
 
-        Returns a (possibly empty) list of division lists.
+        Pass in `expr` as either a list of divisions or as a list of division
+        lists.
+
+        Returns either a list of divisions or a list of division lists.
         '''
-        divisions = [durationtools.Division(_) for _ in divisions]
+        expr = expr or []
+        expr = list(expr)
+        assert isinstance(expr, list), repr(expr)
+        if self._is_flat_list(expr):
+            expr = [durationtools.Division(_) for _ in expr]
         for callback in self.callbacks:
-            divisions = callback(divisions)
-        return divisions
+            expr = callback(expr)
+        return expr
 
     ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _is_flat_list(expr):
+        if isinstance(expr, list):
+            if not(expr):
+                return True
+            elif not isinstance(expr[0], list):
+                return True
+        return False
 
     def _with_callback(self, callback):
         callbacks = self.callbacks or ()
@@ -312,7 +328,105 @@ class DivisionMaker(AbjadValueObject):
         ):
         r'''Partitions divisions by `counts`.
 
-        ..  todo:: Add examples.
+        ..  container:: example
+
+            **Example 1a.** Partitions division lists into pairs with
+            remainders at right:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition(
+                ...     counts=[2],
+                ...     fuse_remainder=False,
+                ...     remainder_direction=Right,
+                ...     )
+
+            ::
+
+                >>> division_lists = [
+                ...     [(1, 8), (1, 8), (1, 4)],
+                ...     [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)],
+                ...     ]
+                >>> partitioned_division_lists = division_maker(division_lists)
+                >>> for partitioned_division_list in partitioned_division_lists:
+                ...     partitioned_division_list
+                [[Division(1, 8), Division(1, 8)], [Division(1, 4)]]
+                [[Division(1, 8), Division(1, 8)], [Division(1, 4), Division(1, 4)], [Division(1, 16)]]
+
+            **Example 1b.** Partitions division lists into pairs with
+            remainders at left:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition(
+                ...     counts=[2],
+                ...     fuse_remainder=False,
+                ...     remainder_direction=Left,
+                ...     )
+
+            ::
+
+                >>> division_lists = [
+                ...     [(1, 8), (1, 8), (1, 4)],
+                ...     [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)],
+                ...     ]
+                >>> partitioned_division_lists = division_maker(division_lists)
+                >>> for partitioned_division_list in partitioned_division_lists:
+                ...     partitioned_division_list
+                [[Division(1, 8)], [Division(1, 8), Division(1, 4)]]
+                [[Division(1, 8)], [Division(1, 8), Division(1, 4)], [Division(1, 4), Division(1, 16)]]
+
+        ..  container:: example
+
+            **Example 2a.** Partitions division lists into pairs with
+            remainders fused at right:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition(
+                ...     counts=[2],
+                ...     fuse_remainder=True,
+                ...     remainder_direction=Right,
+                ...     )
+
+            ::
+
+                >>> division_lists = [
+                ...     [(1, 8), (1, 8), (1, 4)],
+                ...     [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)],
+                ...     ]
+                >>> partitioned_division_lists = division_maker(division_lists)
+                >>> for partitioned_division_list in partitioned_division_lists:
+                ...     partitioned_division_list
+                [[Division(1, 8), Division(1, 8), Division(1, 4)]]
+                [[Division(1, 8), Division(1, 8)], [Division(1, 4), Division(1, 4), Division(1, 16)]]
+
+            **Example 2b.** Partitions division lists into pairs with
+            remainders fused at left:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition(
+                ...     counts=[2],
+                ...     fuse_remainder=True,
+                ...     remainder_direction=Left,
+                ...     )
+
+            ::
+
+                >>> division_lists = [
+                ...     [(1, 8), (1, 8), (1, 4)],
+                ...     [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)],
+                ...     ]
+                >>> partitioned_division_lists = division_maker(division_lists)
+                >>> for partitioned_division_list in partitioned_division_lists:
+                ...     partitioned_division_list
+                [[Division(1, 8), Division(1, 8), Division(1, 4)]]
+                [[Division(1, 8), Division(1, 8), Division(1, 4)], [Division(1, 4), Division(1, 16)]]
 
         Returns new division-maker.
         '''
