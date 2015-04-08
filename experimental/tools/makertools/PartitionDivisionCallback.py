@@ -170,10 +170,16 @@ class PartitionDivisionCallback(AbjadValueObject):
         Returns list of beat lists.
         '''
         grouped_beat_lists = []
-        for beat_list in beat_lists:
-            grouped_beat_list = self._beat_list_to_grouped_beat_list(beat_list)
-            grouped_beat_lists.append(grouped_beat_list)
-        return grouped_beat_lists
+        if beat_lists and isinstance(beat_lists[0], list):
+            for beat_list in beat_lists:
+                grouped_beat_list = \
+                    self._beat_list_to_grouped_beat_list(beat_list)
+                grouped_beat_lists.append(grouped_beat_list)
+            return grouped_beat_lists
+        else:
+            grouped_beat_list = \
+                self._beat_list_to_grouped_beat_list(beat_lists)
+            return grouped_beat_list
 
     def _beat_list_to_grouped_beat_list(self, beat_list):
         assert isinstance(beat_list, (list, tuple)), repr(beat_list)

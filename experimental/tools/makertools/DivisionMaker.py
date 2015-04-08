@@ -333,11 +333,92 @@ class DivisionMaker(AbjadValueObject):
         append_remainder=False,
         remainder_direction=Right,
         ):
-        r'''Partitions divisions by `counts`.
+        r'''Partitions divisions (or division lists) by `counts`.
 
         ..  container:: example
 
-            **Example 1a.** Partitions division lists into pairs with
+            **Example 1a.** Partitions divisions into pairs with remainder at
+            right:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition_by_counts(
+                ...     counts=[2],
+                ...     append_remainder=False,
+                ...     remainder_direction=Right,
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)]
+                >>> division_list = division_maker(divisions)
+                >>> division_list
+                [[Division(1, 8), Division(1, 8)], [Division(1, 4), Division(1, 4)], [Division(1, 16)]]
+
+            **Example 1b.** Partitions divisions into pairs with remainder
+            appended at right:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition_by_counts(
+                ...     counts=[2],
+                ...     append_remainder=True,
+                ...     remainder_direction=Right,
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)]
+                >>> division_list = division_maker(divisions)
+                >>> division_list
+                [[Division(1, 8), Division(1, 8)], [Division(1, 4), Division(1, 4), Division(1, 16)]]
+
+            **Example 1c.** Partitions divisions into pairs with remainder at
+            left:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition_by_counts(
+                ...     counts=[2],
+                ...     append_remainder=False,
+                ...     remainder_direction=Left,
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)]
+                >>> division_list = division_maker(divisions)
+                >>> division_list
+                [[Division(1, 8)], [Division(1, 8), Division(1, 4)], [Division(1, 4), Division(1, 16)]]
+
+            **Example 1d.** Partitions divisions into pairs with remainder
+            appeneded at left:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition_by_counts(
+                ...     counts=[2],
+                ...     append_remainder=True,
+                ...     remainder_direction=Left,
+                ...     )
+
+            ::
+
+                >>> divisions = [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)]
+                >>> division_list = division_maker(divisions)
+                >>> division_list
+                [[Division(1, 8), Division(1, 8), Division(1, 4)], [Division(1, 4), Division(1, 16)]]
+
+            These examples show how the class partitions a flat list of
+            divisions. Output equal to one nested division list.
+
+        ..  container:: example
+
+            **Example 2a.** Partitions division lists into pairs with
             remainders at right:
 
             ::
@@ -361,7 +442,31 @@ class DivisionMaker(AbjadValueObject):
                 [[Division(1, 8), Division(1, 8)], [Division(1, 4)]]
                 [[Division(1, 8), Division(1, 8)], [Division(1, 4), Division(1, 4)], [Division(1, 16)]]
 
-            **Example 1b.** Partitions division lists into pairs with
+            **Example 2b.** Partitions division lists into pairs with
+            remainders appended at right:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.partition_by_counts(
+                ...     counts=[2],
+                ...     append_remainder=True,
+                ...     remainder_direction=Right,
+                ...     )
+
+            ::
+
+                >>> division_lists = [
+                ...     [(1, 8), (1, 8), (1, 4)],
+                ...     [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)],
+                ...     ]
+                >>> partitioned_division_lists = division_maker(division_lists)
+                >>> for partitioned_division_list in partitioned_division_lists:
+                ...     partitioned_division_list
+                [[Division(1, 8), Division(1, 8), Division(1, 4)]]
+                [[Division(1, 8), Division(1, 8)], [Division(1, 4), Division(1, 4), Division(1, 16)]]
+
+            **Example 2c.** Partitions division lists into pairs with
             remainders at left:
 
             ::
@@ -385,34 +490,8 @@ class DivisionMaker(AbjadValueObject):
                 [[Division(1, 8)], [Division(1, 8), Division(1, 4)]]
                 [[Division(1, 8)], [Division(1, 8), Division(1, 4)], [Division(1, 4), Division(1, 16)]]
 
-        ..  container:: example
-
-            **Example 2a.** Partitions division lists into pairs with
-            remainders fused at right:
-
-            ::
-
-                >>> division_maker = makertools.DivisionMaker()
-                >>> division_maker = division_maker.partition_by_counts(
-                ...     counts=[2],
-                ...     append_remainder=True,
-                ...     remainder_direction=Right,
-                ...     )
-
-            ::
-
-                >>> division_lists = [
-                ...     [(1, 8), (1, 8), (1, 4)],
-                ...     [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)],
-                ...     ]
-                >>> partitioned_division_lists = division_maker(division_lists)
-                >>> for partitioned_division_list in partitioned_division_lists:
-                ...     partitioned_division_list
-                [[Division(1, 8), Division(1, 8), Division(1, 4)]]
-                [[Division(1, 8), Division(1, 8)], [Division(1, 4), Division(1, 4), Division(1, 16)]]
-
-            **Example 2b.** Partitions division lists into pairs with
-            remainders fused at left:
+            **Example 2d.** Partitions division lists into pairs with
+            remainders appended at left:
 
             ::
 
@@ -434,6 +513,10 @@ class DivisionMaker(AbjadValueObject):
                 ...     partitioned_division_list
                 [[Division(1, 8), Division(1, 8), Division(1, 4)]]
                 [[Division(1, 8), Division(1, 8), Division(1, 4)], [Division(1, 4), Division(1, 16)]]
+
+            These examples show how the class automatically maps over multiple
+            input division lists. Output equal to arbitrarily many nested
+            division lists.
 
         Returns new division-maker.
         '''
