@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
+from abjad.tools.topleveltools import new
 
 
 class DivisionMaker(AbjadValueObject):
@@ -132,6 +133,7 @@ class DivisionMaker(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_callbacks',
         '_cyclic',
         '_pattern',
         '_pattern_rotation_index',
@@ -167,6 +169,7 @@ class DivisionMaker(AbjadValueObject):
                 remainder_fuse_threshold,
                 )
         self._remainder_fuse_threshold = remainder_fuse_threshold
+        self._callbacks = ()
 
     ### SPECIAL METHODS ###
 
@@ -409,7 +412,6 @@ class DivisionMaker(AbjadValueObject):
                 if self.remainder_fuse_threshold is None:
                     division_list.insert(0, remainder)
                 elif remainder <= self.remainder_fuse_threshold:
-                    #division_list[0] += remainder
                     fused_value = division_list[0] + remainder
                     fused_value = durationtools.Division(fused_value)
                     division_list[0] = fused_value
@@ -419,7 +421,6 @@ class DivisionMaker(AbjadValueObject):
                 if self.remainder_fuse_threshold is None:
                     division_list.append(remainder)
                 elif remainder <= self.remainder_fuse_threshold:
-                    #division_list[-1] += remainder
                     fused_value = division_list[-1] + remainder
                     fused_value = durationtools.Division(fused_value)
                     division_list[-1] = fused_value
@@ -431,6 +432,10 @@ class DivisionMaker(AbjadValueObject):
             pair = total_duration, input_duration
             assert total_duration == input_duration, pair
             division_lists.append(division_list)
+        callbacks = self.callbacks or ()
+        for callback in callbacks:
+            divisions = sequencetools.flatten_sequence(division_lists)
+            division_lists = callback(divisions)
         return division_lists
 
     ### PRIVATE PROPERTIES ###
@@ -455,7 +460,121 @@ class DivisionMaker(AbjadValueObject):
             keyword_argument_names=keyword_argument_names,
             )
 
+    ### PRIVATE METHODS ###
+
+    def _with_callback(self, callback):
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        result = new(self)
+        result._callbacks = callbacks
+        return result
+
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def callbacks(self):
+        r'''Gets callbacks of division-maker.
+
+        ..  container:: example
+
+            **Example 1.** Without fuse callback:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker(pattern=[(1, 4)])
+
+            ::
+
+                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+                [Division(1, 4), Division(3, 16)]
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/8
+                        c'4
+                        c'4
+                        c'4
+                        c'8
+                    }
+                    {
+                        c'4
+                        c'4
+                        c'4
+                        c'8
+                    }
+                    {
+                        \time 7/16
+                        c'4
+                        c'8.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** With fuse callback:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker(pattern=[(1, 4)])
+                >>> division_maker = division_maker.fuse(counts=[2, 4])
+
+            ::
+
+                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(2, 4)]
+                [Division(7, 8)]
+                [Division(3, 8)]
+                [Division(7, 16)]
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    c'2
+                    c'2..
+                    c'4.
+                    c'4..
+                }
+                    
+        '''
+        return self._callbacks
 
     @property
     def cyclic(self):
@@ -1268,3 +1387,17 @@ class DivisionMaker(AbjadValueObject):
         Returns duration or none.
         '''
         return self._remainder_fuse_threshold
+
+    ### PUBLIC METHODS ###
+
+    def fuse(
+        self,
+        cyclic=True,
+        counts=None,
+        ):
+        from experimental.tools import makertools
+        callback = makertools.HypermeasureDivisionMaker(
+            cyclic=cyclic,
+            measure_counts=counts,
+            )
+        return self._with_callback(callback)
