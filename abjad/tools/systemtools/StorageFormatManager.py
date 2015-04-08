@@ -293,7 +293,9 @@ class StorageFormatManager(object):
             ::
 
                 >>> from experimental import makertools
-                >>> division_maker = makertools.DivisionMaker(pattern=[(1, 4)])
+                >>> division_maker = makertools.SplitDivisionMaker(
+                ...     durations=[(1, 4)],
+                ...     )
                 >>> systemtools.StorageFormatManager.get_import_statements(
                 ...     division_maker
                 ...     )
