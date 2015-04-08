@@ -360,7 +360,7 @@ class Selector(AbjadValueObject):
                 Selection(Note("g'8"),)
                 Selection(Note("a'8"), Note("b'8"))
                 Selection(Rest('r8'), Note("c''8"))
-        
+
         ..  container:: example
 
             ::
@@ -385,7 +385,7 @@ class Selector(AbjadValueObject):
                 Selection(Rest('r8'), Note("f'8"))
                 Selection(Note("g'8"), Note("a'8"), Note("b'8"))
                 Selection(Rest('r8'),)
-                Selection(Note("c''8"),) 
+                Selection(Note("c''8"),)
 
         Returns new selector.
         '''
@@ -1121,6 +1121,51 @@ class Selector(AbjadValueObject):
     def with_callback(self, callback):
         r'''Configures selector with arbitrary `callback`.
 
+        Composers can create their own selector callback classes with
+        specialized composition-specific logic. `Selector.with_callback()`
+        allows composers to use those composition-specific selector callbacks
+        in the component selector pipeline.
+
+        ..  container:: example
+
+            **Example.** A custom selector callback class can be created to
+            only select chords containing the pitch-classes C, E and G. A
+            selector can then be configured with that custom callback via
+            `with_callback()`:
+
+            ::
+
+                >>> class CMajorSelectorCallback(abctools.AbjadValueObject):
+                ...     def __call__(self, expr):
+                ...         c_major_pcs = pitchtools.PitchClassSet("c e g")
+                ...         result = []
+                ...         for subexpr in expr:
+                ...             subresult = []
+                ...             for x in subexpr:
+                ...                 if not isinstance(x, scoretools.Chord):
+                ...                     continue
+                ...                 pitches = x.written_pitches
+                ...                 pcs = pitchtools.PitchClassSet(pitches)
+                ...                 if pcs == c_major_pcs:
+                ...                     subresult.append(x)
+                ...             if subresult:
+                ...                 result.append(tuple(subresult))
+                ...         return tuple(result)
+
+            ::
+
+                >>> staff = Staff("<g' d'>4 <c' e' g'>4 r4 <e' g' c''>2 fs,4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.with_callback(CMajorSelectorCallback())
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Chord("<c' e' g'>4"), Chord("<e' g' c''>2"))
+
         Returns new selector.
         '''
         return self._with_callback(callback)
@@ -1137,7 +1182,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.with_next_leaf()
-                 
+
             ::
 
                 >>> for x in selector(staff):
@@ -1168,7 +1213,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.with_previous_leaf()
-                 
+
             ::
 
                 >>> for x in selector(staff):

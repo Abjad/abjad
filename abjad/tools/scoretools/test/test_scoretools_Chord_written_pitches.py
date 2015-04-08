@@ -10,7 +10,7 @@ def test_scoretools_Chord_written_pitches_01():
     chord = Chord("<d' e' f'>4")
     pitches = chord.written_pitches
 
-    assert isinstance(pitches, tuple)
+    assert isinstance(pitches, pitchtools.PitchSegment)
     assert len(pitches) == 3
     assert pytest.raises(Exception, 'pitches.pop()')
     assert pytest.raises(Exception, 'pitches.remove(pitches[0])')

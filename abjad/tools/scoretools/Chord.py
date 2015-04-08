@@ -3,6 +3,7 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
+from abjad.tools import pitchtools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
@@ -51,20 +52,20 @@ class Chord(Leaf):
         are_parenthesized = []
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
+            written_pitches = []
             written_duration = leaf.written_duration
-            if hasattr(leaf, 'written_pitch'):
-                written_pitches = [leaf.written_pitch]
+            if 'written_pitch' in dir(leaf):
+                written_pitches.append(leaf.note_head.written_pitch)
                 are_cautionary = [leaf.note_head.is_cautionary]
                 are_forced = [leaf.note_head.is_forced]
                 are_parenthesized = [leaf.note_head.is_parenthesized]
-            elif hasattr(leaf, 'written_pitches'):
-                written_pitches = leaf.written_pitches
+            elif 'written_pitches' in dir(leaf):
+                written_pitches.extend(x.written_pitch
+                    for x in leaf.note_heads)
                 are_cautionary = [x.is_cautionary for x in leaf.note_heads]
                 are_forced = [x.is_forced for x in leaf.note_heads]
                 are_parenthesized = [x.is_parenthesized for x in
                     leaf.note_heads]
-            else:
-                written_pitches = []
         elif len(args) == 2:
             written_pitches, written_duration = args
             if isinstance(written_pitches, str):
@@ -447,11 +448,8 @@ class Chord(Leaf):
 
             ::
 
-                >>> for written_pitch in chord.written_pitches:
-                ...     written_pitch
-                NamedPitch("g'")
-                NamedPitch("c''")
-                NamedPitch("e''")
+                >>> chord.written_pitches
+                PitchSegment(["g'", "c''", "e''"])
 
         ..  container:: example
 
@@ -472,12 +470,19 @@ class Chord(Leaf):
                 >>> print(format(chord))
                 <f' b' d''>4
 
+            ::
+
+                >>> chord.written_pitches
+                PitchSegment(["f'", "b'", "d''"])
+
         Set written pitches with any iterable.
 
         Returns tuple.
         '''
-        return tuple(note_head.written_pitch
-            for note_head in self.note_heads)
+        return pitchtools.PitchSegment(
+            items=(note_head.written_pitch for note_head in self.note_heads),
+            item_class=pitchtools.NamedPitch,
+            )
 
     @written_pitches.setter
     def written_pitches(self, pitches):

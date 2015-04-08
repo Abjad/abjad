@@ -50,20 +50,20 @@ class Note(Leaf):
         is_parenthesized = False
         if len(args) == 1 and isinstance(args[0], Leaf):
             leaf = args[0]
+            written_pitch = None
             written_duration = leaf.written_duration
-            if hasattr(leaf, 'written_pitch'):
-                written_pitch = leaf.written_pitch
+            if 'written_pitch' in dir(leaf):
+                written_pitch = leaf.note_head.written_pitch
                 is_cautionary = leaf.note_head.is_cautionary
                 is_forced = leaf.note_head.is_forced
                 is_parenthesized = leaf.note_head.is_parenthesized
-            elif hasattr(leaf, 'written_pitches') and \
-                0 < len(leaf.written_pitches):
-                written_pitch = leaf.written_pitches[0]
-                is_cautionary = leaf.note_heads[0].is_cautionary
-                is_forced = leaf.note_heads[0].is_forced
-                is_parenthesized = leaf.note_heads[0].is_parenthesized
-            else:
-                written_pitch = None
+            elif 'written_pitches' in dir(leaf):
+                written_pitches = [x.written_pitch for x in leaf.note_heads]
+                if written_pitches:
+                    written_pitch = written_pitches[0]
+                    is_cautionary = leaf.note_heads[0].is_cautionary
+                    is_forced = leaf.note_heads[0].is_forced
+                    is_parenthesized = leaf.note_heads[0].is_parenthesized
         elif len(args) == 2:
             written_pitch, written_duration = args
         elif len(args) == 0:
