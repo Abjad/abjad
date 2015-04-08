@@ -319,7 +319,7 @@ class DivisionMaker(AbjadValueObject):
             )
         return self._with_callback(callback)
 
-    def partition(
+    def partition_by_counts(
         self,
         counts=None,
         fuse_assignable_total_duration=False,
@@ -336,7 +336,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> division_maker = makertools.DivisionMaker()
-                >>> division_maker = division_maker.partition(
+                >>> division_maker = division_maker.partition_by_counts(
                 ...     counts=[2],
                 ...     append_remainder=False,
                 ...     remainder_direction=Right,
@@ -360,7 +360,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> division_maker = makertools.DivisionMaker()
-                >>> division_maker = division_maker.partition(
+                >>> division_maker = division_maker.partition_by_counts(
                 ...     counts=[2],
                 ...     append_remainder=False,
                 ...     remainder_direction=Left,
@@ -386,7 +386,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> division_maker = makertools.DivisionMaker()
-                >>> division_maker = division_maker.partition(
+                >>> division_maker = division_maker.partition_by_counts(
                 ...     counts=[2],
                 ...     append_remainder=True,
                 ...     remainder_direction=Right,
@@ -410,7 +410,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> division_maker = makertools.DivisionMaker()
-                >>> division_maker = division_maker.partition(
+                >>> division_maker = division_maker.partition_by_counts(
                 ...     counts=[2],
                 ...     append_remainder=True,
                 ...     remainder_direction=Left,
