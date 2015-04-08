@@ -10,9 +10,6 @@ from abjad.tools.topleveltools import new
 class SplitByDurationsDivisionCallback(AbjadValueObject):
     r'''Division-maker.
 
-    ..  todo:: Migrate functionality from SplitByBeatsDivisionCallback into
-        this class.
-
     ..  container:: example
 
         **Example 1.** Makes quarter-valued divisions with remainder at right:

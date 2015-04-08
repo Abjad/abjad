@@ -595,12 +595,114 @@ class DivisionMaker(AbjadValueObject):
         ):
         r'''Splits divisions by rounded ratios.
 
-        ..  todo:: Add examples.
+        ..  container:: example
+
+            **Example 1.** Makes divisions with ``2:1`` ratios:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.split_by_rounded_ratios(
+                ...     ratios=[mathtools.Ratio(2, 1)],
+                ...     )
+
+            ::
+
+                >>> input_divisions = [(5, 8), (6, 8)]
+                >>> division_lists = division_maker(input_divisions)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(3, 8), Division(2, 8)]
+                [Division(4, 8), Division(2, 8)]
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=input_divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'4.
+                        c'4
+                    }
+                    {
+                        \time 6/8
+                        c'2
+                        c'4
+                    }
+                }
+
+
+        ..  container:: example
+
+            **Example 2.** Makes divisions with alternating ``2:1`` and 
+            ``1:1:1`` ratios:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.split_by_rounded_ratios(
+                ...     ratios=[
+                ...         mathtools.Ratio(2, 1),
+                ...         mathtools.Ratio(1, 1, 1),
+                ...         ],
+                ...     )
+
+            ::
+
+                >>> input_divisions = [(5, 8), (6, 8)]
+                >>> division_lists = division_maker(input_divisions)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(3, 8), Division(2, 8)]
+                [Division(2, 8), Division(2, 8), Division(2, 8)]
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=input_divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'4.
+                        c'4
+                    }
+                    {
+                        \time 6/8
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
 
         Returns new division-maker.
         '''
         from experimental.tools import makertools
-        callback = makertools.SplitByBeatsDivisionCallback(
+        callback = makertools.SplitByRoundedRatiosDivisionCallback(
             ratios=ratios,
             )
         return self._append_callback(callback)

@@ -8,7 +8,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
-    r'''Rounded ratio division maker.
+    r'''Split-by-rounded-ratios division callback.
 
     ..  container:: example
 
