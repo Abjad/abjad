@@ -1,17 +1,12 @@
 # -*- encoding: utf-8 -*-
 import math
-from abjad.tools import datastructuretools
 from abjad.tools import durationtools
-from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
-from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
-from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import override
 
 
@@ -476,7 +471,6 @@ class AccelerandoRhythmMaker(RhythmMaker):
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
-        from abjad.tools import rhythmmakertools
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
@@ -539,9 +533,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _interpolate_divide(
-        total_duration, 
-        start_duration, 
-        stop_duration, 
+        total_duration,
+        start_duration,
+        stop_duration,
         exponent='cosine',
         ):
         r'''Divides `total_duration` into durations computed from interpolating
@@ -580,7 +574,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         Returns a list of floats.
         '''
-        if total_duration <=0 :
+        if total_duration <= 0:
             message = "Total duration must be positive."
             raise ValueError(message)
         if start_duration <= 0 or stop_duration <= 0:
@@ -597,15 +591,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
         while partial_sum < total_duration:
             if exponent == 'cosine':
                 duration = AccelerandoRhythmMaker._interpolate_cosine(
-                    start_duration, 
-                    stop_duration, 
+                    start_duration,
+                    stop_duration,
                     partial_sum / total_duration,
                     )
             else:
                 duration = AccelerandoRhythmMaker._interpolate_exponential(
-                    start_duration, 
-                    stop_duration, 
-                    partial_sum / total_duration, 
+                    start_duration,
+                    stop_duration,
+                    partial_sum / total_duration,
                     exponent,
                     )
             durations.append(duration)
@@ -616,8 +610,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _interpolate_divide_multiple(
-        total_durations, 
-        reference_durations, 
+        total_durations,
+        reference_durations,
         exponent='cosine',
         ):
         '''Interpolates `reference_durations` such that the sum of the
@@ -658,9 +652,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
         durations = []
         for i in range(len(total_durations)):
             durations_ = AccelerandoRhythmMaker._interpolate_divide(
-                total_durations[i], 
-                reference_durations[i], 
-                reference_durations[i+1], 
+                total_durations[i],
+                reference_durations[i],
+                reference_durations[i + 1],
                 exponent,
                 )
             # we want a flat list
@@ -707,7 +701,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
     def _make_accelerando(self, total_duration):
         r'''Makes notes with LilyPond multipliers.
 
-        Returns as many interpolation values as necessary to fill `total` 
+        Returns as many interpolation values as necessary to fill `total`
         duration requested.
 
         Computes duration multipliers interpolated from `start` to `stop`.
@@ -727,7 +721,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             stop_duration=interpolation_specifier.stop_duration,
             )
         durations = [
-            durationtools.Duration(int(round(_ * 2**10)), 2**10) 
+            durationtools.Duration(int(round(_ * 2**10)), 2**10)
             for _ in durations
             ]
         notes = []
