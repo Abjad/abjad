@@ -293,13 +293,11 @@ class StorageFormatManager(object):
             ::
 
                 >>> from experimental import makertools
-                >>> division_maker = makertools.SplitDivisionMaker(
-                ...     durations=[(1, 4)],
-                ...     )
+                >>> division_maker = makertools.DivisionMaker()
                 >>> systemtools.StorageFormatManager.get_import_statements(
                 ...     division_maker
                 ...     )
-                ('from abjad.tools import durationtools', 'from experimental.tools import makertools')
+                ('from experimental.tools import makertools',)
 
         Returns tuple of strings.
         '''

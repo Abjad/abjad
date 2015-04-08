@@ -58,7 +58,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> divisions = makertools.SplitDivisionMaker(
+            >>> divisions = makertools.SplitByDurationsDivisionCallback(
             ...     durations=[Duration(3, 16)],
             ...     remainder=Right,
             ...     )
@@ -146,7 +146,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             assert mathtools.all_are_positive_integers(counts)
             self._counts = counts
         if secondary_division_maker is not None:
-            prototype = (makertools.SplitDivisionMaker,)
+            prototype = (makertools.SplitByDurationsDivisionCallback,)
             assert isinstance(secondary_division_maker, prototype)
         self._secondary_division_maker = secondary_division_maker
 
@@ -264,7 +264,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             
             ::
 
-                >>> divisions = makertools.SplitDivisionMaker(
+                >>> divisions = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
@@ -318,7 +318,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             
             ::
 
-                >>> divisions = makertools.SplitDivisionMaker(
+                >>> divisions = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
@@ -415,7 +415,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> divisions = makertools.SplitDivisionMaker(
+                >>> divisions = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
@@ -466,7 +466,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> divisions = makertools.SplitDivisionMaker(
+                >>> divisions = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(3, 16)],
                 ...     remainder=Left,
                 ...     )

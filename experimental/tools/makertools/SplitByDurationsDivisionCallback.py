@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import new
 
 
-class SplitDivisionMaker(AbjadValueObject):
+class SplitByDurationsDivisionCallback(AbjadValueObject):
     r'''Division-maker.
 
     ..  container:: example
@@ -15,7 +15,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.SplitDivisionMaker(durations=[(1, 4)])
+            >>> maker = makertools.SplitByDurationsDivisionCallback(durations=[(1, 4)])
 
         ::
 
@@ -70,7 +70,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.SplitDivisionMaker(
+            >>> maker = makertools.SplitByDurationsDivisionCallback(
             ...     durations=[(1, 4)],
             ...     remainder=Left,
             ...     )
@@ -182,7 +182,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=True,
                 ...     durations=[(1, 4)],
                 ...     )
@@ -226,7 +226,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(1, 4)],
                 ...     )
 
@@ -273,7 +273,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=True,
                 ...     durations=[(1, 4)],
                 ...     )
@@ -323,7 +323,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker()
+                >>> maker = makertools.SplitByDurationsDivisionCallback()
 
             ::
 
@@ -364,7 +364,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(durations=[(1, 4)])
+                >>> maker = makertools.SplitByDurationsDivisionCallback(durations=[(1, 4)])
                 >>> maker()
                 []
 
@@ -481,7 +481,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.SplitDivisionMaker(durations=[(1, 4)])
+                >>> division_maker = makertools.SplitByDurationsDivisionCallback(durations=[(1, 4)])
 
             ::
 
@@ -536,7 +536,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.SplitDivisionMaker(durations=[(1, 4)])
+                >>> division_maker = makertools.SplitByDurationsDivisionCallback(durations=[(1, 4)])
                 >>> division_maker = division_maker.fuse(counts=[2, 4])
 
             ::
@@ -590,7 +590,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(1, 4)],
                 ...     )
 
@@ -647,7 +647,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=False,
                 ...     durations=[(1, 4)],
                 ...     )
@@ -714,7 +714,7 @@ class SplitDivisionMaker(AbjadValueObject):
             **Example 1.** Returns input division unchanged when durations is
             empty:
 
-                >>> maker = makertools.SplitDivisionMaker()
+                >>> maker = makertools.SplitByDurationsDivisionCallback()
 
             ::
 
@@ -760,7 +760,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             **Example 2.** Applies durations to each input division:
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(1, 4)],
                 ...     )
 
@@ -829,7 +829,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=True,
                 ...     durations=[(1, 16), (1, 8), (1, 4)],
                 ...     )
@@ -886,7 +886,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=True,
                 ...     durations=[(1, 16), (1, 8), (1, 4)],
                 ...     pattern_rotation_index=-1,
@@ -944,7 +944,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=True,
                 ...     durations=[(1, 16), (1, 8), (1, 4)],
                 ...     pattern_rotation_index=1,
@@ -1013,7 +1013,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=False,
                 ...     durations=[(4, 16), (1, 16)],
                 ...     )
@@ -1057,7 +1057,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(4, 16), (1, 16)],
                 ...     )
 
@@ -1102,7 +1102,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=False,
                 ...     durations=[(1, 4), (1, 16)],
                 ...     remainder=Left,
@@ -1147,7 +1147,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=True,
                 ...     durations=[(1, 4), (1, 16)],
                 ...     remainder=Left,
@@ -1206,7 +1206,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(1, 4)],
                 ...     remainder_fuse_threshold=None,
                 ...     )
@@ -1251,7 +1251,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(1, 4)],
                 ...     remainder_fuse_threshold=Duration(1, 8),
                 ...     )
@@ -1294,7 +1294,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=True,
                 ...     durations=[(1, 4)],
                 ...     remainder=Left,
@@ -1341,7 +1341,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(
+                >>> maker = makertools.SplitByDurationsDivisionCallback(
                 ...     cyclic=True,
                 ...     durations=[(1, 4)],
                 ...     remainder=Left,
