@@ -9,7 +9,8 @@ from abjad.tools.topleveltools import new
 class SplitByDurationsDivisionCallback(AbjadValueObject):
     r'''Division-maker.
 
-    ..  todo:: Combine with SplitByBeatsDivisionCallback.
+    ..  todo:: Migrate functionality from SplitByBeatsDivisionCallback into
+        this class.
 
     ..  container:: example
 

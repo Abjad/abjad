@@ -116,6 +116,90 @@ class DivisionMaker(AbjadValueObject):
             )
         return self._with_callback(callback)
 
+    def partition(
+        self,
+        counts=None,
+        fuse_assignable_total_duration=False,
+        fuse_remainder=False,
+        remainder_direction=Right,
+        ):
+        r'''Partitions divisions by `counts`.
+
+        ..  todo:: Add examples.
+
+        Returns new division-maker.
+        '''
+        from experimental.tools import makertools
+        callback = makertools.PartitionDivisionCallback(
+            counts=counts,
+            fuse_assignable_total_duration=fuse_assignable_total_duration,
+            fuse_remainder=fuse_remainder,
+            remainder_direction=remainder_direction,
+            )
+        return self._with_callback(callback)
+
+    def split_by_beats(
+        self, 
+        compound_beat_duration=None,
+        fuse_remainder=False,
+        remainder_direction=Right,
+        simple_beat_duration=None,
+        ):
+        r'''Splits divisions by beats.
+
+        ..  todo:: Add examples.
+
+        Returns new division-maker.
+        '''
+        from experimental.tools import makertools
+        callback = makertools.SplitByBeatsDivisionCallback(
+            compound_beat_duration=compound_beat_duration,
+            fuse_remainder=fuse_remainder,
+            remainder_direction=remainder_direction,
+            simple_beat_duration=simple_beat_duration,
+            )
+        return self._with_callback(callback)
+
+    def split_by_durations(
+        self,
+        cyclic=True,
+        durations=(),
+        pattern_rotation_index=0,
+        remainder=Right,
+        remainder_fuse_threshold=None,
+        ):
+        r'''Splits divisions by durations.
+
+        ..  todo:: Add examples.
+
+        Returns new division-maker.
+        '''
+        from experimental.tools import makertools
+        callback = makertools.SplitByBeatsDivisionCallback(
+            cyclic=cyclic,
+            durations=durations,
+            pattern_rotation_index=pattern_rotation_index,
+            remainder=remainder,
+            remainder_fuse_threshold=remainder_fuse_threshold,
+            )
+        return self._with_callback(callback)
+
+    def split_by_rounded_ratios(
+        self,
+        ratios=None,
+        ):
+        r'''Splits divisions by rounded ratios.
+
+        ..  todo:: Add examples.
+
+        Returns new division-maker.
+        '''
+        from experimental.tools import makertools
+        callback = makertools.SplitByBeatsDivisionCallback(
+            ratios=ratios,
+            )
+        return self._with_callback(callback)
+
     def with_callback(self, callback):
         r'''Configures division-maker with arbitrary `callback`.
 
