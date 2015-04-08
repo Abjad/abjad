@@ -47,7 +47,6 @@ def make_lilypond_file(
 
     context = scoretools.Context(context_name='TimeSignatureContext')
     measures = scoretools.make_spacer_skip_measures(
-        #divisions,
         time_signatures,
         implicit_scaling=implicit_scaling,
         )
@@ -55,7 +54,6 @@ def make_lilypond_file(
     score.append(context)
 
     measures = scoretools.make_spacer_skip_measures(
-        #divisions,
         time_signatures,
         implicit_scaling=implicit_scaling,
         )
@@ -63,7 +61,11 @@ def make_lilypond_file(
     staff.context_name = 'RhythmicStaff'
     music = sequencetools.flatten_sequence(music)
 
-    measures = mutate(staff).replace_measure_contents(music)
+    try:
+        measures = mutate(staff).replace_measure_contents(music)
+    except StopIteration:
+        staff = scoretools.Staff(music)
+        
     score.append(staff)
 
     return lilypond_file
