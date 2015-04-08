@@ -7,22 +7,23 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class FuseByCountsDivisionCallback(AbjadValueObject):
-    r'''Hypermeasure division-maker.
+    r'''Fuse-by-counts division callback.
 
     ..  container:: example
 
-        **Example 1.** Groups measures together two at a time:
+        **Example 1.** Fuses divisions together two at a time:
 
         ::
 
-            >>> division_maker = makertools.FuseByCountsDivisionCallback(
+            >>> division_maker = makertools.DivisionMaker()
+            >>> division_maker = division_maker.fuse_by_counts(
             ...     counts=[2],
             ...     )
 
         ::
 
-            >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-            >>> division_lists = division_maker(time_signatures)
+            >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+            >>> division_lists = division_maker(input_divisions)
             >>> for division_list in division_lists:
             ...     division_list
             [Division(4, 8)]
@@ -31,19 +32,19 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> maker = rhythmmakertools.NoteRhythmMaker()
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
             >>> divisions = sequencetools.flatten_sequence(division_lists)
-            >>> music = maker(divisions)
+            >>> music = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
-            ...     time_signatures=time_signatures,
+            ...     time_signatures=input_divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 c'2
@@ -53,24 +54,24 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Groups measures together two at a time and fills
-        resulting hypemeasure divisions with ``3/16`` divisions:
+        **Example 2.** Fuses divisions together two at a time. Then splits
+        resulting divisions by ``3/16`` durations:
 
         ::
 
-            >>> divisions = makertools.SplitByDurationsDivisionCallback(
+            >>> division_maker = makertools.SplitByDurationsDivisionCallback(
             ...     durations=[Duration(3, 16)],
             ...     remainder=Right,
             ...     )
             >>> division_maker = makertools.FuseByCountsDivisionCallback(
             ...     counts=[2],
-            ...     secondary_division_maker=divisions,
+            ...     secondary_division_maker=division_maker,
             ...     )
 
         ::
 
-            >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-            >>> division_lists = division_maker(time_signatures)
+            >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+            >>> division_lists = division_maker(input_divisions)
             >>> for division_list in division_lists:
             ...     division_list
             [Division(3, 16), Division(3, 16), Division(1, 8)]
@@ -80,19 +81,19 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> maker = rhythmmakertools.NoteRhythmMaker()
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
             >>> divisions = sequencetools.flatten_sequence(division_lists)
-            >>> music = maker(divisions)
+            >>> music = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
-            ...     time_signatures=time_signatures,
+            ...     time_signatures=input_divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 c'8.
@@ -153,20 +154,21 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions=None):
-        r'''Calls hypermeasure division-maker.
+        r'''Calls fuse-by-counts division callback.
 
         ..  container:: example
 
-            **Example 1.** Returns measures ungrouped:
+            **Example 1.** Returns divisions unfused:
 
             ::
 
-                >>> division_maker = makertools.FuseByCountsDivisionCallback()
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts()
 
             ::
 
-                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
                 [Division(2, 8)]
@@ -183,7 +185,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     time_signatures=time_signatures,
+                ...     time_signatures=input_divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -214,19 +216,19 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Groups measures together two at a time:
+            **Example 2.** Fuses divisions two at a time:
 
             ::
 
-                >>> division_maker = makertools.FuseByCountsDivisionCallback(
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts(
                 ...     counts=[2],
-                ...     secondary_division_maker=None,
                 ...     )
 
             ::
 
-                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
                 [Division(4, 8)]
@@ -241,7 +243,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     time_signatures=time_signatures,
+                ...     time_signatures=input_divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -257,26 +259,26 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3a.** Groups measures together two at a time and fills
-            resulting hypermeasure divisions with ``3/16`` divisions.
+            **Example 3a.** Fuses divisions two at a time.
+            Then splits fused divisions by ``3/16`` durations.
 
             Remainders to the right:
             
             ::
 
-                >>> divisions = makertools.SplitByDurationsDivisionCallback(
+                >>> division_maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     counts=[2],
-                ...     secondary_division_maker=divisions,
+                ...     secondary_division_maker=division_maker,
                 ...     )
 
             ::
 
-                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
                 [Division(3, 16), Division(3, 16), Division(1, 8)]
@@ -291,7 +293,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     time_signatures=time_signatures,
+                ...     time_signatures=input_divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -318,19 +320,19 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             
             ::
 
-                >>> divisions = makertools.SplitByDurationsDivisionCallback(
+                >>> division_maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     counts=[2],
-                ...     secondary_division_maker=divisions,
+                ...     secondary_division_maker=division_maker,
                 ...     )
 
             ::
 
-                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
                 [Division(1, 8), Division(3, 16), Division(3, 16)]
@@ -345,7 +347,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     time_signatures=time_signatures,
+                ...     time_signatures=input_divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -370,18 +372,19 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** Groups all measures together:
+            **Example 4.** Fuses all divisions:
 
             ::
 
-                >>> division_maker = makertools.FuseByCountsDivisionCallback(
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts(
                 ...     counts=mathtools.Infinity,
                 ...     )
 
             ::
 
-                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
                 [Division(16, 8)]
@@ -394,7 +397,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     time_signatures=time_signatures,
+                ...     time_signatures=input_divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -408,26 +411,26 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 5a.** Glues all input divisions together and then divides
-            into divisions of ``3/8``. 
+            **Example 5a.** Fuses all divisions. Then splits fused divisions
+            by ``3/8`` durations:
 
             Remainder at right:
 
             ::
 
-                >>> divisions = makertools.SplitByDurationsDivisionCallback(
+                >>> division_maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     counts=mathtools.Infinity,
-                ...     secondary_division_maker=divisions,
+                ...     secondary_division_maker=division_maker,
                 ...     )
 
             ::
 
-                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
                 [Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(1, 8)]
@@ -440,7 +443,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     time_signatures=time_signatures,
+                ...     time_signatures=input_divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -466,19 +469,19 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> divisions = makertools.SplitByDurationsDivisionCallback(
+                >>> division_maker = makertools.SplitByDurationsDivisionCallback(
                 ...     durations=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     counts=mathtools.Infinity,
-                ...     secondary_division_maker=divisions,
+                ...     secondary_division_maker=division_maker,
                 ...     )
 
             ::
 
-                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
                 [Division(1, 8), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16)]
@@ -491,7 +494,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
                 ...     divisions,
-                ...     time_signatures=time_signatures,
+                ...     time_signatures=input_divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
@@ -519,8 +522,8 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> time_signatures = []
-                >>> division_lists = division_maker(time_signatures)
+                >>> input_divisions = []
+                >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
 
