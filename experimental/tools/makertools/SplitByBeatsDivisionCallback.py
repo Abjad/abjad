@@ -5,7 +5,9 @@ from abjad.tools import metertools
 
 
 class SplitByBeatsDivisionCallback(AbjadValueObject):
-    r'''Beat maker.
+    r'''Split by beats division callback.
+
+    ..  todo:: Combine with SplitByDurationsDivisionCallback.
 
     Models one way of decomposing meters into beats.
 
