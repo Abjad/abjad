@@ -7,10 +7,17 @@ from abjad.tools import sequencetools
 from abjad.tools.topleveltools import mutate
 
 
-def make_lilypond_file(music, divisions, implicit_scaling=False):
+def make_lilypond_file(
+    music, 
+    divisions, 
+    implicit_scaling=False,
+    time_signatures=None,
+    ):
     r'''Makes LilyPond file.
 
     ..  container::
+
+        **Example 1.**
 
         ::
 
@@ -32,6 +39,7 @@ def make_lilypond_file(music, divisions, implicit_scaling=False):
     prototype = (selectiontools.Selection, scoretools.Tuplet)
     assert all(isinstance(x, prototype) for x in music), repr(music)
     assert isinstance(divisions, (tuple, list)), repr(divisions)
+    time_signatures = time_signatures or divisions
 
     score = scoretools.Score()
     lilypond_file = \
@@ -39,14 +47,16 @@ def make_lilypond_file(music, divisions, implicit_scaling=False):
 
     context = scoretools.Context(context_name='TimeSignatureContext')
     measures = scoretools.make_spacer_skip_measures(
-        divisions,
+        #divisions,
+        time_signatures,
         implicit_scaling=implicit_scaling,
         )
     context.extend(measures)
     score.append(context)
 
     measures = scoretools.make_spacer_skip_measures(
-        divisions,
+        #divisions,
+        time_signatures,
         implicit_scaling=implicit_scaling,
         )
     staff = scoretools.Staff(measures)
