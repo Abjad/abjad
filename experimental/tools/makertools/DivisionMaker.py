@@ -15,12 +15,53 @@ class DivisionMaker(AbjadValueObject):
         ::
 
             >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
-            >>> lists = maker([(7, 8), (7, 8), (7, 16)])
-            >>> for list_ in lists:
-            ...     list_
+
+        ::
+
+            >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+            >>> division_lists = maker(time_signatures)
+            >>> for division_list in division_lists:
+            ...     division_list
             [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
             [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
             [Division(1, 4), Division(3, 16)]
+
+        ::
+
+            >>> maker = rhythmmakertools.NoteRhythmMaker()
+            >>> divisions = sequencetools.flatten_sequence(division_lists)
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=time_signatures,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 7/8
+                    c'4
+                    c'4
+                    c'4
+                    c'8
+                }
+                {
+                    c'4
+                    c'4
+                    c'4
+                    c'8
+                }
+                {
+                    \time 7/16
+                    c'4
+                    c'8.
+                }
+            }
 
     ..  container:: example
 
@@ -32,12 +73,53 @@ class DivisionMaker(AbjadValueObject):
             ...     pattern=[(1, 4)],
             ...     remainder=Left,
             ...     )
-            >>> lists = maker([(7, 8), (7, 8), (7, 16)])
-            >>> for list_ in lists:
-            ...     list_
+
+        ::
+
+            >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+            >>> division_lists = maker(time_signatures)
+            >>> for division_list in division_lists:
+            ...     division_list
             [Division(1, 8), Division(1, 4), Division(1, 4), Division(1, 4)]
             [Division(1, 8), Division(1, 4), Division(1, 4), Division(1, 4)]
             [Division(3, 16), Division(1, 4)]
+
+        ::
+
+            >>> maker = rhythmmakertools.NoteRhythmMaker()
+            >>> divisions = sequencetools.flatten_sequence(division_lists)
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=time_signatures,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 7/8
+                    c'8
+                    c'4
+                    c'4
+                    c'4
+                }
+                {
+                    c'8
+                    c'4
+                    c'4
+                    c'4
+                }
+                {
+                    \time 7/16
+                    c'8.
+                    c'4
+                }
+            }
 
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a (possibly empty) nested 
@@ -93,7 +175,7 @@ class DivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Calls division-maker on division with no remainder:
+            **Example 1.** Division without remainder:
 
             ::
 
@@ -101,46 +183,181 @@ class DivisionMaker(AbjadValueObject):
                 ...     cyclic=True,
                 ...     pattern=[(1, 4)],
                 ...     )
-                >>> lists = maker([(3, 4)])
-                >>> for list_ in lists:
-                ...     list_
+
+            ::
+
+                >>> time_signatures = [(3, 4)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 4), Division(1, 4), Division(1, 4)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
 
         ..  container:: example
 
-            **Example 2.** Calls division-maker cyclically on each division.
-            Positions remainders to the right of each output list:
+            **Example 2.** Division with remainder:
 
             ::
 
                 >>> maker = makertools.DivisionMaker(
                 ...     pattern=[(1, 4)],
                 ...     )
-                >>> lists = maker([(7, 8)])
-                >>> for list_ in lists:
-                ...     list_ 
+
+            ::
+
+                >>> time_signatures = [(7, 8)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list 
                 [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/8
+                        c'4
+                        c'4
+                        c'4
+                        c'8
+                    }
+                }
 
             Positions remainder at right of output because divison-maker
             `remainder` defaults to right.
 
         ..  container:: example
 
-            **Example 3.** Calls division-maker with pattern set to none:
+            **Example 3.** Multiple divisions:
+
+            ::
+
+                >>> maker = makertools.DivisionMaker(
+                ...     cyclic=True,
+                ...     pattern=[(1, 4)],
+                ...     )
+
+            ::
+
+                >>> time_signatures = [(2, 4), (3, 4)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(1, 4), Division(1, 4)]
+                [Division(1, 4), Division(1, 4), Division(1, 4)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/4
+                        c'4
+                        c'4
+                    }
+                    {
+                        \time 3/4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** No pattern:
 
             ::
 
                 >>> maker = makertools.DivisionMaker()
-                >>> lists = maker([(6, 32)])
-                >>> for list_ in lists:
-                ...     list_
+
+            ::
+
+                >>> time_signatures = [(6, 32)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(6, 32)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 6/32
+                        c'8.
+                    }
+                }
 
             Returns input division unchanged.
 
         ..  container:: example
 
-            **Example 4.** Calls division-maker on nothing:
+            **Example 5.** Empty input:
 
             ::
 
@@ -149,22 +366,6 @@ class DivisionMaker(AbjadValueObject):
                 []
 
             Returns empty list.
-
-        ..  container:: example
-
-            **Example 5.** Calls division-maker on multiple divisions:
-
-            ::
-
-                >>> maker = makertools.DivisionMaker(
-                ...     cyclic=True,
-                ...     pattern=[(1, 4)],
-                ...     )
-                >>> lists = maker([(2, 4), (3, 4)])
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 4), Division(1, 4)]
-                [Division(1, 4), Division(1, 4), Division(1, 4)]
 
         Returns possibly empty list of division lists.
         '''
@@ -276,14 +477,50 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(7, 8), (7, 8), (7, 16)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
                 [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
                 [Division(1, 4), Division(3, 16)]
 
-            This is default behavior.
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/8
+                        c'4
+                        c'4
+                        c'4
+                        c'8
+                    }
+                    {
+                        c'4
+                        c'4
+                        c'4
+                        c'8
+                    }
+                    {
+                        \time 7/16
+                        c'4
+                        c'8.
+                    }
+                }
 
         ..  container:: example
 
@@ -298,14 +535,54 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(7, 8), (7, 8), (7, 16)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 4), Division(5, 8)]
                 [Division(1, 4), Division(5, 8)]
                 [Division(1, 4), Division(3, 16)]
 
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/8
+                        c'4
+                        c'2 ~
+                        c'8
+                    }
+                    {
+                        c'4
+                        c'2 ~
+                        c'8
+                    }
+                    {
+                        \time 7/16
+                        c'4
+                        c'8.
+                    }
+                }
+
+        Defaults to true.
+
         Set to true or false.
+
+        Returns true or false.
         '''
         return self._cyclic
 
@@ -322,14 +599,43 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(7, 8), (7, 8), (7, 16)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(7, 8)]
                 [Division(7, 8)]
                 [Division(7, 16)]
 
-            This is default behavior.
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/8
+                        c'2..
+                    }
+                    {
+                        c'2..
+                    }
+                    {
+                        \time 7/16
+                        c'4..
+                    }
+                }
 
         ..  container:: example
 
@@ -341,14 +647,56 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(7, 8), (7, 8), (7, 16)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
                 [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
                 [Division(1, 4), Division(3, 16)]
 
-        Set to list or tuple of divisions.
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/8
+                        c'4
+                        c'4
+                        c'4
+                        c'8
+                    }
+                    {
+                        c'4
+                        c'4
+                        c'4
+                        c'8
+                    }
+                    {
+                        \time 7/16
+                        c'4
+                        c'8.
+                    }
+                }
+
+        Defaults to none.
+
+        Set to durations or none.
+
+        Returns durations or none.
         '''
         return self._pattern
 
@@ -369,14 +717,48 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(7, 16), (7, 16), (7, 16)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(7, 16), (7, 16), (7, 16)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
 
-            This is default behavior.
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'16
+                        c'8
+                        c'4
+                    }
+                    {
+                        c'16
+                        c'8
+                        c'4
+                    }
+                    {
+                        c'16
+                        c'8
+                        c'4
+                    }
+                }
 
         ..  container:: example
 
@@ -393,12 +775,48 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(7, 16), (7, 16), (7, 16)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(7, 16), (7, 16), (7, 16)]
+                >>> division_lists = maker([(7, 16), (7, 16), (7, 16)])
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
                 [Division(1, 8), Division(1, 4), Division(1, 16)]
                 [Division(1, 4), Division(1, 16), Division(1, 8)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'16
+                        c'8
+                        c'4
+                    }
+                    {
+                        c'8
+                        c'4
+                        c'16
+                    }
+                    {
+                        c'4
+                        c'16
+                        c'8
+                    }
+                }
 
         ..  container:: example
 
@@ -415,14 +833,54 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(7, 16), (7, 16), (7, 16)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(7, 16), (7, 16), (7, 16)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 16), Division(1, 8), Division(1, 4)]
                 [Division(1, 4), Division(1, 16), Division(1, 8)]
                 [Division(1, 8), Division(1, 4), Division(1, 16)]
 
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 7/16
+                        c'16
+                        c'8
+                        c'4
+                    }
+                    {
+                        c'4
+                        c'16
+                        c'8
+                    }
+                    {
+                        c'8
+                        c'4
+                        c'16
+                    }
+                }
+
+        Defaults to 0.
+
         Set to integer.
+
+        Returns integer.
         '''
         return self._pattern_rotation_index
 
@@ -440,12 +898,39 @@ class DivisionMaker(AbjadValueObject):
                 ...     cyclic=False,
                 ...     pattern=[(4, 16), (1, 16)],
                 ...     )
-                >>> lists = maker([(3, 4)])
-                >>> for list_ in lists:
-                ...     list_
+
+            ::
+
+                >>> time_signatures = [(3, 4)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(4, 16), Division(1, 16), Division(7, 16)]
 
-            This is default behavior.
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'4
+                        c'16
+                        c'4..
+                    }
+                }
 
         ..  container:: example
 
@@ -456,12 +941,41 @@ class DivisionMaker(AbjadValueObject):
                 >>> maker = makertools.DivisionMaker(
                 ...     pattern=[(4, 16), (1, 16)],
                 ...     )
-                >>> lists = maker([(3, 4)])
-                >>> for list_ in lists:
-                ...     list_
+
+            ::
+
+                >>> time_signatures = [(3, 4)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(4, 16), Division(1, 16), Division(4, 16), Division(1, 16), Division(1, 8)]
 
-            This is default behavior.
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'4
+                        c'16
+                        c'4
+                        c'16
+                        c'8
+                    }
+                }
 
         ..  container:: example
 
@@ -474,10 +988,39 @@ class DivisionMaker(AbjadValueObject):
                 ...     pattern=[(1, 4), (1, 16)],
                 ...     remainder=Left,
                 ...     )
-                >>> lists = maker([(3, 4)])
-                >>> for list_ in lists:
-                ...     list_
+
+            ::
+
+                >>> time_signatures = [(3, 4)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(7, 16), Division(1, 4), Division(1, 16)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'4..
+                        c'4
+                        c'16
+                    }
+                }
 
         ..  container:: example
 
@@ -490,12 +1033,47 @@ class DivisionMaker(AbjadValueObject):
                 ...     pattern=[(1, 4), (1, 16)],
                 ...     remainder=Left,
                 ...     )
-                >>> lists = maker([(3, 4)])
-                >>> for list_ in lists:
-                ...     list_
+
+            ::
+
+                >>> time_signatures = [(3, 4)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 8), Division(1, 4), Division(1, 16), Division(1, 4), Division(1, 16)]
 
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'8
+                        c'4
+                        c'16
+                        c'4
+                        c'16
+                    }
+                }
+
+        Defaults to right.
+
         Set to left or right.
+
+        Returns left or right.
         '''
         return self._remainder
 
@@ -516,10 +1094,36 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(5, 8)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(5, 8)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 4), Division(1, 4), Division(1, 8)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'4
+                        c'4
+                        c'8
+                    }
+                }
 
         ..  container:: example
 
@@ -535,10 +1139,35 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(5, 8)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(5, 8)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 4), Division(3, 8)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'4
+                        c'4.
+                    }
+                }
 
         ..  container:: example
 
@@ -555,10 +1184,36 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(5, 8)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(5, 8)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(1, 8), Division(1, 4), Division(1, 4)]
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'8
+                        c'4
+                        c'4
+                    }
+                }
 
         ..  container:: example
 
@@ -576,11 +1231,40 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> lists = maker([(5, 8)])
-                >>> for list_ in lists:
-                ...     list_
+                >>> time_signatures = [(5, 8)]
+                >>> division_lists = maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(3, 8), Division(1, 4)]
 
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        c'4.
+                        c'4
+                    }
+                }
+
+        Defaults to none.
+
         Set to duration or none.
+
+        Returns duration or none.
         '''
         return self._remainder_fuse_threshold
