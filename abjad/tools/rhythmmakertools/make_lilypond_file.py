@@ -57,14 +57,13 @@ def make_lilypond_file(
         time_signatures,
         implicit_scaling=implicit_scaling,
         )
-    staff = scoretools.Staff(measures)
-    staff.context_name = 'RhythmicStaff'
+    staff = scoretools.Staff(measures, context_name='RhythmicStaff')
     music = sequencetools.flatten_sequence(music)
 
     try:
         measures = mutate(staff).replace_measure_contents(music)
     except StopIteration:
-        staff = scoretools.Staff(music)
+        staff = scoretools.Staff(music, context_name='RhythmicStaff')
         
     score.append(staff)
 
