@@ -7,7 +7,7 @@ from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class RoundedRatioDivisionMaker(AbjadValueObject):
+class SplitByRoundedRatiosDivisionMaker(AbjadValueObject):
     r'''Rounded ratio division maker.
 
     ..  container:: example
@@ -16,7 +16,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.RoundedRatioDivisionMaker(
+            >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
             ...     ratios=[mathtools.Ratio(2, 1)],
             ...     )
             >>> lists = maker([(7, 4), (6, 4)])
@@ -32,7 +32,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.RoundedRatioDivisionMaker(
+            >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
             ...     ratios=[mathtools.Ratio(2, 1), mathtools.Ratio(1, 1, 1)],
             ...     )
             >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
@@ -80,7 +80,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.RoundedRatioDivisionMaker(
+                >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
                 ...     ratios=[mathtools.Ratio(1, 1)],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
@@ -97,7 +97,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.RoundedRatioDivisionMaker(
+                >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
                 ...     ratios=[mathtools.Ratio(1, 1)],
                 ...     )
                 >>> maker([])
@@ -151,7 +151,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.RoundedRatioDivisionMaker(
+                >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
                 ...     ratios=[mathtools.Ratio(1)],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
@@ -168,7 +168,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.RoundedRatioDivisionMaker(
+                >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
                 ...     ratios=[mathtools.Ratio(1, 1)],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
@@ -183,7 +183,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.RoundedRatioDivisionMaker(
+                >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
                 ...     ratios=[mathtools.Ratio(2, 1)],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
@@ -198,7 +198,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.RoundedRatioDivisionMaker(
+                >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
                 ...     ratios=[mathtools.Ratio(1, 1, 1)],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
@@ -214,7 +214,7 @@ class RoundedRatioDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.RoundedRatioDivisionMaker(
+                >>> maker = makertools.SplitByRoundedRatiosDivisionMaker(
                 ...     ratios=[mathtools.Ratio(2, 1), mathtools.Ratio(1, 1, 1)],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
