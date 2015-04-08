@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import metertools
 from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import new
@@ -137,6 +138,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
 
     __slots__ = (
         '_callbacks',
+        '_compound_meter_multiplier',
         '_cyclic',
         '_pattern',
         '_pattern_rotation_index',
@@ -148,12 +150,16 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
 
     def __init__(
         self,
+        compound_meter_multiplier=durationtools.Multiplier(1),
         cyclic=True,
         durations=(),
         pattern_rotation_index=0,
         remainder=Right,
         remainder_fuse_threshold=None,
         ):
+        compound_meter_multiplier = durationtools.Multiplier(
+            compound_meter_multiplier)
+        self._compound_meter_multiplier = compound_meter_multiplier
         assert isinstance(cyclic, bool), repr(cyclic)
         self._cyclic = cyclic
         durations = durations or ()
@@ -377,17 +383,27 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
         '''
         divisions = divisions or []
         if not divisions:
-            return []
+            return divisions
         division_lists = []
         for i, division in enumerate(divisions):
             input_division = durationtools.Division(division)
             input_duration = durationtools.Duration(input_division)
+            input_meter = metertools.Meter(input_division)
             assert 0 < input_division, repr(input_division)
             if not self.durations:
                 division_list = [input_division]
                 division_lists.append(division_list)
                 continue
-            division_list = list(self.durations)
+            if input_meter.is_simple or not self.durations:
+                durations = self.durations[:]
+            elif input_meter.is_compound:
+                multiplier = self.compound_meter_multiplier
+                durations = [
+                    durationtools.Division(multiplier * _)
+                    for _ in self.durations
+                    ]
+            #division_list = list(self.durations)
+            division_list = list(durations)
             pattern_rotation_index = self.pattern_rotation_index or 0
             pattern_rotation_index *= i
             division_list = sequencetools.rotate_sequence(
@@ -406,7 +422,8 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 continue
             if self.remainder is None:
                 message = 'can not fill {} from {} exactly.'
-                message = message.format(input_division, self.durations)
+                #message = message.format(input_division, self.durations)
+                message = message.format(input_division, durations)
                 raise Exception(message)
             remainder = input_division - total_duration
             remainder = durationtools.Duration(remainder)
@@ -435,10 +452,8 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
             pair = total_duration, input_duration
             assert total_duration == input_duration, pair
             division_lists.append(division_list)
-        callbacks = self.callbacks or ()
-        for callback in callbacks:
-            divisions = sequencetools.flatten_sequence(division_lists)
-            division_lists = callback(divisions)
+        for _ in division_lists:
+            assert isinstance(_, list), repr(_)
         return division_lists
 
     ### PRIVATE PROPERTIES ###
@@ -463,38 +478,31 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
             keyword_argument_names=keyword_argument_names,
             )
 
-    ### PRIVATE METHODS ###
-
-    def _with_callback(self, callback):
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        result = new(self)
-        result._callbacks = callbacks
-        return result
-
     ### PUBLIC PROPERTIES ###
 
     @property
-    def callbacks(self):
-        r'''Gets callbacks of division-maker.
+    def compound_meter_multiplier(self):
+        r'''Gets compound meter multiplier of callback.
 
         ..  container:: example
 
-            **Example 1.** Without fuse callback:
+            **Example 1.** No compound meter multiplier:
 
             ::
 
-                >>> division_maker = makertools.SplitByDurationsDivisionCallback(durations=[(1, 4)])
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.split_by_durations(
+                ...     durations=[(1, 4)],
+                ...     )
 
             ::
 
-                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+                >>> time_signatures = [(3, 4), (6, 8)]
                 >>> division_lists = division_maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
-                [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
-                [Division(1, 4), Division(3, 16)]
+                [Division(1, 4), Division(1, 4), Division(1, 4)]
+                [Division(1, 4), Division(1, 4), Division(1, 4)]
 
             ::
 
@@ -514,44 +522,39 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
-                        \time 7/8
+                        \time 3/4
                         c'4
                         c'4
                         c'4
-                        c'8
                     }
                     {
+                        \time 6/8
                         c'4
                         c'4
                         c'4
-                        c'8
-                    }
-                    {
-                        \time 7/16
-                        c'4
-                        c'8.
                     }
                 }
 
         ..  container:: example
 
-            **Example 2.** With fuse callback:
+            **Example 2.** Compound meter multiplier equal to ``3/2``:
 
             ::
 
-                >>> division_maker = makertools.SplitByDurationsDivisionCallback(durations=[(1, 4)])
-                >>> division_maker = division_maker.fuse(counts=[2, 4])
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.split_by_durations(
+                ...     compound_meter_multiplier=Multiplier(3, 2),
+                ...     durations=[(1, 4)],
+                ...     )
 
             ::
 
-                >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+                >>> time_signatures = [(3, 4), (6, 8)]
                 >>> division_lists = division_maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(2, 4)]
-                [Division(7, 8)]
-                [Division(3, 8)]
-                [Division(7, 16)]
+                [Division(1, 4), Division(1, 4), Division(1, 4)]
+                [Division(3, 8), Division(3, 8)]
 
             ::
 
@@ -570,14 +573,26 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
-                    c'2
-                    c'2..
-                    c'4.
-                    c'4..
+                    {
+                        \time 3/4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                    {
+                        \time 6/8
+                        c'4.
+                        c'4.
+                    }
                 }
-                    
+
+        Defaults to ``1``.
+
+        Set to multiplier.
+
+        Returns multiplier.
         '''
-        return self._callbacks
+        return self._compound_meter_multiplier
 
     @property
     def cyclic(self):
@@ -1390,17 +1405,3 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
         Returns duration or none.
         '''
         return self._remainder_fuse_threshold
-
-    ### PUBLIC METHODS ###
-
-    def fuse(
-        self,
-        cyclic=True,
-        counts=None,
-        ):
-        from experimental.tools import makertools
-        callback = makertools.FuseByCountsDivisionCallback(
-            cyclic=cyclic,
-            counts=counts,
-            )
-        return self._with_callback(callback)
