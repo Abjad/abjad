@@ -3,6 +3,7 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
+from abjad.tools import pitchtools
 from abjad.tools.scoretools.Leaf import Leaf
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
@@ -447,11 +448,8 @@ class Chord(Leaf):
 
             ::
 
-                >>> for written_pitch in chord.written_pitches:
-                ...     written_pitch
-                NamedPitch("g'")
-                NamedPitch("c''")
-                NamedPitch("e''")
+                >>> chord.written_pitches
+                PitchSegment(["g'", "c''", "e''"])
 
         ..  container:: example
 
@@ -472,12 +470,19 @@ class Chord(Leaf):
                 >>> print(format(chord))
                 <f' b' d''>4
 
+            ::
+
+                >>> chord.written_pitches
+                PitchSegment(["f'", "b'", "d''"])
+
         Set written pitches with any iterable.
 
         Returns tuple.
         '''
-        return tuple(note_head.written_pitch
-            for note_head in self.note_heads)
+        return pitchtools.PitchSegment(
+            items=(note_head.written_pitch for note_head in self.note_heads),
+            item_class=pitchtools.NamedPitch,
+            )
 
     @written_pitches.setter
     def written_pitches(self, pitches):
