@@ -11,30 +11,113 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.** Groups measures together two at a time:
+
         ::
 
-            >>> maker = makertools.HypermeasureDivisionMaker(
+            >>> division_maker = makertools.HypermeasureDivisionMaker(
             ...     measure_counts=[2],
             ...     )
 
         ::
 
-            >>> print(format(maker, 'storage'))
-            makertools.HypermeasureDivisionMaker(
-                measure_counts=[2],
-                )
+            >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+            >>> division_lists = division_maker(time_signatures)
+            >>> for division_list in division_lists:
+            ...     division_list
+            [Division(4, 8)]
+            [Division(8, 8)]
+            [Division(2, 4)]
+
+        ::
+
+            >>> maker = rhythmmakertools.NoteRhythmMaker()
+            >>> divisions = sequencetools.flatten_sequence(division_lists)
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=time_signatures,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                c'2
+                c'1
+                c'2
+            }
+
+    ..  container:: example
+
+        **Example 2.** Groups measures together two at a time and fills
+        resulting hypemeasure divisions with ``3/16`` divisions:
+
+        ::
+
+            >>> divisions = makertools.DivisionMaker(
+            ...     pattern=[Duration(3, 16)],
+            ...     remainder=Right,
+            ...     )
+            >>> division_maker = makertools.HypermeasureDivisionMaker(
+            ...     measure_counts=[2],
+            ...     secondary_division_maker=divisions,
+            ...     )
+
+        ::
+
+            >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+            >>> division_lists = division_maker(time_signatures)
+            >>> for division_list in division_lists:
+            ...     division_list
+            [Division(3, 16), Division(3, 16), Division(1, 8)]
+            [Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(1, 16)]
+            [Division(3, 16), Division(3, 16), Division(1, 8)]
+
+
+        ::
+
+            >>> maker = rhythmmakertools.NoteRhythmMaker()
+            >>> divisions = sequencetools.flatten_sequence(division_lists)
+            >>> music = maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=time_signatures,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                c'8.
+                c'8.
+                c'8
+                c'8.
+                c'8.
+                c'8.
+                c'8.
+                c'8.
+                c'16
+                c'8.
+                c'8.
+                c'8
+            }
 
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a (possibly empty) nested 
-    list of divisions as output (structured one output list per input
-    division.)
+    list of divisions as output.
 
     Treats input as time signatures. Glues input together into hypermeasures
     according to optional measure counts. Postprocesses resulting
     hypermeasures with optional secondary division maker.
 
-    Follows the two-step configure-once / call-repeatly pattern established
-    for the rhythm-makers.
+    Follows the two-step configure-once / call-repeatly pattern shown here.
     '''
 
     ### CLASS VARIABLES ###
@@ -74,430 +157,374 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Trivial hypermeasure division-maker.
-            Returns nested list of output divisions with one output division 
-            per list:
+            **Example 1.** Returns measures ungrouped:
 
             ::
 
-                >>> maker = makertools.HypermeasureDivisionMaker()
-
-            Example output:
+                >>> division_maker = makertools.HypermeasureDivisionMaker()
 
             ::
 
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (2, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(3, 8)]
-                [Division(3, 8)]
-                [Division(3, 8)]
+                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
                 [Division(2, 8)]
+                [Division(2, 8)]
+                [Division(4, 8)]
+                [Division(4, 8)]
+                [Division(2, 4)]
 
             ::
 
-                >>> divisions = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(3, 8)]
-                [Division(3, 8)]
-                [Division(3, 8)]
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
-            ::
+            ..  doctest::
 
-                >>> divisions = [(3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(3, 8)]
-                [Division(3, 8)]
-
-            ::
-
-                >>> divisions = [(3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(3, 8)]
-
-            ::
-
-                >>> divisions = []
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 2/8
+                        c'4
+                    }
+                    {
+                        c'4
+                    }
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        c'2
+                    }
+                    {
+                        \time 2/4
+                        c'2
+                    }
+                }
 
         ..  container:: example
 
-            **Example 2.** Glues divisions together two at a time:
+            **Example 2.** Groups measures together two at a time:
 
             ::
 
-                >>> maker = makertools.HypermeasureDivisionMaker(
+                >>> division_maker = makertools.HypermeasureDivisionMaker(
                 ...     measure_counts=[2],
                 ...     secondary_division_maker=None,
                 ...     )
 
-            Example output:
+            ::
+
+                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(4, 8)]
+                [Division(8, 8)]
+                [Division(2, 4)]
 
             ::
 
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (2, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(6, 8)]
-                [Division(5, 8)]
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
-            ::
+            ..  doctest::
 
-                >>> divisions = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(6, 8)]
-                [Division(3, 8)]
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(6, 8)]
-
-            ::
-
-                >>> divisions = [(3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(3, 8)]
-
-            ::
-
-                >>> divisions = []
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    c'2
+                    c'1
+                    c'2
+                }
 
         ..  container:: example
 
-            **Example 3.** Glues divisions together two at a time. Fills
-            resulting hypermeasure divisions with ``1/4`` divisions. Positions
-            remainders to the right of each list of divisions:
+            **Example 3a.** Groups measures together two at a time and fills
+            resulting hypermeasure divisions with ``3/16`` divisions.
+
+            Remainders to the right:
             
             ::
 
                 >>> divisions = makertools.DivisionMaker(
-                ...     pattern=[(1, 4)],
+                ...     pattern=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
-                >>> maker = makertools.HypermeasureDivisionMaker(
+                >>> division_maker = makertools.HypermeasureDivisionMaker(
                 ...     measure_counts=[2],
                 ...     secondary_division_maker=divisions,
                 ...     )
 
-            Example output:
+            ::
+
+                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(3, 16), Division(3, 16), Division(1, 8)]
+                [Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(1, 16)]
+                [Division(3, 16), Division(3, 16), Division(1, 8)]
 
             ::
 
-                >>> divisions = [(2, 8), (3, 8), (2, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 4), Division(1, 4), Division(1, 8)]
-                [Division(1, 4), Division(1, 4), Division(1, 8)]
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
-            ::
+            ..  doctest::
 
-                >>> divisions = [(2, 8), (3, 8), (2, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 4), Division(1, 4), Division(1, 8)]
-                [Division(1, 4)]
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    c'8.
+                    c'8.
+                    c'8
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'16
+                    c'8.
+                    c'8.
+                    c'8
+                }
 
-            ::
-
-                >>> divisions = [(2, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 4), Division(1, 4), Division(1, 8)]
-
-            ::
-
-                >>> divisions = [(2, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 4)]
-
-            ::
-
-                >>> divisions = []
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-
-        ..  container:: example
-
-            **Example 4.** As above but with remainders at left of each
-            list of divisions:
-
+            **Example 3b.** Remainders to the left:
+            
             ::
 
                 >>> divisions = makertools.DivisionMaker(
-                ...     pattern=[(1, 4)],
+                ...     pattern=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
-                >>> maker = makertools.HypermeasureDivisionMaker(
+                >>> division_maker = makertools.HypermeasureDivisionMaker(
                 ...     measure_counts=[2],
                 ...     secondary_division_maker=divisions,
                 ...     )
 
-            Example output:
+            ::
+
+                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(1, 8), Division(3, 16), Division(3, 16)]
+                [Division(1, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16)]
+                [Division(1, 8), Division(3, 16), Division(3, 16)]
 
             ::
 
-                >>> divisions = [(2, 8), (3, 8), (2, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 8), Division(1, 4), Division(1, 4)]
-                [Division(1, 8), Division(1, 4), Division(1, 4)]
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
+            ..  doctest::
 
-            ::
-
-                >>> divisions = [(2, 8), (3, 8), (2, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 8), Division(1, 4), Division(1, 4)]
-                [Division(1, 4)]
-
-            ::
-
-                >>> divisions = [(2, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 8), Division(1, 4), Division(1, 4)]
-
-            ::
-
-                >>> divisions = [(2, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 4)]
-
-            ::
-
-                >>> divisions = []
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    c'8
+                    c'8.
+                    c'8.
+                    c'16
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8
+                    c'8.
+                    c'8.
+                }
 
         ..  container:: example
 
-            **Example 5.** Similiar to the two makers above. Glues divisions
-            together two at a time. But then fills resulting hypermeasures with
-            ``2/8`` divisions instead of ``1/4`` divisions. Remainders at right
-            of each list of divisions:
+            **Example 4.** Groups all measures together:
 
             ::
 
-                >>> divisions = makertools.DivisionMaker(
-                ...     pattern=[(2, 8)],
-                ...     remainder=Right,
-                ...     )
-                >>> maker = makertools.HypermeasureDivisionMaker(
-                ...     measure_counts=[2],
-                ...     secondary_division_maker=divisions,
-                ...     )
-
-            Example output:
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(2, 8), Division(2, 8), Division(2, 8)]
-                [Division(2, 8), Division(1, 8)]
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(2, 8), Division(2, 8), Division(2, 8)]
-
-            ::
-
-                >>> divisions = [(3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(2, 8), Division(1, 8)]
-
-            ::
-
-                >>> divisions = []
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-
-        ..  container:: example
-
-            **Example 6.** As above but with remainders at left of each
-            list of divisions:
-
-            ::
-
-                >>> divisions = makertools.DivisionMaker(
-                ...     pattern=[(2, 8)],
-                ...     remainder=Left,
-                ...     )
-                >>> maker = makertools.HypermeasureDivisionMaker(
-                ...     measure_counts=[2],
-                ...     secondary_division_maker=divisions,
-                ...     )
-
-            Example output:
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(2, 8), Division(2, 8), Division(2, 8)]
-                [Division(1, 8), Division(2, 8)]
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(2, 8), Division(2, 8), Division(2, 8)]
-
-            ::
-
-                >>> divisions = [(3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(1, 8), Division(2, 8)]
-
-            ::
-
-                >>> divisions = []
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-
-        ..  container:: example
-
-            **Example 7.** Glues all input divisions together:
-
-            ::
-
-                >>> maker = makertools.HypermeasureDivisionMaker(
+                >>> division_maker = makertools.HypermeasureDivisionMaker(
                 ...     measure_counts=mathtools.Infinity,
                 ...     )
 
-            Example output:
+            ::
+
+                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(16, 8)]
 
             ::
 
-                >>> divisions = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(9, 8)]
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
-            ::
+            ..  doctest::
 
-                >>> divisions = [(3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(6, 8)]
-
-            ::
-
-                >>> divisions = [(3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(3, 8)]
-
-            ::
-
-                >>> divisions = []
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    c'\breve
+                }
 
         ..  container:: example
 
-            **Example 8.** Glues all input divisions together and then divides
-            into divisions of ``2/8`` with remainder at right of output
-            division list:
+            **Example 5a.** Glues all input divisions together and then divides
+            into divisions of ``3/8``. 
+
+            Remainder at right:
 
             ::
 
                 >>> divisions = makertools.DivisionMaker(
-                ...     pattern=[(2, 8)],
+                ...     pattern=[(3, 16)],
+                ...     remainder=Right,
                 ...     )
-                >>> maker = makertools.HypermeasureDivisionMaker(
+                >>> division_maker = makertools.HypermeasureDivisionMaker(
                 ...     measure_counts=mathtools.Infinity,
                 ...     secondary_division_maker=divisions,
                 ...     )
 
-            Example output:
+            ::
+
+                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(1, 8)]
 
             ::
 
-                >>> divisions = [(3, 8), (3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(2, 8), Division(2, 8), Division(2, 8), Division(2, 8), Division(1, 8)]
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8
+                }
+
+            **Example 5b.** Remainder at left:
 
             ::
 
-                >>> divisions = [(3, 8), (3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(2, 8), Division(2, 8), Division(2, 8)]
+                >>> divisions = makertools.DivisionMaker(
+                ...     pattern=[(3, 16)],
+                ...     remainder=Left,
+                ...     )
+                >>> division_maker = makertools.HypermeasureDivisionMaker(
+                ...     measure_counts=mathtools.Infinity,
+                ...     secondary_division_maker=divisions,
+                ...     )
 
             ::
 
-                >>> divisions = [(3, 8)]
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
-                [Division(2, 8), Division(1, 8)]
+                >>> time_signatures = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division(1, 8), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16), Division(3, 16)]
 
             ::
 
-                >>> divisions = []
-                >>> lists = maker(divisions)
-                >>> for list_ in lists:
-                ...     list_
+                >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+                >>> divisions = sequencetools.flatten_sequence(division_lists)
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     time_signatures=time_signatures,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
 
-        Returns nested list of divisions structured one list per hypermeasure.
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    c'8
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                    c'8.
+                }
+
+        ..  container:: example
+
+            **Example 6.** Empty input:
+
+            ::
+
+                >>> time_signatures = []
+                >>> division_lists = division_maker(time_signatures)
+                >>> for division_list in division_lists:
+                ...     division_list
+
+        Returns list of division lists.
         '''
         divisions = divisions or ()
         divisions = self._coerce_divisions(divisions)
