@@ -18,6 +18,8 @@ class Selector(AbjadValueObject):
 
     Composers may chain selectors together.
 
+    ..  todo:: Add notation to every example.
+
     ..  container:: example
 
         Score for examples:
