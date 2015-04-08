@@ -40,7 +40,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             >>> grouper = makertools.PartitionDivisionCallback(
             ...     counts=[2],
-            ...     fuse_remainder=False,
+            ...     append_remainder=False,
             ...     remainder_direction=Right,
             ...     )
             >>> grouped_beat_lists = grouper(beat_lists)
@@ -57,7 +57,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             >>> grouper = makertools.PartitionDivisionCallback(
             ...     counts=[2],
-            ...     fuse_remainder=True,
+            ...     append_remainder=True,
             ...     remainder_direction=Right,
             ...     )
             >>> grouped_beat_lists = grouper(beat_lists)
@@ -76,7 +76,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             >>> grouper = makertools.PartitionDivisionCallback(
             ...     counts=[2],
-            ...     fuse_remainder=False,
+            ...     append_remainder=False,
             ...     remainder_direction=Left,
             ...     )
             >>> grouped_beat_lists = grouper(beat_lists)
@@ -93,7 +93,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             >>> grouper = makertools.PartitionDivisionCallback(
             ...     counts=[2],
-            ...     fuse_remainder=True,
+            ...     append_remainder=True,
             ...     remainder_direction=Left,
             ...     )
             >>> grouped_beat_lists = grouper(beat_lists)
@@ -112,7 +112,7 @@ class PartitionDivisionCallback(AbjadValueObject):
     __slots__ = (
         '_counts',
         '_fuse_assignable_total_duration',
-        '_fuse_remainder',
+        '_append_remainder',
         '_remainder_direction',
         )
 
@@ -122,12 +122,12 @@ class PartitionDivisionCallback(AbjadValueObject):
         self,
         counts=None,
         fuse_assignable_total_duration=False,
-        fuse_remainder=False,
+        append_remainder=False,
         remainder_direction=Right,
         ):
         self._counts = counts
         self._fuse_assignable_total_duration = fuse_assignable_total_duration
-        self._fuse_remainder = fuse_remainder
+        self._append_remainder = append_remainder
         self._remainder_direction = remainder_direction
 
     ### SPECIAL METHODS ###
@@ -205,7 +205,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 overhang=False
                 )
             remainder = beat_list[:remainder_length]
-            if self.fuse_remainder:
+            if self.append_remainder:
                 grouped_beat_list[0] = remainder + grouped_beat_list[0]
             else:
                 grouped_beat_list.insert(0, remainder)
@@ -217,7 +217,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 overhang=False
                 )
             remainder = beat_list[-remainder_length:]
-            if self.fuse_remainder:
+            if self.append_remainder:
                 grouped_beat_list[-1] = grouped_beat_list[-1] + remainder
             else:
                 grouped_beat_list.append(remainder)
@@ -234,7 +234,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> print(format(grouper))
                 makertools.PartitionDivisionCallback(
                     fuse_assignable_total_duration=False,
-                    fuse_remainder=False,
+                    append_remainder=False,
                     remainder_direction=Right,
                     )
 
@@ -253,7 +253,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> makertools.PartitionDivisionCallback()
-                PartitionDivisionCallback(fuse_assignable_total_duration=False, fuse_remainder=False, remainder_direction=Right)
+                PartitionDivisionCallback(fuse_assignable_total_duration=False, append_remainder=False, remainder_direction=Right)
 
         Returns string.
         '''
@@ -447,7 +447,7 @@ class PartitionDivisionCallback(AbjadValueObject):
         return self._fuse_assignable_total_duration
 
     @property
-    def fuse_remainder(self):
+    def append_remainder(self):
         r'''Is true when remainder beat group should fuse to next closest beat
         group. Otherwise false.
 
@@ -460,7 +460,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
                 >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
-                ...     fuse_remainder=False,
+                ...     append_remainder=False,
                 ...     remainder_direction=Right,
                 ...     )
 
@@ -518,7 +518,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
                 >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
-                ...     fuse_remainder=True,
+                ...     append_remainder=True,
                 ...     remainder_direction=Right,
                 ...     )
 
@@ -571,7 +571,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
         Set to true or false.
         '''
-        return self._fuse_remainder
+        return self._append_remainder
 
     @property
     def remainder_direction(self):

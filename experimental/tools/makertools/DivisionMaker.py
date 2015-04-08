@@ -323,7 +323,7 @@ class DivisionMaker(AbjadValueObject):
         self,
         counts=None,
         fuse_assignable_total_duration=False,
-        fuse_remainder=False,
+        append_remainder=False,
         remainder_direction=Right,
         ):
         r'''Partitions divisions by `counts`.
@@ -338,7 +338,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_maker = makertools.DivisionMaker()
                 >>> division_maker = division_maker.partition(
                 ...     counts=[2],
-                ...     fuse_remainder=False,
+                ...     append_remainder=False,
                 ...     remainder_direction=Right,
                 ...     )
 
@@ -362,7 +362,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_maker = makertools.DivisionMaker()
                 >>> division_maker = division_maker.partition(
                 ...     counts=[2],
-                ...     fuse_remainder=False,
+                ...     append_remainder=False,
                 ...     remainder_direction=Left,
                 ...     )
 
@@ -388,7 +388,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_maker = makertools.DivisionMaker()
                 >>> division_maker = division_maker.partition(
                 ...     counts=[2],
-                ...     fuse_remainder=True,
+                ...     append_remainder=True,
                 ...     remainder_direction=Right,
                 ...     )
 
@@ -412,7 +412,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_maker = makertools.DivisionMaker()
                 >>> division_maker = division_maker.partition(
                 ...     counts=[2],
-                ...     fuse_remainder=True,
+                ...     append_remainder=True,
                 ...     remainder_direction=Left,
                 ...     )
 
@@ -434,7 +434,7 @@ class DivisionMaker(AbjadValueObject):
         callback = makertools.PartitionDivisionCallback(
             counts=counts,
             fuse_assignable_total_duration=fuse_assignable_total_duration,
-            fuse_remainder=fuse_remainder,
+            append_remainder=append_remainder,
             remainder_direction=remainder_direction,
             )
         return self._with_callback(callback)
