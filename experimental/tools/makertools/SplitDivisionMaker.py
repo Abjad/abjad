@@ -1396,7 +1396,7 @@ class SplitDivisionMaker(AbjadValueObject):
         counts=None,
         ):
         from experimental.tools import makertools
-        callback = makertools.HypermeasureDivisionMaker(
+        callback = makertools.FuseDivisionMaker(
             cyclic=cyclic,
             measure_counts=counts,
             )
