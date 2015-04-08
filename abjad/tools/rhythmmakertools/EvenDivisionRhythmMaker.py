@@ -908,8 +908,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             assert mathtools.is_positive_integer_power_of_two(
                 division.denominator), repr(division)
             if remember_state:
-                denominator = self._denominators_generator.next()
-                extra_count = self._extra_counts_per_division_generator.next()
+                denominator = next(self._denominators_generator)
+                extra_count = next(self._extra_counts_per_division_generator)
             else:
                 denominator = denominators[i]
                 extra_count = extra_counts_per_division[i]
