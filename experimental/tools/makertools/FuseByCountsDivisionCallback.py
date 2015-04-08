@@ -55,13 +55,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> division_maker = makertools.SplitByDurationsDivisionCallback(
+            >>> division_maker = makertools.DivisionMaker()
+            >>> division_maker = division_maker.fuse_by_counts(
+            ...     counts=[2],
+            ...     )
+            >>> division_maker = division_maker.split_by_durations(
             ...     durations=[Duration(3, 16)],
             ...     remainder=Right,
-            ...     )
-            >>> division_maker = makertools.FuseByCountsDivisionCallback(
-            ...     counts=[2],
-            ...     secondary_division_maker=division_maker,
             ...     )
 
         ::
@@ -252,13 +252,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             
             ::
 
-                >>> division_maker = makertools.SplitByDurationsDivisionCallback(
-                ...     durations=[(3, 16)],
-                ...     remainder=Right,
-                ...     )
-                >>> division_maker = makertools.FuseByCountsDivisionCallback(
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts(
                 ...     counts=[2],
-                ...     secondary_division_maker=division_maker,
+                ...     )
+                >>> division_maker = division_maker.split_by_durations(
+                ...     durations=[Duration(3, 16)],
+                ...     remainder=Right,
                 ...     )
 
             ::
@@ -306,13 +306,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             
             ::
 
-                >>> division_maker = makertools.SplitByDurationsDivisionCallback(
-                ...     durations=[(3, 16)],
-                ...     remainder=Left,
-                ...     )
-                >>> division_maker = makertools.FuseByCountsDivisionCallback(
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts(
                 ...     counts=[2],
-                ...     secondary_division_maker=division_maker,
+                ...     )
+                >>> division_maker = division_maker.split_by_durations(
+                ...     durations=[Duration(3, 16)],
+                ...     remainder=Left,
                 ...     )
 
             ::
@@ -402,13 +402,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.SplitByDurationsDivisionCallback(
-                ...     durations=[(3, 16)],
-                ...     remainder=Right,
-                ...     )
-                >>> division_maker = makertools.FuseByCountsDivisionCallback(
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts(
                 ...     counts=mathtools.Infinity,
-                ...     secondary_division_maker=division_maker,
+                ...     )
+                >>> division_maker = division_maker.split_by_durations(
+                ...     durations=[Duration(3, 16)],
+                ...     remainder=Right,
                 ...     )
 
             ::
@@ -453,13 +453,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.SplitByDurationsDivisionCallback(
-                ...     durations=[(3, 16)],
-                ...     remainder=Left,
-                ...     )
-                >>> division_maker = makertools.FuseByCountsDivisionCallback(
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts(
                 ...     counts=mathtools.Infinity,
-                ...     secondary_division_maker=division_maker,
+                ...     )
+                >>> division_maker = division_maker.split_by_durations(
+                ...     durations=[Duration(3, 16)],
+                ...     remainder=Left,
                 ...     )
 
             ::
