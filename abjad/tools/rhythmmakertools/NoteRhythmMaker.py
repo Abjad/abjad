@@ -309,8 +309,7 @@ class NoteRhythmMaker(RhythmMaker):
                 1 < len(selection) and
                 not selection[0]._has_spanner(spannertools.Tie)
                 ):
-                tie = spannertools.Tie()
-                attach(tie, selection[:])
+                attach(spannertools.Tie(), selection[:])
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections)
         self._apply_beam_specifier(selections)
