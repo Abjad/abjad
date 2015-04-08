@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import new
 
 
-class DivisionMaker(AbjadValueObject):
+class SplitDivisionMaker(AbjadValueObject):
     r'''Division-maker.
 
     ..  container:: example
@@ -15,7 +15,7 @@ class DivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
+            >>> maker = makertools.SplitDivisionMaker(pattern=[(1, 4)])
 
         ::
 
@@ -70,7 +70,7 @@ class DivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.DivisionMaker(
+            >>> maker = makertools.SplitDivisionMaker(
             ...     pattern=[(1, 4)],
             ...     remainder=Left,
             ...     )
@@ -182,7 +182,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 4)],
                 ...     )
@@ -226,7 +226,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     pattern=[(1, 4)],
                 ...     )
 
@@ -273,7 +273,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 4)],
                 ...     )
@@ -323,7 +323,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker()
+                >>> maker = makertools.SplitDivisionMaker()
 
             ::
 
@@ -364,7 +364,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(pattern=[(1, 4)])
+                >>> maker = makertools.SplitDivisionMaker(pattern=[(1, 4)])
                 >>> maker()
                 []
 
@@ -481,7 +481,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.DivisionMaker(pattern=[(1, 4)])
+                >>> division_maker = makertools.SplitDivisionMaker(pattern=[(1, 4)])
 
             ::
 
@@ -536,7 +536,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.DivisionMaker(pattern=[(1, 4)])
+                >>> division_maker = makertools.SplitDivisionMaker(pattern=[(1, 4)])
                 >>> division_maker = division_maker.fuse(counts=[2, 4])
 
             ::
@@ -590,7 +590,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     pattern=[(1, 4)],
                 ...     )
 
@@ -647,7 +647,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=False,
                 ...     pattern=[(1, 4)],
                 ...     )
@@ -714,7 +714,7 @@ class DivisionMaker(AbjadValueObject):
             **Example 1.** Returns input division unchanged when pattern is
             empty:
 
-                >>> maker = makertools.DivisionMaker()
+                >>> maker = makertools.SplitDivisionMaker()
 
             ::
 
@@ -760,7 +760,7 @@ class DivisionMaker(AbjadValueObject):
 
             **Example 2.** Applies pattern to each input division:
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     pattern=[(1, 4)],
                 ...     )
 
@@ -829,7 +829,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 16), (1, 8), (1, 4)],
                 ...     )
@@ -886,7 +886,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 16), (1, 8), (1, 4)],
                 ...     pattern_rotation_index=-1,
@@ -944,7 +944,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 16), (1, 8), (1, 4)],
                 ...     pattern_rotation_index=1,
@@ -1013,7 +1013,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=False,
                 ...     pattern=[(4, 16), (1, 16)],
                 ...     )
@@ -1057,7 +1057,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     pattern=[(4, 16), (1, 16)],
                 ...     )
 
@@ -1102,7 +1102,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=False,
                 ...     pattern=[(1, 4), (1, 16)],
                 ...     remainder=Left,
@@ -1147,7 +1147,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 4), (1, 16)],
                 ...     remainder=Left,
@@ -1206,7 +1206,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     pattern=[(1, 4)],
                 ...     remainder_fuse_threshold=None,
                 ...     )
@@ -1251,7 +1251,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     pattern=[(1, 4)],
                 ...     remainder_fuse_threshold=Duration(1, 8),
                 ...     )
@@ -1294,7 +1294,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 4)],
                 ...     remainder=Left,
@@ -1341,7 +1341,7 @@ class DivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DivisionMaker(
+                >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
                 ...     pattern=[(1, 4)],
                 ...     remainder=Left,

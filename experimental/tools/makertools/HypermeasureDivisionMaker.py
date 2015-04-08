@@ -58,7 +58,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> divisions = makertools.DivisionMaker(
+            >>> divisions = makertools.SplitDivisionMaker(
             ...     pattern=[Duration(3, 16)],
             ...     remainder=Right,
             ...     )
@@ -146,7 +146,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             assert mathtools.all_are_positive_integers(measure_counts)
             self._measure_counts = measure_counts
         if secondary_division_maker is not None:
-            prototype = (makertools.DivisionMaker,)
+            prototype = (makertools.SplitDivisionMaker,)
             assert isinstance(secondary_division_maker, prototype)
         self._secondary_division_maker = secondary_division_maker
 
@@ -264,7 +264,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             
             ::
 
-                >>> divisions = makertools.DivisionMaker(
+                >>> divisions = makertools.SplitDivisionMaker(
                 ...     pattern=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
@@ -318,7 +318,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             
             ::
 
-                >>> divisions = makertools.DivisionMaker(
+                >>> divisions = makertools.SplitDivisionMaker(
                 ...     pattern=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
@@ -415,7 +415,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> divisions = makertools.DivisionMaker(
+                >>> divisions = makertools.SplitDivisionMaker(
                 ...     pattern=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
@@ -466,7 +466,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> divisions = makertools.DivisionMaker(
+                >>> divisions = makertools.SplitDivisionMaker(
                 ...     pattern=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
