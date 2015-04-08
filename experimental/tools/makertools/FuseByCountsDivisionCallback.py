@@ -23,17 +23,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         ::
 
             >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-            >>> division_lists = division_maker(input_divisions)
-            >>> for division_list in division_lists:
-            ...     division_list
-            [Division(4, 8)]
-            [Division(8, 8)]
-            [Division(2, 4)]
+            >>> divisions = division_maker(input_divisions)
+            >>> divisions
+            [Division(4, 8), Division(8, 8), Division(2, 4)]
 
         ::
 
             >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-            >>> divisions = sequencetools.flatten_sequence(division_lists)
             >>> music = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
@@ -168,19 +164,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             ::
 
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(input_divisions)
-                >>> for division_list in division_lists:
-                ...     division_list
-                [Division(2, 8)]
-                [Division(2, 8)]
-                [Division(4, 8)]
-                [Division(4, 8)]
-                [Division(2, 4)]
+                >>> divisions = division_maker(input_divisions)
+                >>> divisions
+                [Division(2, 8), Division(2, 8), Division(4, 8), Division(4, 8), Division(2, 4)]
 
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-                >>> divisions = sequencetools.flatten_sequence(division_lists)
                 >>> music = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -228,17 +218,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             ::
 
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(input_divisions)
-                >>> for division_list in division_lists:
-                ...     division_list
-                [Division(4, 8)]
-                [Division(8, 8)]
-                [Division(2, 4)]
+                >>> divisions = division_maker(input_divisions)
+                >>> divisions
+                [Division(4, 8), Division(8, 8), Division(2, 4)]
 
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-                >>> divisions = sequencetools.flatten_sequence(division_lists)
                 >>> music = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -384,15 +370,13 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             ::
 
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
-                >>> division_lists = division_maker(input_divisions)
-                >>> for division_list in division_lists:
-                ...     division_list
+                >>> divisions = division_maker(input_divisions)
+                >>> divisions
                 [Division(16, 8)]
 
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-                >>> divisions = sequencetools.flatten_sequence(division_lists)
                 >>> music = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -543,6 +527,9 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 overhang=True,
                 )
             divisions = [sum(_) for _ in parts]
+        divisions = [durationtools.Division(_) for _ in divisions]
+        if self.secondary_division_maker is None:
+            return divisions
         division_lists = []
         for division in divisions:
             if self.secondary_division_maker is not None:

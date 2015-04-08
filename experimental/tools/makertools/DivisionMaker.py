@@ -244,16 +244,13 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> input_divisions = [(7, 8), (7, 8), (7, 16)]
-                >>> division_lists = division_maker(input_divisions)
-                >>> for division_list in division_lists:
-                ...     division_list
-                [Division(14, 8)]
-                [Division(7, 16)]
+                >>> divisions = division_maker(input_divisions)
+                >>> divisions
+                [Division(14, 8), Division(7, 16)]
 
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-                >>> divisions = sequencetools.flatten_sequence(division_lists)
                 >>> music = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
