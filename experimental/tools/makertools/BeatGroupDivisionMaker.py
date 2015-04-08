@@ -37,7 +37,7 @@ class BeatGroupDivisionMaker(AbjadValueObject):
             ...         compound_beat_duration=Duration(3, 8),
             ...         simple_beat_duration=Duration(1, 4),
             ...         ),
-            ...     beat_grouper=makertools.PartitionDivisionsCallback(
+            ...     beat_grouper=makertools.PartitionDivisionCallback(
             ...         counts=[1],
             ...         ),
             ...     )
@@ -57,7 +57,7 @@ class BeatGroupDivisionMaker(AbjadValueObject):
         ::
 
             >>> maker = makertools.BeatGroupDivisionMaker(
-            ...     beat_grouper=makertools.PartitionDivisionsCallback(
+            ...     beat_grouper=makertools.PartitionDivisionCallback(
             ...         counts=[2],
             ...         fuse_remainder=True,
             ...         remainder_direction=Right,
@@ -157,7 +157,7 @@ class BeatGroupDivisionMaker(AbjadValueObject):
         from experimental.tools import makertools
         if self.beat_grouper is not None:
             return self.beat_grouper
-        grouper = makertools.PartitionDivisionsCallback()
+        grouper = makertools.PartitionDivisionCallback()
         return grouper
 
     def _get_beat_maker(self):

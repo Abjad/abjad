@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadValueObject
 from abjad.tools import sequencetools
 
 
-class PartitionDivisionsCallback(AbjadValueObject):
+class PartitionDivisionCallback(AbjadValueObject):
     r'''Beat grouper.
 
     ..  container:: example
@@ -36,7 +36,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
         ::
 
-            >>> grouper = makertools.PartitionDivisionsCallback(
+            >>> grouper = makertools.PartitionDivisionCallback(
             ...     counts=[2],
             ...     fuse_remainder=False,
             ...     remainder_direction=Right,
@@ -53,7 +53,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
         ::
 
-            >>> grouper = makertools.PartitionDivisionsCallback(
+            >>> grouper = makertools.PartitionDivisionCallback(
             ...     counts=[2],
             ...     fuse_remainder=True,
             ...     remainder_direction=Right,
@@ -72,7 +72,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
         ::
 
-            >>> grouper = makertools.PartitionDivisionsCallback(
+            >>> grouper = makertools.PartitionDivisionCallback(
             ...     counts=[2],
             ...     fuse_remainder=False,
             ...     remainder_direction=Left,
@@ -89,7 +89,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
         ::
 
-            >>> grouper = makertools.PartitionDivisionsCallback(
+            >>> grouper = makertools.PartitionDivisionCallback(
             ...     counts=[2],
             ...     fuse_remainder=True,
             ...     remainder_direction=Left,
@@ -139,7 +139,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     )
                 >>> beat_list = 6 * [Duration(1, 4)]
@@ -155,7 +155,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[3],
                 ...     )
                 >>> beat_list = 6 * [Duration(1, 4)]
@@ -226,9 +226,9 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback()
+                >>> grouper = makertools.PartitionDivisionCallback()
                 >>> print(format(grouper))
-                makertools.PartitionDivisionsCallback(
+                makertools.PartitionDivisionCallback(
                     fuse_assignable_total_duration=False,
                     fuse_remainder=False,
                     remainder_direction=Right,
@@ -248,8 +248,8 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> makertools.PartitionDivisionsCallback()
-                PartitionDivisionsCallback(fuse_assignable_total_duration=False, fuse_remainder=False, remainder_direction=Right)
+                >>> makertools.PartitionDivisionCallback()
+                PartitionDivisionCallback(fuse_assignable_total_duration=False, fuse_remainder=False, remainder_direction=Right)
 
         Returns string.
         '''
@@ -267,7 +267,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=None,
                 ...     )
                 >>> beat_list = 6 * [Duration(1, 4)]
@@ -283,7 +283,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     )
                 >>> beat_list = 6 * [Duration(1, 4)]
@@ -299,7 +299,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[3],
                 ...     )
                 >>> beat_list = 6 * [Duration(1, 4)]
@@ -327,7 +327,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     fuse_assignable_total_duration=False,
                 ...     )
@@ -384,7 +384,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     fuse_assignable_total_duration=True,
                 ...     )
@@ -454,7 +454,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     fuse_remainder=False,
                 ...     remainder_direction=Right,
@@ -512,7 +512,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     fuse_remainder=True,
                 ...     remainder_direction=Right,
@@ -579,7 +579,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     remainder_direction=Right,
                 ...     )
@@ -626,7 +626,7 @@ class PartitionDivisionsCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionsCallback(
+                >>> grouper = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     remainder_direction=Left,
                 ...     )
