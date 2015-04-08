@@ -12,7 +12,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> beat_maker = makertools.DuratedBeatDivisionMaker(
+            >>> beat_maker = makertools.SplitByBeatsDivisionCallback(
             ...     compound_beat_duration=Duration(3, 8),
             ...     simple_beat_duration=Duration(1, 4),
             ...     )

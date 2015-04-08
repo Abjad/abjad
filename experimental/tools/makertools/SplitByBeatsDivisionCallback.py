@@ -4,7 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import metertools
 
 
-class DuratedBeatDivisionMaker(AbjadValueObject):
+class SplitByBeatsDivisionCallback(AbjadValueObject):
     r'''Beat maker.
 
     Models one way of decomposing meters into beats.
@@ -20,7 +20,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.DuratedBeatDivisionMaker(
+            >>> maker = makertools.SplitByBeatsDivisionCallback(
             ...     compound_beat_duration=Duration(1, 4),
             ...     simple_beat_duration=Duration(1, 4),
             ...     )
@@ -49,7 +49,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.DuratedBeatDivisionMaker(
+            >>> maker = makertools.SplitByBeatsDivisionCallback(
             ...     compound_beat_duration=Duration(3, 8),
             ...     simple_beat_duration=Duration(3, 8),
             ...     )
@@ -79,7 +79,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.DuratedBeatDivisionMaker(
+            >>> maker = makertools.SplitByBeatsDivisionCallback(
             ...     compound_beat_duration=Duration(3, 8),
             ...     simple_beat_duration=Duration(1, 4),
             ...     )
@@ -151,7 +151,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=Duration(1, 4),
                 ...     simple_beat_duration=Duration(1, 4),
                 ...     )
@@ -239,7 +239,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=None,
                 ...     simple_beat_duration=None,
                 ...     )
@@ -272,7 +272,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     )
 
@@ -305,7 +305,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     simple_beat_duration=Duration(1, 4),
                 ...     )
@@ -346,7 +346,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     fuse_remainder=False,
                 ...     simple_beat_duration=Duration(1, 4),
@@ -379,7 +379,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     fuse_remainder=True,
                 ...     simple_beat_duration=Duration(1, 4),
@@ -422,7 +422,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     remainder_direction=Left,
                 ...     simple_beat_duration=Duration(1, 4),
@@ -455,7 +455,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     remainder_direction=Right,
                 ...     simple_beat_duration=Duration(1, 4),
@@ -498,7 +498,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=None,
                 ...     simple_beat_duration=None,
                 ...     )
@@ -531,7 +531,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     simple_beat_duration=Duration(1, 4),
                 ...     )
 
@@ -564,7 +564,7 @@ class DuratedBeatDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.DuratedBeatDivisionMaker(
+                >>> maker = makertools.SplitByBeatsDivisionCallback(
                 ...     compound_beat_duration=Duration(3, 8),
                 ...     simple_beat_duration=Duration(1, 4),
                 ...     )
