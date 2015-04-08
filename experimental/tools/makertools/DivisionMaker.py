@@ -110,7 +110,7 @@ class DivisionMaker(AbjadValueObject):
 
         '''
         from experimental.tools import makertools
-        callback = makertools.FuseDivisionMaker(
+        callback = makertools.FuseByCountsDivisionCallback(
             cyclic=cyclic,
             measure_counts=counts,
             )

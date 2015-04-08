@@ -6,7 +6,7 @@ from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class FuseDivisionMaker(AbjadValueObject):
+class FuseByCountsDivisionCallback(AbjadValueObject):
     r'''Hypermeasure division-maker.
 
     ..  container:: example
@@ -15,7 +15,7 @@ class FuseDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> division_maker = makertools.FuseDivisionMaker(
+            >>> division_maker = makertools.FuseByCountsDivisionCallback(
             ...     measure_counts=[2],
             ...     )
 
@@ -62,7 +62,7 @@ class FuseDivisionMaker(AbjadValueObject):
             ...     durations=[Duration(3, 16)],
             ...     remainder=Right,
             ...     )
-            >>> division_maker = makertools.FuseDivisionMaker(
+            >>> division_maker = makertools.FuseByCountsDivisionCallback(
             ...     measure_counts=[2],
             ...     secondary_division_maker=divisions,
             ...     )
@@ -161,7 +161,7 @@ class FuseDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.FuseDivisionMaker()
+                >>> division_maker = makertools.FuseByCountsDivisionCallback()
 
             ::
 
@@ -218,7 +218,7 @@ class FuseDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.FuseDivisionMaker(
+                >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     measure_counts=[2],
                 ...     secondary_division_maker=None,
                 ...     )
@@ -268,7 +268,7 @@ class FuseDivisionMaker(AbjadValueObject):
                 ...     durations=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
-                >>> division_maker = makertools.FuseDivisionMaker(
+                >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     measure_counts=[2],
                 ...     secondary_division_maker=divisions,
                 ...     )
@@ -322,7 +322,7 @@ class FuseDivisionMaker(AbjadValueObject):
                 ...     durations=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
-                >>> division_maker = makertools.FuseDivisionMaker(
+                >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     measure_counts=[2],
                 ...     secondary_division_maker=divisions,
                 ...     )
@@ -374,7 +374,7 @@ class FuseDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.FuseDivisionMaker(
+                >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     measure_counts=mathtools.Infinity,
                 ...     )
 
@@ -419,7 +419,7 @@ class FuseDivisionMaker(AbjadValueObject):
                 ...     durations=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
-                >>> division_maker = makertools.FuseDivisionMaker(
+                >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     measure_counts=mathtools.Infinity,
                 ...     secondary_division_maker=divisions,
                 ...     )
@@ -470,7 +470,7 @@ class FuseDivisionMaker(AbjadValueObject):
                 ...     durations=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
-                >>> division_maker = makertools.FuseDivisionMaker(
+                >>> division_maker = makertools.FuseByCountsDivisionCallback(
                 ...     measure_counts=mathtools.Infinity,
                 ...     secondary_division_maker=divisions,
                 ...     )
