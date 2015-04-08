@@ -4,6 +4,8 @@ from abjad.tools import mathtools
 from abjad.tools import metertools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
+from abjad.tools import spannertools
+from abjad.tools.topleveltools import attach
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
 
@@ -303,6 +305,12 @@ class NoteRhythmMaker(RhythmMaker):
                     duration_specifier.forbidden_written_duration,
                 is_diminution=tuplet_specifier.is_diminution,
                 )
+            if (
+                1 < len(selection) and
+                not selection[0]._has_spanner(spannertools.Tie)
+                ):
+                tie = spannertools.Tie()
+                attach(tie, selection[:])
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections)
         self._apply_beam_specifier(selections)
@@ -751,19 +759,19 @@ class NoteRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/4
-                        c'4
-                        c'4
+                        c'4 ~
+                        c'4 ~
                         c'4
                     }
                     {
                         \time 6/16
-                        c'8. [
+                        c'8. ~ [
                         c'8. ]
                     }
                     {
                         \time 9/16
-                        c'8. [
-                        c'8.
+                        c'8. ~ [
+                        c'8. ~
                         c'8. ]
                     }
                 }
@@ -806,8 +814,8 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 9/16
-                        c'8. [
-                        c'8.
+                        c'8. ~ [
+                        c'8. ~
                         c'8. ]
                     }
                 }
@@ -1206,7 +1214,7 @@ class NoteRhythmMaker(RhythmMaker):
                         c'4. \repeatTie
                     }
                 }
-                
+
         ..  container:: example
 
             **Example 4.** Patterns ties across divisions:
