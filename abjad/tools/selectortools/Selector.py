@@ -1128,6 +1128,11 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example.** A custom selector callback class can be created to
+            only select chords containing the pitch-classes C, E and G. A
+            selector can then be configured with that custom callback via
+            `with_callback()`:
+
             ::
 
                 >>> class CMajorSelectorCallback(abctools.AbjadValueObject):
