@@ -16,7 +16,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         ::
 
             >>> division_maker = makertools.FuseByCountsDivisionCallback(
-            ...     measure_counts=[2],
+            ...     counts=[2],
             ...     )
 
         ::
@@ -63,7 +63,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             ...     remainder=Right,
             ...     )
             >>> division_maker = makertools.FuseByCountsDivisionCallback(
-            ...     measure_counts=[2],
+            ...     counts=[2],
             ...     secondary_division_maker=divisions,
             ...     )
 
@@ -124,7 +124,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
     __slots__ = (
         '_cyclic',
-        '_measure_counts',
+        '_counts',
         '_secondary_division_maker',
         )
 
@@ -133,18 +133,18 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
     def __init__(
         self,
         cyclic=True,
-        measure_counts=None,
+        counts=None,
         secondary_division_maker=None,
         ):
         from experimental import makertools
         assert isinstance(cyclic, bool), repr(cyclic)
         self._cyclic = cyclic
-        measure_counts = measure_counts or ()
-        if measure_counts == mathtools.Infinity:
-            self._measure_counts = measure_counts
+        counts = counts or ()
+        if counts == mathtools.Infinity:
+            self._counts = counts
         else:
-            assert mathtools.all_are_positive_integers(measure_counts)
-            self._measure_counts = measure_counts
+            assert mathtools.all_are_positive_integers(counts)
+            self._counts = counts
         if secondary_division_maker is not None:
             prototype = (makertools.SplitDivisionMaker,)
             assert isinstance(secondary_division_maker, prototype)
@@ -219,7 +219,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             ::
 
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
-                ...     measure_counts=[2],
+                ...     counts=[2],
                 ...     secondary_division_maker=None,
                 ...     )
 
@@ -269,7 +269,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 ...     remainder=Right,
                 ...     )
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
-                ...     measure_counts=[2],
+                ...     counts=[2],
                 ...     secondary_division_maker=divisions,
                 ...     )
 
@@ -323,7 +323,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 ...     remainder=Left,
                 ...     )
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
-                ...     measure_counts=[2],
+                ...     counts=[2],
                 ...     secondary_division_maker=divisions,
                 ...     )
 
@@ -375,7 +375,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             ::
 
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
-                ...     measure_counts=mathtools.Infinity,
+                ...     counts=mathtools.Infinity,
                 ...     )
 
             ::
@@ -420,7 +420,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 ...     remainder=Right,
                 ...     )
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
-                ...     measure_counts=mathtools.Infinity,
+                ...     counts=mathtools.Infinity,
                 ...     secondary_division_maker=divisions,
                 ...     )
 
@@ -471,7 +471,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 ...     remainder=Left,
                 ...     )
                 >>> division_maker = makertools.FuseByCountsDivisionCallback(
-                ...     measure_counts=mathtools.Infinity,
+                ...     counts=mathtools.Infinity,
                 ...     secondary_division_maker=divisions,
                 ...     )
 
@@ -530,12 +530,12 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         divisions = self._coerce_divisions(divisions)
         if not divisions:
             pass
-        elif self.measure_counts == mathtools.Infinity:
+        elif self.counts == mathtools.Infinity:
             divisions = [sum(divisions)]
-        elif self.measure_counts:
+        elif self.counts:
             parts = sequencetools.partition_sequence_by_counts(
                 divisions,
-                self.measure_counts,
+                self.counts,
                 cyclic=self.cyclic,
                 overhang=True,
                 )
@@ -561,8 +561,8 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         keyword_argument_names = list(keyword_argument_names)
         if self.cyclic == True:
             keyword_argument_names.remove('cyclic')
-        if not self.measure_counts:
-            keyword_argument_names.remove('measure_counts')
+        if not self.counts:
+            keyword_argument_names.remove('counts')
         return systemtools.StorageFormatSpecification(
             self,
             keyword_argument_names=keyword_argument_names,
@@ -594,14 +594,14 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         return self._cyclic
 
     @property
-    def measure_counts(self):
+    def counts(self):
         r'''Gets measure counts of hypermeasure division maker.
 
         Set to (possibly empty) list or tuple of positive integers.
 
         Or set to infinity.
         '''
-        return self._measure_counts
+        return self._counts
 
     @property
     def secondary_division_maker(self):

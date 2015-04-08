@@ -1398,6 +1398,6 @@ class SplitDivisionMaker(AbjadValueObject):
         from experimental.tools import makertools
         callback = makertools.FuseByCountsDivisionCallback(
             cyclic=cyclic,
-            measure_counts=counts,
+            counts=counts,
             )
         return self._with_callback(callback)
