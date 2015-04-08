@@ -159,6 +159,13 @@ class DivisionMaker(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _append_callback(self, callback):
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        result = new(self)
+        result._callbacks = callbacks
+        return result
+
     @staticmethod
     def _is_flat_list(expr):
         if isinstance(expr, list):
@@ -167,13 +174,6 @@ class DivisionMaker(AbjadValueObject):
             elif not isinstance(expr[0], list):
                 return True
         return False
-
-    def _with_callback(self, callback):
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        result = new(self)
-        result._callbacks = callbacks
-        return result
 
     ### PUBLIC PROPERTIES ###
 
@@ -215,6 +215,13 @@ class DivisionMaker(AbjadValueObject):
         return self._callbacks
 
     ### PUBLIC METHODS ###
+
+    def append_callback(self, callback):
+        r'''Configures division-maker with arbitrary `callback`.
+
+        Returns new division-maker.
+        '''
+        return self._append_callback(callback)
 
     def fuse_by_counts(
         self,
@@ -317,7 +324,7 @@ class DivisionMaker(AbjadValueObject):
             cyclic=cyclic,
             counts=counts,
             )
-        return self._with_callback(callback)
+        return self._append_callback(callback)
 
     def partition_by_counts(
         self,
@@ -437,7 +444,7 @@ class DivisionMaker(AbjadValueObject):
             append_remainder=append_remainder,
             remainder_direction=remainder_direction,
             )
-        return self._with_callback(callback)
+        return self._append_callback(callback)
 
     def split_by_durations(
         self,
@@ -580,7 +587,7 @@ class DivisionMaker(AbjadValueObject):
             remainder=remainder,
             remainder_fuse_threshold=remainder_fuse_threshold,
             )
-        return self._with_callback(callback)
+        return self._append_callback(callback)
 
     def split_by_rounded_ratios(
         self,
@@ -596,11 +603,4 @@ class DivisionMaker(AbjadValueObject):
         callback = makertools.SplitByBeatsDivisionCallback(
             ratios=ratios,
             )
-        return self._with_callback(callback)
-
-    def with_callback(self, callback):
-        r'''Configures division-maker with arbitrary `callback`.
-
-        Returns new division-maker.
-        '''
-        return self._with_callback(callback)
+        return self._append_callback(callback)
