@@ -59,7 +59,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
         ::
 
             >>> divisions = makertools.SplitDivisionMaker(
-            ...     pattern=[Duration(3, 16)],
+            ...     durations=[Duration(3, 16)],
             ...     remainder=Right,
             ...     )
             >>> division_maker = makertools.HypermeasureDivisionMaker(
@@ -265,7 +265,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             ::
 
                 >>> divisions = makertools.SplitDivisionMaker(
-                ...     pattern=[(3, 16)],
+                ...     durations=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
                 >>> division_maker = makertools.HypermeasureDivisionMaker(
@@ -319,7 +319,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             ::
 
                 >>> divisions = makertools.SplitDivisionMaker(
-                ...     pattern=[(3, 16)],
+                ...     durations=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
                 >>> division_maker = makertools.HypermeasureDivisionMaker(
@@ -416,7 +416,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             ::
 
                 >>> divisions = makertools.SplitDivisionMaker(
-                ...     pattern=[(3, 16)],
+                ...     durations=[(3, 16)],
                 ...     remainder=Right,
                 ...     )
                 >>> division_maker = makertools.HypermeasureDivisionMaker(
@@ -467,7 +467,7 @@ class HypermeasureDivisionMaker(AbjadValueObject):
             ::
 
                 >>> divisions = makertools.SplitDivisionMaker(
-                ...     pattern=[(3, 16)],
+                ...     durations=[(3, 16)],
                 ...     remainder=Left,
                 ...     )
                 >>> division_maker = makertools.HypermeasureDivisionMaker(

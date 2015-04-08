@@ -15,7 +15,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> maker = makertools.SplitDivisionMaker(pattern=[(1, 4)])
+            >>> maker = makertools.SplitDivisionMaker(durations=[(1, 4)])
 
         ::
 
@@ -71,7 +71,7 @@ class SplitDivisionMaker(AbjadValueObject):
         ::
 
             >>> maker = makertools.SplitDivisionMaker(
-            ...     pattern=[(1, 4)],
+            ...     durations=[(1, 4)],
             ...     remainder=Left,
             ...     )
 
@@ -146,20 +146,20 @@ class SplitDivisionMaker(AbjadValueObject):
     def __init__(
         self,
         cyclic=True,
-        pattern=(),
+        durations=(),
         pattern_rotation_index=0,
         remainder=Right,
         remainder_fuse_threshold=None,
         ):
         assert isinstance(cyclic, bool), repr(cyclic)
         self._cyclic = cyclic
-        pattern = pattern or ()
+        durations = durations or ()
         pattern_ = []
-        for division in pattern:
+        for division in durations:
             division = durationtools.Division(division)
             pattern_.append(division)
-        pattern = tuple(pattern_)
-        self._pattern = pattern
+        durations = tuple(pattern_)
+        self._pattern = durations
         assert remainder in (Left, Right), repr(remainder)
         self._remainder = remainder
         assert isinstance(pattern_rotation_index, int)
@@ -184,7 +184,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     )
 
             ::
@@ -227,7 +227,7 @@ class SplitDivisionMaker(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     )
 
             ::
@@ -275,7 +275,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     )
 
             ::
@@ -319,7 +319,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** No pattern:
+            **Example 4.** No durations:
 
             ::
 
@@ -364,7 +364,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> maker = makertools.SplitDivisionMaker(pattern=[(1, 4)])
+                >>> maker = makertools.SplitDivisionMaker(durations=[(1, 4)])
                 >>> maker()
                 []
 
@@ -380,11 +380,11 @@ class SplitDivisionMaker(AbjadValueObject):
             input_division = durationtools.Division(division)
             input_duration = durationtools.Duration(input_division)
             assert 0 < input_division, repr(input_division)
-            if not self.pattern:
+            if not self.durations:
                 division_list = [input_division]
                 division_lists.append(division_list)
                 continue
-            division_list = list(self.pattern)
+            division_list = list(self.durations)
             pattern_rotation_index = self.pattern_rotation_index or 0
             pattern_rotation_index *= i
             division_list = sequencetools.rotate_sequence(
@@ -403,7 +403,7 @@ class SplitDivisionMaker(AbjadValueObject):
                 continue
             if self.remainder is None:
                 message = 'can not fill {} from {} exactly.'
-                message = message.format(input_division, self.pattern)
+                message = message.format(input_division, self.durations)
                 raise Exception(message)
             remainder = input_division - total_duration
             remainder = durationtools.Duration(remainder)
@@ -449,8 +449,8 @@ class SplitDivisionMaker(AbjadValueObject):
         keyword_argument_names = list(keyword_argument_names)
         if self.cyclic == True:
             keyword_argument_names.remove('cyclic')
-        if not self.pattern:
-            keyword_argument_names.remove('pattern')
+        if not self.durations:
+            keyword_argument_names.remove('durations')
         if self.remainder == Right:
             keyword_argument_names.remove('remainder')
         if self.pattern_rotation_index == 0:
@@ -481,7 +481,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.SplitDivisionMaker(pattern=[(1, 4)])
+                >>> division_maker = makertools.SplitDivisionMaker(durations=[(1, 4)])
 
             ::
 
@@ -536,7 +536,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
             ::
 
-                >>> division_maker = makertools.SplitDivisionMaker(pattern=[(1, 4)])
+                >>> division_maker = makertools.SplitDivisionMaker(durations=[(1, 4)])
                 >>> division_maker = division_maker.fuse(counts=[2, 4])
 
             ::
@@ -578,20 +578,20 @@ class SplitDivisionMaker(AbjadValueObject):
 
     @property
     def cyclic(self):
-        r'''Is true when division-maker reads pattern cyclically for each input
+        r'''Is true when division-maker reads durations cyclically for each input
         division.
         
-        Is false when division-maker reads pattern only once per input
+        Is false when division-maker reads durations only once per input
         division.
 
         ..  container:: example
 
-            **Example 1.** Reads pattern cyclically for each input division:
+            **Example 1.** Reads durations cyclically for each input division:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     )
 
             ::
@@ -643,13 +643,13 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Reads pattern only once per input division:
+            **Example 2.** Reads durations only once per input division:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=False,
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     )
 
             ::
@@ -706,12 +706,12 @@ class SplitDivisionMaker(AbjadValueObject):
         return self._cyclic
 
     @property
-    def pattern(self):
-        r'''Gets pattern of division-maker.
+    def durations(self):
+        r'''Gets durations of division-maker.
 
         ..  container:: example
 
-            **Example 1.** Returns input division unchanged when pattern is
+            **Example 1.** Returns input division unchanged when durations is
             empty:
 
                 >>> maker = makertools.SplitDivisionMaker()
@@ -758,10 +758,10 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Applies pattern to each input division:
+            **Example 2.** Applies durations to each input division:
 
                 >>> maker = makertools.SplitDivisionMaker(
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     )
 
             ::
@@ -821,17 +821,17 @@ class SplitDivisionMaker(AbjadValueObject):
 
     @property
     def pattern_rotation_index(self):
-        r'''Gets pattern rotation index of division-maker.
+        r'''Gets durations rotation index of division-maker.
 
         ..  container:: example
 
-            **Example 1.** Does not rotate pattern:
+            **Example 1.** Does not rotate durations:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(1, 16), (1, 8), (1, 4)],
+                ...     durations=[(1, 16), (1, 8), (1, 4)],
                 ...     )
 
             ::
@@ -881,14 +881,14 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Rotates pattern one element to the left on each new
+            **Example 2.** Rotates durations one element to the left on each new
             input division:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(1, 16), (1, 8), (1, 4)],
+                ...     durations=[(1, 16), (1, 8), (1, 4)],
                 ...     pattern_rotation_index=-1,
                 ...     )
 
@@ -939,14 +939,14 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Rotates pattern one element to the right on each new
+            **Example 3.** Rotates durations one element to the right on each new
             input division:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(1, 16), (1, 8), (1, 4)],
+                ...     durations=[(1, 16), (1, 8), (1, 4)],
                 ...     pattern_rotation_index=1,
                 ...     )
 
@@ -1009,13 +1009,13 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Positions remainder to right of noncyclic pattern:
+            **Example 1.** Positions remainder to right of noncyclic durations:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=False,
-                ...     pattern=[(4, 16), (1, 16)],
+                ...     durations=[(4, 16), (1, 16)],
                 ...     )
 
             ::
@@ -1053,12 +1053,12 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Positions remainder to right of cyclic pattern:
+            **Example 2.** Positions remainder to right of cyclic durations:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
-                ...     pattern=[(4, 16), (1, 16)],
+                ...     durations=[(4, 16), (1, 16)],
                 ...     )
 
             ::
@@ -1098,13 +1098,13 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Positions remainder to left of noncyclic pattern:
+            **Example 3.** Positions remainder to left of noncyclic durations:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=False,
-                ...     pattern=[(1, 4), (1, 16)],
+                ...     durations=[(1, 4), (1, 16)],
                 ...     remainder=Left,
                 ...     )
 
@@ -1143,13 +1143,13 @@ class SplitDivisionMaker(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 4.** Positions remainder to left of cyclic pattern:
+            **Example 4.** Positions remainder to left of cyclic durations:
 
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(1, 4), (1, 16)],
+                ...     durations=[(1, 4), (1, 16)],
                 ...     remainder=Left,
                 ...     )
 
@@ -1207,7 +1207,7 @@ class SplitDivisionMaker(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     remainder_fuse_threshold=None,
                 ...     )
 
@@ -1252,7 +1252,7 @@ class SplitDivisionMaker(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitDivisionMaker(
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     remainder_fuse_threshold=Duration(1, 8),
                 ...     )
 
@@ -1296,7 +1296,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     remainder=Left,
                 ...     remainder_fuse_threshold=None,
                 ...     )
@@ -1343,7 +1343,7 @@ class SplitDivisionMaker(AbjadValueObject):
 
                 >>> maker = makertools.SplitDivisionMaker(
                 ...     cyclic=True,
-                ...     pattern=[(1, 4)],
+                ...     durations=[(1, 4)],
                 ...     remainder=Left,
                 ...     remainder_fuse_threshold=Duration(1, 8),
                 ...     )
