@@ -1,6 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.topleveltools import new
 
 
 class DivisionMaker(AbjadValueObject):
@@ -15,7 +17,7 @@ class DivisionMaker(AbjadValueObject):
             >>> division_maker = makertools.DivisionMaker()
             >>> divisions = [(4, 8), (3, 8), (4, 8), (2, 8)]
             >>> division_maker(divisions)
-            [(4, 8), (3, 8), (4, 8), (2, 8)]
+            [Division(4, 8), Division(3, 8), Division(4, 8), Division(2, 8)]
 
     Division-makers aggregate a sequence of callable classes which describe the
     process of making (fusing, splitting, partitioning) divisions (arbitrary
@@ -50,11 +52,10 @@ class DivisionMaker(AbjadValueObject):
 
         Returns a (possibly empty) list of division lists.
         '''
-        division_lists = divisions
+        divisions = [durationtools.Division(_) for _ in divisions]
         for callback in self.callbacks:
-            divisions = sequencetools.flatten_sequence(division_lists)
-            division_lists = callback(divisions)
-        return division_lists
+            divisions = callback(divisions)
+        return divisions
 
     ### PRIVATE METHODS ###
 
@@ -74,3 +75,43 @@ class DivisionMaker(AbjadValueObject):
         return self._callbacks
 
     ### PUBLIC METHODS ###
+
+    def fuse_by_counts(
+        self,
+        cyclic=True,
+        counts=None,
+        ):
+        r'''Fuses divisions by `counts`.
+
+        ..  container:: example
+
+            **Example 1.** Makes divisions:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (2, 8)]
+                >>> division_maker(divisions)
+                [Division(4, 8), Division(3, 8), Division(4, 8), Division(2, 8)]
+
+        ..  container:: example
+
+            **Example 2.** Fuses divisions two at a time:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts(
+                ...     counts=[2],
+                ...     )
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (2, 8)]
+                >>> division_maker(divisions)
+                [[Division(7, 8)], [Division(6, 8)]]
+
+        '''
+        from experimental.tools import makertools
+        callback = makertools.FuseDivisionMaker(
+            cyclic=cyclic,
+            measure_counts=counts,
+            )
+        return self._with_callback(callback)
