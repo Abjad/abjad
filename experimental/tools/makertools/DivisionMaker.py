@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import new
 
 
 class DivisionMaker(AbjadValueObject):
-    r'''A division-maker.
+    r'''Division-maker.
 
     ..  container:: example
 
@@ -15,17 +15,110 @@ class DivisionMaker(AbjadValueObject):
         ::
 
             >>> division_maker = makertools.DivisionMaker()
-            >>> divisions = [(4, 8), (3, 8), (4, 8), (2, 8)]
-            >>> division_maker(divisions)
-            [Division(4, 8), Division(3, 8), Division(4, 8), Division(2, 8)]
 
-    Division-makers aggregate a sequence of callable classes which describe the
-    process of making (fusing, splitting, partitioning) divisions (arbitrary
-    units of musical time).
+        ::
 
-    Division-makers provide methods for configuring and making new selectors.
+            >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+            >>> divisions = division_maker(time_signatures)
+            >>> for division in divisions:
+            ...     division
+            Division(7, 8)
+            Division(7, 8)
+            Division(7, 16)
 
-    Composers may chain division-makers together.
+        ::
+
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+            >>> music = rhythm_maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=time_signatures,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 7/8
+                    c'2..
+                }
+                {
+                    c'2..
+                }
+                {
+                    \time 7/16
+                    c'4..
+                }
+            }
+
+    ..  container:: example
+
+        **Example 2.** Makes quarter-valued divisions with remainder at 
+        right:
+
+        ::
+
+            >>> division_maker = makertools.DivisionMaker()
+            >>> division_maker = division_maker.split_by_durations(
+            ...     durations=[(1, 4)],
+            ...     )
+
+        ::
+
+            >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
+            >>> division_lists = division_maker(time_signatures)
+            >>> for division_list in division_lists:
+            ...     division_list
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+            [Division(1, 4), Division(3, 16)]
+
+        ::
+
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+            >>> divisions = sequencetools.flatten_sequence(division_lists)
+            >>> music = rhythm_maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=time_signatures,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 7/8
+                    c'4
+                    c'4
+                    c'4
+                    c'8
+                }
+                {
+                    c'4
+                    c'4
+                    c'4
+                    c'8
+                }
+                {
+                    \time 7/16
+                    c'4
+                    c'8.
+                }
+            }
+
+    Division-makers object-model a sequence of partially evaluated functions 
+    taken together in functional composition.
+
+    Usage follows the two-step configure-once / call-repeatedly pattern shown 
+    here.
     '''
 
     ### CLASS VARIABLES ###
@@ -71,6 +164,37 @@ class DivisionMaker(AbjadValueObject):
     @property
     def callbacks(self):
         r'''Gets division-maker callbacks.
+
+        ..  container:: example
+
+            **Example 1.** No callbacks:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+
+            ::
+
+                >>> division_maker.callbacks
+                ()
+
+        ..  container:: example
+
+            **Example 2.** One callback:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.split_by_durations(
+                ...     durations=[(1, 4)],
+                ...     )
+
+            ::
+
+                >>> division_maker.callbacks
+                (SplitByDurationsDivisionCallback(compound_meter_multiplier=Multiplier(1, 1), durations=(Division(1, 4),)),)
+
+        Returns tuple of zero or more callbacks.
         '''
         return self._callbacks
 
