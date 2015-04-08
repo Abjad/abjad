@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools import indicatortools
 from abjad.tools import lilypondfiletools
 from abjad.tools import scoretools
@@ -59,11 +60,12 @@ def make_lilypond_file(
         )
     staff = scoretools.Staff(measures, context_name='RhythmicStaff')
     music = sequencetools.flatten_sequence(music)
+    music_copy = copy.deepcopy(music)
 
     try:
         measures = mutate(staff).replace_measure_contents(music)
     except StopIteration:
-        staff = scoretools.Staff(music, context_name='RhythmicStaff')
+        staff = scoretools.Staff(music_copy, context_name='RhythmicStaff')
         
     score.append(staff)
 
