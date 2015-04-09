@@ -396,6 +396,7 @@ class IncisedRhythmMaker(RhythmMaker):
                     specifier.forbidden_written_duration,
                 decrease_durations_monotonically=\
                     specifier.decrease_durations_monotonically,
+                spell_metrically=specifier.spell_metrically,
                 )
             selections.append(selection)
         return selections
