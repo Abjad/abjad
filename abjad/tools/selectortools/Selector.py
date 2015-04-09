@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
@@ -452,7 +453,7 @@ class Selector(AbjadValueObject):
             )
         return self._append_callback(callback)
 
-    def by_duration(self, *args):
+    def by_duration(self, inequality=None, duration=None, preprolated=None):
         r'''Configures selector to select containers or selections of
         duration `duration`.
 
@@ -528,22 +529,77 @@ class Selector(AbjadValueObject):
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
+        ..  container:: example
+
+            **Example 4.** Selects all logical ties whose leaves sum to
+            ``1/8``, before prolation:
+
+            ::
+
+                >>> staff = Staff(r"""
+                ... \times 3/4 { c'16 d'16 ~ d'16 e'16 ~ }
+                ... { e'16 f'16 ~ f'16 g'16 ~ }
+                ... \times 5/4 { g'16 a'16 ~ a'16 b'16 }
+                ... """)
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie()
+                >>> selector = selector.by_duration(
+                ...     '==',
+                ...     (1, 8),
+                ...     preprolated=True,
+                ...     )
+
+            ::
+
+                >>> selections = selector(staff)
+                >>> for logical_tie in selections:
+                ...     attach(Articulation('accent'), logical_tie[0])
+                ...     print(logical_tie)
+                ...
+                LogicalTie(Note("d'16"), Note("d'16"))
+                LogicalTie(Note("e'16"), Note("e'16"))
+                LogicalTie(Note("f'16"), Note("f'16"))
+                LogicalTie(Note("g'16"), Note("g'16"))
+                LogicalTie(Note("a'16"), Note("a'16"))
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
         Returns new selector.
         '''
         from abjad.tools import selectortools
-        if len(args) == 1:
-            duration = args[0]
-            if not isinstance(duration, selectortools.DurationInequality):
-                duration = durationtools.Duration(duration)
-        elif len(args) == 2:
-            duration = selectortools.DurationInequality(
-                duration=args[1],
-                operator_string=args[0],
+
+        duration_expr = None
+        if isinstance(inequality, (
+            durationtools.Duration,
+            selectortools.DurationInequality,
+            )):
+            duration_expr = inequality
+        elif isinstance(inequality, str) and duration is not None:
+            duration_expr = selectortools.DurationInequality(
+                duration=duration,
+                operator_string=inequality,
                 )
-        else:
-            raise ValueError(args)
+        elif inequality is None and duration is not None:
+            duration_expr = selectortools.DurationInequality(
+                duration=duration,
+                operator_string='==',
+                )
+
+        if not isinstance(duration_expr, (
+            durationtools.Duration,
+            selectortools.DurationInequality,
+            )):
+            raise ValueError(inequality, duration)
+
         callback = selectortools.DurationSelectorCallback(
-            duration=duration,
+            duration=duration_expr,
+            preprolated=preprolated,
             )
         return self._append_callback(callback)
 

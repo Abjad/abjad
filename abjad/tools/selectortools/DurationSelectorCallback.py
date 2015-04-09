@@ -11,6 +11,7 @@ class DurationSelectorCallback(AbjadValueObject):
 
     __slots__ = (
         '_duration',
+        '_preprolated',
         )
 
     ### INITIALIZER ###
@@ -18,6 +19,7 @@ class DurationSelectorCallback(AbjadValueObject):
     def __init__(
         self,
         duration=durationtools.Duration(1, 4),
+        preprolated=None,
         ):
         from abjad.tools import selectortools
         prototype = (
@@ -26,6 +28,9 @@ class DurationSelectorCallback(AbjadValueObject):
             )
         assert isinstance(duration, prototype)
         self._duration = duration
+        if preprolated is not None:
+            preprolated = bool(preprolated)
+        self._preprolated = preprolated
 
     ### SPECIAL METHODS ###
 
@@ -45,10 +50,22 @@ class DurationSelectorCallback(AbjadValueObject):
                 )
         result = []
         for subexpr in expr:
-            if isinstance(subexpr, scoretools.Component):
-                duration = subexpr._get_duration()
+            if not self.preprolated:
+                if isinstance(subexpr, scoretools.Component):
+                    duration = subexpr._get_duration()
+                else:
+                    duration = subexpr.get_duration()
             else:
-                duration = subexpr.get_duration()
+                if isinstance(subexpr, scoretools.Component):
+                    subexpr._update_now(offsets=True)
+                    duration = subexpr._preprolated_duration
+                else:
+                    durations = []
+                    for x in subexpr:
+                        x._update_now(offsets=True)
+                        duration = x._preprolated_duration
+                        durations.append(x._preprolated_duration)
+                    duration = sum(durations)
             if inequality(duration):
                 result.append(subexpr)
         return tuple(result)
@@ -62,3 +79,12 @@ class DurationSelectorCallback(AbjadValueObject):
         Returns duration or duration inequality.
         '''
         return self._duration
+
+    @property
+    def preprolated(self):
+        r'''Is true if duration selector callback should be tested against the
+        preprolated duration of components in selections. Otherwise false.
+
+        Returns boolean or none.
+        '''
+        return self._preprolated
