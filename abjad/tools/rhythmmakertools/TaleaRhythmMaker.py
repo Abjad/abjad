@@ -73,8 +73,6 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ..  todo:: add talea examples.
 
-    ..  todo:: add rotate examples.
-
     Follows the two-step configure-once / call-repeatedly pattern shown here.
 
     Object model of a partially evaluated function that accepts a (possibly
