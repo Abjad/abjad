@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 class UpdateManager(AbjadObject):
     '''Update manager.
-    
+
     Updates start offset, stop offsets and indicators everywhere in score.
     '''
 
@@ -105,7 +105,6 @@ class UpdateManager(AbjadObject):
     @staticmethod
     def _update_component_offsets(component):
         from abjad.tools import durationtools
-        from abjad.tools import scoretools
         previous = component._get_nth_component_in_time_order_from(-1)
         if previous is not None:
             start_offset = previous._stop_offset
@@ -120,7 +119,6 @@ class UpdateManager(AbjadObject):
     @staticmethod
     def _update_component_offsets_in_seconds(component):
         from abjad.tools import durationtools
-        from abjad.tools import scoretools
         try:
             current_duration_in_seconds = \
                 component._get_duration(in_seconds=True)
@@ -172,7 +170,6 @@ class UpdateManager(AbjadObject):
         from abjad.tools import indicatortools
         from abjad.tools import sequencetools
         from abjad.tools.topleveltools import inspect_
-        from abjad.tools.topleveltools import iterate
         expressions = []
         prototype = indicatortools.TimeSignature
         components = self._iterate_entire_score(component)
@@ -244,7 +241,6 @@ class UpdateManager(AbjadObject):
         raise ValueError(message)
 
     def _update_logical_measure_numbers(self, component):
-        from abjad.tools.topleveltools import iterate
         logical_measure_start_offsets = \
             self._get_logical_measure_start_offsets(component)
         assert logical_measure_start_offsets, repr(
