@@ -10,55 +10,7 @@ class DivisionMaker(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Makes divisions:
-
-        ::
-
-            >>> division_maker = makertools.DivisionMaker()
-
-        ::
-
-            >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
-            >>> divisions = division_maker(time_signatures)
-            >>> for division in divisions:
-            ...     division
-            Division(7, 8)
-            Division(7, 8)
-            Division(7, 16)
-
-        ::
-
-            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-            >>> music = rhythm_maker(divisions)
-            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
-            ...     divisions,
-            ...     time_signatures=time_signatures,
-            ...     )
-            >>> show(lilypond_file) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
-            >>> f(staff)
-            \new RhythmicStaff {
-                {
-                    \time 7/8
-                    c'2..
-                }
-                {
-                    c'2..
-                }
-                {
-                    \time 7/16
-                    c'4..
-                }
-            }
-
-    ..  container:: example
-
-        **Example 2.** Makes quarter-valued divisions with remainder at 
-        right:
+        **Example 1.** Splits by ``1/4`` with remainder at right:
 
         ::
 
@@ -69,13 +21,14 @@ class DivisionMaker(AbjadValueObject):
 
         ::
 
-            >>> time_signatures = [(7, 8), (7, 8), (7, 16)]
-            >>> division_lists = division_maker(time_signatures)
+            >>> input_divisions = [(7, 8), (3, 8), (5, 8)]
+            >>> division_lists = division_maker(input_divisions)
             >>> for division_list in division_lists:
             ...     division_list
             [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
-            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
-            [Division(1, 4), Division(3, 16)]
+            [Division(1, 4), Division(1, 8)]
+            [Division(1, 4), Division(1, 4), Division(1, 8)]
+
 
         ::
 
@@ -85,7 +38,7 @@ class DivisionMaker(AbjadValueObject):
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     music,
             ...     divisions,
-            ...     time_signatures=time_signatures,
+            ...     time_signatures=input_divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
@@ -102,16 +55,105 @@ class DivisionMaker(AbjadValueObject):
                     c'8
                 }
                 {
-                    c'4
-                    c'4
+                    \time 3/8
                     c'4
                     c'8
                 }
                 {
-                    \time 7/16
+                    \time 5/8
                     c'4
-                    c'8.
+                    c'4
+                    c'8
                 }
+            }
+
+    ..  container:: example
+
+        **Example 2.** Fuses everything:
+
+        ::
+
+            >>> division_maker = makertools.DivisionMaker()
+            >>> division_maker = division_maker.fuse_by_counts(
+            ...     counts=mathtools.Infinity,
+            ...     )
+
+        ::
+
+            >>> input_divisions = [(7, 8), (3, 8), (5, 8)]
+            >>> divisions = division_maker(input_divisions)
+            >>> divisions
+            [Division(15, 8)]
+
+
+        ::
+
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+            >>> music = rhythm_maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=input_divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                c'1...
+            }
+
+    ..  container:: example
+
+        **Example 3.** Fuses everything and then splits by ``1/4`` with
+        remainder on right:
+
+        ::
+
+            >>> division_maker = makertools.DivisionMaker()
+            >>> division_maker = division_maker.fuse_by_counts(
+            ...     counts=mathtools.Infinity,
+            ...     )
+            >>> division_maker = division_maker.split_by_durations(
+            ...     durations=[(1, 4)],
+            ...     )
+
+        ::
+
+            >>> input_divisions = [(7, 8), (3, 8), (5, 8)]
+            >>> division_lists = division_maker(input_divisions)
+            >>> for division_list in division_lists:
+            ...     division_list
+            [Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 4), Division(1, 8)]
+
+        ::
+
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+            >>> divisions = sequencetools.flatten_sequence(division_lists)
+            >>> music = rhythm_maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=input_divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+
+        ..  doctest::
+
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                c'4
+                c'4
+                c'4
+                c'4
+                c'4
+                c'4
+                c'4
+                c'8
             }
 
     Division-makers object-model a sequence of partially evaluated functions 
