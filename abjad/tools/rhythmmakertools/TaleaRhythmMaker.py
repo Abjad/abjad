@@ -676,6 +676,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     specifier.decrease_durations_monotonically,
                 forbidden_written_duration=\
                     specifier.forbidden_written_duration,
+                spell_metrically=specifier.spell_metrically,
                 )
             leaf_lists.append(leaf_list)
         return leaf_lists
@@ -1517,6 +1518,113 @@ class TaleaRhythmMaker(RhythmMaker):
 
             Forbidden durations are rewritten with smaller durations tied
             together.
+
+        ..  container:: example
+
+            **Example 5.** This rhythm-maker spells all durations metrically:
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[5, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         spell_metrically=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (3, 4), (3, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'8. ~ [
+                        c'8 ]
+                        c'4
+                        c'16 ~ [
+                        c'16 ~
+                        c'16 ~ ]
+                    }
+                    {
+                        c'8
+                        c'4
+                        c'8. ~ [
+                        c'8
+                        c'16 ~ ]
+                    }
+                    {
+                        c'16 ~ [
+                        c'16 ~
+                        c'16
+                        c'8. ~
+                        c'8 ]
+                        c'4
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 6.** This rhythm-maker spells all unassignable durations
+            metrically:
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[5, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         spell_metrically='unassignable',
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (3, 4), (3, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'8. ~ [
+                        c'8 ]
+                        c'4
+                        c'8. ~
+                    }
+                    {
+                        c'8
+                        c'4
+                        c'8. ~ [
+                        c'8
+                        c'16 ~ ]
+                    }
+                    {
+                        c'8. [
+                        c'8. ~
+                        c'8 ]
+                        c'4
+                    }
+                }
 
         Set to duration spelling specifier or none.
         '''
