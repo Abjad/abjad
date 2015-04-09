@@ -51,6 +51,10 @@ class TieSpecifier(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions):
+        r'''Processes `divisions`.
+
+        Returns none.
+        '''
         if not self.strip_ties:
             self._make_ties_across_divisions(divisions)
         self._strip_ties_from_divisions(divisions)
