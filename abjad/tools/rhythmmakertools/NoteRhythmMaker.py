@@ -314,6 +314,11 @@ class NoteRhythmMaker(RhythmMaker):
         selections = self._apply_burnish_specifier(selections)
         self._apply_beam_specifier(selections)
         selections = self._apply_output_masks(selections, rotation)
+        if duration_specifier.spell_magically:
+            selections = duration_specifier._respell_magically(
+                selections,
+                divisions,
+                )
         return selections
 
     ### PUBLIC PROPERTIES ###
@@ -730,7 +735,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Spells all divisions metrically when
+            **Example 3a.** Spells all divisions metrically when
             `spell_metrically` is true:
 
             ::
@@ -775,9 +780,7 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-        ..  container:: example
-
-            **Example 4.** Spells only unassignable durations metrically when
+            **Example 3b.** Spells only unassignable durations metrically when
             `spell_metrically` is ``'unassignable'``:
 
             ::
@@ -822,6 +825,48 @@ class NoteRhythmMaker(RhythmMaker):
             ``9/16`` is spelled metrically because it is unassignable.
             The other durations are spelled with the fewest number of symbols
             possible.
+
+            **Example 3c.** Spells magically:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         spell_magically=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (6, 16), (9, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'2.
+                    }
+                    {
+                        \time 6/16
+                        c'4.
+                    }
+                    {
+                        \time 9/16
+                        c'4. ~
+                        c'8.
+                    }
+                }
+
+            ..  todo:: Why does rewrite_meter() give 4. ~ 8. for 9/16?
 
         Returns duration spelling specifier or none.
         '''
