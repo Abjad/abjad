@@ -585,6 +585,7 @@ class Performer(AbjadObject):
                     Marimba
                     MezzoSopranoVoice
                     Oboe
+                    Percussion
                     Piano
                     Piccolo
                     SopraninoSaxophone
@@ -595,7 +596,6 @@ class Performer(AbjadObject):
                     TenorVoice
                     Trumpet
                     Tuba
-                    UntunedPercussion
                     Vibraphone
                     Viola
                     Violin
@@ -612,7 +612,7 @@ class Performer(AbjadObject):
                 percussionist:
                     Glockenspiel
                     Marimba
-                    UntunedPercussion
+                    Percussion
                     Vibraphone
                     Xylophone
                 pianist:

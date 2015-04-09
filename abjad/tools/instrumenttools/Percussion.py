@@ -5,21 +5,21 @@ from abjad.tools import pitchtools
 from abjad.tools.instrumenttools.Instrument import Instrument
 
 
-class UntunedPercussion(Instrument):
-    r'''An untuned percussion instrument.
+class Percussion(Instrument):
+    r'''A percussion instrument.
 
     ::
 
         >>> staff = Staff("c'4 d'4 e'4 fs'4")
-        >>> untuned_percussion = instrumenttools.UntunedPercussion()
-        >>> attach(untuned_percussion, staff)
+        >>> percussion = instrumenttools.Percussion()
+        >>> attach(percussion, staff)
         >>> show(staff) # doctest: +SKIP
 
     ..  doctest::
 
         >>> print(format(staff))
         \new Staff {
-            \set Staff.instrumentName = \markup { Untuned percussion }
+            \set Staff.instrumentName = \markup { Percussion }
             \set Staff.shortInstrumentName = \markup { Perc. }
             c'4
             d'4
@@ -37,7 +37,7 @@ class UntunedPercussion(Instrument):
 
     def __init__(
         self,
-        instrument_name='untuned percussion',
+        instrument_name='percussion',
         short_instrument_name='perc.',
         instrument_name_markup=None,
         short_instrument_name_markup=None,
@@ -62,7 +62,7 @@ class UntunedPercussion(Instrument):
 
     ### CLASS VARIABLES ###
 
-    known_untuned_percussion = list(sorted(set([
+    known_percussion = list(sorted(set([
         'agogô',
         'anvil',
         'bass drum',
@@ -116,18 +116,18 @@ class UntunedPercussion(Instrument):
 
     @property
     def allowable_clefs(self):
-        r'''Gets untuned percussion's allowable clefs.
+        r'''Gets percussion's allowable clefs.
 
         ..  container:: example
 
             ::
 
-                >>> untuned_percussion.allowable_clefs
+                >>> percussion.allowable_clefs
                 ClefInventory([Clef(name='percussion')])
 
             ::
 
-                >>> show(untuned_percussion.allowable_clefs) # doctest: +SKIP
+                >>> show(percussion.allowable_clefs) # doctest: +SKIP
 
         Returns clef inventory.
         '''
@@ -135,14 +135,14 @@ class UntunedPercussion(Instrument):
 
     @property
     def instrument_name(self):
-        r'''Gets untuned percussion's name.
+        r'''Gets percussion's name.
 
         ..  container:: example
 
             ::
 
-                >>> untuned_percussion.instrument_name
-                'untuned percussion'
+                >>> percussion.instrument_name
+                'percussion'
 
         Returns string.
         '''
@@ -150,18 +150,18 @@ class UntunedPercussion(Instrument):
 
     @property
     def instrument_name_markup(self):
-        r'''Gets untuned percussion's instrument name markup.
+        r'''Gets percussion's instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> untuned_percussion.instrument_name_markup
-                Markup(contents=('Untuned percussion',))
+                >>> percussion.instrument_name_markup
+                Markup(contents=('Percussion',))
 
             ::
 
-                >>> show(untuned_percussion.instrument_name_markup) # doctest: +SKIP
+                >>> show(percussion.instrument_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -169,18 +169,18 @@ class UntunedPercussion(Instrument):
 
     @property
     def pitch_range(self):
-        r'''Gets untuned percussion's range.
+        r'''Gets percussion's range.
 
         ..  container:: example
 
             ::
 
-                >>> untuned_percussion.pitch_range
+                >>> percussion.pitch_range
                 PitchRange(range_string='[A0, C8]')
 
             ::
 
-                >>> show(untuned_percussion.pitch_range) # doctest: +SKIP
+                >>> show(percussion.pitch_range) # doctest: +SKIP
 
         Returns pitch range.
         '''
@@ -188,13 +188,13 @@ class UntunedPercussion(Instrument):
 
     @property
     def short_instrument_name(self):
-        r'''Gets untuned_percussion's short instrument name.
+        r'''Gets percussion's short instrument name.
 
         ..  container:: example
 
             ::
 
-                >>> untuned_percussion.short_instrument_name
+                >>> percussion.short_instrument_name
                 'perc.'
 
         Returns string.
@@ -203,18 +203,18 @@ class UntunedPercussion(Instrument):
 
     @property
     def short_instrument_name_markup(self):
-        r'''Gets untuned percussion's short instrument name markup.
+        r'''Gets percussion's short instrument name markup.
 
         ..  container:: example
 
             ::
 
-                >>> untuned_percussion.short_instrument_name_markup
+                >>> percussion.short_instrument_name_markup
                 Markup(contents=('Perc.',))
 
             ::
 
-                >>> show(untuned_percussion.short_instrument_name_markup) # doctest: +SKIP
+                >>> show(percussion.short_instrument_name_markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -222,18 +222,18 @@ class UntunedPercussion(Instrument):
 
     @property
     def sounding_pitch_of_written_middle_c(self):
-        r'''Gets sounding pitch of untuned percussion's written middle C.
+        r'''Gets sounding pitch of percussion's written middle C.
 
         ..  container:: example
 
             ::
 
-                >>> untuned_percussion.sounding_pitch_of_written_middle_c
+                >>> percussion.sounding_pitch_of_written_middle_c
                 NamedPitch("c'")
 
             ::
 
-                >>> show(untuned_percussion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
+                >>> show(percussion.sounding_pitch_of_written_middle_c) # doctest: +SKIP
 
         Returns named pitch.
         '''

@@ -83,9 +83,9 @@ class InstrumentInventory(TypedList):
     def _name_untuned_percussion(instrument, session):
         from abjad.tools import instrumenttools
         from ide import idetools
-        if isinstance(instrument, instrumenttools.UntunedPercussion):
-            UntunedPercussion = instrumenttools.UntunedPercussion
-            items = UntunedPercussion.known_untuned_percussion[:]
+        if isinstance(instrument, instrumenttools.Percussion):
+            Percussion = instrumenttools.Percussion
+            items = Percussion.known_untuned_percussion[:]
             selector = idetools.Selector(session=session, items=items)
             instrument_name = selector._run()
             if selector._session.is_backtracking or instrument_name is None:
