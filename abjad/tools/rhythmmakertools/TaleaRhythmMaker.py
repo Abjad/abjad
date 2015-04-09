@@ -733,8 +733,8 @@ class TaleaRhythmMaker(RhythmMaker):
         selections = self._apply_output_masks(selections, rotation)
         specifier = self.duration_spelling_specifier or \
             rhythmmakertools.DurationSpellingSpecifier()
-        if specifier.spell_magically:
-            selections = specifier._respell_magically(
+        if specifier.rewrite_meter:
+            selections = specifier._rerewrite_meter(
                 selections, 
                 input_divisions,
                 )
@@ -1639,7 +1639,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...         spell_magically=True,
+                ...         rewrite_meter=True,
                 ...         ),
                 ...     )
 

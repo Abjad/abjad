@@ -314,8 +314,8 @@ class NoteRhythmMaker(RhythmMaker):
         selections = self._apply_burnish_specifier(selections)
         self._apply_beam_specifier(selections)
         selections = self._apply_output_masks(selections, rotation)
-        if duration_specifier.spell_magically:
-            selections = duration_specifier._respell_magically(
+        if duration_specifier.rewrite_meter:
+            selections = duration_specifier._rerewrite_meter(
                 selections,
                 divisions,
                 )
@@ -832,7 +832,7 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...         spell_magically=True,
+                ...         rewrite_meter=True,
                 ...         ),
                 ...     )
 
