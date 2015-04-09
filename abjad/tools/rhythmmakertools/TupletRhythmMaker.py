@@ -1598,7 +1598,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Makes diminished tuplets and does not avoid dots:
+            **Example 1a.** Makes diminished tuplets and does not avoid dots:
 
             ::
 
@@ -1650,9 +1650,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             This is default behavior.
 
-        ..  container:: example
-
-            **Example 2.** Makes diminished tuplets and avoids dots:
+            **Example 1b.** Makes diminished tuplets and avoids dots:
 
             ::
 
@@ -1706,7 +1704,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Makes augmented tuplets and does not avoid dots:
+            **Example 2a.** Makes augmented tuplets and does not avoid dots:
 
             ::
 
@@ -1756,9 +1754,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-        ..  container:: example
-
-            **Example 4.** Makes augmented tuplets and avoids dots:
+            **Example 2b.** Makes augmented tuplets and avoids dots:
 
             ::
 
@@ -1809,6 +1805,120 @@ class TupletRhythmMaker(RhythmMaker):
                         }
                     }
                 }
+
+        ..  container:: example
+
+            **Example 3a.** Generates length-1 tuplets:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1,)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         simplify_tuplets=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4.
+                            r4
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'2
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            r4
+                            c'4.
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/4 {
+                            c'2
+                        }
+                    }
+                }
+
+            **Example 3b.** Simplifies length-1 tuplets:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1,)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         avoid_dots=True,
+                ...         simplify_tuplets=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4.
+                            r4
+                        }
+                    }
+                    {
+                        {
+                            c'4.
+                        }
+                    }
+                    {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            r4
+                            c'4.
+                        }
+                    }
+                    {
+                        {
+                            c'4.
+                        }
+                    }
+                }
+
+        Defaults to none.
 
         Set to tuplet spelling specifier or none.
 
