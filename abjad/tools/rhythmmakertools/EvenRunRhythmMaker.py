@@ -507,7 +507,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Do not tie across any divisions:
+            **Example 1.** Do not tie across any divisions:
 
             ::
 
@@ -571,7 +571,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Ties across all divisions:
+            **Example 2.** Ties across all divisions:
 
             ::
 
@@ -635,8 +635,8 @@ class EvenRunRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            Ties across every other pair of divisions (starting with the 
-            first):
+            **Example 3.** Ties across every other pair of divisions (starting
+            with the first):
 
             ::
 
