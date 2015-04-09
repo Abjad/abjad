@@ -10,7 +10,8 @@ class DivisionMaker(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Splits by ``1/4`` with remainder at right:
+        **Example 1.** Splits every division by ``1/4`` with remainder at 
+        right:
 
         ::
 
@@ -69,7 +70,7 @@ class DivisionMaker(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Fuses everything:
+        **Example 2a.** Fuses divisions:
 
         ::
 
@@ -105,9 +106,7 @@ class DivisionMaker(AbjadValueObject):
                 c'1...
             }
 
-    ..  container:: example
-
-        **Example 3.** Fuses everything and then splits by ``1/4`` with
+        **Example 2b.** Fuses divisions and then splits by ``1/4`` with
         remainder on right:
 
         ::
@@ -154,6 +153,103 @@ class DivisionMaker(AbjadValueObject):
                 c'4
                 c'4
                 c'8
+            }
+
+    ..  container:: example
+
+        **Example 3a.** Splits every division by ``3/8``:
+
+        ::
+
+            >>> division_maker = makertools.DivisionMaker()
+            >>> division_maker = division_maker.split_by_durations(
+            ...     durations=[(3, 8)],
+            ...     )
+
+        ::
+
+            >>> input_divisions = [(7, 8), (3, 8), (5, 8)]
+            >>> division_lists = division_maker(input_divisions)
+            >>> for division_list in division_lists:
+            ...     division_list
+            [Division(3, 8), Division(3, 8), Division(1, 8)]
+            [Division(3, 8)]
+            [Division(3, 8), Division(1, 4)]
+
+        ::
+
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+            >>> divisions = sequencetools.flatten_sequence(division_lists)
+            >>> music = rhythm_maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=input_divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                {
+                    \time 7/8
+                    c'4.
+                    c'4.
+                    c'8
+                }
+                {
+                    \time 3/8
+                    c'4.
+                }
+                {
+                    \time 5/8
+                    c'4.
+                    c'4
+                }
+            }
+
+        **Example 3b.** Splits every division by ``3/8`` and then fuses
+        flattened divisions into differently sized groups:
+
+        ::
+
+            >>> division_maker = makertools.DivisionMaker()
+            >>> division_maker = division_maker.split_by_durations(
+            ...     durations=[(3, 8)],
+            ...     )
+            >>> division_maker = division_maker.flatten()
+            >>> division_maker = division_maker.fuse_by_counts(
+            ...     counts=[2, 3, 1],
+            ...     )
+
+        ::
+
+            >>> input_divisions = [(7, 8), (3, 8), (5, 8)]
+            >>> divisions = division_maker(input_divisions)
+            >>> divisions
+            [Division(6, 8), Division(7, 8), Division(1, 4)]
+
+        ::
+
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+            >>> music = rhythm_maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=input_divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                c'2.
+                c'2..
+                c'4
             }
 
     Division-makers object-model a sequence of partially evaluated functions 
@@ -263,6 +359,15 @@ class DivisionMaker(AbjadValueObject):
 
         Returns new division-maker.
         '''
+        return self._append_callback(callback)
+
+    def flatten(self, depth=-1):
+        r'''Flattens division lists.
+
+        Returns new division-maker.
+        '''
+        from experimental.tools import makertools
+        callback = makertools.FlattenDivisionCallback(depth=depth)
         return self._append_callback(callback)
 
     def fuse_by_counts(
