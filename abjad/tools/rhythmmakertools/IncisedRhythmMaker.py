@@ -211,6 +211,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     def _make_music(self, divisions, rotation, remember_state=False):
         from abjad.tools import rhythmmakertools
+        input_divisions = divisions[:]
         input_ = self._prepare_input(rotation)
         prefix_talea = input_[0]
         prefix_counts = input_[1]
@@ -288,6 +289,13 @@ class IncisedRhythmMaker(RhythmMaker):
                 attach(beam, x)
         selections = [selectiontools.Selection(x) for x in result]
         selections = self._apply_output_masks(selections, rotation)
+        duration_specifier = self.duration_spelling_specifier or \
+            rhythmmakertools.DurationSpellingSpecifier()
+        if duration_specifier.spell_magically:
+            selections = duration_specifier._respell_magically(
+                selections,
+                input_divisions,
+                )
         return selections
 
     def _make_numeric_map_part(
@@ -616,7 +624,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Spells all divisions metrically when
+            **Example 3a.** Spells all divisions metrically when
             `spell_metrically` is true:
 
             ::
@@ -669,9 +677,7 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
-        ..  container:: example
-
-            **Example 4.** Spells only unassignable durations metrically when
+            **Example 3b.** Spells only unassignable durations metrically when
             `spell_metrically` is ``'unassignable'``:
 
             ::
@@ -722,6 +728,55 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
+            **Example 3c.** Spells magically:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=rhythmmakertools.InciseSpecifier(
+                ...         prefix_talea=[-1],
+                ...         prefix_counts=[1],
+                ...         outer_divisions_only=True,
+                ...         suffix_talea=[-1],
+                ...         suffix_counts=[1],
+                ...         talea_denominator=8,
+                ...         ),
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         spell_magically=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(8, 8), (4, 8), (6, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 8/8
+                        r8
+                        c'2..
+                    }
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 6/8
+                        c'4. ~
+                        c'4
+                        r8
+                    }
+                }
 
         Returns duration spelling specifier or none.
         '''
