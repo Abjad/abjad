@@ -697,7 +697,7 @@ class NoteRhythmMaker(RhythmMaker):
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...     forbidden_written_duration=Duration(1, 2),
+                ...         forbidden_written_duration=Duration(1, 2),
                 ...         ),
                 ...     )
 
