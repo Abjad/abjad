@@ -2,7 +2,7 @@
 
 
 def select_all():
-    r'''Makes boolean pattern equal to all indices.
+    r'''Makes cyclic boolean pattern equal to all indices.
 
     ..  container:: example
 
