@@ -13,7 +13,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         '_decrease_durations_monotonically',
         '_forbid_meter_rewriting',
         '_forbidden_written_duration',
-        '_spell_magically',
+        '_rewrite_meter',
         '_spell_metrically',
         )
 
@@ -24,7 +24,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         decrease_durations_monotonically=True,
         forbid_meter_rewriting=None,
         forbidden_written_duration=None,
-        spell_magically=None,
+        rewrite_meter=None,
         spell_metrically=None,
         ):
         assert isinstance(decrease_durations_monotonically, bool)
@@ -33,8 +33,8 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 forbidden_written_duration)
         self._decrease_durations_monotonically = decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
-        assert isinstance(spell_magically, (bool, type(None)))
-        self._spell_magically = spell_magically
+        assert isinstance(rewrite_meter, (bool, type(None)))
+        self._rewrite_meter = rewrite_meter
         if spell_metrically is not None and spell_metrically != 'unassignable':
             assert isinstance(spell_metrically, bool)
         self._spell_metrically = spell_metrically
@@ -110,7 +110,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _respell_magically(selections, meters):
+    def _rerewrite_meter(selections, meters):
         from abjad.tools import metertools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools
@@ -190,7 +190,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         return self._forbid_meter_rewriting
 
     @property
-    def spell_magically(self):
+    def rewrite_meter(self):
         r'''Is true when all output divisions should rewrite meter.
         Otherwise false.
 
@@ -199,7 +199,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> specifier.spell_magically is None
+                >>> specifier.rewrite_meter is None
                 True
 
         Defaults to none.
@@ -208,7 +208,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
         Returns true, false or none.
         '''
-        return self._spell_magically
+        return self._rewrite_meter
 
     @property
     def spell_metrically(self):

@@ -291,8 +291,8 @@ class IncisedRhythmMaker(RhythmMaker):
         selections = self._apply_output_masks(selections, rotation)
         duration_specifier = self.duration_spelling_specifier or \
             rhythmmakertools.DurationSpellingSpecifier()
-        if duration_specifier.spell_magically:
-            selections = duration_specifier._respell_magically(
+        if duration_specifier.rewrite_meter:
+            selections = duration_specifier._rerewrite_meter(
                 selections,
                 input_divisions,
                 )
@@ -742,7 +742,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         talea_denominator=8,
                 ...         ),
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...         spell_magically=True,
+                ...         rewrite_meter=True,
                 ...         ),
                 ...     )
 
