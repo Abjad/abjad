@@ -680,6 +680,8 @@ class TaleaRhythmMaker(RhythmMaker):
         return leaf_lists
 
     def _make_music(self, divisions, rotation, remember_state=False):
+        from abjad.tools import rhythmmakertools
+        input_divisions = divisions[:]
         octuplet = self._prepare_input()
         talea = octuplet[0]
         extra_counts_per_division = octuplet[1]
@@ -729,6 +731,13 @@ class TaleaRhythmMaker(RhythmMaker):
                         mutate(note).replace(rest)
                     detach(spannertools.Tie, logical_tie.head)
         selections = self._apply_output_masks(selections, rotation)
+        specifier = self.duration_spelling_specifier or \
+            rhythmmakertools.DurationSpellingSpecifier()
+        if specifier.spell_magically:
+            selections = specifier._respell_magically(
+                selections, 
+                input_divisions,
+                )
         return selections
 
     def _make_numeric_map(self, divisions, talea, extra_counts_per_division):
@@ -1519,7 +1528,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 5.** This rhythm-maker spells all durations metrically:
+            **Example 5a.** This rhythm-maker spells all durations metrically:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1572,9 +1581,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        ..  container:: example
-
-            **Example 6.** This rhythm-maker spells all unassignable durations
+            **Example 5b.** This rhythm-maker spells unassignable durations
             metrically:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
@@ -1620,6 +1627,57 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'8. [
                         c'8. ~
                         c'8 ]
+                        c'4
+                    }
+                }
+
+            **Example 5c.** This rhythm-maker spells output magically:
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[5, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         spell_magically=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (3, 4), (3, 4)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'4 ~
+                        c'16 [
+                        c'8. ~
+                        c'16
+                        c'8. ~ ]
+                    }
+                    {
+                        c'8 [
+                        c'8 ~
+                        c'8
+                        c'8 ~
+                        c'8.
+                        c'16 ~ ]
+                    }
+                    {
+                        c'8. [
+                        c'16 ~ ]
+                        c'4
                         c'4
                     }
                 }
