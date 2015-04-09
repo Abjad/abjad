@@ -234,9 +234,9 @@ class BooleanPatternInventory(TypedTuple):
                 4 NoteRhythmMaker()
                 5 NoteRhythmMaker()
                 6 NoteRhythmMaker()
-                7 EvenDivisionRhythmMaker(denominators=(8,))
-                8 EvenDivisionRhythmMaker(denominators=(8,))
-                9 EvenDivisionRhythmMaker(denominators=(8,))
+                7 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
+                8 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
+                9 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
 
             Over fifteen indices:
 
@@ -258,9 +258,9 @@ class BooleanPatternInventory(TypedTuple):
                 9 NoteRhythmMaker()
                 10 NoteRhythmMaker()
                 11 NoteRhythmMaker()
-                12 EvenDivisionRhythmMaker(denominators=(8,))
-                13 EvenDivisionRhythmMaker(denominators=(8,))
-                14 EvenDivisionRhythmMaker(denominators=(8,))
+                12 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
+                13 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
+                14 EvenDivisionRhythmMaker(denominators=(8,), preferred_denominator='from_counts')
 
         '''
         pattern = self.get_matching_pattern(index, total_length, rotation=rotation)

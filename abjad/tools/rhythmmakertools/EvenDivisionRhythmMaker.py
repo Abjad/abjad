@@ -26,6 +26,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         '_denominators_generator',
         '_extra_counts_per_division',
         '_extra_counts_per_division_generator',
+        '_preferred_denominator',
         )
 
     _human_readable_class_name = 'even division rhythm-maker'
@@ -40,6 +41,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         burnish_specifier=None,
         duration_spelling_specifier=None,
         output_masks=None,
+        preferred_denominator='from_counts',
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
@@ -72,6 +74,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         extra_counts_per_division = extra_counts_per_division or (0,)
         self._extra_counts_per_division_generator = \
             self._make_cyclic_tuple_generator(extra_counts_per_division)
+        self._preferred_denominator = preferred_denominator
 
     ### SPECIAL METHODS ###
 
@@ -940,9 +943,12 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 duration=tuplet_duration,
                 music=notes,
                 )
-            if unprolated_note_count is not None:
+            if (self.preferred_denominator == 'from_counts' and
+                unprolated_note_count is not None):
                 preferred_denominator = unprolated_note_count
                 tuplet.preferred_denominator = preferred_denominator
+            elif isinstance(self.preferred_denominator, int):
+                tuplet.preferred_denominator = self.preferred_denominator
             selection = selectiontools.Selection(tuplet)
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections, rotation)
@@ -2228,6 +2234,496 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
         return superclass.output_masks
+
+    @property
+    def preferred_denominator(self):
+        r'''Gets preferred denominator of even division rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No preferred denominator:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[16],
+                ...     extra_counts_per_division=[4],
+                ...     preferred_denominator=None,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        \times 2/3 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 2/3 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+            Tuplet ratios expressed in the usual way with numerator and
+            denominator relatively prime.
+
+        ..  container:: example
+
+            **Example 2a.** Preferred denominator equal to 4:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[16],
+                ...     extra_counts_per_division=[4],
+                ...     preferred_denominator=4,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        \times 4/6 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 4/6 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+            **Example 2b.** Preferred denominator equal to 8:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[16],
+                ...     extra_counts_per_division=[4],
+                ...     preferred_denominator=8,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        \times 8/12 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 8/12 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+            **Example 2c.** Preferred denominator equal to 16:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[16],
+                ...     extra_counts_per_division=[4],
+                ...     preferred_denominator=16,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        \times 16/24 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 16/24 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Preferred denominator taken from count of elements
+            in tuplet:
+
+            ::
+
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     denominators=[16],
+                ...     extra_counts_per_division=[4],
+                ...     preferred_denominator='from_counts',
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = rhythm_maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        \times 8/12 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 8/12 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/10 {
+                            c'16 [
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16
+                            c'16 ]
+                        }
+                    }
+                }
+
+            This is default behavior.
+
+
+        Defaults to none.
+
+        Set to none or positive integer.
+
+        Returns none or positive integer.
+        '''
+        return self._preferred_denominator
 
     @property
     def tuplet_spelling_specifier(self):
