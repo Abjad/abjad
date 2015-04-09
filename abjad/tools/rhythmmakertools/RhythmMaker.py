@@ -81,12 +81,12 @@ class RhythmMaker(AbjadValueObject):
         rotation = self._to_tuple(rotation)
         self._rotation = rotation
         selections = self._make_music(
-            divisions, 
-            rotation, 
+            divisions,
+            rotation,
             remember_state=remember_state,
             )
         self._simplify_tuplets(selections)
-        self._tie_across_divisions(selections)
+        self._apply_tie_specifier(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
         return selections
@@ -253,6 +253,13 @@ class RhythmMaker(AbjadValueObject):
             new_selections.append(new_selection)
         return new_selections
 
+    def _apply_tie_specifier(self, selections):
+        from abjad.tools import rhythmmakertools
+        tie_specifier = self.tie_specifier
+        if tie_specifier is None:
+            tie_specifier = rhythmmakertools.TieSpecifier()
+        tie_specifier(selections)
+
     @staticmethod
     def _get_rhythmic_staff(lilypond_file):
         score_block = lilypond_file.items[-1]
@@ -283,7 +290,7 @@ class RhythmMaker(AbjadValueObject):
 
     @abc.abstractmethod
     def _make_music(self, divisions, rotation):
-        pass
+        raise NotImplementedError
 
     def _make_secondary_divisions(
         self,
@@ -390,13 +397,6 @@ class RhythmMaker(AbjadValueObject):
                 if len(logical_ties) == 1:
                     notes = scoretools.make_notes([0], [duration])
                     tuplet[:] = notes
-
-    def _tie_across_divisions(self, selections):
-        from abjad.tools import rhythmmakertools
-        tie_specifier = self.tie_specifier
-        if tie_specifier is None:
-            tie_specifier = rhythmmakertools.TieSpecifier()
-        tie_specifier._make_ties_across_divisions(selections)
 
     def _to_tuple(self, expr):
         if isinstance(expr, list):
