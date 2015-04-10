@@ -11,18 +11,19 @@ def make_leaves_from_talea(
     decrease_durations_monotonically=True,
     forbidden_written_duration=None,
     spell_metrically=None,
+    use_messiaen_style_ties=False,
     ):
-    r'''Make leaves from `talea`.
+    r'''Makes leaves from `talea`.
 
-    Interpret positive elements in `talea` as notes numerators.
+    Interprets positive elements in `talea` as notes numerators.
 
-    Interpret negative elements in `talea` as rests numerators.
+    Interprets negative elements in `talea` as rests numerators.
 
-    Set the pitch of all notes to middle C.
+    Sets the pitch of all notes to middle C.
 
     ..  container:: example
 
-        **Example 1.** Make leaves from talea:
+        **Example 1.** Makes leaves from talea:
 
         ::
 
@@ -48,7 +49,7 @@ def make_leaves_from_talea(
 
     ..  container:: example
 
-        **Example 2.** Increase durations monotonically:
+        **Example 2.** Increases durations monotonically:
 
         ::
 
@@ -77,7 +78,7 @@ def make_leaves_from_talea(
 
     ..  container:: example
 
-        **Example 3.** Forbid written durations greater than or equal
+        **Example 3.** Forbids written durations greater than or equal
         to a half note:
 
         ::
@@ -109,7 +110,7 @@ def make_leaves_from_talea(
 
     ..  container:: example
 
-        **Example 4.** Spell unassignable durations metrically:
+        **Example 4.** Spells unassignable durations metrically:
 
         ::
 
@@ -136,6 +137,34 @@ def make_leaves_from_talea(
                 r8
             }
 
+    ..  container:: example
+
+        **Example 5.** Uses Messiaen-style ties:
+
+        ::
+
+            >>> leaves = scoretools.make_leaves_from_talea(
+            ...     [5, 9], 8,
+            ...     spell_metrically='unassignable',
+            ...     use_messiaen_style_ties=True,
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> staff.context_name = 'RhythmicStaff'
+            >>> time_signature = TimeSignature((4, 4))
+            >>> attach(time_signature, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new RhythmicStaff {
+                \time 4/4
+                c'4.
+                c'4 \repeatTie
+                c'4.
+                c'4. \repeatTie
+                c'4. \repeatTie
+            }
 
     Returns selection.
     '''
@@ -168,13 +197,17 @@ def make_leaves_from_talea(
             durations,
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
+            use_messiaen_style_ties=use_messiaen_style_ties,
             )
         if (
             1 < len(leaves) and
             not leaves[0]._has_spanner(spannertools.Tie) and
             not isinstance(leaves[0], scoretools.Rest)
             ):
-            attach(spannertools.Tie(), leaves[:])
+            tie = spannertools.Tie(
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
+            attach(tie, leaves[:])
         result.extend(leaves)
     result = selectiontools.Selection(result)
     return result
