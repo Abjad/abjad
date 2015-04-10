@@ -80,12 +80,12 @@ class InstrumentInventory(TypedList):
         return instrument
 
     @staticmethod
-    def _name_untuned_percussion(instrument, session):
+    def _name_percussion(instrument, session):
         from abjad.tools import instrumenttools
         from ide import idetools
         if isinstance(instrument, instrumenttools.Percussion):
             Percussion = instrumenttools.Percussion
-            items = Percussion.known_untuned_percussion[:]
+            items = Percussion.known_percussion[:]
             selector = idetools.Selector(session=session, items=items)
             instrument_name = selector._run()
             if selector._session.is_backtracking or instrument_name is None:
@@ -133,11 +133,10 @@ class InstrumentInventory(TypedList):
                     class_ = InstrumentInventory
                     to_instrument = \
                         class_._change_instrument_name_to_instrument
-                    name_untuned = \
-                        class_._name_untuned_percussion
+                    name_percussion = class_._name_percussion
                     for instrument_name in instrument_names:
                         instrument = to_instrument(instrument_name)
-                        instrument = name_untuned(instrument, self._session)
+                        instrument = name_percussion(instrument, self._session)
                         if instrument is not None:
                             instruments.append(instrument)
                     if self._is_ranged:
