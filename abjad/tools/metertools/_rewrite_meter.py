@@ -14,6 +14,7 @@ def _rewrite_meter(
     boundary_depth=None,
     initial_offset=None,
     maximum_dot_count=None,
+    use_messiaen_style_ties=False,
     ):
     from abjad.tools import metertools
 
@@ -74,7 +75,10 @@ def _rewrite_meter(
                 split_offset -= logical_tie_start_offset
                 #print('\tREL:', split_offset)
                 #print()
-                shards = mutate(logical_tie[:]).split([split_offset])
+                shards = mutate(logical_tie[:]).split(
+                    [split_offset],
+                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    )
                 logical_ties = \
                     [selectiontools.LogicalTie(shard) for shard in shards]
                 for logical_tie in logical_ties:
@@ -114,7 +118,10 @@ def _rewrite_meter(
             split_offset -= logical_tie_start_offset
             #print('\tREL:', split_offset)
             #print()
-            shards = mutate(logical_tie[:]).split([split_offset])
+            shards = mutate(logical_tie[:]).split(
+                [split_offset],
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
             logical_ties = \
                 [selectiontools.LogicalTie(shard) for shard in shards]
             for logical_tie in logical_ties:

@@ -632,6 +632,7 @@ class MutationAgent(abctools.AbjadObject):
         boundary_depth=None,
         initial_offset=None,
         maximum_dot_count=None,
+        use_messiaen_style_ties=False,
         ):
         r'''Rewrite the contents of logical ties in an expression to match
         a meter.
@@ -647,6 +648,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> parseable += "| 4/4 c'32 d'2.. ~ d'16 e'32 ~ |"
                 >>> parseable += "| 2/4 e'2 |"
                 >>> staff = Staff(parseable)
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -671,10 +673,6 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
                 >>> meter = metertools.Meter((4, 4))
                 >>> print(meter.pretty_rtm_format)
                 (4/4 (
@@ -686,6 +684,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> mutate(staff[1][:]).rewrite_meter(meter)
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -709,10 +708,6 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 }
 
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 2.** Rewrite the contents of a measure in a staff
@@ -721,6 +716,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff(parseable)
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -745,10 +741,6 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> show(staff) # doctest: +SKIP
-
-            ::
-
                 >>> rtm = '(4/4 ((2/4 (1/4 1/4)) (2/4 (1/4 1/4))))'
                 >>> meter = metertools.Meter(rtm)
                 >>> print(meter.pretty_rtm_format) # doctest: +SKIP
@@ -763,6 +755,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> mutate(staff[1][:]).rewrite_meter(meter)
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -785,10 +778,6 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 }
 
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
         ..  container:: example
 
             **Example 3.** Limit the maximum number of dots per leaf using
@@ -798,6 +787,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> parseable = "abj: | 3/4 c'32 d'8 e'8 fs'4... |"
                 >>> measure = parse(parseable)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -810,15 +800,12 @@ class MutationAgent(abctools.AbjadObject):
                     fs'4...
                 }
 
-            ::
-
-                >>> show(measure) # doctest: +SKIP
-
             Without constraining the `maximum_dot_count`:
 
             ::
 
                 >>> mutate(measure[:]).rewrite_meter(measure)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -833,10 +820,6 @@ class MutationAgent(abctools.AbjadObject):
                     fs'4...
                 }
 
-            ::
-
-                >>> show(measure) # doctest: +SKIP
-
             Constraining the `maximum_dot_count` to `2`:
 
             ::
@@ -846,6 +829,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     measure,
                 ...     maximum_dot_count=2,
                 ...     )
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -861,10 +845,6 @@ class MutationAgent(abctools.AbjadObject):
                     fs'4
                 }
 
-            ::
-
-                >>> show(measure) # doctest: +SKIP
-
             Constraining the `maximum_dot_count` to `1`:
 
             ::
@@ -874,6 +854,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     measure,
                 ...     maximum_dot_count=1,
                 ...     )
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -890,10 +871,6 @@ class MutationAgent(abctools.AbjadObject):
                     fs'4
                 }
 
-            ::
-
-                >>> show(measure) # doctest: +SKIP
-
             Constraining the `maximum_dot_count` to `0`:
 
             ::
@@ -903,6 +880,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     measure,
                 ...     maximum_dot_count=0,
                 ...     )
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -921,10 +899,6 @@ class MutationAgent(abctools.AbjadObject):
                     fs'8 ~
                     fs'4
                 }
-
-            ::
-
-                >>> show(measure) # doctest: +SKIP
 
         ..  container:: example
 
@@ -959,6 +933,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> parseable = "abj: | 9/8 c'2 d'2 e'8 |"
                 >>> measure = parse(parseable)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -972,11 +947,8 @@ class MutationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-
                 >>> mutate(measure[:]).rewrite_meter(measure)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -988,10 +960,6 @@ class MutationAgent(abctools.AbjadObject):
                     d'4
                     e'8
                 }
-
-            ::
-
-                >>> show(measure) # doctest: +SKIP
 
             With a `boundary_depth` of `1`, logical ties which cross any offsets
             created by nodes with a depth of `1` in this Meter's rhythm
@@ -1005,6 +973,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     measure,
                 ...     boundary_depth=1,
                 ...     )
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1018,10 +987,6 @@ class MutationAgent(abctools.AbjadObject):
                     e'8
                 }
 
-            ::
-
-                >>> show(measure) # doctest: +SKIP
-
             For this `9/8` meter, and this input notation, A `boundary_depth`
             of `2` causes no change, as all logical ties already align to
             multiples of `1/8`:
@@ -1033,6 +998,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     measure,
                 ...     boundary_depth=2,
                 ...     )
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1044,10 +1010,6 @@ class MutationAgent(abctools.AbjadObject):
                     d'4
                     e'8
                 }
-
-            ::
-
-                >>> show(measure) # doctest: +SKIP
 
         ..  container:: example
 
@@ -1076,6 +1038,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> score.remove_commands.extend(engravers)
                 >>> score[0].consists_commands.extend(engravers)
                 >>> score[1].consists_commands.extend(engravers)
+                >>> show(score) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1145,10 +1108,6 @@ class MutationAgent(abctools.AbjadObject):
                     }
                 >>
 
-            ::
-
-                >>> show(score) # doctest: +SKIP
-
             Here we establish a meter without specifying any boundary
             depth:
 
@@ -1156,6 +1115,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> for measure in iterate(score).by_class(scoretools.Measure):
                 ...     mutate(measure[:]).rewrite_meter(measure)
+                >>> show(score) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1224,10 +1184,6 @@ class MutationAgent(abctools.AbjadObject):
                         }
                     }
                 >>
-
-            ::
-
-                >>> show(score) # doctest: +SKIP
 
             Here we re-establish meter at a boundary depth of `1`:
 
@@ -1239,6 +1195,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...         boundary_depth=1,
                 ...         )
                 ...
+                >>> show(score) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1311,10 +1268,6 @@ class MutationAgent(abctools.AbjadObject):
                         }
                     }
                 >>
-
-            ::
-
-                >>> show(score) # doctest: +SKIP
 
             Note that the two time signatures are much more clearly
             disambiguated above.
@@ -1330,6 +1283,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> parseable += "2/3 { d'8. ~ 3/5 { d'16 e'8. f'16 ~ } } "
                 >>> parseable += "f'4 |"
                 >>> measure = parse(parseable)
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1351,10 +1305,6 @@ class MutationAgent(abctools.AbjadObject):
                     f'4
                 }
 
-            ::
-
-                >>> show(measure) # doctest: +SKIP
-
             When establishing a meter on a selection of components
             which contain containers, like `Tuplets` or `Containers`,
             `metertools.rewrite_meter()` will recurse into
@@ -1368,6 +1318,7 @@ class MutationAgent(abctools.AbjadObject):
                 ...     measure,
                 ...     boundary_depth=1,
                 ...     )
+                >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
 
@@ -1390,10 +1341,6 @@ class MutationAgent(abctools.AbjadObject):
                     }
                     f'4
                 }
-
-            ::
-
-                >>> show(measure) # doctest: +SKIP
 
         ..  container:: example
 
@@ -1466,6 +1413,47 @@ class MutationAgent(abctools.AbjadObject):
             This makes it possible to divide different meters in different
             ways.
 
+        ..  container:: example
+
+            **Example 8.** Uses Messiaen-style ties:
+
+            ::
+
+                >>> measure = Measure((4, 4), "c'4. c'4. c'4")
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 4/4
+                    c'4.
+                    c'4.
+                    c'4
+                }
+
+            ::
+                
+                >>> meter = metertools.Meter((4, 4))
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     meter,
+                ...     boundary_depth=1,
+                ...     use_messiaen_style_ties=True,
+                ...     )
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 4/4
+                    c'4
+                    c'8 \repeatTie
+                    c'8
+                    c'4 \repeatTie
+                    c'4
+                }
+
         Operates in place and returns none.
         '''
         from abjad.tools import scoretools
@@ -1481,6 +1469,7 @@ class MutationAgent(abctools.AbjadObject):
             boundary_depth=boundary_depth,
             initial_offset=initial_offset,
             maximum_dot_count=maximum_dot_count,
+            use_messiaen_style_ties=use_messiaen_style_ties,
             )
         return result
 
