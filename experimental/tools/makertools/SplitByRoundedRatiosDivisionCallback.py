@@ -2,8 +2,6 @@
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import metertools
-from abjad.tools import sequencetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -17,7 +15,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
         ::
 
             >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-            ...     ratios=[mathtools.Ratio(2, 1)],
+            ...     ratios=[mathtools.Ratio([2, 1])],
             ...     )
             >>> lists = maker([(7, 4), (6, 4)])
             >>> for list_ in lists:
@@ -33,7 +31,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
         ::
 
             >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-            ...     ratios=[mathtools.Ratio(2, 1), mathtools.Ratio(1, 1, 1)],
+            ...     ratios=[mathtools.Ratio([2, 1]), mathtools.Ratio([1, 1, 1])],
             ...     )
             >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
             >>> for list_ in lists:
@@ -44,7 +42,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             [Division(1, 4), Division(2, 4), Division(1, 4)]
 
     Object model of a partially evaluated function that accepts a (possibly
-    empty) list of divisions as input and returns a (possibly empty) nested 
+    empty) list of divisions as input and returns a (possibly empty) nested
     list of divisions as output. Output structured one output list per input
     division.
 
@@ -81,7 +79,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-                ...     ratios=[mathtools.Ratio(1, 1)],
+                ...     ratios=[mathtools.Ratio([1, 1])],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
@@ -98,7 +96,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-                ...     ratios=[mathtools.Ratio(1, 1)],
+                ...     ratios=[mathtools.Ratio([1, 1])],
                 ...     )
                 >>> maker([])
                 []
@@ -135,7 +133,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
         if self.ratios:
             ratios = self.ratios
         else:
-            ratios = (mathtools.Ratio(1),)
+            ratios = (mathtools.Ratio([1]),)
         ratios = datastructuretools.CyclicTuple(ratios)
         return ratios
 
@@ -152,7 +150,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-                ...     ratios=[mathtools.Ratio(1)],
+                ...     ratios=[mathtools.Ratio([1])],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
@@ -169,7 +167,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-                ...     ratios=[mathtools.Ratio(1, 1)],
+                ...     ratios=[mathtools.Ratio([1, 1])],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
@@ -184,7 +182,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-                ...     ratios=[mathtools.Ratio(2, 1)],
+                ...     ratios=[mathtools.Ratio([2, 1])],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
@@ -199,7 +197,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-                ...     ratios=[mathtools.Ratio(1, 1, 1)],
+                ...     ratios=[mathtools.Ratio([1, 1, 1])],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
@@ -215,7 +213,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             ::
 
                 >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
-                ...     ratios=[mathtools.Ratio(2, 1), mathtools.Ratio(1, 1, 1)],
+                ...     ratios=[mathtools.Ratio([2, 1]), mathtools.Ratio([1, 1, 1])],
                 ...     )
                 >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
                 >>> for list_ in lists:

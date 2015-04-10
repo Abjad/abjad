@@ -783,7 +783,7 @@ class DivisionMaker(AbjadValueObject):
 
                 >>> division_maker = makertools.DivisionMaker()
                 >>> division_maker = division_maker.split_by_rounded_ratios(
-                ...     ratios=[mathtools.Ratio(2, 1)],
+                ...     ratios=[mathtools.Ratio([2, 1])],
                 ...     )
 
             ::
@@ -835,8 +835,8 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_maker = makertools.DivisionMaker()
                 >>> division_maker = division_maker.split_by_rounded_ratios(
                 ...     ratios=[
-                ...         mathtools.Ratio(2, 1),
-                ...         mathtools.Ratio(1, 1, 1),
+                ...         mathtools.Ratio([2, 1]),
+                ...         mathtools.Ratio([1, 1, 1]),
                 ...         ],
                 ...     )
 
