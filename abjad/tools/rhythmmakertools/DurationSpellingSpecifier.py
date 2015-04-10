@@ -117,6 +117,27 @@ class DurationSpellingSpecifier(AbjadValueObject):
     def _rewrite_meter_(selections, meters):
         from abjad.tools import metertools
         from abjad.tools import scoretools
+        from abjad.tools.topleveltools import mutate
+        meters = [metertools.Meter(_) for _ in meters]
+        durations = [durationtools.Duration(_) for _ in meters]
+        selections = DurationSpellingSpecifier._split_at_measure_boundaries(
+            selections,
+            meters,
+            )
+        measures = scoretools.make_spacer_skip_measures(durations)
+        staff = scoretools.Staff(measures)
+        mutate(staff).replace_measure_contents(selections)
+        for measure, meter in zip(staff, meters):
+            mutate(measure[:]).rewrite_meter(meter)
+        selections = []
+        for measure in staff:
+            selections.append(measure[:])
+        return selections
+
+    @staticmethod
+    def _split_at_measure_boundaries(selections, meters):
+        from abjad.tools import metertools
+        from abjad.tools import scoretools
         from abjad.tools import sequencetools
         from abjad.tools.topleveltools import inspect_
         from abjad.tools.topleveltools import mutate
@@ -132,14 +153,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
             durations=durations,
             tie_split_notes=True,
             )
-        measures = scoretools.make_spacer_skip_measures(durations)
-        staff = scoretools.Staff(measures)
-        mutate(staff).replace_measure_contents(list(voice[:]))
-        for measure, meter in zip(staff, meters):
-            mutate(measure[:]).rewrite_meter(meter)
-        selections = []
-        for measure in staff:
-            selections.append(measure[:])
+        selections = list(voice[:])
         return selections
 
     ### PUBLIC PROPERTIES ###
