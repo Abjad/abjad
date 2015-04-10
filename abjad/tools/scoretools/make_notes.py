@@ -154,6 +154,31 @@ def make_notes(
                 c'2.
             }
 
+    ..  container:: example
+
+        **Example 6.** Uses Messiaen-style ties:
+
+        ::
+
+            >>> notes = scoretools.make_notes(
+            ...     [0],
+            ...     [(13, 16)],
+            ...     use_messiaen_style_ties=True,
+            ...     )
+            >>> staff = Staff(notes)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'2.
+                c'16 \repeatTie
+            }
+
     Set `pitches` to a single pitch or a sequence of pitches.
 
     Set `durations` to a single duration or a list of durations.
