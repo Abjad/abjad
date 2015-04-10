@@ -114,7 +114,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _rerewrite_meter(selections, meters):
+    def _rewrite_meter_(selections, meters):
         from abjad.tools import metertools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools

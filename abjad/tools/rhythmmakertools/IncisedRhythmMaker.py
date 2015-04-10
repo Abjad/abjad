@@ -292,7 +292,7 @@ class IncisedRhythmMaker(RhythmMaker):
         duration_specifier = self.duration_spelling_specifier or \
             rhythmmakertools.DurationSpellingSpecifier()
         if duration_specifier.rewrite_meter:
-            selections = duration_specifier._rerewrite_meter(
+            selections = duration_specifier._rewrite_meter_(
                 selections,
                 input_divisions,
                 )

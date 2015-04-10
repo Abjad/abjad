@@ -734,7 +734,7 @@ class TaleaRhythmMaker(RhythmMaker):
         specifier = self.duration_spelling_specifier or \
             rhythmmakertools.DurationSpellingSpecifier()
         if specifier.rewrite_meter:
-            selections = specifier._rerewrite_meter(
+            selections = specifier._rewrite_meter_(
                 selections, 
                 input_divisions,
                 )
