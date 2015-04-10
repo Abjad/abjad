@@ -1266,7 +1266,56 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** Ties across divisions with Messiaen-style ties:
+            **Example 3.** Patterns ties across divisions:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0],
+                ...     period=2,
+                ...     )
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2 ~
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        c'2 ~
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** Uses Messiaen-style ties:
 
             ::
 
@@ -1307,55 +1356,6 @@ class NoteRhythmMaker(RhythmMaker):
                     {
                         \time 3/8
                         c'4. \repeatTie
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 4.** Patterns ties across divisions:
-
-            ::
-
-                >>> pattern = rhythmmakertools.BooleanPattern(
-                ...      indices=[0],
-                ...      period=2,
-                ...  )
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=rhythmmakertools.TieSpecifier(
-                ...         tie_across_divisions=pattern,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        c'2 ~
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 4/8
-                        c'2 ~
-                    }
-                    {
-                        \time 3/8
-                        c'4.
                     }
                 }
 
@@ -1403,7 +1403,8 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** Strips all ties from metrically-spelled durations:
+            **Example 6.** Spells durations metrically and then strips all
+            ties:
 
             ::
 
