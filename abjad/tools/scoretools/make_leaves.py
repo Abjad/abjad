@@ -15,6 +15,7 @@ def make_leaves(
     forbidden_written_duration=None,
     is_diminution=True,
     metrical_hiearchy=None,
+    use_messiaen_style_ties=False,
     use_multimeasure_rests=False,
     ):
     r'''Makes leaves.
@@ -399,6 +400,30 @@ def make_leaves(
                 }
             }
 
+    ..  container:: example
+
+        **Example 15.** Uses Messiaen-style ties:
+
+        ::
+
+            >>> pitches = [0]
+            >>> durations = [Duration(13, 16)]
+            >>> leaves = scoretools.make_leaves(
+            ...     pitches,
+            ...     durations,
+            ...     use_messiaen_style_ties=True,
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'2.
+                c'16 \repeatTie
+            }
+
     Returns selection of leaves.
     '''
     from abjad.tools import scoretools
@@ -440,6 +465,7 @@ def make_leaves(
                     decrease_durations_monotonically=decrease_durations_monotonically,
                     forbidden_written_duration=forbidden_written_duration,
                     use_multimeasure_rests=use_multimeasure_rests,
+                    use_messiaen_style_ties=use_messiaen_style_ties,
                     )
                 result.extend(leaves)
         else:
@@ -459,6 +485,7 @@ def make_leaves(
                     decrease_durations_monotonically=\
                         decrease_durations_monotonically,
                     use_multimeasure_rests=use_multimeasure_rests,
+                    use_messiaen_style_ties=use_messiaen_style_ties,
                     )
                 tuplet_leaves.extend(leaves)
             tuplet = scoretools.Tuplet(multiplier, tuplet_leaves)
@@ -478,6 +505,7 @@ def _make_leaf_on_pitch(
     decrease_durations_monotonically=True,
     forbidden_written_duration=None,
     use_multimeasure_rests=False,
+    use_messiaen_style_ties=False,
     ):
     from abjad.tools import scoretools
     note_types = (numbers.Number, str, pitchtools.NamedPitch)
@@ -490,6 +518,7 @@ def _make_leaf_on_pitch(
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             pitches=pitch,
+            use_messiaen_style_ties=use_messiaen_style_ties,
             )
     elif isinstance(pitch, chord_types):
         leaves = scoretools.make_tied_leaf(
@@ -498,6 +527,7 @@ def _make_leaf_on_pitch(
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             pitches=pitch,
+            use_messiaen_style_ties=use_messiaen_style_ties,
             )
     elif isinstance(pitch, rest_types) and not use_multimeasure_rests:
         leaves = scoretools.make_tied_leaf(
@@ -506,6 +536,7 @@ def _make_leaf_on_pitch(
             decrease_durations_monotonically=decrease_durations_monotonically,
             forbidden_written_duration=forbidden_written_duration,
             pitches=None,
+            use_messiaen_style_ties=use_messiaen_style_ties,
             )
     elif isinstance(pitch, rest_types) and use_multimeasure_rests:
         multimeasure_rest = scoretools.MultimeasureRest((1))
