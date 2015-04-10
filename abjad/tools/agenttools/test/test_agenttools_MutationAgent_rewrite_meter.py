@@ -120,3 +120,12 @@ def test_agenttools_MutationAgent_rewrite_meter_07():
         maximum_dot_count=maximum_dot_count,
         )
     assert format(source) == format(target)
+
+
+def test_agenttools_MutationAgent_rewrite_meter_08():
+
+    meter = metertools.Meter((4, 4))
+    source = parse("abj: | 4/4 c'1 ~ || 4/4 4 ~ 4 ~ 4 ~ 4 ~ || 4/4 1 |")
+    target = parse("abj: | 4/4 c'1 ~ || 4/4 1 ~ || 4/4 1 |")
+    mutate(source[1]).rewrite_meter(meter)
+    assert format(source) == format(target)
