@@ -992,7 +992,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(1, 1, 1, -1, -1),
+                ...     mathtools.Ratio((1, 1, 1, -1, -1)),
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
@@ -1023,7 +1023,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(1, -2, -2, 3, 3),
+                ...     mathtools.Ratio((1, -2, -2, 3, 3)),
                 ...     avoid_dots=True,
                 ...     is_diminution=False,
                 ...     )
@@ -1054,7 +1054,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(5, -1, 5),
+                ...     mathtools.Ratio((5, -1, 5)),
                 ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=False,
@@ -1088,7 +1088,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(1, 1, 1, -1, -1),
+                ...     mathtools.Ratio((1, 1, 1, -1, -1)),
                 ...     avoid_dots=False,
                 ...     is_diminution=False,
                 ...     )
@@ -1119,7 +1119,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(5, -1, 5),
+                ...     mathtools.Ratio((5, -1, 5)),
                 ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=False,
@@ -1154,7 +1154,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(1, 1, 1, -1, -1),
+                ...     mathtools.Ratio((1, 1, 1, -1, -1)),
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
@@ -1185,7 +1185,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(1, -2, -2, 3, 3),
+                ...     mathtools.Ratio((1, -2, -2, 3, 3)),
                 ...     avoid_dots=True,
                 ...     is_diminution=True,
                 ...     )
@@ -1216,7 +1216,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(5, -1, 5),
+                ...     mathtools.Ratio((5, -1, 5)),
                 ...     avoid_dots=True,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=True,
@@ -1250,7 +1250,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(1, 1, 1, -1, -1),
+                ...     mathtools.Ratio((1, 1, 1, -1, -1)),
                 ...     avoid_dots=False,
                 ...     is_diminution=True,
                 ...     )
@@ -1279,7 +1279,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_duration_and_ratio(
                 ...     Duration(3, 16),
-                ...     mathtools.Ratio(5, -1, 5),
+                ...     mathtools.Ratio((5, -1, 5)),
                 ...     avoid_dots=False,
                 ...     decrease_durations_monotonically=False,
                 ...     is_diminution=True,
@@ -1372,7 +1372,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     mathtools.Ratio(1),
+                ...     mathtools.Ratio((1,)),
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
@@ -1419,7 +1419,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     mathtools.Ratio(1, 2, 2),
+                ...     mathtools.Ratio((1, 2, 2)),
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
@@ -1500,7 +1500,7 @@ class Tuplet(Container):
 
                 >>> tuplet = Tuplet.from_leaf_and_ratio(
                 ...     note,
-                ...     mathtools.Ratio(1, 2, 2, 3, 3, 4),
+                ...     mathtools.Ratio((1, 2, 2, 3, 3, 4)),
                 ...     is_diminution=False,
                 ...     )
                 >>> measure = Measure((3, 16), [tuplet])
@@ -1697,7 +1697,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio(1),
+                ...     mathtools.NonreducedRatio((1,)),
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
@@ -1723,7 +1723,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio(1, 2),
+                ...     mathtools.NonreducedRatio((1, 2)),
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
@@ -1746,7 +1746,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio(1, 2, 4),
+                ...     mathtools.NonreducedRatio((1, 2, 4)),
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
@@ -1769,7 +1769,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio(1, 2, 4, 1),
+                ...     mathtools.NonreducedRatio((1, 2, 4, 1)),
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
@@ -1794,7 +1794,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio(1, 2, 4, 1, 2),
+                ...     mathtools.NonreducedRatio((1, 2, 4, 1, 2)),
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])
@@ -1820,7 +1820,7 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-                ...     mathtools.NonreducedRatio(1, 2, 4, 1, 2, 4),
+                ...     mathtools.NonreducedRatio((1, 2, 4, 1, 2, 4)),
                 ...     mathtools.NonreducedFraction(7, 16),
                 ...     )
                 >>> measure = Measure((7, 16), [tuplet])

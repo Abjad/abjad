@@ -744,7 +744,7 @@ class Tempo(AbjadValueObject):
                         if x <= maximum_numerator
                         ]
         for numerator in numerators:
-                ratio = mathtools.Ratio(numerator, divisor)
+                ratio = mathtools.Ratio((numerator, divisor))
                 multiplier = durationtools.Multiplier(*ratio)
                 new_units_per_minute = multiplier * self.units_per_minute
                 assert mathtools.is_integer_equivalent_expr(

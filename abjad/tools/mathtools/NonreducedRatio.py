@@ -1,44 +1,43 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
-class NonreducedRatio(AbjadObject, tuple):
+class NonreducedRatio(TypedTuple):
     '''Nonreduced ratio of one or more nonzero integers.
 
-    Initializes from one or more nonzero integers:
+    ..  container:: example
 
-    ::
+        **Example 1.** Initializes from iterable of nonzero integers:
 
-        >>> mathtools.NonreducedRatio(2, 4, 2)
-        NonreducedRatio(2, 4, 2)
+        ::
 
-    Initializes from a tuple or list:
+            >>> mathtools.NonreducedRatio((2, 4, 2))
+            NonreducedRatio((2, 4, 2))
 
-    ::
+    ..  container:: example
 
-        >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
-        >>> ratio
-        NonreducedRatio(2, 4, 2)
+        **Example 2.** Use a tuple to return ratio integers.
 
-    Uses a tuple to return ratio integers.
-
-        >>> tuple(ratio)
-        (2, 4, 2)
+            >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+            >>> tuple(ratio)
+            (2, 4, 2)
 
     Nonreduced ratios are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### CLASS VARIABLES ###
 
-    def __new__(cls, *args):
-        if len(args) == 1 and isinstance(args[0], (list, tuple)):
-            args = args[0]
-        elif len(args) == 0:
-            args = (1, 1)
-        assert args, repr(args)
-        assert all(x != 0 for x in args), repr(args)
-        self = tuple.__new__(cls, args)
-        return self
+    __slots__ = (
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self, items=(1, 1)):
+        if not isinstance(items, (list, tuple, type(self))):
+            message = 'ratio must initialize with list or tuple.'
+            raise Exception(message)
+        superclass = super(NonreducedRatio, self)
+        superclass.__init__(items=items)
 
     ### SPECIAL METHODS ###
 
@@ -56,6 +55,14 @@ class NonreducedRatio(AbjadObject, tuple):
 
         Set `format_specification` to `''` or `'storage'`.
         Interprets `''` equal to `'storage'`.
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+                >>> print(format(ratio))
+                mathtools.NonreducedRatio((2, 4, 2))
 
         Returns string.
         '''
@@ -76,14 +83,14 @@ class NonreducedRatio(AbjadObject, tuple):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _repr_specification(self):
-        return self._storage_format_specification
-
-    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        positional_argument_values = (
+            tuple(self),
+            )
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            positional_argument_values=tuple(self),
+            keyword_argument_names=(),
+            positional_argument_values=positional_argument_values,
             )

@@ -728,7 +728,7 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 3c.** Spells magically:
+            **Example 3c.** Rewrites meter:
 
             ::
 

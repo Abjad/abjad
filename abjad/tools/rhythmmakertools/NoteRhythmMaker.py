@@ -294,6 +294,10 @@ class NoteRhythmMaker(RhythmMaker):
                 meter = metertools.Meter(division)
                 rhythm_tree_container = meter.root_node
                 durations = [_.duration for _ in rhythm_tree_container]
+            #elif isinstance(duration_specifier.spell_metrically,
+            #    rhythmmakertools.PartitionTable):
+            #    durations = duration_specifier.partition_table._spell_duration(
+            #        division)
             else:
                 durations = [division]
             selection = scoretools.make_leaves(
@@ -826,7 +830,57 @@ class NoteRhythmMaker(RhythmMaker):
             The other durations are spelled with the fewest number of symbols
             possible.
 
-            **Example 3c.** Spells magically:
+            **Example 3c.** Spells durations with custom partition table:
+
+            ::
+
+                >>> partition_table = rhythmmakertools.PartitionTable([
+                ...     (3, [1, 2]),
+                ...     (6, [2, 4]),
+                ...     (9, [3, 6]),
+                ...     ])
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
+                ...         spell_metrically='unassignable',
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 4), (6, 16), (9, 16)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/4
+                        c'2.
+                    }
+                    {
+                        \time 6/16
+                        c'4.
+                    }
+                    {
+                        \time 9/16
+                        c'8. ~ [
+                        c'8. ~
+                        c'8. ]
+                    }
+                }
+
+            .. todo:: Not yet implemented.
+
+        ..  container:: example
+
+            **Example 4.** Rewrites meter:
 
             ::
 

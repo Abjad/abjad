@@ -1631,7 +1631,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 5c.** This rhythm-maker spells output magically:
+        ..  container:: example
+
+            **Example 6.** Rewrites meter:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(

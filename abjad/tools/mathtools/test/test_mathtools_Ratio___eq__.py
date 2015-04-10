@@ -4,9 +4,9 @@ from abjad.tools import mathtools
 
 def test_mathtools_Ratio___eq___01():
 
-    ratio_1 = mathtools.Ratio(1, 2, 1)
-    ratio_2 = mathtools.Ratio(1, 2, 1)
-    ratio_3 = mathtools.Ratio(2, 3, 3)
+    ratio_1 = mathtools.Ratio((1, 2, 1))
+    ratio_2 = mathtools.Ratio((1, 2, 1))
+    ratio_3 = mathtools.Ratio((2, 3, 3))
 
     assert ratio_1 == ratio_1
     assert ratio_1 == ratio_2
@@ -23,4 +23,4 @@ def test_mathtools_Ratio___eq___02():
     r'''Comparison works with tuples.
     '''
 
-    assert mathtools.Ratio(1, 2, 1) == (1, 2, 1)
+    assert mathtools.Ratio((1, 2, 1)) == (1, 2, 1)

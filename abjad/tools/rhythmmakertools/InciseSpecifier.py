@@ -237,7 +237,7 @@ class InciseSpecifier(AbjadValueObject):
                 ...     suffix_talea=[-1],
                 ...     suffix_counts=[1],
                 ...     talea_denominator=16,
-                ...     body_ratio=mathtools.Ratio(1, 1),
+                ...     body_ratio=mathtools.Ratio((1, 1)),
                 ...     )
                 >>> maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,

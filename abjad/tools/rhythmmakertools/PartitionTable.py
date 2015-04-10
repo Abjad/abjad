@@ -27,19 +27,19 @@ class PartitionTable(TypedOrderedDict):
                 [
                     (
                         2,
-                        mathtools.Ratio(1, 1),
+                        mathtools.NonreducedRatio((1, 1)),
                         ),
                     (
                         3,
-                        mathtools.Ratio(2, 1),
+                        mathtools.NonreducedRatio((2, 1)),
                         ),
                     (
                         5,
-                        mathtools.Ratio(3, 2),
+                        mathtools.NonreducedRatio((3, 2)),
                         ),
                     (
                         7,
-                        mathtools.Ratio(4, 3),
+                        mathtools.NonreducedRatio((4, 3)),
                         ),
                     ]
                 )
@@ -65,19 +65,19 @@ class PartitionTable(TypedOrderedDict):
                 [
                     (
                         2,
-                        mathtools.Ratio(1, 1),
+                        mathtools.NonreducedRatio((1, 1)),
                         ),
                     (
                         3,
-                        mathtools.Ratio(1, 2),
+                        mathtools.NonreducedRatio((1, 2)),
                         ),
                     (
                         5,
-                        mathtools.Ratio(2, 3),
+                        mathtools.NonreducedRatio((2, 3)),
                         ),
                     (
                         7,
-                        mathtools.Ratio(3, 4),
+                        mathtools.NonreducedRatio((3, 4)),
                         ),
                     ]
                 )
@@ -92,5 +92,19 @@ class PartitionTable(TypedOrderedDict):
     ### PRIVATE METHODS ###
 
     def _item_coercer(self, item):
-        item = mathtools.Ratio(item)
+        item = mathtools.NonreducedRatio(item)
         return item
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod 
+    def respell_division(division):
+        r'''Respells `division` according to partition table.
+
+        Returns list of new divisions.
+        '''
+        result = []
+        for numerator, ratio in reversed(self):
+            if division.numerator == numerator:
+                for element in ratio:
+                    pass 

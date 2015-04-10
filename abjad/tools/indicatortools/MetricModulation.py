@@ -592,11 +592,11 @@ class MetricModulation(AbjadObject):
             ::
 
                 >>> metric_modulation_1.ratio
-                Ratio(2, 3)
+                Ratio((2, 3))
                 >>> metric_modulation_2.ratio
-                Ratio(2, 3)
+                Ratio((2, 3))
                 >>> metric_modulation_3.ratio
-                Ratio(4, 5)
+                Ratio((4, 5))
 
             ::
 
@@ -971,7 +971,7 @@ class MetricModulation(AbjadObject):
                 ...     right_rhythm=Note("c'4"),
                 ...     )
                 >>> metric_modulation.ratio
-                Ratio(2, 3)
+                Ratio((2, 3))
 
         Returns ratio.
         '''

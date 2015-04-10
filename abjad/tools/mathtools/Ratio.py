@@ -6,48 +6,58 @@ from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 class Ratio(NonreducedRatio):
     '''Ratio of one or more nonzero integers.
 
-    Initializes from one or more nonzero integers:
+    ..  container:: example
 
-    ::
+        **Example 1a.** Initializes iterable of nonzero integers:
 
-        >>> mathtools.Ratio(2, 4, 2)
-        Ratio(1, 2, 1)
+        ::
 
-    Initializes from a tuple or list:
+            >>> mathtools.Ratio((2, 4, 2))
+            Ratio((1, 2, 1))
 
-    ::
+    ..  container:: example
 
-        >>> ratio = mathtools.Ratio((2, 4, 2))
-        >>> ratio
-        Ratio(1, 2, 1)
+        **Example 2.** Use a tuple to return ratio integers.
 
-    Uses a tuple to return ratio integers.
-
-        >>> tuple(ratio)
-        (1, 2, 1)
+            >>> ratio = mathtools.Ratio((2, 4, 2))
+            >>> tuple(ratio)
+            (1, 2, 1)
 
     Ratios are immutable.
     '''
 
-    ### CONSTRUCTOR ###
+    ### CLASS VARIABLES ###
 
-    def __new__(cls, *args):
+    __slots__ = (
+        )
+
+    ### INITIALIZER ###
+
+    def __init__(self, items=(1, 1), item_class=None):
         from abjad.tools import mathtools
-        if len(args) == 1 and isinstance(args[0], collections.Sequence):
-            args = args[0]
-        elif len(args) == 0:
-            args = (1, 1)
-        assert args, repr(args)
-        assert all(x != 0 for x in args), repr(args)
-        gcd = mathtools.greatest_common_divisor(*args)
-        args = [x // gcd for x in args]
-        self = NonreducedRatio.__new__(cls, args)
-        return self
+        if not isinstance(items, (list, tuple, mathtools.NonreducedRatio)):
+            message = 'ratio must initialize with list or tuple.'
+            raise Exception(message)
+        gcd = mathtools.greatest_common_divisor(*items)
+        items = [_ // gcd for _ in items]
+        superclass = super(Ratio, self)
+        superclass.__init__(
+            items=items,
+            )
 
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''String representation of ratio.
+        r'''Gets string representation of ratio.
+
+        ..  container:: example
+
+            **Example 1.** String representation:
+
+            ::
+
+                >>> str(mathtools.Ratio((3, 4)))
+                '3:4'
 
         Returns string.
         '''

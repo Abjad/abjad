@@ -31,12 +31,15 @@ class DurationSpellingSpecifier(AbjadValueObject):
         if forbidden_written_duration is not None:
             forbidden_written_duration = durationtools.Duration(
                 forbidden_written_duration)
-        self._decrease_durations_monotonically = decrease_durations_monotonically
+        self._decrease_durations_monotonically = \
+            decrease_durations_monotonically
         self._forbidden_written_duration = forbidden_written_duration
         assert isinstance(rewrite_meter, (bool, type(None)))
         self._rewrite_meter = rewrite_meter
-        if spell_metrically is not None and spell_metrically != 'unassignable':
-            assert isinstance(spell_metrically, bool)
+        assert (spell_metrically is None or 
+            isinstance(spell_metrically, bool) or
+            spell_metrically == 'unassignable' or
+            isinstance(spell_metrically, rhythmmakertools.PartitionTable))
         self._spell_metrically = spell_metrically
         if forbid_meter_rewriting is not None:
             forbid_meter_rewriting = bool(forbid_meter_rewriting)

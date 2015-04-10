@@ -6,7 +6,7 @@ from abjad import *
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_01():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 2, 4),
+        mathtools.NonreducedRatio((1, 2, 4)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -26,7 +26,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_01():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_02():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 1, 2, 4),
+        mathtools.NonreducedRatio((1, 1, 2, 4)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -47,7 +47,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_02():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_03():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(-2, 3, 7),
+        mathtools.NonreducedRatio((-2, 3, 7)),
         mathtools.NonreducedFraction(7, 16),
         )
 
@@ -66,7 +66,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_03():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_04():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(7, 7, -4, -1),
+        mathtools.NonreducedRatio((7, 7, -4, -1)),
         mathtools.NonreducedFraction(1, 4),
         )
 
@@ -86,7 +86,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_04():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_05():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 2, 2),
+        mathtools.NonreducedRatio((1, 2, 2)),
         mathtools.NonreducedFraction(12, 16),
         )
 
@@ -106,7 +106,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_05():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_06():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(2, 4, 4),
+        mathtools.NonreducedRatio((2, 4, 4)),
         mathtools.NonreducedFraction(12, 16),
         )
 
@@ -126,7 +126,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_06():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_07():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(4, 8, 8),
+        mathtools.NonreducedRatio((4, 8, 8)),
         mathtools.NonreducedFraction(12, 16),
         )
 
@@ -146,7 +146,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_07():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_08():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(8, 16, 16),
+        mathtools.NonreducedRatio((8, 16, 16)),
         mathtools.NonreducedFraction(12, 16),
         )
 
@@ -166,7 +166,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_08():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_09():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(2, 4, 4),
+        mathtools.NonreducedRatio((2, 4, 4)),
         mathtools.NonreducedFraction(3, 16),
         )
 
@@ -186,7 +186,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_09():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_10():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(2, 4, 4),
+        mathtools.NonreducedRatio((2, 4, 4)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -206,7 +206,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_10():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_11():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(2, 4, 4),
+        mathtools.NonreducedRatio((2, 4, 4)),
         mathtools.NonreducedFraction(12, 16),
         )
 
@@ -226,7 +226,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_11():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_12():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(2, 4, 4),
+        mathtools.NonreducedRatio((2, 4, 4)),
         mathtools.NonreducedFraction(24, 16),
         )
 
@@ -246,7 +246,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_12():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_13():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 2, 2),
+        mathtools.NonreducedRatio((1, 2, 2)),
         mathtools.NonreducedFraction(6, 2),
         )
 
@@ -266,7 +266,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_13():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_14():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 2, 2),
+        mathtools.NonreducedRatio((1, 2, 2)),
         mathtools.NonreducedFraction(6, 4),
         )
 
@@ -286,7 +286,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_14():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_15():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 2, 2),
+        mathtools.NonreducedRatio((1, 2, 2)),
         mathtools.NonreducedFraction(6, 8),
         )
 
@@ -306,7 +306,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_15():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_16():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 2, 2),
+        mathtools.NonreducedRatio((1, 2, 2)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -326,7 +326,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_16():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_17():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, -1, -1),
+        mathtools.NonreducedRatio((1, -1, -1)),
         mathtools.NonreducedFraction(3, 16),
         )
 
@@ -345,7 +345,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_17():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_18():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 1, -1, -1),
+        mathtools.NonreducedRatio((1, 1, -1, -1)),
         mathtools.NonreducedFraction(4, 16),
         )
 
@@ -365,7 +365,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_18():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_19():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 1, 1, -1, -1),
+        mathtools.NonreducedRatio((1, 1, 1, -1, -1)),
         mathtools.NonreducedFraction(5, 16),
         )
 
@@ -386,7 +386,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_19():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_20():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1, 1, 1, 1, -1, -1),
+        mathtools.NonreducedRatio((1, 1, 1, 1, -1, -1)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -408,7 +408,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_20():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_21():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(1),
+        mathtools.NonreducedRatio((1,)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -418,7 +418,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_21():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_22():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(99),
+        mathtools.NonreducedRatio((99,)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -428,7 +428,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_22():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_23():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(-1),
+        mathtools.NonreducedRatio((-1,)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -438,7 +438,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_23():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_24():
 
     tuplet = Tuplet.from_nonreduced_ratio_and_nonreduced_fraction(
-        mathtools.NonreducedRatio(-99),
+        mathtools.NonreducedRatio((-99,)),
         mathtools.NonreducedFraction(6, 16),
         )
 
@@ -448,18 +448,11 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_24():
 def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_25():
 
     statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
-    statement += '([], (3, 16))'
-    pytest.raises(Exception, statement)
-
-
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_26():
-
-    statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
     statement += '([0], (3, 16))'
     pytest.raises(Exception, statement)
 
 
-def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_27():
+def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_26():
 
     statement = 'Tuplet.from_nonreduced_ratio_and_nonreduced_fraction'
     statement += '([1, 1, 0, 1], (3, 16))'
