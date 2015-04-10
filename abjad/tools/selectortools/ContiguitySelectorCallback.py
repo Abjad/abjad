@@ -19,8 +19,14 @@ class ContiguitySelectorCallback(AbjadValueObject):
         subresult = []
         subresult.extend(expr[:1])
         for subexpr in expr[1:]:
-            that_timespan = subresult[-1]._get_timespan()
-            this_timespan = subexpr._get_timespan()
+            try:
+                that_timespan = subresult[-1]._get_timespan()
+            except AttributeError:
+                that_timespan = subresult[-1].get_timespan()
+            try:
+                this_timespan = subexpr._get_timespan()
+            except AttributeError:
+                this_timespan = subexpr.get_timespan()
             if that_timespan.stop_offset == this_timespan.start_offset:
                 subresult.append(subexpr)
             else:

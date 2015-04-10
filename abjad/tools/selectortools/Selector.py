@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import collections
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
@@ -319,6 +318,88 @@ class Selector(AbjadValueObject):
                 ...
                 Selection(Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16"))
                 Selection(Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16"))
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 f'4 g'8.")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'8 ~
+                    d'16
+                    e'16 ~
+                    e'8
+                    f'4
+                    g'8.
+                }
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie()
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("c'4"),)
+                LogicalTie(Note("d'8"), Note("d'16"))
+                LogicalTie(Note("e'16"), Note("e'8"))
+                LogicalTie(Note("f'4"),)
+                LogicalTie(Note("g'8."),)
+
+            ::
+
+                >>> selector = selector.by_duration('<', (1, 4))
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("d'8"), Note("d'16"))
+                LogicalTie(Note("e'16"), Note("e'8"))
+                LogicalTie(Note("g'8."),)
+
+            ::
+
+                >>> selector = selector.by_contiguity()
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(LogicalTie(Note("d'8"), Note("d'16")), LogicalTie(Note("e'16"), Note("e'8")))
+                Selection(LogicalTie(Note("g'8."),),)
+
+            ::
+
+                >>> selector = selector.by_leaves()
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'8"), Note("d'16"), Note("e'16"), Note("e'8"))
+                Selection(Note("g'8."),)
+
+            ::
+
+                >>> selector = selector[0].flatten()
+                >>> for x in selector(staff):
+                ...     attach(indicatortools.Articulation('snappizzicato'), x)
+                ...
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'8 -\snappizzicato ~
+                    d'16
+                    e'16 ~
+                    e'8
+                    f'4
+                    g'8. -\snappizzicato
+                }
 
         Returns new selector.
         '''
