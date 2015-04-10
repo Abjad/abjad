@@ -59,7 +59,7 @@ class ContiguousSelection(Selection):
 
     ### PRIVATE METHODS ###
 
-    def _attach_tie_spanner_to_leaf_pair(self):
+    def _attach_tie_spanner_to_leaf_pair(self, use_messiaen_style_ties=False):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         assert len(self) == 2
@@ -86,7 +86,9 @@ class ContiguousSelection(Selection):
         elif left_tie_spanner is None and right_tie_spanner is not None:
             right_tie_spanner._append_left(left_leaf)
         elif left_tie_spanner is None and right_tie_spanner is None:
-            tie = spannertools.Tie()
+            tie = spannertools.Tie(
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
             attach(tie, [left_leaf, right_leaf])
 
     def _copy(self, n=1, include_enclosing_containers=False):

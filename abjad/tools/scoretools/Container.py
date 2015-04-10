@@ -787,7 +787,11 @@ class Container(Component):
     def _scale(self, multiplier):
         self._scale_contents(multiplier)
 
-    def _split_at_index(self, i, fracture_spanners=False):
+    def _split_at_index(
+        self, 
+        i, 
+        fracture_spanners=False,
+        ):
         r'''Splits container to the left of index `i`.
 
         Preserves tuplet multiplier when container is a tuplet.
@@ -865,6 +869,7 @@ class Container(Component):
         duration,
         fracture_spanners=False,
         tie_split_notes=True,
+        use_messiaen_style_ties=False,
         ):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
@@ -936,6 +941,7 @@ class Container(Component):
                 split_point_in_bottom,
                 fracture_spanners=fracture_spanners,
                 tie_split_notes=tie_split_notes,
+                use_messiaen_style_ties=use_messiaen_style_ties,
                 )
             right = right_list[0]
             leaf_right_of_split = right
@@ -1007,7 +1013,9 @@ class Container(Component):
                         (leaf_left_of_split, leaf_right_of_split)
                     selection = selectiontools.ContiguousSelection(
                         leaves_around_split)
-                    selection._attach_tie_spanner_to_leaf_pair()
+                    selection._attach_tie_spanner_to_leaf_pair(
+                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        )
         # return pair of left and right list-wrapped halves of container
         return ([left], [right])
 

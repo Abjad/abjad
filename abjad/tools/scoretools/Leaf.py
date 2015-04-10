@@ -446,6 +446,7 @@ class Leaf(Component):
         cyclic=False,
         fracture_spanners=False,
         tie_split_notes=True,
+        use_messiaen_style_ties=False,
         ):
         from abjad.tools import pitchtools
         from abjad.tools import selectiontools
@@ -542,7 +543,9 @@ class Leaf(Component):
             for leaf_pair in sequencetools.iterate_sequence_nwise(
                 flattened_result_leaves):
                 selection = selectiontools.ContiguousSelection(leaf_pair)
-                selection._attach_tie_spanner_to_leaf_pair()
+                selection._attach_tie_spanner_to_leaf_pair(
+                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    )
         # return result
         return result
 
@@ -554,6 +557,7 @@ class Leaf(Component):
         duration,
         fracture_spanners=False,
         tie_split_notes=True,
+        use_messiaen_style_ties=False,
         ):
         from abjad.tools import indicatortools
         from abjad.tools import pitchtools
@@ -590,7 +594,9 @@ class Leaf(Component):
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             selection = selectiontools.ContiguousSelection(leaves_around_split)
-            selection._attach_tie_spanner_to_leaf_pair()
+            selection._attach_tie_spanner_to_leaf_pair(
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
         return left_leaf_list, right_leaf_list
         # TODO: make this substitution work
         #return self._split(

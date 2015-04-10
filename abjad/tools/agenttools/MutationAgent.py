@@ -1974,6 +1974,7 @@ class MutationAgent(abctools.AbjadObject):
         fracture_spanners=False,
         cyclic=False,
         tie_split_notes=True,
+        use_messiaen_style_ties=False,
         ):
         r'''Splits component or selection by `durations`.
 
@@ -2211,8 +2212,8 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 5.** Split tupletted leaves and fracture
-                crossing spanners:
+            **Example 5.** Split tupletted leaves and fracture crossing
+            spanners:
 
             ::
 
@@ -2265,6 +2266,84 @@ class MutationAgent(abctools.AbjadObject):
                         d'4
                         e'4 )
                     }
+                }
+
+        ..  container:: example
+
+            **Example 6a.** Splits leaves cyclically and ties split notes:
+
+            ::
+
+                >>> staff = Staff("c'1 d'1")
+                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> attach(hairpin, staff[:])
+                >>> override(staff).dynamic_line_spanner.staff_padding = 3
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #3
+                } {
+                    c'1 \< \p
+                    d'1 \f
+                }
+
+            ::
+
+                >>> durations = [Duration(3, 4)]
+                >>> result = mutate(staff[:]).split(
+                ...     durations,
+                ...     cyclic=True,
+                ...     fracture_spanners=False,
+                ...     tie_split_notes=True,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #3
+                } {
+                    c'2. ~ \< \p
+                    c'4
+                    d'2 ~
+                    d'2 \f
+                }
+
+            **Example 6b.** As above but with Messiaen-style ties:
+
+            ::
+
+                >>> staff = Staff("c'1 d'1")
+                >>> hairpin = spannertools.Hairpin(descriptor='p < f')
+                >>> attach(hairpin, staff[:])
+                >>> override(staff).dynamic_line_spanner.staff_padding = 3
+
+            ::
+
+                >>> durations = [Duration(3, 4)]
+                >>> result = mutate(staff[:]).split(
+                ...     durations,
+                ...     cyclic=True,
+                ...     fracture_spanners=False,
+                ...     tie_split_notes=True,
+                ...     use_messiaen_style_ties=True,
+                ...     )
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #3
+                } {
+                    c'2. \< \p
+                    c'4 \repeatTie
+                    d'2
+                    d'2 \repeatTie \f
                 }
 
         Returns list of selections.
@@ -2361,6 +2440,7 @@ class MutationAgent(abctools.AbjadObject):
                         cyclic=False,
                         fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
+                        use_messiaen_style_ties=use_messiaen_style_ties,
                         )
                     shard.extend(leaf_shards)
                     result.append(shard)
@@ -2371,6 +2451,7 @@ class MutationAgent(abctools.AbjadObject):
                         local_split_duration,
                         fracture_spanners=fracture_spanners,
                         tie_split_notes=tie_split_notes,
+                        use_messiaen_style_ties=use_messiaen_style_ties,
                         )
                     shard.extend(left_list)
                     result.append(shard)
