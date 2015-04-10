@@ -5,6 +5,7 @@ from abjad.tools import selectiontools
 from abjad.tools.topleveltools import attach
 
 
+# TODO: change 'kind' to 'class_'
 def make_tied_leaf(
     kind,
     duration,
@@ -12,8 +13,9 @@ def make_tied_leaf(
     forbidden_written_duration=None,
     pitches=None,
     tie_parts=True,
+    use_messiaen_style_ties=False,
     ):
-    r'''Make tied `kind` with `duration`.
+    r'''Makes tied `kind` with `duration`.
 
     ..  container:: example
 
@@ -127,7 +129,38 @@ def make_tied_leaf(
                 cs''4
             }
 
-    Returns selection of unincorporated leaves.
+    ..  container:: example
+
+        **Example 5.** Uses Messiaen-style ties:
+
+        ::
+
+            >>> leaves = scoretools.make_tied_leaf(
+            ...     Note,
+            ...     Duration(9, 8),
+            ...     pitches='C#5',
+            ...     decrease_durations_monotonically=False,
+            ...     forbidden_written_duration=Duration(1, 2),
+            ...     use_messiaen_style_ties=True,
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> time_signature = TimeSignature((9, 8))
+            >>> attach(time_signature, staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \time 9/8
+                cs''8
+                cs''4 \repeatTie
+                cs''4 \repeatTie
+                cs''4 \repeatTie
+                cs''4 \repeatTie
+            }
+
+    Returns selection of leaves.
     '''
     from abjad.tools import scoretools
     from abjad.tools import spannertools
@@ -192,7 +225,9 @@ def make_tied_leaf(
     # apply tie spanner if required
     if tie_parts and 1 < len(result):
         if not issubclass(kind, (scoretools.Rest, scoretools.Skip)):
-            tie = spannertools.Tie()
+            tie = spannertools.Tie(
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
             attach(tie, result)
 
     # return result

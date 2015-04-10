@@ -393,7 +393,7 @@ class Leaf(Component):
         new_duration = multiplier * self._get_duration()
         self._set_duration(new_duration)
 
-    def _set_duration(self, new_duration):
+    def _set_duration(self, new_duration, use_messiaen_style_ties=False):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         new_duration = durationtools.Duration(new_duration)
@@ -410,7 +410,11 @@ class Leaf(Component):
         except AssignabilityError:
             pass
         # make new notes or tuplets if new duration is nonassignable
-        components = scoretools.make_notes(0, new_duration)
+        components = scoretools.make_notes(
+            0,
+            new_duration,
+            use_messiaen_style_ties=use_messiaen_style_ties,
+            )
         if isinstance(components[0], scoretools.Leaf):
             tied_leaf_count = len(components) - 1
             tied_leaves = tied_leaf_count * self
@@ -420,7 +424,9 @@ class Leaf(Component):
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
             if not parentage._get_spanners(spannertools.Tie):
-                tie = spannertools.Tie()
+                tie = spannertools.Tie(
+                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    )
                 attach(tie, all_leaves)
             return all_leaves
         else:
@@ -434,7 +440,9 @@ class Leaf(Component):
                 x.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             if not self._get_spanners(spannertools.Tie):
-                tie = spannertools.Tie()
+                tie = spannertools.Tie(
+                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    )
                 attach(tie, all_leaves)
             tuplet_multiplier = tuplet.multiplier
             scoretools.Tuplet(tuplet_multiplier, all_leaves)
@@ -471,7 +479,10 @@ class Leaf(Component):
         for duration in durations:
             new_leaf = copy.copy(self)
             preprolated_duration = duration / leaf_prolation
-            shard = new_leaf._set_duration(preprolated_duration)
+            shard = new_leaf._set_duration(
+                preprolated_duration,
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
             for x in shard:
                 if isinstance(x, scoretools.Leaf):
                     x_duration = x.written_duration * leaf_prolation
@@ -580,10 +591,16 @@ class Leaf(Component):
         self._detach_grace_containers(kind='after')
         # adjust new leaf
         new_leaf._detach_grace_containers(kind='grace')
-        left_leaf_list = self._set_duration(preprolated_duration)
+        left_leaf_list = self._set_duration(
+            preprolated_duration,
+            use_messiaen_style_ties=use_messiaen_style_ties,
+            )
         right_preprolated_duration = \
             leaf_multiplied_duration - preprolated_duration
-        right_leaf_list = new_leaf._set_duration(right_preprolated_duration)
+        right_leaf_list = new_leaf._set_duration(
+            right_preprolated_duration,
+            use_messiaen_style_ties=use_messiaen_style_ties,
+            )
         leaf_left_of_split = left_leaf_list[-1]
         leaf_right_of_split = right_leaf_list[0]
         leaves_around_split = (leaf_left_of_split, leaf_right_of_split)

@@ -7,7 +7,12 @@ from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 
 
-def make_notes(pitches, durations, decrease_durations_monotonically=True):
+def make_notes(
+    pitches, 
+    durations, 
+    decrease_durations_monotonically=True,
+    use_messiaen_style_ties=False,
+    ):
     r'''Make notes according to `pitches` and `durations`.
 
     Cycle through `pitches` when the length of `pitches` is less than the
@@ -90,29 +95,39 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
         pitches,
         durations,
         decrease_durations_monotonically=decrease_durations_monotonically,
+        use_messiaen_style_ties=False,
         ):
         assert len(pitches) == len(durations)
         result = []
         for pitch, duration in zip(pitches, durations):
-            result.extend(scoretools.make_tied_leaf(
-                scoretools.Note,
-                duration,
-                pitches=pitch,
-                decrease_durations_monotonically=decrease_durations_monotonically,
-                ))
+            result.extend(
+                scoretools.make_tied_leaf(
+                    scoretools.Note,
+                    duration,
+                    pitches=pitch,
+                    decrease_durations_monotonically=decrease_durations_monotonically,
+                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    )
+                )
         return result
 
     result = []
     for duration in durations:
-        # get factors in denominator of duration group duration other than 1, 2.
+        # get factors in denominator of duration group duration not 1 or 2
         factors = set(mathtools.factors(duration[0].denominator))
         factors.discard(1)
         factors.discard(2)
         ps = pitches[0:len(duration)]
         pitches = pitches[len(duration):]
         if len(factors) == 0:
-            result.extend(_make_unprolated_notes(ps, duration,
-                decrease_durations_monotonically=decrease_durations_monotonically))
+            result.extend(
+                _make_unprolated_notes(
+                    ps,
+                    duration,
+                    decrease_durations_monotonically=decrease_durations_monotonically,
+                    use_messiaen_style_ties=use_messiaen_style_ties,
+                    )
+                )
         else:
             # compute prolation
             denominator = duration[0].denominator
@@ -120,8 +135,12 @@ def make_notes(pitches, durations, decrease_durations_monotonically=True):
             multiplier = (numerator, denominator)
             ratio = 1 / fractions.Fraction(*multiplier)
             duration = [ratio * durationtools.Duration(d) for d in duration]
-            ns = _make_unprolated_notes(ps, duration,
-                decrease_durations_monotonically=decrease_durations_monotonically)
+            ns = _make_unprolated_notes(
+                ps,
+                duration,
+                decrease_durations_monotonically=decrease_durations_monotonically,
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
             t = scoretools.Tuplet(multiplier, ns)
             result.append(t)
 
