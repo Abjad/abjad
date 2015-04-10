@@ -114,7 +114,12 @@ class DurationSpellingSpecifier(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _rewrite_meter_(selections, meters, reference_meters=None):
+    def _rewrite_meter_(
+        selections, 
+        meters, 
+        reference_meters=None,
+        use_messiaen_style_ties=False,
+        ):
         from abjad.tools import metertools
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import mutate
@@ -124,6 +129,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         selections = DurationSpellingSpecifier._split_at_measure_boundaries(
             selections,
             meters,
+            use_messiaen_style_ties=use_messiaen_style_ties,
             )
         measures = scoretools.make_spacer_skip_measures(durations)
         staff = scoretools.Staff(measures)
@@ -133,14 +139,21 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 if str(reference_meter) == str(meter):
                     meter = reference_meter
                     break
-            mutate(measure[:]).rewrite_meter(meter)
+            mutate(measure[:]).rewrite_meter(
+                meter,
+                use_messiaen_style_ties=use_messiaen_style_ties,
+                )
         selections = []
         for measure in staff:
             selections.append(measure[:])
         return selections
 
     @staticmethod
-    def _split_at_measure_boundaries(selections, meters):
+    def _split_at_measure_boundaries(
+        selections, 
+        meters,
+        use_messiaen_style_ties=False,
+        ):
         from abjad.tools import metertools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools
@@ -157,6 +170,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         mutate(voice[:]).split(
             durations=durations,
             tie_split_notes=True,
+            use_messiaen_style_ties=use_messiaen_style_ties,
             )
         selections = list(voice[:])
         return selections
