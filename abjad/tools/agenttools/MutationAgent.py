@@ -1395,6 +1395,89 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> show(measure) # doctest: +SKIP
 
+        ..  container:: example
+
+            **Example 7a.** Default rewrite behavior doesn't subdivide the
+            first note in this measure because the first note in the measure
+            starts at the beginning of a level-0 beat in meter:
+
+            ::
+
+                >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
+                >>> show(measure) # doctest: +SKIP
+
+            ::
+                
+                >>> meter = metertools.Meter((6, 8))
+                >>> mutate(measure[:]).rewrite_meter(meter)
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 6/8
+                    c'4..
+                    c'16 ~
+                    c'4
+                }
+
+            **Example 7b.** Setting boundary depth to 1 subdivides the first
+            note in this measure:
+
+            ::
+
+                >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
+                >>> show(measure) # doctest: +SKIP
+
+            ::
+                
+                >>> meter = metertools.Meter((6, 8))
+                >>> mutate(measure[:]).rewrite_meter(meter, boundary_depth=1)
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 6/8
+                    c'4. ~
+                    c'16
+                    c'16 ~
+                    c'4
+                }
+
+            **Example 7c.** Another way of doing this is by setting preferred
+            boundary depth on the meter itself:
+
+            ::
+
+                >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
+                >>> show(measure) # doctest: +SKIP
+
+            ::
+                
+                >>> meter = metertools.Meter(
+                ...     (6, 8),
+                ...     preferred_boundary_depth=1,
+                ...     )
+                >>> mutate(measure[:]).rewrite_meter(meter)
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 6/8
+                    c'4. ~
+                    c'16
+                    c'16 ~
+                    c'4
+                }
+
+            This makes it possible to divide different meters in different
+            ways.
+
         Operates in place and returns none.
         '''
         from abjad.tools import scoretools

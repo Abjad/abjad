@@ -20,6 +20,11 @@ def _rewrite_meter(
     assert isinstance(components, selectiontools.Selection), \
         repr(components)
 
+    if not isinstance(meter, metertools.Meter):
+        meter = metertools.Meter(meter)
+
+    boundary_depth = boundary_depth or meter.preferred_boundary_depth
+
     def recurse(
         boundary_depth=None,
         boundary_offsets=None,
