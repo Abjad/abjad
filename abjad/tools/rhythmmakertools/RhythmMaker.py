@@ -174,9 +174,7 @@ class RhythmMaker(AbjadValueObject):
 
     def _apply_beam_specifier(self, selections):
         from abjad.tools import rhythmmakertools
-        beam_specifier = self.beam_specifier
-        if beam_specifier is None:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
+        beam_specifier = self._get_beam_specifier()
         if beam_specifier.beam_divisions_together:
             durations = []
             for x in selections:
@@ -208,8 +206,7 @@ class RhythmMaker(AbjadValueObject):
         if not self.output_masks:
             return selections
         new_selections = []
-        duration_spelling_specifier = (self.duration_spelling_specifier or
-            rhythmmakertools.DurationSpellingSpecifier())
+        duration_spelling_specifier = self._get_duration_spelling_specifier()
         decrease_durations_monotonically = \
             duration_spelling_specifier.decrease_durations_monotonically
         forbidden_written_duration = \
@@ -403,10 +400,7 @@ class RhythmMaker(AbjadValueObject):
 
     def _simplify_tuplets(self, selections):
         from abjad.tools import rhythmmakertools
-        tuplet_spelling_specifier = self.tuplet_spelling_specifier
-        if tuplet_spelling_specifier is None:
-            tuplet_spelling_specifier = \
-                rhythmmakertools.TupletSpellingSpecifier()
+        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         if not tuplet_spelling_specifier.simplify_tuplets:
             return
         for tuplet in iterate(selections).by_class(scoretools.Tuplet):

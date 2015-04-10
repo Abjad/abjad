@@ -365,10 +365,7 @@ class TupletRhythmMaker(RhythmMaker):
         tuplet_ratios = datastructuretools.CyclicTuple(
             sequencetools.rotate_sequence(self.tuplet_ratios, rotation)
             )
-        tuplet_spelling_specifier = self.tuplet_spelling_specifier
-        if tuplet_spelling_specifier is None:
-            tuplet_spelling_specifier = \
-                rhythmmakertools.TupletSpellingSpecifier()
+        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         for duration_index, division in enumerate(divisions):
             ratio = tuplet_ratios[duration_index]
             duration = durationtools.Duration(division)

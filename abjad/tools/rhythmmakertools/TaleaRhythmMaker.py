@@ -468,9 +468,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
         from abjad.tools import rhythmmakertools
-        tie_specifier = self.tie_specifier
-        if tie_specifier is None:
-            tie_specifier = rhythmmakertools.TieSpecifier()
+        tie_specifier = self._get_tie_specifier()
         if not self.tie_split_notes:
             return
         leaves = list(iterate(result).by_class(scoretools.Leaf))
@@ -663,9 +661,7 @@ class TaleaRhythmMaker(RhythmMaker):
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         from abjad.tools import rhythmmakertools
         leaf_lists = []
-        specifier = self.duration_spelling_specifier
-        if specifier is None:
-            specifier = rhythmmakertools.DurationSpellingSpecifier()
+        specifier = self._get_duration_spelling_specifier()
         for map_division in numeric_map:
             leaf_list = scoretools.make_leaves_from_talea(
                 map_division,
@@ -731,8 +727,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         mutate(note).replace(rest)
                     detach(spannertools.Tie, logical_tie.head)
         selections = self._apply_output_masks(selections, rotation)
-        specifier = self.duration_spelling_specifier or \
-            rhythmmakertools.DurationSpellingSpecifier()
+        specifier = self._get_duration_spelling_specifier()
         if specifier.rewrite_meter:
             selections = specifier._rewrite_meter_(
                 selections, 

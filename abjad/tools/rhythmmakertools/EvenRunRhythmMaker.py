@@ -151,10 +151,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     def _make_container(self, division):
         from abjad.tools import rhythmmakertools
-        duration_spelling_specifier = self.duration_spelling_specifier
-        if duration_spelling_specifier is None:
-            duration_spelling_specifier = \
-                rhythmmakertools.DurationSpellingSpecifier()
+        duration_spelling_specifier = self._get_duration_spelling_specifier()
         forbidden_written_duration = \
             duration_spelling_specifier.forbidden_written_duration
         time_signature = indicatortools.TimeSignature(division)
@@ -190,9 +187,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             container = self._make_container(division)
             selection = selectiontools.Selection(container)
             selections.append(selection)
-        beam_specifier = self.beam_specifier
-        if not beam_specifier:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
+        beam_specifier = self._get_beam_specifier()
         if beam_specifier.beam_divisions_together:
             durations = []
             for selection in selections:

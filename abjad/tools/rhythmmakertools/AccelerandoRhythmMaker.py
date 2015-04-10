@@ -499,9 +499,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _fix_rounding_error(self, selection, total_duration):
-        from abjad.tools import rhythmmakertools
-        interpolation_specifier = self.interpolation_specifier or \
-            rhythmmakertools.InterpolationSpecifier()
+        interpolation_specifier = self._get_interpolation_specifier()
         selection_duration = selection.get_duration()
         if not selection_duration == total_duration:
             needed_duration = total_duration - selection[:-1].get_duration()
@@ -510,6 +508,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
             multiplier = durationtools.Multiplier(multiplier)
             detach(durationtools.Multiplier, selection[-1])
             attach(multiplier, selection[-1])
+
+    def _get_interpolation_specifier(self):
+        from abjad.tools import rhythmmakertools
+        if self.interpolation_specifier is not None:
+            return self.interpolation_specifier
+        return rhythmmakertools.InterpolationSpecifier()
 
     @staticmethod
     def _interpolate_cosine(y1, y2, mu):
@@ -713,8 +717,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         '''
         from abjad.tools import rhythmmakertools
         total_duration = durationtools.Duration(total_duration)
-        interpolation_specifier = self.interpolation_specifier or \
-            rhythmmakertools.InterpolationSpecifier()
+        interpolation_specifier = self._get_interpolation_specifier()
         durations = AccelerandoRhythmMaker._interpolate_divide(
             total_duration=total_duration,
             start_duration=interpolation_specifier.start_duration,
@@ -735,8 +738,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         self._fix_rounding_error(selection, total_duration)
         pair = (selection.get_duration(), total_duration)
         assert pair[0] == pair[1], repr(pair)
-        beam_specifier = self.beam_specifier or \
-            rhythmmakertools.BeamSpecifier()
+        beam_specifier = self._get_beam_specifier()
         if not beam_specifier.use_feather_beams:
             pass
         elif self._is_accelerando(selection):
@@ -744,8 +746,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         elif self._is_ritardando(selection):
             override(selection[0]).beam.grow_direction = Left
         tuplet = scoretools.Tuplet((1, 1), selection)
-        tuplet_spelling_specifier = self.tuplet_spelling_specifier or \
-            rhythmmakertools.TupletSpellingSpecifier()
+        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         if tuplet_spelling_specifier.use_note_duration_bracket:
             tuplet.force_times_command = True
             duration = inspect_(tuplet).get_duration()

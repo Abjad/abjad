@@ -139,6 +139,12 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
+    def _get_incise_specifier(self):
+        from abjad.tools import rhythmmakertools
+        if self.incise_specifier is not None:
+            return self.incise_specifier
+        return rhythmmakertools.InciseSpecifier()
+
     def _make_division_incised_numeric_map(
         self,
         divisions=None,
@@ -171,10 +177,7 @@ class IncisedRhythmMaker(RhythmMaker):
         return numeric_map
 
     def _make_middle_of_numeric_map_part(self, middle):
-        from abjad.tools import rhythmmakertools
-        incise_specifier = self.incise_specifier
-        if incise_specifier is None:
-            incise_specifier = rhythmmakertools.InciseSpecifier()
+        incise_specifier = self._get_incise_specifier()
         if incise_specifier.fill_with_notes:
             if not incise_specifier.outer_divisions_only:
                 if 0 < middle:
@@ -242,9 +245,7 @@ class IncisedRhythmMaker(RhythmMaker):
         split_divisions_by_counts = input_[5]
         secondary_divisions = self._make_secondary_divisions(
             divisions, split_divisions_by_counts)
-        incise_specifier = self.incise_specifier
-        if incise_specifier is None:
-            incise_specifier = rhythmmakertools.InciseSpecifier()
+        incise_specifier = self._get_incise_specifier()
         if not incise_specifier.outer_divisions_only:
             numeric_map = self._make_division_incised_numeric_map(
                 secondary_divisions,
@@ -277,9 +278,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 )
             result.extend(tuplets)
         assert self._all_are_tuplets_or_all_are_leaf_selections(result)
-        beam_specifier = self.beam_specifier
-        if beam_specifier is None:
-            beam_specifier = rhythmmakertools.BeamSpecifier()
+        beam_specifier = self._get_beam_specifier()
         if beam_specifier.beam_divisions_together:
             beam = spannertools.MultipartBeam()
             attach(beam, result)
@@ -289,8 +288,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 attach(beam, x)
         selections = [selectiontools.Selection(x) for x in result]
         selections = self._apply_output_masks(selections, rotation)
-        duration_specifier = self.duration_spelling_specifier or \
-            rhythmmakertools.DurationSpellingSpecifier()
+        duration_specifier = self._get_duration_spelling_specifier()
         if duration_specifier.rewrite_meter:
             selections = duration_specifier._rewrite_meter_(
                 selections,
@@ -390,12 +388,8 @@ class IncisedRhythmMaker(RhythmMaker):
         self, numeric_map, lcd):
         from abjad.tools import rhythmmakertools
         selections = []
-        specifier = self.duration_spelling_specifier
-        if specifier is None:
-            specifier = rhythmmakertools.DurationSpellingSpecifier()
-        tie_specifier = self.tie_specifier
-        if tie_specifier is None:
-            tie_specifier = rhythmmakertools.TieSpecifier()
+        specifier = self._get_duration_spelling_specifier()
+        tie_specifier = self._get_tie_specifier()
         for numeric_map_part in numeric_map:
             numeric_map_part = [
                 _ for _ in numeric_map_part if _ != durationtools.Duration(0)
@@ -416,9 +410,7 @@ class IncisedRhythmMaker(RhythmMaker):
     def _prepare_input(self, rotation):
         from abjad.tools import rhythmmakertools
         helper_functions = self.helper_functions or {}
-        incise_specifier = self.incise_specifier
-        if incise_specifier is None:
-            incise_specifier = rhythmmakertools.InciseSpecifier()
+        incise_specifier = self._get_incise_specifier()
         prefix_talea = incise_specifier.prefix_talea or ()
         helper = helper_functions.get('prefix_talea')
         helper = self._none_to_trivial_helper(helper)
