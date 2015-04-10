@@ -1404,10 +1404,6 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-                
                 >>> meter = metertools.Meter((6, 8))
                 >>> mutate(measure[:]).rewrite_meter(meter)
                 >>> show(measure) # doctest: +SKIP
@@ -1428,10 +1424,6 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-                
                 >>> meter = metertools.Meter((6, 8))
                 >>> mutate(measure[:]).rewrite_meter(meter, boundary_depth=1)
                 >>> show(measure) # doctest: +SKIP
@@ -1453,10 +1445,6 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> measure = Measure((6, 8), "c'4.. c'16 ~ c'4")
-                >>> show(measure) # doctest: +SKIP
-
-            ::
-                
                 >>> meter = metertools.Meter(
                 ...     (6, 8),
                 ...     preferred_boundary_depth=1,
