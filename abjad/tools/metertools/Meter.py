@@ -25,14 +25,8 @@ class Meter(AbjadObject):
         ::
 
             >>> meter = metertools.Meter((2, 4))
-
-        ::
-
             >>> meter
             Meter('(2/4 (1/4 1/4))')
-
-        ::
-
             >>> print(meter.pretty_rtm_format)
             (2/4 (
                 1/4
@@ -70,14 +64,8 @@ class Meter(AbjadObject):
         ::
 
             >>> meter = metertools.Meter((4, 4))
-
-        ::
-
             >>> meter
             Meter('(4/4 (1/4 1/4 1/4 1/4))')
-
-        ::
-
             >>> print(meter.pretty_rtm_format)
             (4/4 (
                 1/4
@@ -226,6 +214,62 @@ class Meter(AbjadObject):
             >>> graph(meter) # doctest: +SKIP
 
         `7/4` with beats arragned from least to greatest.
+
+    ..  container:: example
+
+        **Example 8a.** Meter interpreted by default as containing two compound
+        beats:
+
+        ::
+
+            >>> meter = metertools.Meter((6, 4))
+            >>> meter
+            Meter('(6/4 ((3/4 (1/4 1/4 1/4)) (3/4 (1/4 1/4 1/4))))')
+            >>> print(meter.pretty_rtm_format)
+            (6/4 (
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))))
+        
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
+
+        **Example 8b.** Same meter customized to contain four compound beats:
+
+        ::
+
+            >>> parser = rhythmtreetools.RhythmTreeParser()
+            >>> meter = metertools.Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
+            >>> meter
+            Meter('(6/4 ((3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8)) (3/8 (1/8 1/8 1/8))))')
+            >>> print(meter.pretty_rtm_format)
+            (6/4 (
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))
+                (3/8 (
+                    1/8
+                    1/8
+                    1/8))))
+        
+        ::
+
+            >>> graph(meter) # doctest: +SKIP
 
     Prime divisions greater than ``3`` are converted to sequences of ``2``
     and ``3`` summing to that prime. Summands are arranged from greatest
