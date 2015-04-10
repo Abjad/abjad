@@ -13,54 +13,146 @@ def make_notes(
     decrease_durations_monotonically=True,
     use_messiaen_style_ties=False,
     ):
-    r'''Make notes according to `pitches` and `durations`.
+    r'''Makes notes according to `pitches` and `durations`.
 
-    Cycle through `pitches` when the length of `pitches` is less than the
-    length of `durations`:
 
-    ::
+    ..  container:: example
 
-        >>> scoretools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
-        Selection(Note("c'16"), Note("c'8"), Note("c'8"))
+        **Example 1.** Cycles through `pitches` when the length of `pitches` is
+        less than the length of `durations`:
 
-    Cycle through `durations` when the length of `durations` is less than the
-    length of `pitches`:
+        ::
 
-    ::
+            >>> notes = scoretools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
+            >>> notes
+            Selection(Note("c'16"), Note("c'8"), Note("c'8"))
+            >>> staff = Staff(notes)
 
-        >>> scoretools.make_notes([0, 2, 4, 5, 7], [(1, 16), (1, 8), (1, 8)])
-        Selection(Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8"))
+        ::
 
-    Create ad hoc tuplets for nonassignable durations:
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> scoretools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
-        Selection(Note("c'16"), Tuplet(Multiplier(2, 3), "c'8"), Note("c'8"))
+            >>> print(format(staff))
+            \new Staff {
+                c'16
+                c'8
+                c'8
+            }
 
-    Set ``decrease_durations_monotonically=True`` to express tied values
-    in decreasing duration:
+    ..  container:: example
 
-    ::
+        **Example 2.** Cycles through `durations` when the length of `durations`
+        is less than the length of `pitches`:
 
-        >>> scoretools.make_notes(
-        ...     [0],
-        ...     [(13, 16)],
-        ...     decrease_durations_monotonically=True,
-        ...     )
-        Selection(Note("c'2."), Note("c'16"))
+        ::
 
-    Set ``decrease_durations_monotonically=False`` to express tied
-    values in increasing duration:
+            >>> notes = scoretools.make_notes(
+            ...     [0, 2, 4, 5, 7],
+            ...     [(1, 16), (1, 8), (1, 8)],
+            ...     )
+            >>> notes
+            Selection(Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8"))
+            >>> staff = Staff(notes)
 
-    ::
+        ::
 
-        >>> scoretools.make_notes(
-        ...     [0],
-        ...     [(13, 16)],
-        ...     decrease_durations_monotonically=False,
-        ...     )
-        Selection(Note("c'16"), Note("c'2."))
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'16
+                d'8
+                e'8
+                f'16
+                g'8
+            }
+
+    ..  container:: example
+
+        **Example 3.** Creates ad hoc tuplets for nonassignable durations:
+
+        ::
+
+            >>> notes = scoretools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
+            >>> notes
+            Selection(Note("c'16"), Tuplet(Multiplier(2, 3), "c'8"), Note("c'8"))
+            >>> staff = Staff(notes)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'16
+                \tweak #'edge-height #'(0.7 . 0)
+                \times 2/3 {
+                    c'8
+                }
+                c'8
+            }
+
+    ..  container:: example
+
+        **Example 4.** Set ``decrease_durations_monotonically=True`` to express
+        tied values in decreasing duration:
+
+        ::
+
+            >>> notes = scoretools.make_notes(
+            ...     [0],
+            ...     [(13, 16)],
+            ...     decrease_durations_monotonically=True,
+            ...     )
+            >>> notes
+            Selection(Note("c'2."), Note("c'16"))
+            >>> staff = Staff(notes)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'2. ~
+                c'16
+            }
+
+    ..  container:: example
+
+        **Example 5.** Set ``decrease_durations_monotonically=False`` to
+        express tied values in increasing duration:
+
+        ::
+
+            >>> notes = scoretools.make_notes(
+            ...     [0],
+            ...     [(13, 16)],
+            ...     decrease_durations_monotonically=False,
+            ...     )
+            >>> notes
+            Selection(Note("c'16"), Note("c'2."))
+            >>> staff = Staff(notes)
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'16 ~
+                c'2.
+            }
 
     Set `pitches` to a single pitch or a sequence of pitches.
 
