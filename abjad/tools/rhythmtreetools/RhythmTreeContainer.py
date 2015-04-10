@@ -10,89 +10,100 @@ from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     r'''A rhythm-tree container.
 
-    ::
+    ..  container:: example
 
-        >>> container = rhythmtreetools.RhythmTreeContainer(
-        ...     preprolated_duration=1, children=[])
-        >>> print(format(container))
-        rhythmtreetools.RhythmTreeContainer(
-            preprolated_duration=durationtools.Duration(1, 1),
-            )
+        **Example 1.** Initializes a rhythm-tree container:
 
-    Similar to Abjad containers, `RhythmTreeContainer` supports a list
-    interface, and can be appended, extended, indexed and so forth
-    by other `RhythmTreeNode` subclasses:
+        ::
 
-    ::
+            >>> container = rhythmtreetools.RhythmTreeContainer(
+            ...     preprolated_duration=1, children=[])
+            >>> print(format(container))
+            rhythmtreetools.RhythmTreeContainer(
+                preprolated_duration=durationtools.Duration(1, 1),
+                )
 
-        >>> leaf_a = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
-        >>> leaf_b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
-        >>> container.extend([leaf_a, leaf_b])
-        >>> print(format(container))
-        rhythmtreetools.RhythmTreeContainer(
-            children=(
-                rhythmtreetools.RhythmTreeLeaf(
-                    preprolated_duration=durationtools.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                rhythmtreetools.RhythmTreeLeaf(
-                    preprolated_duration=durationtools.Duration(2, 1),
-                    is_pitched=True,
-                    ),
-                ),
-            preprolated_duration=durationtools.Duration(1, 1),
-            )
+    ..  container:: example
 
-    ::
+        **Example 2.** Similar to Abjad containers, `RhythmTreeContainer`
+        supports a list interface, and can be appended, extended, indexed and
+        so forth by other `RhythmTreeNode` subclasses:
 
-        >>> another_container = rhythmtreetools.RhythmTreeContainer(
-        ...     preprolated_duration=2)
-        >>> another_container.append(
-        ...     rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
-        >>> another_container.append(container[1])
-        >>> container.append(another_container)
-        >>> print(format(container))
-        rhythmtreetools.RhythmTreeContainer(
-            children=(
-                rhythmtreetools.RhythmTreeLeaf(
-                    preprolated_duration=durationtools.Duration(1, 1),
-                    is_pitched=True,
-                    ),
-                rhythmtreetools.RhythmTreeContainer(
-                    children=(
-                        rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=durationtools.Duration(3, 1),
-                            is_pitched=True,
-                            ),
-                        rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=durationtools.Duration(2, 1),
-                            is_pitched=True,
-                            ),
+        ::
+
+            >>> leaf_a = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1)
+            >>> leaf_b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=2)
+            >>> container.extend([leaf_a, leaf_b])
+            >>> print(format(container))
+            rhythmtreetools.RhythmTreeContainer(
+                children=(
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=durationtools.Duration(1, 1),
+                        is_pitched=True,
                         ),
-                    preprolated_duration=durationtools.Duration(2, 1),
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=durationtools.Duration(2, 1),
+                        is_pitched=True,
+                        ),
                     ),
-                ),
-            preprolated_duration=durationtools.Duration(1, 1),
-            )
+                preprolated_duration=durationtools.Duration(1, 1),
+                )
 
-    Call `RhythmTreeContainer` with a preprolated_duration to generate
-    a tuplet structure:
+        ::
 
-    ::
+            >>> another_container = rhythmtreetools.RhythmTreeContainer(
+            ...     preprolated_duration=2)
+            >>> another_container.append(
+            ...     rhythmtreetools.RhythmTreeLeaf(preprolated_duration=3))
+            >>> another_container.append(container[1])
+            >>> container.append(another_container)
+            >>> print(format(container))
+            rhythmtreetools.RhythmTreeContainer(
+                children=(
+                    rhythmtreetools.RhythmTreeLeaf(
+                        preprolated_duration=durationtools.Duration(1, 1),
+                        is_pitched=True,
+                        ),
+                    rhythmtreetools.RhythmTreeContainer(
+                        children=(
+                            rhythmtreetools.RhythmTreeLeaf(
+                                preprolated_duration=durationtools.Duration(3, 1),
+                                is_pitched=True,
+                                ),
+                            rhythmtreetools.RhythmTreeLeaf(
+                                preprolated_duration=durationtools.Duration(2, 1),
+                                is_pitched=True,
+                                ),
+                            ),
+                        preprolated_duration=durationtools.Duration(2, 1),
+                        ),
+                    ),
+                preprolated_duration=durationtools.Duration(1, 1),
+                )
 
-        >>> container((1, 4))
-        [FixedDurationTuplet(Duration(1, 4), "c'8 { 4/5 c'8. c'8 }")]
+    ..  container:: example
 
-    ..  doctest::
+        **Example 3.** Call `RhythmTreeContainer` with a preprolated_duration
+        to generate a tuplet structure:
 
-        >>> print(format(_[0]))
-        \times 2/3 {
-            c'8
-            \times 4/5 {
-                c'8.
+        ::
+
+            >>> list_ = container((1, 4))
+            >>> list_
+            [FixedDurationTuplet(Duration(1, 4), "c'8 { 4/5 c'8. c'8 }")]
+            >>> tuplet = list_[0]
+            >>> show(tuplet) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(_[0]))
+            \times 2/3 {
                 c'8
+                \times 4/5 {
+                    c'8.
+                    c'8
+                }
             }
-        }
 
     Returns `RhythmTreeContainer` instance.
     '''
