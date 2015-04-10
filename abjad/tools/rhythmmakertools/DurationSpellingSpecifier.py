@@ -27,6 +27,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         rewrite_meter=None,
         spell_metrically=None,
         ):
+        from abjad.tools import rhythmmakertools
         assert isinstance(decrease_durations_monotonically, bool)
         if forbidden_written_duration is not None:
             forbidden_written_duration = durationtools.Duration(

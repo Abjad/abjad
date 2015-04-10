@@ -294,10 +294,10 @@ class NoteRhythmMaker(RhythmMaker):
                 meter = metertools.Meter(division)
                 rhythm_tree_container = meter.root_node
                 durations = [_.duration for _ in rhythm_tree_container]
-            #elif isinstance(duration_specifier.spell_metrically,
-            #    rhythmmakertools.PartitionTable):
-            #    durations = duration_specifier.partition_table._spell_duration(
-            #        division)
+            elif isinstance(duration_specifier.spell_metrically,
+                rhythmmakertools.PartitionTable):
+                partition_table = duration_specifier.spell_metrically
+                durations = partition_table.respell_division(division)
             else:
                 durations = [division]
             selection = scoretools.make_leaves(
@@ -835,19 +835,18 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> partition_table = rhythmmakertools.PartitionTable([
-                ...     (3, [1, 2]),
-                ...     (6, [2, 4]),
-                ...     (9, [3, 6]),
+                ...     (5, [3, 2]),
+                ...     (9, [3, 3, 3]),
                 ...     ])
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
-                ...         spell_metrically='unassignable',
+                ...         spell_metrically=partition_table,
                 ...         ),
                 ...     )
 
             ::
 
-                >>> divisions = [(3, 4), (6, 16), (9, 16)]
+                >>> divisions = [(5, 16), (9, 16), (10, 16)]
                 >>> music = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -861,12 +860,9 @@ class NoteRhythmMaker(RhythmMaker):
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
-                        \time 3/4
-                        c'2.
-                    }
-                    {
-                        \time 6/16
-                        c'4.
+                        \time 5/16
+                        c'8. ~ [
+                        c'8 ]
                     }
                     {
                         \time 9/16
@@ -874,9 +870,12 @@ class NoteRhythmMaker(RhythmMaker):
                         c'8. ~
                         c'8. ]
                     }
+                    {
+                        \time 10/16
+                        c'4. ~
+                        c'4
+                    }
                 }
-
-            .. todo:: Not yet implemented.
 
         ..  container:: example
 
