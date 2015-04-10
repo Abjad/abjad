@@ -114,12 +114,13 @@ class DurationSpellingSpecifier(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _rewrite_meter_(selections, meters):
+    def _rewrite_meter_(selections, meters, reference_meters=None):
         from abjad.tools import metertools
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import mutate
         meters = [metertools.Meter(_) for _ in meters]
         durations = [durationtools.Duration(_) for _ in meters]
+        reference_meters = reference_meters or ()
         selections = DurationSpellingSpecifier._split_at_measure_boundaries(
             selections,
             meters,
@@ -128,6 +129,10 @@ class DurationSpellingSpecifier(AbjadValueObject):
         staff = scoretools.Staff(measures)
         mutate(staff).replace_measure_contents(selections)
         for measure, meter in zip(staff, meters):
+            for reference_meter in reference_meters:
+                if str(reference_meter) == str(meter):
+                    meter = reference_meter
+                    break
             mutate(measure[:]).rewrite_meter(meter)
         selections = []
         for measure in staff:
