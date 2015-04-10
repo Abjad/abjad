@@ -283,14 +283,22 @@ class Meter(AbjadObject):
         '_decrease_durations_monotonically',
         '_denominator',
         '_numerator',
+        '_preferred_boundary_depth',
         '_root_node',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, arg=None, decrease_durations_monotonically=True):
+    def __init__(
+        self, 
+        arg=None, 
+        decrease_durations_monotonically=True,
+        preferred_boundary_depth=None,
+        ):
 
         arg = arg or (4, 4)
+        assert isinstance(preferred_boundary_depth, (int, type(None)))
+        self._preferred_boundary_depth = preferred_boundary_depth
 
         def recurse(
             node,
@@ -1134,6 +1142,42 @@ class Meter(AbjadObject):
         Returns positive integer.
         '''
         return self._numerator
+
+    @property
+    def preferred_boundary_depth(self):
+        r'''Gets preferred boundary depth of meter.
+
+        ..  container:: example
+
+            **Example 1.** No preferred boundary depth:
+
+            ::
+
+                >>> metertools.Meter((6, 8)).preferred_boundary_depth is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Customized preferred boundary depth:
+
+            ::
+
+                >>> meter = metertools.Meter(
+                ...     (6, 8),
+                ...     preferred_boundary_depth=1,
+                ...     )
+                >>> meter.preferred_boundary_depth
+                1
+
+        Used by ``mutate().rewrite_meter()``.
+
+        Defaults to none.
+
+        Set to integer or none.
+
+        Returns integer or none.
+        '''
+        return self._preferred_boundary_depth
 
     @property
     def pretty_rtm_format(self):
