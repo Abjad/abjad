@@ -12,18 +12,22 @@ class PrototypeSelectorCallback(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_flatten',
         '_prototype',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, prototype=None):
+    def __init__(self, prototype=None, flatten=None):
         prototype = prototype or ()
         if isinstance(prototype, collections.Sequence):
             prototype = tuple(prototype)
             assert all(isinstance(x, type) for x in prototype)
         assert isinstance(prototype, (tuple, type))
         self._prototype = prototype
+        if flatten is not None:
+            flatten = bool(flatten)
+        self._flatten = flatten
 
     ### SPECIAL METHODS ###
 
@@ -41,10 +45,22 @@ class PrototypeSelectorCallback(AbjadValueObject):
             subresult = iterate(subexpr).by_class(prototype)
             subresult = select(subresult)
             if subresult:
-                result.append(subresult)
+                if self.flatten:
+                    result.extend(subresult)
+                else:
+                    result.append(subresult)
         return tuple(result)
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def flatten(self):
+        r'''Is true if selector callback returns a single, rather than nested
+        selection. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._flatten
 
     @property
     def prototype(self):

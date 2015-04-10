@@ -282,6 +282,7 @@ class Selector(AbjadValueObject):
     def by_class(
         self,
         prototype=None,
+        flatten=None,
         ):
         r'''Configures selector to select components of class `prototype`.
 
@@ -290,7 +291,39 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from abjad.tools import selectortools
-        callback = selectortools.PrototypeSelectorCallback(prototype)
+        callback = selectortools.PrototypeSelectorCallback(
+            prototype=prototype,
+            flatten=flatten,
+            )
+        return self._append_callback(callback)
+
+    def by_contiguity(self):
+        r'''Configures selector select components based on time-wise
+        contiguity.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff("c'4 d'16 d' d' d' e'4 f'16 f' f' f'")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.flatten()
+                >>> selector = selector.by_duration('==', (1, 16))
+                >>> selector = selector.by_contiguity()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16"))
+                Selection(Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16"))
+
+        Returns new selector.
+        '''
+        from abjad.tools import selectortools
+        callback = selectortools.ContiguitySelectorCallback()
         return self._append_callback(callback)
 
     def by_counts(
@@ -603,13 +636,128 @@ class Selector(AbjadValueObject):
             )
         return self._append_callback(callback)
 
-    def by_leaves(self):
+    def by_leaves(self, flatten=None):
         r'''Configures selector to select leaves.
+
+        ..  container:: example
+
+            **Example 1.**
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+
+        ..  container:: example
+
+            **Example 2.**
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves(flatten=True)
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Note("c'8")
+                Rest('r8')
+                Note("d'8")
+                Note("e'8")
+                Rest('r8')
+                Note("f'8")
+                Note("g'8")
+                Note("a'8")
+
+            **Example 3.**
+
+            ::
+
+                >>> staff = Staff("abj: | 4/4 c'2 d'2 || 3/4 e'4 f'4 g'4 |")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_class(Measure)
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Measure((4, 4), "c'2 d'2"), Measure((3, 4), "e'4 f'4 g'4"))
+
+            ::
+
+                >>> selector = selector.by_leaves()
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'2"), Note("d'2"), Note("e'4"), Note("f'4"), Note("g'4"))
+
+        ..  container:: example
+
+            **Example 4.**
+
+            ::
+
+                >>> staff = Staff("abj: | 4/4 c'2 d'2 || 3/4 e'4 f'4 g'4 |")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_class(Measure, flatten=True)
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Measure((4, 4), "c'2 d'2")
+                Measure((3, 4), "e'4 f'4 g'4")
+
+            ::
+
+                >>> selector = selector.by_leaves()
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("c'2"), Note("d'2"))
+                Selection(Note("e'4"), Note("f'4"), Note("g'4"))
+
+        ..  container:: example
+
+            **Example 5.**
+
+            ::
+
+                >>> staff = Staff("abj: | 4/4 c'2 d'2 || 3/4 e'4 f'4 g'4 |")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_class(Measure, flatten=True)
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Measure((4, 4), "c'2 d'2")
+                Measure((3, 4), "e'4 f'4 g'4")
+
+            ::
+
+                >>> selector = selector.by_leaves(flatten=True)
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Note("c'2")
+                Note("d'2")
+                Note("e'4")
+                Note("f'4")
+                Note("g'4")
 
         Returns new selector.
         '''
         from abjad.tools import selectortools
-        callback = selectortools.PrototypeSelectorCallback(scoretools.Leaf)
+        callback = selectortools.PrototypeSelectorCallback(
+            prototype=scoretools.Leaf,
+            flatten=flatten,
+            )
         return self._append_callback(callback)
 
     def by_length(self, *args):
