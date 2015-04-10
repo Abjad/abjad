@@ -281,12 +281,9 @@ class NoteRhythmMaker(RhythmMaker):
     def _make_music(self, divisions, rotation, remember_state=False):
         from abjad.tools import rhythmmakertools
         selections = []
-        duration_specifier = self.duration_spelling_specifier
-        if duration_specifier is None:
-            duration_specifier = rhythmmakertools.DurationSpellingSpecifier()
-        tuplet_specifier = self.tuplet_spelling_specifier
-        if tuplet_specifier is None:
-            tuplet_specifier = rhythmmakertools.TupletSpellingSpecifier()
+        duration_specifier = self._get_duration_spelling_specifier()
+        tie_specifier = self._get_tie_specifier()
+        tuplet_specifier = self._get_tuplet_spelling_specifier()
         for division in divisions:
             if (duration_specifier.spell_metrically == True or
                 (duration_specifier.spell_metrically == 'unassignable' and
@@ -308,12 +305,16 @@ class NoteRhythmMaker(RhythmMaker):
                 forbidden_written_duration=\
                     duration_specifier.forbidden_written_duration,
                 is_diminution=tuplet_specifier.is_diminution,
+                use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
                 )
             if (
                 1 < len(selection) and
                 not selection[0]._has_spanner(spannertools.Tie)
                 ):
-                attach(spannertools.Tie(), selection[:])
+                tie = spannertools.Tie(
+                    use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
+                    )
+                attach(tie, selection[:])
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections)
         self._apply_beam_specifier(selections)
@@ -322,6 +323,7 @@ class NoteRhythmMaker(RhythmMaker):
             selections = duration_specifier._rewrite_meter_(
                 selections,
                 divisions,
+                use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
                 )
         return selections
 
@@ -1328,7 +1330,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> divisions = [(4, 8), (3, 8), (9, 16), (5, 16)]
                 >>> music = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     music,
@@ -1350,12 +1352,14 @@ class NoteRhythmMaker(RhythmMaker):
                         c'4. \repeatTie
                     }
                     {
-                        \time 4/8
+                        \time 9/16
                         c'2 \repeatTie
+                        c'16 \repeatTie
                     }
                     {
-                        \time 3/8
-                        c'4. \repeatTie
+                        \time 5/16
+                        c'4 \repeatTie
+                        c'16 \repeatTie
                     }
                 }
 

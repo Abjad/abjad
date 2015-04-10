@@ -260,6 +260,30 @@ class RhythmMaker(AbjadValueObject):
             tie_specifier = rhythmmakertools.TieSpecifier()
         tie_specifier(selections)
 
+    def _get_beam_specifier(self):
+        from abjad.tools import rhythmmakertools
+        if self.beam_specifier is not None:
+            return self.beam_specifier
+        return rhythmmakertools.BeamSpecifier()
+
+    def _get_duration_spelling_specifier(self):
+        from abjad.tools import rhythmmakertools
+        if self.duration_spelling_specifier is not None:
+            return self.duration_spelling_specifier
+        return rhythmmakertools.DurationSpellingSpecifier()
+
+    def _get_tie_specifier(self):
+        from abjad.tools import rhythmmakertools
+        if self.tie_specifier is not None:
+            return self.tie_specifier
+        return rhythmmakertools.TieSpecifier()
+
+    def _get_tuplet_spelling_specifier(self):
+        from abjad.tools import rhythmmakertools
+        if self.tuplet_spelling_specifier is not None:
+            return self.tuplet_spelling_specifier
+        return rhythmmakertools.TupletSpellingSpecifier()
+
     @staticmethod
     def _get_rhythmic_staff(lilypond_file):
         score_block = lilypond_file.items[-1]
