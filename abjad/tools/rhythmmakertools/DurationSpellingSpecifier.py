@@ -118,17 +118,23 @@ class DurationSpellingSpecifier(AbjadValueObject):
         from abjad.tools import metertools
         from abjad.tools import scoretools
         from abjad.tools import sequencetools
+        from abjad.tools.topleveltools import inspect_
         from abjad.tools.topleveltools import mutate
         meters = [metertools.Meter(_) for _ in meters]
         durations = [durationtools.Duration(_) for _ in meters]
         music = sequencetools.flatten_sequence(selections)
-        mutate(music).split(
+        assert isinstance(music, list), repr(music)
+        total_duration = sum(durations)
+        music_duration = sum(inspect_(_).get_duration() for _ in music)
+        assert total_duration == music_duration
+        voice = scoretools.Voice(music)
+        mutate(voice[:]).split(
             durations=durations,
             tie_split_notes=True,
             )
         measures = scoretools.make_spacer_skip_measures(durations)
         staff = scoretools.Staff(measures)
-        mutate(staff).replace_measure_contents(music)
+        mutate(staff).replace_measure_contents(list(voice[:]))
         for measure, meter in zip(staff, meters):
             mutate(measure[:]).rewrite_meter(meter)
         selections = []

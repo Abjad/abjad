@@ -919,8 +919,6 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-            ..  todo:: Why does rewrite_meter() give 4. ~ 8. for 9/16?
-
         Returns duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
