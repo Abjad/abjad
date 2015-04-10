@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
@@ -33,9 +34,7 @@ class NonreducedRatio(TypedTuple):
     ### INITIALIZER ###
 
     def __init__(self, items=(1, 1)):
-        if not isinstance(items, (list, tuple, type(self))):
-            message = 'ratio must initialize with list or tuple.'
-            raise Exception(message)
+        assert isinstance(items, collections.Sequence)
         superclass = super(NonreducedRatio, self)
         superclass.__init__(items=items)
 
@@ -81,6 +80,10 @@ class NonreducedRatio(TypedTuple):
         return super(NonreducedRatio, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        return int
 
     @property
     def _storage_format_specification(self):

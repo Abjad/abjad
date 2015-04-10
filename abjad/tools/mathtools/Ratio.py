@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import collections
 from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 
 
@@ -19,9 +18,21 @@ class Ratio(NonreducedRatio):
 
         **Example 2.** Use a tuple to return ratio integers.
 
+        ::
+
             >>> ratio = mathtools.Ratio((2, 4, 2))
             >>> tuple(ratio)
             (1, 2, 1)
+
+    ..  container:: example
+
+        **Example 3.** Instantiate a ratio from another ratio.
+
+        ::
+
+            >>> ratio = mathtools.Ratio((1, 2, 3))
+            >>> mathtools.Ratio(ratio)
+            Ratio((1, 2, 3))
 
     Ratios are immutable.
     '''
@@ -35,9 +46,7 @@ class Ratio(NonreducedRatio):
 
     def __init__(self, items=(1, 1), item_class=None):
         from abjad.tools import mathtools
-        if not isinstance(items, (list, tuple, mathtools.NonreducedRatio)):
-            message = 'ratio must initialize with list or tuple.'
-            raise Exception(message)
+        items = [int(_) for _ in items]
         gcd = mathtools.greatest_common_divisor(*items)
         items = [_ // gcd for _ in items]
         superclass = super(Ratio, self)
