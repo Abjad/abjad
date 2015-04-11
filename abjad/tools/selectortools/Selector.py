@@ -1149,6 +1149,56 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
+                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...         indices=[0],
+                ...         period=2,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("c'4"),)
+                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+
+        ..  container:: example
+
+            **Example 3.**
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_pattern(
+                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...         indices=[0],
+                ...         period=2,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     print(staff.index(x), repr(x))
+                ...
+                0 Note("c'4")
+                2 Note("d'4")
+                4 Note("e'4")
+                6 Rest('r4')
+
+        ..  container:: example
+
+            **Example 4.**
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.by_pattern(
                 ...     apply_to_each=True,
                 ...     pattern=rhythmmakertools.BooleanPattern(
                 ...         indices=[1],
