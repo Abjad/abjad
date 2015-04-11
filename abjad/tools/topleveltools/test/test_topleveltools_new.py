@@ -227,6 +227,7 @@ def test_topleveltools_new_04():
     new_aggregate = new(
         old_aggregate,
         pitch_segment__rotate=2,
+        ratio=[4, 5],
         )
 
     assert new_aggregate is not old_aggregate
@@ -257,5 +258,66 @@ def test_topleveltools_new_04():
                     ),
                 item_class=pitchtools.NamedPitch,
                 ),
+            ratio=mathtools.Ratio((4, 5)),
+            )
+        ''')
+
+
+def test_topleveltools_new_05():
+
+    old_aggregate = Aggregate(
+        pitch_segment=pitchtools.PitchSegment('c d e f'),
+        )
+
+    assert format(old_aggregate) == systemtools.TestManager.clean_string(
+        r'''
+        test_topleveltools_new.Aggregate(
+            pitch_segment=pitchtools.PitchSegment(
+                (
+                    pitchtools.NamedPitch('c'),
+                    pitchtools.NamedPitch('d'),
+                    pitchtools.NamedPitch('e'),
+                    pitchtools.NamedPitch('f'),
+                    ),
+                item_class=pitchtools.NamedPitch,
+                ),
+            )
+        ''')
+
+    new_aggregate = new(
+        old_aggregate,
+        ratio=[4, 5],
+        pitch_segment__rotate=2,
+        )
+
+    assert new_aggregate is not old_aggregate
+    assert new_aggregate != old_aggregate
+    assert format(old_aggregate) == systemtools.TestManager.clean_string(
+        r'''
+        test_topleveltools_new.Aggregate(
+            pitch_segment=pitchtools.PitchSegment(
+                (
+                    pitchtools.NamedPitch('c'),
+                    pitchtools.NamedPitch('d'),
+                    pitchtools.NamedPitch('e'),
+                    pitchtools.NamedPitch('f'),
+                    ),
+                item_class=pitchtools.NamedPitch,
+                ),
+            )
+        ''')
+    assert format(new_aggregate) == systemtools.TestManager.clean_string(
+        r'''
+        test_topleveltools_new.Aggregate(
+            pitch_segment=pitchtools.PitchSegment(
+                (
+                    pitchtools.NamedPitch('e'),
+                    pitchtools.NamedPitch('f'),
+                    pitchtools.NamedPitch('c'),
+                    pitchtools.NamedPitch('d'),
+                    ),
+                item_class=pitchtools.NamedPitch,
+                ),
+            ratio=mathtools.Ratio((4, 5)),
             )
         ''')
