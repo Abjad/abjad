@@ -1110,6 +1110,68 @@ class Selector(AbjadValueObject):
             )
         return self._append_callback(callback)
 
+    def by_pattern(
+        self,
+        pattern=None,
+        apply_to_each=None,
+        ):
+        r'''Configures selector to select by `pattern`:
+
+        ..  container:: example
+
+            **Example 1.**
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.by_pattern(
+                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...         indices=[1],
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("d'4"), Note("d'4"))
+
+        ..  container:: example
+
+            **Example 2.**
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.by_pattern(
+                ...     apply_to_each=True,
+                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...         indices=[1],
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Selection(Note("d'4"),)
+                Selection(Note("e'4"),)
+
+        Returns new selector.
+        '''
+        from abjad.tools import selectortools
+        callback = selectortools.PatternedSelectorCallback(
+            pattern=pattern,
+            apply_to_each=apply_to_each,
+            )
+        return self._append_callback(callback)
+
     def by_run(
         self,
         prototype=None,
