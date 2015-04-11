@@ -86,6 +86,7 @@ class RhythmMaker(AbjadValueObject):
             remember_state=remember_state,
             )
         self._simplify_tuplets(selections)
+        self._flatten_trivial_tuplets(selections)
         self._apply_tie_specifier(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
@@ -173,7 +174,6 @@ class RhythmMaker(AbjadValueObject):
             return False
 
     def _apply_beam_specifier(self, selections):
-        from abjad.tools import rhythmmakertools
         beam_specifier = self._get_beam_specifier()
         if beam_specifier.beam_divisions_together:
             durations = []
@@ -251,11 +251,18 @@ class RhythmMaker(AbjadValueObject):
         return new_selections
 
     def _apply_tie_specifier(self, selections):
-        from abjad.tools import rhythmmakertools
-        tie_specifier = self.tie_specifier
-        if tie_specifier is None:
-            tie_specifier = rhythmmakertools.TieSpecifier()
+        tie_specifier = self._get_tie_specifier()
         tie_specifier(selections)
+
+    def _flatten_trivial_tuplets(self, selections):
+        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
+        if not tuplet_spelling_specifier.flatten_trivial_tuplets:
+            return
+        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
+            if not tuplet.is_trivial:
+                continue
+            # HERE
+            raise NotImplementedError
 
     def _get_beam_specifier(self):
         from abjad.tools import rhythmmakertools
@@ -399,7 +406,6 @@ class RhythmMaker(AbjadValueObject):
         return result
 
     def _simplify_tuplets(self, selections):
-        from abjad.tools import rhythmmakertools
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         if not tuplet_spelling_specifier.simplify_tuplets:
             return

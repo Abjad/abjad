@@ -30,6 +30,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         #       That would allow for all keywords to default to None,
         #       and therefore a single-line storage format.
         self._avoid_dots = bool(avoid_dots)
+        self._flatten_trivial_tuplets = bool(flatten_trivial_tuplets)
         self._is_diminution = bool(is_diminution)
         self._simplify_tuplets = bool(simplify_tuplets)
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
