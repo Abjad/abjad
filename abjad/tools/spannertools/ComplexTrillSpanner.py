@@ -2,7 +2,6 @@
 from abjad.tools import pitchtools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import inspect_
-from abjad.tools.topleveltools import override
 
 
 class ComplexTrillSpanner(Spanner):
@@ -75,8 +74,8 @@ class ComplexTrillSpanner(Spanner):
 
     def __init__(
         self,
-        overrides=None,
         interval=None,
+        overrides=None,
         ):
         Spanner.__init__(
             self,
