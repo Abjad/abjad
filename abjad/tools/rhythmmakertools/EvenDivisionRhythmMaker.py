@@ -827,7 +827,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 left_counts,
                 right_counts,
                 )
-            return
+            return selections
         left_length = 0
         if left_counts:
             left_length = left_counts[0]
