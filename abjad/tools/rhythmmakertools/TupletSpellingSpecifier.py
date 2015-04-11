@@ -30,6 +30,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         self._is_diminution = bool(is_diminution)
         self._simplify_tuplets = bool(simplify_tuplets)
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
+        self._flatten_trivial_tuplets = bool(flatten_trivial_tuplets)
 
     ### PRIVATE PROPERTIES ###
 
