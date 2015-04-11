@@ -10,6 +10,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
     __slots__ = (
         '_avoid_dots',
+        '_flatten_trivial_tuplets',
         '_is_diminution',
         '_simplify_tuplets',
         '_use_note_duration_bracket',
@@ -20,6 +21,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
     def __init__(
         self,
         avoid_dots=False,
+        flatten_trivial_tuplets=False,
         is_diminution=True,
         simplify_tuplets=False,
         use_note_duration_bracket=False,
@@ -67,6 +69,19 @@ class TupletSpellingSpecifier(AbjadValueObject):
         Returns true or false.
         '''
         return self._avoid_dots
+
+    @property
+    def flatten_trivial_tuplets(self):
+        r'''Is true when tuplet spelling should flatten trivial tuplets.
+        Otherwise false.
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._flatten_trivial_tuplets
 
     @property
     def is_diminution(self):
