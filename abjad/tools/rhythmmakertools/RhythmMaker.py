@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
+import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import scoretools
@@ -9,6 +10,7 @@ from abjad.tools import spannertools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
 
@@ -86,7 +88,7 @@ class RhythmMaker(AbjadValueObject):
             remember_state=remember_state,
             )
         self._simplify_tuplets(selections)
-        self._flatten_trivial_tuplets(selections)
+        selections = self._flatten_trivial_tuplets(selections)
         self._apply_tie_specifier(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
@@ -257,12 +259,25 @@ class RhythmMaker(AbjadValueObject):
     def _flatten_trivial_tuplets(self, selections):
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         if not tuplet_spelling_specifier.flatten_trivial_tuplets:
-            return
-        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
-            if not tuplet.is_trivial:
-                continue
-            # HERE
-            raise NotImplementedError
+            return selections
+        new_selections = []
+        for selection in selections:
+            new_selection = []
+            for component in selection:
+                if not (isinstance(component, scoretools.Tuplet) and 
+                    component.is_trivial):
+                    new_selection.append(component)
+                    continue
+                spanners = inspect_(component).get_spanners()
+                contents = component[:]
+                for spanner in spanners:
+                    new_spanner = copy.copy(spanner)
+                    attach(new_spanner, contents)
+                new_selection.extend(contents)
+                del(component[:])
+            new_selection = selectiontools.Selection(new_selection)
+            new_selections.append(new_selection)
+        return new_selections
 
     def _get_beam_specifier(self):
         from abjad.tools import rhythmmakertools

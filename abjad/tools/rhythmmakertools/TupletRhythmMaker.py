@@ -1915,6 +1915,138 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 4a.** Leaves trivial tuplets enclosed in curly braces in
+            LilyPond output:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=True,
+                ...         ),
+                ...     tuplet_ratios=[(2, 3), (1, 1)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         flatten_trivial_tuplets=False,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ~ ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }
+                    {
+                        \time 2/8
+                        {
+                            c'8 [
+                            c'8 ]
+                        }
+                    }
+                }
+
+            Runs of eighth notes are enclosed in a first set of curly braces
+            (representing trivial tuplets) and a second set of curly braces
+            (representing measures). This is default behavior.
+
+            **Example 4b.** Flattens trivial tuplets:
+
+            ::
+
+                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=True,
+                ...         ),
+                ...     tuplet_ratios=[(2, 3), (1, 1)],
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         flatten_trivial_tuplets=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }
+                    {
+                        \time 2/8
+                        c'8 [
+                        c'8 ~ ]
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 3/5 {
+                            c'4
+                            c'4. ~
+                        }
+                    }
+                    {
+                        \time 2/8
+                        c'8 [
+                        c'8 ]
+                    }
+                }
+
+            Runs of eighth notes are now enclosed in only one set of curly
+            braces (representing measures). The graphic output of the two
+            examples is the same.
+
+            .. note:: Flattening trivial tuplets makes it possible 
+                subsequently to rewrite the meter of the untupletted notes.
+
         Defaults to none.
 
         Set to tuplet spelling specifier or none.
