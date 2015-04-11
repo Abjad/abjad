@@ -14,9 +14,11 @@ def _rewrite_meter(
     boundary_depth=None,
     initial_offset=None,
     maximum_dot_count=None,
+    rewrite_tuplets=True,
     use_messiaen_style_ties=False,
     ):
     from abjad.tools import metertools
+    from abjad.tools import scoretools
 
     assert isinstance(components, selectiontools.Selection), \
         repr(components)
@@ -190,6 +192,8 @@ def _rewrite_meter(
                 depth=0,
                 logical_tie=item,
                 )
+        elif isinstance(item, scoretools.Tuplet) and rewrite_tuplets == False:
+            pass
         else:
             #print('DESCENDING:', item)
             preprolated_duration = sum([x._preprolated_duration for x in item])

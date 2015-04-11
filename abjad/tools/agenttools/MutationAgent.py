@@ -646,6 +646,7 @@ class MutationAgent(abctools.AbjadObject):
         boundary_depth=None,
         initial_offset=None,
         maximum_dot_count=None,
+        rewrite_tuplets=True,
         use_messiaen_style_ties=False,
         ):
         r'''Rewrite the contents of logical ties in an expression to match
@@ -1468,6 +1469,147 @@ class MutationAgent(abctools.AbjadObject):
                     c'4
                 }
 
+        ..  container:: example
+
+            **Example 9a.** Rewrites notes and tuplets:
+
+            ::
+
+                >>> measure = Measure((6, 4), [
+                ...     Note("c'4."),
+                ...     Tuplet((6, 7), "c'4. r16"),
+                ...     Tuplet((6, 7), "r16 c'4."),
+                ...     Note("c'4."),
+                ...     ])
+                >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
+                >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
+                >>> measure = Measure((6, 4), string)
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 6/4
+                    c'8 ~
+                    c'8 ~
+                    c'8
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        c'4.
+                        r16
+                    }
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        r16
+                        c'4.
+                    }
+                    c'8 ~
+                    c'8 ~
+                    c'8
+                }
+
+            ::
+                
+                >>> meter = metertools.Meter((6, 4))
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     meter,
+                ...     boundary_depth=1,
+                ...     )
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 6/4
+                    c'4.
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        c'8. ~
+                        c'8 ~
+                        c'16
+                        r16
+                    }
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        r16
+                        c'8 ~
+                        c'4
+                    }
+                    c'4.
+                }
+
+            The tied note rewriting is good while the tuplet rewriting
+            could use some adjustment.
+
+            **Example 9b.** Rewrites notes but not tuplets:
+
+            ::
+
+                >>> measure = Measure((6, 4), [
+                ...     Note("c'4."),
+                ...     Tuplet((6, 7), "c'4. r16"),
+                ...     Tuplet((6, 7), "r16 c'4."),
+                ...     Note("c'4."),
+                ...     ])
+                >>> string = r"c'8 ~ c'8 ~ c'8 \times 6/7 { c'4. r16 }"
+                >>> string += r" \times 6/7 { r16 c'4. } c'8 ~ c'8 ~ c'8"
+                >>> measure = Measure((6, 4), string)
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 6/4
+                    c'8 ~
+                    c'8 ~
+                    c'8
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        c'4.
+                        r16
+                    }
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        r16
+                        c'4.
+                    }
+                    c'8 ~
+                    c'8 ~
+                    c'8
+                }
+
+            ::
+                
+                >>> meter = metertools.Meter((6, 4))
+                >>> mutate(measure[:]).rewrite_meter(
+                ...     meter,
+                ...     boundary_depth=1,
+                ...     rewrite_tuplets=False,
+                ...     )
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 6/4
+                    c'4.
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        c'4.
+                        r16
+                    }
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 6/7 {
+                        r16
+                        c'4.
+                    }
+                    c'4.
+                }
+
         Operates in place and returns none.
         '''
         from abjad.tools import scoretools
@@ -1483,6 +1625,7 @@ class MutationAgent(abctools.AbjadObject):
             boundary_depth=boundary_depth,
             initial_offset=initial_offset,
             maximum_dot_count=maximum_dot_count,
+            rewrite_tuplets=rewrite_tuplets,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
         return result

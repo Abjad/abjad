@@ -118,6 +118,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         selections, 
         meters, 
         reference_meters=None,
+        rewrite_tuplets=False,
         use_messiaen_style_ties=False,
         ):
         from abjad.tools import metertools
@@ -141,6 +142,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
                     break
             mutate(measure[:]).rewrite_meter(
                 meter,
+                rewrite_tuplets=rewrite_tuplets,
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )
         selections = []
