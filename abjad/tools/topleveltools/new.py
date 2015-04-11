@@ -56,9 +56,7 @@ def new(expr, **kwargs):
         elif isinstance(getattr(expr, key, None), types.MethodType):
             method = getattr(expr, key)
             result = method(value)
-            print('!!!', expr, key, value, result)
             if isinstance(result, type(expr)):
-                print('???')
                 expr = result
                 update_dictionaries(
                     expr,
