@@ -1030,6 +1030,37 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
+            Burnishing outer divisions also works when given a single division:
+
+            ::
+
+                >>> divisions = [(7, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 7/8
+                        {
+                            r8
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                            r8
+                            r8
+                        }
+                    }
+                }
+
         ..  container:: example
 
             **Example 2.** Forces the first leaf of every division to be a
