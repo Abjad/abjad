@@ -10,6 +10,8 @@ class MutationAgent(abctools.AbjadObject):
 
     ..  container:: example
 
+        **Example 1.** Creates mutation agent for last two notes in staff:
+
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
@@ -47,6 +49,8 @@ class MutationAgent(abctools.AbjadObject):
 
     def copy(self, n=1, include_enclosing_containers=False):
         r'''Copies component and fractures crossing spanners.
+
+        ..  todo:: Add examples.
 
         Returns new component.
         '''
@@ -421,6 +425,8 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Replaces skip-filled measures with notes:
+
             ::
 
                 >>> pairs = [(1, 8), (3, 16)]
@@ -533,39 +539,43 @@ class MutationAgent(abctools.AbjadObject):
     def respell_with_flats(self):
         r'''Respell named pitches in mutation client with flats:
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
-            >>> show(staff) # doctest: +SKIP
+            **Example 1.** Respells notes in staff:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                c'8
-                cs'8
-                d'8
-                ef'8
-                e'8
-                f'8
-            }
+                >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> mutate(staff).respell_with_flats()
-            >>> show(staff) # doctest: +SKIP
+                >>> print(format(staff))
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                c'8
-                df'8
-                d'8
-                ef'8
-                e'8
-                f'8
-            }
+                >>> mutate(staff).respell_with_flats()
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8
+                    df'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
 
         Returns none.
         '''
@@ -581,39 +591,43 @@ class MutationAgent(abctools.AbjadObject):
     def respell_with_sharps(self):
         r'''Respell named pitches in mutation client with sharps:
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
-            >>> show(staff) # doctest: +SKIP
+            **Example 1.** Respells notes in staff:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                c'8
-                cs'8
-                d'8
-                ef'8
-                e'8
-                f'8
-            }
+                >>> staff = Staff("c'8 cs'8 d'8 ef'8 e'8 f'8")
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> mutate(staff).respell_with_sharps()
-            >>> show(staff) # doctest: +SKIP
+                >>> print(format(staff))
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ef'8
+                    e'8
+                    f'8
+                }
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                c'8
-                cs'8
-                d'8
-                ds'8
-                e'8
-                f'8
-            }
+                >>> mutate(staff).respell_with_sharps()
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8
+                    cs'8
+                    d'8
+                    ds'8
+                    e'8
+                    f'8
+                }
 
         Returns none.
         '''
@@ -1945,6 +1959,8 @@ class MutationAgent(abctools.AbjadObject):
         ):
         r'''Splices `components` to the right or left of selection.
 
+        ..  todo:: Add examples.
+
         Returns list of components.
         '''
         return self._client._splice(
@@ -2545,55 +2561,59 @@ class MutationAgent(abctools.AbjadObject):
     def transpose(self, expr):
         r'''Transposes notes and chords in mutation client by `expr`.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff()
-            >>> staff.append(Measure((4, 4), "c'4 d'4 e'4 r4"))
-            >>> staff.append(Measure((3, 4), "d'4 e'4 <f' a' c''>4"))
-            >>> show(staff) # doctest: +SKIP
+            **Example 1.** Transposes notes and chords in staff:
 
-        ..  doctest::
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((4, 4), "c'4 d'4 e'4 r4"))
+                >>> staff.append(Measure((3, 4), "d'4 e'4 <f' a' c''>4"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                    >>> print(format(staff))
+                    \new Staff {
+                        {
+                            \time 4/4
+                            c'4
+                            d'4
+                            e'4
+                            r4
+                        }
+                        {
+                            \time 3/4
+                            d'4
+                            e'4
+                            <f' a' c''>4
+                        }
+                    }
+
+            ::
+
+                >>> mutate(staff).transpose("+m3")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
 
                 >>> print(format(staff))
                 \new Staff {
                     {
                         \time 4/4
-                        c'4
-                        d'4
-                        e'4
+                        ef'4
+                        f'4
+                        g'4
                         r4
                     }
                     {
                         \time 3/4
-                        d'4
-                        e'4
-                        <f' a' c''>4
+                        f'4
+                        g'4
+                        <af' c'' ef''>4
                     }
                 }
-
-        ::
-
-            >>> mutate(staff).transpose("+m3")
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(staff))
-            \new Staff {
-                {
-                    \time 4/4
-                    ef'4
-                    f'4
-                    g'4
-                    r4
-                }
-                {
-                    \time 3/4
-                    f'4
-                    g'4
-                    <af' c'' ef''>4
-                }
-            }
 
         Returns none.
         '''
