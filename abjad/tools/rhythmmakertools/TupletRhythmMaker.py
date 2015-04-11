@@ -5,11 +5,8 @@ from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
-from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import inspect_
-from abjad.tools.topleveltools import new
 
 
 class TupletRhythmMaker(RhythmMaker):

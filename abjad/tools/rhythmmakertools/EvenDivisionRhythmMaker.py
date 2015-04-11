@@ -827,7 +827,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 left_counts,
                 right_counts,
                 )
-            return
+            return selections
         left_length = 0
         if left_counts:
             left_length = left_counts[0]
@@ -1023,6 +1023,37 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         \time 4/8
                         {
                             c'8 [
+                            c'8 ]
+                            r8
+                            r8
+                        }
+                    }
+                }
+
+            Burnishing outer divisions also works when given a single division:
+
+            ::
+
+                >>> divisions = [(7, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 7/8
+                        {
+                            r8
+                            c'8 [
+                            c'8
+                            c'8
                             c'8 ]
                             r8
                             r8
