@@ -26,6 +26,9 @@ class TupletSpellingSpecifier(AbjadValueObject):
         simplify_tuplets=False,
         use_note_duration_bracket=False,
         ):
+        # TODO: Consider renaming is_diminution=True to is_augmentation=None.
+        #       That would allow for all keywords to default to None,
+        #       and therefore a single-line storage format.
         self._avoid_dots = bool(avoid_dots)
         self._is_diminution = bool(is_diminution)
         self._simplify_tuplets = bool(simplify_tuplets)
