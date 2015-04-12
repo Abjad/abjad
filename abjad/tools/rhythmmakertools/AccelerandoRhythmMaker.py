@@ -23,7 +23,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...     beam_specifier=rhythmmakertools.BeamSpecifier(
             ...         use_feather_beams=True,
             ...         ),
-            ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+            ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
             ...         start_duration=Duration(1, 8),
             ...         stop_duration=Duration(1, 20),
             ...         written_duration=Duration(1, 16),
@@ -236,7 +236,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ...     beam_specifier=rhythmmakertools.BeamSpecifier(
             ...         use_feather_beams=True,
             ...         ),
-            ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+            ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
             ...         start_duration=Duration(1, 20),
             ...         stop_duration=Duration(1, 8),
             ...         written_duration=Duration(1, 16),
@@ -453,7 +453,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     __slots__ = (
         '_exponent',
-        '_interpolation_specifier',
+        '_interpolation_specifiers',
         )
 
     _class_name_abbreviation = 'Acc'
@@ -466,7 +466,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         self,
         beam_specifier=None,
         duration_spelling_specifier=None,
-        interpolation_specifier=None,
+        interpolation_specifiers=None,
         output_masks=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
@@ -479,7 +479,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
-        self._interpolation_specifier = interpolation_specifier
+        self._interpolation_specifiers = interpolation_specifiers
 
     ### SPECIAL METHODS ###
 
@@ -499,20 +499,20 @@ class AccelerandoRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _fix_rounding_error(self, selection, total_duration):
-        interpolation_specifier = self._get_interpolation_specifier()
+        interpolation_specifiers = self._get_interpolation_specifiers()
         selection_duration = selection.get_duration()
         if not selection_duration == total_duration:
             needed_duration = total_duration - selection[:-1].get_duration()
             multiplier = needed_duration / \
-                interpolation_specifier.written_duration
+                interpolation_specifiers.written_duration
             multiplier = durationtools.Multiplier(multiplier)
             detach(durationtools.Multiplier, selection[-1])
             attach(multiplier, selection[-1])
 
-    def _get_interpolation_specifier(self):
+    def _get_interpolation_specifiers(self):
         from abjad.tools import rhythmmakertools
-        if self.interpolation_specifier is not None:
-            return self.interpolation_specifier
+        if self.interpolation_specifiers is not None:
+            return self.interpolation_specifiers
         return rhythmmakertools.InterpolationSpecifier()
 
     @staticmethod
@@ -717,11 +717,11 @@ class AccelerandoRhythmMaker(RhythmMaker):
         '''
         from abjad.tools import rhythmmakertools
         total_duration = durationtools.Duration(total_duration)
-        interpolation_specifier = self._get_interpolation_specifier()
+        interpolation_specifiers = self._get_interpolation_specifiers()
         durations = AccelerandoRhythmMaker._interpolate_divide(
             total_duration=total_duration,
-            start_duration=interpolation_specifier.start_duration,
-            stop_duration=interpolation_specifier.stop_duration,
+            start_duration=interpolation_specifiers.start_duration,
+            stop_duration=interpolation_specifiers.stop_duration,
             )
         durations = [
             durationtools.Duration(int(round(_ * 2**10)), 2**10)
@@ -729,8 +729,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ]
         notes = []
         for i, duration in enumerate(durations):
-            note = scoretools.Note(0, interpolation_specifier.written_duration)
-            multiplier = duration / interpolation_specifier.written_duration
+            note = scoretools.Note(0, interpolation_specifiers.written_duration)
+            multiplier = duration / interpolation_specifiers.written_duration
             multiplier = durationtools.Multiplier(multiplier)
             attach(multiplier, note)
             notes.append(note)
@@ -782,7 +782,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         beam_each_division=True,
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -996,7 +996,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         beam_divisions_together=True,
                 ...         use_feather_beams=False,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -1261,7 +1261,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         beam_divisions_together=False,
                 ...         beam_each_division=False,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -1466,7 +1466,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         return superclass.beam_specifier
 
     @property
-    def interpolation_specifier(self):
+    def interpolation_specifiers(self):
         r'''Gets interpolation specifier of accelerando rhythm-maker.
 
         Defaults to none.
@@ -1475,7 +1475,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         Returns interpolation specifier or none.
         '''
-        return self._interpolation_specifier
+        return self._interpolation_specifiers
 
     @property
     def output_masks(self):
@@ -1491,7 +1491,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -1705,7 +1705,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -1856,7 +1856,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -2072,7 +2072,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -2292,7 +2292,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -2517,7 +2517,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
@@ -2733,7 +2733,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     interpolation_specifier=rhythmmakertools.InterpolationSpecifier(
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
                 ...         start_duration=Duration(1, 8),
                 ...         stop_duration=Duration(1, 20),
                 ...         written_duration=Duration(1, 16),
