@@ -165,10 +165,10 @@ class Selector(AbjadValueObject):
         expr = (expr,)
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
-        for i, callback in enumerate(callbacks, rotation):
+        for callback in callbacks:
             #print('EXPR', expr)
             try:
-                expr = callback(expr, rotation=i)
+                expr = callback(expr, rotation=rotation)
             except TypeError:
                 expr = callback(expr)
         return selectiontools.Selection(expr)
@@ -547,12 +547,11 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff, rotation=1):
                 ...     x
                 ...
-                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
-                Selection(Note("e'8"),)
-                Selection(Rest('r8'), Note("f'8"))
-                Selection(Note("g'8"), Note("a'8"), Note("b'8"))
-                Selection(Rest('r8'),)
-                Selection(Note("c''8"),)
+                Selection(Note("c'8"), Rest('r8'))
+                Selection(Note("d'8"), Note("e'8"), Rest('r8'))
+                Selection(Note("f'8"),)
+                Selection(Note("g'8"), Note("a'8"))
+                Selection(Note("b'8"), Rest('r8'), Note("c''8"))
 
         Returns new selector.
         '''
@@ -1192,6 +1191,32 @@ class Selector(AbjadValueObject):
         ..  container:: example
 
             **Example 4.**
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_pattern(
+                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...         indices=[0],
+                ...         period=2,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> for x in selector(staff, rotation=1):
+                ...     print(staff.index(x), repr(x))
+                ...
+                1 Note("d'4")
+                3 Note("e'4")
+                5 Note("e'4")
+                7 Note("f'4")
+
+        ..  container:: example
+
+            **Example 5.**
 
             ::
 
