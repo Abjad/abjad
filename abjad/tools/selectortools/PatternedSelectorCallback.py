@@ -31,11 +31,14 @@ class PatternedSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, rotation=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple in which each item is a selection or component.
         '''
+        if rotation is None:
+            rotation = 0
+        rotation = int(rotation)
         if not self.pattern:
             return expr
         result = []
@@ -44,7 +47,11 @@ class PatternedSelectorCallback(AbjadValueObject):
                 subresult = []
                 length = len(subexpr)
                 for index, item in enumerate(subexpr):
-                    if self.pattern.matches_index(index, length):
+                    if self.pattern.matches_index(
+                        index,
+                        length,
+                        rotation=rotation,
+                        ):
                         subresult.append(item)
                 if subresult:
                     subresult = selectiontools.Selection(subresult)
@@ -52,7 +59,11 @@ class PatternedSelectorCallback(AbjadValueObject):
         else:
             length = len(expr)
             for index, item in enumerate(expr):
-                if self.pattern.matches_index(index, length):
+                if self.pattern.matches_index(
+                    index,
+                    length,
+                    rotation=rotation,
+                    ):
                     result.append(item)
         return tuple(result)
 
