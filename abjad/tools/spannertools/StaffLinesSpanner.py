@@ -36,15 +36,13 @@ class StaffLinesSpanner(Spanner):
     on first leaf in spanner.
 
     Stops and restarts staff on last leaf in spanner.
-
-    Reverts ``line-count`` attribute of LilyPond ``Staff.StaffSymbol`` grob on
-    last leaf in spanner.
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         '_lines',
+        '_forbid_restarting',
         )
 
     ### INITIALIZER ###
@@ -52,6 +50,7 @@ class StaffLinesSpanner(Spanner):
     def __init__(
         self,
         lines=5,
+        forbid_restarting=None,
         overrides=None,
         ):
         Spanner.__init__(
@@ -68,6 +67,9 @@ class StaffLinesSpanner(Spanner):
             message = message.format(lines)
             raise ValueError(message)
         self._lines = lines
+        if forbid_restarting is not None:
+            forbid_restarting = bool(forbid_restarting)
+        self._forbid_restarting = forbid_restarting
 
     ### PRIVATE METHODS ###
 
@@ -76,7 +78,7 @@ class StaffLinesSpanner(Spanner):
 
     def _format_after_leaf(self, leaf):
         result = []
-        if self._is_my_last_leaf(leaf):
+        if self._is_my_last_leaf(leaf) and not self.forbid_restarting:
             result.append(r'\stopStaff')
             result.append(r'\startStaff')
         return result
@@ -110,6 +112,37 @@ class StaffLinesSpanner(Spanner):
         return result
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def forbid_restarting(self):
+        r'''Is true if staff lines spanner is forbidden from re-stopping and
+        re-starting the staff on its last leaf. Otherwise false.
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> spanner = spannertools.StaffLinesSpanner(
+            ...     lines=1,
+            ...     forbid_restarting=True,
+            ...     )
+            >>> attach(spanner, staff[:])
+            >>> print(format(staff))
+            \new Staff {
+                \stopStaff
+                \once \override Staff.StaffSymbol.line-count = 1
+                \startStaff
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+
+        This is useful when the final leaf of a score is covered by a staff
+        lines spanner, to prevent unexpected LilyPond typesetting behavior.
+
+        Returns boolean.
+        '''
+        return self._forbid_restarting
 
     @property
     def lines(self):
