@@ -598,9 +598,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             message += ' must be positive.'
             raise ValueError(message)
         if total_duration < (stop_duration + start_duration):
-            message = "'start_duration' + 'stop_duration'"
-            message += " must be < 'total_duration'."
-            raise ValueError(message)
+            return 'too small'
         durations = []
         total_duration = float(total_duration)
         partial_sum = 0
@@ -736,6 +734,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
             start_duration=interpolation_specifier.start_duration,
             stop_duration=interpolation_specifier.stop_duration,
             )
+        if durations == 'too small':
+            notes = scoretools.make_notes([0], [total_duration])
+            return notes
         durations = [
             durationtools.Duration(int(round(_ * 2**10)), 2**10)
             for _ in durations
@@ -1919,6 +1920,136 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 25/16 ]
                         }
                         \revert TupletNumber #'text
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Makes a single note in the case that interpolation
+            would take too long for a given division:
+
+            ::
+
+                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         use_feather_beams=True,
+                ...         ),
+                ...     interpolation_specifiers=rhythmmakertools.InterpolationSpecifier(
+                ...         start_duration=Duration(1, 8),
+                ...         stop_duration=Duration(1, 20),
+                ...         written_duration=Duration(1, 16),
+                ...         ),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         use_note_duration_bracket=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(5, 8), (3, 8), (1, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 5/8
+                        \override TupletNumber #'text = \markup {
+                            \scale
+                                #'(0.75 . 0.75)
+                                \score
+                                    {
+                                        \new Score \with {
+                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            proportionalNotationDuration = ##f
+                                        } <<
+                                            \new RhythmicStaff \with {
+                                                \remove Time_signature_engraver
+                                                \remove Staff_symbol_engraver
+                                                \override Stem #'direction = #up
+                                                \override Stem #'length = #5
+                                                \override TupletBracket #'bracket-visibility = ##t
+                                                \override TupletBracket #'direction = #up
+                                                \override TupletBracket #'padding = #1.25
+                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                tupletFullLength = ##t
+                                            } {
+                                                c'2 ~
+                                                c'8
+                                            }
+                                        >>
+                                        \layout {
+                                            indent = #0
+                                            ragged-right = ##t
+                                        }
+                                    }
+                            }
+                        \times 1/1 {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 61/32 [
+                            c'16 * 115/64
+                            c'16 * 49/32
+                            c'16 * 5/4
+                            c'16 * 33/32
+                            c'16 * 57/64
+                            c'16 * 13/16
+                            c'16 * 25/32 ]
+                        }
+                        \revert TupletNumber #'text
+                    }
+                    {
+                        \time 3/8
+                        \override TupletNumber #'text = \markup {
+                            \scale
+                                #'(0.75 . 0.75)
+                                \score
+                                    {
+                                        \new Score \with {
+                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            proportionalNotationDuration = ##f
+                                        } <<
+                                            \new RhythmicStaff \with {
+                                                \remove Time_signature_engraver
+                                                \remove Staff_symbol_engraver
+                                                \override Stem #'direction = #up
+                                                \override Stem #'length = #5
+                                                \override TupletBracket #'bracket-visibility = ##t
+                                                \override TupletBracket #'direction = #up
+                                                \override TupletBracket #'padding = #1.25
+                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                tupletFullLength = ##t
+                                            } {
+                                                c'4.
+                                            }
+                                        >>
+                                        \layout {
+                                            indent = #0
+                                            ragged-right = ##t
+                                        }
+                                    }
+                            }
+                        \times 1/1 {
+                            \once \override Beam #'grow-direction = #right
+                            c'16 * 117/64 [
+                            c'16 * 99/64
+                            c'16 * 69/64
+                            c'16 * 13/16
+                            c'16 * 47/64 ]
+                        }
+                        \revert TupletNumber #'text
+                    }
+                    {
+                        \time 1/8
+                        c'8
                     }
                 }
 
