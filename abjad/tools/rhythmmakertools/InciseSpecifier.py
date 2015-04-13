@@ -59,8 +59,12 @@ class InciseSpecifier(AbjadValueObject):
         if suffix_talea:
             assert suffix_counts
         if talea_denominator is not None:
-            assert mathtools.is_nonnegative_integer_power_of_two(
-                talea_denominator)
+            if not mathtools.is_nonnegative_integer_power_of_two(
+                talea_denominator):
+                message = 'talea denominator {!r} must be nonnegative'
+                message += ' integer power of 2.'
+                message = message.format(talea_denominator)
+                raise Exception(message)
         self._talea_denominator = talea_denominator
         if prefix_talea or suffix_talea:
             assert talea_denominator is not None
@@ -78,6 +82,8 @@ class InciseSpecifier(AbjadValueObject):
         r'''Formats incise specifier.
 
         ..  container:: example
+
+            **Example 1.**
 
             ::
 
@@ -227,7 +233,7 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            Divides middle part of every division ``1:1``:
+            **Example 1.** Divides middle part of every division ``1:1``:
 
             ::
 
@@ -294,27 +300,36 @@ class InciseSpecifier(AbjadValueObject):
         r'''Is true when rhythm-maker should fill divisions with notes.
         Otherwise false.
 
+        ..  todo:: Add examples.
+
         Defaults to true.
 
-        Returns boolean.
+        Set to true or false.
+
+        Returns true or false.
         '''
         return self._fill_with_notes
 
     @property
     def outer_divisions_only(self):
         r'''Is true when rhythm-maker should incise outer divisions only.
-
         Is false when rhythm-maker should incise all divisions.
+
+        ..  todo:: Add examples.
 
         Defaults to false.
 
         Set to true or false.
+        
+        Returns true or false.
         '''
         return self._outer_divisions_only
 
     @property
     def prefix_counts(self):
         r'''Gets prefix lengths of incision specifier.
+
+        ..  todo:: Add examples.
 
         Returns tuple or none.
         '''
@@ -324,6 +339,8 @@ class InciseSpecifier(AbjadValueObject):
     def prefix_talea(self):
         r'''Gets prefix talea of incision specifier.
 
+        ..  todo:: Add examples.
+
         Returns tuple or none.
         '''
         return self._prefix_talea
@@ -331,6 +348,8 @@ class InciseSpecifier(AbjadValueObject):
     @property
     def suffix_counts(self):
         r'''Gets suffix lengths of incision specifier.
+
+        ..  todo:: Add examples.
 
         Returns tuple or none.
         '''
@@ -340,6 +359,8 @@ class InciseSpecifier(AbjadValueObject):
     def suffix_talea(self):
         r'''Gets suffix talea of incision specifier.
 
+        ..  todo:: Add examples.
+
         Returns tuple or none.
         '''
         return self._suffix_talea
@@ -347,6 +368,8 @@ class InciseSpecifier(AbjadValueObject):
     @property
     def talea_denominator(self):
         r'''Gets talea denominator of incision specifier.
+
+        ..  todo:: Add examples.
 
         Returns positive integer-equivalent number.
         '''
