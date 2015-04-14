@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 import numbers
 from abjad.tools import mathtools
 from abjad.tools import schemetools
@@ -112,11 +113,13 @@ class Markup(AbjadValueObject):
         elif isinstance(contents, type(self)):
             direction = direction or contents._direction
             new_contents = tuple(contents._contents)
-        elif isinstance(contents, (list, tuple)) and 0 < len(contents):
+        elif isinstance(contents, collections.Sequence) and 0 < len(contents):
             new_contents = []
             for arg in contents:
                 if isinstance(arg, (str, markuptools.MarkupCommand)):
                     new_contents.append(arg)
+                elif isinstance(arg, type(self)):
+                    new_contents.extend(arg.contents)
                 else:
                     new_contents.append(str(arg))
             new_contents = tuple(new_contents)

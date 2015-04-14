@@ -90,3 +90,31 @@ def test_markuptools_Markup___init___07():
     assert markup_1 is not markup_2
     assert markup_2.contents == ('foo contents string',)
     assert markup_2.direction == Down
+
+
+def test_markuptools_Markup___init___08():
+
+    fraction_one = markuptools.Markup.fraction(3, 4)
+    fraction_two = markuptools.Markup.fraction(9, 8)
+    delimiter_string = ':'
+    markup = markuptools.Markup([fraction_one, delimiter_string, fraction_two])
+    markup = markup.pad_around(0.5).box()
+
+    assert format(markup, 'lilypond') == systemtools.TestManager.clean_string(
+        r'''
+        \markup {
+            \box
+                \pad-around
+                    #0.5
+                    {
+                        \fraction
+                            3
+                            4
+                        :
+                        \fraction
+                            9
+                            8
+                    }
+            }
+        '''
+        )
