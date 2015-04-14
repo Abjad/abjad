@@ -21,7 +21,7 @@ class PitchSelectorCallback(AbjadValueObject):
         pitches=None,
         ):
         if pitches is not None:
-            if not isinstance(pitches, collections.Sequence):
+            if not isinstance(pitches, collections.Iterable):
                 pitches = [pitches]
             pitches = pitchtools.PitchSet(
                 items=pitches,
@@ -32,6 +32,10 @@ class PitchSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
+        r'''Iterates tuple `expr`.
+
+        Returns tuple in which each item is a selection or component.
+        '''
         if not self.pitches:
             return ()
         result = []
