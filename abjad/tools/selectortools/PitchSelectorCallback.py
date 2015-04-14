@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools import pitchtools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -20,6 +21,8 @@ class PitchSelectorCallback(AbjadValueObject):
         pitches=None,
         ):
         if pitches is not None:
+            if not isinstance(pitches, collections.Sequence):
+                pitches = [pitches]
             pitches = pitchtools.PitchSet(
                 items=pitches,
                 item_class=pitchtools.NumberedPitch,

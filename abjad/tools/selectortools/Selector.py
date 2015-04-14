@@ -1309,7 +1309,7 @@ class Selector(AbjadValueObject):
                 >>> staff.extend("r4 <c' e' g'>4 ~ <c' e' g'>2")
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie()
-                >>> selector = selector.by_pitch(pitches="c'")
+                >>> selector = selector.by_pitch(pitches=NamedPitch('C4'))
 
             ::
 
