@@ -213,6 +213,7 @@ class RhythmMaker(AbjadValueObject):
             duration_spelling_specifier.decrease_durations_monotonically
         forbidden_written_duration = \
             duration_spelling_specifier.forbidden_written_duration
+        tie_specifier = self._get_tie_specifier()
         length = len(selections)
         output_masks = self.output_masks
         for i, selection in enumerate(selections):
@@ -229,6 +230,8 @@ class RhythmMaker(AbjadValueObject):
                     decrease_durations_monotonically=\
                         decrease_durations_monotonically,
                     forbidden_written_duration=forbidden_written_duration,
+                    use_messiaen_style_ties=\
+                        tie_specifier.use_messiaen_style_ties,
                     )
             elif isinstance(matching_output_mask, rhythmmakertools.NullMask):
                 new_selections.append(selection)
