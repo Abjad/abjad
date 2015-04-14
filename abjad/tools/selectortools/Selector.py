@@ -1247,6 +1247,84 @@ class Selector(AbjadValueObject):
             )
         return self._append_callback(callback)
 
+    def by_pitch(
+        self,
+        pitches=None,
+        ):
+        r'''Configures selector to selector expressions by `pitches`.
+
+        ..  todo:: Implement a pitch-inequality class.
+
+        ..  container:: example
+
+            **Example 1.** Selects components matching a single pitch:
+
+            ::
+
+                >>> staff = Staff("c'4 d'4 ~ d'4 e'4")
+                >>> staff.extend("r4 <c' e' g'>4 ~ <c' e' g'>2")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_pitch(pitches="c'")
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Note("c'4")
+                Chord("<c' e' g'>4")
+                Chord("<c' e' g'>2")
+
+        ..  container:: example
+
+            **Example 2.** Selects components matching multiple pitches:
+
+            ::
+
+                >>> staff = Staff("c'4 d'4 ~ d'4 e'4")
+                >>> staff.extend("r4 <c' e' g'>4 ~ <c' e' g'>2")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_pitch(pitches="c' e'")
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                Note("c'4")
+                Note("e'4")
+                Chord("<c' e' g'>4")
+                Chord("<c' e' g'>2")
+
+        ..  container:: example
+
+            **Example 3.** Selects logical ties containing components matching
+            multiple pitches:
+
+            ::
+
+                >>> staff = Staff("c'4 d'4 ~ d'4 e'4")
+                >>> staff.extend("r4 <c' e' g'>4 ~ <c' e' g'>2")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie()
+                >>> selector = selector.by_pitch(pitches="c'")
+
+            ::
+
+                >>> for x in selector(staff):
+                ...     x
+                ...
+                LogicalTie(Note("c'4"),)
+                LogicalTie(Chord("<c' e' g'>4"), Chord("<c' e' g'>2"))
+
+        Returns new selector.
+        '''
+        from abjad.tools import selectortools
+        callback = selectortools.PitchSelectorCallback(pitches=pitches)
+        return self._append_callback(callback)
+
     def by_run(
         self,
         prototype=None,
