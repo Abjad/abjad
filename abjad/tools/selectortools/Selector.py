@@ -1,4 +1,6 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
+import collections
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
@@ -1669,6 +1671,141 @@ class Selector(AbjadValueObject):
             apply_to_each=False,
             )
         return self._append_callback(callback)
+
+    @staticmethod
+    def run_selectors(expr, selectors, rotation=None):
+        r'''Processes multiple selectors against a single selection.
+
+        Minimizes re-selection when selectors share identical prefixes of
+        selector callbacks.
+
+        ::
+
+            >>> staff = Staff("c'4 d'8 e'8 f'4 g'8 a'4 b'8 c'8")
+
+        ::
+
+            >>> selector = selectortools.Selector()
+            >>> logical_tie_selector = selector.by_logical_tie()
+            >>> pitched_selector = logical_tie_selector.by_pitch('C4')
+            >>> duration_selector = logical_tie_selector.by_duration('==', (1, 8))
+            >>> contiguity_selector = duration_selector.by_contiguity()
+            >>> selectors = [
+            ...     selector,
+            ...     logical_tie_selector,
+            ...     pitched_selector,
+            ...     duration_selector,
+            ...     contiguity_selector,
+            ...     ]
+
+        ::
+
+            >>> result = selectortools.Selector.run_selectors(staff, selectors)
+            >>> all(selector in result for selector in selectors)
+            True
+
+        ::
+
+            >>> for x in result[selector]:
+            ...     x
+            Staff("c'4 d'8 e'8 f'4 g'8 a'4 b'8 c'8")
+
+        ::
+
+            >>> for x in result[logical_tie_selector]:
+            ...     x
+            LogicalTie(Note("c'4"),)
+            LogicalTie(Note("d'8"),)
+            LogicalTie(Note("e'8"),)
+            LogicalTie(Note("f'4"),)
+            LogicalTie(Note("g'8"),)
+            LogicalTie(Note("a'4"),)
+            LogicalTie(Note("b'8"),)
+            LogicalTie(Note("c'8"),)
+
+        ::
+
+            >>> for x in result[pitched_selector]:
+            ...     x
+            LogicalTie(Note("c'4"),)
+            LogicalTie(Note("c'8"),)
+
+        ::
+
+            >>> for x in result[duration_selector]:
+            ...     x
+            LogicalTie(Note("d'8"),)
+            LogicalTie(Note("e'8"),)
+            LogicalTie(Note("g'8"),)
+            LogicalTie(Note("b'8"),)
+            LogicalTie(Note("c'8"),)
+
+        ::
+
+            >>> for x in result[contiguity_selector]:
+            ...     x
+            Selection(LogicalTie(Note("d'8"),), LogicalTie(Note("e'8"),))
+            Selection(LogicalTie(Note("g'8"),),)
+            Selection(LogicalTie(Note("b'8"),), LogicalTie(Note("c'8"),))
+
+        Returns a dictionary of selector/selection pairs.
+        '''
+
+        if rotation is None:
+            rotation = 0
+        rotation = int(rotation)
+        prototype = (
+            scoretools.Component,
+            selectiontools.Selection,
+            )
+        if not isinstance(expr, prototype):
+            expr = select(expr)
+        expr = (expr,)
+        assert all(isinstance(x, prototype) for x in expr), repr(expr)
+
+        maximum_length = 0
+        for selector in selectors:
+            if selector.callbacks:
+                maximum_length = max(maximum_length, len(selector.callbacks))
+        #print('MAX LENGTH', maximum_length)
+
+        selectors = list(selectors)
+        results_by_prefix = {(): expr}
+        results_by_selector = collections.OrderedDict()
+
+        for index in range(1, maximum_length + 2):
+            #print('INDEX', index)
+            #print('PRUNING')
+            for selector in selectors[:]:
+                callbacks = selector.callbacks or ()
+                callback_length = index - 1
+                if len(callbacks) == callback_length:
+                    prefix = callbacks[:callback_length]
+                    results_by_selector[selector] = results_by_prefix[prefix]
+                    selectors.remove(selector)
+                    #print('\tREMOVED:', selector)
+                    #print('\tREMAINING:', len(selectors))
+            if not selectors:
+                #print('BREAKING')
+                break
+            #print('ADDING')
+            for selector in selectors:
+                callbacks = selector.callbacks or ()
+                this_prefix = callbacks[:index]
+                if this_prefix in results_by_prefix:
+                    #print('\tSKIPPING', repr(selector))
+                    continue
+                #print('\tADDING', repr(selector))
+                previous_prefix = callbacks[:index - 1]
+                previous_expr = results_by_prefix[previous_prefix]
+                callback = this_prefix[-1]
+                try:
+                    expr = callback(previous_expr, rotation=rotation)
+                except TypeError:
+                    expr = callback(previous_expr)
+                results_by_prefix[this_prefix] = expr
+
+        return results_by_selector
 
     def with_next_leaf(self):
         r'''Configures selector to select the next leaf after each selection.
