@@ -18,12 +18,26 @@ class PitchSet(Set):
 
     ::
 
+        >>> print(format(numbered_pitch_set))
+        pitchtools.PitchSet(
+            [-2, -1.5, 6, 7]
+            )
+
+    ::
+
         >>> named_pitch_set = pitchtools.PitchSet(
         ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
         ...     item_class=NamedPitch,
         ...     )
         >>> named_pitch_set
         PitchSet(['bf,', 'aqs', 'bqf', "fs'", "g'"])
+
+    ::
+
+        >>> print(format(named_pitch_set))
+        pitchtools.PitchSet(
+            ['bf,', 'aqs', 'bqf', "fs'", "g'"]
+            )
 
     '''
 
@@ -56,14 +70,21 @@ class PitchSet(Set):
 
     @property
     def _repr_specification(self):
+        return new(
+            self._storage_format_specification,
+            is_indented=False,
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
         items = []
         if self.item_class.__name__.startswith('Named'):
             items = [str(x) for x in sorted(self)]
         else:
-            items = sorted([x.pitch_number for x in self])
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
+            items = sorted(x.pitch_number for x in self)
+        return systemtools.StorageFormatSpecification(
+            self,
             keyword_argument_names=(),
             positional_argument_values=(
                 items,
