@@ -258,8 +258,12 @@ class Spanner(AbjadObject):
         component_input = self[-1:]
         component_input.extend(components)
         if self._contiguity_constraint == 'logical voice':
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(
-                component_input), repr(component_input)
+            if not Selection._all_are_contiguous_components_in_same_logical_voice(
+                component_input):
+                message = 'must be contiguous components'
+                message += ' in same logical voice: {!r}.'
+                message = message.format(component_input)
+                raise Exception(message)
         for component in components:
             self._append(component)
 
