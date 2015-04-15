@@ -9,6 +9,8 @@ class TrillSpanner(Spanner):
 
     ..  container:: example
 
+        **Example 1.** Attaches unpitched trill spanner to all notes in staff:
+
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -21,6 +23,28 @@ class TrillSpanner(Spanner):
             >>> print(format(staff))
             \new Staff {
                 c'8 \startTrillSpan
+                d'8
+                e'8
+                f'8 \stopTrillSpan
+            }
+
+    ..  container:: example
+
+        **Example 2.** Attaches pitched trill spanner to all notes in staff:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> trill = spannertools.TrillSpanner(pitch=NamedPitch("cs'"))
+            >>> attach(trill, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \pitchedTrill
+                c'8 \startTrillSpan cs'
                 d'8
                 e'8
                 f'8 \stopTrillSpan
@@ -90,6 +114,8 @@ class TrillSpanner(Spanner):
 
         ..  container:: example
 
+            **Example 1.** Returns pitch when trill spanner is pitched:
+
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -113,7 +139,37 @@ class TrillSpanner(Spanner):
                 >>> trill.pitch
                 NamedPitch("cs'")
 
+        ..  container:: example
+
+            **Example 2.** Returns none when trill spanner is unpitched:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> trill = spannertools.TrillSpanner()
+                >>> attach(trill, staff[:2])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8 \startTrillSpan
+                    d'8 \stopTrillSpan
+                    e'8
+                    f'8
+                }
+
+            ::
+
+                >>> trill.pitch is None
+                True
+
         Formats LilyPond ``\pitchedTrill`` command on first leaf in spanner.
+
+        Defaults to none.
+
+        Set to named pitch or none.
 
         Returns named pitch or none.
         '''
@@ -124,6 +180,8 @@ class TrillSpanner(Spanner):
         r'''Gets written pitch of trill spanner.
 
         ..  container:: example
+
+            **Example 1.** Returns pitch when trill spanner is pitched:
 
             ::
 
@@ -148,7 +206,37 @@ class TrillSpanner(Spanner):
                 >>> trill.written_pitch
                 NamedPitch("cs'")
 
-        Defined equal to `pitch`.
+        ..  container:: example
+
+            **Example 2.** Returns none when trill spanner is unpitched:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> trill = spannertools.TrillSpanner()
+                >>> attach(trill, staff[:2])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8 \startTrillSpan
+                    d'8 \stopTrillSpan
+                    e'8
+                    f'8
+                }
+
+            ::
+
+                >>> trill.written_pitch is None
+                True
+
+        Alias defined equal to `pitch` of trill spanner.
+
+        Defaults to none.
+
+        Property can not be set.
 
         Returns named pitch or none.
         '''
