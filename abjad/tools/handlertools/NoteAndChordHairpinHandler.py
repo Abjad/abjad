@@ -52,6 +52,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         ::
 
             >>> handler = handlertools.NoteAndChordHairpinHandler(
+            ...     attach_start_dynamic_to_lone_notes=False,
             ...     hairpin_token='ppp < p',
             ...     span='nontrivial ties',
             ...     )
@@ -157,6 +158,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = (
+        '_attach_start_dynamic_to_lone_notes',
         '_hairpin_token',
         '_patterns',
         '_span',
@@ -166,12 +168,15 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
     def __init__(
         self, 
+        attach_start_dynamic_to_lone_notes=True,
         hairpin_token=None, 
         minimum_duration=None,
         patterns=None,
         span='contiguous notes and chords',
         ):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
+        self._attach_start_dynamic_to_lone_notes = bool(
+            attach_start_dynamic_to_lone_notes)
         if hairpin_token is None:
             hairpin_token = []
         elif isinstance(hairpin_token, str):
@@ -239,7 +244,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             for logical_tie in group:
                 for note in logical_tie:
                     notes.append(note)
-            if len(notes) <= 1:
+            if len(notes) == 0:
                 continue
             total_notes = len(notes)
             notes_to_span = []
@@ -247,6 +252,16 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 if self._index_matches_patterns(note_index, total_notes):
                     notes_to_span.append(note)
             if not notes_to_span:
+                continue
+            if (len(notes_to_span) == 1 and
+                not self.attach_start_dynamic_to_lone_notes):
+                continue
+            if (len(notes_to_span) == 1 and
+                self.attach_start_dynamic_to_lone_notes):
+                hairpin_token = self.hairpin_token[group_index]
+                start_dynamic = hairpin_token[0]
+                dynamic = indicatortools.Dynamic(start_dynamic)
+                attach(dynamic, notes[0])
                 continue
             hairpin_token = self.hairpin_token[group_index]
             descriptor = ' '.join([_ for _ in hairpin_token if _])
@@ -286,6 +301,85 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         return False
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def attach_start_dynamic_to_lone_notes(self):
+        r'''Is true when start dynamic of hairpin should be attached to lone
+        notes. Otherwise nothing is attached to lone notes.
+
+        ..  container:: example
+            
+            **Example 1.** Spans nontrivial ties and leaves lone notes
+            unmarked:
+
+            ::
+
+                >>> handler = handlertools.NoteAndChordHairpinHandler(
+                ...     attach_start_dynamic_to_lone_notes=False,
+                ...     hairpin_token='ppp < p',
+                ...     span='nontrivial ties',
+                ...     )
+                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \ppp
+                    c'8 \p
+                    d'8 ~ \< \ppp
+                    d'4 \p
+                    r4
+                    e'4
+                    g'4
+                    fs'4 ~ \< \ppp
+                    fs'4 \p
+                }
+
+        ..  container:: example
+            
+            **Example 2.** Spans nontrivial ties but applies dynamic to single
+            notes:
+
+            ::
+
+                >>> handler = handlertools.NoteAndChordHairpinHandler(
+                ...     attach_start_dynamic_to_lone_notes=True,
+                ...     hairpin_token='ppp < p',
+                ...     span='nontrivial ties',
+                ...     )
+                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \ppp
+                    c'8 \p
+                    d'8 ~ \< \ppp
+                    d'4 \p
+                    r4
+                    e'4 \ppp
+                    g'4 \ppp
+                    fs'4 ~ \< \ppp
+                    fs'4 \p
+                }
+
+        Defaults to true.
+
+        Set to true or false.
+
+        Returns true or false
+        '''
+        return self._attach_start_dynamic_to_lone_notes
 
     @property
     def hairpin_token(self):
