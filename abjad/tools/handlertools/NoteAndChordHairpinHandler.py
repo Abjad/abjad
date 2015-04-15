@@ -10,6 +10,69 @@ from abjad.tools.handlertools.DynamicHandler import DynamicHandler
 
 class NoteAndChordHairpinHandler(DynamicHandler):
     r'''Note and chord hairpin handler.
+
+    ..  container:: example
+        
+        **Example 1.** Spans contiguous notes and chords:
+
+        ::
+
+            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            ...     hairpin_token='ppp < p',
+            ...     span='contiguous notes and chords',
+            ...     )
+            >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+            >>> logical_ties = list(logical_ties)
+            >>> handler(logical_ties)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'4 ~ \< \ppp
+                c'8
+                d'8 ~
+                d'4 \p
+                r4
+                e'4 \< \ppp
+                g'4
+                fs'4 ~
+                fs'4 \p
+            }
+
+    ..  container:: example
+        
+        **Example 2.** Spans nontrivial ties:
+
+        ::
+
+            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            ...     hairpin_token='ppp < p',
+            ...     span='nontrivial ties',
+            ...     )
+            >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+            >>> logical_ties = list(logical_ties)
+            >>> handler(logical_ties)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'4 ~ \< \ppp
+                c'8 \p
+                d'8 ~ \< \ppp
+                d'4 \p
+                r4
+                e'4
+                g'4
+                fs'4 ~ \< \ppp
+                fs'4 \p
+            }
+            
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -17,6 +80,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     __slots__ = (
         '_hairpin_token',
         '_patterns',
+        '_span',
         )
 
     ### INITIALIZER ###
@@ -26,6 +90,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         hairpin_token=None, 
         minimum_duration=None,
         patterns=None,
+        span='contiguous notes and chords',
         ):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         if hairpin_token is not None:
@@ -36,6 +101,11 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         if patterns is not None:
             assert isinstance(patterns, (list, tuple)), repr(patterns)
         self._patterns = patterns
+        assert span in (
+            'contiguous notes and chords',
+            'nontrivial ties',
+            ), repr(span)
+        self._span = span
 
     ### SPECIAL METHODS ###
 
@@ -45,7 +115,12 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
         Returns none.
         '''
-        groups = self._group_contiguous_logical_ties(logical_ties)
+        if self.span == 'contiguous notes and chords':
+            groups = self._group_contiguous_logical_ties(logical_ties)
+        elif self.span == 'nontrivial ties':
+            groups = [[_] for _ in logical_ties]
+        else:
+            raise ValueError(self.span)
         for group in groups:
             notes = []
             for logical_tie in group:
@@ -66,6 +141,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 include_rests=False,
                 )
             attach(hairpin, notes_to_span)
+            
 
     ### PRIVATE PROPERTIES ###
 
@@ -115,3 +191,15 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         Set to boolean patterns or none.
         '''
         return self._patterns
+
+    @property
+    def span(self):
+        r'''Controls what is spanned.
+
+        Defaults to ``'contiguous notes and chords'``.
+
+        Set to ``'contiguous notes and chords'`` or ``'nontrivial ties'``.
+
+        Returns one of the strings listed above.
+        '''
+        return self._span
