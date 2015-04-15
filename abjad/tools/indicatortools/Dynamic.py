@@ -72,7 +72,7 @@ class Dynamic(AbjadValueObject):
         'ppp': -4,
         'pp': -3,
         'p': -2,
-        'niente': mathtools.NegativeInfinity,
+        'niente': mathtools.NegativeInfinity(),
         'mp': -1,
         'mf': 1,
         'f': 2,
@@ -113,7 +113,7 @@ class Dynamic(AbjadValueObject):
         -3: 'pp',
         -2: 'p',
         -1: 'mp',
-        mathtools.NegativeInfinity: 'niente',
+        mathtools.NegativeInfinity(): 'niente',
         1: 'mf',
         2: 'f',
         3: 'ff',
@@ -285,7 +285,7 @@ class Dynamic(AbjadValueObject):
             ::
 
                 >>> Dynamic.dynamic_name_to_dynamic_ordinal('niente')
-                <class 'abjad.tools.mathtools.NegativeInfinity.NegativeInfinity'>
+                NegativeInfinity
 
         Returns integer or negative infinity.
         '''
@@ -315,13 +315,16 @@ class Dynamic(AbjadValueObject):
 
             ::
 
-                >>> negative_infinity = mathtools.NegativeInfinity
+                >>> negative_infinity = mathtools.NegativeInfinity()
                 >>> Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
                 'niente'
 
         Returns string.
         '''
-        return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
+        if dynamic_ordinal == mathtools.NegativeInfinity():
+            return 'niente'
+        else:
+            return Dynamic._dynamic_ordinal_to_dynamic_name[dynamic_ordinal]
 
     @staticmethod
     def is_dynamic_name(arg):
