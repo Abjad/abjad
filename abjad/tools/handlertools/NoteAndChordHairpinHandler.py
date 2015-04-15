@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import collections
+from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
@@ -112,6 +113,44 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 c'8
                 e'8 \f
             }
+
+    ..  container:: example
+        
+        **Example 4.** Spans individual notes and chords grouped in repeating
+        patterns of 3 and 4 with alternating crescendi and decrescendi:
+
+        ::
+
+            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            ...     hairpin_token=['p < f', 'f > p'],
+            ...     span=[3, 4],
+            ...     )
+            >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
+            >>> staff = Staff(string)
+            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+            >>> logical_ties = list(logical_ties)
+            >>> handler(logical_ties)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'16 \< \p
+                d'16 ~
+                d'16 \f
+                e'16 \> \f
+                c'16
+                d'16 ~
+                d'16 \p
+                e'16 \< \p
+                c'16
+                d'16 ~ \f
+                d'16 \> \f
+                e'16
+                c'8
+                e'8 \p
+            }
             
     '''
 
@@ -133,10 +172,26 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         span='contiguous notes and chords',
         ):
         DynamicHandler.__init__(self, minimum_duration=minimum_duration)
-        if hairpin_token is not None:
-            if isinstance(hairpin_token, str):
-                hairpin_token = tuple(hairpin_token.split())
+        if hairpin_token is None:
+            hairpin_token = []
+        elif isinstance(hairpin_token, str):
+            hairpin_token = tuple(hairpin_token.split())
             assert spannertools.Hairpin._is_hairpin_token(hairpin_token)
+        elif isinstance(hairpin_token, list):
+            tokens = []
+            for element in hairpin_token:
+                if isinstance(element, str):
+                    element = tuple(element.split())
+                    assert spannertools.Hairpin._is_hairpin_token(
+                        element)
+                tokens.append(element)
+            hairpin_token = tokens
+        if isinstance(hairpin_token, list):
+            hairpin_token = datastructuretools.CyclicTuple(hairpin_token)
+        elif isinstance(hairpin_token, tuple):
+            hairpin_token = datastructuretools.CyclicTuple([hairpin_token])
+        else:
+            raise TypeError(hairpin_token)
         self._hairpin_token = hairpin_token
         if patterns is not None:
             assert isinstance(patterns, (list, tuple)), repr(patterns)
@@ -177,7 +232,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 new_groups.extend(shards)
             groups = new_groups
             groups = [[_] for _ in groups]
-        for group in groups:
+        for i, group in enumerate(groups):
             notes = []
             for logical_tie in group:
                 for note in logical_tie:
@@ -191,13 +246,13 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                     notes_to_span.append(note)
             if not notes_to_span:
                 continue
-            descriptor = ' '.join([_ for _ in self.hairpin_token if _])
+            hairpin_token = self.hairpin_token[i]
+            descriptor = ' '.join([_ for _ in hairpin_token if _])
             hairpin = spannertools.Hairpin(
                 descriptor=descriptor,
                 include_rests=False,
                 )
             attach(hairpin, notes_to_span)
-            
 
     ### PRIVATE PROPERTIES ###
 
@@ -236,7 +291,9 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
         Like ``('f', '>', 'p')``.
 
-        Set to triple.
+        Set to triple, string, list of triples, list of strings or none.
+
+        Returns cyclic tuple.
         '''
         return self._hairpin_token
 
