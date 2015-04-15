@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -71,6 +72,7 @@ class Dynamic(AbjadValueObject):
         'ppp': -4,
         'pp': -3,
         'p': -2,
+        'niente': mathtools.NegativeInfinity,
         'mp': -1,
         'mf': 1,
         'f': 2,
@@ -101,6 +103,7 @@ class Dynamic(AbjadValueObject):
         'sfz',
         'sfp',
         'rfz',
+        'niente',
         )
 
     _dynamic_ordinal_to_dynamic_name = {
@@ -110,6 +113,7 @@ class Dynamic(AbjadValueObject):
         -3: 'pp',
         -2: 'p',
         -1: 'mp',
+        mathtools.NegativeInfinity: 'niente',
         1: 'mf',
         2: 'f',
         3: 'ff',
@@ -137,6 +141,8 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Gets storage format of forte:
+
             ::
 
                 >>> dynamic = Dynamic('f')
@@ -146,6 +152,8 @@ class Dynamic(AbjadValueObject):
                     )
 
         ..  container:: example
+
+            **Example 2.** Gets LilyPond format of forte:
 
             ::
 
@@ -176,10 +184,23 @@ class Dynamic(AbjadValueObject):
     def name(self):
         r'''Name of dynamic.
 
-        ::
+        ..  container:: example
 
-            >>> dynamic.name
-            'f'
+            **Example 1.** Gets name of forte:
+
+            ::
+
+                >>> Dynamic('f').name
+                'f'
+
+        ..  container:: example
+
+            **Example 2.** Gets name of piano:
+
+            ::
+
+                >>> Dynamic('p').name
+                'p'
 
         Returns string.
         '''
@@ -189,10 +210,23 @@ class Dynamic(AbjadValueObject):
     def ordinal(self):
         r'''Ordinal of dynamic.
 
-        ::
+        ..  container:: example
 
-            >>> dynamic.ordinal
-            2
+            **Example 1.** Gets ordinal of forte:
+
+            ::
+
+                >>> Dynamic('f').ordinal
+                2
+
+        ..  container:: example
+
+            **Example 2.** Gets ordinal of piano:
+
+            ::
+
+                >>> Dynamic('p').ordinal
+                -2
         
         Returns integer.
         '''
@@ -209,10 +243,23 @@ class Dynamic(AbjadValueObject):
     def composite_dynamic_name_to_steady_state_dynamic_name(name):
         r'''Changes composite `name` to steady state dynamic name.
 
-        ::
+        ..  container:: example
 
-            >>> Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
-            'p'
+            **Example 1.** Steady state of sfp is piano:
+
+            ::
+
+                >>> Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('sfp')
+                'p'
+
+        ..  container:: example
+
+            **Example 2.** Steady state of rfz is forte:
+
+            ::
+
+                >>> Dynamic.composite_dynamic_name_to_steady_state_dynamic_name('rfz')
+                'f'
 
         Returns string.
         '''
@@ -222,12 +269,25 @@ class Dynamic(AbjadValueObject):
     def dynamic_name_to_dynamic_ordinal(name):
         r'''Changes `name` to dynamic ordinal.
 
-        ::
+        ..  container:: example
 
-            >>> Dynamic.dynamic_name_to_dynamic_ordinal('fff')
-            4
+            **Example 1.** Louder dynamics change to positive integers:
 
-        Returns integer.
+            ::
+
+                >>> Dynamic.dynamic_name_to_dynamic_ordinal('fff')
+                4
+
+        ..  container:: example
+
+            **Example 2.** Niente changes to negative infinity:
+
+            ::
+
+                >>> Dynamic.dynamic_name_to_dynamic_ordinal('niente')
+                <class 'abjad.tools.mathtools.NegativeInfinity.NegativeInfinity'>
+
+        Returns integer or negative infinity.
         '''
         try:
             return Dynamic._dynamic_name_to_dynamic_ordinal[name]
@@ -240,10 +300,24 @@ class Dynamic(AbjadValueObject):
     def dynamic_ordinal_to_dynamic_name(dynamic_ordinal):
         r'''Changes `dynamic_ordinal` to dynamic name.
 
-        ::
+        ..  container:: example
 
-            >>> Dynamic.dynamic_ordinal_to_dynamic_name(-5)
-            'pppp'
+            **Example 1.** Negative values change to quiet dynamics:
+
+            ::
+
+                >>> Dynamic.dynamic_ordinal_to_dynamic_name(-5)
+                'pppp'
+
+        ..  container:: example
+
+            **Example 2.** Negative infinity changes to niente:
+
+            ::
+
+                >>> negative_infinity = mathtools.NegativeInfinity
+                >>> Dynamic.dynamic_ordinal_to_dynamic_name(negative_infinity)
+                'niente'
 
         Returns string.
         '''
@@ -253,10 +327,28 @@ class Dynamic(AbjadValueObject):
     def is_dynamic_name(arg):
         r'''Is true when `arg` is dynamic name. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> Dynamic.is_dynamic_name('f')
-            True
+            **Example 1.** Some usual dynamic names:
+
+            ::
+
+                >>> Dynamic.is_dynamic_name('f')
+                True
+
+            ::
+
+                >>> Dynamic.is_dynamic_name('sfz')
+                True
+
+        ..  container:: example
+
+            **Example 2.** Niente is also a dynamic name:
+
+            ::
+
+                >>> Dynamic.is_dynamic_name('niente')
+                True
 
         Returns boolean.
         '''
