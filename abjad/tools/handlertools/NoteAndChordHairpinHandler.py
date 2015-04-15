@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+import collections
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
+from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
@@ -72,6 +74,44 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 fs'4 ~ \< \ppp
                 fs'4 \p
             }
+
+    ..  container:: example
+        
+        **Example 3.** Spans individual notes and chords grouped in repeating
+        patterns of 3 and 4:
+
+        ::
+
+            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            ...     hairpin_token='p < f',
+            ...     span=[3, 4],
+            ...     )
+            >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
+            >>> staff = Staff(string)
+            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+            >>> logical_ties = list(logical_ties)
+            >>> handler(logical_ties)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'16 \< \p
+                d'16 ~
+                d'16 \f
+                e'16 \< \p
+                c'16
+                d'16 ~
+                d'16 \f
+                e'16 \< \p
+                c'16
+                d'16 ~ \f
+                d'16 \< \p
+                e'16
+                c'8
+                e'8 \f
+            }
             
     '''
 
@@ -101,10 +141,12 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         if patterns is not None:
             assert isinstance(patterns, (list, tuple)), repr(patterns)
         self._patterns = patterns
-        assert span in (
+        strings = (
             'contiguous notes and chords',
             'nontrivial ties',
-            ), repr(span)
+            )
+        if span not in strings:
+            assert isinstance(span, (tuple, list)), repr(span)
         self._span = span
 
     ### SPECIAL METHODS ###
@@ -115,12 +157,26 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
         Returns none.
         '''
-        if self.span == 'contiguous notes and chords':
+        if (self.span == 'contiguous notes and chords'
+            or isinstance(self.span, (tuple, list))):
             groups = self._group_contiguous_logical_ties(logical_ties)
         elif self.span == 'nontrivial ties':
             groups = [[_] for _ in logical_ties]
         else:
             raise ValueError(self.span)
+        if isinstance(self.span, (tuple, list)):
+            new_groups = []
+            for group in groups:
+                leaves = iterate(group).by_class(scoretools.Leaf)
+                leaves = list(leaves)
+                shards = sequencetools.partition_sequence_by_counts(
+                    leaves,
+                    counts=self.span,
+                    cyclic=True,
+                    )
+                new_groups.extend(shards)
+            groups = new_groups
+            groups = [[_] for _ in groups]
         for group in groups:
             notes = []
             for logical_tie in group:
@@ -198,8 +254,9 @@ class NoteAndChordHairpinHandler(DynamicHandler):
 
         Defaults to ``'contiguous notes and chords'``.
 
-        Set to ``'contiguous notes and chords'`` or ``'nontrivial ties'``.
+        Set to ``'contiguous notes and chords'`` or ``'nontrivial ties'`` or to
+        an iterable of positive integers.
 
-        Returns one of the strings listed above.
+        Returns one of the values listed above.
         '''
         return self._span
