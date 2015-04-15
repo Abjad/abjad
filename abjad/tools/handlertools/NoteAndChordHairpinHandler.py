@@ -194,6 +194,40 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 c'8
                 e'8 \!
             }
+
+    ..  container:: example
+        
+        **Example 6.** Allows for crescendi dal niente and decrescendi al
+        niente with intervening rests:
+
+        ::
+
+            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            ...     hairpin_token=['f > niente', 'niente < f'],
+            ...     span='nontrivial ties',
+            ...     )
+            >>> string = "c'4 ~ c' ~ c' r4 d'4 ~ d' ~ d' r4"
+            >>> staff = Staff(string)
+            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+            >>> logical_ties = list(logical_ties)
+            >>> handler(logical_ties)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \once \override Hairpin #'circled-tip = ##t
+                c'4 ~ \> \f
+                c'4 ~
+                c'4 \!
+                r4
+                \once \override Hairpin #'circled-tip = ##t
+                d'4 ~ \<
+                d'4 ~
+                d'4 \f
+                r4
+            }
             
     '''
 
