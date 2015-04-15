@@ -11,6 +11,8 @@ class Hairpin(Spanner):
 
     ..  container:: example
 
+        **Example 1a.** Crescendo:
+
         ::
 
             >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
@@ -33,6 +35,79 @@ class Hairpin(Spanner):
                 r4
             }
 
+        **Example 1b.** Decrescendo:
+
+        ::
+
+            >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
+            >>> hairpin = spannertools.Hairpin(
+            ...     descriptor='f > p',
+            ...     include_rests=False,
+            ...     )
+            >>> attach(hairpin, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                r4
+                c'8 \> \f
+                d'8
+                e'8
+                f'8 \p
+                r4
+            }
+
+    ..  container:: example
+
+        **Example 2a.** Crescendo dal niente:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> hairpin = spannertools.Hairpin(
+            ...     descriptor='niente < f',
+            ...     include_rests=False,
+            ...     )
+            >>> attach(hairpin, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \once \override Hairpin #'circled-tip = ##t
+                c'4 \<
+                d'4
+                e'4
+                f'4 \f
+            }
+
+        **Example 2b.** Decrescendo al niente:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> hairpin = spannertools.Hairpin(
+            ...     descriptor='f > niente',
+            ...     include_rests=False,
+            ...     )
+            >>> attach(hairpin, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \once \override Hairpin #'circled-tip = ##t
+                c'4 \> \f
+                d'4
+                e'4
+                f'4 \!
+            }
+
+    .. todo:: Make niente hairpins work with ``include_rests=True``.
     '''
 
     ### CLASS VARIABLES ###
@@ -110,23 +185,31 @@ class Hairpin(Spanner):
                 stringtools.arg_to_tridirectional_lilypond_symbol(
                     self.direction)
             direction_string = '{} '.format(direction_string)
+        if (self._is_my_first_leaf(leaf) and
+            (self.start_dynamic and self.start_dynamic.name == 'niente' or
+            self.stop_dynamic and self.stop_dynamic.name == 'niente')):
+            override(leaf).hairpin.circled_tip = True
         if self.include_rests:
             if self._is_my_first_leaf(leaf):
                 string = r'{}\{}'.format(direction_string, self.shape_string)
                 lilypond_format_bundle.right.spanner_starts.append(string)
-                if self.start_dynamic:
-                    string = r'{}\{}'.format(
-                        direction_string,
-                        self.start_dynamic.name,
-                        )
-                    lilypond_format_bundle.right.spanner_starts.append(string)
+                if (self.start_dynamic and 
+                    not self.start_dynamic.name == 'niente'):
+                        string = r'{}\{}'.format(
+                            direction_string,
+                            self.start_dynamic.name,
+                            )
+                        lilypond_format_bundle.right.spanner_starts.append(
+                            string)
             if self._is_my_last_leaf(leaf):
-                if self.stop_dynamic:
-                    string = r'{}\{}'.format(
-                        direction_string,
-                        self.stop_dynamic.name,
-                        )
-                    lilypond_format_bundle.right.spanner_stops.append(string)
+                if (self.stop_dynamic and 
+                    not self.stop_dynamic.name == 'niente'):
+                        string = r'{}\{}'.format(
+                            direction_string,
+                            self.stop_dynamic.name,
+                            )
+                        lilypond_format_bundle.right.spanner_stops.append(
+                            string)
                 else:
                     effective_dynamic = leaf._get_effective(
                         indicatortools.Dynamic)
@@ -151,19 +234,23 @@ class Hairpin(Spanner):
                     self.shape_string,
                     )
                 lilypond_format_bundle.right.spanner_starts.append(string)
-                if self.start_dynamic:
-                    string = r'{}\{}'.format(
-                        direction_string,
-                        self.start_dynamic.name,
-                        )
-                    lilypond_format_bundle.right.spanner_starts.append(string)
+                if (self.start_dynamic and 
+                    not self.start_dynamic.name == 'niente'):
+                        string = r'{}\{}'.format(
+                            direction_string,
+                            self.start_dynamic.name,
+                            )
+                        lilypond_format_bundle.right.spanner_starts.append(
+                            string)
             if self._is_my_last(leaf, (scoretools.Chord, scoretools.Note)):
-                if self.stop_dynamic:
-                    string = r'{}\{}'.format(
-                        direction_string,
-                        self.stop_dynamic.name,
-                        )
-                    lilypond_format_bundle.right.spanner_stops.append(string)
+                if (self.stop_dynamic and 
+                    not self.stop_dynamic.name == 'niente'):
+                        string = r'{}\{}'.format(
+                            direction_string,
+                            self.stop_dynamic.name,
+                            )
+                        lilypond_format_bundle.right.spanner_stops.append(
+                            string)
                 else:
                     effective_dynamic = leaf._get_effective(
                         indicatortools.Dynamic)
@@ -198,11 +285,11 @@ class Hairpin(Spanner):
         Returns boolean.
         '''
         Dynamic = indicatortools.Dynamic
-        if isinstance(arg, tuple) and \
-            len(arg) == 3 and \
-            (not arg[0] or indicatortools.Dynamic.is_dynamic_name(arg[0])) \
-            and Hairpin._is_hairpin_shape_string(arg[1]) and \
-            (not arg[2] or indicatortools.Dynamic.is_dynamic_name(arg[2])):
+        if (isinstance(arg, tuple) and
+            len(arg) == 3 and
+            (not arg[0] or indicatortools.Dynamic.is_dynamic_name(arg[0]))
+            and Hairpin._is_hairpin_shape_string(arg[1]) and
+            (not arg[2] or indicatortools.Dynamic.is_dynamic_name(arg[2]))):
             if arg[0] and arg[2]:
                 start_ordinal = \
                     Dynamic.dynamic_name_to_dynamic_ordinal(arg[0])
@@ -258,6 +345,8 @@ class Hairpin(Spanner):
 
         ..  container:: example
 
+            **Example 1.** Gets descriptor of crescendo:
+
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
@@ -280,7 +369,7 @@ class Hairpin(Spanner):
 
         ..  container:: example
 
-            Positions hairpin above staff:
+            **Example 1.** Positions hairpin above staff:
 
             ::
 
@@ -319,6 +408,8 @@ class Hairpin(Spanner):
 
         ..  container:: example
 
+            **Example 1.** Crescendo includes rests:
+
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
@@ -356,6 +447,8 @@ class Hairpin(Spanner):
 
         ..  container:: example
 
+            **Example 1.** Gets shape string of crescendo:
+
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
@@ -378,6 +471,8 @@ class Hairpin(Spanner):
 
         ..  container:: example
 
+            **Example 1.** Gets start dynamic of crescendo:
+
             ::
 
                 >>> staff = Staff("r4 c'8 d'8 e'8 f'8 r4")
@@ -399,6 +494,8 @@ class Hairpin(Spanner):
         r'''Gets stop dynamic string of hairpin.
 
         ..  container:: example
+
+            **Example 1.** Gets stop dynamic of crescendo:
 
             ::
 
