@@ -234,7 +234,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 new_groups.extend(shards)
             groups = new_groups
             groups = [[_] for _ in groups]
-        for i, group in enumerate(groups):
+        for group_index, group in enumerate(groups):
             notes = []
             for logical_tie in group:
                 for note in logical_tie:
@@ -243,12 +243,12 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 continue
             total_notes = len(notes)
             notes_to_span = []
-            for i, note in enumerate(notes):
-                if self._index_matches_patterns(i, total_notes):
+            for note_index, note in enumerate(notes):
+                if self._index_matches_patterns(note_index, total_notes):
                     notes_to_span.append(note)
             if not notes_to_span:
                 continue
-            hairpin_token = self.hairpin_token[i]
+            hairpin_token = self.hairpin_token[group_index]
             descriptor = ' '.join([_ for _ in hairpin_token if _])
             hairpin = spannertools.Hairpin(
                 descriptor=descriptor,
