@@ -88,6 +88,23 @@ class Scheme(AbjadValueObject):
             >>> print(format(scheme))
             #(tuplet-number::append-note-wrapper tuplet-number::calc-denominator-text "4")
 
+    ..  container:: example
+
+        **Example 7.** A Scheme lambda expression of LilyPond function that
+        takes a markup with a quoted string argument. Setting verbatim to true
+        causes the expression to format exactly as-is without modifying quotes
+        or whitespace:
+
+        ::
+
+            >>> string = '(lambda (grob) (grob-interpret-markup grob'
+            >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
+            >>> scheme = schemetools.Scheme(string, verbatim=True)
+            >>> scheme
+            Scheme('(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))')
+            >>> print(format(scheme))
+            #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
+
     Scheme objects are immutable.
     '''
 
@@ -97,6 +114,7 @@ class Scheme(AbjadValueObject):
         '_force_quotes',
         '_quoting',
         '_value',
+        '_verbatim',
         )
 
     ### INITIALIZER ###
@@ -109,12 +127,14 @@ class Scheme(AbjadValueObject):
                 args = args[0]
         quoting = kwargs.get('quoting')
         force_quotes = bool(kwargs.get('force_quotes'))
+        verbatim = kwargs.get('verbatim')
         assert isinstance(quoting, (str, type(None)))
         if quoting is not None:
             assert all(x in ("'", ',', '@', '`', '#') for x in quoting)
         self._force_quotes = force_quotes
         self._quoting = quoting
         self._value = args
+        self._verbatim = bool(verbatim)
 
     ### SPECIAL METHODS ###
 
@@ -176,7 +196,10 @@ class Scheme(AbjadValueObject):
     def _formatted_value(self):
         from abjad.tools import schemetools
         return schemetools.Scheme.format_scheme_value(
-            self._value, force_quotes=self.force_quotes)
+            self._value, 
+            force_quotes=self.force_quotes,
+            verbatim=self.verbatim,
+            )
 
     @property
     def _lilypond_format(self):
@@ -222,7 +245,7 @@ class Scheme(AbjadValueObject):
         return result
 
     @staticmethod
-    def format_scheme_value(value, force_quotes=False):
+    def format_scheme_value(value, force_quotes=False, verbatim=False):
         r'''Formats `value` as Scheme would.
 
         ..  container:: example
@@ -262,14 +285,28 @@ class Scheme(AbjadValueObject):
                 ...     )
                 '"foo"'
 
+        ..  container:: example
+
+            **Example 3.** Set verbatim to true to format value exactly (with
+            only hash preprended):
+
+            ::
+
+                >>> string = '(lambda (grob) (grob-interpret-markup grob'
+                >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
+                >>> schemetools.Scheme.format_scheme_value(string)
+                '"(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #\\"noteheads.s0harmonic\\" #}))"'
+
         Returns string.
         '''
         from abjad.tools import schemetools
-        if isinstance(value, str):
+        if isinstance(value, str) and not verbatim:
             value = value.replace('"', r'\"')
             if -1 == value.find(' ') and not force_quotes:
                 return value
             return '"{}"'.format(value)
+        elif isinstance(value, str) and verbatim:
+            return value
         elif isinstance(value, bool):
             if value:
                 return '#t'
@@ -301,3 +338,16 @@ class Scheme(AbjadValueObject):
         Return string.
         '''
         return self._quoting
+
+    @property
+    def verbatim(self):
+        r'''Is true when formatting should format value absolutely verbatim.
+        Whitespace, quotes and all other parts of value are left in tact.
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._verbatim

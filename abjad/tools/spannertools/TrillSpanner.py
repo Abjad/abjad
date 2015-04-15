@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import pitchtools
+from abjad.tools import schemetools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import override
 
@@ -58,6 +59,7 @@ class TrillSpanner(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_is_harmonic',
         '_pitch',
         )
 
@@ -65,6 +67,7 @@ class TrillSpanner(Spanner):
 
     def __init__(
         self,
+        is_harmonic=False,
         overrides=None,
         pitch=None,
         ):
@@ -72,6 +75,7 @@ class TrillSpanner(Spanner):
             self,
             overrides=overrides,
             )
+        self._is_harmonic = bool(is_harmonic)
         if pitch is not None:
             pitch = pitchtools.NamedPitch(pitch)
         self._pitch = pitch
@@ -79,6 +83,7 @@ class TrillSpanner(Spanner):
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
+        self._is_harmonic = self.is_harmonic
         new._pitch = self.pitch
 
     def _get_lilypond_format_bundle(self, leaf):
@@ -97,6 +102,11 @@ class TrillSpanner(Spanner):
                 lilypond_format_bundle.opening.spanners.append(string)
                 string = str(self.pitch)
                 lilypond_format_bundle.right.trill_pitches.append(string)
+                if self.is_harmonic:
+                    string = '(lambda (grob) (grob-interpret-markup grob'
+                    string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
+                    scheme = schemetools.Scheme(string, verbatim=True)
+                    override(leaf).trill_pitch_head.stencil = scheme
         if self._is_my_last_leaf(leaf):
             contributions = override(self)._list_format_contributions(
                 'revert',
@@ -107,6 +117,45 @@ class TrillSpanner(Spanner):
         return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def is_harmonic(self):
+        r'''Is true when trill pitch note head should print as a white diamond.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Attaches harmonic trill:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> trill = spannertools.TrillSpanner(
+                ...     is_harmonic=True,
+                ...     pitch=NamedPitch("d'"),
+                ...     )
+                >>> attach(trill, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \once \override TrillPitchHead #'stencil = #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
+                    \pitchedTrill
+                    c'8 \startTrillSpan d'
+                    d'8
+                    e'8
+                    f'8 \stopTrillSpan
+                }
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._is_harmonic
 
     @property
     def pitch(self):
