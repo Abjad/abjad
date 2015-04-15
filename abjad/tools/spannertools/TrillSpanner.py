@@ -8,6 +8,7 @@ from abjad.tools.topleveltools import override
 class TrillSpanner(Spanner):
     r'''A trill spanner.
 
+
     ..  container:: example
 
         **Example 1.** Attaches unpitched trill spanner to all notes in staff:
