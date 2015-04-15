@@ -182,8 +182,10 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             for element in hairpin_token:
                 if isinstance(element, str):
                     element = tuple(element.split())
-                    assert spannertools.Hairpin._is_hairpin_token(
-                        element)
+                    if not spannertools.Hairpin._is_hairpin_token(element):
+                        message = 'must be valid hairpin token: {!r}.'
+                        message = message.format(element)
+                        raise Exception(message)
                 tokens.append(element)
             hairpin_token = tokens
         if isinstance(hairpin_token, list):
