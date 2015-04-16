@@ -137,7 +137,8 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         assert isinstance(cyclic, bool), repr(cyclic)
         self._cyclic = cyclic
         counts = counts or ()
-        if counts == mathtools.Infinity:
+        if (counts == mathtools.Infinity or 
+            counts == mathtools.Infinity()):
             self._counts = counts
         else:
             assert mathtools.all_are_positive_integers(counts)
@@ -517,7 +518,8 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         divisions = self._coerce_divisions(divisions)
         if not divisions:
             pass
-        elif self.counts == mathtools.Infinity:
+        elif (self.counts == mathtools.Infinity or 
+            self.counts == mathtools.Infinity()):
             divisions = [sum(divisions)]
         elif self.counts:
             parts = sequencetools.partition_sequence_by_counts(
