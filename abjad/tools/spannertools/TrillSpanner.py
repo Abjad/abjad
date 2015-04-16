@@ -60,6 +60,7 @@ class TrillSpanner(Spanner):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_interval',
         '_is_harmonic',
         '_pitch',
         )
@@ -68,6 +69,7 @@ class TrillSpanner(Spanner):
 
     def __init__(
         self,
+        interval=None,
         is_harmonic=False,
         overrides=None,
         pitch=None,
@@ -76,6 +78,7 @@ class TrillSpanner(Spanner):
             self,
             overrides=overrides,
             )
+        self._interval = interval
         self._is_harmonic = bool(is_harmonic)
         if pitch is not None:
             pitch = pitchtools.NamedPitch(pitch)
@@ -98,11 +101,16 @@ class TrillSpanner(Spanner):
             lilypond_format_bundle.grob_overrides.extend(contributions)
             string = r'\startTrillSpan'
             lilypond_format_bundle.right.spanner_starts.append(string)
-            if self.pitch is not None:
+            if self.pitch is not None or self.interval is not None:
                 string = r'\pitchedTrill'
                 lilypond_format_bundle.opening.spanners.append(string)
-                string = str(self.pitch)
-                lilypond_format_bundle.right.trill_pitches.append(string)
+                if self.pitch is not None:
+                    string = str(self.pitch)
+                    lilypond_format_bundle.right.trill_pitches.append(string)
+                elif self.interval is not None:
+                    pitch = leaf.written_pitch + self.interval
+                    string = str(pitch)
+                    lilypond_format_bundle.right.trill_pitches.append(string)
                 if self.is_harmonic:
                     string = '(lambda (grob) (grob-interpret-markup grob'
                     string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
@@ -118,6 +126,66 @@ class TrillSpanner(Spanner):
         return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def interval(self):
+        r'''Gets interval of trill.
+
+        ..  container:: example
+
+            **Example 1.** Attaches semitone trill:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> trill = spannertools.TrillSpanner(
+                ...     interval=pitchtools.NamedInterval('m2'),
+                ...     )
+                >>> attach(trill, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \pitchedTrill
+                    c'8 \startTrillSpan df'
+                    d'8
+                    e'8
+                    f'8 \stopTrillSpan
+                }
+
+        ..  container:: example
+
+            **Example 2.** Attaches whole tone trill:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> trill = spannertools.TrillSpanner(
+                ...     interval=pitchtools.NamedInterval('M2'),
+                ...     )
+                >>> attach(trill, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \pitchedTrill
+                    c'8 \startTrillSpan d'
+                    d'8
+                    e'8
+                    f'8 \stopTrillSpan
+                }
+
+        Defaults to none.
+
+        Set to interval or none.
+
+        Returns interval or none.
+        '''
+        return self._interval
 
     @property
     def is_harmonic(self):
