@@ -73,7 +73,8 @@ class PatternedArticulationsHandler(ArticulationHandler):
         notes_and_chords = notes_and_chords[skip_first:]
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]
-        for i, note_or_chord in enumerate(notes_and_chords):
+        i = 0
+        for note_or_chord in notes_and_chords:
             logical_tie = inspect_(note_or_chord).get_logical_tie()
             duration = logical_tie.get_duration()
             articulation_list = articulation_lists[offset+i]
@@ -107,6 +108,7 @@ class PatternedArticulationsHandler(ArticulationHandler):
                     # TODO: make new(articulation) work
                     articulation = copy.copy(articulation)
                     attach(articulation, note_or_chord)
+                i += 1
         return expr
 
     ### PRIVATE PROPERTIES ###
