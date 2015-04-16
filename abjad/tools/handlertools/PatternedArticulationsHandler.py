@@ -101,10 +101,12 @@ class PatternedArticulationsHandler(ArticulationHandler):
                     maximum_written_pitch = note_or_chord.written_pitches[-1]
                 if self.maximum_written_pitch < maximum_written_pitch:
                     continue
-            for articulation in articulation_list:
-                # TODO: make new(articulation) work
-                articulation = copy.copy(articulation)
-                attach(articulation, note_or_chord)
+            logical_tie = inspect_(note_or_chord).get_logical_tie()
+            if note_or_chord is logical_tie.head:
+                for articulation in articulation_list:
+                    # TODO: make new(articulation) work
+                    articulation = copy.copy(articulation)
+                    attach(articulation, note_or_chord)
         return expr
 
     ### PRIVATE PROPERTIES ###
