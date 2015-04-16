@@ -62,7 +62,8 @@ class DurationSelectorCallback(AbjadValueObject):
                 else:
                     durations = []
                     for x in subexpr:
-                        x._update_now(offsets=True)
+                        if isinstance(x, scoretools.Component):
+                            x._update_now(offsets=True)
                         duration = x._preprolated_duration
                         durations.append(x._preprolated_duration)
                     duration = sum(durations)
