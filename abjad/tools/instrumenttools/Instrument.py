@@ -241,20 +241,22 @@ class Instrument(AbjadObject):
             return self._performer_names[:]
 
     def _initialize_default_name_markups(self):
-        if self.instrument_name:
-            string = self.instrument_name
-            string = stringtools.capitalize_start(string)
-            markup = markuptools.Markup(contents=string)
-            self._instrument_name_markup = markup
-        else:
-            self._instrument_name_markup = None
-        if self.short_instrument_name:
-            string = self.short_instrument_name
-            string = stringtools.capitalize_start(string)
-            markup = markuptools.Markup(contents=string)
-            self._short_instrument_name_markup = markup
-        else:
-            self._short_instrument_name_markup = None
+        if self._instrument_name_markup is None:
+            if self.instrument_name:
+                string = self.instrument_name
+                string = stringtools.capitalize_start(string)
+                markup = markuptools.Markup(contents=string)
+                self._instrument_name_markup = markup
+            else:
+                self._instrument_name_markup = None
+        if self._short_instrument_name_markup is None:
+            if self.short_instrument_name:
+                string = self.short_instrument_name
+                string = stringtools.capitalize_start(string)
+                markup = markuptools.Markup(contents=string)
+                self._short_instrument_name_markup = markup
+            else:
+                self._short_instrument_name_markup = None
 
     @classmethod
     def _list_instrument_names(cls):
