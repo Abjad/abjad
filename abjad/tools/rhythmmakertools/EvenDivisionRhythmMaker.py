@@ -23,9 +23,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     __slots__ = (
         '_burnish_specifier',
         '_denominators',
-        '_denominators_generator',
+        #'_denominators_generator',
         '_extra_counts_per_division',
-        '_extra_counts_per_division_generator',
+        #'_extra_counts_per_division_generator',
         '_preferred_denominator',
         )
 
@@ -58,8 +58,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             denominators), repr(denominators)
         denominators = tuple(denominators)
         self._denominators = denominators
-        self._denominators_generator = self._make_cyclic_tuple_generator(
-            denominators)
+        #self._denominators_generator = self._make_cyclic_tuple_generator(
+        #    denominators)
         if extra_counts_per_division is not None:
             assert mathtools.all_are_integer_equivalent_exprs(
                 extra_counts_per_division), repr(extra_counts_per_division)
@@ -72,8 +72,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         assert isinstance(burnish_specifier, prototype)
         self._burnish_specifier = burnish_specifier
         extra_counts_per_division = extra_counts_per_division or (0,)
-        self._extra_counts_per_division_generator = \
-            self._make_cyclic_tuple_generator(extra_counts_per_division)
+        #self._extra_counts_per_division_generator = \
+        #    self._make_cyclic_tuple_generator(extra_counts_per_division)
         self._preferred_denominator = preferred_denominator
 
     ### SPECIAL METHODS ###
@@ -910,12 +910,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             # not yet extended to work with non-power-of-two divisions
             assert mathtools.is_positive_integer_power_of_two(
                 division.denominator), repr(division)
-            if remember_state:
-                denominator = next(self._denominators_generator)
-                extra_count = next(self._extra_counts_per_division_generator)
-            else:
-                denominator = denominators[i]
-                extra_count = extra_counts_per_division[i]
+            #if remember_state:
+            #    denominator = next(self._denominators_generator)
+            #    extra_count = next(self._extra_counts_per_division_generator)
+            #else:
+            #    denominator = denominators[i]
+            #    extra_count = extra_counts_per_division[i]
+            denominator = denominators[i]
+            extra_count = extra_counts_per_division[i]
             basic_duration = durationtools.Duration(1, denominator)
             unprolated_note_count = None
             if division < 2 * basic_duration:
