@@ -675,12 +675,33 @@ class Markup(AbjadValueObject):
 
                 >>> show(markup) # doctest: +SKIP
 
+        ..  container:: example
+
+            Also works with a list of strings:
+
+            ::
+
+                >>> city = 'Los Angeles'
+                >>> date = 'May - August 2014'
+                >>> markup = Markup.center_column([city, date])
+
+            ::
+
+                >>> print(format(markup))
+                ^ \markup {
+                    \center-column
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
         Returns new markup.
         '''
         from abjad.tools import markuptools
         contents = []
         for markup in markups:
-            contents.extend(markup.contents)
+            contents.append(Markup._parse_markup_command_argument(markup))
         command = markuptools.MarkupCommand(
             'center-column',
             contents,
@@ -1860,7 +1881,7 @@ class Markup(AbjadValueObject):
         from abjad.tools import markuptools
         contents = []
         for markup in markups:
-            contents.extend(markup.contents)
+            contents.append(Markup._parse_markup_command_argument(markup))
         command = markuptools.MarkupCommand(
             'right-column',
             contents,
@@ -2219,6 +2240,19 @@ class Markup(AbjadValueObject):
             amount,
             )
         return Markup(contents=command)
+
+    def whiteout(self):
+        r'''LilyPond ``\whiteout`` markup command.
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'whiteout',
+            contents,
+            )
+        return new(self, contents=command)
 
     def with_color(self, color):
         r'''LilyPond ``\with-color`` markup command.
