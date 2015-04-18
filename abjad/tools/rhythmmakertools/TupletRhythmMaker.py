@@ -352,8 +352,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
-    def _make_music(self, divisions, rotation, remember_state=False):
-        from abjad.tools import rhythmmakertools
+    def _make_music(self, divisions, rotation):
         tuplets = []
         for division in divisions:
             assert isinstance(division, durationtools.Division), repr(division)

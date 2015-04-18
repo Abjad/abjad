@@ -66,7 +66,7 @@ class RhythmMaker(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, remember_state=False, rotation=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls rhythm-maker.
 
         Makes music as a list of selections.
@@ -85,7 +85,6 @@ class RhythmMaker(AbjadValueObject):
         selections = self._make_music(
             divisions,
             rotation,
-            remember_state=remember_state,
             )
         self._simplify_tuplets(selections)
         selections = self._flatten_trivial_tuplets(selections)

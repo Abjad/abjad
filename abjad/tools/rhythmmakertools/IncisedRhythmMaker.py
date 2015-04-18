@@ -212,7 +212,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 message = 'must incise divisions or output.'
                 raise Exception(message)
 
-    def _make_music(self, divisions, rotation, remember_state=False):
+    def _make_music(self, divisions, rotation):
         from abjad.tools import rhythmmakertools
         input_divisions = divisions[:]
         input_ = self._prepare_input(rotation)

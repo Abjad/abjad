@@ -774,7 +774,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         selection = selectiontools.Selection([tuplet])
         return selection
 
-    def _make_music(self, divisions, rotation, remember_state=False):
+    def _make_music(self, divisions, rotation):
         selections = []
         for index, division in enumerate(divisions):
             accelerando = self._make_accelerando(division, index)

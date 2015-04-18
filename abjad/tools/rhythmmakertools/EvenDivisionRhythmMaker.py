@@ -78,14 +78,13 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, divisions, remember_state=False, rotation=None):
+    def __call__(self, divisions, rotation=None):
         r'''Calls even division rhythm-maker on `divisions`.
 
         ..  container:: example
 
-            **Example 1a.** Fills divisions with alternating eighth and
-            sixteenth notes. Calls rhythm-maker and forgets state between
-            calls:
+            **Example 1.** Fills divisions with alternating eighth and
+            sixteenth notes.
 
             ::
 
@@ -97,7 +96,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions, remember_state=False)
+                >>> selections = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -149,200 +148,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                             c'8 [
                             c'8
                             c'8 ]
-                        }
-                    }
-                }
-
-            Rhythm-maker reads configuration all over from the beginning;
-            output is the same as before:
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions, remember_state=False)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                }
-
-            **Example 1b.** Calls rhythm-maker and remembers state for
-            subsequent calls:
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions, remember_state=True)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                }
-
-            Rhythm-maker resumes from state of previous call; output differs
-            from before:
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions, remember_state=True)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
                         }
                     }
                 }
 
         ..  container:: example
 
-            **Example 2a.** Adds extra counts per division according to a
-            pattern of three elements. Calls rhythm-maker and forgets state
-            between calls:
+            **Example 2.** Adds extra counts per division according to a
+            pattern of three elements.
 
             ::
 
@@ -355,7 +168,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions, remember_state=False)
+                >>> selections = maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -426,252 +239,12 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                         }
                     }
                 }
-
-            Rhythm-maker reads configuration all over from the beginning;
-            output same as before:
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions, remember_state=False)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/7 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/8 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/7 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                }
-
-            **Example 2b.** Calls rhythm-maker and remembers state for
-            subsequent calls:
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions, remember_state=True)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/7 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/8 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/7 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                }
-
-            Rhythm-maker resumes from state of previous call; output differs
-            from before:
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions, remember_state=True)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     selections,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/8 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/7 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        \tweak #'text #tuplet-number::calc-fraction-text
-                        \times 6/8 {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                    {
-                        {
-                            c'16 [
-                            c'16
-                            c'16
-                            c'16
-                            c'16
-                            c'16 ]
-                        }
-                    }
-                }
-
-        The `remember_state` keyword defaults to false.
-
-        Set to true or false.
 
         Returns list of of selections.
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
         return superclass.__call__(
             divisions,
-            remember_state=remember_state,
             rotation=rotation,
             )
 
@@ -895,27 +468,20 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         assert inspect_(tuplet).get_duration() == original_duration
         return selections
 
-    def _make_music(self, divisions, rotation, remember_state=False):
+    def _make_music(self, divisions, rotation):
         if rotation is None:
             rotation = 0
         selections = []
         divisions = [durationtools.Division(_) for _ in divisions]
-        if not remember_state:
-            denominators = datastructuretools.CyclicTuple(self.denominators)
-            extra_counts_per_division = self.extra_counts_per_division or (0,)
-            extra_counts_per_division = datastructuretools.CyclicTuple(
-                extra_counts_per_division
-                )
+        denominators = datastructuretools.CyclicTuple(self.denominators)
+        extra_counts_per_division = self.extra_counts_per_division or (0,)
+        extra_counts_per_division = datastructuretools.CyclicTuple(
+            extra_counts_per_division
+            )
         for i, division in enumerate(divisions, rotation):
             # not yet extended to work with non-power-of-two divisions
             assert mathtools.is_positive_integer_power_of_two(
                 division.denominator), repr(division)
-            #if remember_state:
-            #    denominator = next(self._denominators_generator)
-            #    extra_count = next(self._extra_counts_per_division_generator)
-            #else:
-            #    denominator = denominators[i]
-            #    extra_count = extra_counts_per_division[i]
             denominator = denominators[i]
             extra_count = extra_counts_per_division[i]
             basic_duration = durationtools.Duration(1, denominator)

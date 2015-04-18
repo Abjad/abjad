@@ -659,7 +659,6 @@ class TaleaRhythmMaker(RhythmMaker):
         return burnished_divisions
 
     def _make_leaf_lists(self, numeric_map, talea_denominator):
-        from abjad.tools import rhythmmakertools
         leaf_lists = []
         specifier = self._get_duration_spelling_specifier()
         for map_division in numeric_map:
@@ -675,8 +674,7 @@ class TaleaRhythmMaker(RhythmMaker):
             leaf_lists.append(leaf_list)
         return leaf_lists
 
-    def _make_music(self, divisions, rotation, remember_state=False):
-        from abjad.tools import rhythmmakertools
+    def _make_music(self, divisions, rotation):
         input_divisions = divisions[:]
         octuplet = self._prepare_input()
         talea = octuplet[0]
