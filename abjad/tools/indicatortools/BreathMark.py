@@ -28,7 +28,7 @@ class BreathMark(AbjadValueObject):
     __slots__ = (
         )
 
-    _format_slot = 'right'
+    _format_slot = 'after'
 
     ### INITIALIZER ###
 
