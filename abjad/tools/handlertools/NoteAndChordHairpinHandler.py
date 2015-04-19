@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
-import collections
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
-from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
@@ -15,7 +13,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     r'''Note and chord hairpin handler.
 
     ..  container:: example
-        
+
         **Example 1.** Spans contiguous notes and chords:
 
         ::
@@ -46,7 +44,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             }
 
     ..  container:: example
-        
+
         **Example 2.** Spans nontrivial ties:
 
         ::
@@ -78,7 +76,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             }
 
     ..  container:: example
-        
+
         **Example 3.** Spans individual notes and chords grouped in repeating
         patterns of 3 and 4:
 
@@ -116,7 +114,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             }
 
     ..  container:: example
-        
+
         **Example 4.** Spans individual notes and chords grouped in repeating
         patterns of 3 and 4 with alternating crescendi and decrescendi:
 
@@ -154,7 +152,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             }
 
     ..  container:: example
-        
+
         **Example 5.** Allows for crescendi dal niente and decrescendi al
         niente:
 
@@ -196,7 +194,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             }
 
     ..  container:: example
-        
+
         **Example 6.** Allows for crescendi dal niente and decrescendi al
         niente with intervening rests:
 
@@ -228,7 +226,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 d'4 \f
                 r4
             }
-            
+
     '''
 
     ### CLASS ATTRIBUTES ###
@@ -243,9 +241,9 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         attach_start_dynamic_to_lone_notes=True,
-        hairpin_token=None, 
+        hairpin_token=None,
         minimum_duration=None,
         patterns=None,
         span='contiguous notes and chords',
@@ -269,7 +267,9 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                         raise Exception(message)
                 tokens.append(element)
             hairpin_token = tokens
-        if isinstance(hairpin_token, list):
+        if isinstance(hairpin_token, datastructuretools.CyclicTuple):
+            pass
+        elif isinstance(hairpin_token, list):
             hairpin_token = datastructuretools.CyclicTuple(hairpin_token)
         elif isinstance(hairpin_token, tuple):
             hairpin_token = datastructuretools.CyclicTuple([hairpin_token])
@@ -290,7 +290,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     ### SPECIAL METHODS ###
 
     def __call__(self, logical_ties, timespan=None, offset=0):
-        r'''Calls note and chord hairpin handler on `logical_ties` 
+        r'''Calls note and chord hairpin handler on `logical_ties`
         with `offset`.
 
         Returns none.
@@ -384,7 +384,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         notes. Otherwise nothing is attached to lone notes.
 
         ..  container:: example
-            
+
             **Example 1.** Spans nontrivial ties and leaves lone notes
             unmarked:
 
@@ -417,7 +417,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 }
 
         ..  container:: example
-            
+
             **Example 2.** Spans nontrivial ties but applies dynamic to single
             notes:
 
