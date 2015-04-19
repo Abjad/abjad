@@ -24,8 +24,5 @@ script:
     - coverage run -a abjad/scr/ajv doctest abjad 
     - coverage run -a `which py.test` abjad
 
-    - python abjad/scr/ajv api -RM
-    - python abjad/scr/ajv api -RX
-
 after_success:
     coveralls
