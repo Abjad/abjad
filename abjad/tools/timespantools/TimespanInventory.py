@@ -204,7 +204,7 @@ class TimespanInventory(TypedList):
                                             \combine
                                                 \combine
                                                     \translate
-                                                        #'(1.0 . 1)
+                                                        #'(1.0... . 1)
                                                         \sans
                                                             \fontsize
                                                                 #-3
@@ -213,7 +213,7 @@ class TimespanInventory(TypedList):
                                                                         -2
                                                                         1
                                                     \translate
-                                                        #'(17.6666666667 . 1)
+                                                        #'(17.6... . 1)
                                                         \sans
                                                             \fontsize
                                                                 #-3
@@ -222,7 +222,7 @@ class TimespanInventory(TypedList):
                                                                         0
                                                                         1
                                                 \translate
-                                                    #'(59.3333333333 . 1)
+                                                    #'(59.3... . 1)
                                                     \sans
                                                         \fontsize
                                                             #-3
@@ -231,7 +231,7 @@ class TimespanInventory(TypedList):
                                                                     5
                                                                     1
                                             \translate
-                                                #'(67.6666666667 . 1)
+                                                #'(67.6... . 1)
                                                 \sans
                                                     \fontsize
                                                         #-3
@@ -240,7 +240,7 @@ class TimespanInventory(TypedList):
                                                                 6
                                                                 1
                                         \translate
-                                            #'(101.0 . 1)
+                                            #'(101.0... . 1)
                                             \sans
                                                 \fontsize
                                                     #-3
@@ -249,7 +249,7 @@ class TimespanInventory(TypedList):
                                                             10
                                                             1
                                     \translate
-                                        #'(117.666666667 . 1)
+                                        #'(117.6... . 1)
                                         \sans
                                             \fontsize
                                                 #-3
@@ -258,7 +258,7 @@ class TimespanInventory(TypedList):
                                                         12
                                                         1
                                 \translate
-                                    #'(151.0 . 1)
+                                    #'(151.0... . 1)
                                     \sans
                                         \fontsize
                                             #-3
@@ -267,77 +267,77 @@ class TimespanInventory(TypedList):
                                                     16
                                                     1
                             \pad-to-box
-                                #'(0 . 115.666666667)
-                                #'(0 . 8.5)
+                                #'(0 . 115.6...)
+                                #'(0 . 8.5...)
                                 \postscript
                                     #"
-                                    0.2 setlinewidth
-                                    1 6.5 moveto
-                                    67.6666666667 6.5 lineto
+                                    0.2... setlinewidth
+                                    1 6.5... moveto
+                                    67.6... 6.5 lineto
                                     stroke
-                                    1 7.25 moveto
-                                    1 5.75 lineto
+                                    1 7.2... moveto
+                                    1 5.7... lineto
                                     stroke
-                                    67.6666666667 7.25 moveto
-                                    67.6666666667 5.75 lineto
+                                    67.6... 7.25 moveto
+                                    67.6... 5.75 lineto
                                     stroke
-                                    17.6666666667 3.5 moveto
-                                    67.6666666667 3.5 lineto
+                                    17.6... 3.5 moveto
+                                    67.6... 3.5 lineto
                                     stroke
-                                    17.6666666667 4.25 moveto
-                                    17.6666666667 2.75 lineto
+                                    17.6... 4.25 moveto
+                                    17.6... 2.75 lineto
                                     stroke
-                                    67.6666666667 4.25 moveto
-                                    67.6666666667 2.75 lineto
+                                    67.6... 4.25 moveto
+                                    67.6... 2.75 lineto
                                     stroke
-                                    101.0 3.5 moveto
-                                    151 3.5 lineto
+                                    101.0... 3.5 moveto
+                                    151 3.5... lineto
                                     stroke
-                                    101.0 4.25 moveto
-                                    101.0 2.75 lineto
+                                    101.0... 4.25 moveto
+                                    101.0... 2.75 lineto
                                     stroke
-                                    151 4.25 moveto
-                                    151 2.75 lineto
+                                    151 4.2... moveto
+                                    151 2.7... lineto
                                     stroke
-                                    59.3333333333 0.5 moveto
-                                    67.6666666667 0.5 lineto
+                                    59.3... 0.5 moveto
+                                    67.6... 0.5 lineto
                                     stroke
-                                    59.3333333333 1.25 moveto
-                                    59.3333333333 -0.25 lineto
+                                    59.3... 1.25 moveto
+                                    59.3... -0.25 lineto
                                     stroke
-                                    67.6666666667 1.25 moveto
-                                    67.6666666667 -0.25 lineto
+                                    67.6... 1.25 moveto
+                                    67.6... -0.25 lineto
                                     stroke
-                                    101.0 0.5 moveto
-                                    117.666666667 0.5 lineto
+                                    101.0... 0.5 moveto
+                                    117.6... 0.5 lineto
                                     stroke
-                                    101.0 1.25 moveto
-                                    101.0 -0.25 lineto
+                                    101.0... 1.25 moveto
+                                    101.0... -0.25 lineto
                                     stroke
-                                    117.666666667 1.25 moveto
-                                    117.666666667 -0.25 lineto
+                                    117.6... 1.25 moveto
+                                    117.6... -0.25 lineto
                                     stroke
-                                    0.1 setlinewidth
-                                    [ 0.1 0.2 ] 0 setdash
-                                    1 8.5 moveto
+                                    0.1... setlinewidth
+                                    [ 0.1... 0.2 ] 0 setdash
+                                    1 8.5... moveto
                                     1 7 lineto
                                     stroke
-                                    17.6666666667 8.5 moveto
-                                    17.6666666667 4 lineto
+                                    17.6... 8.5 moveto
+                                    17.6... 4 lineto
                                     stroke
-                                    59.3333333333 8.5 moveto
-                                    59.3333333333 1 lineto
+                                    59.3... 8.5 moveto
+                                    59.3... 1 lineto
                                     stroke
-                                    67.6666666667 8.5 moveto
-                                    67.6666666667 1 lineto
+                                    67.6... 8.5 moveto
+                                    67.6... 1 lineto
                                     stroke
-                                    101.0 8.5 moveto
-                                    101.0 1 lineto
+                                    101.0... 8.5 moveto
+                                    101.0... 1 lineto
                                     stroke
-                                    117.666666667 8.5 moveto
-                                    117.666666667 1 lineto
+                                    117.6... 8.5 moveto
+                                    117.6... 1 lineto
                                     stroke
-                                    151 8.5 moveto
+                                    151 8.5... moveto
                                     151 4 lineto
                                     stroke
                                     "
