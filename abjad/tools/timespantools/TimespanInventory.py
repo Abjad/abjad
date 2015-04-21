@@ -357,7 +357,7 @@ class TimespanInventory(TypedList):
         assert 0 < scale
         minimum = float(durationtools.Offset(minimum))
         maximum = float(durationtools.Offset(maximum))
-        postscript_scale = 125. / (maximum - minimum)
+        postscript_scale = 150. / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
         if key is None:
