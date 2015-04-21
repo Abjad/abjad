@@ -8,13 +8,23 @@ class ProgressIndicator(ContextManager):
     r'''A context manager for printing progress indications.
     '''
 
+    RED = '\033[91m'
+    END = '\033[0m'
+
     ### INITIALIZER ###
 
-    def __init__(self, message='', total=None, verbose=True):
+    def __init__(
+        self,
+        message='',
+        total=None,
+        verbose=True,
+        is_warning=None,
+        ):
         self._message = message
         self._progress = 0
         self._total = total
         self._verbose = bool(verbose)
+        self._is_warning = bool(is_warning)
 
     ### SPECIAL METHODS ###
 
@@ -57,13 +67,14 @@ class ProgressIndicator(ContextManager):
                 self.progress,
                 self.total,
                 )
-            print(message, end='')
         else:
             message = '{}: {}'.format(
                 message,
                 self.progress,
                 )
-            print(message, end='')
+        if self.is_warning and self.progress:
+            message = self.RED + message + self.END
+        print(message, end='')
 
     ### PUBLIC METHODS ###
 
@@ -79,6 +90,15 @@ class ProgressIndicator(ContextManager):
         self._print()
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def is_warning(self):
+        r'''Is true if progress indicator prints in red when its progress goes
+        above zero. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._is_warning
 
     @property
     def message(self):
