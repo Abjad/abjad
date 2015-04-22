@@ -16,11 +16,11 @@ class EnharmonicInterval(AbjadValueObject):
         )
 
     _named_interval_quality_abbreviation_regex_body = '''
-        (M|     # major
-        m|      # minor
-        P|      # perfect
-        A+|     # augmented
-        d+      # diminished
+        (M  # major
+        |m  # minor
+        |P  # perfect
+        |A+ # augmented
+        |d+ # diminished
         )
         '''
 
@@ -51,7 +51,6 @@ class EnharmonicInterval(AbjadValueObject):
         r'''Converts `staff_spaces` and `semitones` to an enharmonic interval
         string.
         '''
-        pass
 
     @staticmethod
     def string_to_numbers(string):
@@ -67,7 +66,6 @@ class EnharmonicInterval(AbjadValueObject):
         direction = int('{}1'.format(direction))
         staff_spaces = int(staff_spaces) - 1
         octaves, staff_spaces = divmod(staff_spaces, 7)
-        print(octaves, staff_spaces + 1, quality, direction)
         semitones = EnharmonicInterval._scale[staff_spaces]
         if staff_spaces + 1 in (1, 4, 5):
             assert quality not in ('m', 'M')
@@ -84,4 +82,9 @@ class EnharmonicInterval(AbjadValueObject):
             elif 'd' in quality:
                 semitones -= 1
                 semitones -= len(quality)
-        print(direction, octaves, staff_spaces + 1, quality, semitones)
+        return (
+            direction,
+            octaves,
+            staff_spaces + 1,
+            semitones,
+            )
