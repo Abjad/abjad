@@ -15,7 +15,7 @@ class Interval(AbjadObject):
         m|          # minor
         P|          # perfect
         aug|        # augmented
-        dim)        # dimished
+        dim)        # diminished
         '''
 
     _named_interval_quality_abbreviation_regex = re.compile(
