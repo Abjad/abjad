@@ -21,7 +21,7 @@ script:
     - abjad/scr/ajv doctest experimental
     - py.test experimental
 
-    - coverage run -a abjad/scr/ajv doctest abjad 
+    - coverage run -a abjad/scr/ajv doctest --diff abjad 
     - coverage run -a `which py.test` abjad
 
 after_success:
