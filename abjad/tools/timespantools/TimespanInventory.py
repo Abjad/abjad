@@ -180,7 +180,7 @@ class TimespanInventory(TypedList):
             ..  doctest::
 
                 >>> illustration = timespan_inventory.__illustrate__()
-                >>> print(format(illustration))
+                >>> print(format(illustration))  # doctest: +SKIP
                 % ...
                 <BLANKLINE>
                 \version "2.19.17"
