@@ -6,16 +6,16 @@ def test_pitchtools_EnharmonicInterval_string_to_numbers_01():
 
     procedure = pitchtools.EnharmonicInterval.string_to_numbers
 
-    assert procedure('ddd1') == (1, 0, 1, -3)
-    assert procedure('dd1') == (1, 0, 1, -2)
-    assert procedure('d1') == (1, 0, 1, -1)
+    assert procedure('ddd1') == (1, 0, 1, 3)
+    assert procedure('dd1') == (1, 0, 1, 2)
+    assert procedure('d1') == (1, 0, 1, 1)
     assert procedure('P1') == (1, 0, 1, 0)
     assert procedure('A1') == (1, 0, 1, 1)
     assert procedure('AA1') == (1, 0, 1, 2)
     assert procedure('AAA1') == (1, 0, 1, 3)
 
-    assert procedure('ddd2') == (1, 0, 2, -2)
-    assert procedure('dd2') == (1, 0, 2, -1)
+    assert procedure('ddd2') == (1, 0, 2, 2)
+    assert procedure('dd2') == (1, 0, 2, 1)
     assert procedure('d2') == (1, 0, 2, 0)
     assert procedure('m2') == (1, 0, 2, 1)
     assert procedure('M2') == (1, 0, 2, 2)
