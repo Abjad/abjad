@@ -82,7 +82,6 @@ class EnharmonicInterval(AbjadValueObject):
             elif 'd' in quality:
                 semitones -= 1
                 semitones -= len(quality)
-        semitones = abs(semitones)
         return (
             direction,
             octaves,
