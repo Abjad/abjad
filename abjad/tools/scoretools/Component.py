@@ -72,7 +72,7 @@ class Component(AbjadObject):
         self._stop_offset = None
         self._stop_offset_in_seconds = None
         self._timespan = timespantools.Timespan()
-        self._name = None 
+        self._name = None
         if name is not None:
             self.name = name  # name must be setup *after* parent
 
@@ -568,8 +568,11 @@ class Component(AbjadObject):
                     if 0 <= index + n:
                         return self._parent[index + n]
 
-    def _get_spanner(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
+    def _get_spanner(self, prototype=None, in_parentage=False):
+        spanners = self._get_spanners(
+            prototype=prototype,
+            in_parentage=in_parentage,
+            )
         if not spanners:
             message = 'no spanner found.'
             raise MissingSpannerError(message)
@@ -589,7 +592,11 @@ class Component(AbjadObject):
             matching_indicators.extend(result)
         return matching_indicators
 
-    def _get_spanners(self, prototype=None):
+    def _get_spanners(
+        self,
+        prototype=None,
+        in_parentage=False,
+        ):
         from abjad.tools import spannertools
         prototype = prototype or (spannertools.Spanner,)
         if not isinstance(prototype, tuple):
@@ -607,11 +614,17 @@ class Component(AbjadObject):
         prototype = tuple(prototype)
         spanner_objects = tuple(spanner_objects)
         matching_spanners = set()
-        for spanner in set(self._spanners):
-            if isinstance(spanner, prototype):
-                matching_spanners.add(spanner)
-            elif any(spanner == x for x in spanner_objects):
-                matching_spanners.add(spanner)
+        in_parentage = bool(in_parentage)
+        if in_parentage:
+            components = self._get_parentage(include_self=True)
+        else:
+            components = (self,)
+        for component in components:
+            for spanner in set(component._spanners):
+                if isinstance(spanner, prototype):
+                    matching_spanners.add(spanner)
+                elif any(spanner == x for x in spanner_objects):
+                    matching_spanners.add(spanner)
         return matching_spanners
 
     def _get_timespan(self, in_seconds=False):
@@ -644,8 +657,15 @@ class Component(AbjadObject):
         indicators = self._get_indicators(prototype=prototype)
         return bool(indicators)
 
-    def _has_spanner(self, prototype=None):
-        spanners = self._get_spanners(prototype=prototype)
+    def _has_spanner(
+        self,
+        prototype=None,
+        in_parentage=False,
+        ):
+        spanners = self._get_spanners(
+            prototype=prototype,
+            in_parentage=in_parentage,
+            )
         return bool(spanners)
 
     def _is_immediate_temporal_successor_of(self, component):

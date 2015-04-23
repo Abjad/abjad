@@ -32,3 +32,12 @@ def test_agenttools_InspectionAgent_get_spanner_01():
 
     string = 'inspect_(container[-1]).get_spanner()'
     assert pytest.raises(Exception, string)
+
+
+def test_agenttools_InspectionAgent_get_spanner_02():
+
+    staff = Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
+    slur = Slur()
+    attach(slur, staff[:])
+    for leaf in staff.select_leaves():
+        assert slur == inspect_(leaf).get_spanner(Slur, in_parentage=True)

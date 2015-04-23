@@ -583,6 +583,7 @@ class InspectionAgent(abctools.AbjadObject):
     def get_spanner(
         self,
         prototype=None,
+        in_parentage=False,
         ):
         r'''Gets exactly one spanner of `prototype` attached to
         client.
@@ -594,11 +595,13 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_spanner(
             prototype=prototype,
+            in_parentage=in_parentage,
             )
 
     def get_spanners(
         self,
         prototype=None,
+        in_parentage=False,
         ):
         r'''Gets spanners attached to client.
 
@@ -606,18 +609,23 @@ class InspectionAgent(abctools.AbjadObject):
         '''
         return self._client._get_spanners(
             prototype=prototype,
+            in_parentage=in_parentage,
             )
 
     def has_spanner(
         self,
         prototype=None,
+        in_parentage=False,
         ):
         r'''Is true when client has one or more
         spanners that match `prototype`. Otherwise false.
 
         Returns boolean.
         '''
-        return self._client._has_spanner(prototype=prototype)
+        return self._client._has_spanner(
+            prototype=prototype,
+            in_parentage=in_parentage,
+            )
 
     def get_timespan(self,
         in_seconds=False,
