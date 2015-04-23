@@ -81,6 +81,8 @@ class Spanner(AbjadObject):
 
         Returns component.
         '''
+        if isinstance(expr, slice):
+            return selectiontools.Selection(self._components.__getitem__(expr))
         return self._components.__getitem__(expr)
 
     def __getnewargs__(self):
@@ -255,7 +257,7 @@ class Spanner(AbjadObject):
         self._sever_all_components()
 
     def _extend(self, components):
-        component_input = self[-1:]
+        component_input = list(self[-1:])
         component_input.extend(components)
         if self._contiguity_constraint == 'logical voice':
             if not Selection._all_are_contiguous_components_in_same_logical_voice(
@@ -268,7 +270,7 @@ class Spanner(AbjadObject):
             self._append(component)
 
     def _extend_left(self, components):
-        component_input = components + self[:1]
+        component_input = components + list(self[:1])
         assert Selection._all_are_contiguous_components_in_same_logical_voice(
             component_input)
         for component in reversed(components):
