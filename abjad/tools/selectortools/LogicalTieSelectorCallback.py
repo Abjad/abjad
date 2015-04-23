@@ -45,13 +45,23 @@ class LogicalTieSelectorCallback(AbjadValueObject):
         assert isinstance(expr, tuple), repr(tuple)
         result = []
         if self.flatten:
+            visited_logical_ties = set()
             for subexpr in expr:
-                result.extend(self._iterate_expr(subexpr))
+                for logical_tie in self._iterate_expr(subexpr):
+                    if logical_tie in visited_logical_ties:
+                        continue
+                    result.append(logical_tie)
+                    visited_logical_ties.add(logical_tie)
         else:
             for subexpr in expr:
-                subresult = selectiontools.Selection(
-                    self._iterate_expr(subexpr),
-                    )
+                subresult = []
+                visited_logical_ties = set()
+                for logical_tie in self._iterate_expr(subexpr):
+                    if logical_tie in visited_logical_ties:
+                        continue
+                    subresult.append(logical_tie)
+                    visited_logical_ties.add(logical_tie)
+                subresult = selectiontools.Selection(subresult)
                 result.append(subresult)
         return tuple(result)
 
