@@ -25,8 +25,6 @@ def select_all_but_last_logical_tie_in_pitched_runs(expr=None):
                         flatten=False,
                         pitched=False,
                         trivial=True,
-                        only_with_head=False,
-                        only_with_tail=False,
                         ),
                     selectortools.SliceSelectorCallback(
                         stop=-1,

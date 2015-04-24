@@ -928,8 +928,6 @@ class Selector(AbjadValueObject):
     def by_logical_tie(
         self,
         flatten=True,
-        only_with_head=False,
-        only_with_tail=False,
         pitched=False,
         trivial=True,
         ):
@@ -1030,75 +1028,6 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("d'8"), Note("d'8"))
                 LogicalTie(Note("f'8"), Note("f'8"))
 
-        ..  container:: example
-
-            **Example 4.** Selects pitched nontrivial logical ties whose head
-            is contained in the expression to be selected from:
-
-            ::
-
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-                >>> container = staff[2]
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_logical_tie(
-                ...     only_with_head=True,
-                ...     pitched=True,
-                ...     trivial=False,
-                ...     )
-
-            ::
-
-                >>> for x in selector(container):
-                ...     x
-                ...
-                LogicalTie(Note("f'8"), Note("f'8"))
-
-        ..  container:: example
-
-            **Example 5.** Selects pitched nontrivial logical ties whose tail
-            is contained in the expression to be selected from:
-
-            ::
-
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-                >>> container = staff[2]
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_logical_tie(
-                ...     only_with_tail=True,
-                ...     pitched=True,
-                ...     trivial=False,
-                ...     )
-
-            ::
-
-                >>> for x in selector(container):
-                ...     x
-                ...
-                LogicalTie(Note("d'8"), Note("d'8"))
-
-        ..  container:: example
-
-            **Example 5.** Selects logical ties whose head and tail is
-            contained in the expression to be selected from:
-
-            ::
-
-                >>> staff = Staff("c'8 d' ~ { d' e' r f'~ } f' r")
-                >>> container = staff[2]
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_logical_tie(
-                ...     only_with_head=True,
-                ...     only_with_tail=True,
-                ...     )
-
-            ::
-
-                >>> for x in selector(container):
-                ...     x
-                ...
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Rest('r8'),)
-
         Returns new selector.
         '''
         from abjad.tools import selectortools
@@ -1106,8 +1035,6 @@ class Selector(AbjadValueObject):
             flatten=flatten,
             pitched=pitched,
             trivial=trivial,
-            only_with_head=only_with_head,
-            only_with_tail=only_with_tail,
             )
         return self._append_callback(callback)
 
