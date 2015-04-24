@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import collections
 from abjad.tools import abctools
 from abjad.tools import durationtools
@@ -961,24 +962,83 @@ class IterationAgent(abctools.AbjadObject):
         '''
         if component_class is None:
             component_class = scoretools.Leaf
-        component_generator = iterate(self._client).by_class(component_class)
-        components = list(component_generator)
-        if not reverse:
-            components.sort(
-                key=lambda x: (
-                    x._get_timespan().start_offset,
-                    x._get_parentage().score_index,
-                    )
-                )
+        if isinstance(self.client, scoretools.Component):
+            components = [self.client]
         else:
-            components.sort(
-                key=lambda x: (
-                    -x._get_timespan().stop_offset,
-                    x._get_parentage().score_index,
+            components = list(self.client)
+        if not reverse:
+            while components:
+                #print('STEP:')
+                #for component in components:
+                #    print('   ', component)
+                #print()
+                current_start_offset = min(
+                    _._get_timespan().start_offset
+                    for _ in components
                     )
-                )
-        for component in components:
-            yield component
+                components.sort(
+                    key=lambda x: x._get_parentage().score_index,
+                    reverse=True,
+                    )
+                components_to_process = components[:]
+                components = []
+                while components_to_process:
+                    component = components_to_process.pop()
+                    start_offset = component._get_timespan().start_offset
+                    #print('    COMPONENT:', component)
+                    if current_start_offset < start_offset:
+                        components.append(component)
+                        #print('        TOO EARLY')
+                        continue
+                    if isinstance(component, component_class):
+                        #print('        YIELDING', component)
+                        yield component
+                    sibling = component._get_sibling(1)
+                    if sibling is not None:
+                        #print('        SIBLING:', sibling)
+                        components.append(sibling)
+                    if not isinstance(component, scoretools.Container):
+                        continue
+                    if not len(component):
+                        continue
+                    if not component.is_simultaneous:
+                        components_to_process.append(component[0])
+                    else:
+                        components_to_process.extend(reversed(component))
+        else:
+            while components:
+                #print('STEP')
+                #print()
+                current_stop_offset = max(
+                    _._get_timespan().stop_offset
+                    for _ in components
+                    )
+                components.sort(
+                    key=lambda x: x._get_parentage().score_index,
+                    reverse=True,
+                    )
+                components_to_process = components[:]
+                components = []
+                while components_to_process:
+                    component = components_to_process.pop()
+                    stop_offset = component._get_timespan().stop_offset
+                    #print('\tCOMPONENT:', component)
+                    if stop_offset < current_stop_offset:
+                        components.insert(0, component)
+                        continue
+                    if isinstance(component, component_class):
+                        yield component
+                    sibling = component._get_sibling(-1)
+                    if sibling is not None:
+                        components.insert(0, sibling)
+                    if not isinstance(component, scoretools.Container):
+                        continue
+                    if not len(component):
+                        continue
+                    if not component.is_simultaneous:
+                        components_to_process.append(component[-1])
+                    else:
+                        components_to_process.extend(reversed(component))
 
     def by_timeline_from_component(
         self,

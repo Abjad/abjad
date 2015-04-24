@@ -172,3 +172,115 @@ def test_agenttools_IterationAgent_by_timeline_04():
     assert leaves[5] is staff_1[3] # f'8
     assert leaves[6] is staff_2[2] # b'4
     assert leaves[7] is staff_2[3] # c''4
+
+
+def test_agenttools_IterationAgent_by_timeline_05():
+
+    staff_one = Staff(r"c'4 \times 2/3 { d'8 e' f' } g'2")
+    staff_two = Staff('r2 fs2')
+    staff_group = StaffGroup([staff_one, staff_two])
+    score = Score([staff_group])
+
+    component_generator = iterate(score).by_timeline(scoretools.Component)
+    components = tuple(component_generator)
+
+    assert components[0] is score
+    assert components[1] is staff_group
+    assert components[2] is staff_one
+    assert components[3] is staff_one[0]
+    assert components[4] is staff_two
+    assert components[5] is staff_two[0]
+    assert components[6] is staff_one[1]
+    assert components[7] is staff_one[1][0]
+    assert components[8] is staff_one[1][1]
+    assert components[9] is staff_one[1][2]
+    assert components[10] is staff_one[2]
+    assert components[11] is staff_two[1]
+
+
+def test_agenttools_IterationAgent_by_timeline_06():
+
+    staff_one = Staff(r"c'4 \times 2/3 { d'8 e' f' } g'2")
+    staff_two = Staff('r2 fs2')
+    staff_group = StaffGroup([staff_one, staff_two])
+    score = Score([staff_group])
+
+    component_generator = iterate(score).by_timeline(
+        scoretools.Component,
+        reverse=True,
+        )
+    components = tuple(component_generator)
+
+    assert components[0] is score
+    assert components[1] is staff_group
+    assert components[2] is staff_one
+    assert components[3] is staff_one[2]
+    assert components[4] is staff_two
+    assert components[5] is staff_two[1]
+    assert components[6] is staff_one[1]
+    assert components[7] is staff_one[1][2]
+    assert components[8] is staff_two[0]
+    assert components[9] is staff_one[1][1]
+    assert components[10] is staff_one[1][0]
+    assert components[11] is staff_one[0]
+
+
+def test_agenttools_IterationAgent_by_timeline_07():
+
+    staff_one = Staff(r"c'4 << \times 2/3 { d' e' f' } { b' a' } >> g'4")
+    staff_two = Staff("c,2 e,2")
+    staff_group = StaffGroup([staff_one, staff_two])
+    score = Score([staff_group])
+
+    component_generator = iterate(score).by_timeline(
+        scoretools.Component,
+        )
+    components = tuple(component_generator)
+
+    assert components[0] is score
+    assert components[1] is staff_group
+    assert components[2] is staff_one
+    assert components[3] is staff_one[0]
+    assert components[4] is staff_two
+    assert components[5] is staff_two[0]
+    assert components[6] is staff_one[1]
+    assert components[7] is staff_one[1][0]
+    assert components[8] is staff_one[1][0][0]
+    assert components[9] is staff_one[1][1]
+    assert components[10] is staff_one[1][1][0]
+    assert components[11] is staff_one[1][0][1]
+    assert components[12] is staff_one[1][1][1]
+    assert components[13] is staff_two[1]
+    assert components[14] is staff_one[1][0][2]
+    assert components[15] is staff_one[2]
+
+
+def test_agenttools_IterationAgent_by_timeline_08():
+
+    staff_one = Staff(r"c'4 << \times 2/3 { d' e' f' } { b' a' } >> g'4")
+    staff_two = Staff("c,2 e,2")
+    staff_group = StaffGroup([staff_one, staff_two])
+    score = Score([staff_group])
+
+    component_generator = iterate(score).by_timeline(
+        scoretools.Component,
+        reverse=True
+        )
+    components = tuple(component_generator)
+
+    assert components[0] is score
+    assert components[1] is staff_group
+    assert components[2] is staff_one
+    assert components[3] is staff_one[2]
+    assert components[4] is staff_two
+    assert components[5] is staff_two[1]
+    assert components[6] is staff_one[1]
+    assert components[7] is staff_one[1][0]
+    assert components[8] is staff_one[1][0][2]
+    assert components[9] is staff_one[1][1]
+    assert components[10] is staff_one[1][1][1]
+    assert components[11] is staff_one[1][0][1]
+    assert components[12] is staff_one[1][1][0]
+    assert components[13] is staff_two[0]
+    assert components[14] is staff_one[1][0][0]
+    assert components[15] is staff_one[0]
