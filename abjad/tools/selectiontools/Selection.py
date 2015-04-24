@@ -465,14 +465,17 @@ class Selection(object):
             for component in self
             )
 
-    def get_spanners(self, prototype=None):
+    def get_spanners(self, prototype=None, in_parentage=False):
         r'''Gets spanners attached to any component in selection.
 
         Returns set.
         '''
         result = set()
         for component in self:
-            spanners = component._get_spanners(prototype=prototype)
+            spanners = component._get_spanners(
+                prototype=prototype,
+                in_parentage=in_parentage,
+                )
             result.update(spanners)
         return result
 
