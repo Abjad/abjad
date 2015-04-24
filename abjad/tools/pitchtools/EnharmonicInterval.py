@@ -47,10 +47,42 @@ class EnharmonicInterval(AbjadValueObject):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def numbers_to_string(staff_spaces, semitones):
+    def numbers_to_string(direction, octaves, staff_spaces, semitones):
         r'''Converts `staff_spaces` and `semitones` to an enharmonic interval
         string.
         '''
+        while 7 < staff_spaces:
+            staff_spaces -= 7
+            semitones -= 12
+            octaves += 1
+        staff_spaces -= 1
+        unaltered_semitones = EnharmonicInterval._scale[staff_spaces]
+        alteration = semitones - unaltered_semitones
+        if staff_spaces + 1 in (1, 4, 5):
+            if alteration == 0:
+                quality = 'P'
+            elif 0 < alteration:
+                quality = 'A' * alteration
+            else:
+                quality = 'd' * abs(alteration)
+        else:
+            if alteration == 0:
+                quality = 'M'
+            elif alteration == -1:
+                quality = 'm'
+            elif 0 < alteration:
+                quality = 'A' * alteration
+            else:
+                quality = 'd' * (abs(alteration) - 1)
+        if direction == 1:
+            direction = ''
+        else:
+            direction = '-'
+        return '{}{}{}'.format(
+            direction,
+            quality,
+            (staff_spaces + 1) + 7 * octaves
+            )
 
     @staticmethod
     def string_to_numbers(string):
