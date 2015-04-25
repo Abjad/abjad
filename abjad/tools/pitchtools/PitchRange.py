@@ -3,7 +3,6 @@ import collections
 import copy
 import numbers
 import re
-from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitchtools.Pitch import Pitch
@@ -116,7 +115,7 @@ class PitchRange(AbjadObject):
         return False
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a pitch range with start and stop equal 
+        r'''Is true when `expr` is a pitch range with start and stop equal
         to those of this pitch range. Otherwise false.
 
         Returns boolean.
@@ -170,7 +169,7 @@ class PitchRange(AbjadObject):
     def __hash__(self):
         r'''Hashes pitch range.
 
-        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+        Required to be explicitly re-defined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''
@@ -191,7 +190,6 @@ class PitchRange(AbjadObject):
         from abjad.tools import lilypondfiletools
         from abjad.tools import indicatortools
         from abjad.tools import markuptools
-        from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools.topleveltools import attach
@@ -646,8 +644,8 @@ class PitchRange(AbjadObject):
 
     @staticmethod
     def from_pitches(
-        start_pitch, 
-        stop_pitch, 
+        start_pitch,
+        stop_pitch,
         start_pitch_is_included_in_range=True,
         stop_pitch_is_included_in_range=True,
         ):
@@ -659,7 +657,7 @@ class PitchRange(AbjadObject):
 
                 >>> pitchtools.PitchRange.from_pitches(-18, 19)
                 PitchRange(range_string='[F#2, G5]')
-        
+
         Returns pitch range.
         '''
         from abjad.tools import pitchtools

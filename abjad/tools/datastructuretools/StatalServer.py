@@ -43,7 +43,7 @@ class StatalServer(AbjadObject):
     def __hash__(self):
         r'''Hashes statal server.
 
-        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+        Required to be explicitly re-defined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''

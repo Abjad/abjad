@@ -255,7 +255,7 @@ class NamedPitch(Pitch):
         return False
 
     def __hash__(self):
-        r'''Required to be explicitely re-defined on Python 3 if
+        r'''Required to be explicitly re-defined on Python 3 if
         __eq__ changes.
 
         Returns integer.

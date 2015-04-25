@@ -194,7 +194,7 @@ class MarkupCommand(AbjadValueObject):
     def __hash__(self):
         r'''Hashes markup command.
 
-        Required to be explicitely re-defined on Python 3 if __eq__ changes.
+        Required to be explicitly re-defined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''
