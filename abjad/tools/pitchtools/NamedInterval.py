@@ -99,6 +99,10 @@ class NamedInterval(Interval):
                 number += abs(octaves) * 7
                 if sign == -1:
                     number *= -1
+            else:
+                message = 'can not initialize {}: {!r}'
+                message = message.format(type(self).__init__, args)
+                raise ValueError(message)
         elif len(args) == 2:
             quality_string, number = args
         elif len(args) == 0:
