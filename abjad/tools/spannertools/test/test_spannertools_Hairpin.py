@@ -201,3 +201,20 @@ def test_spannertools_Hairpin_07():
         )
 
     assert inspect_(staff).is_well_formed()
+
+
+def test_spannertools_Hairpin_08():
+    
+    staff = Staff("c'4 d'4 e'4 f'4")
+    attach(Dynamic('p'), staff[0])
+    attach(Hairpin('<'), staff[:])
+    assert format(staff) == systemtools.TestManager.clean_string(
+        r'''
+        \new Staff {
+            c'4 \p \<
+            d'4
+            e'4
+            f'4 \!
+        }
+        '''
+        )

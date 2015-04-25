@@ -193,7 +193,7 @@ class Hairpin(Spanner):
             if self._is_my_first_leaf(leaf):
                 string = r'{}\{}'.format(direction_string, self.shape_string)
                 lilypond_format_bundle.right.spanner_starts.append(string)
-                if (self.start_dynamic and 
+                if (self.start_dynamic and
                     not self.start_dynamic.name == 'niente'):
                         string = r'{}\{}'.format(
                             direction_string,
@@ -202,7 +202,7 @@ class Hairpin(Spanner):
                         lilypond_format_bundle.right.spanner_starts.append(
                             string)
             if self._is_my_last_leaf(leaf):
-                if (self.stop_dynamic and 
+                if (self.stop_dynamic and
                     not self.stop_dynamic.name == 'niente'):
                         string = r'{}\{}'.format(
                             direction_string,
@@ -234,7 +234,7 @@ class Hairpin(Spanner):
                     self.shape_string,
                     )
                 lilypond_format_bundle.right.spanner_starts.append(string)
-                if (self.start_dynamic and 
+                if (self.start_dynamic and
                     not self.start_dynamic.name == 'niente'):
                         string = r'{}\{}'.format(
                             direction_string,
@@ -243,7 +243,7 @@ class Hairpin(Spanner):
                         lilypond_format_bundle.right.spanner_starts.append(
                             string)
             if self._is_my_last(leaf, (scoretools.Chord, scoretools.Note)):
-                if (self.stop_dynamic and 
+                if (self.stop_dynamic and
                     not self.stop_dynamic.name == 'niente'):
                         string = r'{}\{}'.format(
                             direction_string,
@@ -258,6 +258,16 @@ class Hairpin(Spanner):
                         string = r'\!'
                         lilypond_format_bundle.right.spanner_stops.append(
                             string)
+                    elif effective_dynamic not in leaf._indicator_expressions:
+                        found_match = False
+                        for indicator in \
+                            leaf._get_indicators(indicatortools.Dynamic):
+                            if indicator == effective_dynamic:
+                                found_match = True
+                        if not found_match:
+                            string = r'\!'
+                            lilypond_format_bundle.right.spanner_stops.append(
+                                string)
         if self._is_my_only_leaf(leaf):
             lilypond_format_bundle.right.spanner_starts.extend(
                 lilypond_format_bundle.right.spanner_stops)

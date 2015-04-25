@@ -143,3 +143,20 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
+
+
+def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_08():
+
+    string = r"\new Staff { c'4 ( \p \< d'4 e'4 f'4 ) \! }"
+    parser = LilyPondParser()
+    result = parser(string)
+    assert format(result) == systemtools.TestManager.clean_string(
+        r'''
+        \new Staff {
+            c'4 \p \< (
+            d'4
+            e'4
+            f'4 \! )
+        }
+        '''
+        )
