@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.pitchtools.Segment import Segment
 from abjad.tools.topleveltools import new
 
@@ -14,12 +15,36 @@ class IntervalSegment(Segment):
         >>> pitchtools.IntervalSegment(intervals)
         IntervalSegment(['+m2', '+M10', '-aug4', '+P5'])
 
+    ::
+
+        >>> pitch_segment = pitchtools.PitchSegment("c d e f g a b c'")
+        >>> pitchtools.IntervalSegment(pitch_segment)
+        IntervalSegment(['+M2', '+M2', '+m2', '+M2', '+M2', '+M2', '+m2'])
+
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        items=None,
+        item_class=None,
+        ):
+        from abjad.tools import pitchtools
+        if isinstance(items, pitchtools.PitchSegment):
+            intervals = []
+            for one, two in sequencetools.iterate_sequence_nwise(items):
+                intervals.append(one - two)
+            items = intervals
+        Segment.__init__(
+            self,
+            items=items,
+            item_class=item_class,
+            )
 
     ### PRIVATE PROPERTIES ###
 
