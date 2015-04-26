@@ -18,7 +18,6 @@ def test_pitchtools_Accidental_symbolic_accidental_string_02():
     assert pitchtools.Accidental('f').symbolic_string == 'b'
     assert pitchtools.Accidental('qf').symbolic_string == '~'
     assert pitchtools.Accidental('').symbolic_string == ''
-    assert pitchtools.Accidental('!').symbolic_string == '!'
     assert pitchtools.Accidental('qs').symbolic_string == '+'
     assert pitchtools.Accidental('s').symbolic_string == '#'
     assert pitchtools.Accidental('tqs').symbolic_string == '#+'

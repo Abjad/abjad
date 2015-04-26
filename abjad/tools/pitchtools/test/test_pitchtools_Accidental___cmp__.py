@@ -24,15 +24,3 @@ def test_pitchtools_Accidental___cmp___02():
     assert      k1 >= k2
     assert not k1 <  k2
     assert not k1 <= k2
-
-
-def test_pitchtools_Accidental___cmp___03():
-    r'''No accidental and forced natural compare in a special way.
-    '''
-    k1, k2 = pitchtools.Accidental(''), pitchtools.Accidental('!')
-    assert not k1 == k2
-    assert      k1 != k2
-    assert not k1 >  k2
-    assert      k1 >= k2
-    assert not k1 <  k2
-    assert      k1 <= k2
