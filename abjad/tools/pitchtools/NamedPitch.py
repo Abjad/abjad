@@ -1615,6 +1615,8 @@ class NamedPitch(Pitch):
             named_pitch_class = pitch_carrier.named_pitch_class
             named_pitch = pitchtools.NamedPitch(named_pitch_class)
             return named_pitch
+        elif isinstance(pitch_carrier, str):
+            return pitchtools.NamedPitch(pitch_carrier)
         else:
             message = 'pitch carrier {!r} must be'
             message += ' pitch, note, note head or chord.'
