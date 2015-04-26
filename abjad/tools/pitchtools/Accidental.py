@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -23,6 +24,31 @@ class Accidental(AbjadObject):
 
             >>> pitchtools.Accidental('qs')
             Accidental('qs')
+
+    ::
+
+        >>> pitchtools.Accidental('tqf')
+        Accidental('tqf')
+
+    ::
+
+        >>> pitchtools.Accidental('#+')
+        Accidental('tqs')
+
+    ::
+
+        >>> pitchtools.Accidental('flat')
+        Accidental('f')
+
+    ::
+
+        >>> pitchtools.Accidental(2)
+        Accidental('ss')
+
+    ::
+
+        >>> pitchtools.Accidental('ssssqs')
+        Accidental('ssssqs')
 
     Accidentals are immutable.
     '''
@@ -149,22 +175,58 @@ class Accidental(AbjadObject):
     ### INITIALIZER ##
 
     def __init__(self, expr=None):
-        if self.is_abbreviation(expr):
-            abbreviation = expr
-        elif self.is_symbolic_string(expr):
-            abbreviation = self._symbolic_string_to_abbreviation[expr]
-        elif expr in self._all_accidental_names:
-            abbreviation = self._name_to_abbreviation[expr]
-        elif expr in self._all_accidental_semitone_values:
-            abbreviation = self._semitones_to_abbreviation[expr]
+        if expr is None:
+            semitones = 0
+        elif isinstance(expr, str):
+            semitones = 0
+            if self.is_abbreviation(expr):
+                if expr in self._abbreviation_to_semitones:
+                    semitones = self._abbreviation_to_semitones[expr]
+                else:
+                    while expr and expr.startswith(('f', 's')):
+                        if expr[0] == 's':
+                            semitones += 1
+                        else:
+                            semitones -= 1
+                        expr = expr[1:]
+                    if expr == 'qs':
+                        semitones += 0.5
+                    elif expr == 'qf':
+                        semitones -= 0.5
+            elif self.is_symbolic_string(expr):
+                if expr in self._symbolic_string_to_semitones:
+                    semitones = self._symbolic_string_to_semitones[expr]
+                else:
+                    while expr and expr.startswith(('b', '#')):
+                        if expr[0] == '#':
+                            semitones += 1
+                        else:
+                            semitones -= 1
+                        expr = expr[1:]
+                    if expr == '+':
+                        semitones += 0.5
+                    elif expr == '~':
+                        semitones -= 0.5
+            elif expr in self._name_to_abbreviation:
+                abbreviation = self._name_to_abbreviation[expr]
+                semitones = self._abbreviation_to_semitones[abbreviation]
+            else:
+                message = 'can not initialize accidental from value: {!r}'
+                message = message.format(expr)
+                raise ValueError(message)
         elif isinstance(expr, type(self)):
-            abbreviation = expr.abbreviation
-        elif isinstance(expr, type(None)):
-            abbreviation = ''
+            semitones = expr.semitones
+        elif isinstance(expr, (int, float)):
+            semitones = float(expr)
+            assert (semitones % 1.) in (0., 0.5)
+        elif hasattr(expr, 'accidental'):
+            semitones = expr.accidental.semitones
         else:
-            message = 'can not initialize accidental from value: %s'
-            raise ValueError(message % expr)
-        self._semitones = self._abbreviation_to_semitones[abbreviation]
+            message = 'can not initialize accidental from value: {!r}'
+            message = message.format(expr)
+            raise ValueError(message)
+        semitones = mathtools.integer_equivalent_number_to_integer(semitones)
+        self._semitones = semitones
 
     ### SPECIAL METHODS ###
 
@@ -361,7 +423,17 @@ class Accidental(AbjadObject):
 
         Returns string.
         '''
-        return self._semitones_to_abbreviation[self.semitones]
+        if self.semitones in self._semitones_to_abbreviation:
+            return self._semitones_to_abbreviation[self.semitones]
+        character = 's'
+        if self.semitones < 0:
+            character = 'f'
+        semitones = abs(self.semitones)
+        semitones, remainder = divmod(semitones, 1.0)
+        abbreviation = character * int(semitones)
+        if remainder:
+            abbreviation += 'q{}'.format(character)
+        return abbreviation
 
     @property
     def is_adjusted(self):
