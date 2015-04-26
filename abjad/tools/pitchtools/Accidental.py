@@ -66,10 +66,11 @@ class Accidental(AbjadObject):
         }
 
     _alphabetic_accidental_regex_body = """
-        ([s]{1,2}   # s or ss for sharp or double sharp
-        |[f]{1,2}   # or f or ff for flat or double flat
-        |t?q?[fs]   # or qs, qf, tqs, tqf for quartertone accidentals
-        |)          # or empty string for no natural
+        (?P<alphabetic_accidental>
+        [s]*(qs)?
+        |[f]*(qf)?
+        |t?q?[fs]
+        |)
         """
 
     _alphabetic_accidental_regex = re.compile(
@@ -102,11 +103,12 @@ class Accidental(AbjadObject):
         }
 
     _symbolic_string_regex_body = '''
-        ([#]{1,2}   # # or ## for sharp or double sharp
-        |[b]{1,2}   # or b or bb for flat or double flat
-        |[#]?[+]    # or + or #+ for qs and tqs
-        |[b]?[~]    # or ~ and b~ for qf and tqf
-        |           # or empty string for no symbolic string
+        (?P<symbolic_string>
+        [#]+[+]?
+        |[b]+[~]?
+        |[+]
+        |[~]
+        |
         )
         '''
 
