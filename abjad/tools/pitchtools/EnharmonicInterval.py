@@ -33,6 +33,7 @@ class EnharmonicInterval(AbjadValueObject):
         ([+,-]?)    # one plus, one minus, or neither
         {}          # exactly one diatonic quality abbreviation
         (\d+)       # followed by one or more digits
+        ([+~]?)     # followed by optional quarter-tone inflection
         '''.format(
         _named_interval_quality_abbreviation_regex_body,
         )
@@ -58,6 +59,13 @@ class EnharmonicInterval(AbjadValueObject):
         staff_spaces -= 1
         unaltered_semitones = EnharmonicInterval._scale[staff_spaces]
         alteration = semitones - unaltered_semitones
+        quarter_tone = 0
+        if 0 < alteration:
+            alteration, quarter_tone = divmod(alteration, 1)
+        elif alteration < 0:
+            alteration, quarter_tone = divmod(abs(alteration), 1)
+            alteration *= -1
+            quarter_tone *= -1
         if staff_spaces + 1 in (1, 4, 5):
             if alteration == 0:
                 quality = 'P'
@@ -78,15 +86,86 @@ class EnharmonicInterval(AbjadValueObject):
             direction = ''
         else:
             direction = '-'
-        return '{}{}{}'.format(
+        if 0 < quarter_tone:
+            quarter_tone = '+'
+        elif quarter_tone < 0:
+            quarter_tone = '~'
+        else:
+            quarter_tone = ''
+        return '{}{}{}{}'.format(
             direction,
             quality,
-            (staff_spaces + 1) + 7 * octaves
+            (staff_spaces + 1) + 7 * octaves,
+            quarter_tone
+            )
+
+    @staticmethod
+    def string_from_pitch_carriers(pitch_carrier_1, pitch_carrier_2):
+        r'''Converts pitch carriers to enharmonic interval string.
+
+        ::
+
+            >>> interval = pitchtools.EnharmonicInterval
+
+        ::
+
+            >>> interval.string_from_pitch_carriers('C4', 'G4')
+            'P5'
+
+        ::
+
+            >>> interval.string_from_pitch_carriers("cff'", "css'")
+            'AAAA1'
+
+        ::
+
+            >>> interval.string_from_pitch_carriers('d', 'aqs')
+            'P5+'
+
+        '''
+        from abjad.tools import pitchtools
+        pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
+        pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
+        degree_1 = pitch_1.diatonic_pitch_number
+        degree_2 = pitch_2.diatonic_pitch_number
+        staff_spaces = abs(degree_1 - degree_2) + 1
+        semitones = abs(
+            pitchtools.NumberedPitch(pitch_1).pitch_number -
+            pitchtools.NumberedPitch(pitch_2).pitch_number
+            )
+        direction = 1
+        if pitch_2 < pitch_1:
+            direction = -1
+        return EnharmonicInterval.numbers_to_string(
+            direction,
+            0,
+            staff_spaces,
+            semitones,
             )
 
     @staticmethod
     def string_to_numbers(string):
         r'''Converts an enharmonic interval string to a tuple of integers.
+
+        ::
+
+            >>> interval = pitchtools.EnharmonicInterval
+
+        ::
+
+            >>> interval.string_to_numbers('P5')
+            (1, 0, 5, 7)
+
+        ::
+
+            >>> interval.string_to_numbers('P5+')
+            (1, 0, 5, 7.5)
+
+        ::
+
+            >>> interval.string_to_numbers('AAAA1')
+            (1, 0, 1, 4)
+
         '''
         match = EnharmonicInterval._interval_name_abbreviation_regex.match(
             string)
@@ -94,6 +173,7 @@ class EnharmonicInterval(AbjadValueObject):
             direction,
             quality,
             staff_spaces,
+            quarter_tone,
             ) = match.groups()
         direction = int('{}1'.format(direction))
         staff_spaces = int(staff_spaces) - 1
@@ -114,6 +194,10 @@ class EnharmonicInterval(AbjadValueObject):
             elif 'd' in quality:
                 semitones -= 1
                 semitones -= len(quality)
+        if quarter_tone == '+':
+            semitones += 0.5
+        elif quarter_tone == '~':
+            semitones -= 0.5
         return (
             direction,
             octaves,
