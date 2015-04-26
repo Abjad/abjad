@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import print_function
 import re
+from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -16,12 +17,13 @@ class EnharmonicInterval(AbjadValueObject):
         )
 
     _named_interval_quality_abbreviation_regex_body = '''
-        (M     # major
-        |m     # minor
-        |P     # perfect
-        |A+    # augmented
-        |d+    # diminished
-        )
+        ([+,-]?)    # one plus, one minus, or neither
+        (M      # major
+        |m      # minor
+        |P      # perfect
+        |A+     # augmented
+        |d+)    # diminished
+        ([+~]?) # optional quarter-tone inflection
         '''
 
     _named_interval_quality_abbreviation_regex = re.compile(
@@ -30,9 +32,7 @@ class EnharmonicInterval(AbjadValueObject):
         )
 
     _interval_name_abbreviation_regex_body = '''
-        ([+,-]?)    # one plus, one minus, or neither
-        {}          # exactly one diatonic quality abbreviation
-        ([+~]?)     # optional quarter-tone inflection
+        {}          # quality abbreviation with quarter-tone alteration
         (\d+)       # followed by one or more digits
         '''.format(
         _named_interval_quality_abbreviation_regex_body,
@@ -73,7 +73,9 @@ class EnharmonicInterval(AbjadValueObject):
                 pitchtools.NumberedInterval,
                 pitchtools.NumberedIntervalClass,
                 )):
-                pass
+                number = int(expr)
+                sign = mathtools.sign(number)
+                octave, semitones = divmod(abs(number), 12)
             else:
                 message = 'can not initialize {}: {!r}'
                 message = message.format(type(self).__init__, args)
@@ -91,7 +93,9 @@ class EnharmonicInterval(AbjadValueObject):
         assert self._named_interval_quality_abbreviation_regex.match(
             quality_string) is not None
         self._quality_string = quality_string
-        self._number = int(number)
+        number = int(number)
+        assert number != 0
+        self._number = number
 
     ### PUBLIC METHODS ###
 
