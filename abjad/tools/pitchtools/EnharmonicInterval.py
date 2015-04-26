@@ -11,16 +11,16 @@ class EnharmonicInterval(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_semitones',
-        '_staff_spaces',
+        '_quality_string',
+        '_number',
         )
 
     _named_interval_quality_abbreviation_regex_body = '''
-        (M  # major
-        |m  # minor
-        |P  # perfect
-        |A+ # augmented
-        |d+ # diminished
+        (M     # major
+        |m     # minor
+        |P     # perfect
+        |A+    # augmented
+        |d+    # diminished
         )
         '''
 
@@ -32,8 +32,8 @@ class EnharmonicInterval(AbjadValueObject):
     _interval_name_abbreviation_regex_body = '''
         ([+,-]?)    # one plus, one minus, or neither
         {}          # exactly one diatonic quality abbreviation
+        ([+~]?)     # optional quarter-tone inflection
         (\d+)       # followed by one or more digits
-        ([+~]?)     # followed by optional quarter-tone inflection
         '''.format(
         _named_interval_quality_abbreviation_regex_body,
         )
@@ -44,6 +44,54 @@ class EnharmonicInterval(AbjadValueObject):
         )
 
     _scale = (0, 2, 4, 5, 7, 9, 11)
+
+    ### INITIALIZER ###
+
+    def __init__(self, *args):
+        from abjad.tools import pitchtools
+        if len(args) == 1:
+            expr = args[0]
+            if isinstance(expr, type(self)):
+                quality_string = expr.quality_string
+                number = expr.number
+            elif isinstance(expr, str):
+                match = self._interval_name_abbreviation_regex.match(expr)
+                if match is None:
+                    message = 'can not initialize {}: {!r}'
+                    message = message.format(type(self).__init__, args)
+                    raise ValueError(message)
+                (
+                    direction,
+                    quality,
+                    staff_spaces,
+                    quarter_tone,
+                    ) = match.groups()
+            elif isinstance(expr, (
+                int,
+                float,
+                int,
+                pitchtools.NumberedInterval,
+                pitchtools.NumberedIntervalClass,
+                )):
+                pass
+            else:
+                message = 'can not initialize {}: {!r}'
+                message = message.format(type(self).__init__, args)
+                raise ValueError(message)
+        elif len(args) == 2:
+            quality_string, number = args
+        elif len(args) == 0:
+            quality_string = 'P'
+            number = 1
+        else:
+            message = 'can not initialize {}: {!r}'
+            message = message.format(type(self).__init__, args)
+            raise ValueError(message)
+        assert isinstance(quality_string, str)
+        assert self._named_interval_quality_abbreviation_regex.match(
+            quality_string) is not None
+        self._quality_string = quality_string
+        self._number = int(number)
 
     ### PUBLIC METHODS ###
 
@@ -158,7 +206,7 @@ class EnharmonicInterval(AbjadValueObject):
 
         ::
 
-            >>> interval.string_to_numbers('P5+')
+            >>> interval.string_to_numbers('P+5')
             (1, 0, 5, 7.5)
 
         ::
@@ -172,8 +220,8 @@ class EnharmonicInterval(AbjadValueObject):
         (
             direction,
             quality,
-            staff_spaces,
             quarter_tone,
+            staff_spaces,
             ) = match.groups()
         direction = int('{}1'.format(direction))
         staff_spaces = int(staff_spaces) - 1
