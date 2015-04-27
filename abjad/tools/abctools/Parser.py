@@ -2,6 +2,7 @@
 import abc
 import logging
 import os
+import pickle
 import ply
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
@@ -49,6 +50,14 @@ class Parser(AbjadObject):
             debuglog=self.logger,
             object=self.lexer_rules_object
             )
+
+        if not os.path.exists(self.pickle_path):
+            directory_path, _ = os.path.split(self.pickle_path)
+            if not os.path.exists(directory_path):
+                os.makedirs(directory_path)
+            string = pickle.dumps(None)
+            with open(self.pickle_path, 'wb') as file_pointer:
+                file_pointer.write(string)
 
         self._parser = ply.yacc.yacc(
             debug=self.debug,
