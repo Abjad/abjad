@@ -156,29 +156,22 @@ class Quantizer(AbjadObject):
                     d'2
                     ef'4 ~
                     \tempo 4=90
-                    ef'4
+                    ef'8.
                     e'4 ~
+                    e'16 ~
                     \times 2/3 {
                         \tempo 4=30
                         e'32
-                        f'16 ~
+                        f'8.
+                        fs'8 ~
+                        fs'32 ~
                     }
-                    f'16 ~
-                    \times 2/3 {
-                        f'32
-                        fs'16 ~
-                    }
-                    fs'16 ~
                     \times 2/3 {
                         fs'32
-                        g'16 ~
+                        g'8.
+                        r8
+                        r32
                     }
-                    g'16 ~
-                    \times 2/3 {
-                        g'32
-                        r16
-                    }
-                    r16
                 }
             }
         >>

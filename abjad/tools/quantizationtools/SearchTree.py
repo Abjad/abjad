@@ -120,7 +120,7 @@ class SearchTree(AbjadObject):
                         for proxy in succeeding_proxies):
                     pass  # proxies align perfectly with this leaf
 
-                elif succeeding_proxies or succeeding_proxies:
+                elif preceding_proxies or succeeding_proxies:
                     parentage_ratios = leaf_one.parentage_ratios
                     leaf_subdivisions = \
                         self._find_leaf_subdivisions(parentage_ratios)

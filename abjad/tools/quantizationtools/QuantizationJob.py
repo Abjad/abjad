@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import inspect
+from __future__ import print_function
 from abjad.tools.abctools import AbjadObject
 
 
@@ -98,10 +98,14 @@ class QuantizationJob(AbjadObject):
         Returns none.
         '''
         from abjad.tools import quantizationtools
-        #print self.q_event_proxies
+        #print('XXX')
+        #print(format(self.q_event_proxies[0]))
 
         q_grid = quantizationtools.QGrid()
         q_grid.fit_q_events(self.q_event_proxies)
+
+        #print(format(q_grid))
+
         old_q_grids = []
         new_q_grids = [q_grid]
 
@@ -113,6 +117,10 @@ class QuantizationJob(AbjadObject):
             #    print '\t', x.rtm_format
             new_q_grids.extend(search_results)
             old_q_grids.append(q_grid)
+
+        #for q_grid in old_q_grids:
+        #    print('\t', q_grid)
+        #print()
 
         self._q_grids = tuple(old_q_grids)
 
