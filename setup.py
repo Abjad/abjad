@@ -57,7 +57,7 @@ keywords = ', '.join(keywords)
 install_requires = [
     'Sphinx >= 1.0.7',
     'configobj >= 4.7.2',
-    'ply >= 3.4',
+    'ply == 3.4',
     'pytest >= 2.1',
     ]
 if sys.version_info[0] == 2:
