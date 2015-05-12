@@ -506,6 +506,10 @@ class TimespanInventory(TypedList):
             ps = ps.moveto(x_offset, height + 1.5)
             ps = ps.lineto(x_offset, height - (level * 3))
             ps = ps.stroke()
+        ps = ps.moveto(0, 0)
+        ps = ps.setgray(0.99)
+        ps = ps.rlineto(0, 0.01)
+        ps = ps.stroke()
         x_extent = float(timespan_inventory.stop_offset)
         x_extent *= postscript_scale
         x_extent += postscript_x_offset
