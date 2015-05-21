@@ -1,43 +1,43 @@
 Abjad 2.16
-    Build start date: 2014-11-20
+    Build start date: 2015-05-21
     Build complete date:
     MD5 hash of Abjad Github repository:
 
     Packaging environment:
         0. workstation description: 2.6 GHz i5 MacBook Pro / OSX 10.10
-        1. uname -v: Darwin Kernel Version 14.0.0
-        2. git --version: git version 1.9.3 (Apple Git-50)
-        3. python --version: Python 2.7.8
-        4. pip --version: pip 1.5.6
-        5. py.test --version: This is pytest version 2.6.4
-        6. sphinx-build --version: Sphinx (sphinx-build) 1.2.3
-        7. lilypond --version: GNU LilyPond 2.19.15
-        8. convert --version: ImageMagick 6.8.8-6 Q16 x86_64 2014-02-17
-        9. dot -V: graphviz version 2.38.0 (20140413.2041)
+        1. uname -v: 
+        2. git --version: 
+        3. python --version: 
+        4. pip --version: 
+        5. py.test --version: 
+        6. sphinx-build --version: 
+        7. lilypond --version: 
+        8. convert --version: 
+        9. dot -V: 
 
-    Python 2.7.8 test results:
-        1. mainline py.test test results: 9004 passed, 14 skipped
-        2. mainline doctest test results: 8142 tests passed in 872 modules
-        3. experimental py.test test results: 13 passed, 1 skipped
-        4. experimental doctest test results: 359 tests passed in 50 modules
-        5. scoremanager py.test test results: 1062 passed, 5 skipped
-        6. scoremanager doctest test results: 209 tests passed in 132 modules
-        7. sanity check test results: OK
-        8. experimental HTML build results: OK
-        9. mainline HTML build results: OK
-       10. scoremanager HTML build results: OK
-       11. LaTeX build results: OK
-       12. Abjad.pdf build results: OK
-       13. AbjadAPI.pdf build results: OK
+    Python 2.7.9 test results:
+        1. mainline py.test test results: 
+        2. mainline doctest test results: 
+        3. experimental py.test test results: 
+        4. experimental doctest test results: 
+        5. ide py.test test results: 
+        6. ide doctest test results: 
+        7. sanity check test results: 
+        8. experimental HTML build results: 
+        9. mainline HTML build results: 
+       10. ide HTML build results: 
+       11. LaTeX build results: 
+       12. Abjad.pdf build results: 
+       13. AbjadAPI.pdf build results: 
 
-    Python 3.4.2 test results:
-        1. mainline py.test test results: 9004 passed, 14 skipped
-        2. mainline doctest test results: 8142 tests passed in 872 modules
-        3. experimental py.test test results: 13 passed, 1 skipped
-        4. experimental doctest test results: 359 tests passed in 50 modules
-        5. scoremanager py.test test results: 1062 passed, 5 skipped
-        6. scoremanager doctest test results: 209 tests passed in 132 modules
-        7. sanity check test results: OK
+    Python 3.4.3 test results:
+        1. mainline py.test test results: 
+        2. mainline doctest test results: 
+        3. experimental py.test test results: 
+        4. experimental doctest test results: 
+        5. ide py.test test results: 
+        6. ide doctest test results: 
+        7. sanity check test results: 
 
 
 Abjad 2.15
