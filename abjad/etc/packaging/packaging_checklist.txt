@@ -103,7 +103,7 @@ Abjad packaging checklist:
 
 10. Return to the mainline.
     Start the Abjad interpreter to run one final sanity check.
-    Run 'show(Note("c4"))'.
+    Run '''show(Note("c4'"))'''.
     Then call:
         systemtools.IOManager.open_last_ly()
         systemtools.IOManager.open_last_log()
