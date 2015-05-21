@@ -648,7 +648,7 @@ class SchemeParser(abctools.Parser):
             if self.debug:
                 print(("SchemeParser-{}: Syntax error at {!r}".format(
                     id(self), p.value)))
-            yacc.errok()
+            self._parser.errok()
         else:
             if self.debug:
                 print(("SchemeParser-{}: Syntax error at EOF".format(id(self))))
