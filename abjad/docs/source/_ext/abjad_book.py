@@ -333,7 +333,15 @@ def render_abjad_book_node(self, node, file_format='png', linked=False):
     secondary_file_name = '{}-{}-{}.pdf'.format(
         kind, hexdigest, suffix)
     paths = {}
-    if hasattr(self.builder, 'imgpath'): # HTML
+    if self.builder.format == 'latex':
+        is_latex = True
+        paths['primary_relative_path'] = primary_file_name
+        paths['primary_absolute_path'] = os.path.join(
+            self.builder.outdir, primary_file_name)
+        paths['secondary_relative_path'] = secondary_file_name
+        paths['secondary_absolute_path'] = os.path.join(
+            self.builder.outdir, secondary_file_name)
+    else:
         is_latex = False
         img_directory = os.path.join(self.builder.outdir, '_images')
         if not os.path.exists(img_directory):
@@ -346,14 +354,6 @@ def render_abjad_book_node(self, node, file_format='png', linked=False):
             self.builder.imgpath, secondary_file_name)
         paths['secondary_absolute_path'] = os.path.join(
             self.builder.outdir, '_images', secondary_file_name)
-    else: # LaTeX
-        is_latex = True
-        paths['primary_relative_path'] = primary_file_name
-        paths['primary_absolute_path'] = os.path.join(
-            self.builder.outdir, primary_file_name)
-        paths['secondary_relative_path'] = secondary_file_name
-        paths['secondary_absolute_path'] = os.path.join(
-            self.builder.outdir, secondary_file_name)
     # TODO: The `alt` handling here is completely hackish, and must be
     #       refactored with the next pass on abjadbooktools.
     alt = node.get('raw_code', '')
