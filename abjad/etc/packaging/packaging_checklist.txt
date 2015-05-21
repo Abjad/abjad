@@ -182,7 +182,8 @@ Abjad packaging checklist:
         Add a sentence detailing the output of these scripts to this chapter.
         Example: "Implements 405 public classes and 1066 functions 
         totaling 182,000 lines of code."
-        Run whatever git command will present past commits. (TODO: find this)
+        Run whatever git command will present past commits.
+            git log REVISIONNUMBER.. --reverse
         Read log and write release notes.
         Follow the pattern already established in the document.
         List new features and functionality.
