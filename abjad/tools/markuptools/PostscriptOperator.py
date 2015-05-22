@@ -71,17 +71,17 @@ class PostscriptOperator(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def name(self):
-        r'''Gets Postscript operator name.
-
-        Returns string.
-        '''
-        return self._name
-
-    @property
     def arguments(self):
         r'''Gets Postscript operator arguments.
 
         Returns tuple or none.
         '''
         return self._arguments
+
+    @property
+    def name(self):
+        r'''Gets Postscript operator name.
+
+        Returns string.
+        '''
+        return self._name

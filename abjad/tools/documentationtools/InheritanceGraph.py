@@ -405,23 +405,6 @@ class InheritanceGraph(AbjadObject):
         return name
 
     @staticmethod
-    def _recurse_upward(
-        current_class,
-        invalid_classes,
-        child_parents_mapping,
-        ):
-        if current_class not in child_parents_mapping:
-            return
-        for parent in child_parents_mapping[current_class]:
-            if parent in invalid_classes:
-                invalid_classes.remove(parent)
-                InheritanceGraph._recurse_upward(
-                    parent,
-                    invalid_classes,
-                    child_parents_mapping,
-                    )
-
-    @staticmethod
     def _recurse_downward(
         current_class,
         invalid_classes,
@@ -436,6 +419,23 @@ class InheritanceGraph(AbjadObject):
                     child,
                     invalid_classes,
                     parent_children_mapping,
+                    )
+
+    @staticmethod
+    def _recurse_upward(
+        current_class,
+        invalid_classes,
+        child_parents_mapping,
+        ):
+        if current_class not in child_parents_mapping:
+            return
+        for parent in child_parents_mapping[current_class]:
+            if parent in invalid_classes:
+                invalid_classes.remove(parent)
+                InheritanceGraph._recurse_upward(
+                    parent,
+                    invalid_classes,
+                    child_parents_mapping,
                     )
 
     def _strip_nonlineage_classes(self,

@@ -150,6 +150,14 @@ class Glissando(Spanner):
         return True
 
     @staticmethod
+    def _parenthesize_leaf(leaf):
+        if isinstance(leaf, scoretools.Note):
+            leaf.note_head.is_parenthesized = True
+        elif isinstance(leaf, scoretools.Chord):
+            for note_head in leaf.note_heads:
+                note_head.is_parenthesized = True
+
+    @staticmethod
     def _previous_leaf_changes_current_pitch(leaf):
         previous_leaf = inspect_(leaf).get_leaf(n=-1)
         if (isinstance(leaf, scoretools.Note) and
@@ -161,14 +169,6 @@ class Glissando(Spanner):
             leaf.written_pitches == previous_leaf.written_pitches):
             return False
         return True
-
-    @staticmethod
-    def _parenthesize_leaf(leaf):
-        if isinstance(leaf, scoretools.Note):
-            leaf.note_head.is_parenthesized = True
-        elif isinstance(leaf, scoretools.Chord):
-            for note_head in leaf.note_heads:
-                note_head.is_parenthesized = True
 
     ### PUBLIC PROPERTIES ###
 

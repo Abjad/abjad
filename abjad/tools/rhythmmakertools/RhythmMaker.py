@@ -293,6 +293,13 @@ class RhythmMaker(AbjadValueObject):
             return self.duration_spelling_specifier
         return rhythmmakertools.DurationSpellingSpecifier()
 
+    @staticmethod
+    def _get_rhythmic_staff(lilypond_file):
+        score_block = lilypond_file.items[-1]
+        score = score_block.items[0]
+        rhythmic_staff = score[-1]
+        return rhythmic_staff
+
     def _get_tie_specifier(self):
         from abjad.tools import rhythmmakertools
         if self.tie_specifier is not None:
@@ -304,13 +311,6 @@ class RhythmMaker(AbjadValueObject):
         if self.tuplet_spelling_specifier is not None:
             return self.tuplet_spelling_specifier
         return rhythmmakertools.TupletSpellingSpecifier()
-
-    @staticmethod
-    def _get_rhythmic_staff(lilypond_file):
-        score_block = lilypond_file.items[-1]
-        score = score_block.items[0]
-        rhythmic_staff = score[-1]
-        return rhythmic_staff
 
     @staticmethod
     def _is_leaf_selection(expr):

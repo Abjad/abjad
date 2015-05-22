@@ -124,6 +124,14 @@ class CountsSelectorCallback(AbjadValueObject):
         return self._fuse_overhang
 
     @property
+    def nonempty(self):
+        r'''Gets counts selector callback nonempty flag.
+
+        Returns boolean.
+        '''
+        return self._nonempty
+
+    @property
     def overhang(self):
         r'''Gets counts selector callback overhang flag.
 
@@ -138,11 +146,3 @@ class CountsSelectorCallback(AbjadValueObject):
         Returns boolean.
         '''
         return self._rotate
-
-    @property
-    def nonempty(self):
-        r'''Gets counts selector callback nonempty flag.
-
-        Returns boolean.
-        '''
-        return self._nonempty

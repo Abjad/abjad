@@ -220,6 +220,12 @@ class Container(Component):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _compact_representation(self):
+        if not self:
+            return '{ }'
+        return '{{ {} }}'.format(self._contents_summary)
+
+    @property
     def _contents_duration(self):
         if self.is_simultaneous:
             return max([durationtools.Duration(0)] +
@@ -229,12 +235,6 @@ class Container(Component):
             for x in self:
                 duration += x._preprolated_duration
             return duration
-
-    @property
-    def _compact_representation(self):
-        if not self:
-            return '{ }'
-        return '{{ {} }}'.format(self._contents_summary)
 
     @property
     def _contents_summary(self):
@@ -407,25 +407,6 @@ class Container(Component):
                 (contributor, tuple([indent + x for x in contributions])))
         return tuple(result)
 
-    def _get_spanners_that_span_slice(self, start, stop):
-        if start == stop:
-            if start == 0:
-                left = None
-            else:
-                left = self[start - 1]
-            if len(self) <= stop:
-                right = None
-            else:
-                right = self[stop]
-            if left is None:
-                left = self._get_sibling(-1)
-            if right is None:
-                right = self._get_sibling(1)
-            print(left, right)
-        else:
-            selection = self[start:stop]
-            print(selection)
-
     def _get_spanners_that_dominate_component_pair(self, left, right):
         r'''Returns spanners that dominant component pair.
         Returns set (spanner, index) pairs.
@@ -481,6 +462,25 @@ class Container(Component):
             selection = self[start:stop]
             spanners_receipt = selection._get_dominant_spanners()
         return spanners_receipt
+
+    def _get_spanners_that_span_slice(self, start, stop):
+        if start == stop:
+            if start == 0:
+                left = None
+            else:
+                left = self[start - 1]
+            if len(self) <= stop:
+                right = None
+            else:
+                right = self[stop]
+            if left is None:
+                left = self._get_sibling(-1)
+            if right is None:
+                right = self._get_sibling(1)
+            print(left, right)
+        else:
+            selection = self[start:stop]
+            print(selection)
 
     def _iterate_bottom_up(self):
         def recurse(node):

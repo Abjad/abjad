@@ -235,38 +235,6 @@ class BuildApiScript(DeveloperScript):
             )
         return path
 
-    def _build_mainline_api(
-        self,
-        api_format='html',
-        clean=False,
-        rst_only=False,
-        ):
-        from abjad import abjad_configuration
-        api_generator = AbjadAPIGenerator()
-        api_title = 'mainline'
-        docs_directory = os.path.join(
-            abjad_configuration.abjad_directory,
-            'docs',
-            )
-        self._build_api(
-            api_generator=api_generator,
-            api_title=api_title,
-            api_format=api_format,
-            clean=clean,
-            docs_directory=docs_directory,
-            rst_only=rst_only,
-            )
-        path = os.path.join(
-            abjad_configuration.abjad_root_directory,
-            'abjad',
-            'docs',
-            'build',
-            'html',
-            'api',
-            'index.html',
-            )
-        return path
-
     def _build_ide_api(
         self,
         api_format='html',
@@ -295,6 +263,38 @@ class BuildApiScript(DeveloperScript):
             'docs',
             'build',
             'html',
+            'index.html',
+            )
+        return path
+
+    def _build_mainline_api(
+        self,
+        api_format='html',
+        clean=False,
+        rst_only=False,
+        ):
+        from abjad import abjad_configuration
+        api_generator = AbjadAPIGenerator()
+        api_title = 'mainline'
+        docs_directory = os.path.join(
+            abjad_configuration.abjad_directory,
+            'docs',
+            )
+        self._build_api(
+            api_generator=api_generator,
+            api_title=api_title,
+            api_format=api_format,
+            clean=clean,
+            docs_directory=docs_directory,
+            rst_only=rst_only,
+            )
+        path = os.path.join(
+            abjad_configuration.abjad_root_directory,
+            'abjad',
+            'docs',
+            'build',
+            'html',
+            'api',
             'index.html',
             )
         return path

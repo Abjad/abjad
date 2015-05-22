@@ -406,6 +406,19 @@ class StorageFormatManager(object):
         return ''.join(pieces)
 
     @staticmethod
+    def get_root_package_name(subject):
+        r'''Gets root package name of `subject`.
+
+        Returns string.
+        '''
+        if StorageFormatManager.is_instance(subject):
+            class_ = type(subject)
+        else:
+            class_ = subject
+        root_package_name, _, _ = class_.__module__.partition('.')
+        return root_package_name
+
+    @staticmethod
     def get_signature_keyword_argument_names(subject):
         r'''Gets signature keyword argument names.
         '''
@@ -467,19 +480,6 @@ class StorageFormatManager(object):
             )
         result = ''.join(pieces)
         return result
-
-    @staticmethod
-    def get_root_package_name(subject):
-        r'''Gets root package name of `subject`.
-
-        Returns string.
-        '''
-        if StorageFormatManager.is_instance(subject):
-            class_ = type(subject)
-        else:
-            class_ = subject
-        root_package_name, _, _ = class_.__module__.partition('.')
-        return root_package_name
 
     @staticmethod
     def get_tools_package_name(subject):

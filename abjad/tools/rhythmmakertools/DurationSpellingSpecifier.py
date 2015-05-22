@@ -199,24 +199,6 @@ class DurationSpellingSpecifier(AbjadValueObject):
         return self._decrease_durations_monotonically
 
     @property
-    def forbidden_written_duration(self):
-        r'''Gets forbidden written duration.
-
-        ..  container:: example
-
-            ::
-
-                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> specifier.forbidden_written_duration is None
-                True
-
-        Defaults to none.
-
-        Returns duration or none.
-        '''
-        return self._forbidden_written_duration
-
-    @property
     def forbid_meter_rewriting(self):
         r'''Is true when meter rewriting is forbidden.
 
@@ -233,6 +215,24 @@ class DurationSpellingSpecifier(AbjadValueObject):
         Returns boolean or none.
         '''
         return self._forbid_meter_rewriting
+
+    @property
+    def forbidden_written_duration(self):
+        r'''Gets forbidden written duration.
+
+        ..  container:: example
+
+            ::
+
+                >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
+                >>> specifier.forbidden_written_duration is None
+                True
+
+        Defaults to none.
+
+        Returns duration or none.
+        '''
+        return self._forbidden_written_duration
 
     @property
     def rewrite_meter(self):

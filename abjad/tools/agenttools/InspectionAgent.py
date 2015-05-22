@@ -612,21 +612,6 @@ class InspectionAgent(abctools.AbjadObject):
             in_parentage=in_parentage,
             )
 
-    def has_spanner(
-        self,
-        prototype=None,
-        in_parentage=False,
-        ):
-        r'''Is true when client has one or more
-        spanners that match `prototype`. Otherwise false.
-
-        Returns boolean.
-        '''
-        return self._client._has_spanner(
-            prototype=prototype,
-            in_parentage=in_parentage,
-            )
-
     def get_timespan(self,
         in_seconds=False,
         ):
@@ -677,6 +662,21 @@ class InspectionAgent(abctools.AbjadObject):
         Returns boolean.
         '''
         return self._client._has_indicator(prototype=prototype)
+
+    def has_spanner(
+        self,
+        prototype=None,
+        in_parentage=False,
+        ):
+        r'''Is true when client has one or more
+        spanners that match `prototype`. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._client._has_spanner(
+            prototype=prototype,
+            in_parentage=in_parentage,
+            )
 
     def is_bar_line_crossing(self):
         r'''Is true when client crosses bar line.

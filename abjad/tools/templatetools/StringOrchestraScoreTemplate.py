@@ -583,6 +583,12 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         return self._cello_count
 
     @property
+    def context_name_abbreviations(self):
+        r'''Voice name abbreviations.
+        '''
+        return self._context_name_abbreviations
+
+    @property
     def contrabass_count(self):
         r'''Number of contrabasses in string orchestra.
 
@@ -618,9 +624,3 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         Returns nonnegative integer.
         '''
         return self._violin_count
-
-    @property
-    def context_name_abbreviations(self):
-        r'''Voice name abbreviations.
-        '''
-        return self._context_name_abbreviations
