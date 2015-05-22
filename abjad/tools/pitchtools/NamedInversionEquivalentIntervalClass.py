@@ -14,6 +14,13 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     Inversion-equivalent diatonic interval-classes are immutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_number',
+        '_quality_string',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, *args):

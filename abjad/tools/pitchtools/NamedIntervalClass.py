@@ -15,6 +15,11 @@ class NamedIntervalClass(IntervalClass):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_number',
+        '_quality_string',
+        )
+
     _acceptable_quality_strings = (
         'perfect',
         'major',
@@ -54,7 +59,6 @@ class NamedIntervalClass(IntervalClass):
 
     def __init__(self, *args):
         from abjad.tools import pitchtools
-        from abjad.tools import sequencetools
         if len(args) == 1 and \
             isinstance(args[0], (pitchtools.NamedInterval,
                 pitchtools.NamedIntervalClass)):

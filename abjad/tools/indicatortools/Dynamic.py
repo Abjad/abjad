@@ -53,6 +53,11 @@ class Dynamic(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_default_scope',
+        '_name',
+        )
+
     _format_slot = 'right'
 
     _composite_dynamic_name_to_steady_state_dynamic_name = {

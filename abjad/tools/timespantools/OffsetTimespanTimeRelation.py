@@ -38,6 +38,13 @@ class OffsetTimespanTimeRelation(TimeRelation):
     Offset / timespan time relations are immutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_offset',
+        '_timespan',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, inequality=None, timespan=None, offset=None):

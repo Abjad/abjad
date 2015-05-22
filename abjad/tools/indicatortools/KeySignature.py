@@ -27,6 +27,12 @@ class KeySignature(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_default_scope',
+        '_mode',
+        '_tonic',
+        )
+
     _format_slot = 'opening'
 
     ### INITIALIZER ###

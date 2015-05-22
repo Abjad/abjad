@@ -35,6 +35,12 @@ class Infinity(AbjadObject):
     global Abjad namespace.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_value',
+        )
+
     ### INTIALIZER ###
 
     def __init__(self):
