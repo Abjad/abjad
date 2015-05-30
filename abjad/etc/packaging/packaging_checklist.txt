@@ -124,57 +124,7 @@ Abjad packaging checklist:
     Check the revision number indicated there.
     Make sure the revision number equals current revision + 1.
 
-13. Change to abjad/docs.
-    Run 'make clean'.
-    This step is important because failing to 'make clean' before building
-    the docs can cause the doc tarball made below to be too large.
-
-14. Change to experimental/docs.
-    Run "make clean".
-    Run "avj api -X". If any erros occur, fix, commit and go back to (7.)
-    Record experimental HTML build results in the packaging transcript.
-
-15. Change back to abjad/docs.
-    Run "ajv api -M". If any errors occur, fix, commit and go back to (7.)
-    Record mainline HTML build results in the packaging transcript.
-
-16. Run "make latex". 
-    If any errors occur, fix, commit and go back to (7.)
-    Record LaTeX build results in the packaging transcript.
-
-17. Run "make latexpdf". 
-    If any errors occur, fix, commit and go back to (7.)
-    Open the docs/build/latex/Abjad.pdf file that results.
-    Click around some to make sure everything looks OK.
-    Record Abjad.pdf build results in the packaging transcript.
-    Open the docs/build/latex/AbjadAPI.pdf file that also results.
-    Click around some to make sure everything looks OK.
-    Record AbjadAPI.pdf build results in the packaging transcript.
-
-18. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
-    Copy docs/build/latex/AbjadAPI.pdf to docs/pdf/AbjadAPI-x-y.pdf.
-    Do both of these with 'cp' and not with 'svn cp'.
-
-19. Add docs/pdf/Abajd-x-y.pdf to svn.
-    Add docs/pdf/AbjadAPI-x-y.pdf to svn.
-
-20. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
-    Remove docs/pdf/AbjadAPI-x-(y-1).pdf from svn.
-
-21. Commit.
-    All tests have now passed in the packaging environment.
-    All documentation has now built in the packaging environment.
-
-22. For each additional test environment, repeat the following steps:
-    [2] documenting the test environment.
-    [5], [6], [7] recording py.test, doctest and sanity check test results.
-    [12], [13], [14] recording HTML, LaTeX & PDF build results.
-
-23. Complete all addition platform testing.
-    Close and save the packaging transcript.
-    Commit.
-
-24. Author release notes:
+13. Author release notes:
         Open docs/source/start_here/versions/index.rst.
         Example: "Released 2009-05-21. Built from r5752."
         Change to abjad/tools.
@@ -196,6 +146,56 @@ Abjad packaging checklist:
         Open docs/source/appendices/change_log/index.rst 
         Add entries for function, method and class names changed 
         during development.
+    Commit.
+
+14. Change to abjad/docs.
+    Run 'make clean'.
+    This step is important because failing to 'make clean' before building
+    the docs can cause the doc tarball made below to be too large.
+
+15. Change to experimental/docs.
+    Run "make clean".
+    Run "avj api -X". If any erros occur, fix, commit and go back to (7.)
+    Record experimental HTML build results in the packaging transcript.
+
+16. Change back to abjad/docs.
+    Run "ajv api -M". If any errors occur, fix, commit and go back to (7.)
+    Record mainline HTML build results in the packaging transcript.
+
+17. Run "make latex". 
+    If any errors occur, fix, commit and go back to (7.)
+    Record LaTeX build results in the packaging transcript.
+
+18. Run "make latexpdf". 
+    If any errors occur, fix, commit and go back to (7.)
+    Open the docs/build/latex/Abjad.pdf file that results.
+    Click around some to make sure everything looks OK.
+    Record Abjad.pdf build results in the packaging transcript.
+    Open the docs/build/latex/AbjadAPI.pdf file that also results.
+    Click around some to make sure everything looks OK.
+    Record AbjadAPI.pdf build results in the packaging transcript.
+
+19. Copy docs/build/latex/Abjad.pdf to docs/pdf/Abjad-x-y.pdf.
+    Copy docs/build/latex/AbjadAPI.pdf to docs/pdf/AbjadAPI-x-y.pdf.
+    Do both of these with 'cp' and not with 'svn cp'.
+
+20. Add docs/pdf/Abajd-x-y.pdf to svn.
+    Add docs/pdf/AbjadAPI-x-y.pdf to svn.
+
+21. Remove docs/pdf/Abjad-x-(y-1).pdf from svn.
+    Remove docs/pdf/AbjadAPI-x-(y-1).pdf from svn.
+
+22. Commit.
+    All tests have now passed in the packaging environment.
+    All documentation has now built in the packaging environment.
+
+23. For each additional test environment, repeat the following steps:
+    [2] documenting the test environment.
+    [5], [6], [7] recording py.test, doctest and sanity check test results.
+    [12], [13], [14] recording HTML, LaTeX & PDF build results.
+
+24. Complete all addition platform testing.
+    Close and save the packaging transcript.
     Commit.
 
 25. Change to abjad/trunk.

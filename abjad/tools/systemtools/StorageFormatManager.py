@@ -397,7 +397,10 @@ class StorageFormatManager(object):
         ):
         r'''Gets interpreter representation format.
         '''
-        assert '_repr_specification' in dir(subject)
+        assert (
+            '_repr_specification' in dir(subject) or
+            hasattr(subject, '_repr_specification')
+            )
         specification = subject._repr_specification
         pieces = StorageFormatManager.get_format_pieces(
             specification,
@@ -472,7 +475,10 @@ class StorageFormatManager(object):
         ):
         r'''Gets storage format.
         '''
-        assert '_storage_format_specification' in dir(subject)
+        assert (
+            '_storage_format_specification' in dir(subject) or
+            hasattr(subject, '_storage_format_specification')
+            )
         specification = subject._storage_format_specification
         pieces = StorageFormatManager.get_format_pieces(
             specification,
