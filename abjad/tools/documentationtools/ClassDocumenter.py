@@ -124,18 +124,21 @@ class ClassDocumenter(Documenter):
                 },
             ))
 
-        lineage_heading = documentationtools.ReSTHeading(
-            level=3,
-            text='Lineage',
-            )
-        document.append(lineage_heading)
-        lineage_graph = self._build_lineage_graph(self.subject)
-        lineage_graph.attributes['background'] = 'transparent'
-        lineage_graph.attributes['rankdir'] = 'LR'
-        graphviz_directive = documentationtools.GraphvizDirective(
-            graph=lineage_graph,
-            )
-        document.append(graphviz_directive)
+        try:
+            lineage_heading = documentationtools.ReSTHeading(
+                level=3,
+                text='Lineage',
+                )
+            document.append(lineage_heading)
+            lineage_graph = self._build_lineage_graph(self.subject)
+            lineage_graph.attributes['background'] = 'transparent'
+            lineage_graph.attributes['rankdir'] = 'LR'
+            graphviz_directive = documentationtools.GraphvizDirective(
+                graph=lineage_graph,
+                )
+            document.append(graphviz_directive)
+        except:
+            pass
 
         document.extend(self._build_attributes_autosummary())
         document.extend(self._build_bases_section())
