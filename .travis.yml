@@ -7,8 +7,8 @@ python:
 sudo: false
 
 before_install:
-    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.15-1.linux-64.sh
-    - sh lilypond-2.19.15-1.linux-64.sh --batch
+    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.21-1.linux-64.sh
+    - sh lilypond-2.19.21-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
     - pip install coveralls
     - pip install coverage
