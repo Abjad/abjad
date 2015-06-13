@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TempoInventory(TypedList):
-    r'''An ordered list of tempo indications.
+    r'''An ordered list of tempo indicators.
 
     ::
 

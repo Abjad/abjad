@@ -3,19 +3,21 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class LaissezVibrer(AbjadValueObject):
-    r'''A *laissez vibrer* indication.
+    r'''A `laissez vibrer` indicator.
 
-    ::
+    ..  container:: example
 
-        >>> chord = Chord("<c' e' g' c''>4")
-        >>> laissez_vibrer = indicatortools.LaissezVibrer()
-        >>> attach(laissez_vibrer, chord)
-        >>> show(chord) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> chord = Chord("<c' e' g' c''>4")
+            >>> laissez_vibrer = indicatortools.LaissezVibrer()
+            >>> attach(laissez_vibrer, chord)
+            >>> show(chord) # doctest: +SKIP
 
-        >>> print(format(chord))
-        <c' e' g' c''>4 \laissezVibrer
+        ..  doctest::
+
+            >>> print(format(chord))
+            <c' e' g' c''>4 \laissezVibrer
 
     '''
 

@@ -13,7 +13,7 @@ from abjad.tools.topleveltools import new
 
 @functools.total_ordering
 class Tempo(AbjadValueObject):
-    r'''A tempo indication.
+    r'''A tempo indicator.
 
     ..  container:: example
 
@@ -138,9 +138,9 @@ class Tempo(AbjadValueObject):
                 nonreduced_fraction.pair
             new_duration = \
                 durationtools.Duration(1, new_duration_denominator)
-            new_tempo_indication = \
+            new_tempo = \
                 type(self)(new_duration, new_units_per_minute)
-            return new_tempo_indication
+            return new_tempo
 
     def __div__(self, expr):
         r'''Divides tempo by `expr`.
@@ -333,12 +333,11 @@ class Tempo(AbjadValueObject):
                 nonreduced_fraction.pair
             new_duration = \
                 durationtools.Duration(1, new_duration_denominator)
-            new_tempo_indication = \
-                type(self)(
-                    duration=new_duration, 
-                    units_per_minute=new_units_per_minute,
-                    )
-            return new_tempo_indication
+            new_tempo = type(self)(
+                duration=new_duration, 
+                units_per_minute=new_units_per_minute,
+                )
+            return new_tempo
 
     def __truediv__(self, expr):
         r'''Divides tempo by `expr`. Operator for Python 3.
@@ -788,7 +787,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Consider the two tempo indications below.
+            Consider the two tempo indicators below.
 
             ::
 
