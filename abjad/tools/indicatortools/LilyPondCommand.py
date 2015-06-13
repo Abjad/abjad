@@ -2,61 +2,60 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-# TODO: extend to attach to spanners
 class LilyPondCommand(AbjadValueObject):
     r'''A LilyPond command.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> slur = spannertools.Slur()
-        >>> attach(slur, staff.select_leaves())
+        **Example 1.** Dotted slur:
 
-    ::
+        ::
 
-        >>> command = indicatortools.LilyPondCommand('slurDotted')
-        >>> attach(command, staff[0])
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> slur = spannertools.Slur()
+            >>> attach(slur, staff.select_leaves())
+            >>> command = indicatortools.LilyPondCommand('slurDotted')
+            >>> attach(command, staff[0])
+            >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> print(format(staff))
-        \new Staff {
-            \slurDotted
-            c'8 (
-            d'8
-            e'8
-            f'8 )
-        }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
+            >>> print(format(staff))
+            \new Staff {
+                \slurDotted
+                c'8 (
+                d'8
+                e'8
+                f'8 )
+            }
 
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_default_scope',
         '_format_slot',
         '_name',
         )
 
     _format_leaf_children = False
 
-    _valid_format_slots = (
-        'before',
+    _allowable_format_slots = (
         'after',
-        'opening',
+        'before',
         'closing',
+        'opening',
         'right',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, name=None, format_slot=None):
+        self._default_scope = None
         name = name or 'slurDotted'
         format_slot = format_slot or 'opening'
-        assert format_slot in self._valid_format_slots, repr(format_slot)
+        assert format_slot in self._allowable_format_slots, repr(format_slot)
         assert isinstance(name, str), repr(name)
         self._name = name
         self._format_slot = format_slot
@@ -124,13 +123,38 @@ class LilyPondCommand(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of LilyPond command.
+
+        ..  container:: example
+
+            **Example 1.** Dotted slur:
+
+            ::
+
+                >>> command = indicatortools.LilyPondCommand('slurDotted')
+                >>> command.default_scope is None
+                True
+
+        Returns none.
+        '''
+        return self._default_scope
+
+    @property
     def format_slot(self):
         r'''Gets format slot of LilyPond command.
 
-        ::
+        ..  container:: example
 
-            >>> command.format_slot
-            'opening'
+            **Example 1.** Dotted slur:
+
+            ::
+
+                >>> command = indicatortools.LilyPondCommand('slurDotted')
+                >>> command.format_slot
+                'opening'
+
+        Defaults to `'opening'`.
 
         Returns string.
         '''
@@ -141,11 +165,39 @@ class LilyPondCommand(AbjadValueObject):
     def name(self):
         r'''Gets name of LilyPond command.
 
-        ::
+        ..  container:: example
 
-            >>> command.name
-            'slurDotted'
+            **Example 1.** Dotted slur:
+
+            ::
+
+                >>> command = indicatortools.LilyPondCommand('slurDotted')
+                >>> command.name
+                'slurDotted'
 
         Returns string.
         '''
         return self._name
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_allowable_format_slots():
+        r'''Lists allowable format slots.
+
+        ..  container:: example
+
+            **Example 1.** Default:
+
+                >>> commands = indicatortools.LilyPondCommand.list_allowable_format_slots()
+                >>> for command in commands:
+                ...     command
+                'after'
+                'before'
+                'closing'
+                'opening'
+                'right'
+
+        Returns tuple of strings.
+        '''
+        return LilyPondCommand._allowable_format_slots
