@@ -39,7 +39,6 @@ class Tempo(AbjadValueObject):
                 }
             >>
 
-    Tempo indications are scoped to the **score context** by default.
     '''
 
     ### CLASS VARIABLES ###
@@ -459,6 +458,22 @@ class Tempo(AbjadValueObject):
         return markup
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of tempo.
+
+        ..  container:: example
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> tempo.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
+
+        Returns score.
+        '''
+        return self._default_scope
 
     @property
     def duration(self):
