@@ -11,7 +11,7 @@ class BowContactPoint(AbjadValueObject):
 
     ..  container:: example
 
-        Contact point exactly halfway from frog to tip of bow:
+        **Example 1.** Contact point exactly halfway from frog to tip of bow:
 
         ::
 
@@ -19,6 +19,18 @@ class BowContactPoint(AbjadValueObject):
             >>> print(format(point))
             indicatortools.BowContactPoint(
                 contact_point=durationtools.Multiplier(1, 2),
+                )
+
+    ..  container:: example
+
+        **Example 2.** Contact point 3/5 of the way from frog to tip of bow:
+
+        ::
+
+            >>> point = indicatortools.BowContactPoint((3, 5))
+            >>> print(format(point))
+            indicatortools.BowContactPoint(
+                contact_point=durationtools.Multiplier(3, 5),
                 )
 
     Contact points are measured from frog to tip as a fraction between ``0`` 
@@ -29,6 +41,7 @@ class BowContactPoint(AbjadValueObject):
 
     __slots__ = (
         '_contact_point',
+        '_default_scope'
         )
 
     ### INITIALIZER ###
@@ -41,6 +54,7 @@ class BowContactPoint(AbjadValueObject):
             contact_point = durationtools.Multiplier(contact_point)
             assert 0 <= contact_point <= 1
         self._contact_point = contact_point
+        self._default_scope = None
 
     ### SPECIAL METHODS ###
 
@@ -97,11 +111,23 @@ class BowContactPoint(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** One quarter of the way from frog to point:
+
             ::
 
                 >>> point = indicatortools.BowContactPoint((1, 4))
                 >>> point.contact_point
                 Multiplier(1, 4)
+
+        ..  container:: example
+
+            **Example 2.** Three fifths of the way from frog to point:
+
+            ::
+
+                >>> point = indicatortools.BowContactPoint((3, 5))
+                >>> point.contact_point
+                Multiplier(3, 5)
 
         Returns multiplier.
         '''
@@ -113,17 +139,37 @@ class BowContactPoint(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** One quarter of the way from frog to point:
+
             ::
 
-                >>> indicator = indicatortools.BowContactPoint((3, 4))
+                >>> indicator = indicatortools.BowContactPoint((1, 4))
+                >>> print(format(indicator.markup, 'lilypond'))
+                \markup {
+                    \center-align
+                        \vcenter
+                            \fraction
+                                1
+                                4
+                    }
+                >>> show(indicator.markup) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** Three fifths of the way from frog to point:
+
+            ::
+
+                >>> indicator = indicatortools.BowContactPoint((3, 5))
                 >>> print(format(indicator.markup, 'lilypond'))
                 \markup {
                     \center-align
                         \vcenter
                             \fraction
                                 3
-                                4
+                                5
                     }
+                >>> show(indicator.markup) # doctest: +SKIP
 
         Returns markup.
         '''

@@ -7,23 +7,25 @@ from abjad.tools.topleveltools import new
 class Annotation(AbjadValueObject):
     r'''An annotation.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> pitch = NamedPitch('ds')
-        >>> annotation = indicatortools.Annotation('special pitch', pitch)
-        >>> attach(annotation, staff[0])
-        >>> show(staff) # doctest: +SKIP
+        ::
 
-    ..  doctest::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> pitch = NamedPitch('ds')
+            >>> annotation = indicatortools.Annotation('modifier', pitch)
+            >>> attach(annotation, staff[0])
+            >>> show(staff) # doctest: +SKIP
 
-        >>> print(format(staff))
-        \new Staff {
-            c'8
-            d'8
-            e'8
-            f'8
-        }
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'8
+                d'8
+                e'8
+                f'8
+            }
 
     Annotations contribute no formatting.
     '''
@@ -31,6 +33,7 @@ class Annotation(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_default_scope',
         '_name',
         '_value',
         )
@@ -38,6 +41,7 @@ class Annotation(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, name='annotation', value=None):
+        self._default_scope = None
         if isinstance(name, type(self)):
             expr = name
             name = expr.name
@@ -50,13 +54,36 @@ class Annotation(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of annotation.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitch = NamedPitch('ds')
+                >>> annotation = indicatortools.Annotation('modifier', pitch)
+                >>> annotation.default_scope is None
+                True
+
+        Annotations are not scoped.
+
+        Returns none.
+        '''
+        return self._default_scope
+
+    @property
     def name(self):
-        r'''Name of annotation.
+        r'''Gets name of annotation.
 
-        ::
+        ..  container:: example
 
-            >>> annotation.name
-            'special pitch'
+            ::
+
+                >>> pitch = NamedPitch('ds')
+                >>> annotation = indicatortools.Annotation('modifier', pitch)
+                >>> annotation.name
+                'modifier'
 
         Returns string.
         '''
@@ -64,12 +91,16 @@ class Annotation(AbjadValueObject):
 
     @property
     def value(self):
-        r'''Value of annotation.
+        r'''Gest value of annotation.
 
-        ::
+        ..  container:: example
 
-            >>> annotation.value
-            NamedPitch('ds')
+            ::
+
+                >>> pitch = NamedPitch('ds')
+                >>> annotation = indicatortools.Annotation('modifier', pitch)
+                >>> annotation.value
+                NamedPitch('ds')
 
         Returns arbitrary object.
         '''

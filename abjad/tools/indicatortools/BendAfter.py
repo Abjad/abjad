@@ -7,6 +7,8 @@ class BendAfter(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.** A fall:
+
         ::
 
             >>> note = Note("c'4")
@@ -19,14 +21,30 @@ class BendAfter(AbjadValueObject):
             >>> print(format(note))
             c'4 - \bendAfter #'-4.0
 
+    ..  container:: example
+
+        **Example 2.** A doit:
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> bend = indicatortools.BendAfter(2)
+            >>> attach(bend, note)
+            >>> show(note) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(note))
+            c'4 - \bendAfter #'2.0
+
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
         '_bend_amount',
+        '_default_scope',
         )
-
 
     _format_slot = 'right'
 
@@ -37,6 +55,7 @@ class BendAfter(AbjadValueObject):
             bend_amount = bend_amount.bend_amount
         bend_amount = float(bend_amount)
         self._bend_amount = bend_amount
+        self._default_scope = None
 
     ### SPECIAL METHODS ###
 
@@ -80,12 +99,38 @@ class BendAfter(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Fall:
+
             ::
 
-                >>> bend = indicatortools.BendAfter()
+                >>> bend = indicatortools.BendAfter(-4)
                 >>> bend.bend_amount
                 -4.0
+
+        ..  container:: example
+
+            **Example 2.** Doit:
+
+            ::
+
+                >>> bend = indicatortools.BendAfter(2)
+                >>> bend.bend_amount
+                2.0 
 
         Returns float.
         '''
         return self._bend_amount
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of bend after.
+
+        ..  container:: example
+
+            >>> bend = indicatortools.BendAfter(-4)
+            >>> bend.default_scope is None
+            True
+
+        Returns none.
+        '''
+        return self._default_scope

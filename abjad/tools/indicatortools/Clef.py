@@ -7,6 +7,8 @@ class Clef(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.** At the beginning of a staff:
+
         ::
 
             >>> clef = Clef('treble')
@@ -19,6 +21,8 @@ class Clef(AbjadValueObject):
             >>> show(staff) # doctest: +SKIP
 
     ..  container:: example
+
+        **Example 2.** Some available clefs:
 
         ::
 
@@ -238,6 +242,24 @@ class Clef(AbjadValueObject):
         return list(sorted(cls._clef_name_to_middle_c_position))
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of clef.
+
+        ..  container:: example
+
+            ::
+
+                >>> clef = Clef('treble')
+                >>> clef.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        Clefs are staff-scoped by default.
+
+        Returns staff.
+        '''
+        return self._default_scope
 
     @property
     def middle_c_position(self):

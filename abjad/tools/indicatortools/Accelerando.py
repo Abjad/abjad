@@ -43,7 +43,7 @@ class Accelerando(AbjadValueObject):
     Use accelerandi with a tempo spanner to generate dashed lines and other
     spanners.
 
-    ..  todo:: add example tempo spanner examle.
+    ..  todo:: add example tempo spanner example.
     '''
 
     ### CLASS VARIABLES ###
@@ -60,6 +60,7 @@ class Accelerando(AbjadValueObject):
         from abjad.tools import scoretools
         # TODO: make default scope work
         #self._default_scope = scoretools.Score
+        self._default_scope = None
         if markup is not None:
             assert isinstance(markup, markuptools.Markup)
         self._markup = markup
@@ -150,6 +151,24 @@ class Accelerando(AbjadValueObject):
         return self._default_markup
         
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of accelerando.
+
+        ..  container:: example
+
+            ::
+
+                >>> accelerando = Accelerando()
+                >>> accelerando.default_scope is None
+                True
+
+        .. todo:: Default scope should return score.
+
+        Returns none (but should return score).
+        '''
+        return self._default_scope
 
     @property
     def markup(self):

@@ -7,6 +7,8 @@ class BreathMark(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.** Attached to a single note:
+
         ::
 
             >>> note = Note("c'4")
@@ -20,6 +22,8 @@ class BreathMark(AbjadValueObject):
             c'4 \breathe
 
     ..  container:: example
+
+        **Examle 2.** Attached to notes in a staff:
 
         ::
 
@@ -50,14 +54,16 @@ class BreathMark(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_default_scope',
+        )
 
     _format_slot = 'after'
 
     ### INITIALIZER ###
 
     def __init__(self):
-        pass
+        self._default_scope = None
 
     ### SPECIAL METHODS ###
 
@@ -92,3 +98,21 @@ class BreathMark(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return str(self)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of breath mark.
+
+        ..  container:: example
+
+            ::
+
+                >>> breath_mark = indicatortools.BreathMark()
+                >>> breath_mark.default_scope is None
+                True
+
+        Returns none.
+        '''
+        return self._default_scope

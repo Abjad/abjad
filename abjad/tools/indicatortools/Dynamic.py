@@ -186,12 +186,42 @@ class Dynamic(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def name(self):
-        r'''Name of dynamic.
+    def default_scope(self):
+        r'''Gets default scope of dynamic.
 
         ..  container:: example
 
-            **Example 1.** Gets name of forte:
+            **Example 1.** Forte:
+
+            ::
+
+                >>> dynamic = Dynamic('f')
+                >>> dynamic.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        ..  container:: example
+
+            **Example 2.** Piano:
+
+            ::
+
+                >>> dynamic = Dynamic('p')
+                >>> dynamic.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        Dynamics are staff-scoped by default.
+
+        Returns staff.
+        '''
+        return self._default_scope
+
+    @property
+    def name(self):
+        r'''Gets name of dynamic.
+
+        ..  container:: example
+
+            **Example 1.** Forte:
 
             ::
 
@@ -200,7 +230,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets name of piano:
+            **Example 2.** Piano:
 
             ::
 
@@ -213,11 +243,11 @@ class Dynamic(AbjadValueObject):
 
     @property
     def ordinal(self):
-        r'''Ordinal of dynamic.
+        r'''Gets ordinal value of dynamic.
 
         ..  container:: example
 
-            **Example 1.** Gets ordinal of forte:
+            **Example 1.** Forte:
 
             ::
 
@@ -226,7 +256,7 @@ class Dynamic(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets ordinal of piano:
+            **Example 2.** Piano:
 
             ::
 

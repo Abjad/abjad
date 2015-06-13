@@ -5,28 +5,32 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class BarLine(AbjadValueObject):
     r'''A bar line.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> bar_line = indicatortools.BarLine('|.')
-        >>> attach(bar_line, staff[-1])
-        >>> show(staff) # doctest: +SKIP
+        **Example 1.** Final bar line:
 
-    ::
+        ::
 
-        >>> bar_line
-        BarLine('|.')
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> bar_line = indicatortools.BarLine('|.')
+            >>> attach(bar_line, staff[-1])
+            >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+        ::
 
-        >>> print(format(staff))
-        \new Staff {
-            c'4
-            d'4
-            e'4
-            f'4
-            \bar "|."
-        }
+            >>> bar_line
+            BarLine('|.')
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+                \bar "|."
+            }
 
     '''
 
@@ -73,13 +77,34 @@ class BarLine(AbjadValueObject):
 
     @property
     def abbreviation(self):
-        r'''Abbreviation of bar line.
+        r'''Gets abbreviation of bar line.
 
-        ::
+        ..  container:: example
 
-            >>> bar_line.abbreviation
-            '|.'
+            ::
+
+                >>> bar_line = indicatortools.BarLine('|.')
+                >>> bar_line.abbreviation
+                '|.'
 
         Returns string.
         '''
         return self._abbreviation
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of bar line.
+
+        ..  container:: example
+
+            ::
+
+                >>> bar_line = indicatortools.BarLine('|.')
+                >>> bar_line.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        Bar lines are scoped to the staff by default.
+
+        Returns staff.
+        '''
+        return self._default_scope

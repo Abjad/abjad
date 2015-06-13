@@ -13,6 +13,8 @@ class ColorFingering(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.** First color fingering:
+
         ::
 
             >>> fingering = indicatortools.ColorFingering(1)
@@ -35,6 +37,32 @@ class ColorFingering(AbjadValueObject):
                                 1
                     }
 
+    ..  container:: example
+
+        **Example 2.** Second color fingering:
+
+        ::
+
+            >>> fingering = indicatortools.ColorFingering(2)
+            >>> note = Note("c'4")
+            >>> attach(fingering, note)
+
+        ::
+
+            >>> show(note) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(note)
+            c'4
+                ^ \markup {
+                    \override
+                        #'(circle-padding . 0.25)
+                        \circle
+                            \finger
+                                2
+                    }
+
     Color fingerings indicate alternate woodwind fingerings by amount of pitch
     of timbre deviation.
     '''
@@ -42,6 +70,7 @@ class ColorFingering(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_default_scope',
         '_number',
         )
 
@@ -53,6 +82,7 @@ class ColorFingering(AbjadValueObject):
         self,
         number=None,
         ):
+        self._default_scope = None
         if number is not None:
             assert mathtools.is_positive_integer(number)
         self._number = number
@@ -161,10 +191,28 @@ class ColorFingering(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of color fingering.
+
+        ..  container:: example
+
+            ::
+
+                >>> fingering = indicatortools.ColorFingering(1)
+                >>> fingering.default_scope is None
+                True
+
+        Returns none.
+        '''
+        return self._default_scope
+
+    @property
     def markup(self):
         r'''Gets markup of color fingering.
 
         ..  container:: example
+
+            **Example 1.** First color fingering:
 
             ::
 
@@ -177,6 +225,24 @@ class ColorFingering(AbjadValueObject):
                             \finger
                                 1
                     }
+                >>> show(fingering.markup) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** Second color fingering:
+
+            ::
+
+                >>> fingering = indicatortools.ColorFingering(2)
+                >>> print(format(fingering.markup, 'lilypond'))
+                \markup {
+                    \override
+                        #'(circle-padding . 0.25)
+                        \circle
+                            \finger
+                                2
+                    }
+                >>> show(fingering.markup) # doctest: +SKIP
 
         Returns markup.
         '''
@@ -194,12 +260,24 @@ class ColorFingering(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** First color fingering:
+
             ::
 
                 >>> fingering = indicatortools.ColorFingering(1)
                 >>> fingering.number
                 1
 
-        Set to positive integer.
+        ..  container:: example
+
+            **Example 2.** Second color fingering:
+
+            ::
+
+                >>> fingering = indicatortools.ColorFingering(2)
+                >>> fingering.number
+                2
+
+        Returns positive integer.
         '''
         return self._number
