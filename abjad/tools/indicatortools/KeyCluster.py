@@ -3,11 +3,12 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class KeyCluster(AbjadValueObject):
-    r'''A key cluster indication.
+    r'''A key cluster indicator.
 
     ..  container:: example
 
-        Initializes key cluster with default values:
+        
+        **Example 1.** Default values:
 
         ::
 
@@ -41,6 +42,7 @@ class KeyCluster(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_default_scope',
         '_include_black_keys',
         '_include_white_keys',
         '_markup_direction',
@@ -56,6 +58,7 @@ class KeyCluster(AbjadValueObject):
         markup_direction=Up,
         suppress_markup=False,
         ):
+        self._default_scope = None
         assert include_black_keys or include_white_keys
         self._include_black_keys = bool(include_black_keys)
         self._include_white_keys = bool(include_white_keys)
@@ -94,6 +97,22 @@ class KeyCluster(AbjadValueObject):
         return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def default_scope(self):
+        r'''Gest default scope of key cluster indicator.
+
+        ..  container:: example
+
+            ::
+
+                >>> key_cluster = indicatortools.KeyCluster()
+                >>> key_cluster.default_scope is None
+                True
+
+        Returns none.
+        '''
+        return self._default_scope
 
     @property
     def include_black_keys(self):
