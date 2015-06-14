@@ -106,7 +106,7 @@ class Tempo(AbjadValueObject):
         prototype = (
             int, 
             float, 
-            durationtools.Duration, 
+            fractions.Fraction,
             collections.Sequence, 
             type(None),
             )
@@ -796,6 +796,78 @@ class Tempo(AbjadValueObject):
                 >>> tempo = Tempo(Duration(1, 4), 90)
                 >>> tempo.units_per_minute
                 90
+
+        ..  container:: example
+
+            **Example 3.** Abjad allows float-valued tempi:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90.1)
+                >>> tempo.units_per_minute
+                90.1
+
+            ::
+
+                >>> score = Score([])
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> score.append(staff)
+                >>> attach(tempo, staff[0])
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(score))
+                \new Score <<
+                    \new Staff {
+                        \tempo 4=90.1
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+                >>
+
+            But note that LilyPond rejects float-valued tempi.
+
+            ..  todo:: Implement something to allow float-valued tempi
+                in LilyPond output.
+
+        ..  container:: example
+
+            **Example 4.** Abjad allows rational-valued tempi:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), Fraction(121, 2))
+                >>> tempo.units_per_minute
+                Fraction(121, 2)
+
+            ::
+
+                >>> score = Score([])
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> score.append(staff)
+                >>> attach(tempo, staff[0])
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(score))
+                \new Score <<
+                    \new Staff {
+                        \tempo 4=121/2
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+                >>
+
+            But note that LilyPond rejects rational-valued tempi.
+
+            ..  todo:: Implement something to allow rational-valued tempi
+                in LilyPond output.
 
         Set to number or none.
 
