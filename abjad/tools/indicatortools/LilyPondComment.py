@@ -76,7 +76,7 @@ class LilyPondComment(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''Gets string format of LilyPond comment.
+        r'''Gets string representation of LilyPond comment.
 
         ..  container:: example
 

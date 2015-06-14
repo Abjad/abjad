@@ -727,11 +727,11 @@ class Meter(AbjadObject):
             yield start_offset, stop_offset
 
     def __str__(self):
-        r'''Gets string format of meter.
+        r'''Gets string representation of meter.
 
         ..  container:: example
 
-            **Example 1.** Gets string format of meters over ``8``:
+            **Example 1.** Gets string representation of meters over ``8``:
 
             ::
 

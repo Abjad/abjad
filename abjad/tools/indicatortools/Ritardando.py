@@ -8,15 +8,14 @@ class Ritardando(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.** Default ritardando:
+
         ::
 
             >>> staff = Staff("c'4 d' e' f'")
             >>> score = Score([staff])
             >>> ritardando = indicatortools.Ritardando()
             >>> attach(ritardando, staff[0])
-
-        ::
-
             >>> show(score) # doctest: +SKIP
 
         ..  doctest::
@@ -29,6 +28,40 @@ class Ritardando(AbjadValueObject):
                             \large
                                 \upright
                                     rit.
+                            }
+                    d'4
+                    e'4
+                    f'4
+                }
+            >>
+
+    ..  container:: example
+
+        **Example 2.** Custom ritardando:
+
+        ::
+
+            >>> markup = Markup(r'\bold { \italic { ritardando } }')
+            >>> ritardando = indicatortools.Ritardando(markup=markup)
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> score = Score([staff])
+            >>> attach(ritardando, staff[0])
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    c'4
+                        ^ \markup {
+                            \bold
+                                {
+                                    \italic
+                                        {
+                                            ritardando
+                                        }
+                                }
                             }
                     d'4
                     e'4
@@ -58,6 +91,7 @@ class Ritardando(AbjadValueObject):
         from abjad.tools import scoretools
         # TODO: make default scope work
         #self._default_scope = scoretools.Score
+        self._default_scope = None
         if markup is not None:
             assert isinstance(markup, markuptools.Markup)
         self._markup = markup
@@ -69,7 +103,7 @@ class Ritardando(AbjadValueObject):
 
         ..  container:: example
 
-            String representation of ritardando with default markup:
+            **Example 1.** Default ritardando:
 
             ::
 
@@ -82,7 +116,7 @@ class Ritardando(AbjadValueObject):
 
         ..  container:: example
 
-            String representation of ritardando with custom markup:
+            **Example 2.** Custom ritardando:
 
             ::
 
@@ -150,16 +184,63 @@ class Ritardando(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def markup(self):
-        r'''Gets markup of ritardando.
+    def default_scope(self):
+        r'''Gets default scope of ritardando.
 
         ..  container:: example
+
+            **Example 1.** Default ritardando:
+
+            ::
+
+                >>> ritardando = indicatortools.Ritardando()
+                >>> ritardando.default_scope is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Custom ritardando:
 
             ::
 
                 >>> markup = Markup(r'\bold { \italic { ritardando } }')
                 >>> ritardando = indicatortools.Ritardando(markup=markup)
-                >>> print(str(ritardando.markup))
+                >>> ritardando.default_scope is None
+                True
+
+        ..  todo:: Make ritardandi score-scoped.
+
+        Returns none (but should return score).
+        '''
+        return self._default_scope
+
+    @property
+    def markup(self):
+        r'''Gets markup of ritardando.
+
+        ..  container:: example
+
+            **Example 1.** Default ritardando:
+
+            ::
+
+                >>> ritardando = indicatortools.Ritardando()
+                >>> ritardando.markup is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Custom ritardando:
+
+            ::
+
+                >>> markup = Markup(r'\bold { \italic { ritardando } }')
+                >>> ritardando = indicatortools.Ritardando(markup=markup)
+                >>> show(ritardando.markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(ritardando.markup)
                 \markup {
                     \bold
                         {
@@ -169,6 +250,10 @@ class Ritardando(AbjadValueObject):
                                 }
                         }
                     }
+
+        Set to markup or none.
+
+        Defaults to ``'rit.'``.
 
         Returns markup or none.
         '''

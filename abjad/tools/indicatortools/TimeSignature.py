@@ -4,11 +4,8 @@ from abjad.tools import mathtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-# TODO: add more initializer examples.
-# TODO: add example of `suppress` keyword.
-# TODO: turn `suppress` into managed attribute.
 class TimeSignature(AbjadValueObject):
-    r'''A time signature.
+    r'''Time signature.
 
     ..  container:: example
 
@@ -34,8 +31,7 @@ class TimeSignature(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Sets the scope of time signatures to the 
-        **score** context:
+        **Example 2.** Sets the scope of time signatures to the score context:
 
         ::
 
@@ -43,8 +39,6 @@ class TimeSignature(AbjadValueObject):
             >>> time_signature = TimeSignature((4, 8))
             >>> attach(time_signature, staff[0], scope=Score)
             >>> show(staff) # doctest: +SKIP
-
-        Time signatures are scoped to the **staff** context by default.
 
     '''
 
@@ -190,10 +184,23 @@ class TimeSignature(AbjadValueObject):
     def __format__(self, format_specification=''):
         r'''Formats time signature.
 
-        ::
+        ..  container:: example
 
-            >>> print(format(TimeSignature((3, 8))))
-            indicatortools.TimeSignature((3, 8))
+            **Example 1.** First time signature:
+
+            ::
+
+                >>> print(format(TimeSignature((3, 8))))
+                indicatortools.TimeSignature((3, 8))
+
+        ..  container:: example
+
+            **Example 1.** Second time signature:
+
+            ::
+
+                >>> print(format(TimeSignature((4, 4))))
+                indicatortools.TimeSignature((4, 4))
 
         Returns string.
         '''
@@ -229,7 +236,7 @@ class TimeSignature(AbjadValueObject):
     def __hash__(self):
         r'''Hashes time signature.
 
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
+        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''
@@ -262,19 +269,44 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Adds integer to time signature:
+            **Example 1.** Adds integer to first time signature:
 
-            >>> 1 + TimeSignature((3, 4))
-            TimeSignature((7, 4))
+            >>> TimeSignature((3, 8)) + 1
+            TimeSignature((11, 8))
 
-            Coerces integer to ``1/1``.
+        ..  container:: example
+
+            **Example 2.** Adds integer to second time signature:
+
+            >>> TimeSignature((4, 4)) + 1
+            TimeSignature((8, 4))
+
+        Coerces `n` to ``n/1``.
 
         Returns new time signature.
         '''
         return self.__add__(arg)
 
     def __str__(self):
-        r'''String representation of time signature.
+        r'''Gets string representation of time signature.
+
+        ..  container:: example
+
+            **Example 1.** First time signature:
+
+            ::
+
+                >>> str(TimeSignature((3, 8)))
+                '3/8'
+
+        ..  container:: example
+
+            **Example 2.** Second time signature:
+
+            ::
+
+                >>> str(TimeSignature((4, 4)))
+                '4/4'
 
         Returns string.
         '''
@@ -328,13 +360,54 @@ class TimeSignature(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of time signature.
+
+        ..  container:: example
+
+            **Example 1.** First time signature:
+
+            ::
+
+                >>> TimeSignature((3, 8)).default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        ..  container:: example
+
+            **Example 2.** Second time signature:
+
+            ::
+
+                >>> TimeSignature((4, 4)).default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        Returns staff.
+        '''
+        return self._default_scope
+
+    @property
     def denominator(self):
-        r'''Time signature denominator.
+        r'''Gets denominator of time signature:
 
-        ::
+        ..  container:: example
 
-            >>> time_signature.denominator
-            8
+            **Example 1.** First time signature:
+
+            ::
+
+                >>> TimeSignature((3, 8)).denominator
+                8
+
+        ..  container:: example
+
+            **Example 2.** Second time signature:
+
+            ::
+
+                >>> TimeSignature((4, 4)).denominator
+                4
+
+        Set to positive integer.
 
         Returns positive integer.
         '''
@@ -342,12 +415,25 @@ class TimeSignature(AbjadValueObject):
 
     @property
     def duration(self):
-        r'''Time signature duration.
+        r'''Gets duration of time signature.
 
-        ::
+        ..  container:: example
 
-            >>> TimeSignature((3, 8)).duration
-            Duration(3, 8)
+            **Example 1.** First time signature:
+
+            ::
+
+                >>> TimeSignature((3, 8)).duration
+                Duration(3, 8)
+
+        ..  container:: example
+
+            **Example 2.** Second time signature:
+
+            ::
+
+                >>> TimeSignature((4, 4)).duration
+                Duration(1, 1)
 
         Returns duration.
         '''
@@ -356,20 +442,27 @@ class TimeSignature(AbjadValueObject):
     @property
     def has_non_power_of_two_denominator(self):
         r'''Is true when time signature has non-power-of-two denominator.
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> time_signature = TimeSignature((7, 12))
-            >>> time_signature.has_non_power_of_two_denominator
-            True
+            **Example 1.** With non-power-of-two denominator:
 
-        Otherwise false:
+            ::
 
-        ::
+                >>> time_signature = TimeSignature((7, 12))
+                >>> time_signature.has_non_power_of_two_denominator
+                True
 
-            >>> time_signature = TimeSignature((3, 8))
-            >>> time_signature.has_non_power_of_two_denominator
-            False
+        ..  container:: example
+
+            **Example 2.** With power-of-two denominator:
+
+            ::
+
+                >>> time_signature = TimeSignature((3, 8))
+                >>> time_signature.has_non_power_of_two_denominator
+                False
 
         Returns boolean.
         '''
@@ -377,12 +470,12 @@ class TimeSignature(AbjadValueObject):
 
     @property
     def implied_prolation(self):
-        '''Time signature implied prolation.
+        '''Gets implied prolation of time signature.
 
         ..  container:: example
 
-            **Example 1.** Implied prolation of time signature
-            with power-of-two denominator:
+            **Example 1.** Implied prolation of time signature with
+            power-of-two denominator:
 
             ::
 
@@ -406,12 +499,27 @@ class TimeSignature(AbjadValueObject):
 
     @property
     def numerator(self):
-        r'''Time signature numerator.
+        r'''Gets numerator of time signature.
 
-        ::
+        ..  container:: example
 
-            >>> time_signature.numerator
-            3
+            **Example 1.** First time signature:
+
+            ::
+
+                >>> TimeSignature((3, 8)).numerator
+                3
+
+        ..  container:: example
+
+            **Example 2.** Second time signature:
+
+            ::
+
+                >>> TimeSignature((4, 4)).numerator
+                4
+
+        Set to positive integer.
 
         Returns positive integer.
         '''
@@ -419,12 +527,25 @@ class TimeSignature(AbjadValueObject):
 
     @property
     def pair(self):
-        '''Time signature numerator / denominator pair.
+        '''Gets numerator / denominator pair corresponding to time siganture.
 
-        ::
+        ..  container:: example
 
-            >>> TimeSignature((3, 8)).pair
-            (3, 8)
+            **Example 1.** First time signature:
+
+            ::
+
+                >>> TimeSignature((3, 8)).pair
+                (3, 8)
+
+        ..  container:: example
+
+            **Example 2.** Second time signature:
+
+            ::
+
+                >>> TimeSignature((4, 4)).pair
+                (4, 4)
 
         Returns pair.
         '''
@@ -432,30 +553,61 @@ class TimeSignature(AbjadValueObject):
 
     @property
     def partial(self):
-        r'''Duration of time signature pick-up.
+        r'''Gets duration of pick-up to time signature.
 
-        ::
+        ..  container:: example
 
-            >>> time_signature.partial
+            **Example 1.** First time signature:
+
+            ::
+
+                >>> TimeSignature((3, 8)).partial is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Second time signature:
+
+            ::
+
+                >>> TimeSignature((4, 4)).partial is None
+                True
+
+        Set to duration or none.
+
+        Defaults to none.
 
         Returns duration or none.
         '''
         return self._partial
 
+    # TODO: make suppress settable only at initialization
     @property
     def suppress(self):
-        r'''Gets time signature suppression.
+        r'''Is true when time signature should be suppressed in output.
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> time_signature.suppress is None
-            True
+            **Example 1.** First time signature:
 
-        Sets time signature suppression.
+            ::
 
-        ::
+                >>> TimeSignature((3, 8)).suppress is None
+                True
 
-            >>> time_signature.suppress = True
+        ..  container:: example
+
+            **Example 2.** Second time signature:
+
+            ::
+
+                >>> TimeSignature((4, 4)).suppress is None
+                True
+
+        Set to boolean or none.
+
+        Defaults to none.
 
         Returns boolean or none.
         '''
@@ -474,12 +626,14 @@ class TimeSignature(AbjadValueObject):
         r'''Makes new time signature equivalent to current
         time signature with power-of-two denominator.
 
-            >>> time_signature = TimeSignature((3, 12))
+        ..  container:: example
 
-        ::
+            **Example 1.** Non-power-of-two denominator with power-of-two
+            denominator:
 
-            >>> time_signature.with_power_of_two_denominator()
-            TimeSignature((2, 8))
+                >>> time_signature = TimeSignature((3, 12))
+                >>> time_signature.with_power_of_two_denominator()
+                TimeSignature((2, 8))
 
         Returns new time signature.
         '''

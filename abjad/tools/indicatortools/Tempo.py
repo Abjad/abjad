@@ -13,9 +13,11 @@ from abjad.tools.topleveltools import new
 
 @functools.total_ordering
 class Tempo(AbjadValueObject):
-    r'''A tempo indicator.
+    r'''Tempo indicator.
 
     ..  container:: example
+
+        **Example 1.** Fifty-two eighth notes per minute:
 
         ::
 
@@ -32,6 +34,32 @@ class Tempo(AbjadValueObject):
             \new Score <<
                 \new Staff {
                     \tempo 8=52
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+
+    ..  container:: example
+
+        **Example 2.** Ninety quarter notes per minute:
+
+        ::
+
+            >>> score = Score([])
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score.append(staff)
+            >>> tempo = Tempo(Duration(1, 4), 90)
+            >>> attach(tempo, staff[0])
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    \tempo 4=90
                     c'8
                     d'8
                     e'8
@@ -246,11 +274,23 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Doubles tempo:
+
             ::
 
                 >>> tempo = Tempo(Duration(1, 4), 84)
-                >>> tempo * 2
+                >>> 2 * tempo
                 Tempo(duration=Duration(1, 4), units_per_minute=168)
+
+        ..  container:: example
+
+            **Example 2.** Triples tempo:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> 3 * tempo
+                Tempo(duration=Duration(1, 4), units_per_minute=252)
 
         Returns new tempo.
         '''
@@ -271,11 +311,23 @@ class Tempo(AbjadValueObject):
 
         ..  container::: example
 
+            **Example 1.** Doubles tempo:
+
             ::
 
                 >>> tempo = Tempo(Duration(1, 4), 84)
-                >>> 2 * tempo
+                >>> tempo * 2
                 Tempo(duration=Duration(1, 4), units_per_minute=168)
+
+        ..  container::: example
+
+            **Example 2.** Triples tempo:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> tempo * 3
+                Tempo(duration=Duration(1, 4), units_per_minute=252)
 
         Returns new tempo.
         '''
@@ -296,11 +348,23 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Fifty-two eighth notes per minute:
+
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> tempo = Tempo(Duration(1, 8), 52)
                 >>> str(tempo)
-                '4=84'
+                '8=52'
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
+                >>> str(tempo)
+                '4=90'
 
         Returns string.
         '''
@@ -311,36 +375,72 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Same reference durations:
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 84)
-                >>> tempo - 20
+                >>> tempo_1 = Tempo(Duration(1, 4), 90)
+                >>> tempo_2 = Tempo(Duration(1, 4), 60)
+                >>> tempo_1 - tempo_2
+                Tempo(duration=Duration(1, 4), units_per_minute=30)
+
+        ..  container:: example
+
+            **Example 2.** Different reference durations:
+            ::
+
+                >>> tempo_1 = Tempo(Duration(1, 4), 90)
+                >>> tempo_2 = Tempo(Duration(1, 2), 90)
+                >>> tempo_1 - tempo_2
+                Tempo(duration=Duration(1, 4), units_per_minute=45)
 
         Returns new tempo.
         '''
-        if isinstance(expr, type(self)):
-            if self.is_imprecise or expr.is_imprecise:
-                raise ImpreciseTempoError
-            new_quarters_per_minute = \
-                self.quarters_per_minute - expr.quarters_per_minute
-            minimum_denominator = \
-                min((self.duration.denominator, expr.duration.denominator))
-            nonreduced_fraction = \
-                mathtools.NonreducedFraction(new_quarters_per_minute / 4)
-            nonreduced_fraction = \
-                nonreduced_fraction.with_denominator(minimum_denominator)
-            new_units_per_minute, new_duration_denominator = \
-                nonreduced_fraction.pair
-            new_duration = \
-                durationtools.Duration(1, new_duration_denominator)
-            new_tempo = type(self)(
-                duration=new_duration, 
-                units_per_minute=new_units_per_minute,
-                )
-            return new_tempo
+        if not isinstance(expr, type(self)):
+            message = 'must be tempo: {!r}.'
+            message = message.format(expr)
+            raise Exception(message)
+        if self.is_imprecise or expr.is_imprecise:
+            raise ImpreciseTempoError
+        new_quarters_per_minute = \
+            self.quarters_per_minute - expr.quarters_per_minute
+        minimum_denominator = \
+            min((self.duration.denominator, expr.duration.denominator))
+        nonreduced_fraction = \
+            mathtools.NonreducedFraction(new_quarters_per_minute / 4)
+        nonreduced_fraction = \
+            nonreduced_fraction.with_denominator(minimum_denominator)
+        new_units_per_minute, new_duration_denominator = \
+            nonreduced_fraction.pair
+        new_duration = \
+            durationtools.Duration(1, new_duration_denominator)
+        new_tempo = type(self)(
+            duration=new_duration, 
+            units_per_minute=new_units_per_minute,
+            )
+        return new_tempo
 
     def __truediv__(self, expr):
-        r'''Divides tempo by `expr`. Operator for Python 3.
+        r'''Divides tempo by `expr`. Operator required by Python 3.
+
+        ..  container:: example
+
+            **Example 1.** Divides tempo by number:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60).__truediv__(2)
+                Tempo(duration=Duration(1, 4), units_per_minute=30)
+
+        ..  container:: example
+
+            **Example 2.** Divides tempo by other tempo:
+
+            ::
+
+                >>> Tempo(Duration(1, 4), 60).__truediv__(
+                ...     Tempo(Duration(1, 4), 40)
+                ...     )
+                Multiplier(3, 2)
 
         Returns new tempo.
         '''
@@ -464,9 +564,21 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Fifty-two eighth notes per minute:
+
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.default_scope
+                <class 'abjad.tools.scoretools.Score.Score'>
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
                 >>> tempo.default_scope
                 <class 'abjad.tools.scoretools.Score.Score'>
 
@@ -480,9 +592,21 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Fifty-two eighth notes per minute:
+
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), 84)
+                >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.duration
+                Duration(1, 8)
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
                 >>> tempo.duration
                 Duration(1, 4)
 
@@ -495,10 +619,9 @@ class Tempo(AbjadValueObject):
         r'''Is true if tempo is entirely textual or if tempo's
         units_per_minute is a range. Otherwise false.
 
-
         ..  container:: example
 
-            **Example 1.** Imprecise tempi:
+            **Example 1.** Imprecise tempos:
 
             ::
 
@@ -536,6 +659,8 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** With custom markup:
+
             ::
 
                 >>> markup = Markup(r'\smaller \general-align #Y #DOWN \note-by-number #2 #0 #1 " = 67.5"')
@@ -568,8 +693,11 @@ class Tempo(AbjadValueObject):
                     }
                 >>
 
-        All other tempo attributes are ignored at format time when markup is
-        set.
+        Set to markup or none.
+
+        Defaults to none.
+
+        Ignores all other tempo attributes at format time when markup is set.
 
         Returns markup or none.
         '''
@@ -581,11 +709,23 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Fifty-two eighth notes per minute:
+
             ::
 
                 >>> tempo = Tempo(Duration(1, 8), 52)
                 >>> tempo.quarters_per_minute
                 Fraction(104, 1)
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
+                >>> tempo.quarters_per_minute
+                Fraction(90, 1)
 
         Returns tuple when tempo `units_per_minute` is a range.
 
@@ -611,9 +751,21 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Fifty-two eighth notes per minute:
+
             ::
 
                 >>> tempo = Tempo(Duration(1, 8), 52)
+                >>> tempo.textual_indication is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
                 >>> tempo.textual_indication is None
                 True
 
@@ -627,13 +779,29 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Fifty-two eighth notes per minute:
+
             ::
 
                 >>> tempo = Tempo(Duration(1, 8), 52)
                 >>> tempo.units_per_minute
                 52
 
-        Returns number.
+        ..  container:: example
+
+            **Example 2.** Ninety quarter notes per minute:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90)
+                >>> tempo.units_per_minute
+                90
+
+        Set to number or none.
+
+        Defaults to none
+
+        Returns number or none.
         '''
         return self._units_per_minute
 
@@ -644,12 +812,24 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** One quarter lasts 1000 msec at quarter equals 60 MM:
+
             ::
 
-                >>> duration = (1, 4)
                 >>> tempo = Tempo((1, 4), 60)
-                >>> tempo.duration_to_milliseconds(duration)
+                >>> tempo.duration_to_milliseconds(Duration(1, 4))
                 Duration(1000, 1)
+
+        ..  container:: example
+
+            **Example 1.** Dotted sixteenth lasts 1500 msec at quarter equals
+            60 MM:
+
+            ::
+
+                >>> tempo = Tempo((1, 4), 60)
+                >>> tempo.duration_to_milliseconds(Duration(3, 8))
+                Duration(1500, 1)
 
         Returns duration.
         '''
@@ -672,17 +852,12 @@ class Tempo(AbjadValueObject):
         maximum_numerator=None,
         maximum_denominator=None,
         ):
-        r'''Lists tempos related to this tempo.
-
-        Returns list of tempo / ratio pairs.
-
-        Each new tempo equals not less than half of this tempo
-        and not more than twice this tempo.
+        r'''Lists related tempos.
 
         ..  container:: example
 
-            Rewrites tempo ``58`` MM by ratios of the form ``n:d`` such that
-            ``1 <= n <= 8`` and ``1 <= d <= 8``. Viz:
+            **Example 1.** Rewrites tempo ``58`` MM by ratios of the form
+            ``n:d`` such that ``1 <= n <= 8`` and ``1 <= d <= 8``. As follows:
 
             ::
 
@@ -704,8 +879,9 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            Rewrites tempo ``58`` MM by ratios of the form ``n:d`` such that
-            ``1 <= n <= 30`` and ``1 <= d <= 30``. Viz:
+            **Example 2.** Rewrites tempo ``58`` MM by ratios of the form
+            ``n:d`` such that ``1 <= n <= 30`` and ``1 <= d <= 30``. As
+            follows:
 
             ::
 
@@ -737,6 +913,11 @@ class Tempo(AbjadValueObject):
                 4=56    28:29
                 4=58    1:1
                 4=60    30:29
+
+        Returns list of tempo / ratio pairs.
+
+        Each new tempo equals not less than half of this tempo
+        and not more than twice this tempo.
 
         Returns list.
         '''
@@ -779,15 +960,9 @@ class Tempo(AbjadValueObject):
     def rewrite_duration(self, duration, new_tempo):
         r'''Rewrites `duration` under `new_tempo`.
 
-        Given `duration` governed by this tempo
-        returns new duration governed by `new_tempo`.
-
-        Ensures that `duration` and new duration
-        consume the same amount of time in seconds.
-
         ..  container:: example
 
-            Consider the two tempo indicators below.
+            **Example 1.** Consider the two tempo indicators below.
 
             ::
 
@@ -820,6 +995,12 @@ class Tempo(AbjadValueObject):
 
                 >>> tempo.rewrite_duration(Duration(1, 8), new_tempo)
                 Duration(3, 16)
+
+        Given `duration` governed by this tempo returns new duration governed
+        by `new_tempo`.
+
+        Ensures that `duration` and new duration consume the same amount of
+        time in seconds.
 
         Returns duration.
         '''

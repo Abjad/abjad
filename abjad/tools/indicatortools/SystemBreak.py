@@ -3,30 +3,29 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class SystemBreak(AbjadValueObject):
-    r'''A line break.
+    r'''System break indicator.
 
-    ::
+    ..  container:: example
 
-        >>> staff = Staff("c'4 d'4 e'4 f'4")
-        >>> break_ = indicatortools.SystemBreak()
-        >>> attach(break_, staff[-1])
-        >>> show(staff) # doctest: +SKIP
+        **Example 1.** Default system break:
 
-    ::
+        ::
 
-        >>> break_
-        SystemBreak()
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> break_ = indicatortools.SystemBreak()
+            >>> attach(break_, staff[-1])
+            >>> show(staff) # doctest: +SKIP
 
-    ..  doctest::
+        ..  doctest::
 
-        >>> print(format(staff))
-        \new Staff {
-            c'4
-            d'4
-            e'4
-            f'4
-            \break
-        }
+            >>> print(format(staff))
+            \new Staff {
+                c'4
+                d'4
+                e'4
+                f'4
+                \break
+            }
 
     '''
 
@@ -49,3 +48,25 @@ class SystemBreak(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return r'\break'
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of system break indicator.
+
+        ..  container:: example
+
+            **Example 1.** Default system break:
+
+            ::
+
+                >>> break_ = indicatortools.SystemBreak()
+                >>> break_.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        ..  todo:: Make system breaks score-scoped.
+
+        Returns staff (but should return score).
+        '''
+        return self._default_scope

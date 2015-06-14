@@ -6,29 +6,34 @@ from abjad.tools.abctools import AbjadValueObject
 class Tuning(AbjadValueObject):
     r'''Tuning indicator.
 
-    ::
+    ..  container:: example
 
-        >>> indicator = indicatortools.Tuning(
-        ...     pitches=('G3', 'D4', 'A4', 'E5'),
-        ...     )
-        >>> print(format(indicator))
-        indicatortools.Tuning(
-            pitches=pitchtools.PitchSegment(
-                (
-                    pitchtools.NamedPitch('g'),
-                    pitchtools.NamedPitch("d'"),
-                    pitchtools.NamedPitch("a'"),
-                    pitchtools.NamedPitch("e''"),
+        **Example 1.** Violin tuning:
+
+        ::
+
+            >>> indicator = indicatortools.Tuning(
+            ...     pitches=('G3', 'D4', 'A4', 'E5'),
+            ...     )
+            >>> print(format(indicator))
+            indicatortools.Tuning(
+                pitches=pitchtools.PitchSegment(
+                    (
+                        pitchtools.NamedPitch('g'),
+                        pitchtools.NamedPitch("d'"),
+                        pitchtools.NamedPitch("a'"),
+                        pitchtools.NamedPitch("e''"),
+                        ),
+                    item_class=pitchtools.NamedPitch,
                     ),
-                item_class=pitchtools.NamedPitch,
-                ),
-            )
+                )
 
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_default_scope',
         '_pitches',
         )
 
@@ -39,6 +44,7 @@ class Tuning(AbjadValueObject):
         pitches=None,
         ):
         from abjad.tools import pitchtools
+        self._default_scope = None
         if pitches is not None:
             if isinstance(pitches, type(self)):
                 pitches = pitches.pitches
@@ -69,12 +75,16 @@ class Tuning(AbjadValueObject):
     def get_pitch_ranges_by_string_number(self, string_number):
         r'''Gets tuning pitch ranges by string number.
 
-        ::
+        ..  container:: example
 
-            >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
-            >>> string_number = indicatortools.StringNumber((2, 3))
-            >>> tuning.get_pitch_ranges_by_string_number(string_number)
-            (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
+            **Example 1.** Violin tuning:
+
+            ::
+
+                >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
+                >>> string_number = indicatortools.StringNumber((2, 3))
+                >>> tuning.get_pitch_ranges_by_string_number(string_number)
+                (PitchRange(range_string='[A4, A6]'), PitchRange(range_string='[D4, D6]'))
 
         Returns pitch ranges.
         '''
@@ -91,12 +101,16 @@ class Tuning(AbjadValueObject):
     def get_pitches_by_string_number(self, string_number):
         r'''Gets tuning pitches by string number.
 
-        ::
+        ..  container:: example
 
-            >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
-            >>> string_number = indicatortools.StringNumber((2, 3))
-            >>> tuning.get_pitches_by_string_number(string_number)
-            (NamedPitch("a'"), NamedPitch("d'"))
+            **Example 1.** Violin tuning:
+
+            ::
+
+                >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
+                >>> string_number = indicatortools.StringNumber((2, 3))
+                >>> tuning.get_pitches_by_string_number(string_number)
+                (NamedPitch("a'"), NamedPitch("d'"))
 
         Returns named pitches.
         '''
@@ -116,80 +130,84 @@ class Tuning(AbjadValueObject):
         ):
         r"""Voices `pitch_classes`.
 
-        ::
+        ..  container:: example
 
-            >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
-            >>> voicings = tuning.voice_pitch_classes(('a',))
-            >>> for voicing in voicings:
-            ...     voicing
-            ...
-            (NamedPitch('a'), None, None, None)
-            (NamedPitch("a'"), None, None, None)
-            (None, NamedPitch("a'"), None, None)
-            (None, NamedPitch("a''"), None, None)
-            (None, None, NamedPitch("a'"), None)
-            (None, None, NamedPitch("a''"), None)
-            (None, None, NamedPitch("a'''"), None)
-            (None, None, None, NamedPitch("a''"))
-            (None, None, None, NamedPitch("a'''"))
+            **Example 1.**
 
-        ::
+            ::
 
-            >>> voicings = tuning.voice_pitch_classes(
-            ...     ('a', 'd'),
-            ...     allow_open_strings=False,
-            ...     )
-            >>> for voicing in voicings:
-            ...     voicing
-            ...
-            (NamedPitch('a'), NamedPitch("d''"), None, None)
-            (NamedPitch('a'), NamedPitch("d'''"), None, None)
-            (NamedPitch('a'), None, NamedPitch("d''"), None)
-            (NamedPitch('a'), None, NamedPitch("d'''"), None)
-            (NamedPitch('a'), None, None, NamedPitch("d'''"))
-            (NamedPitch('a'), None, None, NamedPitch("d''''"))
-            (NamedPitch("d'"), NamedPitch("a'"), None, None)
-            (NamedPitch("d'"), NamedPitch("a''"), None, None)
-            (NamedPitch("d'"), None, NamedPitch("a''"), None)
-            (NamedPitch("d'"), None, NamedPitch("a'''"), None)
-            (NamedPitch("d'"), None, None, NamedPitch("a''"))
-            (NamedPitch("d'"), None, None, NamedPitch("a'''"))
-            (NamedPitch("a'"), NamedPitch("d''"), None, None)
-            (NamedPitch("a'"), NamedPitch("d'''"), None, None)
-            (NamedPitch("a'"), None, NamedPitch("d''"), None)
-            (NamedPitch("a'"), None, NamedPitch("d'''"), None)
-            (NamedPitch("a'"), None, None, NamedPitch("d'''"))
-            (NamedPitch("a'"), None, None, NamedPitch("d''''"))
-            (NamedPitch("d''"), NamedPitch("a'"), None, None)
-            (NamedPitch("d''"), NamedPitch("a''"), None, None)
-            (NamedPitch("d''"), None, NamedPitch("a''"), None)
-            (NamedPitch("d''"), None, NamedPitch("a'''"), None)
-            (NamedPitch("d''"), None, None, NamedPitch("a''"))
-            (NamedPitch("d''"), None, None, NamedPitch("a'''"))
-            (None, NamedPitch("a'"), NamedPitch("d''"), None)
-            (None, NamedPitch("a'"), NamedPitch("d'''"), None)
-            (None, NamedPitch("a'"), None, NamedPitch("d'''"))
-            (None, NamedPitch("a'"), None, NamedPitch("d''''"))
-            (None, NamedPitch("d''"), NamedPitch("a''"), None)
-            (None, NamedPitch("d''"), NamedPitch("a'''"), None)
-            (None, NamedPitch("d''"), None, NamedPitch("a''"))
-            (None, NamedPitch("d''"), None, NamedPitch("a'''"))
-            (None, NamedPitch("a''"), NamedPitch("d''"), None)
-            (None, NamedPitch("a''"), NamedPitch("d'''"), None)
-            (None, NamedPitch("a''"), None, NamedPitch("d'''"))
-            (None, NamedPitch("a''"), None, NamedPitch("d''''"))
-            (None, NamedPitch("d'''"), NamedPitch("a''"), None)
-            (None, NamedPitch("d'''"), NamedPitch("a'''"), None)
-            (None, NamedPitch("d'''"), None, NamedPitch("a''"))
-            (None, NamedPitch("d'''"), None, NamedPitch("a'''"))
-            (None, None, NamedPitch("d''"), NamedPitch("a''"))
-            (None, None, NamedPitch("d''"), NamedPitch("a'''"))
-            (None, None, NamedPitch("a''"), NamedPitch("d'''"))
-            (None, None, NamedPitch("a''"), NamedPitch("d''''"))
-            (None, None, NamedPitch("d'''"), NamedPitch("a''"))
-            (None, None, NamedPitch("d'''"), NamedPitch("a'''"))
-            (None, None, NamedPitch("a'''"), NamedPitch("d'''"))
-            (None, None, NamedPitch("a'''"), NamedPitch("d''''"))
+                >>> tuning = indicatortools.Tuning(('G3', 'D4', 'A4', 'E5'))
+                >>> voicings = tuning.voice_pitch_classes(('a',))
+                >>> for voicing in voicings:
+                ...     voicing
+                ...
+                (NamedPitch('a'), None, None, None)
+                (NamedPitch("a'"), None, None, None)
+                (None, NamedPitch("a'"), None, None)
+                (None, NamedPitch("a''"), None, None)
+                (None, None, NamedPitch("a'"), None)
+                (None, None, NamedPitch("a''"), None)
+                (None, None, NamedPitch("a'''"), None)
+                (None, None, None, NamedPitch("a''"))
+                (None, None, None, NamedPitch("a'''"))
+
+            ::
+
+                >>> voicings = tuning.voice_pitch_classes(
+                ...     ('a', 'd'),
+                ...     allow_open_strings=False,
+                ...     )
+                >>> for voicing in voicings:
+                ...     voicing
+                ...
+                (NamedPitch('a'), NamedPitch("d''"), None, None)
+                (NamedPitch('a'), NamedPitch("d'''"), None, None)
+                (NamedPitch('a'), None, NamedPitch("d''"), None)
+                (NamedPitch('a'), None, NamedPitch("d'''"), None)
+                (NamedPitch('a'), None, None, NamedPitch("d'''"))
+                (NamedPitch('a'), None, None, NamedPitch("d''''"))
+                (NamedPitch("d'"), NamedPitch("a'"), None, None)
+                (NamedPitch("d'"), NamedPitch("a''"), None, None)
+                (NamedPitch("d'"), None, NamedPitch("a''"), None)
+                (NamedPitch("d'"), None, NamedPitch("a'''"), None)
+                (NamedPitch("d'"), None, None, NamedPitch("a''"))
+                (NamedPitch("d'"), None, None, NamedPitch("a'''"))
+                (NamedPitch("a'"), NamedPitch("d''"), None, None)
+                (NamedPitch("a'"), NamedPitch("d'''"), None, None)
+                (NamedPitch("a'"), None, NamedPitch("d''"), None)
+                (NamedPitch("a'"), None, NamedPitch("d'''"), None)
+                (NamedPitch("a'"), None, None, NamedPitch("d'''"))
+                (NamedPitch("a'"), None, None, NamedPitch("d''''"))
+                (NamedPitch("d''"), NamedPitch("a'"), None, None)
+                (NamedPitch("d''"), NamedPitch("a''"), None, None)
+                (NamedPitch("d''"), None, NamedPitch("a''"), None)
+                (NamedPitch("d''"), None, NamedPitch("a'''"), None)
+                (NamedPitch("d''"), None, None, NamedPitch("a''"))
+                (NamedPitch("d''"), None, None, NamedPitch("a'''"))
+                (None, NamedPitch("a'"), NamedPitch("d''"), None)
+                (None, NamedPitch("a'"), NamedPitch("d'''"), None)
+                (None, NamedPitch("a'"), None, NamedPitch("d'''"))
+                (None, NamedPitch("a'"), None, NamedPitch("d''''"))
+                (None, NamedPitch("d''"), NamedPitch("a''"), None)
+                (None, NamedPitch("d''"), NamedPitch("a'''"), None)
+                (None, NamedPitch("d''"), None, NamedPitch("a''"))
+                (None, NamedPitch("d''"), None, NamedPitch("a'''"))
+                (None, NamedPitch("a''"), NamedPitch("d''"), None)
+                (None, NamedPitch("a''"), NamedPitch("d'''"), None)
+                (None, NamedPitch("a''"), None, NamedPitch("d'''"))
+                (None, NamedPitch("a''"), None, NamedPitch("d''''"))
+                (None, NamedPitch("d'''"), NamedPitch("a''"), None)
+                (None, NamedPitch("d'''"), NamedPitch("a'''"), None)
+                (None, NamedPitch("d'''"), None, NamedPitch("a''"))
+                (None, NamedPitch("d'''"), None, NamedPitch("a'''"))
+                (None, None, NamedPitch("d''"), NamedPitch("a''"))
+                (None, None, NamedPitch("d''"), NamedPitch("a'''"))
+                (None, None, NamedPitch("a''"), NamedPitch("d'''"))
+                (None, None, NamedPitch("a''"), NamedPitch("d''''"))
+                (None, None, NamedPitch("d'''"), NamedPitch("a''"))
+                (None, None, NamedPitch("d'''"), NamedPitch("a'''"))
+                (None, None, NamedPitch("a'''"), NamedPitch("d'''"))
+                (None, None, NamedPitch("a'''"), NamedPitch("d''''"))
 
         Returns tuple of sequences.
         """
@@ -226,29 +244,53 @@ class Tuning(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of tuning.
+
+        ..  container:: example
+
+            **Example 1.** Violin tuning
+
+            ::
+
+                >>> indicator = indicatortools.Tuning(
+                ...     pitches=('G3', 'D4', 'A4', 'E5'),
+                ...     )
+                >>> indicator.default_scope is None
+                True
+
+        Returns none.
+        '''
+        return self._default_scope
+
+    @property
     def pitch_ranges(self):
         r'''Gets two-octave pitch-ranges for each pitch in this tuning.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_ranges = indicator.pitch_ranges
-            >>> print(format(pitch_ranges))
-            pitchtools.PitchRangeInventory(
-                [
-                    pitchtools.PitchRange(
-                        range_string='[G3, G5]',
-                        ),
-                    pitchtools.PitchRange(
-                        range_string='[D4, D6]',
-                        ),
-                    pitchtools.PitchRange(
-                        range_string='[A4, A6]',
-                        ),
-                    pitchtools.PitchRange(
-                        range_string='[E5, E7]',
-                        ),
-                    ]
-                )
+            **Example 1.**
+
+            ::
+
+                >>> pitch_ranges = indicator.pitch_ranges
+                >>> print(format(pitch_ranges))
+                pitchtools.PitchRangeInventory(
+                    [
+                        pitchtools.PitchRange(
+                            range_string='[G3, G5]',
+                            ),
+                        pitchtools.PitchRange(
+                            range_string='[D4, D6]',
+                            ),
+                        pitchtools.PitchRange(
+                            range_string='[A4, A6]',
+                            ),
+                        pitchtools.PitchRange(
+                            range_string='[E5, E7]',
+                            ),
+                        ]
+                    )
 
         Returns pitch-range inventory.
         '''
@@ -262,22 +304,26 @@ class Tuning(AbjadValueObject):
 
     @property
     def pitches(self):
-        r'''Gets tuning pitches.
+        r'''Gets pitches of tuning.
 
-        ::
+        ..  container:: example
 
-            >>> pitches = indicator.pitches
-            >>> print(format(pitches))
-            pitchtools.PitchSegment(
-                (
-                    pitchtools.NamedPitch('g'),
-                    pitchtools.NamedPitch("d'"),
-                    pitchtools.NamedPitch("a'"),
-                    pitchtools.NamedPitch("e''"),
-                    ),
-                item_class=pitchtools.NamedPitch,
-                )
+            **Example 1.**
 
-        Return pitch segment.
+            ::
+
+                >>> pitches = indicator.pitches
+                >>> print(format(pitches))
+                pitchtools.PitchSegment(
+                    (
+                        pitchtools.NamedPitch('g'),
+                        pitchtools.NamedPitch("d'"),
+                        pitchtools.NamedPitch("a'"),
+                        pitchtools.NamedPitch("e''"),
+                        ),
+                    item_class=pitchtools.NamedPitch,
+                    )
+
+        Returns pitch segment.
         '''
         return self._pitches

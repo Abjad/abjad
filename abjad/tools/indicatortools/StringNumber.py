@@ -6,27 +6,36 @@ from abjad.tools.abctools import AbjadValueObject
 class StringNumber(AbjadValueObject):
     r'''String number indicator.
 
-    ::
+    ..  container:: example
 
-        >>> indicator = indicatortools.StringNumber(1)
-        >>> print(format(indicator))
-        indicatortools.StringNumber(
-            numbers=(1,),
-            )
+        **Example 1.** String I:
 
-    ::
+        ::
 
-        >>> indicator = indicatortools.StringNumber((2, 3))
-        >>> print(format(indicator))
-        indicatortools.StringNumber(
-            numbers=(2, 3),
-            )
+            >>> indicator = indicatortools.StringNumber(1)
+            >>> print(format(indicator))
+            indicatortools.StringNumber(
+                numbers=(1,),
+                )
+
+    ..  container:: example
+        
+        **Example 2.** Strings II and III:
+
+        ::
+
+            >>> indicator = indicatortools.StringNumber((2, 3))
+            >>> print(format(indicator))
+            indicatortools.StringNumber(
+                numbers=(2, 3),
+                )
 
     '''
 
     ### CLASS VARIABLES
 
     __slots__ = (
+        '_default_scope',
         '_numbers',
         )
 
@@ -36,6 +45,7 @@ class StringNumber(AbjadValueObject):
         self,
         numbers=None,
         ):
+        self._default_scope = None
         numbers = numbers or ()
         if isinstance(numbers, type(self)):
             numbers = numbers.numbers
@@ -48,26 +58,90 @@ class StringNumber(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of string number indicator.
+
+        ..  container:: example
+
+            **Example 1.** String I:
+
+            ::
+
+                >>> indicator = indicatortools.StringNumber(1)
+                >>> indicator.default_scope is None
+                True
+
+        ..  container:: example
+            
+            **Example 2.** Strings II and III:
+
+            ::
+
+                >>> indicator = indicatortools.StringNumber((2, 3))
+                >>> indicator.default_scope is None
+                True
+
+        Returns none.
+        '''
+        return self._default_scope
+        
+    @property
     def numbers(self):
-        r'''Gets string numbers.
+        r'''Gets numbers of string number indicator:
 
-        ::
+        ..  container:: example
 
-            >>> indicator = indicatortools.StringNumber((2, 3))
-            >>> indicator.numbers
-            (2, 3)
+            **Example 1.** String I:
 
+            ::
+
+                >>> indicator = indicatortools.StringNumber(1)
+                >>> indicator.numbers
+                (1,)
+
+        ..  container:: example
+            
+            **Example 2.** Strings II and III:
+
+            ::
+
+                >>> indicator = indicatortools.StringNumber((2, 3))
+                >>> indicator.numbers
+                (2, 3)
+
+        Set to tuple of zero or more positive integers.
+
+        Defaults to empty tuple.
+
+        Returns tuple of zero or more positive integers.
         '''
         return self._numbers
 
     @property
     def roman_numerals(self):
-        r'''Gets string numbers as roman numerals.
+        r'''Gets roman numerals of string number indicator.
 
-            >>> indicator = indicatortools.StringNumber((3, 4))
-            >>> indicator.roman_numerals
-            ('iii', 'iv')
+        ..  container:: example
 
+            **Example 1.** String I:
+
+            ::
+
+                >>> indicator = indicatortools.StringNumber(1)
+                >>> indicator.roman_numerals
+                ('i',)
+
+        ..  container:: example
+            
+            **Example 2.** Strings II and III:
+
+            ::
+
+                >>> indicator = indicatortools.StringNumber((2, 3))
+                >>> indicator.roman_numerals
+                ('ii', 'iii')
+
+        Returns tuple of zero or more strings.
         '''
         numerals = ('i', 'ii', 'iii', 'iv', 'v', 'vi')
         result = []

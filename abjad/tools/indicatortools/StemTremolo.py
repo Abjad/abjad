@@ -4,25 +4,46 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class StemTremolo(AbjadValueObject):
-    r'''A stem tremolo.
+    r'''Stem tremolo.
 
-    ::
+    ..  container:: example
 
-        >>> note = Note("c'4")
-        >>> stem_tremolo = indicatortools.StemTremolo(16)
-        >>> attach(stem_tremolo, note)
-        >>> show(note) # doctest: +SKIP
+        **Example 1.** Sixteenth-note tremolo:
 
-    ..  doctest::
+        ::
 
-        >>> print(format(note))
-        c'4 :16
+            >>> note = Note("c'4")
+            >>> stem_tremolo = indicatortools.StemTremolo(16)
+            >>> attach(stem_tremolo, note)
+            >>> show(note) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(note))
+            c'4 :16
+
+    ..  container:: example
+
+        **Example 2.** Thirty-second-note tremolo:
+
+        ::
+
+            >>> note = Note("c'4")
+            >>> stem_tremolo = indicatortools.StemTremolo(32)
+            >>> attach(stem_tremolo, note)
+            >>> show(note) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(note))
+            c'4 :32
 
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_default_scope',
         '_tremolo_flags',
         )
 
@@ -31,6 +52,7 @@ class StemTremolo(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, tremolo_flags=16):
+        self._default_scope = None
         if isinstance(tremolo_flags, type(self)):
             tremolo_flags = tremolo_flags.tremolo_flags
         tremolo_flags = int(tremolo_flags)
@@ -45,10 +67,25 @@ class StemTremolo(AbjadValueObject):
     def __format__(self, format_specification=''):
         r'''Formats stem tremolo.
 
-        ::
+        ..  container:: example
 
-            >>> print(format(stem_tremolo))
-            :16
+            **Example 1.** Sixteenth-note tremolo:
+
+            ::
+
+                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> print(format(stem_tremolo))
+                :16
+
+        ..  container:: example
+
+            **Example 2.** Thirty-second-note tremolo:
+
+            ::
+
+                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> print(format(stem_tremolo))
+                :32
 
         Returns string.
         '''
@@ -61,6 +98,26 @@ class StemTremolo(AbjadValueObject):
 
     def __str__(self):
         r'''String representation of stem tremolo.
+
+        ..  container:: example
+
+            **Example 1.** Sixteenth-note tremolo:
+
+            ::
+
+                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> print(str(stem_tremolo))
+                :16
+
+        ..  container:: example
+
+            **Example 2.** Thirty-second-note tremolo:
+
+            ::
+
+                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> print(str(stem_tremolo))
+                :32
 
         Returns string.
         '''
@@ -91,14 +148,61 @@ class StemTremolo(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def default_scope(self):
+        r'''Gets default scope of stem tremolo.
+
+        ..  container:: example
+
+            **Example 1.** Sixteenth-note tremolo:
+
+            ::
+
+                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo.default_scope is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Thirty-second-note tremolo:
+
+            ::
+
+                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo.default_scope is None
+                True
+
+        Returns none.
+        '''
+        return self._default_scope
+
+    @property
     def tremolo_flags(self):
-        r'''Flags of stem tremolo.
+        r'''Gets tremolo flags of stem tremolo.
 
-        ::
+        ..  container:: example
 
-            >>> stem_tremolo.tremolo_flags
-            16
+            **Example 1.** Sixteenth-note tremolo:
 
-        Returns nonnegative integer power of ``2``.
+            ::
+
+                >>> stem_tremolo = indicatortools.StemTremolo(16)
+                >>> stem_tremolo.tremolo_flags
+                16
+
+        ..  container:: example
+
+            **Example 2.** Thirty-second-note tremolo:
+
+            ::
+
+                >>> stem_tremolo = indicatortools.StemTremolo(32)
+                >>> stem_tremolo.tremolo_flags
+                32
+
+        Set to nonnegative integer power of 2.
+
+        Defaults to 16.
+
+        Returns nonnegative integer power of 2.
         '''
         return self._tremolo_flags

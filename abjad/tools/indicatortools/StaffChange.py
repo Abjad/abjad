@@ -5,34 +5,38 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class StaffChange(AbjadValueObject):
     r'''A staff change.
 
-    ::
+    ..  container:: example
 
-        >>> staff_group = StaffGroup()
-        >>> staff_group.context_name = 'PianoStaff'
-        >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
-        >>> rh_staff.name = 'RHStaff'
-        >>> lh_staff = Staff("s2")
-        >>> lh_staff.name = 'LHStaff'
-        >>> staff_group.extend([rh_staff, lh_staff])
-        >>> staff_change = indicatortools.StaffChange(lh_staff)
-        >>> attach(staff_change, rh_staff[2])
-        >>> show(staff_group) # doctest: +SKIP
+        **Example 1.** Explicit staff change:
 
-    ..  doctest::
+        ::
 
-        >>> print(format(staff_group))
-        \new PianoStaff <<
-            \context Staff = "RHStaff" {
-                c'8
-                d'8
-                \change Staff = LHStaff
-                e'8
-                f'8
-            }
-            \context Staff = "LHStaff" {
-                s2
-            }
-        >>
+            >>> staff_group = StaffGroup()
+            >>> staff_group.context_name = 'PianoStaff'
+            >>> rh_staff = Staff("c'8 d'8 e'8 f'8")
+            >>> rh_staff.name = 'RHStaff'
+            >>> lh_staff = Staff("s2")
+            >>> lh_staff.name = 'LHStaff'
+            >>> staff_group.extend([rh_staff, lh_staff])
+            >>> staff_change = indicatortools.StaffChange(lh_staff)
+            >>> attach(staff_change, rh_staff[2])
+            >>> show(staff_group) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff_group))
+            \new PianoStaff <<
+                \context Staff = "RHStaff" {
+                    c'8
+                    d'8
+                    \change Staff = LHStaff
+                    e'8
+                    f'8
+                }
+                \context Staff = "LHStaff" {
+                    s2
+                }
+            >>
 
     '''
 
@@ -62,7 +66,27 @@ class StaffChange(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''Gets string format of staff change.
+        r'''Gets string representation of staff change.
+
+        ..  container:: example
+
+            **Example 1.** Default staff change:
+
+            ::
+
+                >>> staff_change = indicatortools.StaffChange()
+                >>> print(str(staff_change))
+                \change Staff = ##f
+
+        ..  container:: example
+
+            **Example 2.** Explicit staff change:
+    
+            ::
+
+                >>> staff_change = indicatortools.StaffChange(staff=lh_staff)
+                >>> print(str(staff_change))
+                \change Staff = LHStaff
 
         Returns string.
         '''
@@ -94,14 +118,63 @@ class StaffChange(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def staff(self):
-        r'''Staff of staff change.
+    def default_scope(self):
+        r'''Gets default scope of staff change.
 
-        ::
+        ..  container:: example
 
-            >>> staff_change.staff
-            Staff('s2')
+            **Example 1.** Default staff change:
+
+            ::
+
+                >>> staff_change = indicatortools.StaffChange()
+                >>> staff_change.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        ..  container:: example
+
+            **Example 2.** Explicit staff change:
+    
+            ::
+
+                >>> staff_change = indicatortools.StaffChange(staff=lh_staff)
+                >>> staff_change.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        Staff changes are staff-scoped.
 
         Returns staff.
+        '''
+        return self._default_scope
+
+    @property
+    def staff(self):
+        r'''Gets staff of staff change.
+
+        ..  container:: example
+
+            **Example 1.** Default staff change:
+
+            ::
+
+                >>> staff_change = indicatortools.StaffChange()
+                >>> staff_change.staff is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Explicit staff change:
+    
+            ::
+
+                >>> staff_change = indicatortools.StaffChange(staff=lh_staff)
+                >>> staff_change.staff
+                Staff('s2')
+        
+        Set to staff or none.
+
+        Defaults to none.
+
+        Returns staff or none.
         '''
         return self._staff

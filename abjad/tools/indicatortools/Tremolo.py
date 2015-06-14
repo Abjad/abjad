@@ -7,6 +7,27 @@ class Tremolo(AbjadValueObject):
     
     ..  container:: example
 
+        **Example 1.** With two beams:
+
+        ::
+
+            >>> chord = Chord("<cs' e'>4")
+            >>> tremolo = indicatortools.Tremolo(beam_count=2)
+            >>> attach(tremolo, chord)
+            >>> show(chord) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(chord))
+            \repeat tremolo 2
+            {
+            cs'16 e'16
+            }
+
+    ..  container:: example
+
+        **Example 2.** With three beams:
+
         ::
 
             >>> chord = Chord("<cs' e'>4")
@@ -51,21 +72,25 @@ class Tremolo(AbjadValueObject):
     def __copy__(self, *args):
         r'''Copies tremolo.
 
-        ::
+        ..  container:: example
 
-            >>> import copy
-            >>> tremolo_1 = indicatortools.Tremolo(beam_count=2)
-            >>> tremolo_2 = copy.copy(tremolo_1)
+            **Example 1.** Copies tremolo:
 
-        ::
+            ::
 
-            >>> tremolo_1 == tremolo_2
-            True
+                >>> import copy
+                >>> tremolo_1 = indicatortools.Tremolo(beam_count=2)
+                >>> tremolo_2 = copy.copy(tremolo_1)
 
-        ::
+            ::
 
-            >>> tremolo_1 is not tremolo_2
-            True
+                >>> tremolo_1 == tremolo_2
+                True
+
+            ::
+
+                >>> tremolo_1 is not tremolo_2
+                True
 
         Returns new tremolo.
         '''
@@ -75,12 +100,29 @@ class Tremolo(AbjadValueObject):
     def __format__(self, format_specification=''):
         r'''Formats stem tremolo.
 
-        ::
+        ..  container:: example
 
-            >>> print(format(tremolo))
-            indicatortools.Tremolo(
-                beam_count=3,
-                )
+            **Example 1.** With two beams:
+
+            ::
+
+                >>> tremolo = indicatortools.Tremolo(beam_count=2)
+                >>> print(format(tremolo))
+                indicatortools.Tremolo(
+                    beam_count=2,
+                    )
+
+        ..  container:: example
+
+            **Example 2.** With three beams:
+
+            ::
+
+                >>> tremolo = indicatortools.Tremolo(beam_count=3)
+                >>> print(format(tremolo))
+                indicatortools.Tremolo(
+                    beam_count=3,
+                    )
 
         Returns string.
         '''
@@ -99,8 +141,21 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** With two beams:
+
             ::
 
+                >>> tremolo = indicatortools.Tremolo(beam_count=2)
+                >>> str(tremolo)
+                'Tremolo(beam_count=2)'
+
+        ..  container:: example
+
+            **Example 2.** With three beams:
+
+            ::
+
+                >>> tremolo = indicatortools.Tremolo(beam_count=3)
                 >>> str(tremolo)
                 'Tremolo(beam_count=3)'
 
@@ -117,26 +172,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Tremolo with one beam:
-
-            ::
-
-                >>> chord = Chord("<cs' e'>4")
-                >>> tremolo = indicatortools.Tremolo(beam_count=1)
-                >>> attach(tremolo, chord)
-                >>> show(chord) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(chord))
-                \repeat tremolo 1
-                {
-                cs'8 e'8
-                }
-
-        ..  container:: example
-
-            **Example 2.** Tremolo with two beams:
+            **Example 1.** With two beams:
 
             ::
 
@@ -155,7 +191,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Tremolo with tree beams:
+            **Example 2.** With three beams:
 
             ::
 
@@ -172,7 +208,9 @@ class Tremolo(AbjadValueObject):
                 cs'32 e'32
                 }
 
-            This is default behavior.
+        Set to positive integer.
+
+        Defaults to 3.
 
         Returns positive integer.
         '''
@@ -184,7 +222,7 @@ class Tremolo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Tremolo without slur:
+            **Example 1.** Without slur:
 
             ::
 
@@ -201,11 +239,9 @@ class Tremolo(AbjadValueObject):
                 cs'32 e'32
                 }
 
-            This is default behavior.
-
         ..  container:: example
 
-            **Example 2.** Tremolo with slur:
+            **Example 2.** With slur:
 
             ::
 
@@ -221,6 +257,10 @@ class Tremolo(AbjadValueObject):
                 {
                 cs'32 \( e'32 \)
                 }
+
+        Set to true or false.
+
+        Defaults to false.
                 
         Returns true or false.
         '''

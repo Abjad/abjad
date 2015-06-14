@@ -5,13 +5,29 @@ from abjad.tools.abctools import AbjadValueObject
 class StringContactPoint(AbjadValueObject):
     r'''String contact point indicator.
 
-    ::
+    ..  container:: example
 
-        >>> indicator = indicatortools.StringContactPoint('sul ponticello')
-        >>> print(format(indicator))
-        indicatortools.StringContactPoint(
-            contact_point='sul ponticello',
-            )
+        **Example 1.** Sul ponticello:
+
+        ::
+
+            >>> indicator = indicatortools.StringContactPoint('sul ponticello')
+            >>> print(format(indicator))
+            indicatortools.StringContactPoint(
+                contact_point='sul ponticello',
+                )
+
+    ..  container:: example
+
+        **Example 2.** Sul tasto:
+
+        ::
+
+            >>> indicator = indicatortools.StringContactPoint('sul tasto')
+            >>> print(format(indicator))
+            indicatortools.StringContactPoint(
+                contact_point='sul tasto',
+                )
 
     '''
 
@@ -19,6 +35,7 @@ class StringContactPoint(AbjadValueObject):
 
     __slots__ = (
         '_contact_point',
+        '_default_scope',
         )
 
     _contact_points = (
@@ -45,43 +62,117 @@ class StringContactPoint(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self,
+    def __init__(
+        self,
         contact_point='ordinario',
         ):
         contact_point = str(contact_point)
         assert contact_point in self._contact_points
         self._contact_point = contact_point
+        self._default_scope = None
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def contact_point(self):
-        r'''Gets contact point.
+        r'''Gets contact point of string contact point.
 
-        ::
+        ..  container:: example
 
-            >>> indicator = indicatortools.StringContactPoint('sul tasto')
-            >>> indicator.contact_point
-            'sul tasto'
+            **Example 1.** Sul ponticello:
 
-        Returns string.
+            ::
+
+                >>> indicator = indicatortools.StringContactPoint('sul ponticello')
+                >>> indicator.contact_point
+                'sul ponticello'
+
+        ..  container:: example
+
+            **Example 2.** Sul tasto:
+
+            ::
+
+                >>> indicator = indicatortools.StringContactPoint('sul tasto')
+                >>> indicator.contact_point
+                'sul tasto'
+
+        Set to known string.
+
+        Defaults to ``'ordinario'``.
+
+        Returns known string.
         '''
         return self._contact_point
 
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of string contact point.
+
+        ..  container:: example
+
+            **Example 1.** Sul ponticello:
+
+            ::
+
+                >>> indicator = indicatortools.StringContactPoint('sul ponticello')
+                >>> indicator.default_scope is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Sul tasto:
+
+            ::
+
+                >>> indicator = indicatortools.StringContactPoint('sul tasto')
+                >>> indicator.default_scope is None
+                True
+
+        Returns none.
+        '''
+        return self._default_scope
+
     @property
     def markup(self):
-        r'''Gets contact point markup.
+        r'''Gets markup of string contact point.
 
-        ::
+        ..  container:: example
 
-            >>> indicator = indicatortools.StringContactPoint('sul tasto')
-            >>> print(format(indicator.markup))
-            \markup {
-                \caps
-                    S.T.
-                }
+            **Example 1.** Sul ponticello:
 
-        Returns markup.
+            ::
+
+                >>> indicator = indicatortools.StringContactPoint('sul ponticello')
+                >>> show(indicator.markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(indicator.markup))
+                \markup {
+                    \caps
+                        S.P.
+                    }
+
+        ..  container:: example
+
+            **Example 2.** Sul tasto:
+
+            ::
+
+                >>> indicator = indicatortools.StringContactPoint('sul tasto')
+                >>> show(indicator.markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(indicator.markup))
+                \markup {
+                    \caps
+                        S.T.
+                    }
+
+        Returns abbreviation markup.
         '''
         from abjad.tools import markuptools
         markup = self._contact_point_abbreviations[self.contact_point]
