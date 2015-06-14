@@ -1,44 +1,49 @@
 # -*- encoding: utf-8 -*-
+import copy
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class TimeSignatureInventory(TypedList):
     r'''An ordered list of time signatures.
 
-    ::
+    ..  container:: example
 
-        >>> inventory = indicatortools.TimeSignatureInventory([(5, 8), (4, 4)])
+        **Example 1.** Inventory with two time signatures:
 
-    ::
+        ::
 
-        >>> inventory
-        TimeSignatureInventory([TimeSignature((5, 8)), TimeSignature((4, 4))])
+            >>> inventory = indicatortools.TimeSignatureInventory([(5, 8), (4, 4)])
 
-    ::
+        ::
 
-        >>> (5, 8) in inventory
-        True
+            >>> inventory
+            TimeSignatureInventory([TimeSignature((5, 8)), TimeSignature((4, 4))])
 
-    ::
+        ::
 
-        >>> TimeSignature((4, 4)) in inventory
-        True
+            >>> (5, 8) in inventory
+            True
 
-    ::
+        ::
 
-        >>> (3, 4) in inventory
-        False
+            >>> TimeSignature((4, 4)) in inventory
+            True
 
-    ::
+        ::
 
-        >>> show(inventory) # doctest: +SKIP
+            >>> (3, 4) in inventory
+            False
 
-    Time signature inventories implement the list interface and are mutable.
+        ::
+
+            >>> show(inventory) # doctest: +SKIP
+
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -70,7 +75,16 @@ class TimeSignatureInventory(TypedList):
     @property
     def _item_coercer(self):
         from abjad.tools import indicatortools
-        return indicatortools.TimeSignature
+        def coerce(expr):
+            if isinstance(expr, tuple):
+                return indicatortools.TimeSignature(expr)
+            elif isinstance(expr, indicatortools.TimeSignature):
+                return copy.copy(expr)
+            else:
+                message = 'must be pair or time signature: {!r}.'
+                message = message.format(expr)
+                raise Exception(message)
+        return coerce
 
     @property
     def _one_line_menu_summary(self):

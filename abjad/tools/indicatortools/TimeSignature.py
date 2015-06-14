@@ -9,12 +9,12 @@ class TimeSignature(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Initializes from an integer pair:
+        **Example 1.** First time signature:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> time_signature = TimeSignature((4, 8))
+            >>> staff = Staff("c'8 d'8 e'8")
+            >>> time_signature = TimeSignature((3, 8))
             >>> attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
 
@@ -22,23 +22,86 @@ class TimeSignature(AbjadValueObject):
 
             >>> print(format(staff))
             \new Staff {
-                \time 4/8
+                \time 3/8
                 c'8
                 d'8
                 e'8
-                f'8
             }
 
     ..  container:: example
 
-        **Example 2.** Sets the scope of time signatures to the score context:
+        **Example 2.** Second time signature:
 
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> time_signature = TimeSignature((4, 8))
-            >>> attach(time_signature, staff[0], scope=Score)
+            >>> staff = Staff("c'4 d'4 e'4 f'4")
+            >>> time_signature = TimeSignature((4, 4))
+            >>> attach(time_signature, staff[0])
             >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(staff))
+            \new Staff {
+                \time 4/4
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        **Example 3.** Scoped to the score context:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 c'8 d'8 e'8")
+            >>> time_signature = TimeSignature((3, 8))
+            >>> attach(time_signature, staff[0], scope=Score)
+
+        Formats behind comments when no score is present:
+
+        ::
+
+            >>> print(format(staff))
+            \new Staff {
+                %%% \time 3/8 %%%
+                c'8
+                d'8
+                e'8
+                c'8
+                d'8
+                e'8
+            }
+
+            LilyPond defaults to common time.
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        Formats normally when score is present:
+
+        ::
+
+            >>> score = Score([staff])
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    \time 3/8
+                    c'8
+                    d'8
+                    e'8
+                    c'8
+                    d'8
+                    e'8
+                }
+            >>
+
+        ::
+
+            >>> show(score) # doctest: +SKIP
 
     '''
 
@@ -59,47 +122,68 @@ class TimeSignature(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args, **kwargs):
+    #def __init__(self, *args, **kwargs):
+    def __init__(self, pair=(4, 4), partial=None, suppress=None):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
-        partial, suppress = None, None
-        # initialize numerator and denominator from *args
-        if len(args) == 0:
-            numerator = 4
-            denominator = 4
-        elif len(args) == 1 and isinstance(args[0], type(self)):
-            time_signature = args[0]
-            numerator = time_signature.numerator
-            denominator = time_signature.denominator
-            partial = time_signature.partial
-            suppress = time_signature.suppress
-        elif len(args) == 1 and isinstance(args[0], durationtools.Duration):
-            numerator, denominator = args[0].numerator, args[0].denominator
-        elif len(args) == 1 and isinstance(args[0], tuple):
-            numerator, denominator = args[0][0], args[0][1]
-        elif (len(args) == 1 and hasattr(args[0], 'numerator') and
-            hasattr(args[0], 'denominator')):
-            numerator, denominator = args[0].numerator, args[0].denominator
-        else:
-            message = 'invalid time_signature initialization: {!r}.'
-            message = message.format(args)
-            raise TypeError(message)
+
+#        #partial, suppress = None, None
+#        # initialize numerator and denominator from *args
+#        if len(args) == 0:
+#            numerator = 4
+#            denominator = 4
+#        elif len(args) == 1 and isinstance(args[0], type(self)):
+#            time_signature = args[0]
+#            numerator = time_signature.numerator
+#            denominator = time_signature.denominator
+#            partial = time_signature.partial
+#            suppress = time_signature.suppress
+#        elif len(args) == 1 and isinstance(args[0], durationtools.Duration):
+#            numerator, denominator = args[0].numerator, args[0].denominator
+#        elif len(args) == 1 and isinstance(args[0], tuple):
+#            numerator, denominator = args[0][0], args[0][1]
+#        elif (len(args) == 1 and hasattr(args[0], 'numerator') and
+#            hasattr(args[0], 'denominator')):
+#            numerator, denominator = args[0].numerator, args[0].denominator
+#        else:
+#            message = 'invalid time_signature initialization: {!r}.'
+#            message = message.format(args)
+#            raise TypeError(message)
+
+        pair = getattr(pair, 'pair', pair)
+
+        assert isinstance(pair, tuple), repr(pair)
+        assert len(pair) == 2, repr(pair)
+        numerator, denominator = pair
+        assert isinstance(numerator, int), repr(numerator)
+        assert isinstance(denominator, int), repr(denominator)
+
         self._numerator = numerator
         self._denominator = denominator
-        # initialize partial from **kwargs
-        partial = partial or kwargs.get('partial', None)
-        if not isinstance(partial, (type(None), durationtools.Duration)):
-            raise TypeError
+
+#        # initialize partial from **kwargs
+#        partial = partial or kwargs.get('partial', None)
+#        if not isinstance(partial, (type(None), durationtools.Duration)):
+#            raise TypeError
+
+        prototype = (durationtools.Duration, type(None))
+        assert isinstance(partial, prototype), repr(partial)
+
         self._partial = partial
         if partial is not None:
             self._partial_repr_string = ', partial=%r' % self._partial
         else:
             self._partial_repr_string = ''
-        # initialize suppress from kwargs
-        suppress = suppress or kwargs.get('suppress', None)
-        if not isinstance(suppress, (bool, type(None))):
-            raise TypeError
+
+#        # initialize suppress from kwargs
+#        suppress = suppress or kwargs.get('suppress', None)
+#        if not isinstance(suppress, (bool, type(None))):
+#            raise TypeError
+
+        assert isinstance(suppress, (bool, type(None))), repr(suppress)
+
         self._suppress = suppress
+
         # initialize derived attributes
         self._multiplier = self.implied_prolation
         self._has_non_power_of_two_denominator = \
@@ -128,18 +212,12 @@ class TimeSignature(AbjadValueObject):
 
             Returns new time signature in terms of greatest denominator.
 
-        ..  container:: example
-
-            **Example 3.** Adds time signature to an integer:
-
-            >>> TimeSignature((3, 4)) + 1
-            TimeSignature((7, 4))
-
-            Coerces integer to ``1/1``.
-
         Returns new time signature.
         '''
-        arg = type(self)(arg)
+        if not isinstance(arg, type(self)):
+            message = 'must be time signature: {!r}.'
+            message = message.format(arg)
+            raise Exception(message)
         nonreduced_1 = mathtools.NonreducedFraction(
             self.numerator,
             self.denominator,
@@ -195,7 +273,7 @@ class TimeSignature(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Second time signature:
+            **Example 2.** Second time signature:
 
             ::
 
@@ -271,17 +349,15 @@ class TimeSignature(AbjadValueObject):
 
             **Example 1.** Adds integer to first time signature:
 
-            >>> TimeSignature((3, 8)) + 1
+            >>> TimeSignature((3, 8)) + TimeSignature((4, 4))
             TimeSignature((11, 8))
 
         ..  container:: example
 
             **Example 2.** Adds integer to second time signature:
 
-            >>> TimeSignature((4, 4)) + 1
-            TimeSignature((8, 4))
-
-        Coerces `n` to ``n/1``.
+            >>> TimeSignature((4, 4)) + TimeSignature((3, 8))
+            TimeSignature((11, 8))
 
         Returns new time signature.
         '''
@@ -655,8 +731,9 @@ class TimeSignature(AbjadValueObject):
 
         # find power_of_two pair
         non_power_of_two_pair = mathtools.NonreducedFraction(self.pair)
-        power_of_two_pair = non_power_of_two_pair.with_denominator(
+        power_of_two_fraction = non_power_of_two_pair.with_denominator(
             power_of_two_denominator)
+        power_of_two_pair = power_of_two_fraction.pair
 
         # return new power_of_two time signature
         return type(self)(power_of_two_pair)
