@@ -485,15 +485,29 @@ class Tempo(AbjadValueObject):
 
     @property
     def _equation(self):
+        from abjad.tools import markuptools
         if self.duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
-            return '{}={}-{}'.format(
+            string = '{}={}-{}'
+            string = string.format(
                 self._dotted,
                 self.units_per_minute[0],
                 self.units_per_minute[1],
                 )
-        return '{}={}'.format(self._dotted, self.units_per_minute)
+            return string
+        elif isinstance(self.units_per_minute, float):
+            lhs_score_markup = self._make_lhs_score_markup()
+            lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
+            equal_markup = markuptools.Markup('=')
+            rhs_markup = markuptools.Markup(self.units_per_minute)
+            rhs_markup = rhs_markup.general_align('Y', -0.5)
+            markup = lhs_score_markup + equal_markup + rhs_markup
+            string = str(markup)
+            return string
+        string = '{}={}'
+        string = string.format(self._dotted, self.units_per_minute)
+        return string
 
     @property
     def _lilypond_format(self):
@@ -533,6 +547,13 @@ class Tempo(AbjadValueObject):
             )
 
     ### PRIVATE METHODS ###
+
+    def _make_lhs_score_markup(self, reference_duration=None):
+        from abjad.tools import scoretools
+        reference_duration = reference_duration or self.duration
+        selection = scoretools.make_notes([0], [reference_duration])
+        markup = durationtools.Duration._to_score_markup(selection)
+        return markup
 
     def _to_markup(self):
         from abjad.tools import markuptools
@@ -820,18 +841,47 @@ class Tempo(AbjadValueObject):
                 >>> print(format(score))
                 \new Score <<
                     \new Staff {
-                        \tempo 4=90.1
+                        \tempo \markup {
+                            \scale
+                                #'(0.75 . 0.75)
+                                \score
+                                    {
+                                        \new Score \with {
+                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            proportionalNotationDuration = ##f
+                                        } <<
+                                            \new RhythmicStaff \with {
+                                                \remove Time_signature_engraver
+                                                \remove Staff_symbol_engraver
+                                                \override Stem #'direction = #up
+                                                \override Stem #'length = #5
+                                                \override TupletBracket #'bracket-visibility = ##t
+                                                \override TupletBracket #'direction = #up
+                                                \override TupletBracket #'padding = #1.25
+                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                tupletFullLength = ##t
+                                            } {
+                                                c'4
+                                            }
+                                        >>
+                                        \layout {
+                                            indent = #0
+                                            ragged-right = ##t
+                                        }
+                                    }
+                            =
+                            \general-align
+                                #Y
+                                #-0.5
+                                90.1
+                            }
                         c'8
                         d'8
                         e'8
                         f'8
                     }
                 >>
-
-            But note that LilyPond rejects float-valued tempi.
-
-            ..  todo:: Implement something to allow float-valued tempi
-                in LilyPond output.
 
         ..  container:: example
 
@@ -1028,6 +1078,279 @@ class Tempo(AbjadValueObject):
         pairs.sort()
         # return pairs
         return pairs
+
+    @staticmethod
+    def make_tempo_equation_markup(reference_duration, units_per_minute):
+        r'''Makes tempo equation markup.
+
+        ..  container:: example
+
+            **Example 1.** Integer-valued tempo:
+
+            ::
+
+                >>> markup = Tempo.make_tempo_equation_markup(Duration(1, 4), 90)
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(markup))
+                \markup {
+                    \scale
+                        #'(0.75 . 0.75)
+                        \score
+                            {
+                                \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'4
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                    =
+                    \general-align
+                        #Y
+                        #-0.5
+                        90
+                    }
+
+        ..  container:: example
+
+            **Example 2.** Float-valued tempo:
+
+            ::
+
+                >>> markup = Tempo.make_tempo_equation_markup(Duration(1, 4), 90.1)
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(markup))
+                \markup {
+                    \scale
+                        #'(0.75 . 0.75)
+                        \score
+                            {
+                                \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'4
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                    =
+                    \general-align
+                        #Y
+                        #-0.5
+                        90.1
+                    }
+
+        ..  container:: example
+
+            **Example 3.** Reference duration expressed with ties:
+
+            ::
+
+                >>> markup = Tempo.make_tempo_equation_markup(Duration(5, 16), 90.1)
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(markup))
+                \markup {
+                    \scale
+                        #'(0.75 . 0.75)
+                        \score
+                            {
+                                \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'4 ~
+                                        c'16
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                    =
+                    \general-align
+                        #Y
+                        #-0.5
+                        90.1
+                    }
+
+        ..  container:: example
+
+            **Example 4.** Reference duration expressed as a tuplet:
+
+            ::
+
+                >>> markup = Tempo.make_tempo_equation_markup(Duration(1, 6), 90.1)
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(markup))
+                \markup {
+                    \scale
+                        #'(0.75 . 0.75)
+                        \score
+                            {
+                                \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        tupletFullLength = ##t
+                                    } {
+                                        \tweak #'edge-height #'(0.7 . 0)
+                                        \times 2/3 {
+                                            c'4
+                                        }
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                    =
+                    \general-align
+                        #Y
+                        #-0.5
+                        90.1
+                    }
+
+        ..  container:: example
+
+            **Example 5.** Reference duration passed in as explicit rhythm:
+
+            ::
+
+                >>> durations = [Duration(1, 16), Duration(3, 16), Duration(1, 16)]
+                >>> selection = scoretools.make_notes([0], durations)
+                >>> attach(Tie(), selection)
+                >>> attach(Beam(), selection)
+                >>> markup = Tempo.make_tempo_equation_markup(selection, 90.1)
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(markup))
+                \markup {
+                    \scale
+                        #'(0.75 . 0.75)
+                        \score
+                            {
+                                \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'16 ~ [
+                                        c'8. ~
+                                        c'16 ]
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                    =
+                    \general-align
+                        #Y
+                        #-0.5
+                        90.1
+                    }
+
+            Pass rhythms like this as Abjad selections.
+
+        Returns markup.
+        '''
+        from abjad.tools import markuptools
+        from abjad.tools import scoretools
+        from abjad.tools import selectiontools
+        if isinstance(reference_duration, selectiontools.Selection):
+            selection = reference_duration
+        else:
+            selection = scoretools.make_notes([0], [reference_duration])
+        lhs_score_markup = durationtools.Duration._to_score_markup(selection)
+        lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
+        equal_markup = markuptools.Markup('=')
+        rhs_markup = markuptools.Markup(units_per_minute)
+        rhs_markup = rhs_markup.general_align('Y', -0.5)
+        markup = lhs_score_markup + equal_markup + rhs_markup
+        return markup
 
     def rewrite_duration(self, duration, new_tempo):
         r'''Rewrites `duration` under `new_tempo`.

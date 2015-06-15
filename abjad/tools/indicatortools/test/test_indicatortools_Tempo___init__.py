@@ -11,22 +11,6 @@ def test_indicatortools_Tempo___init___01():
 
 
 def test_indicatortools_Tempo___init___02():
-    r'''Initializes tempo with float.
-    '''
-
-    tempo = Tempo(Duration(3, 32), 52.5)
-    assert format(tempo, 'lilypond') == '\\tempo 16.=52.5'
-
-
-def test_indicatortools_Tempo___init___03():
-    r'''Initializes tempo from integer pair.
-    '''
-
-    tempo = Tempo((3, 32), 52.5)
-    assert format(tempo, 'lilypond') == '\\tempo 16.=52.5'
-
-
-def test_indicatortools_Tempo___init___04():
     r'''Initializes tempo from textual indication.
     '''
 
@@ -34,7 +18,7 @@ def test_indicatortools_Tempo___init___04():
     assert format(tempo, 'lilypond') == '\\tempo Langsam'
 
 
-def test_indicatortools_Tempo___init___05():
+def test_indicatortools_Tempo___init___03():
     r'''Initializes tempo with tempo range.
     '''
 
@@ -42,7 +26,7 @@ def test_indicatortools_Tempo___init___05():
     assert format(tempo, 'lilypond') == '\\tempo 8=52-57.5'
 
 
-def test_indicatortools_Tempo___init___06():
+def test_indicatortools_Tempo___init___04():
     r'''Initializes tempo from text, duration and range.
     '''
 
