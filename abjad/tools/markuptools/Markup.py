@@ -1065,6 +1065,9 @@ class Markup(AbjadValueObject):
 
                 >>> markup = Markup('Allegro assai')
                 >>> markup = markup.general_align('Y', Up)
+
+            ::
+
                 >>> print(format(markup))
                 \markup {
                     \general-align
@@ -1072,6 +1075,10 @@ class Markup(AbjadValueObject):
                         #UP
                         "Allegro assai"
                     }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
 
         ..  container:: example
 
@@ -1081,6 +1088,9 @@ class Markup(AbjadValueObject):
 
                 >>> markup = Markup('Allegro assai')
                 >>> markup = markup.general_align('Y', 0.75)
+
+            ::
+
                 >>> print(format(markup))
                 \markup {
                     \general-align
@@ -1088,6 +1098,10 @@ class Markup(AbjadValueObject):
                         #0.75
                         "Allegro assai"
                     }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1124,12 +1138,19 @@ class Markup(AbjadValueObject):
 
                 >>> markup = Markup('Allegro assai')
                 >>> markup = markup.halign(0)
+
+            ::
+
                 >>> print(format(markup))
                 \markup {
                     \halign
                         #0
                         "Allegro assai"
                     }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
@@ -1151,12 +1172,19 @@ class Markup(AbjadValueObject):
 
                 >>> markup = Markup('Allegro assai')
                 >>> markup = markup.hcenter_in(12)
+
+            ::
+
                 >>> print(format(markup))
                 \markup {
                     \hcenter-in
                         #12
                         "Allegro assai"
                     }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
 
         Returns new markup.
         '''
