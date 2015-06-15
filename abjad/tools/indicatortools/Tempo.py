@@ -548,7 +548,6 @@ class Tempo(AbjadValueObject):
 
     @property
     def _equation(self):
-        from abjad.tools import markuptools
         if self.reference_duration is None:
             return
         if isinstance(self.units_per_minute, tuple):
@@ -560,12 +559,10 @@ class Tempo(AbjadValueObject):
                 )
             return string
         elif isinstance(self.units_per_minute, float):
-            lhs_score_markup = self._make_lhs_score_markup()
-            lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
-            equal_markup = markuptools.Markup('=')
-            rhs_markup = markuptools.Markup(self.units_per_minute)
-            rhs_markup = rhs_markup.general_align('Y', -0.5)
-            markup = lhs_score_markup + equal_markup + rhs_markup
+            markup = Tempo.make_tempo_equation_markup(
+                self.reference_duration,
+                self.units_per_minute,
+                )
             string = str(markup)
             return string
         string = '{}={}'
