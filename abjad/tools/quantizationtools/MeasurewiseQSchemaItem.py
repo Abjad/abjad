@@ -24,7 +24,7 @@ class MeasurewiseQSchemaItem(QSchemaItem):
         >>> print(format(q_schema_item))
         quantizationtools.MeasurewiseQSchemaItem(
             tempo=indicatortools.Tempo(
-                duration=durationtools.Duration(1, 4), 
+                reference_duration=durationtools.Duration(1, 4), 
                 units_per_minute=60,
                 ),
             )

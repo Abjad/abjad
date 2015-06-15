@@ -34,7 +34,7 @@ class QTargetMeasure(AbjadObject):
                 ),
             time_signature=indicatortools.TimeSignature((4, 4)),
             tempo=indicatortools.Tempo(
-                duration=durationtools.Duration(1, 4), 
+                reference_duration=durationtools.Duration(1, 4), 
                 units_per_minute=60,
                 ),
             use_full_measure=False,
@@ -183,7 +183,7 @@ class QTargetMeasure(AbjadObject):
                         },
                     ),
                 tempo=indicatortools.Tempo(
-                    duration=durationtools.Duration(1, 4), 
+                    reference_duration=durationtools.Duration(1, 4), 
                     units_per_minute=60,
                     ),
                 )
@@ -195,7 +195,7 @@ class QTargetMeasure(AbjadObject):
                         },
                     ),
                 tempo=indicatortools.Tempo(
-                    duration=durationtools.Duration(1, 4), 
+                    reference_duration=durationtools.Duration(1, 4), 
                     units_per_minute=60,
                     ),
                 )
@@ -207,7 +207,7 @@ class QTargetMeasure(AbjadObject):
                         },
                     ),
                 tempo=indicatortools.Tempo(
-                    duration=durationtools.Duration(1, 4), 
+                    reference_duration=durationtools.Duration(1, 4), 
                     units_per_minute=60,
                     ),
                 )
@@ -219,7 +219,7 @@ class QTargetMeasure(AbjadObject):
                         },
                     ),
                 tempo=indicatortools.Tempo(
-                    duration=durationtools.Duration(1, 4), 
+                    reference_duration=durationtools.Duration(1, 4), 
                     units_per_minute=60,
                     ),
                 )
@@ -277,7 +277,7 @@ class QTargetMeasure(AbjadObject):
         ::
 
             >>> q_target_measure.tempo
-            Tempo(duration=Duration(1, 4), units_per_minute=60)
+            Tempo(reference_duration=Duration(1, 4), units_per_minute=60)
 
         Return ``Tempo`` instance.
         '''

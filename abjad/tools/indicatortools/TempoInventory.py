@@ -18,8 +18,8 @@ class TempoInventory(TypedList):
         >>> for tempo in inventory:
         ...     tempo
         ...
-        Tempo(duration=Duration(1, 8), units_per_minute=72, textual_indication='Andante')
-        Tempo(duration=Duration(1, 8), units_per_minute=84, textual_indication='Allegro')
+        Tempo(reference_duration=Duration(1, 8), units_per_minute=72, textual_indication='Andante')
+        Tempo(reference_duration=Duration(1, 8), units_per_minute=84, textual_indication='Allegro')
 
     Tempo inventories implement list interface and are mutable.
     '''

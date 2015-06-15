@@ -34,7 +34,7 @@ class QTargetBeat(AbjadObject):
                     },
                 ),
             tempo=indicatortools.Tempo(
-                duration=durationtools.Duration(1, 4), 
+                reference_duration=durationtools.Duration(1, 4), 
                 units_per_minute=56,
                 ),
             )
@@ -235,7 +235,7 @@ class QTargetBeat(AbjadObject):
         ::
 
             >>> q_target_beat.tempo
-            Tempo(duration=Duration(1, 4), units_per_minute=56)
+            Tempo(reference_duration=Duration(1, 4), units_per_minute=56)
 
         Returns tempo.
         '''

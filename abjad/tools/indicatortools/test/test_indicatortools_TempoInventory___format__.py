@@ -14,7 +14,7 @@ def test_indicatortools_TempoInventory___format___01():
         indicatortools.TempoInventory(
             [
                 indicatortools.Tempo(
-                    duration=durationtools.Duration(1, 4),
+                    reference_duration=durationtools.Duration(1, 4),
                     units_per_minute=84,
                     textual_indication='Allegro',
                     ),

@@ -86,7 +86,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_04():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo(
-        duration=(1, 4),
+        reference_duration=(1, 4),
         units_per_minute=60,
         textual_indication="Like a majestic swan, alive with youth and vigour!",
         )
@@ -116,7 +116,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_05():
 
     target = Score([Staff([Note(0, 1)])])
     tempo = Tempo(
-        duration=(1, 16), 
+        reference_duration=(1, 16), 
         units_per_minute=(34, 55),
         textual_indication="Faster than a thousand suns",
         )

@@ -66,7 +66,7 @@ class Leaf(Component):
         tempo = self._get_effective(indicatortools.Tempo)
         if tempo is not None and not tempo.is_imprecise:
             result = (self._get_duration() /
-                tempo.duration /
+                tempo.reference_duration /
                 tempo.units_per_minute * 60
                 )
             return durationtools.Duration(result)

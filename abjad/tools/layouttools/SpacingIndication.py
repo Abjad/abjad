@@ -21,21 +21,21 @@ class SpacingIndication(AbjadObject):
     ::
 
         >>> indication
-        SpacingIndication(Tempo(duration=Duration(1, 8), units_per_minute=44), Duration(1, 68))
+        SpacingIndication(Tempo(reference_duration=Duration(1, 8), units_per_minute=44), Duration(1, 68))
 
     Initialize from constants:
 
     ::
 
         >>> layouttools.SpacingIndication(((1, 8), 44), (1, 68))
-        SpacingIndication(Tempo(duration=Duration(1, 8), units_per_minute=44), Duration(1, 68))
+        SpacingIndication(Tempo(reference_duration=Duration(1, 8), units_per_minute=44), Duration(1, 68))
 
     Initialize from other spacing indication:
 
     ::
 
         >>> layouttools.SpacingIndication(indication)
-        SpacingIndication(Tempo(duration=Duration(1, 8), units_per_minute=44), Duration(1, 68))
+        SpacingIndication(Tempo(reference_duration=Duration(1, 8), units_per_minute=44), Duration(1, 68))
 
     Spacing indications are immutable.
     '''
@@ -126,7 +126,7 @@ class SpacingIndication(AbjadObject):
         '''
         indication = self.tempo_indication
         duration = self.proportional_notation_duration
-        scalar = indication.duration / indication.units_per_minute * \
+        scalar = indication.reference_duration / indication.units_per_minute * \
             60 / durationtools.Duration(1, 4)
         return scalar * self.proportional_notation_duration
 
