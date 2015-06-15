@@ -67,6 +67,66 @@ class Tempo(AbjadValueObject):
                 }
             >>
 
+    ..  container:: example
+
+        **Example 3.** Float-valued tempo:
+
+        ::
+
+            >>> score = Score([])
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score.append(staff)
+            >>> tempo = Tempo(Duration(1, 4), 90.1)
+            >>> attach(tempo, staff[0])
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    \tempo \markup {
+                        \scale
+                            #'(0.75 . 0.75)
+                            \score
+                                {
+                                    \new Score \with {
+                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        proportionalNotationDuration = ##f
+                                    } <<
+                                        \new RhythmicStaff \with {
+                                            \remove Time_signature_engraver
+                                            \remove Staff_symbol_engraver
+                                            \override Stem #'direction = #up
+                                            \override Stem #'length = #5
+                                            \override TupletBracket #'bracket-visibility = ##t
+                                            \override TupletBracket #'direction = #up
+                                            \override TupletBracket #'padding = #1.25
+                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            tupletFullLength = ##t
+                                        } {
+                                            c'4
+                                        }
+                                    >>
+                                    \layout {
+                                        indent = #0
+                                        ragged-right = ##t
+                                    }
+                                }
+                        =
+                        \general-align
+                            #Y
+                            #-0.5
+                            90.1
+                        }
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+
     '''
 
     ### CLASS VARIABLES ###
