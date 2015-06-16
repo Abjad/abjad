@@ -1404,6 +1404,227 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    @staticmethod
+    def make_big_centered_page_number_markup(text=None):
+        r'''Makes big centered page number markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.make_big_centered_page_number_markup()
+
+            ::
+
+                >>> print(format(markup, 'lilypond'))
+                \markup {
+                    \fill-line
+                        {
+                            \bold
+                                \fontsize
+                                    #3
+                                    \concat
+                                        {
+                                            \on-the-fly
+                                                #print-page-number-check-first
+                                                \fromproperty
+                                                    #'page:page-number-string
+                                        }
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        assert isinstance(text, (str, type(None))), repr(text)
+        if text is None:
+            contents = r'''
+            \fill-line {
+            \bold \fontsize #3 \concat {
+            \on-the-fly #print-page-number-check-first
+            \fromproperty #'page:page-number-string } }'''
+        else:
+            contents = r'''
+            \fill-line {{
+            \bold \fontsize #3 \concat {{
+            {} " " \char #x2014 " "
+            \on-the-fly #print-page-number-check-first
+            \fromproperty #'page:page-number-string }} }}'''
+            contents = contents.format(text)
+        markup = Markup(contents)
+        return markup
+
+    @staticmethod
+    def make_blank_line_markup():
+        r'''Makes blank line markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.make_blank_line_markup()
+
+            ::
+
+                >>> print(format(markup))
+                \markup { \fill-line { " " } }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        return Markup(r'\fill-line { " " }')
+
+    @staticmethod
+    def make_centered_title_markup(
+        title, 
+        font_name='Times', 
+        font_size=18, 
+        vspace_before=6, 
+        vspace_after=12,
+        ):
+        r'''Makes centered `title` markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.make_centered_title_markup('String Quartet')
+
+            ::
+
+                >>> print(format(markup, 'lilypond'))
+                \markup {
+                    \override
+                        #'(font-name . "Times")
+                        \fontsize
+                            #18
+                            \column
+                                {
+                                    \center-align
+                                        {
+                                            {
+                                                \vspace
+                                                    #6
+                                                \line
+                                                    {
+                                                        "String Quartet"
+                                                    }
+                                                \vspace
+                                                    #12
+                                            }
+                                        }
+                                }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        assert isinstance(title, (str, list))
+        assert isinstance(font_name, str)
+        assert isinstance(font_size, (int, float))
+        if isinstance(title, str):
+            title_lines = [title]
+        else:
+            title_lines = title
+        title_lines_string = ''
+        for title_line in title_lines:
+            line = '                    \\line {{ "{}" }}\n'
+            line = line.format(title_line)
+            title_lines_string += line
+        title_lines_string = title_lines_string.strip('\n')
+        contents = r'''
+            \override #'(font-name . "{}")
+            \fontsize #{}
+            \column {{
+                \center-align {{
+                    {{
+                        \vspace #{}
+                        {} 
+                        \vspace #{}
+                    }}
+                }}
+            }}'''
+        contents = contents.format(
+            font_name, 
+            font_size, 
+            vspace_before, 
+            title_lines_string, 
+            vspace_after,
+            )
+        return Markup(contents)
+
+    @staticmethod
+    def make_vertically_adjusted_composer_markup(
+        composer,
+        font_name='Times',
+        font_size=3,
+        space_above=20,
+        space_right=0,
+        ):
+        r'''Makes vertically adjusted `composer` markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.make_vertically_adjusted_composer_markup(
+                ...     'Josquin Desprez',
+                ...     )
+
+            ::
+
+                >>> print(format(markup, 'lilypond'))
+                \markup {
+                    \override
+                        #'(font-name . "Times")
+                        {
+                            \hspace
+                                #0
+                            \raise
+                                #-20
+                                \fontsize
+                                    #3
+                                    "Josquin Desprez"
+                            \hspace
+                                #0
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns markup.
+        '''
+        assert isinstance(composer, str)
+        assert isinstance(font_name, str)
+        assert isinstance(font_size, (int, float))
+        assert isinstance(space_above, (int, float))
+        assert isinstance(space_right, (int, float))
+        contents = r'''
+            \override #'(font-name . "{}") {{
+                \hspace #0
+                \raise #-{} \fontsize #{} "{}"
+                \hspace #{}
+            }}
+        '''
+        contents = contents.format(
+            font_name, 
+            space_above, 
+            font_size, 
+            composer, 
+            space_right,
+            )
+        return Markup(contents)
 
     @staticmethod
     def make_improper_fraction_markup(rational):
