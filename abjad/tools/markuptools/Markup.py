@@ -926,6 +926,42 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    @staticmethod
+    def filled_box(x_extent, y_extent, blot):
+        r'''LilyPond ``filled-box`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.filled_box((0, 10), (2, 5), 1.5)
+                >>> print(format(markup))
+                \markup {
+                    \filled-box
+                        #'(0 . 10)
+                        #'(2 . 5)
+                        #1.5
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        x_extent = schemetools.SchemePair(x_extent)
+        y_extent = schemetools.SchemePair(y_extent)
+        blot = float(blot)
+        command = markuptools.MarkupCommand(
+            'filled-box',
+            x_extent,
+            y_extent,
+            blot,
+            )
+        return Markup(command)
+
+
     def finger(self):
         r'''LilyPond ``\finger`` markup command.
 
@@ -960,7 +996,7 @@ class Markup(AbjadValueObject):
 
     @staticmethod
     def flat():
-        r'''LilyPond ``\flat`` markup command. 
+        r'''LilyPond ``\flat`` markup command.
 
         ..  container:: example
 
@@ -1482,10 +1518,10 @@ class Markup(AbjadValueObject):
 
     @staticmethod
     def make_centered_title_markup(
-        title, 
-        font_name='Times', 
-        font_size=18, 
-        vspace_before=6, 
+        title,
+        font_name='Times',
+        font_size=18,
+        vspace_before=6,
         vspace_after=12,
         ):
         r'''Makes centered `title` markup.
@@ -1548,16 +1584,16 @@ class Markup(AbjadValueObject):
                 \center-align {{
                     {{
                         \vspace #{}
-                        {} 
+                        {}
                         \vspace #{}
                     }}
                 }}
             }}'''
         contents = contents.format(
-            font_name, 
-            font_size, 
-            vspace_before, 
-            title_lines_string, 
+            font_name,
+            font_size,
+            vspace_before,
+            title_lines_string,
             vspace_after,
             )
         return Markup(contents)
@@ -1618,10 +1654,10 @@ class Markup(AbjadValueObject):
             }}
         '''
         contents = contents.format(
-            font_name, 
-            space_above, 
-            font_size, 
-            composer, 
+            font_name,
+            space_above,
+            font_size,
+            composer,
             space_right,
             )
         return Markup(contents)
@@ -1725,7 +1761,7 @@ class Markup(AbjadValueObject):
 
     @staticmethod
     def natural():
-        r'''LilyPond ``\natural`` markup command. 
+        r'''LilyPond ``\natural`` markup command.
 
         ..  container:: example
 
@@ -1813,7 +1849,7 @@ class Markup(AbjadValueObject):
             'null',
             )
         return Markup(contents=command, direction=direction)
-    
+
     def override(self, new_property):
         r'''LilyPond ``\override`` markup command.
 
@@ -1933,7 +1969,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> show(up_postscript_markup) # doctest: +SKIP
-        
+
             Wrapping the postscript in a box shows that LilyPond believes the
             postscript has effectively no x or y extent:
 
@@ -2303,7 +2339,7 @@ class Markup(AbjadValueObject):
 
     @staticmethod
     def sharp():
-        r'''LilyPond ``\sharp`` markup command. 
+        r'''LilyPond ``\sharp`` markup command.
 
         ..  container:: example
 
