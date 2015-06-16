@@ -339,13 +339,18 @@ def render_lilypond_image(self, code, paths, file_format='png', keep_original=Fa
     for command in commands:
         subprocess.call(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
+
 def render_abjad_book_node(self, node, file_format='png', linked=False):
     code = node['code']
     kind = node['kind']
     keep_original = node.get('keep_original', False)
     is_pickled = node.get('is_pickled', False)
     suffix = 'original'
-    hashkey = code.encode('utf-8') + kind
+    if sys.version_info[0] == 2:
+        hashkey = code.encode('utf-8') + kind
+    else:
+        hashkey = code + kind
+        hashkey = code.encode('utf-8')
     hexdigest = hashlib.sha1(hashkey).hexdigest()
     # primary in the target format, but secondary always in full-quality PDF
     primary_file_name = '{}-{}.{}'.format(
