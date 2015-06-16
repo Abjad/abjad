@@ -171,8 +171,8 @@ class Tempo(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_custom_markup',
         '_default_scope',
-        '_markup',
         '_reference_duration',
         '_textual_indication',
         '_units_per_minute',
@@ -187,7 +187,7 @@ class Tempo(AbjadValueObject):
         reference_duration=None,
         units_per_minute=None,
         textual_indication=None,
-        markup=None,
+        custom_markup=None,
         ):
         from abjad.tools import markuptools
         from abjad.tools import scoretools
@@ -218,9 +218,10 @@ class Tempo(AbjadValueObject):
         self._reference_duration = reference_duration
         self._textual_indication = textual_indication
         self._units_per_minute = units_per_minute
-        if markup is not None:
-            assert isinstance(markup, markuptools.Markup), repr(markup)
-        self._markup = markup
+        if custom_markup is not None:
+            assert isinstance(custom_markup, markuptools.Markup), repr(
+                custom_markup)
+        self._custom_markup = custom_markup
 
     ### SPECIAL METHODS ###
 
@@ -315,7 +316,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Works without markup:
+            **Example 1.** Without custom markup:
             
             ::
 
@@ -329,17 +330,17 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Works with markup:
+            **Example 2.** With custom markup:
             
             ::
 
                 >>> markup = Markup(r'\italic { Allegro }')
-                >>> tempo = Tempo((1, 4), 84, markup=markup)
+                >>> tempo = Tempo((1, 4), 84, custom_markup=markup)
                 >>> print(format(tempo))
                 indicatortools.Tempo(
                     reference_duration=durationtools.Duration(1, 4),
                     units_per_minute=84,
-                    markup=markuptools.Markup(
+                    custom_markup=markuptools.Markup(
                         contents=(
                             markuptools.MarkupCommand(
                                 'italic',
@@ -617,8 +618,8 @@ class Tempo(AbjadValueObject):
         if (self.reference_duration is not None and 
             self.units_per_minute is not None):
             equation = self._equation
-        if self.markup is not None:
-            return r'\tempo {}'.format(self.markup)
+        if self.custom_markup is not None:
+            return r'\tempo {}'.format(self.custom_markup)
         elif text and equation:
             return r'\tempo {} {}'.format(text, equation)
         elif equation:
@@ -657,8 +658,8 @@ class Tempo(AbjadValueObject):
 
     def _to_markup(self):
         from abjad.tools import markuptools
-        if self.markup is not None:
-            return self.markup
+        if self.custom_markup is not None:
+            return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
         lhs = markuptools.Markup.note_by_number(
             duration_log, 
@@ -678,6 +679,90 @@ class Tempo(AbjadValueObject):
         return markup
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def custom_markup(self):
+        r'''Gets custom markup of tempo.
+
+        ..  container:: example
+
+            **Example 1.** With custom markup:
+
+            ::
+
+                >>> markup = Tempo.make_tempo_equation_markup(
+                ...     Duration(1, 4),
+                ...     67.5,
+                ...     )
+                >>> markup = markup.with_color('red')
+                >>> tempo = Tempo(
+                ...     reference_duration=Duration(1, 4),
+                ...     units_per_minute=67.5,
+                ...     custom_markup=markup,
+                ...     )
+                >>> staff = Staff("c'4 d'4 e'4 f'4")
+                >>> score = Score([staff])
+                >>> attach(tempo, staff)
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        \tempo \markup {
+                        \with-color
+                            #red
+                            {
+                                \scale
+                                    #'(0.75 . 0.75)
+                                    \score
+                                        {
+                                            \new Score \with {
+                                                \override SpacingSpanner #'spacing-increment = #0.5
+                                                proportionalNotationDuration = ##f
+                                            } <<
+                                                \new RhythmicStaff \with {
+                                                    \remove Time_signature_engraver
+                                                    \remove Staff_symbol_engraver
+                                                    \override Stem #'direction = #up
+                                                    \override Stem #'length = #5
+                                                    \override TupletBracket #'bracket-visibility = ##t
+                                                    \override TupletBracket #'direction = #up
+                                                    \override TupletBracket #'padding = #1.25
+                                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                    tupletFullLength = ##t
+                                                } {
+                                                    c'4
+                                                }
+                                            >>
+                                            \layout {
+                                                indent = #0
+                                                ragged-right = ##t
+                                            }
+                                        }
+                                =
+                                \general-align
+                                    #Y
+                                    #-0.5
+                                    67.5
+                            }
+                        }
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                >>
+
+        Set to markup or none.
+
+        Defaults to none.
+
+        Returns markup or none.
+        '''
+        return self._custom_markup
 
     @property
     def default_scope(self):
@@ -745,56 +830,6 @@ class Tempo(AbjadValueObject):
                 if not isinstance(self.units_per_minute, tuple):
                     return False
         return True
-
-    @property
-    def markup(self):
-        r'''Gets optional tempo markup.
-
-        ..  container:: example
-
-            **Example 1.** With custom markup:
-
-            ::
-
-                >>> markup = Markup(r'\smaller \general-align #Y #DOWN \note-by-number #2 #0 #1 " = 67.5"')
-                >>> tempo = Tempo(Duration(1, 4), 67.5, markup=markup)
-                >>> staff = Staff("c'4 d'4 e'4 f'4")
-                >>> score = Score([staff])
-                >>> attach(tempo, staff)
-                >>> show(score) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(score)
-                \new Score <<
-                    \new Staff {
-                        \tempo \markup {
-                        \smaller
-                            \general-align
-                                #Y
-                                #DOWN
-                                \note-by-number
-                                    #2
-                                    #0
-                                    #1
-                        " = 67.5"
-                        }
-                        c'4
-                        d'4
-                        e'4
-                        f'4
-                    }
-                >>
-
-        Set to markup or none.
-
-        Defaults to none.
-
-        Ignores all other tempo attributes at format time when markup is set.
-
-        Returns markup or none.
-        '''
-        return self._markup
 
     @property
     def quarters_per_minute(self):
