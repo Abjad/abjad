@@ -3,38 +3,26 @@ from abjad.tools.mathtools.NonreducedRatio import NonreducedRatio
 
 
 class Ratio(NonreducedRatio):
-    '''Ratio of one or more nonzero integers.
+    '''Ratio.
 
     ..  container:: example
 
-        **Example 1a.** Initializes iterable of nonzero integers:
+        **Example 1.** Ratio of two numbers:
+
+        ::
+
+            >>> mathtools.Ratio((2, 4))
+            Ratio((1, 2))
+
+    ..  container:: example
+
+        **Example 2.** Ratio of three numbers:
 
         ::
 
             >>> mathtools.Ratio((2, 4, 2))
             Ratio((1, 2, 1))
 
-    ..  container:: example
-
-        **Example 2.** Use a tuple to return ratio integers.
-
-        ::
-
-            >>> ratio = mathtools.Ratio((2, 4, 2))
-            >>> tuple(ratio)
-            (1, 2, 1)
-
-    ..  container:: example
-
-        **Example 3.** Instantiate a ratio from another ratio.
-
-        ::
-
-            >>> ratio = mathtools.Ratio((1, 2, 3))
-            >>> mathtools.Ratio(ratio)
-            Ratio((1, 2, 3))
-
-    Ratios are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -44,14 +32,16 @@ class Ratio(NonreducedRatio):
 
     ### INITIALIZER ###
 
-    def __init__(self, items=(1, 1)):
+    def __init__(self, numbers=(1, 1)):
         from abjad.tools import mathtools
-        items = [int(_) for _ in items]
-        gcd = mathtools.greatest_common_divisor(*items)
-        items = [_ // gcd for _ in items]
+        if isinstance(numbers, type(self)):
+            numbers = numbers.numbers
+        numbers = [int(_) for _ in numbers]
+        gcd = mathtools.greatest_common_divisor(*numbers)
+        numbers = [_ // gcd for _ in numbers]
         superclass = super(Ratio, self)
         superclass.__init__(
-            items=items,
+            numbers=numbers,
             )
 
     ### SPECIAL METHODS ###
@@ -61,37 +51,90 @@ class Ratio(NonreducedRatio):
 
         ..  container:: example
 
-            **Example 1.** String representation:
+            **Example 1.** Ratio of two numbers:
 
             ::
 
-                >>> str(mathtools.Ratio((3, 4)))
-                '3:4'
+                >>> str(mathtools.Ratio((2, 4)))
+                '1:2'
+
+        ..  container:: example
+
+            **Example 2.** Ratio of three numbers:
+
+            ::
+
+                >>> str(mathtools.Ratio((2, 4, 2)))
+                '1:2:1'
 
         Returns string.
         '''
-        terms = (str(x) for x in self)
-        return ':'.join(terms)
+        numbers = (str(x) for x in self.numbers)
+        return ':'.join(numbers)
 
     ### PUBLIC PROPERTIES ###
 
     @property
     def multipliers(self):
-        r'''Gets multipliers implicit in ratio.
+        r'''Gets multipliers of ratio.
 
         ..  container:: example
 
-            **Example 1.** Gets mutlipliers:
+            **Example 1.** Ratio of two numbers:
 
             ::
 
-                >>> mathtools.Ratio((1, 2, 1)).multipliers
+                >>> ratio = mathtools.Ratio((2, 4))
+                >>> ratio.multipliers
+                (Multiplier(1, 3), Multiplier(2, 3))
+
+        ..  container:: example
+
+            **Example 2.** Ratio of three numbers:
+
+            ::
+
+                >>> ratio = mathtools.Ratio((2, 4, 2))
+                >>> ratio.multipliers
                 (Multiplier(1, 4), Multiplier(1, 2), Multiplier(1, 4))
 
         Returns tuple of multipliers.
         '''
         from abjad.tools import durationtools
-        weight = sum(self) 
-        multipliers = [durationtools.Multiplier((_, weight)) for _ in self]
+        weight = sum(self.numbers) 
+        multipliers = [
+            durationtools.Multiplier((_, weight)) 
+            for _ in self.numbers
+            ]
         multipliers = tuple(multipliers)
         return multipliers
+
+    @property
+    def numbers(self):
+        r'''Gets numbers of ratio.
+
+        ..  container:: example
+
+            **Example 1.** Ratio of two numbers:
+
+            ::
+
+                >>> ratio = mathtools.Ratio((2, 4))
+                >>> ratio.numbers
+                (1, 2)
+
+        ..  container:: example
+
+            **Example 2.** Ratio of three numbers:
+
+            ::
+
+                >>> ratio = mathtools.Ratio((2, 4, 2))
+                >>> ratio.numbers
+                (1, 2, 1)
+
+        Set to tuple of two or more numbers.
+
+        Returns tuple of two or more numbers.
+        '''
+        return self._numbers

@@ -1057,8 +1057,10 @@ class Timespan(BoundedObject):
         if isinstance(ratio, int):
             ratio = ratio * (1, )
         ratio = mathtools.Ratio(ratio)
-        unit_duration = self.duration / sum(ratio)
-        part_durations = [numerator * unit_duration for numerator in ratio]
+        unit_duration = self.duration / sum(ratio.numbers)
+        part_durations = [
+            numerator * unit_duration for numerator in ratio.numbers
+            ]
         start_offsets = mathtools.cumulative_sums(
             [self.start_offset] + part_durations,
             start=None,

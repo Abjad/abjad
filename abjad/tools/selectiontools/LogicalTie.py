@@ -323,8 +323,8 @@ class LogicalTie(ContiguousSelection):
 
         Returns tuplet.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import mathtools
+        from abjad.tools import scoretools
         from abjad.tools import spannertools
 
         # coerce input
@@ -334,7 +334,7 @@ class LogicalTie(ContiguousSelection):
         target_duration = self._preprolated_duration
 
         # find duration of each note in tuplet
-        prolated_duration = target_duration / sum(proportions)
+        prolated_duration = target_duration / sum(proportions.numbers)
 
         # find written duration of each notes in tuplet
         if is_diminution:
@@ -353,15 +353,19 @@ class LogicalTie(ContiguousSelection):
                     prolated_duration.equal_or_lesser_power_of_two
 
         # find written duration of each note in tuplet
-        written_durations = [x * basic_written_duration for x in proportions]
+        written_durations = [
+            _ * basic_written_duration for _ in proportions.numbers
+            ]
 
         # make tuplet notes
         try:
             notes = [scoretools.Note(0, x) for x in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
-            note_durations = [durationtools.Duration(x, denominator)
-                for x in proportions]
+            note_durations = [
+                durationtools.Duration(_, denominator)
+                for _ in proportions.numbers
+                ]
             notes = scoretools.make_notes(0, note_durations)
 
         # make tuplet

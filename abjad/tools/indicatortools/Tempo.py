@@ -1123,7 +1123,7 @@ class Tempo(AbjadValueObject):
                         ]
         for numerator in numerators:
                 ratio = mathtools.Ratio((numerator, divisor))
-                multiplier = durationtools.Multiplier(*ratio)
+                multiplier = durationtools.Multiplier(ratio.numbers)
                 new_units_per_minute = multiplier * self.units_per_minute
                 assert mathtools.is_integer_equivalent_expr(
                     new_units_per_minute)

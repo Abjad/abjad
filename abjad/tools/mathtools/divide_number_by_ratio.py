@@ -38,7 +38,10 @@ def divide_number_by_ratio(number, ratio):
     ratio = mathtools.Ratio(ratio)
 
     # find factors and multiply by factors
-    factors = [fractions.Fraction(p, sum(ratio)) for p in ratio]
+    factors = [
+        fractions.Fraction(p, sum(ratio.numbers)) 
+        for p in ratio.numbers
+        ]
     result = [factor * number for factor in factors]
 
     # return result

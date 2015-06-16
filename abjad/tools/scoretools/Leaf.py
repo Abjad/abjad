@@ -626,25 +626,28 @@ class Leaf(Component):
 
     def _to_tuplet_with_ratio(self, proportions, is_diminution=True):
         from abjad.tools import scoretools
-        from abjad.tools import scoretools
         # check input
         proportions = mathtools.Ratio(proportions)
         # find target duration of fixed-duration tuplet
         target_duration = self.written_duration
         # find basic duration of note in tuplet
-        basic_prolated_duration = target_duration / sum(proportions)
+        basic_prolated_duration = target_duration / sum(proportions.numbers)
         # find basic written duration of note in tuplet
         basic_written_duration = \
             basic_prolated_duration.equal_or_greater_assignable
         # find written duration of each note in tuplet
-        written_durations = [x * basic_written_duration for x in proportions]
+        written_durations = [
+            _ * basic_written_duration for _ in proportions.numbers
+            ]
         # make tuplet notes
         try:
             notes = [scoretools.Note(0, x) for x in written_durations]
         except AssignabilityError:
             denominator = target_duration._denominator
-            note_durations = [durationtools.Duration(x, denominator)
-                for x in proportions]
+            note_durations = [
+                durationtools.Duration(_, denominator)
+                for _ in proportions.numbers
+                ]
             notes = scoretools.make_notes(0, note_durations)
         # make tuplet
         tuplet = scoretools.FixedDurationTuplet(target_duration, notes)

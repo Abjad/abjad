@@ -1312,7 +1312,7 @@ class Tuplet(Container):
         duration = durationtools.Duration(duration)
         ratio = mathtools.Ratio(ratio)
         # find basic duration of note in tuplet
-        basic_prolated_duration = duration / mathtools.weight(ratio)
+        basic_prolated_duration = duration / mathtools.weight(ratio.numbers)
         # find basic written duration of note in tuplet
         if avoid_dots:
             basic_written_duration = \
@@ -1321,7 +1321,7 @@ class Tuplet(Container):
             basic_written_duration = \
                 basic_prolated_duration.equal_or_greater_assignable
         # find written duration of each note in tuplet
-        written_durations = [x * basic_written_duration for x in ratio]
+        written_durations = [x * basic_written_duration for x in ratio.numbers]
         # make tuplet leaves
         try:
             notes = [
@@ -1330,8 +1330,10 @@ class Tuplet(Container):
                 ]
         except AssignabilityError:
             denominator = duration._denominator
-            note_durations = [durationtools.Duration(x, denominator)
-                for x in ratio]
+            note_durations = [
+                durationtools.Duration(x, denominator)
+                for x in ratio.numbers
+                ]
             pitches = [None if note_duration < 0 else 0
                 for note_duration in note_durations]
             leaf_durations = [abs(note_duration)
@@ -1854,15 +1856,15 @@ class Tuplet(Container):
         n = fraction.numerator
         d = fraction.denominator
         duration = durationtools.Duration(fraction)
-        if len(ratio) == 1:
-            if 0 < ratio[0]:
+        if len(ratio.numbers) == 1:
+            if 0 < ratio.numbers[0]:
                 try:
                     note = scoretools.Note(0, duration)
                     return scoretools.Container([note])
                 except AssignabilityError:
                     notes = scoretools.make_notes(0, duration)
                     return scoretools.Container(notes)
-            elif ratio[0] < 0:
+            elif ratio.numbers[0] < 0:
                 try:
                     rest = scoretools.Rest(duration)
                     return scoretools.Container([rest])
@@ -1872,12 +1874,12 @@ class Tuplet(Container):
             else:
                 message = 'no divide zer values.'
                 raise ValueError(message)
-        if 1 < len(ratio):
+        if 1 < len(ratio.numbers):
             exponent = int(
-                math.log(mathtools.weight(ratio), 2) - math.log(n, 2))
+                math.log(mathtools.weight(ratio.numbers), 2) - math.log(n, 2))
             denominator = int(d * 2 ** exponent)
             music = []
-            for x in ratio:
+            for x in ratio.numbers:
                 if not x:
                     message = 'no divide zero values.'
                     raise ValueError(message)
