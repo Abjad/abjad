@@ -44,7 +44,7 @@ class Ratio(NonreducedRatio):
 
     ### INITIALIZER ###
 
-    def __init__(self, items=(1, 1), item_class=None):
+    def __init__(self, items=(1, 1)):
         from abjad.tools import mathtools
         items = [int(_) for _ in items]
         gcd = mathtools.greatest_common_divisor(*items)
