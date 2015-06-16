@@ -449,17 +449,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fifty-two eighth notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> str(tempo)
-                '8=52'
-
-        ..  container:: example
-
-            **Example 2.** Ninety quarter notes per minute:
+            **Example 1.** Integer-valued tempo:
 
             ::
 
@@ -467,9 +457,68 @@ class Tempo(AbjadValueObject):
                 >>> str(tempo)
                 '4=90'
 
+        ..  container:: example
+
+            **Example 2.** Float-valued tempo:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), 90.1)
+                >>> str(tempo)
+                '4=90.1'
+
+        ..  container:: example
+
+            **Example 3.** Rational-valued tempo:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), Fraction(181, 2))
+                >>> str(tempo)
+                '4=90+1/2'
+
+        ..  container:: example
+
+            **Example 4.** Ranged tempo:
+
+            ::
+
+                >>> tempo = Tempo(Duration(1, 4), (90, 96))
+                >>> str(tempo)
+                '4=90-96'
+
         Returns string.
         '''
-        return self._equation or self.textual_indication
+        #return self._equation or self.textual_indication
+        if self.textual_indication is not None:
+            string = self.textual_indication
+        elif isinstance(self.units_per_minute, (int, float)):
+            string = '{}={}'
+            string = string.format(self._dotted, self.units_per_minute)
+        elif (isinstance(self.units_per_minute, fractions.Fraction) and
+            not mathtools.is_integer_equivalent_number(self.units_per_minute)):
+            integer_part = int(self.units_per_minute)
+            remainder = self.units_per_minute - integer_part
+            remainder = fractions.Fraction(remainder)
+            string = '{}={}+{}'
+            string = string.format(self._dotted, integer_part, remainder)
+        elif (isinstance(self.units_per_minute, fractions.Fraction) and
+            mathtools.is_integer_equivalent_number(self.units_per_minute)):
+            string = '{}={}'
+            integer = int(self.units_per_minute)
+            string = string.format(self._dotted, integer)
+        elif isinstance(self.units_per_minute, tuple):
+            string = '{}={}-{}'
+            string = string.format(
+                self._dotted,
+                self.units_per_minute[0],
+                self.units_per_minute[1],
+                )
+        else:
+            message = 'unknown: {!r}.'
+            message = message.format(self.units_per_minute)
+            raise TypeError(message)
+        return string
 
     def __sub__(self, expr):
         r'''Subtracts `expr` from tempo.
@@ -1014,22 +1063,23 @@ class Tempo(AbjadValueObject):
                 )
         return durationtools.Duration(duration * whole_note_duration)
 
-    def list_integer_related_tempos(
+    def list_related_tempos(
         self,
         maximum_numerator=None,
         maximum_denominator=None,
+        integer_tempos_only=False,
         ):
-        r'''Lists integer-related tempos.
+        r'''Lists related tempos.
 
         ..  container:: example
 
-            **Example 1.** Rewrites tempo ``4=58`` by ratios of the form
-            ``n:d`` with ``1 <= n <= 8`` and ``1 <= d <= 8`` only:
+            **Example 1.** Rewrites tempo ``4=58`` by ratios ``n:d`` such that
+            ``1 <= n <= 8`` and ``1 <= d <= 8``.
 
             ::
 
                 >>> tempo = Tempo(Duration(1, 4), 58)
-                >>> pairs = tempo.list_integer_related_tempos(
+                >>> pairs = tempo.list_related_tempos(
                 ...     maximum_numerator=8,
                 ...     maximum_denominator=8,
                 ...     )
@@ -1039,22 +1089,41 @@ class Tempo(AbjadValueObject):
                 >>> for tempo, ratio in pairs:
                 ...     string = '{!s}\t{!s}'.format(tempo, ratio)
                 ...     print(string)
-                4=29    1:2
-                4=58    1:1
-                4=87    3:2
-                4=116   2:1
+                4=29        1:2
+                4=33+1/7    4:7
+                4=34+4/5    3:5
+                4=36+1/4    5:8
+                4=38+2/3    2:3
+                4=41+3/7    5:7
+                4=43+1/2    3:4
+                4=46+2/5    4:5
+                4=48+1/3    5:6
+                4=49+5/7    6:7
+                4=50+3/4    7:8
+                4=58        1:1
+                4=66+2/7    8:7
+                4=67+2/3    7:6
+                4=69+3/5    6:5
+                4=72+1/2    5:4
+                4=77+1/3    4:3
+                4=81+1/5    7:5
+                4=87        3:2
+                4=92+4/5    8:5
+                4=96+2/3    5:3
+                4=101+1/2   7:4
+                4=116       2:1
 
         ..  container:: example
 
-            **Example 2.** Rewrites tempo ``4=58`` by ratios of the form
-            ``n:d`` with ``1 <= n <= 30`` and ``1 <= d <= 30`` only:
+            **Example 2.** Integer-valued tempos only:
 
             ::
 
                 >>> tempo = Tempo(Duration(1, 4), 58)
-                >>> pairs = tempo.list_integer_related_tempos(
-                ...     maximum_numerator=30,
-                ...     maximum_denominator=30,
+                >>> pairs = tempo.list_related_tempos(
+                ...     maximum_numerator=16,
+                ...     maximum_denominator=16,
+                ...     integer_tempos_only=True,
                 ...     )
 
             ::
@@ -1062,56 +1131,42 @@ class Tempo(AbjadValueObject):
                 >>> for tempo, ratio in pairs:
                 ...     string = '{!s}\t{!s}'.format(tempo, ratio)
                 ...     print(string)
-                ... 
-                4=30    15:29
-                4=32    16:29
-                4=34    17:29
-                4=36    18:29
-                4=38    19:29
-                4=40    20:29
-                4=42    21:29
-                4=44    22:29
-                4=46    23:29
-                4=48    24:29
-                4=50    25:29
-                4=52    26:29
-                4=54    27:29
-                4=56    28:29
-                4=58    1:1
-                4=60    30:29
+                4=29	1:2
+                4=58	1:1
+                4=87	3:2
+                4=116	2:1
+
+        Constrains ratios such that ``1:2 <= n:d <= 2:1``.
 
         Returns list of tempo / ratio pairs.
-
-        Each new tempo equals not less than half of this tempo and not more
-        than twice this tempo.
-
-        Returns list.
         '''
-        assert isinstance(self.units_per_minute, int), repr(self)
-        divisors = mathtools.divisors(self.units_per_minute)
-        if maximum_denominator is not None:
-            divisors = [_ for _ in divisors if _ <= maximum_denominator]
+        from abjad.tools import sequencetools
+        allowable_numerators = range(1, maximum_numerator+1)
+        allowable_denominators = range(1, maximum_denominator+1)
+        pairs = sequencetools.yield_outer_product_of_sequences([
+            allowable_numerators,
+            allowable_denominators,
+            ])
+        multipliers = [durationtools.Multiplier(_) for _ in pairs]
+        multipliers = [
+            _ for _ in multipliers
+            if fractions.Fraction(1, 2) <= _ <= fractions.Fraction(2)
+            ]
+        multipliers.sort()
+        multipliers = sequencetools.remove_repeated_elements(multipliers)
         pairs = []
-        for divisor in divisors:
-            start = int(math.ceil(divisor / 2.0))
-            stop = 2 * divisor
-            numerators = range(start, stop + 1)
-            if maximum_numerator is not None:
-                numerators = [_ for _ in numerators if _ <= maximum_numerator]
-        for numerator in numerators:
-            ratio = mathtools.Ratio((numerator, divisor))
-            multiplier = durationtools.Multiplier(ratio.numbers)
+        for multiplier in multipliers:
             new_units_per_minute = multiplier * self.units_per_minute
-            assert mathtools.is_integer_equivalent_expr(new_units_per_minute)
-            new_units_per_minute = int(new_units_per_minute)
+            if (integer_tempos_only and not 
+                mathtools.is_integer_equivalent_number(new_units_per_minute)):
+                continue
             new_tempo = type(self)(
                 reference_duration=self.reference_duration, 
                 units_per_minute=new_units_per_minute,
                 )
+            ratio = mathtools.Ratio(multiplier.pair)
             pair = (new_tempo, ratio)
-            if pair not in pairs:
-                pairs.append(pair)
-        pairs.sort()
+            pairs.append(pair)
         return pairs
 
     @staticmethod
