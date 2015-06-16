@@ -17,33 +17,7 @@ class Tempo(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Fifty-two eighth notes per minute:
-
-        ::
-
-            >>> score = Score([])
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> score.append(staff)
-            >>> tempo = Tempo(Duration(1, 8), 52)
-            >>> attach(tempo, staff[0])
-            >>> show(score) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(score))
-            \new Score <<
-                \new Staff {
-                    \tempo 8=52
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                }
-            >>
-
-    ..  container:: example
-
-        **Example 2.** Ninety quarter notes per minute:
+        **Example 1.** Integer-valued tempo:
 
         ::
 
@@ -69,7 +43,7 @@ class Tempo(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Float-valued tempo:
+        **Example 2.** Float-valued tempo:
 
         ::
 
@@ -119,6 +93,71 @@ class Tempo(AbjadValueObject):
                             #Y
                             #-0.5
                             90.1
+                        }
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+            >>
+
+    ..  container:: example
+
+        **Example 3.** Rational-valued tempo:
+
+        ::
+
+            >>> score = Score([])
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> score.append(staff)
+            >>> tempo = Tempo(Duration(1, 4), Fraction(181, 2))
+            >>> attach(tempo, staff[0])
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    \tempo \markup {
+                        \scale
+                            #'(0.75 . 0.75)
+                            \score
+                                {
+                                    \new Score \with {
+                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        proportionalNotationDuration = ##f
+                                    } <<
+                                        \new RhythmicStaff \with {
+                                            \remove Time_signature_engraver
+                                            \remove Staff_symbol_engraver
+                                            \override Stem #'direction = #up
+                                            \override Stem #'length = #5
+                                            \override TupletBracket #'bracket-visibility = ##t
+                                            \override TupletBracket #'direction = #up
+                                            \override TupletBracket #'padding = #1.25
+                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            tupletFullLength = ##t
+                                        } {
+                                            c'4
+                                        }
+                                    >>
+                                    \layout {
+                                        indent = #0
+                                        ragged-right = ##t
+                                    }
+                                }
+                        =
+                        \raise
+                            #-0.5
+                            {
+                                90
+                                \tiny
+                                    \fraction
+                                        1
+                                        2
+                            }
                         }
                     c'8
                     d'8
@@ -558,7 +597,7 @@ class Tempo(AbjadValueObject):
                 self.units_per_minute[1],
                 )
             return string
-        elif isinstance(self.units_per_minute, float):
+        elif isinstance(self.units_per_minute, (float, fractions.Fraction)):
             markup = Tempo.make_tempo_equation_markup(
                 self.reference_duration,
                 self.units_per_minute,
@@ -861,17 +900,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Fifty-two eighth notes per minute:
-
-            ::
-
-                >>> tempo = Tempo(Duration(1, 8), 52)
-                >>> tempo.units_per_minute
-                52
-
-        ..  container:: example
-
-            **Example 2.** Ninety quarter notes per minute:
+            **Example 1.** Integer-valued tempo:
 
             ::
 
@@ -881,7 +910,7 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Abjad allows float-valued tempi:
+            **Example 2.** Float-valued tempo:
 
             ::
 
@@ -889,96 +918,16 @@ class Tempo(AbjadValueObject):
                 >>> tempo.units_per_minute
                 90.1
 
-            ::
-
-                >>> score = Score([])
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> score.append(staff)
-                >>> attach(tempo, staff[0])
-                >>> show(score) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(score))
-                \new Score <<
-                    \new Staff {
-                        \tempo \markup {
-                            \scale
-                                #'(0.75 . 0.75)
-                                \score
-                                    {
-                                        \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
-                                            proportionalNotationDuration = ##f
-                                        } <<
-                                            \new RhythmicStaff \with {
-                                                \remove Time_signature_engraver
-                                                \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
-                                                tupletFullLength = ##t
-                                            } {
-                                                c'4
-                                            }
-                                        >>
-                                        \layout {
-                                            indent = #0
-                                            ragged-right = ##t
-                                        }
-                                    }
-                            =
-                            \general-align
-                                #Y
-                                #-0.5
-                                90.1
-                            }
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                    }
-                >>
 
         ..  container:: example
 
-            **Example 4.** Abjad allows rational-valued tempi:
+            **Example 3.** Rational-valued tempo:
 
             ::
 
-                >>> tempo = Tempo(Duration(1, 4), Fraction(121, 2))
+                >>> tempo = Tempo(Duration(1, 4), Fraction(181, 2))
                 >>> tempo.units_per_minute
-                Fraction(121, 2)
-
-            ::
-
-                >>> score = Score([])
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> score.append(staff)
-                >>> attach(tempo, staff[0])
-                >>> show(score) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(score))
-                \new Score <<
-                    \new Staff {
-                        \tempo 4=121/2
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                    }
-                >>
-
-            But note that LilyPond rejects rational-valued tempi.
-
-            ..  todo:: Implement something to allow rational-valued tempi
-                in LilyPond output.
+                Fraction(181, 2)
 
         Set to number or none.
 
@@ -1242,11 +1191,67 @@ class Tempo(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Reference duration expressed with ties:
+            **Example 3.** Rational-valued tempo:
 
             ::
 
-                >>> markup = Tempo.make_tempo_equation_markup(Duration(5, 16), 90.1)
+                >>> markup = Tempo.make_tempo_equation_markup(
+                ...     Duration(1, 4),
+                ...     Fraction(181, 2),
+                ...     )
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(markup))
+                \markup {
+                    \scale
+                        #'(0.75 . 0.75)
+                        \score
+                            {
+                                \new Score \with {
+                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem #'direction = #up
+                                        \override Stem #'length = #5
+                                        \override TupletBracket #'bracket-visibility = ##t
+                                        \override TupletBracket #'direction = #up
+                                        \override TupletBracket #'padding = #1.25
+                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'4
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                    =
+                    \raise
+                        #-0.5
+                        {
+                            90
+                            \tiny
+                                \fraction
+                                    1
+                                    2
+                        }
+                    }
+
+        ..  container:: example
+
+            **Example 4.** Reference duration expressed with ties:
+
+            ::
+
+                >>> markup = Tempo.make_tempo_equation_markup(Duration(5, 16), 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  doctest::
@@ -1286,16 +1291,16 @@ class Tempo(AbjadValueObject):
                     \general-align
                         #Y
                         #-0.5
-                        90.1
+                        90
                     }
 
         ..  container:: example
 
-            **Example 4.** Reference duration expressed as a tuplet:
+            **Example 5.** Reference duration expressed as a tuplet:
 
             ::
 
-                >>> markup = Tempo.make_tempo_equation_markup(Duration(1, 6), 90.1)
+                >>> markup = Tempo.make_tempo_equation_markup(Duration(1, 6), 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  doctest::
@@ -1337,12 +1342,12 @@ class Tempo(AbjadValueObject):
                     \general-align
                         #Y
                         #-0.5
-                        90.1
+                        90
                     }
 
         ..  container:: example
 
-            **Example 5.** Reference duration passed in as explicit rhythm:
+            **Example 6.** Reference duration passed in as explicit rhythm:
 
             ::
 
@@ -1350,7 +1355,7 @@ class Tempo(AbjadValueObject):
                 >>> selection = scoretools.make_notes([0], durations)
                 >>> attach(Tie(), selection)
                 >>> attach(Beam(), selection)
-                >>> markup = Tempo.make_tempo_equation_markup(selection, 90.1)
+                >>> markup = Tempo.make_tempo_equation_markup(selection, 90)
                 >>> show(markup) # doctest: +SKIP
 
             ..  doctest::
@@ -1391,7 +1396,7 @@ class Tempo(AbjadValueObject):
                     \general-align
                         #Y
                         #-0.5
-                        90.1
+                        90
                     }
 
             Pass rhythms like this as Abjad selections.
@@ -1408,8 +1413,14 @@ class Tempo(AbjadValueObject):
         lhs_score_markup = durationtools.Duration._to_score_markup(selection)
         lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
         equal_markup = markuptools.Markup('=')
-        rhs_markup = markuptools.Markup(units_per_minute)
-        rhs_markup = rhs_markup.general_align('Y', -0.5)
+        if (isinstance(units_per_minute, fractions.Fraction) and 
+            not mathtools.is_integer_equivalent_number(units_per_minute)):
+            rhs_markup = markuptools.Markup.make_improper_fraction_markup(
+                units_per_minute)
+            rhs_markup = rhs_markup.raise_(-0.5)
+        else:
+            rhs_markup = markuptools.Markup(units_per_minute)
+            rhs_markup = rhs_markup.general_align('Y', -0.5)
         markup = lhs_score_markup + equal_markup + rhs_markup
         return markup
 
