@@ -44,7 +44,12 @@ def partition_integer_by_ratio(n, ratio):
         message = message.format(n)
         raise TypeError(message)
 
-    if not all(mathtools.is_integer_equivalent_number(part) for part in ratio):
+    ratio = mathtools.Ratio(ratio).numbers
+
+    if not all(
+        mathtools.is_integer_equivalent_number(part)
+        for part in ratio
+        ):
         message = 'some parts in {!r} not integer-equivalent numbers.'
         message = message.format(ratio)
         raise TypeError(message)
@@ -73,8 +78,6 @@ def partition_integer_by_ratio(n, ratio):
         result = [-x for x in result]
     ratio_signs = [mathtools.sign(x) for x in ratio]
     result = [pair[0] * pair[1] for pair in zip(ratio_signs, result)]
-
-
 
     # return result
     return result

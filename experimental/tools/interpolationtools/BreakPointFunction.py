@@ -816,7 +816,7 @@ class BreakPointFunction(AbjadObject):
             })
 
         If `reflect_on_negative` is True, copies corresponding to
-        negative ratio values will be reflectd:
+        negative ratio values will be reflected:
 
         ::
 
@@ -838,8 +838,8 @@ class BreakPointFunction(AbjadObject):
         ratio = mathtools.Ratio(ratio)
         tessalated_bpf = None
         for i, pair in enumerate(mathtools.cumulative_sums_pairwise(
-            [abs(x) for x in ratio])):
-            sign = mathtools.sign(ratio[i])
+            [abs(x) for x in ratio.numbers])):
+            sign = mathtools.sign(ratio.numbers[i])
             start, stop = pair
             bpf = self.scale_x_axis(start, stop)
             if sign < 0:
