@@ -8,6 +8,7 @@ import pickle
 import posixpath
 import shutil
 import sphinx
+import sys
 import subprocess
 import tempfile
 import traceback
@@ -65,20 +66,39 @@ class ShellDirective(sphinx.util.compat.Directive):
             prompt = '{}$ '.format(os.path.basename(os.path.abspath(os.path.curdir)))
             prompt += line
             result.append(prompt)
-            proc = subprocess.Popen(
+            process = subprocess.Popen(
                 line,
                 shell=True,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
                 )
-            out, err = proc.communicate()
-            result.extend(out.splitlines())
-            result.extend(err.splitlines())
-        code = u'\n'.join(result)
+            stdout = self.read_from_pipe(process.stdout)
+            stderr = self.read_from_pipe(process.stderr)
+            result.append(stdout)
+            result.append(stderr)
+        code = '\n'.join(result)
         literal = docutils.nodes.literal_block(code, code)
         literal['language'] = 'console'
         sphinx.util.nodes.set_source_info(self, literal)
         return [literal]
+
+    @staticmethod
+    def read_from_pipe(pipe, strip=True):
+        lines = []
+        string = pipe.read()
+        if sys.version_info[0] == 2:
+            for line in string.splitlines():
+                line = str(line)
+                if strip:
+                    line = line.strip()
+                lines.append(line)
+        else:
+            for line in string.splitlines():
+                line = line.decode('utf-8')
+                if strip:
+                    line = line.strip()
+                lines.append(line)
+        return '\n'.join(lines)
 
 
 def on_builder_inited(app):
