@@ -16,6 +16,11 @@ OS X
 Linux
     $ apt-get install fluidsynth
 
+To activate the IPython notebook extension, add the following line in your
+notebook:
+
+    %load_ext abjad.ext.ipython
+
 '''
 
 def load_ipython_extension(ipython):
