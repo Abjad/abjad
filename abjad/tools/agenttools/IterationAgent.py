@@ -6,6 +6,7 @@ from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
 
@@ -893,6 +894,51 @@ class IterationAgent(abctools.AbjadObject):
             ):
             if not voice.is_nonsemantic:
                 yield voice
+
+    def by_spanner(
+        self,
+        prototype=None,
+        reverse=False,
+        ):
+        r'''Iterates spanners forward in `expr`:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
+            >>> attach(Slur(), staff[:4])
+            >>> attach(Slur(), staff[4:])
+            >>> attach(Beam(), staff[:])
+
+        ::
+
+            >>> for spanner in iterate(staff).by_spanner():
+            ...     spanner
+            ...
+            Slur("c'8, d'8, e'8, f'8")
+            Beam("c'8, d'8, ... [5] ..., b'8, c''8")
+            Slur("g'8, a'8, f'8, b'8, c''8")
+
+        Iterates spanners backward in `expr`:
+
+        ::
+
+            >>> for spanner in iterate(staff).by_spanner(reverse=True):
+            ...     spanner
+            ...
+            Slur("g'8, a'8, f'8, b'8, c''8")
+            Beam("c'8, d'8, ... [5] ..., b'8, c''8")
+            Slur("c'8, d'8, e'8, f'8")
+
+        Returns generator.
+        '''
+        visited_spanners = set()
+        for component in self.by_class(reverse=reverse):
+            spanners = inspect_(component).get_spanners(prototype=prototype)
+            for spanner in spanners:
+                if spanner in visited_spanners:
+                    continue
+                visited_spanners.add(spanner)
+                yield spanner
 
     def by_timeline(
         self,
