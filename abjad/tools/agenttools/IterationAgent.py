@@ -914,8 +914,8 @@ class IterationAgent(abctools.AbjadObject):
             >>> for spanner in iterate(staff).by_spanner():
             ...     spanner
             ...
-            Slur("c'8, d'8, e'8, f'8")
             Beam("c'8, d'8, ... [5] ..., b'8, c''8")
+            Slur("c'8, d'8, e'8, f'8")
             Slur("g'8, a'8, f'8, b'8, c''8")
 
         Iterates spanners backward in `expr`:
@@ -925,8 +925,8 @@ class IterationAgent(abctools.AbjadObject):
             >>> for spanner in iterate(staff).by_spanner(reverse=True):
             ...     spanner
             ...
-            Slur("g'8, a'8, f'8, b'8, c''8")
             Beam("c'8, d'8, ... [5] ..., b'8, c''8")
+            Slur("g'8, a'8, f'8, b'8, c''8")
             Slur("c'8, d'8, e'8, f'8")
 
         Returns generator.
@@ -934,6 +934,12 @@ class IterationAgent(abctools.AbjadObject):
         visited_spanners = set()
         for component in self.by_class(reverse=reverse):
             spanners = inspect_(component).get_spanners(prototype=prototype)
+            spanners = sorted(spanners,
+                key=lambda x: (
+                    type(x).__name__,
+                    inspect_(x).get_timespan(),
+                    ),
+                )
             for spanner in spanners:
                 if spanner in visited_spanners:
                     continue
