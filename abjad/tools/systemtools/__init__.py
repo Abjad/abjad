@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 from .AbjadConfiguration import AbjadConfiguration
 from .FilesystemState import FilesystemState
-from .AttributeDetail import AttributeDetail
 from .BenchmarkScoreMaker import BenchmarkScoreMaker
 from .Configuration import Configuration
 from .ForbidUpdate import ForbidUpdate
@@ -15,7 +14,6 @@ from .ProgressIndicator import ProgressIndicator
 from .RedirectedStreams import RedirectedStreams
 from .StorageFormatManager import StorageFormatManager
 from .StorageFormatSpecification import StorageFormatSpecification
-from .AttributeManifest import AttributeManifest
 from .TestManager import TestManager
 from .TemporaryDirectory import TemporaryDirectory
 from .TemporaryDirectoryChange import TemporaryDirectoryChange
