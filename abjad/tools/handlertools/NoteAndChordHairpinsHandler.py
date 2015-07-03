@@ -62,25 +62,6 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
                 notes.append(second_logical_tie.head)
                 attach(hairpin, notes)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='hairpin_tokens',
-                command='ht',
-                editor=idetools.getters.get_hairpin_tokens,
-                ),
-            systemtools.AttributeDetail(
-                name='minimum_duration',
-                command='md',
-                editor=idetools.getters.get_duration,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

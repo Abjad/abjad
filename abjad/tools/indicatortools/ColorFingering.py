@@ -169,18 +169,6 @@ class ColorFingering(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='number',
-                command='n',
-                editor=idetools.getters.get_string,
-                ),
-            )
-
-    @property
     def _contents_repr_string(self):
         return repr(self.number)
 

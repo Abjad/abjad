@@ -109,25 +109,6 @@ class BooleanPattern(AbjadValueObject):
         self._payload = payload
         self._period = period
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='indices',
-                command='i',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='period',
-                command='p',
-                editor=idetools.getters.get_integer,
-                ),
-            )
-
     ### PUBLIC METHODS ###
 
     @classmethod

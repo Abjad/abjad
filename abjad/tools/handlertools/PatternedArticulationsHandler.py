@@ -145,40 +145,6 @@ class PatternedArticulationsHandler(ArticulationHandler):
                 i += 1
         return expr
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='articulation_lists',
-                command='al',
-                editor=idetools.getters.get_lists,
-                ),
-            systemtools.AttributeDetail(
-                name='minimum_duration',
-                command='nd',
-                editor=idetools.getters.get_duration,
-                ),
-            systemtools.AttributeDetail(
-                name='maximum_duration',
-                command='xd',
-                editor=idetools.getters.get_duration,
-                ),
-            systemtools.AttributeDetail(
-                name='minimum_written_pitch',
-                command='np',
-                editor=idetools.getters.get_named_pitch,
-                ),
-            systemtools.AttributeDetail(
-                name='maximum_written_pitch',
-                command='xp',
-                editor=idetools.getters.get_named_pitch,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

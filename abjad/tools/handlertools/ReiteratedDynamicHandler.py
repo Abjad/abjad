@@ -68,25 +68,6 @@ class ReiteratedDynamicHandler(DynamicHandler):
                 attach(command, note_or_chord)
         return expr
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='dynamic_name',
-                command='dy',
-                editor=idetools.getters.get_dynamic,
-                ),
-            systemtools.AttributeDetail(
-                name='minimum_duration',
-                command='md',
-                editor=idetools.getters.get_duration,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -35,30 +35,6 @@ class TupletSpellingSpecifier(AbjadValueObject):
         self._simplify_tuplets = bool(simplify_tuplets)
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='avoid_dots',
-                command='ad',
-                editor=idetools.getters.get_boolean,
-                ),
-            systemtools.AttributeDetail(
-                name='is_diminution',
-                command='id',
-                editor=idetools.getters.get_boolean,
-                ),
-            systemtools.AttributeDetail(
-                name='simplify_tuplets',
-                command='st',
-                editor=idetools.getters.get_boolean,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

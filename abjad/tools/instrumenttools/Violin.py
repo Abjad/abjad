@@ -64,27 +64,6 @@ class Violin(Instrument):
         self._is_primary_instrument = True
         self._default_tuning = indicatortools.Tuning(default_tuning)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import indicatortools
-        from abjad.tools import systemtools
-        from ide import idetools
-        superclass = super(Violin, self)
-        manifest = superclass._attribute_manifest
-        attribute_details = manifest.attribute_details
-        attribute_details.extend([
-            systemtools.AttributeDetail(
-                name='default_tuning',
-                display_string='tuning',
-                command='tu',
-                editor=indicatortools.Tuning,
-                ),
-            ])
-        manifest = systemtools.AttributeManifest(*attribute_details)
-        return manifest
-
     ### PUBLIC PROPERTIES ###
 
     @property

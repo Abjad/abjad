@@ -93,23 +93,6 @@ class PitchSegment(Segment):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='items',
-                command='ii',
-                editor=idetools.TupleAutoeditor,
-                ),
-            systemtools.AttributeDetail(
-                name='item_class',
-                command='ic',
-                editor=idetools.getters.get_class,
-                ),
-            )
-
-    @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedPitch

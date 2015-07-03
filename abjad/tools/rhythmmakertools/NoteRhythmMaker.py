@@ -186,30 +186,6 @@ class NoteRhythmMaker(RhythmMaker):
         '''
         return RhythmMaker.__repr__(self)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import rhythmmakertools
-        from abjad.tools import systemtools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='beam_specifier',
-                command='bs',
-                editor=rhythmmakertools.BeamSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='duration_spelling_specifier',
-                command='dss',
-                editor=rhythmmakertools.DurationSpellingSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='tie_specifier',
-                command='ts',
-                editor=rhythmmakertools.TieSpecifier,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _apply_burnish_specifier(self, selections):

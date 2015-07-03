@@ -298,43 +298,6 @@ class BurnishSpecifier(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='left_classes',
-                command='l',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='middle_classes',
-                command='m',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='right_classes',
-                command='r',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='left_counts',
-                command='ll',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='right_counts',
-                command='rl',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='outer_divisions_only',
-                command='oo',
-                editor=idetools.getters.get_boolean,
-                ),
-            )
-
-    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager

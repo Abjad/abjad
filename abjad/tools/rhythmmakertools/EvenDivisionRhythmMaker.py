@@ -248,41 +248,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             rotation=rotation,
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import rhythmmakertools
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='denominators',
-                command='d',
-                editor=idetools.getters.get_positive_integer_powers_of_two,
-                ),
-            systemtools.AttributeDetail(
-                name='extra_counts_per_division',
-                command='ec',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='beam_specifier',
-                command='bs',
-                editor=rhythmmakertools.BeamSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='duration_spelling_specifier',
-                command='ds',
-                editor=rhythmmakertools.DurationSpellingSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='tie_specifier',
-                command='ts',
-                editor=rhythmmakertools.TieSpecifier,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _apply_burnish_specifier(self, selections, rotation):

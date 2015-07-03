@@ -61,25 +61,6 @@ class TerracedDynamicsHandler(DynamicHandler):
             command = indicatortools.LilyPondCommand(dynamic_name, 'right')
             attach(command, logical_tie.head)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='dynamics',
-                command='dy',
-                editor=idetools.getters.get_dynamics,
-                ),
-            systemtools.AttributeDetail(
-                name='minimum_duration',
-                command='md',
-                editor=idetools.getters.get_duration,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

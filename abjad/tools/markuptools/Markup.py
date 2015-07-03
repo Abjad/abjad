@@ -267,29 +267,6 @@ class Markup(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='contents',
-                display_string='arg',
-                command='ag',
-                editor=idetools.getters.get_string,
-                ),
-            systemtools.AttributeDetail(
-                name='direction',
-                command='dr',
-                editor=idetools.getters.get_direction_string,
-                ),
-            systemtools.AttributeDetail(
-                name='stack_priority',
-                command='sp',
-                editor=idetools.getters.get_integer,
-                ),
-            )
-
-    @property
     def _format_pieces(self):
         return self._get_format_pieces()
 

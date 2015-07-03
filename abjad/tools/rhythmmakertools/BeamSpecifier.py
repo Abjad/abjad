@@ -147,25 +147,6 @@ class BeamSpecifier(AbjadValueObject):
         '''
         return AbjadValueObject.__repr__(self)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='beam_divisions_together',
-                command='bdt',
-                editor=idetools.getters.get_boolean,
-                ),
-            systemtools.AttributeDetail(
-                name='beam_each_division',
-                command='bed',
-                editor=idetools.getters.get_boolean,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

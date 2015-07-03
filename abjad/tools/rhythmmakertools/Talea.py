@@ -132,25 +132,6 @@ class Talea(AbjadValueObject):
         '''
         return len(self.counts)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='counts',
-                command='c',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='denominator',
-                command='d',
-                editor=idetools.getters.get_positive_integer_power_of_two,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     @staticmethod

@@ -176,55 +176,6 @@ class InciseSpecifier(AbjadValueObject):
             expr = tuple(expr)
         return expr
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='prefix_talea',
-                command='pt',
-                editor=idetools.getters.get_nonzero_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='prefix_counts',
-                command='pl',
-                editor=idetools.getters.get_nonnegative_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='suffix_talea',
-                command='st',
-                editor=idetools.getters.get_nonzero_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='suffix_counts',
-                command='sl',
-                editor=idetools.getters.get_nonnegative_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='talea_denominator',
-                command='td',
-                editor=idetools.getters.get_positive_integer_power_of_two,
-                ),
-            systemtools.AttributeDetail(
-                name='body_ratio',
-                command='br',
-                editor=idetools.getters.get_positive_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='fill_with_notes',
-                command='fn',
-                editor=idetools.getters.get_boolean,
-                ),
-            systemtools.AttributeDetail(
-                name='outer_divisions_only',
-                command='oo',
-                editor=idetools.getters.get_boolean,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

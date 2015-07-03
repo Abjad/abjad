@@ -59,20 +59,6 @@ class TieSpecifier(AbjadValueObject):
             self._make_ties_across_divisions(divisions)
         self._strip_ties_from_divisions(divisions)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='tie_across_divisions',
-                command='tad',
-                editor=idetools.getters.get_boolean,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _make_ties_across_divisions(self, divisions):

@@ -55,21 +55,6 @@ class Tuning(AbjadValueObject):
                     )
         self._pitches = pitches
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import pitchtools
-        from abjad.tools import systemtools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='pitches',
-                display_string='pitches',
-                command='p',
-                editor=pitchtools.PitchSegment,
-                ),
-            )
-
     ### PUBLIC METHODS ###
 
     def get_pitch_ranges_by_string_number(self, string_number):

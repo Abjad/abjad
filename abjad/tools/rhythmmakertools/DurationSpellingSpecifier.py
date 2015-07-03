@@ -82,35 +82,6 @@ class DurationSpellingSpecifier(AbjadValueObject):
         '''
         return AbjadValueObject.__repr__(self)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='decrease_durations_monotonically',
-                command='ddm',
-                editor=idetools.getters.get_boolean,
-                ),
-            systemtools.AttributeDetail(
-                name='forbidden_written_duration',
-                command='fwd',
-                editor=idetools.getters.get_duration,
-                ),
-            systemtools.AttributeDetail(
-                name='spell_metrically',
-                command='sm',
-                editor=idetools.getters.get_boolean,
-                ),
-            systemtools.AttributeDetail(
-                name='forbid_meter_rewriting',
-                command='fmr',
-                editor=idetools.getters.get_boolean,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     @staticmethod

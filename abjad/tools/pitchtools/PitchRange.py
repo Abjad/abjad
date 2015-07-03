@@ -282,18 +282,6 @@ class PitchRange(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='range_string',
-                command='rs',
-                editor=idetools.getters.get_pitch_range_string,
-                ),
-            )
-
-    @property
     def _close_bracket_string(self):
         if self.stop_pitch_is_included_in_range:
             return ']'

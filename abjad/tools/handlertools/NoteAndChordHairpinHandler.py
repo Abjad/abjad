@@ -347,25 +347,6 @@ class NoteAndChordHairpinHandler(DynamicHandler):
                 )
             attach(hairpin, notes_to_span)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='hairpin_token',
-                command='ht',
-                editor=idetools.getters.get_hairpin_token,
-                ),
-            systemtools.AttributeDetail(
-                name='minimum_duration',
-                command='md',
-                editor=idetools.getters.get_duration,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _index_matches_patterns(self, index, total):

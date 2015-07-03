@@ -98,40 +98,6 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 attach(articulation, note_or_chord)
         return expr
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='articulation_list',
-                command='al',
-                editor=idetools.getters.get_articulations,
-                ),
-            systemtools.AttributeDetail(
-                name='minimum_duration',
-                command='nd',
-                editor=idetools.getters.get_duration,
-                ),
-            systemtools.AttributeDetail(
-                name='maximum_duration',
-                command='xd',
-                editor=idetools.getters.get_duration,
-                ),
-            systemtools.AttributeDetail(
-                name='minimum_written_pitch',
-                command='np',
-                editor=idetools.getters.get_named_pitch,
-                ),
-            systemtools.AttributeDetail(
-                name='maximum_written_pitch',
-                command='xp',
-                editor=idetools.getters.get_named_pitch,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -601,37 +601,6 @@ class Tempo(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='reference_duration',
-                command='d',
-                editor=idetools.getters.get_duration,
-                is_keyword=False,
-                ),
-            systemtools.AttributeDetail(
-                name='units_per_minute',
-                command='pm',
-                editor=idetools.getters.get_integer,
-                is_keyword=False,
-                ),
-            systemtools.AttributeDetail(
-                name='textual_indication',
-                command='ti',
-                editor=idetools.getters.get_integer,
-                is_keyword=True,
-                ),
-            systemtools.AttributeDetail(
-                name='markup',
-                command='m',
-                editor=idetools.getters.get_markup,
-                is_keyword=True,
-                ),
-            )
-
-    @property
     def _dotted(self):
         return self.reference_duration.lilypond_duration_string
 

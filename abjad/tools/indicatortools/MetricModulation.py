@@ -861,33 +861,6 @@ class MetricModulation(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='left_rhythm',
-                command='lh',
-                editor=idetools.getters.get_rhythm,
-                ),
-            systemtools.AttributeDetail(
-                name='right_rhythm',
-                command='rh',
-                editor=idetools.getters.get_rhythm,
-                ),
-            systemtools.AttributeDetail(
-                name='left_markup',
-                command='lk',
-                editor=idetools.getters.get_markup,
-                ),
-            systemtools.AttributeDetail(
-                name='right_markup',
-                command='rk',
-                editor=idetools.getters.get_markup,
-                ),
-            )
-
-    @property
     def _contents_repr_string(self):
         return str(self)
 

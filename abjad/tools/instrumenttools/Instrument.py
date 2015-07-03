@@ -137,52 +137,6 @@ class Instrument(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import indicatortools
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='allowable_clefs',
-                display_string='clefs',
-                command='cf',
-                editor=indicatortools.ClefInventory,
-                ),
-            systemtools.AttributeDetail(
-                name='instrument_name',
-                command='in',
-                editor=idetools.getters.get_string,
-                ),
-            systemtools.AttributeDetail(
-                name='instrument_name_markup',
-                command='im',
-                editor=idetools.getters.get_markup,
-                ),
-            systemtools.AttributeDetail(
-                name='pitch_range',
-                display_string='range',
-                command='rg',
-                editor=idetools.getters.get_pitch_range_string,
-                ),
-            systemtools.AttributeDetail(
-                name='short_instrument_name',
-                command='sn',
-                editor=idetools.getters.get_string,
-                ),
-            systemtools.AttributeDetail(
-                name='short_instrument_name_markup',
-                command='sm',
-                editor=idetools.getters.get_markup,
-                ),
-            systemtools.AttributeDetail(
-                name='sounding_pitch_of_written_middle_c',
-                display_string='sounding pitch of written middle C',
-                command='sp',
-                editor=idetools.getters.get_named_pitch,
-                ),
-            )
-
     @staticmethod
     def _default_instrument_name_to_instrument_class(default_instrument_name):
         for instrument_class in Instrument._list_instruments():

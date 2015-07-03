@@ -385,64 +385,6 @@ class TaleaRhythmMaker(RhythmMaker):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import rhythmmakertools
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='talea',
-                command='t',
-                editor=rhythmmakertools.Talea,
-                ),
-            systemtools.AttributeDetail(
-                name='split_divisions_by_counts',
-                command='sd',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='extra_counts_per_division',
-                command='ec',
-                editor=idetools.getters.get_integers,
-                ),
-            systemtools.AttributeDetail(
-                name='beam_specifier',
-                command='bs',
-                editor=rhythmmakertools.BeamSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='burnish_specifier',
-                command='us',
-                editor=rhythmmakertools.BurnishSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='duration_spelling_specifier',
-                command='ds',
-                editor=rhythmmakertools.DurationSpellingSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='output_masks',
-                command='om',
-                editor=rhythmmakertools.BooleanPattern,
-                ),
-            systemtools.AttributeDetail(
-                name='tie_specifier',
-                command='ts',
-                editor=rhythmmakertools.TieSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='tuplet_spelling_specifier',
-                command='tu',
-                editor=rhythmmakertools.TupletSpellingSpecifier,
-                ),
-            systemtools.AttributeDetail(
-                name='tie_split_notes',
-                command='tn',
-                editor=idetools.getters.get_boolean,
-                ),
-            )
-
-    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager

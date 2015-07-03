@@ -203,21 +203,6 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='callbacks',
-                display_string='callbacks',
-                command='c',
-                editor=idetools.getters.get_list,
-                ),
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -173,18 +173,6 @@ class Clef(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='name',
-                command='nm',
-                editor=idetools.getters.get_string,
-                ),
-            )
-
-    @property
     def _clef_name_to_staff_position_zero(self, clef_name):
         from abjad.tools import pitchtools
         return {

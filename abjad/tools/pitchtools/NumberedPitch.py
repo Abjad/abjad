@@ -136,18 +136,6 @@ class NumberedPitch(Pitch):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='pitch_number',
-                command='pn',
-                editor=idetools.getters.get_number,
-                ),
-            )
-
-    @property
     def _lilypond_format(self):
         return self.pitch_name
 

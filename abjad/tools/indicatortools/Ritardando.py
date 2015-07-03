@@ -140,18 +140,6 @@ class Ritardando(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _attribute_manifest(self):
-        from abjad.tools import systemtools
-        from ide import idetools
-        return systemtools.AttributeManifest(
-            systemtools.AttributeDetail(
-                name='markup',
-                command='m',
-                editor=idetools.getters.get_markup,
-                ),
-            )
-
-    @property
     def _contents_repr_string(self):
         return str(self)
 
