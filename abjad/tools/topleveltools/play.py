@@ -26,7 +26,7 @@ def play(expr):
     from abjad import abjad_configuration
     from abjad.tools import systemtools
     from abjad.tools import topleveltools
-    assert '__illustrate__' in dir(expr)
+    assert hasattr(expr, '__illustrate__')
     midi_file_path, abjad_formatting_time, lilypond_rendering_time = \
         topleveltools.persist(expr).as_midi()
     midi_player = abjad_configuration['midi_player']

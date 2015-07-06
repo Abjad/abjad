@@ -16,7 +16,7 @@ class Show(object):
         from abjad.tools import systemtools
         from abjad.tools import topleveltools
         from IPython.core.display import display_png
-        assert '__illustrate__' in dir(expr)
+        assert hasattr(expr, '__illustrate__')
         temporary_directory = tempfile.mkdtemp()
         temporary_file_path = os.path.join(
             temporary_directory,

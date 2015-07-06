@@ -47,7 +47,7 @@ class Play(object):
             message += 'cannot render MIDI file to MP3.'
             print(message)
             return
-        assert '__illustrate__' in dir(expr)
+        assert hasattr(expr, '__illustrate__')
         sound_font = self.sound_font
         if not sound_font:
             message = 'sound_font is not specified, please call '

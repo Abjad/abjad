@@ -38,7 +38,7 @@ def graph(
     if isinstance(expr, str):
         graphviz_format = expr
     else:
-        assert '__graph__' in dir(expr)
+        assert hasattr(expr, '__graph__')
         graphviz_graph = expr.__graph__(**kwargs)
         if graph_attributes:
             graph.attributes.update(graph_attributes)

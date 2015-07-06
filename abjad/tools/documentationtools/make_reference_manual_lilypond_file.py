@@ -62,7 +62,7 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
     from abjad.tools import lilypondfiletools
     from abjad.tools import schemetools
 
-    assert '__illustrate__' in dir(music)
+    assert hasattr(music, '__illustrate__')
     lilypond_file = music.__illustrate__(**kwargs)
 
     # header
