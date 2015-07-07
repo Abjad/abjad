@@ -400,7 +400,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_configuration_directory(self):
-        r'''Abjad configuration directory.
+        r'''Gets Abjad configuration directory.
 
         Returns string.
         '''
@@ -412,7 +412,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_configuration_file_path(self):
-        r'''Abjad configuration file path.
+        r'''Gets Abjad configuration file path.
 
         Returns string.
         '''
@@ -420,7 +420,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_directory(self):
-        r'''Abjad directory.
+        r'''Gets Abjad directory.
 
         Returns string.
         '''
@@ -429,7 +429,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_experimental_directory(self):
-        r'''Abjad experimental directory.
+        r'''Gets Abjad experimental directory.
 
         Returns string.
         '''
@@ -441,7 +441,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_output_directory(self):
-        r'''Abjad output directory.
+        r'''Gets Abjad output directory.
 
         Returns string.
         '''
@@ -454,7 +454,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_root_directory(self):
-        r'''Abjad root directory.
+        r'''Gets Abjad root directory.
 
         Returns string.
         '''
@@ -466,7 +466,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_stylesheets_directory(self):
-        r'''Abjad stylesheets directory.
+        r'''Gets Abjad stylesheets directory.
 
         Returns string.
         '''
@@ -478,7 +478,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def abjad_tools_directory(self):
-        r'''Abjad tools directory.
+        r'''Gets Abjad tools directory.
 
         Returns string.
         '''
@@ -490,7 +490,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def configuration_directory(self):
-        r'''Configuration directory.
+        r'''Gets configuration directory.
 
         Returns string.
         '''
@@ -498,7 +498,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def configuration_file_name(self):
-        r'''Configuration file name.
+        r'''Gets configuration file name.
 
         Returns string.
         '''
@@ -506,7 +506,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def score_manager_directory(self):
-        r'''Abjad score manager directory.
+        r'''Gets Abjad IDE directory.
 
         Returns string.
         '''
@@ -518,7 +518,7 @@ class AbjadConfiguration(Configuration):
 
     @property
     def score_manager_root_directory(self):
-        r'''Abjad score manager root directory.
+        r'''Gets Abjad IDE root directory.
 
         Returns string.
         '''
