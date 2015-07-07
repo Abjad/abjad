@@ -139,7 +139,7 @@ class Hairpin(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.arg_to_tridirectional_lilypond_symbol(
+        direction = stringtools.expr_to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
         self._include_rests = include_rests
@@ -182,7 +182,7 @@ class Hairpin(Spanner):
         direction_string = ''
         if self.direction is not None:
             direction_string = \
-                stringtools.arg_to_tridirectional_lilypond_symbol(
+                stringtools.expr_to_tridirectional_lilypond_symbol(
                     self.direction)
             direction_string = '{} '.format(direction_string)
         if (self._is_my_first_leaf(leaf) and

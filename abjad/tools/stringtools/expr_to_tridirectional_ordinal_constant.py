@@ -1,40 +1,39 @@
 # -*- encoding: utf-8 -*-
 
 
-def arg_to_tridirectional_ordinal_constant(arg):
-    r'''Changes `arg` to tridirectional ordinal constant.
+def expr_to_tridirectional_ordinal_constant(expr):
+    r'''Changes `expr` to tridirectional ordinal constant.
 
     ..  container:: example
 
-            >>> stringtools.arg_to_tridirectional_ordinal_constant('^')
+            >>> stringtools.expr_to_tridirectional_ordinal_constant('^')
             Up
 
     ..  container:: example
 
         ::
 
-            >>> stringtools.arg_to_tridirectional_ordinal_constant('_')
+            >>> stringtools.expr_to_tridirectional_ordinal_constant('_')
             Down
 
     ..  container:: example
 
         ::
 
-            >>> stringtools.arg_to_tridirectional_ordinal_constant(1)
+            >>> stringtools.expr_to_tridirectional_ordinal_constant(1)
             Up
 
     ..  container:: example
 
         ::
 
-            >>> stringtools.arg_to_tridirectional_ordinal_constant(-1)
+            >>> stringtools.expr_to_tridirectional_ordinal_constant(-1)
             Down
 
-    Returns `arg` when `arg` is `Up`', `Center` or `Down`.
+    Returns `expr` when `expr` is `Up`', `Center` or `Down`.
 
     Returns ordinal constant or none.
     '''
-
     lookup = {
         Up: Up,
         '^': Up,
@@ -50,9 +49,9 @@ def arg_to_tridirectional_ordinal_constant(arg):
         'center': Center,
         'default': Center,
         'neutral': Center,
-    }
-    if arg is None:
+        }
+    if expr is None:
         return None
-    elif arg in lookup:
-        return lookup[arg]
-    raise ValueError(arg)
+    elif expr in lookup:
+        return lookup[expr]
+    raise ValueError(expr)

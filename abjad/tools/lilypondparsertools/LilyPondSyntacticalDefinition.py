@@ -2648,7 +2648,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2].direction = p[1]
         except AttributeError:
             direction = \
-                stringtools.arg_to_tridirectional_ordinal_constant(p[1])
+                stringtools.expr_to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]
@@ -2664,7 +2664,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2].direction = p[1]
         except AttributeError:
             direction = \
-                stringtools.arg_to_tridirectional_ordinal_constant(p[1])
+                stringtools.expr_to_tridirectional_ordinal_constant(p[1])
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]

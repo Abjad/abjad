@@ -306,7 +306,7 @@ class GeneralizedBeam(Spanner):
         direction_string = ''
         if self.vertical_direction is not None:
             direction_string = \
-                stringtools.arg_to_tridirectional_lilypond_symbol(
+                stringtools.expr_to_tridirectional_lilypond_symbol(
                     self.vertical_direction)
         previous_leaf_is_beamable = \
             self._is_beamable_component(previous_leaf) and \

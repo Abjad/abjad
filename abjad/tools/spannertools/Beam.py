@@ -68,7 +68,7 @@ class Beam(Spanner):
             self,
             overrides=overrides,
             )
-        direction = stringtools.arg_to_tridirectional_lilypond_symbol(
+        direction = stringtools.expr_to_tridirectional_lilypond_symbol(
             direction)
         self._direction = direction
 
