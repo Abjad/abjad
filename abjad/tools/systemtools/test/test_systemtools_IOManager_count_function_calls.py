@@ -12,7 +12,7 @@ def test_systemtools_IOManager_count_function_calls_01():
     if sys.version_info[0] == 2:
         assert result < 14000
     else:
-        assert result < 19500
+        assert result < 21000
 
 
 def test_systemtools_IOManager_count_function_calls_02():

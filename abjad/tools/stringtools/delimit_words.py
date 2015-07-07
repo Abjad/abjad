@@ -1,3 +1,6 @@
+import six
+
+
 def delimit_words(string):
     r'''Delimits words in `string`.
 
@@ -60,7 +63,7 @@ def delimit_words(string):
     Returns list.
     '''
 
-    assert isinstance(string, (str, unicode)), repr(string)
+    assert isinstance(string, six.string_types), repr(string)
     wordlike_characters = ('<', '>', '!')
     words = []
     current_word = ''

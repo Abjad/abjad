@@ -59,6 +59,7 @@ install_requires = [
     'configobj >= 4.7.2',
     'ply >= 3.4',
     'pytest >= 2.1',
+    'six',
     ]
 if sys.version_info[0] == 2:
     install_requires.append('enum34')
