@@ -440,6 +440,32 @@ class AbjadConfiguration(Configuration):
         return os.path.abspath(relative_path)
 
     @property
+    def abjad_ide_directory(self):
+        r'''Gets Abjad IDE directory.
+
+        Returns string.
+        '''
+        try:
+            import ide
+            return ide.__path__[0]
+        except ImportError:
+            return None
+
+    @property
+    def abjad_ide_root_directory(self):
+        r'''Gets Abjad IDE root directory.
+
+        Returns string.
+        '''
+        try:
+            import ide
+            path = ide.__path__[0]
+            path, _ = os.path.split(path)
+            return path
+        except ImportError:
+            return None
+
+    @property
     def abjad_output_directory(self):
         r'''Gets Abjad output directory.
 
@@ -503,29 +529,3 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         return 'abjad.cfg'
-
-    @property
-    def score_manager_directory(self):
-        r'''Gets Abjad IDE directory.
-
-        Returns string.
-        '''
-        try:
-            import ide
-            return ide.__path__[0]
-        except ImportError:
-            return None
-
-    @property
-    def score_manager_root_directory(self):
-        r'''Gets Abjad IDE root directory.
-
-        Returns string.
-        '''
-        try:
-            import ide
-            path = ide.__path__[0]
-            path, _ = os.path.split(path)
-            return path
-        except ImportError:
-            return None

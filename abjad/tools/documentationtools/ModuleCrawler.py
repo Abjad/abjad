@@ -74,8 +74,8 @@ class ModuleCrawler(AbjadObject):
             for directory in directories[:]:
                 if directory in self.ignored_directory_names:
                     directories.remove(directory)
-                elif directory.startswith('_') and \
-                    not self.visit_private_modules:
+                elif (directory.startswith('_') and
+                    not self.visit_private_modules):
                     directories.remove(directory)
                 elif not os.path.exists(os.path.join(
                     current_root, directory, '__init__.py')):

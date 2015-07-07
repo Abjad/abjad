@@ -94,7 +94,7 @@ class BuildApiScript(DeveloperScript):
         def docs_api_index_path(self):
             from abjad import abjad_configuration
             return os.path.join(
-                abjad_configuration.score_manager_root_directory,
+                abjad_configuration.abjad_ide_root_directory,
                 'ide',
                 'docs',
                 'source',
@@ -105,11 +105,11 @@ class BuildApiScript(DeveloperScript):
         def path_definitions(self):
             from abjad import abjad_configuration
             code_path = os.path.join(
-                abjad_configuration.score_manager_root_directory,
+                abjad_configuration.abjad_ide_root_directory,
                 'ide',
                 )
             docs_path = os.path.join(
-                abjad_configuration.score_manager_root_directory,
+                abjad_configuration.abjad_ide_root_directory,
                 'ide',
                 'docs',
                 'source',
@@ -245,7 +245,7 @@ class BuildApiScript(DeveloperScript):
         api_generator = BuildApiScript.AbjadIDEAPIGenerator()
         api_title = 'Abjad IDE'
         docs_directory = os.path.join(
-            abjad_configuration.score_manager_root_directory,
+            abjad_configuration.abjad_ide_root_directory,
             'ide',
             'docs',
             )
@@ -258,7 +258,7 @@ class BuildApiScript(DeveloperScript):
             rst_only=rst_only,
             )
         path = os.path.join(
-            abjad_configuration.score_manager_root_directory,
+            abjad_configuration.abjad_ide_root_directory,
             'ide',
             'docs',
             'build',
