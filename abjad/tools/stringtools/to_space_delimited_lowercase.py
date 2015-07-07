@@ -42,8 +42,6 @@ def to_space_delimited_lowercase(string):
 
     Returns string.
     '''
-    from abjad.tools import stringtools
-
     if not string:
         return string
     elif string[0].isupper():
@@ -58,5 +56,4 @@ def to_space_delimited_lowercase(string):
         words.append(current_word)
         result = ' '.join(words)
         return result
-    else:
-        return string.replace('_', ' ')
+    return string.replace('_', ' ')

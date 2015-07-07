@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-import sys
+import six
 
 
 def is_string(expr):
@@ -7,10 +7,4 @@ def is_string(expr):
 
     Compatible under both Python 2.7.x and 3.x.
     '''
-    if sys.version_info[0] == 2:
-        if isinstance(expr, basestring):
-            return True
-    else:
-        if isinstance(expr, str):
-            return True
-    return False
+    return isinstance(expr, six.string_types)

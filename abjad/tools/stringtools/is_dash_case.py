@@ -1,10 +1,14 @@
 # -*- encoding: utf-8 -*-
 import re
+import six
 
 
 hyphen_delimited_lowercase_regex_body = '(([a-z,0-9]+[-]+)*[a-z,0-9]+)?'
 hyphen_delimited_lowercase_regex = re.compile(
-    '^%s$' % hyphen_delimited_lowercase_regex_body)
+    '^{}$'.format(hyphen_delimited_lowercase_regex_body),
+    re.VERBOSE,
+    )
+
 
 def is_dash_case(expr):
     r'''Is true when `expr` is a string and is hyphen delimited lowercase.
@@ -27,8 +31,6 @@ def is_dash_case(expr):
 
     Returns boolean.
     '''
-
-    if not isinstance(expr, str):
+    if not isinstance(expr, six.string_types):
         return False
-
     return bool(hyphen_delimited_lowercase_regex.match(expr))

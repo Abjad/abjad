@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import six
 
 
 def capitalize_start(string):
@@ -33,10 +34,8 @@ def capitalize_start(string):
 
     Returns newly constructed string.
     '''
-
-    if not isinstance(string, str):
-        raise TypeError(string)
-
+    if not isinstance(string, six.string_types):
+        raise ValueError(string)
     if not string:
         return string
     else:

@@ -43,9 +43,7 @@ def to_dash_case(string):
     Returns string.
     '''
     from abjad.tools import stringtools
-
     words = stringtools.delimit_words(string)
     words = [_.lower() for _ in words]
     result = '-'.join(words)
-
     return result

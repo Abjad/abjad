@@ -43,9 +43,7 @@ def to_upper_camel_case(string):
     Returns string.
     '''
     from abjad.tools import stringtools
-
     words = stringtools.delimit_words(string)
     words = [_.capitalize() for _ in words]
     result = ''.join(words)
-
     return result

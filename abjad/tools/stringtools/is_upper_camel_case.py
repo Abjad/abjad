@@ -1,8 +1,13 @@
 # -*- encoding: utf-8 -*-
 import re
+import six
 
 
-uppercamelcase_regex = re.compile('^([A-Z,0-9]+[a-z,0-9]*)*$')
+uppercamelcase_regex = re.compile(
+    '^([A-Z,0-9]+[a-z,0-9]*)*$',
+    re.VERBOSE,
+    )
+
 
 def is_upper_camel_case(expr):
     r'''Is true when `expr` is a string and is uppercamelcase.
@@ -25,8 +30,6 @@ def is_upper_camel_case(expr):
 
     Returns boolean.
     '''
-
-    if not isinstance(expr, str):
+    if not isinstance(expr, six.string_types):
         return False
-
     return bool(uppercamelcase_regex.match(expr))

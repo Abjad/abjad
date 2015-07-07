@@ -1,16 +1,20 @@
 # -*- encoding: utf-8 -*-
 import re
+import six
 from abjad.tools.stringtools.is_snake_case \
-	import underscore_delimited_lowercase_regex_body
+    import underscore_delimited_lowercase_regex_body
 
 
 underscore_delimited_lowercase_file_name_regex_body = """
-    %s
+    {}
     (\.[a-z,0-9]+)?
-    """ % underscore_delimited_lowercase_regex_body
+    """.format(underscore_delimited_lowercase_regex_body)
 
-underscore_delimited_lowercase_file_name_regex = re.compile('^%s$' %
-    underscore_delimited_lowercase_file_name_regex_body, re.VERBOSE)
+underscore_delimited_lowercase_file_name_regex = re.compile(
+    '^{}$'.format(underscore_delimited_lowercase_file_name_regex_body),
+    re.VERBOSE,
+    )
+
 
 def is_snake_case_file_name(expr):
     r'''Is true when `expr` is a string and is underscore-delimited lowercase 
@@ -34,11 +38,8 @@ def is_snake_case_file_name(expr):
 
     Returns boolean.
     '''
-
-    if not isinstance(expr, str):
+    if not isinstance(expr, six.string_types):
         return False
-
     if expr == '':
         return True
-
     return bool(underscore_delimited_lowercase_file_name_regex.match(expr))

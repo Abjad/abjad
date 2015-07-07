@@ -43,7 +43,6 @@ def to_lower_camel_case(string):
     Returns string.
     '''
     from abjad.tools import stringtools
-
     result = stringtools.to_upper_camel_case(string)
     if result == '':
         return result

@@ -1,9 +1,13 @@
 # -*- encoding: utf-8 -*-
 import re
+import six
 
 
 space_delimited_lowercase_regex = re.compile(
-    '^(([a-z,0-9]+[ ]+)*[a-z,0-9]+)?$')
+    '^(([a-z,0-9]+[ ]+)*[a-z,0-9]+)?$',
+    re.VERBOSE,
+    )
+
 
 def is_space_delimited_lowercase(expr):
     r'''Is true when `expr` is a string and is space-delimited lowercase.
@@ -26,8 +30,6 @@ def is_space_delimited_lowercase(expr):
 
     Returns boolean.
     '''
-
-    if not isinstance(expr, str):
+    if not isinstance(expr, six.string_types):
         return False
-
     return bool(space_delimited_lowercase_regex.match(expr))

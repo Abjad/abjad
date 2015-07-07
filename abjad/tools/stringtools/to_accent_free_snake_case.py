@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import six
 from abjad.tools.stringtools.strip_diacritics import strip_diacritics
 
 
@@ -20,12 +21,9 @@ def to_accent_free_snake_case(string):
 
     Returns string.
     '''
-
-    assert isinstance(string, str)
-
+    assert isinstance(string, six.string_types)
     result = strip_diacritics(string)
     result = result.replace(' ', '_')
     result = result.replace("'", '_')
     result = result.lower()
-
     return result

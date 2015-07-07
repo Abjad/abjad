@@ -24,7 +24,6 @@ def add_terminal_newlines(lines):
 
     Returns newly constructed object of `lines` type.
     '''
-
     terminated_lines = []
     for line in lines:
         if not line.endswith('\n'):

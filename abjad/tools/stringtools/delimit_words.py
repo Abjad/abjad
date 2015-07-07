@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import six
 
 
@@ -62,7 +63,6 @@ def delimit_words(string):
 
     Returns list.
     '''
-
     assert isinstance(string, six.string_types), repr(string)
     wordlike_characters = ('<', '>', '!')
     words = []

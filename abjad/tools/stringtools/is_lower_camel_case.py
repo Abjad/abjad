@@ -1,8 +1,13 @@
 # -*- encoding: utf-8 -*-
 import re
+import six
 
 
-lowercamelcase_regex = re.compile('^([a-z,0-9]+([A-Z,0-9]+[a-z,0-9]*)*)?$')
+lowercamelcase_regex = re.compile(
+    '^([a-z,0-9]+([A-Z,0-9]+[a-z,0-9]*)*)?$',
+    re.VERBOSE,
+    )
+
 
 def is_lower_camel_case(expr):
     r'''Is true when `expr` is a string and is lowercamelcase.
@@ -25,8 +30,6 @@ def is_lower_camel_case(expr):
 
     Returns boolean.
     '''
-
-    if not isinstance(expr, str):
+    if not isinstance(expr, six.string_types):
         return False
-
     return bool(lowercamelcase_regex.match(expr))
