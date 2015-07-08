@@ -20,12 +20,16 @@ class ImportManager(object):
         for key, value in list(vars(mod).items()):
             if not key.startswith('_'):
                 # handle public function decorated with @require
-                if getattr(value, 'func_closure', None):
-                    module_name = getattr(value.func_closure[1].cell_contents,
-                        '__module__', None)
-                # handle plain old function
-                else:
-                    module_name = getattr(value, '__module__', None)
+                module_name = None
+                try:
+                    if getattr(value, 'func_closure', None):
+                        module_name = getattr(value.func_closure[1].cell_contents,
+                            '__module__', None)
+                    # handle plain old function
+                    else:
+                        module_name = getattr(value, '__module__', None)
+                except:
+                    pass
                 if module_name == module_file:
                     result.append(value)
         return result
