@@ -30,6 +30,10 @@ class NegativeInfinity(Infinity):
     global Abjad namespace.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(self):
