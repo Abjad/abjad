@@ -3,7 +3,7 @@ import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class NonreducedRatio(AbjadValueObject, collections.Sequence):
+class NonreducedRatio(AbjadValueObject):
     '''Nonreduced ratio.
 
     ..  container:: example
@@ -40,15 +40,12 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
 
     ### SPECIAL METHODS ###
 
-    def __deepcopy__(self, memo):
-        r'''Deep copies ratio.
+    def __contains__(self, expr):
+        r'''Is true when ratio contains `expr`. Otherwise false.
 
-        ..  note:: This override is only required for Python 2. Once we migrate
-                   entirely to Python 3, this method may be removed.
-
-        Returns new ratio.
+        Returns boolean.
         '''
-        return type(self)(self._numbers)
+        return expr in self._numbers
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a nonreduced ratio with numerator and
@@ -106,6 +103,13 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
         '''
         return super(NonreducedRatio, self).__hash__()
 
+    def __iter__(self):
+        r'''Iterates ratio.
+
+        Returns generator.
+        '''
+        return iter(self._numbers)
+
     def __len__(self):
         r'''Gets length of ratio.
 
@@ -120,6 +124,13 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
         Returns integer.
         '''
         return len(self._numbers)
+
+    def __reversed__(self):
+        r'''Iterates ratio in reverse.
+
+        Returns generator.
+        '''
+        return reversed(self._numbers)
 
     ### PRIVATE PROPERTIES ###
 
@@ -139,6 +150,22 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
             keyword_argument_names=(),
             positional_argument_values=positional_argument_values,
             )
+
+    ### PUBLIC METHODS ###
+
+    def count(self, expr):
+        r'''Gets count of `expr` in ratio.
+
+        Returns integer.
+        '''
+        return self._numbers.count(expr)
+
+    def index(self, expr):
+        r'''Gets index of `expr` in ratio.
+
+        Returns integer.
+        '''
+        return self._numbers.index(expr)
 
     ### PUBLIC PROPERTIES ###
 
@@ -206,3 +233,6 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
         Returns tuple of two or more numbers.
         '''
         return self._numbers
+
+
+collections.Sequence.register(NonreducedRatio)
