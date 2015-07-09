@@ -55,34 +55,40 @@ keywords = [
 keywords = ', '.join(keywords)
 
 install_requires = [
-    'Sphinx >= 1.0.7',
-    'configobj >= 4.7.2',
-    'ply >= 3.4',
-    'pytest >= 2.1',
+    'configobj',
+    'ply',
     'six',
     ]
 if sys.version_info[0] == 2:
     install_requires.append('enum34')
 
+extras_require = {
+    'development': [
+        'sphinx',
+        'pytest',
+        ]
+    }
+
+entry_points = {
+    'console_scripts': [
+        'abjad = abjad.tools.systemtools.run_abjad:run_abjad',
+        'ajv = abjad.tools.developerscripttools.run_ajv:run_ajv',
+        ]
+    }
+
 setuptools.setup(
     author=author,
     author_email=author_email,
     description=description,
-    entry_points={
-        'console_scripts': [
-            'abjad = abjad.tools.systemtools.run_abjad:run_abjad',
-            'ajv = abjad.tools.developerscripttools.run_ajv:run_ajv',
-            ]
-        },
     include_package_data=True,
     install_requires=install_requires,
+    extras_require=extras_require,
+    entry_points=entry_points,
     keywords=keywords,
     license='GPL',
     long_description=long_description,
     name='Abjad',
-    packages=(
-        'abjad',
-        ),
+    packages=['abjad'],
     platforms='Any',
     url='http://www.projectabjad.org',
     version=__version__,
