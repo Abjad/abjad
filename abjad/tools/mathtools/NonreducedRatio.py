@@ -35,11 +35,20 @@ class NonreducedRatio(AbjadValueObject, collections.Sequence):
     def __init__(self, numbers=(1, 1)):
         if isinstance(numbers, type(self)):
             numbers = numbers.numbers
-        assert isinstance(numbers, collections.Sequence)
         numbers = tuple(numbers)
         self._numbers = numbers
 
     ### SPECIAL METHODS ###
+
+    def __deepcopy__(self, memo):
+        r'''Deep copies ratio.
+
+        ..  note:: This override is only required for Python 2. Once we migrate
+                   entirely to Python 3, this method may be removed.
+
+        Returns new ratio.
+        '''
+        return type(self)(self._numbers)
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a nonreduced ratio with numerator and

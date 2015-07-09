@@ -27,8 +27,7 @@ class Ratio(NonreducedRatio):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -39,10 +38,7 @@ class Ratio(NonreducedRatio):
         numbers = [int(_) for _ in numbers]
         gcd = mathtools.greatest_common_divisor(*numbers)
         numbers = [_ // gcd for _ in numbers]
-        superclass = super(Ratio, self)
-        superclass.__init__(
-            numbers=numbers,
-            )
+        self._numbers = tuple(numbers)
 
     ### SPECIAL METHODS ###
 
@@ -133,9 +129,9 @@ class Ratio(NonreducedRatio):
         Returns tuple of multipliers.
         '''
         from abjad.tools import durationtools
-        weight = sum(self.numbers) 
+        weight = sum(self.numbers)
         multipliers = [
-            durationtools.Multiplier((_, weight)) 
+            durationtools.Multiplier((_, weight))
             for _ in self.numbers
             ]
         multipliers = tuple(multipliers)
