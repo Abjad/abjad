@@ -46,6 +46,38 @@ class Ratio(NonreducedRatio):
 
     ### SPECIAL METHODS ###
 
+    def __getitem__(self, i):
+        r'''Gets item at `i`.
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = mathtools.Ratio((2, 4, 2))
+                >>> ratio[1]
+                2
+
+        Returns integer or tuple.
+        '''
+        if isinstance(i, slice):
+            return tuple(self._numbers[i])
+        return self._numbers[i]
+
+    def __len__(self):
+        r'''Gets length of ratio.
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = mathtools.Ratio((2, 4, 2))
+                >>> len(ratio)
+                3
+
+        Returns integer.
+        '''
+        return len(self._numbers)
+
     def __str__(self):
         r'''Gets string representation of ratio.
 

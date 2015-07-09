@@ -3,7 +3,7 @@ import collections
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class NonreducedRatio(AbjadValueObject):
+class NonreducedRatio(AbjadValueObject, collections.Sequence):
     '''Nonreduced ratio.
 
     ..  container:: example
@@ -71,6 +71,23 @@ class NonreducedRatio(AbjadValueObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    def __getitem__(self, i):
+        r'''Gets item at `i`.
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+                >>> ratio[1]
+                4
+
+        Returns integer or tuple.
+        '''
+        if isinstance(i, slice):
+            return tuple(self._numbers[i])
+        return self._numbers[i]
+
     def __hash__(self):
         r'''Hashes non-reduced ratio.
 
@@ -79,6 +96,21 @@ class NonreducedRatio(AbjadValueObject):
         Returns integer.
         '''
         return super(NonreducedRatio, self).__hash__()
+
+    def __len__(self):
+        r'''Gets length of ratio.
+
+        ..  container:: example
+
+            ::
+
+                >>> ratio = mathtools.NonreducedRatio((2, 4, 2))
+                >>> len(ratio)
+                3
+
+        Returns integer.
+        '''
+        return len(self._numbers)
 
     ### PRIVATE PROPERTIES ###
 
