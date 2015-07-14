@@ -565,6 +565,12 @@ class IOManager(object):
         ):
         r'''Runs LilyPond on `lilypond_file_path`.
 
+        Writes redirected output of Unix ``date`` to top line of LilyPond log
+        file.
+
+        Then appends redirected output of LilyPond output to the LilyPond log
+        file.
+
         Returns none.
         '''
         from abjad import abjad_configuration
@@ -578,8 +584,10 @@ class IOManager(object):
         lilypond_base, extension = os.path.splitext(lilypond_file_path)
         pdf_path = lilypond_file_path.replace('.ly', '.pdf')
         if flags:
-            command = '{} {} -dno-point-and-click -o {} {} > {} 2>&1'
+            command = 'date > {};'
+            command += ' {} {} -dno-point-and-click -o {} {} >> {} 2>&1'
             command = command.format(
+                log_file_path,
                 lilypond_path,
                 flags,
                 lilypond_base,
@@ -587,8 +595,9 @@ class IOManager(object):
                 log_file_path,
                 )
         else:
-            command = '{} -dno-point-and-click -o {} {} > {} 2>&1'
+            command = 'date > {}; {} -dno-point-and-click -o {} {} >> {} 2>&1'
             command = command.format(
+                log_file_path,
                 lilypond_path,
                 lilypond_base,
                 lilypond_file_path,
@@ -617,8 +626,10 @@ class IOManager(object):
             return True
         candidate_base = lilypond_base + '.candidate'
         if flags:
-            command = '{} {} -dno-point-and-click -o {} {} > {} 2>&1'
+            command = 'date > {};'
+            command += ' {} {} -dno-point-and-click -o {} {} >> {} 2>&1'
             command = command.format(
+                log_file_path,
                 lilypond_path,
                 flags,
                 candidate_base,
@@ -626,8 +637,10 @@ class IOManager(object):
                 log_file_path,
                 )
         else:
-            command = '{} -dno-point-and-click -o {} {} > {} 2>&1'
+            command = 'date > {};'
+            command += ' {} -dno-point-and-click -o {} {} >> {} 2>&1'
             command = command.format(
+                log_file_path,
                 lilypond_path,
                 candidate_base,
                 lilypond_file_path,
