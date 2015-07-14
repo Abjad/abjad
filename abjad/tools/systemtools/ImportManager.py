@@ -72,13 +72,10 @@ class ImportManager(object):
 
     ### PUBLIC METHODS ###
 
-    # TODO: remove definitions_only keyword;
-    #       all imports now happen from definition.py only
     @staticmethod
     def import_material_packages(
         path,
         namespace,
-        definitions_only=True,
         ):
         r'''Imports public materials from `path` into `namespace`.
 
