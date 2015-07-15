@@ -677,23 +677,23 @@ class DocumentationManager(object):
             for section_name in section_names:
                 rule = documentationtools.ReSTHorizontalRule()
                 document.append(rule)
-                #heading = documentationtools.ReSTHeading(
-                #    level=3,
-                #    text=section_name,
-                #    )
-                heading = documentationtools.ReSTDirective(
-                    directive='rubric',
-                    argument=section_name,
+                heading = documentationtools.ReSTHeading(
+                    level=3,
+                    text=section_name,
                     )
+                #heading = documentationtools.ReSTDirective(
+                #    directive='rubric',
+                #    argument=section_name,
+                #    )
                 document.append(heading)
                 toc = documentationtools.ReSTTOCDirective(
                     options={
-                        'caption': section_name,
+                        #'caption': section_name,
                         'hidden': True,
-                        'name': '{}__{}'.format(
-                            tools_package.__name__,
-                            section_name,
-                            ),
+                        #'name': '{}__{}'.format(
+                        #    tools_package.__name__,
+                        #    section_name,
+                        #    ),
                         },
                     )
                 for cls in sections[section_name]:
@@ -717,27 +717,27 @@ class DocumentationManager(object):
                     autosummary.append(item)
                 document.append(autosummary)
         if functions:
-            #heading = documentationtools.ReSTHeading(
-            #    level=3,
-            #    text='Functions',
-            #    )
             if classes:
                 rule = documentationtools.ReSTHorizontalRule()
                 document.append(rule)
             section_name = 'Functions'
-            heading = documentationtools.ReSTDirective(
-                directive='rubric',
-                argument=section_name,
+            heading = documentationtools.ReSTHeading(
+                level=3,
+                text=section_name,
                 )
+            #heading = documentationtools.ReSTDirective(
+            #    directive='rubric',
+            #    argument=section_name,
+            #    )
             document.append(heading)
             toc = documentationtools.ReSTTOCDirective(
                 options={
-                    'caption': section_name,
+                    #'caption': section_name,
                     'hidden': True,
-                    'name': '{}__{}'.format(
-                        tools_package.__name__,
-                        section_name,
-                        ),
+                    #'name': '{}__{}'.format(
+                    #    tools_package.__name__,
+                    #    section_name,
+                    #    ),
                     },
                 )
             for function in functions:

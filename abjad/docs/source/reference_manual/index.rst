@@ -1,16 +1,20 @@
 Reference manual
 ================
 
+Leaves
+------
+
 ..  toctree::
-    :caption: Leaves
     :numbered:
 
     chords/index
     notes/index
     rests/index
 
+Containers
+----------
+
 ..  toctree::
-    :caption: Containers
     :numbered:
 
     containers/index
@@ -20,14 +24,10 @@ Reference manual
     tuplets/index
     voices/index
 
-..  toctree::
-    :caption: LilyPond files
-    :numbered:
-
-    lilypond_files/index
+Attachments
+-----------
 
 ..  toctree::
-    :caption: Attachments
     :numbered:
 
     annotations/index
@@ -36,8 +36,18 @@ Reference manual
     lilypond_commands/index
     lilypond_comments/index
 
+LilyPond files
+--------------
+
 ..  toctree::
-    :caption: Pitches
+    :numbered:
+
+    lilypond_files/index
+
+Pitches
+-------
+
+..  toctree::
     :numbered:
 
     named_pitches/index

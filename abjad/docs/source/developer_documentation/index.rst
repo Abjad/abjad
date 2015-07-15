@@ -2,8 +2,10 @@
 Developer documentation
 =======================
 
+Reading and writing code
+------------------------
+
 ..  toctree::
-    :caption: Reading and writing code
     :maxdepth: 2
     :numbered:
 
@@ -12,16 +14,20 @@ Developer documentation
     documentation/index
     tests/index
 
+Developer tools
+---------------
+
 ..  toctree::
-    :caption: Developer tools
     :maxdepth: 2
     :numbered:
 
     ajv/index
     ajv_book/index
 
+Development notes
+-----------------
+
 ..  toctree::
-    :caption: Development notes
     :maxdepth: 2
     :numbered:
 
