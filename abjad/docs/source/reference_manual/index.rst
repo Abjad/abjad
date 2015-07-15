@@ -1,67 +1,43 @@
 Reference manual
 ================
 
-Leaves
-------
+..  toctree::
+    :caption: Leaves
+    :numbered:
 
-..  container:: two-column
+    chords/index
+    notes/index
+    rests/index
 
-    ..  toctree::
-        :numbered:
+..  toctree::
+    :caption: Containers
+    :numbered:
 
-        chords/index
-        notes/index
-        rests/index
+    containers/index
+    measures/index
+    scores/index
+    staves/index
+    tuplets/index
+    voices/index
 
+..  toctree::
+    :caption: LilyPond files
+    :numbered:
 
-Containers
-----------
+    lilypond_files/index
 
-..  container:: two-column
+..  toctree::
+    :caption: Attachments
+    :numbered:
 
-    ..  toctree::
-        :numbered:
+    annotations/index
+    articulations/index
+    instruments/index
+    lilypond_commands/index
+    lilypond_comments/index
 
-        containers/index
-        measures/index
-        scores/index
-        staves/index
-        tuplets/index
-        voices/index
+..  toctree::
+    :caption: Pitches
+    :numbered:
 
-
-LilyPond files
---------------
-
-..  container:: two-column
-
-    ..  toctree::
-        :numbered:
-
-        lilypond_files/index
-
-
-Attachments
------------
-
-..  container:: two-column
-
-    ..  toctree::
-        :numbered:
-
-        annotations/index
-        articulations/index
-        instruments/index
-        lilypond_commands/index
-        lilypond_comments/index
-
-
-Pitches
--------
-
-..  container:: two-column
-
-    ..  toctree::
-        :numbered:
-
-        named_pitches/index
+    named_pitches/index
