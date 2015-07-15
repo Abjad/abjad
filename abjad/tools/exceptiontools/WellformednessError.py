@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-class WellFormednessError(Exception):
+class WellformednessError(Exception):
     r'''Score not well formed.
     '''
 

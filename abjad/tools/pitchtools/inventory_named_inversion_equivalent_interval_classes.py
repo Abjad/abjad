@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 
-def inventory_inversion_equivalent_named_interval_classes():
+def inventory_named_inversion_equivalent_interval_classes():
     '''Inventory inversion-equivalent diatonic interval-classes:
 
     ::
