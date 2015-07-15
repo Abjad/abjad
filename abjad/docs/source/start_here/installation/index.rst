@@ -5,9 +5,7 @@ Installation
 Abjad depends on Python
 -----------------------
 
-You must have Python 2.7.5 installed to run Abjad.
-
-Abjad does not yet support the Python 3.x series of releases.
+You must have Python 2.7 or 3.3+ installed to run Abjad.
 
 To check the version of Python installed on your computer type the following:
 
@@ -21,22 +19,22 @@ You can download different versions of Python at http://www.python.org.
 Abjad depends on LilyPond
 -------------------------
 
-You must have LilyPond 2.17 or greater installed for Abjad to work properly.
+You must have LilyPond 2.18 or greater installed for Abjad to work properly.
 
 You can download LilyPond at http://www.lilypond.org.
 
 After you have installed LilyPond you should type the following to see if
-LilyPond is callable from your commandline:
+LilyPond is callable from your command-line:
 
 .. code-block:: bash
 
     lilypond --version
 
-If LilyPond is not callable from your commandline you
+If LilyPond is not callable from your command-line you
 should add the location of the LilyPond executable to your ``PATH``
 environment variable.
 
-If you are new to working with the commandline 
+If you are new to working with the command-line 
 you should use Google to get a basic introduction to 
 editing your profile and setting environment variables.
 
