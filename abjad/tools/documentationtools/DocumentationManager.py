@@ -10,6 +10,8 @@ import types
 
 
 class DocumentationManager(object):
+    r'''An API documentation manager.
+    '''
 
     root_package_name = 'abjad'
     source_directory_path_parts = ('docs', 'source')
@@ -585,12 +587,16 @@ class DocumentationManager(object):
 
     @staticmethod
     def get_root_module():
+        r'''
+        '''
         manager = DocumentationManager
         root_module = importlib.import_module(manager.root_package_name)
         return root_module
 
     @staticmethod
     def get_tools_packages_module():
+        r'''
+        '''
         manager = DocumentationManager
         tools_packages_module = importlib.import_module(
             manager.tools_packages_package_path)
