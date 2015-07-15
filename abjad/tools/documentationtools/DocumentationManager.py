@@ -684,6 +684,10 @@ class DocumentationManager(object):
                     options={
                         'caption': section_name,
                         'hidden': True,
+                        'name': '{}__{}'.format(
+                            tools_package.__name__,
+                            section_name,
+                            ),
                         },
                     )
                 for cls in sections[section_name]:
@@ -724,6 +728,10 @@ class DocumentationManager(object):
                 options={
                     'caption': section_name,
                     'hidden': True,
+                    'name': '{}__{}'.format(
+                        tools_package.__name__,
+                        section_name,
+                        ),
                     },
                 )
             for function in functions:
