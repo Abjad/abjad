@@ -11,11 +11,10 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-
+import sphinx_rtd_theme
 from sphinx.highlighting import PygmentsBridge
 from pygments.formatters.latex import LatexFormatter
 from abjad import abjad_configuration
-
 
 class CustomLatexFormatter(LatexFormatter):
     def __init__(self, **options):
@@ -117,7 +116,8 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'abjadtheme'
+# html_theme = 'abjadtheme'
+html_theme = "sphinx_rtd_theme"
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -125,7 +125,8 @@ html_theme = 'abjadtheme'
 #html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
-html_theme_path = ['_themes']
+#html_theme_path = ['_themes']
+html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
@@ -167,9 +168,9 @@ html_last_updated_fmt = '%b %d, %Y'
 
 # Additional templates that should be rendered to pages, maps page names to
 # template names.
-html_additional_pages = {
-    'index': 'indexcontent.html',
-}
+#html_additional_pages = {
+#    'index': 'indexcontent.html',
+#    }
 
 # If false, no module index is generated.
 html_domain_indices = False
@@ -324,7 +325,7 @@ inheritance_graph_attrs = {
     'fontsize': 11,
     'rankdir': 'TB',
     'ratio': 'compress',
-}
+    }
 
 graphviz_dot_args = ['-s32']
 graphviz_output_format = 'svg'
