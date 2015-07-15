@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
 import inspect
 import pytest
-from abjad import *
+from abjad.tools import datastructuretools
+from abjad.tools import documentationtools
+from abjad.tools import lilypondparsertools
+from abjad.tools import rhythmtreetools
 
 
 ignored_names = (
@@ -31,15 +34,15 @@ ignored_classes = (
     rhythmtreetools.RhythmTreeParser,
     )
 
-
 classes = documentationtools.list_all_abjad_classes(
     ignored_classes=ignored_classes,
     )
+
+
 @pytest.mark.parametrize('obj', classes)
 def test_abjad___doc___01(obj):
     r'''All classes have a docstring. All class methods have a docstring.
     '''
-
     assert obj.__doc__ is not None
     for attr in inspect.classify_class_attrs(obj):
         if attr.name in ignored_names:
@@ -53,9 +56,10 @@ def test_abjad___doc___01(obj):
 
 
 functions = documentationtools.list_all_abjad_functions()
+
+
 @pytest.mark.parametrize('obj', functions)
 def test_abjad___doc___02(obj):
     r'''All functions have a docstring.
     '''
-
     assert obj.__doc__ is not None

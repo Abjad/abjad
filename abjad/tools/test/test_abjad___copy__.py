@@ -2,18 +2,18 @@
 import copy
 import inspect
 import pytest
-import abjad
 from abjad.tools import documentationtools
 from abjad.tools import scoretools
 
 
 classes = documentationtools.list_all_abjad_classes()
+
+
 @pytest.mark.parametrize('class_', classes)
 def test_abjad___copy___01(class_):
     r'''All concrete classes with a storage format can copy.
     '''
-
-    if not '_storage_format_specification' in dir(class_):
+    if '_storage_format_specification' not in dir(class_):
         return
     if inspect.isabstract(class_):
         return
