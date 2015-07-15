@@ -682,6 +682,7 @@ class DocumentationManager(object):
                 document.append(heading)
                 toc = documentationtools.ReSTTOCDirective(
                     options={
+                        'caption': section_name,
                         'hidden': True,
                         },
                     )
@@ -710,13 +711,18 @@ class DocumentationManager(object):
             #    level=3,
             #    text='Functions',
             #    )
+            if classes:
+                rule = documentationtools.ReSTHorizontalRule()
+                document.append(rule)
+            section_name = 'Functions'
             heading = documentationtools.ReSTDirective(
                 directive='rubric',
-                argument='Function',
+                argument=section_name,
                 )
             document.append(heading)
             toc = documentationtools.ReSTTOCDirective(
                 options={
+                    'caption': section_name,
                     'hidden': True,
                     },
                 )
