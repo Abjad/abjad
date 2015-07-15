@@ -13,7 +13,7 @@ def expr_to_bidirectional_direction_string(expr):
 
     ..  container:: example:
 
-            ::
+        ::
 
             >>> stringtools.expr_to_bidirectional_direction_string('_')
             'down'
