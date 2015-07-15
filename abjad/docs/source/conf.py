@@ -45,8 +45,8 @@ extensions = [
     #'sphinx.ext.viewcode',
     'abjad.docs.source._ext.abjad_book',
     'abjad.docs.source._ext.abjad_lineage',
-    'abjad.docs.source._ext.restyle',
-]
+    'abjad.docs.ext.style',
+    ]
 
 # abjad book settings
 abjad_book_should_process = True
