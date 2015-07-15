@@ -2,7 +2,7 @@
 import os
 import webbrowser
 from abjad.tools import systemtools
-from abjad.tools.documentationtools import AbjadAPIGenerator
+from abjad.tools.documentationtools import DocumentationManager
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
@@ -17,115 +17,23 @@ class BuildApiScript(DeveloperScript):
 
     ### CLASS VARIABLES ###
 
-    class ExperimentalAPIGenerator(AbjadAPIGenerator):
+    class ExperimentalDocumentationManager(DocumentationManager):
         r'''API generator for the experimental package.
         '''
 
-        _api_title = 'Abjad Experimental API'
+        api_title = 'Abjad Experimental API'
+        root_package_name = 'experimental'
+        source_directory_path_parts = ('docs', 'source')
+        tools_packages_package_path = 'experimental.tools'
 
-        @property
-        def docs_api_index_path(self):
-            from abjad import abjad_configuration
-            return os.path.join(
-                abjad_configuration.abjad_root_directory,
-                'experimental',
-                'docs',
-                'source',
-                'index.rst',
-                )
-
-        @property
-        def path_definitions(self):
-            from abjad import abjad_configuration
-            tools_code_path = os.path.join(
-                abjad_configuration.abjad_root_directory,
-                'experimental',
-                'tools',
-                )
-            tools_docs_path = os.path.join(
-                abjad_configuration.abjad_root_directory,
-                'experimental',
-                'docs',
-                'source',
-                'tools',
-                )
-            tools_package_prefix = 'experimental.tools.'
-            tools_triple = (
-                tools_code_path,
-                tools_docs_path,
-                tools_package_prefix,
-                )
-            demos_code_path = os.path.join(
-                abjad_configuration.abjad_root_directory,
-                'experimental',
-                'demos',
-                )
-            demos_docs_path = os.path.join(
-                abjad_configuration.abjad_root_directory,
-                'experimental',
-                'docs',
-                'source',
-                'demos',
-                )
-            demos_package_prefix = 'experimental.demos.'
-            demos_triple = (
-                demos_code_path,
-                demos_docs_path,
-                demos_package_prefix,
-                )
-            all_triples = (tools_triple, demos_triple)
-            return all_triples
-
-        @property
-        def root_package(self):
-            return 'experimental'
-
-        @property
-        def tools_package_path_index(self):
-            return 2
-
-    class AbjadIDEAPIGenerator(AbjadAPIGenerator):
+    class IDEDocumentationManager(DocumentationManager):
         r'''API generator for the Abjad IDE package.
         '''
 
-        _api_title = 'Abjad IDE API'
-
-        @property
-        def docs_api_index_path(self):
-            from abjad import abjad_configuration
-            return os.path.join(
-                abjad_configuration.abjad_ide_root_directory,
-                'ide',
-                'docs',
-                'source',
-                'index.rst',
-                )
-
-        @property
-        def path_definitions(self):
-            from abjad import abjad_configuration
-            code_path = os.path.join(
-                abjad_configuration.abjad_ide_root_directory,
-                'ide',
-                )
-            docs_path = os.path.join(
-                abjad_configuration.abjad_ide_root_directory,
-                'ide',
-                'docs',
-                'source',
-                )
-            package_prefix = 'ide.'
-            triple = (code_path, docs_path, package_prefix)
-            all_triples = (triple,)
-            return all_triples
-
-        @property
-        def root_package(self):
-            return 'ide'
-
-        @property
-        def tools_package_path_index(self):
-            return 1
+        api_title = 'Abjad IDE API'
+        root_package_name = 'ide'
+        source_directory_path_parts = ('docs', 'source')
+        tools_packages_package_path = 'ide'
 
     ### PUBLIC PROPERTIES ###
 
@@ -180,7 +88,7 @@ class BuildApiScript(DeveloperScript):
         clean=False,
         rst_only=False,
         ):
-        api_generator(verbose=True)
+        api_generator.execute()
         if rst_only:
             return
         print('Now building the {} {} docs ...'.format(
@@ -210,7 +118,7 @@ class BuildApiScript(DeveloperScript):
         rst_only=False,
         ):
         from abjad import abjad_configuration
-        api_generator = BuildApiScript.ExperimentalAPIGenerator()
+        api_generator = BuildApiScript.ExperimentalDocumentationManager
         api_title = 'experimental'
         docs_directory = os.path.join(
             abjad_configuration.abjad_root_directory,
@@ -242,7 +150,7 @@ class BuildApiScript(DeveloperScript):
         rst_only=False,
         ):
         from abjad import abjad_configuration
-        api_generator = BuildApiScript.AbjadIDEAPIGenerator()
+        api_generator = BuildApiScript.IDEDocumentationManager
         api_title = 'Abjad IDE'
         docs_directory = os.path.join(
             abjad_configuration.abjad_ide_root_directory,
@@ -274,7 +182,7 @@ class BuildApiScript(DeveloperScript):
         rst_only=False,
         ):
         from abjad import abjad_configuration
-        api_generator = AbjadAPIGenerator()
+        api_generator = DocumentationManager
         api_title = 'mainline'
         docs_directory = os.path.join(
             abjad_configuration.abjad_directory,
