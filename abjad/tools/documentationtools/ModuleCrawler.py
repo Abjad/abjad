@@ -30,6 +30,7 @@ class ModuleCrawler(AbjadObject):
             '.git',
             '.svn',
             'test',
+            'docs',
             ),
         root_package_name=None,
         visit_private_modules=False,
