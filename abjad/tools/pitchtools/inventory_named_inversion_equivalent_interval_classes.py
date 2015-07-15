@@ -6,7 +6,7 @@ def inventory_named_inversion_equivalent_interval_classes():
 
     ::
 
-        >>> for dic in pitchtools.inventory_inversion_equivalent_named_interval_classes():
+        >>> for dic in pitchtools.inventory_named_inversion_equivalent_interval_classes():
         ...     dic
         ...
         NamedInversionEquivalentIntervalClass('P1')

@@ -4,7 +4,7 @@ from abjad import *
 
 def test_pitchtools_inventory_named_inversion_equivalent_interval_classes_01():
 
-    all_dics = pitchtools.inventory_inversion_equivalent_named_interval_classes()
+    all_dics = pitchtools.inventory_named_inversion_equivalent_interval_classes()
 
     assert all_dics == [
         pitchtools.NamedInversionEquivalentIntervalClass('perfect', 1),
