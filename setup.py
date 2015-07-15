@@ -64,8 +64,9 @@ if sys.version_info[0] == 2:
 
 extras_require = {
     'development': [
-        'sphinx',
         'pytest',
+        'sphinx',
+        'sphinx_rtd_theme',
         ]
     }
 

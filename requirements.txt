@@ -1,5 +1,6 @@
-sphinx
 configobj
 ply
 pytest
 six
+sphinx
+sphinx_rtd_theme
