@@ -76,16 +76,13 @@ class ImportManager(object):
     def import_material_packages(
         path,
         namespace,
-        definitions_only=False,
         ):
         r'''Imports public materials from `path` into `namespace`.
 
         This is the custom function that all AbjadIDE-managed scores may use to
         import public materials on startup.
         '''
-        prefix = 'output'
-        if definitions_only:
-            prefix = 'definition'
+        prefix = 'definition'
         package_path = ImportManager._split_package_path(path)
         for name in os.listdir(path):
             if not os.path.isdir(os.path.join(path, name)):

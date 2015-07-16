@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import select
 import subprocess
+import sys
 import time
 from abjad.tools import abctools
 
@@ -18,7 +19,8 @@ class Pipe(abctools.AbjadObject, subprocess.Popen):
 
     ### INITIALIZER ###
 
-    def __init__(self, executable='python', arguments=('-i',), timeout=0):
+    def __init__(self, executable=None, arguments=('-i',), timeout=0):
+        executable = executable or sys.executable
         self._arguments = arguments
         self._executable = executable
         self._timeout = timeout
