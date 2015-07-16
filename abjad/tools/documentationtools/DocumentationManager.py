@@ -485,12 +485,9 @@ class DocumentationManager(object):
             argument=tools_package_python_path,
             )
         document.append(module_directive)
-        tools_package_qualified_name = '.'.join(
-            function.__module__.split('.')[-2:],
-            )
         heading = abjad.documentationtools.ReSTHeading(
             level=2,
-            text=tools_package_qualified_name,
+            text=function.__name__,
             )
         document.append(heading)
         autodoc_directive = abjad.documentationtools.ReSTAutodocDirective(
