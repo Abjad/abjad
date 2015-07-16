@@ -42,6 +42,19 @@ def doctree_read(app, doctree):
         object_type = desc_node.get('objtype')
         module = importlib.import_module(module_name)
 
+        if object_type in ('function', 'class'):
+            addname_node = signature_node.traverse(addnodes.desc_addname)[0]
+            text = addname_node[0].astext()
+            parts = [x for x in text.split('.') if x]
+            parts = get_unique_parts(parts)
+            if parts[0] in ('abjad', 'experimental', 'ide'):
+                parts = parts[-1:]
+            if parts:
+                text = '{}.'.format('.'.join(parts))
+            else:
+                text = ''
+            addname_node[0] = nodes.Text(text)
+
         if object_type == 'class':
             cls = getattr(module, object_name, None)
             if cls is None:
