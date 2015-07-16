@@ -41,6 +41,7 @@ tt.staticmethod {
     background-color: #69c;
     }
 
+div.abjad-book-image,
 .codeblock, 
 pre.literal-block, 
 .rst-content 
@@ -48,4 +49,8 @@ pre.literal-block,
 .rst-content pre.literal-block, 
 div[class^='highlight'] {
     margin: 1px 0 12px 0;
+    }
+
+div.abjad-book-image-source {
+    background: #eeecf5;
     }

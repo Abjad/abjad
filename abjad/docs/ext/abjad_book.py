@@ -402,11 +402,16 @@ def visit_abjad_book_html(self, node):
     result = render_abjad_book_node(self, node, file_format='png')
     paths, alt = result
     alt = self.encode(alt).strip()
-    self.body.append('<div class="abjad-book">\n')
+    self.body.append('<div class="abjad-book-image">\n')
     self.body.append('<img src="{}" alt="Click to view source." title="Click to view source."/>\n'.format(
         paths['primary_relative_path']))
-    self.body.append('<pre>\n{}\n</pre>\n'.format(alt))
     self.body.append('</div>\n')
+    self.body.append('''
+        <div class="highlight abjad-book-image-source" style="position: relative;">
+            <div class="highlight">
+                <pre>{}</pre>
+            </div>
+        </div>'''.format(alt))
     raise docutils.nodes.SkipNode
 
 

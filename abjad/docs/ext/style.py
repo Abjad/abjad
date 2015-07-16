@@ -137,9 +137,9 @@ def doctree_read(app, doctree):
 
 
 def setup(app):
-    app.connect('doctree-read', doctree_read)
     app.add_directive('doctest', AbjadDoctestDirective)
+    app.add_javascript('abjad.js')
     app.add_javascript('copybutton.js')
-    app.add_javascript('inherited.js')
     app.add_javascript('ga.js')
     app.add_stylesheet('abjad.css')
+    app.connect('doctree-read', doctree_read)
