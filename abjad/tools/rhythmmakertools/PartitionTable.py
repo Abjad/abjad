@@ -117,23 +117,23 @@ class PartitionTable(TypedOrderedDict):
             ::
 
                 >>> for numerator in range(1, 15):
-                ...     division = durationtools.Division(numerator, 4)
+                ...     division = mathtools.NonreducedFraction(numerator, 4)
                 ...     result = table.respell_division(division)
                 ...     print((division, result))
-                (Division(1, 4), [Division(1, 4)])
-                (Division(2, 4), [Division(1, 4), Division(1, 4)])
-                (Division(3, 4), [Division(2, 4), Division(1, 4)])
-                (Division(4, 4), [Division(2, 4), Division(2, 4)])
-                (Division(5, 4), [Division(3, 4), Division(2, 4)])
-                (Division(6, 4), [Division(4, 4), Division(2, 4)])
-                (Division(7, 4), [Division(4, 4), Division(3, 4)])
-                (Division(8, 4), [Division(4, 4), Division(4, 4)])
-                (Division(9, 4), [Division(6, 4), Division(3, 4)])
-                (Division(10, 4), [Division(6, 4), Division(4, 4)])
-                (Division(11, 4), [Division(11, 4)])
-                (Division(12, 4), [Division(8, 4), Division(4, 4)])
-                (Division(13, 4), [Division(13, 4)])
-                (Division(14, 4), [Division(8, 4), Division(6, 4)])
+                (NonreducedFraction(1, 4), [NonreducedFraction(1, 4)])
+                (NonreducedFraction(2, 4), [NonreducedFraction(1, 4), NonreducedFraction(1, 4)])
+                (NonreducedFraction(3, 4), [NonreducedFraction(2, 4), NonreducedFraction(1, 4)])
+                (NonreducedFraction(4, 4), [NonreducedFraction(2, 4), NonreducedFraction(2, 4)])
+                (NonreducedFraction(5, 4), [NonreducedFraction(3, 4), NonreducedFraction(2, 4)])
+                (NonreducedFraction(6, 4), [NonreducedFraction(4, 4), NonreducedFraction(2, 4)])
+                (NonreducedFraction(7, 4), [NonreducedFraction(4, 4), NonreducedFraction(3, 4)])
+                (NonreducedFraction(8, 4), [NonreducedFraction(4, 4), NonreducedFraction(4, 4)])
+                (NonreducedFraction(9, 4), [NonreducedFraction(6, 4), NonreducedFraction(3, 4)])
+                (NonreducedFraction(10, 4), [NonreducedFraction(6, 4), NonreducedFraction(4, 4)])
+                (NonreducedFraction(11, 4), [NonreducedFraction(11, 4)])
+                (NonreducedFraction(12, 4), [NonreducedFraction(8, 4), NonreducedFraction(4, 4)])
+                (NonreducedFraction(13, 4), [NonreducedFraction(13, 4)])
+                (NonreducedFraction(14, 4), [NonreducedFraction(8, 4), NonreducedFraction(6, 4)])
 
         ..  container:: example
 
@@ -149,32 +149,32 @@ class PartitionTable(TypedOrderedDict):
             ::
 
                 >>> for numerator in range(1, 15):
-                ...     division = durationtools.Division(numerator, 4)
+                ...     division = mathtools.NonreducedFraction(numerator, 4)
                 ...     result = table.respell_division(division)
                 ...     print((division, result))
-                (Division(1, 4), [Division(1, 4)])
-                (Division(2, 4), [Division(2, 4)])
-                (Division(3, 4), [Division(3, 4)])
-                (Division(4, 4), [Division(4, 4)])
-                (Division(5, 4), [Division(1, 4), Division(3, 4), Division(1, 4)])
-                (Division(6, 4), [Division(6, 4)])
-                (Division(7, 4), [Division(1, 4), Division(2, 4), Division(4, 4)])
-                (Division(8, 4), [Division(8, 4)])
-                (Division(9, 4), [Division(9, 4)])
-                (Division(10, 4), [Division(2, 4), Division(6, 4), Division(2, 4)])
-                (Division(11, 4), [Division(11, 4)])
-                (Division(12, 4), [Division(12, 4)])
-                (Division(13, 4), [Division(13, 4)])
-                (Division(14, 4), [Division(2, 4), Division(4, 4), Division(8, 4)])
+                (NonreducedFraction(1, 4), [NonreducedFraction(1, 4)])
+                (NonreducedFraction(2, 4), [NonreducedFraction(2, 4)])
+                (NonreducedFraction(3, 4), [NonreducedFraction(3, 4)])
+                (NonreducedFraction(4, 4), [NonreducedFraction(4, 4)])
+                (NonreducedFraction(5, 4), [NonreducedFraction(1, 4), NonreducedFraction(3, 4), NonreducedFraction(1, 4)])
+                (NonreducedFraction(6, 4), [NonreducedFraction(6, 4)])
+                (NonreducedFraction(7, 4), [NonreducedFraction(1, 4), NonreducedFraction(2, 4), NonreducedFraction(4, 4)])
+                (NonreducedFraction(8, 4), [NonreducedFraction(8, 4)])
+                (NonreducedFraction(9, 4), [NonreducedFraction(9, 4)])
+                (NonreducedFraction(10, 4), [NonreducedFraction(2, 4), NonreducedFraction(6, 4), NonreducedFraction(2, 4)])
+                (NonreducedFraction(11, 4), [NonreducedFraction(11, 4)])
+                (NonreducedFraction(12, 4), [NonreducedFraction(12, 4)])
+                (NonreducedFraction(13, 4), [NonreducedFraction(13, 4)])
+                (NonreducedFraction(14, 4), [NonreducedFraction(2, 4), NonreducedFraction(4, 4), NonreducedFraction(8, 4)])
 
         Returns list of new divisions.
         '''
-        division = durationtools.Division(division)
+        division = mathtools.NonreducedFraction(division)
         result = [division]
         divisors = mathtools.divisors(division.numerator)
         for numerator, ratio in reversed(list(self.items())):
             if numerator in divisors:
                 result = [division * _ for _ in ratio.multipliers]
                 break
-        result = [durationtools.Division(_) for _ in result]
+        result = [mathtools.NonreducedFraction(_) for _ in result]
         return result

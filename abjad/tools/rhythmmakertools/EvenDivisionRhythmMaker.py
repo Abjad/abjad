@@ -437,7 +437,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         if rotation is None:
             rotation = 0
         selections = []
-        divisions = [durationtools.Division(_) for _ in divisions]
+        divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
         denominators = datastructuretools.CyclicTuple(self.denominators)
         extra_counts_per_division = self.extra_counts_per_division or (0,)
         extra_counts_per_division = datastructuretools.CyclicTuple(

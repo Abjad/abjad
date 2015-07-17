@@ -182,7 +182,8 @@ class EvenRunRhythmMaker(RhythmMaker):
         from abjad.tools import rhythmmakertools
         selections = []
         for division in divisions:
-            assert isinstance(division, durationtools.Division), division
+            prototype = mathtools.NonreducedFraction
+            assert isinstance(division, prototype), division
         for division in divisions:
             container = self._make_container(division)
             selection = selectiontools.Selection(container)

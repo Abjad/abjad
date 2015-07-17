@@ -3,6 +3,7 @@ import abc
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
@@ -79,7 +80,7 @@ class RhythmMaker(AbjadValueObject):
 
         Returns list of selections.
         '''
-        divisions = [durationtools.Division(x) for x in divisions]
+        divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
         rotation = self._to_tuple(rotation)
         self._rotation = rotation
         selections = self._make_music(

@@ -354,8 +354,8 @@ class TupletRhythmMaker(RhythmMaker):
 
     def _make_music(self, divisions, rotation):
         tuplets = []
-        for division in divisions:
-            assert isinstance(division, durationtools.Division), repr(division)
+        prototype = mathtools.NonreducedFraction
+        assert all(isinstance(_, prototype) for _ in divisions)
         if not isinstance(rotation, int):
             rotation = 0
         tuplet_ratios = datastructuretools.CyclicTuple(

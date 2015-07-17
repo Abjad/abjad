@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 
@@ -92,7 +93,8 @@ class SkipRhythmMaker(RhythmMaker):
     def _make_music(self, divisions, rotation):
         result = []
         for division in divisions:
-            assert isinstance(division, durationtools.Division), repr(division)
+            prototype = mathtools.NonreducedFraction
+            assert isinstance(division, prototype), repr(division)
             written_duration = durationtools.Duration(1)
             multiplied_duration = division
             skip = scoretools.make_skips(
