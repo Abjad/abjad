@@ -66,7 +66,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Abjad'
-copyright = u'2008 - 2014, Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán'
+copyright = u'2008-2015, Trevor Bača & Josiah Wolf Oberholtzer'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -232,14 +232,14 @@ latex_documents = [
   'index',
   'Abjad.tex',
   u'Abjad Documentation',
-  u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán',
+  u'Trevor Bača & Josiah Wolf Oberholtzer',
   'manual',
   ),
   (
   'api/index',
   'AbjadAPI.tex',
   u'Abjad API',
-  u'Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán',
+  u'Trevor Bača & Josiah Wolf Oberholtzer',
   'manual',
   ),
 ]
@@ -274,7 +274,7 @@ man_pages = [
     'index',
     'abjad',
     u'Abjad Documentation',
-    [u'2008 - 2014, Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer'],
+    [u'2008-2015, Trevor Bača & Josiah Wolf Oberholtzer'],
     1,
     )
 ]
@@ -293,7 +293,7 @@ texinfo_documents = [
     'index',
     'Abjad',
     u'Abjad Documentation',
-    u'2008 - 2014, Víctor Adán, Trevor Bača, Josiah Wolf Oberholtzer',
+    u'2008-2015, Trevor Bača & Josiah Wolf Oberholtzer',
     'Abjad',
     'One line description of project.',
     'Miscellaneous',
