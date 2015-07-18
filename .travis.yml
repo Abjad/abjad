@@ -15,9 +15,9 @@ before_install:
 
 install:
     - pip install -e .[development]
+    - abjad/scr/devel/prime-parser-tables
 
 script:
-
     - abjad/scr/ajv doctest experimental
     - py.test experimental
 
