@@ -64,8 +64,12 @@ class Context(Container):
 
         ::
 
-            >>> context
-            Context()
+            >>> context = scoretools.Context(
+            ...     name='MeterVoice',
+            ...     context_name='TimeSignatureContext',
+            ...     )
+            >>> repr(context)
+            'Context()'
 
         Returns string.
         '''
