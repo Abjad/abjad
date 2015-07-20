@@ -43,8 +43,7 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     #'sphinx.ext.viewcode',
-    'abjad.docs.ext.abjad_book',
-    'abjad.docs.ext.abjad_lineage',
+    'abjad.docs.ext.abjadbook',
     'abjad.docs.ext.style',
     ]
 
