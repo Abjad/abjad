@@ -13,7 +13,6 @@ from abjad.tools import tonalanalysistools
 
 # TODO: make these work
 ignored_classes = (
-    documentationtools.Pipe,
     lilypondparsertools.LilyPondParser,
     lilypondparsertools.ReducedLyParser,
     lilypondparsertools.SchemeParser,
