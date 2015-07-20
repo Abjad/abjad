@@ -322,7 +322,7 @@ class PayloadTree(AbjadObject):
 
         ::
 
-            >>> topleveltools.graph(graph) # doctest: +SKIP
+            >>> topleveltools.graph(tree) # doctest: +SKIP
 
         Returns graphviz graph.
         '''
