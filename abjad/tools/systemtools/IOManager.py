@@ -484,7 +484,7 @@ class IOManager(object):
             ::
 
                 >>> expr = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-                >>> IOManager.profile_expr(expr) # doctest: +SKIP
+                >>> systemtools.IOManager.profile_expr(expr) # doctest: +SKIP
                 Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
                         2852 function calls (2829 primitive calls) in 0.006 CPU seconds
@@ -682,8 +682,8 @@ class IOManager(object):
 
             ::
 
-                >>> file_path = '/project/output/example-1.ly'
-                >>> IOManager.save_last_ly_as(file_path) # doctest: +SKIP
+                >>> file_path = '~/example-1.ly'
+                >>> systemtools.IOManager.save_last_ly_as(file_path) # doctest: +SKIP
 
         Returns none.
         '''
@@ -713,8 +713,8 @@ class IOManager(object):
 
             ::
 
-                >>> file_path = '/project/output/example-1.pdf'
-                >>> IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
+                >>> file_path = '~/example-1.pdf'
+                >>> systemtools.IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
 
         Returns none.
         '''
@@ -743,7 +743,7 @@ class IOManager(object):
             ::
 
                 >>> command = 'echo "hello world"'
-                >>> IOManager.spawn_subprocess(command) # doctest: +SKIP
+                >>> systemtools.IOManager.spawn_subprocess(command) # doctest: +SKIP
                 hello world
 
         The function is basically a reimplementation of the
