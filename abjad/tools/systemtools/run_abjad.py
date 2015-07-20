@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import os
 import sys
 
 
@@ -16,8 +15,9 @@ def run_abjad():
         file_name = ''
 
     commands = (
+        "from __future__ import print_function;",
         "from abjad import *;",
-        "print abjad_configuration.get_abjad_startup_string();",
+        "print(abjad_configuration.get_abjad_startup_string());",
         )
     commands = ' '.join(commands)
 
