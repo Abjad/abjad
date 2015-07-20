@@ -223,6 +223,7 @@ class TestManager(object):
         massaged_lines = []
         for split_line in split_lines:
             massaged_line = split_line[indent_width:]
+            massaged_line = massaged_line.rstrip()
             massaged_lines.append(massaged_line)
         massaged_string = '\n'.join(massaged_lines)
         return massaged_string
