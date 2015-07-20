@@ -11,7 +11,9 @@ def requires(*tests):
         ::
 
             >>> @systemtools.requires(
-            ...     mathtools.is_nonnegative_integer, string) # doctest: +SKIP
+            ...     mathtools.is_nonnegative_integer,
+            ...    str,
+            ...    ) # doctest: +SKIP
             >>> def multiply_string(n, string):
             ...     return n * string
             ...

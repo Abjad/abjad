@@ -143,7 +143,7 @@ class IOManager(object):
 
             ::
 
-                >>> IOManager.find_executable('python2.7') # doctest: +SKIP
+                >>> systemtools.IOManager.find_executable('python2.7') # doctest: +SKIP
                 ['/usr/bin/python2.7']
 
         Returns list of zero or more full paths to `name`.

@@ -96,7 +96,7 @@ def _replace_line_with_format(most_lines, last_line):
     exec(most_lines)
     last_variable = last_line[2:-1]
     exec(most_lines)
-    exec('__x = %s.format' % last_variable)
+    exec('__x = format(%s)' % last_variable)
     return __x
 
 
