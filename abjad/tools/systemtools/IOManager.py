@@ -321,25 +321,6 @@ class IOManager(object):
         r'''Opens LilyPond log file in operating system-specific text
         editor.
 
-        ..  container:: example
-
-            ::
-
-                >>> systemtools.IOManager.open_last_log() # doctest: +SKIP
-
-            ::
-
-                GNU LilyPond 2.19.2
-                Processing `0440.ly'
-                Parsing...
-                Interpreting music...
-                Preprocessing graphical objects...
-                Finding the ideal number of pages...
-                Fitting music on 1 page...
-                Drawing systems...
-                Layout output to `0440.ps'...
-                Converting to `./0440.pdf'...
-
         Returns none.
         '''
         from abjad import abjad_configuration
@@ -352,35 +333,6 @@ class IOManager(object):
     @staticmethod
     def open_last_ly(target=-1):
         r'''Opens last LilyPond output file produced by Abjad.
-
-        ..  container:: example
-
-            Opens the last LilyPond output file:
-
-            ::
-
-                >>> systemtools.IOManager.open_last_ly() # doctest: +SKIP
-
-            ::
-
-                % 2014-02-12 14:29
-
-                \version "2.19.2"
-                \language "english"
-
-                \header {
-                    tagline = \markup {}
-                }
-
-                \layout {}
-
-                \paper {}
-
-                \score {
-                    {
-                        c'4
-                    }
-                }
 
         Uses operating-specific text editor.
 
@@ -484,7 +436,10 @@ class IOManager(object):
             ::
 
                 >>> expr = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-                >>> systemtools.IOManager.profile_expr(expr) # doctest: +SKIP
+                >>> systemtools.IOManager.profile_expr(
+                ...     expr,
+                ...     global_context=globals(),
+                ...     ) # doctest: +SKIP
                 Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
                         2852 function calls (2829 primitive calls) in 0.006 CPU seconds
@@ -678,13 +633,6 @@ class IOManager(object):
     def save_last_ly_as(file_path):
         r'''Saves last LilyPond file created by Abjad as `file_path`.
 
-        ..  container:: example
-
-            ::
-
-                >>> file_path = '~/example-1.ly'
-                >>> systemtools.IOManager.save_last_ly_as(file_path) # doctest: +SKIP
-
         Returns none.
         '''
         from abjad import abjad_configuration
@@ -709,13 +657,6 @@ class IOManager(object):
     def save_last_pdf_as(file_path):
         r'''Saves last PDF created by Abjad as `file_path`.
 
-        ..  container:: example
-
-            ::
-
-                >>> file_path = '~/example-1.pdf'
-                >>> systemtools.IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
-
         Returns none.
         '''
         from abjad import abjad_configuration
@@ -737,14 +678,6 @@ class IOManager(object):
     @staticmethod
     def spawn_subprocess(command):
         r'''Spawns subprocess and runs `command`.
-
-        ..  container:: example
-
-            ::
-
-                >>> command = 'echo "hello world"'
-                >>> systemtools.IOManager.spawn_subprocess(command) # doctest: +SKIP
-                hello world
 
         The function is basically a reimplementation of the
         deprecated ``os.system()`` using Python's ``subprocess`` module.
