@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import inspect
-import os
 from abjad.tools import documentationtools
 
 
@@ -8,12 +7,10 @@ def get_developer_script_classes():
     r'''Returns a list of all developer script classes.
     '''
     from abjad.tools import developerscripttools
-    from abjad.tools import abjadbooktools
 
     tools_package_paths = [
-        abjadbooktools.__path__[0],
         developerscripttools.__path__[0],
-    ]
+        ]
     script_classes = []
     for tools_package_path in tools_package_paths:
         developer_script_classes = documentationtools.ClassCrawler(
