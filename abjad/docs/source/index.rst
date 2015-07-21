@@ -11,8 +11,6 @@ Welcome to Abjad (|release|)
     Abjad wraps the powerful LilyPond music notation package, you can use Abjad
     to control the typographic details of the symbols on the page.
 
-    .. image:: examples/ferneyhough/images/ferneyhough.png
-
 .. only:: html or latex
 
    .. toctree::
