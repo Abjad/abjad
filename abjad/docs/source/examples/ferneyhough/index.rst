@@ -26,16 +26,13 @@ The proportions
 
 First we define proportions:
 
-::
+..  abjad::
 
-   >>> proportions = [(1, n) for n in range(1, 11 + 1)]
+    proportions = [(1, n) for n in range(1, 11 + 1)]
 
+..  abjad::
 
-::
-
-   >>> proportions
-   [(1, 1), (1, 2), (1, 3), (1, 4), (1, 5), (1, 6), (1, 7), (1, 8), (1, 9), (1, 10), (1, 11)]
-
+    proportions
 
 The transforms
 --------------
@@ -43,51 +40,25 @@ The transforms
 Next we'll show how to divide a quarter note into various ratios, and then
 divide the final `logical tie` of the resulting tuplet into yet another ratio:
 
-::
+..  import:: abjad.demos.ferneyhough.make_nested_tuplet:make_nested_tuplet
 
-   def make_nested_tuplet(
-       tuplet_duration,
-       outer_tuplet_proportions,
-       inner_tuplet_subdivision_count,
-       ):
-       r'''Makes nested tuplet.
-       '''
-   
-       outer_tuplet = Tuplet.from_duration_and_ratio(
-           tuplet_duration, outer_tuplet_proportions)
-       inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
-       last_leaf = outer_tuplet.select_leaves()[-1]
-       right_logical_tie = inspect_(last_leaf).get_logical_tie()
-       right_logical_tie.to_tuplet(inner_tuplet_proportions)
-       return outer_tuplet
+..  abjad::
 
+    tuplet = make_nested_tuplet(Duration(1, 4), (1, 1), 5)
+    staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
+    show(staff)
 
-::
+..  abjad::
 
-   >>> tuplet = make_nested_tuplet(Duration(1, 4), (1, 1), 5)
-   >>> staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
-   >>> show(staff)
+    tuplet = make_nested_tuplet(Duration(1, 4), (2, 1), 5)
+    staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
+    show(staff)
 
-.. image:: images/index-1.png
+..  abjad::
 
-
-::
-
-   >>> tuplet = make_nested_tuplet(Duration(1, 4), (2, 1), 5)
-   >>> staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
-   >>> show(staff)
-
-.. image:: images/index-2.png
-
-
-::
-
-   >>> tuplet = make_nested_tuplet(Duration(1, 4), (3, 1), 5)
-   >>> staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
-   >>> show(staff)
-
-.. image:: images/index-3.png
-
+    tuplet = make_nested_tuplet(Duration(1, 4), (3, 1), 5)
+    staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
+    show(staff)
 
 A `logical tie` is a selection of notes or chords connected by ties. It lets us
 talk about a notated rhythm of ``5/16``, for example, which can not be expressed
@@ -96,23 +67,17 @@ with only a single leaf.
 Note how we can divide a tuplet whose outer proportions are ``3/5``, where
 the second `logical tie` requires two notes to express the ``5/16`` duration:
 
-::
+..  abjad::
 
-   >>> normal_tuplet = Tuplet.from_duration_and_ratio(Duration(1, 4), (3, 5))
-   >>> staff = scoretools.Staff([normal_tuplet], context_name='RhythmicStaff')
-   >>> show(staff)
+    normal_tuplet = Tuplet.from_duration_and_ratio(Duration(1, 4), (3, 5))
+    staff = scoretools.Staff([normal_tuplet], context_name='RhythmicStaff')
+    show(staff)
 
-.. image:: images/index-4.png
+..  abjad::
 
-
-::
-
-   >>> subdivided_tuplet = make_nested_tuplet(Duration(1, 4), (3, 5), 3)
-   >>> staff = scoretools.Staff([subdivided_tuplet], context_name='RhythmicStaff')
-   >>> show(staff)
-
-.. image:: images/index-5.png
-
+    subdivided_tuplet = make_nested_tuplet(Duration(1, 4), (3, 5), 3)
+    staff = scoretools.Staff([subdivided_tuplet], context_name='RhythmicStaff')
+    show(staff)
 
 The rhythms
 -----------
@@ -122,75 +87,33 @@ tuplets all at once.
 
 We'll set the duration of each tuplet equal to a quarter note:
 
-::
+..  abjad::
 
-   >>> duration = Fraction(1, 4)
-
+    duration = Fraction(1, 4)
 
 And then we make one row of rhythms, with the last `logical tie` increasingly
 subdivided:
 
-::
+..  import:: abjad.demos.ferneyhough.make_row_of_nested_tuplets:make_row_of_nested_tuplets
 
-   def make_row_of_nested_tuplets(
-       tuplet_duration,
-       outer_tuplet_proportions,
-       column_count,
-       ):
-       r'''Makes row of nested tuplets.
-       '''
-   
-       assert 0 < column_count
-       row_of_nested_tuplets = []
-       for n in range(column_count):
-           inner_tuplet_subdivision_count = n + 1
-           nested_tuplet = make_nested_tuplet(
-               tuplet_duration,
-               outer_tuplet_proportions,
-               inner_tuplet_subdivision_count,
-               )
-           row_of_nested_tuplets.append(nested_tuplet)
-       return row_of_nested_tuplets
+..  abjad::
 
-
-::
-
-   >>> tuplets = make_row_of_nested_tuplets(duration, (2, 1), 6)
-   >>> staff = scoretools.Staff(tuplets, context_name='RhythmicStaff')
-   >>> show(staff)
-
-.. image:: images/index-6.png
-
+    tuplets = make_row_of_nested_tuplets(duration, (2, 1), 6)
+    staff = scoretools.Staff(tuplets, context_name='RhythmicStaff')
+    show(staff)
 
 If we can make one single row of rhythms, we can make many rows of rhythms.
 Let's try:
 
-::
+..  import:: abjad.demos.ferneyhough.make_rows_of_nested_tuplets:make_rows_of_nested_tuplets
 
-   def make_rows_of_nested_tuplets(tuplet_duration, row_count, column_count):
-       r'''Makes rows of nested tuplets.
-       '''
-   
-       assert 0 < row_count
-       rows_of_nested_tuplets = []
-       for n in range(row_count):
-           outer_tuplet_proportions = (1, n + 1)
-           row_of_nested_tuplets = make_row_of_nested_tuplets(
-               tuplet_duration, outer_tuplet_proportions, column_count)
-           rows_of_nested_tuplets.append(row_of_nested_tuplets)
-       return rows_of_nested_tuplets
+..  abjad::
 
+    score = Score()
+    for tuplet_row in make_rows_of_nested_tuplets(duration, 4, 6):
+        score.append(scoretools.Staff(tuplet_row, context_name='RhythmicStaff'))
 
-::
-
-   >>> score = Score()
-   >>> for tuplet_row in make_rows_of_nested_tuplets(duration, 4, 6):
-   ...     score.append(scoretools.Staff(tuplet_row, context_name='RhythmicStaff'))
-   ... 
-   >>> show(score)
-
-.. image:: images/index-7.png
-
+    show(score)
 
 That's getting close to what we want, but the typography isn't as good as it
 could be.
@@ -201,61 +124,21 @@ The score
 First we'll package up the logic for making the un-styled score into a single
 function:
 
-::
+..  import:: abjad.demos.ferneyhough.make_score:make_score
 
-   def make_score(tuplet_duration, row_count, column_count):
-       r'''Makes score.
-       '''
-   
-       score = Score()
-       rows_of_nested_tuplets = make_rows_of_nested_tuplets(
-           tuplet_duration, row_count, column_count)
-       for row_of_nested_tuplets in rows_of_nested_tuplets:
-           staff = Staff(row_of_nested_tuplets)
-           staff.context_name = 'RhythmicStaff'
-           time_signature = indicatortools.TimeSignature((1, 4))
-           attach(time_signature, staff)
-           score.append(staff)
-       return score
+..  abjad::
 
-
-::
-
-   >>> score = make_score(Duration(1, 4), 4, 6)
-   >>> show(score)
-
-.. image:: images/index-8.png
-
+    score = make_score(Duration(1, 4), 4, 6)
+    show(score)
 
 Then we'll apply some formatting overrides to improve its overall appearance:
 
-::
+..  import:: abjad.demos.ferneyhough.configure_score:configure_score
 
-   def configure_score(score):
-       r'''Configured score.
-       '''
-   
-       moment = schemetools.SchemeMoment(1, 56)
-       set_(score).proportional_notation_duration = moment
-       set_(score).tuplet_full_length = True
-       override(score).bar_line.stencil = False
-       override(score).bar_number.transparent = True
-       override(score).spacing_spanner.uniform_stretching = True
-       override(score).spacing_spanner.strict_note_spacing = True
-       override(score).time_signature.stencil = False
-       override(score).tuplet_bracket.padding = 2
-       override(score).tuplet_bracket.staff_padding = 4
-       scheme = schemetools.Scheme('tuplet-number::calc-fraction-text')
-       override(score).tuplet_number.text = scheme
+..  abjad::
 
-
-::
-
-   >>> configure_score(score)
-   >>> show(score)
-
-.. image:: images/index-9.png
-
+    configure_score(score)
+    show(score)
 
 ..  note: Consult LilyPond's documentation on `proportional notation <http://www.lilypond.org/doc/v2.16/Documentation/notation/proportional-notation>`_
     to learn all about what the formatting overrides above do.
@@ -268,38 +151,11 @@ The LilyPond file
 
 Let's adjust the overall size of our output, and put everything together:
 
-::
+..  import:: abjad.demos.ferneyhough.make_lilypond_file:make_lilypond_file
 
-   def make_lilypond_file(tuplet_duration, row_count, column_count):
-       r'''Makes LilyPond file.
-       '''
-   
-       score = make_score(tuplet_duration, row_count, column_count)
-       configure_score(score)
-       lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-       configure_lilypond_file(lilypond_file)
-       return lilypond_file
+..  import:: abjad.demos.ferneyhough.configure_lilypond_file:configure_lilypond_file
 
+..  abjad::
 
-::
-
-   def configure_lilypond_file(lilypond_file):
-       r'''Configures LilyPond file.
-       '''
-   
-       lilypond_file.default_paper_size = '11x17', 'portrait'
-       lilypond_file.global_staff_size = 12
-       lilypond_file.layout_block.indent = 0
-       lilypond_file.layout_block.ragged_right = True
-       lilypond_file.paper_block.ragged_bottom = True
-       spacing_vector = layouttools.make_spacing_vector(0, 0, 8, 0)
-       lilypond_file.paper_block.system_system_spacing = spacing_vector
-
-
-::
-
-   >>> lilypond_file = make_lilypond_file(Duration(1, 4), 11, 6)
-   >>> show(lilypond_file)
-
-.. image:: images/index-10.png
-
+    lilypond_file = make_lilypond_file(Duration(1, 4), 11, 6)
+    show(lilypond_file)
