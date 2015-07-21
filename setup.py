@@ -65,7 +65,7 @@ if sys.version_info[0] == 2:
 extras_require = {
     'development': [
         'pytest',
-        'sphinx',
+        'sphinx==1.2.3',  # TODO: Remove version once Sphinx fixes https://github.com/sphinx-doc/sphinx/issues/1822
         'sphinx_rtd_theme',
         ]
     }
