@@ -457,7 +457,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
         result = []
         result.append('({!s} ('.format(self.preprolated_duration))
         for child in self:
-            result.extend(['\t' + x for x in child._pretty_rtm_format_pieces])
+            result.extend(['    ' + x for x in child._pretty_rtm_format_pieces])
         result[-1] = result[-1] + '))'
         return result
 
