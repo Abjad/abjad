@@ -218,6 +218,8 @@ class BuildApiScript(DeveloperScript):
         clean = args.clean
         rst_only = args.rst_only
         paths = []
+        if not any((args.mainline, args.experimental, args.ide)):
+            args.mainline = True
         if args.mainline:
             path = self._build_mainline_api(
                 api_format=api_format,
