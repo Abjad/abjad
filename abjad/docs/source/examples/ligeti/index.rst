@@ -54,27 +54,25 @@ The two "layers" of the *cell* we will model with two Voices inside a
 simultaneous Container. The top Voice will hold the octave "chord" while the
 lower Voice will hold the eighth note run. First the eighth notes:
 
-::
+..  abjad::
 
-   >>> pitches = [1,2,3]
-   >>> notes = scoretools.make_notes(pitches, [(1, 8)])
-   >>> beam = Beam()
-   >>> attach(beam, notes)
-   >>> slur = Slur()
-   >>> attach(slur, notes)
-   >>> dynamic = Dynamic('f')
-   >>> attach(dynamic, notes[0])
-   >>> dynamic = Dynamic('p')
-   >>> attach(dynamic, notes[1])
+    pitches = [1,2,3]
+    notes = scoretools.make_notes(pitches, [(1, 8)])
+    beam = Beam()
+    attach(beam, notes)
+    slur = Slur()
+    attach(slur, notes)
+    dynamic = Dynamic('f')
+    attach(dynamic, notes[0])
+    dynamic = Dynamic('p')
+    attach(dynamic, notes[1])
 
+..  abjad::
 
-::
-
-   >>> voice_lower = Voice(notes)
-   >>> voice_lower.name = 'rh_lower'
-   >>> command = indicatortools.LilyPondCommand('voiceTwo')
-   >>> attach(command, voice_lower)
-
+    voice_lower = Voice(notes)
+    voice_lower.name = 'rh_lower'
+    command = indicatortools.LilyPondCommand('voiceTwo')
+    attach(command, voice_lower)
 
 The notes belonging to the eighth note run are first beamed and slurred. Then
 we add the dynamics to the first two notes, and finally we put them inside
@@ -83,22 +81,20 @@ notes point down.
 
 Now we construct the octave:
 
-::
+..  abjad::
 
-   >>> import math
-   >>> n = int(math.ceil(len(pitches) / 2.))
-   >>> chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
-   >>> articulation = Articulation('>')
-   >>> attach(articulation, chord)
+    import math
+    n = int(math.ceil(len(pitches) / 2.))
+    chord = Chord([pitches[0], pitches[0] + 12], (n, 8))
+    articulation = Articulation('>')
+    attach(articulation, chord)
 
+..  abjad::
 
-::
-
-   >>> voice_higher = Voice([chord])
-   >>> voice_higher.name = 'rh_higher'
-   >>> command = indicatortools.LilyPondCommand('voiceOne')
-   >>> attach(command, voice_higher)
-
+    voice_higher = Voice([chord])
+    voice_higher.name = 'rh_higher'
+    command = indicatortools.LilyPondCommand('voiceOne')
+    attach(command, voice_higher)
 
 The duration of the chord is half the duration of the running eighth notes if
 the duration of the running notes is divisible by two. Otherwise the duration
@@ -108,70 +104,23 @@ number to 1, forcing the stem to always point up.
 
 Finally we combine the two voices in a simultaneous container:
 
-::
-
-   >>> container = Container([voice_lower, voice_higher])
-   >>> container.is_simultaneous = True
-
+..  abjad::
+    
+    container = Container([voice_lower, voice_higher])
+    container.is_simultaneous = True
 
 This results in the complete *Désordre* *cell*:
 
-::
-
-   >>> cell = Staff([container])
-   >>> show(cell)
-
-.. image:: images/index-1.png
-
+..  abjad::
+    
+    cell = Staff([container])
+    show(cell)
 
 Because this *cell* appears over and over again, we want to reuse this code to
 generate any number of these *cells*. We here encapsulate it in a function that
 will take only a list of pitches:
 
-::
-
-   def make_desordre_cell(pitches):
-       '''The function constructs and returns a *Désordre cell*.
-       `pitches` is a list of numbers or, more generally, pitch tokens.
-       '''
-   
-       notes = [scoretools.Note(pitch, (1, 8)) for pitch in pitches]
-       beam = spannertools.Beam()
-       attach(beam, notes)
-       slur = spannertools.Slur()
-       attach(slur, notes)
-       clef = indicatortools.Dynamic('f')
-       attach(clef, notes[0])
-       dynamic = indicatortools.Dynamic('p')
-       attach(dynamic, notes[1])
-   
-       # make the lower voice
-       lower_voice = scoretools.Voice(notes)
-       lower_voice.name = 'RH Lower Voice'
-       command = indicatortools.LilyPondCommand('voiceTwo')
-       attach(command, lower_voice)
-       n = int(math.ceil(len(pitches) / 2.))
-       chord = scoretools.Chord([pitches[0], pitches[0] + 12], (n, 8))
-       articulation = indicatortools.Articulation('>')
-       attach(articulation, chord)
-   
-       # make the upper voice
-       upper_voice = scoretools.Voice([chord])
-       upper_voice.name = 'RH Upper Voice'
-       command = indicatortools.LilyPondCommand('voiceOne')
-       attach(command, upper_voice)
-   
-       # combine them together
-       container = scoretools.Container([lower_voice, upper_voice])
-       container.is_simultaneous = True
-   
-       # make all 1/8 beats breakable
-       for leaf in lower_voice.select_leaves()[:-1]:
-           bar_line = indicatortools.BarLine('')
-           attach(bar_line, leaf)
-   
-       return container
-
+..  import:: abjad.demos.desordre.make_desordre_cell:make_desordre_cell
 
 Now we can call this function to create any number of *cells*. That was
 actually the hardest part of reconstructing the opening of Ligeti's *Désordre*.
@@ -184,25 +133,7 @@ The measure
 
 We define a function to create a measure from a list of lists of numbers:
 
-::
-
-   def make_desordre_measure(pitches):
-       '''Makes a measure composed of *Désordre cells*.
-   
-       `pitches` is a list of lists of number (e.g., [[1, 2, 3], [2, 3, 4]])
-   
-       The function returns a measure.
-       '''
-   
-       for sequence in pitches:
-           container = make_desordre_cell(sequence)
-           time_signature = inspect_(container).get_duration()
-           time_signature = mathtools.NonreducedFraction(time_signature)
-           time_signature = time_signature.with_denominator(8)
-           measure = scoretools.Measure(time_signature, [container])
-   
-       return measure
-
+..  import:: abjad.demos.desordre.make_desordre_measure:make_desordre_measure
 
 The function is very simple. It simply creates a DynamicMeasure and then
 populates it with *cells* that are created internally with the function
@@ -214,33 +145,19 @@ directly, but we are building the hierarchy of functions so that we can pass
 simple lists of lists of numbers to generate the full structure.  To construct
 a Ligeti measure we would call the function like so:
 
-::
+..  abjad::
 
-   >>> pitches = [[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]]
-   >>> measure = make_desordre_measure(pitches)
-   >>> staff = Staff([measure])
-   >>> show(staff)
-
-.. image:: images/index-2.png
-
+    pitches = [[0, 4, 7], [0, 4, 7, 9], [4, 7, 9, 11]]
+    measure = make_desordre_measure(pitches)
+    staff = Staff([measure])
+    show(staff)
 
 The staff
 ---------
 
 Now we move up to the next level, the staff:
 
-::
-
-   def make_desordre_staff(pitches):
-       r'''Makes Désordre staff.
-       '''
-   
-       staff = scoretools.Staff()
-       for sequence in pitches:
-           measure = make_desordre_measure(sequence)
-           staff.append(measure)
-       return staff
-
+..  import:: abjad.demos.desordre.make_desordre_staff:make_desordre_staff
 
 The function again takes a plain list as argument. The list must be a list of
 lists (for measures) of lists (for cells) of pitches. The function simply
@@ -248,14 +165,11 @@ constructs the Ligeti measures internally by calling our previously defined
 function and puts them inside a Staff.  As with measures, we can now create
 full measure sequences with this new function:
 
-::
+..  abjad::
 
-   >>> pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
-   >>> staff = make_desordre_staff(pitches)
-   >>> show(staff)
-
-.. image:: images/index-3.png
-
+    pitches = [[[-1, 4, 5], [-1, 4, 5, 7, 9]], [[0, 7, 9], [-1, 4, 5, 7, 9]]]
+    staff = make_desordre_staff(pitches)
+    show(staff)
 
 The score
 ---------
@@ -263,31 +177,7 @@ The score
 Finally a function that will generate the whole opening section of the piece
 *Désordre*:
 
-::
-
-   def make_desordre_score(pitches):
-       '''Returns a complete piano staff with Ligeti music.
-       '''
-   
-       assert len(pitches) == 2
-       piano_staff = scoretools.PianoStaff()
-   
-       # build the music
-       for hand in pitches:
-           staff = make_desordre_staff(hand)
-           piano_staff.append(staff)
-   
-       # set clef and key signature to left hand staff
-       clef = indicatortools.Clef('bass')
-       attach(clef, piano_staff[1])
-       key_signature = KeySignature('b', 'major')
-       attach(key_signature, piano_staff[1])
-   
-       # wrap the piano staff in a score
-       score = scoretools.Score([piano_staff])
-   
-       return score
-
+..  import:: abjad.demos.desordre.make_desordre_score:make_desordre_score
 
 The function creates a PianoStaff, constructs Staves with Ligeti music and
 appends these to the empty PianoStaff. Finally it sets the clef and key
@@ -297,59 +187,51 @@ corresponds to the upper staff, the second to the lower staff.
 
 The final result:
 
-::
+..  abjad::
 
-   >>> top = [
-   ...     [[-1, 4, 5], [-1, 4, 5, 7, 9]], 
-   ...     [[0, 7, 9], [-1, 4, 5, 7, 9]], 
-   ...     [[2, 4, 5, 7, 9], [0, 5, 7]], 
-   ...     [[-3, -1, 0, 2, 4, 5, 7]], 
-   ...     [[-3, 2, 4], [-3, 2, 4, 5, 7]], 
-   ...     [[2, 5, 7], [-3, 9, 11, 12, 14]], 
-   ...     [[4, 5, 7, 9, 11], [2, 4, 5]], 
-   ...     [[-5, 4, 5, 7, 9, 11, 12]], 
-   ...     [[2, 9, 11], [2, 9, 11, 12, 14]],
-   ...     ]
+    top = [
+        [[-1, 4, 5], [-1, 4, 5, 7, 9]], 
+        [[0, 7, 9], [-1, 4, 5, 7, 9]], 
+        [[2, 4, 5, 7, 9], [0, 5, 7]], 
+        [[-3, -1, 0, 2, 4, 5, 7]], 
+        [[-3, 2, 4], [-3, 2, 4, 5, 7]], 
+        [[2, 5, 7], [-3, 9, 11, 12, 14]], 
+        [[4, 5, 7, 9, 11], [2, 4, 5]], 
+        [[-5, 4, 5, 7, 9, 11, 12]], 
+        [[2, 9, 11], [2, 9, 11, 12, 14]],
+        ]
 
+..  abjad::
 
-::
+    bottom = [
+        [[-9, -4, -2], [-9, -4, -2, 1, 3]], 
+        [[-6, -2, 1], [-9, -4, -2, 1, 3]], 
+        [[-4, -2, 1, 3, 6], [-4, -2, 1]], 
+        [[-9, -6, -4, -2, 1, 3, 6, 1]], 
+        [[-6, -2, 1], [-6, -2, 1, 3, -2]], 
+        [[-4, 1, 3], [-6, 3, 6, -6, -4]], 
+        [[-14, -11, -9, -6, -4], [-14, -11, -9]], 
+        [[-11, -2, 1, -6, -4, -2, 1, 3]], 
+        [[-6, 1, 3], [-6, -4, -2, 1, 3]],
+        ]
 
-   >>> bottom = [
-   ...     [[-9, -4, -2], [-9, -4, -2, 1, 3]], 
-   ...     [[-6, -2, 1], [-9, -4, -2, 1, 3]], 
-   ...     [[-4, -2, 1, 3, 6], [-4, -2, 1]], 
-   ...     [[-9, -6, -4, -2, 1, 3, 6, 1]], 
-   ...     [[-6, -2, 1], [-6, -2, 1, 3, -2]], 
-   ...     [[-4, 1, 3], [-6, 3, 6, -6, -4]], 
-   ...     [[-14, -11, -9, -6, -4], [-14, -11, -9]], 
-   ...     [[-11, -2, 1, -6, -4, -2, 1, 3]], 
-   ...     [[-6, 1, 3], [-6, -4, -2, 1, 3]],
-   ...     ]
+..  abjad::
 
+    score = make_desordre_score([top, bottom])
 
-::
+..  abjad::
 
-   >>> score = make_desordre_score([top, bottom])
+    lilypond_file = documentationtools.make_ligeti_example_lilypond_file(score)
 
+..  abjad::
 
-::
-
-   >>> from abjad.tools import documentationtools
-   >>> lilypond_file = documentationtools.make_ligeti_example_lilypond_file(score)
-
-
-::
-
-   >>> show(lilypond_file)
-
-.. image:: images/index-4.png
-
+    show(lilypond_file)
 
 Now that we have the redundant aspect of the piece compactly expressed and
 encapsulated, we can play around with it by changing the sequence of pitches.
 
 In order for each staff to carry its own sequence of independent measure
-changes, LilyPond requires some special set-up prior to rendering.
+changes, LilyPond requires some special set_ up prior to rendering.
 Specifically, one must move the LilyPond ``Timing_translator`` out from the
 score context and into the staff context.
 
