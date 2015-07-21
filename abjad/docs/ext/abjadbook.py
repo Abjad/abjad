@@ -2,4 +2,4 @@ import abjadbook
 
 
 def setup(app):
-    abjadbook.DoctreeDocumentHandler.setup_sphinx_extension(app)
+    abjadbook.SphinxDocumentHandler.setup_sphinx_extension(app)
