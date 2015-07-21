@@ -42,6 +42,8 @@ class AbjadConfiguration(Configuration):
 
     ### CLASS VARIABLES ###
 
+    _lilypond_version_string = None
+
     __slots__ = (
         )
 
@@ -210,6 +212,8 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         from abjad import abjad_configuration
+        if AbjadConfiguration._lilypond_version_string is not None:
+            return AbjadConfiguration._lilypond_version_string
         if subprocess.mswindows and not 'LilyPond' in os.environ.get('PATH'):
             command = r'dir "C:\Program Files\*.exe" /s /b | find "lilypond.exe"'
             proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -232,6 +236,7 @@ class AbjadConfiguration(Configuration):
             lilypond_version_string = proc.stdout.readline().decode(encoding)
         lilypond_version_string = lilypond_version_string.split(' ')[-1]
         lilypond_version_string = lilypond_version_string.strip()
+        AbjadConfiguration._lilypond_version_string = lilypond_version_string
         return lilypond_version_string
 
     @staticmethod
