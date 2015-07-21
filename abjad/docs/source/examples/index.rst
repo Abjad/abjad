@@ -1,12 +1,10 @@
 Examples
 ========
 
-..  container:: two-column
+..  toctree::
 
-    ..  toctree::
-
-        bartok/index
-        ferneyhough/index
-        ligeti/index
-        mozart/index
-        part/index
+    bartok/index
+    ferneyhough/index
+    ligeti/index
+    mozart/index
+    part/index
