@@ -475,8 +475,10 @@ class Meter(AbjadObject):
 
                 >>> print(str(meter_graph))
                 digraph G {
-                    graph [fontname=Arial,
-                        penwidth=2];
+                    graph [bgcolor=transparent,
+                        fontname=Arial,
+                        penwidth=2,
+                        truecolor=true];
                     node [fontname=Arial,
                         fontsize=12,
                         penwidth=2];
@@ -635,8 +637,10 @@ class Meter(AbjadObject):
         graph = documentationtools.GraphvizGraph(
             name='G',
             attributes={
+                'bgcolor': 'transparent',
                 'fontname': 'Arial',
                 'penwidth': 2,
+                'truecolor': True,
                 },
             edge_attributes={
                 'penwidth': 2,

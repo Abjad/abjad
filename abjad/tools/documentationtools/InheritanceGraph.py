@@ -180,6 +180,7 @@ class InheritanceGraph(AbjadObject):
         graph = documentationtools.GraphvizGraph(
             name='InheritanceGraph',
             attributes={
+                'bgcolor': 'transparent',
                 'color': 'lightslategrey',
                 'fontname': 'Arial',
                 'outputorder': 'edgesfirst',
@@ -188,6 +189,7 @@ class InheritanceGraph(AbjadObject):
                 #'ranksep': 0.5,
                 'splines': 'spline',
                 'style': ('dotted', 'rounded'),
+                'truecolor': True,
                 },
             edge_attributes={
                 'color': 'lightsteelblue2',

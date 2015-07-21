@@ -258,6 +258,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             >>> graph = tree.__graph__()
             >>> print(str(graph))
             digraph G {
+                graph [bgcolor=transparent,
+                    truecolor=true];
                 node_0 [label=1,
                     shape=triangle];
                 node_1 [label=1,
@@ -286,7 +288,13 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         Return `GraphvizGraph` instance.
         '''
-        graph = documentationtools.GraphvizGraph(name='G')
+        graph = documentationtools.GraphvizGraph(
+            name='G',
+            attributes={
+                'bgcolor': 'transparent',
+                'truecolor': True,
+                },
+            )
         node_mapping = {}
         for node in self.nodes:
             graphviz_node = documentationtools.GraphvizNode()

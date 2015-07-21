@@ -277,9 +277,11 @@ class PayloadTree(AbjadObject):
 
         ::
 
-            >>> graph = tree.__graph__()
-            >>> print(str(graph))
+            >>> tree_graph = tree.__graph__()
+            >>> print(str(tree_graph))
             digraph G {
+                graph [bgcolor=transparent,
+                    truecolor=true];
                 node_0 [label="",
                     shape=circle];
                 node_1 [label="",
@@ -322,12 +324,18 @@ class PayloadTree(AbjadObject):
 
         ::
 
-            >>> topleveltools.graph(tree) # doctest: +SKIP
+            >>> graph(tree) # doctest: +SKIP
 
         Returns graphviz graph.
         '''
         from abjad.tools import documentationtools
-        graph = documentationtools.GraphvizGraph(name='G')
+        graph = documentationtools.GraphvizGraph(
+            attributes={
+                'bgcolor': 'transparent',
+                'truecolor': True,
+                },
+            name='G',
+            )
         node_mapping = {}
         for node in self.iterate_depth_first():
             graphviz_node = documentationtools.GraphvizNode()
