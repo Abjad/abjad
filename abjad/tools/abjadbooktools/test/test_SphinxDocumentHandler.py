@@ -509,4 +509,4 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         'templatetools', 'timespantools',
                         'tonalanalysistools', 'topleveltools']
                 """)
-        assert actual == target
+        assert actual == target, actual
