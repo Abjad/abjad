@@ -27,7 +27,7 @@ Entering commands
 
 Type the following at the interpreter's prompt::
 
-    >>> print 'hello, world!'
+    >>> print('hello, world!')
     hello, world!
 
 Python responds by printing ``hello, world!`` to the terminal.
@@ -36,7 +36,9 @@ Python responds by printing ``hello, world!`` to the terminal.
 Stopping the interpreter
 ------------------------
 
-Type ``quit()``. Or type the two-key combination ``ctrl+D``::
+Type ``quit()``. Or type the two-key combination ``ctrl+D``:
+
+::
 
     >>> quit()
 
