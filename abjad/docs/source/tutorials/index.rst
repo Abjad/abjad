@@ -1,35 +1,31 @@
 Tutorials
 =========
 
-First steps with Python, LilyPond and Abjad
--------------------------------------------
+Introducing Python, LilyPond and Abjad
+--------------------------------------
 
-..  container:: two-column
+..  toctree::
+    :numbered:
 
-    ..  toctree::
-        :numbered:
-
-        getting_started/index
-        lilypond_hello_world/index
-        python_hello_world_at_the_interpreter/index
-        python_hello_world_in_a_file/index
-        more_about_python/index
-        abjad_hello_world_at_the_interpreter/index
-        abjad_hello_world_in_a_file/index
-        more_about_abjad/index
+    getting_started
+    lilypond_hello_world
+    python_hello_world_at_the_interpreter
+    python_hello_world_in_a_file
+    more_about_python
+    abjad_hello_world_at_the_interpreter
+    abjad_hello_world_in_a_file
+    more_about_abjad
 
 Working with notation
 ---------------------
 
-..  container:: two-column
+..  toctree::
+    :numbered:
 
-    ..  toctree::
-        :numbered:
-
-        working_with_lists_of_numbers/index
-        changing_notes_to_rests/index
-        creating_rest_delimited_slurs/index
-        mapping_lists_to_rhythms/index
-        overriding_lilypond_grobs/index
-        working_with_component_parentage/index
-        working_with_logical_voices/index
+    working_with_lists_of_numbers
+    changing_notes_to_rests
+    creating_rest_delimited_slurs
+    mapping_lists_to_rhythms
+    overriding_lilypond_grobs
+    working_with_component_parentage
+    working_with_logical_voices
