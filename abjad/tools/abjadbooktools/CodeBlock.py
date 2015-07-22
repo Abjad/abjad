@@ -4,9 +4,9 @@ import types
 import importlib
 import inspect
 import textwrap
-from sphinx.util.console import bold, red
 from abjad.tools import abctools
 from abjad.tools import systemtools
+from sphinx.util.console import bold, red
 
 
 class CodeBlock(abctools.AbjadValueObject):

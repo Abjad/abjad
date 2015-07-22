@@ -14,6 +14,7 @@ from docutils.frontend import OptionParser
 from docutils.parsers.rst import Parser
 from docutils.parsers.rst import directives
 from docutils.utils import new_document
+from sphinx.util.console import bold, darkgray, purple
 
 
 class SphinxDocumentHandler(abctools.AbjadObject):
@@ -44,6 +45,16 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def on_doctree_read(app, document):
         import abjad
         from abjad.tools import abjadbooktools
+        if SphinxDocumentHandler.should_ignore_document(app, document):
+            print()
+            source = document['source']
+            source = os.path.relpath(source)
+            source, _ = os.path.splitext(source)
+            message = darkgray('skipping abjad-book parsing for ')
+            message += purple(source)
+            message = bold(message)
+            print(message)
+            return
         try:
             #if 'api' not in document['source']:
             #    return
@@ -332,6 +343,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     @staticmethod
     def setup_sphinx_extension(app):
         from abjad.tools import abjadbooktools
+        app.add_config_value('abjadbook_ignored_documents', (), 'env')
         app.add_directive('abjad', abjadbooktools.AbjadDirective)
         app.add_directive('import', abjadbooktools.ImportDirective)
         app.add_directive('shell', abjadbooktools.ShellDirective)
@@ -355,6 +367,20 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     def unregister_error(self):
         self._errored = False
+
+    @staticmethod
+    def should_ignore_document(app, document):
+        if not app.config.abjadbook_ignored_documents:
+            return False
+        source = document['source']
+        for pattern in app.config.abjadbook_ignored_documents:
+            if isinstance(pattern, str):
+                if pattern in source:
+                    return True
+            else:
+                if pattern.match(source) is not None:
+                    return True
+        return False
 
     ### PUBLIC PROPERTIES ###
 

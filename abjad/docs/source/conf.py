@@ -328,3 +328,7 @@ inheritance_graph_attrs = {
 
 graphviz_dot_args = ['-s32']
 graphviz_output_format = 'svg'
+
+abjadbook_ignored_documents = (
+    'version_history',
+    )
