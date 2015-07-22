@@ -24,8 +24,7 @@ Abjad numbers pitches like this:
     for pitch in pitches:
         note = Note(pitch, duration)
         rest = Rest(duration)
-        clef = pitchtools.suggest_clef_for_named_pitches([note.written_pitch])
-        if clef == indicatortools.Clef('treble'):
+        if 0 <= note.written_pitch.pitch_number:
             treble_staff.append(note)
             bass_staff.append(rest)
         else:
@@ -81,8 +80,7 @@ Abjad numbers diatonic pitches like this:
     for pitch in pitches:
         note = Note(pitch, duration)
         rest = Rest(duration)
-        clef = pitchtools.suggest_clef_for_named_pitches([note.written_pitch])
-        if clef == indicatortools.Clef('treble'):
+        if 0 <= note.written_pitch.pitch_number:
             treble_staff.append(note)
             bass_staff.append(rest)
         else:
