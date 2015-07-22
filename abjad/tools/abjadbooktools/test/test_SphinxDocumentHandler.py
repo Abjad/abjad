@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import abjadbooktools
-import unittest
 from abjad.tools import systemtools
+import sys
+import unittest
 
 
 class SphinxDocumentHandlerTests(unittest.TestCase):
@@ -415,50 +416,97 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         document = handler.parse_rst(self.source_four)
         handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
-        target = systemtools.TestManager.clean_string(
-            r"""
-            <document source="test">
-                <literal_block xml:space="preserve">
-                    >>> dir()
-                    ['Accelerando', 'Articulation', 'Beam',
-                    'Chord', 'Clef', 'Container', 'Context',
-                    'Crescendo', 'Decrescendo', 'Duration',
-                    'Dynamic', 'Fermata', 'Fraction',
-                    'Glissando', 'Hairpin', 'KeySignature',
-                    'Markup', 'Measure', 'MultimeasureRest',
-                    'Multiplier', 'NamedPitch', 'Note',
-                    'Offset', 'Rest', 'Ritardando', 'Score',
-                    'Sequence', 'Skip', 'Slur', 'Staff',
-                    'StaffGroup', 'Tempo', 'Tie',
-                    'TimeSignature', 'Timespan', 'Tuplet',
-                    'Voice', '__builtins__', '__cached__',
-                    '__doc__', '__file__', '__loader__',
-                    '__name__', '__package__', '__path__',
-                    '__spec__', '__version__',
-                    '__version_info__', 'abctools',
-                    'abjad_configuration', 'abjadbooktools',
-                    'agenttools', 'attach',
-                    'datastructuretools', 'detach',
-                    'developerscripttools',
-                    'documentationtools', 'durationtools',
-                    'exceptiontools', 'f', 'graph',
-                    'handlertools', 'indicatortools',
-                    'inspect_', 'instrumenttools',
-                    'ipythontools', 'iterate', 'labeltools',
-                    'layouttools', 'lilypondfiletools',
-                    'lilypondnametools',
-                    'lilypondparsertools', 'markuptools',
-                    'mathtools', 'metertools', 'mutate',
-                    'new', 'override', 'parse', 'persist',
-                    'pitchtools', 'play',
-                    'quantizationtools', 'quit',
-                    'rhythmmakertools', 'rhythmtreetools',
-                    'schemetools', 'scoretools', 'select',
-                    'selectiontools', 'selectortools',
-                    'sequencetools', 'set_', 'show',
-                    'sievetools', 'spannertools',
-                    'stringtools', 'systemtools',
-                    'templatetools', 'timespantools',
-                    'tonalanalysistools', 'topleveltools']xxx
-            """)
+        if sys.version_info[0] == 3:
+            target = systemtools.TestManager.clean_string(
+                r"""
+                <document source="test">
+                    <literal_block xml:space="preserve">
+                        >>> dir()
+                        ['Accelerando', 'Articulation', 'Beam',
+                        'Chord', 'Clef', 'Container', 'Context',
+                        'Crescendo', 'Decrescendo', 'Duration',
+                        'Dynamic', 'Fermata', 'Fraction',
+                        'Glissando', 'Hairpin', 'KeySignature',
+                        'Markup', 'Measure', 'MultimeasureRest',
+                        'Multiplier', 'NamedPitch', 'Note',
+                        'Offset', 'Rest', 'Ritardando', 'Score',
+                        'Sequence', 'Skip', 'Slur', 'Staff',
+                        'StaffGroup', 'Tempo', 'Tie',
+                        'TimeSignature', 'Timespan', 'Tuplet',
+                        'Voice', '__builtins__', '__cached__',
+                        '__doc__', '__file__', '__loader__',
+                        '__name__', '__package__', '__path__',
+                        '__spec__', '__version__',
+                        '__version_info__', 'abctools',
+                        'abjad_configuration', 'abjadbooktools',
+                        'agenttools', 'attach',
+                        'datastructuretools', 'detach',
+                        'developerscripttools',
+                        'documentationtools', 'durationtools',
+                        'exceptiontools', 'f', 'graph',
+                        'handlertools', 'indicatortools',
+                        'inspect_', 'instrumenttools',
+                        'ipythontools', 'iterate', 'labeltools',
+                        'layouttools', 'lilypondfiletools',
+                        'lilypondnametools',
+                        'lilypondparsertools', 'markuptools',
+                        'mathtools', 'metertools', 'mutate',
+                        'new', 'override', 'parse', 'persist',
+                        'pitchtools', 'play',
+                        'quantizationtools', 'quit',
+                        'rhythmmakertools', 'rhythmtreetools',
+                        'schemetools', 'scoretools', 'select',
+                        'selectiontools', 'selectortools',
+                        'sequencetools', 'set_', 'show',
+                        'sievetools', 'spannertools',
+                        'stringtools', 'systemtools',
+                        'templatetools', 'timespantools',
+                        'tonalanalysistools', 'topleveltools']
+                """)
+        elif sys.version_info[0] == 2:
+            target = systemtools.TestManager.clean_string(
+                r"""
+                <document source="test">
+                    <literal_block xml:space="preserve">
+                        >>> dir()
+                        ['Accelerando', 'Articulation', 'Beam',
+                        'Chord', 'Clef', 'Container', 'Context',
+                        'Crescendo', 'Decrescendo', 'Duration',
+                        'Dynamic', 'Fermata', 'Fraction',
+                        'Glissando', 'Hairpin', 'KeySignature',
+                        'Markup', 'Measure', 'MultimeasureRest',
+                        'Multiplier', 'NamedPitch', 'Note',
+                        'Offset', 'Rest', 'Ritardando', 'Score',
+                        'Sequence', 'Skip', 'Slur', 'Staff',
+                        'StaffGroup', 'Tempo', 'Tie',
+                        'TimeSignature', 'Timespan', 'Tuplet',
+                        'Voice', '__builtins__', '__doc__',
+                        '__file__', '__name__', '__package__',
+                        '__path__', '__version__',
+                        '__version_info__', 'abctools',
+                        'abjad_configuration', 'abjadbooktools',
+                        'agenttools', 'attach',
+                        'datastructuretools', 'detach',
+                        'developerscripttools',
+                        'documentationtools', 'durationtools',
+                        'exceptiontools', 'f', 'graph',
+                        'handlertools', 'indicatortools',
+                        'inspect_', 'instrumenttools',
+                        'ipythontools', 'iterate', 'labeltools',
+                        'layouttools', 'lilypondfiletools',
+                        'lilypondnametools',
+                        'lilypondparsertools', 'markuptools',
+                        'mathtools', 'metertools', 'mutate',
+                        'new', 'override', 'parse', 'persist',
+                        'pitchtools', 'play',
+                        'quantizationtools', 'quit',
+                        'rhythmmakertools', 'rhythmtreetools',
+                        'schemetools', 'scoretools', 'select',
+                        'selectiontools', 'selectortools',
+                        'sequencetools', 'set_', 'show',
+                        'sievetools', 'spannertools',
+                        'stringtools', 'systemtools',
+                        'templatetools', 'timespantools',
+                        'tonalanalysistools', 'topleveltools']
+                """)
         assert actual == target
