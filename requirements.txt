@@ -1,3 +1,4 @@
+PyPDF2
 configobj
 ply
 pytest
