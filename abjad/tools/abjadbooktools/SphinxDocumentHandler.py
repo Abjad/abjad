@@ -5,6 +5,7 @@ import hashlib
 import os
 import posixpath
 import subprocess
+import re
 import sys
 import traceback
 from abjad.tools import abctools
@@ -32,6 +33,19 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     __slots__ = (
         '_errored',
+        )
+
+    _topleveltools_pattern = re.compile(r'''
+        \b(
+            graph |
+            show |
+            play |
+            topleveltools\.graph |
+            topleveltools\.show |
+            topleveltools\.play
+        )\b
+        ''',
+        re.VERBOSE,
         )
 
     ### INITIALIZER ###
@@ -263,18 +277,20 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 )
             return isinstance(node, prototype)
         from abjad.tools import abjadbooktools
+        should_process = False
         code_blocks = collections.OrderedDict()
         for block in document.traverse(is_valid_node):
             lines = block[0].splitlines()
             if not lines[0].startswith('>>>'):
                 continue
+            for line in lines:
+                if self._topleveltools_pattern.search(line) is not None:
+                    should_process = True
             code_block = \
                 abjadbooktools.CodeBlock.from_docutils_literal_block(block)
             code_blocks[block] = code_block
-        #for block, code_block in code_blocks.items():
-        #    print(block.pformat())
-        #    print(format(code_block))
-        #    print()
+        if not should_process:
+            code_blocks.clear()
         return code_blocks
 
     def interpret_input_blocks(
