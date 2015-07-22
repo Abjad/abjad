@@ -7,6 +7,12 @@ from sphinx.util.nodes import set_source_info
 
 
 class ShellDirective(Directive):
+    r'''A `..  shell::` docutils directive.
+
+    Represents a shell session.
+
+    Generates a docutils literal_block node.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -19,6 +25,8 @@ class ShellDirective(Directive):
     ### PUBLIC METHODS ###
 
     def run(self):
+        r'''Executes the directive.
+        '''
         from abjad import abjad_configuration
         self.assert_has_content()
         os.chdir(abjad_configuration.abjad_directory)

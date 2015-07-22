@@ -4,6 +4,12 @@ from sphinx.util.nodes import set_source_info
 
 
 class ImportDirective(Directive):
+    r'''An `..  import::` docutils directive.
+
+    Represents a class or function to be imported into an interactive session.
+
+    Generates a SphinxDocumentHandler.abjad_import_block node.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -18,6 +24,8 @@ class ImportDirective(Directive):
     ### PUBLIC METHODS ###
 
     def run(self):
+        r'''Executes the directive.
+        '''
         from abjad.tools import abjadbooktools
         path = self.arguments[0]
         block = abjadbooktools.SphinxDocumentHandler.abjad_import_block()

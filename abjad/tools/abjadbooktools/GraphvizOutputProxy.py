@@ -348,14 +348,26 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     @property
     def file_name_prefix(self):
+        r'''Gets file name prefix of Graphviz output proxy.
+
+        Returns string.
+        '''
         return 'graphviz'
 
     @property
     def file_name_without_extension(self):
+        r'''Gets file name extension of Graphviz output proxy.
+
+        Returns string.
+        '''
         payload = '\n'.join(str(self.payload))
         md5 = hashlib.md5(payload.encode()).hexdigest()
         return '-'.join((self.file_name_prefix, md5))
 
     @property
     def layout(self):
+        r'''Gets layout engine name of Graphviz output.
+
+        Returns string.
+        '''
         return self._layout

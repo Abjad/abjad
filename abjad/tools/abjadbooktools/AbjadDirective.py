@@ -5,6 +5,12 @@ from docutils.nodes import literal_block
 
 
 class AbjadDirective(Directive):
+    r'''An `..  abjad::` docutils directive.
+
+    Represents a portion of an interactive session.
+
+    Generates a SphinxDocumentHandler.abjad_input_block node.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -22,6 +28,8 @@ class AbjadDirective(Directive):
     ### PUBLIC METHODS ###
 
     def run(self):
+        r'''Executes the directive.
+        '''
         from abjad.tools import abjadbooktools
         self.assert_has_content()
         code = u'\n'.join(self.content)
