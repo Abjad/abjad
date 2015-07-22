@@ -55,6 +55,8 @@ class CodeOutputProxy(abctools.AbjadValueObject):
 
     def as_docutils(
         self,
+        configuration=None,
+        output_directory=None,
         ):
         r'''Creates a docutils node representation of the code output proxy.
 

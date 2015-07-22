@@ -260,6 +260,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     def as_docutils(
         self,
+        configuration=None,
+        output_directory=None,
         ):
         r'''Creates a docutils node representation of the output proxy.
 
