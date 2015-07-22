@@ -2,11 +2,21 @@
 import copy
 import inspect
 import pytest
+from abjad.tools import abjadbooktools
 from abjad.tools import documentationtools
 from abjad.tools import scoretools
 
 
-classes = documentationtools.list_all_abjad_classes()
+ignored_classes = (
+    abjadbooktools.CodeBlock,
+    abjadbooktools.CodeOutputProxy,
+    abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.LilyPondOutputProxy,
+    )
+
+classes = documentationtools.list_all_abjad_classes(
+    ignored_classes=ignored_classes,
+    )
 
 
 @pytest.mark.parametrize('class_', classes)
