@@ -264,31 +264,6 @@ other versions of the Abjad docs that are available to build:
     book       to run abjad-book on all ReST files in source
 
 
-Inserting images with ``abjad-book``
-------------------------------------
-
-Use :doc:`ajv book </developer_documentation/ajv_book/index>` to insert
-snippets of notation in the docs you write in reST.
-
-Embed Abjad code between open and close \<abjad\> \</abjad\> tags in your
-``.rst.raw`` sourcefile and then call ``abjad-book`` to create a pure ``.rst``
-file:
-
-..  code-block:: bash
-
-    abjad$ ajv book foo.rst.raw
-
-    Parsing file ...
-    Rendering "example-1.ly" ...
-    Rendering "example-2.ly" ...
-
-You will need to build the HTML docs again to see your work:
-
-..  code-block:: bash
-
-    abjad$ ajv api -M
-
-
 Updating Sphinx
 ---------------
 
