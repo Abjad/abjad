@@ -15,7 +15,7 @@ from docutils.frontend import OptionParser
 from docutils.parsers.rst import Parser
 from docutils.parsers.rst import directives
 from docutils.utils import new_document
-from sphinx.util.console import bold, darkgray, purple
+from sphinx.util.console import bold, darkgray, purple, red
 
 
 class SphinxDocumentHandler(abctools.AbjadObject):
@@ -104,6 +104,13 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     @staticmethod
     def on_build_finished(app, exc):
         pass
+
+    def visit_abjad_input_block(self, node):
+        print()
+        message = bold(red('Found abjad_input_block.'))
+        self.builder.warn(message, (self.builder.current_docname, node.line))
+        print(node.pformat())
+        raise nodes.SkipNode
 
     def visit_abjad_output_block_html(self, node):
         if node['renderer'] not in ('graphviz', 'lilypond'):
@@ -355,15 +362,14 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         app.add_directive('import', abjadbooktools.ImportDirective)
         app.add_directive('shell', abjadbooktools.ShellDirective)
         app.add_node(
+            SphinxDocumentHandler.abjad_input_block,
+            html=[SphinxDocumentHandler.visit_abjad_input_block, None],
+            latex=[SphinxDocumentHandler.visit_abjad_input_block, None],
+            )
+        app.add_node(
             SphinxDocumentHandler.abjad_output_block,
-            html=[
-                SphinxDocumentHandler.visit_abjad_output_block_html,
-                None,
-                ],
-            latex=[
-                SphinxDocumentHandler.visit_abjad_output_block_latex,
-                None,
-                ],
+            html=[SphinxDocumentHandler.visit_abjad_output_block_html, None],
+            latex=[SphinxDocumentHandler.visit_abjad_output_block_latex, None],
             )
         app.connect('build-finished', SphinxDocumentHandler.on_build_finished)
         app.connect('builder-inited', SphinxDocumentHandler.on_builder_inited)
