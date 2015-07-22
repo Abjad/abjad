@@ -61,12 +61,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         from abjad.tools import abjadbooktools
         if SphinxDocumentHandler.should_ignore_document(app, document):
             print()
-            source = document['source']
-            source = os.path.relpath(source)
-            source, _ = os.path.splitext(source)
-            message = darkgray('skipping abjad-book parsing for ')
-            message += purple(source)
-            message = bold(message)
+            message = '    [abjad-book] ignoring'
             print(message)
             return
         try:
@@ -83,10 +78,16 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 document_handler=handler,
                 locals=abjad.__dict__.copy(),
                 )
-            handler.interpret_input_blocks(document, abjad_blocks, abjad_console)
-            handler.interpret_input_blocks(document, literal_blocks, literal_console)
-            handler.rebuild_document(document, abjad_blocks)
-            handler.rebuild_document(document, literal_blocks)
+            if abjad_blocks or literal_blocks:
+                print()
+                handler.interpret_input_blocks(document, abjad_blocks, abjad_console)
+                handler.interpret_input_blocks(document, literal_blocks, literal_console)
+                handler.rebuild_document(document, abjad_blocks)
+                handler.rebuild_document(document, literal_blocks)
+            #else:
+            #    print()
+            #    message = '    [abjad-book] rendering not required'
+            #    print(message)
             abjad_console.restore_topleveltools_dict()
             literal_console.restore_topleveltools_dict()
         except abjadbooktools.AbjadBookError as e:
@@ -299,28 +300,18 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         input_blocks,
         console,
         ):
-        from abjad.tools import abjadbooktools
-        #print('preparing to interpret')
         code_blocks = tuple(input_blocks.values())
         if not code_blocks:
             return
         progress_indicator = systemtools.ProgressIndicator(
-            message='    Interpreting code blocks',
+            message='    [abjad-book] interpreting',
             total=len(code_blocks),
-            verbose=False,
+            verbose=True,
             )
         with progress_indicator:
             for code_block in code_blocks:
                 code_block.interpret(console)
                 progress_indicator.advance()
-        #print('interpreted...')
-        #print()
-        #for block, code_block in input_blocks.items():
-        #    print(block.pformat())
-        #    print(format(code_block))
-        #    for output_proxy in code_block.output_proxies:
-        #        print(format(output_proxy))
-        #    print()
 
     @staticmethod
     def parse_rst(rst_string):
