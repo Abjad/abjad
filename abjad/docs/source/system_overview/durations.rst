@@ -12,87 +12,63 @@ notes, rests and chords with and without dots.
 
 You can create breves with a LilyPond input string:
 
-::
+..  abjad::
 
-   >>> note_1 = Note(r"c'\breve")
-   >>> note_2 = Note(r"d'\breve.")
-
+    note_1 = Note(r"c'\breve")
+    note_2 = Note(r"d'\breve.")
 
 Or with an explicit duration:
 
-::
+..  abjad::
 
-   >>> note_3 = Note("e'", Duration(2, 1))
-   >>> note_4 = Note("f'", Duration(3, 1))
-
+    note_3 = Note("e'", Duration(2, 1))
+    note_4 = Note("f'", Duration(3, 1))
 
 The written duration of a breve always returns an Abjad duration object:
 
-::
+..  abjad::
 
-   >>> notes = [note_1, note_2, note_3, note_4]
-   >>> for note in notes:
-   ...     note, note.written_duration
-   ... 
-   (Note("c'\\breve"), Duration(2, 1))
-   (Note("d'\\breve."), Duration(3, 1))
-   (Note("e'\\breve"), Duration(2, 1))
-   (Note("f'\\breve."), Duration(3, 1))
-
+    notes = [note_1, note_2, note_3, note_4]
+    for note in notes:
+        note, note.written_duration
 
 LilyPond renders breves like this:
 
-::
+..  abjad::
 
-   >>> staff = Staff(notes)
-   >>> show(staff)
-
-.. image:: images/index-1.png
-
+    staff = Staff(notes)
+    show(staff)
 
 Abjad also supports longas. A longa equals two breves:
 
-::
+..  abjad::
 
-   >>> note_1 = Note(r"c'\longa")
-   >>> note_2 = Note("d'", Duration(6, 1))
+    note_1 = Note(r"c'\longa")
+    note_2 = Note("d'", Duration(6, 1))
 
+..  abjad::
 
-::
+    notes = [note_1, note_2]
+    for note in notes:
+        note, note.written_duration
 
-   >>> notes = [note_1, note_2]
-   >>> for note in notes:
-   ...     note, note.written_duration
-   ... 
-   (Note("c'\\longa"), Duration(4, 1))
-   (Note("d'\\longa."), Duration(6, 1))
+..  abjad::
 
-
-::
-
-   >>> staff = Staff(notes)
-   >>> show(staff)
-
-.. image:: images/index-2.png
-
+    staff = Staff(notes)
+    show(staff)
 
 A maxima is a duration equal to two longas:
 
-::
+..  abjad::
 
-   >>> note_1 = Note(r"c'\maxima")
-   >>> note_2 = Note("d'", Duration(12, 1))
+    note_1 = Note(r"c'\maxima")
+    note_2 = Note("d'", Duration(12, 1))
 
+..  abjad::
 
-::
-
-   >>> notes = [note_1, note_2]
-   >>> for note in notes:
-   ...     note, note.written_duration
-   ... 
-   (Note("c'\\maxima"), Duration(8, 1))
-   (Note("d'\\maxima."), Duration(12, 1))
-
+    notes = [note_1, note_2]
+    for note in notes:
+        note, note.written_duration
 
 Abjad supports maximas and LilyPond supplies a ``\maxima`` command. But you can
 not use Abjad to render maxima-valued notes, rests and chords because LilyPond
@@ -109,59 +85,46 @@ LilyPond multipliers
 
 LilyPond provides an asterisk `*` operator to scale the durations of notes,
 rests and chords by arbitrarily positive rational values. LilyPond multipliers
-are inivisible and generate no typographic output of their own. However, while
+are indivisible and generate no typographic output of their own. However, while
 independent from the typographic output, LilyPond multipliers do factor into
 calculations of duration.
 
 Abjad implements LilyPond multpliers as multiplier objects.
 
-::
+..  abjad::
 
-   >>> note = Note("c'4")
-   >>> attach(Multiplier(1, 2), note)
+    note = Note("c'4")
+    attach(Multiplier(1, 2), note)
 
+..  abjad::
 
-::
+    print(format(note))
 
-   >>> f(note)
-   c'4 * 1/2
+..  abjad::
 
+    note.written_duration
+    inspect_(note).get_duration()
 
-::
+..  abjad::
 
-   >>> note.written_duration
-   Duration(1, 4)
-   >>> inspect_(note).get_duration()
-   Duration(1, 8)
-
-
-::
-
-   >>> show(note)
-
-.. image:: images/index-3.png
-
+    show(note)
 
 LilyPond multipliers scale the durations of the half notes below to that of
 quarter notes:
 
-::
+..  abjad::
 
-   >>> quarter_notes = 4 * Note("c'4")
-   >>> half_note = Note("c'2")
-   >>> attach(Multiplier(1, 2), half_note)
-   >>> half_notes = 4 * half_note
-   >>> top_staff = scoretools.RhythmicStaff(quarter_notes)
-   >>> bottom_staff = scoretools.RhythmicStaff(half_notes)
-   >>> staff_group = scoretools.StaffGroup([top_staff, bottom_staff])
+    quarter_notes = 4 * Note("c'4")
+    half_note = Note("c'2")
+    attach(Multiplier(1, 2), half_note)
+    half_notes = 4 * half_note
+    top_staff = scoretools.Staff(quarter_notes, context_name='RhythmicStaff')
+    bottom_staff = scoretools.Staff(half_notes, context_name='RhythmicStaff')
+    staff_group = scoretools.StaffGroup([top_staff, bottom_staff])
 
+..  abjad::
 
-::
-
-   >>> show(staff_group)
-
-.. image:: images/index-4.png
-
+    show(staff_group)
 
 Note that the LilyPond multiplication `*` operator differs from the Abjad
 multiplication `*` operator. LilyPond multiplication scales duration of
@@ -179,57 +142,45 @@ names most frequently used when talking about note duration.
 
 Consider the measure below:
 
-::
+..  abjad::
 
-   >>> measure = Measure((5, 16), "c16 c c c c")
-   >>> beam = Beam()
-   >>> attach(beam, [measure])
-   >>> staff = scoretools.RhythmicStaff([measure])
+    measure = Measure((5, 16), "c16 c c c c")
+    beam = Beam()
+    attach(beam, [measure])
+    staff = scoretools.Staff([measure], context_name='RhythmicStaff')
 
+..  abjad::
 
-::
-
-   >>> show(staff)
-
-.. image:: images/index-5.png
-
+    show(staff)
 
 Every note in the measure equals one sixteenth of a whole note:
 
-::
+..  abjad::
 
-   >>> note = measure[0]
-   >>> inspect_(note).get_duration()
-   Duration(1, 16)
-
+    note = measure[0]
+    inspect_(note).get_duration()
 
 But now consider this measure:
 
-::
+..  abjad::
 
-   >>> tuplet = Tuplet((4, 5), "c16 c c c c")
-   >>> measure = Measure((4, 16), [tuplet])
-   >>> beam = Beam()
-   >>> attach(beam, [measure])
-   >>> staff = scoretools.RhythmicStaff([measure])
+    tuplet = Tuplet((4, 5), "c16 c c c c")
+    measure = Measure((4, 16), [tuplet])
+    beam = Beam()
+    attach(beam, [measure])
+    staff = scoretools.Staff([measure], context_name='RhythmicStaff')
 
+..  abjad::
 
-::
-
-   >>> show(staff)
-
-.. image:: images/index-6.png
-
+    show(staff)
 
 The notes in this measure are equal to only one twentieth of a whole note:
 Every note in this measures 
 
-::
+..  abjad::
 
-   >>> note = tuplet[0]
-   >>> inspect_(note).get_duration()
-   Duration(1, 20)
-
+    note = tuplet[0]
+    inspect_(note).get_duration()
 
 The notes in this measure are "sixteenth notes" with a duration equal to a
 value other than ``1/16``. Abjad formalizes this distinction in the difference

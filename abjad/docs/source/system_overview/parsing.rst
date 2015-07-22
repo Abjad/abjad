@@ -1,0 +1,252 @@
+Parsing
+=======
+
+Abjad provides a small number of domain-specific language parsers.  The most
+important of these is its LilyPond parser.
+
+
+LilyPond Parsing
+----------------
+
+Abjad's LilyPond parser parses a large (although incomplete) subset of
+LilyPond's syntax:
+
+..  abjad::
+
+    parser = lilypondparsertools.LilyPondParser()
+
+..  abjad::
+
+    string = r"""
+    \new Score <<
+        \new StaffGroup <<
+            \new Staff {
+                r2 ^ \markup { \center-column { tutti \line { ( con sord. ) } } }
+                r8
+                es'' [ ( \ppp
+                fs'''
+                es'''
+                fs''' \flageolet
+                es'''
+                fs'''
+                es''
+                fs'' ] )
+                r
+                r4
+            }
+            \new Staff {
+                r4 ^ \markup { ( con sord. ) }
+                r8
+                es' [ ( \ppp 
+                fs''
+                es'' ] )
+                r
+                es' [ (
+                fs''
+                es'
+                fs' ] )
+                r
+                fs'' [ (
+                es'
+                fs' ] )
+                r
+            }
+            \new Staff {
+                r8 ^ \markup { tutti }
+                ds' [ ( \ppp
+                es''
+                ds'' ]
+                es' [
+                ds'
+                es''
+                ds'' ] )
+                r4
+                es''8 [ (
+                ds'
+                es' ] )
+                r
+                es'' [ (
+                ds' ] )
+            }
+        >>
+    >>
+    """
+
+..  abjad::
+
+    parsed = parser(string)
+
+..  abjad::
+
+    print(format(parsed))
+
+..  abjad::
+
+    show(parsed)
+
+The LilyPond parser understands most spanners, articulations and dynamics:
+
+..  abjad::
+
+    string = r'''
+    \new Staff {
+        c'8 \f \> (
+        d' -_ [
+        e' ^>
+        f' \ppp \<
+        g' \startTrillSpan \(
+        a' \)
+        b' ] \stopTrillSpan
+        c'' ) \accent \sfz
+    }
+    '''
+    result = parser(string)
+
+..  abjad::
+
+    print(format(result))
+
+..  abjad::
+
+    show(result)
+
+The LilyPond parser understands contexts and markup:
+
+..  abjad::
+
+    string = r'''\new Score <<
+        \new Staff = "Treble Staff" {
+            \new Voice = "Treble Voice" {
+                c' ^\markup { \bold Treble! }
+            }
+        }
+        \new Staff = "Bass Staff" {
+            \new Voice = "Bass Voice" {
+                \clef bass
+                c, _\markup { \italic Bass! }
+            }
+        }
+    >>
+    '''
+    result = parser(string)
+
+..  abjad::
+
+    print(format(result))
+
+..  abjad::
+
+    show(result)
+
+The LilyPond parser also understands certain aspects of LilyPond file layouts,
+such as header blocks:
+
+..  abjad::
+
+    string = r'''
+    \header {
+        composername = "Foo von Bar"
+        composer = \markup { by \bold \composername }
+        title = \markup { The ballad of \composername }
+        tagline = \markup { "" }
+    }
+    \score {
+        \new Staff {
+            \time 3/4
+            g' ( b' d'' )
+            e''4. ( c''8 c'4 )
+        }
+    }
+    '''
+    result = parser(string)
+
+..  abjad::
+
+    print(format(result))
+
+..  abjad::
+
+    show(result)
+
+The LilyPond parser supports a small number of LilyPond music functions, such
+as ``\relative`` and ``\transpose``.
+
+Music functions which mutate the score during compilation result in a
+normalized Abjad score structure.  The resulting structure corresponds to the
+music as it appears on the page, rather than as it was input to the parser:
+
+..  abjad::
+
+    string = r'''
+    \new Staff \relative c { 
+        c32 d e f g a b c d e f g a b c d e f g a b c 
+    }
+    '''
+    result = parser(string)
+
+..  abjad::
+
+    print(format(result))
+
+..  abjad::
+
+    show(result)
+
+
+RhythmTree Parsing
+------------------
+
+Abjad's rhythm-tree parser parses a microlanguage resembling Ircam's RTM Lisp
+syntax, and generates a sequence of RhythmTree structures, which can be
+furthered manipulated by composers, before being converted into an Abjad score
+object:
+
+..  abjad::
+
+    parser = rhythmtreetools.RhythmTreeParser()
+
+..  abjad::
+
+    string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
+    result = parser(string)
+    result[0]
+
+..  abjad::
+
+    tuplet = result[0]((1, 4))[0]
+    print(format(tuplet))
+
+..  abjad::
+
+    staff = scoretools.Staff([tuplet], context_name='RhythmicStaff')
+
+..  abjad::
+
+    show(staff)
+
+
+"Reduced-Ly" Parsing
+--------------------
+
+Abjad's "reduced-ly" parser parses the "reduced-ly" microlanguage, whose syntax
+combines a very small subset of LilyPond syntax, along with affordances for
+generating various types of Abjad containers. It also allows for rapidly
+notating notes and rests without needing to specify pitches.  It is used mainly
+for creating Abjad documentation:
+
+..  abjad::
+
+    parser = lilypondparsertools.ReducedLyParser()
+
+..  abjad::
+
+    string = "| 4/4 c' d' e' f' || 3/8 r8 g'4 |"
+    result = parser(string)
+
+..  abjad::
+
+    print(format(result))
+
+..  abjad::
+
+    show(result)

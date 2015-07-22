@@ -65,17 +65,31 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
     assert hasattr(music, '__illustrate__')
     lilypond_file = music.__illustrate__(**kwargs)
 
-    # header
-    lilypond_file.header_block.tagline = markuptools.Markup('""')
-
-    # layout
-    lilypond_file.layout_block.indent = 0
-    lilypond_file.line_width = lilypondfiletools.LilyPondDimension(6, 'in')
-    lilypond_file.layout_block.ragged_right = True
+    blocks = [_ for _ in lilypond_file.items
+        if isinstance(_, lilypondfiletools.Block)
+        ]
+    header_block, layout_block, paper_block = None, None, None
+    for block in blocks:
+        if block.name == 'header':
+            header_block = block
+        elif block.name == 'layout':
+            layout_block = block
+        elif block.name == 'paper':
+            paper_block = block
 
     # paper
-    lilypond_file.paper_block.left_margin = \
-        lilypondfiletools.LilyPondDimension(1, 'in')
+    if paper_block is None:
+        paper_block = lilypondfiletools.Block(name='paper')
+        lilypond_file.items.insert(0, paper_block)
+    paper_block.left_margin = lilypondfiletools.LilyPondDimension(1, 'in')
+
+    # layout
+    if layout_block is None:
+        layout_block = lilypondfiletools.Block(name='layout')
+        lilypond_file.items.insert(0, layout_block)
+    lilypond_file.line_width = lilypondfiletools.LilyPondDimension(6, 'in')
+    layout_block.indent = 0
+    layout_block.ragged_right = True
 
     # score context
     context_block = lilypondfiletools.ContextBlock(
@@ -95,7 +109,13 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
     moment = schemetools.SchemeMoment((1, 24))
     set_(context_block).proportionalNotationDuration = moment
     set_(context_block).tupletFullLength = True
-    lilypond_file.layout_block.items.append(context_block)
+    layout_block.items.append(context_block)
+
+    # header
+    if header_block is None:
+        header_block = lilypondfiletools.Block(name='header')
+        lilypond_file.items.insert(0, header_block)
+    header_block.tagline = markuptools.Markup('""')
 
     # etc
     lilypond_file.file_initial_system_comments[:] = []
