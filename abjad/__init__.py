@@ -89,6 +89,8 @@ from abjad.tools.topleveltools import select
 from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import show
 
+from abjad import ly
+
 # import custom exceptions into the builtins module
 import os
 from abjad.tools.systemtools.ImportManager import ImportManager
