@@ -569,19 +569,6 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                     )
                 progress_indicator.advance()
 
-#        jobs = []
-#        for asset_output_proxy in asset_output_proxies:
-#            job = abjadbooktools.AssetOutputJob(
-#                asset_output_proxy=asset_output_proxy,
-#                output_directory=self.assets_directory,
-#                parent_document_format='latex',
-#                )
-#            jobs.append(job)
-#        job_handler = abjadbooktools.ParallelJobHandler(
-#            message='    Writting assets',
-#            )
-#        job_handler(jobs)
-
     def write_rebuilt_source(
         self,
         rebuilt_source,
