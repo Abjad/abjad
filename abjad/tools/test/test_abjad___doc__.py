@@ -26,6 +26,9 @@ ignored_names = (
     )
 
 ignored_classes = (
+    abjadbooktools.CodeBlock,
+    abjadbooktools.LaTeXDocumentHandler,
+    abjadbooktools.SphinxDocumentHandler,
     datastructuretools.Enumeration,
     lilypondparsertools.LilyPondLexicalDefinition,
     lilypondparsertools.LilyPondSyntacticalDefinition,
