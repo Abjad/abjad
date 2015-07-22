@@ -277,7 +277,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             code_blocks[block] = code_block
         return code_blocks
 
-    def collect_python_literal_blocks(self, document):
+    def collect_python_literal_blocks(self, document, renderable_only=True):
         def is_valid_node(node):
             prototype = (
                 nodes.literal_block,
@@ -297,7 +297,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             code_block = \
                 abjadbooktools.CodeBlock.from_docutils_literal_block(block)
             code_blocks[block] = code_block
-        if not should_process:
+        if renderable_only and not should_process:
             code_blocks.clear()
         return code_blocks
 

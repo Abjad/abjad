@@ -6,6 +6,9 @@ from abjad.tools import systemtools
 
 class SphinxDocumentHandlerTests(unittest.TestCase):
 
+    class Namespace(object):
+        pass
+
     source_one = r'''
     ..  abjad::
         :hide:
@@ -94,6 +97,13 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
     '''
     source_four = systemtools.TestManager.clean_string(source_four)
 
+    def setUp(self):
+        app = self.Namespace()
+        config = self.Namespace()
+        self.app = app
+        self.app.config = config
+        self.app.config.abjadbook_ignored_documents = ()
+
     def test_collect_abjad_input_blocks_01(self):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_one)
@@ -107,16 +117,25 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
     def test_collect_python_literal_blocks_01(self):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_one)
-        blocks = handler.collect_python_literal_blocks(document)
+        blocks = handler.collect_python_literal_blocks(
+            document,
+            renderable_only=False,
+            )
         assert len(blocks) == 2
         nodes = tuple(blocks.keys())
         assert nodes[0] is document[1]
         assert nodes[1] is document[3]
 
+    def test_collect_python_literal_blocks_02(self):
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(self.source_one)
+        blocks = handler.collect_python_literal_blocks(document)
+        assert len(blocks) == 0
+
     def test_on_doctree_read_01(self):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_one)
-        handler.on_doctree_read(None, document)
+        handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
         target = systemtools.TestManager.clean_string(
             r"""
@@ -151,7 +170,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
     def test_on_doctree_read_02(self):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_two)
-        handler.on_doctree_read(None, document)
+        handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
         target = systemtools.TestManager.clean_string(
             r"""
@@ -246,7 +265,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
     def test_on_doctree_read_03(self):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_three)
-        handler.on_doctree_read(None, document)
+        handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
         target = systemtools.TestManager.clean_string(
             r"""
@@ -394,7 +413,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
     def test_on_doctree_read_04(self):
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(self.source_four)
-        handler.on_doctree_read(None, document)
+        handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
         target = systemtools.TestManager.clean_string(
             r"""
