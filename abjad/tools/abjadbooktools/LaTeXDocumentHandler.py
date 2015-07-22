@@ -42,14 +42,13 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
 
     ::
 
-        >>> from abjad.tools import abjadbooktools
         >>> document_handler = abjadbooktools.LaTeXDocumentHandler(
         ...     input_file_contents=input_file_contents,
         ...     input_file_path='test.tex.raw',
         ...     assets_directory='images',
         ...     )
         >>> print(format(document_handler))
-        abjadbooktools.tools.LaTeXDocumentHandler(
+        abjadbooktools.LaTeXDocumentHandler(
             assets_directory='images',
             input_file_contents=(
                 "Let's print something:",
@@ -319,15 +318,15 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
             >>> for input_block in input_blocks.values():
             ...     print(format(input_block))
             ...
-            abjadbooktools.tools.CodeBlock(
+            abjadbooktools.CodeBlock(
                 ('print("hello, world!")',),
                 starting_line_number=5,
                 )
-            abjadbooktools.tools.CodeBlock(
+            abjadbooktools.CodeBlock(
                 ("just_a_string = '''", 'show(Nothing!)', "'''"),
                 starting_line_number=15,
                 )
-            abjadbooktools.tools.CodeBlock(
+            abjadbooktools.CodeBlock(
                 ('show(Note("c\'4"))',),
                 starting_line_number=23,
                 )

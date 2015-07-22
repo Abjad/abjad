@@ -7,6 +7,8 @@ from abjad.tools import abctools
 
 
 class ImageOutputProxy(abctools.AbjadValueObject):
+    r'''Abstract base class for image output proxies.
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -30,6 +32,8 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         output_directory=None,
         relative_output_directory=None,
         ):
+        r'''Creates a LaTeX representation of the image output proxy.
+        '''
         import PyPDF2
         configuration = configuration or {}
         latex_configuration = configuration.get('latex', {})
@@ -115,6 +119,8 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         self,
         absolute_output_directory,
         ):
+        r'''Renders the image output proxy payload for LaTeX inclusion.
+        '''
         target_pdf_path = os.path.join(
             absolute_output_directory,
             self.file_name_without_extension + '.pdf',
@@ -127,14 +133,26 @@ class ImageOutputProxy(abctools.AbjadValueObject):
 
     @abc.abstractproperty
     def file_name_prefix(self):
+        r'''Gets image output proxy file name prefix.
+
+        Returns string.
+        '''
         raise NotImplementedError
 
     @property
     def payload(self):
+        r'''Gets images output proxy payload.
+
+        Returns string.
+        '''
         return self._payload
 
     @property
     def file_name_without_extension(self):
+        r'''Gets image output proxy filename without file extension.
+
+        Returns string.
+        '''
         payload = '\n'.join(format(self.payload))
         md5 = hashlib.md5(payload.encode()).hexdigest()
         return '-'.join((self.file_name_prefix, md5))

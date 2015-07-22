@@ -25,16 +25,16 @@ class CodeBlock(abctools.AbjadValueObject):
         >>> for output_proxy in code_block.output_proxies:
         ...     print(format(output_proxy))
         ...
-        abjadbooktools.tools.CodeOutputProxy(
+        abjadbooktools.CodeOutputProxy(
             (
                 '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")',
                 '>>> show(staff)',
                 )
             )
-        abjadbooktools.tools.LilyPondOutputProxy(
+        abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile()
             )
-        abjadbooktools.tools.CodeOutputProxy(
+        abjadbooktools.CodeOutputProxy(
             ('>>> print(len(staff))', '4')
             )
 
@@ -51,7 +51,7 @@ class CodeBlock(abctools.AbjadValueObject):
         >>> for output_proxy in code_block.output_proxies:
         ...     print(format(output_proxy))
         ...
-        abjadbooktools.tools.CodeOutputProxy(
+        abjadbooktools.CodeOutputProxy(
             (
                 '>>> for leaf in staff:',
                 '...     print(format(leaf))',
@@ -61,25 +61,25 @@ class CodeBlock(abctools.AbjadValueObject):
                 'c4',
                 )
             )
-        abjadbooktools.tools.LilyPondOutputProxy(
+        abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile()
             )
-        abjadbooktools.tools.CodeOutputProxy(
+        abjadbooktools.CodeOutputProxy(
             ('d4',)
             )
-        abjadbooktools.tools.LilyPondOutputProxy(
+        abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile()
             )
-        abjadbooktools.tools.CodeOutputProxy(
+        abjadbooktools.CodeOutputProxy(
             ('e4',)
             )
-        abjadbooktools.tools.LilyPondOutputProxy(
+        abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile()
             )
-        abjadbooktools.tools.CodeOutputProxy(
+        abjadbooktools.CodeOutputProxy(
             ('f4',)
             )
-        abjadbooktools.tools.LilyPondOutputProxy(
+        abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile()
             )
 
@@ -418,17 +418,19 @@ class CodeBlock(abctools.AbjadValueObject):
             >>> for output_proxy in code_block.output_proxies:
             ...     print(format(output_proxy))
             ...
-            abjadbooktools.tools.CodeOutputProxy(
+            abjadbooktools.CodeOutputProxy(
                 (
                     '>>> meter = metertools.Meter((4, 4))',
                     '>>> graph(meter)',
                     )
                 )
-            abjadbooktools.tools.GraphvizOutputProxy(
+            abjadbooktools.GraphvizOutputProxy(
                 documentationtools.GraphvizGraph(
                     attributes={
+                        'bgcolor': 'transparent',
                         'fontname': 'Arial',
                         'penwidth': 2,
+                        'truecolor': True,
                         },
                     children=(
                         documentationtools.GraphvizNode(
@@ -593,7 +595,7 @@ class CodeBlock(abctools.AbjadValueObject):
                     ),
                 layout='dot',
                 )
-            abjadbooktools.tools.CodeOutputProxy(
+            abjadbooktools.CodeOutputProxy(
                 (
                     '>>> print(format(meter))',
                     'metertools.Meter(',
@@ -644,16 +646,16 @@ class CodeBlock(abctools.AbjadValueObject):
             >>> for output_proxy in code_block.output_proxies:
             ...     print(format(output_proxy))
             ...
-            abjadbooktools.tools.CodeOutputProxy(
+            abjadbooktools.CodeOutputProxy(
                 (
                     '>>> staff = Staff(r"\\clef bass c4 d4 e4 f4")',
                     '>>> show(staff)',
                     )
                 )
-            abjadbooktools.tools.LilyPondOutputProxy(
+            abjadbooktools.LilyPondOutputProxy(
                 lilypondfiletools.LilyPondFile()
                 )
-            abjadbooktools.tools.CodeOutputProxy(
+            abjadbooktools.CodeOutputProxy(
                 ('>>> print(len(staff))', '4')
                 )
 

@@ -13,14 +13,185 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ::
 
-        >>> from abjad.tools import abjadbooktools
         >>> meter = metertools.Meter((4, 4))
         >>> proxy = abjadbooktools.GraphvizOutputProxy(meter)
+        >>> print(format(proxy))
+        abjadbooktools.GraphvizOutputProxy(
+            documentationtools.GraphvizGraph(
+                attributes={
+                    'bgcolor': 'transparent',
+                    'fontname': 'Arial',
+                    'penwidth': 2,
+                    'truecolor': True,
+                    },
+                children=(
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '4/4',
+                            'shape': 'triangle',
+                            },
+                        ),
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '1/4',
+                            'shape': 'box',
+                            },
+                        ),
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '1/4',
+                            'shape': 'box',
+                            },
+                        ),
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '1/4',
+                            'shape': 'box',
+                            },
+                        ),
+                    documentationtools.GraphvizNode(
+                        attributes={
+                            'label': '1/4',
+                            'shape': 'box',
+                            },
+                        ),
+                    documentationtools.GraphvizSubgraph(
+                        attributes={
+                            'style': 'rounded',
+                            },
+                        children=(
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'color': 'white',
+                                    'fillcolor': 'black',
+                                    'fontcolor': 'white',
+                                    'fontname': 'Arial bold',
+                                    'shape': 'Mrecord',
+                                    'style': 'filled',
+                                    },
+                                children=(
+                                    documentationtools.GraphvizGroup(
+                                        children=(
+                                            documentationtools.GraphvizField(
+                                                label='0',
+                                                ),
+                                            documentationtools.GraphvizField(
+                                                label='++',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'color': 'white',
+                                    'fillcolor': 'black',
+                                    'fontcolor': 'white',
+                                    'fontname': 'Arial bold',
+                                    'shape': 'Mrecord',
+                                    'style': 'filled',
+                                    },
+                                children=(
+                                    documentationtools.GraphvizGroup(
+                                        children=(
+                                            documentationtools.GraphvizField(
+                                                label='1/4',
+                                                ),
+                                            documentationtools.GraphvizField(
+                                                label='+',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'color': 'white',
+                                    'fillcolor': 'black',
+                                    'fontcolor': 'white',
+                                    'fontname': 'Arial bold',
+                                    'shape': 'Mrecord',
+                                    'style': 'filled',
+                                    },
+                                children=(
+                                    documentationtools.GraphvizGroup(
+                                        children=(
+                                            documentationtools.GraphvizField(
+                                                label='1/2',
+                                                ),
+                                            documentationtools.GraphvizField(
+                                                label='+',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'color': 'white',
+                                    'fillcolor': 'black',
+                                    'fontcolor': 'white',
+                                    'fontname': 'Arial bold',
+                                    'shape': 'Mrecord',
+                                    'style': 'filled',
+                                    },
+                                children=(
+                                    documentationtools.GraphvizGroup(
+                                        children=(
+                                            documentationtools.GraphvizField(
+                                                label='3/4',
+                                                ),
+                                            documentationtools.GraphvizField(
+                                                label='+',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            documentationtools.GraphvizNode(
+                                attributes={
+                                    'shape': 'Mrecord',
+                                    },
+                                children=(
+                                    documentationtools.GraphvizGroup(
+                                        children=(
+                                            documentationtools.GraphvizField(
+                                                label='1',
+                                                ),
+                                            documentationtools.GraphvizField(
+                                                label='++',
+                                                ),
+                                            ),
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        edge_attributes={
+                            },
+                        is_cluster=True,
+                        name='cluster_offsets',
+                        node_attributes={
+                            },
+                        ),
+                    ),
+                edge_attributes={
+                    'penwidth': 2,
+                    },
+                is_digraph=True,
+                name='G',
+                node_attributes={
+                    'fontname': 'Arial',
+                    'fontsize': 12,
+                    'penwidth': 2,
+                    },
+                ),
+            layout='dot',
+            )
 
     ::
 
-        >>> print(proxy.as_latex(relative_output_directory='assets'))
-        ['\\noindent\\includegraphics{assets/graphviz-12601707db5ddc467e3296e8c680ba43.pdf}']
+        >>> proxy.as_latex(relative_output_directory='assets')
+        ['\\noindent\\includegraphics{assets/graphviz-31410f5aefd17473e91ebc219ddff36e.pdf}']
 
     '''
 
@@ -89,9 +260,84 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     def as_docutils(
         self,
-        configuration=None,
-        output_directory=None,
         ):
+        r'''Creates a docutils node representation of the output proxy.
+
+        ::
+
+            >>> for node in proxy.as_docutils():
+            ...     print(node.pformat())
+            ...
+            <abjad_output_block renderer="graphviz" xml:space="preserve">
+                digraph G {
+                    graph [bgcolor=transparent,
+                        fontname=Arial,
+                        penwidth=2,
+                        truecolor=true];
+                    node [fontname=Arial,
+                        fontsize=12,
+                        penwidth=2];
+                    edge [penwidth=2];
+                    node_0 [label="4/4",
+                        shape=triangle];
+                    node_1 [label="1/4",
+                        shape=box];
+                    node_2 [label="1/4",
+                        shape=box];
+                    node_3 [label="1/4",
+                        shape=box];
+                    node_4 [label="1/4",
+                        shape=box];
+                    subgraph cluster_cluster_offsets {
+                        graph [style=rounded];
+                        node_5_0 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 0 | <f_0_1> ++ }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_5_1 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 1/4 | <f_0_1> + }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_5_2 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 1/2 | <f_0_1> + }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_5_3 [color=white,
+                            fillcolor=black,
+                            fontcolor=white,
+                            fontname="Arial bold",
+                            label="{ <f_0_0> 3/4 | <f_0_1> + }",
+                            shape=Mrecord,
+                            style=filled];
+                        node_5_4 [label="{ <f_0_0> 1 | <f_0_1> ++ }",
+                            shape=Mrecord];
+                    }
+                    node_0 -> node_1;
+                    node_0 -> node_2;
+                    node_0 -> node_3;
+                    node_0 -> node_4;
+                    node_1 -> node_5_0 [style=dotted];
+                    node_1 -> node_5_1 [style=dotted];
+                    node_2 -> node_5_1 [style=dotted];
+                    node_2 -> node_5_2 [style=dotted];
+                    node_3 -> node_5_2 [style=dotted];
+                    node_3 -> node_5_3 [style=dotted];
+                    node_4 -> node_5_3 [style=dotted];
+                    node_4 -> node_5_4 [style=dotted];
+                }
+            <BLANKLINE>
+
+        Returns list of docutils nodes.
+        '''
         from abjad.tools import abjadbooktools
         code = str(self.payload)
         block = abjadbooktools.SphinxDocumentHandler.abjad_output_block(code, code)

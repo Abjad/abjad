@@ -4,6 +4,41 @@ from docutils import nodes
 
 
 class CodeOutputProxy(abctools.AbjadValueObject):
+    r'''A code output proxy.
+
+    ::
+
+        >>> proxy = abjadbooktools.CodeOutputProxy([
+        ...     ">>> print('Hello, world!')",
+        ...     'Hello, world!',
+        ...     '>>> 1 + 1',
+        ...     '2',
+        ...     ])
+        >>> print(format(proxy))
+        abjadbooktools.CodeOutputProxy(
+            (
+                ">>> print('Hello, world!')",
+                'Hello, world!',
+                '>>> 1 + 1',
+                '2',
+                )
+            )
+
+    ::
+
+        >>> for line in proxy.as_latex():
+        ...     line
+        ...
+        '\\begin{lstlisting}'
+        ">>> print('Hello, world!')"
+        'Hello, world!'
+        '\\end{lstlisting}'
+        '\\begin{lstlisting}'
+        '>>> 1 + 1'
+        '2'
+        '\\end{lstlisting}'
+
+    '''
 
     ### CLASS VARIABLES ###
 
@@ -20,9 +55,11 @@ class CodeOutputProxy(abctools.AbjadValueObject):
 
     def as_docutils(
         self,
-        configuration=None,
-        output_directory=None,
         ):
+        r'''Creates a docutils node representation of the code output proxy.
+
+        Returns list of docutils nodes.
+        '''
         result = []
         waiting_for_prompt = False
         lines = []
@@ -48,6 +85,10 @@ class CodeOutputProxy(abctools.AbjadValueObject):
         output_directory=None,
         relative_output_directory=None,
         ):
+        r'''Creates a LaTeX representation of the code output proxy.
+
+        Returns list of strings.
+        '''
         #lexer = 'pycon'
         #if not self.payload[0].startswith('>>>'):
         #    lexer = 'python'
@@ -71,4 +112,8 @@ class CodeOutputProxy(abctools.AbjadValueObject):
 
     @property
     def payload(self):
+        r'''Gets code output proxy payload.
+
+        Returns tuple of strings.
+        '''
         return self._payload

@@ -13,17 +13,16 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     ::
 
-        >>> from abjad.tools import abjadbooktools
         >>> staff = Staff("c'4 d'4 e'4 f'4")
         >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
         >>> print(format(proxy))
-        abjadbooktools.tools.LilyPondOutputProxy(
+        abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile()
             )
 
     ::
 
-        >>> print(proxy.as_latex(relative_output_directory='assets'))
+        >>> proxy.as_latex(relative_output_directory='assets')
         ['\\noindent\\includegraphics{assets/lilypond-627153107d80c2ead680f5295be4d2db.pdf}']
 
     '''
@@ -38,7 +37,6 @@ class LilyPondOutputProxy(ImageOutputProxy):
     ### INITIALIZER ###
 
     def __init__(self, payload, stylesheet=None):
-        #from abjad import abjad_configuration
         payload = copy.deepcopy(payload)
         if stylesheet is None:
             payload = documentationtools.make_reference_manual_lilypond_file(
@@ -92,9 +90,59 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     def as_docutils(
         self,
-        configuration=None,
-        output_directory=None,
         ):
+        r'''Creates a docutils node representation of the output proxy.
+
+        ::
+
+            >>> for node in proxy.as_docutils():
+            ...     print(node.pformat())
+            ...
+            <abjad_output_block renderer="lilypond" xml:space="preserve">
+                \version "2.19.0"
+                \language "english"
+            <BLANKLINE>
+                #(set-global-staff-size 12)
+            <BLANKLINE>
+                \header {
+                    tagline = \markup {}
+                }
+            <BLANKLINE>
+                \layout {
+                    indent = #0
+                    ragged-right = ##t
+                    \context {
+                        \Score
+                        \remove Bar_number_engraver
+                        \override SpacingSpanner #'strict-grace-spacing = ##t
+                        \override SpacingSpanner #'strict-note-spacing = ##t
+                        \override SpacingSpanner #'uniform-stretching = ##t
+                        \override TupletBracket #'bracket-visibility = ##t
+                        \override TupletBracket #'minimum-length = #3
+                        \override TupletBracket #'padding = #2
+                        \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
+                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                        proportionalNotationDuration = #(ly:make-moment 1 24)
+                        tupletFullLength = ##t
+                    }
+                }
+            <BLANKLINE>
+                \paper {
+                    left-margin = 1\in
+                }
+            <BLANKLINE>
+                \score {
+                    \new Staff {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+            <BLANKLINE>
+
+        Returns list of docutils nodes.
+        '''
         from abjad.tools import abjadbooktools
         code = format(self.payload)
         block = abjadbooktools.SphinxDocumentHandler.abjad_output_block(code, code)
@@ -105,8 +153,16 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     @property
     def file_name_prefix(self):
+        r'''Gets file name prefix of LilyPond output proxy.
+
+        Returns string.
+        '''
         return 'lilypond'
 
     @property
     def stylesheet(self):
+        r'''Gets stylesheet name of LilyPond output proxy.
+
+        Returns string.
+        '''
         return self._stylesheet
