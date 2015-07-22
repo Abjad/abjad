@@ -4,6 +4,7 @@ import types
 import importlib
 import inspect
 import textwrap
+from sphinx.util.console import bold, red
 from abjad.tools import abctools
 from abjad.tools import systemtools
 
@@ -328,11 +329,15 @@ class CodeBlock(abctools.AbjadValueObject):
                     if self.allow_exceptions:
                         console.unregister_error()
                     else:
-                        message = ''
+                        message = 'Abjad-book error on '
                         if self.document_source:
-                            message = str(self.document_source) + '\n'
-                        message += 'Errored at line number {}\n    '.format(
-                            self.starting_line_number + i)
+                            message += str(self.document_source)
+                            message += ':{}'
+                        else:
+                            message += 'line number {}'
+                        message = message.format(self.starting_line_number + i)
+                        message = bold(red(message))
+                        message += '\n    '
                         message = message + '\n    '.join(self.current_lines)
                         raise abjadbooktools.AbjadBookError(message)
                 if not is_incomplete_statement:

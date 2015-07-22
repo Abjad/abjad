@@ -42,9 +42,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def on_doctree_read(app, document):
+        import abjad
+        from abjad.tools import abjadbooktools
         try:
-            import abjad
-            from abjad.tools import abjadbooktools
             #if 'api' not in document['source']:
             #    return
             handler = SphinxDocumentHandler()
@@ -64,11 +64,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             handler.rebuild_document(document, literal_blocks)
             abjad_console.restore_topleveltools_dict()
             literal_console.restore_topleveltools_dict()
+        except abjadbooktools.AbjadBookError as e:
+            print()
+            print(e.args[0])
         except Exception:
-            app.builder.warn(
-                'Encountered parsing error.',
-                (app.builder.current_docname, 0),
-                )
+            print()
             traceback.print_exc()
 
     @staticmethod
@@ -274,23 +274,18 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         ):
         from abjad.tools import abjadbooktools
         #print('preparing to interpret')
-        try:
-            code_blocks = tuple(input_blocks.values())
-            if not code_blocks:
-                return
-            progress_indicator = systemtools.ProgressIndicator(
-                message='    Interpreting code blocks',
-                total=len(code_blocks),
-                verbose=False,
-                )
-            with progress_indicator:
-                for code_block in code_blocks:
-                    code_block.interpret(console)
-                    progress_indicator.advance()
-        except abjadbooktools.AbjadBookError:
-            #print()
-            traceback.print_exc()
-            #print()
+        code_blocks = tuple(input_blocks.values())
+        if not code_blocks:
+            return
+        progress_indicator = systemtools.ProgressIndicator(
+            message='    Interpreting code blocks',
+            total=len(code_blocks),
+            verbose=False,
+            )
+        with progress_indicator:
+            for code_block in code_blocks:
+                code_block.interpret(console)
+                progress_indicator.advance()
         #print('interpreted...')
         #print()
         #for block, code_block in input_blocks.items():
