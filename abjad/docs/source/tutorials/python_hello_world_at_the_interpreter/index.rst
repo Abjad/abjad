@@ -44,6 +44,7 @@ The interpreter stops and returns you to the terminal.
 
 The Python interpreter is a good way to do relatively small things quickly.
 
-But as your projects become more complex you will want to organize the code you write in files.
+But as your projects become more complex you will want to organize the code you
+write in files.
 
 This is the topic of the next tutorial.

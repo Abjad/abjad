@@ -10,27 +10,10 @@ And how to make musical score?
 
 Use Python's ``dir()`` built-in to get a sense of the answer:
 
-::
+..  abjad::
+    :text-width: 79
 
-   >>> dir()
-   ['Articulation', 'Beam', 'Chord', 'Clef', 'Container', 'Crescendo',
-   'Decrescendo', 'Duration', 'Dynamic', 'Fraction', 'Glissando', 'Hairpin',
-   'KeySignature', 'Markup', 'Measure', 'Multiplier', 'NamedPitch', 'Note',
-   'Offset', 'Rest', 'Score', 'Slur', 'Staff', 'StaffGroup', 'Tempo', 'Tie',
-   'TimeSignature', 'Tuplet', 'Voice', '__builtins__', '__doc__', '__name__',
-   '__package__', 'abctools', 'abjad_configuration', 'abjadbooktools',
-   'agenttools', 'attach', 'set_', 'datastructuretools', 'detach',
-   'developerscripttools', 'documentationtools', 'durationtools',
-   'exceptiontools', 'f', 'indicatortools', 'inspect', 'instrumenttools',
-   'iterate', 'labeltools', 'layouttools', 'lilypondfiletools',
-   'lilypondnametools', 'lilypondparsertools', 'markuptools', 'mathtools',
-   'metertools', 'mutate', 'new', 'override', 'parse', 'persist',
-   'pitcharraytools', 'pitchtools', 'play', 'quantizationtools',
-   'rhythmmakertools', 'rhythmtreetools', 'schemetools', 'scoretools', 'select',
-   'selectiontools', 'sequencetools', 'show', 'sievetools', 'spannertools',
-   'stringtools', 'systemtools', 'templatetools', 'timespantools',
-   'tonalanalysistools', 'topleveltools']
-
+    dir()
 
 Calling ``from abjad import *`` causes Python to load hundreds or thousands of
 lines of Abjad's code into the global namespace for you to use.  Abjad's code
@@ -44,16 +27,10 @@ Inspecting output
 
 Use ``dir()`` to take a look at the contents of the ``systemtools`` package:
 
-::
+..  abjad::
+    :text-width: 79
 
-   >>> dir(systemtools)
-   ['AbjadConfiguration', 'BenchmarkScoreMaker', 'Configuration', 'IOManager',
-   'ImportManager', 'LilyPondFormatBundle', 'LilyPondFormatManager',
-   'RedirectedStreams', 'StorageFormatManager', 'StorageFormatSpecification',
-   'TestManager', 'Timer', 'UpdateManager', 'WellformednessManager',
-   '__builtins__', '__doc__', '__file__', '__name__', '__package__', '__path__',
-   '_documentation_section', 'requires']
-
+    dir(systemtools)
 
 The ``systemtools`` package implements I/O functions that help you work with the
 files you create in Abjad.

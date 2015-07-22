@@ -93,8 +93,11 @@ If you're using MacOS X you can open ``hello_world.pdf`` like this::
 
     $ open hello_world.pdf
 
-.. image:: images/index-1.png
+..  abjad::
+    :hide:
 
+    note = Note("c'4")
+    show(note)
 
 Your operating system shows the score you created.
 

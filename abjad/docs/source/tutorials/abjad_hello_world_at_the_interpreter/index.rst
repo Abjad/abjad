@@ -5,7 +5,9 @@ Abjad "hello, world" (at the interpreter)
 Starting the interpreter
 ------------------------
 
-Open the terminal and start the Python interpreter::
+Open the terminal and start the Python interpreter:
+
+::
 
     abjad$ python
 
@@ -16,7 +18,9 @@ Open the terminal and start the Python interpreter::
     Type "help", "copyright", "credits" or "license" for more information.
     >>>
 
-Then import Abjad::
+Then import Abjad:
+
+::
 
     >>> from abjad import *
 
@@ -33,28 +37,22 @@ Entering commands
 
 After you've imported Abjad you can create a note like this:
 
-::
+..  abjad::
 
-   >>> note = Note("c'4")
-
+    note = Note("c'4")
 
 And you can show the note like this:
 
-::
+..  abjad::
 
-   >>> show(note)
-
-.. image:: images/index-1.png
-
+    show(note)
 
 
 Stopping the interpreter
 ------------------------
 
-Type ``quit()`` or ``ctrl+D`` when you're done::
+Type ``quit()`` or ``ctrl+D`` when you're done.
 
-    >>> ^D
-
-Working with the interpreter is a good way to test out small bits of code in Abjad.
-As your scores become more complex you will want to organize the code your write with Abjad in files.
-This is the topic of the next tutorial.
+Working with the interpreter is a good way to test out small bits of code in
+Abjad. As your scores become more complex you will want to organize the code
+your write with Abjad in files. This is the topic of the next tutorial.
