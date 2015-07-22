@@ -24,9 +24,9 @@ install:
 
 script:
     - abjad/scr/ajv doctest experimental
-    - py.test -vv experimental
+    - py.test experimental
     - coverage run -a abjad/scr/ajv doctest --diff abjad 
-    - coverage run -a `which py.test` -vv abjad
+    - coverage run -a `which py.test` abjad
 
 after_success:
     coveralls

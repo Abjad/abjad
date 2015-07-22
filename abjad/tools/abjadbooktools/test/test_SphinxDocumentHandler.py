@@ -459,6 +459,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     'sievetools', 'spannertools',
                     'stringtools', 'systemtools',
                     'templatetools', 'timespantools',
-                    'tonalanalysistools', 'topleveltools']
+                    'tonalanalysistools', 'topleveltools']xxx
             """)
         assert actual == target
