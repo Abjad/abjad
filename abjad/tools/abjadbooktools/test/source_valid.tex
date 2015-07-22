@@ -1,0 +1,64 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+
+\begin{document}
+
+\section{A Section}
+
+This is a print statement:
+
+\begin{comment}
+<abjad>
+print('hello, world!')
+</abjad>
+\end{comment}
+
+Here's a multiline Python string:
+
+\begin{comment}
+<abjad>
+a_multiline_string = '''\
+one
+    two
+        three
+'''
+print(a_multiline_string)
+</abjad>
+\end{comment}
+
+\section{Another Section}
+
+Here's some notation:
+
+\begin{comment}
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4")
+show(staff)
+</abjad>
+\end{comment}
+
+Here's notation in a loop:
+
+\begin{comment}
+<abjad>
+for leaf in staff.select_leaves():
+    duration = inspect_(leaf).get_duration()
+    print(duration)
+    show(leaf)
+
+</abjad>
+\end{comment}
+
+Here's a graph:
+
+\begin{comment}
+<abjad>
+meter = metertools.Meter((4, 4))
+graph(meter)
+</abjad>
+\end{comment}
+
+That's all.
+
+\end{document}
