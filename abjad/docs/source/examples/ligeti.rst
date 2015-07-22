@@ -19,7 +19,15 @@ The redundancy is immediately evident in the repeating pattern found in both
 staves. The pattern is hierarchical. At the smallest level we have what we will
 here call a *cell*:
 
-.. image :: images/desordre-cell.png
+..  import:: abjad.demos.desordre.make_desordre_cell:make_desordre_cell
+    :hide:
+
+..  abjad::
+    :hide:
+
+    cell = Staff([make_desordre_cell([1, 2, 3])])
+    show(cell)
+
 
 There are two of these cells per measure. Notice that the cells are strictly
 contained within the measure (i.e., there are no cells crossing a bar line).
@@ -48,7 +56,7 @@ eight note funs.
 stem up.
 
 4. The eight note runs are always beamed together and slurred, and the first
-two notes always have the dynamicings 'f' 'p'.
+two notes always have the dynamic markings 'f' 'p'.
 
 The two "layers" of the *cell* we will model with two Voices inside a
 simultaneous Container. The top Voice will hold the octave "chord" while the
@@ -231,9 +239,9 @@ Now that we have the redundant aspect of the piece compactly expressed and
 encapsulated, we can play around with it by changing the sequence of pitches.
 
 In order for each staff to carry its own sequence of independent measure
-changes, LilyPond requires some special set_ up prior to rendering.
-Specifically, one must move the LilyPond ``Timing_translator`` out from the
-score context and into the staff context.
+changes, LilyPond requires some special setup prior to rendering. Specifically,
+one must move the LilyPond ``Timing_translator`` out from the score context and
+into the staff context.
 
 (You can refer to the LilyPond documentation on
 `Polymetric notation <http://lilypond.org/doc/v2.12/Documentation/user/lilypond/Displaying-rhythms#Polymetric-notation>`_
