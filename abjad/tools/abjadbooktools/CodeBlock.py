@@ -320,40 +320,49 @@ class CodeBlock(abctools.AbjadValueObject):
             self.output_proxies.insert(0, code_output_proxy)
         else:
             result = '>>> '
-            for i, line in enumerate(input_file_contents):
+            for line_number, line in enumerate(input_file_contents):
                 result += line
                 self.current_lines.append(result)
-                with systemtools.RedirectedStreams(self, self):
-                    is_incomplete_statement = console.push(line)
-                if console.errored:
-                    if self.allow_exceptions:
-                        console.unregister_error()
-                    else:
-                        message = 'Abjad-book error on '
-                        if self.document_source:
-                            message += str(self.document_source)
-                            message += ':{}'
-                        else:
-                            message += 'line number {}'
-                        message = message.format(self.starting_line_number + i)
-                        message = bold(red(message))
-                        message += '\n    '
-                        message = message + '\n    '.join(self.current_lines)
-                        raise abjadbooktools.AbjadBookError(message)
+
+                is_incomplete_statement = self.push_line_to_console(
+                    line, console, line_number)
+
                 if not is_incomplete_statement:
                     result = '>>> '
                     self.setup_capture_hooks(console)
                 else:
                     result = '... '
         if is_incomplete_statement:
-            with systemtools.RedirectedStreams(self, self):
-                is_incomplete_statement = console.push('\n')
+            is_incomplete_statement = self.push_line_to_console(
+                '\n', console, line_number)
         self.push_code_output_proxy()
         if self.hide:
             self.output_proxies[:] = [
                 _ for _ in self.output_proxies
                 if not isinstance(_, abjadbooktools.CodeOutputProxy)
                 ]
+
+    def push_line_to_console(self, line, console, line_number):
+        from abjad.tools import abjadbooktools
+        with systemtools.RedirectedStreams(self, self):
+            is_incomplete_statement = console.push(line)
+        if console.errored:
+            if self.allow_exceptions:
+                console.unregister_error()
+            else:
+                message = 'Abjad-book error on '
+                if self.document_source:
+                    message += str(self.document_source)
+                    message += ':{}'
+                else:
+                    message += 'line number {}'
+                line_number += self.starting_line_number
+                message = message.format(line_number)
+                message = bold(red(message))
+                message += '\n    '
+                message = message + '\n    '.join(self.current_lines)
+                raise abjadbooktools.AbjadBookError(message)
+        return is_incomplete_statement
 
     def push_asset_output_proxy(self, asset_output_proxy):
         self.push_code_output_proxy()

@@ -109,7 +109,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         print()
         message = bold(red('Found abjad_input_block.'))
         self.builder.warn(message, (self.builder.current_docname, node.line))
-        print(node.pformat())
+        print(systemtools.TestManager.clean_string(node.pformat()))
         raise nodes.SkipNode
 
     def visit_abjad_output_block_html(self, node):
