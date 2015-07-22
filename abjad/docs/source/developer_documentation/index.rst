@@ -22,7 +22,6 @@ Developer tools
     :numbered:
 
     ajv/index
-    ajv_book/index
 
 Development notes
 -----------------
