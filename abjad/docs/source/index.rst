@@ -85,6 +85,7 @@ Details
     in_conversation/index
     system_overview/index
     examples/index
+    for_beginners/index
     tutorials/index
     reference_manual/index
     developer_documentation/index
