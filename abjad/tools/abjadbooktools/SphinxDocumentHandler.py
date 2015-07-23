@@ -216,7 +216,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             relative_target_file_path,
             ) = SphinxDocumentHandler.get_paths(self, node)
         if os.path.isfile(absolute_target_file_path):
-            #self.builder.info('Preserved {}.'.format(absolute_target_file_path))
             return relative_source_file_path, relative_target_file_path, True
         if node['renderer'] == 'graphviz':
             render_command = 'dot -Tpng {} -o {}'.format(
@@ -229,8 +228,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 absolute_source_file_path,
                 )
         with open(absolute_source_file_path, 'w') as file_pointer:
-            file_pointer.write(node[0])
-
+            code = node[0]
+            if sys.version_info[0] == 2:
+                code = code.encode('utf-8')
+            file_pointer.write(code)
         process = subprocess.Popen(
             render_command,
             shell=True,
@@ -239,7 +240,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             )
         stdout, stderr = process.communicate()
         return_code = process.returncode
-
         if return_code:
             self.builder.warn(
                 'Failed to render {}.'.format(absolute_target_file_path),
@@ -251,7 +251,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     stdout = stdout.decode('utf-8')
                 self.builder.warn(stdout)
             return relative_source_file_path, relative_target_file_path, False
-
         trim_command = 'convert -trim -resize 50%% {} {}'.format(
             absolute_target_file_path,
             absolute_target_file_path,
@@ -264,7 +263,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             )
         stdout, stderr = process.communicate()
         return_code = process.returncode
-
         if return_code:
             self.builder.warn(
                 'Failed to render {}.'.format(absolute_target_file_path),
@@ -276,9 +274,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     stdout = stdout.decode('utf-8')
                 self.builder.warn(stdout)
             return relative_source_file_path, relative_target_file_path, False
-
-        #self.builder.info('Rendered {}.'.format(absolute_target_file_path))
-
         return relative_source_file_path, relative_target_file_path, True
 
     ### PUBLIC METHODS ###

@@ -254,7 +254,10 @@ class CodeBlock(abctools.AbjadValueObject):
         module_name, sep, attr_name = code_address.rpartition(':')
         module = importlib.import_module(module_name)
         attr = getattr(module, attr_name)
-        input_file_contents = inspect.getsource(attr).splitlines()
+        input_file_contents = inspect.getsource(attr)
+        if sys.version_info[0] == 2:
+            input_file_contents = input_file_contents.decode('utf-8')
+        input_file_contents = input_file_contents.splitlines()
         executed_lines = 'from {} import {}'.format(
             module_name,
             attr_name,

@@ -21,6 +21,7 @@ class AbjadDirective(Directive):
     option_spec = {
         'allow-exceptions': directives.flag,
         'hide': directives.flag,
+        'stylesheet': str,
         'strip-prompt': directives.flag,
         'text-width': int,
         }

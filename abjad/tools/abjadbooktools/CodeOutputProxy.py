@@ -63,22 +63,28 @@ class CodeOutputProxy(abctools.AbjadValueObject):
         Returns list of docutils nodes.
         '''
         result = []
-        waiting_for_prompt = False
-        lines = []
-        for line in self.payload:
-            if not line.startswith(('>>> ', '... ')):
-                waiting_for_prompt = True
-            elif line.startswith('>>> ') and waiting_for_prompt:
-                waiting_for_prompt = False
+        try:
+            waiting_for_prompt = False
+            lines = []
+            for line in self.payload:
+                if not line.startswith(('>>> ', '... ')):
+                    waiting_for_prompt = True
+                elif line.startswith('>>> ') and waiting_for_prompt:
+                    waiting_for_prompt = False
+                    code = u'\n'.join(lines)
+                    block = nodes.literal_block(code, code)
+                    result.append(block)
+                    lines = []
+                lines.append(line)
+            if lines:
                 code = u'\n'.join(lines)
                 block = nodes.literal_block(code, code)
                 result.append(block)
-                lines = []
-            lines.append(line)
-        if lines:
-            code = u'\n'.join(lines)
-            block = nodes.literal_block(code, code)
-            result.append(block)
+        except UnicodeDecodeError:
+            print()
+            print(type(self))
+            for line in self.payload:
+                print(repr(line))
         return result
 
     def as_latex(

@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import copy
 import os
 import subprocess
+import sys
 from abjad.tools import documentationtools
 from abjad.tools import systemtools
 from abjad.tools import lilypondfiletools
@@ -146,10 +148,20 @@ class LilyPondOutputProxy(ImageOutputProxy):
         Returns list of docutils nodes.
         '''
         from abjad.tools import abjadbooktools
-        code = format(self.payload)
-        block = abjadbooktools.abjad_output_block(code, code)
-        block['renderer'] = 'lilypond'
-        return [block]
+        result = []
+        try:
+            code = format(self.payload)
+            block = abjadbooktools.abjad_output_block(code, code)
+            if sys.version_info[0] == 2:
+                code = code.decode('utf-8')
+            block['renderer'] = 'lilypond'
+            result.append(block)
+        except UnicodeDecodeError:
+            print()
+            print(type(self))
+            for line in code.splitlines():
+                print(repr(line))
+        return result
 
     ### PUBLIC PROPERTIES ###
 

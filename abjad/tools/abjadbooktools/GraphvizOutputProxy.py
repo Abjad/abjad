@@ -4,6 +4,7 @@ import pickle
 import platform
 import os
 import subprocess
+import sys
 from abjad.tools import systemtools
 from abjad.tools.abjadbooktools.ImageOutputProxy import ImageOutputProxy
 
@@ -341,10 +342,20 @@ class GraphvizOutputProxy(ImageOutputProxy):
         Returns list of docutils nodes.
         '''
         from abjad.tools import abjadbooktools
-        code = str(self.payload)
-        block = abjadbooktools.abjad_output_block(code, code)
-        block['renderer'] = 'graphviz'
-        return [block]
+        result = []
+        try:
+            code = str(self.payload)
+            if sys.version_info[0] == 2:
+                code = code.decode('utf-8')
+            block = abjadbooktools.abjad_output_block(code, code)
+            block['renderer'] = 'graphviz'
+            result.append(block)
+        except UnicodeDecodeError:
+            print()
+            print(type(self))
+            for line in code.splitlines():
+                print(repr(line))
+        return result
 
     ### PUBLIC PROPERTIES ###
 
