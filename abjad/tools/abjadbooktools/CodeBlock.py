@@ -387,10 +387,12 @@ class CodeBlock(abctools.AbjadValueObject):
         prototype = (types.MethodType, types.FunctionType)
         if isinstance(console.locals['graph'], prototype):
             console.locals['graph'] = self.graph
-        console.locals['show'] = self.show
+        console.locals['play'] = self.play
         console.locals['quit'] = self.quit
+        console.locals['show'] = self.show
         topleveltools = console.locals['topleveltools']
         topleveltools.__dict__['graph'] = self.graph
+        topleveltools.__dict__['play'] = self.play
         topleveltools.__dict__['show'] = self.show
 
     def write(self, string):
