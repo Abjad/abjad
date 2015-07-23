@@ -101,6 +101,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             app.builder.imagedir,
             'abjadbook',
             )
+        if not os.path.exists(image_directory):
+            os.makedirs(image_directory)
         for file_name in os.listdir(stylesheets_directory):
             if os.path.splitext(file_name)[-1] not in ('.ly', '.ily'):
                 continue
