@@ -18,6 +18,18 @@ class DocumentationManager(object):
     tools_packages_package_path = 'abjad.tools'
 
     @staticmethod
+    def get_ignored_classes():
+        r'''
+        '''
+        from abjad.tools import abjadbooktools
+        ignored_classes = set([
+            abjadbooktools.abjad_import_block,
+            abjadbooktools.abjad_input_block,
+            abjadbooktools.abjad_output_block,
+            ])
+        return ignored_classes
+
+    @staticmethod
     def build_attribute_section(
         cls,
         attrs,
@@ -250,6 +262,7 @@ class DocumentationManager(object):
             api_index_rst.rest_format,
             rewritten_files,
             )
+        ignored_classes = manager.get_ignored_classes()
         for package in tools_packages:
             tools_package_rst = manager.get_tools_package_rst(package)
             tools_package_file_path = manager.package_path_to_file_path(
@@ -269,6 +282,9 @@ class DocumentationManager(object):
                     cls.__module__,
                     source_directory,
                     )
+                if cls in ignored_classes:
+                    print('IGNORING: {}'.format(file_path))
+                    continue
                 rst = manager.get_class_rst(cls)
                 manager.write(file_path, rst.rest_format, rewritten_files)
             for function in functions:
@@ -644,6 +660,8 @@ class DocumentationManager(object):
             directive='automodule',
             )
         document.append(automodule_directive)
+        ignored_classes = manager.get_ignored_classes()
+        classes = [_ for _ in classes if _ not in ignored_classes]
         if classes:
             sections = {}
             for cls in classes:
