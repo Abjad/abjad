@@ -14,7 +14,7 @@ symbols on the page.
 Abjad extends LilyPond
 ----------------------
 
-`LilyPond <http://www.lilypond.org>`__ is an open-source music notation package
+`LilyPond <http://www.lilypond.org>`_ is an open-source music notation package
 invented by Han-Wen Nienhuys and Jan Niewenhuizen and extended by an
 international team of developers and musicians.  LilyPond differs from other
 music engraving programs in a number of ways.  LilyPond separates musical
@@ -28,9 +28,9 @@ effectively if you understand the structure of the LilyPond files Abjad
 creates.  For this reason we recommend new users spend a couple of days
 learning LilyPond first.
 
-Start by reading about `text input <http://lilypond.org/text-input.html>`__ in
+Start by reading about `text input <http://lilypond.org/text-input.html>`_ in
 LilyPond.  Then work the `LilyPond tutorial
-<http://www.lilypond.org/doc/v2.17/Documentation/learning/tutorial>`__.  You
+<http://www.lilypond.org/doc/v2.17/Documentation/learning/tutorial>`_.  You
 can test your understanding of LilyPond by using the program to engrave of a
 Bach chorale.  Use a grand staff and and include slurs, fermatas and so on.
 Once you can engrave a chorale in LilyPond you'll understand the way Abjad
@@ -40,7 +40,7 @@ works with LilyPond behind the scenes.
 Abjad extends Python
 --------------------
 
-`Python <http://www.python.org>`__ is an open-source programming language
+`Python <http://www.python.org>`_ is an open-source programming language
 invented by Guido van Rossum and further developed by a team of programmers
 working in many countries around the world.  Python is used to provision
 servers, process text, develop distributed systems and do much more besides.
@@ -54,7 +54,7 @@ store, model and encapsulate information.  Abjad simply piggy-backs on the ways
 of doing these things that Python provides.  So to use Abjad effectively you
 need to know the way these things are done in Python.
 
-Start with the `Python tutorial <http://docs.python.org/tutorial/>`__.  The
+Start with the `Python tutorial <http://docs.python.org/tutorial/>`_.  The
 tutorial is structured in 15 chapters and you should work through the first 12.
 This will take a day or two and you'll be able to use all the information you
 read in the Python tutorial in Abjad.  If you're an experienced programmer you
@@ -98,7 +98,7 @@ As you begin working with Abjad please be in touch.
 Questions, comments and contributions are welcomed from composers everywhere.
 
 **Questions or comments?**
-Join the `abjad-user <http://groups.google.com/group/abjad-user>`__ list.
+Join the `abjad-user <http://groups.google.com/group/abjad-user>`_ list.
 
 **Want to contribute?**
-Join the `abjad-devel <http://groups.google.com/group/abjad-devel>`__ list.
+Join the `abjad-devel <http://groups.google.com/group/abjad-devel>`_ list.

@@ -1,17 +1,8 @@
 Start here
 ==========
 
-..  only:: html
+..  toctree::
 
-    ..  toctree::
-
-        abjad/index
-        installation/index
-        version_history/index
-
-..  only:: latex
-
-    ..  toctree::
-
-        abjad/index
-        installation/index
+    abjad
+    installation
+    version_history/index

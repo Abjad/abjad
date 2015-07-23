@@ -15,9 +15,16 @@ Standard Installation
 Python and OS Support
 `````````````````````
 
-Abjad works with CPython versions 2.7, 3.3, and 3.4.
+Abjad works with `CPython`_ versions 2.7 and 3.3+.
 
 Abjad works on Unix/Linux, OSX, and Windows.
+
+To check the version of Python installed on your computer, type the following:
+
+..  code-block:: bash
+
+    ~$ python --version
+    Python 2.7.10
 
 Install Abjad
 `````````````
@@ -34,23 +41,6 @@ To install the cutting-edge version Abjad from its source repository, via `git
     ~$ cd abjad
     abjad$ sudo pip install .
 
-We strongly recommend installing Abjad into a virtual environment, especially
-if you intend to hack on Abjad's own source code. Virtual environments allow
-you to isolate Python packages from your systems global collection of packages.
-They also allow you to install Python packages without ``sudo``. The
-`virtualenv`_ package provides tools for creating Python virtual environments,
-and the `virtualenvwrapper`_ package provides additional tools which make
-working with virtual environments incredibly easy::
-
-    ~$ pip install virtualenv virtualenvwrapper
-    ...
-    ~$ export WORKON_HOME=~/Envs
-    ~$ mkdir -p $WORKON_HOME
-    ~$ source /usr/local/bin/virtualenvwrapper.sh
-    ~$ mkvirtualenv abjad
-    ...
-    ~(abjad)$ pip install abjad
-
 Install LilyPond
 ````````````````
 
@@ -58,7 +48,34 @@ Abjad uses `LilyPond`_, an open-source automated engraving engine, to produce
 notational output. Abjad targets whichever is the most recent version of
 `LilyPond`_. We recommend installing directly from `LilyPond`_'s website,
 rather than using whichever version of `LilyPond`_ your package manager
-provides.
+provides, as these packages are often out-of-date.
+
+Once you have installed LilyPond, test if LilyPond is callable from your
+command-line by running the following command:
+
+..  code-block:: bash
+
+    ~$ lilypond --version
+    GNU LilyPond 2.19.20
+
+    Copyright (c) 1996--2015 by
+      Han-Wen Nienhuys <hanwen@xs4all.nl>
+      Jan Nieuwenhuizen <janneke@gnu.org>
+      and others.
+
+    This program is free software.  It is covered by the GNU General Public
+    License and you are welcome to change it and/or distribute copies of it
+    under certain conditions.  Invoke as `lilypond --warranty` for more
+    information.
+
+If LilyPond is not callable from your command-line, you should add the location
+of the LilyPond executable to your ``PATH`` environment variable. The
+`LilyPond`_ documentation provides instructions for making the ``lilypond``
+command available on the command-line under OSX at
+http://www.lilypond.org/macos-x.html.
+
+If you are new to working with the command-line you should use Google to get a
+basic introduction to editing your profile and setting environment variables.
 
 Install Graphviz (optional)
 ```````````````````````````
@@ -77,6 +94,14 @@ To install `Graphviz`_ on OSX via `Homebrew`_ or `MacPorts`_::
     ~$ brew install graphviz
     ~$ sudo port install graphviz
 
+Once you have install `Graphviz`_, test if `Graphviz`_ is callable from your
+command-line by running the following command:
+
+..  code-block:: bash
+
+    ~$ dot -V
+    dot - graphviz version 2.38.0 (20140413.2041)
+
 Development installation
 ------------------------
 
@@ -87,15 +112,6 @@ documentation locally, clone Abjad from the Github repository and install it in
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
     abjad$ sudo pip install -e . [development]
-
-If you have `virtualenvwrapper`_ installed, create a virtual environment and
-install Abjad into that instead::
-
-    ~$ mkvirtualenv abjad
-    ...
-    ~(abjad)$ git clone https://github.com/Abjad/abjad.git
-    ~(abjad)$ cd abjad
-    abjad(abjad)$ pip install -e . [development]
 
 Installing Abjad in development mode will install the following Python package
 dependencies.
@@ -122,6 +138,35 @@ the Apple App Store. Alternatively, you can install via `Homebrew`_ or
 
 Additionally, a few non-Python tools need to be installed in order to develop
 Abjad or build its documentation: `TeXLive`_, `ImageMagick`_ and `Graphviz`_.
+
+Virtual environments
+````````````````````
+
+We strongly recommend installing Abjad into a virtual environment, especially
+if you intend to hack on Abjad's own source code. Virtual environments allow
+you to isolate Python packages from your systems global collection of packages.
+They also allow you to install Python packages without ``sudo``. The
+`virtualenv`_ package provides tools for creating Python virtual environments,
+and the `virtualenvwrapper`_ package provides additional tools which make
+working with virtual environments incredibly easy::
+
+    ~$ pip install virtualenv virtualenvwrapper
+    ...
+    ~$ export WORKON_HOME=~/Envs
+    ~$ mkdir -p $WORKON_HOME
+    ~$ source /usr/local/bin/virtualenvwrapper.sh
+    ~$ mkvirtualenv abjad
+    ...
+    ~(abjad)$ pip install abjad
+
+If you have `virtualenvwrapper`_ installed, create a virtual environment and
+install Abjad into that instead::
+
+    ~$ mkvirtualenv abjad
+    ...
+    ~(abjad)$ git clone https://github.com/Abjad/abjad.git
+    ~(abjad)$ cd abjad
+    abjad(abjad)$ pip install -e . [development]
 
 TexLive
 ```````
@@ -210,3 +255,4 @@ extension::
 ..  _IPython: http://ipython.org/
 ..  _IPython notebook: http://ipython.org/notebook.html
 ..  _fluidsynth: http://www.fluidsynth.org/
+..  _CPython: http://www.python.org
