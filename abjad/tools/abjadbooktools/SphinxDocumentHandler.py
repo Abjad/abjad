@@ -110,7 +110,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 stylesheets_directory,
                 file_name,
                 )
-            print('from', source_file_path, 'to', image_directory)
+            #print('from', source_file_path, 'to', image_directory)
             shutil.copy(source_file_path, image_directory)
 
     @staticmethod
