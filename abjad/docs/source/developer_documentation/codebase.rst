@@ -1,5 +1,5 @@
-Codebase
-========
+Abjad's codebase layout
+=======================
 
 
 How the Abjad codebase is laid out

@@ -525,8 +525,8 @@ Use ``<`` less-than signs in preference to greater-than signs::
         ...
 
 
-Misc
-----
+Miscellaneous
+-------------
 
 Eliminate trivial slice indices. Use ``s[:4]`` instead of ``s[0:4]``.
 

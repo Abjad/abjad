@@ -1,5 +1,5 @@
-Docs
-====
+Documentation
+=============
 
 The reST-based sources for the Abjad documentation are included in their
 entirety in every installation of Abjad. You may add to and edit these

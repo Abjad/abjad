@@ -85,10 +85,10 @@ Details
     system_overview/index
     for_beginners/index
     examples/index
-    cookbook/index
     reference_manual/index
-    developer_documentation/index
+    cookbook/index
     api/index
+    developer_documentation/index
     appendices/index
 
 ..  _GitHub: https://github.com/Abjad/abjad
