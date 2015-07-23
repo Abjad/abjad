@@ -1,10 +1,20 @@
-Welcome to Abjad (|release|)
-============================
+Abjad (|release|)
+=================
+
+`GitHub`_ |
+`PyPI`_ |
+`Documentation <http://projectabjad.org/>`_ |
+`Mailing list <http://groups.google.com/group/abjad-user>`_ |
+`Issue Tracker <https://github.com/Abjad/abjad/issues>`_ |
+`Travis-CI <https://travis-ci.org/Abjad/abjad>`_
+
+Introduction
+------------
 
 Abjad helps composers build up complex pieces of music notation in an
 iterative and incremental way. Use Abjad to create a symbolic
 representation of all the notes, rests, staves, tuplets, beams and slurs in
-any score. Because Abjad extends the Python programming language, you can
+any score. Because Abjad extends the `Python`_ programming language, you can
 use Abjad to make systematic changes to your music as you work. And because
 Abjad wraps the powerful `LilyPond`_ music notation package, you can use Abjad
 to control the typographic details of the symbols on the page.
@@ -19,7 +29,8 @@ Abjad works with `CPython`_ versions 2.7 and 3.3+.
 
 Abjad works on Unix/Linux, OSX, and Windows.
 
-To check the version of Python installed on your computer, type the following:
+To check the version of `Python`_ installed on your computer, type the
+following:
 
 ..  code-block:: bash
 
@@ -29,13 +40,12 @@ To check the version of Python installed on your computer, type the following:
 Install Abjad
 `````````````
 
-To install Abjad from `PyPI <https://pypi.python.org/pypi/abjad>`_,
-the Python Package Index, via `pip`_::
+To install Abjad from `PyPI`_, the Python Package Index, via `pip`_::
 
     ~$ sudo pip install abjad
 
-To install the cutting-edge version Abjad from its source repository, via `git
-<https://git-scm.com/>`_ and `pip`_::
+To install the cutting-edge version Abjad from its `GitHub`_ repository, via
+`git <https://git-scm.com/>`_ and `pip`_::
 
     ~$ git clone https://github.com/Abjad/abjad.git 
     ~$ cd abjad
@@ -113,8 +123,8 @@ documentation locally, clone Abjad from the Github repository and install it in
     ~$ cd abjad
     abjad$ sudo pip install -e . [development]
 
-Installing Abjad in development mode will install the following Python package
-dependencies.
+Installing Abjad in development mode will install the following `Python`_
+package dependencies.
 
 -   `pytest`_, for running Abjad's test suite
 -   `Sphinx`_, for building Abjad's documentation
@@ -124,7 +134,7 @@ dependencies.
     book`` tool
 
 Some of `Sphinx`_'s dependencies provide will attempt to compile optimized
-Python extensions. If your machine does not have a C compiler available, you
+`Python`_ extensions. If your machine does not have a C compiler available, you
 may see error message while the ``pip install -e . [development]`` command
 runs.
 
@@ -136,16 +146,17 @@ To install compilation tools on OSX, we recommend simply installing XCode from
 the Apple App Store. Alternatively, you can install via `Homebrew`_ or
 `MacPorts`_, although this may take a significant amount of time.
 
-Additionally, a few non-Python tools need to be installed in order to develop
-Abjad or build its documentation: `TeXLive`_, `ImageMagick`_ and `Graphviz`_.
+Additionally, a few non-`Python`_ tools need to be installed in order to
+develop Abjad or build its documentation: `TeXLive`_, `ImageMagick`_ and
+`Graphviz`_.
 
 Virtual environments
 ````````````````````
 
 We strongly recommend installing Abjad into a virtual environment, especially
 if you intend to hack on Abjad's own source code. Virtual environments allow
-you to isolate Python packages from your systems global collection of packages.
-They also allow you to install Python packages without ``sudo``. The
+you to isolate `Python`_ packages from your systems global collection of
+packages. They also allow you to install Python packages without ``sudo``. The
 `virtualenv`_ package provides tools for creating Python virtual environments,
 and the `virtualenvwrapper`_ package provides additional tools which make
 working with virtual environments incredibly easy::
@@ -239,20 +250,23 @@ extension::
     api/index
     appendices/index
 
+..  _CPython: http://www.python.org
 ..  _Graphviz: http://graphviz.org/
 ..  _Homebrew: http://brew.sh/
+..  _IPython notebook: http://ipython.org/notebook.html
+..  _IPython: http://ipython.org/
 ..  _ImageMagick: http://www.imagemagick.org/script/index.php
 ..  _LilyPond: http://lilypond.org/
 ..  _MacPorts: https://www.macports.org/
 ..  _MacTeX: https://tug.org/mactex/
 ..  _PyPDF2: http://pythonhosted.org/PyPDF2/
+..  _PyPI: https://pypi.python.org/pypi/Abjad
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _TeXLive: https://www.tug.org/texlive/
+..  _fluidsynth: http://www.fluidsynth.org/
 ..  _pip: https://pip.pypa.io/en/stable/
 ..  _pytest: http://pytest.org/latest/
 ..  _virtualenv: https://readthedocs.org/projects/virtualenv/
 ..  _virtualenvwrapper: https://virtualenvwrapper.readthedocs.org/en/latest/
-..  _IPython: http://ipython.org/
-..  _IPython notebook: http://ipython.org/notebook.html
-..  _fluidsynth: http://www.fluidsynth.org/
-..  _CPython: http://www.python.org
+..  _GitHub: https://github.com/Abjad/abjad
+..  _Python: https://www.python.org/
