@@ -1,5 +1,5 @@
-Examples
-========
+Literature Examples
+===================
 
 ..  toctree::
     :glob:
