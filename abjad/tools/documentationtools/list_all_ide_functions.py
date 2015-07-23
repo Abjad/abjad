@@ -10,4 +10,7 @@ def list_all_ide_functions(modules=None):
 
     '''
     from abjad.tools import documentationtools
-    return documentationtools.list_all_functions(modules='ide')
+    try:
+        return documentationtools.list_all_functions(modules='ide')
+    except ImportError:
+        return []

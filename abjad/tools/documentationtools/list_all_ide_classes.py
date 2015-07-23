@@ -10,7 +10,10 @@ def list_all_ide_classes(modules=None, ignored_classes=None):
 
     '''
     from abjad.tools import documentationtools
-    return documentationtools.list_all_classes(
-        modules='ide',
-        ignored_classes=ignored_classes,
-        )
+    try:
+        return documentationtools.list_all_classes(
+            modules='ide',
+            ignored_classes=ignored_classes,
+            )
+    except ImportError:
+        return []
