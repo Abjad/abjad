@@ -343,11 +343,17 @@ class InheritanceGraph(AbjadObject):
         visited_modules = set([])
         assert 0 < len(addresses)
         for x in addresses:
+            address = None
             if isinstance(x, (str, types.ModuleType)):
                 if isinstance(x, types.ModuleType):
                     module = x
                 else:
-                    module = importlib.import_module(x)
+                    try:
+                        module = importlib.import_module(x)
+                    except ImportError:
+                        module = None
+                if module is None:
+                    continue
                 for y in module.__dict__.values():
                     if isinstance(y, type):
                         all_classes.add(y)
@@ -369,7 +375,8 @@ class InheritanceGraph(AbjadObject):
                 all_classes.add(current_class)
                 immediate_classes.add(current_class)
                 address = (current_class.__module__, current_class.__name__)
-            cached_addresses.append(address)
+            if address is not None:
+                cached_addresses.append(address)
         return all_classes, immediate_classes, tuple(cached_addresses)
 
     def _find_lineage_distances(self):
