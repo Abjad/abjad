@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import abjadbooktools
-import unittest
 from abjad.tools import systemtools
+import sys
+import unittest
 
 
 class CodeBlockTests(unittest.TestCase):
@@ -85,19 +86,34 @@ class CodeBlockTests(unittest.TestCase):
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
-        assert format(result) == systemtools.TestManager.clean_string(r"""
-            abjadbooktools.CodeBlock(
-                (
-                    'note = Note("c\'4")',
-                    'if True:',
-                    '    note.written_pitch = "ds,"',
-                    ),
-                allow_exceptions=False,
-                hide=False,
-                starting_line_number=1,
-                strip_prompt=False,
-                )
-            """)
+        if sys.version_info[0] == 2:
+            assert format(result) == systemtools.TestManager.clean_string(r"""
+                abjadbooktools.CodeBlock(
+                    (
+                        u'note = Note("c\'4")',
+                        u'if True:',
+                        u'    note.written_pitch = "ds,"',
+                        ),
+                    allow_exceptions=False,
+                    hide=False,
+                    starting_line_number=1,
+                    strip_prompt=False,
+                    )
+                """)
+        else:
+            assert format(result) == systemtools.TestManager.clean_string(r"""
+                abjadbooktools.CodeBlock(
+                    (
+                        'note = Note("c\'4")',
+                        'if True:',
+                        '    note.written_pitch = "ds,"',
+                        ),
+                    allow_exceptions=False,
+                    hide=False,
+                    starting_line_number=1,
+                    strip_prompt=False,
+                    )
+                """)
 
     def test_from_docutils_abjad_input_block_02(self):
         source = '''
@@ -112,19 +128,34 @@ class CodeBlockTests(unittest.TestCase):
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
-        assert format(result) == systemtools.TestManager.clean_string(r"""
-            abjadbooktools.CodeBlock(
-                (
-                    'note = Note("c\'4")',
-                    'if True:',
-                    '    note.written_pitch = "ds,"',
-                    ),
-                allow_exceptions=True,
-                hide=False,
-                starting_line_number=1,
-                strip_prompt=False,
-                )
-            """)
+        if sys.version_info[0] == 2:
+            assert format(result) == systemtools.TestManager.clean_string(r"""
+                abjadbooktools.CodeBlock(
+                    (
+                        u'note = Note("c\'4")',
+                        u'if True:',
+                        u'    note.written_pitch = "ds,"',
+                        ),
+                    allow_exceptions=True,
+                    hide=False,
+                    starting_line_number=1,
+                    strip_prompt=False,
+                    )
+                """)
+        else:
+            assert format(result) == systemtools.TestManager.clean_string(r"""
+                abjadbooktools.CodeBlock(
+                    (
+                        'note = Note("c\'4")',
+                        'if True:',
+                        '    note.written_pitch = "ds,"',
+                        ),
+                    allow_exceptions=True,
+                    hide=False,
+                    starting_line_number=1,
+                    strip_prompt=False,
+                    )
+                """)
 
     def test_from_docutils_literal_block(self):
         source = '''

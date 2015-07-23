@@ -1,9 +1,10 @@
 # -*- encoding: utf-8 -*-
 from __future__ import print_function
-import types
 import importlib
 import inspect
+import sys
 import textwrap
+import types
 from abjad.tools import abctools
 from abjad.tools import systemtools
 from sphinx.util.console import bold, red
@@ -274,8 +275,7 @@ class CodeBlock(abctools.AbjadValueObject):
     @staticmethod
     def from_docutils_abjad_input_block(block):
         from abjad.tools import abjadbooktools
-        input_file_contents = block[0][0].splitlines()
-        input_file_contents = (str(_) for _ in input_file_contents)
+        input_file_contents = tuple(block[0][0].splitlines())
         options = {}
         for key, value in block.attlist():
             key = key.replace('-', '_')
@@ -396,16 +396,19 @@ class CodeBlock(abctools.AbjadValueObject):
         topleveltools.__dict__['show'] = self.show
 
     def write(self, string):
-        if string:
-            if string.endswith('\n'):
-                string = string[:-1]
-            lines = string.splitlines()
-            if self.text_width is None:
-                self.current_lines.extend(lines)
-            else:
-                for line in lines:
-                    wrapped_lines = textwrap.wrap(line, self.text_width)
-                    self.current_lines.extend(wrapped_lines)
+        if not string:
+            return
+        if sys.version_info[0] == 2:
+            string = string.decode('utf-8')
+        if string.endswith('\n'):
+            string = string[:-1]
+        lines = string.splitlines()
+        if self.text_width is None:
+            self.current_lines.extend(lines)
+        else:
+            for line in lines:
+                wrapped_lines = textwrap.wrap(line, self.text_width)
+                self.current_lines.extend(wrapped_lines)
 
     ### PROXIES ###
 

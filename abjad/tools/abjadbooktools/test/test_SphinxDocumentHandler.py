@@ -98,6 +98,18 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
     '''
     source_four = systemtools.TestManager.clean_string(source_four)
 
+    source_five = u'''
+    This example demonstrates the power of exploiting redundancy to model
+    musical structure. The piece that concerns us here is Ligeti's *Désordre*:
+    the first piano study from Book I. Specifically, we will focus on modeling
+    the first section of the piece.
+
+    ..  abjad::
+
+        print('Désordre')
+    '''
+    source_five = systemtools.TestManager.clean_string(source_five)
+
     def setUp(self):
         app = self.Namespace()
         config = self.Namespace()
@@ -511,4 +523,26 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         'templatetools', 'timespantools',
                         'tonalanalysistools', 'topleveltools']
                 """)
+        assert actual == target, actual
+
+    def test_on_doctree_read_05(self):
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(self.source_five)
+        handler.on_doctree_read(self.app, document)
+        actual = systemtools.TestManager.clean_string(document.pformat())
+        target = systemtools.TestManager.clean_string(
+            u"""
+            <document source="test">
+                <paragraph>
+                    This example demonstrates the power of exploiting redundancy to model
+                    musical structure. The piece that concerns us here is Ligeti's
+                    <emphasis>
+                        Désordre
+                    :
+                    the first piano study from Book I. Specifically, we will focus on modeling
+                    the first section of the piece.
+                <literal_block xml:space="preserve">
+                    >>> print('Désordre')
+                    Désordre
+            """)
         assert actual == target, actual

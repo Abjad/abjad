@@ -70,13 +70,13 @@ class CodeOutputProxy(abctools.AbjadValueObject):
                 waiting_for_prompt = True
             elif line.startswith('>>> ') and waiting_for_prompt:
                 waiting_for_prompt = False
-                code = '\n'.join(lines)
+                code = u'\n'.join(lines)
                 block = nodes.literal_block(code, code)
                 result.append(block)
                 lines = []
             lines.append(line)
         if lines:
-            code = '\n'.join(lines)
+            code = u'\n'.join(lines)
             block = nodes.literal_block(code, code)
             result.append(block)
         return result
