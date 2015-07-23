@@ -92,17 +92,15 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     @staticmethod
     def on_builder_inited(app):
         app.builder.imagedir = '_images'
+        stylesheets_directory = os.path.join(
+            app.builder.srcdir,
+            '_stylesheets',
+            )
         image_directory = os.path.join(
             app.builder.outdir,
             app.builder.imagedir,
             'abjadbook',
             )
-        stylesheets_directory = os.path.join(
-            app.builder.srcdir,
-            '_stylesheets',
-            )
-        print('A', image_directory)
-        print('B', stylesheets_directory)
         for file_name in os.listdir(stylesheets_directory):
             if os.path.splitext(file_name)[-1] not in ('.ly', '.ily'):
                 continue
@@ -110,11 +108,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 stylesheets_directory,
                 file_name,
                 )
-            target_file_path = os.path.join(
-                image_directory,
-                file_name,
-                )
-            shutil.copy(source_file_path, target_file_path)
+            print('from', source_file_path, 'to', image_directory)
+            shutil.copy(source_file_path, image_directory)
 
     @staticmethod
     def on_build_finished(app, exc):
