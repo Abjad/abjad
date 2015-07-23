@@ -6,6 +6,7 @@ import os
 import posixpath
 import subprocess
 import re
+import shutil
 import sys
 import traceback
 from abjad.tools import abctools
@@ -15,21 +16,12 @@ from docutils.frontend import OptionParser
 from docutils.parsers.rst import Parser
 from docutils.parsers.rst import directives
 from docutils.utils import new_document
-from sphinx.util.console import bold, darkgray, purple, red
+from sphinx.util.console import bold, red
 
 
 class SphinxDocumentHandler(abctools.AbjadObject):
 
     ### CLASS VARIABLES ###
-
-    class abjad_import_block(nodes.General, nodes.Element):
-        pass
-
-    class abjad_input_block(nodes.General, nodes.Element):
-        pass
-
-    class abjad_output_block(nodes.General, nodes.FixedTextElement):
-        pass
 
     __slots__ = (
         '_errored',
@@ -100,11 +92,43 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     @staticmethod
     def on_builder_inited(app):
         app.builder.imagedir = '_images'
+        image_directory = os.path.join(
+            app.builder.outdir,
+            app.builder.imagedir,
+            'abjadbook',
+            )
+        stylesheets_directory = os.path.join(
+            app.builder.srcdir,
+            '_stylesheets',
+            )
+        print('A', image_directory)
+        print('B', stylesheets_directory)
+        for file_name in os.listdir(stylesheets_directory):
+            if os.path.splitext(file_name)[-1] not in ('.ly', '.ily'):
+                continue
+            source_file_path = os.path.join(
+                stylesheets_directory,
+                file_name,
+                )
+            target_file_path = os.path.join(
+                image_directory,
+                file_name,
+                )
+            shutil.copy(source_file_path, target_file_path)
 
     @staticmethod
     def on_build_finished(app, exc):
         pass
 
+    @staticmethod
+    def visit_abjad_import_block(self, node):
+        print()
+        message = bold(red('Found abjad_import_block.'))
+        self.builder.warn(message, (self.builder.current_docname, node.line))
+        print(systemtools.TestManager.clean_string(node.pformat()))
+        raise nodes.SkipNode
+
+    @staticmethod
     def visit_abjad_input_block(self, node):
         print()
         message = bold(red('Found abjad_input_block.'))
@@ -112,6 +136,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         print(systemtools.TestManager.clean_string(node.pformat()))
         raise nodes.SkipNode
 
+    @staticmethod
     def visit_abjad_output_block_html(self, node):
         if node['renderer'] not in ('graphviz', 'lilypond'):
             raise nodes.SkipNode
@@ -139,9 +164,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         self.body.append(output)
         raise nodes.SkipNode
 
+    @staticmethod
     def visit_abjad_output_block_latex(self, node):
         raise nodes.SkipNode
 
+    @staticmethod
     def get_paths(self, node, target_extension='.png'):
         sha1sum = hashlib.sha1(node[0].encode('utf-8')).hexdigest()
         file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
@@ -182,6 +209,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             relative_target_file_path,
             )
 
+    @staticmethod
     def render_png_image(self, node):
         (
             absolute_image_directory_path,
@@ -261,14 +289,14 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def collect_abjad_input_blocks(self, document):
         def is_valid_node(node):
             prototype = (
-                SphinxDocumentHandler.abjad_import_block,
-                SphinxDocumentHandler.abjad_input_block,
+                abjadbooktools.abjad_import_block,
+                abjadbooktools.abjad_input_block,
                 )
             return isinstance(node, prototype)
         from abjad.tools import abjadbooktools
         code_blocks = collections.OrderedDict()
         for block in document.traverse(is_valid_node):
-            if isinstance(block, SphinxDocumentHandler.abjad_import_block):
+            if isinstance(block, abjadbooktools.abjad_import_block):
                 code_block = \
                     abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
             else:
@@ -362,12 +390,17 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         app.add_directive('import', abjadbooktools.ImportDirective)
         app.add_directive('shell', abjadbooktools.ShellDirective)
         app.add_node(
-            SphinxDocumentHandler.abjad_input_block,
+            abjadbooktools.abjad_import_block,
+            html=[SphinxDocumentHandler.visit_abjad_import_block, None],
+            latex=[SphinxDocumentHandler.visit_abjad_import_block, None],
+            )
+        app.add_node(
+            abjadbooktools.abjad_input_block,
             html=[SphinxDocumentHandler.visit_abjad_input_block, None],
             latex=[SphinxDocumentHandler.visit_abjad_input_block, None],
             )
         app.add_node(
-            SphinxDocumentHandler.abjad_output_block,
+            abjadbooktools.abjad_output_block,
             html=[SphinxDocumentHandler.visit_abjad_output_block_html, None],
             latex=[SphinxDocumentHandler.visit_abjad_output_block_latex, None],
             )

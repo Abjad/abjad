@@ -342,7 +342,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
         '''
         from abjad.tools import abjadbooktools
         code = str(self.payload)
-        block = abjadbooktools.SphinxDocumentHandler.abjad_output_block(code, code)
+        block = abjadbooktools.abjad_output_block(code, code)
         block['renderer'] = 'graphviz'
         return [block]
 

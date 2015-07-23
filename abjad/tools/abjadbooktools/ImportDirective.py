@@ -4,11 +4,11 @@ from sphinx.util.nodes import set_source_info
 
 
 class ImportDirective(Directive):
-    r'''An `..  import::` docutils directive.
+    r'''An abjad-book import directive.
 
     Represents a class or function to be imported into an interactive session.
 
-    Generates a SphinxDocumentHandler.abjad_import_block node.
+    Generates a `abjad_import_block node`.
     '''
 
     ### CLASS VARIABLES ###
@@ -28,7 +28,7 @@ class ImportDirective(Directive):
         '''
         from abjad.tools import abjadbooktools
         path = self.arguments[0]
-        block = abjadbooktools.SphinxDocumentHandler.abjad_import_block()
+        block = abjadbooktools.abjad_import_block()
         block['path'] = path
         block['hide'] = 'hide' in self.options
         set_source_info(self, block)

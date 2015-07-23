@@ -7,11 +7,11 @@ from sphinx.util.nodes import set_source_info
 
 
 class ShellDirective(Directive):
-    r'''A `..  shell::` docutils directive.
+    r'''An abjad-book shell directive.
 
     Represents a shell session.
 
-    Generates a docutils literal_block node.
+    Generates a docutils `literal_block` node.
     '''
 
     ### CLASS VARIABLES ###

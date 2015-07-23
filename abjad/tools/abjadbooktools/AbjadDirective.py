@@ -5,11 +5,11 @@ from docutils.nodes import literal_block
 
 
 class AbjadDirective(Directive):
-    r'''An `..  abjad::` docutils directive.
+    r'''An abjad-book interpreter directive.
 
     Represents a portion of an interactive session.
 
-    Generates a SphinxDocumentHandler.abjad_input_block node.
+    Generates a `abjad_input_block` node.
     '''
 
     ### CLASS VARIABLES ###
@@ -34,8 +34,7 @@ class AbjadDirective(Directive):
         self.assert_has_content()
         code = u'\n'.join(self.content)
         literal = literal_block(code, code)
-        block = abjadbooktools.SphinxDocumentHandler.abjad_input_block(
-            code, literal)
+        block = abjadbooktools.abjad_input_block(code, literal)
         block['allow-exceptions'] = 'allow-exceptions' in self.options
         block['hide'] = 'hide' in self.options
         block['strip-prompt'] = 'strip-prompt' in self.options

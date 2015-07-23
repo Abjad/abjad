@@ -147,7 +147,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
         '''
         from abjad.tools import abjadbooktools
         code = format(self.payload)
-        block = abjadbooktools.SphinxDocumentHandler.abjad_output_block(code, code)
+        block = abjadbooktools.abjad_output_block(code, code)
         block['renderer'] = 'lilypond'
         return [block]
 
