@@ -4,10 +4,6 @@ python:
     - 2.7
     - 3.4
 
-env:
-    - DOCS=true
-    - DOCS=false
-
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -y graphviz
@@ -27,11 +23,10 @@ install:
     - abjad/scr/devel/prime-parser-tables
 
 script:
-    - if [[ $DOCS == false ]]; then abjad/scr/ajv doctest experimental; fi
-    - if [[ $DOCS == false ]]; then py.test experimental; fi
-    - if [[ $DOCS == false ]]; then coverage run -a abjad/scr/ajv doctest --diff abjad; fi
-    - if [[ $DOCS == false ]]; then coverage run -a `which py.test` abjad; fi
-    - if [[ $DOCS == true ]]; then ajv api; fi
+    - abjad/scr/ajv doctest experimental
+    - py.test experimental
+    - coverage run -a abjad/scr/ajv doctest --diff abjad
+    - coverage run -a `which py.test` abjad
 
 after_success:
     coveralls
