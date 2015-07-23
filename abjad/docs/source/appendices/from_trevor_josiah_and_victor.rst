@@ -38,7 +38,7 @@ burden.
 
 And what of working with rhythms not only as offset values, as implied by the
 list-of-floats approach, but as arbitrarily nested, stretched, compressed and
-stacked sets of values, as allowed by the tupleting and measure structures of
+stacked sets of values, as allowed by the tupletting and measure structures of
 conventional score? A different approach is needed.
 
 There was, and still is, no reason to believe that general purpose programming
@@ -48,15 +48,15 @@ attributes of a domain-specific language that will best meet the needs of
 composes interested in working formally with the full complement of
 capabilities in traditional score remains an open question.
 
-We continued our work in score formalization independenly until 2005, Trevor in
+We continued our work in score formalization independently until 2005, Trevor in
 a system that would come to be called Lascaux, and Víctor in a system dubbed
 Cuepatlahto. We experimented with C, Mathematica and Matlab as the core
 programming languages driving our systems before settling independently on
-Python, Víctor out of experinece at MIT, where he was working on his masters at
+Python, Víctor out of experienece at MIT, where he was working on his masters at
 the Media Lab with Berry Vercoe, and Trevor out of the working necessities of a
 professional developer and engineer.
 
-We passed through indepedent experiences using Finale, Sibelius, Leland Smith's
+We passed through independent experiences using Finale, Sibelius, Leland Smith's
 SCORE, and even Adobe Illustrator as the notational rendering engines for
 Lascaux and Cuepatlahto. Through all of this, both systems were designed to
 tackle a shared set of problems. These included:
@@ -64,7 +64,7 @@ tackle a shared set of problems. These included:
 1. The difficulty involved in transcribing larger scale and highly
    parameterized gestures and textures into traditional Western notation.
 
-2. The general inflexbility of closed, commercial music notation
+2. The general inflexibility of closed, commercial music notation
    software packages.
 
 3. The relative inability of objects on the printed page in conventional
@@ -72,13 +72,13 @@ tackle a shared set of problems. These included:
    ideas outside the printed page — in ways rich enough to help capture,
    model and develop long-range, nonlocal relationships throughout our scores.
 
-Afer collaborating on a joint paper describing the two systems, and after
+After collaborating on a joint paper describing the two systems, and after
 discussing collaborative design and implementation at length, both online and
-in weekends' long review of our respective codebases, we decided to combine our
+in weekends' long review of our respective code-bases, we decided to combine our
 efforts into a single, unified project. That project is now Abjad.
 
 In our work on Abjad we strive to develop a powerful and flexible symbolic
-system. We picked the phrase 'formalized score control', or FSC, as a nod to
+system. We picked the phrase *formalized score control*, or *FSC*, as a nod to
 Xenakis, who was so far ahead in so many ways, and also to highlight our
 primary project goal: to bring the full power of modern programming languages,
 and tools in mathematics, text processing, pattern recognition, and modular,

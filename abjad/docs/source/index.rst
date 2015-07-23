@@ -82,11 +82,10 @@ Details
     :maxdepth: 2
 
     installation
-    in_conversation/index
     system_overview/index
-    examples/index
     for_beginners/index
-    tutorials/index
+    examples/index
+    cookbook/index
     reference_manual/index
     developer_documentation/index
     api/index

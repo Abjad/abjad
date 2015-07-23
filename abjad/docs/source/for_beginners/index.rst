@@ -1,5 +1,5 @@
-For beginners: introducing Python, LilyPond and Abjad
-=====================================================
+For beginners
+=============
 
 Getting started
 ---------------
@@ -52,18 +52,31 @@ Eventually you'll want to create a dedicated set of directories to organize
 your work. But for now you can  create the files described in the tutorials on
 your desktop, in your documents folder or anywhere else you like.
 
-Beginner tutorials
-``````````````````
+Introducing LilyPond
+--------------------
 
 ..  toctree::
-    :numbered:
     :maxdepth: 1
 
     lilypond_hello_world
     more_about_lilypond
+
+Introducing Python
+------------------
+
+..  toctree::
+    :maxdepth: 1
+
     python_hello_world_at_the_interpreter
     python_hello_world_in_a_file
     more_about_python
+
+Introducing Abjad
+-----------------
+
+..  toctree::
+    :maxdepth: 1
+
     abjad_hello_world_at_the_interpreter
     abjad_hello_world_in_a_file
     more_about_abjad

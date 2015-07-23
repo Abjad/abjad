@@ -1,8 +1,5 @@
-Tutorials
-=========
-
-Working with notation
----------------------
+The Abjad Cookbook
+==================
 
 ..  toctree::
     :numbered:
