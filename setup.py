@@ -68,7 +68,10 @@ extras_require = {
         'sphinx==1.2.3',  # TODO: Remove version once Sphinx fixes https://github.com/sphinx-doc/sphinx/issues/1822
         'sphinx_rtd_theme',
         'PyPDF2',
-        ]
+        ],
+    'ipython': [
+        'ipython',
+        ],
     }
 
 entry_points = {
