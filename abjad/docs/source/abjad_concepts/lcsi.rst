@@ -1,10 +1,11 @@
-Leaf, Container, Spanner, Mark
-==============================
+Leaf, Container, Spanner, Indicator
+===================================
 
 At the heart of Abjad's Symbolic Score-Control lies a powerful model that we
-call the Leaf Container Spanner Mark, or LCSM, model of the musical score. 
+call the **Leaf Container Spanner Indicator**, or LCSI, model of the musical
+score. 
 
-The LCSM model can be schematically visualized as a superposition of two
+The LCSI model can be schematically visualized as a superposition of two
 complementary and completely independent layers of structure: a *tree* that
 includes the Containers and the Leaves, and a layer of free floating
 *connectors* or Spanners.
@@ -19,7 +20,7 @@ the tree, so a tree structure must exist for spanners to be made manifest.
 Example 1
 ---------
 
-To understand the whys and hows of the LCSM model implemented in Abjad, it is
+To understand the whys and hows of the LCSI model implemented in Abjad, it is
 probably easier to base the discussion on concrete musical examples. Let's
 begin with a simple and rather abstract musical fragment: a measure with nested
 tuplets.

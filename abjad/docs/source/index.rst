@@ -154,7 +154,7 @@ High-level information
 ..  toctree::
     :maxdepth: 2
 
-    system_overview/index
+    abjad_concepts/index
 
 Tutorial and examples
 ---------------------
