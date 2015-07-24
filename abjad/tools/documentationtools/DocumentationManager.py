@@ -345,7 +345,8 @@ class DocumentationManager(object):
         document.append(heading)
         toc = documentationtools.ReSTTOCDirective(
             options={
-                'maxdepth': 2,
+                'maxdepth': 3,
+                'includehidden': True,
                 },
             )
         for tools_package in tools_packages:
