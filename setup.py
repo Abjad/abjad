@@ -67,6 +67,7 @@ extras_require = {
         'pytest',
         'sphinx==1.2.3',  # TODO: Remove version once Sphinx fixes https://github.com/sphinx-doc/sphinx/issues/1822
         'sphinx_rtd_theme',
+        'sphinxcontrib-images',
         'PyPDF2',
         ],
     'ipython': [

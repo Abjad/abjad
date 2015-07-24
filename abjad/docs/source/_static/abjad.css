@@ -1,4 +1,5 @@
-div.example, p.graphviz {
+div.example,
+p.graphviz {
     -moz-border-radius: 2px;
     -moz-box-shadow: 0px 0px 10px #eee;
     -webkit-border-radius: 2px;
@@ -14,7 +15,23 @@ p.graphviz {
     background-color: white;
     }
 
-div.example div:last-child {
+a.thumbnail img {
+    -moz-border-radius: 2px;
+    -moz-box-shadow: 0px 0px 10px #eee;
+    -webkit-border-radius: 2px;
+    -webkit-box-shadow: 0px 0px 10px #eee;
+    border-radius: 2px;
+    border: 1px solid #ddd;
+    box-shadow: 0px 0px 10px #eee;
+    background-color: white;
+    display: inline-block;
+    }
+
+a.thumbnail {
+    margin-bottom: 12px;
+    }
+
+div.example :last-child {
     margin-bottom: 0;
     }
 

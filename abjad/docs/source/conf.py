@@ -42,7 +42,7 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    #'sphinx.ext.viewcode',
+    'sphinxcontrib.images',
     'abjad.docs.ext.abjadbook',
     'abjad.docs.ext.style',
     ]

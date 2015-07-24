@@ -80,17 +80,44 @@ Features
 
 Abjad lets you:
 
--   Create musical notation in an object-oriented way
--   Model compositional thinking computationally
+-   Create musical notation in an object-oriented way.
+-   Model compositional thinking computationally.
 -   Generate and transform complex rhythmic through rhythm-makers,
-    meter-rewriting and quantization
+    meter-rewriting and quantization.
 -   Construct powerful component selectors for locating musical objects in a
-    score
--   Control all of the typographic details of music notation
--   Embed musical notation in IPython notebooks, LaTeX and Sphinx documents
+    score.
+-   Control all of the typographic details of music notation.
+-   Embed musical notation in `IPython`_ notebooks, `LaTeX`_ and `Sphinx`_
+    documents.
 
-Installation
-------------
+Gallery
+-------
+
+Many scores have been composed in whole or in part with the assistance of Abjad
+and LilyPond. Here are excerpts from a few such works.
+
+..  container:: example
+
+    Josiah Wolf Oberholtzer's *Invisible Cities (ii): Armilla* (2015), for viola
+    duet, written for John Pickford Richards and Elizabeth Weisser.
+
+    Source available from https://github.com/josiah-wolf-oberholtzer/armilla/.
+
+    ..  thumbnail:: gallery/images/oberholtzer-armilla-page8.png
+        :class: thumbnail
+
+..  container:: example
+
+    Josiah Wolf Oberholtzer's *Aurora* (2015), for string orchestra, written for
+    Ensemble Kaleidoskop.
+
+    Source available from https://github.com/josiah-wolf-oberholtzer/aurora/.
+
+    ..  thumbnail:: gallery/images/oberholtzer-aurora-page6.png
+        :class: thumbnail
+
+Installation Details
+--------------------
 
 ..  toctree::
     :maxdepth: 2
@@ -134,7 +161,10 @@ Miscellaneous information
     appendices/index
 
 ..  _GitHub: https://github.com/Abjad/abjad
+..  _IPython: http://ipython.org/
+..  _LaTeX: https://tug.org/
 ..  _LilyPond: http://lilypond.org/
 ..  _PyPI: https://pypi.python.org/pypi/Abjad
 ..  _Python: https://www.python.org/
+..  _Sphinx: http://sphinx-doc.org/
 ..  _pip: https://pip.pypa.io/en/stable/

@@ -112,8 +112,8 @@ package dependencies.
 -   `Sphinx`_, for building Abjad's documentation
 -   `sphinx_rtd_theme <https://pypi.python.org/pypi/sphinx_rtd_theme>`_, for
     theming Abjad's HTML documentation
--   `PyPDF2`_, for performing preprocessing on LaTeX source with Abjad's ``ajv
-    book`` tool
+-   `PyPDF2`_, for performing preprocessing on `LaTeX`_ source with Abjad's
+    ``ajv book`` tool
 
 Some of `Sphinx`_'s dependencies provide will attempt to compile optimized
 `Python`_ extensions. If your machine does not have a C compiler available, you
@@ -164,7 +164,7 @@ install Abjad into that instead::
 TexLive
 ```````
 
-Building the LaTeX documentation, running the test suite, and using Abjad's
+Building the `LaTeX`_ documentation, running the test suite, and using Abjad's
 ``ajv book`` document preprocessing tools require `TeXLive`_.
 Abjad makes use of both ``pdftex`` for producing PDFs, and the ``pdfcrop`` tool
 distributed with `TexLive`_.
@@ -226,6 +226,7 @@ extension::
 ..  _IPython notebook: http://ipython.org/notebook.html
 ..  _IPython: http://ipython.org/
 ..  _ImageMagick: http://www.imagemagick.org/script/index.php
+..  _LaTeX: https://tug.org/
 ..  _LilyPond: http://lilypond.org/
 ..  _MacPorts: https://www.macports.org/
 ..  _MacTeX: https://tug.org/mactex/
