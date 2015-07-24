@@ -151,9 +151,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
         result = []
         try:
             code = format(self.payload)
-            block = abjadbooktools.abjad_output_block(code, code)
             if sys.version_info[0] == 2:
                 code = code.decode('utf-8')
+            block = abjadbooktools.abjad_output_block(code, code)
             block['renderer'] = 'lilypond'
             result.append(block)
         except UnicodeDecodeError:

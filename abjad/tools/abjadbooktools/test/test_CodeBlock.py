@@ -15,30 +15,56 @@ class CodeBlockTests(unittest.TestCase):
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
-        assert format(result) == systemtools.TestManager.clean_string(r"""
-            abjadbooktools.CodeBlock(
-                (
-                    'def example_function(expr):',
-                    "    r'''This is a multiline docstring.",
-                    '',
-                    '    This is the third line of the docstring.',
-                    "    '''",
-                    '    # This is a comment.',
-                    "    print('Entering example function.')",
-                    '    try:',
-                    '        expr = expr + 1',
-                    '    except TypeError:',
-                    "        print('Wrong type!')",
-                    '    print(expr)',
-                    "    print('Leaving example function.')",
-                    ),
-                executed_lines=(
-                    'from abjad.tools.abjadbooktools import example_function',
-                    ),
-                hide=False,
-                starting_line_number=1,
-                )
-            """)
+        if sys.version_info[0] == 2:
+            assert format(result) == systemtools.TestManager.clean_string(r"""
+                abjadbooktools.CodeBlock(
+                    (
+                        u'def example_function(expr):',
+                        u"    r'''This is a multiline docstring.",
+                        u'',
+                        u'    This is the third line of the docstring.',
+                        u"    '''",
+                        u'    # This is a comment.',
+                        u"    print('Entering example function.')",
+                        u'    try:',
+                        u'        expr = expr + 1',
+                        u'    except TypeError:',
+                        u"        print('Wrong type!')",
+                        u'    print(expr)',
+                        u"    print('Leaving example function.')",
+                        ),
+                    executed_lines=(
+                        'from abjad.tools.abjadbooktools import example_function',
+                        ),
+                    hide=False,
+                    starting_line_number=1,
+                    )
+                """)
+        else:            
+            assert format(result) == systemtools.TestManager.clean_string(r"""
+                abjadbooktools.CodeBlock(
+                    (
+                        'def example_function(expr):',
+                        "    r'''This is a multiline docstring.",
+                        '',
+                        '    This is the third line of the docstring.',
+                        "    '''",
+                        '    # This is a comment.',
+                        "    print('Entering example function.')",
+                        '    try:',
+                        '        expr = expr + 1',
+                        '    except TypeError:',
+                        "        print('Wrong type!')",
+                        '    print(expr)',
+                        "    print('Leaving example function.')",
+                        ),
+                    executed_lines=(
+                        'from abjad.tools.abjadbooktools import example_function',
+                        ),
+                    hide=False,
+                    starting_line_number=1,
+                    )
+                """)
 
     def test_from_docutils_abjad_import_block_02(self):
         source = '''
@@ -49,30 +75,56 @@ class CodeBlockTests(unittest.TestCase):
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
-        assert format(result) == systemtools.TestManager.clean_string(r"""
-            abjadbooktools.CodeBlock(
-                (
-                    'def example_function(expr):',
-                    "    r'''This is a multiline docstring.",
-                    '',
-                    '    This is the third line of the docstring.',
-                    "    '''",
-                    '    # This is a comment.',
-                    "    print('Entering example function.')",
-                    '    try:',
-                    '        expr = expr + 1',
-                    '    except TypeError:',
-                    "        print('Wrong type!')",
-                    '    print(expr)',
-                    "    print('Leaving example function.')",
-                    ),
-                executed_lines=(
-                    'from abjad.tools.abjadbooktools import example_function',
-                    ),
-                hide=True,
-                starting_line_number=1,
-                )
-            """)
+        if sys.version_info[0] == 2:
+            assert format(result) == systemtools.TestManager.clean_string(r"""
+                abjadbooktools.CodeBlock(
+                    (
+                        u'def example_function(expr):',
+                        u"    r'''This is a multiline docstring.",
+                        u'',
+                        u'    This is the third line of the docstring.',
+                        u"    '''",
+                        u'    # This is a comment.',
+                        u"    print('Entering example function.')",
+                        u'    try:',
+                        u'        expr = expr + 1',
+                        u'    except TypeError:',
+                        u"        print('Wrong type!')",
+                        u'    print(expr)',
+                        u"    print('Leaving example function.')",
+                        ),
+                    executed_lines=(
+                        'from abjad.tools.abjadbooktools import example_function',
+                        ),
+                    hide=True,
+                    starting_line_number=1,
+                    )
+                """)
+        else:
+            assert format(result) == systemtools.TestManager.clean_string(r"""
+                abjadbooktools.CodeBlock(
+                    (
+                        'def example_function(expr):',
+                        "    r'''This is a multiline docstring.",
+                        '',
+                        '    This is the third line of the docstring.',
+                        "    '''",
+                        '    # This is a comment.',
+                        "    print('Entering example function.')",
+                        '    try:',
+                        '        expr = expr + 1',
+                        '    except TypeError:',
+                        "        print('Wrong type!')",
+                        '    print(expr)',
+                        "    print('Leaving example function.')",
+                        ),
+                    executed_lines=(
+                        'from abjad.tools.abjadbooktools import example_function',
+                        ),
+                    hide=True,
+                    starting_line_number=1,
+                    )
+                """)
 
     def test_from_docutils_abjad_input_block_01(self):
         source = '''
