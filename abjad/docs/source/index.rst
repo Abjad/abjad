@@ -75,20 +75,62 @@ to the first note of each split group:
 
 That looks a little more intriguing, doesn't it?
 
-Details
--------
+Features
+--------
 
-.. toctree::
+Abjad lets you:
+
+-   Create musical notation in an object-oriented way
+-   Model compositional thinking computationally
+-   Generate and transform complex rhythmic through rhythm-makers,
+    meter-rewriting and quantization
+-   Construct powerful component selectors for locating musical objects in a
+    score
+-   Control all of the typographic details of music notation
+-   Embed musical notation in IPython notebooks, LaTeX and Sphinx documents
+
+Installation
+------------
+
+..  toctree::
     :maxdepth: 2
 
     installation
+
+High-level information
+----------------------
+
+..  toctree::
+    :maxdepth: 2
+
     system_overview/index
+
+Tutorial and examples
+---------------------
+
+..  toctree::
+    :maxdepth: 2
+
     for_beginners/index
     examples/index
     reference_manual/index
     cookbook/index
+
+Abjad's codebase in detail
+--------------------------
+    
+..  toctree::
+    :maxdepth: 2
+
     api/index
     developer_documentation/index
+
+Miscellaneous information
+-------------------------
+
+..  toctree::
+    :maxdepth: 2
+
     appendices/index
 
 ..  _GitHub: https://github.com/Abjad/abjad
