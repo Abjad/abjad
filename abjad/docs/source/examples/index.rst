@@ -1,4 +1,4 @@
-Literature Examples
+Literature examples
 ===================
 
 ..  toctree::

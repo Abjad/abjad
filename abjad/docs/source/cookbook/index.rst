@@ -1,4 +1,4 @@
-The Abjad Cookbook
+The Abjad cookbook
 ==================
 
 ..  toctree::
