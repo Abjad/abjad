@@ -13,6 +13,7 @@ class DocumentationManager(object):
     r'''An API documentation manager.
     '''
 
+    api_title = 'Abjad API'
     root_package_name = 'abjad'
     source_directory_path_parts = ('docs', 'source')
     tools_packages_package_path = 'abjad.tools'
@@ -335,10 +336,11 @@ class DocumentationManager(object):
         r'''
         '''
         from abjad.tools import documentationtools
+        manager = DocumentationManager
         document = documentationtools.ReSTDocument()
         heading = documentationtools.ReSTHeading(
             level=2,
-            text=' API',
+            text=manager.api_title,
             )
         document.append(heading)
         toc = documentationtools.ReSTTOCDirective(
