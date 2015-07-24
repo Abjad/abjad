@@ -22,8 +22,8 @@ typographic details of the symbols on the page.
 Quickstart
 ----------
 
-Get Abjad & LilyPond
-````````````````````
+1. Get Abjad and LilyPond
+`````````````````````````
 
 Get Abjad via `pip`_::
 
@@ -32,10 +32,10 @@ Get Abjad via `pip`_::
 Get `LilyPond`_ from http://lilypond.org/development.html.
 
 See our :doc:`installation instructions </installation>` for detailed help on
-getting Abjad and its dependencies.
+getting Abjad, setting it up, and installing any dependencies like `LilyPond`_.
 
-Make music
-``````````
+2. Make notation
+````````````````
 
 Start your Python interpreter and import Abjad:
 
@@ -94,27 +94,51 @@ Gallery
 -------
 
 Many scores have been composed in whole or in part with the assistance of Abjad
-and LilyPond. Here are excerpts from a few such works.
+and LilyPond.
+
+Here are excerpts from a few such works.
 
 ..  container:: example
 
-    Josiah Wolf Oberholtzer's *Invisible Cities (ii): Armilla* (2015), for viola
-    duet, written for John Pickford Richards and Elizabeth Weisser.
+    **Invisible Cities (ii): Armilla** *(2015)*, for viola duet.
 
-    Source available from https://github.com/josiah-wolf-oberholtzer/armilla/.
+    - Composed by `Josiah Wolf Oberholtzer`_.
+    - Written for John Pickford Richards and Elizabeth Weisser.
+    - Source available from https://github.com/josiah-wolf-oberholtzer/armilla/.
 
-    ..  thumbnail:: gallery/images/oberholtzer-armilla-page8.png
-        :class: thumbnail
+    ..  container:: table-row
+
+        ..  thumbnail:: gallery/images/oberholtzer-armilla-page8.png
+            :class: table-cell thumbnail
+            :group: gallery
+            :title: Invisible Cities (ii): Armilla
+                    by Josiah Wolf Oberholtzer, page 8
+
+        ..  thumbnail:: gallery/images/oberholtzer-armilla-page9.png
+            :class: table-cell thumbnail
+            :group: gallery
+            :title: Invisible Cities (ii): Armilla,
+                    by Josiah Wolf Oberholtzer, page 9.
 
 ..  container:: example
 
-    Josiah Wolf Oberholtzer's *Aurora* (2015), for string orchestra, written for
-    Ensemble Kaleidoskop.
+    **Aurora** *(2015)*, for string orchestra.
 
-    Source available from https://github.com/josiah-wolf-oberholtzer/aurora/.
+    - Composed by `Josiah Wolf Oberholtzer`_.
+    - Written for Ensemble Kaleidoskop.
+    - Source available from https://github.com/josiah-wolf-oberholtzer/aurora/.
 
-    ..  thumbnail:: gallery/images/oberholtzer-aurora-page6.png
-        :class: thumbnail
+    ..  container:: table-row
+
+        ..  thumbnail:: gallery/images/oberholtzer-aurora-page6.png
+            :class: table-cell thumbnail
+            :group: gallery
+            :title: **Aurora**, by Josiah Wolf Oberholtzer, page 6.
+            
+        ..  thumbnail:: gallery/images/oberholtzer-aurora-page7.png
+            :class: table-cell thumbnail
+            :group: gallery
+            :title: **Aurora**, by Josiah Wolf Oberholtzer, page 7.
 
 Installation Details
 --------------------
@@ -168,3 +192,4 @@ Miscellaneous information
 ..  _Python: https://www.python.org/
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _pip: https://pip.pypa.io/en/stable/
+..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com

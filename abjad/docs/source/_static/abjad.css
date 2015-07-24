@@ -24,7 +24,6 @@ a.thumbnail img {
     border: 1px solid #ddd;
     box-shadow: 0px 0px 10px #eee;
     background-color: white;
-    display: inline-block;
     }
 
 div.example :last-child {
@@ -57,4 +56,22 @@ tt.staticmethod {
 div.abjad-book-image {
     padding: 0px;
     margin: 1px 0 24px 0;
+    }
+
+.table-row {
+    display: table-row;
+    }
+
+.table-cell {
+    display: table-cell;
+    padding-left: 12px;
+    padding-right: 12px;
+    }
+
+.table-row :first-child {
+    padding-left: 0px;
+    }
+
+.table-row :last-child {
+    padding-right: 0px;
     }
