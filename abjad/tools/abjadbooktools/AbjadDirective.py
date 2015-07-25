@@ -32,7 +32,7 @@ class AbjadDirective(Directive):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def parse_pages_string(pages_string):
+    def _parse_pages_string(pages_string):
         pattern = re.compile(r'(\d+)-(\d+)')
         page_selections = []
         for part in (_.strip() for _ in pages_string.split(',')):
@@ -68,7 +68,7 @@ class AbjadDirective(Directive):
         block['hide'] = 'hide' in self.options
         pages = self.options.get('pages', None)
         if pages is not None:
-            block['pages'] = self.parse_pages_string(pages)
+            block['pages'] = self._parse_pages_string(pages)
         else:
             block['pages'] = None
         block['strip-prompt'] = 'strip-prompt' in self.options
