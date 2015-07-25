@@ -7,6 +7,7 @@ import os
 import re
 import shutil
 import types
+from sphinx.util.console import red, green, blue, lightgray
 
 
 class DocumentationManager(object):
@@ -17,6 +18,12 @@ class DocumentationManager(object):
     root_package_name = 'abjad'
     source_directory_path_parts = ('docs', 'source')
     tools_packages_package_path = 'abjad.tools'
+
+    prefix_ignored = lightgray('IGNORED:   ')
+    prefix_preserved = blue('PRESERVED: ')
+    prefix_pruned = red('PRUNED:    ')
+    prefix_rewrote = green('REWROTE:   ')
+    prefix_wrote = blue('WROTE:     ')
 
     @staticmethod
     def get_ignored_classes():
@@ -284,7 +291,7 @@ class DocumentationManager(object):
                     source_directory,
                     )
                 if cls in ignored_classes:
-                    print('IGNORING: {}'.format(file_path))
+                    print('{}{}'.format(manager.prefix_ignored, file_path))
                     continue
                 rst = manager.get_class_rst(cls)
                 manager.write(file_path, rst.rest_format, rewritten_files)
@@ -304,10 +311,10 @@ class DocumentationManager(object):
                 if file_path not in rewritten_files:
                     file_names.remove(file_name)
                     os.remove(file_path)
-                    print('PRUNED: {}'.format(file_path))
+                    print('{}{}'.format(manager.prefix_pruned, file_path))
             if not file_names and not directory_names:
                 shutil.rmtree(root)
-                print('PRUNED: {}'.format(root))
+                print('{}{}'.format(manager.prefix_pruned, root))
 
     @staticmethod
     def get_api_directory_path(source_directory):
@@ -817,6 +824,7 @@ class DocumentationManager(object):
     def write(file_path, string, rewritten_files):
         r'''
         '''
+        manager = DocumentationManager
         should_write = True
         if os.path.exists(file_path):
             with open(file_path, 'r') as file_pointer:
@@ -825,11 +833,11 @@ class DocumentationManager(object):
                 should_write = False
         if should_write:
             if os.path.exists(file_path):
-                print('REWROTE: {}'.format(file_path))
+                print('{}{}'.format(manager.prefix_rewrote, file_path))
             else:
-                print('WROTE: {}'.format(file_path))
+                print('{}{}'.format(manager.prefix_wrote, file_path))
             with open(file_path, 'w') as file_pointer:
                 file_pointer.write(string)
         else:
-            print('PRESERVED: {}'.format(file_path))
+            print('{}{}'.format(manager.prefix_preserved, file_path))
         rewritten_files.add(file_path)
