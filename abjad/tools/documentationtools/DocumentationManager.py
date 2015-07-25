@@ -7,7 +7,8 @@ import os
 import re
 import shutil
 import types
-from sphinx.util.console import red, green, blue, lightgray
+from abjad.tools import systemtools
+from sphinx.util.console import red, green, darkgray, lightgray, yellow
 
 
 class DocumentationManager(object):
@@ -20,10 +21,10 @@ class DocumentationManager(object):
     tools_packages_package_path = 'abjad.tools'
 
     prefix_ignored = lightgray('IGNORED:   ')
-    prefix_preserved = blue('PRESERVED: ')
+    prefix_preserved = darkgray('PRESERVED: ')
     prefix_pruned = red('PRUNED:    ')
     prefix_rewrote = green('REWROTE:   ')
-    prefix_wrote = blue('WROTE:     ')
+    prefix_wrote = yellow('WROTE:     ')
 
     @staticmethod
     def get_ignored_classes():
@@ -260,61 +261,75 @@ class DocumentationManager(object):
         manager = DocumentationManager
         print('Rebuilding documentation source.')
         source_directory = manager.get_source_directory()
-        rewritten_files = set()
-        tools_packages = manager.get_tools_packages()
-        api_index_rst = manager.get_api_index_rst(tools_packages)
-        api_index_file_path = manager.get_api_index_file_path(source_directory)
-        manager.ensure_directory(api_index_file_path)
-        manager.write(
-            api_index_file_path,
-            api_index_rst.rest_format,
-            rewritten_files,
-            )
-        ignored_classes = manager.get_ignored_classes()
-        for package in tools_packages:
-            tools_package_rst = manager.get_tools_package_rst(package)
-            tools_package_file_path = manager.package_path_to_file_path(
-                package.__package__,
-                source_directory,
-                )
-            manager.ensure_directory(tools_package_file_path)
+        with systemtools.TemporaryDirectoryChange(
+            directory=source_directory,
+            verbose=True,
+            ):
+            rewritten_files = set()
+            tools_packages = manager.get_tools_packages()
+            api_index_rst = manager.get_api_index_rst(tools_packages)
+            api_index_file_path = manager.get_api_index_file_path(
+                source_directory)
+            manager.ensure_directory(api_index_file_path)
             manager.write(
-                tools_package_file_path,
-                tools_package_rst.rest_format,
+                api_index_file_path,
+                api_index_rst.rest_format,
                 rewritten_files,
                 )
-            classes, functions = \
-                manager.get_tools_package_contents(package)
-            for cls in classes:
-                file_path = manager.module_path_to_file_path(
-                    cls.__module__,
+            ignored_classes = manager.get_ignored_classes()
+            for package in tools_packages:
+                tools_package_rst = manager.get_tools_package_rst(package)
+                tools_package_file_path = manager.package_path_to_file_path(
+                    package.__package__,
                     source_directory,
                     )
-                if cls in ignored_classes:
-                    print('{}{}'.format(manager.prefix_ignored, file_path))
-                    continue
-                rst = manager.get_class_rst(cls)
-                manager.write(file_path, rst.rest_format, rewritten_files)
-            for function in functions:
-                file_path = manager.module_path_to_file_path(
-                    function.__module__,
-                    source_directory,
+                manager.ensure_directory(tools_package_file_path)
+                manager.write(
+                    tools_package_file_path,
+                    tools_package_rst.rest_format,
+                    rewritten_files,
                     )
-                rst = manager.get_function_rst(function)
-                manager.write(file_path, rst.rest_format, rewritten_files)
-        for root, directory_names, file_names in os.walk(
-            manager.get_api_directory_path(source_directory),
-            topdown=False,
-            ):
-            for file_name in file_names[:]:
-                file_path = os.path.join(root, file_name)
-                if file_path not in rewritten_files:
-                    file_names.remove(file_name)
-                    os.remove(file_path)
-                    print('{}{}'.format(manager.prefix_pruned, file_path))
-            if not file_names and not directory_names:
-                shutil.rmtree(root)
-                print('{}{}'.format(manager.prefix_pruned, root))
+                classes, functions = \
+                    manager.get_tools_package_contents(package)
+                for cls in classes:
+                    file_path = manager.module_path_to_file_path(
+                        cls.__module__,
+                        source_directory,
+                        )
+                    if cls in ignored_classes:
+                        print('{}{}'.format(
+                            manager.prefix_ignored,
+                            os.path.relpath(file_path),
+                            ))
+                        continue
+                    rst = manager.get_class_rst(cls)
+                    manager.write(file_path, rst.rest_format, rewritten_files)
+                for function in functions:
+                    file_path = manager.module_path_to_file_path(
+                        function.__module__,
+                        source_directory,
+                        )
+                    rst = manager.get_function_rst(function)
+                    manager.write(file_path, rst.rest_format, rewritten_files)
+            for root, directory_names, file_names in os.walk(
+                manager.get_api_directory_path(source_directory),
+                topdown=False,
+                ):
+                for file_name in file_names[:]:
+                    file_path = os.path.join(root, file_name)
+                    if file_path not in rewritten_files:
+                        file_names.remove(file_name)
+                        os.remove(file_path)
+                        print('{}{}'.format(
+                            manager.prefix_pruned,
+                            os.path.relpath(file_path),
+                            ))
+                if not file_names and not directory_names:
+                    shutil.rmtree(root)
+                    print('{}{}'.format(
+                        manager.prefix_pruned,
+                        os.path.relpath(root),
+                        ))
 
     @staticmethod
     def get_api_directory_path(source_directory):
@@ -833,11 +848,20 @@ class DocumentationManager(object):
                 should_write = False
         if should_write:
             if os.path.exists(file_path):
-                print('{}{}'.format(manager.prefix_rewrote, file_path))
+                print('{}{}'.format(
+                    manager.prefix_rewrote,
+                    os.path.relpath(file_path),
+                    ))
             else:
-                print('{}{}'.format(manager.prefix_wrote, file_path))
+                print('{}{}'.format(
+                    manager.prefix_wrote,
+                    os.path.relpath(file_path),
+                    ))
             with open(file_path, 'w') as file_pointer:
                 file_pointer.write(string)
         else:
-            print('{}{}'.format(manager.prefix_preserved, file_path))
+            print('{}{}'.format(
+                manager.prefix_preserved,
+                os.path.relpath(file_path),
+                ))
         rewritten_files.add(file_path)
