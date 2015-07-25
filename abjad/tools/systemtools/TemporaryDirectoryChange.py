@@ -8,9 +8,17 @@ class TemporaryDirectoryChange(ContextManager):
     directory.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_directory',
+        '_original_directory',
+        '_verbose',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, directory=None):
+    def __init__(self, directory=None, verbose=None):
         if directory is None:
             pass
         elif os.path.isdir(directory):
@@ -18,6 +26,10 @@ class TemporaryDirectoryChange(ContextManager):
         elif os.path.isfile(directory):
             directory = os.path.dirname(directory)
         self._directory = directory
+        self._original_directory = None
+        if verbose is not None:
+            verbose = bool(verbose)
+        self._verbose = bool(verbose)
 
     ### SPECIAL METHODS ###
 
@@ -27,6 +39,8 @@ class TemporaryDirectoryChange(ContextManager):
         self._original_directory = os.getcwd()
         if self._directory is not None:
             os.chdir(self.directory)
+            if self.verbose:
+                print('Changing directory to {}.'.format(self.directory))
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -34,6 +48,9 @@ class TemporaryDirectoryChange(ContextManager):
         '''
         if self._directory is not None:
             os.chdir(self._original_directory)
+            if self.verbose:
+                print('Returning to {}.'.format(self.original_directory))
+        self._original_directory = None
 
     def __repr__(self):
         r'''Gets interpreter representation of context manager.
@@ -51,3 +68,20 @@ class TemporaryDirectoryChange(ContextManager):
         Returns string.
         '''
         return self._directory
+
+    @property
+    def original_directory(self):
+        r'''Gets original directory of context manager.
+
+        Returns string.
+        '''
+        return self._original_directory
+
+    @property
+    def verbose(self):
+        r'''Is true if context manager prints verbose messages on entrance and
+        exit. Otherwise false.
+
+        Returns boolean.
+        '''
+        return self._verbose
