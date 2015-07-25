@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+import re
 from docutils.parsers.rst import directives
 from sphinx.util.compat import Directive
 from sphinx.util.nodes import set_source_info
@@ -21,10 +23,36 @@ class AbjadDirective(Directive):
     option_spec = {
         'allow-exceptions': directives.flag,
         'hide': directives.flag,
-        'stylesheet': str,
+        'pages': str,
         'strip-prompt': directives.flag,
+        'stylesheet': str,
         'text-width': int,
         }
+
+    ### PRIVATE METHODS ###
+
+    @staticmethod
+    def parse_pages_string(pages_string):
+        pattern = re.compile(r'(\d+)-(\d+)')
+        page_selections = []
+        for part in (_.strip() for _ in pages_string.split(',')):
+            match = pattern.match(part)
+            if match is not None:
+                start, stop = match.groups()
+                start = int(start)
+                stop = int(stop)
+                if start == stop:
+                    page_range = (start,)
+                elif start < stop:
+                    page_range = tuple(range(start, stop + 1))
+                else:
+                    page_range = tuple(range(start, stop - 1, -1))
+                page_selections.append(page_range)
+            elif part.isdigit():
+                page = int(part)
+                page_range = (page,)
+                page_selections.append(page_range)
+        return tuple(page_selections)
 
     ### PUBLIC METHODS ###
 
@@ -38,6 +66,11 @@ class AbjadDirective(Directive):
         block = abjadbooktools.abjad_input_block(code, literal)
         block['allow-exceptions'] = 'allow-exceptions' in self.options
         block['hide'] = 'hide' in self.options
+        pages = self.options.get('pages', None)
+        if pages is not None:
+            block['pages'] = self.parse_pages_string(pages)
+        else:
+            block['pages'] = None
         block['strip-prompt'] = 'strip-prompt' in self.options
         block['text-width'] = self.options.get('text-width', None)
         set_source_info(self, block)

@@ -23,7 +23,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions="False" hide="False" strip-prompt="False" text-width>
+                <abjad_input_block allow-exceptions="False" hide="False" pages strip-prompt="False" text-width>
                     <literal_block xml:space="preserve">
                         note = Note("c'4")
                         if True:
@@ -36,6 +36,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         ..  abjad::
             :allow-exceptions:
             :hide:
+            :pages: 1-3, 5, 7-7, 10-8,
             :strip-prompt:
 
             assert True is False
@@ -45,7 +46,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions="True" hide="True" strip-prompt="True" text-width>
+                <abjad_input_block allow-exceptions="True" hide="True" pages="((1, 2, 3), (5,), (7,), (10, 9, 8))" strip-prompt="True" text-width>
                     <literal_block xml:space="preserve">
                         assert True is False
             ''')
