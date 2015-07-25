@@ -121,51 +121,23 @@ package dependencies.
 -   `PyPDF2`_, for performing preprocessing on `LaTeX`_ source with Abjad's
     ``ajv book`` tool
 
-Some of `Sphinx`_'s dependencies provide will attempt to compile optimized
-`Python`_ extensions. If your machine does not have a C compiler available, you
-may see error message while the ``pip install -e . [development]`` command
-runs.
+Some of `Sphinx`_'s dependencies provide optional optimized `Python`_
+extensions, which must be compiled before they can be used. If your machine
+does not have a C compiler available, you may see error message while the ``pip
+install -e . [development]`` command runs. These warnings are harmless and will
+not prevent the dependencies from being installed.
 
-To install compilation tools on Debian and Ubuntu::
+To install C compilation tools on Debian and Ubuntu::
 
     ~$ sudo apt-get install build-essential
 
-To install compilation tools on OSX, we recommend simply installing XCode from
-the Apple App Store. Alternatively, you can install via `Homebrew`_ or
+To install C compilation tools on OSX, we recommend simply installing XCode
+from the Apple App Store. Alternatively, you can install via `Homebrew`_ or
 `MacPorts`_, although this may take a significant amount of time.
 
 Additionally, a few non-`Python`_ tools need to be installed in order to
-develop Abjad or build its documentation: `TeXLive`_, `ImageMagick`_ and
-`Graphviz`_.
-
-Virtual environments
-````````````````````
-
-We strongly recommend installing Abjad into a virtual environment, especially
-if you intend to hack on Abjad's own source code. Virtual environments allow
-you to isolate `Python`_ packages from your systems global collection of
-packages. They also allow you to install Python packages without ``sudo``. The
-`virtualenv`_ package provides tools for creating Python virtual environments,
-and the `virtualenvwrapper`_ package provides additional tools which make
-working with virtual environments incredibly easy::
-
-    ~$ pip install virtualenv virtualenvwrapper
-    ...
-    ~$ export WORKON_HOME=~/Envs
-    ~$ mkdir -p $WORKON_HOME
-    ~$ source /usr/local/bin/virtualenvwrapper.sh
-    ~$ mkvirtualenv abjad
-    ...
-    ~(abjad)$ pip install abjad
-
-If you have `virtualenvwrapper`_ installed, create a virtual environment and
-install Abjad into that instead::
-
-    ~$ mkvirtualenv abjad
-    ...
-    ~(abjad)$ git clone https://github.com/Abjad/abjad.git
-    ~(abjad)$ cd abjad
-    abjad(abjad)$ pip install -e . [development]
+develop Abjad or build its documentation: `TeXLive`_, `ImageMagick`_, and
+`Graphviz`_ (which was explained above).
 
 TexLive
 ```````
@@ -179,8 +151,7 @@ To install `TeXLive`_ on Debian and Ubuntu::
 
     ~$ sudo apt-get install texlive-full
 
-On OSX, we recommend installing via the `MacTeX`_
-distribution.
+On OSX, we recommend installing via the `MacTeX`_ distribution.
 
 ImageMagick
 ```````````
@@ -224,6 +195,36 @@ run the following magic command in a cell to load Abjad's `IPython`_
 extension::
 
     %load_ext abjad.ext.ipython
+
+Virtual environments
+--------------------
+
+We strongly recommend installing Abjad into a virtual environment, especially
+if you intend to hack on Abjad's own source code. Virtual environments allow
+you to isolate `Python`_ packages from your systems global collection of
+packages. They also allow you to install Python packages without ``sudo``. The
+`virtualenv`_ package provides tools for creating Python virtual environments,
+and the `virtualenvwrapper`_ package provides additional tools which make
+working with virtual environments incredibly easy::
+
+    ~$ pip install virtualenv virtualenvwrapper
+    ...
+    ~$ export WORKON_HOME=~/Envs
+    ~$ mkdir -p $WORKON_HOME
+    ~$ source /usr/local/bin/virtualenvwrapper.sh
+    ~$ mkvirtualenv abjad
+    ...
+    ~(abjad)$ pip install abjad
+
+If you have `virtualenvwrapper`_ installed, create a virtual environment and
+install Abjad into that instead::
+
+    ~$ mkvirtualenv abjad
+    ...
+    ~(abjad)$ git clone https://github.com/Abjad/abjad.git
+    ~(abjad)$ cd abjad
+    abjad(abjad)$ pip install -e . [development]
+
 
 ..  _CPython: http://www.python.org
 ..  _GitHub: https://github.com/Abjad/abjad

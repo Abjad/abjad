@@ -140,7 +140,7 @@ Here are excerpts from a few such works.
             :group: gallery
             :title: **Aurora**, by Josiah Wolf Oberholtzer, page 7.
 
-Installation Details
+Installation details
 --------------------
 
 ..  toctree::
@@ -148,8 +148,8 @@ Installation Details
 
     installation
 
-High-level information
-----------------------
+Understanding Abjad concepts
+----------------------------
 
 ..  toctree::
     :maxdepth: 2
