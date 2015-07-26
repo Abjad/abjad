@@ -9,11 +9,10 @@ from abjad.tools import mathtools
 if six.PY3:
     import builtins
 elif six.PY2:
-    builtins = __builtins__
+    import __builtin__ as builtins
 builtins.Less = datastructuretools.OrdinalConstant('value', -1, 'Less')
 builtins.More = datastructuretools.OrdinalConstant('value', 1, 'More')
-builtins.Exact = datastructuretools.OrdinalConstant(
-    'value', 0, 'Exact')
+builtins.Exact = datastructuretools.OrdinalConstant('value', 0, 'Exact')
 builtins.Left = datastructuretools.OrdinalConstant('x', -1, 'Left')
 builtins.Right = datastructuretools.OrdinalConstant('x', 1, 'Right')
 builtins.Center = datastructuretools.OrdinalConstant('y', 0, 'Center')
