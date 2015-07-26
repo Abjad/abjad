@@ -4,14 +4,9 @@ from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools.new import new
-try:
-    total_ordering = functools.total_ordering
-except AttributeError:
-    import total_ordering
-    total_ordering = total_ordering.total_ordering
 
 
-@total_ordering
+@functools.total_ordering
 class ColorFingering(AbjadValueObject):
     r'''Color fingering.
 

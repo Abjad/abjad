@@ -2,14 +2,9 @@
 import functools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
-try:
-    total_ordering = functools.total_ordering
-except AttributeError:
-    import total_ordering
-    total_ordering = total_ordering.total_ordering
 
 
-@total_ordering
+@functools.total_ordering
 class NamedInterval(Interval):
     '''A named interval.
 

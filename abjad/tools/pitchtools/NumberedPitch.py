@@ -2,14 +2,9 @@
 import functools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Pitch import Pitch
-try:
-    total_ordering = functools.total_ordering
-except AttributeError:
-    import total_ordering
-    total_ordering = total_ordering.total_ordering
 
 
-@total_ordering
+@functools.total_ordering
 class NumberedPitch(Pitch):
     '''A numbered pitch.
 

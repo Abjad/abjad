@@ -3,14 +3,9 @@ import functools
 from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools.abctools import AbjadValueObject
-try:
-    total_ordering = functools.total_ordering
-except AttributeError:
-    import total_ordering
-    total_ordering = total_ordering.total_ordering
 
 
-@total_ordering
+@functools.total_ordering
 class BowContactPoint(AbjadValueObject):
     r'''Bow contact point.
 

@@ -1,14 +1,9 @@
 # -*- encoding: utf-8 -*-
 import functools
 from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
-try:
-    total_ordering = functools.total_ordering
-except AttributeError:
-    import total_ordering
-    total_ordering = total_ordering.total_ordering
 
 
-@total_ordering
+@functools.total_ordering
 class ResidueClass(BaseResidueClass):
     r'''Residue class (or congruence class).
 
