@@ -4,6 +4,7 @@
 import os
 import setuptools
 import sys
+from distutils.version import StrictVersion
 
 version_file_path = os.path.join(
     os.path.dirname(__file__),
@@ -59,7 +60,8 @@ install_requires = [
     'ply',
     'six',
     ]
-if sys.version_info[0] == 2:
+version = '.'.join(str(x) for x in sys.version_info[:3])
+if StrictVersion(version) < StrictVersion('3.4.0'):
     install_requires.append('enum34')
 
 extras_require = {
