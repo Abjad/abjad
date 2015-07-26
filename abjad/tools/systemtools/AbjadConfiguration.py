@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import platform
 import subprocess
 import sys
 from abjad.tools.systemtools.Configuration import Configuration
@@ -214,7 +215,10 @@ class AbjadConfiguration(Configuration):
         from abjad import abjad_configuration
         if AbjadConfiguration._lilypond_version_string is not None:
             return AbjadConfiguration._lilypond_version_string
-        if subprocess.mswindows and not 'LilyPond' in os.environ.get('PATH'):
+        if (
+            platform.system() == 'Windows' and
+            not 'LilyPond' in os.environ.get('PATH')
+            ):
             command = r'dir "C:\Program Files\*.exe" /s /b | find "lilypond.exe"'
             proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
             lilypond = proc.stdout.readline()
