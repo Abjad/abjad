@@ -37,6 +37,7 @@ class AbjadDirective(Directive):
         page_selections = []
         for part in (_.strip() for _ in pages_string.split(',')):
             match = pattern.match(part)
+            page_range = None
             if match is not None:
                 start, stop = match.groups()
                 start = int(start)
@@ -47,11 +48,13 @@ class AbjadDirective(Directive):
                     page_range = tuple(range(start, stop + 1))
                 else:
                     page_range = tuple(range(start, stop - 1, -1))
-                page_selections.append(page_range)
             elif part.isdigit():
                 page = int(part)
                 page_range = (page,)
-                page_selections.append(page_range)
+            else:
+                continue
+            if page_range:
+                page_selections.extend(page_range)
         return tuple(page_selections)
 
     ### PUBLIC METHODS ###
