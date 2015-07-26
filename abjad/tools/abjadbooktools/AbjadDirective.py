@@ -23,6 +23,7 @@ class AbjadDirective(Directive):
     option_spec = {
         'allow-exceptions': directives.flag,
         'hide': directives.flag,
+        'no-stylesheet': directives.flag,
         'pages': str,
         'strip-prompt': directives.flag,
         'stylesheet': str,
@@ -67,14 +68,18 @@ class AbjadDirective(Directive):
         code = u'\n'.join(self.content)
         literal = literal_block(code, code)
         block = abjadbooktools.abjad_input_block(code, literal)
-        block['allow-exceptions'] = 'allow-exceptions' in self.options
-        block['hide'] = 'hide' in self.options
+        block['allow-exceptions'] = 'allow-exceptions' in self.options or None
+        block['hide'] = 'hide' in self.options or None
         pages = self.options.get('pages', None)
         if pages is not None:
             block['pages'] = self._parse_pages_string(pages)
         else:
             block['pages'] = None
-        block['strip-prompt'] = 'strip-prompt' in self.options
+        block['no-stylesheet'] = 'no-stylesheet' in self.options or None
+        block['stylesheet'] = self.options.get('stylesheet', None)
+        if block['no-stylesheet']:
+            block['stylesheet'] = None
+        block['strip-prompt'] = 'strip-prompt' in self.options or None
         block['text-width'] = self.options.get('text-width', None)
         set_source_info(self, block)
         return [block]
