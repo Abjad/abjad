@@ -40,7 +40,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     def __init__(self, payload, stylesheet=None):
         payload = copy.deepcopy(payload)
-        if stylesheet is None:
+        if not stylesheet:
             payload = documentationtools.make_reference_manual_lilypond_file(
                 payload)
         manager = systemtools.IOManager

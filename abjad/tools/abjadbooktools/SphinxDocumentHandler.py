@@ -416,6 +416,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             code_blocks.clear()
         return code_blocks
 
+    def get_default_stylesheet(self):
+        return 'default.ly'
+
     def interpret_input_blocks(
         self,
         document,

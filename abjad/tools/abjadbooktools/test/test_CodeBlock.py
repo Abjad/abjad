@@ -36,7 +36,6 @@ class CodeBlockTests(unittest.TestCase):
                     executed_lines=(
                         'from abjad.tools.abjadbooktools import example_function',
                         ),
-                    hide=False,
                     starting_line_number=1,
                     )
                 """)
@@ -61,7 +60,6 @@ class CodeBlockTests(unittest.TestCase):
                     executed_lines=(
                         'from abjad.tools.abjadbooktools import example_function',
                         ),
-                    hide=False,
                     starting_line_number=1,
                     )
                 """)
@@ -146,10 +144,7 @@ class CodeBlockTests(unittest.TestCase):
                         u'if True:',
                         u'    note.written_pitch = "ds,"',
                         ),
-                    allow_exceptions=False,
-                    hide=False,
                     starting_line_number=1,
-                    strip_prompt=False,
                     )
                 """)
         else:
@@ -160,10 +155,7 @@ class CodeBlockTests(unittest.TestCase):
                         'if True:',
                         '    note.written_pitch = "ds,"',
                         ),
-                    allow_exceptions=False,
-                    hide=False,
                     starting_line_number=1,
-                    strip_prompt=False,
                     )
                 """)
 
@@ -189,9 +181,7 @@ class CodeBlockTests(unittest.TestCase):
                         u'    note.written_pitch = "ds,"',
                         ),
                     allow_exceptions=True,
-                    hide=False,
                     starting_line_number=1,
-                    strip_prompt=False,
                     )
                 """)
         else:
@@ -203,9 +193,7 @@ class CodeBlockTests(unittest.TestCase):
                         '    note.written_pitch = "ds,"',
                         ),
                     allow_exceptions=True,
-                    hide=False,
                     starting_line_number=1,
-                    strip_prompt=False,
                     )
                 """)
 

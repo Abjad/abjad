@@ -363,6 +363,9 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
             )
         return document_handler
 
+    def get_default_stylesheet(self):
+        return None
+
     def interpret_input_blocks(self, input_blocks, console, verbose=True):
         code_blocks = tuple(input_blocks.values())
         if not code_blocks:
