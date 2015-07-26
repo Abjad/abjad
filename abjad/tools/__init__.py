@@ -1,11 +1,15 @@
 # -*- encoding: utf-8 -*-
+import six
 from abjad.tools import systemtools
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 
 
 # load constants into __builtins__ namespace
-import builtins
+if six.PY3:
+    import builtins
+elif six.PY2:
+    builtins = __builtins__
 builtins.Less = datastructuretools.OrdinalConstant('value', -1, 'Less')
 builtins.More = datastructuretools.OrdinalConstant('value', 1, 'More')
 builtins.Exact = datastructuretools.OrdinalConstant(
