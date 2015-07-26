@@ -21,6 +21,7 @@ builtins.Down = datastructuretools.OrdinalConstant('y', -1, 'Down')
 builtins.Infinity = mathtools.Infinity()
 builtins.NegativeInfinity = mathtools.NegativeInfinity()
 del(builtins)
+del(six)
 
 systemtools.ImportManager.import_structured_package(
     __path__[0],

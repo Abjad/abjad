@@ -2,9 +2,14 @@
 import copy
 import functools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+try:
+    total_ordering = functools.total_ordering
+except AttributeError:
+    import total_ordering
+    total_ordering = total_ordering.total_ordering
 
 
-@functools.total_ordering
+@total_ordering
 class NoteHead(AbjadObject):
     r'''A note head.
 

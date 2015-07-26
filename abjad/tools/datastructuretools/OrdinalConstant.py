@@ -1,9 +1,14 @@
 # -*- encoding: utf-8 -*-
 import functools
 from abjad.tools.abctools.AbjadObject import AbjadObject
+try:
+    total_ordering = functools.total_ordering
+except AttributeError:
+    import total_ordering
+    total_ordering = total_ordering.total_ordering
 
 
-@functools.total_ordering
+@total_ordering
 class OrdinalConstant(AbjadObject):
     r'''An ordinal constant.
 

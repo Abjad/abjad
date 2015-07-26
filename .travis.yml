@@ -27,10 +27,10 @@ install:
     - abjad/scr/devel/prime-parser-tables
 
 script:
-    - abjad/scr/ajv doctest experimental
-    - py.test experimental
+    - abjad/scr/ajv doctest --diff experimental
+    - py.test -rf experimental
     - coverage run -a abjad/scr/ajv doctest --diff abjad
-    - coverage run -a `which py.test` abjad
+    - coverage run -a `which py.test` -rf abjad
     - coverage run -a abjad/scr/ajv api -R
 
 after_success:

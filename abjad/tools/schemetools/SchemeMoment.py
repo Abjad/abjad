@@ -2,9 +2,14 @@
 import functools
 from abjad.tools import durationtools
 from abjad.tools.schemetools.Scheme import Scheme
+try:
+    total_ordering = functools.total_ordering
+except AttributeError:
+    import total_ordering
+    total_ordering = total_ordering.total_ordering
 
 
-@functools.total_ordering
+@total_ordering
 class SchemeMoment(Scheme):
     r'''A LilyPond scheme moment.
 

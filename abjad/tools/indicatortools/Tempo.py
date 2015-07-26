@@ -9,9 +9,14 @@ from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools import new
+try:
+    total_ordering = functools.total_ordering
+except AttributeError:
+    import total_ordering
+    total_ordering = total_ordering.total_ordering
 
 
-@functools.total_ordering
+@total_ordering
 class Tempo(AbjadValueObject):
     r'''Tempo indicator.
 
