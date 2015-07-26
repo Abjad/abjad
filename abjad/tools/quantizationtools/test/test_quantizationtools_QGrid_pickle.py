@@ -30,5 +30,5 @@ def test_quantizationtools_QGrid_pickle_01():
 
     pickled = pickle.loads(pickle.dumps(q_grid))
 
-    assert pickled == q_grid
     assert pickled is not q_grid
+    assert pickled == q_grid, systemtools.TestManager.diff(pickled, q_grid)

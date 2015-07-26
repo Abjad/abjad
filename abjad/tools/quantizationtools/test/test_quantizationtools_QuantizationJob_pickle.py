@@ -33,12 +33,12 @@ def test_quantizationtools_QuantizationJob_pickle_01():
 
     pickled = pickle.loads(pickle.dumps(job))
 
-    assert pickled == job
     assert pickled is not job
+    assert pickled == job, systemtools.TestManager.diff(picked, job, 'Diff:')
 
     job()
 
     pickled = pickle.loads(pickle.dumps(job))
 
-    assert pickled == job
     assert pickled is not job
+    assert pickled == job, systemtools.TestManager.diff(picked, job, 'Diff:')

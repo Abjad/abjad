@@ -421,7 +421,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             3/4
                          comprises three beats.
             """)
-        assert actual == target
+        assert actual == target, \
+            systemtools.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_04(self):
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -523,7 +524,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         'templatetools', 'timespantools',
                         'tonalanalysistools', 'topleveltools']
                 """)
-        assert actual == target, actual
+        assert actual == target, \
+            systemtools.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_05(self):
         handler = abjadbooktools.SphinxDocumentHandler()
