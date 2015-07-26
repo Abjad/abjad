@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from __future__ import print_function
 import collections
+import glob
 import hashlib
 import os
 import posixpath
@@ -40,12 +41,51 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         re.VERBOSE,
         )
 
+    _image_target_pattern = re.compile('.+-page(\d+)\..+')
+
     ### INITIALIZER ###
 
     def __init__(self):
         self._errored = False
 
     ### SPHINX HOOKS
+
+    @staticmethod
+    def interpret_image_source(
+        self,
+        node,
+        absolute_source_file_path,
+        absolute_target_file_path,
+        ):
+        if node['renderer'] == 'graphviz':
+            render_command = 'dot -Tpng {} -o {}'.format(
+                absolute_source_file_path,
+                absolute_target_file_path,
+                )
+        elif node['renderer'] == 'lilypond':
+            render_command = 'lilypond --png -dresolution=300 -dno-point-and-click -o {} {}'.format(
+                os.path.splitext(absolute_target_file_path)[0],
+                absolute_source_file_path,
+                )
+        process = subprocess.Popen(
+            render_command,
+            shell=True,
+            stderr=subprocess.STDOUT,
+            stdout=subprocess.PIPE,
+            )
+        stdout, stderr = process.communicate()
+        return_code = process.returncode
+        if return_code:
+            self.builder.warn(
+                'Failed to render {}.'.format(absolute_target_file_path),
+                (self.builder.current_docname, node.line),
+                )
+            self.builder.warn(render_command)
+            if stdout:
+                if sys.version_info[0] == 3:
+                    stdout = stdout.decode('utf-8')
+                self.builder.warn(stdout)
+        return return_code
 
     @staticmethod
     def on_doctree_read(app, document):
@@ -118,139 +158,125 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         pass
 
     @staticmethod
-    def visit_abjad_import_block(self, node):
-        print()
-        message = bold(red('Found abjad_import_block.'))
-        self.builder.warn(message, (self.builder.current_docname, node.line))
-        print(systemtools.TestManager.clean_string(node.pformat()))
-        raise nodes.SkipNode
-
-    @staticmethod
-    def visit_abjad_input_block(self, node):
-        print()
-        message = bold(red('Found abjad_input_block.'))
-        self.builder.warn(message, (self.builder.current_docname, node.line))
-        print(systemtools.TestManager.clean_string(node.pformat()))
-        raise nodes.SkipNode
-
-    @staticmethod
-    def visit_abjad_output_block_html(self, node):
-        if node['renderer'] not in ('graphviz', 'lilypond'):
-            raise nodes.SkipNode
+    def get_image_directory_paths(self):
         absolute_image_directory_path = os.path.join(
             self.builder.outdir,
             self.builder.imagedir,
             'abjadbook',
             )
-        if not os.path.exists(absolute_image_directory_path):
-            os.makedirs(absolute_image_directory_path)
-        relative_source_file_path, relative_target_file_path, succeeded = \
-            SphinxDocumentHandler.render_png_image(self, node)
-        output = r'''
-        <div class="abjad-book-image">
-            <a href="{source}">
-                <img src="{target}" alt="View source." title="View source." />
-            </a>
-        </div>
-        '''
-        output = output.format(
-            source=relative_source_file_path,
-            target=relative_target_file_path,
-            )
-        output = systemtools.TestManager.clean_string(output)
-        self.body.append(output)
-        raise nodes.SkipNode
-
-    @staticmethod
-    def visit_abjad_output_block_latex(self, node):
-        raise nodes.SkipNode
-
-    @staticmethod
-    def get_paths(self, node, target_extension='.png'):
-        sha1sum = hashlib.sha1(node[0].encode('utf-8')).hexdigest()
-        file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
-        if node['renderer'] == 'graphviz':
-            source_extension = '.dot'
-        elif node['renderer'] == 'lilypond':
-            source_extension = '.ly'
         relative_image_directory_path = posixpath.join(
             self.builder.imgpath,
             'abjadbook',
             )
-        absolute_image_directory_path = os.path.join(
-            self.builder.outdir,
-            self.builder.imagedir,
-            'abjadbook',
-            )
-        absolute_source_file_path = os.path.join(
-            absolute_image_directory_path,
-            file_base_name + source_extension,
-            )
-        absolute_target_file_path = os.path.join(
-            absolute_image_directory_path,
-            file_base_name + target_extension,
-            )
-        relative_source_file_path = posixpath.join(
-            relative_image_directory_path,
-            file_base_name + source_extension,
-            )
-        relative_target_file_path = posixpath.join(
-            relative_image_directory_path,
-            file_base_name + target_extension,
-            )
-        return (
-            absolute_image_directory_path,
-            absolute_source_file_path,
-            absolute_target_file_path,
-            relative_source_file_path,
-            relative_target_file_path,
-            )
+        paths = (absolute_image_directory_path, relative_image_directory_path)
+        return paths
+
+    @staticmethod
+    def find_target_file_names(
+        absolute_directory_path,
+        file_name_pattern,
+        pages,
+        ):
+        with systemtools.TemporaryDirectoryChange(absolute_directory_path):
+            file_name_matches = glob.glob(file_name_pattern)
+        target_file_name_dict = {}
+        if len(file_name_matches) == 1 and '-page' not in file_name_matches[0]:
+            target_file_name_dict[1] = file_name_matches[0]
+        else:
+            for file_name_match in file_name_matches:
+                re_match = SphinxDocumentHandler._image_target_pattern.match(
+                    file_name_match)
+                page = int(re_match.groups()[0])
+                target_file_name_dict[page] = file_name_match
+        target_file_names = []
+        found_all_pages = False
+        if pages is None:
+            target_file_names.extend(target_file_name_dict.values())
+            found_all_pages = True
+        else:
+            for page in pages:
+                if page in target_file_name_dict:
+                    target_file_names.append(target_file_name_dict[page])
+            if len(target_file_names) == len(pages):
+                found_all_pages = True
+
+        return target_file_names, found_all_pages
 
     @staticmethod
     def render_png_image(self, node):
-        (
-            absolute_image_directory_path,
-            absolute_source_file_path,
-            absolute_target_file_path,
-            relative_source_file_path,
-            relative_target_file_path,
-            ) = SphinxDocumentHandler.get_paths(self, node)
-        if os.path.isfile(absolute_target_file_path):
-            return relative_source_file_path, relative_target_file_path, True
+        # Get all file and path parts.
+        pages = node.get('pages', None)
+        target_extension = '.png'
+        sha1sum = hashlib.sha1(node[0].encode('utf-8')).hexdigest()
+        file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
+        file_name_pattern = '{}*{}'.format(file_base_name, target_extension)
         if node['renderer'] == 'graphviz':
-            render_command = 'dot -Tpng {} -o {}'.format(
-                absolute_source_file_path,
-                absolute_target_file_path,
-                )
+            source_extension = '.dot'
         elif node['renderer'] == 'lilypond':
-            render_command = 'lilypond --png -dresolution=300 -dno-point-and-click -o {} {}'.format(
-                os.path.splitext(absolute_target_file_path)[0],
-                absolute_source_file_path,
-                )
-        with open(absolute_source_file_path, 'w') as file_pointer:
-            code = node[0]
-            if sys.version_info[0] == 2:
-                code = code.encode('utf-8')
-            file_pointer.write(code)
-        process = subprocess.Popen(
-            render_command,
-            shell=True,
-            stderr=subprocess.STDOUT,
-            stdout=subprocess.PIPE,
+            source_extension = '.ly'
+        absolute_directory_path, relative_directory_path = \
+            SphinxDocumentHandler.get_image_directory_paths(self)
+        relative_source_file_path = posixpath.join(
+            relative_directory_path,
+            file_base_name + source_extension,
             )
-        stdout, stderr = process.communicate()
-        return_code = process.returncode
-        if return_code:
-            self.builder.warn(
-                'Failed to render {}.'.format(absolute_target_file_path),
-                (self.builder.current_docname, node.line),
+        # Check for pre-existing target(s).
+        target_file_names, found_all_pages = \
+            SphinxDocumentHandler.find_target_file_names(
+                absolute_directory_path,
+                file_name_pattern,
+                pages,
                 )
-            self.builder.warn(render_command)
-            if stdout:
-                if sys.version_info[0] == 3:
-                    stdout = stdout.decode('utf-8')
-                self.builder.warn(stdout)
-            return relative_source_file_path, relative_target_file_path, False
+        if found_all_pages:
+            return (
+                relative_source_file_path,
+                [posixpath.join(relative_directory_path, _) for _ in target_file_names],
+                )
+        # Write and render source to target(s).
+        absolute_source_file_path = os.path.join(
+            absolute_directory_path,
+            file_base_name + source_extension,
+            )
+        absolute_target_file_path = os.path.join(
+            absolute_directory_path,
+            file_base_name + target_extension,
+            )
+        SphinxDocumentHandler.write_image_source(
+            self, node, absolute_source_file_path)
+        return_code = SphinxDocumentHandler.interpret_image_source(
+            self, node, absolute_source_file_path, absolute_target_file_path)
+        if return_code:
+            return (
+                relative_directory_path,
+                [],
+                )
+        # Check for target(s).
+        target_file_names, found_all_pages = \
+            SphinxDocumentHandler.find_target_file_names(
+                absolute_directory_path, file_name_pattern, pages,
+                )
+        if not found_all_pages:
+            return (
+                relative_source_file_path,
+                [posixpath.join(relative_directory_path, _) for _ in target_file_names],
+                )
+        # Trim target(s).
+        for target_name in target_file_names:
+            target_path = os.path.join(absolute_directory_path, target_name)
+            return_code = SphinxDocumentHandler.trim_image_target(
+                self, node, target_path)
+        # Target(s) must exist, so simply return.
+        return (
+            relative_source_file_path,
+            [posixpath.join(relative_directory_path, _) for _ in target_file_names],
+            )
+
+    @staticmethod
+    def trim_image_target(
+        self,
+        node,
+        absolute_target_file_path,
+        ):
         trim_command = 'convert -trim -resize 50%% {} {}'.format(
             absolute_target_file_path,
             absolute_target_file_path,
@@ -273,8 +299,67 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 if sys.version_info[0] == 3:
                     stdout = stdout.decode('utf-8')
                 self.builder.warn(stdout)
-            return relative_source_file_path, relative_target_file_path, False
-        return relative_source_file_path, relative_target_file_path, True
+        return return_code
+
+    @staticmethod
+    def visit_abjad_import_block(self, node):
+        print()
+        message = bold(red('Found abjad_import_block.'))
+        self.builder.warn(message, (self.builder.current_docname, node.line))
+        print(systemtools.TestManager.clean_string(node.pformat()))
+        raise nodes.SkipNode
+
+    @staticmethod
+    def visit_abjad_input_block(self, node):
+        print()
+        message = bold(red('Found abjad_input_block.'))
+        self.builder.warn(message, (self.builder.current_docname, node.line))
+        print(systemtools.TestManager.clean_string(node.pformat()))
+        raise nodes.SkipNode
+
+    @staticmethod
+    def visit_abjad_output_block_html(self, node):
+        try:
+            if node['renderer'] not in ('graphviz', 'lilypond'):
+                raise nodes.SkipNode
+            absolute_image_directory_path = os.path.join(
+                self.builder.outdir,
+                self.builder.imagedir,
+                'abjadbook',
+                )
+            if not os.path.exists(absolute_image_directory_path):
+                os.makedirs(absolute_image_directory_path)
+            relative_source_file_path, relative_target_file_paths = \
+                SphinxDocumentHandler.render_png_image(self, node)
+            output = r'''
+            <div class="abjad-book-image">
+                <a href="{source}">
+                    <img src="{target}" alt="View source." title="View source." />
+                </a>
+            </div>
+            '''
+            for relative_target_file_path in relative_target_file_paths:
+                result = output.format(
+                    source=relative_source_file_path,
+                    target=relative_target_file_path,
+                    )
+                result = systemtools.TestManager.clean_string(result)
+                self.body.append(result)
+        except:
+            traceback.print_exc()
+        raise nodes.SkipNode
+
+    @staticmethod
+    def visit_abjad_output_block_latex(self, node):
+        raise nodes.SkipNode
+
+    @staticmethod
+    def write_image_source(self, node, absolute_source_file_path):
+        with open(absolute_source_file_path, 'w') as file_pointer:
+            code = node[0]
+            if sys.version_info[0] == 2:
+                code = code.encode('utf-8')
+            file_pointer.write(code)
 
     ### PUBLIC METHODS ###
 
