@@ -208,8 +208,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def render_png_image(self, node):
         # Get all file and path parts.
         pages = node.get('pages', None)
-        print(node.pformat())
-        print('PAGES', pages)
+        #print(node.pformat())
+        #print('PAGES', pages)
         target_extension = '.png'
         sha1sum = hashlib.sha1(node[0].encode('utf-8')).hexdigest()
         file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
