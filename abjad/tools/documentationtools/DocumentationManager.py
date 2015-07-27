@@ -240,7 +240,6 @@ class DocumentationManager(abctools.AbjadObject):
             path = os.path.join(
                 source_directory,
                 self.api_directory_name,
-                'tools',
                 )
         else:
             path = source_directory
@@ -277,9 +276,10 @@ class DocumentationManager(abctools.AbjadObject):
                 },
             )
         for tools_package in tools_packages:
-            tools_package_name = tools_package.__package__.split('.')[-1]
+            tools_package_parts = tools_package.__package__.split('.')[1:]
+            tools_package_path = '/'.join(tools_package_parts)
             toc_item = documentationtools.ReSTTOCItem(
-                text='tools/{}/index'.format(tools_package_name),
+                text='{}/index'.format(tools_package_path),
                 )
             toc.append(toc_item)
         document.append(toc)
@@ -680,7 +680,7 @@ class DocumentationManager(abctools.AbjadObject):
         r'''
         '''
         parts = module_path.split('.')
-        parts = parts[2:]
+        parts = parts[1:]
         if parts[-1] == 'Index':
             parts[-1] = '_' + parts[-1] + '.rst'
         else:
@@ -693,7 +693,7 @@ class DocumentationManager(abctools.AbjadObject):
         r'''
         '''
         parts = package_path.split('.')
-        parts = parts[2:]
+        parts = parts[1:]
         parts.append('index.rst')
         parts.insert(0, self._get_api_directory_path(source_directory))
         path = os.path.join(*parts)
