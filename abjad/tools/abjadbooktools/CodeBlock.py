@@ -24,8 +24,9 @@ class CodeBlock(abctools.AbjadValueObject):
         '_executed_lines',
         '_hide',
         '_no_stylesheet',
-        '_output_proxies',
         '_options',
+        '_output_proxies',
+        '_pages',
         '_source_lines',
         '_starting_line_number',
         '_strip_prompt',
@@ -43,6 +44,7 @@ class CodeBlock(abctools.AbjadValueObject):
         executed_lines=None,
         hide=None,
         no_stylesheet=None,
+        pages=None,
         starting_line_number=None,
         strip_prompt=None,
         stylesheet=None,
@@ -57,6 +59,7 @@ class CodeBlock(abctools.AbjadValueObject):
         self._hide = bool(hide) or None
         self._no_stylesheet = bool(no_stylesheet) or None
         self._output_proxies = []
+        self._pages = pages or None
         self._source_lines = tuple(input_file_contents)
         self._starting_line_number = starting_line_number
         self._strip_prompt = bool(strip_prompt) or None
@@ -387,12 +390,13 @@ class CodeBlock(abctools.AbjadValueObject):
             self._console.document_handler is not None
             ):
             handler = self._console.document_handler
-            stylesheet = handler.get_default_stylesheet()
-        stylesheet = stylesheet or self.stylesheet
+            default_stylesheet = handler.get_default_stylesheet()
+        stylesheet = self.stylesheet or default_stylesheet
         if self.no_stylesheet:
             stylesheet = None
         output_proxy = abjadbooktools.LilyPondOutputProxy(
             illustration,
+            pages=self.pages,
             stylesheet=stylesheet,
             )
         self.push_asset_output_proxy(output_proxy)
@@ -446,3 +450,7 @@ class CodeBlock(abctools.AbjadValueObject):
     @property
     def text_width(self):
         return self._text_width
+
+    @property
+    def pages(self):
+        return self._pages

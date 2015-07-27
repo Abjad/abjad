@@ -3,10 +3,12 @@ Pärt: *Cantus in Memory of Benjamin Britten*
 
 ..  note::
 
-    Explore the `abjad/demos/part/` directory for the complete code to this
+    Explore the ``abjad/demos/part`` directory for the complete code to this
     example, or import it into your Python session directly with:
 
-    * `from abjad.demos import part`
+    ..  code-block:: python
+
+        >>> from abjad.demos import part
 
 Let's make some imports:
 
@@ -98,6 +100,7 @@ give them a 6/4 time signature, just so they line up properly.
         attach(markup, descent[0])
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     staff = Staff(sequencetools.flatten_sequence(descents))
     time_signature = TimeSignature((6, 4))
@@ -117,6 +120,7 @@ Let's look at the second violins too:
         attach(markup, descent[0])
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     staff = Staff(sequencetools.flatten_sequence(descents))
     time_signature = TimeSignature((6, 4))
@@ -138,6 +142,7 @@ the bar lines accidentally:
         attach(markup, descent[0])
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     staff = Staff(sequencetools.flatten_sequence(descents))
     shards = mutate(staff[:]).split([(3, 2)], cyclic=True)
@@ -187,9 +192,9 @@ We apply expressive marks the same way we applied our dynamics:
 
 ..  import:: abjad.demos.part.apply_expressive_marks:apply_expressive_marks
 
-We use the `indicatortools.LilyPondCommandClass` to create LilyPond system breaks,
-and attach them to measures in the percussion part.  After this, our score will
-break in the exact same places as the original:
+We use the `indicatortools.LilyPondCommand` class to create LilyPond system
+breaks, and attach them to measures in the percussion part.  After this, our
+score will break in the exact same places as the original:
 
 ..  import:: abjad.demos.part.apply_page_breaks:apply_page_breaks
 
@@ -237,6 +242,8 @@ Let's run our original toplevel function to build the complete score:
 And here we show it:
 
 ..  abjad::
+    :pages: 1-2
+    :stylesheet: non-proportional.ly
 
     show(lilypond_file)
 

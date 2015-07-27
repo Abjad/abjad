@@ -71,6 +71,7 @@ well as beams, slurs, ties, and articulations.
     print(format(staff))
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     show(staff)
 
@@ -237,6 +238,7 @@ Now let's take a look at the code that puts our score together:
 ..  import:: abjad.demos.mozart.make_mozart_score:make_mozart_score
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     score = make_mozart_score()
     show(score)
@@ -296,5 +298,6 @@ name, change the global staff size, paper size, staff spacing and so forth.
 And now the final result:
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     show(lilypond_file)

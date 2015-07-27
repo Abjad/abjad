@@ -91,6 +91,7 @@ measures carry with them a lot of information pertaining to musical notation.
 
 ..  abjad::
     :hide:
+    :stylesheet: non-proportional.ly
 
     import copy
     score = Score([])

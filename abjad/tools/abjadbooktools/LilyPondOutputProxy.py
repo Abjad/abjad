@@ -32,13 +32,14 @@ class LilyPondOutputProxy(ImageOutputProxy):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_pages',
         '_payload',
         '_stylesheet',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, payload, stylesheet=None):
+    def __init__(self, payload, pages=None, stylesheet=None):
         payload = copy.deepcopy(payload)
         if not stylesheet:
             payload = documentationtools.make_reference_manual_lilypond_file(
@@ -55,6 +56,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             lilypond_file.use_relative_includes = True
             lilypond_file.file_initial_user_includes[:] = [stylesheet]
         self._payload = lilypond_file
+        self._pages = pages or None
 
     ### PRIVATE METHODS ###
 
@@ -153,9 +155,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
             code = format(self.payload)
             if sys.version_info[0] == 2:
                 code = code.decode('utf-8')
-            block = abjadbooktools.abjad_output_block(code, code)
-            block['renderer'] = 'lilypond'
-            result.append(block)
+            node = abjadbooktools.abjad_output_block(code, code)
+            node['pages'] = self.pages
+            node['renderer'] = 'lilypond'
+            result.append(node)
         except UnicodeDecodeError:
             print()
             print(type(self))
@@ -172,6 +175,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
         Returns string.
         '''
         return 'lilypond'
+
+    @property
+    def pages(self):
+        return self._pages
 
     @property
     def stylesheet(self):

@@ -9,6 +9,7 @@ Here is what we want to end up with:
 
 ..  abjad::
     :hide:
+    :stylesheet: non-proportional.ly
 
     import copy
     score = Score([])
@@ -196,6 +197,7 @@ to true for each of the last two measures:
 Here's our work so far:
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     show(score)
 
@@ -245,6 +247,7 @@ Let's add a double bar to the end of the piece:
 And see how things are coming out:
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     show(score)
 
@@ -274,6 +277,7 @@ Let's set the beams as Bartók did with some crossing the bar lines:
     attach(beam, lower_leaves[6:10])
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     show(score)
 
@@ -333,5 +337,6 @@ And ties connecting the last two notes in each staff:
 The final result:
 
 ..  abjad::
+    :stylesheet: non-proportional.ly
 
     show(score)

@@ -177,8 +177,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         file_name_pattern,
         pages,
         ):
+        #print(file_name_pattern, pages)
         with systemtools.TemporaryDirectoryChange(absolute_directory_path):
             file_name_matches = glob.glob(file_name_pattern)
+        #print('\t', file_name_matches)
         target_file_name_dict = {}
         if len(file_name_matches) == 1 and '-page' not in file_name_matches[0]:
             target_file_name_dict[1] = file_name_matches[0]
@@ -192,20 +194,22 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         found_all_pages = False
         if pages is None:
             target_file_names.extend(target_file_name_dict.values())
-            found_all_pages = True
+            found_all_pages = bool(target_file_names)
         else:
             for page in pages:
                 if page in target_file_name_dict:
                     target_file_names.append(target_file_name_dict[page])
             if len(target_file_names) == len(pages):
                 found_all_pages = True
-
+        #print('\t', target_file_names, found_all_pages)
         return target_file_names, found_all_pages
 
     @staticmethod
     def render_png_image(self, node):
         # Get all file and path parts.
         pages = node.get('pages', None)
+        print(node.pformat())
+        print('PAGES', pages)
         target_extension = '.png'
         sha1sum = hashlib.sha1(node[0].encode('utf-8')).hexdigest()
         file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
@@ -216,6 +220,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             source_extension = '.ly'
         absolute_directory_path, relative_directory_path = \
             SphinxDocumentHandler.get_image_directory_paths(self)
+        #print(absolute_directory_path, relative_directory_path)
         relative_source_file_path = posixpath.join(
             relative_directory_path,
             file_base_name + source_extension,
@@ -325,6 +330,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def visit_abjad_output_block_html(self, node):
+        #print()
+        #print(node.pformat())
         try:
             if node['renderer'] not in ('graphviz', 'lilypond'):
                 raise nodes.SkipNode
@@ -463,13 +470,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 systemtools.TestManager.clean_string(old_node.pformat()) ==
                 systemtools.TestManager.clean_string(new_nodes[0].pformat())
                 ):
-                #print('Preserving...')
                 continue
-            #print('Replacing...')
-            #print(old_node.pformat())
-            #print('...with...')
-            #for new_node in new_nodes:
-            #    print(new_node.pformat())
             old_node.parent.replace(old_node, new_nodes)
 
     @staticmethod
