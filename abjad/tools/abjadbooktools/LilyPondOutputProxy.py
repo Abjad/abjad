@@ -156,7 +156,8 @@ class LilyPondOutputProxy(ImageOutputProxy):
             if sys.version_info[0] == 2:
                 code = code.decode('utf-8')
             node = abjadbooktools.abjad_output_block(code, code)
-            node['pages'] = self.pages
+            if self.pages is not None:
+                node['pages'] = self.pages
             node['renderer'] = 'lilypond'
             result.append(node)
         except UnicodeDecodeError:
@@ -178,6 +179,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     @property
     def pages(self):
+        r'''Gets paging information for LilyPond output proxy.
+
+        Returns string.
+        '''
         return self._pages
 
     @property
