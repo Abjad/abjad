@@ -21,6 +21,7 @@ class DocumentationManager(abctools.AbjadObject):
     api_title = 'Abjad API'
     root_package_name = 'abjad'
     source_directory_path_parts = ('docs', 'source')
+    api_directory_name = 'api'
     tools_packages_package_path = 'abjad.tools'
     prefix_ignored = lightgray('IGNORED:   ')
     prefix_preserved = darkgray('PRESERVED: ')
@@ -235,20 +236,29 @@ class DocumentationManager(abctools.AbjadObject):
             os.makedirs(path)
 
     def _get_api_directory_path(self, source_directory):
-        path = os.path.join(
-            source_directory,
-            'api',
-            'tools',
-            )
+        if self.api_directory_name:
+            path = os.path.join(
+                source_directory,
+                self.api_directory_name,
+                'tools',
+                )
+        else:
+            path = source_directory
         return path
 
     def _get_api_index_file_path(self, source_directory):
-        path = os.path.join(
-            source_directory,
-            'api',
+        if self.api_directory_name:
+            directory_path = os.path.join(
+                source_directory,
+                self.api_directory_name,
+                )
+        else:
+            directory_path = source_directory
+        api_index_path = os.path.join(
+            directory_path,
             'index.rst',
             )
-        return path
+        return api_index_path
 
     def _get_api_index_rst(self, tools_packages):
         r'''
