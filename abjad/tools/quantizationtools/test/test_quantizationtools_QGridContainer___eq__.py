@@ -7,7 +7,8 @@ def test_quantizationtools_QGridContainer___eq___01():
     a = quantizationtools.QGridContainer(preprolated_duration=1, children=[])
     b = quantizationtools.QGridContainer(preprolated_duration=1, children=[])
 
-    assert a == b
+    assert format(a) == format(b)
+    assert a != b
 
 
 def test_quantizationtools_QGridContainer___eq___02():
@@ -19,7 +20,8 @@ def test_quantizationtools_QGridContainer___eq___02():
         quantizationtools.QGridLeaf(preprolated_duration=1)
         ])
 
-    assert a == b
+    assert format(a) == format(b)
+    assert a != b
 
 
 def test_quantizationtools_QGridContainer___eq___03():
@@ -40,12 +42,9 @@ def test_quantizationtools_QGridContainer___eq___03():
     assert a != c
     assert a != d
     assert a != e
-
     assert b != c
     assert b != d
     assert b != e
-
     assert c != d
     assert c != e
-
     assert d != e

@@ -10,5 +10,6 @@ def test_rhythmtreetools_RhythmTreeNode_pickle_01():
 
     pickled = pickle.loads(pickle.dumps(tree))
 
-    assert pickled == tree
+    assert format(pickled) == format(tree)
+    assert pickled != tree
     assert pickled is not tree

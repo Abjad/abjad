@@ -26,14 +26,8 @@ def test_quantizationtools_QGridContainer___copy___01():
 
     copied = copy.copy(tree)
 
-    assert tree == copied
+    assert format(tree) == format(copied)
     assert tree is not copied
-
-    assert tree[0] == copied[0]
     assert tree[0] is not copied[0]
-
-    assert tree[1] == copied[1]
     assert tree[1] is not copied[1]
-
-    assert tree[2] == copied[2]
     assert tree[2] is not copied[2]

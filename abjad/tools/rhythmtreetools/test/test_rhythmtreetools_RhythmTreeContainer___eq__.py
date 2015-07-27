@@ -7,7 +7,8 @@ def test_rhythmtreetools_RhythmTreeContainer___eq___01():
     a = rhythmtreetools.RhythmTreeContainer(children=[])
     b = rhythmtreetools.RhythmTreeContainer(children=[])
 
-    assert a == b
+    assert format(a) == format(b)
+    assert a != b
 
 
 def test_rhythmtreetools_RhythmTreeContainer___eq___02():
@@ -19,7 +20,8 @@ def test_rhythmtreetools_RhythmTreeContainer___eq___02():
         rhythmtreetools.RhythmTreeLeaf()
         ])
 
-    assert a == b
+    assert format(a) == format(b)
+    assert a != b
 
 
 def test_rhythmtreetools_RhythmTreeContainer___eq___03():
@@ -40,12 +42,9 @@ def test_rhythmtreetools_RhythmTreeContainer___eq___03():
     assert a != c
     assert a != d
     assert a != e
-
     assert b != c
     assert b != d
     assert b != e
-
     assert c != d
     assert c != e
-
     assert d != e

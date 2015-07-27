@@ -7,7 +7,8 @@ def test_datastructuretools_TreeContainer___eq___01():
     tree_container_1 = datastructuretools.TreeContainer([])
     tree_container_2 = datastructuretools.TreeContainer([])
 
-    assert tree_container_1 == tree_container_2
+    assert format(tree_container_1) == format(tree_container_2)
+    assert tree_container_1 != tree_container_2
 
 
 def test_datastructuretools_TreeContainer___eq___02():
@@ -19,7 +20,8 @@ def test_datastructuretools_TreeContainer___eq___02():
         datastructuretools.TreeNode()
         ])
 
-    assert tree_container_1 == tree_container_2
+    assert format(tree_container_1) == format(tree_container_2)
+    assert tree_container_1 != tree_container_2
 
 
 def test_datastructuretools_TreeContainer___eq___03():
@@ -33,6 +35,7 @@ def test_datastructuretools_TreeContainer___eq___03():
         datastructuretools.TreeNode()
         ])
 
+    assert format(tree_container_1) != format(tree_container_2)
     assert tree_container_1 != tree_container_2
     assert tree_container_1 != tree_container_3
     assert tree_container_2 != tree_container_3

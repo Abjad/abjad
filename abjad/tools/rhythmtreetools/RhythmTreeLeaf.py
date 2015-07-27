@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
 
@@ -70,19 +69,6 @@ class RhythmTreeLeaf(RhythmTreeNode):
             return scoretools.make_notes(0, total_duration)
         return scoretools.make_rests(total_duration)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a rhythm tree leaf with preprolated duration
-        and pitch boolean equal to those of this rhythm tree leaf. Otherwise
-        false.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            if self.preprolated_duration == expr.preprolated_duration:
-                if self.is_pitched == expr.is_pitched:
-                    return True
-        return False
-
     def __graph__(self, **kwargs):
         r'''Graphviz graph of rhythm tree leaf.
         '''
@@ -96,15 +82,6 @@ class RhythmTreeLeaf(RhythmTreeNode):
             )
         graph.append(node)
         return graph
-
-    def __hash__(self):
-        r'''Hashes rhythm-tree leaf.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(RhythmTreeLeaf, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

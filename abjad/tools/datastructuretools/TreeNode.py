@@ -30,15 +30,6 @@ class TreeNode(AbjadObject):
     # TODO: remove? we shouldn't alias deepcopy anywhere
     __deepcopy__ = __copy__
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a tree node. Otherwise false.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            return True
-        return False
-
     def __getnewargs__(self):
         r'''Gets new arguments.
 
@@ -60,15 +51,6 @@ class TreeNode(AbjadObject):
         for name in self_dir.difference(class_dir):
             state[name] = getattr(self, name)
         return state
-
-    def __hash__(self):
-        r'''Hashes tree node.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(TreeNode, self).__hash__()
 
     def __ne__(self, expr):
         r'''Is true when tree node does not equal `expr`. Otherwise false.
