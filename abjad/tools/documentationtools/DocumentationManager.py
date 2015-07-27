@@ -6,6 +6,7 @@ import importlib
 import os
 import re
 import shutil
+import traceback
 import types
 from abjad.tools import abctools
 from abjad.tools import systemtools
@@ -18,11 +19,12 @@ class DocumentationManager(abctools.AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    api_directory_name = 'api'
     api_title = 'Abjad API'
     root_package_name = 'abjad'
     source_directory_path_parts = ('docs', 'source')
-    api_directory_name = 'api'
     tools_packages_package_path = 'abjad.tools'
+
     prefix_ignored = lightgray('IGNORED:   ')
     prefix_preserved = darkgray('PRESERVED: ')
     prefix_pruned = red('PRUNED:    ')
@@ -319,19 +321,22 @@ class DocumentationManager(abctools.AbjadObject):
             level=3,
             text='Lineage',
             )
-        document.append(lineage_heading)
-        lineage_graph = self._get_lineage_graph(cls)
-        lineage_graph.attributes['background'] = 'transparent'
-        lineage_graph.attributes['rankdir'] = 'LR'
-        graphviz_directive = abjad.documentationtools.GraphvizDirective(
-            graph=lineage_graph,
-            )
-        graphviz_container = abjad.documentationtools.ReSTDirective(
-            directive='container',
-            argument='graphviz',
-            )
-        graphviz_container.append(graphviz_directive)
-        document.append(graphviz_container)
+        try:
+            document.append(lineage_heading)
+            lineage_graph = self._get_lineage_graph(cls)
+            lineage_graph.attributes['background'] = 'transparent'
+            lineage_graph.attributes['rankdir'] = 'LR'
+            graphviz_directive = abjad.documentationtools.GraphvizDirective(
+                graph=lineage_graph,
+                )
+            graphviz_container = abjad.documentationtools.ReSTDirective(
+                directive='container',
+                argument='graphviz',
+                )
+            graphviz_container.append(graphviz_directive)
+            document.append(graphviz_container)
+        except:
+            traceback.print_exc()
         document.extend(self._build_bases_section(cls))
         document.extend(self._build_enumeration_section(cls))
         document.extend(self._build_attributes_autosummary(
@@ -438,12 +443,15 @@ class DocumentationManager(abctools.AbjadObject):
             for part in parts[1:]:
                 if part != name[-1]:
                     name.append(part)
-            if name[0] in ('abjad', 'experimental', 'ide'):
+            if name[0] in ('abjad', 'experimental'):
                 return str('.'.join(name[2:]))
+            elif name[0] in ('ide',):
+                return str('.'.join(name[1:]))
             return str('.'.join(name))
         from abjad.tools import documentationtools
         addresses = ('abjad', 'experimental', 'ide')
         module_name, _, class_name = cls.__module__.rpartition('.')
+        node_name = get_node_name(module_name + '.' + class_name)
         importlib.import_module(module_name)
         lineage = documentationtools.InheritanceGraph(
             addresses=addresses,
@@ -465,7 +473,6 @@ class DocumentationManager(abctools.AbjadObject):
                 lineage_prune_distance=1,
                 )
             graph = lineage.__graph__()
-        node_name = get_node_name(module_name + '.' + class_name)
         if maximum_node_count < len(graph.leaves):
             lineage = documentationtools.InheritanceGraph(
                 addresses=((module_name, class_name),),
@@ -798,6 +805,8 @@ class DocumentationManager(abctools.AbjadObject):
                 ):
                 for file_name in file_names[:]:
                     file_path = os.path.join(root, file_name)
+                    if not file_path.endswith('.rst'):
+                        continue
                     if file_path not in rewritten_files:
                         file_names.remove(file_name)
                         os.remove(file_path)
