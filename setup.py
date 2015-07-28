@@ -20,18 +20,15 @@ __version__ = local_dict['__version__']
 
 description = 'Abjad is a Python API for Formalized Score Control.'
 
-long_description = 'Abjad is an interactive software system designed'
-long_description += ' to help composers build up complex pieces of'
-long_description += ' music notation in an iterative and incremental way.'
-long_description += ' Use Abjad to create a symbolic representation of all'
-long_description += ' the notes, rests, staves, tuplets, beams and slurs'
-long_description += ' in any score.'
-long_description += ' Because Abjad extends the Python programming language,'
-long_description += ' you can use Abjad to make systematic changes to'
-long_description += ' your music as you work.'
-long_description += ' And because Abjad wraps the powerful LilyPond music'
-long_description += ' notation package, you can use Abjad to control'
-long_description += ' the typographic details of all the symbols on the page.'
+long_description = r'''
+Abjad helps composers build up complex pieces of music notation in an iterative
+and incremental way. Use Abjad to create a symbolic representation of all the
+notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad
+extends the Python programming language, you can use Abjad to make systematic
+changes to your music as you work. And because Abjad wraps the powerful
+LilyPond music notation package, you can use Abjad to control the typographic
+details of the symbols on the page.
+'''
 
 author = [
     'Trevor Bača',
