@@ -3,6 +3,36 @@ Score gallery
 
 The following works were composed with the assistance of Abjad.
 
+Invisible Cities (iii): Ersilia *(2015)*
+````````````````````````````````````````
+
+- For chamber orchestra.
+- Composed by `Josiah Wolf Oberholtzer`_.
+- Written for Ensemble Dal Niente.
+- Source available from https://github.com/josiah-wolf-oberholtzer/ersilia/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/208631991&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/oberholtzer-ersilia-page9.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 9 of Invisible Cities (iii): Ersilia,
+                by Josiah Wolf Oberholtzer.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/oberholtzer-ersilia-page10.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 10 of Invisible Cities (iii): Ersilia,
+                by Josiah Wolf Oberholtzer.
+
 Invisible Cities (ii): Armilla *(2015)*
 ```````````````````````````````````````
 
@@ -29,6 +59,64 @@ Invisible Cities (ii): Armilla *(2015)*
         :class: table-cell thumbnail
         :group: gallery
         :title: Page 9 of Invisible Cities (ii): Armilla,
+                by Josiah Wolf Oberholtzer.
+
+Invisible Cities (i): Zaira *(2014)*
+`````````````````````````````````````
+
+- For chamber orchestra.
+- Composed by `Josiah Wolf Oberholtzer`_.
+- Written for Ensemble Mosaik.
+- Source available from https://github.com/josiah-wolf-oberholtzer/zaira/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/172956857&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/oberholtzer-zaira-page16.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 16 of Invisible Cities (i): Zaira,
+                by Josiah Wolf Oberholtzer.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/oberholtzer-zaira-page17.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 17 of Invisible Cities (i): Zaira,
+                by Josiah Wolf Oberholtzer.
+
+Plague Water *(2014)*
+`````````````````````
+
+- For baritone saxophone, electric guitar, piano and percussion.
+- Composed by `Josiah Wolf Oberholtzer`_.
+- Written for Ensemble Nikel.
+- Source available from https://github.com/josiah-wolf-oberholtzer/plage-water/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/145543310&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/oberholtzer-plague-water-page12.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 12 of Plague Water,
+                by Josiah Wolf Oberholtzer.
+
+    ..  thumbnail:: gallery/oberholtzer-plague-water-page13.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 13 of Plague Water,
                 by Josiah Wolf Oberholtzer.
 
 Aurora *(2011)*
