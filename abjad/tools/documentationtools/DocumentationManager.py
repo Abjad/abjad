@@ -443,10 +443,8 @@ class DocumentationManager(abctools.AbjadObject):
             for part in parts[1:]:
                 if part != name[-1]:
                     name.append(part)
-            if name[0] in ('abjad', 'experimental'):
+            if name[0] in ('abjad', 'experimental', 'ide'):
                 return str('.'.join(name[2:]))
-            elif name[0] in ('ide',):
-                return str('.'.join(name[1:]))
             return str('.'.join(name))
         from abjad.tools import documentationtools
         addresses = ('abjad', 'experimental', 'ide')

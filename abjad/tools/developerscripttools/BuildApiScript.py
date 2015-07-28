@@ -21,6 +21,7 @@ class BuildApiScript(DeveloperScript):
         r'''API generator for the experimental package.
         '''
 
+        api_directory_name = None
         api_title = 'Abjad Experimental API'
         root_package_name = 'experimental'
         source_directory_path_parts = ('docs', 'source')
@@ -34,7 +35,7 @@ class BuildApiScript(DeveloperScript):
         api_title = 'Abjad IDE API'
         root_package_name = 'ide'
         source_directory_path_parts = ('docs', 'source')
-        tools_packages_package_path = 'ide'
+        tools_packages_package_path = 'ide.tools'
 
     ### PUBLIC PROPERTIES ###
 
