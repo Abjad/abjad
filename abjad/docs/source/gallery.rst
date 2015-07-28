@@ -3,6 +3,28 @@ Score gallery
 
 The following works were composed with the assistance of Abjad.
 
+Al-kitab al-khamr *(2015)*
+``````````````````````````
+
+- For chamber orchestra.
+- Composed by `Trevor Bača`_.
+- Written for Ensemble Dal Niente.
+- Source available from https://github.com/trevorbaca/khamr/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-khamr-page10.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 10 of Al-kitab al-khamr,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-khamr-page11.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 11 of Al-kitab al-khamr,
+                by Trevor Bača.
+
 Invisible Cities (iii): Ersilia *(2015)*
 ````````````````````````````````````````
 
@@ -31,7 +53,7 @@ Invisible Cities (iii): Ersilia *(2015)*
         :title: Page 10 of Invisible Cities (iii): Ersilia,
                 by Josiah Wolf Oberholtzer.
 
-Ins wasser eingeschrieben *(2014)*
+Ins wasser eingeschrieben *(2015)*
 ``````````````````````````````````
 
 - For two violas.
@@ -284,6 +306,27 @@ L'imaginaire *(2010)*
         :group: gallery
         :title: Page 5 of L'imaginaire,
                 by Trevor Bača.
+
+Lagartija *(2010)*
+``````````````````
+
+- For piccolo, percussion, violin and cello.
+- Composed by `Josiah Wolf Oberholtzer`_.
+- Written for White Rabbit.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/oberholtzer-lagartija-page4.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 4 of Lagartija,
+                by Josiah Wolf Oberholtzer.
+        
+    ..  thumbnail:: gallery/oberholtzer-lagartija-page5.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 5 of Lagartija,
+                by Josiah Wolf Oberholtzer.
 
 Mon seul désir *(2009)*
 ```````````````````````
