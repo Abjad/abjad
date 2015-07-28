@@ -34,6 +34,11 @@ Bibliography
    two approaches to the formalized control of musical score."
    Draft June 7, 2007.
 
+.. [BačaOberholtzerTreviñoAdán2015] Trevor Bača, Josiah Wolf Oberholtzer,
+   Jeffrey Treviño & Víctor Adán.
+   "Abjad: An Open-Software System For Formalized Score Control."
+   2015.
+
 .. [BressonAgonAssayag2008] Jean Bresson, Carlos Agon, Gérard Assayag.
    *The OM Composer's Book 2.*
    Éditions Delatour, Paris. 2008
@@ -78,6 +83,12 @@ Bibliography
    "Lilypond: A system for automated music engraving. "
    *Proceedings of the XIV Colloquium on Musical Informatics.*
    Firenze, Italy. May 8 - 10, 2003.
+
+.. [Oberholtzer2015] Josiah Wolf Oberholtzer.
+   *A Computational Model of Music Composition.*
+   Doctoral Dissertation.
+   Harvard University, Graduate School of Arts and Sciences.
+   2015.
 
 .. [RebhahnSchäfer] Michael Rebhah and Thomas Schäfer.
    *Darmstädter Beiträge zur Neuen Musik.* vol 21.

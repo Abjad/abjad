@@ -25,8 +25,6 @@ Invisible Cities (iii): Ersilia *(2015)*
         :title: Page 9 of Invisible Cities (iii): Ersilia,
                 by Josiah Wolf Oberholtzer.
 
-..  container:: table-row
-
     ..  thumbnail:: gallery/oberholtzer-ersilia-page10.png
         :class: table-cell thumbnail
         :group: gallery
@@ -83,8 +81,6 @@ Invisible Cities (i): Zaira *(2014)*
         :title: Page 16 of Invisible Cities (i): Zaira,
                 by Josiah Wolf Oberholtzer.
 
-..  container:: table-row
-
     ..  thumbnail:: gallery/oberholtzer-zaira-page17.png
         :class: table-cell thumbnail
         :group: gallery
@@ -132,7 +128,7 @@ Cartography *(2013)*
         :class: table-cell thumbnail
         :group: gallery
         :title: Bass flute part for Cartography,
-                by Fredrik Wallberg
+                by Fredrik Wallberg.
 
 Aurora *(2011)*
 ```````````````
@@ -155,6 +151,93 @@ Aurora *(2011)*
         :group: gallery
         :title: Page 7 of Aurora,
                 by Josiah Wolf Oberholtzer.
+
+Lidércfény *(2007)*
+```````````````````
+
+- For flute, violin and piano.
+- Composed by `Trevor Bača`_.
+- Written for Ensemble InFrequencies.
+- Source available from https://github.com/trevorbaca/lidercfeny/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-lidercfeny-page22.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 22 of Lidércfény,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-lidercfeny-page23.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 23 of Lidércfény,
+                by Trevor Bača.
+
+Sekka *(2007)*
+``````````````
+
+- For bass flute.
+- Composed by `Trevor Bača`_.
+- Written for Reiko Manabe.
+- Source available from https://github.com/trevorbaca/sekka/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-sekka-page5.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 5 of Sekka,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-sekka-page6.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 6 of Sekka,
+                by Trevor Bača.
+
+Čáry *(2006)*
+`````````````
+
+- For bass flute.
+- Composed by `Trevor Bača`_.
+- Written for Carin Levine.
+- Source available from https://github.com/trevorbaca/cary/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-cary-page5.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 5 of Čáry,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-cary-page6.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 6 of Čáry,
+                by Trevor Bača.
+
+Poème Récursif *(2005)*
+```````````````````````
+
+- For 64 percussionists.
+- Composed by `Trevor Bača`_.
+- Source available from https://github.com/trevorbaca/recursif/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-poeme-recursif-page3.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 3 of Poème Récursif,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-poeme-recursif-page4.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 4 of Poème Récursif,
+                by Trevor Bača.
 
 ..  _Fredrik Wallberg: http://quesebifurcan.github.io/
 ..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com/

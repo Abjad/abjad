@@ -142,7 +142,7 @@ Texts on Abjad
 A number of papers and dissertations discuss Abjad.
 
 -   Bača, Trevor, Josiah Wolf Oberholtzer, Jeffrey Treviño and Vıctor Adán.
-    `Abjad: An Open-Software System For Formalized Score Control.
+    `"Abjad: An Open-Software System For Formalized Score Control."
     <https://github.com/Abjad/tenor2015/blob/master/abjad.pdf>`_
     2015. 
 
