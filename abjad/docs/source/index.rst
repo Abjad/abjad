@@ -157,11 +157,11 @@ examples to see these features in action:
 ..  toctree::
     :maxdepth: 2
 
-    understanding_abjad/index
     for_beginners/index
-    examples/index
-    reference_manual/index
+    literature_examples/index
     cookbook/index
+    core_concepts/index
+    reference_manual/index
 
 Abjad's codebase in detail
 --------------------------
