@@ -147,6 +147,7 @@ Abjad lets you:
     meter-rewriting and quantization.
 -   Construct powerful component selectors for locating musical objects in a
     score.
+-   Parse LilyPond and RTM syntax into musical objects.
 -   Control all of the typographic details of music notation.
 -   Embed musical notation in `IPython`_ notebooks, `LaTeX`_ and `Sphinx`_
     documents.
