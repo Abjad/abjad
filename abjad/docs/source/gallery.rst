@@ -87,6 +87,28 @@ Invisible Cities (i): Zaira *(2014)*
         :title: Page 17 of Invisible Cities (i): Zaira,
                 by Josiah Wolf Oberholtzer.
 
+Krummzeit *(2014)*
+```````````````````
+
+- For seven players.
+- Composed by `Trevor Bača`_.
+- Written for Ensemble Mosaik.
+- Source available from https://github.com/trevorbaca/krummzeit/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-krummzeit-page80.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 80 of Krummzeit,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-krummzeit-page81.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 81 of Krummzeit,
+                by Trevor Bača.
+
 Plague Water *(2014)*
 `````````````````````
 
@@ -114,6 +136,28 @@ Plague Water *(2014)*
         :group: gallery
         :title: Page 13 of Plague Water,
                 by Josiah Wolf Oberholtzer.
+
+Traiettorie inargentate *(2013)*
+````````````````````````````````
+
+- For cello.
+- Composed by `Trevor Bača`_.
+- Written for Séverine Ballon.
+- Source available from https://github.com/trevorbaca/traiettorie/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-traiettorie-page6.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 6 of Traiettorie inargentate,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-traiettorie-page7.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 7 of Traiettorie inargentate,
+                by Trevor Bača.
 
 Cartography *(2013)*
 ````````````````````
@@ -152,7 +196,73 @@ Aurora *(2011)*
         :title: Page 7 of Aurora,
                 by Josiah Wolf Oberholtzer.
 
-Lidércfény *(2007)*
+L'archipel du corps *(2011)*
+````````````````````````````
+
+- For flute, guitar, accordion and percussion.
+- Composed by `Trevor Bača`_.
+- Written for Carin Levine, Jürgen Ruck, Stefan Hussong and Marta Klimasara.
+- Source available from https://github.com/trevorbaca/archipel/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-archipel-page9.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 9 of L'archipel du corps,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-archipel-page10.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 10 of L'archipel du corps,
+                by Trevor Bača.
+
+L'imaginaire *(2010)*
+`````````````````````
+
+- For accordion.
+- Composed by `Trevor Bača`_.
+- Written for Corrado Rojac.
+- Source available from https://github.com/trevorbaca/imaginaire/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-imaginaire-page4.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 4 of L'imaginaire,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-imaginaire-page5.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 5 of L'imaginaire,
+                by Trevor Bača.
+
+Mon seul désir *(2009)*
+```````````````````````
+
+- For flute, bass clarinet, violin and cello.
+- Composed by `Trevor Bača`_.
+- Written for Either/Or.
+- Source available from https://github.com/trevorbaca/desir/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-desir-page14.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 14 of Mon seul désir,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-desir-page15.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 15 of Mon seul désir,
+                by Trevor Bača.
+
+Lidércfény *(2008)*
 ```````````````````
 
 - For flute, violin and piano.
