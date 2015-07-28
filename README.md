@@ -2,12 +2,15 @@
 
 Abjad helps composers build up complex pieces of music notation in an iterative and incremental way. Use Abjad to create a symbolic representation of all the notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad extends the Python programming language, you can use Abjad to make systematic changes to your music as you work. And because Abjad wraps the powerful LilyPond music notation package, you can use Abjad to control the typographic details of the symbols on the page.
 
-Abjad's documentation is available at http://projectabjad.org.
+[GitHub] |
+[PyPI] |
+[Documentation](http://projectabjad.org/>) |
+[Mailing list](http://groups.google.com/group/abjad-user>) |
+[Issue Tracker](https://github.com/Abjad/abjad/issues>) |
+[Travis-CI](https://travis-ci.org/Abjad/abjad>)
 
 [![Build Status](https://travis-ci.org/Abjad/abjad.svg?branch=master)](https://travis-ci.org/Abjad/abjad)
 [![Coverage Status](https://img.shields.io/coveralls/Abjad/abjad.svg)](https://coveralls.io/r/Abjad/abjad)
-[![Downloads](https://pypip.in/download/Abjad/badge.svg)](https://pypi.python.org/pypi/Abjad/)
-[![Latest Version](https://pypip.in/version/Abjad/badge.svg)](https://pypi.python.org/pypi/Abjad/)
 
 ## Installing Abjad
 
@@ -219,6 +222,54 @@ install Abjad into that instead:
     ~(abjad)$ git clone https://github.com/Abjad/abjad.git
     ~(abjad)$ cd abjad
     abjad(abjad)$ pip install -e . [development]
+
+## Configuring Abjad
+
+Abjad creates a ``~/.abjad`` directory the first time it runs. In the ``~/.abjad`` directory you will find an ``abjad.cfg`` file. This is the Abjad configuration file. You can use the Abjad configuration file to tell Abjad about your preferred PDF file viewer, MIDI player, LilyPond language and so on.
+
+Your configuration file will look something like this the first time you open
+it:
+
+    # Abjad configuration file created by Abjad on 31 January 2014 00:08:17.
+    # File is interpreted by ConfigObj and should follow ini syntax.
+
+    # Set to the directory where all Abjad-generated files
+    # (such as PDFs and LilyPond files) should be saved.
+    # Defaults to $HOME.abjad/output/
+    abjad_output_directory = /Users/username/.abjad/output
+
+    # Default accidental spelling (mixed|sharps|flats).
+    accidental_spelling = mixed
+
+    # Comma-separated list of LilyPond files that 
+    # Abjad will "\include" in all generated *.ly files
+    lilypond_includes = ,
+
+    # Language to use in all generated LilyPond files.
+    lilypond_language = english
+
+    # Lilypond executable path. Set to override dynamic lookup.
+    lilypond_path = lilypond
+
+    # MIDI player to open MIDI files.
+    # When unset your OS should know how to open MIDI files.
+    midi_player = 
+
+    # PDF viewer to open PDF files.
+    # When unset your OS should know how to open PDFs.
+    pdf_viewer = 
+
+    # Text editor to edit text files.
+    # When unset your OS should know how to open text files.
+    text_editor = 
+
+Follow the basics of ``ini`` syntax when editing the Abjad configuration file.
+
+Background information is available at http://en.wikipedia.org/wiki/INI_file.
+
+Under MacOS you might want to set you ``midi_player`` to iTunes. Under Linux
+you might want to set your ``pdf_viewer`` to evince and your ``midi_player``
+to tiMIDIty, and so on.
 
 [CPython]: http://www.python.org
 [GitHub]: https://github.com/Abjad/abjad
