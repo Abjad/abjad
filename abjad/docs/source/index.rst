@@ -31,8 +31,13 @@ Get Abjad via `pip`_::
 
 Get `LilyPond`_ from http://lilypond.org/development.html.
 
-See our :doc:`installation instructions </installation>` for detailed help on
-getting Abjad, setting it up, and installing any dependencies like `LilyPond`_.
+Consult our installation instructions for detailed help on getting Abjad,
+setting it up, and installing any dependencies like `LilyPond`_:
+
+..  toctree::
+    :maxdepth: 2
+
+    installation
 
 2. Make notation
 ````````````````
@@ -75,6 +80,62 @@ to the first note of each split group:
 
 That looks a little more intriguing, doesn't it?
 
+Gallery
+-------
+
+Many scores have been composed in whole or in part with the assistance of Abjad
+and LilyPond. Here are excerpts from a few such works.
+
+..  container:: example
+
+    **Invisible Cities (ii): Armilla** *(2015)*, for viola duet.
+
+    - Composed by `Josiah Wolf Oberholtzer`_.
+    - Written for John Pickford Richards and Elizabeth Weisser.
+    - Source available from https://github.com/josiah-wolf-oberholtzer/armilla/.
+
+    ..  container:: table-row
+
+        ..  thumbnail:: gallery/oberholtzer-armilla-page8.png
+            :class: table-cell thumbnail
+            :group: gallery
+            :title: Page 8 of Invisible Cities (ii): Armilla,
+                    by Josiah Wolf Oberholtzer.
+
+        ..  thumbnail:: gallery/oberholtzer-armilla-page9.png
+            :class: table-cell thumbnail
+            :group: gallery
+            :title: Page 9 of Invisible Cities (ii): Armilla,
+                    by Josiah Wolf Oberholtzer.
+
+..  container:: example
+
+    **Aurora** *(2011)*, for string orchestra.
+
+    - Composed by `Josiah Wolf Oberholtzer`_.
+    - Written for Ensemble Kaleidoskop.
+    - Source available from https://github.com/josiah-wolf-oberholtzer/aurora/.
+
+    ..  container:: table-row
+
+        ..  thumbnail:: gallery/oberholtzer-aurora-page6.png
+            :class: table-cell thumbnail
+            :group: gallery
+            :title: Page 6 of **Aurora**,
+                    by Josiah Wolf Oberholtzer.
+            
+        ..  thumbnail:: gallery/oberholtzer-aurora-page7.png
+            :class: table-cell thumbnail
+            :group: gallery
+            :title: Page 7 of **Aurora**,
+                    by Josiah Wolf Oberholtzer.
+
+Visit our score gallery for more examples:
+
+..  toctree::
+
+    gallery
+
 Features
 --------
 
@@ -90,78 +151,13 @@ Abjad lets you:
 -   Embed musical notation in `IPython`_ notebooks, `LaTeX`_ and `Sphinx`_
     documents.
 
-Gallery
--------
-
-Many scores have been composed in whole or in part with the assistance of Abjad
-and LilyPond.
-
-Here are excerpts from a few such works.
-
-..  container:: example
-
-    **Invisible Cities (ii): Armilla** *(2015)*, for viola duet.
-
-    - Composed by `Josiah Wolf Oberholtzer`_.
-    - Written for John Pickford Richards and Elizabeth Weisser.
-    - Source available from https://github.com/josiah-wolf-oberholtzer/armilla/.
-
-    ..  container:: table-row
-
-        ..  thumbnail:: gallery/images/oberholtzer-armilla-page8.png
-            :class: table-cell thumbnail
-            :group: gallery
-            :title: Invisible Cities (ii): Armilla
-                    by Josiah Wolf Oberholtzer, page 8
-
-        ..  thumbnail:: gallery/images/oberholtzer-armilla-page9.png
-            :class: table-cell thumbnail
-            :group: gallery
-            :title: Invisible Cities (ii): Armilla,
-                    by Josiah Wolf Oberholtzer, page 9.
-
-..  container:: example
-
-    **Aurora** *(2015)*, for string orchestra.
-
-    - Composed by `Josiah Wolf Oberholtzer`_.
-    - Written for Ensemble Kaleidoskop.
-    - Source available from https://github.com/josiah-wolf-oberholtzer/aurora/.
-
-    ..  container:: table-row
-
-        ..  thumbnail:: gallery/images/oberholtzer-aurora-page6.png
-            :class: table-cell thumbnail
-            :group: gallery
-            :title: **Aurora**, by Josiah Wolf Oberholtzer, page 6.
-            
-        ..  thumbnail:: gallery/images/oberholtzer-aurora-page7.png
-            :class: table-cell thumbnail
-            :group: gallery
-            :title: **Aurora**, by Josiah Wolf Oberholtzer, page 7.
-
-Installation details
---------------------
+Explore the high-level overview of Abjad's concepts or our tutorials and
+examples to see these features in action:
 
 ..  toctree::
     :maxdepth: 2
 
-    installation
-
-Understanding Abjad concepts
-----------------------------
-
-..  toctree::
-    :maxdepth: 2
-
-    abjad_concepts/index
-
-Tutorial and examples
----------------------
-
-..  toctree::
-    :maxdepth: 2
-
+    understanding_abjad/index
     for_beginners/index
     examples/index
     reference_manual/index

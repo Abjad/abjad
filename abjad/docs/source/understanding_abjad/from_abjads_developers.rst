@@ -1,5 +1,5 @@
-From Trevor, Josiah and Víctor
-==============================
+From Abjad's developers
+=======================
 
 We are composers `Trevor Bača <http://www.trevorbaca.com>`_, `Josiah Wolf
 Oberholtzer <http://www.josiahwolfoberholtzer.com>`_ and `Víctor Adán
