@@ -119,6 +119,21 @@ Plague Water *(2014)*
         :title: Page 13 of Plague Water,
                 by Josiah Wolf Oberholtzer.
 
+Cartography *(2013)*
+````````````````````
+
+- For bass flute, malletkat, oboe and trumpet.
+- Composed by `Fredrik Wallberg`_.
+- Written for Ensemble Chronophonie.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/wallberg-cartography-bass-flute.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Bass flute part for Cartography,
+                by Fredrik Wallberg
+
 Aurora *(2011)*
 ```````````````
 
@@ -141,5 +156,6 @@ Aurora *(2011)*
         :title: Page 7 of Aurora,
                 by Josiah Wolf Oberholtzer.
 
+..  _Fredrik Wallberg: http://quesebifurcan.github.io/
+..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com/
 ..  _Trevor Bača: http://www.trevorbaca.com/
-..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com
