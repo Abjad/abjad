@@ -31,10 +31,33 @@ Invisible Cities (iii): Ersilia *(2015)*
         :title: Page 10 of Invisible Cities (iii): Ersilia,
                 by Josiah Wolf Oberholtzer.
 
+Ins wasser eingeschrieben *(2014)*
+``````````````````````````````````
+
+- For two violas.
+- Composed by `Trevor Bača`_.
+- Written for John Pickford Richards and Elizabeth Weisser.
+- Source available from https://github.com/trevorbaca/ins-wasser/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-ins-wasser-page3.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 3 of Ins wasser eingeschrieben,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-ins-wasser-page4.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 4 of Ins wasser eingeschrieben,
+                by Trevor Bača.
+
+
 Invisible Cities (ii): Armilla *(2015)*
 ```````````````````````````````````````
 
-- For viola duet.
+- For two violas.
 - Composed by `Josiah Wolf Oberholtzer`_.
 - Written for John Pickford Richards and Elizabeth Weisser.
 - Source available from https://github.com/josiah-wolf-oberholtzer/armilla/.
@@ -58,6 +81,28 @@ Invisible Cities (ii): Armilla *(2015)*
         :group: gallery
         :title: Page 9 of Invisible Cities (ii): Armilla,
                 by Josiah Wolf Oberholtzer.
+
+Huitzil *(2014)*
+````````````````
+
+- For cello.
+- Composed by `Trevor Bača`_.
+- Written for Alan Toda-Ambaras.
+- Source available from https://github.com/trevorbaca/huitzil/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/baca-huitzil-page12.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 12 of Huitzil,
+                by Trevor Bača.
+        
+    ..  thumbnail:: gallery/baca-huitzil-page13.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 13 of Huitzil,
+                by Trevor Bača.
 
 Invisible Cities (i): Zaira *(2014)*
 `````````````````````````````````````
