@@ -97,7 +97,7 @@ Plague Water *(2014)*
 - For baritone saxophone, electric guitar, piano and percussion.
 - Composed by `Josiah Wolf Oberholtzer`_.
 - Written for Ensemble Nikel.
-- Source available from https://github.com/josiah-wolf-oberholtzer/plage-water/.
+- Source available from https://github.com/josiah-wolf-oberholtzer/plague-water/.
 
 ..  raw:: html
 

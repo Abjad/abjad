@@ -136,6 +136,32 @@ Visit our score gallery for more examples:
 
     gallery
 
+Texts on Abjad
+--------------
+
+A number of papers and dissertations discuss Abjad.
+
+-   Bača, Trevor, Josiah Wolf Oberholtzer, Jeffrey Treviño and Vıctor Adán.
+    `Abjad: An Open-Software System For Formalized Score Control.
+    <https://github.com/Abjad/tenor2015/blob/master/abjad.pdf>`_
+    2015. 
+
+-   Oberholtzer, Josiah Wolf.
+    `A Computational Model of Music Composition.
+    <http://dash.harvard.edu/handle/1/17463123>`_
+    Doctoral dissertation, 
+    Harvard University, 
+    Graduate School of Arts & Sciences.
+    2015. 
+
+-   Trevino, Jeffrey Robert.
+    `Compositional and analytic applications of automated music notation via
+    object-oriented programming.
+    <https://escholarship.org/uc/item/3kk9b4rv.pdf>`_
+    Doctoral dissertation,
+    University of California, San Diego.
+    2013. 
+
 Features
 --------
 
