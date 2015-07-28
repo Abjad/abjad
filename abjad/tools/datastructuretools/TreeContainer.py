@@ -28,7 +28,10 @@ class TreeContainer(TreeNode):
 
     ### CLASS VARIABLES ###
 
-    # no __slots__ are possible due to instance-layout subclass conflicts
+    __slots__ = (
+        '_children',
+        '_named_children',
+        )
 
     ### INITIALIZER ###
 

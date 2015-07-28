@@ -1,22 +1,24 @@
 # -*- encoding: utf-8 -*-
 import abc
 import fractions
-import inspect
+from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import sequencetools
-from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
-class RhythmTreeNode(TreeNode):
+class RhythmTreeMixin(abctools.AbjadObject):
     r'''Rhythm-tree node abstract base class.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, preprolated_duration=1, name=None):
-        TreeNode.__init__(self, name=name)
+    def __init__(self, preprolated_duration=1):
         self._duration = 0
         self._offset = durationtools.Offset(0)
         self._offsets_are_current = False
@@ -67,7 +69,6 @@ class RhythmTreeNode(TreeNode):
         return ('_offsets_are_current',)
 
     ### PUBLIC PROPERTIES ###
-
 
     @property
     def duration(self):

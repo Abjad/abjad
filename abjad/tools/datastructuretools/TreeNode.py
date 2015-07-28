@@ -9,6 +9,13 @@ class TreeNode(AbjadObject):
     Node in a generalized tree.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_name',
+        '_parent',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None):
@@ -24,11 +31,11 @@ class TreeNode(AbjadObject):
         Returns new tree node.
         '''
         return type(self)(
-            *[copy.deepcopy(x) for x in self.__getnewargs__()]
+            *[copy.deepcopy(_) for _ in self.__getnewargs__()]
             )
 
     # TODO: remove? we shouldn't alias deepcopy anywhere
-    __deepcopy__ = __copy__
+    #__deepcopy__ = __copy__
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a tree node. Otherwise false.

@@ -2,10 +2,11 @@
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
+from abjad.tools.datastructuretools.TreeNode import TreeNode
+from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
-class RhythmTreeLeaf(RhythmTreeNode):
+class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
     r'''A rhythm-tree leaf.
 
     ::
@@ -36,6 +37,15 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_duration',
+        '_is_pitched',
+        '_offset',
+        '_offsets_are_current',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -44,11 +54,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
         is_pitched=True,
         name=None,
         ):
-        RhythmTreeNode.__init__(
-            self,
-            preprolated_duration=preprolated_duration,
-            name=name,
-            )
+        TreeNode.__init__(self, name=name)
+        RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
         self.is_pitched = is_pitched
 
     ### SPECIAL METHODS ###
@@ -92,7 +99,7 @@ class RhythmTreeLeaf(RhythmTreeNode):
             attributes={
                 'label': str(self.preprolated_duration),
                 'shape': 'box'
-            }
+                }
             )
         graph.append(node)
         return graph

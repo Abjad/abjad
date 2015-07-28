@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import scoretools
-from abjad.tools.rhythmtreetools import RhythmTreeNode
+from abjad.tools.rhythmtreetools import RhythmTreeMixin
+from abjad.tools.datastructuretools import TreeNode
 
 
-class QGridLeaf(RhythmTreeNode):
+class QGridLeaf(RhythmTreeMixin, TreeNode):
     r'''A leaf in a ``QGrid`` structure.
 
     ::
@@ -22,13 +23,16 @@ class QGridLeaf(RhythmTreeNode):
     Used internally by ``QGrid``.
     '''
 
+    ### CLASS VARIABLES ###
+
     ### INITIALIZER ###
 
     def __init__(
         self,
         preprolated_duration=1, q_event_proxies=None, is_divisible=True):
         from abjad.tools import quantizationtools
-        RhythmTreeNode.__init__(self, preprolated_duration)
+        TreeNode.__init__(self)
+        RhythmTreeMixin.__init__(self, preprolated_duration)
         if q_event_proxies is None:
             self._q_event_proxies = []
         else:
