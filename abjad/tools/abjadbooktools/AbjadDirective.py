@@ -23,7 +23,7 @@ class AbjadDirective(Directive):
     option_spec = {
         'allow-exceptions': directives.flag,
         'hide': directives.flag,
-        'no-strip': directives.flag,
+        'no-trim': directives.flag,
         'no-stylesheet': directives.flag,
         'pages': str,
         'strip-prompt': directives.flag,
@@ -77,7 +77,7 @@ class AbjadDirective(Directive):
             block['pages'] = self._parse_pages_string(pages)
         else:
             block['pages'] = None
-        block['no-strip'] = 'no-strip' in self.options or None
+        block['no-trim'] = 'no-trim' in self.options or None
         block['no-stylesheet'] = 'no-stylesheet' in self.options or None
         block['stylesheet'] = self.options.get('stylesheet', None)
         if block['no-stylesheet']:
