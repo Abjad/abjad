@@ -437,6 +437,6 @@ Poème Récursif *(2005)*
         :title: Page 4 of Poème Récursif,
                 by Trevor Bača.
 
-..  _Fredrik Wallberg: http://quesebifurcan.github.io/
+..  _Fredrik Wallberg: http://quesebifurcan.github.io/music/
 ..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com/
 ..  _Trevor Bača: http://www.trevorbaca.com/
