@@ -105,7 +105,7 @@ documentation locally, clone Abjad from the Github repository and install it in
 
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
-    abjad$ sudo pip install -e . [development]
+    abjad$ sudo pip install -e ".[development]"
 
 Installing Abjad in development mode will install the following [Python]
 package dependencies.
@@ -126,7 +126,7 @@ package dependencies.
 Some of [Sphinx]'s dependencies provide optional optimized [Python]
 extensions, which must be compiled before they can be used. If your machine
 does not have a C compiler available, you may see error message while the ``pip
-install -e . [development]`` command runs. These warnings are harmless and will
+install -e ".[development]"`` command runs. These warnings are harmless and will
 not prevent the dependencies from being installed.
 
 To install C compilation tools on Debian and Ubuntu::
@@ -221,7 +221,7 @@ install Abjad into that instead:
     ...
     ~(abjad)$ git clone https://github.com/Abjad/abjad.git
     ~(abjad)$ cd abjad
-    abjad(abjad)$ pip install -e . [development]
+    abjad(abjad)$ pip install -e ".[development]"
 
 ## Configuring Abjad
 

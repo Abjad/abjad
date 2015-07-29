@@ -64,7 +64,7 @@ if StrictVersion(version) < StrictVersion('3.4.0'):
 extras_require = {
     'development': [
         'pytest',
-        'sphinx==1.2.3',  # TODO: Remove version once Sphinx fixes https://github.com/sphinx-doc/sphinx/issues/1822
+        'sphinx==1.2.3',
         'sphinx_rtd_theme',
         'sphinxcontrib-images',
         'PyPDF2',
@@ -81,20 +81,21 @@ entry_points = {
         ]
     }
 
-setuptools.setup(
-    author=author,
-    author_email=author_email,
-    description=description,
-    include_package_data=True,
-    install_requires=install_requires,
-    extras_require=extras_require,
-    entry_points=entry_points,
-    keywords=keywords,
-    license='GPL',
-    long_description=long_description,
-    name='Abjad',
-    packages=['abjad'],
-    platforms='Any',
-    url='http://www.projectabjad.org',
-    version=__version__,
-    )
+if __name__ == '__main__':
+    setuptools.setup(
+        author=author,
+        author_email=author_email,
+        description=description,
+        include_package_data=True,
+        install_requires=install_requires,
+        extras_require=extras_require,
+        entry_points=entry_points,
+        keywords=keywords,
+        license='GPL',
+        long_description=long_description,
+        name='Abjad',
+        packages=['abjad'],
+        platforms='Any',
+        url='http://www.projectabjad.org',
+        version=__version__,
+        )
