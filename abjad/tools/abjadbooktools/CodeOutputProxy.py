@@ -118,17 +118,6 @@ class CodeOutputProxy(abctools.AbjadValueObject):
         result.append(stop_command)
         return result
 
-    def strip_prompt(self, lines):
-        lines = list(lines)
-        if self.code_block_specifier.strip_prompt:
-            lines = [
-                line[4:].rstrip() for line in lines
-                if line.startswith(('>>> ', '... '))
-                ]
-            while not lines[-1]:
-                lines.pop()
-        return lines
-
     ### PUBLIC PROPERTIES ###
 
     @property
