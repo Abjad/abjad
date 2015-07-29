@@ -1,3 +1,10 @@
+p.rubric {
+    margin-top: 0;
+    font-weight: 700;
+    font-family: "Roboto Slab","ff-tisa-web-pro","Georgia",Arial,sans-serif;
+    font-size: 150%;
+    }
+
 div.example,
 p.graphviz {
     -moz-border-radius: 2px;
