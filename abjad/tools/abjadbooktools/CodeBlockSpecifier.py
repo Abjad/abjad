@@ -30,10 +30,39 @@ class CodeBlockSpecifier(abctools.AbjadValueObject):
         if text_width is not None:
             if text_width is True:
                 text_width = 80
-            text_width = abs(int(text_width))
-            if text_width < 1:
+            try:
+                text_width = int(text_width)
+                if text_width < 1:
+                    text_width = None
+            except:
                 text_width = None
         self._text_width = text_width
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_options(cls, **options):
+        r'''Creates code block specifier from `options` dictionary.
+
+        Returns code block specifier.
+        '''
+        allow_exceptions = options.get('allow_exceptions', None) or None
+        hide = options.get('hide', None) or None
+        strip_prompt = options.get('strip_prompt', None) or None
+        text_width = options.get('text_width', None) or None
+        if all(_ is None for _ in (
+            allow_exceptions,
+            hide,
+            strip_prompt,
+            text_width,
+            )):
+            return None
+        return cls(
+            allow_exceptions=allow_exceptions,
+            hide=hide,
+            strip_prompt=strip_prompt,
+            text_width=text_width,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -48,7 +77,7 @@ class CodeBlockSpecifier(abctools.AbjadValueObject):
     @property
     def hide(self):
         r'''Is true if code block should be hidden. Otherwise false.
-        
+
         Returns boolean.
         '''
         return self._hide

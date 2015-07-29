@@ -39,9 +39,12 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload, pages=None, stylesheet=None):
+    def __init__(self, payload, image_specifier=None):
+        from abjad.tools import abjadbooktools
+        ImageOutputProxy.__init__(self, image_specifier=image_specifier)
         payload = copy.deepcopy(payload)
-        if not stylesheet:
+        image_specifier = self.image_specifier or abjadbooktools.ImageSpecifier()
+        if not image_specifier.stylesheet:
             payload = documentationtools.make_reference_manual_lilypond_file(
                 payload)
         manager = systemtools.IOManager
@@ -51,12 +54,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
             "2.19.0",
             )
         lilypond_file.file_initial_system_includes[0] = token
-        self._stylesheet = stylesheet
-        if stylesheet:
+        if image_specifier.stylesheet:
             lilypond_file.use_relative_includes = True
-            lilypond_file.file_initial_user_includes[:] = [stylesheet]
+            lilypond_file.file_initial_user_includes[:] = [image_specifier.stylesheet]
         self._payload = lilypond_file
-        self._pages = pages or None
 
     ### PRIVATE METHODS ###
 
@@ -150,14 +151,17 @@ class LilyPondOutputProxy(ImageOutputProxy):
         Returns list of docutils nodes.
         '''
         from abjad.tools import abjadbooktools
+        image_specifier = self.image_specifier
+        if image_specifier is None:
+            image_specifier = abjadbooktools.ImageSpecifier()
         result = []
         try:
             code = format(self.payload)
             if sys.version_info[0] == 2:
                 code = code.decode('utf-8')
             node = abjadbooktools.abjad_output_block(code, code)
-            if self.pages is not None:
-                node['pages'] = self.pages
+            if image_specifier.pages is not None:
+                node['pages'] = self.image_specifier.pages
             node['renderer'] = 'lilypond'
             result.append(node)
         except UnicodeDecodeError:
@@ -176,19 +180,3 @@ class LilyPondOutputProxy(ImageOutputProxy):
         Returns string.
         '''
         return 'lilypond'
-
-    @property
-    def pages(self):
-        r'''Gets paging information for LilyPond output proxy.
-
-        Returns string.
-        '''
-        return self._pages
-
-    @property
-    def stylesheet(self):
-        r'''Gets stylesheet name of LilyPond output proxy.
-
-        Returns string.
-        '''
-        return self._stylesheet

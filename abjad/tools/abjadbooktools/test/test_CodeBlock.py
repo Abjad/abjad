@@ -91,10 +91,12 @@ class CodeBlockTests(unittest.TestCase):
                         u'    print(expr)',
                         u"    print('Leaving example function.')",
                         ),
+                    code_block_specifier=abjadbooktools.CodeBlockSpecifier(
+                        hide=True,
+                        ),
                     executed_lines=(
                         'from abjad.tools.abjadbooktools import example_function',
                         ),
-                    hide=True,
                     starting_line_number=1,
                     )
                 """)
@@ -116,10 +118,12 @@ class CodeBlockTests(unittest.TestCase):
                         '    print(expr)',
                         "    print('Leaving example function.')",
                         ),
+                    code_block_specifier=abjadbooktools.CodeBlockSpecifier(
+                        hide=True,
+                        ),
                     executed_lines=(
                         'from abjad.tools.abjadbooktools import example_function',
                         ),
-                    hide=True,
                     starting_line_number=1,
                     )
                 """)
@@ -180,7 +184,9 @@ class CodeBlockTests(unittest.TestCase):
                         u'if True:',
                         u'    note.written_pitch = "ds,"',
                         ),
-                    allow_exceptions=True,
+                    code_block_specifier=abjadbooktools.CodeBlockSpecifier(
+                        allow_exceptions=True,
+                        ),
                     starting_line_number=1,
                     )
                 """)
@@ -192,7 +198,9 @@ class CodeBlockTests(unittest.TestCase):
                         'if True:',
                         '    note.written_pitch = "ds,"',
                         ),
-                    allow_exceptions=True,
+                    code_block_specifier=abjadbooktools.CodeBlockSpecifier(
+                        allow_exceptions=True,
+                        ),
                     starting_line_number=1,
                     )
                 """)

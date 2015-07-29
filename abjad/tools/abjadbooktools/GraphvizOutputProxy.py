@@ -204,7 +204,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload, layout='dot'):
+    def __init__(self, payload, layout='dot', image_specifier=None):
+        ImageOutputProxy.__init__(self, image_specifier=image_specifier)
         #payload = pickle.loads(pickle.dumps(payload))
         graphviz_graph = payload.__graph__()
         self._payload = graphviz_graph

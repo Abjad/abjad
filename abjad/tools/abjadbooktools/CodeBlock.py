@@ -7,6 +7,7 @@ import textwrap
 import types
 from abjad.tools import abctools
 from abjad.tools import systemtools
+from abjad.tools.topleveltools import new
 from sphinx.util.console import bold, red
 
 
@@ -17,27 +18,16 @@ class CodeBlock(abctools.AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_code_block_specifier',
         '_console',
         '_current_lines',
         '_document_source',
         '_executed_lines',
+        '_image_specifier',
         '_options',
         '_output_proxies',
         '_source_lines',
         '_starting_line_number',
-        )
-    __slots__ += (
-        '_allow_exceptions',
-        '_hide',
-        '_strip_prompt',
-        '_text_width',
-        )
-    __slots__ += (
-        '_no_trim',
-        '_no_stylesheet',
-        '_pages',
-        '_stylesheet',
-        '_with_columns',
         )
 
     ### INITIALIZER ###
@@ -45,40 +35,22 @@ class CodeBlock(abctools.AbjadValueObject):
     def __init__(
         self,
         input_file_contents,
-        allow_exceptions=None,
+        code_block_specifier=None,
         document_source=None,
         executed_lines=None,
-        hide=None,
-        no_stylesheet=None,
-        pages=None,
+        image_specifier=None,
         starting_line_number=None,
-        strip_prompt=None,
-        stylesheet=None,
-        text_width=None,
-        **options
         ):
-        self._allow_exceptions = bool(allow_exceptions) or None
+        self._code_block_specifier = code_block_specifier
+        self._current_lines = []
         self._document_source = document_source
         if executed_lines is not None:
             executed_lines = tuple(executed_lines)
         self._executed_lines = executed_lines
-        self._hide = bool(hide) or None
-        self._no_stylesheet = bool(no_stylesheet) or None
+        self._image_specifier = image_specifier
         self._output_proxies = []
-        self._pages = pages or None
         self._source_lines = tuple(input_file_contents)
         self._starting_line_number = starting_line_number
-        self._strip_prompt = bool(strip_prompt) or None
-        self._current_lines = []
-        self._stylesheet = stylesheet
-        if text_width is not None:
-            if text_width is True:
-                text_width = 80
-            text_width = abs(int(text_width))
-            if text_width < 1:
-                text_width = None
-        self._text_width = text_width
-        self._options = options
 
     ### PUBLIC METHODS ###
 
@@ -159,11 +131,20 @@ class CodeBlock(abctools.AbjadValueObject):
             attr_name,
             )
         executed_lines = (executed_lines,)
+        cleaned_options = {}
+        for key, value in options.items():
+            key = key.replace('-', '_')
+            cleaned_options[key] = value
+        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
+            **cleaned_options)
+        image_specifier = abjadbooktools.ImageSpecifier.from_options(
+            **cleaned_options)
         code_block = abjadbooktools.CodeBlock(
+            code_block_specifier=code_block_specifier,
             executed_lines=executed_lines,
+            image_specifier=image_specifier,
             input_file_contents=input_file_contents,
             starting_line_number=starting_line_number,
-            **options
             )
         return code_block
 
@@ -174,10 +155,19 @@ class CodeBlock(abctools.AbjadValueObject):
         **options
         ):
         from abjad.tools import abjadbooktools
+        cleaned_options = {}
+        for key, value in options.items():
+            key = key.replace('-', '_')
+            cleaned_options[key] = value
+        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
+            **cleaned_options)
+        image_specifier = abjadbooktools.ImageSpecifier.from_options(
+            **cleaned_options)
         code_block = abjadbooktools.CodeBlock(
+            code_block_specifier=code_block_specifier,
+            image_specifier=image_specifier,
             input_file_contents=input_file_contents,
             starting_line_number=starting_line_number,
-            **options
             )
         return code_block
 
@@ -197,15 +187,20 @@ class CodeBlock(abctools.AbjadValueObject):
             attr_name,
             )
         executed_lines = (executed_lines,)
-        options = {}
+        cleaned_options = {}
         for key, value in block.attlist():
             key = key.replace('-', '_')
-            options[key] = value
+            cleaned_options[key] = value
+        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
+            **cleaned_options)
+        image_specifier = abjadbooktools.ImageSpecifier.from_options(
+            **cleaned_options)
         code_block = abjadbooktools.CodeBlock(
+            code_block_specifier=code_block_specifier,
             executed_lines=executed_lines,
+            image_specifier=image_specifier,
             input_file_contents=input_file_contents,
             starting_line_number=block.line,
-            **options
             )
         return code_block
 
@@ -213,14 +208,19 @@ class CodeBlock(abctools.AbjadValueObject):
     def from_docutils_abjad_input_block(block):
         from abjad.tools import abjadbooktools
         input_file_contents = tuple(block[0][0].splitlines())
-        options = {}
+        cleaned_options = {}
         for key, value in block.attlist():
             key = key.replace('-', '_')
-            options[key] = value
+            cleaned_options[key] = value
+        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
+            **cleaned_options)
+        image_specifier = abjadbooktools.ImageSpecifier.from_options(
+            **cleaned_options)
         code_block = abjadbooktools.CodeBlock(
+            code_block_specifier=code_block_specifier,
+            image_specifier=image_specifier,
             input_file_contents=input_file_contents,
             starting_line_number=block.line,
-            **options
             )
         return code_block
 
@@ -245,6 +245,9 @@ class CodeBlock(abctools.AbjadValueObject):
 
     def interpret(self, console):
         from abjad.tools import abjadbooktools
+        code_block_specifier = self.code_block_specifier
+        if code_block_specifier is None:
+            code_block_specifier = abjadbooktools.CodeBlockSpecifier()
         self._console = console
         is_incomplete_statement = False
         input_file_contents = self.input_file_contents
@@ -254,17 +257,18 @@ class CodeBlock(abctools.AbjadValueObject):
         if self.executed_lines:
             for executed_line in self.executed_lines:
                 is_incomplete_statement = console.push(executed_line)
-            code_output_proxy = abjadbooktools.CodeOutputProxy(input_file_contents)
+            code_output_proxy = abjadbooktools.CodeOutputProxy(
+                input_file_contents,
+                code_block_specifier=self.code_block_specifier,
+                )
             self.output_proxies.insert(0, code_output_proxy)
         else:
             result = '>>> '
             for line_number, line in enumerate(input_file_contents):
                 result += line
                 self.current_lines.append(result)
-
                 is_incomplete_statement = self.push_line_to_console(
                     line, console, line_number)
-
                 if not is_incomplete_statement:
                     result = '>>> '
                     self.setup_capture_hooks(console)
@@ -274,7 +278,7 @@ class CodeBlock(abctools.AbjadValueObject):
             is_incomplete_statement = self.push_line_to_console(
                 '\n', console, line_number)
         self.push_code_output_proxy()
-        if self.hide:
+        if code_block_specifier.hide:
             self.output_proxies[:] = [
                 _ for _ in self.output_proxies
                 if not isinstance(_, abjadbooktools.CodeOutputProxy)
@@ -283,10 +287,13 @@ class CodeBlock(abctools.AbjadValueObject):
 
     def push_line_to_console(self, line, console, line_number):
         from abjad.tools import abjadbooktools
+        allow_exceptions = None
+        if self.code_block_specifier is not None:
+            allow_exceptions = self.code_block_specifier.allow_exceptions
         with systemtools.RedirectedStreams(self, self):
             is_incomplete_statement = console.push(line)
         if console.errored:
-            if self.allow_exceptions:
+            if allow_exceptions:
                 console.unregister_error()
             else:
                 message = 'Abjad-book error on '
@@ -309,16 +316,22 @@ class CodeBlock(abctools.AbjadValueObject):
 
     def push_code_output_proxy(self):
         from abjad.tools import abjadbooktools
+        strip_prompt = None
+        if self.code_block_specifier is not None:
+            strip_prompt = self.code_block_specifier.strip_prompt
         if not self.current_lines:
             return
-        if self.strip_prompt:
+        if strip_prompt:
             self.current_lines[:] = [
                 _[4:].rstrip() for _ in self.current_lines
                 if _.startswith(('>>> ', '... '))
                 ]
             while not self.current_lines[-1]:
                 self.current_lines.pop()
-        code_output_proxy = abjadbooktools.CodeOutputProxy(self.current_lines)
+        code_output_proxy = abjadbooktools.CodeOutputProxy(
+            self.current_lines,
+            code_block_specifier=self.code_block_specifier,
+            )
         self.output_proxies.append(code_output_proxy)
         self.current_lines[:] = []
 
@@ -335,6 +348,9 @@ class CodeBlock(abctools.AbjadValueObject):
         topleveltools.__dict__['show'] = self.show
 
     def write(self, string):
+        text_width = None
+        if self.code_block_specifier is not None:
+            text_width = self.code_block_specifier.text_width
         if not string:
             return
         if sys.version_info[0] == 2:
@@ -342,11 +358,11 @@ class CodeBlock(abctools.AbjadValueObject):
         if string.endswith('\n'):
             string = string[:-1]
         lines = string.splitlines()
-        if self.text_width is None:
+        if text_width is None:
             self.current_lines.extend(lines)
         else:
             for line in lines:
-                wrapped_lines = textwrap.wrap(line, self.text_width)
+                wrapped_lines = textwrap.wrap(line, text_width)
                 self.current_lines.extend(wrapped_lines)
 
     ### PROXIES ###
@@ -373,6 +389,7 @@ class CodeBlock(abctools.AbjadValueObject):
         output_proxy = abjadbooktools.GraphvizOutputProxy(
             graph,
             layout=layout,
+            image_specifier=self.image_specifier,
             )
         self.push_asset_output_proxy(output_proxy)
 
@@ -391,27 +408,31 @@ class CodeBlock(abctools.AbjadValueObject):
         '''
         from abjad.tools import abjadbooktools
         illustration = expr.__illustrate__(**kwargs)
+        default_stylesheet = None
         if (
             self._console is not None and
             self._console.document_handler is not None
             ):
             handler = self._console.document_handler
             default_stylesheet = handler.get_default_stylesheet()
-        stylesheet = self.stylesheet or default_stylesheet
-        if self.no_stylesheet:
-            stylesheet = None
+        image_specifier = self.image_specifier
+        if default_stylesheet is not None:
+            if image_specifier is None:
+                image_specifier = abjadbooktools.ImageSpecifier(
+                    stylesheet=default_stylesheet,
+                    )
+            elif image_specifier.stylesheet is None:
+                image_specifier = new(
+                    image_specifier,
+                    stylesheet=default_stylesheet,
+                    )
         output_proxy = abjadbooktools.LilyPondOutputProxy(
             illustration,
-            pages=self.pages,
-            stylesheet=stylesheet,
+            image_specifier=image_specifier,
             )
         self.push_asset_output_proxy(output_proxy)
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def allow_exceptions(self):
-        return self._allow_exceptions
 
     @property
     def current_lines(self):
@@ -426,14 +447,6 @@ class CodeBlock(abctools.AbjadValueObject):
         return self._executed_lines
 
     @property
-    def hide(self):
-        return self._hide
-
-    @property
-    def no_stylesheet(self):
-        return self._no_stylesheet
-
-    @property
     def output_proxies(self):
         return self._output_proxies
 
@@ -446,17 +459,9 @@ class CodeBlock(abctools.AbjadValueObject):
         return self._starting_line_number
 
     @property
-    def strip_prompt(self):
-        return self._strip_prompt
+    def image_specifier(self):
+        return self._image_specifier
 
     @property
-    def stylesheet(self):
-        return self._stylesheet
-
-    @property
-    def text_width(self):
-        return self._text_width
-
-    @property
-    def pages(self):
-        return self._pages
+    def code_block_specifier(self):
+        return self._code_block_specifier

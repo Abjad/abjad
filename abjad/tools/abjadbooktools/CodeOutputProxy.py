@@ -43,13 +43,15 @@ class CodeOutputProxy(abctools.AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_code_block_specifier',
         '_payload',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, payload):
+    def __init__(self, payload, code_block_specifier=None):
         self._payload = tuple(payload)
+        self._code_block_specifier = code_block_specifier
 
     ### PUBLIC METHODS ###
 
@@ -116,6 +118,17 @@ class CodeOutputProxy(abctools.AbjadValueObject):
         result.append(stop_command)
         return result
 
+    def strip_prompt(self, lines):
+        lines = list(lines)
+        if self.code_block_specifier.strip_prompt:
+            lines = [
+                line[4:].rstrip() for line in lines
+                if line.startswith(('>>> ', '... '))
+                ]
+            while not lines[-1]:
+                lines.pop()
+        return lines
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -125,3 +138,9 @@ class CodeOutputProxy(abctools.AbjadValueObject):
         Returns tuple of strings.
         '''
         return self._payload
+
+    @property
+    def code_block_specifier(self):
+        r'''Gets code block specifier.
+        '''
+        return self._code_block_specifier
