@@ -9,6 +9,9 @@ Literature examples
 
 ..  rubric:: Bartók: *Mikrokosmos*
 
+Build up a score fragment manually, piece-by-piece, in this implementation of a
+few measure from Bartók's *Mikrokosmos*.
+
 ..  import:: abjad.demos.bartok:make_bartok_score
     :hide:
 
@@ -25,6 +28,9 @@ Literature examples
 
 ..  rubric:: Ferneyhough: *Unsichtbare Farben*
 
+Use functions to create an array of nested tuplets in this implementation of
+Ferneyhough's pre-compositional process.
+
 ..  import:: abjad.demos.ferneyhough.make_lilypond_file:make_lilypond_file
     :hide:
 
@@ -39,6 +45,9 @@ Literature examples
     ferneyhough
 
 ..  rubric:: Ligeti: *Désordre*
+
+Create a polymetric score by aggregating musical cells in this implementation
+of Ligeti's *Désordre*.
 
 ..  import:: abjad.demos.desordre.make_desordre_score:make_desordre_score
     :hide:
@@ -80,6 +89,9 @@ Literature examples
 Mozart: *Musikalisches Würfelspiel*
 -----------------------------------
 
+Create randomly-generated scores from a corpus of LilyPond syntax strings in
+this implementation of Mozart's dice game.
+
 ..  import:: abjad.demos.mozart.make_mozart_lilypond_file:make_mozart_lilypond_file
     :hide:
 
@@ -96,6 +108,9 @@ Mozart: *Musikalisches Würfelspiel*
 
 Pärt: *Cantus in Memory of Benjamin Britten*
 --------------------------------------------
+
+Build up a full-fledged score in this implementation of Pärt's *Cantus in
+Memory of Benhamin Britten*.
 
 ..  import:: abjad.demos.part:make_part_lilypond_file
     :hide:
