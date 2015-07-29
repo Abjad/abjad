@@ -17,21 +17,27 @@ class CodeBlock(abctools.AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_allow_exceptions',
         '_console',
         '_current_lines',
         '_document_source',
         '_executed_lines',
-        '_hide',
-        '_no_stylesheet',
         '_options',
         '_output_proxies',
-        '_pages',
         '_source_lines',
         '_starting_line_number',
+        )
+    __slots__ += (
+        '_allow_exceptions',
+        '_hide',
         '_strip_prompt',
+        '_no_stylesheet',
         '_stylesheet',
         '_text_width',
+        )
+    __slots__ += (
+        '_no_strip',
+        '_pages',
+        '_with_columns',
         )
 
     ### INITIALIZER ###
