@@ -160,7 +160,8 @@ A number of papers and dissertations discuss Abjad.
 -   Bača, Trevor, Josiah Wolf Oberholtzer, Jeffrey Treviño and Vıctor Adán.
     `"Abjad: An Open-Software System For Formalized Score Control."
     <https://github.com/Abjad/tenor2015/blob/master/abjad.pdf>`_
-    2015. 
+    Proceedings of the First International Conference on Technologies for Music
+    Notation and Representation. 2015. 
 
 -   Oberholtzer, Josiah Wolf.
     `A Computational Model of Music Composition.
