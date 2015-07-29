@@ -30,13 +30,13 @@ class CodeBlock(abctools.AbjadValueObject):
         '_allow_exceptions',
         '_hide',
         '_strip_prompt',
-        '_no_stylesheet',
-        '_stylesheet',
         '_text_width',
         )
     __slots__ += (
-        '_no_strip',
+        '_no_trim',
+        '_no_stylesheet',
         '_pages',
+        '_stylesheet',
         '_with_columns',
         )
 
