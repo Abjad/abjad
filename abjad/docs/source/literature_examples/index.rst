@@ -18,7 +18,6 @@ few measure from Bartók's *Mikrokosmos*.
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
-    :with-columns: 1
 
     score = make_bartok_score()
     show(score)
@@ -37,7 +36,6 @@ Ferneyhough's pre-compositional process.
 
 ..  abjad::
     :hide:
-    :with-columns: 1
 
     lilypond_file = make_lilypond_file(Duration(1, 4), 6, 6)
     show(lilypond_file)
@@ -57,7 +55,6 @@ of Ligeti's *Désordre*.
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
-    :with-columns: 1
 
     top = [
         [[-1, 4, 5], [-1, 4, 5, 7, 9]], 
@@ -89,8 +86,7 @@ of Ligeti's *Désordre*.
 
     ligeti
 
-Mozart: *Musikalisches Würfelspiel*
------------------------------------
+..  rubric:: Mozart: *Musikalisches Würfelspiel*
 
 Create randomly-generated scores from a corpus of LilyPond syntax strings in
 this implementation of Mozart's dice game.
@@ -101,7 +97,6 @@ this implementation of Mozart's dice game.
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
-    :with-columns: 1
 
     lilypond_file = make_mozart_lilypond_file()
     show(lilypond_file)
@@ -110,8 +105,7 @@ this implementation of Mozart's dice game.
 
     mozart
 
-Pärt: *Cantus in Memory of Benjamin Britten*
---------------------------------------------
+..  rubric:: Pärt: *Cantus in Memory of Benjamin Britten*
 
 Build up a full-fledged score in this implementation of Pärt's *Cantus in
 Memory of Benhamin Britten*.

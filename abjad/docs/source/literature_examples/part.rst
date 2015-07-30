@@ -243,8 +243,8 @@ And here we show it:
 
 ..  abjad::
     :no-trim:
-    :pages: 1-4
-    :stylesheet: non-proportional.ly
+    :pages: 1-2
+    :no-stylesheet:
     :with-columns: 2
 
     show(lilypond_file)
