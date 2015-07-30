@@ -1,12 +1,11 @@
 Ligeti: *Désordre*
 ==================
 
-.. note::
+..  note::
 
-    Explore the `abjad/demos/desordre/` directory for the complete code to this
-    example, or import it into your Python session directly with:
-
-    * `from abjad.demos import desordre`
+    Explore the ``abjad/demos/desordre/`` directory for the complete code to
+    this example, or import it into your Python session directly with ``from
+    abjad.demos import desordre``.
 
 This example demonstrates the power of exploiting redundancy to model musical
 structure. The piece that concerns us here is Ligeti's *Désordre*: the first

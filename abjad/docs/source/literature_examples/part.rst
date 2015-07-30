@@ -4,11 +4,8 @@ Pärt: *Cantus in Memory of Benjamin Britten*
 ..  note::
 
     Explore the ``abjad/demos/part`` directory for the complete code to this
-    example, or import it into your Python session directly with:
-
-    ..  code-block:: python
-
-        >>> from abjad.demos import part
+    example, or import it into your Python session directly with ``from
+    abjad.demos import part``.
 
 Let's make some imports:
 

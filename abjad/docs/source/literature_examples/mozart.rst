@@ -3,10 +3,9 @@ Mozart: *Musikalisches Würfelspiel*
 
 ..  note::
 
-    Explore the `abjad/demos/mozart/` directory for the complete code to this
-    example, or import it into your Python session directly with:
-
-    * `from abjad.demos import mozart`
+    Explore the ``abjad/demos/mozart/`` directory for the complete code to this
+    example, or import it into your Python session directly with ``from
+    abjad.demos import mozart``.
 
 ..  abjad::
     :hide:

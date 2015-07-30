@@ -36,6 +36,7 @@ templates_path = ['_templates']
 version = abjad_configuration.get_abjad_version_string()
 ### HTML ###
 html_domain_indices = False
+html_favicon = '_static/favicon.ico'
 html_last_updated_fmt = '%b %d, %Y'
 html_show_sourcelink = True
 html_static_path = ['_static']

@@ -214,6 +214,10 @@ Abjad's codebase in detail
     :maxdepth: 2
 
     api/index
+
+..  toctree::
+    :maxdepth: 2
+
     developer_documentation/index
 
 Miscellaneous information

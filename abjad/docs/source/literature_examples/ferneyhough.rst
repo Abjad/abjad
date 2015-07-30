@@ -1,10 +1,11 @@
 Ferneyhough: *Unsichtbare Farben*
 =================================
 
-..  note::  Explore the `abjad/demos/ferneyhough/` directory for the complete
-    code to this example, or import it into your Python session directly with:
+..  note::
 
-    * `from abjad.demos import ferneyhough`
+    Explore the ``abjad/demos/ferneyhough/`` directory for the complete code to
+    this example, or import it into your Python session directly with ``from
+    abjad.demos import ferneyhough``.
 
 Mikhïal Malt analyzes the rhythmic materials of Ferneyhough's `Unsichtbare
 Farben` in `The OM Composer's Book 2`.
@@ -12,10 +13,10 @@ Farben` in `The OM Composer's Book 2`.
 Malt explains that Ferneyhough used OpenMusic to create an "exhaustive
 catalogue of rhythmic cells" such that:
 
-    1.  They are subdivided into two pulses, with proportions from ``1/1`` to 
+    1.  They are subdivided into two pulses, with proportions from ``1/1`` to
         ``1/11``.
 
-    2.  The second pulse is subdivided successively by ``1``, ``2``, ``3``, 
+    2.  The second pulse is subdivided successively by ``1``, ``2``, ``3``,
         ``4``, ``5`` and ``6``.
 
 Let's recreate Malt's results in Abjad.
