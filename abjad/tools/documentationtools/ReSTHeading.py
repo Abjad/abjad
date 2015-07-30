@@ -23,6 +23,10 @@ class ReSTHeading(TreeNode):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
+
     ### INITIALIZER ###
 
     def __init__(self, level=0, name=None, text='foo'):

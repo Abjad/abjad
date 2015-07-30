@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import os
-import types
 from abjad.tools import abctools
 from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
@@ -10,6 +8,8 @@ class ClassCrawler(abctools.AbjadObject):
     '''
 
     ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Code discovery'
 
     __slots__ = (
         '_code_root',

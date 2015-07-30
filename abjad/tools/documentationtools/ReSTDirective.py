@@ -1,11 +1,14 @@
 # -*- encoding: utf-8 -*-
-import abc
 from abjad.tools.datastructuretools.TreeContainer import TreeContainer
 
 
 class ReSTDirective(TreeContainer):
     r'''A ReST directive.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
 
     ### INITIALIZER ###
 

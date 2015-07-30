@@ -9,6 +9,8 @@ class GraphvizNode(GraphvizObject, TreeContainer):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Graphviz'
+
     __slots__ = (
         '_attributes',
         '_edges',

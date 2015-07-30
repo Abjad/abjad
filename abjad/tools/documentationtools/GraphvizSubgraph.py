@@ -8,6 +8,8 @@ class GraphvizSubgraph(GraphvizGraph):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Graphviz'
+
     __slots__ = (
         '_is_cluster',
         '_edges',

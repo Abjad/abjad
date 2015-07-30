@@ -91,6 +91,8 @@ class InheritanceGraph(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Documenters'
+
     __slots__ = (
         '_addresses',
         '_child_parents_mapping',

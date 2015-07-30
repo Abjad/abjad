@@ -8,6 +8,8 @@ class GraphvizEdge(GraphvizObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Graphviz'
+
     __slots__ = (
         '_attributes',
         '_head',

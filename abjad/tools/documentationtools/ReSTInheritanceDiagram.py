@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import types
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
@@ -24,6 +23,10 @@ class ReSTInheritanceDiagram(ReSTDirective):
            :private-bases:
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
 
     ### INITIALIZER ###
 

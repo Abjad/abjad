@@ -19,6 +19,8 @@ class DocumentationManager(abctools.AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Documenters'
+
     api_directory_name = 'api'
     api_title = 'Abjad API'
     root_package_name = 'abjad'

@@ -47,6 +47,10 @@ class ReSTTOCDirective(ReSTDirective):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
+
     ### SPECIAL METHODS ###
 
     def __setitem__(self, i, expr):

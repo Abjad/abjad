@@ -13,6 +13,8 @@ class ModuleCrawler(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Code discovery'
+
     __slots__ = (
         '_code_root',
         '_ignored_directory_names',

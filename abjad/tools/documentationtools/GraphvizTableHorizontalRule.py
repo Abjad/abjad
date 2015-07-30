@@ -8,6 +8,8 @@ class GraphvizTableHorizontalRule(TreeNode):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Graphviz'
+
     __slots__ = ()
 
     ### INITIALIZER ###

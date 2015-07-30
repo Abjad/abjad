@@ -8,6 +8,8 @@ class GraphvizField(TreeNode):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Graphviz'
+
     __slots__ = (
         '_edges',
         '_label',

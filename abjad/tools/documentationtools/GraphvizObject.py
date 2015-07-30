@@ -10,6 +10,8 @@ class GraphvizObject(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Graphviz'
+
     __slots__ = ()
 
     ### INITIALIZER ###
