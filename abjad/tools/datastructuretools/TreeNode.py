@@ -9,6 +9,13 @@ class TreeNode(AbjadObject):
     Node in a generalized tree.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_name',
+        '_parent',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None):
