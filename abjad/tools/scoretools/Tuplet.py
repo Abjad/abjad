@@ -86,6 +86,8 @@ class Tuplet(Container):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Containers'
+
     __slots__ = (
         '_force_fraction',
         '_force_times_command',

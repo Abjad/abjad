@@ -28,6 +28,8 @@ class Cluster(Container):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Containers'
+
     __slots__ = (
         )
 

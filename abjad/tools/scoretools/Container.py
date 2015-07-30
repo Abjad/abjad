@@ -33,6 +33,8 @@ class Container(Component):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Containers'
+
     __slots__ = (
         '_formatter',
         '_music',

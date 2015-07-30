@@ -14,6 +14,8 @@ class MultimeasureRest(Leaf):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Leaves'
+
     __slots__ = (
         )
 

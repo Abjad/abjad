@@ -19,6 +19,8 @@ class NoteHead(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Note heads'
+
     __slots__ = (
         '_client',
         '_is_cautionary',

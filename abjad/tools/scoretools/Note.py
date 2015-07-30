@@ -29,6 +29,8 @@ class Note(Leaf):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Leaves'
+
     __slots__ = (
         '_note_head',
         )

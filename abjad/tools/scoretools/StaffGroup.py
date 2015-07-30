@@ -36,8 +36,9 @@ class StaffGroup(Context):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __documentation_section__ = 'Contexts'
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 

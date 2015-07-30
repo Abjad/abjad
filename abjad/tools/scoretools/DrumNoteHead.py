@@ -14,6 +14,8 @@ class DrumNoteHead(NoteHead):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Note heads'
+
     __slots__ = ()
 
     ### INITIALIZER ###

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import copy
 from abjad.tools import durationtools
 from abjad.tools.scoretools.Leaf import Leaf
 
@@ -24,8 +23,9 @@ class Skip(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __documentation_section__ = 'Leaves'
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 
