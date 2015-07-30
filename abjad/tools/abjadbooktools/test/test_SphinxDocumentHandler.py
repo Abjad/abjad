@@ -33,83 +33,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
     '''
     source_one = systemtools.TestManager.clean_string(source_one)
 
-    source_two = r'''
-    ..  abjad::
-
-        staff = Staff("c'1 g'1")
-        for note in staff:
-            show(note)
-
-        len(staff)
-    '''
-    source_two = systemtools.TestManager.clean_string(source_two)
-
-    source_three = r'''
-    ..  container:: example
-
-        **Example 1.** Duple meter:
-
-        ::
-
-            >>> 1 + 1
-
-        ::
-
-            >>> meter = metertools.Meter((2, 4))
-            >>> meter
-            Meter('(2/4 (1/4 1/4))')
-            >>> print(meter.pretty_rtm_format)
-            (2/4 (
-                1/4
-                1/4))
-
-        ::
-
-            >>> graph(meter) # doctest: +SKIP
-
-        `2/4` comprises two beats.
-
-    ..  container:: example
-
-        **Example 2.** Triple meter:
-
-        ::
-
-            >>> meter = metertools.Meter((3, 4))
-            >>> print(meter.pretty_rtm_format)
-            (3/4 (
-                1/4
-                1/4
-                1/4))
-
-        ::
-
-            >>> graph(meter) # doctest: +SKIP
-
-        `3/4` comprises three beats.
-    '''
-    source_three = systemtools.TestManager.clean_string(source_three)
-
-    source_four = r'''
-    ..  abjad::
-        :text-width: 40
-
-        dir()
-    '''
-    source_four = systemtools.TestManager.clean_string(source_four)
-
-    source_five = u'''
-    This example demonstrates the power of exploiting redundancy to model
-    musical structure. The piece that concerns us here is Ligeti's *Désordre*:
-    the first piano study from Book I. Specifically, we will focus on modeling
-    the first section of the piece.
-
-    ..  abjad::
-
-        print('Désordre')
-    '''
-    source_five = systemtools.TestManager.clean_string(source_five)
-
     def setUp(self):
         app = self.Namespace()
         config = self.Namespace()
@@ -181,8 +104,18 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert actual == target
 
     def test_on_doctree_read_02(self):
+        source = r'''
+        ..  abjad::
+
+            staff = Staff("c'1 g'1")
+            for note in staff:
+                show(note)
+
+            len(staff)
+        '''
+        source = systemtools.TestManager.clean_string(source)
         handler = abjadbooktools.SphinxDocumentHandler()
-        document = handler.parse_rst(self.source_two)
+        document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
         target = systemtools.TestManager.clean_string(
@@ -193,7 +126,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     >>> for note in staff:
                     ...     show(note)
                     ...
-                <abjad_output_block renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_specifier="ImageSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -214,7 +147,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             c'1
                         }
                     }
-                <abjad_output_block renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_specifier="ImageSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -242,8 +175,53 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert actual == target
 
     def test_on_doctree_read_03(self):
+        source = r'''
+        ..  container:: example
+
+            **Example 1.** Duple meter:
+
+            ::
+
+                >>> 1 + 1
+
+            ::
+
+                >>> meter = metertools.Meter((2, 4))
+                >>> meter
+                Meter('(2/4 (1/4 1/4))')
+                >>> print(meter.pretty_rtm_format)
+                (2/4 (
+                    1/4
+                    1/4))
+
+            ::
+
+                >>> graph(meter) # doctest: +SKIP
+
+            `2/4` comprises two beats.
+
+        ..  container:: example
+
+            **Example 2.** Triple meter:
+
+            ::
+
+                >>> meter = metertools.Meter((3, 4))
+                >>> print(meter.pretty_rtm_format)
+                (3/4 (
+                    1/4
+                    1/4
+                    1/4))
+
+            ::
+
+                >>> graph(meter) # doctest: +SKIP
+
+            `3/4` comprises three beats.
+        '''
+        source = systemtools.TestManager.clean_string(source)
         handler = abjadbooktools.SphinxDocumentHandler()
-        document = handler.parse_rst(self.source_three)
+        document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
         target = systemtools.TestManager.clean_string(
@@ -268,7 +246,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             1/4))
                     <literal_block xml:space="preserve">
                         >>> graph(meter) # doctest: +SKIP
-                    <abjad_output_block renderer="graphviz" xml:space="preserve">
+                    <abjad_output_block image_specifier renderer="graphviz" xml:space="preserve">
                         digraph G {
                             graph [bgcolor=transparent,
                                 fontname=Arial,
@@ -328,7 +306,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             1/4))
                     <literal_block xml:space="preserve">
                         >>> graph(meter) # doctest: +SKIP
-                    <abjad_output_block renderer="graphviz" xml:space="preserve">
+                    <abjad_output_block image_specifier renderer="graphviz" xml:space="preserve">
                         digraph G {
                             graph [bgcolor=transparent,
                                 fontname=Arial,
@@ -391,8 +369,15 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             systemtools.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_04(self):
+        source = r'''
+        ..  abjad::
+            :text-width: 40
+
+            dir()
+        '''
+        source = systemtools.TestManager.clean_string(source)
         handler = abjadbooktools.SphinxDocumentHandler()
-        document = handler.parse_rst(self.source_four)
+        document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
         if sys.version_info[0] == 3:
@@ -494,8 +479,19 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             systemtools.TestManager.diff(actual, target, 'Diff:')
 
     def test_on_doctree_read_05(self):
+        source = u'''
+        This example demonstrates the power of exploiting redundancy to model
+        musical structure. The piece that concerns us here is Ligeti's *Désordre*:
+        the first piano study from Book I. Specifically, we will focus on modeling
+        the first section of the piece.
+
+        ..  abjad::
+
+            print('Désordre')
+        '''
+        source = systemtools.TestManager.clean_string(source)
         handler = abjadbooktools.SphinxDocumentHandler()
-        document = handler.parse_rst(self.source_five)
+        document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
         actual = systemtools.TestManager.clean_string(document.pformat())
         target = systemtools.TestManager.clean_string(
@@ -513,4 +509,51 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     >>> print('Désordre')
                     Désordre
             """)
-        assert actual == target, actual
+        assert actual == target, \
+            systemtools.TestManager.diff(actual, target, 'Diff:')
+
+    def test_on_doctree_read_06(self):
+        source = '''
+        ..  abjad::
+            :hide:
+            :no-trim:
+            :pages: 1-4
+            :with-columns: 2
+
+            show(Staff("c'4 d'4 e'4 f'4"))
+        '''
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        actual = systemtools.TestManager.clean_string(document.pformat())
+        target = systemtools.TestManager.clean_string(
+            r"""
+            <document source="test">
+                <block_quote>
+                    <abjad_output_block image_specifier="ImageSpecifier(no_trim=True, pages=(1, 2, 3, 4), stylesheet='default.ly', with_columns=2)" renderer="lilypond" xml:space="preserve">
+                        \version "2.19.0"
+                        \language "english"
+
+                        #(ly:set-option 'relative-includes #t)
+
+                        \include "default.ly"
+
+                        \header {
+                            tagline = \markup {}
+                        }
+
+                        \layout {}
+
+                        \paper {}
+
+                        \score {
+                            \new Staff {
+                                c'4
+                                d'4
+                                e'4
+                                f'4
+                            }
+                        }
+            """)
+        assert actual == target, \
+            systemtools.TestManager.diff(actual, target, 'Diff:')

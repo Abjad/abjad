@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import hashlib
-import pickle
 import platform
 import os
 import subprocess
@@ -272,7 +271,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
-            <abjad_output_block renderer="graphviz" xml:space="preserve">
+            <abjad_output_block image_specifier renderer="graphviz" xml:space="preserve">
                 digraph G {
                     graph [bgcolor=transparent,
                         fontname=Arial,
@@ -348,9 +347,10 @@ class GraphvizOutputProxy(ImageOutputProxy):
             code = str(self.payload)
             if sys.version_info[0] == 2:
                 code = code.decode('utf-8')
-            block = abjadbooktools.abjad_output_block(code, code)
-            block['renderer'] = 'graphviz'
-            result.append(block)
+            node = abjadbooktools.abjad_output_block(code, code)
+            node['image_specifier'] = self.image_specifier
+            node['renderer'] = 'graphviz'
+            result.append(node)
         except UnicodeDecodeError:
             print()
             print(type(self))

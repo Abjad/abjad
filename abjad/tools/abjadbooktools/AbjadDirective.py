@@ -84,6 +84,6 @@ class AbjadDirective(Directive):
             block['stylesheet'] = None
         block['strip-prompt'] = 'strip-prompt' in self.options or None
         block['text-width'] = self.options.get('text-width', None)
-        block['with-columns'] = self.options.get('width-columns', None)
+        block['with-columns'] = self.options.get('with-columns', None)
         set_source_info(self, block)
         return [block]

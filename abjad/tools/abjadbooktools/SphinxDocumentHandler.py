@@ -208,8 +208,12 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def render_png_image(self, node):
+        from abjad.tools import abjadbooktools
         # Get all file and path parts.
-        pages = node.get('pages', None)
+        image_specifier = node.get('image_specifier', None)
+        if image_specifier is None:
+            image_specifier = abjadbooktools.ImageSpecifier()
+        pages = image_specifier.pages
         #print(node.pformat())
         #print('PAGES', pages)
         target_extension = '.png'
@@ -268,10 +272,13 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 [posixpath.join(relative_directory_path, _) for _ in target_file_names],
                 )
         # Trim target(s).
-        for target_name in target_file_names:
-            target_path = os.path.join(absolute_directory_path, target_name)
-            return_code = SphinxDocumentHandler.trim_image_target(
-                self, node, target_path)
+        if image_specifier.no_trim:
+            pass
+        else:
+            for target_name in target_file_names:
+                target_path = os.path.join(absolute_directory_path, target_name)
+                return_code = SphinxDocumentHandler.trim_image_target(
+                    self, node, target_path)
         # Target(s) must exist, so simply return.
         return (
             relative_source_file_path,
@@ -331,10 +338,14 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         raise nodes.SkipNode
 
     @staticmethod
-    def visit_abjad_output_block_html(self, node):
+    def visit_abjad_output_block_html(self, node, skip_rendering=None):
+        from abjad.tools import abjadbooktools
         #print()
         #print(node.pformat())
         try:
+            image_specifier = node.get('image_specifier', None)
+            if image_specifier is None:
+                image_specifier = abjadbooktools.ImageSpecifier()
             if node['renderer'] not in ('graphviz', 'lilypond'):
                 raise nodes.SkipNode
             absolute_image_directory_path = os.path.join(
@@ -346,20 +357,42 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 os.makedirs(absolute_image_directory_path)
             relative_source_file_path, relative_target_file_paths = \
                 SphinxDocumentHandler.render_png_image(self, node)
-            output = r'''
-            <div class="abjad-book-image">
-                <a href="{source}">
+            if image_specifier.with_columns:
+                output = r'''
+                <a class="table-cell thumbnail" href="{source}">
                     <img src="{target}" alt="View source." title="View source." />
                 </a>
-            </div>
-            '''
-            for relative_target_file_path in relative_target_file_paths:
-                result = output.format(
-                    source=relative_source_file_path,
-                    target=relative_target_file_path,
-                    )
-                result = systemtools.TestManager.clean_string(result)
-                self.body.append(result)
+                '''
+                row_open = r'''<div class="table-row">'''
+                row_close = r'''</div>'''
+                stop = len(relative_target_file_paths)
+                step = image_specifier.with_columns
+                for i in range(0, stop, step):
+                    self.body.append(row_open)
+                    paths = relative_target_file_paths[i:i + step]
+                    for relative_target_file_path in paths:
+                        result = output.format(
+                            source=relative_source_file_path,
+                            target=relative_target_file_path,
+                            )
+                        result = systemtools.TestManager.clean_string(result)
+                        self.body.append(result)
+                    self.body.append(row_close)
+            else:
+                output = r'''
+                <div class="abjad-book-image">
+                    <a href="{source}">
+                        <img src="{target}" alt="View source." title="View source." />
+                    </a>
+                </div>
+                '''
+                for relative_target_file_path in relative_target_file_paths:
+                    result = output.format(
+                        source=relative_source_file_path,
+                        target=relative_target_file_path,
+                        )
+                    result = systemtools.TestManager.clean_string(result)
+                    self.body.append(result)
         except:
             traceback.print_exc()
         raise nodes.SkipNode

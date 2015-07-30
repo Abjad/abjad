@@ -105,7 +105,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
-            <abjad_output_block renderer="lilypond" xml:space="preserve">
+            <abjad_output_block image_specifier renderer="lilypond" xml:space="preserve">
                 \version "2.19.0"
                 \language "english"
             <BLANKLINE>
@@ -151,17 +151,13 @@ class LilyPondOutputProxy(ImageOutputProxy):
         Returns list of docutils nodes.
         '''
         from abjad.tools import abjadbooktools
-        image_specifier = self.image_specifier
-        if image_specifier is None:
-            image_specifier = abjadbooktools.ImageSpecifier()
         result = []
         try:
             code = format(self.payload)
             if sys.version_info[0] == 2:
                 code = code.decode('utf-8')
             node = abjadbooktools.abjad_output_block(code, code)
-            if image_specifier.pages is not None:
-                node['pages'] = self.image_specifier.pages
+            node['image_specifier'] = self.image_specifier
             node['renderer'] = 'lilypond'
             result.append(node)
         except UnicodeDecodeError:
