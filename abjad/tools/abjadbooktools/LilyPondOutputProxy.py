@@ -44,7 +44,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
         ImageOutputProxy.__init__(self, image_specifier=image_specifier)
         payload = copy.deepcopy(payload)
         image_specifier = self.image_specifier or abjadbooktools.ImageSpecifier()
-        if not image_specifier.stylesheet:
+        if (
+            not image_specifier.stylesheet and
+            not image_specifier.no_stylesheet
+            ):
             payload = documentationtools.make_reference_manual_lilypond_file(
                 payload)
         manager = systemtools.IOManager
@@ -54,7 +57,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
             "2.19.0",
             )
         lilypond_file.file_initial_system_includes[0] = token
-        if image_specifier.stylesheet:
+        if (
+            image_specifier.stylesheet and
+            not image_specifier.no_stylesheet
+            ):
             lilypond_file.use_relative_includes = True
             lilypond_file.file_initial_user_includes[:] = [image_specifier.stylesheet]
         self._payload = lilypond_file

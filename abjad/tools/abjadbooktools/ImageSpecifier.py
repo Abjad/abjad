@@ -30,6 +30,8 @@ class ImageSpecifier(abctools.AbjadValueObject):
         self._no_trim = bool(no_trim) or None
         self._pages = pages or None
         self._stylesheet = stylesheet
+        if self._no_stylesheet:
+            self._stylesheet = None
         if with_columns is not None:
             with_columns = int(with_columns)
             if with_columns < 1:

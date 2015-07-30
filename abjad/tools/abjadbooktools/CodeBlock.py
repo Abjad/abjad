@@ -416,16 +416,13 @@ class CodeBlock(abctools.AbjadValueObject):
             handler = self._console.document_handler
             default_stylesheet = handler.get_default_stylesheet()
         image_specifier = self.image_specifier
-        if default_stylesheet is not None:
-            if image_specifier is None:
-                image_specifier = abjadbooktools.ImageSpecifier(
-                    stylesheet=default_stylesheet,
-                    )
-            elif image_specifier.stylesheet is None:
-                image_specifier = new(
-                    image_specifier,
-                    stylesheet=default_stylesheet,
-                    )
+        if image_specifier is None:
+            image_specifier = abjadbooktools.ImageSpecifier()
+        if image_specifier.stylesheet is None:
+            image_specifier = new(
+                image_specifier,
+                stylesheet=default_stylesheet,
+                )
         output_proxy = abjadbooktools.LilyPondOutputProxy(
             illustration,
             image_specifier=image_specifier,
