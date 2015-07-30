@@ -217,7 +217,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         #print(node.pformat())
         #print('PAGES', pages)
         target_extension = '.png'
-        sha1sum = hashlib.sha1(node[0].encode('utf-8')).hexdigest()
+        sha1sum = hashlib.sha1()
+        sha1sum.update(node[0].encode('utf-8'))
+        sha1sum.update(format(image_specifier, 'storage').encode('utf-8'))
+        sha1sum = sha1sum.hexdigest()
         file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
         file_name_pattern = '{}*{}'.format(file_base_name, target_extension)
         if node['renderer'] == 'graphviz':
