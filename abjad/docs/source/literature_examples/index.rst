@@ -96,7 +96,9 @@ this implementation of Mozart's dice game.
 
 ..  abjad::
     :hide:
-    :stylesheet: non-proportional.ly
+    :no-stylesheet:
+    :no-trim:
+    :with-columns: 1
 
     lilypond_file = make_mozart_lilypond_file()
     show(lilypond_file)
@@ -115,9 +117,9 @@ Memory of Benhamin Britten*.
 
 ..  abjad::
     :hide:
+    :no-stylesheet:
     :no-trim:
     :pages: 1-2
-    :stylesheet: non-proportional.ly
     :with-columns: 2
 
     lilypond_file = make_part_lilypond_file()
