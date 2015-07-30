@@ -18,6 +18,7 @@ few measure from Bartók's *Mikrokosmos*.
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
+    :with-columns: 1
 
     score = make_bartok_score()
     show(score)
@@ -36,6 +37,7 @@ Ferneyhough's pre-compositional process.
 
 ..  abjad::
     :hide:
+    :with-columns: 1
 
     lilypond_file = make_lilypond_file(Duration(1, 4), 6, 6)
     show(lilypond_file)
@@ -55,6 +57,7 @@ of Ligeti's *Désordre*.
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
+    :with-columns: 1
 
     top = [
         [[-1, 4, 5], [-1, 4, 5, 7, 9]], 
@@ -98,6 +101,7 @@ this implementation of Mozart's dice game.
 ..  abjad::
     :hide:
     :stylesheet: non-proportional.ly
+    :with-columns: 1
 
     lilypond_file = make_mozart_lilypond_file()
     show(lilypond_file)
@@ -117,8 +121,10 @@ Memory of Benhamin Britten*.
 
 ..  abjad::
     :hide:
-    :pages: 1
+    :no-trim:
+    :pages: 1-2
     :stylesheet: non-proportional.ly
+    :with-columns: 2
 
     lilypond_file = make_part_lilypond_file()
     show(lilypond_file)
