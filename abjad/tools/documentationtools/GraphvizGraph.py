@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools import TreeContainer
 from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
-class GraphvizGraph(TreeContainer, GraphvizObject):
+class GraphvizGraph(GraphvizObject, TreeContainer):
     r'''A Graphviz graph.
 
     ::
@@ -153,6 +153,16 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         }
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_attributes',
+        '_edge_attributes',
+        '_is_digraph',
+        '_node_order',
+        '_node_attributes',
+        )
 
     ### INITIALIZER ###
 

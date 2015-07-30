@@ -6,6 +6,10 @@ class GraphvizTableHorizontalRule(TreeNode):
     r'''A Graphviz table horizontal rule.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(

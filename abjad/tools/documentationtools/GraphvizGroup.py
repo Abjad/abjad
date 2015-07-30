@@ -6,6 +6,10 @@ class GraphvizGroup(TreeContainer):
     r'''A Graphviz struct field grouping.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(

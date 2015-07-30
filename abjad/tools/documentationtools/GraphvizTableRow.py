@@ -6,6 +6,10 @@ class GraphvizTableRow(TreeContainer):
     r'''A Graphviz table row.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(
