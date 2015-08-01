@@ -42,6 +42,8 @@ class Talea(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Specifiers'
+
     __slots__ = (
         '_counts',
         '_denominator',

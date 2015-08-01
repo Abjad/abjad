@@ -19,6 +19,10 @@ class GalleryMaker(AbjadValueObject):
     r'''Gallery maker.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Illustration helpers'
+
     ### SPECIAL METHODS ###
 
     def __call__(self, configurations_by_class):

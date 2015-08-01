@@ -51,8 +51,9 @@ class SkipRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __documentation_section__ = 'Rhythm-makers'
+
+    __slots__ = ()
 
     _class_name_abbreviation = 'S'
 

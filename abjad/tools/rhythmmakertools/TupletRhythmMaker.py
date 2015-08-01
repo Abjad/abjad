@@ -136,6 +136,8 @@ class TupletRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Rhythm-makers'
+
     __slots__ = (
         '_preferred_denominator',
         '_tuplet_ratios',

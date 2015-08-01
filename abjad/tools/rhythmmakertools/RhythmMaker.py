@@ -21,6 +21,8 @@ class RhythmMaker(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Rhythm-makers'
+
     __slots__ = (
         '_beam_specifier',
         '_duration_spelling_specifier',

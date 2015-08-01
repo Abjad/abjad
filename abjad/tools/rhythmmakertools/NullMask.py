@@ -26,4 +26,6 @@ class NullMask(BooleanPattern):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Output masks'
+
     __slots__ = ()
