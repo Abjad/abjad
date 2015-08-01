@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import types
 from abjad.tools import abctools
-from abjad.tools.documentationtools.ModuleCrawler import ModuleCrawler
 
 
 class FunctionCrawler(abctools.AbjadObject):
@@ -15,7 +14,6 @@ class FunctionCrawler(abctools.AbjadObject):
     __slots__ = (
         '_code_root',
         '_include_private_objects',
-        '_module_crawler',
         '_root_package_name',
         )
 
@@ -27,14 +25,9 @@ class FunctionCrawler(abctools.AbjadObject):
         include_private_objects=False,
         root_package_name=None,
         ):
-        self._module_crawler = ModuleCrawler(
-            code_root, root_package_name=root_package_name)
         self._code_root = code_root
         self._include_private_objects = include_private_objects
-        if root_package_name is None:
-            self._root_package_name = self._module_crawler.root_package_name
-        else:
-            self._root_package_name = root_package_name
+        self._root_package_name = root_package_name
 
     ### SPECIAL METHODS ###
 
@@ -43,8 +36,12 @@ class FunctionCrawler(abctools.AbjadObject):
 
         Returns tuplet of functions.
         '''
+        from abjad.tools import documentationtools
         objects = []
-        for module in self.module_crawler:
+        for module in documentationtools.yield_all_modules(
+            code_root=self.code_root,
+            root_package_name=self.root_package_name,
+            ):
             name = module.__name__.split('.')[-1]
             if not self.include_private_objects and name.startswith('_'):
                 continue
@@ -68,12 +65,6 @@ class FunctionCrawler(abctools.AbjadObject):
         r'''Include private objets.
         '''
         return self._include_private_objects
-
-    @property
-    def module_crawler(self):
-        r'''Module crawler.
-        '''
-        return self._module_crawler
 
     @property
     def root_package_name(self):
