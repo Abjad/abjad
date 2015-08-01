@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import types
 from abjad.tools import abctools
 
 
@@ -37,20 +36,12 @@ class FunctionCrawler(abctools.AbjadObject):
         Returns tuplet of functions.
         '''
         from abjad.tools import documentationtools
-        objects = []
-        for module in documentationtools.yield_all_modules(
+        generator = documentationtools.list_all_functions(
             code_root=self.code_root,
-            root_package_name=self.root_package_name,
-            ):
-            name = module.__name__.split('.')[-1]
-            if not self.include_private_objects and name.startswith('_'):
-                continue
-            if not hasattr(module, name):
-                continue
-            obj = getattr(module, name)
-            if isinstance(obj, types.FunctionType):
-                objects.append(obj)
-        return tuple(sorted(objects, key=lambda x: x.__name__))
+            include_private_objects=self.include_private_objects,
+            root_package_names=self.root_package_name,
+            )
+        return tuple(sorted(generator, key=lambda x: x.__name__))
 
     ### PUBLIC PROPERTIES ###
 

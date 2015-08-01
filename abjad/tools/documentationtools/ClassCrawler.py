@@ -36,20 +36,12 @@ class ClassCrawler(abctools.AbjadObject):
         Returns tuple of classes.
         '''
         from abjad.tools import documentationtools
-        objects = []
-        for module in documentationtools.yield_all_modules(
+        generator = documentationtools.yield_all_classes(
             code_root=self.code_root,
+            include_private_objects=self.include_private_objects,
             root_package_name=self.root_package_name,
-            ):
-            name = module.__name__.split('.')[-1]
-            if not self.include_private_objects and name.startswith('_'):
-                continue
-            if not hasattr(module, name):
-                continue
-            obj = getattr(module, name)
-            if isinstance(obj, type):
-                objects.append(obj)
-        return tuple(sorted(objects, key=lambda x: x.__name__))
+            )
+        return tuple(sorted(generator, key=lambda x: x.__name__))
 
     ### PUBLIC PROPERTIES ###
 
@@ -64,12 +56,6 @@ class ClassCrawler(abctools.AbjadObject):
         r'''Include private objects.
         '''
         return self._include_private_objects
-
-    @property
-    def module_crawler(self):
-        r'''Module crawler.
-        '''
-        return self._module_crawler
 
     @property
     def root_package_name(self):
