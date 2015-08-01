@@ -1,6 +1,4 @@
 # -*- encoding: utf-8 -*-
-import argparse
-import importlib
 import os
 from abjad.tools import documentationtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
@@ -64,15 +62,15 @@ class CountToolsScript(DirectoryScript):
 
         Returns none.
         '''
-
         private_classes = []
         private_functions = []
         public_classes = []
         public_functions = []
-
-        crawler = documentationtools.ModuleCrawler(args.path,
-            visit_private_modules=True)
-        for module in crawler:
+        generator = documentationtools.yield_all_modules(
+            code_root=args.path,
+            visit_private_modules=True,
+            )
+        for module in generator:
             module_file_name = module.__file__
             if module_file_name.endswith('.pyc'):
                 module_file_name = module_file_name[:-1]
@@ -93,7 +91,6 @@ class CountToolsScript(DirectoryScript):
                             private_classes.append(payload)
                         else:
                             public_classes.append(payload)
-
         print('PUBLIC FUNCTIONS:  {}'.format(len(public_functions)))
         print('PUBLIC CLASSES:    {}'.format(len(public_classes)))
         print('PRIVATE FUNCTIONS: {}'.format(len(private_functions)))
