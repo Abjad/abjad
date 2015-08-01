@@ -197,6 +197,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Output Proxies'
+
     __slots__ = (
         '_layout',
         )

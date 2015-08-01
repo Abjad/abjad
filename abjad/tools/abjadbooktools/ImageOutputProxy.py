@@ -12,6 +12,8 @@ class ImageOutputProxy(abctools.AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Output Proxies'
+
     __slots__ = (
         '_image_specifier',
         '_payload',

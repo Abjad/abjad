@@ -16,6 +16,8 @@ class ShellDirective(Directive):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Sphinx Internals'
+
     has_content = True
     required_arguments = 0
     optional_arguments = 0

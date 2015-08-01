@@ -42,6 +42,8 @@ class CodeOutputProxy(abctools.AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Output Proxies'
+
     __slots__ = (
         '_code_block_specifier',
         '_payload',

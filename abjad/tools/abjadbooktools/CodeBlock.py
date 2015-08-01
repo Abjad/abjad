@@ -17,6 +17,10 @@ class CodeBlock(abctools.AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Internals'
+
+    ### CLASS VARIABLES ###
+
     __slots__ = (
         '_code_block_specifier',
         '_console',

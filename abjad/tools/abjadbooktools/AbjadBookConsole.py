@@ -7,6 +7,10 @@ class AbjadBookConsole(code.InteractiveConsole):
     executing abjad-book code examples.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Internals'
+
     ### INITIALIZER ###
 
     def __init__(

@@ -8,6 +8,8 @@ class ImageSpecifier(abctools.AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Internals'
+
     __slots__ = (
         '_no_stylesheet',
         '_no_trim',

@@ -8,6 +8,8 @@ class CodeBlockSpecifier(abctools.AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Internals'
+
     __slots__ = (
         '_allow_exceptions',
         '_hide',
