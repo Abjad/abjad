@@ -13,9 +13,11 @@ def get_developer_script_classes():
     tools_package_paths.extend(developerscripttools.__path__)
     script_classes = []
     for tools_package_path in tools_package_paths:
-        developer_script_classes = documentationtools.ClassCrawler(
-            tools_package_path, root_package_name='abjad')()
-        for developer_script_class in developer_script_classes:
+        generator = documentationtools.yield_all_classes(
+            code_root=tools_package_path,
+            root_package_name='abjad',
+            )
+        for developer_script_class in generator:
             if developerscripttools.DeveloperScript in \
                 inspect.getmro(developer_script_class) and \
                 not inspect.isabstract(developer_script_class):

@@ -26,9 +26,9 @@ def list_all_functions(modules=None):
             if isinstance(module, types.ModuleType):
                 paths.extend(module.__path__)
     for path in paths:
-        function_documenter = documentationtools.FunctionCrawler(
-            path,
-            )
-        for x in function_documenter():
+        for x in documentationtools.yield_all_classes(code_root=path):
             all_functions.add(x)
-    return list(all_functions)
+    return list(sorted(
+        all_functions,
+        key=lambda x: (x.__module__, x.__name__)
+        ))

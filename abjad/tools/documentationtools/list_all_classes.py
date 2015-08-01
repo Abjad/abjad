@@ -37,12 +37,12 @@ def list_all_classes(modules=None, ignored_classes=None):
     else:
         raise ValueError(modules)
     for path in paths:
-        class_documenter = documentationtools.ClassCrawler(
-            path,
-            )
-        for x in class_documenter():
+        for x in documentationtools.yield_all_classes(code_root=path):
             all_classes.add(x)
     if ignored_classes:
         ignored_classes = set(ignored_classes)
         all_classes.difference_update(ignored_classes)
-    return list(all_classes)
+    return list(sorted(
+        all_classes,
+        key=lambda x: (x.__module__, x.__name__)
+        ))

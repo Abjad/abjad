@@ -130,13 +130,16 @@ class RenameModulesScript(DeveloperScript):
         tools_path = self._codebase_name_to_codebase_tools_path(codebase)
         path = os.path.join(tools_path, tools_package_name)
         if kind == 'class':
-            crawler = documentationtools.ClassCrawler(
-                path, include_private_objects=True)
+            generator = documentationtools.yield_all_classes(
+                code_root=path,
+                include_private_objects=True,
+                )
         elif kind == 'function':
-            crawler = documentationtools.FunctionCrawler(
-                path, include_private_objects=True)
-        objs = crawler()
-        return tuple(sorted([x.__name__ for x in objs]))
+            generator = documentationtools.yield_all_functions(
+                code_root=path,
+                include_private_objects=True,
+                )
+        return tuple(sorted(generator, key=lambda x: x.__name__))
 
     def _get_tools_package_names(self, codebase):
         tools_path = self._codebase_name_to_codebase_tools_path(codebase)
