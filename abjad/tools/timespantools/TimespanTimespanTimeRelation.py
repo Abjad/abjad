@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import durationtools
 from abjad.tools.timespantools.TimeRelation import TimeRelation
 
 
@@ -146,6 +145,8 @@ class TimespanTimespanTimeRelation(TimeRelation):
     '''
 
     ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Time relations'
 
     __slots__ = (
         '_timespan_1',

@@ -19,6 +19,8 @@ class SimpleInequality(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Time relations'
+
     __slots__ = (
         '_template',
         )

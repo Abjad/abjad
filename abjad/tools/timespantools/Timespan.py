@@ -27,6 +27,8 @@ class Timespan(BoundedObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Timespans'
+
     __slots__ = (
         '_start_offset',
         '_stop_offset',
