@@ -316,7 +316,7 @@ class LilyPondFile(AbjadObject):
                 ...     x
                 ...
                 LilyPondVersionToken('...')
-                LilyPondLanguageToken('english')
+                LilyPondLanguageToken()
 
         Returns list.
         '''
