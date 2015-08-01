@@ -17,10 +17,9 @@ class BenchmarkScoreMaker(AbjadObject):
     Use to instantiate scores for benchmark testing.
     '''
 
-    ### INITIALIZER ###
+    ### CLASS VARIABLES ###
 
-    def __init__(self):
-        pass
+    __documentation_section__ = 'Benchmarking'
 
     ### PUBLIC METHODS ###
 

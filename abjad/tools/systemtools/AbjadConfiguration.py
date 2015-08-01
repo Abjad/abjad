@@ -43,10 +43,11 @@ class AbjadConfiguration(Configuration):
 
     ### CLASS VARIABLES ###
 
-    _lilypond_version_string = None
+    __documentation_section__ = 'System configuration'
 
-    __slots__ = (
-        )
+    _lilypond_version_string = None  # For caching.
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 

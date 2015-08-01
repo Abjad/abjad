@@ -10,6 +10,10 @@ class Memoize(dict):
     Caches function return value.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Decorators'
+
     ### INITIALIZER ###
 
     def __init__(self, function=None):

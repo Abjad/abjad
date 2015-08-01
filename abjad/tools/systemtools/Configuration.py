@@ -14,6 +14,8 @@ class Configuration(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'System configuration'
+
     __slots__ = (
         '_settings',
         )

@@ -2,11 +2,16 @@
 import difflib
 import inspect
 import os
+from abjad.tools.abctools import AbjadObject
 
 
-class TestManager(object):
+class TestManager(AbjadObject):
     r'''Manages test logic.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Managers'
 
     ### PRIVATE METHODS ###
 

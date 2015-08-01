@@ -6,6 +6,10 @@ class WellformednessManager(AbjadObject):
     r'''Wellformedness manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Managers'
+
     ### INITIALIZER ###
 
     def __init__(self, expr=None, allow_empty_containers=True):
@@ -74,7 +78,7 @@ class WellformednessManager(AbjadObject):
 
         But advanced users can stumble into this situation as described in
         the following examples.
-        
+
         ..  container:: example
 
             **Example 1.** Conflicting clefs result from attaching clefs to
@@ -166,7 +170,7 @@ class WellformednessManager(AbjadObject):
 
     def check_discontiguous_spanners(self):
         r'''Checks for discontiguous spanners.
-        
+
         There are now two different types of spanner.
         Most spanners demand that spanner components be
         logical-voice-contiguous. But a few special spanners (like Tempo)
@@ -177,7 +181,7 @@ class WellformednessManager(AbjadObject):
         '''
         from abjad.tools.selectiontools import Selection
         violators = []
-        total, bad = 0, 0
+        total = 0
         for spanner in self.expr._get_descendants()._get_spanners():
             if spanner._contiguity_constraint == 'logical voice':
                 if not Selection._all_are_contiguous_components_in_same_logical_voice(
@@ -203,7 +207,6 @@ class WellformednessManager(AbjadObject):
                     violators.extend([x for x in components
                         if id(x) == current_id])
         return violators, len(total_ids)
-
 
     def check_empty_containers(self):
         r'''Checks to make sure there are no empty containers in score.
@@ -300,7 +303,6 @@ class WellformednessManager(AbjadObject):
                         if leaf.written_pitch != next_leaf.written_pitch:
                             violators.append(leaf)
         return violators, total
-
 
     def check_misrepresented_flags(self):
         r'''Checks to make sure there are no misrepresented flags in score.
@@ -444,7 +446,7 @@ class WellformednessManager(AbjadObject):
         '''
         from abjad.tools import spannertools
         violators = []
-        total, bad = 0, 0
+        total = 0
         prototype = (spannertools.Hairpin,)
         hairpins = self.expr._get_descendants()._get_spanners(prototype)
         for hairpin in hairpins:

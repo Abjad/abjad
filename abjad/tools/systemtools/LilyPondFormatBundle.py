@@ -11,6 +11,8 @@ class LilyPondFormatBundle(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'LilyPond formatting'
+
     __slots__ = (
         '_before',
         '_after',

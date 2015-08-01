@@ -11,6 +11,8 @@ class FilesystemState(ContextManager):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Context managers'
+
     __slots__ = (
         '_keep',
         '_remove',
