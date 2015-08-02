@@ -1,10 +1,12 @@
 # -*- encoding: utf-8 -*-
 from __future__ import print_function
+from abjad.tools.abctools.AbjadObject import AbjadObject
+from six.moves import StringIO
+from six.moves import configparser
 import abc
 import os
+import six
 import time
-from six.moves import configparser
-from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Configuration(AbjadObject):
@@ -86,8 +88,13 @@ class Configuration(AbjadObject):
             string = '[main]\n' + string
         config_parser = configparser.ConfigParser()
         try:
-            config_parser.read_string(string)
-            configuration = dict(config_parser['main'].items())
+            if six.PY3:
+                config_parser.read_string(string)
+                configuration = dict(config_parser['main'].items())
+            else:
+                string_io = StringIO(string)
+                config_parser.readfp(string_io)
+                configuration = dict(config_parser.items('main'))
         except configparser.ParsingError:
             configuration = {}
         return configuration
