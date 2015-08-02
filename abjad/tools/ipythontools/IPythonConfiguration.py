@@ -21,17 +21,15 @@ class IPythonConfiguration(Configuration):
     def _get_option_definitions(self):
         options = {
             'midi_bank': {
-                'comment': [
-                    '',
-                    'Sound font MIDI bank.',
-                    ],
+                'comment': ['Sound font MIDI bank.'],
+                'default': 'gs',
+                'validator': str,
                 'spec': "string(default='gs')"
                 },
             'sound_font': {
-                'comment': [
-                    '',
-                    'Sound font file path.',
-                    ],
+                'comment': ['Sound font file path.'],
+                'default': '',
+                'validator': str,
                 'spec': "string(default='')"
                 },
             }

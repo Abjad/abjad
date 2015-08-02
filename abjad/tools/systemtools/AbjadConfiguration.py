@@ -62,55 +62,63 @@ class AbjadConfiguration(Configuration):
         options = {
             'abjad_output_directory': {
                 'comment': [
-                    '',
                     'Set to the directory where all Abjad-generated files',
                     '(such as PDFs and LilyPond files) should be saved.',
                     'Defaults to $HOME/.abjad/output/'
                     ],
+                'default': os.path.join(self.abjad_configuration_directory,
+                    'output',
+                    ),
+                'validator': str,
                 'spec': 'string(default={!r})'.format(
                     os.path.join(
                         self.abjad_configuration_directory,
                         'output',
                         )
-                    )
+                    ),
                 },
             'accidental_spelling': {
                 'comment': [
-                    '',
                     'Default accidental spelling (mixed|sharps|flats).',
                     ],
-                'spec': "option('mixed', 'sharps', 'flats', default='mixed')"
+                'default': 'mixed',
+                'validator': lambda x: x in ('mixed', 'sharps', 'flats'),
+                'spec': "option('mixed', 'sharps', 'flats', default='mixed')",
                 },
             'lilypond_path': {
                 'comment': [
-                    '',
                     'Lilypond executable path. Set to override dynamic lookup.'
                     ],
-                'spec': "string(default='lilypond')"
+                'default': 'lilypond',
+                'validator': str,
+                'spec': "string(default='lilypond')",
                 },
             'midi_player': {
                 'comment': [
-                    '',
                     'MIDI player to open MIDI files.',
                     'When unset your OS should know how to open MIDI files.',
                     ],
-                'spec': "string(default='')"
+                'default': None,
+                'spec': "string(default='')",
+                'validator': str,
                 },
             'pdf_viewer': {
                 'comment': [
-                    '',
                     'PDF viewer to open PDF files.',
                     'When unset your OS should know how to open PDFs.',
                     ],
-                'spec': "string(default='')"
+                'default': None,
+                'validator': str,
+                'spec': "string(default='')",
                 },
             'text_editor': {
                 'comment': [
-                    '',
                     'Text editor to edit text files.',
                     'When unset your OS should know how to open text files.'
                     ],
-                'spec': "string(default='')"
+                'default': None,
+                'validator': str,
+                'spec': "string(default='')",
                 },
             }
         return options
