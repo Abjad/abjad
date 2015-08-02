@@ -25,20 +25,16 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         self.app.builder.imgpath = posixpath.join(
             '..', '_images', 'abjadbook')
         self.app.body = []
-        image_directory = os.path.join(
+        self.images_directory = os.path.join(
             self.app.builder.outdir,
             self.app.builder.imagedir,
             )
-        if os.path.exists(image_directory):
-            shutil.rmtree(image_directory)
+        if os.path.exists(self.images_directory):
+            shutil.rmtree(self.images_directory)
 
     def tearDown(self):
-        image_directory = os.path.join(
-            self.app.builder.outdir,
-            self.app.builder.imagedir,
-            )
-        if os.path.exists(image_directory):
-            shutil.rmtree(image_directory)
+        if os.path.exists(self.images_directory):
+            shutil.rmtree(self.images_directory)
 
     def test_01(self):
         source = r'''
@@ -46,7 +42,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             :hide:
             :no-stylesheet:
 
-            show(Staff("c'1 g'1"))
+            show(Staff("c'4 d'4 e'4 f'4"))
         '''
         source = systemtools.TestManager.clean_string(source)
         handler = abjadbooktools.SphinxDocumentHandler()
@@ -58,3 +54,18 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
+        actual = '\n'.join(self.app.body)
+        expected = systemtools.TestManager.clean_string(r'''
+        <div class="abjad-book-image">
+            <a href="../_images/abjadbook/abjadbook/lilypond-cae93b80d6f6c70eab16244f682fce8f2f5a1821.ly">
+                <img src="../_images/abjadbook/abjadbook/lilypond-cae93b80d6f6c70eab16244f682fce8f2f5a1821.png" alt="View source." title="View source." />
+            </a>
+        </div>
+        ''')
+        self.assertEqual(actual, expected)
+        for name in (
+            'lilypond-cae93b80d6f6c70eab16244f682fce8f2f5a1821.ly',
+            'lilypond-cae93b80d6f6c70eab16244f682fce8f2f5a1821.png',
+            ):
+            path = os.path.join(self.images_directory, 'abjadbook', name)
+            assert os.path.exists(path)
