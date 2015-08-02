@@ -176,6 +176,70 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
     def test_on_doctree_read_03(self):
         source = r'''
+        ..  abjad::
+            :no-stylesheet:
+
+            staff = Staff("c'1 g'1")
+            for note in staff:
+                show(note)
+
+            len(staff)
+        '''
+        source = systemtools.TestManager.clean_string(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        actual = systemtools.TestManager.clean_string(document.pformat())
+        target = systemtools.TestManager.clean_string(
+            r"""
+            <document source="test">
+                <literal_block xml:space="preserve">
+                    >>> staff = Staff("c'1 g'1")
+                    >>> for note in staff:
+                    ...     show(note)
+                    ...
+                <abjad_output_block image_specifier="ImageSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
+                    \version "2.19.0"
+                    \language "english"
+
+                    \header {
+                        tagline = \markup {}
+                    }
+
+                    \layout {}
+
+                    \paper {}
+
+                    \score {
+                        {
+                            c'1
+                        }
+                    }
+                <abjad_output_block image_specifier="ImageSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
+                    \version "2.19.0"
+                    \language "english"
+
+                    \header {
+                        tagline = \markup {}
+                    }
+
+                    \layout {}
+
+                    \paper {}
+
+                    \score {
+                        {
+                            g'1
+                        }
+                    }
+                <literal_block xml:space="preserve">
+                    >>> len(staff)
+                    2
+            """)
+        assert actual == target
+
+    def test_on_doctree_read_04(self):
+        source = r'''
         ..  container:: example
 
             **Example 1.** Duple meter:
@@ -368,7 +432,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert actual == target, \
             systemtools.TestManager.diff(actual, target, 'Diff:')
 
-    def test_on_doctree_read_04(self):
+    def test_on_doctree_read_05(self):
         source = r'''
         ..  abjad::
             :text-width: 40
@@ -478,7 +542,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert actual == target, \
             systemtools.TestManager.diff(actual, target, 'Diff:')
 
-    def test_on_doctree_read_05(self):
+    def test_on_doctree_read_06(self):
         source = u'''
         This example demonstrates the power of exploiting redundancy to model
         musical structure. The piece that concerns us here is Ligeti's *Désordre*:
@@ -512,7 +576,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert actual == target, \
             systemtools.TestManager.diff(actual, target, 'Diff:')
 
-    def test_on_doctree_read_06(self):
+    def test_on_doctree_read_07(self):
         source = '''
         ..  abjad::
             :hide:
