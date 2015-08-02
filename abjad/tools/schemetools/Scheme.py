@@ -295,7 +295,7 @@ class Scheme(AbjadValueObject):
                 >>> string = '(lambda (grob) (grob-interpret-markup grob'
                 >>> string += r' #{ \markup \musicglyph #"noteheads.s0harmonic" #}))'
                 >>> schemetools.Scheme.format_scheme_value(string, verbatim=True)
-                '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #\\"noteheads.s0harmonic\\" #}))'
+                '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))'
 
         Returns string.
         '''
