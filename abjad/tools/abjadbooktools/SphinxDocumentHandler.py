@@ -343,7 +343,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         raise nodes.SkipNode
 
     @staticmethod
-    def visit_abjad_output_block_html(self, node, skip_rendering=None):
+    def visit_abjad_output_block_html(self, node):
         from abjad.tools import abjadbooktools
         #print()
         #print(node.pformat())
