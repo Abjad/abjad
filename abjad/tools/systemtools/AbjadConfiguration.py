@@ -24,15 +24,16 @@ class AbjadConfiguration(Configuration):
     on instantiation.
 
     `AbjadConfiguration` then attempts to read an `abjad.cfg` file in
-    that directory and parse the file as a `ConfigObj` configuration.
+    that directory and parse the file as a `ConfigParser` configuration.
 
     `AbjadConfiguration` generates a default configuration if no file
     is found.
 
-    `AbjadConfiguration` validates the `ConfigObj` instance
+    `AbjadConfiguration` validates the `ConfigParser` instance
     and replaces key-value pairs which fail validation with default values.
 
-    `AbjadConfiguration` then writes the configuration back to disk.
+    If the validated configuration differs from the original on disk,
+    `AbjadConfiguration` writes the validated configuration back to disk.
 
     The Abjad output directory is created the from
     `abjad_output_directory` key if it does not already exist.
@@ -70,12 +71,6 @@ class AbjadConfiguration(Configuration):
                     'output',
                     ),
                 'validator': str,
-                'spec': 'string(default={!r})'.format(
-                    os.path.join(
-                        self.abjad_configuration_directory,
-                        'output',
-                        )
-                    ),
                 },
             'accidental_spelling': {
                 'comment': [
@@ -83,7 +78,6 @@ class AbjadConfiguration(Configuration):
                     ],
                 'default': 'mixed',
                 'validator': lambda x: x in ('mixed', 'sharps', 'flats'),
-                'spec': "option('mixed', 'sharps', 'flats', default='mixed')",
                 },
             'lilypond_path': {
                 'comment': [
@@ -91,7 +85,6 @@ class AbjadConfiguration(Configuration):
                     ],
                 'default': 'lilypond',
                 'validator': str,
-                'spec': "string(default='lilypond')",
                 },
             'midi_player': {
                 'comment': [
@@ -99,7 +92,6 @@ class AbjadConfiguration(Configuration):
                     'When unset your OS should know how to open MIDI files.',
                     ],
                 'default': None,
-                'spec': "string(default='')",
                 'validator': str,
                 },
             'pdf_viewer': {
@@ -109,7 +101,6 @@ class AbjadConfiguration(Configuration):
                     ],
                 'default': None,
                 'validator': str,
-                'spec': "string(default='')",
                 },
             'text_editor': {
                 'comment': [
@@ -118,7 +109,6 @@ class AbjadConfiguration(Configuration):
                     ],
                 'default': None,
                 'validator': str,
-                'spec': "string(default='')",
                 },
             }
         return options
@@ -132,7 +122,8 @@ class AbjadConfiguration(Configuration):
             '-*- coding: utf-8 -*-',
             '',
             'Abjad configuration file created on {}.'.format(current_time),
-            'This file is interpreted by ConfigObj and follows ini sytnax.',
+            "This file is interpreted by Python's ConfigParser ",
+            'and follows ini sytnax.',
             ]
 
     ### PUBLIC METHODS ###

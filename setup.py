@@ -53,7 +53,6 @@ keywords = [
 keywords = ', '.join(keywords)
 
 install_requires = [
-    'configobj',
     'ply',
     'six',
     ]
