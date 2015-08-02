@@ -21,6 +21,7 @@ class ContextBlock(Block):
             >>> block.consists_commands.append('Horizontal_bracket_engraver')
             >>> block.accepts_commands.append('FluteUpperVoice')
             >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
             >>> override(block).beam.positions = (-4, -4)
             >>> override(block).stem.stem_end_position = -6
             >>> set_(block).auto_beaming = False
@@ -44,6 +45,7 @@ class ContextBlock(Block):
                 \override Stem #'stem-end-position = #-6
                 autoBeaming = ##f
                 tupletFullLength = ##t
+                \accidentalStyle dodecaphonic
             }
 
     '''
