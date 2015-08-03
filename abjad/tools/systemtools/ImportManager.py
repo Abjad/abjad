@@ -1,5 +1,7 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import os
+import types
 from abjad.tools.abctools import AbjadObject
 
 
@@ -166,6 +168,8 @@ class ImportManager(AbjadObject):
 
         Does not inspect lower levels of path.
         '''
+        if isinstance(namespace, types.ModuleType):
+            namespace = namespace.__dict__
         package_path = ImportManager._split_package_path(path)
         for element in os.listdir(path):
             if os.path.isfile(os.path.join(path, element)):
