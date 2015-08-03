@@ -2,7 +2,9 @@ language: python
 
 python:
     - 2.7
+    - 3.3
     - 3.4
+    - pypy
 
 before_install:
     - sudo apt-get update -qq
@@ -25,9 +27,14 @@ install:
 script:
     - abjad/scr/ajv doctest --diff experimental
     - py.test -rf experimental
-    - coverage run -a abjad/scr/ajv doctest --diff abjad
-    - coverage run -a `which py.test` -rf abjad
-    - coverage run -a abjad/scr/ajv api -R
+
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv doctest --diff abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv api -R; fi
+
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv doctest --diff abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv api -R; fi
 
 after_success:
-    coveralls
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coveralls; fi

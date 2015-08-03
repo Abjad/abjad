@@ -1,10 +1,15 @@
 # -*- encoding: utf-8 -*-
 import os
-from abjad.tools import abjadbooktools
+import platform
 import shutil
 import unittest
+from abjad.tools import abjadbooktools
 
 
+@unittest.skipIf(
+    platform.python_implementation() != 'CPython',
+    'Only for CPython.',
+    )
 class TestLaTeXDocumentHandler(unittest.TestCase):
 
     test_directory = os.path.dirname(__file__)

@@ -193,10 +193,9 @@ class IndicatorExpression(AbjadValueObject):
     def _unbind_component(self):
         component = self.component
         if component is not None:
-            try:
-                component._indicator_expressions.remove(self)
-            except ValueError:
-                pass
+            if hasattr(component, '_indicator_expressions'):
+                if self in component._indicator_expressions:
+                    component._indicator_expressions.remove(self)
         self._component = None
 
     def _unbind_effective_context(self):

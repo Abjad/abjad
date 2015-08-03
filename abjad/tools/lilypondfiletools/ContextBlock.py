@@ -21,6 +21,7 @@ class ContextBlock(Block):
             >>> block.consists_commands.append('Horizontal_bracket_engraver')
             >>> block.accepts_commands.append('FluteUpperVoice')
             >>> block.accepts_commands.append('FluteLowerVoice')
+            >>> block.items.append(r'\accidentalStyle dodecaphonic')
             >>> override(block).beam.positions = (-4, -4)
             >>> override(block).stem.stem_end_position = -6
             >>> set_(block).auto_beaming = False
@@ -44,6 +45,7 @@ class ContextBlock(Block):
                 \override Stem #'stem-end-position = #-6
                 autoBeaming = ##f
                 tupletFullLength = ##t
+                \accidentalStyle dodecaphonic
             }
 
     '''
@@ -113,6 +115,20 @@ class ContextBlock(Block):
         for setting_contribution in sorted(setting_contributions):
             string = indent + setting_contribution
             result.append(string)
+        for item in self.items:
+            if isinstance(item, str):
+                string = indent + '{}'.format(item)
+                result.append(string)
+            elif '_get_format_pieces' in dir(item):
+                pieces = item._get_format_pieces()
+                pieces = [indent + item for item in pieces]
+                result.extend(pieces)
+            elif '_format_pieces' in dir(item):
+                pieces = item._format_pieces
+                pieces = [indent + item for item in pieces]
+                result.extend(pieces)
+            else:
+                pass
         result.append('}')
         return result
 
@@ -164,7 +180,7 @@ class ContextBlock(Block):
         ::
 
             >>> block.items
-            []
+            ['\\accidentalStyle dodecaphonic']
 
         Returns list.
         '''
