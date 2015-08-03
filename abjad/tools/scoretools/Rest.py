@@ -1,9 +1,7 @@
 # -*- encoding: utf-8 -*-
 import copy
-import numbers
 from abjad.tools import durationtools
 from abjad.tools.scoretools.Leaf import Leaf
-from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 
 
@@ -30,8 +28,9 @@ class Rest(Leaf):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __documentation_section__ = 'Leaves'
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -67,7 +66,6 @@ class Rest(Leaf):
 
     def _divide(self, pitch=None):
         from abjad.tools import markuptools
-        from abjad.tools import pitchtools
         treble = copy.copy(self)
         bass = copy.copy(self)
         detach(markuptools.Markup, treble)

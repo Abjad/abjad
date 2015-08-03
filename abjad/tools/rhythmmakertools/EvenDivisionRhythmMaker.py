@@ -20,6 +20,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Rhythm-makers'
+
     __slots__ = (
         '_burnish_specifier',
         '_denominators',

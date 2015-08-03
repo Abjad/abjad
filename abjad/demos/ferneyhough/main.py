@@ -3,7 +3,8 @@
 
 if __name__ == '__main__':
     import sys
-    from abjad import *
+    from abjad import Duration
+    from abjad import show
     from abjad.demos.ferneyhough import make_lilypond_file
 
     args = sys.argv[1:]

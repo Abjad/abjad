@@ -238,18 +238,6 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
                     component._extract()
         return result
 
-    def __eq__(self, expr):
-        r'''True if type, preprolated_duration and children are equivalent.
-        Otherwise False.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            if self.preprolated_duration == expr.preprolated_duration:
-                if self.children == expr.children:
-                    return True
-        return False
-
     def __graph__(self, **kwargs):
         r'''The GraphvizGraph representation of the RhythmTreeContainer:
 
@@ -313,15 +301,6 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
                     node_mapping[node],
                     )
         return graph
-
-    def __hash__(self):
-        r'''Hashes rhythm-tree container.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(RhythmTreeContainer, self).__hash__()
 
     def __repr__(self):
         r'''Gets interpreter representation of rhythm tree container.

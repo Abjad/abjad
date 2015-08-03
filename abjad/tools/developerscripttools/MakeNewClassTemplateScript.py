@@ -59,10 +59,11 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def _get_class_names_in_tools_package(self, root, tools_package_name):
         path = os.path.join(root, tools_package_name)
-        crawler = documentationtools.ClassCrawler(
-            path, include_private_objects=True)
-        objs = crawler()
-        return tuple(sorted([x.__name__ for x in objs]))
+        generator = documentationtools.yield_all_classes(
+            code_root=path,
+            include_private_objects=True,
+            )
+        return tuple(sorted(generator, key=lambda x: x.__name__))
 
     def _get_class_text(self, class_name):
         return [

@@ -1,12 +1,6 @@
 Installing Abjad
 ================
 
-Standard Installation
----------------------
-
-Python and OS Support
-`````````````````````
-
 Abjad works with `CPython`_ versions 2.7 and 3.3+.
 
 Abjad works on Unix/Linux, OSX, and Windows.
@@ -18,6 +12,10 @@ following:
 
     ~$ python --version
     Python 2.7.10
+
+
+Standard Installation
+---------------------
 
 Install Abjad
 `````````````
@@ -37,10 +35,13 @@ Install LilyPond
 ````````````````
 
 Abjad uses `LilyPond`_, an open-source automated engraving engine, to produce
-notational output. Abjad targets whichever is the most recent version of
-`LilyPond`_. We recommend installing directly from `LilyPond`_'s website,
-rather than using whichever version of `LilyPond`_ your package manager
-provides, as these packages are often out-of-date.
+notational output.
+
+Abjad targets whichever is the most recent version of `LilyPond`_. At the time
+of this writing, that means 2.18-stable or 2.19-development. We recommend
+installing directly from `LilyPond`_'s website, rather than using whichever
+version of `LilyPond`_ your package manager provides, as these packages are
+often out-of-date.
 
 Once you have installed LilyPond, test if LilyPond is callable from your
 command-line by running the following command:
@@ -60,14 +61,17 @@ command-line by running the following command:
     under certain conditions.  Invoke as `lilypond --warranty` for more
     information.
 
-If LilyPond is not callable from your command-line, you should add the location
-of the LilyPond executable to your ``PATH`` environment variable. The
-`LilyPond`_ documentation provides instructions for making the ``lilypond``
-command available on the command-line under OSX at
-http://www.lilypond.org/macos-x.html.
+..  note::
+    
+    If LilyPond is not callable from your command-line, you should add the
+    location of the LilyPond executable to your ``PATH`` environment variable.
+    The `LilyPond`_ documentation provides instructions for making the
+    ``lilypond`` command available on the command-line under OSX at
+    http://www.lilypond.org/macos-x.html.
 
-If you are new to working with the command-line you should use Google to get a
-basic introduction to editing your profile and setting environment variables.
+    If you are new to working with the command-line you should use Google to
+    get a basic introduction to editing your profile and setting environment
+    variables.
 
 Install Graphviz (optional)
 ```````````````````````````
@@ -103,7 +107,7 @@ documentation locally, clone Abjad from the Github repository and install it in
 
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
-    abjad$ sudo pip install -e . [development]
+    abjad$ sudo pip install -e ".[development]"
 
 Installing Abjad in development mode will install the following `Python`_
 package dependencies.
@@ -124,7 +128,7 @@ package dependencies.
 Some of `Sphinx`_'s dependencies provide optional optimized `Python`_
 extensions, which must be compiled before they can be used. If your machine
 does not have a C compiler available, you may see error message while the ``pip
-install -e . [development]`` command runs. These warnings are harmless and will
+install -e ".[development]"`` command runs. These warnings are harmless and will
 not prevent the dependencies from being installed.
 
 To install C compilation tools on Debian and Ubuntu::
@@ -139,13 +143,13 @@ Additionally, a few non-`Python`_ tools need to be installed in order to
 develop Abjad or build its documentation: `TeXLive`_, `ImageMagick`_, and
 `Graphviz`_ (which was explained above).
 
-TexLive
+TeXLive
 ```````
 
 Building the `LaTeX`_ documentation, running the test suite, and using Abjad's
 ``ajv book`` document preprocessing tools require `TeXLive`_.
 Abjad makes use of both ``pdftex`` for producing PDFs, and the ``pdfcrop`` tool
-distributed with `TexLive`_.
+distributed with `TeXLive`_.
 
 To install `TeXLive`_ on Debian and Ubuntu::
 
@@ -223,8 +227,57 @@ install Abjad into that instead::
     ...
     ~(abjad)$ git clone https://github.com/Abjad/abjad.git
     ~(abjad)$ cd abjad
-    abjad(abjad)$ pip install -e . [development]
+    abjad(abjad)$ pip install -e ".[development]"
 
+Configuring Abjad
+-----------------
+
+Abjad creates a ``~/.abjad`` directory the first time it runs. In the
+``~/.abjad`` directory you will find an ``abjad.cfg`` file. This is the Abjad
+configuration file. You can use the Abjad configuration file to tell Abjad
+about your preferred PDF file viewer, MIDI player, LilyPond language and so on.
+
+Your configuration file will look something like this the first time you open
+it::
+
+    # Abjad configuration file created by Abjad on 31 January 2014 00:08:17.
+    # File is interpreted by ConfigObj and should follow ini syntax.
+
+    # Set to the directory where all Abjad-generated files
+    # (such as PDFs and LilyPond files) should be saved.
+    # Defaults to $HOME.abjad/output/
+    abjad_output_directory = /Users/username/.abjad/output
+
+    # Default accidental spelling (mixed|sharps|flats).
+    accidental_spelling = mixed
+
+    # Comma-separated list of LilyPond files that 
+    # Abjad will "\include" in all generated *.ly files
+    lilypond_includes = ,
+
+    # Language to use in all generated LilyPond files.
+    lilypond_language = english
+
+    # Lilypond executable path. Set to override dynamic lookup.
+    lilypond_path = lilypond
+
+    # MIDI player to open MIDI files.
+    # When unset your OS should know how to open MIDI files.
+    midi_player = 
+
+    # PDF viewer to open PDF files.
+    # When unset your OS should know how to open PDFs.
+    pdf_viewer = 
+
+    # Text editor to edit text files.
+    # When unset your OS should know how to open text files.
+    text_editor = 
+
+Follow the basics of ``ini`` syntax when editing the Abjad configuration file.
+Background information is available at http://en.wikipedia.org/wiki/INI_file.
+Under MacOS you might want to set you ``midi_player`` to iTunes. Under Linux
+you might want to set your ``pdf_viewer`` to ``evince`` and your
+``midi_player`` to ``tiMIDIty``, and so on.
 
 ..  _CPython: http://www.python.org
 ..  _GitHub: https://github.com/Abjad/abjad

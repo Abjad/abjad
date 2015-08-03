@@ -70,19 +70,6 @@ class SearchTree(AbjadObject):
         '''
         return (self.definition,)
 
-    def __getstate__(self):
-        r'''Gets state of search tree.
-
-        Returns dictionary.
-        '''
-        state = {}
-        for current_class in inspect.getmro(type(self)):
-            if hasattr(current_class, '__slots__'):
-                for slot in current_class.__slots__:
-                    if slot not in state:
-                        state[slot] = getattr(self, slot)
-        return state
-
     def __hash__(self):
         r'''Hashes search tree.
 
@@ -91,14 +78,6 @@ class SearchTree(AbjadObject):
         Returns integer.
         '''
         return super(SearchTree, self).__hash__()
-
-    def __setstate__(self, state):
-        r'''Sets `state` of search tree.
-
-        Returns none.
-        '''
-        for key, value in state.items():
-            setattr(self, key, value)
 
     ### PRIVATE METHODS ###
 

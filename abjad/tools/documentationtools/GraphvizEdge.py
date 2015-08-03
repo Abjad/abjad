@@ -6,6 +6,19 @@ class GraphvizEdge(GraphvizObject):
     r'''A Graphviz edge.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = (
+        '_attributes',
+        '_head',
+        '_head_port_position',
+        '_is_directed',
+        '_tail',
+        '_tail_port_position',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, attributes=None, is_directed=True):

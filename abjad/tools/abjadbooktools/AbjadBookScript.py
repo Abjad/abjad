@@ -46,6 +46,10 @@ class AbjadBookScript(developerscripttools.DeveloperScript):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Entry Points'
+
     ### PRIVATE METHODS ###
 
     def _read_config(self, config_path):

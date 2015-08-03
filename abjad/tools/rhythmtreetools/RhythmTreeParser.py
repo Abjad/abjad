@@ -1,12 +1,16 @@
 # -*- encoding: utf-8 -*-
-import fractions
 from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.abctools import Parser
 
 
 class RhythmTreeParser(Parser):
-    r'''Rhythm-tree parser.
+    r'''A rhythm-tree syntax parser.
+
+    Abjad’s rhythm-tree parser parses a micro-language resembling Ircam’s RTM
+    Lisp syntax, and generates a sequence of RhythmTree structures, which can
+    be furthered manipulated by composers, before being converted into an Abjad
+    score object:
 
     ::
 
@@ -14,9 +18,15 @@ class RhythmTreeParser(Parser):
 
     ::
 
-        >>> rtm = '(1 (1 (2 (1 -1 1)) -2))'
-        >>> result = parser(rtm)[0]
-        >>> print(format(result))
+        >>> string = '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
+        >>> rhythm_tree_list = parser(string)
+        >>> rhythm_tree_container = rhythm_tree_list[0]
+        >>> rhythm_tree_container.rtm_format
+        '(3 (1 (1 ((2 (1 1 1)) 2 2 1))))'
+
+    ::
+
+        >>> print(format(rhythm_tree_container))
         rhythmtreetools.RhythmTreeContainer(
             children=(
                 rhythmtreetools.RhythmTreeLeaf(
@@ -25,33 +35,66 @@ class RhythmTreeParser(Parser):
                     ),
                 rhythmtreetools.RhythmTreeContainer(
                     children=(
+                        rhythmtreetools.RhythmTreeContainer(
+                            children=(
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 1),
+                                    is_pitched=True,
+                                    ),
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 1),
+                                    is_pitched=True,
+                                    ),
+                                rhythmtreetools.RhythmTreeLeaf(
+                                    preprolated_duration=durationtools.Duration(1, 1),
+                                    is_pitched=True,
+                                    ),
+                                ),
+                            preprolated_duration=durationtools.Duration(2, 1),
+                            ),
                         rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=durationtools.Duration(1, 1),
+                            preprolated_duration=durationtools.Duration(2, 1),
                             is_pitched=True,
                             ),
                         rhythmtreetools.RhythmTreeLeaf(
-                            preprolated_duration=durationtools.Duration(1, 1),
-                            is_pitched=False,
+                            preprolated_duration=durationtools.Duration(2, 1),
+                            is_pitched=True,
                             ),
                         rhythmtreetools.RhythmTreeLeaf(
                             preprolated_duration=durationtools.Duration(1, 1),
                             is_pitched=True,
                             ),
                         ),
-                    preprolated_duration=durationtools.Duration(2, 1),
-                    ),
-                rhythmtreetools.RhythmTreeLeaf(
-                    preprolated_duration=durationtools.Duration(2, 1),
-                    is_pitched=False,
+                    preprolated_duration=durationtools.Duration(1, 1),
                     ),
                 ),
-            preprolated_duration=durationtools.Duration(1, 1),
+            preprolated_duration=durationtools.Duration(3, 1),
             )
 
     ::
 
-        >>> result.rtm_format
-        '(1 (1 (2 (1 -1 1)) -2))'
+        >>> base_duration = (1, 4)
+        >>> component_list = rhythm_tree_container(base_duration)
+        >>> tuplet = component_list[0]
+        >>> show(tuplet) # doctest: +SKIP
+
+    ..  doctest::
+
+        >>> print(format(tuplet))
+        \tweak #'text #tuplet-number::calc-fraction-text
+        \times 3/4 {
+            c'2
+            \times 4/7 {
+                \times 2/3 {
+                    c'8
+                    c'8
+                    c'8
+                }
+                c'4
+                c'4
+                c'8
+            }
+        }
 
     Returns `RhythmTreeParser` instance.
     '''

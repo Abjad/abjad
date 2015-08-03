@@ -6,6 +6,15 @@ class GraphvizTableCell(TreeNode):
     r'''A Graphviz table cell.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = (
+        '_attributes',
+        '_label',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

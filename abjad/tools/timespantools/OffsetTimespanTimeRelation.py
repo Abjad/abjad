@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import fractions
 from abjad.tools import durationtools
 from abjad.tools.timespantools.TimeRelation import TimeRelation
 
@@ -39,6 +38,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
     '''
 
     ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Time relations'
 
     __slots__ = (
         '_offset',

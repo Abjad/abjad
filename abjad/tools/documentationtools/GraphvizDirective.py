@@ -6,6 +6,10 @@ class GraphvizDirective(ReSTDirective):
     r'''A ReST Graphviz directive.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
+
     ### INITIALIZER ###
 
     def __init__(

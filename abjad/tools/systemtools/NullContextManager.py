@@ -6,6 +6,10 @@ class NullContextManager(ContextManager):
     r'''A context manager that does nothing.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Context managers'
+
     ### INITIALIZER ###
 
     def __init__(self):

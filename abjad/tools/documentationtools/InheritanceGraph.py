@@ -91,6 +91,8 @@ class InheritanceGraph(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Documenters'
+
     __slots__ = (
         '_addresses',
         '_child_parents_mapping',
@@ -408,8 +410,9 @@ class InheritanceGraph(AbjadObject):
         for part in parts[1:]:
             if part != name[-1]:
                 name.append(part)
-        if 2 < len(name) and name[1] == 'tools':
-        #if name[0] in ('abjad', 'experimental'):
+        if name[0] in ('abjad', 'experimental', 'ide'):
+            return name[2:]
+        elif 2 < len(name) and name[1] == 'tools':
             return name[2:]
         return name
 

@@ -52,6 +52,8 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Document Handlers'
+
     __slots__ = (
         '_assets_directory',
         '_errored',

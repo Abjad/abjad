@@ -1,7 +1,5 @@
 # -*- encoding: utf-8 -*-
-import argparse
 import importlib
-import os
 from abjad.tools import documentationtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
@@ -71,7 +69,7 @@ class CountLinewidthsScript(DirectoryScript):
 
         if args.mode == 'docstrings':
             print('DOCS:\tMODULE:')
-            for obj in documentationtools.FunctionCrawler(args.path)():
+            for obj in documentationtools.yield_all_functions(args.path):
                 docstring = obj.__doc__
                 if not docstring:
                     modules[obj.__module__] = 0
@@ -79,7 +77,7 @@ class CountLinewidthsScript(DirectoryScript):
                     lines = docstring.split('\n')
                     modules[obj.__module__] = \
                         max([len(line) for line in lines])
-            for obj in documentationtools.ClassCrawler(args.path)():
+            for obj in documentationtools.yield_all_classes(args.path):
                 docstring = obj.__doc__
                 width = 0
                 if docstring:
@@ -97,7 +95,7 @@ class CountLinewidthsScript(DirectoryScript):
 
         elif args.mode == 'code':
             print('CODE:\tMODULE:')
-            for obj in documentationtools.FunctionCrawler(args.path)():
+            for obj in documentationtools.yield_all_functions(args.path):
                 module_path = obj.__module__
                 module_obj = importlib.import_module(module_path)
                 module_file_name = module_obj.__file__
@@ -107,7 +105,7 @@ class CountLinewidthsScript(DirectoryScript):
                     lines = f.read().split('\n')
                     modules[obj.__module__] = \
                         max([len(line) for line in lines])
-            for obj in documentationtools.ClassCrawler(args.path)():
+            for obj in documentationtools.yield_all_classes(args.path):
                 module_path = obj.__module__
                 module_obj = importlib.import_module(module_path)
                 module_file_name = module_obj.__file__

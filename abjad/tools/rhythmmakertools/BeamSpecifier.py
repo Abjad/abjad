@@ -44,6 +44,8 @@ class BeamSpecifier(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Specifiers'
+
     __slots__ = (
         '_beam_divisions_together',
         '_beam_each_division',

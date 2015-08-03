@@ -1,11 +1,15 @@
 # -*- encoding: utf-8 -*-
 import os
-import types
+from abjad.tools.abctools import AbjadObject
 
 
-class ImportManager(object):
+class ImportManager(AbjadObject):
     r'''Imports structured packages.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Managers'
 
     ### PRIVATE METHODS ###
 

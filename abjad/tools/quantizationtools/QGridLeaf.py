@@ -52,20 +52,6 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
         total_duration = pulse_duration * self.preprolated_duration
         return scoretools.make_notes(0, total_duration)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a q-grid leaf with preprolated duration,
-        q-event proxies and divisibility flag equal to those of this q-grid
-        leaf. Otherwise false.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            if self.preprolated_duration == expr.preprolated_duration:
-                if self.q_event_proxies == expr.q_event_proxies:
-                    if self._is_divisible == expr.is_divisible:
-                        return True
-        return False
-
     def __getnewargs__(self):
         r'''Gets new arguments.
 
@@ -92,15 +78,6 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
             )
         graph.append(node)
         return graph
-
-    def __hash__(self):
-        r'''Hashes q-grid leaf.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(QGridLeaf, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

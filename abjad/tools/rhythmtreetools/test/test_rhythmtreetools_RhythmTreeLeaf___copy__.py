@@ -9,7 +9,7 @@ def test_rhythmtreetools_RhythmTreeLeaf___copy___01():
 
     copied = copy.copy(leaf)
 
-    assert leaf == copied
+    assert format(leaf) == format(copied)
     assert leaf is not copied
 
 
@@ -19,5 +19,5 @@ def test_rhythmtreetools_RhythmTreeLeaf___copy___02():
 
     copied = copy.copy(leaf)
 
-    assert leaf == copied
+    assert format(leaf) == format(copied)
     assert leaf is not copied

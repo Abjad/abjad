@@ -7,7 +7,8 @@ def test_rhythmtreetools_RhythmTreeLeaf___eq___01():
     a = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1, is_pitched=True)
     b = rhythmtreetools.RhythmTreeLeaf(preprolated_duration=1, is_pitched=True)
 
-    assert a == b
+    assert format(a) == format(b)
+    assert a != b
 
 
 def test_rhythmtreetools_RhythmTreeLeaf___eq___02():

@@ -24,15 +24,16 @@ class AbjadConfiguration(Configuration):
     on instantiation.
 
     `AbjadConfiguration` then attempts to read an `abjad.cfg` file in
-    that directory and parse the file as a `ConfigObj` configuration.
+    that directory and parse the file as a `ConfigParser` configuration.
 
     `AbjadConfiguration` generates a default configuration if no file
     is found.
 
-    `AbjadConfiguration` validates the `ConfigObj` instance
+    `AbjadConfiguration` validates the `ConfigParser` instance
     and replaces key-value pairs which fail validation with default values.
 
-    `AbjadConfiguration` then writes the configuration back to disk.
+    If the validated configuration differs from the original on disk,
+    `AbjadConfiguration` writes the validated configuration back to disk.
 
     The Abjad output directory is created the from
     `abjad_output_directory` key if it does not already exist.
@@ -43,10 +44,11 @@ class AbjadConfiguration(Configuration):
 
     ### CLASS VARIABLES ###
 
-    _lilypond_version_string = None
+    __documentation_section__ = 'System configuration'
 
-    __slots__ = (
-        )
+    _lilypond_version_string = None  # For caching.
+
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -61,75 +63,55 @@ class AbjadConfiguration(Configuration):
         options = {
             'abjad_output_directory': {
                 'comment': [
-                    '',
                     'Set to the directory where all Abjad-generated files',
                     '(such as PDFs and LilyPond files) should be saved.',
                     'Defaults to $HOME/.abjad/output/'
-                ],
-                'spec': 'string(default={!r})'.format(
-                    os.path.join(
-                        self.abjad_configuration_directory,
-                        'output',
-                        )
-                    )
-            },
+                    ],
+                'default': os.path.join(self.abjad_configuration_directory,
+                    'output',
+                    ),
+                'validator': str,
+                },
             'accidental_spelling': {
                 'comment': [
-                    '',
                     'Default accidental spelling (mixed|sharps|flats).',
-                ],
-                'spec': "option('mixed', 'sharps', 'flats', default='mixed')"
-            },
-            'lilypond_includes': {
-                'comment': [
-                    '',
-                    'Comma-separated list of LilyPond files that ',
-                    'Abjad will "\include" in all generated *.ly files',
-                ],
-                'spec': 'list(min=0, default=list())'
-            },
-            'lilypond_language': {
-                'comment': [
-                    '',
-                    'Language to use in all generated LilyPond files.'
-                ],
-                'spec': "string(default='english')"
-            },
+                    ],
+                'default': 'mixed',
+                'validator': lambda x: x in ('mixed', 'sharps', 'flats'),
+                },
             'lilypond_path': {
                 'comment': [
-                    '',
                     'Lilypond executable path. Set to override dynamic lookup.'
-                ],
-                'spec': "string(default='lilypond')"
-            },
+                    ],
+                'default': 'lilypond',
+                'validator': str,
+                },
             'midi_player': {
                 'comment': [
-                    '',
                     'MIDI player to open MIDI files.',
                     'When unset your OS should know how to open MIDI files.',
-                ],
-                'spec': "string(default='')"
-            },
+                    ],
+                'default': None,
+                'validator': str,
+                },
             'pdf_viewer': {
                 'comment': [
-                    '',
                     'PDF viewer to open PDF files.',
                     'When unset your OS should know how to open PDFs.',
-                ],
-                'spec': "string(default='')"
-            },
+                    ],
+                'default': None,
+                'validator': str,
+                },
             'text_editor': {
                 'comment': [
-                    '',
                     'Text editor to edit text files.',
                     'When unset your OS should know how to open text files.'
-                ],
-                'spec': "string(default='')"
-            },
-
-        }
+                    ],
+                'default': None,
+                'validator': str,
+                },
+            }
         return options
-
 
     ### PRIVATE PROPERTIES ###
 
@@ -140,8 +122,9 @@ class AbjadConfiguration(Configuration):
             '-*- coding: utf-8 -*-',
             '',
             'Abjad configuration file created on {}.'.format(current_time),
-            'This file is interpreted by ConfigObj and follows ini sytnax.',
-        ]
+            "This file is interpreted by Python's ConfigParser ",
+            'and follows ini sytnax.',
+            ]
 
     ### PUBLIC METHODS ###
 
@@ -217,7 +200,7 @@ class AbjadConfiguration(Configuration):
             return AbjadConfiguration._lilypond_version_string
         if (
             platform.system() == 'Windows' and
-            not 'LilyPond' in os.environ.get('PATH')
+            'LilyPond' not in os.environ.get('PATH')
             ):
             command = r'dir "C:\Program Files\*.exe" /s /b | find "lilypond.exe"'
             proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
@@ -256,20 +239,6 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-#        # python prints to stderr on startup (instead of stdout)
-#        command = 'python --version'
-#        proc = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE)
-#        # massage output string
-#        if sys.version_info[0] == 2:
-#            python_version_string = proc.stderr.readline()
-#        else:
-#            import locale
-#            encoding = locale.getdefaultlocale()[1]
-#            python_version_string = proc.stderr.readline().decode(encoding)
-#        python_version_string = python_version_string.split(' ')[-1]
-#        python_version_string = python_version_string.strip()
-#        # return trimmed string
-#        return python_version_string
         return '.'.join(str(_) for _ in sys.version_info[:3])
 
     @staticmethod
@@ -496,30 +465,6 @@ class AbjadConfiguration(Configuration):
         relative_path = os.path.join(
             self.abjad_directory,
             '..',
-            )
-        return os.path.abspath(relative_path)
-
-    @property
-    def abjad_stylesheets_directory(self):
-        r'''Gets Abjad stylesheets directory.
-
-        Returns string.
-        '''
-        relative_path = os.path.join(
-            self.abjad_directory,
-            'stylesheets',
-            )
-        return os.path.abspath(relative_path)
-
-    @property
-    def abjad_tools_directory(self):
-        r'''Gets Abjad tools directory.
-
-        Returns string.
-        '''
-        relative_path = os.path.join(
-            self.abjad_directory,
-            'tools',
             )
         return os.path.abspath(relative_path)
 

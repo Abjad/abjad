@@ -49,6 +49,14 @@ class GraphvizTable(TreeContainer):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = (
+        '_attributes',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

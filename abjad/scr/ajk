@@ -9,9 +9,9 @@ systemtools.IOManager.clear_terminal()
 start_time = time.time()
 argument = sys.argv[1]
 if "'" in argument:
-    command = r'ack --ignore-dir=docs --ignore-dir=build "{}"'
+    command = r'ack --ignore-dir=docs --ignore-dir=build --ignore-file=is:.coverage "{}"'
 else:
-    command = r"ack --ignore-dir=docs --ignore-dir=build '{}'"
+    command = r"ack --ignore-dir=docs --ignore-dir=build --ignore-file=is:.coverage '{}'"
 command = command.format(argument)
 print('abjad-ack is running this command:')
 print()

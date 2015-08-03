@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 from __future__ import print_function
-import abc
-import configobj
-import os
-import time
-import validate
 from abjad.tools.abctools.AbjadObject import AbjadObject
+from six.moves import StringIO
+from six.moves import configparser
+import abc
+import os
+import six
+import time
 
 
 class Configuration(AbjadObject):
@@ -14,6 +15,8 @@ class Configuration(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'System configuration'
+
     __slots__ = (
         '_settings',
         )
@@ -21,83 +24,19 @@ class Configuration(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self):
-        from abjad.tools import systemtools
-        # verify configuration directory
         if not os.path.exists(self.configuration_directory):
             os.makedirs(self.configuration_directory)
-        # attempt to load config from disk, and validate
-        # a config object will be created if none is found on disk
-        config = configobj.ConfigObj(
-            self.configuration_file_path,
-            configspec=self._config_specification
-            )
-        # validate
-        validator = validate.Validator()
-        validation = config.validate(validator, copy=True)
-        # replace failing key:value pairs with default values
-        if validation is not True:
-            for key, valid in validation.items():
-                if not valid:
-                    default = config.default_values[key]
-                    message = 'Warning: config key {!r} failed validation,'
-                    message += ' setting to default: {!r}.'
-                    message = message.format(key, default)
-                    print(message)
-                    config[key] = default
-        # setup output formatting
-        config.write_empty_values = True
-        config.comments.update(self._option_comments)
-        config.initial_comment = self._initial_comment
-        # write to disk if doesn't exist
-        if not os.path.exists(self.configuration_file_path):
-            if not os.path.exists(self.configuration_directory):
-                os.makedirs(self.configuration_directory)
-            config.write()
-        # write to disk if different from current
-        else:
-            # prevent ConfigObj from automatically writing
-            config.filename = None
-            with open(self.configuration_file_path, 'r') as f:
-                old_config_lines = f.read()
-
-            old_config_lines = old_config_lines.splitlines()
-            old_config_lines = [line for line in old_config_lines
-                if 'configuration file created on' not in line]
-            old_config_lines = '\n'.join(old_config_lines)
-            new_config_lines = config.write(None)
-            new_config_lines = [line for line in new_config_lines
-                if 'configuration file created on' not in line]
-            new_config_lines = '\n'.join(new_config_lines)
-
-            lines_are_equal = systemtools.TestManager.compare(
-                old_config_lines,
-                new_config_lines,
-                )
-#            print('----------------------------------------')
-#            print('TESTING:', type(self))
-#            print()
-#            print('OLD:')
-#            print()
-#            print(old_config_lines)
-#            print()
-#            print('NEW:')
-#            print()
-#            print(new_config_lines)
-#            print()
-#            print('EQUAL?', lines_are_equal)
-#            print()
-            if not lines_are_equal:
-#                print('WRITING')
-#                print()
-                with open(self.configuration_file_path, 'w') as file_pointer:
-                    config.write(file_pointer)
-        # turn the ConfigObj instance into a standard dict,
-        # and replace its empty string values with Nones,
-        # caching the result on this AbjadConfiguration instance.
-        self._settings = dict(config)
-        for key, value in self._settings.items():
-            if value == '' or value == 'None':
-                self._settings[key] = None
+        old_contents = ''
+        if os.path.exists(self.configuration_file_path):
+            with open(self.configuration_file_path, 'r') as file_pointer:
+                old_contents = file_pointer.read()
+        configuration = self._configuration_from_string(old_contents)
+        configuration = self._validate_configuration(configuration)
+        new_contents = self._configuration_to_string(configuration)
+        if not self._compare_configurations(old_contents, new_contents):
+            with open(self.configuration_file_path, 'w') as file_pointer:
+                file_pointer.write(new_contents)
+        self._settings = configuration
 
     ### SPECIAL METHODS ###
 
@@ -139,9 +78,85 @@ class Configuration(AbjadObject):
 
     ### PRIVATE METHODS ###
 
+    def _compare_configurations(self, old, new):
+        old = '\n'.join(old.splitlines()[3:])
+        new = '\n'.join(new.splitlines()[3:])
+        return old == new
+
+    def _configuration_from_string(self, string):
+        if '[main]' not in string:
+            string = '[main]\n' + string
+        config_parser = configparser.ConfigParser()
+        try:
+            if six.PY3:
+                config_parser.read_string(string)
+                configuration = dict(config_parser['main'].items())
+            else:
+                string_io = StringIO(string)
+                config_parser.readfp(string_io)
+                configuration = dict(config_parser.items('main'))
+        except configparser.ParsingError:
+            configuration = {}
+        return configuration
+
+    def _configuration_to_string(self, configuration):
+        option_definitions = self._get_option_definitions()
+        known_items, unknown_items = [], []
+        for key, value in sorted(configuration.items()):
+            if key in option_definitions:
+                known_items.append((key, value))
+            else:
+                unknown_items.append((key, value))
+        result = []
+        for line in self._initial_comment:
+            if line:
+                result.append('# {}'.format(line))
+            else:
+                result.append('')
+        for key, value in known_items:
+            result.append('')
+            if key in option_definitions:
+                for line in option_definitions[key]['comment']:
+                    if line:
+                        result.append('# {}'.format(line))
+                    else:
+                        result.append('')
+            if value not in ('', None):
+                result.append('{!s} = {!s}'.format(key, value))
+            else:
+                result.append('{!s} ='.format(key))
+        if unknown_items:
+            result.append('')
+            result.append('# User-specified keys:')
+            for key, value in unknown_items:
+                result.append('')
+                if value not in ('', None):
+                    result.append('{!s} = {!s}'.format(key, value))
+                else:
+                    result.append('{!s} ='.format(key))
+        string = '\n'.join(result)
+        return string
+
     @abc.abstractmethod
     def _get_option_definitions(self):
         raise NotImplementedError
+
+    def _validate_configuration(self, configuration):
+        option_definitions = self._get_option_definitions()
+        for key in option_definitions:
+            if key not in configuration:
+                configuration[key] = option_definitions[key]['default']
+            validator = option_definitions[key]['validator']
+            if isinstance(validator, type):
+                if not isinstance(configuration[key], validator):
+                    configuration[key] = option_definitions[key]['default']
+            else:
+                if not validator(configuration[key]):
+                    configuration[key] = option_definitions[key]['default']
+        for key in configuration:
+            if configuration[key] in ('', 'None'):
+                configuration[key] = None
+        return configuration
 
     ### PRIVATE PROPERTIES ###
 
@@ -206,7 +221,9 @@ class Configuration(AbjadObject):
 
         Returns string.
         '''
-        path = os.environ.get('HOME') or \
-            os.environ.get('HOMEPATH') or \
+        path = (
+            os.environ.get('HOME') or
+            os.environ.get('HOMEPATH') or
             os.environ.get('APPDATA')
+            )
         return os.path.abspath(path)

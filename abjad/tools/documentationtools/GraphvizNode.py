@@ -3,9 +3,18 @@ from abjad.tools.datastructuretools import TreeContainer
 from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
 
 
-class GraphvizNode(TreeContainer, GraphvizObject):
+class GraphvizNode(GraphvizObject, TreeContainer):
     r'''A Graphviz node.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = (
+        '_attributes',
+        '_edges',
+        )
 
     ### INITIALIZER ###
 
@@ -15,7 +24,6 @@ class GraphvizNode(TreeContainer, GraphvizObject):
         children=None,
         name=None,
         ):
-        self._children = []
         TreeContainer.__init__(
             self,
             children=children,

@@ -27,8 +27,9 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         document_handler = abjadbooktools.LaTeXDocumentHandler()
         input_blocks = document_handler.collect_input_blocks(input_file_contents)
         input_blocks = tuple(input_blocks.values())
-        assert input_blocks[0].strip_prompt
-        assert not input_blocks[1].strip_prompt
+        assert input_blocks[0].code_block_specifier is not None
+        assert input_blocks[0].code_block_specifier.strip_prompt
+        assert input_blocks[1].code_block_specifier is None
 
     def test_strip_prompt_2(self):
         input_file_contents = [

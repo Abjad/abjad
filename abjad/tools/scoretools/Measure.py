@@ -35,6 +35,8 @@ class Measure(FixedDurationContainer):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Containers'
+
     __slots__ = (
         '_always_format_time_signature',
         '_automatically_adjust_time_signature',

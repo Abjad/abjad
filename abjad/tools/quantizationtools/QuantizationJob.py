@@ -151,18 +151,6 @@ class QuantizationJob(AbjadObject):
             self.q_grids,
             )
 
-    def __getstate__(self):
-        r'''Gets state.
-
-        Returns dictionary.
-        '''
-        return {
-            '_job_id': self.job_id,
-            '_q_event_proxies': self.q_event_proxies,
-            '_q_grids': self.q_grids,
-            '_search_tree': self.search_tree,
-            }
-
     def __hash__(self):
         r'''Hashes quantization job.
 
@@ -171,14 +159,6 @@ class QuantizationJob(AbjadObject):
         Returns integer.
         '''
         return super(QuantizationJob, self).__hash__()
-
-    def __setstate__(self, state):
-        r'''Sets state.
-
-        Returns none.
-        '''
-        for key, value in state.items():
-            setattr(self, key, value)
 
     ### PUBLIC PROPERTIES ###
 

@@ -6,6 +6,15 @@ class GraphvizSubgraph(GraphvizGraph):
     r'''A Graphviz cluster subgraph.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = (
+        '_is_cluster',
+        '_edges',
+        )
+
     ### INITIALIZER ###
 
     def __init__(

@@ -19,10 +19,11 @@ def test_quantizationtools_QGrid_subdivide_leaf_01():
     result = q_grid.subdivide_leaf(q_grid.leaves[0], (2, 3))
 
     assert result == [a, b, c, d]
-    assert q_grid.root_node == QGridContainer(
-        children=(
+    root_node = QGridContainer(
+        children=[
             QGridLeaf(preprolated_duration=2, q_event_proxies=[]),
             QGridLeaf(preprolated_duration=3, q_event_proxies=[]),
-        ),
+            ],
         preprolated_duration=1
         )
+    assert format(q_grid.root_node) == format(root_node)

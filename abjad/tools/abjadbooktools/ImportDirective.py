@@ -13,6 +13,8 @@ class ImportDirective(Directive):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Sphinx Internals'
+
     has_content = False
     required_arguments = 1
     optional_arguments = 0

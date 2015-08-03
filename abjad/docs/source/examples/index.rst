@@ -1,7 +1,0 @@
-Literature examples
-===================
-
-..  toctree::
-    :glob:
-
-    *

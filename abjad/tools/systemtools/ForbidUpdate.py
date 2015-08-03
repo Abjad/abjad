@@ -19,6 +19,8 @@ class ForbidUpdate(ContextManager):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Context managers'
+
     __slots__ = (
         '_component',
         '_update_on_enter',

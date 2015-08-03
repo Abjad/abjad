@@ -6,15 +6,20 @@ import re
 import shutil
 import subprocess
 import sys
+from abjad.tools.abctools import AbjadObject
 try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
 
 
-class IOManager(object):
+class IOManager(AbjadObject):
     r'''Manages Abjad IO.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Managers'
 
     ### PRIVATE METHODS ###
 
@@ -342,7 +347,7 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         text_editor = abjad_configuration.get_text_editor()
         if isinstance(target, int) and target < 0:
             last_lilypond = IOManager.get_last_output_file_name()
@@ -354,14 +359,20 @@ class IOManager(object):
                 last_number = last_number.replace('.mid', '')
                 target_number = int(last_number) + (target + 1)
                 target_str = '%04d' % target_number
-                target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
+                target_ly = os.path.join(
+                    abjad_output_directory,
+                    target_str + '.ly',
+                    )
             else:
                 print('Target LilyPond input file does not exist.')
         elif isinstance(target, int) and 0 <= target:
             target_str = '%04d' % target
-            target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
+            target_ly = os.path.join(
+                abjad_output_directory,
+                target_str + '.ly',
+                )
         elif isinstance(target, str):
-            target_ly = os.path.join(ABJADOUTPUT, target)
+            target_ly = os.path.join(abjad_output_directory, target)
         else:
             message = 'can not get target LilyPond input from {}.'
             message = message.format(target)
@@ -388,7 +399,7 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         if isinstance(target, int) and target < 0:
             last_lilypond_file_path = IOManager.get_last_output_file_name()
             if last_lilypond_file_path:
@@ -397,15 +408,24 @@ class IOManager(object):
                 last_number = file_name_root
                 target_number = int(last_number) + (target + 1)
                 target_str = '%04d' % target_number
-                target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
+                target_pdf = os.path.join(
+                    abjad_output_directory,
+                    target_str + '.pdf',
+                    )
             else:
                 message = 'Target PDF does not exist.'
                 print(message)
         elif isinstance(target, int) and 0 <= target:
             target_str = '%04d' % target
-            target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
+            target_pdf = os.path.join(
+                abjad_output_directory,
+                target_str + '.pdf',
+                )
         elif isinstance(target, str):
-            target_pdf = os.path.join(ABJADOUTPUT, target)
+            target_pdf = os.path.join(
+                abjad_output_directory,
+                target,
+                )
         else:
             message = 'can not get target pdf name from {}.'
             message = message.format(target)
@@ -636,7 +656,7 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         last_output_file_name = IOManager.get_last_output_file_name(
             extension='.ly',
             )
@@ -644,9 +664,9 @@ class IOManager(object):
             return
         #without_extension, extension = os.path.splitext(last_output_file_path)
         #last_ly = without_extension + '.ly'
-        #last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
+        #last_ly_full_name = os.path.join(abjad_output_directory, last_ly)
         last_ly_full_name = os.path.join(
-            ABJADOUTPUT,
+            abjad_output_directory,
             last_output_file_name,
             )
         with open(file_path, 'w') as new:
@@ -660,15 +680,15 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         last_output_file_name = IOManager.get_last_output_file_name(
             extension='.pdf',
             )
         #without_extension, extension = os.path.splitext(last_output_file_name)
         #last_pdf = without_extension + '.pdf'
-        #last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)
+        #last_pdf_full_name = os.path.join(abjad_output_directory, last_pdf)
         last_pdf_full_name = os.path.join(
-            ABJADOUTPUT,
+            abjad_output_directory,
             last_output_file_name,
             )
         with open(file_path, 'w') as new:

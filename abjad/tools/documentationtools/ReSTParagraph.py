@@ -24,6 +24,10 @@ class ReSTParagraph(TreeNode):
     Handles automatic linewrapping.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
+
     ### INITIALIZER ###
 
     def __init__(self, name=None, text='foo', wrap=True):

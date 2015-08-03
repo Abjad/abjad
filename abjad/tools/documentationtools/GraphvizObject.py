@@ -8,18 +8,17 @@ class GraphvizObject(AbjadObject):
     r'''An attributed Graphviz object.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     @abc.abstractmethod
     def __init__(self, attributes=None):
         self._verify_attributes(attributes, '_attributes')
-
-    ### SPECIAL METHODS ###
-
-    def __getstate__(self):
-        r'''Gets object state.
-        '''
-        return vars(self)
 
     ### PRIVATE METHODS ###
 

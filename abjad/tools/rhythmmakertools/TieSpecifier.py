@@ -17,6 +17,8 @@ class TieSpecifier(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Specifiers'
+
     __slots__ = (
         '_strip_ties',
         '_tie_across_divisions',

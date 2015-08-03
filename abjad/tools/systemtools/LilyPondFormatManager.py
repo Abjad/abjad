@@ -1,11 +1,14 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools.abctools import AbjadObject
 
 
-class LilyPondFormatManager(object):
+class LilyPondFormatManager(AbjadObject):
     r'''Manages LilyPond formatting logic.
     '''
 
     ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'LilyPond formatting'
 
     lilypond_color_constants = (
         'black',

@@ -68,6 +68,8 @@ class IncisedRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Rhythm-makers'
+
     __slots__ = (
         '_extra_counts_per_division',
         '_helper_functions',

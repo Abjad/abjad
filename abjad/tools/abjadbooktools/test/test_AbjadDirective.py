@@ -23,7 +23,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions hide no-stylesheet pages strip-prompt stylesheet text-width>
+                <abjad_input_block allow-exceptions hide no-stylesheet no-trim pages strip-prompt stylesheet text-width with-columns>
                     <literal_block xml:space="preserve">
                         note = Note("c'4")
                         if True:
@@ -46,8 +46,45 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions="True" hide="True" no-stylesheet pages="(1, 2, 3, 5, 7, 10, 9, 8)" strip-prompt="True" stylesheet text-width>
+                <abjad_input_block allow-exceptions="True" hide="True" no-stylesheet no-trim pages="(1, 2, 3, 5, 7, 10, 9, 8)" strip-prompt="True" stylesheet text-width with-columns>
                     <literal_block xml:space="preserve">
                         assert True is False
+            ''')
+        self.assertEqual(result, expected)
+
+    def test_3(self):
+        source = textwrap.dedent('''
+        ..  abjad::
+            :stylesheet: non-proportional.ly
+
+            show(Note("c'4"))
+        ''')
+        document = self.handler.parse_rst(source)
+        result = systemtools.TestManager.clean_string(document.pformat())
+        expected = systemtools.TestManager.clean_string(
+            r'''
+            <document source="test">
+                <abjad_input_block allow-exceptions hide no-stylesheet no-trim pages strip-prompt stylesheet="non-proportional.ly" text-width with-columns>
+                    <literal_block xml:space="preserve">
+                        show(Note("c'4"))
+            ''')
+        self.assertEqual(result, expected)
+
+    def test_4(self):
+        source = textwrap.dedent('''
+        ..  abjad::
+            :no-stylesheet:
+            :stylesheet: non-proportional.ly
+
+            show(Note("c'4"))
+        ''')
+        document = self.handler.parse_rst(source)
+        result = systemtools.TestManager.clean_string(document.pformat())
+        expected = systemtools.TestManager.clean_string(
+            r'''
+            <document source="test">
+                <abjad_input_block allow-exceptions hide no-stylesheet="True" no-trim pages strip-prompt stylesheet text-width with-columns>
+                    <literal_block xml:space="preserve">
+                        show(Note("c'4"))
             ''')
         self.assertEqual(result, expected)

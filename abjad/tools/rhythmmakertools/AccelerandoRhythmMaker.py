@@ -452,6 +452,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Rhythm-makers'
+
     __slots__ = (
         '_exponent',
         '_interpolation_specifiers',

@@ -8,6 +8,10 @@ class UpdateManager(AbjadObject):
     Updates start offset, stop offsets and indicators everywhere in score.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Managers'
+
     ### PRIVATE METHODS ###
 
     @staticmethod

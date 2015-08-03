@@ -6,6 +6,8 @@ def configure_lilypond_file(lilypond_file):
     r'''Configures LilyPond file.
     '''
 
+    lilypond_file.global_staff_size = 8
+
     context_block = lilypondfiletools.ContextBlock(
         source_context_name=r'Staff \RemoveEmptyStaves',
         )

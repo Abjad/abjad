@@ -34,17 +34,6 @@ class QEvent(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __getstate__(self):
-        r'''Gets state.
-        '''
-        state = {}
-        for current_class in inspect.getmro(type(self)):
-            if hasattr(current_class, '__slots__'):
-                for slot in current_class.__slots__:
-                    if slot not in state:
-                        state[slot] = getattr(self, slot)
-        return state
-
     def __lt__(self, expr):
         r'''Is true when `epxr` is a q-event with offset greater than that of this
         q-event. Otherwise false.
@@ -55,12 +44,6 @@ class QEvent(AbjadObject):
             if self.offset < expr.offset:
                 return True
         return False
-
-    def __setstate__(self, state):
-        r'''Sets state.
-        '''
-        for key, value in state.items():
-            setattr(self, key, value)
 
     ### PRIVATE PROPERTIES ###
 

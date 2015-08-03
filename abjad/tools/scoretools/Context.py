@@ -30,6 +30,8 @@ class Context(Container):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Contexts'
+
     __slots__ = (
         '_context_name',
         '_consists_commands',

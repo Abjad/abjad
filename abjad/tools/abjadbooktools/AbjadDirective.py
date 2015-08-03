@@ -16,6 +16,10 @@ class AbjadDirective(Directive):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Sphinx Internals'
+
+    ### CLASS VARIABLES ###
+
     has_content = True
     required_arguments = 0
     optional_arguments = 0
@@ -23,11 +27,13 @@ class AbjadDirective(Directive):
     option_spec = {
         'allow-exceptions': directives.flag,
         'hide': directives.flag,
+        'no-trim': directives.flag,
         'no-stylesheet': directives.flag,
         'pages': str,
         'strip-prompt': directives.flag,
         'stylesheet': str,
         'text-width': int,
+        'with-columns': int,
         }
 
     ### PRIVATE METHODS ###
@@ -75,11 +81,13 @@ class AbjadDirective(Directive):
             block['pages'] = self._parse_pages_string(pages)
         else:
             block['pages'] = None
+        block['no-trim'] = 'no-trim' in self.options or None
         block['no-stylesheet'] = 'no-stylesheet' in self.options or None
         block['stylesheet'] = self.options.get('stylesheet', None)
         if block['no-stylesheet']:
             block['stylesheet'] = None
         block['strip-prompt'] = 'strip-prompt' in self.options or None
         block['text-width'] = self.options.get('text-width', None)
+        block['with-columns'] = self.options.get('with-columns', None)
         set_source_info(self, block)
         return [block]

@@ -2,11 +2,16 @@
 import difflib
 import inspect
 import os
+from abjad.tools.abctools import AbjadObject
 
 
-class TestManager(object):
+class TestManager(AbjadObject):
     r'''Manages test logic.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Managers'
 
     ### PRIVATE METHODS ###
 
@@ -351,8 +356,16 @@ class TestManager(object):
 
         Returns string.
         '''
-        a_format = format(object_a, 'storage').splitlines(True)
-        b_format = format(object_b, 'storage').splitlines(True)
+        try:
+            a_format = format(object_a, 'storage')
+        except ValueError:
+            a_format = format(object_a)
+        try:
+            b_format = format(object_b, 'storage')
+        except ValueError:
+            b_format = format(object_b)
+        a_format = a_format.splitlines(True)
+        b_format = b_format.splitlines(True)
         diff = ''.join(difflib.ndiff(a_format, b_format))
         if title is not None:
             diff = title + '\n' + diff

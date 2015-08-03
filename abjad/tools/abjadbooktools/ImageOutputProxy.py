@@ -12,9 +12,17 @@ class ImageOutputProxy(abctools.AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Output Proxies'
+
     __slots__ = (
+        '_image_specifier',
         '_payload',
         )
+
+    ### INITIALIZER ###
+
+    def __init__(self, image_specifier=None):
+        self._image_specifier = image_specifier
 
     ### PRIVATE METHODS ###
 
@@ -140,14 +148,6 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         raise NotImplementedError
 
     @property
-    def payload(self):
-        r'''Gets images output proxy payload.
-
-        Returns string.
-        '''
-        return self._payload
-
-    @property
     def file_name_without_extension(self):
         r'''Gets image output proxy filename without file extension.
 
@@ -156,3 +156,17 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         payload = '\n'.join(format(self.payload))
         md5 = hashlib.md5(payload.encode()).hexdigest()
         return '-'.join((self.file_name_prefix, md5))
+
+    @property
+    def image_specifier(self):
+        r'''Gets image specifier.
+        '''
+        return self._image_specifier
+
+    @property
+    def payload(self):
+        r'''Gets images output proxy payload.
+
+        Returns string.
+        '''
+        return self._payload

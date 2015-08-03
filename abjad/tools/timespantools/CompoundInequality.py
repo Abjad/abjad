@@ -47,6 +47,8 @@ class CompoundInequality(TypedList):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Time relations'
+
     __slots__ = (
         '_logical_operator',
         '_name',

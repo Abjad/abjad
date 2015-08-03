@@ -10,6 +10,8 @@ class InciseSpecifier(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Specifiers'
+
     __slots__ = (
         '_body_ratio',
         '_fill_with_notes',

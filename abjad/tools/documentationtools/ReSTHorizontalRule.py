@@ -18,6 +18,10 @@ class ReSTHorizontalRule(TreeNode):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
+
     ### PRIVATE PROPERTIES ###
 
     @property

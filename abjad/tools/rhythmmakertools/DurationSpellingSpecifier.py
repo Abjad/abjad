@@ -9,6 +9,8 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Specifiers'
+
     __slots__ = (
         '_decrease_durations_monotonically',
         '_forbid_meter_rewriting',
