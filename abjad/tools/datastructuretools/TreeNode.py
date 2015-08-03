@@ -25,17 +25,18 @@ class TreeNode(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
+    def __copy__(self):
         r'''Copies tree node.
-
-        Returns new tree node.
         '''
-        return type(self)(
-            *[copy.deepcopy(_) for _ in self.__getnewargs__()]
-            )
-
-    # TODO: remove? we shouldn't alias deepcopy anywhere
-    #__deepcopy__ = __copy__
+        import copy
+        arguments = []
+        for argument in self.__getnewargs__():
+            if isinstance(argument, tuple):
+                argument = tuple(copy.copy(_) for _ in argument)
+            else:
+                argument = copy.copy(argument)
+            arguments.append(argument)
+        return type(self)(*arguments)
 
     def __getnewargs__(self):
         r'''Gets new arguments.
@@ -43,8 +44,7 @@ class TreeNode(AbjadObject):
         Returns tuple.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_input_argument_values(
-            self)
+        return systemtools.StorageFormatManager.get_input_argument_values(self)
 
     def __ne__(self, expr):
         r'''Is true when tree node does not equal `expr`. Otherwise false.
@@ -190,7 +190,7 @@ class TreeNode(AbjadObject):
             ...     print('DEPTH: {}'.format(depth))
             ...     for node in inventory[depth]:
             ...         print(node.name)
-            ... 
+            ...
             DEPTH: 0
             a
             DEPTH: 1
@@ -204,7 +204,6 @@ class TreeNode(AbjadObject):
 
         Returns dictionary.
         '''
-        inventory = {}
         def recurse(node):
             if node.depth not in inventory:
                 inventory[node.depth] = []
@@ -212,6 +211,7 @@ class TreeNode(AbjadObject):
             if hasattr(node, 'children'):
                 for child in node.children:
                     recurse(child)
+        inventory = {}
         recurse(self)
         return inventory
 
