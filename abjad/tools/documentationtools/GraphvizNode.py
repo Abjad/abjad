@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools.datastructuretools import TreeContainer
-from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
+from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
 
 
-class GraphvizNode(GraphvizObject, TreeContainer):
+class GraphvizNode(GraphvizMixin, TreeContainer):
     r'''A Graphviz node.
     '''
 
@@ -29,7 +29,7 @@ class GraphvizNode(GraphvizObject, TreeContainer):
             children=children,
             name=name,
             )
-        GraphvizObject.__init__(
+        GraphvizMixin.__init__(
             self,
             attributes=attributes,
             )

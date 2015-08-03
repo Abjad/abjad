@@ -4,8 +4,8 @@ import copy
 from abjad.tools.abctools import AbjadObject
 
 
-class GraphvizObject(AbjadObject):
-    r'''An attributed Graphviz object.
+class GraphvizMixin(AbjadObject):
+    r'''An attributed Graphviz mixin.
     '''
 
     ### CLASS VARIABLES ###

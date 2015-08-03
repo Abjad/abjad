@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
+from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
 
 
-class GraphvizEdge(GraphvizObject):
+class GraphvizEdge(GraphvizMixin):
     r'''A Graphviz edge.
     '''
 
@@ -22,7 +22,7 @@ class GraphvizEdge(GraphvizObject):
     ### INITIALIZER ###
 
     def __init__(self, attributes=None, is_directed=True):
-        GraphvizObject.__init__(self, attributes=attributes)
+        GraphvizMixin.__init__(self, attributes=attributes)
         self._head = None
         self._tail = None
         self._is_directed = bool(is_directed)

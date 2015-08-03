@@ -1,10 +1,10 @@
 # -*- encoding: utf-8 -*-
 import subprocess
 from abjad.tools.datastructuretools import TreeContainer
-from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
+from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
 
 
-class GraphvizGraph(GraphvizObject, TreeContainer):
+class GraphvizGraph(GraphvizMixin, TreeContainer):
     r'''A Graphviz graph.
 
     ::
@@ -178,7 +178,7 @@ class GraphvizGraph(GraphvizObject, TreeContainer):
         node_attributes=None,
         ):
         TreeContainer.__init__(self, children=children, name=name)
-        GraphvizObject.__init__(self, attributes=attributes)
+        GraphvizMixin.__init__(self, attributes=attributes)
         assert isinstance(edge_attributes, (dict, type(None)))
         assert isinstance(node_attributes, (dict, type(None)))
         self._verify_attributes(edge_attributes, '_edge_attributes')
