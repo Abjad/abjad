@@ -3,6 +3,7 @@ language: python
 python:
     - 2.7
     - 3.4
+    - pypy
 
 before_install:
     - sudo apt-get update -qq
