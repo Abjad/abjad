@@ -381,6 +381,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                             target=relative_target_file_path,
                             )
                         result = systemtools.TestManager.clean_string(result)
+                        result = ('    ' + _ for _ in result.splitlines())
+                        result = '\n'.join(result)
                         self.body.append(result)
                     self.body.append(row_close)
             else:
