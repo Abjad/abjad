@@ -16,6 +16,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         pass
 
     def setUp(self):
+        import abjad
         app = self.Namespace()
         config = self.Namespace()
         self.app = app
@@ -26,6 +27,11 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         self.app.builder.imagedir = '_images'
         self.app.builder.imgpath = posixpath.join(
             '..', '_images', 'abjadbook')
+        self.app.builder.srcdir = os.path.join(
+            abjad.__path__[0],
+            'docs',
+            'source',
+            )
         self.app.body = []
         self.images_directory = os.path.join(
             self.app.builder.outdir,
@@ -117,6 +123,47 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         source = r'''
         ..  abjad::
             :hide:
+            :stylesheet: non-proportional.ly
+            :no-trim:
+
+            show(Staff("c'4 d'4 e'4 f'4"))
+        '''
+        source = systemtools.TestManager.clean_string(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        abjadbooktools.SphinxDocumentHandler.on_builder_inited(self.app)
+        node = document[0]
+        try:
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+                self.app, node)
+        except docutils.nodes.SkipNode:
+            pass
+        actual = '\n'.join(self.app.body)
+        expected = systemtools.TestManager.clean_string(r'''
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/abjadbook/lilypond-000162da1d9b016809d61cefba69b00facfb4e7f.ly">
+                    <img src="../_images/abjadbook/abjadbook/lilypond-000162da1d9b016809d61cefba69b00facfb4e7f.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            ''')
+        self.assertEqual(actual, expected)
+        assert len(os.listdir(self.abjadbook_images_directory)) == 6
+        for name in (
+            'default.ly',
+            'external-settings-file-1.ly',
+            'external-settings-file-2.ly',
+            'lilypond-000162da1d9b016809d61cefba69b00facfb4e7f.ly',
+            'lilypond-000162da1d9b016809d61cefba69b00facfb4e7f.png',
+            'non-proportional.ly',
+            ):
+            path = os.path.join(self.images_directory, 'abjadbook', name)
+            assert os.path.exists(path)
+
+    def test_04(self):
+        source = r'''
+        ..  abjad::
+            :hide:
             :no-stylesheet:
 
             staff = Staff("c'1 d'1 e'1 f'1 g'1")
@@ -176,7 +223,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
 
-    def test_04(self):
+    def test_05(self):
         source = r'''
         ..  abjad::
             :hide:
@@ -230,7 +277,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
 
-    def test_05(self):
+    def test_06(self):
         source = r'''
         ..  abjad::
             :hide:
