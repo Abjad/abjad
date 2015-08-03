@@ -180,7 +180,7 @@ class ContextBlock(Block):
         ::
 
             >>> block.items
-            []
+            ['\\accidentalStyle dodecaphonic']
 
         Returns list.
         '''
