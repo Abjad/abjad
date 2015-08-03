@@ -1,9 +1,14 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import abjadbooktools
+import platform
 import unittest
+from abjad.tools import abjadbooktools
 from abjad.tools import systemtools
 
 
+@unittest.skipIf(
+    platform.python_implementation() != 'CPython',
+    'Only for CPython.',
+    )
 class TestLaTeXDocumentHandler_syntax_error(unittest.TestCase):
 
     def test_syntax_error_1(self):

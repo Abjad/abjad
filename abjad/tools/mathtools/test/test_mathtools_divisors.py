@@ -1,7 +1,9 @@
 # -*- encoding: utf-8 -*-
+import platform
 import pytest
 import sys
-from abjad import *
+from abjad.tools import mathtools
+from abjad.tools import systemtools
 
 
 def test_mathtools_divisors_01():
@@ -34,10 +36,13 @@ def test_mathtools_divisors_03():
     assert pytest.raises(TypeError, 'mathtools.divisors(7.5)')
 
 
+@pytest.mark.skipif(
+    platform.python_implementation() != 'CPython',
+    reason='Benchmarking is only for CPython.',
+    )
 def test_mathtools_divisors_04():
     r'''Performance is extremely fast.
     '''
-
     result = systemtools.IOManager.count_function_calls(
         'mathtools.divisors(100000000)',
         globals(),

@@ -1,10 +1,14 @@
 # -*- encoding: utf-8 -*-
-import abjad
-from abjad.tools import abjadbooktools
+import platform
 import unittest
+from abjad.tools import abjadbooktools
 from abjad.tools import systemtools
 
 
+@unittest.skipIf(
+    platform.python_implementation() != 'CPython',
+    'Only for CPython',
+    )
 class TestLaTeXDocumentHandler_exception(unittest.TestCase):
 
     def test_exception_1(self):

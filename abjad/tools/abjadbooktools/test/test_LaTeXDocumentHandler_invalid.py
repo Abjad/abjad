@@ -1,8 +1,13 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import abjadbooktools
+import platform
 import unittest
+from abjad.tools import abjadbooktools
 
 
+@unittest.skipIf(
+    platform.python_implementation() != 'CPython',
+    'Only for CPython',
+    )
 class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
 
     def test_invalid_source_1(self):

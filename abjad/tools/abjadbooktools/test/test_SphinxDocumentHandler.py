@@ -1,10 +1,15 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools import abjadbooktools
-from abjad.tools import systemtools
+import platform
 import sys
 import unittest
+from abjad.tools import abjadbooktools
+from abjad.tools import systemtools
 
 
+@unittest.skipIf(
+    platform.python_implementation() != 'CPython',
+    'Only for CPython.',
+    )
 class SphinxDocumentHandlerTests(unittest.TestCase):
 
     class Namespace(object):
