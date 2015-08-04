@@ -162,14 +162,6 @@ class QGrid(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-#    def __getnewargs__(self):
-#        r'''Gets new arguments.
-#
-#        Returns tuple.
-#        '''
-#        from abjad.tools import systemtools
-#        return systemtools.StorageFormatManager.get_input_argument_values(self)
-
     def __hash__(self):
         r'''Hashes q-grid.
 
@@ -178,16 +170,6 @@ class QGrid(AbjadObject):
         Returns integer.
         '''
         return super(QGrid, self).__hash__()
-
-#    def __reduce__(self):
-#        r'''For pickling.'''
-#        if sys.version_info[0] == 2:
-#            return object.__reduce__(self)
-#        return (
-#            type(self),
-#            (),
-#            self.__getstate__(),
-#            )
 
     ### PUBLIC PROPERTIES ###
 

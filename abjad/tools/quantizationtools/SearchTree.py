@@ -60,13 +60,6 @@ class SearchTree(AbjadObject):
                 return True
         return False
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self.definition,)
-
     def __hash__(self):
         r'''Hashes search tree.
 
