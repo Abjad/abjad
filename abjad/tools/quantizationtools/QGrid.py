@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import bisect
 import copy
-import inspect
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
@@ -54,7 +53,7 @@ class QGrid(AbjadObject):
 
         >>> for q_event_proxy in q_grid.root_node.q_event_proxies:
         ...     print(format(q_event_proxy, 'storage'))
-        ... 
+        ...
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(250, 1),
@@ -69,7 +68,7 @@ class QGrid(AbjadObject):
 
         >>> for q_event_proxy in q_grid.next_downbeat.q_event_proxies:
         ...     print(format(q_event_proxy, 'storage'))
-        ... 
+        ...
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(750, 1),
@@ -168,7 +167,8 @@ class QGrid(AbjadObject):
 
         Returns tuple.
         '''
-        return (self.root_node, self.next_downbeat)
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_input_argument_values(self)
 
     def __hash__(self):
         r'''Hashes q-grid.
@@ -178,6 +178,14 @@ class QGrid(AbjadObject):
         Returns integer.
         '''
         return super(QGrid, self).__hash__()
+
+    def __reduce__(self):
+        r'''For pickling.'''
+        return (
+            type(self),
+            self.__getnewargs__(),
+            {},
+            )
 
     ### PUBLIC PROPERTIES ###
 
