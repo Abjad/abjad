@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 import copy
-import pytest
 from abjad.tools import documentationtools
 
 
-@pytest.skip('FIXME')
-def test_documentationtools_GraphvizGraph_copy_01():
+def test_documentationtools_GraphvizGraph_deepcopy_01():
     graph = documentationtools.GraphvizGraph()
     graph.append(documentationtools.GraphvizSubgraph())
     graph[0].append(documentationtools.GraphvizNode())
