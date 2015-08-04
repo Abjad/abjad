@@ -29,7 +29,7 @@ def test_quantizationtools_QGrid_pickle_01():
                 ],
             ),
         )
-    pickled = pickle.loads(pickle.dumps(q_grid, protocol=pickle.HIGHEST_PROTOCOL))
+    pickled = pickle.loads(pickle.dumps(q_grid))
 
     assert format(pickled) == format(q_grid)
     assert pickled is not q_grid
