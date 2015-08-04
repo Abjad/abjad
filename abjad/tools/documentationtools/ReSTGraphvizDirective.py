@@ -2,7 +2,7 @@
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
-class GraphvizDirective(ReSTDirective):
+class ReSTGraphvizDirective(ReSTDirective):
     r'''A ReST Graphviz directive.
     '''
 
