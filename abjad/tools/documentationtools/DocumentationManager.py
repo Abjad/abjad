@@ -328,9 +328,10 @@ class DocumentationManager(abctools.AbjadObject):
             lineage_graph = self._get_lineage_graph(cls)
             lineage_graph.attributes['background'] = 'transparent'
             lineage_graph.attributes['rankdir'] = 'LR'
-            graphviz_directive = abjad.documentationtools.GraphvizDirective(
-                graph=lineage_graph,
-                )
+            graphviz_directive = \
+                abjad.documentationtools.ReSTGraphvizDirective(
+                    graph=lineage_graph,
+                    )
             graphviz_container = abjad.documentationtools.ReSTDirective(
                 directive='container',
                 argument='graphviz',
