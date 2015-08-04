@@ -212,16 +212,19 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def render_png_image(self, node):
         from abjad.tools import abjadbooktools
         # Get all file and path parts.
-        image_specifier = node.get('image_specifier', None)
-        if image_specifier is None:
-            image_specifier = abjadbooktools.ImageSpecifier()
-        pages = image_specifier.pages
+        image_layout_specifier = node.get('image_layout_specifier', None)
+        if image_layout_specifier is None:
+            image_layout_specifier = abjadbooktools.ImageLayoutSpecifier()
+        image_render_specifier = node.get('image_render_specifier', None)
+        if image_render_specifier is None:
+            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+        pages = image_layout_specifier.pages
         #print(node.pformat())
         #print('PAGES', pages)
         target_extension = '.png'
         sha1sum = hashlib.sha1()
         sha1sum.update(node[0].encode('utf-8'))
-        sha1sum.update(format(image_specifier, 'storage').encode('utf-8'))
+        sha1sum.update(format(image_render_specifier, 'storage').encode('utf-8'))
         sha1sum = sha1sum.hexdigest()
         file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
         file_name_pattern = '{}*{}'.format(file_base_name, target_extension)
@@ -277,7 +280,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 [posixpath.join(relative_directory_path, _) for _ in target_file_names],
                 )
         # Trim target(s).
-        if image_specifier.no_trim:
+        if image_render_specifier.no_trim:
             pass
         else:
             for target_name in target_file_names:
@@ -348,9 +351,12 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         #print()
         #print(node.pformat())
         try:
-            image_specifier = node.get('image_specifier', None)
-            if image_specifier is None:
-                image_specifier = abjadbooktools.ImageSpecifier()
+            image_layout_specifier = node.get('image_layout_specifier', None)
+            if image_layout_specifier is None:
+                image_layout_specifier = abjadbooktools.ImageLayoutSpecifier()
+            image_render_specifier = node.get('image_render_specifier', None)
+            if image_render_specifier is None:
+                image_render_specifier = abjadbooktools.ImageRenderSpecifier()
             if node['renderer'] not in ('graphviz', 'lilypond'):
                 raise nodes.SkipNode
             absolute_image_directory_path = os.path.join(
@@ -362,7 +368,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 os.makedirs(absolute_image_directory_path)
             relative_source_file_path, relative_target_file_paths = \
                 SphinxDocumentHandler.render_png_image(self, node)
-            if image_specifier.with_columns:
+            if image_layout_specifier.with_columns:
                 output = r'''
                 <a class="table-cell thumbnail" href="{source}">
                     <img src="{target}" alt="View source." title="View source." />
@@ -371,7 +377,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 row_open = r'''<div class="table-row">'''
                 row_close = r'''</div>'''
                 stop = len(relative_target_file_paths)
-                step = image_specifier.with_columns
+                step = image_layout_specifier.with_columns
                 for i in range(0, stop, step):
                     self.body.append(row_open)
                     paths = relative_target_file_paths[i:i + step]

@@ -15,14 +15,20 @@ class ImageOutputProxy(abctools.AbjadValueObject):
     __documentation_section__ = 'Output Proxies'
 
     __slots__ = (
-        '_image_specifier',
+        '_image_layout_specifier',
+        '_image_render_specifier',
         '_payload',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, image_specifier=None):
-        self._image_specifier = image_specifier
+    def __init__(
+        self,
+        image_layout_specifier=None,
+        image_render_specifier=None,
+        ):
+        self._image_layout_specifier = image_layout_specifier
+        self._image_render_specifier = image_render_specifier
 
     ### PRIVATE METHODS ###
 
@@ -158,10 +164,16 @@ class ImageOutputProxy(abctools.AbjadValueObject):
         return '-'.join((self.file_name_prefix, md5))
 
     @property
-    def image_specifier(self):
+    def image_layout_specifier(self):
         r'''Gets image specifier.
         '''
-        return self._image_specifier
+        return self._image_layout_specifier
+
+    @property
+    def image_render_specifier(self):
+        r'''Gets image specifier.
+        '''
+        return self._image_render_specifier
 
     @property
     def payload(self):

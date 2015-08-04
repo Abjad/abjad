@@ -41,14 +41,24 @@ class LilyPondOutputProxy(ImageOutputProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload, image_specifier=None):
+    def __init__(
+        self,
+        payload,
+        image_layout_specifier=None,
+        image_render_specifier=None,
+        ):
         from abjad.tools import abjadbooktools
-        ImageOutputProxy.__init__(self, image_specifier=image_specifier)
+        ImageOutputProxy.__init__(
+            self,
+            image_layout_specifier=image_layout_specifier,
+            image_render_specifier=image_render_specifier,
+            )
         payload = copy.deepcopy(payload)
-        image_specifier = self.image_specifier or abjadbooktools.ImageSpecifier()
+        if image_render_specifier is None:
+            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
         if (
-            not image_specifier.stylesheet and
-            not image_specifier.no_stylesheet
+            not image_render_specifier.stylesheet and
+            not image_render_specifier.no_stylesheet
             ):
             payload = documentationtools.make_reference_manual_lilypond_file(
                 payload)
@@ -60,11 +70,11 @@ class LilyPondOutputProxy(ImageOutputProxy):
             )
         lilypond_file.file_initial_system_includes[0] = token
         if (
-            image_specifier.stylesheet and
-            not image_specifier.no_stylesheet
+            image_render_specifier.stylesheet and
+            not image_render_specifier.no_stylesheet
             ):
             lilypond_file.use_relative_includes = True
-            lilypond_file.file_initial_user_includes[:] = [image_specifier.stylesheet]
+            lilypond_file.file_initial_user_includes[:] = [image_render_specifier.stylesheet]
         self._payload = lilypond_file
 
     ### PRIVATE METHODS ###
@@ -113,7 +123,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
-            <abjad_output_block image_specifier renderer="lilypond" xml:space="preserve">
+            <abjad_output_block image_layout_specifier image_render_specifier renderer="lilypond" xml:space="preserve">
                 \version "2.19.0"
                 \language "english"
             <BLANKLINE>
@@ -165,7 +175,8 @@ class LilyPondOutputProxy(ImageOutputProxy):
             if sys.version_info[0] == 2:
                 code = code.decode('utf-8')
             node = abjadbooktools.abjad_output_block(code, code)
-            node['image_specifier'] = self.image_specifier
+            node['image_layout_specifier'] = self.image_layout_specifier
+            node['image_render_specifier'] = self.image_render_specifier
             node['renderer'] = 'lilypond'
             result.append(node)
         except UnicodeDecodeError:

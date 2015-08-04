@@ -27,7 +27,8 @@ class CodeBlock(abctools.AbjadValueObject):
         '_current_lines',
         '_document_source',
         '_executed_lines',
-        '_image_specifier',
+        '_image_layout_specifier',
+        '_image_render_specifier',
         '_options',
         '_output_proxies',
         '_source_lines',
@@ -42,7 +43,8 @@ class CodeBlock(abctools.AbjadValueObject):
         code_block_specifier=None,
         document_source=None,
         executed_lines=None,
-        image_specifier=None,
+        image_layout_specifier=None,
+        image_render_specifier=None,
         starting_line_number=None,
         ):
         self._code_block_specifier = code_block_specifier
@@ -51,7 +53,8 @@ class CodeBlock(abctools.AbjadValueObject):
         if executed_lines is not None:
             executed_lines = tuple(executed_lines)
         self._executed_lines = executed_lines
-        self._image_specifier = image_specifier
+        self._image_layout_specifier = image_layout_specifier
+        self._image_render_specifier = image_render_specifier
         self._output_proxies = []
         self._source_lines = tuple(input_file_contents)
         self._starting_line_number = starting_line_number
@@ -141,12 +144,15 @@ class CodeBlock(abctools.AbjadValueObject):
             cleaned_options[key] = value
         code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
             **cleaned_options)
-        image_specifier = abjadbooktools.ImageSpecifier.from_options(
+        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
+            **cleaned_options)
+        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
             **cleaned_options)
         code_block = abjadbooktools.CodeBlock(
             code_block_specifier=code_block_specifier,
             executed_lines=executed_lines,
-            image_specifier=image_specifier,
+            image_layout_specifier=image_layout_specifier,
+            image_render_specifier=image_render_specifier,
             input_file_contents=input_file_contents,
             starting_line_number=starting_line_number,
             )
@@ -165,11 +171,14 @@ class CodeBlock(abctools.AbjadValueObject):
             cleaned_options[key] = value
         code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
             **cleaned_options)
-        image_specifier = abjadbooktools.ImageSpecifier.from_options(
+        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
+            **cleaned_options)
+        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
             **cleaned_options)
         code_block = abjadbooktools.CodeBlock(
             code_block_specifier=code_block_specifier,
-            image_specifier=image_specifier,
+            image_layout_specifier=image_layout_specifier,
+            image_render_specifier=image_render_specifier,
             input_file_contents=input_file_contents,
             starting_line_number=starting_line_number,
             )
@@ -197,12 +206,15 @@ class CodeBlock(abctools.AbjadValueObject):
             cleaned_options[key] = value
         code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
             **cleaned_options)
-        image_specifier = abjadbooktools.ImageSpecifier.from_options(
+        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
+            **cleaned_options)
+        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
             **cleaned_options)
         code_block = abjadbooktools.CodeBlock(
             code_block_specifier=code_block_specifier,
             executed_lines=executed_lines,
-            image_specifier=image_specifier,
+            image_layout_specifier=image_layout_specifier,
+            image_render_specifier=image_render_specifier,
             input_file_contents=input_file_contents,
             starting_line_number=block.line,
             )
@@ -218,11 +230,14 @@ class CodeBlock(abctools.AbjadValueObject):
             cleaned_options[key] = value
         code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
             **cleaned_options)
-        image_specifier = abjadbooktools.ImageSpecifier.from_options(
+        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
+            **cleaned_options)
+        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
             **cleaned_options)
         code_block = abjadbooktools.CodeBlock(
             code_block_specifier=code_block_specifier,
-            image_specifier=image_specifier,
+            image_layout_specifier=image_layout_specifier,
+            image_render_specifier=image_render_specifier,
             input_file_contents=input_file_contents,
             starting_line_number=block.line,
             )
@@ -393,7 +408,8 @@ class CodeBlock(abctools.AbjadValueObject):
         output_proxy = abjadbooktools.GraphvizOutputProxy(
             graph,
             layout=layout,
-            image_specifier=self.image_specifier,
+            image_layout_specifier=self.image_layout_specifier,
+            image_render_specifier=self.image_render_specifier,
             )
         self.push_asset_output_proxy(output_proxy)
 
@@ -419,17 +435,18 @@ class CodeBlock(abctools.AbjadValueObject):
             ):
             handler = self._console.document_handler
             default_stylesheet = handler.get_default_stylesheet()
-        image_specifier = self.image_specifier
-        if image_specifier is None:
-            image_specifier = abjadbooktools.ImageSpecifier()
-        if image_specifier.stylesheet is None:
-            image_specifier = new(
-                image_specifier,
+        image_render_specifier = self.image_render_specifier
+        if image_render_specifier is None:
+            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+        if image_render_specifier.stylesheet is None:
+            image_render_specifier = new(
+                image_render_specifier,
                 stylesheet=default_stylesheet,
                 )
         output_proxy = abjadbooktools.LilyPondOutputProxy(
             illustration,
-            image_specifier=image_specifier,
+            image_layout_specifier=self.image_layout_specifier,
+            image_render_specifier=image_render_specifier,
             )
         self.push_asset_output_proxy(output_proxy)
 
@@ -460,8 +477,12 @@ class CodeBlock(abctools.AbjadValueObject):
         return self._starting_line_number
 
     @property
-    def image_specifier(self):
-        return self._image_specifier
+    def image_layout_specifier(self):
+        return self._image_layout_specifier
+
+    @property
+    def image_render_specifier(self):
+        return self._image_render_specifier
 
     @property
     def code_block_specifier(self):

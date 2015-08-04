@@ -205,8 +205,18 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ### INITIALIZER ###
 
-    def __init__(self, payload, layout='dot', image_specifier=None):
-        ImageOutputProxy.__init__(self, image_specifier=image_specifier)
+    def __init__(
+        self,
+        payload,
+        layout='dot',
+        image_layout_specifier=None,
+        image_render_specifier=None,
+        ):
+        ImageOutputProxy.__init__(
+            self,
+            image_layout_specifier=image_layout_specifier,
+            image_render_specifier=image_render_specifier,
+            )
         #payload = pickle.loads(pickle.dumps(payload))
         graphviz_graph = payload.__graph__()
         self._payload = graphviz_graph
@@ -273,7 +283,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
-            <abjad_output_block image_specifier renderer="graphviz" xml:space="preserve">
+            <abjad_output_block image_layout_specifier image_render_specifier renderer="graphviz" xml:space="preserve">
                 digraph G {
                     graph [bgcolor=transparent,
                         fontname=Arial,
@@ -350,7 +360,8 @@ class GraphvizOutputProxy(ImageOutputProxy):
             if sys.version_info[0] == 2:
                 code = code.decode('utf-8')
             node = abjadbooktools.abjad_output_block(code, code)
-            node['image_specifier'] = self.image_specifier
+            node['image_layout_specifier'] = self.image_layout_specifier
+            node['image_render_specifier'] = self.image_render_specifier
             node['renderer'] = 'graphviz'
             result.append(node)
         except UnicodeDecodeError:

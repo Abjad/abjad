@@ -130,7 +130,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     >>> for note in staff:
                     ...     show(note)
                     ...
-                <abjad_output_block image_specifier="ImageSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -151,7 +151,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             c'1
                         }
                     }
-                <abjad_output_block image_specifier="ImageSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -202,7 +202,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     >>> for note in staff:
                     ...     show(note)
                     ...
-                <abjad_output_block image_specifier="ImageSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier image_render_specifier="ImageRenderSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -219,7 +219,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             c'1
                         }
                     }
-                <abjad_output_block image_specifier="ImageSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier image_render_specifier="ImageRenderSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -314,7 +314,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             1/4))
                     <literal_block xml:space="preserve">
                         >>> graph(meter) # doctest: +SKIP
-                    <abjad_output_block image_specifier renderer="graphviz" xml:space="preserve">
+                    <abjad_output_block image_layout_specifier image_render_specifier renderer="graphviz" xml:space="preserve">
                         digraph G {
                             graph [bgcolor=transparent,
                                 fontname=Arial,
@@ -374,7 +374,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             1/4))
                     <literal_block xml:space="preserve">
                         >>> graph(meter) # doctest: +SKIP
-                    <abjad_output_block image_specifier renderer="graphviz" xml:space="preserve">
+                    <abjad_output_block image_layout_specifier image_render_specifier renderer="graphviz" xml:space="preserve">
                         digraph G {
                             graph [bgcolor=transparent,
                                 fontname=Arial,
@@ -546,7 +546,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             r"""
             <document source="test">
                 <block_quote>
-                    <abjad_output_block image_specifier="ImageSpecifier(no_trim=True, pages=(1, 2, 3, 4), stylesheet='default.ly', with_columns=2)" renderer="lilypond" xml:space="preserve">
+                    <abjad_output_block image_layout_specifier="ImageLayoutSpecifier(pages=(1, 2, 3, 4), with_columns=2)" image_render_specifier="ImageRenderSpecifier(no_trim=True, stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
                         \version "2.19.0"
                         \language "english"
 
