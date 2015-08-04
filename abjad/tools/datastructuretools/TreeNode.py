@@ -40,14 +40,6 @@ class TreeNode(AbjadObject):
             arguments.append(argument)
         return type(self)(*arguments)
 
-#    def __getnewargs__(self):
-#        r'''Gets new arguments.
-#
-#        Returns tuple.
-#        '''
-#        from abjad.tools import systemtools
-#        return systemtools.StorageFormatManager.get_input_argument_values(self)
-
     def __ne__(self, expr):
         r'''Is true when tree node does not equal `expr`. Otherwise false.
 
