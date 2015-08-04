@@ -55,12 +55,6 @@ class QSchemaItem(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    @abc.abstractmethod
-    def __getnewargs__(self):
-        r'''Returns self as a plain tuple. Used by copy and pickle.
-        '''
-        raise NotImplementedError
-
     ### PUBLIC PROPERTIES ###
 
     @property

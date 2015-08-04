@@ -56,7 +56,6 @@ class BeatwiseQSchemaItem(QSchemaItem):
         search_tree=None,
         tempo=None,
         ):
-        from abjad.tools import quantizationtools
         QSchemaItem.__init__(
             self,
             search_tree=search_tree,
@@ -66,19 +65,6 @@ class BeatwiseQSchemaItem(QSchemaItem):
             beatspan = durationtools.Duration(beatspan)
             assert 0 < beatspan
         self._beatspan = beatspan
-
-    ### SPECIAL METHODS ###
-
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (
-            self.beatspan,
-            self.search_tree,
-            self.tempo,
-            )
 
     ### PUBLIC PROPERTIES ###
 

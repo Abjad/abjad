@@ -139,18 +139,6 @@ class QuantizationJob(AbjadObject):
                             return True
         return False
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (
-            self.job_id,
-            self.search_tree,
-            self.q_event_proxies,
-            self.q_grids,
-            )
-
     def __hash__(self):
         r'''Hashes quantization job.
 
