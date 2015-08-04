@@ -9,8 +9,10 @@ The new Abjad cookbook
     selecting_musical_objects
     transforming_score_structures
     creating_tables_of_chords
+    interpolating_between_chords
     creating_custom_symbols
     spacing_music_proportionally
+    creating_annotation_aware_spanners
     typesetting_parametric_staves
     creating_complex_rhythms
     creating_texture_music
