@@ -60,16 +60,16 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
         total_duration = pulse_duration * self.preprolated_duration
         return scoretools.make_notes(0, total_duration)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (
-            self.preprolated_duration,
-            tuple(self.q_event_proxies),
-            self.is_divisible,
-            )
+#    def __getnewargs__(self):
+#        r'''Gets new arguments.
+#
+#        Returns tuple.
+#        '''
+#        return (
+#            self.preprolated_duration,
+#            tuple(self.q_event_proxies),
+#            self.is_divisible,
+#            )
 
     def __graph__(self, **kwargs):
         r'''Graphviz graph of q-grid leaf.

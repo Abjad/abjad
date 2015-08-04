@@ -89,12 +89,12 @@ class QEventProxy(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self.q_event, self.offset)
+#    def __getnewargs__(self):
+#        r'''Gets new arguments.
+#
+#        Returns tuple.
+#        '''
+#        return (self.q_event, self.offset)
 
     def __hash__(self):
         r'''Hashes q-event proxy.

@@ -29,8 +29,10 @@ class TreeNode(AbjadObject):
         r'''Copies tree node.
         '''
         import copy
+        from abjad.tools import systemtools
         arguments = []
-        for argument in self.__getnewargs__():
+        args = systemtools.StorageFormatManager.get_input_argument_values(self)
+        for argument in args:
             if isinstance(argument, tuple):
                 argument = tuple(copy.copy(_) for _ in argument)
             else:
@@ -38,13 +40,13 @@ class TreeNode(AbjadObject):
             arguments.append(argument)
         return type(self)(*arguments)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_input_argument_values(self)
+#    def __getnewargs__(self):
+#        r'''Gets new arguments.
+#
+#        Returns tuple.
+#        '''
+#        from abjad.tools import systemtools
+#        return systemtools.StorageFormatManager.get_input_argument_values(self)
 
     def __ne__(self, expr):
         r'''Is true when tree node does not equal `expr`. Otherwise false.
