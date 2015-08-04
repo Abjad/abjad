@@ -90,7 +90,7 @@ class WeightedSearchTree(SearchTree):
             'divisors': (2, 3, 5, 7),
             'max_depth': 3,
             'max_divisions': 2,
-        }
+            }
 
     ### PRIVATE METHODS ###
 
@@ -106,7 +106,7 @@ class WeightedSearchTree(SearchTree):
             return False
         elif not len(definition['divisors']):
             return False
-        elif not all(isinstance(x, int) and \
+        elif not all(isinstance(x, int) and
             1 < x for x in definition['divisors']):
             return False
         elif not all(mathtools.divisors(x) == [1, x]

@@ -1,9 +1,6 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
-import inspect
-import pprint
-from abjad.tools import datastructuretools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
@@ -143,4 +140,4 @@ class SearchTree(AbjadObject):
 
         Returns dictionary.
         '''
-        return copy.deepcopy(self._definition)
+        return self._definition

@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import pprint
 from abjad.tools import mathtools
 from abjad.tools.quantizationtools.SearchTree import SearchTree
 
@@ -107,6 +106,10 @@ class UnweightedSearchTree(SearchTree):
     Return ``UnweightedSearchTree`` instance.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -129,34 +132,34 @@ class UnweightedSearchTree(SearchTree):
         Returns dictionary.
         '''
         return {
-            2: {                 # 1/2
-                2: {             # 1/4
-                    2: {         # 1/8
-                        2: None, # 1/16
+            2: {                  # 1/2
+                2: {              # 1/4
+                    2: {          # 1/8
+                        2: None,  # 1/16
+                        },
+                    3: None,      # 1/12
                     },
-                    3: None,     # 1/12
+                3: None,          # 1/6
+                5: None,          # 1/10
+                7: None,          # 1/14
                 },
-                3: None,         # 1/6
-                5: None,         # 1/10
-                7: None,         # 1/14
-            },
-            3: {                 # 1/3
-                2: {             # 1/6
-                    2: None,     # 1/12
+            3: {                  # 1/3
+                2: {              # 1/6
+                    2: None,      # 1/12
+                    },
+                3: None,          # 1/9
+                5: None,          # 1/15
                 },
-                3: None,         # 1/9
-                5: None,         # 1/15
-            },
-            5: {                 # 1/5
-                2: None,         # 1/10
-                3: None,         # 1/15
-            },
-            7: {                 # 1/7
-                2: None,         # 1/14
-            },
-            11: None,            # 1/11
-            13: None,            # 1/13
-        }
+            5: {                  # 1/5
+                2: None,          # 1/10
+                3: None,          # 1/15
+                },
+            7: {                  # 1/7
+                2: None,          # 1/14
+                },
+            11: None,             # 1/11
+            13: None,             # 1/13
+            }
 
     ### PRIVATE METHODS ###
 
@@ -174,8 +177,6 @@ class UnweightedSearchTree(SearchTree):
         return tuple((1,) * x for x in sorted(node.keys()))
 
     def _is_valid_definition(self, definition):
-        if not isinstance(definition, dict) or not len(definition):
-            return False
         def recurse(n):
             results = []
             for key in n:
@@ -190,4 +191,6 @@ class UnweightedSearchTree(SearchTree):
                 else:
                     results.append(True)
             return results
+        if not isinstance(definition, dict) or not len(definition):
+            return False
         return all(recurse(definition))
