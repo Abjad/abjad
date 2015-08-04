@@ -2,6 +2,7 @@
 import abc
 import copy
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.topleveltools import new
 
 
 class GraphvizMixin(AbjadObject):
@@ -21,6 +22,30 @@ class GraphvizMixin(AbjadObject):
         self._verify_attributes(attributes, '_attributes')
 
     ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _copy_with_memo(node):
+        from abjad.tools import systemtools
+        manager = systemtools.StorageFormatManager
+        edges = set(getattr(node, '_edges', ()))
+        mapping = dict()
+        args = manager.get_keyword_argument_dictionary(node)
+        if 'children' not in args:
+            copied_node = new(node)
+            mapping[node] = copied_node
+        else:
+            copied_node = new(node, children=None)
+            mapping[node] = copied_node
+            for child in args['children']:
+                (
+                    copied_child,
+                    child_edges,
+                    child_mapping,
+                    ) = GraphvizMixin._copy_with_memo(child)
+                copied_node.append(copied_child)
+                edges.update(child_edges)
+                mapping.update(child_mapping)
+        return copied_node, edges, mapping
 
     def _format_attribute(self, name, value):
         from abjad.tools import documentationtools

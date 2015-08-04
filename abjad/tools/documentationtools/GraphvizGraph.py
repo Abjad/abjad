@@ -2,6 +2,7 @@
 import subprocess
 from abjad.tools.datastructuretools import TreeContainer
 from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
+from abjad.tools.topleveltools import new
 
 
 class GraphvizGraph(GraphvizMixin, TreeContainer):
@@ -187,6 +188,20 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
         self._node_order = None
 
     ### SPECIAL METHODS ###
+
+    def __copy__(self):
+        r'''Copies GraphvizGraph.
+
+        Returns copied graph.
+        '''
+        copied_node, edges, mapping = self._copy_with_memo(self)
+        for edge in edges:
+            head, tail = edge.head, edge.tail
+            if head not in mapping or tail not in mapping:
+                continue
+            new_edge = new(edge)
+            new_edge(mapping[tail], mapping[head])
+        return copied_node
 
     def __graph__(self, **kwargs):
         r'''Gets graphviz graph.

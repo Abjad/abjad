@@ -21,13 +21,19 @@ class GraphvizEdge(GraphvizMixin):
 
     ### INITIALIZER ###
 
-    def __init__(self, attributes=None, is_directed=True):
+    def __init__(
+        self,
+        attributes=None,
+        is_directed=True,
+        head_port_position=None,
+        tail_port_position=None,
+        ):
         GraphvizMixin.__init__(self, attributes=attributes)
         self._head = None
         self._tail = None
         self._is_directed = bool(is_directed)
-        self._head_port_position = None
-        self._tail_port_position = None
+        self.head_port_position = head_port_position
+        self.tail_port_position = tail_port_position
 
     ### SPECIAL METHODS ###
 
