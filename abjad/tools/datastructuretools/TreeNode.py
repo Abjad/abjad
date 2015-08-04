@@ -40,13 +40,6 @@ class TreeNode(AbjadObject):
             arguments.append(argument)
         return type(self)(*arguments)
 
-    def __ne__(self, expr):
-        r'''Is true when tree node does not equal `expr`. Otherwise false.
-
-        Returns boolean.
-        '''
-        return not self.__eq__(expr)
-
     ### PRIVATE METHODS ###
 
     def _cache_named_children(self):
