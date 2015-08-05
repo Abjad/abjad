@@ -57,11 +57,37 @@ First make eight 1/4 notes, rising by half-step from C to G:
     staff = Staff(notes)
     show(staff)
 
-That's nice, but a little bland.
+..  hint::
 
-Let's split the notes you just made every 5/16, transpose every other
-split group up by a major-seventh, slur every split group, and attach an accent
-to the first note of each split group:
+    Click on any music notation you find in Abjad's documentation to see its
+    `LilyPond`_ source code.
+
+..  note::
+
+    You might notice that the music notation throughout Abjad's documentation
+    doesn't quite look like what `LilyPond`_ produces out-of-the-box.
+    There are a number of small differences. For example, all of the notes,
+    chords and rests are spaced proportionally. There are no bar numbers. The
+    glissandi are a little bit thicker than normal. Tuplet brackets show the
+    tuplet ratio rather than a single number.
+    
+    How does this happen? Our notation examples are generated as part of
+    Abjad's doc-building process via a custom `Sphinx`_ extension housed in
+    Abjad's :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>` subpackage.
+    To get the look-and-feel we want for our examples, we include a default
+    :download:`stylesheet <_stylesheets/default.ly>` in each generated file.
+    
+    Not all examples are styled the same. When demonstrating `LilyPond`_
+    overrides or page layout options we may replace Abjad's default
+    documentation stylesheet with another stylesheet or disable documentation
+    stylesheets entirely. If, while examining the `LilyPond`_ source files in
+    Abjad's documentation, you encounter ``\include "..."`` statements in those
+    files, you can find the corresponding stylesheets in Abjad's documentation
+    source directory: ``abjad/docs/source/_stylesheets/``.
+
+Now, let's split the notes you just made every 5/16 duration, transpose every
+other split group up by a major-seventh, then slur every split group, and
+finally attach an accent to the first note of each split group:
 
 ..  abjad::
 
