@@ -433,7 +433,6 @@ class DocumentationManager(abctools.AbjadObject):
     def _get_ignored_classes(self):
         from abjad.tools import abjadbooktools
         ignored_classes = set([
-            abjadbooktools.abjad_doctest_block,
             abjadbooktools.abjad_import_block,
             abjadbooktools.abjad_input_block,
             abjadbooktools.abjad_output_block,
