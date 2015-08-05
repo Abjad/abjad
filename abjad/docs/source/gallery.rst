@@ -1,7 +1,13 @@
 Score gallery
 =============
 
-The following works were composed with the assistance of Abjad.
+The following works were composed with the assistance of Abjad. The source code
+for many of these scores is also available for pedagogical purposes.
+
+..  hint::
+    
+    Click on any image to zoom in.
+
 
 Al-kitab al-khamr *(2015)*
 ``````````````````````````
