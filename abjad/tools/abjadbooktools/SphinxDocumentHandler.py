@@ -3,6 +3,8 @@ from __future__ import print_function
 import collections
 import glob
 import hashlib
+import importlib
+import inspect
 import os
 import posixpath
 import re
@@ -17,6 +19,7 @@ from docutils.frontend import OptionParser
 from docutils.parsers.rst import Parser
 from docutils.parsers.rst import directives
 from docutils.utils import new_document
+from sphinx import addnodes
 from sphinx.util import FilenameUniqDict
 from sphinx.util.console import bold, red, brown
 from sphinx.util.osutil import copyfile, ensuredir
@@ -93,6 +96,116 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def on_doctree_read(app, document):
+        SphinxDocumentHandler.style_document(app, document)
+        SphinxDocumentHandler.interpret_code_blocks(app, document)
+
+    @staticmethod
+    def style_document(app, document):
+        def get_unique_parts(parts):
+            unique_parts = [parts[0]]
+            for part in parts[1:]:
+                if part != unique_parts[-1]:
+                    unique_parts.append(part)
+                else:
+                    break
+            return unique_parts
+        classes_to_attributes = {}
+        for desc_node in document.traverse(addnodes.desc):
+            if desc_node.get('domain') != 'py':
+                continue
+            signature_node = desc_node.traverse(addnodes.desc_signature)[0]
+            module_name = signature_node.get('module')
+            object_name = signature_node.get('fullname')
+            object_type = desc_node.get('objtype')
+            module = importlib.import_module(module_name)
+            if object_type in ('function', 'class'):
+                addname_node = signature_node.traverse(addnodes.desc_addname)[0]
+                text = addname_node[0].astext()
+                parts = [x for x in text.split('.') if x]
+                parts = get_unique_parts(parts)
+                if parts[0] in ('abjad', 'experimental', 'ide'):
+                    parts = parts[-1:]
+                if parts:
+                    text = '{}.'.format('.'.join(parts))
+                else:
+                    text = ''
+                addname_node[0] = nodes.Text(text)
+            if object_type == 'class':
+                cls = getattr(module, object_name, None)
+                if cls is None:
+                    continue
+                if cls not in classes_to_attributes:
+                    classes_to_attributes[cls] = {}
+                    attributes = inspect.classify_class_attrs(cls)
+                    for attribute in attributes:
+                        classes_to_attributes[cls][attribute.name] = attribute
+                if inspect.isabstract(cls):
+                    labelnode = addnodes.only(expr='html')
+                    labelnode.append(nodes.emphasis(
+                        'abstract ',
+                        'abstract ',
+                        classes=['property'],
+                        ))
+                    signature_node.insert(0, labelnode)
+            elif object_type in ('method', 'attribute', 'staticmethod', 'classmethod'):
+                cls_name, attr_name = object_name.split('.')
+                cls = getattr(module, cls_name, None)
+                if cls is None:
+                    continue
+                attr = getattr(cls, attr_name)
+                inspected_attr = classes_to_attributes[cls][attr_name]
+                label_node = addnodes.only(expr='html')
+                defining_class = inspected_attr.defining_class
+                if defining_class != cls:
+                    addname_node = signature_node.traverse(
+                        addnodes.desc_addname)[0]
+                    if defining_class.__module__.startswith('abjad'):
+                        reftarget = defining_class.__module__
+                    else:
+                        reftarget = '{}.{}'.format(
+                            defining_class.__module__,
+                            defining_class.__name__,
+                            )
+                    xref_node = addnodes.pending_xref(
+                        '',
+                        refdomain='py',
+                        refexplicit=True,
+                        reftype='class',
+                        reftarget=reftarget,
+                        )
+                    xref_node.append(nodes.literal(
+                        '',
+                        '{}'.format(defining_class.__name__),
+                        classes=['descclassname'],
+                        ))
+                    html_only_class_name_node = addnodes.only(expr='html')
+                    html_only_class_name_node.append(nodes.Text('('))
+                    html_only_class_name_node.append(xref_node)
+                    html_only_class_name_node.append(nodes.Text(').'))
+                    latex_only_class_name_node = addnodes.only(expr='latex')
+                    latex_only_class_name_node.append(nodes.Text(
+                        '({}).'.format(defining_class.__name__),
+                        ))
+                    addname_node.clear()
+                    addname_node.append(html_only_class_name_node)
+                    addname_node.append(latex_only_class_name_node)
+                if getattr(attr, '__isabstractmethod__', False):
+                    label_node.append(nodes.emphasis(
+                        'abstract ',
+                        'abstract ',
+                        classes=['property'],
+                        ))
+                if hasattr(attr, 'im_self') and attr.im_self is not None:
+                    signature_node.pop(0)
+                    label_node.append(nodes.emphasis(
+                        'classmethod ',
+                        'classmethod ',
+                        classes=['property'],
+                        ))
+                signature_node.insert(0, label_node)
+
+    @staticmethod
+    def interpret_code_blocks(app, document):
         import abjad
         from abjad.tools import abjadbooktools
         if SphinxDocumentHandler.should_ignore_document(app, document):
@@ -101,8 +214,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             print(message)
             return
         try:
-            #if 'api' not in document['source']:
-            #    return
             handler = SphinxDocumentHandler()
             abjad_blocks = handler.collect_abjad_input_blocks(document)
             abjad_console = abjadbooktools.AbjadBookConsole(
@@ -120,10 +231,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 handler.interpret_input_blocks(document, literal_blocks, literal_console)
                 handler.rebuild_document(document, abjad_blocks)
                 handler.rebuild_document(document, literal_blocks)
-            #else:
-            #    print()
-            #    message = '    [abjad-book] rendering not required'
-            #    print(message)
             abjad_console.restore_topleveltools_dict()
             literal_console.restore_topleveltools_dict()
         except abjadbooktools.AbjadBookError as e:
@@ -293,7 +400,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     target_file_names.append(target_file_name_dict[page])
             if len(target_file_names) == len(pages):
                 found_all_pages = True
-        #print('\t', target_file_names, found_all_pages)
         return target_file_names, found_all_pages
 
     @staticmethod
@@ -307,8 +413,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         if image_render_specifier is None:
             image_render_specifier = abjadbooktools.ImageRenderSpecifier()
         pages = image_layout_specifier.pages
-        #print(node.pformat())
-        #print('PAGES', pages)
         target_extension = '.png'
         sha1sum = hashlib.sha1()
         sha1sum.update(node[0].encode('utf-8'))
@@ -322,7 +426,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             source_extension = '.ly'
         absolute_directory_path, relative_directory_path = \
             SphinxDocumentHandler.get_image_directory_paths(self)
-        #print(absolute_directory_path, relative_directory_path)
         relative_source_file_path = posixpath.join(
             relative_directory_path,
             file_base_name + source_extension,
@@ -656,9 +759,14 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         from abjad.tools import abjadbooktools
         app.add_config_value('abjadbook_ignored_documents', (), 'env')
         app.add_directive('abjad', abjadbooktools.AbjadDirective)
+        app.add_directive('doctest', abjadbooktools.DoctestDirective)
         app.add_directive('import', abjadbooktools.ImportDirective)
         app.add_directive('shell', abjadbooktools.ShellDirective)
         app.add_directive('thumbnail', abjadbooktools.ThumbnailDirective)
+        app.add_javascript('abjad.js')
+        app.add_javascript('copybutton.js')
+        app.add_javascript('ga.js')
+        app.add_stylesheet('abjad.css')
         app.add_node(
             abjadbooktools.abjad_import_block,
             html=[SphinxDocumentHandler.visit_abjad_import_block, None],

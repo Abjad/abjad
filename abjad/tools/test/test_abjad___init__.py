@@ -13,6 +13,7 @@ ignored_classes = (
     abjadbooktools.AbjadDirective,
     abjadbooktools.CodeBlock,
     abjadbooktools.CodeOutputProxy,
+    abjadbooktools.DoctestDirective,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.ImportDirective,
     abjadbooktools.LilyPondOutputProxy,

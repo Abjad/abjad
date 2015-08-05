@@ -24,7 +24,6 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'abjad.docs.ext.abjadbook',
-    'abjad.docs.ext.style',
     ]
 master_doc = 'index'
 project = u'Abjad'

@@ -20,9 +20,6 @@ class AbjadDoctestDirective(sphinx.util.compat.Directive):
 
 
 def doctree_read(app, doctree):
-
-    classes_to_attributes = {}
-
     def get_unique_parts(parts):
         unique_parts = [parts[0]]
         for part in parts[1:]:
@@ -31,17 +28,15 @@ def doctree_read(app, doctree):
             else:
                 break
         return unique_parts
-
+    classes_to_attributes = {}
     for desc_node in doctree.traverse(addnodes.desc):
         if desc_node.get('domain') != 'py':
             continue
-
         signature_node = desc_node.traverse(addnodes.desc_signature)[0]
         module_name = signature_node.get('module')
         object_name = signature_node.get('fullname')
         object_type = desc_node.get('objtype')
         module = importlib.import_module(module_name)
-
         if object_type in ('function', 'class'):
             addname_node = signature_node.traverse(addnodes.desc_addname)[0]
             text = addname_node[0].astext()
@@ -54,7 +49,6 @@ def doctree_read(app, doctree):
             else:
                 text = ''
             addname_node[0] = nodes.Text(text)
-
         if object_type == 'class':
             cls = getattr(module, object_name, None)
             if cls is None:
@@ -72,7 +66,6 @@ def doctree_read(app, doctree):
                     classes=['property'],
                     ))
                 signature_node.insert(0, labelnode)
-
         elif object_type in ('method', 'attribute', 'staticmethod', 'classmethod'):
             cls_name, attr_name = object_name.split('.')
             cls = getattr(module, cls_name, None)
