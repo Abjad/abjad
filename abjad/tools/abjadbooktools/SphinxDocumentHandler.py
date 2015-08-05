@@ -167,7 +167,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         thumbnail_paths = app.builder.thumbnails
         for path in app.builder.status_iterator(
             thumbnail_paths,
-            'Rendering thumbnails...',
+            'rendering gallery thumbnails...',
             brown,
             len(thumbnail_paths),
             ):
@@ -448,16 +448,40 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def visit_abjad_output_block_latex(self, node):
-        try:
-            pass
-        except:
-            traceback.print_exc()
         raise nodes.SkipNode
 
     @staticmethod
     def visit_abjad_thumbnail_block_html(self, node):
         try:
             self.builder.thumbnails.add_file('', node['uri'])
+            alt = node['title']
+            title = node['title']
+            classes = ' '.join(node['classes'])
+            group = 'group-{}'.format(
+                node['group'] if node['group'] else node['uri']
+                )
+            if node['uri'] in self.builder.images:
+                node['uri'] = os.path.join(
+                    self.builder.imgpath,
+                    self.builder.images[node['uri']],
+                    )
+            image_path = node['uri']
+            prefix, suffix = os.path.splitext(image_path)
+            thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
+            line = '<a data-lightbox="{group}" href="{href}" class="{cls}" '
+            line += 'title="{title}" data-title="{title}">'
+            line = line.format(
+                group=group,
+                href=image_path,
+                cls=classes,
+                title=title,
+                )
+            self.body.append(line)
+            line = '<img src="{src}" alt="{alt}"/>'
+            line = line.format(src=thumbnail_path, alt=alt)
+            self.body.append(line)
+            line = '</a>'
+            self.body.append(line)
         except:
             traceback.print_exc()
         raise nodes.SkipNode
