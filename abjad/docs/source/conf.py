@@ -23,7 +23,6 @@ extensions = [
     'sphinx.ext.graphviz',
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
-    'sphinxcontrib.images',
     'abjad.docs.ext.abjadbook',
     'abjad.docs.ext.style',
     ]
