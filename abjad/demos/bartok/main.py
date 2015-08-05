@@ -1,5 +1,5 @@
-# -*- encoding: utf-8 -*-
 #! /usr/bin/env python
+# -*- encoding: utf-8 -*-
 
 if __name__ == '__main__':
     from abjad import show

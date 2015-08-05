@@ -8,4 +8,5 @@ systemtools.ImportManager.import_structured_package(
 
 _documentation_section = 'demos'
 
-del(main)
+if 'main' in dir():
+    del(globals()['main'])

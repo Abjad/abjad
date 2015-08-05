@@ -1,11 +1,27 @@
 # -*- encoding: utf-8 -*-
 import copy
-from abjad import *
+from abjad import Beam
+from abjad import Clef
+from abjad import Crescendo
+from abjad import Decrescendo
+from abjad import Dynamic
+from abjad import Markup
+from abjad import Measure
+from abjad import Score
+from abjad import Slur
+from abjad import Staff
+from abjad import StaffGroup
+from abjad import Tie
+from abjad import Voice
+from abjad import attach
+from abjad import indicatortools
+from abjad import override
+from abjad import spannertools
 
 
 def make_bartok_score():
     score = Score([])
-    piano_staff = scoretools.StaffGroup([], context_name='PianoStaff')
+    piano_staff = StaffGroup([], context_name='PianoStaff')
     upper_staff = Staff([])
     lower_staff = Staff([])
     piano_staff.append(upper_staff)
