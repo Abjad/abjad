@@ -64,7 +64,6 @@ extras_require = {
     'development': [
         'pytest',
         'sphinx>=1.3.1',
-        'sphinxcontrib-images',
         'PyPDF2',
         ],
     'ipython': [

@@ -1,6 +1,6 @@
 PyPDF2
+ipython
 ply
 pytest
 six
 sphinx
-sphinxcontrib-images
