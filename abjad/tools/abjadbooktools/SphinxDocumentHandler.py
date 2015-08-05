@@ -17,7 +17,8 @@ from docutils.frontend import OptionParser
 from docutils.parsers.rst import Parser
 from docutils.parsers.rst import directives
 from docutils.utils import new_document
-from sphinx.util.console import bold, red
+from sphinx.util import FilenameUniqDict
+from sphinx.util.console import bold, red, brown
 
 
 class SphinxDocumentHandler(abctools.AbjadObject):
@@ -133,6 +134,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def on_builder_inited(app):
+        app.builder.thumbnails = FilenameUniqDict()
         app.builder.imagedir = '_images'
         stylesheets_directory = os.path.join(
             app.builder.srcdir,
@@ -154,12 +156,47 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 stylesheets_directory,
                 file_name,
                 )
-            #print('from', source_file_path, 'to', image_directory)
             shutil.copy(source_file_path, image_directory)
 
     @staticmethod
     def on_build_finished(app, exc):
-        pass
+        image_directory = os.path.join(
+            app.builder.outdir,
+            app.builder.imagedir,
+            )
+        thumbnail_paths = app.builder.thumbnails
+        for path in app.builder.status_iterator(
+            thumbnail_paths,
+            'Rendering thumbnails...',
+            brown,
+            len(thumbnail_paths),
+            ):
+            image_name = os.path.basename(path)
+            prefix, suffix = os.path.splitext(image_name)
+            thumbnail_name = '{}-thumbnail{}'.format(prefix, suffix)
+            image_path = os.path.join(image_directory, image_name)
+            thumbnail_path = os.path.join(image_directory, thumbnail_name)
+            resize_command = 'convert {} -resize 696x {}'.format(
+                image_path,
+                thumbnail_path,
+                )
+            process = subprocess.Popen(
+                resize_command,
+                shell=True,
+                stderr=subprocess.STDOUT,
+                stdout=subprocess.PIPE,
+                )
+            stdout, stderr = process.communicate()
+            return_code = process.returncode
+            if return_code:
+                message = 'Failed to render {}.'
+                message = message.format(thumbnail_name)
+                app.builder.warn(message)
+                app.builder.warn(resize_command)
+                if stdout:
+                    if sys.version_info[0] == 3:
+                        stdout = stdout.decode('utf-8')
+                    app.builder.warn(stdout)
 
     @staticmethod
     def get_image_directory_paths(self):
@@ -419,6 +456,25 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         raise nodes.SkipNode
 
     @staticmethod
+    def visit_abjad_thumbnail_block_html(self, node):
+        try:
+            self.builder.thumbnails.add_file('', node['uri'])
+        except:
+            traceback.print_exc()
+        raise nodes.SkipNode
+
+    @staticmethod
+    def visit_abjad_thumbnail_block_latex(self, node):
+        try:
+            print()
+            message = bold(red('Found abjad_thumbnail_block.'))
+            self.builder.warn(message, (self.builder.current_docname, node.line))
+            print(systemtools.TestManager.clean_string(node.pformat()))
+        except:
+            traceback.print_exc()
+        raise nodes.SkipNode
+
+    @staticmethod
     def write_image_source(self, node, absolute_source_file_path):
         with open(absolute_source_file_path, 'w') as file_pointer:
             code = node[0]
@@ -528,6 +584,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         app.add_directive('abjad', abjadbooktools.AbjadDirective)
         app.add_directive('import', abjadbooktools.ImportDirective)
         app.add_directive('shell', abjadbooktools.ShellDirective)
+        app.add_directive('thumbnail', abjadbooktools.ThumbnailDirective)
         app.add_node(
             abjadbooktools.abjad_import_block,
             html=[SphinxDocumentHandler.visit_abjad_import_block, None],
@@ -542,6 +599,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             abjadbooktools.abjad_output_block,
             html=[SphinxDocumentHandler.visit_abjad_output_block_html, None],
             latex=[SphinxDocumentHandler.visit_abjad_output_block_latex, None],
+            )
+        app.add_node(
+            abjadbooktools.abjad_thumbnail_block,
+            html=[SphinxDocumentHandler.visit_abjad_thumbnail_block_html, None],
+            latex=[SphinxDocumentHandler.visit_abjad_thumbnail_block_latex, None],
             )
         app.connect('build-finished', SphinxDocumentHandler.on_build_finished)
         app.connect('builder-inited', SphinxDocumentHandler.on_builder_inited)
