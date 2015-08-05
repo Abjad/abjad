@@ -5,9 +5,9 @@ import glob
 import hashlib
 import os
 import posixpath
-import subprocess
 import re
 import shutil
+import subprocess
 import sys
 import traceback
 from abjad.tools import abctools
@@ -19,6 +19,7 @@ from docutils.parsers.rst import directives
 from docutils.utils import new_document
 from sphinx.util import FilenameUniqDict
 from sphinx.util.console import bold, red, brown
+from sphinx.util.osutil import copyfile, ensuredir
 
 
 class SphinxDocumentHandler(abctools.AbjadObject):
@@ -178,19 +179,33 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         target_static_path = os.path.join(app.builder.outdir, '_static')
         source_lightbox_path = os.path.join(source_static_path, 'lightbox2')
         target_lightbox_path = os.path.join(target_static_path, 'lightbox2')
+        relative_file_paths = []
+        for root, _, file_names in os.walk(source_lightbox_path):
+            for file_name in file_names:
+                absolute_file_path = os.path.join(root, file_name)
+                relative_file_path = os.path.relpath(
+                    absolute_file_path,
+                    source_static_path,
+                    )
+                relative_file_paths.append(relative_file_path)
         if os.path.exists(target_lightbox_path):
             shutil.rmtree(target_lightbox_path)
-        if os.path.exists(source_lightbox_path):
-            shutil.copytree(source_lightbox_path, target_lightbox_path)
-        for root, dirs, file_names in os.walk(target_lightbox_path):
-            for file_name in file_names:
-                abs_file_path = os.path.join(root, file_name)
-                rel_file_path = os.path.relpath(
-                    abs_file_path, target_static_path)
-                if rel_file_path.endswith('.js'):
-                    app.add_javascript(rel_file_path)
-                elif rel_file_path.endswith('.css'):
-                    app.add_stylesheet(rel_file_path)
+        for relative_file_path in app.builder.status_iterator(
+            relative_file_paths,
+            'installing lightbox files...',
+            brown,
+            len(relative_file_paths),
+            ):
+            source_path = os.path.join(source_static_path, relative_file_path)
+            target_path = os.path.join(target_static_path, relative_file_path)
+            target_directory = os.path.dirname(target_path)
+            if not os.path.exists(target_directory):
+                ensuredir(target_directory)
+            copyfile(source_path, target_path)
+            if relative_file_path.endswith('.js'):
+                app.add_javascript(relative_file_path)
+            elif relative_file_path.endswith('.css'):
+                app.add_stylesheet(relative_file_path)
 
     @staticmethod
     def render_thumbnails(app):
@@ -210,6 +225,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             thumbnail_name = '{}-thumbnail{}'.format(prefix, suffix)
             image_path = os.path.join(image_directory, image_name)
             thumbnail_path = os.path.join(image_directory, thumbnail_name)
+            if os.path.exists(thumbnail_path):
+                continue
             resize_command = 'convert {} -resize 696x {}'.format(
                 image_path,
                 thumbnail_path,
