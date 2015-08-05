@@ -119,9 +119,6 @@ package dependencies.
 -   `sphinx_rtd_theme <https://pypi.python.org/pypi/sphinx_rtd_theme>`_, for
     theming Abjad's HTML documentation
 
--   `sphinxcontrib-images <https://github.com/spinus/sphinxcontrib-images/>`_,
-    for handling image thumbnails in Abjad's HTML documentation
-
 -   `PyPDF2`_, for performing preprocessing on `LaTeX`_ source with Abjad's
     ``ajv book`` tool
 
