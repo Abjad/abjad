@@ -1,0 +1,24 @@
+autodetect: false
+
+doc-warnings: yes
+
+ignore-paths:
+    - experimental
+
+ignore-patterns:
+    - (^|/)docs(/|$)
+
+max-line-length: 80
+
+pep8:
+    full: true
+
+pyroma:
+    run: true
+
+requirements:
+    - requirements.txt
+
+strictness: veryhigh
+
+test-warnings: no
