@@ -1,6 +1,8 @@
 autodetect: false
 
-doc-warnings: yes
+doc-warnings: no
+
+test-warnings: no
 
 ignore-paths:
     - experimental
@@ -10,15 +12,21 @@ ignore-patterns:
 
 max-line-length: 80
 
-pep8:
-    full: true
-
-pyroma:
-    run: true
-
 requirements:
     - requirements.txt
 
 strictness: veryhigh
 
-test-warnings: no
+pep8:
+    full: true
+    disable:
+        - E123
+        - E125
+        - W292
+
+pylint:
+    disable:
+        - W0232
+
+pyroma:
+    run: true
