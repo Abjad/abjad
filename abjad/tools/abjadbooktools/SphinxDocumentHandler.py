@@ -160,6 +160,40 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def on_build_finished(app, exc):
+        try:
+            SphinxDocumentHandler.render_thumbnails(app)
+        except:
+            traceback.print_exc()
+
+    @staticmethod
+    def on_env_updated(app, env):
+        try:
+            SphinxDocumentHandler.install_lightbox_static_files(app)
+        except:
+            traceback.print_exc()
+
+    @staticmethod
+    def install_lightbox_static_files(app):
+        source_static_path = os.path.join(app.builder.srcdir, '_static')
+        target_static_path = os.path.join(app.builder.outdir, '_static')
+        source_lightbox_path = os.path.join(source_static_path, 'lightbox2')
+        target_lightbox_path = os.path.join(target_static_path, 'lightbox2')
+        if os.path.exists(target_lightbox_path):
+            shutil.rmtree(target_lightbox_path)
+        if os.path.exists(source_lightbox_path):
+            shutil.copytree(source_lightbox_path, target_lightbox_path)
+        for root, dirs, file_names in os.walk(target_lightbox_path):
+            for file_name in file_names:
+                abs_file_path = os.path.join(root, file_name)
+                rel_file_path = os.path.relpath(
+                    abs_file_path, target_static_path)
+                if rel_file_path.endswith('.js'):
+                    app.add_javascript(rel_file_path)
+                elif rel_file_path.endswith('.css'):
+                    app.add_stylesheet(rel_file_path)
+
+    @staticmethod
+    def render_thumbnails(app):
         image_directory = os.path.join(
             app.builder.outdir,
             app.builder.imagedir,
@@ -631,6 +665,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         app.connect('build-finished', SphinxDocumentHandler.on_build_finished)
         app.connect('builder-inited', SphinxDocumentHandler.on_builder_inited)
         app.connect('doctree-read', SphinxDocumentHandler.on_doctree_read)
+        app.connect('env-updated', SphinxDocumentHandler.on_env_updated)
 
     def register_error(self):
         self._errored = True
