@@ -385,66 +385,65 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     @staticmethod
     def visit_abjad_output_block_html(self, node):
         from abjad.tools import abjadbooktools
-        #print()
-        #print(node.pformat())
+        image_layout_specifier = node.get('image_layout_specifier', None)
+        if image_layout_specifier is None:
+            image_layout_specifier = abjadbooktools.ImageLayoutSpecifier()
+        image_render_specifier = node.get('image_render_specifier', None)
+        if image_render_specifier is None:
+            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+        if node['renderer'] not in ('graphviz', 'lilypond'):
+            raise nodes.SkipNode
+        absolute_image_directory_path = os.path.join(
+            self.builder.outdir,
+            self.builder.imagedir,
+            'abjadbook',
+            )
+        if not os.path.exists(absolute_image_directory_path):
+            os.makedirs(absolute_image_directory_path)
         try:
-            image_layout_specifier = node.get('image_layout_specifier', None)
-            if image_layout_specifier is None:
-                image_layout_specifier = abjadbooktools.ImageLayoutSpecifier()
-            image_render_specifier = node.get('image_render_specifier', None)
-            if image_render_specifier is None:
-                image_render_specifier = abjadbooktools.ImageRenderSpecifier()
-            if node['renderer'] not in ('graphviz', 'lilypond'):
-                raise nodes.SkipNode
-            absolute_image_directory_path = os.path.join(
-                self.builder.outdir,
-                self.builder.imagedir,
-                'abjadbook',
-                )
-            if not os.path.exists(absolute_image_directory_path):
-                os.makedirs(absolute_image_directory_path)
             relative_source_file_path, relative_target_file_paths = \
                 SphinxDocumentHandler.render_png_image(self, node)
-            if image_layout_specifier.with_columns:
-                output = r'''
-                <a class="table-cell thumbnail" href="{source}">
-                    <img src="{target}" alt="View source." title="View source." />
-                </a>
-                '''
-                row_open = r'''<div class="table-row">'''
-                row_close = r'''</div>'''
-                stop = len(relative_target_file_paths)
-                step = image_layout_specifier.with_columns
-                for i in range(0, stop, step):
-                    self.body.append(row_open)
-                    paths = relative_target_file_paths[i:i + step]
-                    for relative_target_file_path in paths:
-                        result = output.format(
-                            source=relative_source_file_path,
-                            target=relative_target_file_path,
-                            )
-                        result = systemtools.TestManager.clean_string(result)
-                        result = ('    ' + _ for _ in result.splitlines())
-                        result = '\n'.join(result)
-                        self.body.append(result)
-                    self.body.append(row_close)
-            else:
-                output = r'''
-                <div class="abjad-book-image">
-                    <a href="{source}">
-                        <img src="{target}" alt="View source." title="View source." />
-                    </a>
-                </div>
-                '''
-                for relative_target_file_path in relative_target_file_paths:
+        except:
+            traceback.print_exc()
+            raise nodes.SkipNode
+        if image_layout_specifier.with_columns:
+            output = r'''
+            <a class="table-cell thumbnail" href="{source}">
+                <img src="{target}" alt="View source." title="View source." />
+            </a>
+            '''
+            row_open = r'''<div class="table-row">'''
+            row_close = r'''</div>'''
+            stop = len(relative_target_file_paths)
+            step = image_layout_specifier.with_columns
+            for i in range(0, stop, step):
+                self.body.append(row_open)
+                paths = relative_target_file_paths[i:i + step]
+                for relative_target_file_path in paths:
                     result = output.format(
                         source=relative_source_file_path,
                         target=relative_target_file_path,
                         )
                     result = systemtools.TestManager.clean_string(result)
+                    result = ('    ' + _ for _ in result.splitlines())
+                    result = '\n'.join(result)
                     self.body.append(result)
-        except:
-            traceback.print_exc()
+                self.body.append(row_close)
+        else:
+            output = r'''
+            <div class="abjad-book-image">
+                <a href="{source}">
+                    <img src="{target}" alt="View source." title="View source." />
+                </a>
+            </div>
+            '''
+            for relative_target_file_path in relative_target_file_paths:
+                result = output.format(
+                    source=relative_source_file_path,
+                    target=relative_target_file_path,
+                    )
+                result = systemtools.TestManager.clean_string(result)
+                self.body.append(result)
         raise nodes.SkipNode
 
     @staticmethod
