@@ -117,9 +117,6 @@ package dependencies.
 -   [sphinx_rtd_theme](https://pypi.python.org/pypi/sphinx_rtd_theme), for
     theming Abjad's HTML documentation
 
--   [sphinxcontrib-images](<https://github.com/spinus/sphinxcontrib-images/),
-    for handling image thumbnails in Abjad's HTML documentation
-
 -   [PyPDF2], for performing preprocessing on [LaTeX] source with Abjad's
     ``ajv book`` tool
 
@@ -225,13 +222,16 @@ install Abjad into that instead:
 
 ## Configuring Abjad
 
-Abjad creates a ``~/.abjad`` directory the first time it runs. In the ``~/.abjad`` directory you will find an ``abjad.cfg`` file. This is the Abjad configuration file. You can use the Abjad configuration file to tell Abjad about your preferred PDF file viewer, MIDI player, LilyPond language and so on.
+Abjad creates a ``~/.abjad`` directory the first time it runs. In the
+``~/.abjad`` directory you will find an ``abjad.cfg`` file. This is the Abjad
+configuration file. You can use the Abjad configuration file to tell Abjad
+about your preferred PDF file viewer, MIDI player, LilyPond language and so on.
 
 Your configuration file will look something like this the first time you open
 it:
 
     # Abjad configuration file created by Abjad on 31 January 2014 00:08:17.
-    # File is interpreted by ConfigObj and should follow ini syntax.
+    # File is interpreted by Python's ConfigParser and should follow ini syntax.
 
     # Set to the directory where all Abjad-generated files
     # (such as PDFs and LilyPond files) should be saved.
