@@ -830,3 +830,34 @@ class DocumentationManager(abctools.AbjadObject):
                         self.prefix_pruned,
                         os.path.relpath(root),
                         ))
+
+    @staticmethod
+    def make_readme():
+        r'''Creates README.rst file.
+        '''
+        import abjad
+        abjad_path = abjad.__path__[0]
+        version = abjad.__version__
+        docs_path = os.path.join(abjad_path, 'docs', 'source')
+        abstract_path = os.path.join(docs_path, 'abstract.txt')
+        badges_path = os.path.join(docs_path, 'badges.txt')
+        links_path = os.path.join(docs_path, 'links.txt')
+        installation_path = os.path.join(docs_path, 'installation.rst')
+        result = 'Abjad {}'.format(version)
+        result = ['#' * len(result), result, '#' * len(result)]
+        with open(abstract_path, 'r') as file_pointer:
+            result.append('')
+            result.append(file_pointer.read())
+        with open(badges_path, 'r') as file_pointer:
+            result.append('')
+            result.append(file_pointer.read())
+        with open(links_path, 'r') as file_pointer:
+            result.append('')
+            result.append(file_pointer.read())
+        with open(installation_path, 'r') as file_pointer:
+            result.append('')
+            result.append(file_pointer.read())
+        result = '\n'.join(result)
+        readme_path = os.path.join(abjad_path, '..', 'README.rst')
+        with open(readme_path, 'w') as file_pointer:
+            file_pointer.write(result)

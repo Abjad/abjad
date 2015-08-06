@@ -1,14 +1,23 @@
-#####
-Abjad
-#####
+##########
+Abjad 2.16
+##########
 
 Abjad helps composers build up complex pieces of music notation in an iterative
-and incremental way. Use Abjad to create a symbolic representation of all the
+and incremental way. Use Abjad to create symbolic representations of all the
 notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad
-extends the Python programming language, you can use Abjad to make systematic
-changes to your music as you work. And because Abjad wraps the powerful
-LilyPond music notation package, you can use Abjad to control the typographic
-details of the symbols on the page.
+extends the `Python`_ programming language, you can use Abjad to make
+systematic changes to your music as you work. And because Abjad wraps the
+powerful `LilyPond`_ music notation package, you can use Abjad to control the
+typographic details of the symbols on the page.
+
+..  _LilyPond: http://lilypond.org/
+..  _Python: https://www.python.org/
+
+..  image:: https://travis-ci.org/Abjad/abjad.svg?branch=master
+    :target: https://travis-ci.org/Abjad/abjad
+
+..  image:: https://img.shields.io/coveralls/Abjad/abjad.svg
+    :target: https://coveralls.io/r/Abjad/abjad
 
 `GitHub`_ |
 `PyPI`_ |
@@ -17,11 +26,8 @@ details of the symbols on the page.
 `Issue Tracker <https://github.com/Abjad/abjad/issues>`_ |
 `Travis-CI <https://travis-ci.org/Abjad/abjad>`_
 
-..  image:: https://travis-ci.org/Abjad/abjad.svg?branch=master
-    :target: https://travis-ci.org/Abjad/abjad
-
-..  image:: https://img.shields.io/coveralls/Abjad/abjad.svg
-    :target: https://coveralls.io/r/Abjad/abjad
+..  _GitHub: https://github.com/Abjad/abjad
+..  _PyPI: https://pypi.python.org/pypi/Abjad
 
 Installing Abjad
 ================
@@ -37,6 +43,7 @@ following:
 
     ~$ python --version
     Python 2.7.10
+
 
 Standard Installation
 ---------------------
