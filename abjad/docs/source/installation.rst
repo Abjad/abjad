@@ -1,7 +1,7 @@
 Installing Abjad
 ================
 
-Abjad works with `CPython`_ versions 2.7 and 3.3+.
+Abjad works with `CPython`_ versions 2.7 and 3.3+, as well as `PyPy`_.
 
 Abjad works on Unix/Linux, OSX, and Windows.
 
@@ -289,6 +289,7 @@ you might want to set your ``pdf_viewer`` to ``evince`` and your
 ..  _MacTeX: https://tug.org/mactex/
 ..  _PyPDF2: http://pythonhosted.org/PyPDF2/
 ..  _PyPI: https://pypi.python.org/pypi/Abjad
+..  _PyPy: http://pypy.org/
 ..  _Python: https://www.python.org/
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _TeXLive: https://www.tug.org/texlive/
