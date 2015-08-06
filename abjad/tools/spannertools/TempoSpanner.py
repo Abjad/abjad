@@ -1834,7 +1834,7 @@ class TempoSpanner(Spanner):
                 ),
             value=markup,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         self._make_other_text_spanner_overrides(lilypond_format_bundle)
@@ -1860,7 +1860,7 @@ class TempoSpanner(Spanner):
                 ),
             value=0.25,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1871,7 +1871,7 @@ class TempoSpanner(Spanner):
                 ),
             value=0.25,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1882,7 +1882,7 @@ class TempoSpanner(Spanner):
                 ),
             value=1.5,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1895,7 +1895,7 @@ class TempoSpanner(Spanner):
                 ),
             value=-0.5,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         if self.left_broken_padding is not None:
@@ -1912,7 +1912,7 @@ class TempoSpanner(Spanner):
                 ),
             value=padding,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         #
@@ -1926,7 +1926,7 @@ class TempoSpanner(Spanner):
                 ),
             value=True,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1939,7 +1939,7 @@ class TempoSpanner(Spanner):
                 ),
             value=2,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1952,7 +1952,7 @@ class TempoSpanner(Spanner):
                 ),
             value=False,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1965,7 +1965,7 @@ class TempoSpanner(Spanner):
                 ),
             value=False,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1978,7 +1978,7 @@ class TempoSpanner(Spanner):
                 ),
             value=0,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
         #
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -1991,7 +1991,7 @@ class TempoSpanner(Spanner):
                 ),
             value=False,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
 
     def _start_tempo_trend_spanner_with_explicit_start(
@@ -2018,7 +2018,7 @@ class TempoSpanner(Spanner):
                 ),
             value=markup,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
 
     def _start_tempo_trend_spanner_with_implicit_start(
@@ -2048,7 +2048,7 @@ class TempoSpanner(Spanner):
                 ),
             value=markup,
             )
-        override_string = '\n'.join(override_._override_format_pieces)
+        override_string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(override_string)
 
     ### PUBLIC PROPERTIES ###
@@ -2289,7 +2289,7 @@ class TempoSpanner(Spanner):
         Returns number or none.
         '''
         return self._left_broken_padding
-        
+
     @property
     def left_broken_text(self):
         r'''Gets left broken text of tempo spanner.

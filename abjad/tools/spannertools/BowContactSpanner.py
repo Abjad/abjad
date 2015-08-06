@@ -283,7 +283,7 @@ class BowContactSpanner(Spanner):
             property_path='stencil',
             value=schemetools.Scheme('ly:text-interface::print'),
             )
-        string = '\n'.join(override_._override_format_pieces)
+        string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(string)
         override_ = lilypondnametools.LilyPondGrobOverride(
             grob_name='NoteHead',
@@ -291,7 +291,7 @@ class BowContactSpanner(Spanner):
             property_path='text',
             value=bow_contact_point.markup,
             )
-        string = '\n'.join(override_._override_format_pieces)
+        string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(string)
         y_offset = float((4 * bow_contact_point.contact_point) - 2)
         override_ = lilypondnametools.LilyPondGrobOverride(
@@ -300,7 +300,7 @@ class BowContactSpanner(Spanner):
             property_path='Y-offset',
             value=y_offset,
             )
-        string = '\n'.join(override_._override_format_pieces)
+        string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(string)
 
     def _make_bow_direction_change_contributions(
@@ -380,7 +380,7 @@ class BowContactSpanner(Spanner):
                 property_path='style',
                 value=style,
                 )
-            string = '\n'.join(override_._override_format_pieces)
+            string = override_.override_string
             lilypond_format_bundle.grob_overrides.append(string)
 
     def _make_pizzicato_overrides(
@@ -394,7 +394,7 @@ class BowContactSpanner(Spanner):
             property_path='style',
             value=style,
             )
-        string = '\n'.join(override_._override_format_pieces)
+        string = override_.override_string
         lilypond_format_bundle.grob_overrides.append(string)
 
     def _next_leaf_is_bowed(self, leaf):
