@@ -299,7 +299,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             shutil.rmtree(target_lightbox_path)
         for relative_file_path in app.builder.status_iterator(
             relative_file_paths,
-            'installing lightbox files...',
+            'installing lightbox files... ',
             brown,
             len(relative_file_paths),
             ):
