@@ -21,7 +21,7 @@ details of the symbols on the page.
     :target: https://travis-ci.org/Abjad/abjad
 
 ..  image:: https://img.shields.io/coveralls/Abjad/abjad.svg
-    :target: https://coveralls.io/r/Abjad/abjad)
+    :target: https://coveralls.io/r/Abjad/abjad
 
 Installing Abjad
 ================
