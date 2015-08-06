@@ -480,7 +480,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     'markuptools', 'mathtools',
                     'metertools', 'mutate', 'new',
                     'override', 'parse', 'persist',
-                    'pitchtools', 'play',
+                    'pitchtools', 'play', 'print',
                     'quantizationtools', 'quit',
                     'rhythmmakertools', 'rhythmtreetools',
                     'schemetools', 'scoretools', 'select',
@@ -574,7 +574,6 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert actual == target, \
             systemtools.TestManager.diff(actual, target, 'Diff:')
 
-    @unittest.skip('print() is broken.')
     def test_on_doctree_read_08(self):
         source = '''
         ..  abjad::

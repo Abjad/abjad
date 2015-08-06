@@ -362,6 +362,7 @@ class CodeBlock(abctools.AbjadValueObject):
         if isinstance(console.locals['graph'], prototype):
             console.locals['graph'] = self.graph
         console.locals['play'] = self.play
+        console.locals['print'] = self.print
         console.locals['quit'] = self.quit
         console.locals['show'] = self.show
         topleveltools = console.locals['topleveltools']
@@ -420,6 +421,20 @@ class CodeBlock(abctools.AbjadValueObject):
         r'''Proxies Abjad's toplevel `play()` function.
         '''
         pass
+
+    def print(self, *args, **kwargs):
+        r'''Proxies Python's builtin `print()` function.
+
+        Proxying `print()` is necessary because the original print function
+        makes multiple calls to `sys.stdout.write()` rather than one. In the
+        context of abjad-book code block interpretation, each write operation
+        adds a new line, hence the necessity of joining the `print()` arguments
+        into a single string and then writing that.
+
+        Note that this will produce unexpected results if attempting to do
+        fancy operations like overwriting the current line.
+        '''
+        self.write(' '.join(str(_) for _ in args))
 
     def quit(self):
         r'''Proxies Python's builtin `quit()` function.
