@@ -2,7 +2,7 @@ The new Abjad cookbook
 ======================
 
 ..  toctree::
-    :maxdepth: 1
+    :numbered:
 
     mapping_patterns_to_notation
     selecting_musical_objects
@@ -25,7 +25,7 @@ The old Abjad cookbook
 ======================
 
 ..  toctree::
-    :maxdepth: 1
+    :numbered:
 
     changing_notes_to_rests
     creating_rest_delimited_slurs
