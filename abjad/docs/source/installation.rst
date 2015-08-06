@@ -1,18 +1,15 @@
 Installing Abjad
 ================
 
-Abjad works with `CPython`_ versions 2.7 and 3.3+, as well as `PyPy`_.
-
 Abjad works on Unix/Linux, OSX, and Windows.
 
-To check the version of `Python`_ installed on your computer, type the
-following:
+Abjad also works with `CPython`_ versions 2.7 and 3.3+, as well as `PyPy`_. To
+check the version of `Python`_ installed on your computer, type the following:
 
 ..  code-block:: bash
 
     ~$ python --version
     Python 2.7.10
-
 
 Standard Installation
 ---------------------
