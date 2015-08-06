@@ -573,3 +573,45 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target, \
             systemtools.TestManager.diff(actual, target, 'Diff:')
+
+    @unittest.skip('print() is broken.')
+    def test_on_doctree_read_08(self):
+        source = '''
+        ..  abjad::
+
+            staff = Staff("c'4 d'4 e'4 f'4")
+            spanner = Slur()
+            attach(spanner, staff[:])
+
+        ..  abjad::
+
+            for leaf in staff:
+                is_first = spanner._is_my_first_leaf(leaf)
+                is_last = spanner._is_my_last_leaf(leaf)
+                print(repr(leaf), is_first, is_last)
+        '''
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        actual = systemtools.TestManager.clean_string(document.pformat())
+        target = systemtools.TestManager.clean_string(
+            r"""
+            <document source="test">
+                <block_quote>
+                    <literal_block xml:space="preserve">
+                        >>> staff = Staff("c'4 d'4 e'4 f'4")
+                        >>> spanner = Slur()
+                        >>> attach(spanner, staff[:])
+                    <literal_block xml:space="preserve">
+                        >>> for leaf in staff:
+                        ...     is_first = spanner._is_my_first_leaf(leaf)
+                        ...     is_last = spanner._is_my_last_leaf(leaf)
+                        ...     print(repr(leaf), is_first, is_last)
+                        ...
+                        Note("c'4") True False
+                        Note("d'4") False False
+                        Note("e'4") False False
+                        Note("f'4") False True
+            """)
+        assert actual == target, \
+            systemtools.TestManager.diff(actual, target, 'Diff:')
