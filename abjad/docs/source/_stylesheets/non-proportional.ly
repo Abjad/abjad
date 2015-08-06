@@ -12,10 +12,18 @@
     \context {
         \Score
         \remove Bar_number_engraver
+        \override Beam.beam-thickness = 0.75
+        \override Beam.breakable = ##t
+        \override Beam.length-fraction = 1.5
+        \override Glissando.breakable = ##t
         \override Glissando.thickness = 2
         \override NoteCollision.merge-differently-dotted = ##t
         \override NoteCollision.merge-differently-headed = ##t
         \override NoteColumn.ignore-collision = ##t
+        \override StaffSymbol.color = #(x11-color 'grey50)
+        \override StaffSymbol.layer = -1
+        \override Stem.details.beamed-lengths = #'(6)
+        \override Stem.details.lengths = #'(6)
         \override TextScript.outside-staff-padding = 1
         \override TimeSignature.style = #'numbered
         \override TupletBracket.bracket-visibility = ##t
