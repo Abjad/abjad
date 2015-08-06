@@ -39,9 +39,6 @@ Abjad also works with `CPython`_ versions 2.7 and 3.3+, as well as `PyPy`_.
 Standard Installation
 ---------------------
 
-Install Abjad
-`````````````
-
 To install Abjad from `PyPI`_, the Python Package Index, via `pip`_::
 
     ~$ sudo pip install abjad
@@ -83,17 +80,15 @@ command-line by running the following command:
     under certain conditions.  Invoke as `lilypond --warranty` for more
     information.
 
-..  note::
-    
-    If LilyPond is not callable from your command-line, you should add the
-    location of the LilyPond executable to your ``PATH`` environment variable.
-    The `LilyPond`_ documentation provides instructions for making the
-    ``lilypond`` command available on the command-line under OSX at
-    http://www.lilypond.org/macos-x.html.
+If LilyPond is not callable from your command-line, you should add the
+location of the LilyPond executable to your ``PATH`` environment variable.
+The `LilyPond`_ documentation provides instructions for making the
+``lilypond`` command available on the command-line under OSX at
+http://www.lilypond.org/macos-x.html.
 
-    If you are new to working with the command-line you should use Google to
-    get a basic introduction to editing your profile and setting environment
-    variables.
+If you are new to working with the command-line you should use Google to
+get a basic introduction to navigating in the shell, editing your profile and
+setting environment variables. There are more tutorials than we can count!
 
 Install Graphviz (optional)
 ```````````````````````````
