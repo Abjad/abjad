@@ -296,6 +296,7 @@ class CodeBlock(abctools.AbjadValueObject):
                 else:
                     result = '... '
         if is_incomplete_statement:
+            self.current_lines.append(result)
             is_incomplete_statement = self.push_line_to_console(
                 '\n', console, line_number)
         self.push_code_output_proxy()
