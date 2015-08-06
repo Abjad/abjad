@@ -1,5 +1,5 @@
-Working with logical voices
-===========================
+Logical voices
+==============
 
 
 What is a logical voice?

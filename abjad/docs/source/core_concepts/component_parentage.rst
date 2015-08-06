@@ -1,5 +1,5 @@
-Working with component parentage
-================================
+Component parentage
+===================
 
 Many score objects contain other score objects.
 
