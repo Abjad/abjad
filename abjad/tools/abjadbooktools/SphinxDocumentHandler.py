@@ -622,8 +622,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             image_path = node['uri']
             prefix, suffix = os.path.splitext(image_path)
             thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
-            line = '<a data-lightbox="{group}" href="{href}" class="{cls}" '
-            line += 'title="{title}" data-title="{title}">'
+            line = u'<a data-lightbox="{group}" href="{href}" class="{cls}" '
+            line += u'title="{title}" data-title="{title}">'
             line = line.format(
                 group=group,
                 href=image_path,
@@ -631,10 +631,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 title=title,
                 )
             self.body.append(line)
-            line = '<img src="{src}" alt="{alt}"/>'
+            line = u'<img src="{src}" alt="{alt}"/>'
             line = line.format(src=thumbnail_path, alt=alt)
             self.body.append(line)
-            line = '</a>'
+            line = u'</a>'
             self.body.append(line)
         except:
             traceback.print_exc()
