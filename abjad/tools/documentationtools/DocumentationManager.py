@@ -373,16 +373,24 @@ class DocumentationManager(abctools.AbjadObject):
             ))
         document.extend(self._build_attribute_section(
             cls,
-            class_methods,
+            sorted(class_methods + static_methods,
+                key=lambda x: x.name,
+                ),
             'automethod',
-            'Class methods',
+            'Class & static methods',
             ))
-        document.extend(self._build_attribute_section(
-            cls,
-            static_methods,
-            'automethod',
-            'Static methods',
-            ))
+#        document.extend(self._build_attribute_section(
+#            cls,
+#            class_methods,
+#            'automethod',
+#            'Class methods',
+#            ))
+#        document.extend(self._build_attribute_section(
+#            cls,
+#            static_methods,
+#            'automethod',
+#            'Static methods',
+#            ))
         document.extend(self._build_attribute_section(
             cls,
             special_methods,
