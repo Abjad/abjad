@@ -22,8 +22,6 @@
         \override NoteColumn.ignore-collision = ##t
         \override StaffSymbol.color = #(x11-color 'grey50)
         \override StaffSymbol.layer = -1
-        \override Stem.details.beamed-lengths = #'(6)
-        \override Stem.details.lengths = #'(6)
         \override TextScript.outside-staff-padding = 1
         \override TimeSignature.style = #'numbered
         \override TupletBracket.bracket-visibility = ##t
