@@ -73,6 +73,7 @@ class AbjadDirective(Directive):
         self.assert_has_content()
         code = u'\n'.join(self.content)
         literal = literal_block(code, code)
+        literal.line = self.content_offset  # set the content line number
         block = abjadbooktools.abjad_input_block(code, literal)
         block['allow-exceptions'] = 'allow-exceptions' in self.options or None
         block['hide'] = 'hide' in self.options or None

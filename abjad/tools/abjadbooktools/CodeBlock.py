@@ -223,7 +223,9 @@ class CodeBlock(abctools.AbjadValueObject):
     @staticmethod
     def from_docutils_abjad_input_block(block):
         from abjad.tools import abjadbooktools
-        input_file_contents = tuple(block[0][0].splitlines())
+        literal_block = block[0]
+        text_node = literal_block[0]
+        input_file_contents = tuple(text_node.splitlines())
         cleaned_options = {}
         for key, value in block.attlist():
             key = key.replace('-', '_')
@@ -239,7 +241,7 @@ class CodeBlock(abctools.AbjadValueObject):
             image_layout_specifier=image_layout_specifier,
             image_render_specifier=image_render_specifier,
             input_file_contents=input_file_contents,
-            starting_line_number=block.line,
+            starting_line_number=literal_block.line,
             )
         return code_block
 
@@ -283,7 +285,7 @@ class CodeBlock(abctools.AbjadValueObject):
             self.output_proxies.insert(0, code_output_proxy)
         else:
             result = '>>> '
-            for line_number, line in enumerate(input_file_contents):
+            for line_number, line in enumerate(input_file_contents, 1):
                 result += line
                 self.current_lines.append(result)
                 is_incomplete_statement = self.push_line_to_console(

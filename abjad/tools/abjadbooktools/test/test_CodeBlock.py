@@ -148,7 +148,7 @@ class CodeBlockTests(unittest.TestCase):
                         u'if True:',
                         u'    note.written_pitch = "ds,"',
                         ),
-                    starting_line_number=1,
+                    starting_line_number=2,
                     )
                 """)
         else:
@@ -159,7 +159,7 @@ class CodeBlockTests(unittest.TestCase):
                         'if True:',
                         '    note.written_pitch = "ds,"',
                         ),
-                    starting_line_number=1,
+                    starting_line_number=2,
                     )
                 """)
 
@@ -187,7 +187,7 @@ class CodeBlockTests(unittest.TestCase):
                     code_block_specifier=abjadbooktools.CodeBlockSpecifier(
                         allow_exceptions=True,
                         ),
-                    starting_line_number=1,
+                    starting_line_number=3,
                     )
                 """)
         else:
@@ -201,7 +201,7 @@ class CodeBlockTests(unittest.TestCase):
                     code_block_specifier=abjadbooktools.CodeBlockSpecifier(
                         allow_exceptions=True,
                         ),
-                    starting_line_number=1,
+                    starting_line_number=3,
                     )
                 """)
 
