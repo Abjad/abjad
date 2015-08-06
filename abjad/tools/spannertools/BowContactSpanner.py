@@ -216,14 +216,8 @@ class BowContactSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        overrides=None,
-        ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
+    def __init__(self, overrides=None):
+        Spanner.__init__(self, overrides=overrides)
 
     ### PRIVATE METHODS ###
 
