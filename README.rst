@@ -29,15 +29,15 @@ typographic details of the symbols on the page.
 ..  image:: https://img.shields.io/coveralls/Abjad/abjad.svg
     :target: https://coveralls.io/r/Abjad/abjad
 
-Installing Abjad
-================
+Installation
+============
 
 Abjad works on Unix/Linux, OSX, and Windows.
 
 Abjad also works with `CPython`_ versions 2.7 and 3.3+, as well as `PyPy`_.
 
-Standard Installation
----------------------
+Install Abjad
+-------------
 
 To install Abjad from `PyPI`_, the Python Package Index, via `pip`_::
 
@@ -157,8 +157,8 @@ Additionally, a few non-`Python`_ tools need to be installed in order to
 develop Abjad or build its documentation: `TeXLive`_, `ImageMagick`_, and
 `Graphviz`_ (which was explained above).
 
-TeXLive
-```````
+Install TeXLive
+````````````````
 
 Building the `LaTeX`_ documentation, running the test suite, and using Abjad's
 ``ajv book`` document preprocessing tools require `TeXLive`_.
@@ -171,8 +171,8 @@ To install `TeXLive`_ on Debian and Ubuntu::
 
 On OSX, we recommend installing via the `MacTeX`_ distribution.
 
-ImageMagick
-```````````
+Install ImageMagick
+```````````````````
 
 Building Abjad's documentation requires `ImageMagick`_, a collection of raster
 image processing tools.
