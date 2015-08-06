@@ -17,18 +17,10 @@ local_dict = {}
 exec(file_contents_string, None, local_dict)
 __version__ = local_dict['__version__']
 
-
 description = 'Abjad is a Python API for Formalized Score Control.'
 
-long_description = r'''
-Abjad helps composers build up complex pieces of music notation in an iterative
-and incremental way. Use Abjad to create a symbolic representation of all the
-notes, rests, staves, tuplets, beams and slurs in any score. Because Abjad
-extends the Python programming language, you can use Abjad to make systematic
-changes to your music as you work. And because Abjad wraps the powerful
-LilyPond music notation package, you can use Abjad to control the typographic
-details of the symbols on the page.
-'''
+with open('README.rst', 'r') as file_pointer:
+    long_description = file_pointer.read()
 
 author = [
     'Trevor Bača',
@@ -83,10 +75,10 @@ if __name__ == '__main__':
         author=author,
         author_email=author_email,
         description=description,
+        entry_points=entry_points,
+        extras_require=extras_require,
         include_package_data=True,
         install_requires=install_requires,
-        extras_require=extras_require,
-        entry_points=entry_points,
         keywords=keywords,
         license='GPL',
         long_description=long_description,
