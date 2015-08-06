@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 from sphinx.util.compat import Directive
 from docutils.parsers.rst import directives
 
@@ -12,8 +13,8 @@ class ThumbnailDirective(Directive):
     has_content = False
     option_spec = {
         'class': directives.class_option,
-        'group': str,
-        'title': str,
+        'group': directives.unchanged,
+        'title': directives.unchanged,
         }
     optional_arguments = 0
     required_arguments = 1
