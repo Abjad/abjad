@@ -1,0 +1,5 @@
+..  image:: https://travis-ci.org/Abjad/abjad.svg?branch=master
+    :target: https://travis-ci.org/Abjad/abjad
+
+..  image:: https://img.shields.io/coveralls/Abjad/abjad.svg
+    :target: https://coveralls.io/r/Abjad/abjad
