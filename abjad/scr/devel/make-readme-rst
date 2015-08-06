@@ -1,0 +1,10 @@
+#! /usr/bin/env python
+# -*- encoding: utf-8 -*-
+
+
+if __name__ == '__main__':
+    from abjad.tools import documentationtools
+    print('Making README.rst...')
+    documentationtools.DocumentationManager.make_readme()
+    print('\t...done!')
+
