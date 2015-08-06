@@ -848,10 +848,10 @@ class DocumentationManager(abctools.AbjadObject):
         with open(abstract_path, 'r') as file_pointer:
             result.append('')
             result.append(file_pointer.read())
-        with open(badges_path, 'r') as file_pointer:
+        with open(links_path, 'r') as file_pointer:
             result.append('')
             result.append(file_pointer.read())
-        with open(links_path, 'r') as file_pointer:
+        with open(badges_path, 'r') as file_pointer:
             result.append('')
             result.append(file_pointer.read())
         with open(installation_path, 'r') as file_pointer:

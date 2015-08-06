@@ -13,12 +13,6 @@ typographic details of the symbols on the page.
 ..  _LilyPond: http://lilypond.org/
 ..  _Python: https://www.python.org/
 
-..  image:: https://travis-ci.org/Abjad/abjad.svg?branch=master
-    :target: https://travis-ci.org/Abjad/abjad
-
-..  image:: https://img.shields.io/coveralls/Abjad/abjad.svg
-    :target: https://coveralls.io/r/Abjad/abjad
-
 `GitHub`_ |
 `PyPI`_ |
 `Documentation <http://projectabjad.org/>`_ |
@@ -28,6 +22,12 @@ typographic details of the symbols on the page.
 
 ..  _GitHub: https://github.com/Abjad/abjad
 ..  _PyPI: https://pypi.python.org/pypi/Abjad
+
+..  image:: https://travis-ci.org/Abjad/abjad.svg?branch=master
+    :target: https://travis-ci.org/Abjad/abjad
+
+..  image:: https://img.shields.io/coveralls/Abjad/abjad.svg
+    :target: https://coveralls.io/r/Abjad/abjad
 
 Installing Abjad
 ================
