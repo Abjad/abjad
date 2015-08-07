@@ -3,13 +3,16 @@ Creating annotation-aware spanners
 
 ..  abjad::
     :hide:
+    :strip-prompt:
 
     class OscillationSpanner(spannertools.Spanner):
-        class OscillationSize(datastructuretools.Enumeration):
+
+        class Size(datastructuretools.Enumeration):
             NONE = 0
             SMALL = 1
             MEDIUM = 2
             LARGE = 3
+
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
             if self._is_my_only_leaf(leaf):
@@ -34,10 +37,9 @@ Creating annotation-aware spanners
             next_leaf = inspect_(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
-                prototype = self.OscillationSize
-                annotations = inspect_(leaf).get_indicators(prototype)
+                annotations = inspect_(leaf).get_indicators(self.Size)
                 if not annotations:
-                    annotations = [prototype.SMALL]
+                    annotations = [self.Size.SMALL]
                 annotation = annotations[0]
                 zigzag_width = int(annotation)
                 if zigzag_width:
@@ -63,13 +65,12 @@ Creating annotation-aware spanners
     :hide:
 
     def make_annotated_staff():
-        string = "g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8"
-        staff = Staff(string)
-        attach(OscillationSpanner.OscillationSize.LARGE, staff[0])
-        attach(OscillationSpanner.OscillationSize.MEDIUM, staff[1])
-        attach(OscillationSpanner.OscillationSize.SMALL, staff[2])
-        attach(OscillationSpanner.OscillationSize.NONE, staff[5])
-        attach(OscillationSpanner.OscillationSize.MEDIUM, staff[6])
+        staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+        attach(OscillationSpanner.Size.LARGE, staff[0])
+        attach(OscillationSpanner.Size.MEDIUM, staff[1])
+        attach(OscillationSpanner.Size.SMALL, staff[2])
+        attach(OscillationSpanner.Size.NONE, staff[5])
+        attach(OscillationSpanner.Size.LARGE, staff[6])
         return staff
 
 ..  abjad::
@@ -85,8 +86,7 @@ Basic glissando functionality
 
 ..  abjad::
 
-    string = "g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8"
-    staff = Staff(string)
+    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
     show(staff)
 
 ..  abjad::
@@ -96,7 +96,7 @@ Basic glissando functionality
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpannerOne(spannertools.Spanner):
+    class OscillationSpanner(spannertools.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
@@ -105,7 +105,7 @@ Basic glissando functionality
 
 ..  abjad::
 
-    spanner = OscillationSpannerOne()
+    spanner = OscillationSpanner()
     attach(spanner, staff[:])
     show(staff)
 
@@ -126,7 +126,7 @@ Avoiding orphan and final leaves
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpannerTwo(spannertools.Spanner):
+    class OscillationSpanner(spannertools.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
@@ -137,8 +137,8 @@ Avoiding orphan and final leaves
 
 ..  abjad::
 
-    staff = Staff(string)
-    spanner = OscillationSpannerTwo()
+    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+    spanner = OscillationSpanner()
     attach(spanner, staff[:])
 
 ..  abjad::
@@ -155,7 +155,7 @@ Avoiding silences
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpannerThree(spannertools.Spanner):
+    class OscillationSpanner(spannertools.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
@@ -169,8 +169,8 @@ Avoiding silences
 
 ..  abjad::
 
-    staff = Staff(string)
-    spanner = OscillationSpannerThree()
+    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+    spanner = OscillationSpanner()
     attach(spanner, staff[:])
 
 ..  abjad::
@@ -181,7 +181,7 @@ Avoiding silences
 
     print(format(staff))
 
-Making object-oriented typographic overrides 
+Making object-oriented typographic overrides
 --------------------------------------------
 
 ..  abjad::
@@ -202,7 +202,7 @@ Making object-oriented typographic overrides
     attach(grob_override, staff[2])
     show(staff)
     print(format(staff))
-    
+
 ..  abjad::
 
     zigzag_override = lilypondnametools.LilyPondGrobOverride(
@@ -219,7 +219,7 @@ Integrating overrides during formatting
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpannerFour(spannertools.Spanner):
+    class OscillationSpanner(spannertools.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
@@ -249,8 +249,8 @@ Integrating overrides during formatting
 
 ..  abjad::
 
-    staff = Staff(string)
-    spanner = OscillationSpannerFour()
+    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+    spanner = OscillationSpanner()
     attach(spanner, staff[:])
     show(staff)
 
@@ -274,8 +274,7 @@ A simple non-formatting annotation class
     :strip-prompt:
 
     def make_annotated_staff():
-        string = "g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8"
-        staff = Staff(string)
+        staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
         attach(OscillationSize.LARGE, staff[0])
         attach(OscillationSize.MEDIUM, staff[1])
         attach(OscillationSize.SMALL, staff[2])
@@ -298,7 +297,7 @@ Making the spanner annotation-aware
 ..  abjad::
     :strip-prompt:
 
-    class OscillationSpannerFive(spannertools.Spanner):
+    class OscillationSpanner(spannertools.Spanner):
 
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
@@ -351,7 +350,7 @@ Making the spanner annotation-aware
 ..  abjad::
 
     staff = make_annotated_staff()
-    spanner = OscillationSpannerFive()
+    spanner = OscillationSpanner()
     attach(spanner, staff[:])
     show(staff)
 
@@ -363,10 +362,16 @@ Refactoring the custom spanner class
 ------------------------------------
 
 ..  abjad::
-    :allow-exceptions:
     :strip-prompt:
 
-    class OscillationSpannerSix(spannertools.Spanner):
+    class OscillationSpanner(spannertools.Spanner):
+
+        class Size(datastructuretools.Enumeration):
+            NONE = 0
+            SMALL = 1
+            MEDIUM = 2
+            LARGE = 3
+
         def _apply_annotation_overrides(self, leaf, lilypond_format_bundle):
             annotation = self._get_annotation(leaf)
             zigzag_width = int(annotation)
@@ -387,6 +392,7 @@ Refactoring the custom spanner class
                     )
                 override_string = zigzag_off_override.override_string
             lilypond_format_bundle.grob_overrides.append(override_string)
+
         def _apply_spanner_start_overrides(self, lilypond_format_bundle):
             grob_override = lilypondnametools.LilyPondGrobOverride(
                 grob_name='Glissando',
@@ -395,6 +401,7 @@ Refactoring the custom spanner class
                 )
             override_string = grob_override.override_string
             lilypond_format_bundle.grob_overrides.append(override_string)
+
         def _apply_spanner_stop_overrides(self, lilypond_format_bundle):
             grob_override = lilypondnametools.LilyPondGrobOverride(
                 grob_name='Glissando',
@@ -402,11 +409,13 @@ Refactoring the custom spanner class
                 )
             revert_string = grob_override.revert_string
             lilypond_format_bundle.grob_reverts.append(revert_string)
+
         def _get_annotation(self, leaf):
-            annotations = inspect_(leaf).get_indicators(OscillationSize)
+            annotations = inspect_(leaf).get_indicators(self.Size)
             if not annotations:
-                annotations = [OscillationSize.SMALL]
+                annotations = [self.Size.SMALL]
             return annotations[0]
+
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
             if self._is_my_only_leaf(leaf):
@@ -423,10 +432,59 @@ Refactoring the custom spanner class
                 self._apply_annotation_overrides(leaf, lilypond_format_bundle)
             return lilypond_format_bundle
 
-..  abjad::
-    :allow-exceptions:
+Deploying the custom spanner and annotations
+--------------------------------------------
 
-    staff = make_annotated_staff()
-    spanner = OscillationSpannerSix()
-    attach(spanner, staff[:])
-    show(staff)
+..  abjad::
+
+    staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+
+..  abjad::
+
+    selector = selectortools.Selector()
+    for x in selector(staff):
+        x
+
+..  abjad::
+
+    selector = selector.by_leaves()
+    for x in selector(staff):
+        x
+
+..  abjad::
+
+    selector = selector.by_run(Note)
+    for x in selector(staff):
+        x
+
+..  abjad::
+
+    selector = selector[:-1]
+    for x in selector(staff):
+        x
+
+..  abjad::
+
+    selector = selector.flatten()
+    for x in selector(staff):
+        x
+
+..  abjad::
+
+    selector = selectortools.Selector().by_leaves().by_run(Note)[:-1].flatten()
+
+..  abjad::
+
+    annotations = datastructuretools.CyclicTuple([
+        OscillationSpanner.Size.LARGE,
+        OscillationSpanner.Size.MEDIUM,
+        OscillationSpanner.Size.SMALL,
+        OscillationSpanner.Size.NONE,
+        ])
+
+..  abjad::
+
+    annotations[0]
+    annotations[23]
+    annotations[973]
+..
