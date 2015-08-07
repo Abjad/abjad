@@ -22,6 +22,7 @@ class AbjadBookConsole(code.InteractiveConsole):
         import abjad
         if locals is None:
             locals = abjad.__dict__.copy()
+        locals['__builtins__'] = __builtins__.copy()
         locals['__name__'] = '__main__'
         locals['__package__'] = None
         code.InteractiveConsole.__init__(

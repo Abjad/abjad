@@ -362,8 +362,8 @@ class CodeBlock(abctools.AbjadValueObject):
         if isinstance(console.locals['graph'], prototype):
             console.locals['graph'] = self.graph
         console.locals['play'] = self.play
-        console.locals['print'] = self.print
-        console.locals['quit'] = self.quit
+        console.locals['__builtins__']['print'] = self.print
+        console.locals['__builtins__']['quit'] = self.quit
         console.locals['show'] = self.show
         topleveltools = console.locals['topleveltools']
         topleveltools.__dict__['graph'] = self.graph
