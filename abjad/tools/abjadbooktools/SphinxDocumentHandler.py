@@ -7,6 +7,7 @@ import importlib
 import inspect
 import os
 import posixpath
+import platform
 import re
 import shutil
 import subprocess
@@ -490,7 +491,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         node,
         absolute_target_file_path,
         ):
-        trim_command = 'convert -trim -resize 50%% {} {}'.format(
+        if platform.system() == 'Windows':
+            trim_command = 'convert {} -resize 33%% -trim {}'
+        else:
+            trim_command = 'convert {} -resize 33% -trim {}'
+        trim_command = trim_command.format(
             absolute_target_file_path,
             absolute_target_file_path,
             )
