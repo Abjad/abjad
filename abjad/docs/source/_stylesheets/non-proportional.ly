@@ -1,6 +1,6 @@
 \version "2.19.0"
 
-#(set-global-staff-size 12)
+#(set-global-staff-size 18)
 
 \header {
     tagline = ##f

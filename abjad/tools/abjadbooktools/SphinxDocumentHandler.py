@@ -71,7 +71,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 absolute_target_file_path,
                 )
         elif node['renderer'] == 'lilypond':
-            render_command = 'lilypond --png -dresolution=300 -dno-point-and-click -o {} {}'.format(
+            render_command = 'lilypond --png -dpixmap-format=pngalpha -dresolution=300 -dno-point-and-click -o {} {}'.format(
                 os.path.splitext(absolute_target_file_path)[0],
                 absolute_source_file_path,
                 )

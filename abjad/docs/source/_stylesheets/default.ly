@@ -1,6 +1,6 @@
 \version "2.19.0"
 
-#(set-global-staff-size 12)
+#(set-global-staff-size 18)
 
 \header {
     tagline = ##f
@@ -39,7 +39,7 @@
             (padding . 4)
             (stretchability . 0)
             )
-        proportionalNotationDuration = #(ly:make-moment 1 24)
+        proportionalNotationDuration = #(ly:make-moment 1 20)
         tupletFullLength = ##t
     }
 }
