@@ -432,12 +432,16 @@ Refactoring the custom spanner class
                 self._apply_annotation_overrides(leaf, lilypond_format_bundle)
             return lilypond_format_bundle
 
-Deploying the custom spanner and annotations
---------------------------------------------
+Preparing for deployment
+------------------------
 
 ..  abjad::
 
     staff = Staff("g'4. d''8 b'2 b'8 r8 f''4. d'8. f'16 r8")
+
+..  abjad::
+
+    selector = selectortools.Selector().by_leaves().by_run(Note)[:-1].flatten()
 
 ..  abjad::
 
@@ -471,10 +475,6 @@ Deploying the custom spanner and annotations
 
 ..  abjad::
 
-    selector = selectortools.Selector().by_leaves().by_run(Note)[:-1].flatten()
-
-..  abjad::
-
     annotations = datastructuretools.CyclicTuple([
         OscillationSpanner.Size.LARGE,
         OscillationSpanner.Size.MEDIUM,
@@ -487,4 +487,105 @@ Deploying the custom spanner and annotations
     annotations[0]
     annotations[23]
     annotations[973]
-..
+
+..  abjad::
+
+    attach(OscillationSpanner(), staff)
+    for i, leaf in enumerate(selector(staff)):
+        attach(annotations[i], leaf)
+
+    show(staff)
+
+Deploying the spanner
+---------------------
+
+..  abjad::
+
+    talea_rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
+        burnish_specifier=rhythmmakertools.BurnishSpecifier(
+            left_classes=[Rest],
+            left_counts=[0, 1],
+            right_classes=[Rest],
+            right_counts=[0, 0, 1],
+            ),
+        extra_counts_per_division=[1, 0, 0],
+        talea=rhythmmakertools.Talea(
+            counts=[2, 6, 4, 3, 1, 4, 2, 7],
+            denominator=16,
+            ),
+        tie_split_notes=False,
+        )
+
+..  abjad::
+
+    divisions = [(5, 8), (7, 8), (4, 8), (6, 8), (5, 4), (4, 4), (3, 4)]
+    selections = talea_rhythm_maker(divisions)
+    measures = Measure.from_selections(selections, time_signatures=divisions)
+    staff = Staff(measures)
+    show(staff)
+
+All of the notes' pitches are middle-C, so we'll apply some pitches cyclically
+to each logical tie:
+
+..  abjad::
+
+    pitches = datastructuretools.CyclicTuple(
+        ["b'", "d''", "g'", "f''", "b'", "g'", "c'", "e'", "g'"],
+        )
+    for i, logical_tie in enumerate(iterate(staff).by_logical_tie(pitched=True)):
+        for note in logical_tie:
+            note.written_pitch = pitches[i]
+
+Now we apply the ``OscillationSpanner`` and the cyclic sequence of
+``OscillationSpanner.Size`` annotations:
+
+..  abjad::
+
+    attach(OscillationSpanner(), staff)
+    for i, leaf in enumerate(selector(staff)):
+        attach(annotations[i], leaf)
+
+The result?
+
+..  abjad::
+
+    show(staff)
+
+Now that we know the ingredients required, we can package the entire
+staff-creation process into a function and run it with different variations,
+via rotation:
+
+..  abjad::
+    :strip-prompt:
+
+    def make_fancy_staff(rotation=0):
+        annotations = datastructuretools.CyclicTuple([
+            OscillationSpanner.Size.LARGE,
+            OscillationSpanner.Size.MEDIUM,
+            OscillationSpanner.Size.SMALL,
+            OscillationSpanner.Size.NONE,
+            ])
+        annotations = sequencetools.rotate_sequence(annotations, rotation)
+        divisions = [(5, 8), (7, 8), (4, 8), (6, 8), (5, 4), (4, 4), (3, 4)]
+        divisions = sequencetools.rotate_sequence(divisions, rotation)
+        pitches = datastructuretools.CyclicTuple(
+            ["b'", "d''", "g'", "f''", "b'", "g'", "c'", "e'", "g'"],
+            )
+        pitches = sequencetools.rotate_sequence(pitches, rotation)
+        selections = talea_rhythm_maker(divisions, rotation=rotation)
+        measures = Measure.from_selections(selections, time_signatures=divisions)
+        staff = Staff(measures)
+        for i, logical_tie in enumerate(iterate(staff).by_logical_tie(pitched=True)):
+            for note in logical_tie:
+                note.written_pitch = pitches[i]
+        for i, leaf in enumerate(selector(staff)):
+            attach(annotations[i], leaf)
+        attach(OscillationSpanner(), staff)
+        return staff
+
+..  abjad::
+
+    staff = make_fancy_staff(rotation=2)
+    show(staff)
+    staff = make_fancy_staff(rotation=5)
+    show(staff)
