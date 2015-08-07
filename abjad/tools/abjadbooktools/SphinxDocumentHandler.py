@@ -517,10 +517,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     @staticmethod
     def visit_abjad_import_block(self, node):
         try:
-            print()
+            #print()
             message = bold(red('Found abjad_import_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            print(systemtools.TestManager.clean_string(node.pformat()))
+            #print(systemtools.TestManager.clean_string(node.pformat()))
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -528,10 +528,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     @staticmethod
     def visit_abjad_input_block(self, node):
         try:
-            print()
+            #print()
             message = bold(red('Found abjad_input_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            print(systemtools.TestManager.clean_string(node.pformat()))
+            #print(systemtools.TestManager.clean_string(node.pformat()))
         except:
             traceback.print_exc()
         raise nodes.SkipNode
