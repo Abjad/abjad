@@ -1,2 +1,2 @@
-Creating polyphonic texture music with timespans
-================================================
+Creating texture music with timespans
+=====================================

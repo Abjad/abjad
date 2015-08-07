@@ -1,2 +1,2 @@
-Selecting musical objects
-=========================
+Selecting musical objects morphophologically
+============================================

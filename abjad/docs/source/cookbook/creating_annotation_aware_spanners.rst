@@ -510,8 +510,8 @@ Deploying the spanner
             ),
         extra_counts_per_division=[1, 0, 0],
         talea=rhythmmakertools.Talea(
-            counts=[2, 6, 4, 3, 1, 4, 2, 7],
-            denominator=16,
+            counts=[2, 3, 1, 3, 1, 4, 2, 2],
+            denominator=8,
             ),
         tie_split_notes=False,
         )

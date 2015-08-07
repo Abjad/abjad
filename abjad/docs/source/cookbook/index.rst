@@ -2,6 +2,7 @@ The new Abjad cookbook
 ======================
 
 ..  toctree::
+    :maxdepth: 1
     :numbered:
 
     mapping_patterns_to_notation
@@ -11,11 +12,14 @@ The new Abjad cookbook
     interpolating_between_chords
     creating_custom_symbols
     spacing_music_proportionally
+    creating_floating_time_signatures
     creating_annotation_aware_spanners
     typesetting_parametric_staves
     creating_complex_rhythms
+    modeling_texture_music
     creating_texture_music
-    setting_up_a_new_score
+    creating_fragmented_scores
+    setting_up_a_new_score_project
     working_with_score_templates
     working_with_stylesheets
     preparing_complex_documents
@@ -25,6 +29,7 @@ The old Abjad cookbook
 ======================
 
 ..  toctree::
+    :maxdepth: 1
     :numbered:
 
     changing_notes_to_rests
