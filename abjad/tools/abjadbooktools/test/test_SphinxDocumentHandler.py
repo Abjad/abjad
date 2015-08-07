@@ -480,7 +480,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     'markuptools', 'mathtools',
                     'metertools', 'mutate', 'new',
                     'override', 'parse', 'persist',
-                    'pitchtools', 'play',
+                    'pitchtools', 'play', 'print_function',
                     'quantizationtools', 'rhythmmakertools',
                     'rhythmtreetools', 'schemetools',
                     'scoretools', 'select',

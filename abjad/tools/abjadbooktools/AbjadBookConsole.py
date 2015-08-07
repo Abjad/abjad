@@ -32,6 +32,7 @@ class AbjadBookConsole(code.InteractiveConsole):
             )
         self.document_handler = document_handler
         self.save_topleveltools_dict()
+        self.push('from __future__ import print_function')
 
     ### PUBLIC METHODS ###
 
