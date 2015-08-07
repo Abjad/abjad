@@ -288,8 +288,11 @@ class CodeBlock(abctools.AbjadValueObject):
             for line_number, line in enumerate(input_file_contents, 1):
                 result += line
                 self.current_lines.append(result)
-                is_incomplete_statement = self.push_line_to_console(
-                    line, console, line_number)
+                if code_block_specifier.strip_prompt and line.strip() == '':
+                    continue
+                else:
+                    is_incomplete_statement = self.push_line_to_console(
+                        line, console, line_number)
                 if not is_incomplete_statement:
                     result = '>>> '
                     self.setup_capture_hooks(console)

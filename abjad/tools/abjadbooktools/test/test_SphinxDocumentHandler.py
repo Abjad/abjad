@@ -614,3 +614,51 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             """)
         assert actual == target, \
             systemtools.TestManager.diff(actual, target, 'Diff:')
+
+    def test_on_doctree_read_09(self):
+        source = '''
+        ..  abjad::
+            :strip-prompt:
+
+            class Foo(object):
+
+                def bar(self):
+                    print('OK')
+
+                def baz(self):
+                    print('NO')
+
+                def quux(self):
+                    return 23
+
+        ..  abjad::
+
+            foo = Foo()
+            foo.quux()
+        '''
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        actual = systemtools.TestManager.clean_string(document.pformat())
+        target = systemtools.TestManager.clean_string(
+            r"""
+            <document source="test">
+                <block_quote>
+                    <literal_block xml:space="preserve">
+                        class Foo(object):
+
+                            def bar(self):
+                                print('OK')
+
+                            def baz(self):
+                                print('NO')
+
+                            def quux(self):
+                                return 23
+                    <literal_block xml:space="preserve">
+                        >>> foo = Foo()
+                        >>> foo.quux()
+                        23
+            """)
+        assert actual == target, \
+            systemtools.TestManager.diff(actual, target, 'Diff:')
