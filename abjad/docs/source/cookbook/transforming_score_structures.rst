@@ -1,2 +1,0 @@
-Transforming score structures
-=============================
