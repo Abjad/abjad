@@ -44,6 +44,18 @@ keywords = [
     ]
 keywords = ', '.join(keywords)
 
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'License :: OSI Approved :: GNU General Public License (GPL)',
+    'Programming Language :: Python :: 2.7',
+    'Programming Language :: Python :: 3.3',
+    'Programming Language :: Python :: 3.4',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: Implementation :: CPython',
+    'Programming Language :: Python :: Implementation :: PyPy',
+    'Topic :: Artistic Software',
+    ]
+
 install_requires = [
     'ply',
     'six',
@@ -74,6 +86,7 @@ if __name__ == '__main__':
     setuptools.setup(
         author=author,
         author_email=author_email,
+        classifiers=classifiers,
         description=description,
         entry_points=entry_points,
         extras_require=extras_require,
