@@ -23,7 +23,7 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name='NoteHead'):
+    def __init__(self, name='Note_heads_engraver'):
         from abjad.ly import engravers
         assert name in engravers
         self._name = name
