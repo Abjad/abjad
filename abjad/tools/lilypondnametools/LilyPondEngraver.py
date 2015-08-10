@@ -36,8 +36,8 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
         ::
 
-            >>> for x in lilypondnametools.LilyPondEngraver.list_all_engravers():
-            ...     x
+            >>> for lilypond_engraver in lilypondnametools.LilyPondEngraver.list_all_engravers():
+            ...     lilypond_engraver
             ...
             LilyPondEngraver(name='Accidental_engraver')
             LilyPondEngraver(name='Ambitus_engraver')
@@ -189,8 +189,8 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
         ::
 
-            >>> for x in engraver.grobs:
-            ...     x
+            >>> for grob in engraver.grobs:
+            ...     grob
             ...
             LilyPondGrob(name='Beam')
 
@@ -222,8 +222,8 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
         ::
 
-            >>> for x in engraver.property_names:
-            ...     x
+            >>> for property_name in engraver.property_names:
+            ...     property_name
             ...
             'autoBeaming'
             'baseMoment'
@@ -234,8 +234,7 @@ class LilyPondEngraver(abctools.AbjadValueObject):
 
         '''
         from abjad.ly import engravers
-        property_names = []
-        property_names.extend(engravers[self.name]['properties_read'])
-        property_names.extend(engravers[self.name]['properties_written'])
-        property_names.sort()
-        return tuple(property_names)
+        property_names = set()
+        property_names.update(engravers[self.name]['properties_read'])
+        property_names.update(engravers[self.name]['properties_written'])
+        return tuple(sorted(property_names))
