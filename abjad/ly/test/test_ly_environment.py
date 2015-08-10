@@ -2,9 +2,6 @@ def test_ly_environment_01():
 
     from abjad import ly
 
-    assert ly.context_properties is not None
-    print(ly.context_properties)
-
     assert ly.contexts is not None
     print(ly.contexts)
 
