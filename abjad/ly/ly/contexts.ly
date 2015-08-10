@@ -13,6 +13,7 @@
         (aliases  (map symbol->string (assoc-get 'aliases context-desc)))
         (accepts  (map symbol->string (assoc-get 'accepts context-desc)))
         (consists (map symbol->string (assoc-get 'consists context-desc)))
+        (defaultchild (assoc-get 'default-child context-desc))
         ;;and then as strings
         (accepts-entry (format-dict-entry "accepts"
           (format-string-set (format-string-list accepts 8)) 8))
@@ -20,10 +21,16 @@
           (format-string-set (format-string-list aliases 8)) 8))
         (consists-entry (format-dict-entry "consists"
           (format-string-set (format-string-list consists 8)) 8)) 
+        (defaultchild-entry (if defaultchild
+            (format "        \"default_child\": \"~A\",\n" 
+                (symbol->string defaultchild)
+                )
+            ""))
         (all-entries (string-append
           accepts-entry
           aliases-entry
           consists-entry
+          defaultchild-entry
           )))
       (string-append
         "    \"" name "\": {\n"

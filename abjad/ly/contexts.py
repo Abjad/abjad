@@ -20,6 +20,7 @@ contexts = {
             "Instrument_name_engraver",
             "Vertical_align_engraver",
         ]),
+        "default_child": "Staff",
     },
     "ChordNames": {
         "accepts": set([]),
@@ -128,6 +129,7 @@ contexts = {
             "Bar_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "DrumVoice",
     },
     "DrumVoice": {
         "accepts": set([]),
@@ -224,6 +226,7 @@ contexts = {
         ]),
         "aliases": set([]),
         "consists": set([]),
+        "default_child": "Score",
     },
     "GrandStaff": {
         "accepts": set([
@@ -245,6 +248,7 @@ contexts = {
             "Span_bar_engraver",
             "Instrument_name_engraver",
         ]),
+        "default_child": "Staff",
     },
     "GregorianTranscriptionStaff": {
         "accepts": set([
@@ -283,6 +287,7 @@ contexts = {
             "Bar_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "GregorianTranscriptionVoice",
     },
     "GregorianTranscriptionVoice": {
         "accepts": set([]),
@@ -375,6 +380,7 @@ contexts = {
             "Bar_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "KievanVoice",
     },
     "KievanVoice": {
         "accepts": set([]),
@@ -482,6 +488,7 @@ contexts = {
             "Bar_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "MensuralVoice",
     },
     "MensuralVoice": {
         "accepts": set([]),
@@ -599,6 +606,7 @@ contexts = {
             "Bar_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "PetrucciVoice",
     },
     "PetrucciVoice": {
         "accepts": set([]),
@@ -678,6 +686,7 @@ contexts = {
             "Span_bar_engraver",
             "Instrument_name_engraver",
         ]),
+        "default_child": "Staff",
     },
     "RhythmicStaff": {
         "accepts": set([
@@ -701,6 +710,7 @@ contexts = {
             "Font_size_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "Voice",
     },
     "Score": {
         "accepts": set([
@@ -750,6 +760,7 @@ contexts = {
             "Repeat_acknowledge_engraver",
             "Paper_column_engraver",
         ]),
+        "default_child": "Staff",
     },
     "Staff": {
         "accepts": set([
@@ -786,6 +797,7 @@ contexts = {
             "Bar_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "Voice",
     },
     "StaffGroup": {
         "accepts": set([
@@ -812,6 +824,7 @@ contexts = {
             "Instrument_name_engraver",
             "Vertical_align_engraver",
         ]),
+        "default_child": "Staff",
     },
     "TabStaff": {
         "accepts": set([
@@ -848,6 +861,7 @@ contexts = {
             "Bar_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "TabVoice",
     },
     "TabVoice": {
         "accepts": set([]),
@@ -938,6 +952,7 @@ contexts = {
             "Bar_engraver",
             "Output_property_engraver",
         ]),
+        "default_child": "VaticanaVoice",
     },
     "VaticanaVoice": {
         "accepts": set([]),
