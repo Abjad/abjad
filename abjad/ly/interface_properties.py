@@ -1,4 +1,4 @@
-lilypond_version = "2.19.15"
+lilypond_version = "2.19.24"
 
 interface_properties = {
     "accidental-interface": [
@@ -231,6 +231,7 @@ interface_properties = {
         "layer",
         "minimum-X-extent",
         "minimum-Y-extent",
+        "parenthesis-friends",
         "rotation",
         "skyline-horizontal-padding",
         "springs-and-rods",
@@ -238,6 +239,7 @@ interface_properties = {
         "transparent",
         "vertical-skylines",
         "whiteout",
+        "whiteout-box",
     ],
     "hairpin-interface": [
         "bound-padding",
@@ -378,7 +380,9 @@ interface_properties = {
         "ignore-collision",
     ],
     "note-head-interface": [
+        "duration-log",
         "glyph-name",
+        "ignore-ambitus",
         "note-names",
         "stem-attachment",
         "style",
@@ -389,6 +393,9 @@ interface_properties = {
         "same-direction-correction",
         "space-to-barline",
         "stem-spacing-correction",
+    ],
+    "number-interface": [
+        "number-type",
     ],
     "only-prebreak-interface": [],
     "ottava-bracket-interface": [
@@ -456,6 +463,7 @@ interface_properties = {
         "direction",
         "minimum-distance",
         "style",
+        "voiced-position",
     ],
     "rhythmic-grob-interface": [],
     "rhythmic-head-interface": [
@@ -470,6 +478,7 @@ interface_properties = {
         "side-relative-direction",
         "slur-padding",
         "toward-stem-shift",
+        "toward-stem-shift-in-column",
     ],
     "self-alignment-interface": [
         "X-align-on-main-noteheads",
@@ -479,7 +488,6 @@ interface_properties = {
         "self-alignment-Y",
     ],
     "semi-tie-column-interface": [
-        "direction",
         "head-direction",
         "positioning-done",
         "tie-configuration",
@@ -550,6 +558,7 @@ interface_properties = {
     ],
     "spanner-interface": [
         "minimum-length",
+        "minimum-length-after-break",
         "normalized-endpoints",
         "spanner-id",
         "to-barline",
@@ -562,6 +571,7 @@ interface_properties = {
         "stem-spacing-correction",
     ],
     "staff-symbol-interface": [
+        "break-align-symbols",
         "ledger-extra",
         "ledger-line-thickness",
         "ledger-positions",
@@ -602,8 +612,8 @@ interface_properties = {
         "direction",
         "flag-count",
         "length-fraction",
+        "shape",
         "slope",
-        "style",
     ],
     "string-number-interface": [],
     "stroke-finger-interface": [
