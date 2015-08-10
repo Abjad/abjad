@@ -25,12 +25,10 @@
                4)))
        "grob_interfaces = {\n"
        (sort-symbol-list (alist-keys all-grob-descriptions)))
-     "}\n"))
+     "    }\n"))
 
   (display
     (string-append
       (format "lilypond_version = \"~A\"\n\n" (lilypond-version))
       (format-grob-interfaces)
       )))
-
-% EOF

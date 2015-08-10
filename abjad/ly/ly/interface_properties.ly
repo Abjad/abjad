@@ -22,12 +22,10 @@
                4)))
        "interface_properties = {\n"
        (sort-symbol-list (hash-keys h)))
-     "}\n"))
+     "    }\n"))
 
   (display
     (string-append
       (format "lilypond_version = \"~A\"\n\n" (lilypond-version))
       (format-interface-properties (ly:all-grob-interfaces))
       )))
-
-% EOF

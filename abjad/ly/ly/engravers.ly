@@ -77,4 +77,4 @@
     (format "lilypond_version = \"~A\"\n\n" (lilypond-version))
     "engravers = {\n"
     (string-join (map format-engraver-info (get-all-translator-names)) "")
-    "}\n"))
+    "    }\n"))

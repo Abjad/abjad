@@ -45,7 +45,7 @@
           list)
         "")
        (make-string indent #\space)
-       "]"))))
+       "    ]"))))
   
   (define (format-string-set list)
     "format a string-list as a Python set"

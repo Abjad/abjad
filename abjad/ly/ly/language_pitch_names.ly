@@ -53,4 +53,4 @@
   (display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
   (display "language_pitch_names = {")
   (map handle-language language-pitch-names)
-  (display "\n}"))
+  (display "\n    }"))

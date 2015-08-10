@@ -10,9 +10,15 @@
   (define (context-doc context-desc)
     (let* ((name-sym (assoc-get 'context-name context-desc))
         (name (symbol->string name-sym))
-        (aliases  (map symbol->string (assoc-get 'aliases context-desc)))
-        (accepts  (map symbol->string (assoc-get 'accepts context-desc)))
-        (consists (map symbol->string (assoc-get 'consists context-desc)))
+        (aliases (sort 
+            (map symbol->string (assoc-get 'aliases context-desc))
+            ly:string-ci<?))
+        (accepts (sort
+            (map symbol->string (assoc-get 'accepts context-desc))
+            ly:string-ci<?))
+        (consists (sort
+            (map symbol->string (assoc-get 'consists context-desc))
+            ly:string-ci<?))
         (defaultchild (assoc-get 'default-child context-desc))
         ;;and then as strings
         (accepts-entry (format-dict-entry "accepts"
@@ -35,7 +41,7 @@
       (string-append
         "    \"" name "\": {\n"
         all-entries
-        "    },\n")))
+        "        },\n")))
 
 #
 (define (all-contexts-doc)
@@ -52,4 +58,4 @@
   (format "lilypond_version = \"~A\"\n\n" (lilypond-version))
   "contexts = {\n"
   (all-contexts-doc)
-  "}\n"))
+  "    }\n"))

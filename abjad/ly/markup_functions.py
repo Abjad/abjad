@@ -146,7 +146,7 @@ markup_functions = {
     'wordwrap-field': ('symbol?',),
     'wordwrap': ('markup-list?',),
     'wordwrap-string': ('string?',),
-}
+    }
 
 markup_list_functions = {
     'column-lines': ('markup-list?',),
@@ -158,4 +158,4 @@ markup_list_functions = {
     'wordwrap-internal': ('boolean?', 'markup-list?',),
     'wordwrap-lines': ('markup-list?',),
     'wordwrap-string-internal': ('boolean?', 'string?',),
-}
+    }

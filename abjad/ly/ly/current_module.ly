@@ -128,4 +128,4 @@
 #(display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
 #(display "current_module = {\n")
 #(for-each document-object current-module-sorted)
-#(display "}")
+#(display "    }")
