@@ -138,6 +138,22 @@ class LilyPondContext(abctools.AbjadValueObject):
         return None
 
     @property
+    def default_child(self):
+        r'''Gets default child of LilyPond context.
+
+        ::
+
+            >>> context.default_child
+            LilyPondContext(name='MensuralVoice')
+
+        Returns LilyPond context or none.
+        '''
+        from abjad.ly import contexts
+        default_child = contexts[self.name].get('default_child', None)
+        if default_child:
+            return LilyPondContext(name=default_child)
+
+    @property
     def engravers(self):
         r'''Gets engravers belonging to LilyPond context.
 
