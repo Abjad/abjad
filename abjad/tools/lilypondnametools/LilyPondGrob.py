@@ -268,8 +268,10 @@ class LilyPondGrob(abctools.AbjadValueObject):
             'minimum-X-extent'
             'minimum-Y-extent'
             'minimum-length'
+            'minimum-length-after-break'
             'neutral-direction'
             'normalized-endpoints'
+            'parenthesis-friends'
             'positions'
             'rotation'
             'skip-quanting'
@@ -282,6 +284,7 @@ class LilyPondGrob(abctools.AbjadValueObject):
             'transparent'
             'vertical-skylines'
             'whiteout'
+            'whiteout-box'
 
         Returns tuple.
         '''

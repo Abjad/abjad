@@ -975,6 +975,7 @@ class LilyPondParser(abctools.Parser):
             MensuralStaff
             MensuralVoice
             NoteNames
+            NullVoice
             PetrucciStaff
             PetrucciVoice
             PianoStaff
@@ -1244,6 +1245,7 @@ class LilyPondParser(abctools.Parser):
             column
             column-lines
             combine
+            compound-meter
             concat
             customTabClef
             dir-column
@@ -1263,6 +1265,7 @@ class LilyPondParser(abctools.Parser):
             fill-with-pattern
             filled-box
             finger
+            first-visible
             flat
             fontCaps
             fontsize
@@ -1368,6 +1371,7 @@ class LilyPondParser(abctools.Parser):
             verbatim-file
             vspace
             whiteout
+            whiteout-box
             with-color
             with-dimensions
             with-link

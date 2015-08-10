@@ -117,6 +117,7 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
             LilyPondGrobInterface(name='note-head-interface')
             LilyPondGrobInterface(name='note-name-interface')
             LilyPondGrobInterface(name='note-spacing-interface')
+            LilyPondGrobInterface(name='number-interface')
             LilyPondGrobInterface(name='only-prebreak-interface')
             LilyPondGrobInterface(name='ottava-bracket-interface')
             LilyPondGrobInterface(name='outside-staff-axis-group-interface')
