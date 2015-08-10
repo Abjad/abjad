@@ -36,8 +36,8 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
         ::
 
-            >>> for x in lilypondnametools.LilyPondGrob.list_all_grobs():
-            ...     x
+            >>> for lilypond_grob in lilypondnametools.LilyPondGrob.list_all_grobs():
+            ...     lilypond_grob
             ...
             LilyPondGrob(name='Accidental')
             LilyPondGrob(name='AccidentalCautionary')
@@ -192,8 +192,8 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
         ::
 
-            >>> for x in grob.interfaces:
-            ...     x
+            >>> for interface in grob.interfaces:
+            ...     interface
             ...
             LilyPondGrobInterface(name='beam-interface')
             LilyPondGrobInterface(name='font-interface')
@@ -217,8 +217,8 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
         ::
 
-            >>> for x in grob.property_names:
-            ...     x
+            >>> for property_name in grob.property_names:
+            ...     property_name
             ...
             'X-extent'
             'X-offset'
@@ -285,11 +285,10 @@ class LilyPondGrob(abctools.AbjadValueObject):
 
         Returns tuple.
         '''
-        property_names = []
+        property_names = set()
         for interface in self.interfaces:
-            property_names.extend(interface.property_names)
-        property_names.sort()
-        return tuple(property_names)
+            property_names.update(interface.property_names)
+        return tuple(sorted(property_names))
 
     @property
     def name(self):
