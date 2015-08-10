@@ -29,11 +29,14 @@ typographic details of the symbols on the page.
 ..  image:: https://img.shields.io/coveralls/Abjad/abjad/master.svg?style=flat-square
     :target: https://coveralls.io/r/Abjad/abjad
 
-..  image:: https://img.shields.io/pypi/v/Abjad.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/Abjad
+..  image:: https://img.shields.io/pypi/v/abjad.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/abjad
 
 ..  image:: https://img.shields.io/pypi/dm/abjad.svg?style=flat-square
-    :target: https://pypi.python.org/pypi/Abjad
+    :target: https://pypi.python.org/pypi/abjad
+
+..  image:: https://img.shields.io/pypi/pyversions/abjad.svg?style=flat-square
+    :target: https://pypi.python.org/pypi/abjad
 
 Installation
 ============
