@@ -36,8 +36,8 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
 
         ::
 
-            >>> for x in lilypondnametools.LilyPondGrobInterface.list_all_interfaces():
-            ...     x
+            >>> for grob_interface in lilypondnametools.LilyPondGrobInterface.list_all_interfaces():
+            ...     grob_interface
             ...
             LilyPondGrobInterface(name='accidental-interface')
             LilyPondGrobInterface(name='accidental-placement-interface')
@@ -205,8 +205,8 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
 
         ::
 
-            >>> for x in interface.property_names:
-            ...     x
+            >>> for property_name in interface.property_names:
+            ...     property_name
             ...
             'X-positions'
             'annotation'
