@@ -3,7 +3,7 @@ from abjad.tools import abctools
 
 
 class LilyPondGrob(abctools.AbjadValueObject):
-    r'''A LilyPond Grob.
+    r'''A LilyPond grob.
 
     ::
 
@@ -182,10 +182,7 @@ class LilyPondGrob(abctools.AbjadValueObject):
         Returns tuple.
         '''
         from abjad.ly import grob_interfaces
-        return tuple(
-            LilyPondGrob(_)
-            for _ in sorted(grob_interfaces)
-            )
+        return tuple(LilyPondGrob(name) for name in sorted(grob_interfaces))
 
     ### PUBLIC PROPERTIES ###
 
