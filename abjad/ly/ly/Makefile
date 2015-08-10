@@ -1,9 +1,6 @@
 # Makefile
 
-all: context_properties current_module engravers grob_interfaces interface_properties language_pitch_names markup_functions music_glyphs
-
-context_properties: context_properties.ly
-	lilypond -dno-print-pages context_properties.ly > ../context_properties.py
+all: contexts current_module engravers grob_interfaces interface_properties language_pitch_names markup_functions music_glyphs
 
 contexts: contexts.ly
 	lilypond -dno-print-pages contexts.ly > ../contexts.py
@@ -28,4 +25,3 @@ markup_functions: markup_functions.ly
 
 music_glyphs: music_glyphs.ly
 	lilypond -dno-print-pages music_glyphs.ly > ../music_glyphs.py
-
