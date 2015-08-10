@@ -21,6 +21,18 @@ class LilyPondEngraver(abctools.AbjadValueObject):
         '_name',
         )
 
+    _identity_map = {}
+
+    ### CONSTRUCTOR ###
+
+    def __new__(cls, name='Note_heads_engraver'):
+        if name in cls._identity_map:
+            obj = cls._identity_map[name]
+        else:
+            obj = object.__new__(cls)
+            cls._identity_map[name] = obj
+        return obj
+
     ### INITIALIZER ###
 
     def __init__(self, name='Note_heads_engraver'):
