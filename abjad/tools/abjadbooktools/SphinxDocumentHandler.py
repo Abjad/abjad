@@ -372,8 +372,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         return paths
 
     @staticmethod
-    def find_target_file_names(
+    def find_target_file_paths(
         absolute_directory_path,
+        relative_directory_path,
         file_name_pattern,
         pages,
         ):
@@ -401,7 +402,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     target_file_names.append(target_file_name_dict[page])
             if len(target_file_names) == len(pages):
                 found_all_pages = True
-        return target_file_names, found_all_pages
+        target_file_paths = [posixpath.join(relative_directory_path, _)
+            for _ in target_file_names]
+        return target_file_paths, found_all_pages
 
     @staticmethod
     def get_file_base_name(node, image_render_specifier):
@@ -445,48 +448,39 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             )
 
         # Check for pre-existing target(s).
-        target_file_names, found_all_pages = \
-            SphinxDocumentHandler.find_target_file_names(
-                absolute_directory_path, file_name_pattern, pages,)
+        target_file_paths, found_all_pages = \
+            SphinxDocumentHandler.find_target_file_paths(
+                absolute_directory_path, relative_directory_path,
+                file_name_pattern, pages)
         if found_all_pages:
-            return (
-                relative_source_file_path,
-                [posixpath.join(relative_directory_path, _) for _ in target_file_names],
-                )
+            return (relative_source_file_path, target_file_paths)
 
         # Write and render source to target(s).
+        source_file_name = file_base_name + source_extension
         absolute_source_file_path = os.path.join(
-            absolute_directory_path,
-            file_base_name + source_extension,
-            )
+            absolute_directory_path, source_file_name)
+        target_file_name = file_base_name + target_extension
         absolute_target_file_path = os.path.join(
-            absolute_directory_path,
-            file_base_name + target_extension,
-            )
+            absolute_directory_path, target_file_name)
         SphinxDocumentHandler.write_image_source(
             self, node, absolute_source_file_path)
         return_code = SphinxDocumentHandler.interpret_image_source(
             self, node, absolute_source_file_path, absolute_target_file_path)
         if return_code:
-            return (
-                relative_directory_path,
-                [],
-                )
+            return (relative_directory_path, [])
 
         # Check for target(s).
-        target_file_names, found_all_pages = \
-            SphinxDocumentHandler.find_target_file_names(
-                absolute_directory_path, file_name_pattern, pages,
-                )
+        target_file_paths, found_all_pages = \
+            SphinxDocumentHandler.find_target_file_paths(
+                absolute_directory_path, relative_directory_path,
+                file_name_pattern, pages)
         if not found_all_pages:
-            return (
-                relative_source_file_path,
-                [posixpath.join(relative_directory_path, _) for _ in target_file_names],
-                )
+            return (relative_source_file_path, target_file_paths)
 
         # Trim and resize target(s).
-        for target_name in target_file_names:
-            target_path = os.path.join(absolute_directory_path, target_name)
+        for target_file_path in target_file_paths:
+            _, file_name = os.path.split(target_file_path)
+            target_path = os.path.join(absolute_directory_path, file_name)
             return_code = SphinxDocumentHandler.postprocess_image_target(
                 self, node, target_path,
                 no_resize=image_render_specifier.no_resize,
@@ -494,10 +488,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 )
 
         # Target(s) must exist, so simply return.
-        return (
-            relative_source_file_path,
-            [posixpath.join(relative_directory_path, _) for _ in target_file_names],
-            )
+        return (relative_source_file_path, target_file_paths)
 
     @staticmethod
     def postprocess_image_target(
