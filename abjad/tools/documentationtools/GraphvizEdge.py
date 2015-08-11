@@ -119,6 +119,27 @@ class GraphvizEdge(GraphvizMixin):
             return result
         return [edge_def + ';']
 
+    ### PUBLIC METHODS ###
+
+    def attach(self, tail, head):
+        r'''Attaches edge from `tail` to `head`.
+        '''
+        from abjad.tools import documentationtools
+        prototype = (
+            documentationtools.GraphvizSubgraph,
+            documentationtools.GraphvizNode,
+            documentationtools.GraphvizField,
+            )
+        assert isinstance(tail, prototype)
+        assert isinstance(head, prototype)
+        self._disconnect()
+        self._connect(tail, head)
+
+    def detach(self):
+        r'''Detaches edge.
+        '''
+        self._disconnect()
+
     ### PUBLIC PROPERTIES ###
 
     @property
