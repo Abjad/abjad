@@ -27,8 +27,9 @@ class AbjadDirective(Directive):
     option_spec = {
         'allow-exceptions': directives.flag,
         'hide': directives.flag,
-        'no-trim': directives.flag,
+        'no-resize': directives.flag,
         'no-stylesheet': directives.flag,
+        'no-trim': directives.flag,
         'pages': str,
         'strip-prompt': directives.flag,
         'stylesheet': str,
@@ -75,20 +76,32 @@ class AbjadDirective(Directive):
         literal = literal_block(code, code)
         literal.line = self.content_offset  # set the content line number
         block = abjadbooktools.abjad_input_block(code, literal)
-        block['allow-exceptions'] = 'allow-exceptions' in self.options or None
-        block['hide'] = 'hide' in self.options or None
+        # Only set flags if true, for a thinner node repr.
+        if 'allow-exceptions' in self.options:
+            block['allow-exceptions'] = True
+        if 'hide' in self.options:
+            block['hide'] = True
+        if 'no-resize' in self.options:
+            block['no-resize'] = True
+        if 'no-stylesheet' in self.options:
+            block['no-stylesheet'] = True
+        if 'no-trim' in self.options:
+            block['no-trim'] = True
+        if 'strip-prompt' in self.options:
+            block['strip-prompt'] = True
         pages = self.options.get('pages', None)
         if pages is not None:
             block['pages'] = self._parse_pages_string(pages)
-        else:
-            block['pages'] = None
-        block['no-trim'] = 'no-trim' in self.options or None
-        block['no-stylesheet'] = 'no-stylesheet' in self.options or None
-        block['stylesheet'] = self.options.get('stylesheet', None)
-        if block['no-stylesheet']:
-            block['stylesheet'] = None
-        block['strip-prompt'] = 'strip-prompt' in self.options or None
-        block['text-width'] = self.options.get('text-width', None)
-        block['with-columns'] = self.options.get('with-columns', None)
+        stylesheet = self.options.get('stylesheet', None)
+        if block.get('no-stylesheet'):
+            stylesheet = None
+        if stylesheet:
+            block['stylesheet'] = stylesheet
+        text_width = self.options.get('text-width', None)
+        if text_width is not None:
+            block['text-width'] = text_width
+        with_columns = self.options.get('with-columns', None)
+        if with_columns is not None:
+            block['with-columns'] = with_columns
         set_source_info(self, block)
         return [block]

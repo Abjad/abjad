@@ -23,7 +23,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions hide no-stylesheet no-trim pages strip-prompt stylesheet text-width with-columns>
+                <abjad_input_block>
                     <literal_block xml:space="preserve">
                         note = Note("c'4")
                         if True:
@@ -32,6 +32,32 @@ class AbjadDirectiveTests(unittest.TestCase):
         self.assertEqual(result, expected)
 
     def test_2(self):
+        source = textwrap.dedent('''
+        ..  abjad::
+            :allow-exceptions:
+            :hide:
+            :no-resize:
+            :no-trim:
+            :strip-prompt:
+
+            note = Note("c'4")
+            if True:
+                note.written_pitch = "ds,"
+        ''')
+        document = self.handler.parse_rst(source)
+        result = systemtools.TestManager.clean_string(document.pformat())
+        expected = systemtools.TestManager.clean_string(
+            r'''
+            <document source="test">
+                <abjad_input_block allow-exceptions="True" hide="True" no-resize="True" no-trim="True" strip-prompt="True">
+                    <literal_block xml:space="preserve">
+                        note = Note("c'4")
+                        if True:
+                            note.written_pitch = "ds,"
+            ''')
+        self.assertEqual(result, expected)
+
+    def test_3(self):
         source = textwrap.dedent('''
         ..  abjad::
             :allow-exceptions:
@@ -46,13 +72,13 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions="True" hide="True" no-stylesheet no-trim pages="(1, 2, 3, 5, 7, 10, 9, 8)" strip-prompt="True" stylesheet text-width with-columns>
+                <abjad_input_block allow-exceptions="True" hide="True" pages="(1, 2, 3, 5, 7, 10, 9, 8)" strip-prompt="True">
                     <literal_block xml:space="preserve">
                         assert True is False
             ''')
         self.assertEqual(result, expected)
 
-    def test_3(self):
+    def test_4(self):
         source = textwrap.dedent('''
         ..  abjad::
             :stylesheet: non-proportional.ly
@@ -64,13 +90,13 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions hide no-stylesheet no-trim pages strip-prompt stylesheet="non-proportional.ly" text-width with-columns>
+                <abjad_input_block stylesheet="non-proportional.ly">
                     <literal_block xml:space="preserve">
                         show(Note("c'4"))
             ''')
         self.assertEqual(result, expected)
 
-    def test_4(self):
+    def test_5(self):
         source = textwrap.dedent('''
         ..  abjad::
             :no-stylesheet:
@@ -83,7 +109,26 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions hide no-stylesheet="True" no-trim pages strip-prompt stylesheet text-width with-columns>
+                <abjad_input_block no-stylesheet="True">
+                    <literal_block xml:space="preserve">
+                        show(Note("c'4"))
+            ''')
+        self.assertEqual(result, expected)
+
+    def test_6(self):
+        source = textwrap.dedent('''
+        ..  abjad::
+            :text-width: 80
+            :with-columns: 2
+
+            show(Note("c'4"))
+        ''')
+        document = self.handler.parse_rst(source)
+        result = systemtools.TestManager.clean_string(document.pformat())
+        expected = systemtools.TestManager.clean_string(
+            r'''
+            <document source="test">
+                <abjad_input_block text-width="80" with-columns="2">
                     <literal_block xml:space="preserve">
                         show(Note("c'4"))
             ''')
