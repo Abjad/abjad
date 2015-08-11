@@ -296,7 +296,7 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             graph.append(graphviz_node)
             node_mapping[node] = graphviz_node
             if node.parent is not None:
-                documentationtools.GraphvizEdge()(
+                documentationtools.GraphvizEdge().attach(
                     node_mapping[node.parent],
                     node_mapping[node],
                     )

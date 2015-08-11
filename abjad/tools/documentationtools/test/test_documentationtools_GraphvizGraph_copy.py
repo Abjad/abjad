@@ -48,7 +48,7 @@ def test_documentationtools_GraphvizGraph_copy_04():
     graph = documentationtools.GraphvizGraph()
     graph.append(documentationtools.GraphvizNode())
     graph.append(documentationtools.GraphvizNode())
-    edge = documentationtools.GraphvizEdge()(graph[0], graph[1])
+    edge = documentationtools.GraphvizEdge().attach(graph[0], graph[1])
     assert str(graph) == systemtools.TestManager.clean_string(
         r'''
         digraph G {
@@ -70,8 +70,8 @@ def test_documentationtools_GraphvizGraph_copy_05():
     graph[0].append(documentationtools.GraphvizSubgraph())
     graph[0][-1].append(documentationtools.GraphvizNode())
     graph.append(documentationtools.GraphvizNode())
-    edge = documentationtools.GraphvizEdge()(graph[0][1], graph[1])
-    edge = documentationtools.GraphvizEdge()(graph[0][0], graph[0][-1][0])
+    edge = documentationtools.GraphvizEdge().attach(graph[0][1], graph[1])
+    edge = documentationtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
     assert str(graph) == systemtools.TestManager.clean_string(
         r'''
         digraph G {
@@ -102,8 +102,8 @@ def test_documentationtools_GraphvizGraph_copy_06():
     graph[0].append(documentationtools.GraphvizSubgraph())
     graph[0][-1].append(documentationtools.GraphvizNode())
     graph.append(documentationtools.GraphvizNode())
-    edge = documentationtools.GraphvizEdge()(graph[0][1], graph[1])
-    edge = documentationtools.GraphvizEdge()(graph[0][0], graph[0][-1][0])
+    edge = documentationtools.GraphvizEdge().attach(graph[0][1], graph[1])
+    edge = documentationtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
     copied = copy.copy(graph[0])
     assert str(copied) == systemtools.TestManager.clean_string(
         r'''

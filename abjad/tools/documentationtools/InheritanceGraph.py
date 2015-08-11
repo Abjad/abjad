@@ -291,7 +291,8 @@ class InheritanceGraph(AbjadObject):
                 if ok_to_join:
                     parent_node = class_nodes[parent]
                     child_node = class_nodes[child]
-                    documentationtools.GraphvizEdge()(parent_node, child_node)
+                    documentationtools.GraphvizEdge().attach(
+                        parent_node, child_node)
 
         for i, cluster in enumerate(
             sorted(graph.children, key=lambda x: x.name)):

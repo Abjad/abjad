@@ -41,19 +41,19 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
 
     ::
 
-        >>> edge = documentationtools.GraphvizEdge()(start, a0)
-        >>> edge = documentationtools.GraphvizEdge()(start, b0)
-        >>> edge = documentationtools.GraphvizEdge()(a0, a1)
-        >>> edge = documentationtools.GraphvizEdge()(a1, a2)
-        >>> edge = documentationtools.GraphvizEdge()(a1, b3)
-        >>> edge = documentationtools.GraphvizEdge()(a2, a3)
-        >>> edge = documentationtools.GraphvizEdge()(a3, a0)
-        >>> edge = documentationtools.GraphvizEdge()(a3, end)
-        >>> edge = documentationtools.GraphvizEdge()(b0, b1)
-        >>> edge = documentationtools.GraphvizEdge()(b1, b2)
-        >>> edge = documentationtools.GraphvizEdge()(b2, b3)
-        >>> edge = documentationtools.GraphvizEdge()(b2, a3)
-        >>> edge = documentationtools.GraphvizEdge()(b3, end)
+        >>> documentationtools.GraphvizEdge().attach(start, a0)
+        >>> documentationtools.GraphvizEdge().attach(start, b0)
+        >>> documentationtools.GraphvizEdge().attach(a0, a1)
+        >>> documentationtools.GraphvizEdge().attach(a1, a2)
+        >>> documentationtools.GraphvizEdge().attach(a1, b3)
+        >>> documentationtools.GraphvizEdge().attach(a2, a3)
+        >>> documentationtools.GraphvizEdge().attach(a3, a0)
+        >>> documentationtools.GraphvizEdge().attach(a3, end)
+        >>> documentationtools.GraphvizEdge().attach(b0, b1)
+        >>> documentationtools.GraphvizEdge().attach(b1, b2)
+        >>> documentationtools.GraphvizEdge().attach(b2, b3)
+        >>> documentationtools.GraphvizEdge().attach(b2, a3)
+        >>> documentationtools.GraphvizEdge().attach(b3, end)
 
     Add attributes to style the objects:
 
@@ -132,9 +132,8 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
         >>> graph[0].append(documentationtools.GraphvizSubgraph())
         >>> graph[0][-1].append(documentationtools.GraphvizNode())
         >>> graph.append(documentationtools.GraphvizNode())
-        >>> edge = documentationtools.GraphvizEdge()(graph[0][1], graph[1])
-        >>> edge = documentationtools.GraphvizEdge()(
-        ...     graph[0][0], graph[0][-1][0])
+        >>> documentationtools.GraphvizEdge().attach(graph[0][1], graph[1])
+        >>> documentationtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
 
     ::
 
@@ -200,7 +199,7 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
             if head not in mapping or tail not in mapping:
                 continue
             new_edge = new(edge)
-            new_edge(mapping[tail], mapping[head])
+            new_edge.attach(mapping[tail], mapping[head])
         return copied_node
 
     def __graph__(self, **kwargs):

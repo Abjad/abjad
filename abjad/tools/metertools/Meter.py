@@ -624,13 +624,13 @@ class Meter(AbjadObject):
             edge = documentationtools.GraphvizEdge(
                 attributes={'style': 'dotted'},
                 )
-            edge(leaf_one_node, offset_node)
+            edge.attach(leaf_one_node, offset_node)
             if leaf_two:
                 leaf_two_node = node_mapping[leaf_two]
                 edge = documentationtools.GraphvizEdge(
                     attributes={'style': 'dotted'},
                     )
-                edge(leaf_two_node, offset_node)
+                edge.attach(leaf_two_node, offset_node)
         from abjad.tools import metertools
         offsets = metertools.MetricAccentKernel.count_offsets_in_expr(
             sequencetools.flatten_sequence(self.depthwise_offset_inventory))
@@ -662,7 +662,7 @@ class Meter(AbjadObject):
             graph.append(graphviz_node)
             node_mapping[node] = graphviz_node
             if node.parent is not None:
-                documentationtools.GraphvizEdge()(
+                documentationtools.GraphvizEdge().attach(
                     node_mapping[node.parent],
                     node_mapping[node],
                     )

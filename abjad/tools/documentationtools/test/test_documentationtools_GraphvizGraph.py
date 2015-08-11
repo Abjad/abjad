@@ -47,11 +47,11 @@ def test_documentationtools_GraphvizGraph_01():
 
     graph.extend((struct_1, struct_2, struct_3))
 
-    documentationtools.GraphvizEdge()(
+    documentationtools.GraphvizEdge().attach(
         struct_1_field_1,
         struct_2_field_0,
         )
-    documentationtools.GraphvizEdge()(
+    documentationtools.GraphvizEdge().attach(
         struct_1_field_2,
         struct_3_field_d,
         )
