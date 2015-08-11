@@ -25,6 +25,7 @@ The new Abjad cookbook
     working_with_stylesheets
     preparing_complex_documents
     templating_and_persisting
+    creating_graphs
 
 The old Abjad cookbook
 ======================
