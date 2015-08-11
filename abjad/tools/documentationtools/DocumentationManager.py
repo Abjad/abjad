@@ -319,11 +319,11 @@ class DocumentationManager(abctools.AbjadObject):
             directive='autoclass',
             )
         document.append(autoclass_directive)
-        lineage_heading = abjad.documentationtools.ReSTHeading(
-            level=3,
-            text='Lineage',
-            )
         try:
+            lineage_heading = abjad.documentationtools.ReSTHeading(
+                level=3,
+                text='Lineage',
+                )
             document.append(lineage_heading)
             lineage_graph = self._get_lineage_graph(cls)
             lineage_graph.attributes['background'] = 'transparent'
@@ -447,6 +447,16 @@ class DocumentationManager(abctools.AbjadObject):
             abjadbooktools.abjad_thumbnail_block,
             ])
         return ignored_classes
+
+    def _get_tools_package_graph(self, tools_package):
+        from abjad.tools import documentationtools
+        inheritance_graph = documentationtools.InheritanceGraph(
+            lineage_addresses=[tools_package.__package__]
+            )
+        lineage_graph = inheritance_graph.__graph__()
+        lineage_graph.attributes['background'] = 'transparent'
+        lineage_graph.attributes['rankdir'] = 'LR'
+        return lineage_graph
 
     def _get_lineage_graph(self, cls):
         def get_node_name(original_name):
@@ -581,6 +591,24 @@ class DocumentationManager(abctools.AbjadObject):
         document.append(automodule_directive)
         ignored_classes = self._get_ignored_classes()
         classes = [_ for _ in classes if _ not in ignored_classes]
+        if classes:
+            rule = documentationtools.ReSTHorizontalRule()
+            document.append(rule)
+            lineage_heading = documentationtools.ReSTHeading(
+                level=3,
+                text='Lineage',
+                )
+            document.append(lineage_heading)
+            lineage_graph = self._get_tools_package_graph(tools_package)
+            graphviz_directive = documentationtools.ReSTGraphvizDirective(
+                graph=lineage_graph,
+                )
+            graphviz_container = documentationtools.ReSTDirective(
+                directive='container',
+                argument='graphviz',
+                )
+            graphviz_container.append(graphviz_directive)
+            document.append(graphviz_container)
         if classes:
             sections = {}
             for cls in classes:
