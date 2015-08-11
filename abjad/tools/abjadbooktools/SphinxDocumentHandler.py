@@ -56,49 +56,260 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def __init__(self):
         self._errored = False
 
-    ### SPHINX HOOKS
+    ### MISCELLANEOUS SPHINX HOOKS ###
 
     @staticmethod
-    def interpret_image_source(
-        self,
-        node,
-        absolute_source_file_path,
-        absolute_target_file_path,
-        ):
-        if node['renderer'] == 'graphviz':
-            render_command = 'dot -Tpng {} -o {}'.format(
-                absolute_source_file_path,
-                absolute_target_file_path,
-                )
-        elif node['renderer'] == 'lilypond':
-            render_command = 'lilypond --png -dpixmap-format=pngalpha -dresolution=300 -dno-point-and-click -o {} {}'.format(
-                os.path.splitext(absolute_target_file_path)[0],
-                absolute_source_file_path,
-                )
-        process = subprocess.Popen(
-            render_command,
-            shell=True,
-            stderr=subprocess.STDOUT,
-            stdout=subprocess.PIPE,
+    def on_builder_inited(app):
+        app.builder.thumbnails = FilenameUniqDict()
+        app.builder.imagedir = '_images'
+        stylesheets_directory = os.path.join(
+            app.builder.srcdir,
+            '_stylesheets',
             )
-        stdout, stderr = process.communicate()
-        return_code = process.returncode
-        if return_code:
-            self.builder.warn(
-                'Failed to render {}.'.format(absolute_target_file_path),
-                (self.builder.current_docname, node.line),
+        image_directory = os.path.join(
+            app.builder.outdir,
+            app.builder.imagedir,
+            'abjadbook',
+            )
+        if not os.path.exists(image_directory):
+            os.makedirs(image_directory)
+        if not os.path.exists(stylesheets_directory):
+            return
+        for file_name in os.listdir(stylesheets_directory):
+            if os.path.splitext(file_name)[-1] not in ('.ly', '.ily'):
+                continue
+            source_file_path = os.path.join(
+                stylesheets_directory,
+                file_name,
                 )
-            self.builder.warn(render_command)
-            if stdout:
-                if sys.version_info[0] == 3:
-                    stdout = stdout.decode('utf-8')
-                self.builder.warn(stdout)
-        return return_code
+            shutil.copy(source_file_path, image_directory)
+
+    @staticmethod
+    def on_build_finished(app, exc):
+        try:
+            SphinxDocumentHandler.render_thumbnails(app)
+        except:
+            traceback.print_exc()
+
+    @staticmethod
+    def setup_sphinx_extension(app):
+        from abjad.tools import abjadbooktools
+        app.add_config_value('abjadbook_ignored_documents', (), 'env')
+        app.add_directive('abjad', abjadbooktools.AbjadDirective)
+        app.add_directive('doctest', abjadbooktools.DoctestDirective)
+        app.add_directive('import', abjadbooktools.ImportDirective)
+        app.add_directive('shell', abjadbooktools.ShellDirective)
+        app.add_directive('thumbnail', abjadbooktools.ThumbnailDirective)
+        app.add_javascript('abjad.js')
+        app.add_javascript('copybutton.js')
+        app.add_javascript('ga.js')
+        app.add_stylesheet('abjad.css')
+        app.add_node(
+            abjadbooktools.abjad_import_block,
+            html=[SphinxDocumentHandler.visit_abjad_import_block, None],
+            latex=[SphinxDocumentHandler.visit_abjad_import_block, None],
+            )
+        app.add_node(
+            abjadbooktools.abjad_input_block,
+            html=[SphinxDocumentHandler.visit_abjad_input_block, None],
+            latex=[SphinxDocumentHandler.visit_abjad_input_block, None],
+            )
+        app.add_node(
+            abjadbooktools.abjad_output_block,
+            html=[SphinxDocumentHandler.visit_abjad_output_block_html, None],
+            latex=[SphinxDocumentHandler.visit_abjad_output_block_latex, None],
+            )
+        app.add_node(
+            abjadbooktools.abjad_thumbnail_block,
+            html=[SphinxDocumentHandler.visit_abjad_thumbnail_block_html, None],
+            latex=[SphinxDocumentHandler.visit_abjad_thumbnail_block_latex, None],
+            )
+        app.connect('build-finished', SphinxDocumentHandler.on_build_finished)
+        app.connect('builder-inited', SphinxDocumentHandler.on_builder_inited)
+        app.connect('doctree-read', SphinxDocumentHandler.on_doctree_read)
+        app.connect('env-updated', SphinxDocumentHandler.on_env_updated)
+
+    ### ON ENVIRONMENT UPDATED ###
+
+    @staticmethod
+    def install_lightbox_static_files(app):
+        source_static_path = os.path.join(app.builder.srcdir, '_static')
+        target_static_path = os.path.join(app.builder.outdir, '_static')
+        source_lightbox_path = os.path.join(source_static_path, 'lightbox2')
+        target_lightbox_path = os.path.join(target_static_path, 'lightbox2')
+        relative_file_paths = []
+        for root, _, file_names in os.walk(source_lightbox_path):
+            for file_name in file_names:
+                absolute_file_path = os.path.join(root, file_name)
+                relative_file_path = os.path.relpath(
+                    absolute_file_path,
+                    source_static_path,
+                    )
+                relative_file_paths.append(relative_file_path)
+        if os.path.exists(target_lightbox_path):
+            shutil.rmtree(target_lightbox_path)
+        for relative_file_path in app.builder.status_iterator(
+            relative_file_paths,
+            'installing lightbox files... ',
+            brown,
+            len(relative_file_paths),
+            ):
+            source_path = os.path.join(source_static_path, relative_file_path)
+            target_path = os.path.join(target_static_path, relative_file_path)
+            target_directory = os.path.dirname(target_path)
+            if not os.path.exists(target_directory):
+                ensuredir(target_directory)
+            copyfile(source_path, target_path)
+            if relative_file_path.endswith('.js'):
+                app.add_javascript(relative_file_path)
+            elif relative_file_path.endswith('.css'):
+                app.add_stylesheet(relative_file_path)
+
+    @staticmethod
+    def on_env_updated(app, env):
+        try:
+            SphinxDocumentHandler.install_lightbox_static_files(app)
+        except:
+            traceback.print_exc()
+
+    ### ON READ ###
+
+    def collect_abjad_input_blocks(self, document):
+        def is_valid_node(node):
+            prototype = (
+                abjadbooktools.abjad_import_block,
+                abjadbooktools.abjad_input_block,
+                )
+            return isinstance(node, prototype)
+        from abjad.tools import abjadbooktools
+        code_blocks = collections.OrderedDict()
+        for block in document.traverse(is_valid_node):
+            if isinstance(block, abjadbooktools.abjad_import_block):
+                code_block = \
+                    abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
+            else:
+                code_block = \
+                    abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
+            code_blocks[block] = code_block
+        return code_blocks
+
+    def collect_python_literal_blocks(self, document, renderable_only=True):
+        def is_valid_node(node):
+            prototype = (
+                nodes.literal_block,
+                nodes.doctest_block,
+                )
+            return isinstance(node, prototype)
+        from abjad.tools import abjadbooktools
+        should_process = False
+        code_blocks = collections.OrderedDict()
+        for block in document.traverse(is_valid_node):
+            lines = block[0].splitlines()
+            if not lines[0].startswith('>>>'):
+                continue
+            for line in lines:
+                if self._topleveltools_pattern.search(line) is not None:
+                    should_process = True
+            code_block = \
+                abjadbooktools.CodeBlock.from_docutils_literal_block(block)
+            code_blocks[block] = code_block
+        if renderable_only and not should_process:
+            code_blocks.clear()
+        return code_blocks
+
+    def get_default_stylesheet(self):
+        return 'default.ly'
+
+    @staticmethod
+    def interpret_code_blocks(app, document):
+        import abjad
+        from abjad.tools import abjadbooktools
+        if SphinxDocumentHandler.should_ignore_document(app, document):
+            print()
+            message = '    [abjad-book] ignoring'
+            print(message)
+            return
+        try:
+            handler = SphinxDocumentHandler()
+            abjad_blocks = handler.collect_abjad_input_blocks(document)
+            abjad_console = abjadbooktools.AbjadBookConsole(
+                document_handler=handler,
+                locals=abjad.__dict__.copy(),
+                )
+            literal_blocks = handler.collect_python_literal_blocks(document)
+            literal_console = abjadbooktools.AbjadBookConsole(
+                document_handler=handler,
+                locals=abjad.__dict__.copy(),
+                )
+            if abjad_blocks or literal_blocks:
+                print()
+                handler.interpret_input_blocks(document, abjad_blocks, abjad_console)
+                handler.interpret_input_blocks(document, literal_blocks, literal_console)
+                handler.rebuild_document(document, abjad_blocks)
+                handler.rebuild_document(document, literal_blocks)
+            abjad_console.restore_topleveltools_dict()
+            literal_console.restore_topleveltools_dict()
+        except abjadbooktools.AbjadBookError as e:
+            print()
+            print(e.args[0])
+        except Exception:
+            print()
+            traceback.print_exc()
+
+    def interpret_input_blocks(
+        self,
+        document,
+        input_blocks,
+        console,
+        ):
+        code_blocks = tuple(input_blocks.values())
+        if not code_blocks:
+            return
+        progress_indicator = systemtools.ProgressIndicator(
+            message='    [abjad-book] interpreting',
+            total=len(code_blocks),
+            verbose=True,
+            )
+        with progress_indicator:
+            for code_block in code_blocks:
+                code_block.interpret(console)
+                progress_indicator.advance()
 
     @staticmethod
     def on_doctree_read(app, document):
         SphinxDocumentHandler.style_document(app, document)
         SphinxDocumentHandler.interpret_code_blocks(app, document)
+
+    @staticmethod
+    def parse_rst(rst_string):
+        from abjad.tools import abjadbooktools
+        parser = Parser()
+        directives.register_directive(
+            'abjad', abjadbooktools.AbjadDirective,
+            )
+        directives.register_directive(
+            'import', abjadbooktools.ImportDirective,
+            )
+        directives.register_directive('shell', abjadbooktools.ShellDirective)
+        settings = OptionParser(components=(Parser,)).get_default_values()
+        document = new_document('test', settings)
+        parser.parse(rst_string, document)
+        document = parser.document
+        return document
+
+    def rebuild_document(self, document, blocks):
+        for old_node, code_block in reversed(tuple(blocks.items())):
+            new_nodes = code_block.as_docutils()
+            if (
+                len(new_nodes) == 1 and
+                systemtools.TestManager.clean_string(old_node.pformat()) ==
+                systemtools.TestManager.clean_string(new_nodes[0].pformat())
+                ):
+                continue
+            old_node.parent.replace(old_node, new_nodes)
+
+    def register_error(self):
+        self._errored = True
 
     @staticmethod
     def style_document(app, document):
@@ -205,171 +416,24 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                         ))
                 signature_node.insert(0, label_node)
 
-    @staticmethod
-    def interpret_code_blocks(app, document):
-        import abjad
-        from abjad.tools import abjadbooktools
-        if SphinxDocumentHandler.should_ignore_document(app, document):
-            print()
-            message = '    [abjad-book] ignoring'
-            print(message)
-            return
-        try:
-            handler = SphinxDocumentHandler()
-            abjad_blocks = handler.collect_abjad_input_blocks(document)
-            abjad_console = abjadbooktools.AbjadBookConsole(
-                document_handler=handler,
-                locals=abjad.__dict__.copy(),
-                )
-            literal_blocks = handler.collect_python_literal_blocks(document)
-            literal_console = abjadbooktools.AbjadBookConsole(
-                document_handler=handler,
-                locals=abjad.__dict__.copy(),
-                )
-            if abjad_blocks or literal_blocks:
-                print()
-                handler.interpret_input_blocks(document, abjad_blocks, abjad_console)
-                handler.interpret_input_blocks(document, literal_blocks, literal_console)
-                handler.rebuild_document(document, abjad_blocks)
-                handler.rebuild_document(document, literal_blocks)
-            abjad_console.restore_topleveltools_dict()
-            literal_console.restore_topleveltools_dict()
-        except abjadbooktools.AbjadBookError as e:
-            print()
-            print(e.args[0])
-        except Exception:
-            print()
-            traceback.print_exc()
+    def unregister_error(self):
+        self._errored = False
 
     @staticmethod
-    def on_builder_inited(app):
-        app.builder.thumbnails = FilenameUniqDict()
-        app.builder.imagedir = '_images'
-        stylesheets_directory = os.path.join(
-            app.builder.srcdir,
-            '_stylesheets',
-            )
-        image_directory = os.path.join(
-            app.builder.outdir,
-            app.builder.imagedir,
-            'abjadbook',
-            )
-        if not os.path.exists(image_directory):
-            os.makedirs(image_directory)
-        if not os.path.exists(stylesheets_directory):
-            return
-        for file_name in os.listdir(stylesheets_directory):
-            if os.path.splitext(file_name)[-1] not in ('.ly', '.ily'):
-                continue
-            source_file_path = os.path.join(
-                stylesheets_directory,
-                file_name,
-                )
-            shutil.copy(source_file_path, image_directory)
+    def should_ignore_document(app, document):
+        if not app.config.abjadbook_ignored_documents:
+            return False
+        source = document['source']
+        for pattern in app.config.abjadbook_ignored_documents:
+            if isinstance(pattern, str):
+                if pattern in source:
+                    return True
+            else:
+                if pattern.match(source) is not None:
+                    return True
+        return False
 
-    @staticmethod
-    def on_build_finished(app, exc):
-        try:
-            SphinxDocumentHandler.render_thumbnails(app)
-        except:
-            traceback.print_exc()
-
-    @staticmethod
-    def on_env_updated(app, env):
-        try:
-            SphinxDocumentHandler.install_lightbox_static_files(app)
-        except:
-            traceback.print_exc()
-
-    @staticmethod
-    def install_lightbox_static_files(app):
-        source_static_path = os.path.join(app.builder.srcdir, '_static')
-        target_static_path = os.path.join(app.builder.outdir, '_static')
-        source_lightbox_path = os.path.join(source_static_path, 'lightbox2')
-        target_lightbox_path = os.path.join(target_static_path, 'lightbox2')
-        relative_file_paths = []
-        for root, _, file_names in os.walk(source_lightbox_path):
-            for file_name in file_names:
-                absolute_file_path = os.path.join(root, file_name)
-                relative_file_path = os.path.relpath(
-                    absolute_file_path,
-                    source_static_path,
-                    )
-                relative_file_paths.append(relative_file_path)
-        if os.path.exists(target_lightbox_path):
-            shutil.rmtree(target_lightbox_path)
-        for relative_file_path in app.builder.status_iterator(
-            relative_file_paths,
-            'installing lightbox files... ',
-            brown,
-            len(relative_file_paths),
-            ):
-            source_path = os.path.join(source_static_path, relative_file_path)
-            target_path = os.path.join(target_static_path, relative_file_path)
-            target_directory = os.path.dirname(target_path)
-            if not os.path.exists(target_directory):
-                ensuredir(target_directory)
-            copyfile(source_path, target_path)
-            if relative_file_path.endswith('.js'):
-                app.add_javascript(relative_file_path)
-            elif relative_file_path.endswith('.css'):
-                app.add_stylesheet(relative_file_path)
-
-    @staticmethod
-    def render_thumbnails(app):
-        image_directory = os.path.join(
-            app.builder.outdir,
-            app.builder.imagedir,
-            )
-        thumbnail_paths = app.builder.thumbnails
-        for path in app.builder.status_iterator(
-            thumbnail_paths,
-            'rendering gallery thumbnails...',
-            brown,
-            len(thumbnail_paths),
-            ):
-            image_name = os.path.basename(path)
-            prefix, suffix = os.path.splitext(image_name)
-            thumbnail_name = '{}-thumbnail{}'.format(prefix, suffix)
-            image_path = os.path.join(image_directory, image_name)
-            thumbnail_path = os.path.join(image_directory, thumbnail_name)
-            if os.path.exists(thumbnail_path):
-                continue
-            resize_command = 'convert {} -resize 696x {}'.format(
-                image_path,
-                thumbnail_path,
-                )
-            process = subprocess.Popen(
-                resize_command,
-                shell=True,
-                stderr=subprocess.STDOUT,
-                stdout=subprocess.PIPE,
-                )
-            stdout, stderr = process.communicate()
-            return_code = process.returncode
-            if return_code:
-                message = 'Failed to render {}.'
-                message = message.format(thumbnail_name)
-                app.builder.warn(message)
-                app.builder.warn(resize_command)
-                if stdout:
-                    if sys.version_info[0] == 3:
-                        stdout = stdout.decode('utf-8')
-                    app.builder.warn(stdout)
-
-    @staticmethod
-    def get_image_directory_paths(self):
-        absolute_image_directory_path = os.path.join(
-            self.builder.outdir,
-            self.builder.imagedir,
-            'abjadbook',
-            )
-        relative_image_directory_path = posixpath.join(
-            self.builder.imgpath,
-            'abjadbook',
-            )
-        paths = (absolute_image_directory_path, relative_image_directory_path)
-        return paths
+    ### ON WRITE ###
 
     @staticmethod
     def find_target_file_paths(
@@ -416,12 +480,102 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         return file_base_name
 
     @staticmethod
+    def get_image_directory_paths(self):
+        absolute_image_directory_path = os.path.join(
+            self.builder.outdir,
+            self.builder.imagedir,
+            'abjadbook',
+            )
+        relative_image_directory_path = posixpath.join(
+            self.builder.imgpath,
+            'abjadbook',
+            )
+        paths = (absolute_image_directory_path, relative_image_directory_path)
+        return paths
+
+    @staticmethod
     def get_source_extension(node):
         if node['renderer'] == 'graphviz':
             source_extension = '.dot'
         elif node['renderer'] == 'lilypond':
             source_extension = '.ly'
         return source_extension
+
+    @staticmethod
+    def interpret_image_source(
+        self,
+        node,
+        absolute_source_file_path,
+        absolute_target_file_path,
+        ):
+        if node['renderer'] == 'graphviz':
+            render_command = 'dot -Tpng {} -o {}'.format(
+                absolute_source_file_path,
+                absolute_target_file_path,
+                )
+        elif node['renderer'] == 'lilypond':
+            render_command = 'lilypond --png -dpixmap-format=pngalpha -dresolution=300 -dno-point-and-click -o {} {}'.format(
+                os.path.splitext(absolute_target_file_path)[0],
+                absolute_source_file_path,
+                )
+        process = subprocess.Popen(
+            render_command,
+            shell=True,
+            stderr=subprocess.STDOUT,
+            stdout=subprocess.PIPE,
+            )
+        stdout, stderr = process.communicate()
+        return_code = process.returncode
+        if return_code:
+            self.builder.warn(
+                'Failed to render {}.'.format(absolute_target_file_path),
+                (self.builder.current_docname, node.line),
+                )
+            self.builder.warn(render_command)
+            if stdout:
+                if sys.version_info[0] == 3:
+                    stdout = stdout.decode('utf-8')
+                self.builder.warn(stdout)
+        return return_code
+
+    @staticmethod
+    def postprocess_image_target(
+        self,
+        node,
+        absolute_target_file_path,
+        no_trim=False,
+        no_resize=False,
+        ):
+        if no_trim and no_resize:
+            return 0
+        command = 'convert {}'.format(absolute_target_file_path)
+        if not no_resize:
+            if platform.system() == 'Windows':
+                command = '{} -resize 33%%'.format(command)
+            else:
+                command = '{} -resize 33%'.format(command)
+        if not no_trim:
+            command = '{} -trim'.format(command)
+        command = '{} {}'.format(command, absolute_target_file_path)
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stderr=subprocess.STDOUT,
+            stdout=subprocess.PIPE,
+            )
+        stdout, stderr = process.communicate()
+        return_code = process.returncode
+        if return_code:
+            self.builder.warn(
+                'Failed to render {}.'.format(absolute_target_file_path),
+                (self.builder.current_docname, node.line),
+                )
+            self.builder.warn(command)
+            if stdout:
+                if sys.version_info[0] == 3:
+                    stdout = stdout.decode('utf-8')
+                self.builder.warn(stdout)
+        return return_code
 
     @staticmethod
     def render_png_image(self, node):
@@ -491,43 +645,46 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         return (relative_source_file_path, target_file_paths)
 
     @staticmethod
-    def postprocess_image_target(
-        self,
-        node,
-        absolute_target_file_path,
-        no_trim=False,
-        no_resize=False,
-        ):
-        if no_trim and no_resize:
-            return 0
-        command = 'convert {}'.format(absolute_target_file_path)
-        if not no_resize:
-            if platform.system() == 'Windows':
-                command = '{} -resize 33%%'.format(command)
-            else:
-                command = '{} -resize 33%'.format(command)
-        if not no_trim:
-            command = '{} -trim'.format(command)
-        command = '{} {}'.format(command, absolute_target_file_path)
-        process = subprocess.Popen(
-            command,
-            shell=True,
-            stderr=subprocess.STDOUT,
-            stdout=subprocess.PIPE,
+    def render_thumbnails(app):
+        image_directory = os.path.join(
+            app.builder.outdir,
+            app.builder.imagedir,
             )
-        stdout, stderr = process.communicate()
-        return_code = process.returncode
-        if return_code:
-            self.builder.warn(
-                'Failed to render {}.'.format(absolute_target_file_path),
-                (self.builder.current_docname, node.line),
+        thumbnail_paths = app.builder.thumbnails
+        for path in app.builder.status_iterator(
+            thumbnail_paths,
+            'rendering gallery thumbnails...',
+            brown,
+            len(thumbnail_paths),
+            ):
+            image_name = os.path.basename(path)
+            prefix, suffix = os.path.splitext(image_name)
+            thumbnail_name = '{}-thumbnail{}'.format(prefix, suffix)
+            image_path = os.path.join(image_directory, image_name)
+            thumbnail_path = os.path.join(image_directory, thumbnail_name)
+            if os.path.exists(thumbnail_path):
+                continue
+            resize_command = 'convert {} -resize 696x {}'.format(
+                image_path,
+                thumbnail_path,
                 )
-            self.builder.warn(command)
-            if stdout:
-                if sys.version_info[0] == 3:
-                    stdout = stdout.decode('utf-8')
-                self.builder.warn(stdout)
-        return return_code
+            process = subprocess.Popen(
+                resize_command,
+                shell=True,
+                stderr=subprocess.STDOUT,
+                stdout=subprocess.PIPE,
+                )
+            stdout, stderr = process.communicate()
+            return_code = process.returncode
+            if return_code:
+                message = 'Failed to render {}.'
+                message = message.format(thumbnail_name)
+                app.builder.warn(message)
+                app.builder.warn(resize_command)
+                if stdout:
+                    if sys.version_info[0] == 3:
+                        stdout = stdout.decode('utf-8')
+                    app.builder.warn(stdout)
 
     @staticmethod
     def visit_abjad_import_block(self, node):
@@ -673,159 +830,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             if sys.version_info[0] == 2:
                 code = code.encode('utf-8')
             file_pointer.write(code)
-
-    ### PUBLIC METHODS ###
-
-    def collect_abjad_input_blocks(self, document):
-        def is_valid_node(node):
-            prototype = (
-                abjadbooktools.abjad_import_block,
-                abjadbooktools.abjad_input_block,
-                )
-            return isinstance(node, prototype)
-        from abjad.tools import abjadbooktools
-        code_blocks = collections.OrderedDict()
-        for block in document.traverse(is_valid_node):
-            if isinstance(block, abjadbooktools.abjad_import_block):
-                code_block = \
-                    abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
-            else:
-                code_block = \
-                    abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
-            code_blocks[block] = code_block
-        return code_blocks
-
-    def collect_python_literal_blocks(self, document, renderable_only=True):
-        def is_valid_node(node):
-            prototype = (
-                nodes.literal_block,
-                nodes.doctest_block,
-                )
-            return isinstance(node, prototype)
-        from abjad.tools import abjadbooktools
-        should_process = False
-        code_blocks = collections.OrderedDict()
-        for block in document.traverse(is_valid_node):
-            lines = block[0].splitlines()
-            if not lines[0].startswith('>>>'):
-                continue
-            for line in lines:
-                if self._topleveltools_pattern.search(line) is not None:
-                    should_process = True
-            code_block = \
-                abjadbooktools.CodeBlock.from_docutils_literal_block(block)
-            code_blocks[block] = code_block
-        if renderable_only and not should_process:
-            code_blocks.clear()
-        return code_blocks
-
-    def get_default_stylesheet(self):
-        return 'default.ly'
-
-    def interpret_input_blocks(
-        self,
-        document,
-        input_blocks,
-        console,
-        ):
-        code_blocks = tuple(input_blocks.values())
-        if not code_blocks:
-            return
-        progress_indicator = systemtools.ProgressIndicator(
-            message='    [abjad-book] interpreting',
-            total=len(code_blocks),
-            verbose=True,
-            )
-        with progress_indicator:
-            for code_block in code_blocks:
-                code_block.interpret(console)
-                progress_indicator.advance()
-
-    @staticmethod
-    def parse_rst(rst_string):
-        from abjad.tools import abjadbooktools
-        parser = Parser()
-        directives.register_directive(
-            'abjad', abjadbooktools.AbjadDirective,
-            )
-        directives.register_directive(
-            'import', abjadbooktools.ImportDirective,
-            )
-        directives.register_directive('shell', abjadbooktools.ShellDirective)
-        settings = OptionParser(components=(Parser,)).get_default_values()
-        document = new_document('test', settings)
-        parser.parse(rst_string, document)
-        document = parser.document
-        return document
-
-    def rebuild_document(self, document, blocks):
-        for old_node, code_block in reversed(tuple(blocks.items())):
-            new_nodes = code_block.as_docutils()
-            if (
-                len(new_nodes) == 1 and
-                systemtools.TestManager.clean_string(old_node.pformat()) ==
-                systemtools.TestManager.clean_string(new_nodes[0].pformat())
-                ):
-                continue
-            old_node.parent.replace(old_node, new_nodes)
-
-    @staticmethod
-    def setup_sphinx_extension(app):
-        from abjad.tools import abjadbooktools
-        app.add_config_value('abjadbook_ignored_documents', (), 'env')
-        app.add_directive('abjad', abjadbooktools.AbjadDirective)
-        app.add_directive('doctest', abjadbooktools.DoctestDirective)
-        app.add_directive('import', abjadbooktools.ImportDirective)
-        app.add_directive('shell', abjadbooktools.ShellDirective)
-        app.add_directive('thumbnail', abjadbooktools.ThumbnailDirective)
-        app.add_javascript('abjad.js')
-        app.add_javascript('copybutton.js')
-        app.add_javascript('ga.js')
-        app.add_stylesheet('abjad.css')
-        app.add_node(
-            abjadbooktools.abjad_import_block,
-            html=[SphinxDocumentHandler.visit_abjad_import_block, None],
-            latex=[SphinxDocumentHandler.visit_abjad_import_block, None],
-            )
-        app.add_node(
-            abjadbooktools.abjad_input_block,
-            html=[SphinxDocumentHandler.visit_abjad_input_block, None],
-            latex=[SphinxDocumentHandler.visit_abjad_input_block, None],
-            )
-        app.add_node(
-            abjadbooktools.abjad_output_block,
-            html=[SphinxDocumentHandler.visit_abjad_output_block_html, None],
-            latex=[SphinxDocumentHandler.visit_abjad_output_block_latex, None],
-            )
-        app.add_node(
-            abjadbooktools.abjad_thumbnail_block,
-            html=[SphinxDocumentHandler.visit_abjad_thumbnail_block_html, None],
-            latex=[SphinxDocumentHandler.visit_abjad_thumbnail_block_latex, None],
-            )
-        app.connect('build-finished', SphinxDocumentHandler.on_build_finished)
-        app.connect('builder-inited', SphinxDocumentHandler.on_builder_inited)
-        app.connect('doctree-read', SphinxDocumentHandler.on_doctree_read)
-        app.connect('env-updated', SphinxDocumentHandler.on_env_updated)
-
-    def register_error(self):
-        self._errored = True
-
-    def unregister_error(self):
-        self._errored = False
-
-    @staticmethod
-    def should_ignore_document(app, document):
-        if not app.config.abjadbook_ignored_documents:
-            return False
-        source = document['source']
-        for pattern in app.config.abjadbook_ignored_documents:
-            if isinstance(pattern, str):
-                if pattern in source:
-                    return True
-            else:
-                if pattern.match(source) is not None:
-                    return True
-        return False
 
     ### PUBLIC PROPERTIES ###
 
