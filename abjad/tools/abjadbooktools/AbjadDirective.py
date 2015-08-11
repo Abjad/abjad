@@ -35,6 +35,7 @@ class AbjadDirective(Directive):
         'stylesheet': str,
         'text-width': int,
         'with-columns': int,
+        'with-thumbnail': directives.flag,
         }
 
     ### PRIVATE METHODS ###
@@ -89,6 +90,8 @@ class AbjadDirective(Directive):
             block['no-trim'] = True
         if 'strip-prompt' in self.options:
             block['strip-prompt'] = True
+        if 'with-thumbnail' in self.options:
+            block['with-thumbnail'] = True
         pages = self.options.get('pages', None)
         if pages is not None:
             block['pages'] = self._parse_pages_string(pages)

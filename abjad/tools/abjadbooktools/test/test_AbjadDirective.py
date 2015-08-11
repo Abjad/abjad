@@ -39,6 +39,7 @@ class AbjadDirectiveTests(unittest.TestCase):
             :no-resize:
             :no-trim:
             :strip-prompt:
+            :with-thumbnail:
 
             note = Note("c'4")
             if True:
@@ -49,7 +50,7 @@ class AbjadDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_input_block allow-exceptions="True" hide="True" no-resize="True" no-trim="True" strip-prompt="True">
+                <abjad_input_block allow-exceptions="True" hide="True" no-resize="True" no-trim="True" strip-prompt="True" with-thumbnail="True">
                     <literal_block xml:space="preserve">
                         note = Note("c'4")
                         if True:
