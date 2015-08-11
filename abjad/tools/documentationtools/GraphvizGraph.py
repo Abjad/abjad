@@ -354,12 +354,13 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
         from abjad.tools import systemtools
         assert systemtools.IOManager.find_executable(
             'unflatten'), 'Cannot find `unflatten` command-line tool.'
-        graphviz_format = str(self)
+        graphviz_format = str(self).encode('utf-8')
         process = subprocess.Popen('unflatten -l 4'.split(),
-            shell=False,
+            shell=True,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
             )
-        result = process.communicate(graphviz_format)[0]
+        stdout, _ = process.communicate(graphviz_format)
+        result = stdout.decode('utf-8')
         return result
