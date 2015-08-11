@@ -404,6 +404,23 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         return target_file_names, found_all_pages
 
     @staticmethod
+    def get_file_base_name(node, image_render_specifier):
+        sha1sum = hashlib.sha1()
+        sha1sum.update(node[0].encode('utf-8'))
+        sha1sum.update(format(image_render_specifier, 'storage').encode('utf-8'))
+        sha1sum = sha1sum.hexdigest()
+        file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
+        return file_base_name
+
+    @staticmethod
+    def get_source_extension(node):
+        if node['renderer'] == 'graphviz':
+            source_extension = '.dot'
+        elif node['renderer'] == 'lilypond':
+            source_extension = '.ly'
+        return source_extension
+
+    @staticmethod
     def render_png_image(self, node):
         from abjad.tools import abjadbooktools
         # Get all file and path parts.
@@ -414,35 +431,29 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         if image_render_specifier is None:
             image_render_specifier = abjadbooktools.ImageRenderSpecifier()
         pages = image_layout_specifier.pages
+
         target_extension = '.png'
-        sha1sum = hashlib.sha1()
-        sha1sum.update(node[0].encode('utf-8'))
-        sha1sum.update(format(image_render_specifier, 'storage').encode('utf-8'))
-        sha1sum = sha1sum.hexdigest()
-        file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
+        file_base_name = SphinxDocumentHandler.get_file_base_name(
+            node, image_render_specifier)
+        source_extension = SphinxDocumentHandler.get_source_extension(node)
         file_name_pattern = '{}*{}'.format(file_base_name, target_extension)
-        if node['renderer'] == 'graphviz':
-            source_extension = '.dot'
-        elif node['renderer'] == 'lilypond':
-            source_extension = '.ly'
         absolute_directory_path, relative_directory_path = \
             SphinxDocumentHandler.get_image_directory_paths(self)
         relative_source_file_path = posixpath.join(
             relative_directory_path,
             file_base_name + source_extension,
             )
+
         # Check for pre-existing target(s).
         target_file_names, found_all_pages = \
             SphinxDocumentHandler.find_target_file_names(
-                absolute_directory_path,
-                file_name_pattern,
-                pages,
-                )
+                absolute_directory_path, file_name_pattern, pages,)
         if found_all_pages:
             return (
                 relative_source_file_path,
                 [posixpath.join(relative_directory_path, _) for _ in target_file_names],
                 )
+
         # Write and render source to target(s).
         absolute_source_file_path = os.path.join(
             absolute_directory_path,
@@ -461,6 +472,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 relative_directory_path,
                 [],
                 )
+
         # Check for target(s).
         target_file_names, found_all_pages = \
             SphinxDocumentHandler.find_target_file_names(
@@ -471,14 +483,16 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 relative_source_file_path,
                 [posixpath.join(relative_directory_path, _) for _ in target_file_names],
                 )
-        # Trim target(s).
-        if image_render_specifier.no_trim:
-            pass
-        else:
-            for target_name in target_file_names:
-                target_path = os.path.join(absolute_directory_path, target_name)
-                return_code = SphinxDocumentHandler.trim_image_target(
-                    self, node, target_path)
+
+        # Trim and resize target(s).
+        for target_name in target_file_names:
+            target_path = os.path.join(absolute_directory_path, target_name)
+            return_code = SphinxDocumentHandler.postprocess_image_target(
+                self, node, target_path,
+                no_resize=image_render_specifier.no_resize,
+                no_trim=image_render_specifier.no_trim,
+                )
+
         # Target(s) must exist, so simply return.
         return (
             relative_source_file_path,
@@ -486,21 +500,26 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             )
 
     @staticmethod
-    def trim_image_target(
+    def postprocess_image_target(
         self,
         node,
         absolute_target_file_path,
+        no_trim=False,
+        no_resize=False,
         ):
-        if platform.system() == 'Windows':
-            trim_command = 'convert {} -resize 33%% -trim {}'
-        else:
-            trim_command = 'convert {} -resize 33% -trim {}'
-        trim_command = trim_command.format(
-            absolute_target_file_path,
-            absolute_target_file_path,
-            )
+        if no_trim and no_resize:
+            return 0
+        command = 'convert {}'.format(absolute_target_file_path)
+        if not no_resize:
+            if platform.system() == 'Windows':
+                command = '{} -resize 33%%'.format(command)
+            else:
+                command = '{} -resize 33%'.format(command)
+        if not no_trim:
+            command = '{} -trim'.format(command)
+        command = '{} {}'.format(command, absolute_target_file_path)
         process = subprocess.Popen(
-            trim_command,
+            command,
             shell=True,
             stderr=subprocess.STDOUT,
             stdout=subprocess.PIPE,
@@ -512,7 +531,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 'Failed to render {}.'.format(absolute_target_file_path),
                 (self.builder.current_docname, node.line),
                 )
-            self.builder.warn(trim_command)
+            self.builder.warn(command)
             if stdout:
                 if sys.version_info[0] == 3:
                     stdout = stdout.decode('utf-8')
