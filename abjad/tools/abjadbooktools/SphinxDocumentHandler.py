@@ -54,31 +54,31 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     _output_template = systemtools.TestManager.clean_string(u'''
         <div class="abjad-book-image">
             <a href="{source_path}">
-                <img src="{target_path}" alt="View source." title="View source." />
+                <img src="{target_path}" alt="View source." title="View source."/>
             </a>
         </div>
         ''')
 
     _output_template_with_columns = systemtools.TestManager.clean_string(u'''
-        <a class="table-cell" href="{source_path}">
-            <img src="{target_path}" alt="View source." title="View source." />
+        <a href="{source_path}" class="{cls}">
+            <img src="{target_path}" alt="View source." title="View source."/>
         </a>
         ''')
 
     _output_template_with_columns_with_thumbnail = systemtools.TestManager.clean_string(u'''
-        <a data-lightbox="{group}" href="{target_path}" class="table-cell thumbnail {cls}">
+        <a data-lightbox="{group}" href="{target_path}" class="{cls}">
             <img src="{thumbnail_path}"/>
         </a>
         ''')
 
     _output_template_with_thumbnail = systemtools.TestManager.clean_string(u'''
-        <a data-lightbox="{group}" href="{target_path}" class="thumbnail {cls}">
+        <a data-lightbox="{group}" href="{target_path}" class="{cls}">
             <img src="{thumbnail_path}"/>
         </a>
         ''')
 
     _thumbnail_template = systemtools.TestManager.clean_string(u'''
-        <a data-lightbox="{group}" href="{target_path}" class="thumbnail {cls}" title="{title}" data-title="{title}">
+        <a data-lightbox="{group}" href="{target_path}" title="{title}" data-title="{title}" class="{cls}">
             <img src="{thumbnail_path}" alt="{alt}"/>'
         </a>
         ''')
@@ -783,8 +783,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         if image_layout_specifier.with_thumbnail:
             for relative_target_file_path in relative_target_file_paths:
                 self.builder.thumbnails.add_file('', relative_target_file_path)
+        css_classes = set(node.get('cls', '').split())
         if image_layout_specifier.with_columns:
+            css_classes.add('table-cell')
             if image_layout_specifier.with_thumbnail:
+                css_classes.add('thumbnail')
                 template = SphinxDocumentHandler._output_template_with_columns_with_thumbnail
             else:
                 template = SphinxDocumentHandler._output_template_with_columns
@@ -797,7 +800,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     prefix, suffix = os.path.splitext(relative_target_file_path)
                     thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
                     result = template.format(
-                        cls='',
+                        cls=' '.join(sorted(css_classes)),
                         group='group-{}'.format(os.path.basename(relative_source_file_path)),
                         source_path=relative_source_file_path,
                         target_path=relative_target_file_path,
@@ -811,6 +814,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 self.body.append(SphinxDocumentHandler._table_row_close_template)
         else:
             if image_layout_specifier.with_thumbnail:
+                css_classes.add('thumbnail')
                 template = SphinxDocumentHandler._output_template_with_thumbnail
             else:
                 template = SphinxDocumentHandler._output_template
@@ -818,7 +822,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 prefix, suffix = os.path.splitext(relative_target_file_path)
                 thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
                 result = template.format(
-                    cls='',
+                    cls=' '.join(sorted(css_classes)),
                     group='group-{}'.format(os.path.basename(relative_source_file_path)),
                     source_path=relative_source_file_path,
                     target_path=relative_target_file_path,

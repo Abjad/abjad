@@ -81,7 +81,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.ly">
-                    <img src="../_images/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.png" alt="View source." title="View source."/>
                 </a>
             </div>
             ''')
@@ -118,7 +118,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.ly">
-                    <img src="../_images/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.png" alt="View source." title="View source."/>
                 </a>
             </div>
             ''')
@@ -156,7 +156,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly">
-                    <img src="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png" alt="View source." title="View source."/>
                 </a>
             </div>
             ''')
@@ -195,7 +195,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert '../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png' in self.app.builder.thumbnails
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
-            <a data-lightbox="group-lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly" href="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png" class="">
+            <a data-lightbox="group-lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly" href="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png" class="thumbnail">
                 <img src="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e-thumbnail.png"/>
             </a>
             ''')
@@ -234,7 +234,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.ly">
-                    <img src="../_images/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.png" alt="View source." title="View source."/>
                 </a>
             </div>
             ''')
@@ -278,27 +278,27 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png" alt="View source." title="View source."/>
                 </a>
             </div>
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source."/>
                 </a>
             </div>
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source."/>
                 </a>
             </div>
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source."/>
                 </a>
             </div>
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page5.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page5.png" alt="View source." title="View source."/>
                 </a>
             </div>
             ''')
@@ -343,17 +343,17 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source."/>
                 </a>
             </div>
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source."/>
                 </a>
             </div>
             <div class="abjad-book-image">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source."/>
                 </a>
             </div>
             ''')
@@ -398,16 +398,16 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
             <div class="table-row">
-                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source."/>
                 </a>
-                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source."/>
                 </a>
             </div>
             <div class="table-row">
-                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source."/>
                 </a>
             </div>
             ''')
@@ -453,16 +453,16 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
             <div class="table-row">
-                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
-                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page2.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page2.png" alt="View source." title="View source."/>
                 </a>
-                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
-                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page3.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page3.png" alt="View source." title="View source."/>
                 </a>
             </div>
             <div class="table-row">
-                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
-                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page4.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly" class="table-cell">
+                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page4.png" alt="View source." title="View source."/>
                 </a>
             </div>
             ''')
@@ -506,19 +506,19 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
-            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png" class="">
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png" class="thumbnail">
                 <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1-thumbnail.png"/>
             </a>
-            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2.png" class="">
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2.png" class="thumbnail">
                 <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2-thumbnail.png"/>
             </a>
-            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3.png" class="">
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3.png" class="thumbnail">
                 <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3-thumbnail.png"/>
             </a>
-            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4.png" class="">
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4.png" class="thumbnail">
                 <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4-thumbnail.png"/>
             </a>
-            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5.png" class="">
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5.png" class="thumbnail">
                 <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5-thumbnail.png"/>
             </a>
             ''')
@@ -569,23 +569,23 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
             <div class="table-row">
-                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png" class="table-cell thumbnail ">
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png" class="table-cell thumbnail">
                     <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1-thumbnail.png"/>
                 </a>
-                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2.png" class="table-cell thumbnail ">
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2.png" class="table-cell thumbnail">
                     <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2-thumbnail.png"/>
                 </a>
             </div>
             <div class="table-row">
-                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3.png" class="table-cell thumbnail ">
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3.png" class="table-cell thumbnail">
                     <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3-thumbnail.png"/>
                 </a>
-                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4.png" class="table-cell thumbnail ">
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4.png" class="table-cell thumbnail">
                     <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4-thumbnail.png"/>
                 </a>
             </div>
             <div class="table-row">
-                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5.png" class="table-cell thumbnail ">
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5.png" class="table-cell thumbnail">
                     <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5-thumbnail.png"/>
                 </a>
             </div>
