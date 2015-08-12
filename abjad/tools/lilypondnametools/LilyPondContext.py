@@ -20,13 +20,13 @@ class LilyPondContext(abctools.AbjadValueObject):
         ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
         ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
         ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
-        ...     is_voice_context = 'X' if lilypond_context.is_voice_context else ' '
+        ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
         ...     print('[{}] [{}] [{}] [{}] [{}] {}'.format(
         ...         is_global_context,
         ...         is_score_context,
         ...         is_staff_group_context,
         ...         is_staff_context,
-        ...         is_voice_context,
+        ...         is_bottom_context,
         ...         lilypond_context.name,
         ...         ))
         ...
@@ -550,6 +550,55 @@ class LilyPondContext(abctools.AbjadValueObject):
         return bool(contexts[self.name].get('is_custom', False))
 
     @property
+    def is_bottom_context(self):
+        r'''Is true if LilyPond context is a bottom context. Otherwise false.
+
+        ::
+
+            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            ...     is_bottom_context = 'X' if lilypond_context.is_bottom_context else ' '
+            ...     print('[{}] {}'.format(is_bottom_context, lilypond_context.name))
+            ...
+            [ ] ChoirStaff
+            [X] ChordNames
+            [X] CueVoice
+            [X] Devnull
+            [ ] DrumStaff
+            [X] DrumVoice
+            [X] Dynamics
+            [X] FiguredBass
+            [X] FretBoards
+            [ ] Global
+            [ ] GrandStaff
+            [ ] GregorianTranscriptionStaff
+            [X] GregorianTranscriptionVoice
+            [ ] KievanStaff
+            [X] KievanVoice
+            [X] Lyrics
+            [ ] MensuralStaff
+            [X] MensuralVoice
+            [X] NoteNames
+            [X] NullVoice
+            [ ] PetrucciStaff
+            [X] PetrucciVoice
+            [ ] PianoStaff
+            [ ] RhythmicStaff
+            [ ] Score
+            [ ] Staff
+            [ ] StaffGroup
+            [ ] TabStaff
+            [X] TabVoice
+            [ ] VaticanaStaff
+            [X] VaticanaVoice
+            [X] Voice
+
+        Returns boolean.
+        '''
+        if not self.accepts:
+            return True
+        return False
+
+    @property
     def is_global_context(self):
         r'''Is true if LilyPond context is a global context. Otherwise false.
 
@@ -757,61 +806,8 @@ class LilyPondContext(abctools.AbjadValueObject):
             self.is_global_context,
             self.is_score_context,
             self.is_staff_context,
-            self.is_voice_context,
+            self.is_bottom_context,
             ])
-
-    @property
-    def is_voice_context(self):
-        r'''Is true if LilyPond context is a voice context. Otherwise false.
-
-        ::
-
-            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
-            ...     is_voice_context = 'X' if lilypond_context.is_voice_context else ' '
-            ...     print('[{}] {}'.format(is_voice_context, lilypond_context.name))
-            ...
-            [ ] ChoirStaff
-            [X] ChordNames
-            [X] CueVoice
-            [X] Devnull
-            [ ] DrumStaff
-            [X] DrumVoice
-            [X] Dynamics
-            [X] FiguredBass
-            [X] FretBoards
-            [ ] Global
-            [ ] GrandStaff
-            [ ] GregorianTranscriptionStaff
-            [X] GregorianTranscriptionVoice
-            [ ] KievanStaff
-            [X] KievanVoice
-            [X] Lyrics
-            [ ] MensuralStaff
-            [X] MensuralVoice
-            [X] NoteNames
-            [X] NullVoice
-            [ ] PetrucciStaff
-            [X] PetrucciVoice
-            [ ] PianoStaff
-            [ ] RhythmicStaff
-            [ ] Score
-            [ ] Staff
-            [ ] StaffGroup
-            [ ] TabStaff
-            [X] TabVoice
-            [ ] VaticanaStaff
-            [X] VaticanaVoice
-            [X] Voice
-
-        Returns boolean.
-        '''
-        if not self.accepts:
-            return True
-        elif self is type(self)('Voice'):
-            return True
-        elif self.alias is type(self)('Voice'):
-            return True
-        return False
 
     @property
     def name(self):
