@@ -62,5 +62,8 @@ Creating graphs
             edge.attach(parent_node, child_node)
 
 ..  abjad::
+    :no-resize:
+    :no-trim:
+    :with-thumbnail:
 
     graph(lilypond_graph)

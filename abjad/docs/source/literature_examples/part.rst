@@ -239,10 +239,12 @@ Let's run our original toplevel function to build the complete score:
 And here we show it:
 
 ..  abjad::
+    :no-resize:
+    :no-stylesheet:
     :no-trim:
     :pages: 1-2
-    :no-stylesheet:
     :with-columns: 2
+    :with-thumbnail:
 
     show(lilypond_file)
 
