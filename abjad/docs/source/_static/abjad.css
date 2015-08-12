@@ -49,11 +49,6 @@ tt.staticmethod {
     background-color: #69c;
     }
 
-div.abjad-book-image {
-    padding: 0px;
-    margin: 1px 0 24px 0;
-    }
-
 .table-row {
     display: table-row;
     }
@@ -87,4 +82,9 @@ a.table-cell img {
 
 a.thumbnail {
     cursor: zoom-in;
+    }
+
+a.abjadbook {
+    padding: 0px;
+    margin: 1px 0 24px 0;
     }
