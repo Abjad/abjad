@@ -805,10 +805,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                         )
                     result = systemtools.TestManager.clean_string(result)
                     self.body.append(result)
-            raise nodes.SkipNode
         except:
             traceback.print_exc()
-            raise nodes.SkipNode
+        raise nodes.SkipNode
 
     @staticmethod
     def visit_abjad_output_block_latex(self, node):
@@ -828,19 +827,15 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     self.builder.imgpath,
                     self.builder.images[node['uri']],
                     )
-            image_path = node['uri']
-            prefix, suffix = os.path.splitext(image_path)
+            target_path = node['uri']
+            prefix, suffix = os.path.splitext(target_path)
             thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
-            output = u'''\
-            <a data-lightbox="{group}" href="{href}" class="{cls}" title="{title}" data-title="{title}">
-                <img src="{src}" alt="{alt}"/>'
-            </a>'''
-            output = output.format(
+            output = SphinxDocumentHandler._thumbnail_template.format(
                 alt=title,
                 group=group,
-                href=image_path,
+                target_path=target_path,
                 cls=classes,
-                src=thumbnail_path,
+                thumbnail_path=thumbnail_path,
                 title=title,
                 )
             self.body.append(output)
