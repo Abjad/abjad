@@ -426,12 +426,74 @@ class LilyPondContext(abctools.AbjadValueObject):
             >>> context.default_child
             LilyPondContext(name='MensuralVoice')
 
+        ::
+
+            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            ...     print('{}:'.format(lilypond_context.name))
+            ...     default_child = lilypond_context.default_child
+            ...     if default_child:
+            ...         print('    {}'.format(default_child.name))
+            ...
+            ChoirStaff:
+                Staff
+            ChordNames:
+            CueVoice:
+            Devnull:
+            DrumStaff:
+                DrumVoice
+            DrumVoice:
+            Dynamics:
+            FiguredBass:
+            FretBoards:
+            Global:
+                Score
+            GrandStaff:
+                Staff
+            GregorianTranscriptionStaff:
+                GregorianTranscriptionVoice
+            GregorianTranscriptionVoice:
+            KievanStaff:
+                KievanVoice
+            KievanVoice:
+            Lyrics:
+            MensuralStaff:
+                MensuralVoice
+            MensuralVoice:
+            NoteNames:
+            NullVoice:
+            PetrucciStaff:
+                PetrucciVoice
+            PetrucciVoice:
+            PianoStaff:
+                Staff
+            RhythmicStaff:
+                Voice
+            Score:
+                Staff
+            Staff:
+                Voice
+            StaffGroup:
+                Staff
+            TabStaff:
+                TabVoice
+            TabVoice:
+            VaticanaStaff:
+                VaticanaVoice
+            VaticanaVoice:
+            Voice:
+
         Returns LilyPond context or none.
         '''
         from abjad.ly import contexts
-        default_child = contexts[self.name].get('default_child', None)
-        if default_child:
-            return LilyPondContext(name=default_child)
+        if self.is_bottom_context:
+            return None
+        default_child_name = contexts[self.name].get('default_child', None)
+        if default_child_name is None:
+            alias = self.alias
+            if alias is not None:
+                return alias.default_child
+        if default_child_name and default_child_name in contexts:
+            return LilyPondContext(name=default_child_name)
 
     @property
     def engravers(self):
