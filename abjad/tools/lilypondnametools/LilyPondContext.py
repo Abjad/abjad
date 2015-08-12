@@ -13,6 +13,56 @@ class LilyPondContext(abctools.AbjadValueObject):
             name='MensuralStaff',
             )
 
+    ::
+
+        >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+        ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
+        ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
+        ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
+        ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
+        ...     is_voice_context = 'X' if lilypond_context.is_voice_context else ' '
+        ...     print('[{}] [{}] [{}] [{}] [{}] {}'.format(
+        ...         is_global_context,
+        ...         is_score_context,
+        ...         is_staff_group_context,
+        ...         is_staff_context,
+        ...         is_voice_context,
+        ...         lilypond_context.name,
+        ...         ))
+        ...
+        [ ] [ ] [X] [ ] [ ] ChoirStaff
+        [ ] [ ] [ ] [ ] [X] ChordNames
+        [ ] [ ] [ ] [ ] [X] CueVoice
+        [ ] [ ] [ ] [ ] [X] Devnull
+        [ ] [ ] [ ] [X] [ ] DrumStaff
+        [ ] [ ] [ ] [ ] [X] DrumVoice
+        [ ] [ ] [ ] [ ] [X] Dynamics
+        [ ] [ ] [ ] [ ] [X] FiguredBass
+        [ ] [ ] [ ] [ ] [X] FretBoards
+        [X] [ ] [ ] [ ] [ ] Global
+        [ ] [ ] [X] [ ] [ ] GrandStaff
+        [ ] [ ] [ ] [X] [ ] GregorianTranscriptionStaff
+        [ ] [ ] [ ] [ ] [X] GregorianTranscriptionVoice
+        [ ] [ ] [ ] [X] [ ] KievanStaff
+        [ ] [ ] [ ] [ ] [X] KievanVoice
+        [ ] [ ] [ ] [ ] [X] Lyrics
+        [ ] [ ] [ ] [X] [ ] MensuralStaff
+        [ ] [ ] [ ] [ ] [X] MensuralVoice
+        [ ] [ ] [ ] [ ] [X] NoteNames
+        [ ] [ ] [ ] [ ] [X] NullVoice
+        [ ] [ ] [ ] [X] [ ] PetrucciStaff
+        [ ] [ ] [ ] [ ] [X] PetrucciVoice
+        [ ] [ ] [X] [ ] [ ] PianoStaff
+        [ ] [ ] [ ] [X] [ ] RhythmicStaff
+        [ ] [X] [ ] [ ] [ ] Score
+        [ ] [ ] [ ] [X] [ ] Staff
+        [ ] [ ] [X] [ ] [ ] StaffGroup
+        [ ] [ ] [ ] [X] [ ] TabStaff
+        [ ] [ ] [ ] [ ] [X] TabVoice
+        [ ] [ ] [ ] [X] [ ] VaticanaStaff
+        [ ] [ ] [ ] [ ] [X] VaticanaVoice
+        [ ] [ ] [ ] [ ] [X] Voice
+
     '''
 
     ### CLASS VARIABLES ###
@@ -164,7 +214,7 @@ class LilyPondContext(abctools.AbjadValueObject):
         ::
 
             >>> custom_context.unregister()
-        
+
         '''
         from abjad.ly import contexts
         from abjad.tools import lilypondnametools
@@ -362,6 +412,8 @@ class LilyPondContext(abctools.AbjadValueObject):
         aliases = contexts[self.name]['aliases']
         if aliases:
             alias = tuple(aliases)[0]
+            if alias not in contexts:
+                return None
             return LilyPondContext(name=alias)
         return None
 
@@ -496,6 +548,270 @@ class LilyPondContext(abctools.AbjadValueObject):
         '''
         from abjad.ly import contexts
         return bool(contexts[self.name].get('is_custom', False))
+
+    @property
+    def is_global_context(self):
+        r'''Is true if LilyPond context is a global context. Otherwise false.
+
+        ::
+
+            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            ...     is_global_context = 'X' if lilypond_context.is_global_context else ' '
+            ...     print('[{}] {}'.format(is_global_context, lilypond_context.name))
+            ...
+            [ ] ChoirStaff
+            [ ] ChordNames
+            [ ] CueVoice
+            [ ] Devnull
+            [ ] DrumStaff
+            [ ] DrumVoice
+            [ ] Dynamics
+            [ ] FiguredBass
+            [ ] FretBoards
+            [X] Global
+            [ ] GrandStaff
+            [ ] GregorianTranscriptionStaff
+            [ ] GregorianTranscriptionVoice
+            [ ] KievanStaff
+            [ ] KievanVoice
+            [ ] Lyrics
+            [ ] MensuralStaff
+            [ ] MensuralVoice
+            [ ] NoteNames
+            [ ] NullVoice
+            [ ] PetrucciStaff
+            [ ] PetrucciVoice
+            [ ] PianoStaff
+            [ ] RhythmicStaff
+            [ ] Score
+            [ ] Staff
+            [ ] StaffGroup
+            [ ] TabStaff
+            [ ] TabVoice
+            [ ] VaticanaStaff
+            [ ] VaticanaVoice
+            [ ] Voice
+
+        Returns boolean.
+        '''
+        if not self.accepts:
+            return False
+        elif self is type(self)('Global'):
+            return True
+        elif self.alias is type(self)('Global'):
+            return True
+        return False
+
+    @property
+    def is_score_context(self):
+        r'''Is true if LilyPond context is a score context. Otherwise false.
+
+        ::
+
+            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            ...     is_score_context = 'X' if lilypond_context.is_score_context else ' '
+            ...     print('[{}] {}'.format(is_score_context, lilypond_context.name))
+            ...
+            [ ] ChoirStaff
+            [ ] ChordNames
+            [ ] CueVoice
+            [ ] Devnull
+            [ ] DrumStaff
+            [ ] DrumVoice
+            [ ] Dynamics
+            [ ] FiguredBass
+            [ ] FretBoards
+            [ ] Global
+            [ ] GrandStaff
+            [ ] GregorianTranscriptionStaff
+            [ ] GregorianTranscriptionVoice
+            [ ] KievanStaff
+            [ ] KievanVoice
+            [ ] Lyrics
+            [ ] MensuralStaff
+            [ ] MensuralVoice
+            [ ] NoteNames
+            [ ] NullVoice
+            [ ] PetrucciStaff
+            [ ] PetrucciVoice
+            [ ] PianoStaff
+            [ ] RhythmicStaff
+            [X] Score
+            [ ] Staff
+            [ ] StaffGroup
+            [ ] TabStaff
+            [ ] TabVoice
+            [ ] VaticanaStaff
+            [ ] VaticanaVoice
+            [ ] Voice
+
+        Returns boolean.
+        '''
+        if not self.accepts:
+            return False
+        elif self is type(self)('Score'):
+            return True
+        elif self.alias is type(self)('Score'):
+            return True
+        return False
+
+    @property
+    def is_staff_context(self):
+        r'''Is true if LilyPond context is a staff context. Otherwise false.
+
+        ::
+
+            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            ...     is_staff_context = 'X' if lilypond_context.is_staff_context else ' '
+            ...     print('[{}] {}'.format(is_staff_context, lilypond_context.name))
+            ...
+            [ ] ChoirStaff
+            [ ] ChordNames
+            [ ] CueVoice
+            [ ] Devnull
+            [X] DrumStaff
+            [ ] DrumVoice
+            [ ] Dynamics
+            [ ] FiguredBass
+            [ ] FretBoards
+            [ ] Global
+            [ ] GrandStaff
+            [X] GregorianTranscriptionStaff
+            [ ] GregorianTranscriptionVoice
+            [X] KievanStaff
+            [ ] KievanVoice
+            [ ] Lyrics
+            [X] MensuralStaff
+            [ ] MensuralVoice
+            [ ] NoteNames
+            [ ] NullVoice
+            [X] PetrucciStaff
+            [ ] PetrucciVoice
+            [ ] PianoStaff
+            [X] RhythmicStaff
+            [ ] Score
+            [X] Staff
+            [ ] StaffGroup
+            [X] TabStaff
+            [ ] TabVoice
+            [X] VaticanaStaff
+            [ ] VaticanaVoice
+            [ ] Voice
+
+        Returns boolean.
+        '''
+        if not self.accepts:
+            return False
+        elif self is type(self)('Staff'):
+            return True
+        elif self.alias is type(self)('Staff'):
+            return True
+        return False
+
+    @property
+    def is_staff_group_context(self):
+        r'''Is true if LilyPond context is a staff group context. Otherwise false.
+
+        ::
+
+            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            ...     is_staff_group_context = 'X' if lilypond_context.is_staff_group_context else ' '
+            ...     print('[{}] {}'.format(is_staff_group_context, lilypond_context.name))
+            ...
+            [X] ChoirStaff
+            [ ] ChordNames
+            [ ] CueVoice
+            [ ] Devnull
+            [ ] DrumStaff
+            [ ] DrumVoice
+            [ ] Dynamics
+            [ ] FiguredBass
+            [ ] FretBoards
+            [ ] Global
+            [X] GrandStaff
+            [ ] GregorianTranscriptionStaff
+            [ ] GregorianTranscriptionVoice
+            [ ] KievanStaff
+            [ ] KievanVoice
+            [ ] Lyrics
+            [ ] MensuralStaff
+            [ ] MensuralVoice
+            [ ] NoteNames
+            [ ] NullVoice
+            [ ] PetrucciStaff
+            [ ] PetrucciVoice
+            [X] PianoStaff
+            [ ] RhythmicStaff
+            [ ] Score
+            [ ] Staff
+            [X] StaffGroup
+            [ ] TabStaff
+            [ ] TabVoice
+            [ ] VaticanaStaff
+            [ ] VaticanaVoice
+            [ ] Voice
+
+        Returns boolean.
+        '''
+        return not any([
+            self.is_global_context,
+            self.is_score_context,
+            self.is_staff_context,
+            self.is_voice_context,
+            ])
+
+    @property
+    def is_voice_context(self):
+        r'''Is true if LilyPond context is a voice context. Otherwise false.
+
+        ::
+
+            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            ...     is_voice_context = 'X' if lilypond_context.is_voice_context else ' '
+            ...     print('[{}] {}'.format(is_voice_context, lilypond_context.name))
+            ...
+            [ ] ChoirStaff
+            [X] ChordNames
+            [X] CueVoice
+            [X] Devnull
+            [ ] DrumStaff
+            [X] DrumVoice
+            [X] Dynamics
+            [X] FiguredBass
+            [X] FretBoards
+            [ ] Global
+            [ ] GrandStaff
+            [ ] GregorianTranscriptionStaff
+            [X] GregorianTranscriptionVoice
+            [ ] KievanStaff
+            [X] KievanVoice
+            [X] Lyrics
+            [ ] MensuralStaff
+            [X] MensuralVoice
+            [X] NoteNames
+            [X] NullVoice
+            [ ] PetrucciStaff
+            [X] PetrucciVoice
+            [ ] PianoStaff
+            [ ] RhythmicStaff
+            [ ] Score
+            [ ] Staff
+            [ ] StaffGroup
+            [ ] TabStaff
+            [X] TabVoice
+            [ ] VaticanaStaff
+            [X] VaticanaVoice
+            [X] Voice
+
+        Returns boolean.
+        '''
+        if not self.accepts:
+            return True
+        elif self is type(self)('Voice'):
+            return True
+        elif self.alias is type(self)('Voice'):
+            return True
+        return False
 
     @property
     def name(self):
