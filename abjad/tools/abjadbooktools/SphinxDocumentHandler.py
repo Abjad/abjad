@@ -183,6 +183,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             len(thumbnail_paths),
             ):
             image_name = os.path.basename(path)
+            if 'abjadbook' in path:
+                image_name = os.path.join('abjadbook', image_name)
             prefix, suffix = os.path.splitext(image_name)
             thumbnail_name = '{}-thumbnail{}'.format(prefix, suffix)
             image_path = os.path.join(image_directory, image_name)
@@ -527,6 +529,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         #print(file_name_pattern, pages)
         with systemtools.TemporaryDirectoryChange(absolute_directory_path):
             file_name_matches = glob.glob(file_name_pattern)
+            file_name_matches = [_ for _ in file_name_matches
+                if '-thumbnail' not in _]
         #print('\t', file_name_matches)
         target_file_name_dict = {}
         if len(file_name_matches) == 1 and '-page' not in file_name_matches[0]:
@@ -789,8 +793,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     prefix, suffix = os.path.splitext(relative_target_file_path)
                     thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
                     result = template.format(
+                        cls='',
+                        group='group-{}'.format(os.path.basename(relative_source_file_path)),
                         source_path=relative_source_file_path,
                         target_path=relative_target_file_path,
+                        title='',
                         thumbnail_path=thumbnail_path,
                         )
                     result = systemtools.TestManager.clean_string(result)
@@ -807,8 +814,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 prefix, suffix = os.path.splitext(relative_target_file_path)
                 thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
                 result = template.format(
+                    cls='',
+                    group='group-{}'.format(os.path.basename(relative_source_file_path)),
                     source_path=relative_source_file_path,
                     target_path=relative_target_file_path,
+                    title='',
                     thumbnail_path=thumbnail_path,
                     )
                 result = systemtools.TestManager.clean_string(result)

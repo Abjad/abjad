@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+from __future__ import print_function
 import docutils
 import os
 import posixpath
@@ -7,6 +8,7 @@ import shutil
 import unittest
 from abjad.tools import abjadbooktools
 from abjad.tools import systemtools
+from sphinx.util import FilenameUniqDict
 
 
 @unittest.skipIf(
@@ -28,10 +30,13 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         self.app.config = config
         self.app.config.abjadbook_ignored_documents = ()
         self.app.builder = self.Namespace()
+        self.app.builder.warn = print
+        self.app.builder.current_docname = 'test'
+        self.app.builder.status_iterator = lambda iterable, x, y, z: iter(iterable)
+        self.app.builder.thumbnails = FilenameUniqDict()
         self.app.builder.outdir = os.path.dirname(os.path.abspath(__file__))
         self.app.builder.imagedir = '_images'
-        self.app.builder.imgpath = posixpath.join(
-            '..', '_images', 'abjadbook')
+        self.app.builder.imgpath = posixpath.join('..', '_images')
         self.app.builder.srcdir = os.path.join(
             abjad.__path__[0],
             'docs',
@@ -71,11 +76,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
+        handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.ly">
+                    <img src="../_images/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.png" alt="View source." title="View source." />
                 </a>
             </div>
             ''')
@@ -107,11 +113,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
+        handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.ly">
+                    <img src="../_images/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.png" alt="View source." title="View source." />
                 </a>
             </div>
             ''')
@@ -125,6 +132,84 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             assert os.path.exists(path)
 
     def test_03(self):
+        source = r'''
+        ..  abjad::
+            :hide:
+            :no-resize:
+            :no-stylesheet:
+            :no-trim:
+
+            show(Staff("c'4 d'4 e'4 f'4"))
+        '''
+        source = systemtools.TestManager.clean_string(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        node = document[0]
+        try:
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+                self.app, node)
+        except docutils.nodes.SkipNode:
+            pass
+        handler.on_build_finished(self.app, None)
+        actual = '\n'.join(self.app.body)
+        expected = systemtools.TestManager.clean_string(r'''
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly">
+                    <img src="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            ''')
+        self.assertEqual(actual, expected)
+        assert len(os.listdir(self.abjadbook_images_directory)) == 2
+        for name in (
+            'lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly',
+            'lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png',
+            ):
+            path = os.path.join(self.images_directory, 'abjadbook', name)
+            assert os.path.exists(path)
+
+    def test_04(self):
+        source = r'''
+        ..  abjad::
+            :hide:
+            :no-resize:
+            :no-stylesheet:
+            :no-trim:
+            :with-thumbnail:
+
+            show(Staff("c'4 d'4 e'4 f'4"))
+        '''
+        source = systemtools.TestManager.clean_string(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        node = document[0]
+        try:
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+                self.app, node)
+        except docutils.nodes.SkipNode:
+            pass
+        handler.on_build_finished(self.app, None)
+        assert len(self.app.builder.thumbnails) == 1
+        assert '../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png' in self.app.builder.thumbnails
+        actual = '\n'.join(self.app.body)
+        expected = systemtools.TestManager.clean_string(r'''
+            <a data-lightbox="group-lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly" href="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png" class="">
+                <img src="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e-thumbnail.png"/>
+            </a>
+            ''')
+        self.assertEqual(actual, expected)
+        assert len(os.listdir(self.abjadbook_images_directory)) == 3
+        for name in (
+            'lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly',
+            'lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png',
+            'lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e-thumbnail.png',
+            ):
+            path = os.path.join(self.images_directory, 'abjadbook', name)
+            assert os.path.exists(path)
+
+    def test_05(self):
         source = r'''
         ..  abjad::
             :hide:
@@ -144,11 +229,12 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
+        handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
             <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.png" alt="View source." title="View source." />
+                <a href="../_images/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.ly">
+                    <img src="../_images/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.png" alt="View source." title="View source." />
                 </a>
             </div>
             ''')
@@ -165,130 +251,11 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
 
-    def test_04(self):
-        source = r'''
-        ..  abjad::
-            :hide:
-            :no-stylesheet:
-
-            staff = Staff("c'1 d'1 e'1 f'1 g'1")
-            for note in staff[:-1]:
-                attach(indicatortools.PageBreak(), note)
-
-            show(staff)
-        '''
-        source = systemtools.TestManager.clean_string(source)
-        handler = abjadbooktools.SphinxDocumentHandler()
-        document = handler.parse_rst(source)
-        handler.on_doctree_read(self.app, document)
-        node = document[0]
-        try:
-            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
-                self.app, node)
-        except docutils.nodes.SkipNode:
-            pass
-        actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
-            <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png" alt="View source." title="View source." />
-                </a>
-            </div>
-            <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
-                </a>
-            </div>
-            <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
-                </a>
-            </div>
-            <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
-                </a>
-            </div>
-            <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page5.png" alt="View source." title="View source." />
-                </a>
-            </div>
-            ''')
-        self.assertEqual(actual, expected)
-        assert len(os.listdir(self.abjadbook_images_directory)) == 6
-        for name in (
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page5.png',
-            ):
-            path = os.path.join(self.images_directory, 'abjadbook', name)
-            assert os.path.exists(path)
-
-    def test_05(self):
-        source = r'''
-        ..  abjad::
-            :hide:
-            :no-stylesheet:
-            :pages: 2-4
-
-            staff = Staff("c'1 d'1 e'1 f'1 g'1")
-            for note in staff[:-1]:
-                attach(indicatortools.PageBreak(), note)
-
-            show(staff)
-        '''
-        source = systemtools.TestManager.clean_string(source)
-        handler = abjadbooktools.SphinxDocumentHandler()
-        document = handler.parse_rst(source)
-        handler.on_doctree_read(self.app, document)
-        node = document[0]
-        try:
-            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
-                self.app, node)
-        except docutils.nodes.SkipNode:
-            pass
-        actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
-            <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
-                </a>
-            </div>
-            <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
-                </a>
-            </div>
-            <div class="abjad-book-image">
-                <a href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
-                </a>
-            </div>
-            ''')
-        self.assertEqual(actual, expected)
-        assert len(os.listdir(self.abjadbook_images_directory)) == 6
-        for name in (
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png',
-            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page5.png',
-            ):
-            path = os.path.join(self.images_directory, 'abjadbook', name)
-            assert os.path.exists(path)
-
     def test_06(self):
         source = r'''
         ..  abjad::
             :hide:
             :no-stylesheet:
-            :pages: 2-4
-            :with-columns: 2
 
             staff = Staff("c'1 d'1 e'1 f'1 g'1")
             for note in staff[:-1]:
@@ -306,19 +273,32 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
+        handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
-            <div class="table-row">
-                <a class="table-cell thumbnail" href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
-                </a>
-                <a class="table-cell thumbnail" href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png" alt="View source." title="View source." />
                 </a>
             </div>
-            <div class="table-row">
-                <a class="table-cell thumbnail" href="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page5.png" alt="View source." title="View source." />
                 </a>
             </div>
             ''')
@@ -340,6 +320,115 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         ..  abjad::
             :hide:
             :no-stylesheet:
+            :pages: 2-4
+
+            staff = Staff("c'1 d'1 e'1 f'1 g'1")
+            for note in staff[:-1]:
+                attach(indicatortools.PageBreak(), note)
+
+            show(staff)
+        '''
+        source = systemtools.TestManager.clean_string(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        node = document[0]
+        try:
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+                self.app, node)
+        except docutils.nodes.SkipNode:
+            pass
+        handler.on_build_finished(self.app, None)
+        actual = '\n'.join(self.app.body)
+        expected = systemtools.TestManager.clean_string(r'''
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            <div class="abjad-book-image">
+                <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            ''')
+        self.assertEqual(actual, expected)
+        assert len(os.listdir(self.abjadbook_images_directory)) == 6
+        for name in (
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page5.png',
+            ):
+            path = os.path.join(self.images_directory, 'abjadbook', name)
+            assert os.path.exists(path)
+
+    def test_08(self):
+        source = r'''
+        ..  abjad::
+            :hide:
+            :no-stylesheet:
+            :pages: 2-4
+            :with-columns: 2
+
+            staff = Staff("c'1 d'1 e'1 f'1 g'1")
+            for note in staff[:-1]:
+                attach(indicatortools.PageBreak(), note)
+
+            show(staff)
+        '''
+        source = systemtools.TestManager.clean_string(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        node = document[0]
+        try:
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+                self.app, node)
+        except docutils.nodes.SkipNode:
+            pass
+        handler.on_build_finished(self.app, None)
+        actual = '\n'.join(self.app.body)
+        expected = systemtools.TestManager.clean_string(r'''
+            <div class="table-row">
+                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt="View source." title="View source." />
+                </a>
+                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            <div class="table-row">
+                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly">
+                    <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png" alt="View source." title="View source." />
+                </a>
+            </div>
+            ''')
+        self.assertEqual(actual, expected)
+        assert len(os.listdir(self.abjadbook_images_directory)) == 6
+        for name in (
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page3.png',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page4.png',
+            'lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page5.png',
+            ):
+            path = os.path.join(self.images_directory, 'abjadbook', name)
+            assert os.path.exists(path)
+
+    def test_09(self):
+        source = r'''
+        ..  abjad::
+            :hide:
+            :no-stylesheet:
             :no-trim:
             :pages: 2-4
             :with-columns: 2
@@ -360,19 +449,20 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                 self.app, node)
         except docutils.nodes.SkipNode:
             pass
+        handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
         expected = systemtools.TestManager.clean_string(r'''
             <div class="table-row">
-                <a class="table-cell thumbnail" href="../_images/abjadbook/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page2.png" alt="View source." title="View source." />
+                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
+                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page2.png" alt="View source." title="View source." />
                 </a>
-                <a class="table-cell thumbnail" href="../_images/abjadbook/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page3.png" alt="View source." title="View source." />
+                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
+                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page3.png" alt="View source." title="View source." />
                 </a>
             </div>
             <div class="table-row">
-                <a class="table-cell thumbnail" href="../_images/abjadbook/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
-                    <img src="../_images/abjadbook/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page4.png" alt="View source." title="View source." />
+                <a class="table-cell thumbnail" href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly">
+                    <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page4.png" alt="View source." title="View source." />
                 </a>
             </div>
             ''')
@@ -385,6 +475,135 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             'lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page3.png',
             'lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page4.png',
             'lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page5.png',
+            ):
+            path = os.path.join(self.images_directory, 'abjadbook', name)
+            assert os.path.exists(path)
+
+    def test_10(self):
+        source = r'''
+        ..  abjad::
+            :hide:
+            :no-resize:
+            :no-stylesheet:
+            :with-thumbnail:
+
+            staff = Staff("c'1 d'1 e'1 f'1 g'1")
+            for note in staff[:-1]:
+                attach(indicatortools.PageBreak(), note)
+
+            show(staff)
+        '''
+        source = systemtools.TestManager.clean_string(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        node = document[0]
+        try:
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+                self.app, node)
+        except docutils.nodes.SkipNode:
+            pass
+        handler.on_build_finished(self.app, None)
+        actual = '\n'.join(self.app.body)
+        expected = systemtools.TestManager.clean_string(r'''
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png" class="">
+                <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1-thumbnail.png"/>
+            </a>
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2.png" class="">
+                <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2-thumbnail.png"/>
+            </a>
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3.png" class="">
+                <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3-thumbnail.png"/>
+            </a>
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4.png" class="">
+                <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4-thumbnail.png"/>
+            </a>
+            <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5.png" class="">
+                <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5-thumbnail.png"/>
+            </a>
+            ''')
+        self.assertEqual(actual, expected)
+        assert len(os.listdir(self.abjadbook_images_directory)) == 11
+        for name in (
+            'lilypond-224663e00b24b652df759bda64c86bca48933457.ly',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page1-thumbnail.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page2.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page2-thumbnail.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page3.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page3-thumbnail.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page4.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page4-thumbnail.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page5.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page5-thumbnail.png',
+            ):
+            path = os.path.join(self.images_directory, 'abjadbook', name)
+            assert os.path.exists(path)
+
+    def test_11(self):
+        source = r'''
+        ..  abjad::
+            :hide:
+            :no-resize:
+            :no-stylesheet:
+            :with-columns: 2
+            :with-thumbnail:
+
+            staff = Staff("c'1 d'1 e'1 f'1 g'1")
+            for note in staff[:-1]:
+                attach(indicatortools.PageBreak(), note)
+
+            show(staff)
+        '''
+        source = systemtools.TestManager.clean_string(source)
+        handler = abjadbooktools.SphinxDocumentHandler()
+        document = handler.parse_rst(source)
+        handler.on_doctree_read(self.app, document)
+        node = document[0]
+        try:
+            abjadbooktools.SphinxDocumentHandler.visit_abjad_output_block_html(
+                self.app, node)
+        except docutils.nodes.SkipNode:
+            pass
+        handler.on_build_finished(self.app, None)
+        actual = '\n'.join(self.app.body)
+        expected = systemtools.TestManager.clean_string(r'''
+            <div class="table-row">
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png" class="table-cell thumbnail ">
+                    <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1-thumbnail.png"/>
+                </a>
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2.png" class="table-cell thumbnail ">
+                    <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page2-thumbnail.png"/>
+                </a>
+            </div>
+            <div class="table-row">
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3.png" class="table-cell thumbnail ">
+                    <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page3-thumbnail.png"/>
+                </a>
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4.png" class="table-cell thumbnail ">
+                    <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page4-thumbnail.png"/>
+                </a>
+            </div>
+            <div class="table-row">
+                <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5.png" class="table-cell thumbnail ">
+                    <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page5-thumbnail.png"/>
+                </a>
+            </div>
+            ''')
+        self.assertEqual(actual, expected)
+        assert len(os.listdir(self.abjadbook_images_directory)) == 11
+        for name in (
+            'lilypond-224663e00b24b652df759bda64c86bca48933457.ly',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page1-thumbnail.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page2.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page2-thumbnail.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page3.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page3-thumbnail.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page4.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page4-thumbnail.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page5.png',
+            'lilypond-224663e00b24b652df759bda64c86bca48933457-page5-thumbnail.png',
             ):
             path = os.path.join(self.images_directory, 'abjadbook', name)
             assert os.path.exists(path)
