@@ -60,7 +60,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         ''')
 
     _output_template_with_columns = systemtools.TestManager.clean_string(u'''
-        <a class="table-cell thumbnail" href="{source_path}">
+        <a class="table-cell" href="{source_path}">
             <img src="{target_path}" alt="View source." title="View source." />
         </a>
         ''')
@@ -72,13 +72,13 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         ''')
 
     _output_template_with_thumbnail = systemtools.TestManager.clean_string(u'''
-        <a data-lightbox="{group}" href="{target_path}" class="{cls}">
+        <a data-lightbox="{group}" href="{target_path}" class="thumbnail {cls}">
             <img src="{thumbnail_path}"/>
         </a>
         ''')
 
     _thumbnail_template = systemtools.TestManager.clean_string(u'''
-        <a data-lightbox="{group}" href="{target_path}" class="{cls}" title="{title}" data-title="{title}">
+        <a data-lightbox="{group}" href="{target_path}" class="thumbnail {cls}" title="{title}" data-title="{title}">
             <img src="{thumbnail_path}" alt="{alt}"/>'
         </a>
         ''')
@@ -191,7 +191,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             thumbnail_path = os.path.join(image_directory, thumbnail_name)
             if os.path.exists(thumbnail_path):
                 continue
-            resize_command = 'convert {} -resize 696x {}'.format(
+            resize_command = 'convert {} -filter Lanczos -resize 696x {}'.format(
                 image_path,
                 thumbnail_path,
                 )
@@ -636,10 +636,14 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             return 0
         command = 'convert {}'.format(absolute_target_file_path)
         if not no_resize:
-            if platform.system() == 'Windows':
-                command = '{} -resize 33%%'.format(command)
+            if node['renderer'] == 'lilypond':
+                percent = 33
             else:
-                command = '{} -resize 33%'.format(command)
+                percent = 50
+            command = '{} -filter Robidoux -resize {!s}%'.format(
+                command, percent)
+            if platform.system() == 'Windows':
+                command = '{}%'.format(command)
         if not no_trim:
             command = '{} -trim'.format(command)
         command = '{} {}'.format(command, absolute_target_file_path)
