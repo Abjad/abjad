@@ -56,40 +56,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def __init__(self):
         self._errored = False
 
-    ### MISCELLANEOUS SPHINX HOOKS ###
-
-    @staticmethod
-    def on_builder_inited(app):
-        app.builder.thumbnails = FilenameUniqDict()
-        app.builder.imagedir = '_images'
-        stylesheets_directory = os.path.join(
-            app.builder.srcdir,
-            '_stylesheets',
-            )
-        image_directory = os.path.join(
-            app.builder.outdir,
-            app.builder.imagedir,
-            'abjadbook',
-            )
-        if not os.path.exists(image_directory):
-            os.makedirs(image_directory)
-        if not os.path.exists(stylesheets_directory):
-            return
-        for file_name in os.listdir(stylesheets_directory):
-            if os.path.splitext(file_name)[-1] not in ('.ly', '.ily'):
-                continue
-            source_file_path = os.path.join(
-                stylesheets_directory,
-                file_name,
-                )
-            shutil.copy(source_file_path, image_directory)
-
-    @staticmethod
-    def on_build_finished(app, exc):
-        try:
-            SphinxDocumentHandler.render_thumbnails(app)
-        except:
-            traceback.print_exc()
+    ### SPHINX EXTENSION SETUP ###
 
     @staticmethod
     def setup_sphinx_extension(app):
@@ -128,6 +95,85 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         app.connect('builder-inited', SphinxDocumentHandler.on_builder_inited)
         app.connect('doctree-read', SphinxDocumentHandler.on_doctree_read)
         app.connect('env-updated', SphinxDocumentHandler.on_env_updated)
+
+    ### ON BUILDER INITIALIZED ###
+
+    @staticmethod
+    def on_builder_inited(app):
+        app.builder.thumbnails = FilenameUniqDict()
+        app.builder.imagedir = '_images'
+        stylesheets_directory = os.path.join(
+            app.builder.srcdir,
+            '_stylesheets',
+            )
+        image_directory = os.path.join(
+            app.builder.outdir,
+            app.builder.imagedir,
+            'abjadbook',
+            )
+        if not os.path.exists(image_directory):
+            os.makedirs(image_directory)
+        if not os.path.exists(stylesheets_directory):
+            return
+        for file_name in os.listdir(stylesheets_directory):
+            if os.path.splitext(file_name)[-1] not in ('.ly', '.ily'):
+                continue
+            source_file_path = os.path.join(
+                stylesheets_directory,
+                file_name,
+                )
+            shutil.copy(source_file_path, image_directory)
+
+    ### ON BUILD FINISHED ###
+
+    @staticmethod
+    def on_build_finished(app, exc):
+        try:
+            SphinxDocumentHandler.render_thumbnails(app)
+        except:
+            traceback.print_exc()
+
+    @staticmethod
+    def render_thumbnails(app):
+        image_directory = os.path.join(
+            app.builder.outdir,
+            app.builder.imagedir,
+            )
+        thumbnail_paths = app.builder.thumbnails
+        for path in app.builder.status_iterator(
+            thumbnail_paths,
+            'rendering gallery thumbnails...',
+            brown,
+            len(thumbnail_paths),
+            ):
+            image_name = os.path.basename(path)
+            prefix, suffix = os.path.splitext(image_name)
+            thumbnail_name = '{}-thumbnail{}'.format(prefix, suffix)
+            image_path = os.path.join(image_directory, image_name)
+            thumbnail_path = os.path.join(image_directory, thumbnail_name)
+            if os.path.exists(thumbnail_path):
+                continue
+            resize_command = 'convert {} -resize 696x {}'.format(
+                image_path,
+                thumbnail_path,
+                )
+            process = subprocess.Popen(
+                resize_command,
+                shell=True,
+                stderr=subprocess.STDOUT,
+                stdout=subprocess.PIPE,
+                )
+            stdout, stderr = process.communicate()
+            return_code = process.returncode
+            if return_code:
+                message = 'Failed to render {}.'
+                message = message.format(thumbnail_name)
+                app.builder.warn(message)
+                app.builder.warn(resize_command)
+                if stdout:
+                    if sys.version_info[0] == 3:
+                        stdout = stdout.decode('utf-8')
+                    app.builder.warn(stdout)
 
     ### ON ENVIRONMENT UPDATED ###
 
@@ -645,48 +691,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         return (relative_source_file_path, target_file_paths)
 
     @staticmethod
-    def render_thumbnails(app):
-        image_directory = os.path.join(
-            app.builder.outdir,
-            app.builder.imagedir,
-            )
-        thumbnail_paths = app.builder.thumbnails
-        for path in app.builder.status_iterator(
-            thumbnail_paths,
-            'rendering gallery thumbnails...',
-            brown,
-            len(thumbnail_paths),
-            ):
-            image_name = os.path.basename(path)
-            prefix, suffix = os.path.splitext(image_name)
-            thumbnail_name = '{}-thumbnail{}'.format(prefix, suffix)
-            image_path = os.path.join(image_directory, image_name)
-            thumbnail_path = os.path.join(image_directory, thumbnail_name)
-            if os.path.exists(thumbnail_path):
-                continue
-            resize_command = 'convert {} -resize 696x {}'.format(
-                image_path,
-                thumbnail_path,
-                )
-            process = subprocess.Popen(
-                resize_command,
-                shell=True,
-                stderr=subprocess.STDOUT,
-                stdout=subprocess.PIPE,
-                )
-            stdout, stderr = process.communicate()
-            return_code = process.returncode
-            if return_code:
-                message = 'Failed to render {}.'
-                message = message.format(thumbnail_name)
-                app.builder.warn(message)
-                app.builder.warn(resize_command)
-                if stdout:
-                    if sys.version_info[0] == 3:
-                        stdout = stdout.decode('utf-8')
-                    app.builder.warn(stdout)
-
-    @staticmethod
     def visit_abjad_import_block(self, node):
         try:
             #print()
@@ -732,6 +736,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         except:
             traceback.print_exc()
             raise nodes.SkipNode
+        if image_layout_specifier.with_thumbnail:
+            for relative_target_file_path in relative_target_file_paths:
+                self.builder.thumbnails.add_file('', relative_target_file_path)
         if image_layout_specifier.with_columns:
             output = r'''
             <a class="table-cell thumbnail" href="{source}">
@@ -780,7 +787,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def visit_abjad_thumbnail_block_html(self, node):
         try:
             self.builder.thumbnails.add_file('', node['uri'])
-            alt = node['title']
             title = node['title']
             classes = ' '.join(node['classes'])
             group = 'group-{}'.format(
@@ -794,20 +800,19 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             image_path = node['uri']
             prefix, suffix = os.path.splitext(image_path)
             thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
-            line = u'<a data-lightbox="{group}" href="{href}" class="{cls}" '
-            line += u'title="{title}" data-title="{title}">'
-            line = line.format(
+            output = u'''\
+            <a data-lightbox="{group}" href="{href}" class="{cls}" title="{title}" data-title="{title}">
+                <img src="{src}" alt="{alt}"/>'
+            </a>'''
+            output = output.format(
+                alt=title,
                 group=group,
                 href=image_path,
                 cls=classes,
+                src=thumbnail_path,
                 title=title,
                 )
-            self.body.append(line)
-            line = u'<img src="{src}" alt="{alt}"/>'
-            line = line.format(src=thumbnail_path, alt=alt)
-            self.body.append(line)
-            line = u'</a>'
-            self.body.append(line)
+            self.body.append(output)
         except:
             traceback.print_exc()
         raise nodes.SkipNode
