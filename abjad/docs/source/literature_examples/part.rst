@@ -248,6 +248,6 @@ And here we show it:
 
     show(lilypond_file)
 
-..  note:
+..  note::
 
     We only show the first two pages as the *Cantus* is still under copyright.
