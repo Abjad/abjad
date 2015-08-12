@@ -51,35 +51,15 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     _image_target_pattern = re.compile('.+-page(\d+)\..+')
 
-    _output_template = systemtools.TestManager.clean_string(u'''
-        <div class="abjad-book-image">
-            <a href="{source_path}">
-                <img src="{target_path}" alt="View source." title="View source."/>
-            </a>
-        </div>
-        ''')
-
-    _output_template_with_columns = systemtools.TestManager.clean_string(u'''
-        <a href="{source_path}" class="{cls}">
-            <img src="{target_path}" alt="View source." title="View source."/>
-        </a>
-        ''')
-
-    _output_template_with_columns_with_thumbnail = systemtools.TestManager.clean_string(u'''
-        <a data-lightbox="{group}" href="{target_path}" class="{cls}">
-            <img src="{thumbnail_path}"/>
-        </a>
-        ''')
-
-    _output_template_with_thumbnail = systemtools.TestManager.clean_string(u'''
-        <a data-lightbox="{group}" href="{target_path}" class="{cls}">
-            <img src="{thumbnail_path}"/>
+    _basic_template = systemtools.TestManager.clean_string(u'''
+        <a href="{source_path}" title="{title}" class="{cls}">
+            <img src="{target_path}" alt="{alt}"/>
         </a>
         ''')
 
     _thumbnail_template = systemtools.TestManager.clean_string(u'''
         <a data-lightbox="{group}" href="{target_path}" title="{title}" data-title="{title}" class="{cls}">
-            <img src="{thumbnail_path}" alt="{alt}"/>'
+            <img src="{thumbnail_path}" alt="{alt}"/>
         </a>
         ''')
 
@@ -777,29 +757,45 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         try:
             relative_source_file_path, relative_target_file_paths = \
                 SphinxDocumentHandler.render_png_image(self, node)
-        except:
-            traceback.print_exc()
-            raise nodes.SkipNode
-        if image_layout_specifier.with_thumbnail:
-            for relative_target_file_path in relative_target_file_paths:
-                self.builder.thumbnails.add_file('', relative_target_file_path)
-        css_classes = set(node.get('cls', '').split())
-        if image_layout_specifier.with_columns:
-            css_classes.add('table-cell')
+            if image_layout_specifier.with_thumbnail:
+                for relative_target_file_path in relative_target_file_paths:
+                    self.builder.thumbnails.add_file('', relative_target_file_path)
+            css_classes = set(node.get('cls', '').split())
+            template = SphinxDocumentHandler._basic_template
             if image_layout_specifier.with_thumbnail:
                 css_classes.add('thumbnail')
-                template = SphinxDocumentHandler._output_template_with_columns_with_thumbnail
+                template = SphinxDocumentHandler._thumbnail_template
+            if image_layout_specifier.with_columns:
+                css_classes.add('table-cell')
+                stop = len(relative_target_file_paths)
+                step = image_layout_specifier.with_columns
+                for i in range(0, stop, step):
+                    self.body.append(SphinxDocumentHandler._table_row_open_template)
+                    paths = relative_target_file_paths[i:i + step]
+                    for relative_target_file_path in paths:
+                        prefix, suffix = os.path.splitext(relative_target_file_path)
+                        thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
+                        result = template.format(
+                            alt='',
+                            cls=' '.join(sorted(css_classes)),
+                            group='group-{}'.format(os.path.basename(relative_source_file_path)),
+                            source_path=relative_source_file_path,
+                            target_path=relative_target_file_path,
+                            title='',
+                            thumbnail_path=thumbnail_path,
+                            )
+                        result = systemtools.TestManager.clean_string(result)
+                        result = ('    ' + _ for _ in result.splitlines())
+                        result = '\n'.join(result)
+                        self.body.append(result)
+                    self.body.append(SphinxDocumentHandler._table_row_close_template)
             else:
-                template = SphinxDocumentHandler._output_template_with_columns
-            stop = len(relative_target_file_paths)
-            step = image_layout_specifier.with_columns
-            for i in range(0, stop, step):
-                self.body.append(SphinxDocumentHandler._table_row_open_template)
-                paths = relative_target_file_paths[i:i + step]
-                for relative_target_file_path in paths:
+                css_classes.add('abjadbook')
+                for relative_target_file_path in relative_target_file_paths:
                     prefix, suffix = os.path.splitext(relative_target_file_path)
                     thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
                     result = template.format(
+                        alt='',
                         cls=' '.join(sorted(css_classes)),
                         group='group-{}'.format(os.path.basename(relative_source_file_path)),
                         source_path=relative_source_file_path,
@@ -808,30 +804,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                         thumbnail_path=thumbnail_path,
                         )
                     result = systemtools.TestManager.clean_string(result)
-                    result = ('    ' + _ for _ in result.splitlines())
-                    result = '\n'.join(result)
                     self.body.append(result)
-                self.body.append(SphinxDocumentHandler._table_row_close_template)
-        else:
-            if image_layout_specifier.with_thumbnail:
-                css_classes.add('thumbnail')
-                template = SphinxDocumentHandler._output_template_with_thumbnail
-            else:
-                template = SphinxDocumentHandler._output_template
-            for relative_target_file_path in relative_target_file_paths:
-                prefix, suffix = os.path.splitext(relative_target_file_path)
-                thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
-                result = template.format(
-                    cls=' '.join(sorted(css_classes)),
-                    group='group-{}'.format(os.path.basename(relative_source_file_path)),
-                    source_path=relative_source_file_path,
-                    target_path=relative_target_file_path,
-                    title='',
-                    thumbnail_path=thumbnail_path,
-                    )
-                result = systemtools.TestManager.clean_string(result)
-                self.body.append(result)
-        raise nodes.SkipNode
+            raise nodes.SkipNode
+        except:
+            traceback.print_exc()
+            raise nodes.SkipNode
 
     @staticmethod
     def visit_abjad_output_block_latex(self, node):
