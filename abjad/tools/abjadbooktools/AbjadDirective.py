@@ -31,6 +31,7 @@ class AbjadDirective(Directive):
         'no-stylesheet': directives.flag,
         'no-trim': directives.flag,
         'pages': str,
+        'reveal-label': str,
         'strip-prompt': directives.flag,
         'stylesheet': str,
         'text-width': int,
@@ -95,6 +96,8 @@ class AbjadDirective(Directive):
         pages = self.options.get('pages', None)
         if pages is not None:
             block['pages'] = self._parse_pages_string(pages)
+        if 'reveal-label' in self.options:
+            block['reveal-label'] = self.options.get('reveal-label')
         stylesheet = self.options.get('stylesheet', None)
         if block.get('no-stylesheet'):
             stylesheet = None

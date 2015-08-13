@@ -22,6 +22,7 @@ class ImportDirective(Directive):
     final_argument_whitespace = True
     option_spec = {
         'hide': directives.flag,
+        'reveal-label': str,
         }
 
     ### PUBLIC METHODS ###
@@ -33,6 +34,9 @@ class ImportDirective(Directive):
         path = self.arguments[0]
         block = abjadbooktools.abjad_import_block()
         block['path'] = path
-        block['hide'] = 'hide' in self.options
+        if 'hide' in self.options:
+            block['hide'] = True
+        if 'reveal-label' in self.options:
+            block['reveal-label'] = self.options.get('reveal-label')
         set_source_info(self, block)
         return [block]

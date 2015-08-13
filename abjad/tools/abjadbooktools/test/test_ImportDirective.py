@@ -19,7 +19,7 @@ class ImportDirectiveTests(unittest.TestCase):
         expected = systemtools.TestManager.clean_string(
             r'''
             <document source="test">
-                <abjad_import_block hide="False" path="abjad.tools.scoretools.make_notes">
+                <abjad_import_block path="abjad.tools.scoretools.make_notes">
             ''')
         self.assertEqual(result, expected)
 
