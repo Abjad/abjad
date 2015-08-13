@@ -1,6 +1,13 @@
 Creating graphs
 ===============
 
+Key points:
+
+#. Build graphs from nodes, edges and subgraphs. 
+#. Learn about Abjad's model of LilyPond contexts.
+#. Use mappings to coordinate between data structures.
+#. Style and render graphs via Graphviz.
+
 Populating the graph
 --------------------
 

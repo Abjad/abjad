@@ -1,6 +1,14 @@
 Creating annotation-aware spanners
 ==================================
 
+Key points:
+
+#. Investigate the internals of Abjad's ``Spanner`` class.
+#. Create a simple annotative indicator.
+#. Build up a complex class, then refactor it.
+#. Learn about Abjad's ``LilyPondGrobOverride`` and ``Enumeration`` classes.
+#. Use rhythm-makers and selectors to help audition the custom spanner.
+
 ..  abjad::
     :hide:
     :strip-prompt:
@@ -578,6 +586,7 @@ via rotation:
         for i, logical_tie in enumerate(iterate(staff).by_logical_tie(pitched=True)):
             for note in logical_tie:
                 note.written_pitch = pitches[i]
+        selector = selectortools.Selector().by_leaves().by_run(Note)[:-1].flatten()
         for i, leaf in enumerate(selector(staff)):
             attach(annotations[i], leaf)
         attach(OscillationSpanner(), staff)
