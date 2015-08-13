@@ -3,10 +3,97 @@ Creating graphs
 
 Key points:
 
-#. Build graphs from nodes, edges and subgraphs. 
+#. Build graphs from nodes, edges and subgraphs.
 #. Learn about Abjad's model of LilyPond contexts.
 #. Use mappings to coordinate between data structures.
 #. Style and render graphs via Graphviz.
+
+..  abjad::
+    :hide:
+    :reveal-label: summary
+    :strip-prompt:
+
+    def create_context_graph():
+        # Create context graph with subgraphs and styling.
+        context_graph = documentationtools.GraphvizGraph(
+            name='All Contexts',
+            children=[
+                documentationtools.GraphvizSubgraph(name='Global Contexts'),
+                documentationtools.GraphvizSubgraph(name='Score Contexts'),
+                documentationtools.GraphvizSubgraph(name='StaffGroup Contexts'),
+                documentationtools.GraphvizSubgraph(name='Staff Contexts'),
+                documentationtools.GraphvizSubgraph(name='Bottom Contexts'),
+                ],
+            attributes=dict(
+                bgcolor='transparent',
+                color='lightslategrey',
+                fontname='Arial',
+                output_order='edgesfirst',
+                overlap='prism',
+                penwidth=2,
+                root='Global',
+                splines='spline',
+                style=('dotted', 'rounded'),
+                truecolor=True,
+                ),
+            edge_attributes=dict(
+                color='lightsteelblue2',
+                penwidth=2,
+                ),
+            node_attributes=dict(
+                colorscheme='pastel19',
+                fontname='Arial',
+                fontsize=12,
+                penwidth=2,
+                shape='box',
+                style=('bold', 'filled', 'rounded'),
+                ),
+            )
+        # Build context mapping.
+        context_mapping = {}
+        for i, context in enumerate(lilypondnametools.LilyPondContext.list_all_contexts()):
+            name = context.name
+            fillcolor = i % 9 + 1
+            label = r'\n'.join(stringtools.delimit_words(name))
+            node_attributes = {'label': label}
+            node = documentationtools.GraphvizNode(
+                name=context.name,
+                attributes=dict(fillcolor=fillcolor, label=label),
+                )
+            context_mapping[context] = node
+            # Add context nodes to subgraphs.
+            if context.is_global_context:
+                context_graph['Global Contexts'].append(node)
+            elif context.is_score_context:
+                context_graph['Score Contexts'].append(node)
+            elif context.is_staff_group_context:
+                context_graph['StaffGroup Contexts'].append(node)
+            elif context.is_staff_context:
+                context_graph['Staff Contexts'].append(node)
+            elif context.is_bottom_context:
+                context_graph['Bottom Contexts'].append(node)
+        # Attach edges.
+        for parent_context, parent_node in context_mapping.items():
+            for child_context in parent_context.accepts:
+                child_node = context_mapping[child_context]
+                edge = documentationtools.GraphvizEdge()
+                if (
+                    parent_context.default_child is not None and
+                    child_context is parent_context.default_child
+                    ):
+                    edge.attributes['color'] = 'black'
+                edge.attach(parent_node, child_node)
+        # All done!
+        return context_graph
+
+..  abjad::
+    :hide:
+    :no-resize:
+    :no-trim:
+    :with-thumbnail:
+
+    context_graph = create_context_graph()
+    graph(context_graph)
 
 Populating the graph
 --------------------
@@ -38,7 +125,7 @@ Populating the graph
     context_mapping = {}
     for context in lilypondnametools.LilyPondContext.list_all_contexts():
         node = documentationtools.GraphvizNode(
-            name=context.name, 
+            name=context.name,
             attributes={'label': context.name},
             )
         context_mapping[context] = node
@@ -64,7 +151,7 @@ Populating the graph
             child_node = context_mapping[child_context]
             edge = documentationtools.GraphvizEdge()
             if (
-                parent_context.default_child is not None and 
+                parent_context.default_child is not None and
                 child_context is parent_context.default_child
                 ):
                 edge.attributes['color'] = 'black'
@@ -93,7 +180,7 @@ Configuring the graph's attributes
         output_order='edgesfirst',
         overlap='prism',
         root='Global',
-        splines='spline', 
+        splines='spline',
         )
 
 ..  abjad::
@@ -197,81 +284,7 @@ Configuring the graph's attributes
 Putting it all together
 -----------------------
 
-..  abjad::
-    :strip-prompt:
-
-    def create_context_graph():
-        # Create context graph with subgraphs and styling.
-        context_graph = documentationtools.GraphvizGraph(
-            name='All Contexts',
-            children=[
-                documentationtools.GraphvizSubgraph(name='Global Contexts'),
-                documentationtools.GraphvizSubgraph(name='Score Contexts'),
-                documentationtools.GraphvizSubgraph(name='StaffGroup Contexts'),
-                documentationtools.GraphvizSubgraph(name='Staff Contexts'),
-                documentationtools.GraphvizSubgraph(name='Bottom Contexts'),
-                ],
-            attributes=dict(
-                bgcolor='transparent',
-                color='lightslategrey',
-                fontname='Arial',
-                output_order='edgesfirst',
-                overlap='prism',
-                penwidth=2,
-                root='Global',
-                splines='spline', 
-                style=('dotted', 'rounded'),
-                truecolor=True,
-                ),
-            edge_attributes=dict(
-                color='lightsteelblue2',
-                penwidth=2,
-                ),
-            node_attributes=dict(
-                colorscheme='pastel19',
-                fontname='Arial',
-                fontsize=12,
-                penwidth=2,
-                shape='box',
-                style=('bold', 'filled', 'rounded'),
-                ),
-            )
-        # Build context mapping.
-        context_mapping = {}
-        for i, context in enumerate(lilypondnametools.LilyPondContext.list_all_contexts()):
-            name = context.name
-            fillcolor = i % 9 + 1
-            label = r'\n'.join(stringtools.delimit_words(name))
-            node_attributes = {'label': label}
-            node = documentationtools.GraphvizNode(
-                name=context.name,
-                attributes=dict(fillcolor=fillcolor, label=label),
-                )
-            context_mapping[context] = node
-            # Add context nodes to subgraphs.
-            if context.is_global_context:
-                context_graph['Global Contexts'].append(node)
-            elif context.is_score_context:
-                context_graph['Score Contexts'].append(node)
-            elif context.is_staff_group_context:
-                context_graph['StaffGroup Contexts'].append(node)
-            elif context.is_staff_context:
-                context_graph['Staff Contexts'].append(node)
-            elif context.is_bottom_context:
-                context_graph['Bottom Contexts'].append(node)
-        # Attach edges.
-        for parent_context, parent_node in context_mapping.items():
-            for child_context in parent_context.accepts:
-                child_node = context_mapping[child_context]
-                edge = documentationtools.GraphvizEdge()
-                if (
-                    parent_context.default_child is not None and 
-                    child_context is parent_context.default_child
-                    ):
-                    edge.attributes['color'] = 'black'
-                edge.attach(parent_node, child_node)
-        # All done!
-        return context_graph
+..  reveal:: summary
 
 ..  abjad::
     :no-resize:
