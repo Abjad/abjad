@@ -33,6 +33,8 @@ class Staff(Context):
 
     __slots__ = ()
 
+    _default_context_name = 'Staff'
+
     ### INITIALIZER ###
 
     def __init__(

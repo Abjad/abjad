@@ -40,6 +40,8 @@ class StaffGroup(Context):
 
     __slots__ = ()
 
+    _default_context_name = 'StaffGroup'
+
     ### INITIALIZER ###
 
     def __init__(self, music=None, context_name='StaffGroup', name=None):

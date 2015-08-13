@@ -39,6 +39,8 @@ class Context(Container):
         '_is_nonsemantic',
         )
 
+    _default_context_name = 'Voice'
+
     ### INITIALIZER ###
 
     def __init__(
@@ -317,6 +319,23 @@ class Context(Container):
         Returns boolean.
         '''
         return not self.is_nonsemantic
+
+    @property
+    def lilypond_context(self):
+        r'''Gets `LilyPondContext` associated with context.
+
+        Returns LilyPond context instance.
+        '''
+        from abjad.tools import lilypondnametools
+        try:
+            lilypond_context = lilypondnametools.LilyPondContext(
+                name=self.context_name,
+                )
+        except AssertionError:
+            lilypond_context = lilypondnametools.LilyPondContext(
+                name=self._default_context_name,
+                )
+        return lilypond_context
 
     @property
     def remove_commands(self):

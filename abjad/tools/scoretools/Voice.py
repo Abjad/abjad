@@ -37,6 +37,8 @@ class Voice(Context):
 
     __slots__ = ()
 
+    _default_context_name = 'Voice'
+
     ### INITIALIZER ###
 
     def __init__(self, music=None, context_name='Voice', name=None):
