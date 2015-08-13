@@ -11,6 +11,7 @@ Key points:
 
 ..  abjad::
     :hide:
+    :reveal-label: OscillationSpanner
     :strip-prompt:
 
     class OscillationSpanner(spannertools.Spanner):
@@ -21,52 +22,64 @@ Key points:
             MEDIUM = 2
             LARGE = 3
 
+        def _apply_annotation_overrides(self, leaf, lilypond_format_bundle):
+            annotation = self._get_annotation(leaf)
+            zigzag_width = int(annotation)
+            if zigzag_width:
+                zigzag_width_override = lilypondnametools.LilyPondGrobOverride(
+                    grob_name='Glissando',
+                    is_once=True,
+                    property_path='zigzag-width',
+                    value=zigzag_width,
+                    )
+                override_string = zigzag_width_override.override_string
+            else:
+                zigzag_off_override = lilypondnametools.LilyPondGrobOverride(
+                    grob_name='Glissando',
+                    is_once=True,
+                    property_path='style',
+                    value=schemetools.SchemeSymbol('line'),
+                    )
+                override_string = zigzag_off_override.override_string
+            lilypond_format_bundle.grob_overrides.append(override_string)
+
+        def _apply_spanner_start_overrides(self, lilypond_format_bundle):
+            grob_override = lilypondnametools.LilyPondGrobOverride(
+                grob_name='Glissando',
+                property_path='style',
+                value=schemetools.SchemeSymbol('zigzag'),
+                )
+            override_string = grob_override.override_string
+            lilypond_format_bundle.grob_overrides.append(override_string)
+
+        def _apply_spanner_stop_overrides(self, lilypond_format_bundle):
+            grob_override = lilypondnametools.LilyPondGrobOverride(
+                grob_name='Glissando',
+                property_path='style',
+                )
+            revert_string = grob_override.revert_string
+            lilypond_format_bundle.grob_reverts.append(revert_string)
+
+        def _get_annotation(self, leaf):
+            annotations = inspect_(leaf).get_indicators(self.Size)
+            if not annotations:
+                annotations = [self.Size.SMALL]
+            return annotations[0]
+
         def _get_lilypond_format_bundle(self, leaf):
             lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
             if self._is_my_only_leaf(leaf):
                 return lilypond_format_bundle
             if self._is_my_first_leaf(leaf):
-                grob_override = lilypondnametools.LilyPondGrobOverride(
-                    grob_name='Glissando',
-                    property_path='style',
-                    value=schemetools.SchemeSymbol('zigzag'),
-                    )
-                override_string = grob_override.override_string
-                lilypond_format_bundle.grob_overrides.append(override_string)
+                self._apply_spanner_start_overrides(lilypond_format_bundle)
             if self._is_my_last_leaf(leaf):
-                grob_override = lilypondnametools.LilyPondGrobOverride(
-                    grob_name='Glissando',
-                    property_path='style',
-                    )
-                revert_string = grob_override.revert_string
-                lilypond_format_bundle.grob_reverts.append(revert_string)
+                self._apply_spanner_stop_overrides(lilypond_format_bundle)
                 return lilypond_format_bundle
             prototype = (scoretools.Chord, scoretools.Note)
             next_leaf = inspect_(leaf).get_leaf(1)
             if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
                 lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
-                annotations = inspect_(leaf).get_indicators(self.Size)
-                if not annotations:
-                    annotations = [self.Size.SMALL]
-                annotation = annotations[0]
-                zigzag_width = int(annotation)
-                if zigzag_width:
-                    zigzag_width_override = lilypondnametools.LilyPondGrobOverride(
-                        grob_name='Glissando',
-                        is_once=True,
-                        property_path='zigzag-width',
-                        value=zigzag_width,
-                        )
-                    override_string = zigzag_width_override.override_string
-                else:
-                    zigzag_off_override = lilypondnametools.LilyPondGrobOverride(
-                        grob_name='Glissando',
-                        is_once=True,
-                        property_path='style',
-                        value=schemetools.SchemeSymbol('line'),
-                        )
-                    override_string = zigzag_off_override.override_string
-                lilypond_format_bundle.grob_overrides.append(override_string)
+                self._apply_annotation_overrides(leaf, lilypond_format_bundle)
             return lilypond_format_bundle
 
 ..  abjad::
@@ -369,76 +382,7 @@ Making the spanner annotation-aware
 Refactoring the custom spanner class
 ------------------------------------
 
-..  abjad::
-    :strip-prompt:
-
-    class OscillationSpanner(spannertools.Spanner):
-
-        class Size(datastructuretools.Enumeration):
-            NONE = 0
-            SMALL = 1
-            MEDIUM = 2
-            LARGE = 3
-
-        def _apply_annotation_overrides(self, leaf, lilypond_format_bundle):
-            annotation = self._get_annotation(leaf)
-            zigzag_width = int(annotation)
-            if zigzag_width:
-                zigzag_width_override = lilypondnametools.LilyPondGrobOverride(
-                    grob_name='Glissando',
-                    is_once=True,
-                    property_path='zigzag-width',
-                    value=zigzag_width,
-                    )
-                override_string = zigzag_width_override.override_string
-            else:
-                zigzag_off_override = lilypondnametools.LilyPondGrobOverride(
-                    grob_name='Glissando',
-                    is_once=True,
-                    property_path='style',
-                    value=schemetools.SchemeSymbol('line'),
-                    )
-                override_string = zigzag_off_override.override_string
-            lilypond_format_bundle.grob_overrides.append(override_string)
-
-        def _apply_spanner_start_overrides(self, lilypond_format_bundle):
-            grob_override = lilypondnametools.LilyPondGrobOverride(
-                grob_name='Glissando',
-                property_path='style',
-                value=schemetools.SchemeSymbol('zigzag'),
-                )
-            override_string = grob_override.override_string
-            lilypond_format_bundle.grob_overrides.append(override_string)
-
-        def _apply_spanner_stop_overrides(self, lilypond_format_bundle):
-            grob_override = lilypondnametools.LilyPondGrobOverride(
-                grob_name='Glissando',
-                property_path='style',
-                )
-            revert_string = grob_override.revert_string
-            lilypond_format_bundle.grob_reverts.append(revert_string)
-
-        def _get_annotation(self, leaf):
-            annotations = inspect_(leaf).get_indicators(self.Size)
-            if not annotations:
-                annotations = [self.Size.SMALL]
-            return annotations[0]
-
-        def _get_lilypond_format_bundle(self, leaf):
-            lilypond_format_bundle = self._get_basic_lilypond_format_bundle(leaf)
-            if self._is_my_only_leaf(leaf):
-                return lilypond_format_bundle
-            if self._is_my_first_leaf(leaf):
-                self._apply_spanner_start_overrides(lilypond_format_bundle)
-            if self._is_my_last_leaf(leaf):
-                self._apply_spanner_stop_overrides(lilypond_format_bundle)
-                return lilypond_format_bundle
-            prototype = (scoretools.Chord, scoretools.Note)
-            next_leaf = inspect_(leaf).get_leaf(1)
-            if isinstance(leaf, prototype) and isinstance(next_leaf, prototype):
-                lilypond_format_bundle.right.spanner_starts.append(r'\glissando')
-                self._apply_annotation_overrides(leaf, lilypond_format_bundle)
-            return lilypond_format_bundle
+..  reveal:: OscillationSpanner
 
 Preparing for deployment
 ------------------------
