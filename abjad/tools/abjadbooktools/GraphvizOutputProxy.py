@@ -283,7 +283,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             >>> for node in proxy.as_docutils():
             ...     print(node.pformat())
             ...
-            <abjad_output_block image_layout_specifier image_render_specifier renderer="graphviz" xml:space="preserve">
+            <abjad_output_block image_layout_specifier image_render_specifier layout="dot" renderer="graphviz" xml:space="preserve">
                 digraph G {
                     graph [bgcolor=transparent,
                         fontname=Arial,
@@ -362,6 +362,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
             node = abjadbooktools.abjad_output_block(code, code)
             node['image_layout_specifier'] = self.image_layout_specifier
             node['image_render_specifier'] = self.image_render_specifier
+            node['layout'] = self.layout
             node['renderer'] = 'graphviz'
             result.append(node)
         except UnicodeDecodeError:

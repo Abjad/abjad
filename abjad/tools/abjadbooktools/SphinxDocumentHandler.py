@@ -541,6 +541,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         sha1sum = hashlib.sha1()
         sha1sum.update(node[0].encode('utf-8'))
         sha1sum.update(format(image_render_specifier, 'storage').encode('utf-8'))
+        if node['renderer'] == 'graphviz':
+            layout = str(node.get('layout', '')).encode('utf-8')
+            sha1sum.update(layout)
         sha1sum = sha1sum.hexdigest()
         file_base_name = '{}-{}'.format(node['renderer'], sha1sum)
         return file_base_name
@@ -575,7 +578,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         absolute_target_file_path,
         ):
         if node['renderer'] == 'graphviz':
-            render_command = 'dot -Tpng {} -o {}'.format(
+            layout = node.get('layout', 'dot')
+            render_command = '{} -Tpng {} -o {}'.format(
+                layout,
                 absolute_source_file_path,
                 absolute_target_file_path,
                 )
