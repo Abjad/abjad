@@ -368,6 +368,133 @@ class LilyPondContext(abctools.AbjadValueObject):
             ...
             LilyPondContext(name='Score')
 
+        ::
+
+            >>> for lilypond_context in lilypondnametools.LilyPondContext.list_all_contexts():
+            ...     print('{}:'.format(lilypond_context.name))
+            ...     accepted_by = lilypond_context.accepted_by
+            ...     if accepted_by:
+            ...         accepted_by = ',\n    '.join(_.name for _ in accepted_by)
+            ...         print('    {}'.format(accepted_by))
+            ...
+            ChoirStaff:
+                ChoirStaff,
+                Score,
+                StaffGroup
+            ChordNames:
+                ChoirStaff,
+                GrandStaff,
+                PianoStaff,
+                Score,
+                StaffGroup
+            CueVoice:
+                DrumStaff,
+                GregorianTranscriptionStaff,
+                KievanStaff,
+                MensuralStaff,
+                PetrucciStaff,
+                RhythmicStaff,
+                Staff,
+                TabStaff,
+                VaticanaStaff
+            Devnull:
+                Score
+            DrumStaff:
+                ChoirStaff,
+                GrandStaff,
+                PianoStaff,
+                Score,
+                StaffGroup
+            DrumVoice:
+                DrumStaff
+            Dynamics:
+                GrandStaff,
+                PianoStaff
+            FiguredBass:
+                ChoirStaff,
+                GrandStaff,
+                PianoStaff,
+                Score,
+                StaffGroup
+            FretBoards:
+                Score,
+                StaffGroup
+            Global:
+            GrandStaff:
+                ChoirStaff,
+                Score,
+                StaffGroup
+            GregorianTranscriptionStaff:
+                Score
+            GregorianTranscriptionVoice:
+                GregorianTranscriptionStaff
+            KievanStaff:
+                Score
+            KievanVoice:
+                KievanStaff
+            Lyrics:
+                ChoirStaff,
+                GrandStaff,
+                PianoStaff,
+                Score,
+                StaffGroup
+            MensuralStaff:
+                Score
+            MensuralVoice:
+                MensuralStaff
+            NoteNames:
+                Score
+            NullVoice:
+                DrumStaff,
+                GregorianTranscriptionStaff,
+                KievanStaff,
+                MensuralStaff,
+                PetrucciStaff,
+                RhythmicStaff,
+                Staff,
+                TabStaff,
+                VaticanaStaff
+            PetrucciStaff:
+                Score
+            PetrucciVoice:
+                PetrucciStaff
+            PianoStaff:
+                ChoirStaff,
+                Score,
+                StaffGroup
+            RhythmicStaff:
+                ChoirStaff,
+                GrandStaff,
+                PianoStaff,
+                Score,
+                StaffGroup
+            Score:
+                Global
+            Staff:
+                ChoirStaff,
+                GrandStaff,
+                PianoStaff,
+                Score,
+                StaffGroup
+            StaffGroup:
+                ChoirStaff,
+                Score,
+                StaffGroup
+            TabStaff:
+                GrandStaff,
+                PianoStaff,
+                Score,
+                StaffGroup
+            TabVoice:
+                TabStaff
+            VaticanaStaff:
+                Score
+            VaticanaVoice:
+                VaticanaStaff
+            Voice:
+                RhythmicStaff,
+                Staff
+
         '''
         from abjad.ly import contexts
         accepting_contexts = set()
