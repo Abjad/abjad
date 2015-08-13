@@ -13,6 +13,7 @@ import shutil
 import subprocess
 import sys
 import traceback
+from abjad.tools.topleveltools import new
 from abjad.tools import abctools
 from abjad.tools import systemtools
 from docutils import nodes
@@ -102,6 +103,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             abjadbooktools.abjad_output_block,
             html=[SphinxDocumentHandler.visit_abjad_output_block_html, None],
             latex=[SphinxDocumentHandler.visit_abjad_output_block_latex, None],
+            )
+        app.add_node(
+            abjadbooktools.abjad_reveal_block,
+            html=[SphinxDocumentHandler.visit_abjad_reveal_block, None],
+            latex=[SphinxDocumentHandler.visit_abjad_reveal_block, None],
             )
         app.add_node(
             abjadbooktools.abjad_thumbnail_block,
@@ -244,18 +250,40 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             prototype = (
                 abjadbooktools.abjad_import_block,
                 abjadbooktools.abjad_input_block,
+                abjadbooktools.abjad_reveal_block,
                 )
             return isinstance(node, prototype)
         from abjad.tools import abjadbooktools
         code_blocks = collections.OrderedDict()
+        labels = {}
         for block in document.traverse(is_valid_node):
             if isinstance(block, abjadbooktools.abjad_import_block):
                 code_block = \
                     abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
-            else:
+                if block.get('reveal-label', None):
+                    labels[block.get('reveal-label')] = code_block
+                code_blocks[block] = code_block
+            elif isinstance(block, abjadbooktools.abjad_input_block):
                 code_block = \
                     abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
-            code_blocks[block] = code_block
+                if block.get('reveal-label', None):
+                    labels[block.get('reveal-label')] = code_block
+                code_blocks[block] = code_block
+            else:
+                code_block = labels.get(block['reveal-label'], None)
+                if code_block is not None:
+                    code_block_specifier = code_block.code_block_specifier
+                    if code_block_specifier is None:
+                        code_block_specifier = abjadbooktools.CodeBlockSpecifier()
+                    code_block_specifier = new(code_block_specifier,
+                        hide=False,
+                        )
+                    code_block = new(
+                        code_block,
+                        code_block_specifier=code_block_specifier,
+                        starting_line_number=block.line,
+                        )
+                    code_blocks[block] = code_block
         return code_blocks
 
     def collect_python_literal_blocks(self, document, renderable_only=True):
@@ -820,6 +848,17 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     @staticmethod
     def visit_abjad_output_block_latex(self, node):
+        raise nodes.SkipNode
+
+    @staticmethod
+    def visit_abjad_reveal_block(self, node):
+        try:
+            #print()
+            message = bold(red('Found abjad_reveal_block.'))
+            self.builder.warn(message, (self.builder.current_docname, node.line))
+            #print(systemtools.TestManager.clean_string(node.pformat()))
+        except:
+            traceback.print_exc()
         raise nodes.SkipNode
 
     @staticmethod
