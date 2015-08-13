@@ -81,6 +81,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         app.add_directive('abjad', abjadbooktools.AbjadDirective)
         app.add_directive('doctest', abjadbooktools.DoctestDirective)
         app.add_directive('import', abjadbooktools.ImportDirective)
+        app.add_directive('reveal', abjadbooktools.RevealDirective)
         app.add_directive('shell', abjadbooktools.ShellDirective)
         app.add_directive('thumbnail', abjadbooktools.ThumbnailDirective)
         app.add_javascript('abjad.js')
@@ -353,6 +354,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             )
         directives.register_directive(
             'import', abjadbooktools.ImportDirective,
+            )
+        directives.register_directive(
+            'reveal', abjadbooktools.RevealDirective,
             )
         directives.register_directive('shell', abjadbooktools.ShellDirective)
         settings = OptionParser(components=(Parser,)).get_default_values()
