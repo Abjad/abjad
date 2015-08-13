@@ -66,9 +66,10 @@ class CodeBlock(abctools.AbjadValueObject):
         configuration=None,
         output_directory=None,
         ):
+        output_proxies = self.filter_output_proxies()
         result = []
-        if self.output_proxies:
-            for output_proxy in self.output_proxies:
+        if output_proxies:
+            for output_proxy in output_proxies:
                 subresult = output_proxy.as_docutils(
                     configuration=configuration,
                     output_directory=output_directory,
@@ -94,11 +95,12 @@ class CodeBlock(abctools.AbjadValueObject):
             'output-stop-delimiter',
             ('%%% ABJADBOOK END %%%',),
             )
-        if self.output_proxies:
+        output_proxies = self.filter_output_proxies()
+        if output_proxies:
             result.extend(output_start_delimiter)
             before = latex_configuration.get('before-code-block', ())
             result.extend(before)
-            for i, output_proxy in enumerate(self.output_proxies):
+            for i, output_proxy in enumerate(output_proxies):
                 lines = output_proxy.as_latex(
                     configuration=configuration,
                     output_directory=output_directory,
@@ -106,8 +108,8 @@ class CodeBlock(abctools.AbjadValueObject):
                     )
                 string = '\n'.join(lines)
                 if isinstance(output_proxy, abjadbooktools.ImageOutputProxy):
-                    if i < len(self.output_proxies) - 1:
-                        next_proxy = self.output_proxies[i + 1]
+                    if i < len(output_proxies) - 1:
+                        next_proxy = output_proxies[i + 1]
                         if isinstance(next_proxy, abjadbooktools.ImageOutputProxy):
                             string += r'\\'
                 result.append(string)
@@ -117,6 +119,19 @@ class CodeBlock(abctools.AbjadValueObject):
             result = '\n'.join(result)
             result = [result]
         return result
+
+    def filter_output_proxies(self):
+        from abjad.tools import abjadbooktools
+        code_block_specifier = self.code_block_specifier
+        if code_block_specifier is None:
+            code_block_specifier = abjadbooktools.CodeBlockSpecifier()
+        output_proxies = list(self.output_proxies)
+        if code_block_specifier.hide:
+            output_proxies = [
+                _ for _ in output_proxies
+                if not isinstance(_, abjadbooktools.CodeOutputProxy)
+                ]
+        return output_proxies
 
     def flush(self):
         pass
