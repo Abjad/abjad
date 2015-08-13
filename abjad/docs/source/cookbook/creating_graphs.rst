@@ -233,14 +233,12 @@ Putting it all together
         context_mapping = {}
         for i, context in enumerate(lilypondnametools.LilyPondContext.list_all_contexts()):
             name = context.name
+            fillcolor = i % 9 + 1
             label = r'\n'.join(stringtools.delimit_words(name))
             node_attributes = {'label': label}
             node = documentationtools.GraphvizNode(
                 name=context.name,
-                attributes=dict(
-                    fillcolor=i % 9 + 1,
-                    label=label,
-                    ),
+                attributes=dict(fillcolor=fillcolor, label=label),
                 )
             context_mapping[context] = node
             # Add context nodes to subgraphs.
