@@ -17,6 +17,7 @@ ignored_classes = (
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.ImportDirective,
     abjadbooktools.LilyPondOutputProxy,
+    abjadbooktools.RevealDirective,
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,

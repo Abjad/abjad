@@ -444,6 +444,7 @@ class DocumentationManager(abctools.AbjadObject):
             abjadbooktools.abjad_import_block,
             abjadbooktools.abjad_input_block,
             abjadbooktools.abjad_output_block,
+            abjadbooktools.abjad_reveal_block,
             abjadbooktools.abjad_thumbnail_block,
             ])
         return ignored_classes
