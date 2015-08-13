@@ -9,7 +9,7 @@ class ImportDirective(Directive):
 
     Represents a class or function to be imported into an interactive session.
 
-    Generates a `abjad_import_block node`.
+    Generates an ``abjad_import_block`` node.
     '''
 
     ### CLASS VARIABLES ###

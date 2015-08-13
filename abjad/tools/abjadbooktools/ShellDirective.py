@@ -12,7 +12,7 @@ class ShellDirective(Directive):
 
     Represents a shell session.
 
-    Generates a docutils `literal_block` node.
+    Generates a docutils ``literal_block`` node.
     '''
 
     ### CLASS VARIABLES ###
