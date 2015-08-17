@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCounter import TypedCounter
 
 
 class RotationCounter(TypedCounter):
     r'''A rotation counter.
-    
+
     ::
 
         >>> counter = rhythmmakertools.RotationCounter(default=3)
@@ -60,6 +61,21 @@ class RotationCounter(TypedCounter):
         if item not in self._collection:
             self._collection[item] = self._default
         return self._collection[item]
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        manager = systemtools.StorageFormatManager
+        keyword_argument_names = manager.get_keyword_argument_names(self)
+        keyword_argument_names = list(keyword_argument_names)
+        if not self.autoincrement:
+            keyword_argument_names.remove('autoincrement')
+        keyword_argument_names.extend(sorted(self._collection.keys()))
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=keyword_argument_names
+            )
 
     ### PUBLIC PROPERTIES ###
 
