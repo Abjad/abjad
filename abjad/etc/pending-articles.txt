@@ -53,3 +53,7 @@
     own article. Possibly this makes for a very good verbal conference
     presentation that splits the difference between literature analysis and
     provocation.
+
+2015-16 conferences/deadlines/specs/sites:
+ACM Code Generation 2016(9/12, up to 10 pages, http://cgo.org/cgo2016/call-for-papers/)
+ACM Document Engineering 2016 (??) 
