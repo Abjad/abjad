@@ -4,10 +4,10 @@ from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.datastructuretools.TreeContainer import TreeContainer
-from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
+from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
-class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
+class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
     r'''A rhythm-tree container.
 
     ..  container:: example
@@ -27,7 +27,7 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         **Example 2.** Similar to Abjad containers, `RhythmTreeContainer`
         supports a list interface, and can be appended, extended, indexed and
-        so forth by other `RhythmTreeNode` subclasses:
+        so forth by other `RhythmTreeMixin` subclasses:
 
         ::
 
@@ -108,20 +108,22 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
     Returns `RhythmTreeContainer` instance.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_duration',
+        '_offset',
+        '_offsets_are_current',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, children=None, preprolated_duration=1, name=None):
-        RhythmTreeNode.__init__(
-            self,
-            preprolated_duration=preprolated_duration,
-            name=name,
-            )
-        self._children = []
-        if isinstance(children, type(None)):
-            pass
-        elif isinstance(children, (list, str, tuple)):
+        TreeContainer.__init__(self, name=name)
+        RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
+        if isinstance(children, (list, str, tuple)):
             self.extend(children)
-        else:
+        elif children is not None:
             message = 'can not instantiate {} with {!r}.'
             raise ValueError(message.format(type(self), children))
 
@@ -236,18 +238,6 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
                     component._extract()
         return result
 
-    def __eq__(self, expr):
-        r'''True if type, preprolated_duration and children are equivalent.
-        Otherwise False.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            if self.preprolated_duration == expr.preprolated_duration:
-                if self.children == expr.children:
-                    return True
-        return False
-
     def __graph__(self, **kwargs):
         r'''The GraphvizGraph representation of the RhythmTreeContainer:
 
@@ -258,6 +248,8 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             >>> graph = tree.__graph__()
             >>> print(str(graph))
             digraph G {
+                graph [bgcolor=transparent,
+                    truecolor=true];
                 node_0 [label=1,
                     shape=triangle];
                 node_1 [label=1,
@@ -286,7 +278,13 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
         Return `GraphvizGraph` instance.
         '''
-        graph = documentationtools.GraphvizGraph(name='G')
+        graph = documentationtools.GraphvizGraph(
+            name='G',
+            attributes={
+                'bgcolor': 'transparent',
+                'truecolor': True,
+                },
+            )
         node_mapping = {}
         for node in self.nodes:
             graphviz_node = documentationtools.GraphvizNode()
@@ -298,20 +296,11 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
             graph.append(graphviz_node)
             node_mapping[node] = graphviz_node
             if node.parent is not None:
-                documentationtools.GraphvizEdge()(
+                documentationtools.GraphvizEdge().attach(
                     node_mapping[node.parent],
                     node_mapping[node],
                     )
         return graph
-
-    def __hash__(self):
-        r'''Hashes rhythm-tree container.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(RhythmTreeContainer, self).__hash__()
 
     def __repr__(self):
         r'''Gets interpreter representation of rhythm tree container.
@@ -442,14 +431,14 @@ class RhythmTreeContainer(RhythmTreeNode, TreeContainer):
 
     @property
     def _node_class(self):
-        return RhythmTreeNode
+        return RhythmTreeMixin
 
     @property
     def _pretty_rtm_format_pieces(self):
         result = []
         result.append('({!s} ('.format(self.preprolated_duration))
         for child in self:
-            result.extend(['\t' + x for x in child._pretty_rtm_format_pieces])
+            result.extend(['    ' + x for x in child._pretty_rtm_format_pieces])
         result[-1] = result[-1] + '))'
         return result
 

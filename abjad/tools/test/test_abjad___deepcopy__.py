@@ -2,6 +2,7 @@
 import copy
 import inspect
 import pytest
+from abjad.tools import abjadbooktools
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
 from abjad.tools import quantizationtools
@@ -11,9 +12,11 @@ from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
 
 
-# TODO: make these work
 ignored_classes = (
-    documentationtools.Pipe,
+    abjadbooktools.CodeBlock,
+    abjadbooktools.CodeOutputProxy,
+    abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.LilyPondOutputProxy,
     lilypondparsertools.LilyPondParser,
     lilypondparsertools.ReducedLyParser,
     lilypondparsertools.SchemeParser,

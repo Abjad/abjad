@@ -6,19 +6,37 @@ import importlib
 import os
 import re
 import shutil
+import traceback
 import types
+from abjad.tools import abctools
+from abjad.tools import systemtools
+from sphinx.util.console import red, green, darkgray, lightgray, yellow
 
 
-class DocumentationManager(object):
+class DocumentationManager(abctools.AbjadObject):
     r'''An API documentation manager.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Documenters'
+
+    api_directory_name = 'api'
+    api_title = 'Abjad API'
     root_package_name = 'abjad'
     source_directory_path_parts = ('docs', 'source')
     tools_packages_package_path = 'abjad.tools'
 
-    @staticmethod
-    def build_attribute_section(
+    prefix_ignored = lightgray('IGNORED:   ')
+    prefix_preserved = darkgray('PRESERVED: ')
+    prefix_pruned = red('PRUNED:    ')
+    prefix_rewrote = green('REWROTE:   ')
+    prefix_wrote = yellow('WROTE:     ')
+
+    ### PRIVATE METHODS ###
+
+    def _build_attribute_section(
+        self,
         cls,
         attrs,
         directive,
@@ -58,8 +76,8 @@ class DocumentationManager(object):
                     result.append(html_only)
         return result
 
-    @staticmethod
-    def build_attributes_autosummary(
+    def _build_attributes_autosummary(
+        self,
         cls,
         class_methods,
         data,
@@ -99,10 +117,7 @@ class DocumentationManager(object):
             result.append(html_only)
         return result
 
-    @staticmethod
-    def build_bases_section(cls):
-        r'''
-        '''
+    def _build_bases_section(self, cls):
         from abjad.tools import documentationtools
         result = []
         result.append(documentationtools.ReSTHeading(
@@ -123,10 +138,7 @@ class DocumentationManager(object):
             result.append(paragraph)
         return result
 
-    @staticmethod
-    def build_enumeration_section(cls):
-        r'''
-        '''
+    def _build_enumeration_section(self, cls):
         from abjad.tools import documentationtools
         result = []
         if not issubclass(cls, enum.Enum):
@@ -148,10 +160,7 @@ class DocumentationManager(object):
                 result.append(paragraph)
         return result
 
-    @staticmethod
-    def collect_class_attributes(cls):
-        r'''
-        '''
+    def _collect_class_attributes(self, cls):
         ignored_special_methods = (
             '__getattribute__',
             '__getnewargs__',
@@ -225,129 +234,65 @@ class DocumentationManager(object):
             )
         return result
 
-    @staticmethod
-    def ensure_directory(path):
-        r'''
-        '''
+    def _ensure_directory(self, path):
         path = os.path.dirname(path)
         if not os.path.exists(path):
             os.makedirs(path)
 
-    @staticmethod
-    def execute():
-        r'''
-        '''
-        manager = DocumentationManager
-        print('Rebuilding documentation source.')
-        source_directory = manager.get_source_directory()
-        rewritten_files = set()
-        tools_packages = manager.get_tools_packages()
-        api_index_rst = manager.get_api_index_rst(tools_packages)
-        api_index_file_path = manager.get_api_index_file_path(source_directory)
-        manager.ensure_directory(api_index_file_path)
-        manager.write(
-            api_index_file_path,
-            api_index_rst.rest_format,
-            rewritten_files,
-            )
-        for package in tools_packages:
-            tools_package_rst = manager.get_tools_package_rst(package)
-            tools_package_file_path = manager.package_path_to_file_path(
-                package.__package__,
+    def _get_api_directory_path(self, source_directory):
+        if self.api_directory_name:
+            path = os.path.join(
                 source_directory,
+                self.api_directory_name,
                 )
-            manager.ensure_directory(tools_package_file_path)
-            manager.write(
-                tools_package_file_path,
-                tools_package_rst.rest_format,
-                rewritten_files,
-                )
-            classes, functions = \
-                manager.get_tools_package_contents(package)
-            for cls in classes:
-                file_path = manager.module_path_to_file_path(
-                    cls.__module__,
-                    source_directory,
-                    )
-                rst = manager.get_class_rst(cls)
-                manager.write(file_path, rst.rest_format, rewritten_files)
-            for function in functions:
-                file_path = manager.module_path_to_file_path(
-                    function.__module__,
-                    source_directory,
-                    )
-                rst = manager.get_function_rst(function)
-                manager.write(file_path, rst.rest_format, rewritten_files)
-        for root, directory_names, file_names in os.walk(
-            manager.get_api_directory_path(source_directory),
-            topdown=False,
-            ):
-            for file_name in file_names[:]:
-                file_path = os.path.join(root, file_name)
-                if file_path not in rewritten_files:
-                    file_names.remove(file_name)
-                    os.remove(file_path)
-                    print('PRUNED: {}'.format(file_path))
-            if not file_names and not directory_names:
-                shutil.rmtree(root)
-                print('PRUNED: {}'.format(root))
-
-    @staticmethod
-    def get_api_directory_path(source_directory):
-        r'''
-        '''
-        path = os.path.join(
-            source_directory,
-            'api',
-            'tools',
-            )
+        else:
+            path = source_directory
         return path
 
-    @staticmethod
-    def get_api_index_file_path(source_directory):
-        r'''
-        '''
-        path = os.path.join(
-            source_directory,
-            'api',
+    def _get_api_index_file_path(self, source_directory):
+        if self.api_directory_name:
+            directory_path = os.path.join(
+                source_directory,
+                self.api_directory_name,
+                )
+        else:
+            directory_path = source_directory
+        api_index_path = os.path.join(
+            directory_path,
             'index.rst',
             )
-        return path
+        return api_index_path
 
-    @staticmethod
-    def get_api_index_rst(tools_packages):
+    def _get_api_index_rst(self, tools_packages):
         r'''
         '''
         from abjad.tools import documentationtools
         document = documentationtools.ReSTDocument()
         heading = documentationtools.ReSTHeading(
             level=2,
-            text=' API',
+            text=self.api_title,
             )
         document.append(heading)
         toc = documentationtools.ReSTTOCDirective(
             options={
-                'maxdepth': 2,
+                'maxdepth': 3,
+                'includehidden': True,
                 },
             )
         for tools_package in tools_packages:
-            tools_package_name = tools_package.__package__.split('.')[-1]
+            tools_package_parts = tools_package.__package__.split('.')[1:]
+            tools_package_path = '/'.join(tools_package_parts)
             toc_item = documentationtools.ReSTTOCItem(
-                text='tools/{}/index'.format(tools_package_name),
+                text='{}/index'.format(tools_package_path),
                 )
             toc.append(toc_item)
         document.append(toc)
         return document
 
-    @staticmethod
-    def get_class_rst(cls):
-        r'''
-        '''
+    def _get_class_rst(self, cls):
         import abjad
-        manager = DocumentationManager
         module_name, _, class_name = cls.__module__.rpartition('.')
         tools_package_python_path = '.'.join(cls.__module__.split('.')[:-1])
-
         (
             class_methods,
             data,
@@ -357,50 +302,47 @@ class DocumentationManager(object):
             readwrite_properties,
             special_methods,
             static_methods,
-            ) = manager.collect_class_attributes(cls)
-
+            ) = self._collect_class_attributes(cls)
         document = abjad.documentationtools.ReSTDocument()
-
         module_directive = abjad.documentationtools.ReSTDirective(
             directive='currentmodule',
             argument=tools_package_python_path,
             )
         document.append(module_directive)
-
         heading = abjad.documentationtools.ReSTHeading(
             level=2,
             text=class_name,
             )
         document.append(heading)
-
         autoclass_directive = abjad.documentationtools.ReSTAutodocDirective(
             argument=cls.__name__,
             directive='autoclass',
             )
         document.append(autoclass_directive)
-
-        lineage_heading = abjad.documentationtools.ReSTHeading(
-            level=3,
-            text='Lineage',
-            )
-        document.append(lineage_heading)
-        lineage_graph = DocumentationManager.get_lineage_graph(cls)
-        lineage_graph.attributes['background'] = 'transparent'
-        lineage_graph.attributes['rankdir'] = 'LR'
-        graphviz_directive = abjad.documentationtools.GraphvizDirective(
-            graph=lineage_graph,
-            )
-        graphviz_container = abjad.documentationtools.ReSTDirective(
-            directive='container',
-            argument='graphviz',
-            )
-        graphviz_container.append(graphviz_directive)
-        document.append(graphviz_container)
-
-        document.extend(manager.build_bases_section(cls))
-
-        document.extend(manager.build_enumeration_section(cls))
-        document.extend(manager.build_attributes_autosummary(
+        try:
+            lineage_heading = abjad.documentationtools.ReSTHeading(
+                level=3,
+                text='Lineage',
+                )
+            document.append(lineage_heading)
+            lineage_graph = self._get_lineage_graph(cls)
+            lineage_graph.attributes['background'] = 'transparent'
+            lineage_graph.attributes['rankdir'] = 'LR'
+            graphviz_directive = \
+                abjad.documentationtools.ReSTGraphvizDirective(
+                    graph=lineage_graph,
+                    )
+            graphviz_container = abjad.documentationtools.ReSTDirective(
+                directive='container',
+                argument='graphviz',
+                )
+            graphviz_container.append(graphviz_directive)
+            document.append(graphviz_container)
+        except:
+            traceback.print_exc()
+        document.extend(self._build_bases_section(cls))
+        document.extend(self._build_enumeration_section(cls))
+        document.extend(self._build_attributes_autosummary(
             cls,
             class_methods,
             data,
@@ -411,53 +353,53 @@ class DocumentationManager(object):
             special_methods,
             static_methods,
             ))
-
-        document.extend(manager.build_attribute_section(
+        document.extend(self._build_attribute_section(
             cls,
             readonly_properties,
             'autoattribute',
             'Read-only properties',
             ))
-
-        document.extend(manager.build_attribute_section(
+        document.extend(self._build_attribute_section(
             cls,
             readwrite_properties,
             'autoattribute',
             'Read/write properties',
             ))
-
-        document.extend(manager.build_attribute_section(
+        document.extend(self._build_attribute_section(
             cls,
             methods,
             'automethod',
             'Methods',
             ))
-
-        document.extend(manager.build_attribute_section(
+        document.extend(self._build_attribute_section(
             cls,
-            class_methods,
+            sorted(class_methods + static_methods,
+                key=lambda x: x.name,
+                ),
             'automethod',
-            'Class methods',
+            'Class & static methods',
             ))
-
-        document.extend(manager.build_attribute_section(
-            cls,
-            static_methods,
-            'automethod',
-            'Static methods',
-            ))
-
-        document.extend(manager.build_attribute_section(
+#        document.extend(self._build_attribute_section(
+#            cls,
+#            class_methods,
+#            'automethod',
+#            'Class methods',
+#            ))
+#        document.extend(self._build_attribute_section(
+#            cls,
+#            static_methods,
+#            'automethod',
+#            'Static methods',
+#            ))
+        document.extend(self._build_attribute_section(
             cls,
             special_methods,
             'automethod',
             'Special methods',
             ))
-
         return document
 
-    @staticmethod
-    def get_class_summary(cls):
+    def _get_class_summary(self, cls):
         r'''
         '''
         doc = cls.__doc__
@@ -473,8 +415,7 @@ class DocumentationManager(object):
             summary = ''
         return summary
 
-    @staticmethod
-    def get_function_rst(function):
+    def _get_function_rst(self, function):
         r'''
         '''
         import abjad
@@ -497,10 +438,28 @@ class DocumentationManager(object):
         document.append(autodoc_directive)
         return document
 
-    @staticmethod
-    def get_lineage_graph(cls):
-        r'''
-        '''
+    def _get_ignored_classes(self):
+        from abjad.tools import abjadbooktools
+        ignored_classes = set([
+            abjadbooktools.abjad_import_block,
+            abjadbooktools.abjad_input_block,
+            abjadbooktools.abjad_output_block,
+            abjadbooktools.abjad_reveal_block,
+            abjadbooktools.abjad_thumbnail_block,
+            ])
+        return ignored_classes
+
+    def _get_tools_package_graph(self, tools_package):
+        from abjad.tools import documentationtools
+        inheritance_graph = documentationtools.InheritanceGraph(
+            lineage_addresses=[tools_package.__package__]
+            )
+        lineage_graph = inheritance_graph.__graph__()
+        lineage_graph.attributes['background'] = 'transparent'
+        lineage_graph.attributes['rankdir'] = 'LR'
+        return lineage_graph
+
+    def _get_lineage_graph(self, cls):
         def get_node_name(original_name):
             parts = original_name.split('.')
             name = [parts[0]]
@@ -513,6 +472,7 @@ class DocumentationManager(object):
         from abjad.tools import documentationtools
         addresses = ('abjad', 'experimental', 'ide')
         module_name, _, class_name = cls.__module__.rpartition('.')
+        node_name = get_node_name(module_name + '.' + class_name)
         importlib.import_module(module_name)
         lineage = documentationtools.InheritanceGraph(
             addresses=addresses,
@@ -534,7 +494,6 @@ class DocumentationManager(object):
                 lineage_prune_distance=1,
                 )
             graph = lineage.__graph__()
-        node_name = get_node_name(module_name + '.' + class_name)
         if maximum_node_count < len(graph.leaves):
             lineage = documentationtools.InheritanceGraph(
                 addresses=((module_name, class_name),),
@@ -549,25 +508,19 @@ class DocumentationManager(object):
             '<<B>{}</B>>'.format(graph_node.attributes['label'])
         return graph
 
-    @staticmethod
-    def get_source_directory():
-        r'''
-        '''
-        manager = DocumentationManager
-        root_package = importlib.import_module(manager.root_package_name)
+    def _get_source_directory(self):
+        root_package = importlib.import_module(self.root_package_name)
         root_package_path = root_package.__path__[0]
         path_parts = [root_package_path]
-        path_parts.extend(manager.source_directory_path_parts)
+        path_parts.extend(self.source_directory_path_parts)
         source_directory = os.path.join(*path_parts)
         return source_directory
 
-    @staticmethod
-    def get_tools_packages():
+    def _get_tools_packages(self):
         r'''
         '''
-        manager = DocumentationManager
-        root_module = manager.get_root_module()
-        tools_packages_module = manager.get_tools_packages_module()
+        root_module = self._get_root_module()
+        tools_packages_module = self._get_tools_packages_module()
         tools_packages = []
         for name in dir(tools_packages_module):
             if name.startswith('_'):
@@ -582,25 +535,20 @@ class DocumentationManager(object):
         tools_packages = tuple(tools_packages)
         return tools_packages
 
-    @staticmethod
-    def get_root_module():
+    def _get_root_module(self):
         r'''
         '''
-        manager = DocumentationManager
-        root_module = importlib.import_module(manager.root_package_name)
+        root_module = importlib.import_module(self.root_package_name)
         return root_module
 
-    @staticmethod
-    def get_tools_packages_module():
+    def _get_tools_packages_module(self):
         r'''
         '''
-        manager = DocumentationManager
         tools_packages_module = importlib.import_module(
-            manager.tools_packages_package_path)
+            self.tools_packages_package_path)
         return tools_packages_module
 
-    @staticmethod
-    def get_tools_package_contents(tools_package):
+    def _get_tools_package_contents(self, tools_package):
         r'''
         '''
         classes = []
@@ -624,13 +572,11 @@ class DocumentationManager(object):
         functions = tuple(functions)
         return classes, functions
 
-    @staticmethod
-    def get_tools_package_rst(tools_package):
+    def _get_tools_package_rst(self, tools_package):
         r'''
         '''
         from abjad.tools import documentationtools
-        manager = DocumentationManager
-        classes, functions = manager.get_tools_package_contents(
+        classes, functions = self._get_tools_package_contents(
             tools_package,
             )
         document = documentationtools.ReSTDocument()
@@ -644,6 +590,26 @@ class DocumentationManager(object):
             directive='automodule',
             )
         document.append(automodule_directive)
+        ignored_classes = self._get_ignored_classes()
+        classes = [_ for _ in classes if _ not in ignored_classes]
+        if classes:
+            rule = documentationtools.ReSTHorizontalRule()
+            document.append(rule)
+            lineage_heading = documentationtools.ReSTHeading(
+                level=3,
+                text='Lineage',
+                )
+            document.append(lineage_heading)
+            lineage_graph = self._get_tools_package_graph(tools_package)
+            graphviz_directive = documentationtools.ReSTGraphvizDirective(
+                graph=lineage_graph,
+                )
+            graphviz_container = documentationtools.ReSTDirective(
+                directive='container',
+                argument='graphviz',
+                )
+            graphviz_container.append(graphviz_directive)
+            document.append(graphviz_container)
         if classes:
             sections = {}
             for cls in classes:
@@ -756,44 +722,37 @@ class DocumentationManager(object):
             document.append(autosummary)
         return document
 
-    @staticmethod
-    def module_path_to_file_path(module_path, source_directory):
+    def _module_path_to_file_path(self, module_path, source_directory):
         r'''
         '''
-        manager = DocumentationManager
         parts = module_path.split('.')
-        parts = parts[2:]
+        parts = parts[1:]
         if parts[-1] == 'Index':
             parts[-1] = '_' + parts[-1] + '.rst'
         else:
             parts[-1] = parts[-1] + '.rst'
-        parts.insert(0, manager.get_api_directory_path(source_directory))
+        parts.insert(0, self._get_api_directory_path(source_directory))
         path = os.path.join(*parts)
         return path
 
-    @staticmethod
-    def package_path_to_file_path(package_path, source_directory):
+    def _package_path_to_file_path(self, package_path, source_directory):
         r'''
         '''
-        manager = DocumentationManager
         parts = package_path.split('.')
-        parts = parts[2:]
+        parts = parts[1:]
         parts.append('index.rst')
-        parts.insert(0, manager.get_api_directory_path(source_directory))
+        parts.insert(0, self._get_api_directory_path(source_directory))
         path = os.path.join(*parts)
         return path
 
-    @staticmethod
-    def remove_api_directory():
+    def _remove_api_directory(self):
         r'''
         '''
-        manager = DocumentationManager
-        path = manager.get_api_directory_path()
+        path = self._get_api_directory_path()
         if os.path.exists(path):
             shutil.rmtree(path)
 
-    @staticmethod
-    def write(file_path, string, rewritten_files):
+    def _write(self, file_path, string, rewritten_files):
         r'''
         '''
         should_write = True
@@ -804,11 +763,130 @@ class DocumentationManager(object):
                 should_write = False
         if should_write:
             if os.path.exists(file_path):
-                print('REWROTE: {}'.format(file_path))
+                print('{}{}'.format(
+                    self.prefix_rewrote,
+                    os.path.relpath(file_path),
+                    ))
             else:
-                print('WROTE: {}'.format(file_path))
+                print('{}{}'.format(
+                    self.prefix_wrote,
+                    os.path.relpath(file_path),
+                    ))
             with open(file_path, 'w') as file_pointer:
                 file_pointer.write(string)
         else:
-            print('PRESERVED: {}'.format(file_path))
+            print('{}{}'.format(
+                self.prefix_preserved,
+                os.path.relpath(file_path),
+                ))
         rewritten_files.add(file_path)
+
+    ### PUBLIC METHODS ###
+
+    def execute(self):
+        r'''Executes documentation manager.
+        '''
+        print('Rebuilding documentation source.')
+        source_directory = self._get_source_directory()
+        with systemtools.TemporaryDirectoryChange(
+            directory=source_directory,
+            verbose=True,
+            ):
+            rewritten_files = set()
+            tools_packages = self._get_tools_packages()
+            api_index_rst = self._get_api_index_rst(tools_packages)
+            api_index_file_path = self._get_api_index_file_path(
+                source_directory)
+            self._ensure_directory(api_index_file_path)
+            self._write(
+                api_index_file_path,
+                api_index_rst.rest_format,
+                rewritten_files,
+                )
+            ignored_classes = self._get_ignored_classes()
+            for package in tools_packages:
+                tools_package_rst = self._get_tools_package_rst(package)
+                tools_package_file_path = self._package_path_to_file_path(
+                    package.__package__,
+                    source_directory,
+                    )
+                self._ensure_directory(tools_package_file_path)
+                self._write(
+                    tools_package_file_path,
+                    tools_package_rst.rest_format,
+                    rewritten_files,
+                    )
+                classes, functions = \
+                    self._get_tools_package_contents(package)
+                for cls in classes:
+                    file_path = self._module_path_to_file_path(
+                        cls.__module__,
+                        source_directory,
+                        )
+                    if cls in ignored_classes:
+                        print('{}{}'.format(
+                            self.prefix_ignored,
+                            os.path.relpath(file_path),
+                            ))
+                        continue
+                    rst = self._get_class_rst(cls)
+                    self._write(file_path, rst.rest_format, rewritten_files)
+                for function in functions:
+                    file_path = self._module_path_to_file_path(
+                        function.__module__,
+                        source_directory,
+                        )
+                    rst = self._get_function_rst(function)
+                    self._write(file_path, rst.rest_format, rewritten_files)
+            for root, directory_names, file_names in os.walk(
+                self._get_api_directory_path(source_directory),
+                topdown=False,
+                ):
+                for file_name in file_names[:]:
+                    file_path = os.path.join(root, file_name)
+                    if not file_path.endswith('.rst'):
+                        continue
+                    if file_path not in rewritten_files:
+                        file_names.remove(file_name)
+                        os.remove(file_path)
+                        print('{}{}'.format(
+                            self.prefix_pruned,
+                            os.path.relpath(file_path),
+                            ))
+                if not file_names and not directory_names:
+                    shutil.rmtree(root)
+                    print('{}{}'.format(
+                        self.prefix_pruned,
+                        os.path.relpath(root),
+                        ))
+
+    @staticmethod
+    def make_readme():
+        r'''Creates README.rst file.
+        '''
+        import abjad
+        abjad_path = abjad.__path__[0]
+        version = abjad.__version__
+        docs_path = os.path.join(abjad_path, 'docs', 'source')
+        abstract_path = os.path.join(docs_path, 'abstract.txt')
+        badges_path = os.path.join(docs_path, 'badges.txt')
+        links_path = os.path.join(docs_path, 'links.txt')
+        installation_path = os.path.join(docs_path, 'installation.rst')
+        result = 'Abjad {}'.format(version)
+        result = ['#' * len(result), result, '#' * len(result)]
+        with open(abstract_path, 'r') as file_pointer:
+            result.append('')
+            result.append(file_pointer.read())
+        with open(links_path, 'r') as file_pointer:
+            result.append('')
+            result.append(file_pointer.read())
+        with open(badges_path, 'r') as file_pointer:
+            result.append('')
+            result.append(file_pointer.read())
+        with open(installation_path, 'r') as file_pointer:
+            result.append('')
+            result.append(file_pointer.read())
+        result = '\n'.join(result)
+        readme_path = os.path.join(abjad_path, '..', 'README.rst')
+        with open(readme_path, 'w') as file_pointer:
+            file_pointer.write(result)

@@ -30,12 +30,16 @@ class Context(Container):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Contexts'
+
     __slots__ = (
         '_context_name',
         '_consists_commands',
         '_remove_commands',
         '_is_nonsemantic',
         )
+
+    _default_context_name = 'Voice'
 
     ### INITIALIZER ###
 
@@ -64,8 +68,12 @@ class Context(Container):
 
         ::
 
-            >>> context
-            Context()
+            >>> context = scoretools.Context(
+            ...     name='MeterVoice',
+            ...     context_name='TimeSignatureContext',
+            ...     )
+            >>> repr(context)
+            'Context()'
 
         Returns string.
         '''
@@ -311,6 +319,23 @@ class Context(Container):
         Returns boolean.
         '''
         return not self.is_nonsemantic
+
+    @property
+    def lilypond_context(self):
+        r'''Gets `LilyPondContext` associated with context.
+
+        Returns LilyPond context instance.
+        '''
+        from abjad.tools import lilypondnametools
+        try:
+            lilypond_context = lilypondnametools.LilyPondContext(
+                name=self.context_name,
+                )
+        except AssertionError:
+            lilypond_context = lilypondnametools.LilyPondContext(
+                name=self._default_context_name,
+                )
+        return lilypond_context
 
     @property
     def remove_commands(self):

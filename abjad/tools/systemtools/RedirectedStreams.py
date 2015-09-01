@@ -25,6 +25,10 @@ class RedirectedStreams(ContextManager):
     Redirected streams context manager is immutable.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Context managers'
+
     ### INITIALIZER ###
 
     def __init__(self, stdout=None, stderr=None):

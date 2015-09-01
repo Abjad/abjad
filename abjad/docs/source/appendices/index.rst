@@ -1,19 +1,9 @@
 Appendices
 ==========
 
-..  only:: html 
+..  toctree::
+    :maxdepth: 1
 
-    ..  toctree::
-        :maxdepth: 1
-
-        pitch_conventions/index
-        bibliography/index
-        change_log/index
-
-..  only:: latex 
-
-    ..  toctree::
-        :maxdepth: 1
-
-        pitch_conventions/index
-        bibliography/index
+    pitch_conventions
+    version_history/index
+    bibliography

@@ -21,6 +21,7 @@ class BuildApiScript(DeveloperScript):
         r'''API generator for the experimental package.
         '''
 
+        api_directory_name = None
         api_title = 'Abjad Experimental API'
         root_package_name = 'experimental'
         source_directory_path_parts = ('docs', 'source')
@@ -30,10 +31,11 @@ class BuildApiScript(DeveloperScript):
         r'''API generator for the Abjad IDE package.
         '''
 
+        api_directory_name = None
         api_title = 'Abjad IDE API'
         root_package_name = 'ide'
         source_directory_path_parts = ('docs', 'source')
-        tools_packages_package_path = 'ide'
+        tools_packages_package_path = 'ide.tools'
 
     ### PUBLIC PROPERTIES ###
 
@@ -118,7 +120,7 @@ class BuildApiScript(DeveloperScript):
         rst_only=False,
         ):
         from abjad import abjad_configuration
-        api_generator = BuildApiScript.ExperimentalDocumentationManager
+        api_generator = BuildApiScript.ExperimentalDocumentationManager()
         api_title = 'experimental'
         docs_directory = os.path.join(
             abjad_configuration.abjad_root_directory,
@@ -149,12 +151,11 @@ class BuildApiScript(DeveloperScript):
         clean=False,
         rst_only=False,
         ):
-        from abjad import abjad_configuration
-        api_generator = BuildApiScript.IDEDocumentationManager
+        import ide
+        api_generator = BuildApiScript.IDEDocumentationManager()
         api_title = 'Abjad IDE'
         docs_directory = os.path.join(
-            abjad_configuration.abjad_ide_root_directory,
-            'ide',
+            ide.__path__[0],
             'docs',
             )
         self._build_api(
@@ -166,8 +167,7 @@ class BuildApiScript(DeveloperScript):
             rst_only=rst_only,
             )
         path = os.path.join(
-            abjad_configuration.abjad_ide_root_directory,
-            'ide',
+            ide.__path__[0],
             'docs',
             'build',
             'html',
@@ -182,7 +182,7 @@ class BuildApiScript(DeveloperScript):
         rst_only=False,
         ):
         from abjad import abjad_configuration
-        api_generator = DocumentationManager
+        api_generator = DocumentationManager()
         api_title = 'mainline'
         docs_directory = os.path.join(
             abjad_configuration.abjad_directory,
@@ -218,6 +218,8 @@ class BuildApiScript(DeveloperScript):
         clean = args.clean
         rst_only = args.rst_only
         paths = []
+        if not any((args.mainline, args.experimental, args.ide)):
+            args.mainline = True
         if args.mainline:
             path = self._build_mainline_api(
                 api_format=api_format,

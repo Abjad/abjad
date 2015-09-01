@@ -1,4 +1,4 @@
-\version "2.16.1"
+\version "2.19.24"
 
 #(load "helpers.scm")
 
@@ -25,12 +25,10 @@
                4)))
        "grob_interfaces = {\n"
        (sort-symbol-list (alist-keys all-grob-descriptions)))
-     "}\n"))
+     "    }\n"))
 
   (display
     (string-append
       (format "lilypond_version = \"~A\"\n\n" (lilypond-version))
       (format-grob-interfaces)
       )))
-
-% EOF

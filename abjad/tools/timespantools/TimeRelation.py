@@ -11,6 +11,8 @@ class TimeRelation(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Time relations'
+
     __slots__ = (
         '_inequality',
         )

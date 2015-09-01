@@ -3,11 +3,16 @@ import collections
 import inspect
 import sys
 import types
+from abjad.tools.abctools import AbjadObject
 
 
-class StorageFormatManager(object):
+class StorageFormatManager(AbjadObject):
     r'''Manages Abjad object storage formats.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Storage formatting'
 
     ### PUBLIC METHODS ###
 

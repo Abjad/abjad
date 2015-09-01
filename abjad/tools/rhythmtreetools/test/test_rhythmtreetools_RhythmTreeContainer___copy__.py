@@ -9,14 +9,14 @@ def test_rhythmtreetools_RhythmTreeContainer___copy___01():
     tree = rhythmtreetools.RhythmTreeParser()(string)[0]
     copied = copy.copy(tree)
 
-    assert tree == copied
+    assert format(tree) == format(copied)
     assert tree is not copied
 
-    assert tree[0] == copied[0]
+    assert format(tree[0]) == format(copied[0])
     assert tree[0] is not copied[0]
 
-    assert tree[1] == copied[1]
+    assert format(tree[1]) == format(copied[1])
     assert tree[1] is not copied[1]
 
-    assert tree[2] == copied[2]
+    assert format(tree[2]) == format(copied[2])
     assert tree[2] is not copied[2]

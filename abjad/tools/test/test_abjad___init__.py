@@ -2,6 +2,7 @@
 import functools
 import inspect
 import pytest
+from abjad.tools import abjadbooktools
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
@@ -9,6 +10,16 @@ from abjad.tools import mathtools
 
 
 ignored_classes = (
+    abjadbooktools.AbjadDirective,
+    abjadbooktools.CodeBlock,
+    abjadbooktools.CodeOutputProxy,
+    abjadbooktools.DoctestDirective,
+    abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.ImportDirective,
+    abjadbooktools.LilyPondOutputProxy,
+    abjadbooktools.RevealDirective,
+    abjadbooktools.ShellDirective,
+    abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,
     )
 

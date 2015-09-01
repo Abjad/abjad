@@ -8,6 +8,8 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Specifiers'
+
     __slots__ = (
         '_avoid_dots',
         '_flatten_trivial_tuplets',

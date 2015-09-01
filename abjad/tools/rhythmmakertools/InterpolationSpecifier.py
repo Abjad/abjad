@@ -9,6 +9,8 @@ class InterpolationSpecifier(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Specifiers'
+
     __slots__ = (
         '_start_duration',
         '_stop_duration',

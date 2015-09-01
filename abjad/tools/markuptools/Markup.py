@@ -1446,10 +1446,6 @@ class Markup(AbjadValueObject):
                         }
                     }
 
-            ::
-
-                >>> show(markup) # doctest: +SKIP
-
         Returns markup.
         '''
         assert isinstance(text, (str, type(None))), repr(text)
@@ -1496,7 +1492,7 @@ class Markup(AbjadValueObject):
     @staticmethod
     def make_centered_title_markup(
         title,
-        font_name='Times',
+        font_name='Times New Roman',
         font_size=18,
         vspace_before=6,
         vspace_after=12,
@@ -1514,7 +1510,7 @@ class Markup(AbjadValueObject):
                 >>> print(format(markup, 'lilypond'))
                 \markup {
                     \override
-                        #'(font-name . "Times")
+                        #'(font-name . "Times New Roman")
                         \fontsize
                             #18
                             \column
@@ -1578,7 +1574,7 @@ class Markup(AbjadValueObject):
     @staticmethod
     def make_vertically_adjusted_composer_markup(
         composer,
-        font_name='Times',
+        font_name='Times New Roman',
         font_size=3,
         space_above=20,
         space_right=0,
@@ -1598,7 +1594,7 @@ class Markup(AbjadValueObject):
                 >>> print(format(markup, 'lilypond'))
                 \markup {
                     \override
-                        #'(font-name . "Times")
+                        #'(font-name . "Times New Roman")
                         {
                             \hspace
                                 #0

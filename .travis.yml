@@ -2,27 +2,39 @@ language: python
 
 python:
     - 2.7
+    - 3.3
     - 3.4
-
-sudo: false
+    - pypy
 
 before_install:
-    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.21-1.linux-64.sh
-    - sh lilypond-2.19.21-1.linux-64.sh --batch
+    - sudo apt-get update -qq
+    - sudo apt-get install -y graphviz
+    - sudo apt-get install -y imagemagick
+    - sudo apt-get install -y texlive
+    - sudo apt-get install -y texlive-fonts-recommended
+    - sudo apt-get install -y texlive-latex-extra
+    - sudo apt-get install -y texlive-latex-recommended
+    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.20-1.linux-64.sh
+    - sudo sh lilypond-2.19.20-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
     - pip install coveralls
     - pip install coverage
 
 install:
     - pip install -e .[development]
+    - abjad/scr/devel/prime-parser-tables
 
 script:
+    - abjad/scr/ajv doctest --diff experimental
+    - py.test -rf experimental
 
-    - abjad/scr/ajv doctest experimental
-    - py.test experimental
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv doctest --diff abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv api -R; fi
 
-    - coverage run -a abjad/scr/ajv doctest --diff abjad 
-    - coverage run -a `which py.test` abjad
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv doctest --diff abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv api -R; fi
 
 after_success:
-    coveralls
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coveralls; fi

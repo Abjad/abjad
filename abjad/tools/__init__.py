@@ -1,21 +1,27 @@
 # -*- encoding: utf-8 -*-
+import six
 from abjad.tools import systemtools
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 
 
 # load constants into __builtins__ namespace
-__builtins__['Less'] = datastructuretools.OrdinalConstant('value', -1, 'Less')
-__builtins__['More'] = datastructuretools.OrdinalConstant('value', 1, 'More')
-__builtins__['Exact'] = datastructuretools.OrdinalConstant(
-    'value', 0, 'Exact')
-__builtins__['Left'] = datastructuretools.OrdinalConstant('x', -1, 'Left')
-__builtins__['Right'] = datastructuretools.OrdinalConstant('x', 1, 'Right')
-__builtins__['Center'] = datastructuretools.OrdinalConstant('y', 0, 'Center')
-__builtins__['Up'] = datastructuretools.OrdinalConstant('y', 1, 'Up')
-__builtins__['Down'] = datastructuretools.OrdinalConstant('y', -1, 'Down')
-__builtins__['Infinity'] = mathtools.Infinity()
-__builtins__['NegativeInfinity'] = mathtools.NegativeInfinity()
+if six.PY3:
+    import builtins
+elif six.PY2:
+    import __builtin__ as builtins
+builtins.Less = datastructuretools.OrdinalConstant('value', -1, 'Less')
+builtins.More = datastructuretools.OrdinalConstant('value', 1, 'More')
+builtins.Exact = datastructuretools.OrdinalConstant('value', 0, 'Exact')
+builtins.Left = datastructuretools.OrdinalConstant('x', -1, 'Left')
+builtins.Right = datastructuretools.OrdinalConstant('x', 1, 'Right')
+builtins.Center = datastructuretools.OrdinalConstant('y', 0, 'Center')
+builtins.Up = datastructuretools.OrdinalConstant('y', 1, 'Up')
+builtins.Down = datastructuretools.OrdinalConstant('y', -1, 'Down')
+builtins.Infinity = mathtools.Infinity()
+builtins.NegativeInfinity = mathtools.NegativeInfinity()
+del(builtins)
+del(six)
 
 systemtools.ImportManager.import_structured_package(
     __path__[0],

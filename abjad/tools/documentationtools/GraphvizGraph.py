@@ -1,10 +1,11 @@
 # -*- encoding: utf-8 -*-
 import subprocess
 from abjad.tools.datastructuretools import TreeContainer
-from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
+from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
+from abjad.tools.topleveltools import new
 
 
-class GraphvizGraph(TreeContainer, GraphvizObject):
+class GraphvizGraph(GraphvizMixin, TreeContainer):
     r'''A Graphviz graph.
 
     ::
@@ -40,19 +41,19 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     ::
 
-        >>> edge = documentationtools.GraphvizEdge()(start, a0)
-        >>> edge = documentationtools.GraphvizEdge()(start, b0)
-        >>> edge = documentationtools.GraphvizEdge()(a0, a1)
-        >>> edge = documentationtools.GraphvizEdge()(a1, a2)
-        >>> edge = documentationtools.GraphvizEdge()(a1, b3)
-        >>> edge = documentationtools.GraphvizEdge()(a2, a3)
-        >>> edge = documentationtools.GraphvizEdge()(a3, a0)
-        >>> edge = documentationtools.GraphvizEdge()(a3, end)
-        >>> edge = documentationtools.GraphvizEdge()(b0, b1)
-        >>> edge = documentationtools.GraphvizEdge()(b1, b2)
-        >>> edge = documentationtools.GraphvizEdge()(b2, b3)
-        >>> edge = documentationtools.GraphvizEdge()(b2, a3)
-        >>> edge = documentationtools.GraphvizEdge()(b3, end)
+        >>> documentationtools.GraphvizEdge().attach(start, a0)
+        >>> documentationtools.GraphvizEdge().attach(start, b0)
+        >>> documentationtools.GraphvizEdge().attach(a0, a1)
+        >>> documentationtools.GraphvizEdge().attach(a1, a2)
+        >>> documentationtools.GraphvizEdge().attach(a1, b3)
+        >>> documentationtools.GraphvizEdge().attach(a2, a3)
+        >>> documentationtools.GraphvizEdge().attach(a3, a0)
+        >>> documentationtools.GraphvizEdge().attach(a3, end)
+        >>> documentationtools.GraphvizEdge().attach(b0, b1)
+        >>> documentationtools.GraphvizEdge().attach(b1, b2)
+        >>> documentationtools.GraphvizEdge().attach(b2, b3)
+        >>> documentationtools.GraphvizEdge().attach(b2, a3)
+        >>> documentationtools.GraphvizEdge().attach(b3, end)
 
     Add attributes to style the objects:
 
@@ -131,9 +132,8 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         >>> graph[0].append(documentationtools.GraphvizSubgraph())
         >>> graph[0][-1].append(documentationtools.GraphvizNode())
         >>> graph.append(documentationtools.GraphvizNode())
-        >>> edge = documentationtools.GraphvizEdge()(graph[0][1], graph[1])
-        >>> edge = documentationtools.GraphvizEdge()(
-        ...     graph[0][0], graph[0][-1][0])
+        >>> documentationtools.GraphvizEdge().attach(graph[0][1], graph[1])
+        >>> documentationtools.GraphvizEdge().attach(graph[0][0], graph[0][-1][0])
 
     ::
 
@@ -154,6 +154,18 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = (
+        '_attributes',
+        '_edge_attributes',
+        '_is_digraph',
+        '_node_order',
+        '_node_attributes',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -166,7 +178,7 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         node_attributes=None,
         ):
         TreeContainer.__init__(self, children=children, name=name)
-        GraphvizObject.__init__(self, attributes=attributes)
+        GraphvizMixin.__init__(self, attributes=attributes)
         assert isinstance(edge_attributes, (dict, type(None)))
         assert isinstance(node_attributes, (dict, type(None)))
         self._verify_attributes(edge_attributes, '_edge_attributes')
@@ -175,6 +187,20 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         self._node_order = None
 
     ### SPECIAL METHODS ###
+
+    def __copy__(self):
+        r'''Copies GraphvizGraph.
+
+        Returns copied graph.
+        '''
+        copied_node, edges, mapping = self._copy_with_memo(self)
+        for edge in edges:
+            head, tail = edge.head, edge.tail
+            if head not in mapping or tail not in mapping:
+                continue
+            new_edge = new(edge)
+            new_edge.attach(mapping[tail], mapping[head])
+        return copied_node
 
     def __graph__(self, **kwargs):
         r'''Gets graphviz graph.
@@ -327,12 +353,13 @@ class GraphvizGraph(TreeContainer, GraphvizObject):
         from abjad.tools import systemtools
         assert systemtools.IOManager.find_executable(
             'unflatten'), 'Cannot find `unflatten` command-line tool.'
-        graphviz_format = str(self)
+        graphviz_format = str(self).encode('utf-8')
         process = subprocess.Popen('unflatten -l 4'.split(),
-            shell=False,
+            shell=True,
             stdin=subprocess.PIPE,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE
             )
-        result = process.communicate(graphviz_format)[0]
+        stdout, _ = process.communicate(graphviz_format)
+        result = stdout.decode('utf-8')
         return result

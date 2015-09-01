@@ -79,8 +79,9 @@ class BooleanPatternInventory(TypedTuple):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __documentation_section__ = 'Output masks'
+
+    __slots__ = ()
 
     ### PUBLIC METHODS ###
 

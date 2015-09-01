@@ -21,18 +21,14 @@ class IPythonConfiguration(Configuration):
     def _get_option_definitions(self):
         options = {
             'midi_bank': {
-                'comment': [
-                    '',
-                    'Sound font MIDI bank.',
-                    ],
-                'spec': "string(default='gs')"
+                'comment': ['Sound font MIDI bank.'],
+                'default': 'gs',
+                'validator': str,
                 },
             'sound_font': {
-                'comment': [
-                    '',
-                    'Sound font file path.',
-                    ],
-                'spec': "string(default='')"
+                'comment': ['Sound font file path.'],
+                'default': '',
+                'validator': str,
                 },
             }
         return options
@@ -46,7 +42,8 @@ class IPythonConfiguration(Configuration):
             '-*- coding: utf-8 -*-',
             '',
             'IPython configuration file created on {}.'.format(current_time),
-            'This file is interpreted by ConfigObj and follows ini sytnax.',
+            "This file is interpreted by Python's ConfigParser ",
+            'and follows ini sytnax.',
             ]
 
     ### PUBLIC METHODS ###

@@ -1,0 +1,125 @@
+\documentclass{article}
+
+\usepackage{graphicx}
+
+\begin{document}
+
+\section{A Section}
+
+This is a print statement:
+
+\begin{comment}
+<abjad>
+print('hello, world!')
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> print('hello, world!')
+hello, world!
+\end{lstlisting}
+%%% ABJADBOOK END %%%
+
+Here's a multiline Python string:
+
+\begin{comment}
+<abjad>
+a_multiline_string = '''\
+one
+    two
+        three
+'''
+print(a_multiline_string)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> a_multiline_string = '''\
+... one
+...     two
+...         three
+... '''
+>>> print(a_multiline_string)
+one
+    two
+        three
+\end{lstlisting}
+%%% ABJADBOOK END %%%
+
+\section{Another Section}
+
+Here's some notation:
+
+\begin{comment}
+<abjad>
+staff = Staff("c'4 d'4 e'4 f'4")
+show(staff)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> staff = Staff("c'4 d'4 e'4 f'4")
+>>> show(staff)
+\end{lstlisting}
+\noindent\includegraphics{assets/lilypond-627153107d80c2ead680f5295be4d2db.pdf}
+%%% ABJADBOOK END %%%
+
+Here's notation in a loop:
+
+\begin{comment}
+<abjad>
+for leaf in staff.select_leaves():
+    duration = inspect_(leaf).get_duration()
+    print(duration)
+    show(leaf)
+
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> for leaf in staff.select_leaves():
+...     duration = inspect_(leaf).get_duration()
+...     print(duration)
+...     show(leaf)
+...
+1/4
+\end{lstlisting}
+\noindent\includegraphics{assets/lilypond-65d03e56d1fdd997411f2f04c401fe16.pdf}
+\begin{lstlisting}
+1/4
+\end{lstlisting}
+\noindent\includegraphics{assets/lilypond-c435b50b7cc94ba8637c3fafbcabfc81.pdf}
+\begin{lstlisting}
+1/4
+\end{lstlisting}
+\noindent\includegraphics{assets/lilypond-017ac82f444c5c95e93bc0ecef598502.pdf}
+\begin{lstlisting}
+1/4
+\end{lstlisting}
+\noindent\includegraphics{assets/lilypond-1f4b77945d66d2b4f78bdc79f4691698.pdf}
+%%% ABJADBOOK END %%%
+
+Here's a graph:
+
+\begin{comment}
+<abjad>
+meter = metertools.Meter((4, 4))
+graph(meter)
+</abjad>
+\end{comment}
+
+%%% ABJADBOOK START %%%
+\begin{lstlisting}
+>>> meter = metertools.Meter((4, 4))
+>>> graph(meter)
+\end{lstlisting}
+\noindent\includegraphics{assets/graphviz-31410f5aefd17473e91ebc219ddff36e.pdf}
+%%% ABJADBOOK END %%%
+
+That's all.
+
+\end{document}

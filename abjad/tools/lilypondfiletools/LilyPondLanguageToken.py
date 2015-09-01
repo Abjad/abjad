@@ -1,8 +1,8 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
-class LilyPondLanguageToken(AbjadObject):
+class LilyPondLanguageToken(AbjadValueObject):
     r'''A LilyPond file ``\language`` token.
 
     ..  container:: example
@@ -10,22 +10,13 @@ class LilyPondLanguageToken(AbjadObject):
         ::
 
             >>> lilypondfiletools.LilyPondLanguageToken()
-            LilyPondLanguageToken('english')
+            LilyPondLanguageToken()
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        '_lilypond_language',
-        )
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        from abjad import abjad_configuration
-        lilypond_language = abjad_configuration['lilypond_language']
-        self._lilypond_language = lilypond_language
+    __slots__ = ()
 
     ### SPECIAL METHODS ###
 
@@ -49,7 +40,6 @@ class LilyPondLanguageToken(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-
     def __repr__(self):
         r'''Gets interpreter representation of LilyPond language token.
 
@@ -59,19 +49,15 @@ class LilyPondLanguageToken(AbjadObject):
 
                 >>> token = lilypondfiletools.LilyPondLanguageToken()
                 >>> token
-                LilyPondLanguageToken('english')
+                LilyPondLanguageToken()
 
         Returns string.
         '''
-        return '{}({!r})'.format(
-            type(self).__name__,
-            self._lilypond_language,
-            )
+        return '{}()'.format(type(self).__name__)
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):
-        lilypond_language = self._lilypond_language.lower()
-        string = r'\language "{}"'.format(lilypond_language)
+        string = r'\language "english"'
         return string

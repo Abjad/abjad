@@ -10,6 +10,8 @@ class ExampleWrapper(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Illustration helpers'
+
     __slots__ = (
         '_division_lists',
         '_arguments',

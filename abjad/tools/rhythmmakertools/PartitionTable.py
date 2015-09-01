@@ -87,8 +87,9 @@ class PartitionTable(TypedOrderedDict):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __documentation_section__ = 'Specifiers'
+
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

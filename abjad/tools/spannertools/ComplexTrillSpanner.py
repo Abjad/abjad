@@ -118,7 +118,7 @@ class ComplexTrillSpanner(Spanner):
                         ),
                     value=markuptools.Markup(r'\null'),
                     )
-                string = '\n'.join(grob_override._override_format_pieces)
+                string = grob_override.override_string
                 lilypond_format_bundle.grob_overrides.append(string)
             if self.interval is not None:
                 string = r'\pitchedTrill'

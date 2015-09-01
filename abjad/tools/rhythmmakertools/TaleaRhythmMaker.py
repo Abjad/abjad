@@ -113,6 +113,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Rhythm-makers'
+
     __slots__ = (
         '_burnish_specifier',
         '_extra_counts_per_division',

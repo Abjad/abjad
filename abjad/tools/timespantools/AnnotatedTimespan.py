@@ -36,6 +36,8 @@ class AnnotatedTimespan(Timespan):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Timespans'
+
     __slots__ = (
         '_annotation',
         )

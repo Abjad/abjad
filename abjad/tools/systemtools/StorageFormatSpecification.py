@@ -8,6 +8,8 @@ class StorageFormatSpecification(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Storage formatting'
+
     __slots__ = (
         '_body_text',
         '_instance',

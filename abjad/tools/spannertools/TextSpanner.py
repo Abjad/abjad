@@ -32,7 +32,7 @@ class TextSpanner(Spanner):
                 f'4 \stopTextSpan
             }
 
-        This is (notationally unlikely) default behavior. 
+        This is (notationally unlikely) default behavior.
 
     ..  container:: example
 
@@ -105,7 +105,7 @@ class TextSpanner(Spanner):
 
             >>> print(format(staff))
             \new Staff {
-                c'4 
+                c'4
                 d'4
                 e'4
                 f'4 ^ \markup { tasto }
@@ -147,14 +147,8 @@ class TextSpanner(Spanner):
 
     ### INITIALIZER ###
 
-    def __init__(
-        self,
-        overrides=None,
-        ):
-        Spanner.__init__(
-            self,
-            overrides=overrides,
-            )
+    def __init__(self, overrides=None):
+        Spanner.__init__(self, overrides=overrides)
 
     ### PRIVATE METHODS ###
 
@@ -217,7 +211,7 @@ class TextSpanner(Spanner):
                         ),
                     value=markup,
                     )
-                override_string = '\n'.join(override_._override_format_pieces)
+                override_string = override_.override_string
                 lilypond_format_bundle.grob_overrides.append(override_string)
             # format markup normally
             else:
@@ -228,7 +222,7 @@ class TextSpanner(Spanner):
         if current_line_segment is not None:
             overrides = current_line_segment._get_lilypond_grob_overrides()
             for override_ in overrides:
-                override_string = '\n'.join(override_._override_format_pieces)
+                override_string = override_.override_string
                 lilypond_format_bundle.grob_overrides.append(override_string)
         return lilypond_format_bundle
 

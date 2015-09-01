@@ -1,16 +1,183 @@
 # -*- encoding: utf-8 -*-
-import argparse
-import os
-import sys
-import traceback
-from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
+try:
+    import ConfigParser as configparser
+except ImportError:
+    import configparser
+from abjad.tools import developerscripttools
 
 
-class AbjadBookScript(DeveloperScript):
-    r'''abjad book script.
+class AbjadBookScript(developerscripttools.DeveloperScript):
+    r'''Entry point script for abjad-book.
+
+    ::
+
+        >>> from abjad.tools import abjadbooktools
+        >>> script = abjadbooktools.AbjadBookScript()
+        >>> print(script.formatted_help)
+        usage: abjad-book [-h] [--version] [-c] [-o OUTPUT_FILE_PATH] [-s] [-v]
+                          [-y STYLESHEET] [-a ASSETS_DIRECTORY]
+                          [-l LATEX_ROOT_DIRECTORY] [-g CONFIG]
+                          input_file_path [input_file_path ...]
+        <BLANKLINE>
+        Preprocess LaTeX files with Abjad.
+        <BLANKLINE>
+        positional arguments:
+          input_file_path       LaTeX file to process
+        <BLANKLINE>
+        optional arguments:
+          -h, --help            show this help message and exit
+          --version             show program's version number and exit
+          -c, --clean           remove all output blocks
+          -o OUTPUT_FILE_PATH, --output-file-path OUTPUT_FILE_PATH
+                                optional output file path
+          -s, --skip-rendering  skip all image rendering and simply execute the code
+          -v, --verbose         verbose output
+          -y STYLESHEET, --stylesheet STYLESHEET
+                                optional LilyPond stylesheet
+          -a ASSETS_DIRECTORY, --assets-directory ASSETS_DIRECTORY
+                                optional assets directory
+          -l LATEX_ROOT_DIRECTORY, --latex-root-directory LATEX_ROOT_DIRECTORY
+                                optional LaTeX root directory
+          -g CONFIG, --config CONFIG
+                                path to config file
+        <BLANKLINE>
+        TBD.
+        <BLANKLINE>
+
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Entry Points'
+
+    ### PRIVATE METHODS ###
+
+    def _read_config(self, config_path):
+        configuration = {}
+        if config_path is None:
+            return configuration
+        parser = configparser.ConfigParser()
+        parser.read(config_path)
+        for section in parser.sections():
+            configuration[section] = {}
+            for key, value in parser.items(section):
+                value = tuple(_.strip() for _ in value.splitlines()
+                    if _.strip())
+                configuration[section][key] = value
+        return configuration
+
+    ### PUBLIC METHODS ###
+
+    def process_args(self, args):
+        r'''Processes `args`.
+
+        Returns none.
+        '''
+        from abjad.tools import abjadbooktools
+        assets_directory = args.assets_directory
+        clean = args.clean
+        configuration = self._read_config(args.config)
+        input_file_path = args.input_file_path
+        latex_root_directory = args.latex_root_directory
+        output_file_path = args.output_file_path
+        skip_rendering = args.skip_rendering
+        stylesheet = args.stylesheet
+        verbose = args.verbose
+        if 1 < len(input_file_path):
+            document_handlers = []
+            for path in input_file_path:
+                document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+                    input_file_path=path,
+                    assets_directory=assets_directory,
+                    latex_root_directory=latex_root_directory,
+                    )
+                document_handlers.append(document_handler)
+            for document_handler in document_handlers:
+                document_handler(
+                    clean=clean,
+                    configuration=configuration,
+                    skip_rendering=skip_rendering,
+                    stylesheet=stylesheet,
+                    verbose=verbose,
+                    )
+        else:
+            document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
+                input_file_path=input_file_path[0],
+                assets_directory=assets_directory,
+                latex_root_directory=latex_root_directory,
+                )
+            document_handler(
+                clean=clean,
+                configuration=configuration,
+                output_file_path=output_file_path,
+                skip_rendering=skip_rendering,
+                stylesheet=stylesheet,
+                verbose=verbose,
+                )
+
+    def setup_argument_parser(self, parser):
+        r'''Sets up argument `parser`.
+
+        Returns none.
+        '''
+        parser.add_argument(
+            'input_file_path',
+            nargs='+',
+            help='LaTeX file to process',
+            )
+        parser.add_argument(
+            '-c', '--clean',
+            action='store_true',
+            help='remove all output blocks',
+            )
+        parser.add_argument(
+            '-o', '--output-file-path',
+            help='optional output file path',
+            )
+        parser.add_argument(
+            '-s', '--skip-rendering',
+            action='store_true',
+            help='skip all image rendering and simply execute the code',
+            )
+        parser.add_argument(
+            '-v', '--verbose',
+            action='store_true',
+            help='verbose output',
+            )
+        parser.add_argument(
+            '-y', '--stylesheet',
+            help='optional LilyPond stylesheet',
+            )
+        parser.add_argument(
+            '-a', '--assets-directory',
+            help='optional assets directory',
+            )
+        parser.add_argument(
+            '-l', '--latex-root-directory',
+            help='optional LaTeX root directory',
+            )
+        parser.add_argument(
+            '-g', '--config',
+            help='path to config file',
+            )
+
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def short_description(self):
+        r'''Short description of Abjad book script.
+
+        Returns string.
+        '''
+        return 'Preprocess LaTeX files with Abjad.'
+
+    @property
+    def version(self):
+        r'''Version of Abjad book script.
+
+        Returns float.
+        '''
+        return 3.0
 
     @property
     def alias(self):
@@ -26,199 +193,4 @@ class AbjadBookScript(DeveloperScript):
 
         Returns string.
         '''
-        return r'''DESCRIPTION
-
-    abjad-book processes Abjad snippets embedded in HTML, LaTeX, or ReST
-    documents. All Abjad code placed between the <abjad> </abjad> tags in
-    either HTML, LaTeX or ReST type documents is executed and replaced with
-    tags appropriate to the given file type. All output generated by the
-    code snippet is captured and inserted in the output file.
-
-    Apart from the special opening and closing Abjad tags, abjad-book also
-    has a special line-level suffix tag: `<hide`. All lines ending with the
-    `<hide` tag will be interpreted by Abjad but will not be displayed in the
-    OUTPUT document.
-
-    The opening <abjad> tag can also be followed by a list of
-    `attribute=value` pair.
-
-    You can make all of an Abjad code block invisible in the output file with
-    the following opening tag:
-
-    <abjad>[hide=true]
-
-    This is useful for generating and embedding rendered score images without
-    showing any of the Abjad code.
-
-    You can also remove all of the prompts from a code block with the
-    following opening tag:
-
-    <abjad>[strip_prompt=true]
-
-    Simply use Abjad's show() function to have Abjad call LilyPond on the
-    Abjad snippet and embed the rendered image in the document.
-
-    All Abjad snippets *must* start with no indentation in the document.
-
-EXAMPLES
-
-    1.  Create an HTML, LaTex or ReST document with embedded Abjad code
-        between <abjad></abjad> tags. The code *must* be fully flushed
-        to the left, with no tabs or spaces. The content of an HTML file
-        with embedded Abjad might look like this:
-
-        This is an <b>HTML</b> document. Here is Abjad code:
-
-        <abjad>
-        voice = Voice("c'4 d'4 e'4 f'4")
-        beam = spannertools.Beam()
-        attach(beam, voice)
-        show(voice)
-        </abjad>
-
-        More ordinary <b>HTML</b> text here.
-
-   2.  Call `abjad-book` on the file just created:
-
-        $ abjad-book file.htm.raw
-    '''
-
-    ### PRIVATE METHODS ###
-
-    def _collect_file_names(self, args):
-        file_names = []
-        if os.path.isdir(args.path):
-            for root, dirs, files in os.walk(args.path):
-                for file in files:
-                    path = os.path.join(root, file)
-                    if self._is_valid_path(path):
-                        file_names.append(path)
-        else:
-            file_names.append(args.path)
-        return file_names
-
-    def _is_valid_path(self, path):
-        if not os.path.exists(path):
-            return False
-        if os.path.isfile(path) and \
-            path.endswith('.raw') and \
-            path.rpartition('.raw')[0].rpartition('.')[-1] in \
-            self.output_formats:
-            return True
-        if os.path.isdir(path):
-            return True
-        return False
-
-    def _process_file_name(self, args, file_name):
-        from abjad.tools import abjadbooktools
-        input_file_name = file_name
-        print('Processing {!r} ...'.format(os.path.relpath(input_file_name)))
-        try:
-            directory = os.path.dirname(input_file_name)
-            output_file_name = input_file_name.rpartition('.raw')[0]
-            file_extension = output_file_name.rpartition('.')[-1]
-            image_prefix = os.path.basename(output_file_name).rpartition('.')[0]
-            with open(input_file_name, 'r') as f:
-                lines = f.read().split('\n')
-            output_format = self.output_formats[file_extension]()
-            abjad_book_processor = abjadbooktools.AbjadBookProcessor(
-                directory, lines, output_format,
-                skip_rendering=args.skip_rendering, image_prefix=image_prefix,
-                verbose=args.verbose)
-            processed_lines = abjad_book_processor(verbose=args.verbose)
-            print('Writing output to {!r} ...'.format(
-                os.path.relpath(output_file_name)))
-            with open(output_file_name, 'w') as f:
-                f.write(processed_lines)
-            print('... Done!')
-        except:
-            exc_type, exc_value, exc_traceback = sys.exc_info()
-            traceback.print_exc()
-
-    def _validate_path(self, path):
-        message = 'not a valid path: {!r}.'
-        message = message.format(path)
-        error = argparse.ArgumentTypeError(message)
-        path = os.path.abspath(path)
-        if not self._is_valid_path(path):
-            raise error
-        return path
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def output_formats(self):
-        r'''Output formats of Abjad book script.
-
-        Returns dictionary.
-        '''
-        from abjad.tools import abjadbooktools
-        return {
-            'htm': abjadbooktools.HTMLOutputFormat,
-            'html': abjadbooktools.HTMLOutputFormat,
-            'rst': abjadbooktools.ReSTOutputFormat,
-            'tex': abjadbooktools.LaTeXOutputFormat,
-        }
-
-    @property
-    def short_description(self):
-        r'''Short description of Abjad book script.
-
-        Returns string.
-        '''
-        return 'Preprocess HTML, LaTeX or ReST source with Abjad.'
-
-    @property
-    def version(self):
-        r'''Version of Abjad book script.
-
-        Returns float.
-        '''
-        return 2.0
-
-    ### PUBLIC METHODS ###
-
-    def process_args(self, args):
-        r'''Processes `args`.
-
-        Returns none.
-        '''
-        from abjad.tools import developerscripttools
-        for file_name in self._collect_file_names(args):
-            self._process_file_name(args, file_name)
-        flags = []
-        if args.mainline:
-            flags.append('-M')
-        if args.experimental:
-            flags.append('-X')
-        if flags:
-            developerscripttools.BuildApiScript()(flags)
-
-    def setup_argument_parser(self, parser):
-        r'''Sets up argument `parser`.
-
-        Returns none.
-        '''
-        parser.add_argument('path',
-            default=os.getcwd(),
-            help='directory tree to be recursed over',
-            nargs='?',
-            type=self._validate_path,
-            )
-        parser.add_argument('--skip-rendering',
-            action='store_true',
-            help='skip all image rendering and simply execute the code',
-            )
-        parser.add_argument('--verbose',
-            action='store_true',
-            dest='verbose',
-            help='run in verbose mode, printing all LilyPond output',
-            )
-        parser.add_argument('-X', '--experimental',
-            action='store_true',
-            help='rebuild abjad.tools docs after processing',
-            )
-        parser.add_argument('-M', '--mainline',
-            action='store_true',
-            help='rebuild mainline docs after processing',
-            )
+        return r'''TBD.'''

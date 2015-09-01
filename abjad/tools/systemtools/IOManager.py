@@ -6,15 +6,20 @@ import re
 import shutil
 import subprocess
 import sys
+from abjad.tools.abctools import AbjadObject
 try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
 
 
-class IOManager(object):
+class IOManager(AbjadObject):
     r'''Manages Abjad IO.
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Managers'
 
     ### PRIVATE METHODS ###
 
@@ -143,7 +148,7 @@ class IOManager(object):
 
             ::
 
-                >>> IOManager.find_executable('python2.7') # doctest: +SKIP
+                >>> systemtools.IOManager.find_executable('python2.7') # doctest: +SKIP
                 ['/usr/bin/python2.7']
 
         Returns list of zero or more full paths to `name`.
@@ -321,25 +326,6 @@ class IOManager(object):
         r'''Opens LilyPond log file in operating system-specific text
         editor.
 
-        ..  container:: example
-
-            ::
-
-                >>> systemtools.IOManager.open_last_log() # doctest: +SKIP
-
-            ::
-
-                GNU LilyPond 2.19.2
-                Processing `0440.ly'
-                Parsing...
-                Interpreting music...
-                Preprocessing graphical objects...
-                Finding the ideal number of pages...
-                Fitting music on 1 page...
-                Drawing systems...
-                Layout output to `0440.ps'...
-                Converting to `./0440.pdf'...
-
         Returns none.
         '''
         from abjad import abjad_configuration
@@ -353,35 +339,6 @@ class IOManager(object):
     def open_last_ly(target=-1):
         r'''Opens last LilyPond output file produced by Abjad.
 
-        ..  container:: example
-
-            Opens the last LilyPond output file:
-
-            ::
-
-                >>> systemtools.IOManager.open_last_ly() # doctest: +SKIP
-
-            ::
-
-                % 2014-02-12 14:29
-
-                \version "2.19.2"
-                \language "english"
-
-                \header {
-                    tagline = \markup {}
-                }
-
-                \layout {}
-
-                \paper {}
-
-                \score {
-                    {
-                        c'4
-                    }
-                }
-
         Uses operating-specific text editor.
 
         Set ``target=-2`` to open the next-to-last LilyPond output file
@@ -390,7 +347,7 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         text_editor = abjad_configuration.get_text_editor()
         if isinstance(target, int) and target < 0:
             last_lilypond = IOManager.get_last_output_file_name()
@@ -402,14 +359,20 @@ class IOManager(object):
                 last_number = last_number.replace('.mid', '')
                 target_number = int(last_number) + (target + 1)
                 target_str = '%04d' % target_number
-                target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
+                target_ly = os.path.join(
+                    abjad_output_directory,
+                    target_str + '.ly',
+                    )
             else:
                 print('Target LilyPond input file does not exist.')
         elif isinstance(target, int) and 0 <= target:
             target_str = '%04d' % target
-            target_ly = os.path.join(ABJADOUTPUT, target_str + '.ly')
+            target_ly = os.path.join(
+                abjad_output_directory,
+                target_str + '.ly',
+                )
         elif isinstance(target, str):
-            target_ly = os.path.join(ABJADOUTPUT, target)
+            target_ly = os.path.join(abjad_output_directory, target)
         else:
             message = 'can not get target LilyPond input from {}.'
             message = message.format(target)
@@ -436,7 +399,7 @@ class IOManager(object):
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         if isinstance(target, int) and target < 0:
             last_lilypond_file_path = IOManager.get_last_output_file_name()
             if last_lilypond_file_path:
@@ -445,15 +408,24 @@ class IOManager(object):
                 last_number = file_name_root
                 target_number = int(last_number) + (target + 1)
                 target_str = '%04d' % target_number
-                target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
+                target_pdf = os.path.join(
+                    abjad_output_directory,
+                    target_str + '.pdf',
+                    )
             else:
                 message = 'Target PDF does not exist.'
                 print(message)
         elif isinstance(target, int) and 0 <= target:
             target_str = '%04d' % target
-            target_pdf = os.path.join(ABJADOUTPUT, target_str + '.pdf')
+            target_pdf = os.path.join(
+                abjad_output_directory,
+                target_str + '.pdf',
+                )
         elif isinstance(target, str):
-            target_pdf = os.path.join(ABJADOUTPUT, target)
+            target_pdf = os.path.join(
+                abjad_output_directory,
+                target,
+                )
         else:
             message = 'can not get target pdf name from {}.'
             message = message.format(target)
@@ -484,7 +456,10 @@ class IOManager(object):
             ::
 
                 >>> expr = 'Staff("c8 c8 c8 c8 c8 c8 c8 c8")'
-                >>> IOManager.profile_expr(expr) # doctest: +SKIP
+                >>> systemtools.IOManager.profile_expr(
+                ...     expr,
+                ...     global_context=globals(),
+                ...     ) # doctest: +SKIP
                 Tue Apr  5 20:32:40 2011    _tmp_abj_profile
 
                         2852 function calls (2829 primitive calls) in 0.006 CPU seconds
@@ -678,17 +653,10 @@ class IOManager(object):
     def save_last_ly_as(file_path):
         r'''Saves last LilyPond file created by Abjad as `file_path`.
 
-        ..  container:: example
-
-            ::
-
-                >>> file_path = '/project/output/example-1.ly'
-                >>> IOManager.save_last_ly_as(file_path) # doctest: +SKIP
-
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         last_output_file_name = IOManager.get_last_output_file_name(
             extension='.ly',
             )
@@ -696,9 +664,9 @@ class IOManager(object):
             return
         #without_extension, extension = os.path.splitext(last_output_file_path)
         #last_ly = without_extension + '.ly'
-        #last_ly_full_name = os.path.join(ABJADOUTPUT, last_ly)
+        #last_ly_full_name = os.path.join(abjad_output_directory, last_ly)
         last_ly_full_name = os.path.join(
-            ABJADOUTPUT,
+            abjad_output_directory,
             last_output_file_name,
             )
         with open(file_path, 'w') as new:
@@ -709,25 +677,18 @@ class IOManager(object):
     def save_last_pdf_as(file_path):
         r'''Saves last PDF created by Abjad as `file_path`.
 
-        ..  container:: example
-
-            ::
-
-                >>> file_path = '/project/output/example-1.pdf'
-                >>> IOManager.save_last_pdf_as(file_path) # doctest: +SKIP
-
         Returns none.
         '''
         from abjad import abjad_configuration
-        ABJADOUTPUT = abjad_configuration['abjad_output_directory']
+        abjad_output_directory = abjad_configuration['abjad_output_directory']
         last_output_file_name = IOManager.get_last_output_file_name(
             extension='.pdf',
             )
         #without_extension, extension = os.path.splitext(last_output_file_name)
         #last_pdf = without_extension + '.pdf'
-        #last_pdf_full_name = os.path.join(ABJADOUTPUT, last_pdf)
+        #last_pdf_full_name = os.path.join(abjad_output_directory, last_pdf)
         last_pdf_full_name = os.path.join(
-            ABJADOUTPUT,
+            abjad_output_directory,
             last_output_file_name,
             )
         with open(file_path, 'w') as new:
@@ -737,14 +698,6 @@ class IOManager(object):
     @staticmethod
     def spawn_subprocess(command):
         r'''Spawns subprocess and runs `command`.
-
-        ..  container:: example
-
-            ::
-
-                >>> command = 'echo "hello world"'
-                >>> IOManager.spawn_subprocess(command) # doctest: +SKIP
-                hello world
 
         The function is basically a reimplementation of the
         deprecated ``os.system()`` using Python's ``subprocess`` module.

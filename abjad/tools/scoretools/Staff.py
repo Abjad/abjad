@@ -29,8 +29,11 @@ class Staff(Context):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __documentation_section__ = 'Contexts'
+
+    __slots__ = ()
+
+    _default_context_name = 'Staff'
 
     ### INITIALIZER ###
 

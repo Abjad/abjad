@@ -1,0 +1,9 @@
+`GitHub`_ |
+`PyPI`_ |
+`Documentation <http://projectabjad.org/>`_ |
+`Mailing list <http://groups.google.com/group/abjad-user>`_ |
+`Issue Tracker <https://github.com/Abjad/abjad/issues>`_ |
+`Travis-CI <https://travis-ci.org/Abjad/abjad>`_
+
+..  _GitHub: https://github.com/Abjad/abjad
+..  _PyPI: https://pypi.python.org/pypi/Abjad

@@ -30,6 +30,10 @@ class ReSTAutodocDirective(ReSTDirective):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
+
     ### INITIALIZER ###
 
     def __init__(

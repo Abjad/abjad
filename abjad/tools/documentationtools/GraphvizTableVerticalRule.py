@@ -6,6 +6,12 @@ class GraphvizTableVerticalRule(TreeNode):
     r'''A Graphviz table vertical rule.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = ()
+
     ### INITIALIZER ###
 
     def __init__(

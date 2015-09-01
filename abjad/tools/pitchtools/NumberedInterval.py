@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import abc
 import functools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval

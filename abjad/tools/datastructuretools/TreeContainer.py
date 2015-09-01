@@ -28,7 +28,10 @@ class TreeContainer(TreeNode):
 
     ### CLASS VARIABLES ###
 
-    # no __slots__ are possible due to instance-layout subclass conflicts
+    __slots__ = (
+        '_children',
+        '_named_children',
+        )
 
     ### INITIALIZER ###
 
@@ -116,17 +119,6 @@ class TreeContainer(TreeNode):
             node._set_parent(None)
         self._mark_entire_tree_for_later_update()
 
-    def __eq__(self, expr):
-        r'''True if `expr` is a tree container with type, duration and
-        children equal to this tree container. Otherwise false.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            if self.children == expr.children:
-                return True
-        return False
-
     def __getitem__(self, i):
         r'''Gets node `i` in tree container.
 
@@ -199,15 +191,6 @@ class TreeContainer(TreeNode):
             if 1 == len(children):
                 return tuple(children)[0]
         raise ValueError(repr(i))
-
-    def __hash__(self):
-        r'''Hashes tree container.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(TreeContainer, self).__hash__()
 
     def __iter__(self):
         r'''Iterates tree container.

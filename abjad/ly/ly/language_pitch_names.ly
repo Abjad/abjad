@@ -1,4 +1,4 @@
-\version "2.15.23"
+\version "2.19.24"
 
 %%% DEFINITIONS %%%
 
@@ -53,4 +53,4 @@
   (display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
   (display "language_pitch_names = {")
   (map handle-language language-pitch-names)
-  (display "\n}"))
+  (display "\n    }"))

@@ -91,6 +91,8 @@ class InheritanceGraph(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Documenters'
+
     __slots__ = (
         '_addresses',
         '_child_parents_mapping',
@@ -180,6 +182,7 @@ class InheritanceGraph(AbjadObject):
         graph = documentationtools.GraphvizGraph(
             name='InheritanceGraph',
             attributes={
+                'bgcolor': 'transparent',
                 'color': 'lightslategrey',
                 'fontname': 'Arial',
                 'outputorder': 'edgesfirst',
@@ -188,6 +191,7 @@ class InheritanceGraph(AbjadObject):
                 #'ranksep': 0.5,
                 'splines': 'spline',
                 'style': ('dotted', 'rounded'),
+                'truecolor': True,
                 },
             edge_attributes={
                 'color': 'lightsteelblue2',
@@ -287,7 +291,8 @@ class InheritanceGraph(AbjadObject):
                 if ok_to_join:
                     parent_node = class_nodes[parent]
                     child_node = class_nodes[child]
-                    documentationtools.GraphvizEdge()(parent_node, child_node)
+                    documentationtools.GraphvizEdge().attach(
+                        parent_node, child_node)
 
         for i, cluster in enumerate(
             sorted(graph.children, key=lambda x: x.name)):
@@ -334,18 +339,25 @@ class InheritanceGraph(AbjadObject):
             recurse(current_class)
         return child_parents_mapping, parent_children_mapping
 
-    def _collect_classes(self, addresses, recurse_into_submodules):
+    @classmethod
+    def _collect_classes(cls, addresses, recurse_into_submodules):
         all_classes = set([])
         cached_addresses = []
         immediate_classes = set([])
         visited_modules = set([])
         assert 0 < len(addresses)
         for x in addresses:
+            address = None
             if isinstance(x, (str, types.ModuleType)):
                 if isinstance(x, types.ModuleType):
                     module = x
                 else:
-                    module = importlib.import_module(x)
+                    try:
+                        module = importlib.import_module(x)
+                    except ImportError:
+                        module = None
+                if module is None:
+                    continue
                 for y in module.__dict__.values():
                     if isinstance(y, type):
                         all_classes.add(y)
@@ -353,7 +365,7 @@ class InheritanceGraph(AbjadObject):
                     elif isinstance(y, types.ModuleType) and \
                         recurse_into_submodules:
                         all_classes.update(
-                            self._submodule_recurse(y, visited_modules))
+                            cls._submodule_recurse(y, visited_modules))
                 address = module.__name__
             else:
                 if isinstance(x, type):
@@ -367,7 +379,8 @@ class InheritanceGraph(AbjadObject):
                 all_classes.add(current_class)
                 immediate_classes.add(current_class)
                 address = (current_class.__module__, current_class.__name__)
-            cached_addresses.append(address)
+            if address is not None:
+                cached_addresses.append(address)
         return all_classes, immediate_classes, tuple(cached_addresses)
 
     def _find_lineage_distances(self):
@@ -399,8 +412,9 @@ class InheritanceGraph(AbjadObject):
         for part in parts[1:]:
             if part != name[-1]:
                 name.append(part)
-        if 2 < len(name) and name[1] == 'tools':
-        #if name[0] in ('abjad', 'experimental'):
+        if name[0] in ('abjad', 'experimental', 'ide'):
+            return name[2:]
+        elif 2 < len(name) and name[1] == 'tools':
             return name[2:]
         return name
 
@@ -467,7 +481,8 @@ class InheritanceGraph(AbjadObject):
             del(parent_children_mapping[current_class])
             del(child_parents_mapping[current_class])
 
-    def _submodule_recurse(self, module, visited_modules):
+    @classmethod
+    def _submodule_recurse(cls, module, visited_modules):
         result = []
         for obj in list(module.__dict__.values()):
             if isinstance(obj, type):
@@ -475,7 +490,7 @@ class InheritanceGraph(AbjadObject):
             elif isinstance(obj, types.ModuleType) and \
                 obj not in visited_modules:
                 visited_modules.add(obj)
-                result.extend(self._submodule_recurse(obj, visited_modules))
+                result.extend(cls._submodule_recurse(obj, visited_modules))
         return result
 
     ### PUBLIC PROPERTIES ###

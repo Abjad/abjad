@@ -1,4 +1,4 @@
-\version "2.16.1"
+\version "2.19.24"
 
 
 #(define (markup-function? func)
@@ -56,7 +56,7 @@
 #(display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
 #(display "markup_functions = {\n")
 #(map document-procedure all-markup-functions)
-#(display "}\n\n")
+#(display "    }\n\n")
 #(display "markup_list_functions = {\n")
 #(map document-procedure all-markup-list-functions)
-#(display "}\n")
+#(display "    }\n")

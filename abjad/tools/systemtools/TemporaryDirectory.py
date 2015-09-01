@@ -10,6 +10,8 @@ class TemporaryDirectory(ContextManager):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Context managers'
+
     __slots__ = (
         '_parent_directory_path',
         '_temporary_directory_path',

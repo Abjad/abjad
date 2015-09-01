@@ -749,6 +749,7 @@ class NamedPitch(Pitch):
                 ...     staff_position = note.written_pitch.to_staff_position()
                 ...     markup = Markup(staff_position.number)
                 ...     attach(markup, note)
+                ...
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
@@ -790,6 +791,7 @@ class NamedPitch(Pitch):
                 ...         )
                 ...     markup = Markup(staff_position.number)
                 ...     attach(markup, note)
+                ... 
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
@@ -832,6 +834,7 @@ class NamedPitch(Pitch):
                 ...         )
                 ...     markup = Markup(staff_position.number)
                 ...     attach(markup, note)
+                ... 
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
@@ -977,6 +980,7 @@ class NamedPitch(Pitch):
                 ...     name = note.written_pitch.diatonic_pitch_class_name
                 ...     markup = Markup(name)
                 ...     attach(markup, note)
+                ... 
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
@@ -1035,6 +1039,7 @@ class NamedPitch(Pitch):
                 ...     number = note.written_pitch.diatonic_pitch_class_number
                 ...     markup = Markup(number)
                 ...     attach(markup, note)
+                ...
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
@@ -1090,6 +1095,7 @@ class NamedPitch(Pitch):
                 ...     name = note.written_pitch.diatonic_pitch_name
                 ...     markup = Markup(name)
                 ...     attach(markup, note)
+                ... 
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 
@@ -1148,6 +1154,7 @@ class NamedPitch(Pitch):
                 ...     number = note.written_pitch.diatonic_pitch_number
                 ...     markup = Markup(number)
                 ...     attach(markup, note)
+                ... 
                 >>> override(staff).text_script.staff_padding = 5
                 >>> show(staff) # doctest: +SKIP
 

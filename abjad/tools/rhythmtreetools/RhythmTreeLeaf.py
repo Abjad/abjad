@@ -1,11 +1,11 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools import mathtools
 from abjad.tools import scoretools
-from abjad.tools.rhythmtreetools.RhythmTreeNode import RhythmTreeNode
+from abjad.tools.datastructuretools.TreeNode import TreeNode
+from abjad.tools.rhythmtreetools.RhythmTreeMixin import RhythmTreeMixin
 
 
-class RhythmTreeLeaf(RhythmTreeNode):
+class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
     r'''A rhythm-tree leaf.
 
     ::
@@ -36,6 +36,15 @@ class RhythmTreeLeaf(RhythmTreeNode):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_duration',
+        '_is_pitched',
+        '_offset',
+        '_offsets_are_current',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -44,11 +53,8 @@ class RhythmTreeLeaf(RhythmTreeNode):
         is_pitched=True,
         name=None,
         ):
-        RhythmTreeNode.__init__(
-            self,
-            preprolated_duration=preprolated_duration,
-            name=name,
-            )
+        TreeNode.__init__(self, name=name)
+        RhythmTreeMixin.__init__(self, preprolated_duration=preprolated_duration)
         self.is_pitched = is_pitched
 
     ### SPECIAL METHODS ###
@@ -70,19 +76,6 @@ class RhythmTreeLeaf(RhythmTreeNode):
             return scoretools.make_notes(0, total_duration)
         return scoretools.make_rests(total_duration)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a rhythm tree leaf with preprolated duration
-        and pitch boolean equal to those of this rhythm tree leaf. Otherwise
-        false.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            if self.preprolated_duration == expr.preprolated_duration:
-                if self.is_pitched == expr.is_pitched:
-                    return True
-        return False
-
     def __graph__(self, **kwargs):
         r'''Graphviz graph of rhythm tree leaf.
         '''
@@ -92,19 +85,10 @@ class RhythmTreeLeaf(RhythmTreeNode):
             attributes={
                 'label': str(self.preprolated_duration),
                 'shape': 'box'
-            }
+                }
             )
         graph.append(node)
         return graph
-
-    def __hash__(self):
-        r'''Hashes rhythm-tree leaf.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(RhythmTreeLeaf, self).__hash__()
 
     ### PRIVATE PROPERTIES ###
 

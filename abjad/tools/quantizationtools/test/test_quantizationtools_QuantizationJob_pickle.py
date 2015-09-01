@@ -4,12 +4,11 @@ from abjad import *
 
 
 def test_quantizationtools_QuantizationJob_pickle_01():
-
     job_id = 1
     definition = {
+        2: {
             2: {
-                2: {
-                    2: None
+                2: None
                 },
                 3: None
             },
@@ -28,17 +27,19 @@ def test_quantizationtools_QuantizationJob_pickle_01():
         quantizationtools.QEventProxy(quantizationtools.SilentQEvent((3, 4), ['I'], index=9), 0, 1),
         quantizationtools.QEventProxy(quantizationtools.SilentQEvent((4, 5), ['J'], index=10), 0, 1),
         quantizationtools.QEventProxy(quantizationtools.SilentQEvent(1,      ['K'], index=11), 0, 1)
-    ]
+        ]
     job = quantizationtools.QuantizationJob(job_id, search_tree, q_event_proxies)
 
     pickled = pickle.loads(pickle.dumps(job))
 
-    assert pickled == job
     assert pickled is not job
+    assert format(pickled) == format(job), \
+        systemtools.TestManager.diff(pickled, job, 'Diff:')
 
     job()
 
     pickled = pickle.loads(pickle.dumps(job))
 
-    assert pickled == job
     assert pickled is not job
+    assert format(pickled) == format(job), \
+        systemtools.TestManager.diff(pickled, job, 'Diff:')

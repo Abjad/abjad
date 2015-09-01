@@ -1,6 +1,6 @@
-configobj
+PyPDF2
+ipython
 ply
 pytest
 six
 sphinx
-sphinx_rtd_theme

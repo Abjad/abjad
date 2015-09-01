@@ -3,7 +3,7 @@
 from abjad.tools.pitchtools import NamedPitchClass
 
 
-lilypond_version = "2.19.15"
+lilypond_version = "2.19.24"
 
 language_pitch_names = {
     'nederlands':  {
@@ -197,41 +197,6 @@ language_pitch_names = {
     },
 
     'english':  {
-        'cflatflat': NamedPitchClass('cff'),
-        'cflat': NamedPitchClass('cf'),
-        'c': NamedPitchClass('c'),
-        'csharp': NamedPitchClass('cs'),
-        'csharpsharp': NamedPitchClass('css'),
-        'dflatflat': NamedPitchClass('dff'),
-        'dflat': NamedPitchClass('df'),
-        'd': NamedPitchClass('d'),
-        'dsharp': NamedPitchClass('ds'),
-        'dsharpsharp': NamedPitchClass('dss'),
-        'eflatflat': NamedPitchClass('eff'),
-        'eflat': NamedPitchClass('ef'),
-        'e': NamedPitchClass('e'),
-        'esharp': NamedPitchClass('es'),
-        'esharpsharp': NamedPitchClass('ess'),
-        'fflatflat': NamedPitchClass('fff'),
-        'fflat': NamedPitchClass('ff'),
-        'f': NamedPitchClass('f'),
-        'fsharp': NamedPitchClass('fs'),
-        'fsharpsharp': NamedPitchClass('fss'),
-        'gflatflat': NamedPitchClass('gff'),
-        'gflat': NamedPitchClass('gf'),
-        'g': NamedPitchClass('g'),
-        'gsharp': NamedPitchClass('gs'),
-        'gsharpsharp': NamedPitchClass('gss'),
-        'aflatflat': NamedPitchClass('aff'),
-        'aflat': NamedPitchClass('af'),
-        'a': NamedPitchClass('a'),
-        'asharp': NamedPitchClass('as'),
-        'asharpsharp': NamedPitchClass('ass'),
-        'bflatflat': NamedPitchClass('bff'),
-        'bflat': NamedPitchClass('bf'),
-        'b': NamedPitchClass('b'),
-        'bsharp': NamedPitchClass('bs'),
-        'bsharpsharp': NamedPitchClass('bss'),
         'cff': NamedPitchClass('cff'),
         'ctqf': NamedPitchClass('ctqf'),
         'cf': NamedPitchClass('cf'),
@@ -302,6 +267,41 @@ language_pitch_names = {
         'btqs': NamedPitchClass('btqs'),
         'bss': NamedPitchClass('bss'),
         'bx': NamedPitchClass('bss'),
+        'c-flatflat': NamedPitchClass('cff'),
+        'c-flat': NamedPitchClass('cf'),
+        'c-natural': NamedPitchClass('c'),
+        'c-sharp': NamedPitchClass('cs'),
+        'c-sharpsharp': NamedPitchClass('css'),
+        'd-flatflat': NamedPitchClass('dff'),
+        'd-flat': NamedPitchClass('df'),
+        'd-natural': NamedPitchClass('d'),
+        'd-sharp': NamedPitchClass('ds'),
+        'd-sharpsharp': NamedPitchClass('dss'),
+        'e-flatflat': NamedPitchClass('eff'),
+        'e-flat': NamedPitchClass('ef'),
+        'e-natural': NamedPitchClass('e'),
+        'e-sharp': NamedPitchClass('es'),
+        'e-sharpsharp': NamedPitchClass('ess'),
+        'f-flatflat': NamedPitchClass('fff'),
+        'f-flat': NamedPitchClass('ff'),
+        'f-natural': NamedPitchClass('f'),
+        'f-sharp': NamedPitchClass('fs'),
+        'f-sharpsharp': NamedPitchClass('fss'),
+        'g-flatflat': NamedPitchClass('gff'),
+        'g-flat': NamedPitchClass('gf'),
+        'g-natural': NamedPitchClass('g'),
+        'g-sharp': NamedPitchClass('gs'),
+        'g-sharpsharp': NamedPitchClass('gss'),
+        'a-flatflat': NamedPitchClass('aff'),
+        'a-flat': NamedPitchClass('af'),
+        'a-natural': NamedPitchClass('a'),
+        'a-sharp': NamedPitchClass('as'),
+        'a-sharpsharp': NamedPitchClass('ass'),
+        'b-flatflat': NamedPitchClass('bff'),
+        'b-flat': NamedPitchClass('bf'),
+        'b-natural': NamedPitchClass('b'),
+        'b-sharp': NamedPitchClass('bs'),
+        'b-sharpsharp': NamedPitchClass('bss'),
     },
 
     'espanol':  {
@@ -840,4 +840,4 @@ language_pitch_names = {
         'sidd': NamedPitchClass('bss'),
     },
 
-}
+    }

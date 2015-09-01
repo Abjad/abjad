@@ -21,6 +21,10 @@ class QGridContainer(RhythmTreeContainer):
     Return ``QGridContainer`` instance.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = ()
+
     ### PRIVATE PROPERTIES ###
 
     @property

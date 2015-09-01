@@ -1,12 +1,10 @@
-\version "2.16.1"
-
+\version "2.19.24"
 
 #(define current-module-sorted
   (sort
     (ly:module->alist (current-module))
     (lambda (x y)
       (symbol<? (car x) (car y)))))
-
 
 #(define (display-value key value)
   (cond
@@ -18,7 +16,6 @@
       (display (format "        '~A': (~A,),\n"
         key
         (string-join (map (lambda (x) (format "'~A'" x)) value) ", "))))))
-
 
 #(define (document-music-function obj-pair) 
   (let*
@@ -50,7 +47,6 @@
       (display "        'type': 'ly:music-function?',\n"))
       (display "    },\n")))
 
-
 #(define (document-prob obj-pair) 
   (let*
     ; DECLARATIONS
@@ -76,7 +72,6 @@
       (display-value "types" types)
       (display "    },\n"))))
 
-
 #(define (document-alias obj-pair) 
   (let
     ; DECLARATIONS
@@ -91,7 +86,6 @@
         (display "    },\n"))
       (display (format "    '~A': None,\n" name)))))
 
-
 #(define (document-duration obj-pair)
   (let*
     ((name (car obj-pair))
@@ -101,7 +95,6 @@
     (denominator (ly:moment-main-denominator moment)))
     ; BODY
     (display (format "    '~A': LilyPondDuration(Duration(~A, ~A), None),\n" name numerator denominator))))
-
 
 #(define (document-other obj-pair) 
   (let*
@@ -116,7 +109,6 @@
     (begin
       (display (format "    '~A': ~A,\n" name formatted-value)))))
 
-
 #(define (document-object obj-pair)
   (cond
     ((ly:music-function? (cdr obj-pair))
@@ -130,11 +122,10 @@
   (else 
     (document-other obj-pair))))
 
-
 #(display "from abjad.tools.durationtools import Duration\n")
 #(display "from abjad.tools.lilypondparsertools.LilyPondDuration \\\n")
 #(display "    import LilyPondDuration\n\n\n")
 #(display (format "lilypond_version = \"~A\"\n\n" (lilypond-version)))
 #(display "current_module = {\n")
 #(for-each document-object current-module-sorted)
-#(display "}")
+#(display "    }")

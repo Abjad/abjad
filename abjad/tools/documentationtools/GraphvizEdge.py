@@ -1,43 +1,39 @@
 # -*- encoding: utf-8 -*-
-from abjad.tools.documentationtools.GraphvizObject import GraphvizObject
+from abjad.tools.documentationtools.GraphvizMixin import GraphvizMixin
 
 
-class GraphvizEdge(GraphvizObject):
+class GraphvizEdge(GraphvizMixin):
     r'''A Graphviz edge.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = (
+        '_attributes',
+        '_head',
+        '_head_port_position',
+        '_is_directed',
+        '_tail',
+        '_tail_port_position',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, attributes=None, is_directed=True):
-        GraphvizObject.__init__(self, attributes=attributes)
+    def __init__(
+        self,
+        attributes=None,
+        is_directed=True,
+        head_port_position=None,
+        tail_port_position=None,
+        ):
+        GraphvizMixin.__init__(self, attributes=attributes)
         self._head = None
         self._tail = None
         self._is_directed = bool(is_directed)
-        self._head_port_position = None
-        self._tail_port_position = None
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self, *args):
-        r'''Calls Graphviz edge.
-
-        Returns Graphviz edge.
-        '''
-        from abjad.tools import documentationtools
-        if args:
-            assert len(args) == 2
-            prototype = (
-                documentationtools.GraphvizSubgraph,
-                documentationtools.GraphvizNode,
-                documentationtools.GraphvizField,
-                )
-            assert all(isinstance(x, prototype) for x in args)
-            tail, head = args
-            self._disconnect()
-            self._connect(tail, head)
-        else:
-            self._disconnect()
-        return self
+        self.head_port_position = head_port_position
+        self.tail_port_position = tail_port_position
 
     ### PRIVATE METHODS ###
 
@@ -99,6 +95,27 @@ class GraphvizEdge(GraphvizObject):
             result[0] = '{} {}'.format(edge_def, result[0])
             return result
         return [edge_def + ';']
+
+    ### PUBLIC METHODS ###
+
+    def attach(self, tail, head):
+        r'''Attaches edge from `tail` to `head`.
+        '''
+        from abjad.tools import documentationtools
+        prototype = (
+            documentationtools.GraphvizSubgraph,
+            documentationtools.GraphvizNode,
+            documentationtools.GraphvizField,
+            )
+        assert isinstance(tail, prototype)
+        assert isinstance(head, prototype)
+        self._disconnect()
+        self._connect(tail, head)
+
+    def detach(self):
+        r'''Detaches edge.
+        '''
+        self._disconnect()
 
     ### PUBLIC PROPERTIES ###
 

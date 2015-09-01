@@ -2,12 +2,22 @@
 import inspect
 import pytest
 import abjad
+from abjad.tools import abjadbooktools
 from abjad.tools import documentationtools
 from abjad.tools import metertools
 from abjad.tools import tonalanalysistools
 
 
-classes = documentationtools.list_all_abjad_classes()
+ignored_classes = (
+    abjadbooktools.CodeBlock,
+    abjadbooktools.CodeOutputProxy,
+    abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.LilyPondOutputProxy,
+    )
+
+classes = documentationtools.list_all_abjad_classes(
+    ignored_classes=ignored_classes,
+    )
 
 
 @pytest.mark.parametrize('class_', classes)
@@ -25,6 +35,10 @@ def test_abjad___format___01(class_):
 
 
 ignored_classes = (
+    abjadbooktools.CodeBlock,
+    abjadbooktools.CodeOutputProxy,
+    abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.LilyPondOutputProxy,
     metertools.Meter,
     tonalanalysistools.RootedChordClass,
     )

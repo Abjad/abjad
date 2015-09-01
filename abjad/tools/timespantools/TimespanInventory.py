@@ -112,6 +112,8 @@ class TimespanInventory(TypedList):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Timespans'
+
     __slots__ = ()
 
     ### SPECIAL METHODS ###

@@ -39,6 +39,8 @@ class Timer(ContextManager):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Context managers'
+
     __slots__ = (
         '_enter_message',
         '_exit_message',

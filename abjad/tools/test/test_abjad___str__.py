@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import inspect
 import pytest
+from abjad.tools import abjadbooktools
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import documentationtools
@@ -22,6 +23,16 @@ _allowed_to_be_empty_string = (
     )
 
 ignored_classes = (
+    abjadbooktools.AbjadDirective,
+    abjadbooktools.CodeBlock,
+    abjadbooktools.CodeOutputProxy,
+    abjadbooktools.DoctestDirective,
+    abjadbooktools.GraphvizOutputProxy,
+    abjadbooktools.ImportDirective,
+    abjadbooktools.LilyPondOutputProxy,
+    abjadbooktools.RevealDirective,
+    abjadbooktools.ShellDirective,
+    abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,
     )
 

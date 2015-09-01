@@ -9,6 +9,13 @@ class TreeNode(AbjadObject):
     Node in a generalized tree.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_name',
+        '_parent',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, name=None):
@@ -18,72 +25,20 @@ class TreeNode(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
+    def __copy__(self):
         r'''Copies tree node.
-
-        Returns new tree node.
         '''
-        return type(self)(
-            *[copy.deepcopy(x) for x in self.__getnewargs__()]
-            )
-
-    # TODO: remove? we shouldn't alias deepcopy anywhere
-    __deepcopy__ = __copy__
-
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a tree node. Otherwise false.
-
-        Returns boolean.
-        '''
-        if type(self) == type(expr):
-            return True
-        return False
-
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
+        import copy
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_input_argument_values(
-            self)
-
-    def __getstate__(self):
-        r'''Gets state.
-
-        Returns dictionary.
-        '''
-        state = {}
-        class_dir = set(dir(type(self)))
-        self_dir = set(x for x in dir(self) if x.startswith('_') and
-            not x.startswith('__'))
-        for name in self_dir.difference(class_dir):
-            state[name] = getattr(self, name)
-        return state
-
-    def __hash__(self):
-        r'''Hashes tree node.
-
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(TreeNode, self).__hash__()
-
-    def __ne__(self, expr):
-        r'''Is true when tree node does not equal `expr`. Otherwise false.
-
-        Returns boolean.
-        '''
-        return not self.__eq__(expr)
-
-    def __setstate__(self, state):
-        r'''Sets `state`.
-
-        Returns none.
-        '''
-        for key, value in state.items():
-            setattr(self, key, value)
+        arguments = []
+        args = systemtools.StorageFormatManager.get_input_argument_values(self)
+        for argument in args:
+            if isinstance(argument, tuple):
+                argument = tuple(copy.copy(_) for _ in argument)
+            else:
+                argument = copy.copy(argument)
+            arguments.append(argument)
+        return type(self)(*arguments)
 
     ### PRIVATE METHODS ###
 
@@ -222,7 +177,7 @@ class TreeNode(AbjadObject):
             ...     print('DEPTH: {}'.format(depth))
             ...     for node in inventory[depth]:
             ...         print(node.name)
-            ... 
+            ...
             DEPTH: 0
             a
             DEPTH: 1
@@ -236,7 +191,6 @@ class TreeNode(AbjadObject):
 
         Returns dictionary.
         '''
-        inventory = {}
         def recurse(node):
             if node.depth not in inventory:
                 inventory[node.depth] = []
@@ -244,6 +198,7 @@ class TreeNode(AbjadObject):
             if hasattr(node, 'children'):
                 for child in node.children:
                     recurse(child)
+        inventory = {}
         recurse(self)
         return inventory
 

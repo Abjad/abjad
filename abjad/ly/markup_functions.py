@@ -1,4 +1,4 @@
-lilypond_version = "2.19.15"
+lilypond_version = "2.19.24"
 
 markup_functions = {
     'abs-fontsize': ('number?', 'cheap-markup?',),
@@ -16,6 +16,7 @@ markup_functions = {
     'circle': ('cheap-markup?',),
     'column': ('markup-list?',),
     'combine': ('cheap-markup?', 'cheap-markup?',),
+    'compound-meter': ('number-or-pair?',),
     'concat': ('markup-list?',),
     'customTabClef': ('integer?', 'number?',),
     'dir-column': ('markup-list?',),
@@ -35,6 +36,7 @@ markup_functions = {
     'fill-with-pattern': ('number?', 'ly:dir?', 'cheap-markup?', 'cheap-markup?', 'cheap-markup?',),
     'filled-box': ('number-pair?', 'number-pair?', 'number?',),
     'finger': ('cheap-markup?',),
+    'first-visible': ('markup-list?',),
     'flat': (),
     'fontCaps': ('cheap-markup?',),
     'fontsize': ('number?', 'cheap-markup?',),
@@ -134,6 +136,7 @@ markup_functions = {
     'vcenter': ('cheap-markup?',),
     'verbatim-file': ('string?',),
     'vspace': ('number?',),
+    'whiteout-box': ('cheap-markup?',),
     'whiteout': ('cheap-markup?',),
     'with-color': ('color?', 'cheap-markup?',),
     'with-dimensions': ('number-pair?', 'number-pair?', 'cheap-markup?',),
@@ -143,7 +146,7 @@ markup_functions = {
     'wordwrap-field': ('symbol?',),
     'wordwrap': ('markup-list?',),
     'wordwrap-string': ('string?',),
-}
+    }
 
 markup_list_functions = {
     'column-lines': ('markup-list?',),
@@ -155,4 +158,4 @@ markup_list_functions = {
     'wordwrap-internal': ('boolean?', 'markup-list?',),
     'wordwrap-lines': ('markup-list?',),
     'wordwrap-string-internal': ('boolean?', 'string?',),
-}
+    }

@@ -35,6 +35,10 @@ class ReSTOnlyDirective(ReSTDirective):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
+
     ### INITIALIZER ###
 
     def __init__(self, argument=None, children=None, name=None):

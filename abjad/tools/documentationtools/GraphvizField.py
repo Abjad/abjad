@@ -6,6 +6,15 @@ class GraphvizField(TreeNode):
     r'''A Graphviz struct field.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Graphviz'
+
+    __slots__ = (
+        '_edges',
+        '_label',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -13,10 +22,7 @@ class GraphvizField(TreeNode):
         label=None,
         name=None,
         ):
-        TreeNode.__init__(
-            self,
-            name=name,
-            )
+        TreeNode.__init__(self, name=name)
         self._label = label
         self._edges = set([])
 

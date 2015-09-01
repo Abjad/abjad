@@ -33,6 +33,8 @@ class Container(Component):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Containers'
+
     __slots__ = (
         '_formatter',
         '_music',
@@ -138,7 +140,7 @@ class Container(Component):
                         child, this_leaf_cluster)
                     pending_node_order.extend(child_node_order)
                     edge = documentationtools.GraphvizEdge()
-                    edge(component_node, child_node)
+                    edge.attach(component_node, child_node)
                 if all_are_leaves:
                     pending_node_order.reverse()
                 node_order.extend(pending_node_order)
@@ -183,7 +185,7 @@ class Container(Component):
                         'penwidth': 5,
                         },
                     )
-                edge(node_one, node_two)
+                edge.attach(node_one, node_two)
             for component in spanner.components:
                 node = node_mapping[component]
                 table = node[0]

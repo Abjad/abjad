@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import bisect
 import copy
-import inspect
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
@@ -54,7 +53,7 @@ class QGrid(AbjadObject):
 
         >>> for q_event_proxy in q_grid.root_node.q_event_proxies:
         ...     print(format(q_event_proxy, 'storage'))
-        ... 
+        ...
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(250, 1),
@@ -69,7 +68,7 @@ class QGrid(AbjadObject):
 
         >>> for q_event_proxy in q_grid.next_downbeat.q_event_proxies:
         ...     print(format(q_event_proxy, 'storage'))
-        ... 
+        ...
         quantizationtools.QEventProxy(
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(750, 1),
@@ -135,7 +134,7 @@ class QGrid(AbjadObject):
 
         Returns new q-grid.
         '''
-        root_node, next_downbeat = self.__getnewargs__()
+        root_node, next_downbeat = self._root_node, self._next_downbeat
         return type(self)(copy.copy(root_node), copy.copy(next_downbeat))
 
     def __eq__(self, expr):
@@ -163,23 +162,6 @@ class QGrid(AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self.root_node, self.next_downbeat)
-
-    def __getstate__(self):
-        r'''Gets state.
-
-        Returns dictionary.
-        '''
-        return {
-            '_next_downbeat': self.next_downbeat,
-            '_root_node': self.root_node,
-            }
-
     def __hash__(self):
         r'''Hashes q-grid.
 
@@ -188,14 +170,6 @@ class QGrid(AbjadObject):
         Returns integer.
         '''
         return super(QGrid, self).__hash__()
-
-    def __setstate__(self, state):
-        r'''Sets `state`.
-
-        Returns none.
-        '''
-        self._next_downbeat = state['_next_downbeat']
-        self._root_node = state['_root_node']
 
     ### PUBLIC PROPERTIES ###
 

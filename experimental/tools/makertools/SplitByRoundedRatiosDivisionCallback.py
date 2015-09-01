@@ -20,8 +20,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             >>> lists = maker([(7, 4), (6, 4)])
             >>> for list_ in lists:
             ...     list_
-            [Division(5, 4), Division(2, 4)]
-            [Division(4, 4), Division(2, 4)]
+            [NonreducedFraction(5, 4), NonreducedFraction(2, 4)]
+            [NonreducedFraction(4, 4), NonreducedFraction(2, 4)]
 
     ..  container:: example
 
@@ -36,10 +36,10 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
             >>> for list_ in lists:
             ...     list_
-            [Division(5, 4), Division(2, 4)]
-            [Division(2, 4), Division(2, 4), Division(2, 4)]
-            [Division(3, 4), Division(2, 4)]
-            [Division(1, 4), Division(2, 4), Division(1, 4)]
+            [NonreducedFraction(5, 4), NonreducedFraction(2, 4)]
+            [NonreducedFraction(2, 4), NonreducedFraction(2, 4), NonreducedFraction(2, 4)]
+            [NonreducedFraction(3, 4), NonreducedFraction(2, 4)]
+            [NonreducedFraction(1, 4), NonreducedFraction(2, 4), NonreducedFraction(1, 4)]
 
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a (possibly empty) nested
@@ -84,8 +84,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [Division(4, 4), Division(3, 4)]
-                [Division(3, 4), Division(3, 4)]
+                [NonreducedFraction(4, 4), NonreducedFraction(3, 4)]
+                [NonreducedFraction(3, 4), NonreducedFraction(3, 4)]
 
             Returns list of division lists.
 
@@ -111,14 +111,14 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
         output_division_lists = []
         ratios = self._get_ratios()
         for i, input_division in enumerate(input_divisions):
-            input_division = durationtools.Division(input_division)
+            input_division = mathtools.NonreducedFraction(input_division)
             ratio = ratios[i]
             numerators = mathtools.partition_integer_by_ratio(
                 input_division.numerator,
                 ratio,
                 )
             output_division_list = [
-                durationtools.Division(
+                mathtools.NonreducedFraction(
                     numerator,
                     input_division.denominator,
                     )
@@ -155,8 +155,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [Division(7, 4)]
-                [Division(6, 4)]
+                [NonreducedFraction(7, 4)]
+                [NonreducedFraction(6, 4)]
 
             This is default behavior when `ratios` is set to none.
 
@@ -172,8 +172,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [Division(4, 4), Division(3, 4)]
-                [Division(3, 4), Division(3, 4)]
+                [NonreducedFraction(4, 4), NonreducedFraction(3, 4)]
+                [NonreducedFraction(3, 4), NonreducedFraction(3, 4)]
 
         ..  container:: example
 
@@ -187,8 +187,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [Division(5, 4), Division(2, 4)]
-                [Division(4, 4), Division(2, 4)]
+                [NonreducedFraction(5, 4), NonreducedFraction(2, 4)]
+                [NonreducedFraction(4, 4), NonreducedFraction(2, 4)]
 
         ..  container:: example
 
@@ -202,8 +202,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [Division(2, 4), Division(3, 4), Division(2, 4)]
-                [Division(2, 4), Division(2, 4), Division(2, 4)]
+                [NonreducedFraction(2, 4), NonreducedFraction(3, 4), NonreducedFraction(2, 4)]
+                [NonreducedFraction(2, 4), NonreducedFraction(2, 4), NonreducedFraction(2, 4)]
 
         ..  container:: example
 
@@ -218,10 +218,10 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [Division(5, 4), Division(2, 4)]
-                [Division(2, 4), Division(2, 4), Division(2, 4)]
-                [Division(3, 4), Division(2, 4)]
-                [Division(1, 4), Division(2, 4), Division(1, 4)]
+                [NonreducedFraction(5, 4), NonreducedFraction(2, 4)]
+                [NonreducedFraction(2, 4), NonreducedFraction(2, 4), NonreducedFraction(2, 4)]
+                [NonreducedFraction(3, 4), NonreducedFraction(2, 4)]
+                [NonreducedFraction(1, 4), NonreducedFraction(2, 4), NonreducedFraction(1, 4)]
 
         Set to ratios or none.
         '''

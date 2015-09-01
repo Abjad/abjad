@@ -8,6 +8,10 @@ class ProgressIndicator(ContextManager):
     r'''A context manager for printing progress indications.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Context managers'
+
     RED = '\033[91m'
     END = '\033[0m'
 

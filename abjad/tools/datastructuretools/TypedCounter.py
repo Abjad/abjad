@@ -28,8 +28,7 @@ class TypedCounter(TypedCollection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = (
-        )
+    __slots__ = ()
 
     ### INITIALIZER ###
 
@@ -100,6 +99,7 @@ class TypedCounter(TypedCollection):
         item = self._item_coercer(item)
         return self._collection[item]
 
+    # TODO: This method is never accessed.
     def __missing__(self, item):
         r'''Returns zero.
 

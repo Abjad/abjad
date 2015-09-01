@@ -1130,6 +1130,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> for measure in iterate(score).by_class(scoretools.Measure):
                 ...     mutate(measure[:]).rewrite_meter(measure)
+                ...
                 >>> show(score) # doctest: +SKIP
 
             ..  doctest::
@@ -1448,7 +1449,7 @@ class MutationAgent(abctools.AbjadObject):
                 }
 
             ::
-                
+
                 >>> meter = metertools.Meter((4, 4))
                 >>> mutate(measure[:]).rewrite_meter(
                 ...     meter,
@@ -1510,7 +1511,7 @@ class MutationAgent(abctools.AbjadObject):
                 }
 
             ::
-                
+
                 >>> meter = metertools.Meter((6, 4))
                 >>> mutate(measure[:]).rewrite_meter(
                 ...     meter,
@@ -1582,7 +1583,7 @@ class MutationAgent(abctools.AbjadObject):
                 }
 
             ::
-                
+
                 >>> meter = metertools.Meter((6, 4))
                 >>> mutate(measure[:]).rewrite_meter(
                 ...     meter,

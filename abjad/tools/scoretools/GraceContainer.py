@@ -76,6 +76,8 @@ class GraceContainer(Container):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Containers'
+
     __slots__ = (
         '_carrier',
         '_kind',

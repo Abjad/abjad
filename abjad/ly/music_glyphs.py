@@ -1,4 +1,4 @@
-lilypond_version = "2.19.15"
+lilypond_version = "2.19.24"
 
 music_glyphs = set([
     "accidentals.doublesharp",
@@ -450,6 +450,7 @@ music_glyphs = set([
     "rests.2classical",
     "rests.2mensural",
     "rests.2neomensural",
+    "rests.2z",
     "rests.3",
     "rests.3mensural",
     "rests.3neomensural",
@@ -574,4 +575,4 @@ music_glyphs = set([
     "two",
     "z",
     "zero",
-])
+    ])

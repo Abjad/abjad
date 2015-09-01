@@ -81,20 +81,6 @@ class MeasurewiseQSchemaItem(QSchemaItem):
             use_full_measure = bool(use_full_measure)
         self._use_full_measure = use_full_measure
 
-    ### SPECIAL METHODS ###
-
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (
-            self.search_tree,
-            self.tempo,
-            self.time_signature,
-            self.use_full_measure,
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

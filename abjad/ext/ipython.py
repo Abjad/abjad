@@ -9,12 +9,14 @@ This extension requires `fluidsynth` be in your $PATH. If you do not have
 `fluidsynth` installed, it is likely available in your platform's package
 manager:
 
-OS X
-    $ brew install fluidsynth --with-libsndfile
-    $ port install fluidsynth
+On OSX::
 
-Linux
-    $ apt-get install fluidsynth
+    ~$ brew install fluidsynth --with-libsndfile
+    ~$ sudo port install fluidsynth
+
+On Debian or Ubuntu:
+
+    ~$ apt-get install fluidsynth
 
 To activate the IPython notebook extension, add the following line in your
 notebook:

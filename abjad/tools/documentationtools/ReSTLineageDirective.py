@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-import types
 from abjad.tools.documentationtools.ReSTDirective import ReSTDirective
 
 
@@ -21,6 +20,10 @@ class ReSTLineageDirective(ReSTDirective):
         .. abjad-lineage:: abjad.tools.spannertools.Beam.Beam
 
     '''
+
+    ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'reStructuredText'
 
     ### INITIALIZER ###
 

@@ -1092,6 +1092,119 @@ class IterationAgent(abctools.AbjadObject):
                     else:
                         components_to_process.extend(reversed(component))
 
+    def by_timeline_and_logical_tie(
+        self,
+        nontrivial=False,
+        pitched=False,
+        reverse=False,
+        ):
+        r'''Iterate timeline by logical tie forward in `expr`:
+
+        ::
+
+            >>> score = Score([])
+            >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+            >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    c''4 ~
+                    c''8
+                    d''8
+                    r4
+                    ef''4
+                }
+                \new Staff {
+                    r8
+                    g'4. ~
+                    g'8
+                    r16
+                    f'8. ~
+                    f'8
+                }
+            >>
+
+        ::
+
+            >>> for logical_tie in iterate(score).by_timeline_and_logical_tie():
+            ...     logical_tie
+            ...
+            LogicalTie(Note("c''4"), Note("c''8"))
+            LogicalTie(Rest('r8'),)
+            LogicalTie(Note("g'4."), Note("g'8"))
+            LogicalTie(Note("d''8"),)
+            LogicalTie(Rest('r4'),)
+            LogicalTie(Rest('r16'),)
+            LogicalTie(Note("f'8."), Note("f'8"))
+            LogicalTie(Note("ef''4"),)
+
+        Iterate timeline backward by logical tie in `expr`:
+
+        ::
+
+            >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
+            ...     reverse=True,
+            ...     ):
+            ...     logical_tie
+            ...
+            LogicalTie(Note("ef''4"),)
+            LogicalTie(Note("f'8."), Note("f'8"))
+            LogicalTie(Rest('r4'),)
+            LogicalTie(Rest('r16'),)
+            LogicalTie(Note("g'4."), Note("g'8"))
+            LogicalTie(Note("d''8"),)
+            LogicalTie(Note("c''4"), Note("c''8"))
+            LogicalTie(Rest('r8'),)
+
+        Iterate timeline by pitched logical tie in `expr`:
+
+        ::
+
+            >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
+            ...     pitched=True,
+            ...     ):
+            ...     logical_tie
+            ...
+            LogicalTie(Note("c''4"), Note("c''8"))
+            LogicalTie(Note("g'4."), Note("g'8"))
+            LogicalTie(Note("d''8"),)
+            LogicalTie(Note("f'8."), Note("f'8"))
+            LogicalTie(Note("ef''4"),)
+
+        Iterate timeline by nontrivial logical tie in `expr`:
+
+        ::
+
+            >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
+            ...     nontrivial=True,
+            ...     ):
+            ...     logical_tie
+            ...
+            LogicalTie(Note("c''4"), Note("c''8"))
+            LogicalTie(Note("g'4."), Note("g'8"))
+            LogicalTie(Note("f'8."), Note("f'8"))
+
+        '''
+        visited_logical_ties = set()
+        iterator = self.by_timeline(
+            component_class=scoretools.Leaf,
+            reverse=reverse,
+            )
+        for leaf in iterator:
+            logical_tie = leaf._get_logical_tie()
+            if logical_tie in visited_logical_ties:
+                continue
+            if nontrivial and logical_tie.is_trivial:
+                continue
+            if pitched and not logical_tie.is_pitched:
+                continue
+            visited_logical_ties.add(logical_tie)
+            yield logical_tie
+
     def by_timeline_from_component(
         self,
         component_class=None,

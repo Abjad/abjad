@@ -106,3 +106,7 @@ del _version
 
 def f(expr):
     print(format(expr, 'lilypond'))
+
+from abjad import demos
+from abjad import ext
+from abjad import ly

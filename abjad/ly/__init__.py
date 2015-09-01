@@ -1,5 +1,4 @@
 # -*- encoding: utf-8 -*-
-from abjad.ly.context_properties import context_properties
 from abjad.ly.contexts import contexts
 from abjad.ly.current_module import current_module
 from abjad.ly.drums import drums

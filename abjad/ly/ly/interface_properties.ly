@@ -1,4 +1,4 @@
-\version "2.16.1"
+\version "2.19.24"
 
 #(load "helpers.scm")
 
@@ -22,12 +22,10 @@
                4)))
        "interface_properties = {\n"
        (sort-symbol-list (hash-keys h)))
-     "}\n"))
+     "    }\n"))
 
   (display
     (string-append
       (format "lilypond_version = \"~A\"\n\n" (lilypond-version))
       (format-interface-properties (ly:all-grob-interfaces))
       )))
-
-% EOF
