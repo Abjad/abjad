@@ -888,25 +888,35 @@ class DocumentationManager(abctools.AbjadObject):
 
     @property
     def prefix_ignored(self):
+        r'''Messaging prefix for ignored files.
+        '''
         from sphinx.util.console import lightgray
         return lightgray('IGNORED:   ')
 
     @property
     def prefix_preserved(self):
+        r'''Messaging prefix for preserved files.
+        '''
         from sphinx.util.console import darkgray
         return darkgray('PRESERVED: ')
 
     @property
     def prefix_pruned(self):
+        r'''Messaging prefix for pruned files.
+        '''
         from sphinx.util.console import red
         return red('PRUNED:    ')
 
     @property
     def prefix_rewrote(self):
+        r'''Messaging prefix for rewritten files.
+        '''
         from sphinx.util.console import green
         return green('REWROTE:   ')
 
     @property
     def prefix_wrote(self):
+        r'''Messaging prefix for written files.
+        '''
         from sphinx.util.console import yellow
         return yellow('WROTE:     ')
