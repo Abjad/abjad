@@ -86,19 +86,21 @@ class GraphvizMixin(AbjadObject):
         elif isinstance(value, str):
             if value.startswith('<') and value.endswith('>'):
                 return value
-            elif ' ' in value or \
-                ',' in value or \
-                '\\' in value or \
-                "." in value or \
-                '/' in value:
-                return '"{}"'.format(value)
+            should_quote = False
+            if not value.isalnum():
+                should_quote = True
+            elif value and value[0].isdigit():
+                should_quote = True
             elif value.lower() in (
                 'digraph',
                 'graph',
                 'node',
                 'subgraph',
                 ) and quote_keywords:
-                return '"{}"'.format(value)
+                should_quote = True
+            if should_quote:
+                value = value.replace('"', r'\"')
+                value = '"{}"'.format(value)
             return value
         elif isinstance(value, (list, tuple)):
             return '"{}"'.format(', '.join(
