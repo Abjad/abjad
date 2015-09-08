@@ -10,7 +10,6 @@ import traceback
 import types
 from abjad.tools import abctools
 from abjad.tools import systemtools
-from sphinx.util.console import red, green, darkgray, lightgray, yellow
 
 
 class DocumentationManager(abctools.AbjadObject):
@@ -26,12 +25,6 @@ class DocumentationManager(abctools.AbjadObject):
     root_package_name = 'abjad'
     source_directory_path_parts = ('docs', 'source')
     tools_packages_package_path = 'abjad.tools'
-
-    prefix_ignored = lightgray('IGNORED:   ')
-    prefix_preserved = darkgray('PRESERVED: ')
-    prefix_pruned = red('PRUNED:    ')
-    prefix_rewrote = green('REWROTE:   ')
-    prefix_wrote = yellow('WROTE:     ')
 
     ### PRIVATE METHODS ###
 
@@ -890,3 +883,30 @@ class DocumentationManager(abctools.AbjadObject):
         readme_path = os.path.join(abjad_path, '..', 'README.rst')
         with open(readme_path, 'w') as file_pointer:
             file_pointer.write(result)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def prefix_ignored(self):
+        from sphinx.util.console import lightgray
+        return lightgray('IGNORED:   ')
+
+    @property
+    def prefix_preserved(self):
+        from sphinx.util.console import darkgray
+        return darkgray('PRESERVED: ')
+
+    @property
+    def prefix_pruned(self):
+        from sphinx.util.console import red
+        return red('PRUNED:    ')
+
+    @property
+    def prefix_rewrote(self):
+        from sphinx.util.console import green
+        return green('REWROTE:   ')
+
+    @property
+    def prefix_wrote(self):
+        from sphinx.util.console import yellow
+        return yellow('WROTE:     ')
