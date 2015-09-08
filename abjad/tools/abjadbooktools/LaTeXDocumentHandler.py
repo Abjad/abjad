@@ -42,6 +42,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
 
     ::
 
+        >>> from abjad.tools import abjadbooktools
         >>> document_handler = abjadbooktools.LaTeXDocumentHandler(
         ...     input_file_contents=input_file_contents,
         ...     input_file_path='test.tex.raw',

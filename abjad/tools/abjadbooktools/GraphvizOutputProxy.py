@@ -14,6 +14,7 @@ class GraphvizOutputProxy(ImageOutputProxy):
 
     ::
 
+        >>> from abjad.tools import abjadbooktools
         >>> meter = metertools.Meter((4, 4))
         >>> proxy = abjadbooktools.GraphvizOutputProxy(meter)
         >>> print(format(proxy))

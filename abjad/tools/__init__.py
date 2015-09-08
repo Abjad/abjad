@@ -4,7 +4,6 @@ from abjad.tools import systemtools
 from abjad.tools import datastructuretools
 from abjad.tools import mathtools
 
-
 # load constants into __builtins__ namespace
 if six.PY3:
     import builtins
@@ -27,4 +26,5 @@ systemtools.ImportManager.import_structured_package(
     __path__[0],
     globals(),
     delete_systemtools=False,
+    ignored_names=['abjadbooktools'],
     )

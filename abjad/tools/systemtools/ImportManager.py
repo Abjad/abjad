@@ -156,6 +156,7 @@ class ImportManager(AbjadObject):
         path,
         namespace,
         delete_systemtools=True,
+        ignored_names=None,
         ):
         r'''Inspects the top level of `path`.
 
@@ -172,6 +173,8 @@ class ImportManager(AbjadObject):
             namespace = namespace.__dict__
         package_path = ImportManager._split_package_path(path)
         for element in os.listdir(path):
+            if ignored_names and element in ignored_names:
+                continue
             if os.path.isfile(os.path.join(path, element)):
                 if not element.startswith('_') and element.endswith('.py'):
                     # import function inside module
@@ -214,6 +217,7 @@ class ImportManager(AbjadObject):
         path,
         namespace,
         delete_systemtools=True,
+        ignored_names=None,
         ):
         r'''Imports public names from `path` into `namespace`.
 
@@ -226,6 +230,7 @@ class ImportManager(AbjadObject):
             path,
             namespace,
             delete_systemtools=delete_systemtools,
+            ignored_names=ignored_names,
             )
         if delete_systemtools:
             if 'systemtools' in namespace:

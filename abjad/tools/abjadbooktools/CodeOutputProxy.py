@@ -8,6 +8,7 @@ class CodeOutputProxy(abctools.AbjadValueObject):
 
     ::
 
+        >>> from abjad.tools import abjadbooktools
         >>> proxy = abjadbooktools.CodeOutputProxy([
         ...     ">>> print('Hello, world!')",
         ...     'Hello, world!',
