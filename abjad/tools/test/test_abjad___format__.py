@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import importlib
 import inspect
 import pytest
 import abjad
@@ -58,6 +59,8 @@ def test_abjad___format___02(class_):
         return
     environment = abjad.__dict__.copy()
     environment.update(abjad.demos.__dict__)
+    environment['abjadbooktools'] = importlib.import_module(
+        'abjad.tools.abjadbooktools')
     instance_one = class_()
     instance_one_format = format(instance_one, 'storage')
     assert isinstance(instance_one_format, str)
