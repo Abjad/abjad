@@ -286,27 +286,27 @@ class PayloadTree(AbjadObject):
                     shape=circle];
                 node_1 [label="",
                     shape=circle];
-                node_2 [label=0,
+                node_2 [label="0",
                     shape=box];
-                node_3 [label=1,
+                node_3 [label="1",
                     shape=box];
                 node_4 [label="",
                     shape=circle];
-                node_5 [label=2,
+                node_5 [label="2",
                     shape=box];
-                node_6 [label=3,
+                node_6 [label="3",
                     shape=box];
                 node_7 [label="",
                     shape=circle];
-                node_8 [label=4,
+                node_8 [label="4",
                     shape=box];
-                node_9 [label=5,
+                node_9 [label="5",
                     shape=box];
                 node_10 [label="",
                     shape=circle];
-                node_11 [label=6,
+                node_11 [label="6",
                     shape=box];
-                node_12 [label=7,
+                node_12 [label="7",
                     shape=box];
                 node_0 -> node_1;
                 node_0 -> node_4;
@@ -341,7 +341,7 @@ class PayloadTree(AbjadObject):
             graphviz_node = documentationtools.GraphvizNode()
             if node.children:
                 graphviz_node.attributes['shape'] = 'circle'
-                graphviz_node.attributes['label'] = '""'
+                graphviz_node.attributes['label'] = ''
             else:
                 graphviz_node.attributes['shape'] = 'box'
                 graphviz_node.attributes['label'] = str(node.payload)
