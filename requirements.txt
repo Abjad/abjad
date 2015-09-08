@@ -4,3 +4,4 @@ ply
 pytest
 six
 sphinx
+docutils
