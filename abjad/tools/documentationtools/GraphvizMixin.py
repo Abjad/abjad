@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 import abc
 import copy
+import re
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import new
 
@@ -14,6 +15,8 @@ class GraphvizMixin(AbjadObject):
     __documentation_section__ = 'Graphviz'
 
     __slots__ = ()
+
+    _word_pattern = re.compile('\w+')
 
     ### INITIALIZER ###
 
@@ -87,7 +90,7 @@ class GraphvizMixin(AbjadObject):
             if value.startswith('<') and value.endswith('>'):
                 return value
             should_quote = False
-            if not value.isalnum():
+            if not self._word_pattern.match(value):
                 should_quote = True
             elif value and value[0].isdigit():
                 should_quote = True
