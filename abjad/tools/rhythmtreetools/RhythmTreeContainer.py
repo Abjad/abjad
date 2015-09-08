@@ -250,19 +250,19 @@ class RhythmTreeContainer(RhythmTreeMixin, TreeContainer):
             digraph G {
                 graph [bgcolor=transparent,
                     truecolor=true];
-                node_0 [label=1,
+                node_0 [label="1",
                     shape=triangle];
-                node_1 [label=1,
+                node_1 [label="1",
                     shape=box];
-                node_2 [label=2,
+                node_2 [label="2",
                     shape=triangle];
-                node_3 [label=1,
+                node_3 [label="1",
                     shape=box];
-                node_4 [label=1,
+                node_4 [label="1",
                     shape=box];
-                node_5 [label=1,
+                node_5 [label="1",
                     shape=box];
-                node_6 [label=2,
+                node_6 [label="2",
                     shape=box];
                 node_0 -> node_1;
                 node_0 -> node_2;
