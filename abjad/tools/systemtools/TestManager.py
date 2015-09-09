@@ -104,6 +104,14 @@ class TestManager(AbjadObject):
         return file_1_lines == file_2_lines
 
     @staticmethod
+    def _get_first_differing_pdf_lines(path_1, path_2):
+        file_1_lines = TestManager._normalize_pdf(path_1)
+        file_2_lines = TestManager._normalize_pdf(path_2)
+        for file_1_line, file_2_line in zip(file_1_lines, file_2_lines):
+            if not file_1_line == file_2_line:
+                return file_1_line, file_2_line
+
+    @staticmethod
     def _normalize_ly(path):
         lines = []
         with open(path, 'r') as file_pointer:
@@ -216,23 +224,6 @@ class TestManager(AbjadObject):
     def clean_string(string):
         r'''Cleans string.
         '''
-#        split_lines = string.split('\n')
-#        if not split_lines[0] or split_lines[0].isspace():
-#            split_lines.pop(0)
-#        if not split_lines[-1] or split_lines[-1].isspace():
-#            split_lines.pop(-1)
-#        indent_width = 0
-#        if split_lines:
-#            for indent_width, character in enumerate(split_lines[0]):
-#                if character != ' ':
-#                    break
-#        massaged_lines = []
-#        for split_line in split_lines:
-#            massaged_line = split_line[indent_width:]
-#            massaged_line = massaged_line.rstrip()
-#            massaged_lines.append(massaged_line)
-#        massaged_string = '\n'.join(massaged_lines)
-#        return massaged_string
         from abjad.tools import stringtools
         return stringtools.normalize(string)
 
