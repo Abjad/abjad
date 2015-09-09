@@ -1,9 +1,4 @@
 # -*- encoding: utf-8 -*-
-'''Dependencies:
-
-The ``scoretools`` package should not import ``instrumenttools``
-at top level.
-'''
 from abjad.tools import systemtools
 
 systemtools.ImportManager.import_structured_package(
