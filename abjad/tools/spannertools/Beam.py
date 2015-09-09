@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import override

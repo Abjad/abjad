@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):

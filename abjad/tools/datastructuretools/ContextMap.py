@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import collections
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import inspect_

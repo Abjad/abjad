@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def label_logical_ties_in_expr_with_written_logical_tie_duration(

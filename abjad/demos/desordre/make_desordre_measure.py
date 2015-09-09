@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad import *
 from abjad.demos.desordre.make_desordre_cell import make_desordre_cell
 

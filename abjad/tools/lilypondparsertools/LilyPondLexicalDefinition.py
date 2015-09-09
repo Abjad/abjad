@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import copy
 from ply import lex
 from abjad.tools import scoretools

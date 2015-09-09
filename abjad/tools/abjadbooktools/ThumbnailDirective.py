@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from sphinx.util.compat import Directive
 from docutils.parsers.rst import directives
 

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
 from abjad.tools.markuptools.Markup import Markup
 

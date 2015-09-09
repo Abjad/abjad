@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import abc
 import re
 from abjad.tools.abctools import AbjadObject

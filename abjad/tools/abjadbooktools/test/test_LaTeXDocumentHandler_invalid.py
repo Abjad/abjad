@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import platform
 import unittest
 from abjad.tools import abjadbooktools

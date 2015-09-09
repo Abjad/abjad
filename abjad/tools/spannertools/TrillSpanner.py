@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools.spannertools.Spanner import Spanner

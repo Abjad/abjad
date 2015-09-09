@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import shutil
 import tempfile
 from abjad.tools.abctools.ContextManager import ContextManager

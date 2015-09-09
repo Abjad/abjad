@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from ply.yacc import (
     YaccProduction,
     YaccSymbol,

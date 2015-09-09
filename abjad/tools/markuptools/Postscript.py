@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import collections
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject

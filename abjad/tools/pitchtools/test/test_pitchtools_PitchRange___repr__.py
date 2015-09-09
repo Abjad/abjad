@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad import *
 from abjad.tools.markuptools import Markup
 from abjad.tools.pitchtools import NamedPitch

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def sort_named_pitch_carriers_in_expr(pitch_carriers):

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os
 import re
 import shutil
@@ -187,7 +187,7 @@ class PersistenceAgent(abctools.AbjadObject):
         '''
         from abjad.tools import systemtools
         manager = systemtools.StorageFormatManager
-        result = ['# -*- encoding: utf-8 -*-']
+        result = ['# -*- coding: utf-8 -*-']
         import_statements = manager.get_import_statements(self._client)
         result.extend(import_statements)
         result.extend(('', ''))

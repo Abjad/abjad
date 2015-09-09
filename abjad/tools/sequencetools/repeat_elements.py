@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def repeat_elements(sequence, indices=None, period=None, total=1):

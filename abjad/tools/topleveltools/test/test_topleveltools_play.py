@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import pytest
 from abjad import *
 pytest.skip('unskip me before building 2.15')

@@ -1,4 +1,4 @@
-# -*- encoding: utf -*-
+# -*- coding: utf -*-
 from abjad import *
 
 

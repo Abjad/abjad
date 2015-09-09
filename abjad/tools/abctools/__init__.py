@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from .AbjadObject import AbjadObject
 from .AbjadValueObject import AbjadValueObject
 from .ContextManager import ContextManager

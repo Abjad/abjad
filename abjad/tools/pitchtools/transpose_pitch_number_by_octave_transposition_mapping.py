@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 # TODO: remove in favor of Registration.__call__()
 def transpose_pitch_number_by_octave_transposition_mapping(pitch_number, mapping):
     '''Transpose `pitch_number` by the some number of octaves up or down.

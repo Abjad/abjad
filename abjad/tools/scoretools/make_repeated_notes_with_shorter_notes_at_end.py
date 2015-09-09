@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import fractions
 from abjad.tools import durationtools
 from abjad.tools import selectiontools

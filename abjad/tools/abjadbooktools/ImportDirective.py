@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from docutils.parsers.rst import directives
 from sphinx.util.compat import Directive
 from sphinx.util.nodes import set_source_info

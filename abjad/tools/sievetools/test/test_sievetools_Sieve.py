@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad.tools import sievetools
 from abjad.tools.sievetools import ResidueClass
 import pytest

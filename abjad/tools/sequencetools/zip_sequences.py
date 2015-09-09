@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*_
+# -*- coding: utf-8 -*_
 
 
 def zip_sequences(sequences, cyclic=False, truncate=True):

@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def negate_elements(sequence, absolute=False, indices=None, period=None):

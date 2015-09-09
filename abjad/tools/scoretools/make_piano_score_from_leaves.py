@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def make_piano_score_from_leaves(leaves, lowest_treble_pitch=None):

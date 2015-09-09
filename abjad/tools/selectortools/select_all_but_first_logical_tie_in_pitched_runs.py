@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def select_all_but_first_logical_tie_in_pitched_runs(expr=None):

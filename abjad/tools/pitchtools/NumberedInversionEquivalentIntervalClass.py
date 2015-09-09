@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.NumberedIntervalClass import NumberedIntervalClass

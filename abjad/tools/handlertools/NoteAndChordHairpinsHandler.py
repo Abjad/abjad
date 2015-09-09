@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools

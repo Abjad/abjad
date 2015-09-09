@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import os
 from abjad.tools import documentationtools
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
@@ -67,7 +67,7 @@ class MakeNewClassTemplateScript(DeveloperScript):
 
     def _get_class_text(self, class_name):
         return [
-            '# -*- encoding: utf-8 -*-',
+            '# -*- coding: utf-8 -*-',
             'from abjad.tools.abctools import AbjadObject',
             '',
             '',

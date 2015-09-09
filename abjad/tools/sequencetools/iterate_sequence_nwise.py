@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):

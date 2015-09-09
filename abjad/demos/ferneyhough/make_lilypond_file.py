@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad import *
 from abjad.demos.ferneyhough.configure_score import configure_score
 from abjad.demos.ferneyhough.configure_lilypond_file import configure_lilypond_file

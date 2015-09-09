@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def list_all_abjad_classes(modules=None, ignored_classes=None):

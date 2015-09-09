@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import select
 

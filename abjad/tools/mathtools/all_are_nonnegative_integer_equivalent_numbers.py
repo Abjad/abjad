@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def all_are_nonnegative_integer_equivalent_numbers(expr):

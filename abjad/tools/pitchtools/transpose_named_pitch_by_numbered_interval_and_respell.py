@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def transpose_named_pitch_by_numbered_interval_and_respell(

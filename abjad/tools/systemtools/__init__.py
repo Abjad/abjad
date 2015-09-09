@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from .AbjadConfiguration import AbjadConfiguration
 from .FilesystemState import FilesystemState
 from .BenchmarkScoreMaker import BenchmarkScoreMaker

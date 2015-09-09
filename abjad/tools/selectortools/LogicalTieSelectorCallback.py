@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import iterate

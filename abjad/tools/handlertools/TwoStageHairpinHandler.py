@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import math
 from abjad.tools import indicatortools
 from abjad.tools import scoretools

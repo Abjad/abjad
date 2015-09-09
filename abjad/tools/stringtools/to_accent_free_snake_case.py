@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 import six
 from abjad.tools.stringtools.strip_diacritics import strip_diacritics
 

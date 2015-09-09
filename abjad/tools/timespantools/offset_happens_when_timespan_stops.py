@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):

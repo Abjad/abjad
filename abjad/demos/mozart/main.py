@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 #! /usr/bin/env python
 
 if __name__ == '__main__':

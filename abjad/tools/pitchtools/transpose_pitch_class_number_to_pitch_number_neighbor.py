@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 
 def transpose_pitch_class_number_to_pitch_number_neighbor(

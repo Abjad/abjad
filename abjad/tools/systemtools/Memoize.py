@@ -1,4 +1,4 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: utf-8 -*-
 r'''Source: PythonDecorateLibrary:
 See: https://wiki.python.org/moin/PythonDecoratorLibrary#Memoize
 '''
