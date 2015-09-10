@@ -29,8 +29,11 @@ class ImportManager(AbjadObject):
                 module_name = None
                 try:
                     if getattr(value, 'func_closure', None):
-                        module_name = getattr(value.func_closure[1].cell_contents,
-                            '__module__', None)
+                        module_name = getattr(
+                            value.func_closure[1].cell_contents,
+                            '__module__',
+                            None,
+                            )
                     # handle plain old function
                     else:
                         module_name = getattr(value, '__module__', None)
@@ -158,16 +161,16 @@ class ImportManager(AbjadObject):
         delete_systemtools=True,
         ignored_names=None,
         ):
-        r'''Inspects the top level of `path`.
+        r'''Inspects the top level of `path`;
+        does not inspect lower levels of path.
 
-        Finds .py modules in path and imports public functions from
-        .py modules into namespace.
+        Finds .py modules in path;
+        imports public functions from .py modules into namespace;
+        imports eponymous datum from .py modules into namespace.
 
-        Finds packages in path and imports package names into namespace.
-
-        Does not import package content into namespace.
-
-        Does not inspect lower levels of path.
+        Find packages in path;
+        imports package names into namespace;
+        does not import package content into namespace.
         '''
         if isinstance(namespace, types.ModuleType):
             namespace = namespace.__dict__
@@ -176,20 +179,29 @@ class ImportManager(AbjadObject):
             if ignored_names and element in ignored_names:
                 continue
             if os.path.isfile(os.path.join(path, element)):
-                if not element.startswith('_') and element.endswith('.py'):
-                    # import function inside module
-                    name = os.path.splitext(element)[0]
-                    submod = os.path.join(package_path, name)
-                    functions = \
-                        ImportManager._get_public_function_names_in_module(
-                            submod)
-                    for f in functions:
-                        # handle public function decorated with @require
-                        if f.__name__ == 'wrapper':
-                            name = f.func_closure[1].cell_contents.__name__
-                        else:
-                            name = f.__name__
-                        namespace[name] = f
+                if element.startswith('_'):
+                    continue
+                if not element.endswith('.py'):
+                    continue
+                # import functions inside module
+                name = os.path.splitext(element)[0]
+                submodule_name = os.path.join(package_path, name)
+                functions = ImportManager._get_public_function_names_in_module(
+                    submodule_name)
+                for function in functions:
+                    # handle public function decorated with @require
+                    if function.__name__ == 'wrapper':
+                        name = function.func_closure[1].cell_contents.__name__
+                    else:
+                        name = function.__name__
+                    namespace[name] = function
+                # import eponymous datum inside module
+                submodule_name = submodule_name.replace(os.sep, '.')
+                submodule = __import__(submodule_name, fromlist=['*'])
+                submodule_dictionary = vars(submodule)
+                if name in submodule_dictionary:
+                    value = submodule_dictionary[name]
+                    namespace[name] = value
             elif os.path.isdir(os.path.join(path, element)):
                 if element not in ('.svn', '.git', 'test', '__pycache__'):
                     initializer_file_path = os.path.join(
