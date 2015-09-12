@@ -90,13 +90,13 @@ class Timer(ContextManager):
         self._start_time = time.time()
         if self.print_continuously_from_background:
             from abjad import abjad_configuration
-            timing_script_path = os.path.join(
+            path = os.path.join(
                 abjad_configuration.abjad_directory,
                 'scr',
                 'timer.py',
                 )
-            timing_script_command = '{}'.format(timing_script_path)
-            process = subprocess.Popen(timing_script_command, shell=False)
+            interval = str(int(self.print_continuously_from_background))
+            process = subprocess.Popen([path, interval], shell=False)
             self._process = process
         return self
 
