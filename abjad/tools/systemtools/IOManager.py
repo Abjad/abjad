@@ -594,8 +594,6 @@ class IOManager(AbjadObject):
                 if os.path.exists(log_path):
                     with open(log_path, 'r') as f:
                         print(f.read())
-                # TODO: remove raw_input to benefit IDE
-                #raw_input(fail_message)
                 print(fail_message)
                 return False
             return True
@@ -642,8 +640,6 @@ class IOManager(AbjadObject):
                 if os.path.exists(log_path):
                     with open(log_path, 'r') as f:
                         print(f.read())
-                # TODO: remove raw_input to benefit IDE
-                #raw_input(fail_message)
                 print(fail_message)
                 return False
             shutil.move(candidate_path, pdf_path)
