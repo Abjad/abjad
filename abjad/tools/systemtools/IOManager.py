@@ -581,7 +581,7 @@ class IOManager(AbjadObject):
                 )
         fail_message = 'LilyPond rendering failed. Press any key to continue.'
         if not os.path.exists(pdf_path) or not candidacy:
-            timer = systemtools.Timer(print_continuously_from_background=True)
+            timer = systemtools.Timer()
             with timer:
                 exit_code = IOManager.spawn_subprocess(command)
             elapsed_seconds = int(timer.elapsed_time)
@@ -630,7 +630,7 @@ class IOManager(AbjadObject):
                 )
         candidate_path = candidate_base + '.pdf'
         with systemtools.FilesystemState(remove=[candidate_path]):
-            timer = systemtools.Timer(print_continuously_from_background=True)
+            timer = systemtools.Timer()
             with timer:
                 exit_code = IOManager.spawn_subprocess(command)
             elapsed_seconds = int(timer.elapsed_time)
