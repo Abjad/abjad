@@ -549,6 +549,7 @@ class IOManager(AbjadObject):
         Returns none.
         '''
         from abjad import abjad_configuration
+        from abjad.tools import stringtools
         from abjad.tools import systemtools
         abjad_output_directory = abjad_configuration['abjad_output_directory']
         if not lilypond_path:
@@ -580,7 +581,15 @@ class IOManager(AbjadObject):
                 )
         fail_message = 'LilyPond rendering failed. Press any key to continue.'
         if not os.path.exists(pdf_path) or not candidacy:
-            exit_code = IOManager.spawn_subprocess(command)
+            timer = systemtools.Timer(print_continuously_from_background=True)
+            with timer:
+                exit_code = IOManager.spawn_subprocess(command)
+            elapsed_seconds = int(timer.elapsed_time)
+            if 5 <= elapsed_seconds:
+                unit = stringtools.pluralize('second', elapsed_seconds)
+                message = 'LilyPond runtime: {} {}'
+                message = message.format(elapsed_seconds, unit)
+                print(message)
             postscript_path = lilypond_file_path.replace('.ly', '.ps')
             try:
                 os.remove(postscript_path)
@@ -621,7 +630,15 @@ class IOManager(AbjadObject):
                 )
         candidate_path = candidate_base + '.pdf'
         with systemtools.FilesystemState(remove=[candidate_path]):
-            exit_code = IOManager.spawn_subprocess(command)
+            timer = systemtools.Timer(print_continuously_from_background=True)
+            with timer:
+                exit_code = IOManager.spawn_subprocess(command)
+            elapsed_seconds = int(timer.elapsed_time)
+            if 5 <= elapsed_seconds:
+                unit = stringtools.pluralize('second', elapsed_seconds)
+                message = 'LilyPond runtime: {} {}'
+                message = message.format(elapsed_seconds, unit)
+                print(message)
             postscript_path = lilypond_file_path.replace('.ly', '.ps')
             try:
                 os.remove(postscript_path)
