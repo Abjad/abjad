@@ -12,6 +12,6 @@ while True:
     unit = 'seconds'
     if i == 1:
         unit = 'second'
-    message = '{} {} ...'
+    message = '\n[{} {}]'
     message = message.format(i, unit)
     print(message)
