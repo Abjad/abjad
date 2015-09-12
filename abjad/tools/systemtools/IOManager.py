@@ -658,9 +658,6 @@ class IOManager(AbjadObject):
             )
         if last_output_file_name is None:
             return
-        #without_extension, extension = os.path.splitext(last_output_file_path)
-        #last_ly = without_extension + '.ly'
-        #last_ly_full_name = os.path.join(abjad_output_directory, last_ly)
         last_ly_full_name = os.path.join(
             abjad_output_directory,
             last_output_file_name,
@@ -680,9 +677,6 @@ class IOManager(AbjadObject):
         last_output_file_name = IOManager.get_last_output_file_name(
             extension='.pdf',
             )
-        #without_extension, extension = os.path.splitext(last_output_file_name)
-        #last_pdf = without_extension + '.pdf'
-        #last_pdf_full_name = os.path.join(abjad_output_directory, last_pdf)
         last_pdf_full_name = os.path.join(
             abjad_output_directory,
             last_output_file_name,
