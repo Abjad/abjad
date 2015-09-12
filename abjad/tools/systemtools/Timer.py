@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+import os
+import subprocess
 import time
 from abjad.tools.abctools import ContextManager
 
@@ -44,20 +46,33 @@ class Timer(ContextManager):
     __slots__ = (
         '_enter_message',
         '_exit_message',
+        '_print_continuously_from_background',
+        '_process',
         '_start_time',
         '_stop_time',
+        '_timer_process',
         '_verbose',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, exit_message=None, enter_message=None, verbose=True):
+    def __init__(
+        self, 
+        enter_message=None, 
+        exit_message=None, 
+        print_continuously_from_background=False,
+        verbose=True,
+        ):
         if enter_message is not None:
             enter_message = str(enter_message)
         self._enter_message = enter_message
         if exit_message is not None:
             exit_message = str(exit_message)
         self._exit_message = exit_message
+        self._print_continuously_from_background = \
+            print_continuously_from_background
+        self._process = None
+        self._timer_process = None
         self._start_time = None
         self._stop_time = None
         self._verbose = bool(verbose)
@@ -73,6 +88,16 @@ class Timer(ContextManager):
             print(self.enter_message)
         self._stop_time = None
         self._start_time = time.time()
+        if self.print_continuously_from_background:
+            from abjad import abjad_configuration
+            timing_script_path = os.path.join(
+                abjad_configuration.abjad_directory,
+                'scr',
+                'timer.py',
+                )
+            timing_script_command = '{}'.format(timing_script_path)
+            process = subprocess.Popen(timing_script_command, shell=False)
+            self._process = process
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -81,6 +106,8 @@ class Timer(ContextManager):
         Returns none.
         '''
         self._stop_time = time.time()
+        if self._process is not None:
+            self._process.kill()
         if self.exit_message and self.verbose:
             print(self.exit_message, self.elapsed_time)
 
@@ -113,6 +140,14 @@ class Timer(ContextManager):
         Returns string.
         '''
         return self._exit_message
+
+    @property
+    def print_continuously_from_background(self):
+        r'''Is true when timer should print continuously from background.
+
+        Returns true or false.
+        '''
+        return self._print_continuously_from_background
 
     @property
     def start_time(self):
