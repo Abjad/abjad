@@ -445,6 +445,7 @@ class DocumentationManager(abctools.AbjadObject):
     def _get_tools_package_graph(self, tools_package):
         from abjad.tools import documentationtools
         inheritance_graph = documentationtools.InheritanceGraph(
+            addresses=['abjad', 'abjad.tools.abjadbooktools'],
             lineage_addresses=[tools_package.__package__]
             )
         lineage_graph = inheritance_graph.__graph__()
@@ -463,7 +464,12 @@ class DocumentationManager(abctools.AbjadObject):
                 return str('.'.join(name[2:]))
             return str('.'.join(name))
         from abjad.tools import documentationtools
-        addresses = ('abjad', 'experimental', 'ide')
+        addresses = (
+            'abjad', 
+            'experimental', 
+            'ide',
+            'abjad.tools.abjadbooktools',
+            )
         module_name, _, class_name = cls.__module__.rpartition('.')
         node_name = get_node_name(module_name + '.' + class_name)
         importlib.import_module(module_name)
