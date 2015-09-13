@@ -110,6 +110,28 @@ Invisible Cities (ii): Armilla *(2015)*
         :title: Page 9 of Invisible Cities (ii): Armilla,
                 by Josiah Wolf Oberholtzer.
 
+Refrain *(2014)*
+````````````````
+
+- For carillon.
+- Composed by `Jeffrey Treviño`_.
+- Written for Tiffany Ng.
+- Source available from https://github.com/jefftrevino/refrain/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/trevino-refrain-page1.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of Refrain,
+                by Jeffrey Treviño.
+
+    ..  thumbnail:: gallery/trevino-refrain-page2.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 2 of Refrain,
+                by Jeffrey Treviño.
+
 Huitzil *(2014)*
 ````````````````
 
@@ -209,6 +231,28 @@ Plague Water *(2014)*
         :group: gallery
         :title: Page 13 of Plague Water,
                 by Josiah Wolf Oberholtzer.
+
+The World All Around *(2012-2013)*
+``````````````````````````````````
+
+- For Eb clarinet, harp, and prepared piano.
+- Composed by `Jeffrey Treviño`_.
+- Written for Wild Rumpus.
+- Source available from https://github.com/jefftrevino/theWorldAllAround/.
+
+..  container:: table-row
+
+    ..  thumbnail:: gallery/trevino-world-all-around-page1.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 1 of The World All Around,
+                by Jeffrey Treviño.
+
+    ..  thumbnail:: gallery/trevino-world-all-around-page2.png
+        :class: table-cell thumbnail
+        :group: gallery
+        :title: Page 2 of The World All Around,
+                by Jeffrey Treviño.
 
 Traiettorie inargentate *(2013)*
 ````````````````````````````````
@@ -446,3 +490,4 @@ Poème Récursif *(2005)*
 ..  _Fredrik Wallberg: http://quesebifurcan.github.io/music/
 ..  _Josiah Wolf Oberholtzer: http://josiahwolfoberholtzer.com/
 ..  _Trevor Bača: http://www.trevorbaca.com/
+..  _Jeffrey Treviño: http://www.jeffreytrevino.com/
