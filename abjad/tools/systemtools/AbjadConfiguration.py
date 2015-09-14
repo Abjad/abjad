@@ -123,7 +123,7 @@ class AbjadConfiguration(Configuration):
             '',
             'Abjad configuration file created on {}.'.format(current_time),
             "This file is interpreted by Python's ConfigParser ",
-            'and follows ini sytnax.',
+            'and follows ini syntax.',
             ]
 
     ### PUBLIC METHODS ###
