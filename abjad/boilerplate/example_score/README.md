@@ -1,0 +1,3 @@
+{score_title}
+
+Description.
