@@ -118,6 +118,12 @@ Refrain *(2014)*
 - Written for Tiffany Ng.
 - Source available from https://github.com/jefftrevino/refrain/.
 
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/176190951&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
+
 ..  container:: table-row
 
     ..  thumbnail:: gallery/trevino-refrain-page1.png
@@ -239,6 +245,12 @@ The World All Around *(2012-2013)*
 - Composed by `Jeffrey Treviño`_.
 - Written for Wild Rumpus.
 - Source available from https://github.com/jefftrevino/theWorldAllAround/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/176197340&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 
