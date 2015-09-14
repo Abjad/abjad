@@ -4,7 +4,7 @@ from abjad import *
 
 metadata = datastructuretools.TypedOrderedDict(
     [
-        ('title', 'Example Score'),
-        ('year', 2015),
+        ('title', '{score_title}'),
+        ('year', {year}),
         ]
     )
