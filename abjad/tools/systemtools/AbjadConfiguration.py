@@ -377,6 +377,18 @@ class AbjadConfiguration(Configuration):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def abjad_boilerplate_directory(self):
+        r'''Gest Abjad boilerplate directory.
+
+        Return string.
+        '''
+        relative_path = os.path.join(
+            self.abjad_directory,
+            'boilerplate',
+            )
+        return os.path.abspath(relative_path)
+
+    @property
     def abjad_configuration_directory(self):
         r'''Gets Abjad configuration directory.
 
