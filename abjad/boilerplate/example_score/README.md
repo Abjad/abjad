@@ -1,3 +1,3 @@
 {score_title}
 
-Description.
+{score_title} ({year}) description.
