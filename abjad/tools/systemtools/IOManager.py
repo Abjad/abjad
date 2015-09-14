@@ -63,6 +63,49 @@ class IOManager(AbjadObject):
         return lilypond_file
 
     @staticmethod
+    def _make_score_package(
+        score_package_path,
+        score_title,
+        year,
+        composer_full_name,
+        composer_email,
+        composer_github_username,
+        ):
+        from abjad.tools import systemtools
+        configuration = systemtools.AbjadConfiguration()
+        score_package_name = os.path.basename(score_package_path)
+        source_path = os.path.join(
+            configuration.abjad_boilerplate_directory,
+            'example_score',
+            )
+        target_path = score_package_path
+        shutil.copytree(source_path, target_path)
+        old_inner_score_directory = os.path.join(
+            target_path,
+            'example_score',
+            )
+        new_inner_score_directory = os.path.join(
+            target_path,
+            score_package_name,
+            )
+        shutil.move(old_inner_score_directory, new_inner_score_directory)
+        for root, directory_name, file_names in os.walk(target_path):
+            for file_name in file_names:
+                file_ = os.path.join(root, file_name)
+                with open(file_, 'r') as file_pointer:
+                    template = file_pointer.read()
+                completed_template = template.format(
+                    score_package_name=score_package_name,
+                    composer_email=composer_email,
+                    composer_full_name=composer_full_name,
+                    composer_github_username=composer_github_username,
+                    score_title=score_title,
+                    year=year,
+                    )
+                with open(file_, 'w') as file_pointer:
+                    file_pointer.write(completed_template)
+
+    @staticmethod
     def _warn_when_output_directory_almost_full(last_number):
         from abjad import abjad_configuration
         abjad_output_directory = \

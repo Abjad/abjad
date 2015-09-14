@@ -123,7 +123,7 @@ class AbjadConfiguration(Configuration):
             '',
             'Abjad configuration file created on {}.'.format(current_time),
             "This file is interpreted by Python's ConfigParser ",
-            'and follows ini sytnax.',
+            'and follows ini syntax.',
             ]
 
     ### PUBLIC METHODS ###
@@ -375,6 +375,18 @@ class AbjadConfiguration(Configuration):
         abjad_configuration['accidental_spelling'] = spelling
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def abjad_boilerplate_directory(self):
+        r'''Gest Abjad boilerplate directory.
+
+        Return string.
+        '''
+        relative_path = os.path.join(
+            self.abjad_directory,
+            'boilerplate',
+            )
+        return os.path.abspath(relative_path)
 
     @property
     def abjad_configuration_directory(self):
