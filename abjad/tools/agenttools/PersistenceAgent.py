@@ -246,7 +246,7 @@ class PersistenceAgent(abctools.AbjadObject):
         '''
         from abjad.tools import systemtools
         if illustrate_function is None:
-            assert hasattr(self._client, '__illustrate__')
+            assert hasattr(self._client, '__illustrate__'), repr(self._client)
         if pdf_file_path is not None:
             pdf_file_path = os.path.expanduser(pdf_file_path)
             without_extension = os.path.splitext(pdf_file_path)[0]
