@@ -7,7 +7,7 @@ from abjad.tools import mathtools
 # load constants into __builtins__ namespace
 if six.PY3:
     import builtins
-elif six.PY2:
+else:
     import __builtin__ as builtins
 builtins.Less = datastructuretools.OrdinalConstant('value', -1, 'Less')
 builtins.More = datastructuretools.OrdinalConstant('value', 1, 'More')
