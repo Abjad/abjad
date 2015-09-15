@@ -25,6 +25,8 @@ class RotationCounter(TypedCounter):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Specifiers'
+
     __slots__ = (
         '_autoincrement',
         '_default',
