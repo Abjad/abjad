@@ -69,8 +69,6 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
             }
 
-    ..  todo:: add tie specifier examples.
-
     Follows the two-step configure-once / call-repeatedly pattern shown here.
 
     Object model of a partially evaluated function that accepts a (possibly
@@ -237,6 +235,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 Selection(Note("c'8"), Note("c'4"))
                 Selection(Note("c'16"), Note("c'8"), Note("c'8."), Note("c'8"))
 
+        ..  todo:: Add rotation examples.
+
         Returns list of of selections.
         '''
         return RhythmMaker.__call__(
@@ -252,7 +252,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            ::
+            **Example 1.** Formats talea rhythm-maker:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -271,12 +271,33 @@ class TaleaRhythmMaker(RhythmMaker):
                         ),
                     )
 
+        ..  container:: example
+
+            **Example 2.** Storage formats talea rhythm-maker:
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> print(format(maker, 'storage'))
+                rhythmmakertools.TaleaRhythmMaker(
+                    talea=rhythmmakertools.Talea(
+                        counts=(1, 2, 3, 4),
+                        denominator=16,
+                        ),
+                    )
+
         Returns string.
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __illustrate__(self, divisions=None):
+    def __illustrate__(self, divisions=((3, 8), (4, 8), (3, 16), (4, 16))):
         r'''Illustrates talea rhythm-maker.
 
         ..  container:: example
@@ -318,41 +339,6 @@ class TaleaRhythmMaker(RhythmMaker):
                     {
                         \time 4/16
                         c'8. [
-                        c'16 ]
-                    }
-                    {
-                        \time 5/8
-                        c'8 [
-                        c'8. ]
-                        c'4
-                        c'16
-                    }
-                    {
-                        \time 2/4
-                        c'8 [
-                        c'8.
-                        c'8. ~ ]
-                    }
-                    {
-                        \time 5/16
-                        c'16 [
-                        c'16
-                        c'8
-                        c'16 ~ ]
-                    }
-                    {
-                        \time 2/8
-                        c'8 [
-                        c'8 ~ ]
-                    }
-                    {
-                        \time 7/8
-                        c'8 [
-                        c'16
-                        c'8
-                        c'8. ]
-                        c'4
-                        c'16 [
                         c'16 ]
                     }
                 }
@@ -820,13 +806,13 @@ class TaleaRhythmMaker(RhythmMaker):
 
     @property
     def beam_specifier(self):
-        r'''Gets beam specifier of talea rhythm-maker.
+        r'''Gets beam specifier.
 
         Three beam specifier configurations are available.
 
         ..  container:: example
 
-            **Example 1.** This rhythm-maker beams each division:
+            **Example 1.** Beams each division:
 
             ::
 
@@ -897,12 +883,11 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            The behavior shown here is the talea rhythm-maker's default
-            beaming.
+            This is default behavior.
 
         ..  container:: example
 
-            **Example 2.** This rhythm-maker beams divisions together:
+            **Example 2.** Beams divisions together:
 
             ::
 
@@ -1031,7 +1016,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** This rhythm-maker makes no beams:
+            **Example 3.** Beams nothing:
 
             ::
 
@@ -1105,12 +1090,14 @@ class TaleaRhythmMaker(RhythmMaker):
 
 
         Set to beam specifier or none.
+
+        Returns beam specifier or none.
         '''
         return RhythmMaker.beam_specifier.fget(self)
 
     @property
     def burnish_specifier(self):
-        r'''Gets burnish specifier of talea rhythm-maker.
+        r'''Gets burnish specifier.
 
         ..  container:: example
 
@@ -1236,19 +1223,21 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
 
         Set to burnish specifier or none.
+
+        Returns burnish specifier or none.
         '''
         return self._burnish_specifier
 
     @property
     def duration_spelling_specifier(self):
-        r'''Gets duration spelling specifier of talea rhythm-maker.
+        r'''Gets duration spelling specifier.
 
-        Several beam spelling specifier configurations are available.
+        Several duration spelling specifier configurations are available.
 
         ..  container:: example
 
-            **Example 1.** This rhythm-maker spells nonassignable durations
-            like ``5/16`` with monontonically decreasing durations:
+            **Example 1.** Spells nonassignable durations with monontonically
+            decreasing durations:
 
             ::
 
@@ -1298,12 +1287,12 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            The behavior shown here is a default duration-spelling behavior.
+            This is default behavior.
 
         ..  container:: example
 
-            **Example 2.** This rhythm-maker spells nonassignable durations
-            like ``5/16`` with monontonically increasing durations:
+            **Example 2.** Spells nonassignable durations with monontonically
+            increasing durations:
 
             ::
 
@@ -1355,7 +1344,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** This rhythm-maker has no forbidden durations:
+            **Example 3.** Forbids no durations:
 
             ::
 
@@ -1403,12 +1392,11 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            The behavior shown here is a default duration-spelling behavior.
+            This is default behavior.
 
         ..  container:: example
 
-            **Example 4.** This rhythm-maker forbids durations equal to ``1/4``
-            or greater:
+            **Example 4.** Forbids durations equal to ``1/4`` or greater:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1458,12 +1446,11 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Forbidden durations are rewritten with smaller durations tied
-            together.
+            Rewrites forbidden durations with smaller durations tied together.
 
         ..  container:: example
 
-            **Example 5a.** This rhythm-maker spells all durations metrically:
+            **Example 5.** Spells all durations metrically:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1516,8 +1503,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 5b.** This rhythm-maker spells unassignable durations
-            metrically:
+        ..  container:: example
+
+            **Example 6.** Spells unassignable durations metrically:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1568,7 +1556,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 6.** Rewrites meter:
+            **Example 7.** Rewrites meter:
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
@@ -1620,16 +1608,18 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
 
         Set to duration spelling specifier or none.
+
+        Returns duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
 
     @property
     def extra_counts_per_division(self):
-        r'''Gets extra counts per division of talea rhythm-maker.
+        r'''Gets extra counts per division.
 
         ..  container:: example
 
-            **Example 1.** Here's a talea:
+            **Example 1.** No extra counts per division:
 
             ::
 
@@ -1684,8 +1674,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Here's the same rhythm with an extra count added to
-            every other division:
+            **Example 2.** Adds one extra count to every other division:
 
             ::
 
@@ -1749,8 +1738,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3.** And here's the same rhythm with two extra counts
-            added to every other division:
+            **Example 3.** Adds two extra counts to every other division:
 
             ::
 
@@ -1814,24 +1802,28 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Note that the duration of each added count is equal to the duration
+            The duration of each added count equals the duration
             of each count in the rhythm-maker's input talea.
 
         Set to integer tuple or none.
+
+        Returns integer tuple or none.
         '''
         return self._extra_counts_per_division
 
     @property
     def helper_functions(self):
-        r'''Gets helper functions of talea rhythm-maker.
+        r'''Gets helper functions.
 
         Set to dictionary or none.
+
+        Returns dictionary or none.
         '''
         return self._helper_functions
 
     @property
     def output_masks(self):
-        r'''Gets output masks of talea rhythm-maker.
+        r'''Gets output masks.
 
         ..  container:: example
 
@@ -2064,6 +2056,8 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
             **Example 5.** Sustains every other secondary output division:
 
             ::
@@ -2128,7 +2122,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Set to output masks or none.
+        Set to tuple of output masks or none.
+
+        Returns tuple of output masks or none.
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.output_masks
@@ -2141,19 +2137,24 @@ class TaleaRhythmMaker(RhythmMaker):
         ..  todo:: Add examples.
 
         Set to true or false.
+
+        Returns true or false.
         '''
         return self._rest_tied_notes
 
     @property
     def split_divisions_by_counts(self):
-        r'''Gets secondary divisions of talea rhythm-maker.
+        r'''Gets secondary divisions.
+
+        .. todo:: Rename because the property is a noun but the name
+            reads like a verb.
 
         Secondary divisions impose a cyclic split operation on divisions.
 
         ..  container:: example
 
-            **Example 1.** Here's a talea equal to two thirty-second repeating
-            indefinitely. The maker makes four divisions equal to 12
+            **Example 1.** Here's a talea equal to two thirty-second notes
+            repeating indefinitely. Output equals four divisions of 12
             thirty-second notes each:
 
             ::
@@ -2285,9 +2286,9 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Note that the additional divisions created when using
-            `split_divisions_by_counts` are subject to `extra_counts_per_division` just like
-            other divisions.
+            Additional divisions created when using `split_divisions_by_counts`
+            are subject to `extra_counts_per_division` just like other
+            divisions.
 
         ..  container:: example
 
@@ -2375,17 +2376,19 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Set to positive integer tuple or none.
+        Set to tuple of positive integers or none.
+
+        Returns tuple of positive integers or none.
         '''
         return self._split_divisions_by_counts
 
     @property
     def talea(self):
-        r'''Gets talea of talea rhythm-maker.
+        r'''Gets talea.
 
         ..  container:: example
 
-            **Example 1.** Makes notes with no talea:
+            **Example 1.** No talea:
 
             ::
 
@@ -2423,8 +2426,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Make notes with talea of durations repeating
-            ``1/16``, ``2/16``, ``3/16``, ``4/16``:
+            **Example 2.** Talea equal to durations ``1/16``, ``2/16``,
+            ``3/16``, ``4/16`` repeating indefinitely:
 
             ::
 
@@ -2475,6 +2478,8 @@ class TaleaRhythmMaker(RhythmMaker):
                 }
 
         Set to talea or none.
+
+        Returns talea or none.
         '''
         return self._talea
 
@@ -2483,17 +2488,23 @@ class TaleaRhythmMaker(RhythmMaker):
         r'''Is true when talea rhythm-maker should tie split notes.
         Otherwise false.
 
+        ..  todo:: Add examples.
+
         Set to true or false.
+
+        Returns true or false.
         '''
         return self._tie_split_notes
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of talea rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
-        ..  note:: not yet implemented.
+        ..  todo:: Add examples.
 
         Set to tuplet spelling specifier or none.
+
+        Returns tuplet spelling specifier or none.
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.tuplet_spelling_specifier
