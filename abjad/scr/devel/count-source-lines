@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 import os
 import subprocess
 from abjad.tools import systemtools
@@ -34,16 +35,16 @@ def count_source_lines():
 
 def report(source_module_names, source_lines, test_module_names, test_lines):
 
-    print 'source modules:      {}'.format(source_module_names)
-    print 'test modules:        {}'.format(test_module_names)
+    print('source modules:      {}'.format(source_module_names))
+    print('test modules:        {}'.format(test_module_names))
 
-    print
-    print 'source lines:        {}'.format(source_lines)
-    print 'test lines:          {}'.format(test_lines)
+    print()
+    print('source lines:        {}'.format(source_lines))
+    print('test lines:          {}'.format(test_lines))
 
-    print
-    print 'total lines:         {}'.format(source_lines + test_lines)
-    print
+    print()
+    print('total lines:         {}'.format(source_lines + test_lines))
+    print()
 
     try:
         ratio = test_lines / float(source_lines)
@@ -51,8 +52,8 @@ def report(source_module_names, source_lines, test_module_names, test_lines):
         ratio = 1
     ratio = round(ratio, 1)
 
-    print 'test-to-source ratio is {} : 1'.format(ratio)
-    print
+    print('test-to-source ratio is {} : 1'.format(ratio))
+    print()
 
 
 if __name__ == '__main__':
