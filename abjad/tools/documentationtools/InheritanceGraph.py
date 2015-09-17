@@ -221,8 +221,13 @@ class InheritanceGraph(AbjadObject):
                     )
                 graph.append(cluster)
 
+            node_name = '{}.{}'.format(
+                current_class.__module__,
+                current_class.__name__,
+                )
             node = documentationtools.GraphvizNode(
-                name='.'.join(pieces),
+                name=node_name,
+                #name='.'.join(pieces),
                 )
             node.attributes['label'] = pieces[-1]
 

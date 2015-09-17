@@ -25,6 +25,12 @@ class DocumentationManager(abctools.AbjadObject):
     root_package_name = 'abjad'
     source_directory_path_parts = ('docs', 'source')
     tools_packages_package_path = 'abjad.tools'
+    lineage_graph_addresses = (
+        'abjad',
+        'abjad.tools.abjadbooktools',
+        'experimental',
+        'ide',
+        )
 
     ### PRIVATE METHODS ###
 
@@ -464,31 +470,28 @@ class DocumentationManager(abctools.AbjadObject):
                 return str('.'.join(name[2:]))
             return str('.'.join(name))
         from abjad.tools import documentationtools
-        addresses = (
-            'abjad', 
-            'experimental', 
-            'ide',
-            'abjad.tools.abjadbooktools',
-            )
         module_name, _, class_name = cls.__module__.rpartition('.')
-        node_name = get_node_name(module_name + '.' + class_name)
+        node_name = '{}.{}'.format(cls.__module__, cls.__name__)
         importlib.import_module(module_name)
+        lineage_graph_addresses = set(self.lineage_graph_addresses)
+        lineage_graph_addresses.add(self.root_package_name)
+        lineage_graph_addresses = sorted(lineage_graph_addresses)
         lineage = documentationtools.InheritanceGraph(
-            addresses=addresses,
+            addresses=lineage_graph_addresses,
             lineage_addresses=((module_name, class_name),)
             )
         graph = lineage.__graph__()
         maximum_node_count = 30
         if maximum_node_count < len(graph.leaves):
             lineage = documentationtools.InheritanceGraph(
-                addresses=addresses,
+                addresses=lineage_graph_addresses,
                 lineage_addresses=((module_name, class_name),),
                 lineage_prune_distance=2,
                 )
             graph = lineage.__graph__()
         if maximum_node_count < len(graph.leaves):
             lineage = documentationtools.InheritanceGraph(
-                addresses=addresses,
+                addresses=lineage_graph_addresses,
                 lineage_addresses=((module_name, class_name),),
                 lineage_prune_distance=1,
                 )
