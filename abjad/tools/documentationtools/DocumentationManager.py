@@ -450,14 +450,21 @@ class DocumentationManager(abctools.AbjadObject):
 
     def _get_tools_package_graph(self, tools_package):
         from abjad.tools import documentationtools
+        lineage_graph_addresses = self._get_lineage_graph_addresses()
         inheritance_graph = documentationtools.InheritanceGraph(
-            addresses=['abjad', 'abjad.tools.abjadbooktools'],
+            addresses=lineage_graph_addresses,
             lineage_addresses=[tools_package.__package__]
             )
         lineage_graph = inheritance_graph.__graph__()
         lineage_graph.attributes['background'] = 'transparent'
         lineage_graph.attributes['rankdir'] = 'LR'
         return lineage_graph
+
+    def _get_lineage_graph_addresses(self):
+        lineage_graph_addresses = set(self.lineage_graph_addresses)
+        lineage_graph_addresses.add(self.root_package_name)
+        lineage_graph_addresses = sorted(lineage_graph_addresses)
+        return lineage_graph_addresses
 
     def _get_lineage_graph(self, cls):
         def get_node_name(original_name):
@@ -473,9 +480,7 @@ class DocumentationManager(abctools.AbjadObject):
         module_name, _, class_name = cls.__module__.rpartition('.')
         node_name = '{}.{}'.format(cls.__module__, cls.__name__)
         importlib.import_module(module_name)
-        lineage_graph_addresses = set(self.lineage_graph_addresses)
-        lineage_graph_addresses.add(self.root_package_name)
-        lineage_graph_addresses = sorted(lineage_graph_addresses)
+        lineage_graph_addresses = self._get_lineage_graph_addresses()
         lineage = documentationtools.InheritanceGraph(
             addresses=lineage_graph_addresses,
             lineage_addresses=((module_name, class_name),)
