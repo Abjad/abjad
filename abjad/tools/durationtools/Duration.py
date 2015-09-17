@@ -176,7 +176,7 @@ class Duration(AbjadObject, fractions.Fraction):
     ### SPECIAL METHODS ###
 
     def __abs__(self, *args):
-        r'''Absolute value of duration.
+        r'''Gets absolute value of duration.
 
         Returns nonnegative duration.
         '''
@@ -346,37 +346,37 @@ class Duration(AbjadObject, fractions.Fraction):
         return fractions.Fraction.__ne__(self, arg)
 
     def __neg__(self, *args):
-        r'''Negation of duration.
+        r'''Negates duration.
 
-        Returns duration.
+        Returns new duration.
         '''
         return type(self)(fractions.Fraction.__neg__(self, *args))
 
     def __pos__(self, *args):
-        r'''Positive duration.
+        r'''Get positive duration.
 
-        Returns duration.
+        Returns new duration.
         '''
         return type(self)(fractions.Fraction.__pos__(self, *args))
 
     def __pow__(self, *args):
-        r'''Duration raised to `args` power.
+        r'''Raises duration to `args` power.
 
-        Returns duration.
+        Returns new duration.
         '''
         return type(self)(fractions.Fraction.__pow__(self, *args))
 
     def __radd__(self, *args):
         r'''Adds `args` to duration.
 
-        Returns duration.
+        Returns new duration.
         '''
         return type(self)(fractions.Fraction.__radd__(self, *args))
 
     def __rdiv__(self, *args):
         r'''Divides `args` by duration.
 
-        Returns duration.
+        Returns new duration.
         '''
         return type(self)(fractions.Fraction.__rdiv__(self, *args))
 
@@ -562,7 +562,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def dot_count(self):
-        r'''Number of dots required to notate duration.
+        r'''Gets number of dots required to notate duration.
 
         ::
 
@@ -610,7 +610,8 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def equal_or_greater_assignable(self):
-        r'''Assignable duration equal to or just greater than this duration.
+        r'''Gets assignable duration equal to or just greater than this
+        duration.
 
         ::
 
@@ -650,7 +651,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def equal_or_greater_power_of_two(self):
-        r'''Duration equal or just greater power of ``2``.
+        r'''Gets duration equal or just greater power of ``2``.
 
         ::
 
@@ -684,7 +685,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def equal_or_lesser_assignable(self):
-        r'''Assignable duration equal or just less than this duration.
+        r'''Gets assignable duration equal or just less than this duration.
 
         ::
 
@@ -724,7 +725,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def equal_or_lesser_power_of_two(self):
-        r'''Duration of the form ``d**2`` equal to or just less than this
+        r'''Gets duration of the form ``d**2`` equal to or just less than this
         duration.
 
         ::
@@ -759,7 +760,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def flag_count(self):
-        r'''Number of flags required to notate duration.
+        r'''Gets number of flags required to notate duration.
 
         ::
 
@@ -828,7 +829,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def implied_prolation(self):
-        r'''Implied prolation of duration.
+        r'''Gets implied prolation.
 
         ::
 
@@ -901,7 +902,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def lilypond_duration_string(self):
-        r'''LilyPond duration string of duration.
+        r'''Gets LilyPond duration string.
 
             >>> Duration(3, 16).lilypond_duration_string
             '8.'
@@ -932,7 +933,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def pair(self):
-        '''Duration numerator and denominator.
+        '''Gets numerator and denominator.
 
         ::
 
@@ -949,7 +950,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def prolation_string(self):
-        r'''Prolation string of duration.
+        r'''Gets prolation string.
 
         ::
 
@@ -983,7 +984,14 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @property
     def reciprocal(self):
-        '''Reciprocal of duration.
+        '''Gets reciprocal.
+
+        ..  container:: example
+
+            ::
+
+                >>> Duration(3, 7).reciprocal
+                Duration(7, 3)
 
         Returns new duration.
         '''
@@ -993,7 +1001,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     @staticmethod
     def durations_to_nonreduced_fractions(durations):
-        r'''Change `durations` to nonreduced fractions sharing
+        r'''Changes `durations` to nonreduced fractions sharing
         least common denominator.
 
         ::
@@ -1254,7 +1262,7 @@ class Duration(AbjadObject, fractions.Fraction):
         return markup
 
     def with_denominator(self, denominator):
-        r'''Change this duration to new duration with `denominator`.
+        r'''Changes this duration to new duration with `denominator`.
 
         ::
 
