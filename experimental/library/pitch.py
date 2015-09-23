@@ -15,7 +15,7 @@ example_octave_transposition = pitchtools.Registration([
     ('[C4, C8)', 12)])
 __all__.append('example_octave_transposition')
 
-example_pitches_1 = datastructuretools.StatalServer([
+example_pitches_1 = datastructuretools.Server([
     [0, 1, 2, 3, 4, 5],
     [6, 7, 8, 9, 10, 11],
     [12, 13, 14, 15, 16, 17],

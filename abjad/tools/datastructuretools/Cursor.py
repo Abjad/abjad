@@ -2,7 +2,7 @@
 from abjad.tools.abctools import AbjadObject
 
 
-class StatalServerCursor(AbjadObject):
+class Cursor(AbjadObject):
     r'''A statal server cursor.
     '''
 
@@ -40,7 +40,7 @@ class StatalServerCursor(AbjadObject):
 
         Returns integer.
         '''
-        return super(StatalServerCursor, self).__hash__()
+        return super(Cursor, self).__hash__()
 
     ### PRIVATE METHODS ###
 
@@ -102,7 +102,7 @@ class StatalServerCursor(AbjadObject):
             ::
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> server = datastructuretools.StatalServer(sequence)
+                >>> server = datastructuretools.Server(sequence)
                 >>> cursor = server.make_cursor()
 
             ::
@@ -135,7 +135,7 @@ class StatalServerCursor(AbjadObject):
             ::
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> server = datastructuretools.StatalServer(sequence)
+                >>> server = datastructuretools.Server(sequence)
                 >>> cursor = server.make_cursor()
 
             ::
@@ -158,7 +158,7 @@ class StatalServerCursor(AbjadObject):
             ::
 
                 >>> sequence = [0]
-                >>> server = datastructuretools.StatalServer(sequence)
+                >>> server = datastructuretools.Server(sequence)
                 >>> cursor = server.make_cursor()
 
             ::

@@ -2,11 +2,11 @@
 from abjad import *
 
 
-def test_datastructuretools_StatalServer___eq___01():
+def test_datastructuretools_Server___eq___01():
 
-    statal_server_1 = datastructuretools.StatalServer([0, 1, 2, 3, 4])
-    statal_server_2 = datastructuretools.StatalServer([0, 1, 2, 3, 4])
-    statal_server_3 = datastructuretools.StatalServer([0, 1, 2, 3])
+    statal_server_1 = datastructuretools.Server([0, 1, 2, 3, 4])
+    statal_server_2 = datastructuretools.Server([0, 1, 2, 3, 4])
+    statal_server_3 = datastructuretools.Server([0, 1, 2, 3])
 
     assert     statal_server_1 == statal_server_1
     assert     statal_server_1 == statal_server_2

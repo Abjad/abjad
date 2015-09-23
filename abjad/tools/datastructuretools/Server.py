@@ -2,7 +2,7 @@
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class StatalServer(AbjadObject):
+class Server(AbjadObject):
     r'''Statal server.
     '''
 
@@ -38,7 +38,7 @@ class StatalServer(AbjadObject):
 
         Returns integer.
         '''
-        return super(StatalServer, self).__hash__()
+        return super(Server, self).__hash__()
 
     ### PUBLIC PROPERTIES ###
 
@@ -62,7 +62,7 @@ class StatalServer(AbjadObject):
         from abjad.tools import datastructuretools
         if isinstance(position, int):
             position = (position,)
-        cursor = datastructuretools.StatalServerCursor(
+        cursor = datastructuretools.Cursor(
             statal_server=self,
             position=position,
             reverse=reverse,
