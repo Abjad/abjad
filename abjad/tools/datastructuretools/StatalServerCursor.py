@@ -48,10 +48,10 @@ class StatalServerCursor(AbjadObject):
         result = []
         #print
         #print repr(self.position), '(position)'
-        if not self.statal_server.cyclic_tree._is_valid_level(level):
+        if not self.statal_server.source._is_valid_level(level):
             message = 'invalid level: {!r}.'.format(level)
             raise Exception(message)
-        current_node = self.statal_server.cyclic_tree.get_node_at_position(
+        current_node = self.statal_server.source.get_node_at_position(
             self.position)
         if self.reverse:
             n *= -1
@@ -93,11 +93,11 @@ class StatalServerCursor(AbjadObject):
     ### PUBLIC METHODS ###
 
     def next(self, n=1, level=-1):
-        r'''Gets manifest payload of next `n` nodes at `level`.
+        r'''Gets next `n` nodes at `level`.
 
         ..  container:: example
 
-            Gets manifest payload of nodes at level -1:
+            **Example 1.** Gets nodes at level -1:
 
             ::
 
@@ -130,7 +130,7 @@ class StatalServerCursor(AbjadObject):
 
         ..  container:: example
 
-            Gets manifest payload of nodes at level -2:
+            **Example 2.** Gets nodes at level -2:
 
             ::
 
@@ -153,8 +153,7 @@ class StatalServerCursor(AbjadObject):
 
         ..  container:: example
 
-            Gets manifest payload of nodes at level -1 for statal server of
-            length 1:
+            **Example 3.** Gets nodes at level -1:
 
             ::
 
@@ -175,7 +174,7 @@ class StatalServerCursor(AbjadObject):
                 >>> cursor.next()
                 [0]
 
-        Returns list of arbitrary values.
+        Returns list.
         '''
         return self._get_manifest_payload_of_next_n_nodes_at_level(
             n,

@@ -6,22 +6,28 @@ class StatalServer(AbjadObject):
     r'''Statal server.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_source',
+        )
+
     ### INITIALIZER ###
 
-    def __init__(self, cyclic_tree=None):
+    def __init__(self, source=None):
         from abjad.tools import datastructuretools
-        self._cyclic_tree = datastructuretools.CyclicPayloadTree(cyclic_tree)
+        self._source = datastructuretools.CyclicPayloadTree(source)
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a statal server with cyclic tree equal to
+        r'''Is true when `expr` is a statal server with source equal to
         that of this statal server. Otherwise false.
 
         Returns true or false.
         '''
         if isinstance(expr, type(self)):
-            if self.cyclic_tree == expr.cyclic_tree:
+            if self.source == expr.source:
                 return True
         return False
 
@@ -37,16 +43,14 @@ class StatalServer(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def cyclic_tree(self):
-        r'''Statal server cyclic tree.
-        '''
-        return self._cyclic_tree
+    def source(self):
+        r'''Gets source.
 
-    @property
-    def last_node(self):
-        r'''Statal server last node.
+        Set to any iterable.
+
+        Returns cyclic tree.
         '''
-        return self.last_nodes[-1]
+        return self._source
 
     ### PUBLIC METHODS ###
 
