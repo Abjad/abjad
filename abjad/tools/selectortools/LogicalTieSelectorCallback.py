@@ -88,7 +88,7 @@ class LogicalTieSelectorCallback(AbjadValueObject):
         r'''Is true if callback returns all logical ties in a single selection,
         rather than grouping by each original sub-expression.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._flatten
 
@@ -96,7 +96,7 @@ class LogicalTieSelectorCallback(AbjadValueObject):
     def pitched(self):
         r'''Is true if callback iterates pitched logical ties.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._pitched
 
@@ -104,6 +104,6 @@ class LogicalTieSelectorCallback(AbjadValueObject):
     def trivial(self):
         r'''Is true if callback iterates trivial logical ties.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._trivial

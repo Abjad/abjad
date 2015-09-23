@@ -141,7 +141,7 @@ class QGrid(AbjadObject):
         r'''True if `expr` is a q-grid with root node and next downbeat equal
         to those of this q-grid. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(expr):
             if self.root_node == expr.root_node:

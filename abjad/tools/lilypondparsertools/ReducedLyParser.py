@@ -508,7 +508,7 @@ class ReducedLyParser(abctools.Parser):
     def debug(self):
         r'''Gets debug boolean of reduced ly parser.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._debug
 

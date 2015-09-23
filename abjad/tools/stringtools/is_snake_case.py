@@ -29,7 +29,7 @@ def is_snake_case(expr):
             >>> stringtools.is_snake_case('foo bar')
             False
 
-    Returns boolean.
+    Returns true or false.
     '''
     if not isinstance(expr, six.string_types):
         return False

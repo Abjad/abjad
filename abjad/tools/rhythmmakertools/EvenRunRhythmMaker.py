@@ -696,7 +696,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Returns boolean.
+        Returns true or false.
         '''
         return RhythmMaker.tie_specifier.fget(self)
 

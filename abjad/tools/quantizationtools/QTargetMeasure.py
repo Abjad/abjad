@@ -305,6 +305,6 @@ class QTargetMeasure(AbjadObject):
             >>> q_target_measure.use_full_measure
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._use_full_measure

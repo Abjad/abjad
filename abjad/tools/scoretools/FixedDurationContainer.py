@@ -82,7 +82,7 @@ class FixedDurationContainer(Container):
         r'''Is true when preprolated duration equals target duration. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._preprolated_duration == self.target_duration
 
@@ -91,7 +91,7 @@ class FixedDurationContainer(Container):
         r'''Is true when preprolated duration does not equal target duration.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self.is_full
 
@@ -100,7 +100,7 @@ class FixedDurationContainer(Container):
         r'''Is true when preprolated duration is greater than target duration.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.target_duration < self._preprolated_duration
 
@@ -109,7 +109,7 @@ class FixedDurationContainer(Container):
         r'''Is true when preprolated duration is less than target duration.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._preprolated_duration < self.target_duration
 

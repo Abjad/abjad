@@ -651,7 +651,7 @@ class InspectionAgent(abctools.AbjadObject):
         r'''Is true when indicator that matches `prototype` is
         in effect for client. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._client._has_effective_indicator(prototype=prototype)
 
@@ -659,7 +659,7 @@ class InspectionAgent(abctools.AbjadObject):
         r'''Is true when client has one or more
         indicators that match `prototype`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._client._has_indicator(prototype=prototype)
 
@@ -671,7 +671,7 @@ class InspectionAgent(abctools.AbjadObject):
         r'''Is true when client has one or more
         spanners that match `prototype`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._client._has_spanner(
             prototype=prototype,
@@ -711,7 +711,7 @@ class InspectionAgent(abctools.AbjadObject):
                 d'4 True
                 e'4 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import indicatortools
         time_signature = self._client._get_effective(

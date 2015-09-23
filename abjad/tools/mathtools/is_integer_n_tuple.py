@@ -16,7 +16,7 @@ def is_integer_n_tuple(expr, n):
         >>> mathtools.is_integer_n_tuple((19, 20, 'text'), 3)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
 
     return isinstance(expr, tuple) and len(expr) == n and \

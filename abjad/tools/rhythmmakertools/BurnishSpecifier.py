@@ -190,7 +190,7 @@ class BurnishSpecifier(AbjadValueObject):
                 >>> burnish_specifier_3 == burnish_specifier_3
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
@@ -272,7 +272,7 @@ class BurnishSpecifier(AbjadValueObject):
                 >>> burnish_specifier_3 != burnish_specifier_3
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return AbjadValueObject.__ne__(self, expr)
 

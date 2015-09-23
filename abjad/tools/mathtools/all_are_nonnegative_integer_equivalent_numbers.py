@@ -12,7 +12,7 @@ def all_are_nonnegative_integer_equivalent_numbers(expr):
         >>> mathtools.all_are_nonnegative_integer_equivalent_numbers(expr)
         True
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

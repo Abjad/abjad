@@ -129,7 +129,7 @@ class QuantizationJob(AbjadObject):
         q-event proxies and q-grids equal to those of this quantization job.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(expr):
             if self.job_id == expr.job_id:

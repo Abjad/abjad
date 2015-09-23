@@ -38,7 +38,7 @@ class QEvent(AbjadObject):
         r'''Is true when `epxr` is a q-event with offset greater than that of this
         q-event. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(self):
             if self.offset < expr.offset:

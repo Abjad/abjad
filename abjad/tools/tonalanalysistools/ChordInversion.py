@@ -67,7 +67,7 @@ class ChordInversion(AbjadObject):
         r'''Is true when `arg` is a chord inversion with number equal to that
         of this chord inversion. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
@@ -86,7 +86,7 @@ class ChordInversion(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when chord inversion does not equal `arg`. Otherise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

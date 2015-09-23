@@ -265,7 +265,7 @@ class PitchArrayCell(AbjadObject):
     def is_first_in_row(self):
         r'''Is true when pitch array cell is first in row. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self.parent_row is not None:
             if self.column_indices[0] == 0:
@@ -276,7 +276,7 @@ class PitchArrayCell(AbjadObject):
     def is_last_in_row(self):
         r'''Is true when pitch array cell is last in row. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self.parent_row is not None:
             if self.column_indices[-1] == self.parent_row.width - 1:
@@ -424,7 +424,7 @@ class PitchArrayCell(AbjadObject):
     def matches_cell(self, arg):
         r'''Is true when pitch array cell matches `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, PitchArrayCell):
             if self.pitches == arg.pitches:

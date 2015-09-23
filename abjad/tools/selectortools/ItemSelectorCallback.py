@@ -60,7 +60,7 @@ class ItemSelectorCallback(AbjadValueObject):
 
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._apply_to_each
 

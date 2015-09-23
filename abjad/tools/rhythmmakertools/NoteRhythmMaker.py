@@ -143,7 +143,7 @@ class NoteRhythmMaker(RhythmMaker):
                 >>> maker_2 == maker_2
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return RhythmMaker.__eq__(self, arg)
 

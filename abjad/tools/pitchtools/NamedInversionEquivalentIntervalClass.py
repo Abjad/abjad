@@ -54,7 +54,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         quality string and number equal to those of this named
         inversion-equivalent interval-class. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.quality_string == arg.quality_string:
@@ -74,7 +74,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         r'''Is true when named inversion-equivalent interval-class does not equal
         `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

@@ -457,7 +457,7 @@ class Measure(FixedDurationContainer):
 
         Defaults to false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._always_format_time_signature
 
@@ -486,7 +486,7 @@ class Measure(FixedDurationContainer):
 
         Defaults to false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._automatically_adjust_time_signature
 
@@ -527,7 +527,7 @@ class Measure(FixedDurationContainer):
                 >>> measure.has_non_power_of_two_denominator
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         time_signature = self.time_signature
         return time_signature.has_non_power_of_two_denominator
@@ -564,7 +564,7 @@ class Measure(FixedDurationContainer):
                 >>> measure.has_power_of_two_denominator
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self.has_non_power_of_two_denominator
 
@@ -572,7 +572,7 @@ class Measure(FixedDurationContainer):
     def implicit_scaling(self):
         r'''Is true when measure should scale contents. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._implicit_scaling
 
@@ -651,7 +651,7 @@ class Measure(FixedDurationContainer):
 
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return FixedDurationContainer.is_full.fget(self)
 
@@ -681,7 +681,7 @@ class Measure(FixedDurationContainer):
                 >>> measure.is_misfilled
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return FixedDurationContainer.is_overfull.fget(self)
 
@@ -703,7 +703,7 @@ class Measure(FixedDurationContainer):
 
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return FixedDurationContainer.is_overfull.fget(self)
 
@@ -724,7 +724,7 @@ class Measure(FixedDurationContainer):
 
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return FixedDurationContainer.is_underfull.fget(self)
 

@@ -76,7 +76,7 @@ class PitchRange(AbjadObject):
     def __contains__(self, arg):
         r'''Is true when pitch range contains `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
@@ -118,7 +118,7 @@ class PitchRange(AbjadObject):
         r'''Is true when `expr` is a pitch range with start and stop equal
         to those of this pitch range. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
@@ -140,7 +140,7 @@ class PitchRange(AbjadObject):
         r'''Is true when start pitch of pitch range is greater than or equal to
         `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         try:
@@ -155,7 +155,7 @@ class PitchRange(AbjadObject):
         r'''Is true when start pitch of pitch range is greater than `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         try:
@@ -234,7 +234,7 @@ class PitchRange(AbjadObject):
         r'''Is true when stop pitch of pitch-range is less than or equal
         to `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         try:
@@ -249,7 +249,7 @@ class PitchRange(AbjadObject):
         r'''Is true when stop pitch of pitch-range is less than `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         try:
@@ -263,7 +263,7 @@ class PitchRange(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when pitch range does not equal `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 
@@ -404,7 +404,7 @@ class PitchRange(AbjadObject):
         comma-separated pitches enclosed in some combination of square
         brackets and round parentheses.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, str):
             return False
@@ -591,7 +591,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.start_pitch_is_included_in_range
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self._start is None:
             return True
@@ -622,7 +622,7 @@ class PitchRange(AbjadObject):
             >>> pitch_range.stop_pitch_is_included_in_range
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self._stop is None:
             return True

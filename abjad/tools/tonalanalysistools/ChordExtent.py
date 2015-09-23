@@ -44,7 +44,7 @@ class ChordExtent(AbjadObject):
         r'''Is true when `arg` is a chord extent with number equal to that of
         this chord extent. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
@@ -63,7 +63,7 @@ class ChordExtent(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when chord extent does not equal `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

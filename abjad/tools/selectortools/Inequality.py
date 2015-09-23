@@ -47,7 +47,7 @@ class Inequality(AbjadValueObject):
     def __call__(self, expr):
         r'''Calls inequality on `expr`.
 
-        Returns boolean.
+        Returns true or false.
         '''
         raise NotImplementedError
 

@@ -330,7 +330,7 @@ class GraphvizGraph(GraphvizMixin, TreeContainer):
     def is_digraph(self):
         r'''Is true when Graphviz graph is a digraph. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_digraph
 

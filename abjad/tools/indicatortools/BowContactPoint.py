@@ -97,7 +97,7 @@ class BowContactPoint(AbjadValueObject):
                 >>> point_3 < point_3
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             return self.contact_point < expr.contact_point

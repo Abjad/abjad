@@ -81,7 +81,7 @@ class GraphvizSubgraph(GraphvizGraph):
     def is_cluster(self):
         r'''Is true when Graphviz subgraph is a cluster. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_cluster
 

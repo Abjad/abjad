@@ -10,7 +10,7 @@ def all_are_positive_integer_equivalent_numbers(expr):
         >>> mathtools.all_are_positive_integer_equivalent_numbers([Fraction(4, 2), 2.0, 2])
         True
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

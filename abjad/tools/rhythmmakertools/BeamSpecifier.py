@@ -96,7 +96,7 @@ class BeamSpecifier(AbjadValueObject):
                 >>> specifier_2 == specifier_2
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.beam_each_division == arg.beam_each_division and \

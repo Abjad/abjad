@@ -163,7 +163,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             >>> mathtools.NonreducedFraction(3, 3) == 1
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.reduce() == expr
 
@@ -194,7 +194,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             >>> mathtools.NonreducedFraction(3, 3) >= 1
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.reduce() >= expr
 
@@ -206,7 +206,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             >>> mathtools.NonreducedFraction(3, 3) > 1
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.reduce() > expr
 
@@ -227,7 +227,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             >>> mathtools.NonreducedFraction(3, 3) <= 1
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.reduce() <= expr
 
@@ -239,7 +239,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             >>> mathtools.NonreducedFraction(3, 3) < 1
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.reduce() < expr
 
@@ -268,7 +268,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             >>> mathtools.NonreducedFraction(3, 3) != 'foo'
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == expr
 

@@ -58,7 +58,7 @@ class SchemeMoment(Scheme):
             >>> moment == schemetools.SchemeMoment(1, 54)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self._value == arg._value:
@@ -97,7 +97,7 @@ class SchemeMoment(Scheme):
             >>> moment < schemetools.SchemeMoment(1, 78)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self._value < arg._value:

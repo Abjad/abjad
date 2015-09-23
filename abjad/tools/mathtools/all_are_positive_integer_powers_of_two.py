@@ -24,7 +24,7 @@ def all_are_positive_integer_powers_of_two(expr):
         >>> mathtools.all_are_nonnegative_integer_powers_of_two(17)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

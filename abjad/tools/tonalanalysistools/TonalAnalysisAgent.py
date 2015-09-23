@@ -431,7 +431,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             >>> selection_2.are_scalar_notes()
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import scoretools
         direction_string = None
@@ -464,7 +464,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             >>> selection_2.are_stepwise_ascending_notes()
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import scoretools
         for left, right in sequencetools.iterate_sequence_nwise(
@@ -502,7 +502,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             >>> selection_2.are_stepwise_descending_notes()
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import scoretools
         for left, right in sequencetools.iterate_sequence_nwise(
@@ -532,7 +532,7 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             >>> selection_2.are_stepwise_notes()
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import scoretools
         for left, right in sequencetools.iterate_sequence_nwise(

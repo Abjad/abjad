@@ -27,7 +27,7 @@ class AbjadObject(AbstractBase):
         r'''Is true when ID of `expr` equals ID of Abjad object.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return id(self) == id(expr)
 
@@ -74,7 +74,7 @@ class AbjadObject(AbstractBase):
         r'''Is true when Abjad object does not equal `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == expr
 

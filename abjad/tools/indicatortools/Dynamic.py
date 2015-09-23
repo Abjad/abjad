@@ -388,6 +388,6 @@ class Dynamic(AbjadValueObject):
                 >>> Dynamic.is_dynamic_name('niente')
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return arg in Dynamic._dynamic_names

@@ -129,7 +129,7 @@ class NamedIntervalClass(IntervalClass):
         quality string and number equal to those of this named interval-class.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.direction_number == arg.direction_number:
@@ -175,7 +175,7 @@ class NamedIntervalClass(IntervalClass):
         r'''Is true when named interval-class does not equal `arg`. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

@@ -73,7 +73,7 @@ class ReSTParagraph(TreeNode):
     def wrap(self):
         r'''Gets and sets wrap flag of ReST paragraph.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._wrap
 

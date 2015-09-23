@@ -30,7 +30,7 @@ def is_assignable_integer(expr):
 
     Otherwise false.
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

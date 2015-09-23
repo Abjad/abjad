@@ -81,7 +81,7 @@ class IntervalClassSegment(Segment):
             >>> segment.has_duplicates
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         return len(pitchtools.IntervalClassSet(
@@ -101,7 +101,7 @@ class IntervalClassSegment(Segment):
             >>> interval_class_segment.is_tertian
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         inversion_equivalent_interval_class_segment = new(

@@ -167,7 +167,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
         Defaults to true.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._decrease_durations_monotonically
 

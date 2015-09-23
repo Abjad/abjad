@@ -139,7 +139,7 @@ class Parentage(SimultaneousSelection):
         r'''Is true when component has no parent.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.parent is None
 

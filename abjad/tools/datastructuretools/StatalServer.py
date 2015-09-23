@@ -33,7 +33,7 @@ class StatalServer(AbjadObject):
         r'''Is true when `expr` is a statal server with cyclic tree equal to
         that of this statal server. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             if self.cyclic_tree == expr.cyclic_tree:

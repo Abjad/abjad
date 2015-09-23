@@ -57,7 +57,7 @@ class NumberedPitch(Pitch):
         r'''Is true when `arg` can be coerced to a numbered pitch and when
         this numbered pitch equals `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         try:
             arg = type(self)(arg)
@@ -97,7 +97,7 @@ class NumberedPitch(Pitch):
         r'''Is true when `arg` can be coerced to a numbered pitch and when this
         numbered pitch is less than `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         try:
             arg = type(self)(arg)

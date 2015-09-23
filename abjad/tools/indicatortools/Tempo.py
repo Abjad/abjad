@@ -363,7 +363,7 @@ class Tempo(AbjadValueObject):
         r'''Is true when `arg` is a tempo with quarters per minute greater than
         that of this tempo. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         assert isinstance(arg, type(self)), repr(arg)
         return self.quarters_per_minute < arg.quarters_per_minute
@@ -841,7 +841,7 @@ class Tempo(AbjadValueObject):
                 >>> Tempo(Duration(1, 4), 60).is_imprecise
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self.reference_duration is not None:
             if self.units_per_minute is not None:

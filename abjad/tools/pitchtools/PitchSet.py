@@ -130,7 +130,7 @@ class PitchSet(Set):
         r'''True if pitch set is equivalent to `expr` under transposition.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         if not isinstance(expr, type(self)):
@@ -233,7 +233,7 @@ class PitchSet(Set):
     def is_pitch_class_unique(self):
         r'''Is true when pitch set is pitch-class-unique. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         numbered_pitch_class_set = pitchtools.PitchClassSet(

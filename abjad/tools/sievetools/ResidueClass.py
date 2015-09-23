@@ -74,7 +74,7 @@ class ResidueClass(BaseResidueClass):
         r'''Is true when `expr` is a residue class with module and residue equal
         to those of this residue class. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, ResidueClass):
             if self.modulo == expr.modulo:
@@ -97,7 +97,7 @@ class ResidueClass(BaseResidueClass):
         modulo equal to that of this residue class and with residue greater
         than that of this residue class. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, ResidueClass):
             if self.modulo == expr.modulo:

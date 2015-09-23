@@ -40,7 +40,7 @@ class Mode(AbjadObject):
         r'''Is true when `arg` is a mode with mode name equal to that of this
         mode. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(arg, type(self)):
             return False
@@ -65,7 +65,7 @@ class Mode(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when `arg` does not equal mode. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

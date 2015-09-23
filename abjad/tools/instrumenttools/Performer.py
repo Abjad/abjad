@@ -85,7 +85,7 @@ class Performer(AbjadObject):
         r'''Is true when `expr` is a performer with name and instruments equal to
         those of this performer. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             if self.name == expr.name:
@@ -206,7 +206,7 @@ class Performer(AbjadObject):
                 >>> performer.is_doubling
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return 1 < self.instrument_count
 

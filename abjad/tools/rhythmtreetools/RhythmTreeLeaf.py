@@ -134,7 +134,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
             >>> leaf.is_pitched
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_pitched
 

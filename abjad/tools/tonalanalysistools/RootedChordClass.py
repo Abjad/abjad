@@ -90,7 +90,7 @@ class RootedChordClass(PitchClassSet):
         and inversion equal to those of this rooted chord-class. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.root == arg.root:
@@ -112,7 +112,7 @@ class RootedChordClass(PitchClassSet):
         r'''Is true when rooted chord-class does not equal `arg`. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

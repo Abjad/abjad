@@ -53,7 +53,7 @@ class ChordSuspension(AbjadObject):
         r'''Is true when `arg` is a chord suspension when start and stop equal
         to those of this chord suspension. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.start == arg.start:
@@ -74,7 +74,7 @@ class ChordSuspension(AbjadObject):
         r'''Is true when `arg` does not equal chord suspension. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

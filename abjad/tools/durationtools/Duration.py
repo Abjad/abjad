@@ -242,7 +242,7 @@ class Duration(AbjadObject, fractions.Fraction):
         r'''Is true when duration equals `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return fractions.Fraction.__eq__(self, arg)
 
@@ -263,7 +263,7 @@ class Duration(AbjadObject, fractions.Fraction):
         r'''Is true when duration is greater than or equal to `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return fractions.Fraction.__ge__(self, arg)
 
@@ -271,7 +271,7 @@ class Duration(AbjadObject, fractions.Fraction):
         r'''Is true when duration is greater than `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return fractions.Fraction.__gt__(self, arg)
 
@@ -288,7 +288,7 @@ class Duration(AbjadObject, fractions.Fraction):
         r'''Is true when duration is less than or equal to `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return fractions.Fraction.__le__(self, arg)
 
@@ -296,7 +296,7 @@ class Duration(AbjadObject, fractions.Fraction):
         r'''Is true when duration is less than `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return fractions.Fraction.__lt__(self, arg)
 
@@ -341,7 +341,7 @@ class Duration(AbjadObject, fractions.Fraction):
         r'''Is true when duration does not equal `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return fractions.Fraction.__ne__(self, arg)
 
@@ -822,7 +822,7 @@ class Duration(AbjadObject, fractions.Fraction):
             1/15    False
             1/16    True
 
-        Returns boolean.
+        Returns true or false.
         '''
         exponent = math.log(self.denominator, 2)
         return int(exponent) == exponent
@@ -891,7 +891,7 @@ class Duration(AbjadObject, fractions.Fraction):
             15/16   True
             16/16   True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if 0 < self < 16:
             if mathtools.is_nonnegative_integer_power_of_two(
@@ -1052,7 +1052,7 @@ class Duration(AbjadObject, fractions.Fraction):
             >>> Duration.is_token('8.')
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         try:
             Duration.__new__(Duration, expr)

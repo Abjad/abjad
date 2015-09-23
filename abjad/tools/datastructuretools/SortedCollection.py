@@ -117,7 +117,7 @@ class SortedCollection(object):
     def __contains__(self, item):
         r'''Is true when sorted collection contains `item`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         k = self._key(item)
         i = bisect.bisect_left(self._keys, k)

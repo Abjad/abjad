@@ -75,7 +75,7 @@ def notes_and_chords_are_on_expected_clefs(
         ...     staff, percussion_clef_is_allowed=False)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import instrumenttools
     for note_or_chord in iterate(expr).by_class(

@@ -41,7 +41,7 @@ class TestManager(AbjadObject):
 
         Discards any lines beginning with ``%``.
 
-        Returns boolean.
+        Returns true or false.
         '''
         file_1_lines = TestManager._normalize_ly(path_1)
         file_2_lines = TestManager._normalize_ly(path_2)
@@ -70,7 +70,7 @@ class TestManager(AbjadObject):
         or timestamp information that can vary from one creation
         of a PDF to another.
 
-        Returns boolean.
+        Returns true or false.
         '''
         file_1_lines = TestManager._normalize_pdf(path_1)
         file_2_lines = TestManager._normalize_pdf(path_2)
@@ -86,7 +86,7 @@ class TestManager(AbjadObject):
 
         Trims whitespace from the end of each line.
 
-        Returns boolean.
+        Returns true or false.
         '''
         file_1_lines, file_2_lines = [], []
         with open(path_1, 'r') as file_pointer:
@@ -233,7 +233,7 @@ class TestManager(AbjadObject):
 
         Massage newlines.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(string_1, str):
             string_1 = format(string_1)

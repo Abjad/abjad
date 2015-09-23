@@ -23,7 +23,7 @@ def all_are_unequal(expr):
         >>> mathtools.all_are_unequal(17)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
 
     try:

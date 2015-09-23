@@ -33,7 +33,7 @@ def notes_and_chords_are_in_range(expr):
         >>> instrumenttools.notes_and_chords_are_in_range(staff)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import instrumenttools
 

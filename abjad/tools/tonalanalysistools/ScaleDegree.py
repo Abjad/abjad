@@ -114,7 +114,7 @@ class ScaleDegree(AbjadObject):
             >>> scale_degree == tonalanalysistools.ScaleDegree(4)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
@@ -134,7 +134,7 @@ class ScaleDegree(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when `arg` does not equal scale degree. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

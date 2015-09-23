@@ -561,7 +561,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.all_are_contiguous
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if len(self) <= 1:
             return True
@@ -596,7 +596,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory_3.all_are_nonoverlapping
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if len(self) <= 1:
             return True
@@ -632,7 +632,7 @@ class TimespanInventory(TypedList):
 
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return all(self._get_timespan(expr).is_well_formed for expr in self)
 
@@ -721,7 +721,7 @@ class TimespanInventory(TypedList):
             >>> timespan_inventory.is_sorted
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if len(self) < 2:
             return True
@@ -2090,7 +2090,7 @@ class TimespanInventory(TypedList):
             ...     time_relation)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return bool(
             self.get_timespans_that_satisfy_time_relation(time_relation))

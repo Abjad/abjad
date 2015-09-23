@@ -100,7 +100,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation_2 == time_relation_2
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             if self.inequality == expr.inequality:
@@ -159,7 +159,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation.is_fully_loaded
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.timespan is not None and self.offset is not None
 
@@ -173,7 +173,7 @@ class OffsetTimespanTimeRelation(TimeRelation):
             >>> time_relation.is_fully_unloaded
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.timespan is None and self.offset is None
 

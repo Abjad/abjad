@@ -41,7 +41,7 @@ class TypedFrozenset(TypedCollection):
         r'''Is true when typed frozen set is greater than or equal to `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__ge__(expr._collection)
@@ -49,7 +49,7 @@ class TypedFrozenset(TypedCollection):
     def __gt__(self, expr):
         r'''Is true when typed frozen set is greater than `expr`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__gt__(expr._collection)
@@ -69,7 +69,7 @@ class TypedFrozenset(TypedCollection):
         r'''Is true when typed frozen set is less than or equal to `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__le__(expr._collection)
@@ -77,7 +77,7 @@ class TypedFrozenset(TypedCollection):
     def __lt__(self, expr):
         r'''Is true when typed frozen set is less than `expr`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__lt__(expr._collection)
@@ -86,7 +86,7 @@ class TypedFrozenset(TypedCollection):
         r'''Is true when typed frozen set is not equal to `expr`. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__ne__(expr._collection)
@@ -154,7 +154,7 @@ class TypedFrozenset(TypedCollection):
         r'''Is true when typed frozen set shares no elements with `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.isdisjoint(expr._collection)
@@ -163,7 +163,7 @@ class TypedFrozenset(TypedCollection):
         r'''Is true when typed frozen set is a subset of `expr`. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.issubset(expr._collection)
@@ -172,7 +172,7 @@ class TypedFrozenset(TypedCollection):
         r'''Is true when typed frozen set is a superset of `expr`. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.issuperset(expr._collection)

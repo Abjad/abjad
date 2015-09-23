@@ -16,7 +16,7 @@ def is_n_tuple(expr, n):
         >>> mathtools.is_n_tuple((19, 20, 21), 4)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
 
     return isinstance(expr, tuple) and len(expr) == n

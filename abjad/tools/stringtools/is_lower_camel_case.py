@@ -28,7 +28,7 @@ def is_lower_camel_case(expr):
             >>> stringtools.is_lower_camel_case('FooBar')
             False
 
-    Returns boolean.
+    Returns true or false.
     '''
     if not isinstance(expr, six.string_types):
         return False

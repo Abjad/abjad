@@ -66,7 +66,7 @@ class ImageRenderSpecifier(abctools.AbjadValueObject):
         r'''Is true if image should not be resized.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._no_resize
 
@@ -75,7 +75,7 @@ class ImageRenderSpecifier(abctools.AbjadValueObject):
         r'''Is true if no stylesheet should be used with image at all.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._no_stylesheet
 
@@ -84,7 +84,7 @@ class ImageRenderSpecifier(abctools.AbjadValueObject):
         r'''Is true if image should not be trimmed of whitespace. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._no_trim
 

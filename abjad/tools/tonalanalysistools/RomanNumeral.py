@@ -79,7 +79,7 @@ class RomanNumeral(AbjadObject):
         extent, inversion and suspension equal to those of this roman numeral.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.scale_degree == arg.scale_degree:
@@ -102,7 +102,7 @@ class RomanNumeral(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when roman numeral does not equal `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

@@ -111,7 +111,7 @@ class CountsSelectorCallback(AbjadValueObject):
     def cyclic(self):
         r'''Gets counts selector callback cyclicity.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._cyclic
 
@@ -127,7 +127,7 @@ class CountsSelectorCallback(AbjadValueObject):
     def nonempty(self):
         r'''Gets counts selector callback nonempty flag.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._nonempty
 
@@ -135,7 +135,7 @@ class CountsSelectorCallback(AbjadValueObject):
     def overhang(self):
         r'''Gets counts selector callback overhang flag.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._overhang
 
@@ -143,6 +143,6 @@ class CountsSelectorCallback(AbjadValueObject):
     def rotate(self):
         r'''Gets counts selector callback rotate flag.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._rotate

@@ -95,7 +95,7 @@ class StorageFormatSpecification(AbjadObject):
         r'''Is true when storage specification is bracketed.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_bracketed
 
@@ -103,7 +103,7 @@ class StorageFormatSpecification(AbjadObject):
     def is_indented(self):
         r'''Is true when storage format is indented. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_indented
 

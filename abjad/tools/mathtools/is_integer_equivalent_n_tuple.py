@@ -16,7 +16,7 @@ def is_integer_equivalent_n_tuple(expr, n):
         >>> mathtools.is_integer_equivalent_n_tuple((2.5, '3', Fraction(4, 1)), 3)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

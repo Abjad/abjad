@@ -37,7 +37,7 @@ def is_snake_case_file_name_with_extension(expr):
             >>> stringtools.is_snake_case_file_name_with_extension('foo.bar.blah')
             False
 
-    Returns boolean.
+    Returns true or false.
     '''
     if not isinstance(expr, six.string_types):
         return False

@@ -140,7 +140,7 @@ class PitchClassSegment(Segment):
     def is_equivalent_under_transposition(self, expr):
         r'''True if equivalent under transposition to `expr`. Otherwise False.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         if not isinstance(expr, type(self)):
@@ -408,7 +408,7 @@ class PitchClassSegment(Segment):
             >>> pitch_class_segment.has_duplicates
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         return len(pitchtools.PitchClassSet(self)) < len(self)

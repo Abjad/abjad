@@ -38,7 +38,7 @@ class Selection(object):
     def __contains__(self, expr):
         r'''Is true when `expr` is in selection. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return expr in self._music
 
@@ -47,7 +47,7 @@ class Selection(object):
         and when music of selection equals music of `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             return self._music == expr._music
@@ -148,7 +148,7 @@ class Selection(object):
     def __ne__(self, expr):
         r'''Is true when selection does not equal `expr`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == expr
 

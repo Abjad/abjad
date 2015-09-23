@@ -84,7 +84,7 @@ class VerticalMoment(SimultaneousSelection):
         r'''Is true when `expr` is a vertical moment with the same components as
         this vertical moment. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, VerticalMoment):
             if len(self) == len(expr):
@@ -119,7 +119,7 @@ class VerticalMoment(SimultaneousSelection):
         r'''Is true when `expr` does not equal this vertical moment. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == expr
 

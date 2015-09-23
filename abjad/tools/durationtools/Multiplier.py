@@ -40,6 +40,6 @@ class Multiplier(Duration):
             >>> Multiplier(3, 2).is_proper_tuplet_multiplier
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return type(self)(1, 2) < self < type(self)(2)

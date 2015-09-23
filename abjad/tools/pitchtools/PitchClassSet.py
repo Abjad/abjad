@@ -155,7 +155,7 @@ class PitchClassSet(Set):
             >>> pitch_class_set_1.is_transposed_subset(pitch_class_set_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         for n in range(12):
             if self.transpose(n).issubset(pcset):
@@ -180,7 +180,7 @@ class PitchClassSet(Set):
             >>> pitch_class_set_2.is_transposed_superset(pitch_class_set_1)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         for n in range(12):
             if self.transpose(n).issuperset(pcset):

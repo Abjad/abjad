@@ -156,7 +156,7 @@ class PayloadTree(AbjadObject):
             >>> tree[-1][-1] in tree
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return expr in self._children
 
@@ -194,7 +194,7 @@ class PayloadTree(AbjadObject):
             >>> tree_3 == tree_3
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             if self.payload is not None or expr.payload is not None:
@@ -1180,7 +1180,7 @@ class PayloadTree(AbjadObject):
 
         Works for positive, negative and zero-valued `level`.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if (0 <= level and self.level == level) or \
             self.negative_level == level:

@@ -249,7 +249,7 @@ class Sieve(BaseResidueClass):
                 >>> sieve.is_congruent_base(13)
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         tmp_min, tmp_max = -(abs(integer) + 1), abs(integer) + 1
         return integer in self.get_congruent_bases(tmp_min, tmp_max)

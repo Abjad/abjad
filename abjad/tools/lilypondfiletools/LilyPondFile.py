@@ -409,7 +409,7 @@ class LilyPondFile(AbjadObject):
                 >>> lilypond_file.use_relative_includes
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._use_relative_includes
 

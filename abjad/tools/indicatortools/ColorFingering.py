@@ -148,7 +148,7 @@ class ColorFingering(AbjadValueObject):
                 >>> fingering_3 < fingering_3
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             return self.number < expr.number

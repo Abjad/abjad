@@ -48,7 +48,7 @@ class PitchArray(AbjadObject):
     def __contains__(self, arg):
         r'''Is true when pitch array contains `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, PitchArrayRow):
             return arg in self.rows
@@ -76,7 +76,7 @@ class PitchArray(AbjadObject):
         r'''Is true when `arg` is a pitch aarray with contents equal to that of
         this pitch array. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, PitchArray):
             for self_row, arg_row in zip(self.rows, arg.rows):
@@ -154,7 +154,7 @@ class PitchArray(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when pitch array does not equal `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 
@@ -309,7 +309,7 @@ class PitchArray(AbjadObject):
     def has_voice_crossing(self):
         r'''Is true when pitch array has voice crossing. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         for column in self.columns:
             if column.has_voice_crossing:
@@ -320,7 +320,7 @@ class PitchArray(AbjadObject):
     def is_rectangular(self):
         r'''Is true when no rows in pitch array are defective. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return all(not row.is_defective for row in self.rows)
 
@@ -621,7 +621,7 @@ class PitchArray(AbjadObject):
         r'''Is true when pitch array has one or more spanning cells over `index`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         rows = self.rows
         return any(row.has_spanning_cell_over_index(index) for row in rows)

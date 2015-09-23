@@ -72,7 +72,7 @@ class CodeBlockSpecifier(abctools.AbjadValueObject):
     def allow_exceptions(self):
         r'''Is true if code block allows exceptions. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._allow_exceptions
 
@@ -80,7 +80,7 @@ class CodeBlockSpecifier(abctools.AbjadValueObject):
     def hide(self):
         r'''Is true if code block should be hidden. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._hide
 
@@ -89,7 +89,7 @@ class CodeBlockSpecifier(abctools.AbjadValueObject):
         r'''Is true if code block should strip Python prompt from output.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._strip_prompt
 

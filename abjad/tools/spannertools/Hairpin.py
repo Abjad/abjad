@@ -292,7 +292,7 @@ class Hairpin(Spanner):
             >>> spannertools.Hairpin._is_hairpin_token(('f', '<', 'p'))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         Dynamic = indicatortools.Dynamic
         if (isinstance(arg, tuple) and
@@ -447,7 +447,7 @@ class Hairpin(Spanner):
                 >>> hairpin.include_rests
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._include_rests
 

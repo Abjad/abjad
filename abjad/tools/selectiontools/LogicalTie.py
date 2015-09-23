@@ -105,7 +105,7 @@ class LogicalTie(ContiguousSelection):
     def all_leaves_are_in_same_parent(self):
         r'''Is true when all leaves in logical tie are in same parent.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return mathtools.all_are_equal(
             [leaf._parent for leaf in self.leaves])
@@ -123,7 +123,7 @@ class LogicalTie(ContiguousSelection):
     def is_pitched(self):
         r'''Is true when logical tie head is a note or chord.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import scoretools
         return isinstance(self.head, (scoretools.Note, scoretools.Chord))
@@ -132,7 +132,7 @@ class LogicalTie(ContiguousSelection):
     def is_trivial(self):
         r'''Is true when length of logical tie is less than or equal to ``1``.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return len(self) <= 1
 

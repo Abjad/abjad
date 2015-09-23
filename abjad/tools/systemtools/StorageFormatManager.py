@@ -20,7 +20,7 @@ class StorageFormatManager(AbjadObject):
     def accepts_kwargs(subject):
         r'''Is true when `subject` accepts \*\*kwargs. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         args, varargs, varkw, defaults = inspect.getargspec(subject.__init__)
         if varkw is not None:
@@ -31,7 +31,7 @@ class StorageFormatManager(AbjadObject):
     def compare(object_one, object_two):
         r'''Compares `object_one` to `object_two`.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(object_two, type(object_one)):
             return False
@@ -671,7 +671,7 @@ class StorageFormatManager(AbjadObject):
     def is_instance(subject):
         r'''Is true when `subject` is instance. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(subject, type):
             return False

@@ -257,6 +257,6 @@ class GroupedRhythmicStavesScoreTemplate(AbjadObject):
         r'''Is true if template should attach percussion clefs. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._with_clefs

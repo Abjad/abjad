@@ -16,7 +16,7 @@ def is_integer_singleton(expr):
         >>> mathtools.is_integer_singleton(('text',))
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
 
     return isinstance(expr, tuple) and \

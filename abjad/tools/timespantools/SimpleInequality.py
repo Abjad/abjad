@@ -167,7 +167,7 @@ class SimpleInequality(AbjadObject):
         ):
         r'''Evalutes simple inequality.
 
-        Returns boolean.
+        Returns true or false.
         '''
         template = self.template
         template = template.replace(
@@ -189,7 +189,7 @@ class SimpleInequality(AbjadObject):
         ):
         r'''Evalutes offset inequality.
 
-        Returns boolean.
+        Returns true or false.
         '''
         template = self.template
         template = template.replace('timespan.start', repr(timespan_start))

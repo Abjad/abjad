@@ -73,7 +73,7 @@ class NumberedInterval(Interval):
         r'''Is true when `arg` is a numbered interval with number equal to that of
         this numbered interval. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
@@ -106,7 +106,7 @@ class NumberedInterval(Interval):
         as this numbered interval and with number greater than that of this
         numbered interval. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(arg, type(self)):
             message = 'must be numbered interval: {!r}.'

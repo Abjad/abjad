@@ -122,6 +122,6 @@ class Segment(TypedTuple):
     def has_duplicates(self):
         r'''Is true when segment has duplicates. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         raise NotImplementedError

@@ -128,7 +128,7 @@ class NamedPitchClass(PitchClass):
             >>> pitch_class == 'ds'
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             return self.pitch_class_name == \

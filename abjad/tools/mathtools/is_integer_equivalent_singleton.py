@@ -16,7 +16,7 @@ def is_integer_equivalent_singleton(expr):
         >>> mathtools.is_integer_equivalent_singleton((2.5,))
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

@@ -165,7 +165,7 @@ class Clef(AbjadValueObject):
                 >>> clef_2 != clef_2
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         superclass = super(Clef, self)
         return superclass.__ne__(arg)

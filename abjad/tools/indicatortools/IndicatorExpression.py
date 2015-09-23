@@ -260,7 +260,7 @@ class IndicatorExpression(AbjadValueObject):
     def is_annotation(self):
         r'''Is true if indicator expression is annotative.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_annotation
 

@@ -86,7 +86,7 @@ class RotationCounter(TypedCounter):
         r'''Is true if rotation counter should be auto-incremented.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._autoincrement
 

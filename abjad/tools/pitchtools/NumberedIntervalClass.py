@@ -104,7 +104,7 @@ class NumberedIntervalClass(IntervalClass):
         r'''Is true when `arg` is a numbered interval-class with number equal to
         that of this numbered interval-class. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:

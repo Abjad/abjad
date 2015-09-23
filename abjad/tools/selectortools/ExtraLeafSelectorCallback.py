@@ -60,7 +60,7 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
     def with_next_leaf(self):
         r'''Gets next leaf inclusion.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._with_next_leaf
 
@@ -68,6 +68,6 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
     def with_previous_leaf(self):
         r'''Gets previous leaf inclusion.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._with_previous_leaf

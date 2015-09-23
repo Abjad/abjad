@@ -24,7 +24,7 @@ def all_are_pairs(expr):
         >>> mathtools.all_are_pairs('foo')
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
 
     try:

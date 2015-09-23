@@ -140,7 +140,7 @@ class StaffLinesSpanner(Spanner):
         This is useful when the final leaf of a score is covered by a staff
         lines spanner, to prevent unexpected LilyPond typesetting behavior.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._forbid_restarting
 

@@ -68,7 +68,7 @@ class QEventProxy(AbjadObject):
         r'''Is true when `expr` is a q-event proxy with offset and q-event
         equal to those of this q-event proxy. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(expr):
             if self.offset == expr.offset:

@@ -51,7 +51,7 @@ class Infinity(AbjadObject):
     def __eq__(self, expr):
         r'''Is true when `expr` is also infinity. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             return self._value == expr._value
@@ -60,14 +60,14 @@ class Infinity(AbjadObject):
     def __ge__(self, expr):
         r''' True for all values of `expr`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._value >= expr
 
     def __gt__(self, expr):
         r'''True for all noninfinite values of `expr`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._value > expr
 
@@ -83,14 +83,14 @@ class Infinity(AbjadObject):
     def __le__(self, expr):
         r'''Is true when `expr` is infinite. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._value <= expr
 
     def __lt__(self, expr):
         r'''True for no values of `expr`.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._value < expr
 

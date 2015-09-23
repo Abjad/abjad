@@ -31,7 +31,7 @@ class TerminalQEvent(QEvent):
         r'''Is true when `expr` is a terminal q-event with offset equal to that
         of this terminal q-event. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(expr) and \
             self.offset == expr.offset:

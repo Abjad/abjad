@@ -314,6 +314,6 @@ class MeasurewiseQSchema(QSchema):
     def use_full_measure(self):
         r'''The full-measure-as-beatspan default.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._use_full_measure

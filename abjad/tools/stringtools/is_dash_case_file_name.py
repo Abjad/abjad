@@ -36,7 +36,7 @@ def is_dash_case_file_name(expr):
             >>> stringtools.is_dash_case_file_name('foo.bar.blah')
             False
 
-    Returns boolean.
+    Returns true or false.
     '''
     if not isinstance(expr, six.string_types):
         return False

@@ -630,7 +630,7 @@ class MetricModulation(AbjadObject):
                 >>> metric_modulation_3 == metric_modulation_3
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             if self.ratio == expr.ratio:

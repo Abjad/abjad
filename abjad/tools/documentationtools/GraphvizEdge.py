@@ -139,7 +139,7 @@ class GraphvizEdge(GraphvizMixin):
     def is_directed(self):
         r'''Is true when Graphviz edge is directed. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_directed
 

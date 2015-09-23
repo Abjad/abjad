@@ -25,7 +25,7 @@ def all_are_numbers(expr):
         >>> mathtools.all_are_numbers(17)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
 
     try:

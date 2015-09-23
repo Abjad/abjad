@@ -198,7 +198,7 @@ class Accidental(AbjadObject):
         r'''Is true when `arg` is an accidental with an abbreviation equal to that
         of this accidental. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.abbreviation == arg.abbreviation:
@@ -209,7 +209,7 @@ class Accidental(AbjadObject):
         r'''Is true when `arg` is an accidental with semitones less than or equal
         to those of this accidental. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.semitones >= arg.semitones
 
@@ -224,7 +224,7 @@ class Accidental(AbjadObject):
         r'''Is true when `arg` is an accidental with semitones less than
         those of this accidental. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.semitones > arg.semitones
 
@@ -241,7 +241,7 @@ class Accidental(AbjadObject):
         r'''Is true when `arg` is an accidental with semitones greater than or
         equal to those of this accidental. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.semitones <= arg.semitones
 
@@ -249,14 +249,14 @@ class Accidental(AbjadObject):
         r'''Is true when `arg` is an accidental with semitones greater than those
         of this accidental. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.semitones < arg.semitones
 
     def __ne__(self, arg):
         r'''Is true when accidental does not equal `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 
@@ -336,7 +336,7 @@ class Accidental(AbjadObject):
         The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this
         predicate.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, str):
             return False
@@ -356,7 +356,7 @@ class Accidental(AbjadObject):
         The regex ``^([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)$`` underlies this
         predicate.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, str):
             return False
@@ -389,7 +389,7 @@ class Accidental(AbjadObject):
             >>> accidental.is_adjusted
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_adjusted
 

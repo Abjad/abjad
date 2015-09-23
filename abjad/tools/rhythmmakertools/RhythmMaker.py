@@ -100,7 +100,7 @@ class RhythmMaker(AbjadValueObject):
         r'''Is true when `expr` is a rhythm-maker with type and public
         properties equal to those of this rhythm-maker. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)

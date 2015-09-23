@@ -27,7 +27,7 @@ class TypedCollection(AbjadObject):
         r'''Is true when typed collection container `item`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         try:
             item = self._item_coercer(item)
@@ -39,7 +39,7 @@ class TypedCollection(AbjadObject):
         r'''Is true when `expr` is a typed collection with items that compare
         equal to those of this typed collection. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             return self._collection == expr._collection
@@ -94,7 +94,7 @@ class TypedCollection(AbjadObject):
         r'''Is true when `expr` is not a typed collection with items equal to
         this typed collection. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self.__eq__(expr)
 

@@ -52,7 +52,7 @@ class Spanner(AbjadObject):
         r'''Is true when spanner contains `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         for x in self._components:
             if x is expr:
@@ -115,7 +115,7 @@ class Spanner(AbjadObject):
 
         Trivial comparison to allow doctests to work.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, Spanner):
             raise TypeError

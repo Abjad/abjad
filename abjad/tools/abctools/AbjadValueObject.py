@@ -29,7 +29,7 @@ class AbjadValueObject(AbjadObject):
         r'''Is true when all initialization values of Abjad value object equal
         the initialization values of `expr`.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)

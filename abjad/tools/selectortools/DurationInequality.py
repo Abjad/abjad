@@ -67,7 +67,7 @@ class DurationInequality(Inequality):
     def __call__(self, expr):
         r'''Calls duration inequality on `expr`.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, scoretools.Component):
             duration = inspect_(expr).get_duration()

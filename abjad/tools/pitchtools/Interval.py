@@ -57,7 +57,7 @@ class Interval(AbjadObject):
         r'''Is true when `arg` is an interval with number and direction
         equal to those of this interval. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if arg.number == self.number:
@@ -93,7 +93,7 @@ class Interval(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when interval does not equal `arg`.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 
@@ -153,7 +153,7 @@ class Interval(AbjadObject):
 
         The regex ``^([+,-]?)(M|m|P|aug|dim)(\d+)$`` underlies this predicate.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, str):
             return False
@@ -171,7 +171,7 @@ class Interval(AbjadObject):
 
         The regex ``^M|m|P|aug|dim$`` underlies this predicate.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, str):
             return False

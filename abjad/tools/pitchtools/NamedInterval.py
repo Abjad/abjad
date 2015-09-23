@@ -179,7 +179,7 @@ class NamedInterval(Interval):
             >>> interval == pitchtools.NamedInterval('-M9')
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.quality_string == arg.quality_string:
@@ -245,7 +245,7 @@ class NamedInterval(Interval):
             >>> interval < pitchtools.NamedInterval('+M2')
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:
@@ -281,7 +281,7 @@ class NamedInterval(Interval):
         r'''Is true when `arg` does not equal this named interval. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

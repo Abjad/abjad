@@ -16,7 +16,7 @@ def is_null_tuple(expr):
         >>> mathtools.is_null_tuple((19, 20, 21))
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
 
     return isinstance(expr, tuple) and not len(expr)

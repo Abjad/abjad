@@ -16,7 +16,7 @@ def is_integer_equivalent_pair(expr):
         >>> mathtools.is_integer_equivalent_pair((2.5, '3'))
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

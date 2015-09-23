@@ -78,7 +78,7 @@ class StaffPosition(AbjadObject):
                 >>> staff_position_1 == 'foo'
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(other, type(self)):
             return self.number == other.number

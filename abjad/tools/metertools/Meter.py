@@ -426,7 +426,7 @@ class Meter(AbjadObject):
         r'''Is true when `expr` is a meter with an rtm format equal to that of
         this meter. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(expr):
             if self.rtm_format == expr.rtm_format:
@@ -931,7 +931,7 @@ class Meter(AbjadObject):
                         1/4
                         1/4))))
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._decrease_durations_monotonically
 

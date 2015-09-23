@@ -138,7 +138,7 @@ class TypedOrderedDict(TypedCollection):
     def __cmp__(self, expr):
         r'''Aliases OrderedDict.__cmp__().
 
-        Returns boolean.
+        Returns true or false.
         '''
         assert isinstance(expr, type(self))
         ordered_dictionary = expr._collection
@@ -147,7 +147,7 @@ class TypedOrderedDict(TypedCollection):
     def __contains__(self, key):
         r'''Aliases OrderedDict.__contains__().
 
-        Returns boolean.
+        Returns true or false.
         '''
         return key in self._collection
 
@@ -162,7 +162,7 @@ class TypedOrderedDict(TypedCollection):
         r'''Is true when typed ordered dictionary is greater than or equal
         to `expr`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__ge__(expr._collection)
@@ -178,7 +178,7 @@ class TypedOrderedDict(TypedCollection):
         r'''Is true when typed ordered dictionary is greater than `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__gt__(expr._collection)
@@ -187,7 +187,7 @@ class TypedOrderedDict(TypedCollection):
         r'''Is true when typed ordered dictionary is less than or equal
         to `expr`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__le__(expr._collection)
@@ -196,7 +196,7 @@ class TypedOrderedDict(TypedCollection):
         r'''Is true when typed ordered dictionary is less than `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self._collection.__lt__(expr._collection)
@@ -205,7 +205,7 @@ class TypedOrderedDict(TypedCollection):
         r'''Is true when typed ordered dictionary is not equal to `expr`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == expr
 
@@ -275,7 +275,7 @@ class TypedOrderedDict(TypedCollection):
     def has_key(self, key):
         r'''Aliases OrderdDict.has_key().
 
-        Returns boolean.
+        Returns true or false.
         '''
         return key in self._collection
 

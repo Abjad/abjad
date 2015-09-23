@@ -333,7 +333,7 @@ class DuratedComplexBeam(ComplexBeam):
 
         Defaults to true.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._nibs_towards_nonbeamable_components
 

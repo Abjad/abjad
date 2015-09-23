@@ -12,7 +12,7 @@ class LilyPondNameManager(AbjadObject):
         r'''Is true when `arg` is a LilyPond name manager with attribute pairs
         equal to those of this LilyPond name manager. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             return self._get_attribute_pairs() == arg._get_attribute_pairs()

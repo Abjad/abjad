@@ -45,7 +45,7 @@ class ChordQuality(AbjadObject):
         r'''Is true when `arg` is a chord quality with quality string equal to
         that of this chord quality. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.quality_string == arg.quality_string:
@@ -64,7 +64,7 @@ class ChordQuality(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when chord quality does not equal `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 
@@ -81,7 +81,7 @@ class ChordQuality(AbjadObject):
     def is_uppercase(self):
         r'''Is true when chord quality is uppercase. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.quality_string in self._uppercase_quality_strings
 

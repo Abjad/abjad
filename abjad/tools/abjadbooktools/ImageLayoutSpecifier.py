@@ -77,6 +77,6 @@ class ImageLayoutSpecifier(abctools.AbjadValueObject):
     def with_thumbnail(self):
         r'''Is true if image should have a thumbnail.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._with_thumbnail

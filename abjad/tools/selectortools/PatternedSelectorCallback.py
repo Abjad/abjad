@@ -74,7 +74,7 @@ class PatternedSelectorCallback(AbjadValueObject):
         r'''Is true if patterned selector callback is applied against each
         subexpression. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._apply_to_each
 

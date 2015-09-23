@@ -17,7 +17,7 @@ def all_are_positive_integers(expr):
         >>> mathtools.all_are_positive_integers(17)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

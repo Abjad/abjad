@@ -100,7 +100,7 @@ class ProgressIndicator(ContextManager):
         r'''Is true if progress indicator prints in red when its progress goes
         above zero. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_warning
 
@@ -132,6 +132,6 @@ class ProgressIndicator(ContextManager):
     def verbose(self):
         r'''Is true if progress indicator prints status. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._verbose

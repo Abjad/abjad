@@ -52,7 +52,7 @@ class PitchedQEvent(QEvent):
         attachments and index equal to those of this pitched q-event. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(expr) and \
             self.offset == expr.offset and \

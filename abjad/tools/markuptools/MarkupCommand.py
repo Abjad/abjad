@@ -168,7 +168,7 @@ class MarkupCommand(AbjadValueObject):
         r'''Is true when `expr` is a markup command with command and
         args equal to those of this markup command. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             if self.command == expr.command:
@@ -350,7 +350,7 @@ class MarkupCommand(AbjadValueObject):
 
         Defaults to false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._force_quotes
 

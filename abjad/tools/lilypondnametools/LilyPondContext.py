@@ -733,7 +733,7 @@ class LilyPondContext(abctools.AbjadValueObject):
             >>> context.is_custom
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.ly import contexts
         return bool(contexts[self.name].get('is_custom', False))
@@ -781,7 +781,7 @@ class LilyPondContext(abctools.AbjadValueObject):
             [X] VaticanaVoice
             [X] Voice
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not self.accepts:
             return True
@@ -830,7 +830,7 @@ class LilyPondContext(abctools.AbjadValueObject):
             [ ] VaticanaVoice
             [ ] Voice
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not self.accepts:
             return False
@@ -883,7 +883,7 @@ class LilyPondContext(abctools.AbjadValueObject):
             [ ] VaticanaVoice
             [ ] Voice
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not self.accepts:
             return False
@@ -936,7 +936,7 @@ class LilyPondContext(abctools.AbjadValueObject):
             [ ] VaticanaVoice
             [ ] Voice
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not self.accepts:
             return False
@@ -989,7 +989,7 @@ class LilyPondContext(abctools.AbjadValueObject):
             [ ] VaticanaVoice
             [ ] Voice
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not any([
             self.is_global_context,

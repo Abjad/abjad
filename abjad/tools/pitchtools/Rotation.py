@@ -180,6 +180,6 @@ class Rotation(AbjadValueObject):
                 >>> operator_.transpose
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._transpose

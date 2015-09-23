@@ -17,7 +17,7 @@ def all_are_nonnegative_integers(expr):
         >>> mathtools.all_are_nonnegative_integers([0, 1, 2, -99])
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

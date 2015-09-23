@@ -47,7 +47,7 @@ class CyclicTuple(AbjadObject, tuple):
         r'''Is true when `expr` is a tuple with items equal to those of this
         cyclic tuple. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return tuple.__eq__(self, expr)
 

@@ -43,7 +43,7 @@ class NonreducedRatio(AbjadValueObject):
     def __contains__(self, expr):
         r'''Is true when ratio contains `expr`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return expr in self._numbers
 
@@ -51,7 +51,7 @@ class NonreducedRatio(AbjadValueObject):
         r'''Is true when `expr` is a nonreduced ratio with numerator and
         denominator equal to those of this nonreduced ratio. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         expr = type(self)(expr)
         return self.numbers == expr.numbers

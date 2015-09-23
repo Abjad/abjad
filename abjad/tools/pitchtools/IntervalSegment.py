@@ -133,7 +133,7 @@ class IntervalSegment(Segment):
             >>> segment.has_duplicates
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         return len(pitchtools.IntervalSet(self)) < len(self)

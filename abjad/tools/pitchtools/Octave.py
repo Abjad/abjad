@@ -119,7 +119,7 @@ class Octave(AbjadObject):
                 >>> octave == 'foo'
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         try:
             other = type(self)(other)
@@ -349,7 +349,7 @@ class Octave(AbjadObject):
 
         The regex ``^,+|'+|$`` underlies this predicate.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, str):
             return False

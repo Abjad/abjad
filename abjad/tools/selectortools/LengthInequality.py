@@ -63,7 +63,7 @@ class LengthInequality(Inequality):
     def __call__(self, expr):
         r'''Calls length inequality on `expr`.
 
-        Returns boolean.
+        Returns true or false.
         '''
         length = len(expr)
         result = self._operator_function(length, self._length)

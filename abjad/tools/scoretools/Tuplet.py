@@ -666,7 +666,7 @@ class Tuplet(Container):
                 >>> tuplet.is_augmentation
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self.multiplier:
             return 1 < self.multiplier
@@ -720,7 +720,7 @@ class Tuplet(Container):
                 >>> tuplet.is_diminution
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self.multiplier:
             return self.multiplier < 1
@@ -828,7 +828,7 @@ class Tuplet(Container):
                 >>> tuplet.is_trivial
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.multiplier == 1
 

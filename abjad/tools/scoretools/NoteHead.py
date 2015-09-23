@@ -80,7 +80,7 @@ class NoteHead(AbjadObject):
         r'''Is true when `expr` is a note-head with written pitch equal to
         that of this note-head. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             return self.written_pitch == expr.written_pitch
@@ -126,7 +126,7 @@ class NoteHead(AbjadObject):
         r'''Is true when `expr` is a note-head with written pitch greater than
         that of this note-head. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             return self.written_pitch < expr.written_pitch
@@ -270,7 +270,7 @@ class NoteHead(AbjadObject):
             >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.is_cautionary = True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_cautionary
 
@@ -299,7 +299,7 @@ class NoteHead(AbjadObject):
             >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.is_forced = True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_forced
 
@@ -328,7 +328,7 @@ class NoteHead(AbjadObject):
             >>> note_head = scoretools.NoteHead("cs''")
             >>> note_head.is_parenthesized = True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._is_parenthesized
 

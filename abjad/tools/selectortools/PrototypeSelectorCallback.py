@@ -58,7 +58,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
         r'''Is true if selector callback returns a single, rather than nested
         selection. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._flatten
 

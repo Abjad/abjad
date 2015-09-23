@@ -28,7 +28,7 @@ def is_space_delimited_lowercase(expr):
             >>> stringtools.is_space_delimited_lowercase('foo_bar')
             False
 
-    Returns boolean.
+    Returns true or false.
     '''
     if not isinstance(expr, six.string_types):
         return False

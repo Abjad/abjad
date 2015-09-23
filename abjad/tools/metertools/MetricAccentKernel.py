@@ -91,7 +91,7 @@ class MetricAccentKernel(AbjadValueObject):
         r'''Is true when `expr` is a metrical accent kernal with a kernal equal
         to that of this metrical accent kernel. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(expr):
             if self._kernel == expr._kernel:

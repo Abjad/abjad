@@ -169,6 +169,6 @@ class Timer(ContextManager):
     def verbose(self):
         r'''Is true if timer should print messages. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._verbose

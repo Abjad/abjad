@@ -296,7 +296,7 @@ class Context(Container):
             >>> voice.is_nonsemantic
             False
 
-        Returns boolean.
+        Returns true or false.
 
         The intent of this read / write attribute is to allow composers
         to tag invisible voices used to house time signatures indications,
@@ -316,7 +316,7 @@ class Context(Container):
     def is_semantic(self):
         r'''Is true when context is semantic. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self.is_nonsemantic
 

@@ -26,7 +26,7 @@ def all_are_pairs_of_types(expr, first_type, second_type):
         >>> mathtools.all_are_pairs_of_types('foo', float, str)
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
 
     try:

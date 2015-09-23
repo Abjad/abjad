@@ -117,7 +117,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(1, 3) == timespantools.Timespan(2, 3)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, timespan)
@@ -158,7 +158,7 @@ class Timespan(BoundedObject):
             >>> timespan_1 >= timespan_2
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         assert hasattr(expr, 'start_offset'), repr(expr)
         if hasattr(expr, 'stop_offset'):
@@ -186,7 +186,7 @@ class Timespan(BoundedObject):
             >>> timespan_1 > timespan_2
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         assert hasattr(expr, 'start_offset'), repr(expr)
         if hasattr(expr, 'stop_offset'):
@@ -234,7 +234,7 @@ class Timespan(BoundedObject):
             >>> timespan_1 <= timespan_2
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         assert hasattr(expr, 'start_offset'), repr(expr)
         if hasattr(expr, 'stop_offset'):
@@ -273,7 +273,7 @@ class Timespan(BoundedObject):
             >>> timespan_2 < timespan_3
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         assert hasattr(expr, 'start_offset'), repr(expr)
         if hasattr(expr, 'stop_offset'):
@@ -300,7 +300,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(1, 3) != timespantools.Timespan(2/2, (3, 1))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == timespan
 
@@ -813,7 +813,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_closed
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return BoundedObject.is_closed.fget(self)
 
@@ -826,7 +826,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_half_closed
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return BoundedObject.is_half_closed.fget(self)
 
@@ -839,7 +839,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_half_open
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return BoundedObject.is_half_open.fget(self)
 
@@ -852,7 +852,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_left_closed
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return True
 
@@ -865,7 +865,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_left_open
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return False
 
@@ -878,7 +878,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_open
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return BoundedObject.is_open.fget(self)
 
@@ -891,7 +891,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_right_closed
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return False
 
@@ -904,7 +904,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_right_open
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return True
 
@@ -918,7 +918,7 @@ class Timespan(BoundedObject):
             >>> timespantools.Timespan(0, 10).is_well_formed
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self.start_offset < self.stop_offset
 
@@ -983,7 +983,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.contains_timespan_improperly(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1009,7 +1009,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.curtails_timespan(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1032,7 +1032,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.delays_timespan(timespan_3)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1160,7 +1160,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.happens_during_timespan(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1185,7 +1185,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.intersects_timespan(timespan_3)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1211,7 +1211,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.is_congruent_to_timespan(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1237,7 +1237,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.is_tangent_to_timespan(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if hasattr(timespan, 'start_offset'):
             if self.stop_offset == timespan.start_offset:
@@ -1265,7 +1265,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.overlaps_all_of_timespan(timespan_3)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1294,7 +1294,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.overlaps_only_start_of_timespan(timespan_4)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1323,7 +1323,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.overlaps_only_stop_of_timespan(timespan_4)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1352,7 +1352,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.overlaps_start_of_timespan(timespan_4)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1381,7 +1381,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.overlaps_stop_of_timespan(timespan_4)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1720,7 +1720,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.starts_after_offset(Offset(5))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return offset < self.start_offset
@@ -1744,7 +1744,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.starts_after_timespan_starts(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1772,7 +1772,7 @@ class Timespan(BoundedObject):
             >>> timespan_4.starts_after_timespan_stops(timespan_1)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1795,7 +1795,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.starts_at_offset(Offset(5))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return self.start_offset == offset
@@ -1816,7 +1816,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.starts_at_or_after_offset(Offset(5))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return offset <= self.start_offset
@@ -1837,7 +1837,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.starts_before_offset(Offset(5))
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return self.start_offset < offset
@@ -1859,7 +1859,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.starts_before_or_at_offset(Offset(5))
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return self.start_offset <= offset
@@ -1884,7 +1884,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.starts_before_timespan_starts(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1910,7 +1910,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.starts_before_timespan_stops(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1936,7 +1936,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.starts_during_timespan(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1962,7 +1962,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.starts_when_timespan_starts(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -1988,7 +1988,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.starts_when_timespan_stops(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -2011,7 +2011,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.starts_after_offset(Offset(5))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return offset < self.stop_offset
@@ -2035,7 +2035,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.stops_after_timespan_starts(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -2061,7 +2061,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.stops_after_timespan_stops(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -2084,7 +2084,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.stops_at_offset(Offset(5))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return self.stop_offset == offset
@@ -2105,7 +2105,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.stops_at_or_after_offset(Offset(5))
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return offset <= self.stop_offset
@@ -2126,7 +2126,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.stops_before_offset(Offset(5))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return self.stop_offset < offset
@@ -2147,7 +2147,7 @@ class Timespan(BoundedObject):
             >>> timespan_1.stops_before_or_at_offset(Offset(5))
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         offset = durationtools.Offset(offset)
         return self.stop_offset <= offset
@@ -2172,7 +2172,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.stops_before_timespan_starts(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -2198,7 +2198,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.stops_before_timespan_stops(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -2224,7 +2224,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.stops_during_timespan(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -2250,7 +2250,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.stops_when_timespan_starts(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -2276,7 +2276,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.stops_when_timespan_stops(timespan_2)
             True
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):
@@ -2415,7 +2415,7 @@ class Timespan(BoundedObject):
             >>> timespan_2.trisects_timespan(timespan_2)
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         if self._implements_timespan_interface(timespan):

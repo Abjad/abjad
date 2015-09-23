@@ -107,7 +107,7 @@ class CompoundInequality(TypedList):
         ):
         r'''Evalutes compound inequality.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         truth_values = []
@@ -143,7 +143,7 @@ class CompoundInequality(TypedList):
         ):
         r'''Evalutes offset inequality.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import timespantools
         truth_values = []

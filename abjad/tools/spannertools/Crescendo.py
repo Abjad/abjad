@@ -139,7 +139,7 @@ class Crescendo(Hairpin):
                 >>> crescendo.include_rests
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._include_rests
 

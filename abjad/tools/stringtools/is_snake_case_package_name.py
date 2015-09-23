@@ -39,7 +39,7 @@ def is_snake_case_package_name(expr):
             >>> stringtools.is_snake_case_package_name('foo.bar.BlahPackage')
             False
 
-    Returns boolean.
+    Returns true or false.
     '''
     if not isinstance(expr, six.string_types):
         return False

@@ -49,7 +49,7 @@ class RegistrationComponent(AbjadObject):
         with source pitch range and target octave start pitch equal to those of
         this registration component. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             if self.source_pitch_range == expr.source_pitch_range:

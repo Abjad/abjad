@@ -17,7 +17,7 @@ def is_fraction_equivalent_pair(expr):
         >>> mathtools.is_fraction_equivalent_pair((2, 0))
         False
 
-    Returns boolean.
+    Returns true or false.
     '''
     from abjad.tools import mathtools
 

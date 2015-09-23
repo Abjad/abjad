@@ -69,7 +69,7 @@ class Talea(AbjadValueObject):
         r'''Is true when `expr` is a talea with `counts` and `denominator`
         equal to those of this talea. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)

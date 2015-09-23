@@ -370,7 +370,7 @@ class Sequence(AbjadObject):
                 >>> Sequence().is_decreasing(strict=False)
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if strict:
             try:
@@ -446,7 +446,7 @@ class Sequence(AbjadObject):
                 >>> Sequence().is_increasing(strict=False)
                 True
 
-        Returns boolean.
+        Returns true or false.
         '''
         if strict:
             try:
@@ -492,7 +492,7 @@ class Sequence(AbjadObject):
                 >>> Sequence(1, 1, 5, 3, 2, 1).is_permutation()
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return tuple(sorted(self)) == tuple(range(len(self)))
 
@@ -524,7 +524,7 @@ class Sequence(AbjadObject):
                 >>> Sequence(0, 1, 2, 2, 7, 8).is_repetition_free()
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import sequencetools
         try:
@@ -582,7 +582,7 @@ class Sequence(AbjadObject):
         ``l[0] == 1`` and such that ``l[i] <= max(l[:i]) + 1`` for
         ``1 <= i <= len(l)``.
 
-        Returns boolean.
+        Returns true or false.
         '''
         try:
             for i, n in enumerate(self):

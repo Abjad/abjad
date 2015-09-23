@@ -35,7 +35,7 @@ class TimeRelation(AbjadObject):
     def __call__(self):
         r'''Evaluates time relation.
 
-        Returns boolean.
+        Returns true or false.
         '''
         pass
 
@@ -44,7 +44,7 @@ class TimeRelation(AbjadObject):
         r'''Is true when `expr` is a equal-valued time relation.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         pass
 
@@ -82,7 +82,7 @@ class TimeRelation(AbjadObject):
         r'''Is true when both time relation terms are not none.
         Otherwise false:
 
-        Returns boolean.
+        Returns true or false.
         '''
         pass
 
@@ -91,6 +91,6 @@ class TimeRelation(AbjadObject):
         r'''Is true when both time relation terms are none.
         Otherwise false:
 
-        Returns boolean.
+        Returns true or false.
         '''
         pass

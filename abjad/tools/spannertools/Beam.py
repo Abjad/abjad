@@ -132,7 +132,7 @@ class Beam(Spanner):
             e''8    True
             ef'2    False
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import scoretools
         if isinstance(expr, (scoretools.Note, scoretools.Chord)):

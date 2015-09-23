@@ -53,7 +53,7 @@ class SearchTree(AbjadObject):
         r'''Is true when `expr` is a search tree with definition equal to that of
         this search tree. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if type(self) == type(expr):
             if self.definition == expr.definition:

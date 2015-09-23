@@ -124,7 +124,7 @@ class NumberedPitchClass(PitchClass):
             >>> pitch_class_1 == pitch_class_2
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             return self._pitch_class_number == \

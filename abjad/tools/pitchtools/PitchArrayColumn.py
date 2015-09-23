@@ -47,7 +47,7 @@ class PitchArrayColumn(AbjadObject):
         r'''Is true when `arg` is a pitch array column with pitch array cells
         equal to those of this pitch array column. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, PitchArrayColumn):
             for self_cell, arg_cell in zip(self.cells, arg.cells):
@@ -80,7 +80,7 @@ class PitchArrayColumn(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when pitch array column does not equal `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 
@@ -238,7 +238,7 @@ class PitchArrayColumn(AbjadObject):
     def has_voice_crossing(self):
         r'''Is true when pitch array column has voice crossing. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         for upper, lower in \
             sequencetools.iterate_sequence_nwise(self.cells):
@@ -254,7 +254,7 @@ class PitchArrayColumn(AbjadObject):
         r'''Is true when pitch array column depth does not equal depth of parent
         array. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self.parent_array is not None:
             return not self.depth == self.parent_array.depth

@@ -82,7 +82,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         with number equal to that of this numbered inversion-equivalent
         interval-class. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.number == arg.number:

@@ -234,7 +234,7 @@ class PitchClass(AbjadObject):
 
         The regex ``^[a-g,A-G]$`` underlies this predicate.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, str):
             return False
@@ -257,7 +257,7 @@ class PitchClass(AbjadObject):
         The diatonic pitch-class numbers are equal to the set
         ``[0, 1, 2, 3, 4, 5, 6]``.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if expr in range(7):
             return True
@@ -275,7 +275,7 @@ class PitchClass(AbjadObject):
         The regex ``^([a-g,A-G])(([s]{1,2}|[f]{1,2}|t?q?[fs]|)!?)$`` underlies
         this predicate.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if not isinstance(expr, str):
             return False
@@ -293,7 +293,7 @@ class PitchClass(AbjadObject):
         The pitch-class numbers are equal to the set
         ``[0, 0.5, ..., 11, 11.5]``.
 
-        Returns boolean.
+        Returns true or false.
         '''
 
         return expr in [(n).__truediv__(2) for n in range(24)]

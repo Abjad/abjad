@@ -249,7 +249,7 @@ class TimeSignature(AbjadValueObject):
         tuple with first and second elements equal to numerator and denominator
         of this time signature. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             return (self.numerator == arg.numerator and
@@ -293,7 +293,7 @@ class TimeSignature(AbjadValueObject):
         r'''Is true when duration of time signature is greater than or equal to
         duration of `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             return self.duration >= arg.duration
@@ -304,7 +304,7 @@ class TimeSignature(AbjadValueObject):
         r'''Is true when duration of time signature is greater than duration of
         `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             return self.duration > arg.duration
@@ -324,7 +324,7 @@ class TimeSignature(AbjadValueObject):
         r'''Is true when duration of time signature is less than duration of
         `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             return self.duration <= arg.duration
@@ -540,7 +540,7 @@ class TimeSignature(AbjadValueObject):
                 >>> time_signature.has_non_power_of_two_denominator
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._has_non_power_of_two_denominator
 

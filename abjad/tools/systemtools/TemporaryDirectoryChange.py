@@ -84,6 +84,6 @@ class TemporaryDirectoryChange(ContextManager):
         r'''Is true if context manager prints verbose messages on entrance and
         exit. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._verbose

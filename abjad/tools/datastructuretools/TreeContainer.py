@@ -70,7 +70,7 @@ class TreeContainer(TreeNode):
             >>> b in container
             False
 
-        Returns boolean.
+        Returns true or false.
         '''
         for x in self._children:
             if x is expr:

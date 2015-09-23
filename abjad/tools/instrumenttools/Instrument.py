@@ -94,7 +94,7 @@ class Instrument(AbjadObject):
         r'''Is true when `arg` is an instrument with instrument name and short
         instrument name equal to those of this instrument. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, type(self)):
             if self.instrument_name == arg.instrument_name and \

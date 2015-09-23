@@ -327,7 +327,7 @@ class Scheme(AbjadValueObject):
     def force_quotes(self):
         r'''Is true when quotes should be forced in output. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._force_quotes
 

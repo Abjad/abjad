@@ -116,7 +116,7 @@ class OrdinalConstant(AbjadObject):
         r'''Is true when `expr` is an ordinal constant with dimension and value
         equal to those of this ordinal constant. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
             if self._dimension == expr._dimension:
@@ -170,7 +170,7 @@ class OrdinalConstant(AbjadObject):
         r'''Is true when `expr` is an ordinal with value greater than that of
         this ordinal constant. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         self._check_comparator(expr)
         return self._value < expr._value

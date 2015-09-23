@@ -83,7 +83,7 @@ class PitchArrayRow(AbjadObject):
         r'''Is true when `arg` is a pitch array row with contents equal to that of
         this pitch array row. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(arg, PitchArrayRow):
             for self_cell, arg_cell in zip(self.cells, arg.cells):
@@ -170,7 +170,7 @@ class PitchArrayRow(AbjadObject):
     def __ne__(self, arg):
         r'''Is true when pitch array row does not equal `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 
@@ -267,7 +267,7 @@ class PitchArrayRow(AbjadObject):
         r'''Is true when width of pitch array row does not equal width of parent
         pitch array. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if self.parent_array is not None:
             return not self.width == self.parent_array.width
@@ -278,7 +278,7 @@ class PitchArrayRow(AbjadObject):
         r'''Is true when all pitches in pitch array row are in pitch range of
         pitch array row. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return all(pitch in self.pitch_range for pitch in self.pitches)
 
@@ -420,7 +420,7 @@ class PitchArrayRow(AbjadObject):
         r'''Is true when pitch array row has one or more cells spanning over
         index `i`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         try:
             cell = self[i]

@@ -59,7 +59,7 @@ class Container(Component):
         r'''Is true when `expr` appears in container.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         if isinstance(expr, str):
             return expr in self._named_children

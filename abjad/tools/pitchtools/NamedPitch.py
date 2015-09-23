@@ -171,7 +171,7 @@ class NamedPitch(Pitch):
                 >>> NamedPitch('C#5') == NamedPitch('Db5')
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         try:
             arg = type(self)(arg)
@@ -210,7 +210,7 @@ class NamedPitch(Pitch):
         r'''Is true when named pitch is greater than or equal to `arg`.
         Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
@@ -237,7 +237,7 @@ class NamedPitch(Pitch):
     def __gt__(self, arg):
         r'''Is true when named pitch is greater than `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
@@ -293,7 +293,7 @@ class NamedPitch(Pitch):
         r'''Is true when named pitch is less than or equal to `arg`. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
@@ -316,7 +316,7 @@ class NamedPitch(Pitch):
     def __lt__(self, arg):
         r'''Is true when named pitch is less than `arg`. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
@@ -356,7 +356,7 @@ class NamedPitch(Pitch):
                 >>> NamedPitch("cs''") != NamedPitch("cs''")
                 False
 
-        Returns boolean.
+        Returns true or false.
         '''
         return not self == arg
 

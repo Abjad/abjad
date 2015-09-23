@@ -388,7 +388,7 @@ class _ContextMapComponent(AbjadObject):
         r'''Is true if context map component contains `key`. Otherwise
         false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         return self._as_chain_map().__contains__(key)
 
