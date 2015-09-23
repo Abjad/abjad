@@ -61,7 +61,9 @@ class CyclicTuple(AbjadObject, tuple):
         if isinstance(i, slice):
             return self.__getslice__(i.start, i.stop)
         if not self:
-            raise IndexError
+            message = 'cyclic tuple is empty: {!r}.'
+            message = message.format(self)
+            raise IndexError(message)
         i = i % len(self)
         return tuple.__getitem__(self, i)
 
