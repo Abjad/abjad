@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class StatalServer(AbjadObject):
-    r'''A statal server.
+    r'''Statal server.
     '''
 
     ### INITIALIZER ###
@@ -13,21 +13,6 @@ class StatalServer(AbjadObject):
         self._cyclic_tree = datastructuretools.CyclicPayloadTree(cyclic_tree)
 
     ### SPECIAL METHODS ###
-
-    def __call__(self, position=None, reverse=False):
-        r'''Calls statal server.
-
-        Returns statal server cursor.
-        '''
-        from abjad.tools import datastructuretools
-        if isinstance(position, int):
-            position = (position,)
-        cursor = datastructuretools.StatalServerCursor(
-            statal_server=self,
-            position=position,
-            reverse=reverse,
-            )
-        return cursor
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a statal server with cyclic tree equal to
@@ -62,3 +47,20 @@ class StatalServer(AbjadObject):
         r'''Statal server last node.
         '''
         return self.last_nodes[-1]
+
+    ### PUBLIC METHODS ###
+
+    def make_cursor(self, position=None, reverse=False):
+        r'''Makes cursor.
+
+        Returns statal server cursor.
+        '''
+        from abjad.tools import datastructuretools
+        if isinstance(position, int):
+            position = (position,)
+        cursor = datastructuretools.StatalServerCursor(
+            statal_server=self,
+            position=position,
+            reverse=reverse,
+            )
+        return cursor

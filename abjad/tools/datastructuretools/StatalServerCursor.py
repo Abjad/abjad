@@ -35,7 +35,7 @@ class StatalServerCursor(AbjadObject):
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
                 >>> server = datastructuretools.StatalServer(sequence)
-                >>> cursor = server()
+                >>> cursor = server.make_cursor()
 
             ::
 
@@ -68,7 +68,7 @@ class StatalServerCursor(AbjadObject):
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
                 >>> server = datastructuretools.StatalServer(sequence)
-                >>> cursor = server()
+                >>> cursor = server.make_cursor()
 
             ::
 
@@ -92,7 +92,7 @@ class StatalServerCursor(AbjadObject):
 
                 >>> sequence = [0]
                 >>> server = datastructuretools.StatalServer(sequence)
-                >>> cursor = server()
+                >>> cursor = server.make_cursor()
 
             ::
 
