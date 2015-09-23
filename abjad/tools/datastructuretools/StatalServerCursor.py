@@ -116,7 +116,7 @@ class StatalServerCursor(AbjadObject):
         r'''True `expr` is a statal server cursor and keyword
         argument values are equal. Otherwise false.
 
-        Returns boolean.
+        Returns true or false.
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
@@ -155,7 +155,7 @@ class StatalServerCursor(AbjadObject):
 
     @property
     def position(self):
-        r'''Statal server cursor position.
+        r'''Gets position.
 
         Returns tuple.
         '''
@@ -163,18 +163,16 @@ class StatalServerCursor(AbjadObject):
 
     @property
     def reverse(self):
-        r'''Statal server cursor reverse.
+        r'''Is true when cursor reads from left to right.
+        Is false when cursor reads from right to left.
 
-        False when cursor reads from left to right.
-        Is true when cursor reads from right to left.
-
-        Returns boolean.
+        Returns true or false.
         '''
         return self._reverse
 
     @property
     def statal_server(self):
-        r'''Statal server cursor statal server.
+        r'''Gets statal server.
 
         Returns statal server.
         '''
