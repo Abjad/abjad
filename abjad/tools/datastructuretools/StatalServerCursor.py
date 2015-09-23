@@ -24,94 +24,6 @@ class StatalServerCursor(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, n=1, level=-1):
-        r'''Gets manifest payload of next `n` nodes at `level`.
-
-        ..  container:: example
-
-            Gets manifest payload of nodes at level -1:
-
-            ::
-
-                >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> server = datastructuretools.StatalServer(sequence)
-                >>> cursor = server.make_cursor()
-
-            ::
-
-                >>> cursor()
-                [0]
-                >>> cursor()
-                [1]
-                >>> cursor()
-                [2]
-                >>> cursor()
-                [3]
-                >>> cursor()
-                [4]
-                >>> cursor()
-                [5]
-                >>> cursor()
-                [6]
-                >>> cursor()
-                [7]
-                >>> cursor()
-                [0]
-                >>> cursor()
-                [1]
-
-        ..  container:: example
-
-            Gets manifest payload of nodes at level -2:
-
-            ::
-
-                >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> server = datastructuretools.StatalServer(sequence)
-                >>> cursor = server.make_cursor()
-
-            ::
-
-                >>> cursor(level=-2)
-                [0, 1]
-                >>> cursor(level=-2)
-                [2, 3]
-                >>> cursor(level=-2)
-                [4, 5]
-                >>> cursor(level=-2)
-                [6, 7]
-                >>> cursor(level=-2)
-                [0, 1]
-
-        ..  container:: example
-
-            Gets manifest payload of nodes at level -1 for statal server of
-            length 1:
-
-            ::
-
-                >>> sequence = [0]
-                >>> server = datastructuretools.StatalServer(sequence)
-                >>> cursor = server.make_cursor()
-
-            ::
-
-                >>> cursor()
-                [0]
-                >>> cursor()
-                [0]
-                >>> cursor()
-                [0]
-                >>> cursor()
-                [0]
-                >>> cursor()
-                [0]
-
-        Returns list of arbitrary values.
-        '''
-        return self._get_manifest_payload_of_next_n_nodes_at_level(
-            n, level=level)
-
     def __eq__(self, expr):
         r'''True `expr` is a statal server cursor and keyword
         argument values are equal. Otherwise false.
@@ -177,3 +89,95 @@ class StatalServerCursor(AbjadObject):
         Returns statal server.
         '''
         return self._statal_server
+
+    ### PUBLIC METHODS ###
+
+    def next(self, n=1, level=-1):
+        r'''Gets manifest payload of next `n` nodes at `level`.
+
+        ..  container:: example
+
+            Gets manifest payload of nodes at level -1:
+
+            ::
+
+                >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
+                >>> server = datastructuretools.StatalServer(sequence)
+                >>> cursor = server.make_cursor()
+
+            ::
+
+                >>> cursor.next()
+                [0]
+                >>> cursor.next()
+                [1]
+                >>> cursor.next()
+                [2]
+                >>> cursor.next()
+                [3]
+                >>> cursor.next()
+                [4]
+                >>> cursor.next()
+                [5]
+                >>> cursor.next()
+                [6]
+                >>> cursor.next()
+                [7]
+                >>> cursor.next()
+                [0]
+                >>> cursor.next()
+                [1]
+
+        ..  container:: example
+
+            Gets manifest payload of nodes at level -2:
+
+            ::
+
+                >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
+                >>> server = datastructuretools.StatalServer(sequence)
+                >>> cursor = server.make_cursor()
+
+            ::
+
+                >>> cursor.next(level=-2)
+                [0, 1]
+                >>> cursor.next(level=-2)
+                [2, 3]
+                >>> cursor.next(level=-2)
+                [4, 5]
+                >>> cursor.next(level=-2)
+                [6, 7]
+                >>> cursor.next(level=-2)
+                [0, 1]
+
+        ..  container:: example
+
+            Gets manifest payload of nodes at level -1 for statal server of
+            length 1:
+
+            ::
+
+                >>> sequence = [0]
+                >>> server = datastructuretools.StatalServer(sequence)
+                >>> cursor = server.make_cursor()
+
+            ::
+
+                >>> cursor.next()
+                [0]
+                >>> cursor.next()
+                [0]
+                >>> cursor.next()
+                [0]
+                >>> cursor.next()
+                [0]
+                >>> cursor.next()
+                [0]
+
+        Returns list of arbitrary values.
+        '''
+        return self._get_manifest_payload_of_next_n_nodes_at_level(
+            n,
+            level=level,
+            )
