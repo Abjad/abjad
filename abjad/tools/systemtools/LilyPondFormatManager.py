@@ -97,7 +97,13 @@ class LilyPondFormatManager(AbjadObject):
         from abjad.tools.topleveltools import set_
         from abjad.tools import scoretools
         manager = LilyPondFormatManager
-        if isinstance(component, (scoretools.Leaf, scoretools.Measure)):
+        if isinstance(component, scoretools.Context):
+            for name, value in vars(set_(component)).items():
+                string = manager.format_lilypond_context_setting_in_with_block(
+                    name, value)
+                result.append(string)
+        #if isinstance(component, (scoretools.Leaf, scoretools.Measure)):
+        else:
             contextualizer = set_(component)
             variables = vars(contextualizer)
             for name, value in variables.items():
@@ -115,11 +121,6 @@ class LilyPondFormatManager(AbjadObject):
                     string = manager.format_lilypond_context_setting_inline(
                         name, value)
                     result.append(string)
-        else:
-            for name, value in vars(set_(component)).items():
-                string = manager.format_lilypond_context_setting_in_with_block(
-                    name, value)
-                result.append(string)
         result.sort()
         bundle.context_settings.extend(result)
 

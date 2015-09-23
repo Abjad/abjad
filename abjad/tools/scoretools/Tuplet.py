@@ -258,6 +258,7 @@ class Tuplet(Container):
         result.append(('comments', bundle.before.comments))
         result.append(('commands', bundle.before.commands))
         result.append(('grob overrides', bundle.grob_overrides))
+        result.append(('context settings', bundle.context_settings))
         return tuple(result)
 
     def _format_close_brackets_slot(self, bundle):
