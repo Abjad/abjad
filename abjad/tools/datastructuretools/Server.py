@@ -3,7 +3,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Server(AbjadObject):
-    r'''Statal server.
+    r'''Server.
     '''
 
     ### CLASS VARIABLES ###
@@ -21,8 +21,8 @@ class Server(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a statal server with source equal to
-        that of this statal server. Otherwise false.
+        r'''Is true when `expr` is a server with source equal to
+        that of this server. Otherwise false.
 
         Returns true or false.
         '''
@@ -32,7 +32,7 @@ class Server(AbjadObject):
         return False
 
     def __hash__(self):
-        r'''Hashes statal server.
+        r'''Hashes server.
 
         Required to be explicitly re-defined on Python 3 if __eq__ changes.
 
@@ -57,13 +57,13 @@ class Server(AbjadObject):
     def make_cursor(self, position=None, reverse=False):
         r'''Makes cursor.
 
-        Returns statal server cursor.
+        Returns cursor.
         '''
         from abjad.tools import datastructuretools
         if isinstance(position, int):
             position = (position,)
         cursor = datastructuretools.Cursor(
-            statal_server=self,
+            server=self,
             position=position,
             reverse=reverse,
             )

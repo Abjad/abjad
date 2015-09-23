@@ -3,14 +3,14 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Cursor(AbjadObject):
-    r'''A statal server cursor.
+    r'''Cursor.
     '''
 
     ### INITIALIZER ###
 
     def __init__(
         self,
-        statal_server=None,
+        server=None,
         position=None,
         reverse=False,
         ):
@@ -18,14 +18,14 @@ class Cursor(AbjadObject):
         assert isinstance(position, (tuple, type(None))), repr(position)
         assert isinstance(reverse, type(True)), repr(reverse)
         position = position or ()
-        self._statal_server = statal_server
+        self._server = server
         self._position = position
         self._reverse = reverse
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True `expr` is a statal server cursor and keyword
+        r'''True `expr` is a cursor and keyword
         argument values are equal. Otherwise false.
 
         Returns true or false.
@@ -34,7 +34,7 @@ class Cursor(AbjadObject):
         return systemtools.StorageFormatManager.compare(self, expr)
 
     def __hash__(self):
-        r'''Hashes statal server cursor.
+        r'''Hashes cursor.
 
         Required to be explicitly re-defined on Python 3 if __eq__ changes.
 
@@ -48,10 +48,10 @@ class Cursor(AbjadObject):
         result = []
         #print
         #print repr(self.position), '(position)'
-        if not self.statal_server.source._is_valid_level(level):
+        if not self.server.source._is_valid_level(level):
             message = 'invalid level: {!r}.'.format(level)
             raise Exception(message)
-        current_node = self.statal_server.source.get_node_at_position(
+        current_node = self.server.source.get_node_at_position(
             self.position)
         if self.reverse:
             n *= -1
@@ -83,12 +83,12 @@ class Cursor(AbjadObject):
         return self._reverse
 
     @property
-    def statal_server(self):
-        r'''Gets statal server.
+    def server(self):
+        r'''Gets server.
 
-        Returns statal server.
+        Returns server.
         '''
-        return self._statal_server
+        return self._server
 
     ### PUBLIC METHODS ###
 
