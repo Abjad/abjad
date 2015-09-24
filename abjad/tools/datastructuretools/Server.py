@@ -51,19 +51,3 @@ class Server(AbjadObject):
         Returns cyclic tree.
         '''
         return self._source
-
-    ### PUBLIC METHODS ###
-
-    def make_cursor(self, position=None, reverse=False):
-        r'''Makes cursor.
-
-        Returns cursor.
-        '''
-        from abjad.tools import datastructuretools
-        if isinstance(position, int):
-            position = (position,)
-        cursor = datastructuretools.Cursor(
-            source=self,
-            position=position,
-            )
-        return cursor

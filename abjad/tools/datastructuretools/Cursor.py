@@ -6,6 +6,13 @@ class Cursor(AbjadObject):
     r'''Cursor.
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_position',
+        '_source',
+        )
+
     ### INITIALIZER ###
 
     def __init__(
@@ -16,7 +23,7 @@ class Cursor(AbjadObject):
         from abjad.tools import datastructuretools
         assert isinstance(position, (int, tuple, type(None))), repr(position)
         position = position or ()
-        self._server = source
+        self._source = source
         self._position = position
 
     ### SPECIAL METHODS ###
@@ -71,7 +78,7 @@ class Cursor(AbjadObject):
 
         Returns source.
         '''
-        return self._server
+        return self._source
 
     ### PUBLIC METHODS ###
 
@@ -85,8 +92,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> source = datastructuretools.Server(sequence)
-                >>> cursor = source.make_cursor()
+                >>> server = datastructuretools.Server(sequence)
+                >>> cursor = datastructuretools.Cursor(source=server)
 
             ::
 
@@ -118,8 +125,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> source = datastructuretools.Server(sequence)
-                >>> cursor = source.make_cursor()
+                >>> server = datastructuretools.Server(sequence)
+                >>> cursor = datastructuretools.Cursor(source=server)
 
             ::
 
@@ -141,8 +148,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [0]
-                >>> source = datastructuretools.Server(sequence)
-                >>> cursor = source.make_cursor()
+                >>> server = datastructuretools.Server(sequence)
+                >>> cursor = datastructuretools.Cursor(source=server)
 
             ::
 
