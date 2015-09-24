@@ -10,15 +10,15 @@ class Cursor(AbjadObject):
 
     def __init__(
         self,
-        server=None,
+        source=None,
         position=None,
         reverse=False,
         ):
         from abjad.tools import datastructuretools
-        assert isinstance(position, (tuple, type(None))), repr(position)
+        assert isinstance(position, (int, tuple, type(None))), repr(position)
         assert isinstance(reverse, type(True)), repr(reverse)
         position = position or ()
-        self._server = server
+        self._server = source
         self._position = position
         self._reverse = reverse
 
@@ -48,10 +48,10 @@ class Cursor(AbjadObject):
         result = []
         #print
         #print repr(self.position), '(position)'
-        if not self.server.source._is_valid_level(level):
+        if not self.source.source._is_valid_level(level):
             message = 'invalid level: {!r}.'.format(level)
             raise Exception(message)
-        current_node = self.server.source.get_node_at_position(
+        current_node = self.source.source.get_node_at_position(
             self.position)
         if self.reverse:
             n *= -1
@@ -83,10 +83,10 @@ class Cursor(AbjadObject):
         return self._reverse
 
     @property
-    def server(self):
-        r'''Gets server.
+    def source(self):
+        r'''Gets source.
 
-        Returns server.
+        Returns source.
         '''
         return self._server
 
@@ -102,8 +102,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> server = datastructuretools.Server(sequence)
-                >>> cursor = server.make_cursor()
+                >>> source = datastructuretools.Server(sequence)
+                >>> cursor = source.make_cursor()
 
             ::
 
@@ -135,8 +135,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> server = datastructuretools.Server(sequence)
-                >>> cursor = server.make_cursor()
+                >>> source = datastructuretools.Server(sequence)
+                >>> cursor = source.make_cursor()
 
             ::
 
@@ -158,8 +158,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [0]
-                >>> server = datastructuretools.Server(sequence)
-                >>> cursor = server.make_cursor()
+                >>> source = datastructuretools.Server(sequence)
+                >>> cursor = source.make_cursor()
 
             ::
 

@@ -63,7 +63,7 @@ class Server(AbjadObject):
         if isinstance(position, int):
             position = (position,)
         cursor = datastructuretools.Cursor(
-            server=self,
+            source=self,
             position=position,
             reverse=reverse,
             )
