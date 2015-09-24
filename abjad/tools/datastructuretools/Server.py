@@ -65,6 +65,5 @@ class Server(AbjadObject):
         cursor = datastructuretools.Cursor(
             source=self,
             position=position,
-            reverse=reverse,
             )
         return cursor

@@ -12,21 +12,18 @@ class Cursor(AbjadObject):
         self,
         source=None,
         position=None,
-        reverse=False,
         ):
         from abjad.tools import datastructuretools
         assert isinstance(position, (int, tuple, type(None))), repr(position)
-        assert isinstance(reverse, type(True)), repr(reverse)
         position = position or ()
         self._server = source
         self._position = position
-        self._reverse = reverse
 
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''True `expr` is a cursor and keyword
-        argument values are equal. Otherwise false.
+        r'''Is true when `expr` is a cursor with keyword
+        arguments equal to this cursor. Otherwise false.
 
         Returns true or false.
         '''
@@ -46,21 +43,16 @@ class Cursor(AbjadObject):
 
     def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
         result = []
-        #print
-        #print repr(self.position), '(position)'
         if not self.source.source._is_valid_level(level):
             message = 'invalid level: {!r}.'.format(level)
             raise Exception(message)
         current_node = self.source.source.get_node_at_position(
             self.position)
-        if self.reverse:
-            n *= -1
         nodes = current_node.get_next_n_nodes_at_level(n, level)
         position = nodes[-1].position
         self._position = position
         for node in nodes:
             result.extend(node.manifest_payload)
-        #print repr(result), '(result)'
         return result
 
     ### PUBLIC PROPERTIES ###
@@ -72,15 +64,6 @@ class Cursor(AbjadObject):
         Returns tuple.
         '''
         return self._position
-
-    @property
-    def reverse(self):
-        r'''Is true when cursor reads from left to right.
-        Is false when cursor reads from right to left.
-
-        Returns true or false.
-        '''
-        return self._reverse
 
     @property
     def source(self):
