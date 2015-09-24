@@ -50,11 +50,10 @@ class Cursor(AbjadObject):
 
     def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
         result = []
-        if not self.source.source._is_valid_level(level):
+        if not self.source._is_valid_level(level):
             message = 'invalid level: {!r}.'.format(level)
             raise Exception(message)
-        current_node = self.source.source.get_node_at_position(
-            self.position)
+        current_node = self.source.get_node_at_position(self.position)
         nodes = current_node.get_next_n_nodes_at_level(n, level)
         position = nodes[-1].position
         self._position = position
@@ -92,8 +91,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> server = datastructuretools.Server(sequence)
-                >>> cursor = datastructuretools.Cursor(source=server)
+                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
+                >>> cursor = datastructuretools.Cursor(source=tree)
 
             ::
 
@@ -125,8 +124,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> server = datastructuretools.Server(sequence)
-                >>> cursor = datastructuretools.Cursor(source=server)
+                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
+                >>> cursor = datastructuretools.Cursor(source=tree)
 
             ::
 
@@ -148,8 +147,8 @@ class Cursor(AbjadObject):
             ::
 
                 >>> sequence = [0]
-                >>> server = datastructuretools.Server(sequence)
-                >>> cursor = datastructuretools.Cursor(source=server)
+                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
+                >>> cursor = datastructuretools.Cursor(source=tree)
 
             ::
 
