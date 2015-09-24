@@ -1,9 +1,61 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools.abctools import AbjadObject
 
 
 class Cursor(AbjadObject):
     r'''Cursor.
+
+    ..  container:: example
+
+        **Example 1.** Gets elements one at a time:
+
+        ::
+
+            >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+            >>> source = datastructuretools.CyclicTuple(source)
+            >>> cursor = datastructuretools.Cursor(source=source)
+
+        ::
+
+                >>> cursor.next()
+                (13,)
+                >>> cursor.next()
+                ('da capo',)
+                >>> cursor.next()
+                (Note("cs'8."),)
+                >>> cursor.next()
+                ('rit.',)
+                >>> cursor.next()
+                (13,)
+                >>> cursor.next()
+                ('da capo',)
+
+    ..  container:: example
+
+        **Example 2.** Gets different numbers of elements at a time:
+
+        ::
+
+            >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+            >>> source = datastructuretools.CyclicTuple(source)
+            >>> cursor = datastructuretools.Cursor(source=source)
+
+        ::
+
+            >>> cursor.next(count=2)
+            (13, 'da capo')
+            >>> cursor.next(count=-1)
+            ('da capo',)
+            >>> cursor.next(count=2)
+            ('da capo', Note("cs'8."))
+            >>> cursor.next(count=-1)
+            (Note("cs'8."),)
+            >>> cursor.next(count=2)
+            (Note("cs'8."), 'rit.')
+            >>> cursor.next(count=-1)
+            ('rit.',)
+
     '''
 
     ### CLASS VARIABLES ###
@@ -17,13 +69,12 @@ class Cursor(AbjadObject):
 
     def __init__(
         self,
-        source=None,
+        source=(),
         position=None,
         ):
-        from abjad.tools import datastructuretools
-        assert isinstance(position, (int, tuple, type(None))), repr(position)
-        position = position or ()
+        assert isinstance(source, collections.Iterable), repr(source)
         self._source = source
+        assert isinstance(position, (int, type(None))), repr(position)
         self._position = position
 
     ### SPECIAL METHODS ###
@@ -46,26 +97,174 @@ class Cursor(AbjadObject):
         '''
         return super(Cursor, self).__hash__()
 
-    ### PRIVATE METHODS ###
-
-    def _get_manifest_payload_of_next_n_nodes_at_level(self, n=1, level=-1):
-        result = []
-        if not self.source._is_valid_level(level):
-            message = 'invalid level: {!r}.'.format(level)
-            raise Exception(message)
-        current_node = self.source.get_node_at_position(self.position)
-        nodes = current_node.get_next_n_nodes_at_level(n, level)
-        position = nodes[-1].position
-        self._position = position
-        for node in nodes:
-            result.extend(node.manifest_payload)
-        return result
-
     ### PUBLIC PROPERTIES ###
 
     @property
     def position(self):
         r'''Gets position.
+
+        ..  container:: example
+
+            **Example 1.** Position starting at none:
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(source=source)
+
+            ::
+
+                >>> cursor.position is None
+                True
+
+            ::
+
+                >>> cursor.next()
+                (13,)
+                >>> cursor.next()
+                ('da capo',)
+                >>> cursor.next()
+                (Note("cs'8."),)
+                >>> cursor.next()
+                ('rit.',)
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(
+                ...     source=source,
+                ...     position=None,
+                ...     )
+
+            ::
+
+                >>> cursor.position is None
+                True
+
+            ::
+
+                >>> cursor.next(count=-1)
+                ('rit.',)
+                >>> cursor.next(count=-1)
+                (Note("cs'8."),)
+                >>> cursor.next(count=-1)
+                ('da capo',)
+                >>> cursor.next(count=-1)
+                (13,)
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 1.** Position starting at 0:
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(
+                ...     source=source,
+                ...     position=0,
+                ...     )
+
+            ::
+
+                >>> cursor.position
+                0
+
+            ::
+
+                >>> cursor.next()
+                (13,)
+                >>> cursor.next()
+                ('da capo',)
+                >>> cursor.next()
+                (Note("cs'8."),)
+                >>> cursor.next()
+                ('rit.',)
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(
+                ...     source=source,
+                ...     position=0,
+                ...     )
+
+            ::
+
+                >>> cursor.position
+                0
+
+            ::
+
+                >>> cursor.next(count=-1)
+                ('rit.',)
+                >>> cursor.next(count=-1)
+                (Note("cs'8."),)
+                >>> cursor.next(count=-1)
+                ('da capo',)
+                >>> cursor.next(count=-1)
+                (13,)
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 3.** Position starting at -1:
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(
+                ...     source=source,
+                ...     position=-1,
+                ...     )
+
+            ::
+
+                >>> cursor.position
+                -1
+
+            ::
+
+                >>> cursor.next()
+                ('rit.',)
+                >>> cursor.next()
+                (13,)
+                >>> cursor.next()
+                ('da capo',)
+                >>> cursor.next()
+                (Note("cs'8."),)
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(
+                ...     source=source,
+                ...     position=-1,
+                ...     )
+
+            ::
+
+                >>> cursor.position
+                -1
+
+            ::
+
+                >>> cursor.next(count=-1)
+                (Note("cs'8."),)
+                >>> cursor.next(count=-1)
+                ('da capo',)
+                >>> cursor.next(count=-1)
+                (13,)
+                >>> cursor.next(count=-1)
+                ('rit.',)
 
         Returns tuple.
         '''
@@ -75,97 +274,177 @@ class Cursor(AbjadObject):
     def source(self):
         r'''Gets source.
 
+        ..  container:: example
+
+            **Example 1.** List source:
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> cursor = datastructuretools.Cursor(source=source)
+
+            ::
+
+                >>> cursor.source
+                [13, 'da capo', Note("cs'8."), 'rit.']
+
+        ..  container:: example
+
+            **Example 2.** Cyclic tuple source:
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(source=source)
+
+            ::
+
+                >>> cursor.source
+                CyclicTuple([13, 'da capo', Note("cs'8."), 'rit.'])
+
         Returns source.
         '''
         return self._source
 
     ### PUBLIC METHODS ###
 
-    def next(self, n=1, level=-1):
-        r'''Gets next `n` nodes at `level`.
+    def next(self, count=1):
+        r'''Gets next `count` elements in source.
 
         ..  container:: example
 
-            **Example 1.** Gets nodes at level -1:
+            **Example 1.** Gets elements one at a time:
 
             ::
 
-                >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
-                >>> cursor = datastructuretools.Cursor(source=tree)
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(source=source)
 
             ::
 
                 >>> cursor.next()
-                [0]
+                (13,)
                 >>> cursor.next()
-                [1]
+                ('da capo',)
                 >>> cursor.next()
-                [2]
+                (Note("cs'8."),)
                 >>> cursor.next()
-                [3]
+                ('rit.',)
                 >>> cursor.next()
-                [4]
+                (13,)
                 >>> cursor.next()
-                [5]
-                >>> cursor.next()
-                [6]
-                >>> cursor.next()
-                [7]
-                >>> cursor.next()
-                [0]
-                >>> cursor.next()
-                [1]
+                ('da capo',)
 
         ..  container:: example
 
-            **Example 2.** Gets nodes at level -2:
+            **Example 2.** Gets elements one at a time in reverse:
 
             ::
 
-                >>> sequence = [(0, 1), (2, 3), (4, 5), (6, 7)]
-                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
-                >>> cursor = datastructuretools.Cursor(source=tree)
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(source=source)
 
             ::
 
-                >>> cursor.next(level=-2)
-                [0, 1]
-                >>> cursor.next(level=-2)
-                [2, 3]
-                >>> cursor.next(level=-2)
-                [4, 5]
-                >>> cursor.next(level=-2)
-                [6, 7]
-                >>> cursor.next(level=-2)
-                [0, 1]
+                >>> cursor.next(count=-1)
+                ('rit.',)
+                >>> cursor.next(count=-1)
+                (Note("cs'8."),)
+                >>> cursor.next(count=-1)
+                ('da capo',)
+                >>> cursor.next(count=-1)
+                (13,)
 
         ..  container:: example
 
-            **Example 3.** Gets nodes at level -1:
+            **Example 3.** Gets same two elements forward and back:
 
             ::
 
-                >>> sequence = [0]
-                >>> tree = datastructuretools.CyclicPayloadTree(sequence)
-                >>> cursor = datastructuretools.Cursor(source=tree)
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(source=source)
 
             ::
 
-                >>> cursor.next()
-                [0]
-                >>> cursor.next()
-                [0]
-                >>> cursor.next()
-                [0]
-                >>> cursor.next()
-                [0]
-                >>> cursor.next()
-                [0]
+                >>> cursor.next(count=2)
+                (13, 'da capo')
+                >>> cursor.next(count=-2)
+                ('da capo', 13)
+                >>> cursor.next(count=2)
+                (13, 'da capo')
+                >>> cursor.next(count=-2)
+                ('da capo', 13)
 
-        Returns list.
+        ..  container:: example
+
+            **Example 4.** Gets different numbers of elements at a time:
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(source=source)
+
+            ::
+
+                >>> cursor.next(count=2)
+                (13, 'da capo')
+                >>> cursor.next(count=-1)
+                ('da capo',)
+                >>> cursor.next(count=2)
+                ('da capo', Note("cs'8."))
+                >>> cursor.next(count=-1)
+                (Note("cs'8."),)
+                >>> cursor.next(count=2)
+                (Note("cs'8."), 'rit.')
+                >>> cursor.next(count=-1)
+                ('rit.',)
+
+        ..  container:: example
+
+            **Example 5.** Gets different numbers of elements at a time:
+
+            ::
+
+                >>> source = [13, 'da capo', Note("cs'8."), 'rit.']
+                >>> source = datastructuretools.CyclicTuple(source)
+                >>> cursor = datastructuretools.Cursor(source=source)
+
+            ::
+
+                >>> cursor.next(count=2)
+                (13, 'da capo')
+                >>> cursor.next(count=-3)
+                ('da capo', 13, 'rit.')
+                >>> cursor.next(count=2)
+                ('rit.', 13)
+                >>> cursor.next(count=-3)
+                (13, 'rit.', Note("cs'8."))
+                >>> cursor.next(count=2)
+                (Note("cs'8."), 'rit.')
+                >>> cursor.next(count=-3)
+                ('rit.', Note("cs'8."), 'da capo')
+
+        Raises an index error if no (more) elements exist.
+
+        Returns tuple.
         '''
-        return self._get_manifest_payload_of_next_n_nodes_at_level(
-            n,
-            level=level,
-            )
+        result = []
+        if self.position is None:
+            self._position = 0
+        if 0 < count:
+            for i in range(count):
+                element = self.source[self.position]
+                result.append(element)
+                self._position += 1
+        elif count < 0:
+            for i in range(abs(count)):
+                self._position -= 1
+                element = self.source[self.position]
+                result.append(element)
+        result = tuple(result)
+        return result
