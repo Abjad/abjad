@@ -9,7 +9,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def label_leaves_in_expr_with_numbered_interval_classes(
-    expr, markup_direction=Up):
+    expr, direction=Up):
     r"""Label leaves in `expr` with numbered interval classes:
 
     ::
@@ -56,7 +56,7 @@ def label_leaves_in_expr_with_numbered_interval_classes(
                 mdi = note.written_pitch - next_leaf.written_pitch
                 mci = pitchtools.NumberedInterval(mdi)
                 mcic = pitchtools.NumberedIntervalClass(mci)
-                markup = markuptools.Markup(mcic, markup_direction)
+                markup = markuptools.Markup(mcic, direction)
                 attach(markup, note)
         except StopIteration:
             pass

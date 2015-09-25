@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 
 
-def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
+def label_leaves_in_expr_with_pitch_numbers(expr, direction=Down):
     r'''Label leaves in `expr` with pitch numbers:
 
     ::
@@ -32,5 +32,5 @@ def label_leaves_in_expr_with_pitch_numbers(expr, markup_direction=Down):
         for pitch in reversed(pitchtools.PitchSegment.from_selection(leaf)):
             if pitch is not None:
                 label = markuptools.MarkupCommand('small', str(pitch.pitch_number))
-                markup = markuptools.Markup(label, markup_direction)
+                markup = markuptools.Markup(label, direction)
                 attach(markup, leaf)

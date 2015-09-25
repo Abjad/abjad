@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 
 
-def label_leaves_in_expr_with_named_interval_classes(expr, markup_direction=Up):
+def label_leaves_in_expr_with_named_interval_classes(expr, direction=Up):
     r"""Label leaves in `expr` with named interval classes:
 
     ::
@@ -49,7 +49,7 @@ def label_leaves_in_expr_with_named_interval_classes(expr, markup_direction=Up):
                 mdi = pitchtools.NamedInterval.from_pitch_carriers(
                     note, next_leaf)
                 mdic = pitchtools.NamedIntervalClass(mdi)
-                markup = markuptools.Markup(mdic, markup_direction)
+                markup = markuptools.Markup(mdic, direction)
                 attach(markup, note)
         except StopIteration:
             pass

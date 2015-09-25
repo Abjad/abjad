@@ -11,7 +11,7 @@ def label_leaves_in_expr_with_leaf_durations(
     expr,
     label_durations=True,
     label_written_durations=True,
-    markup_direction=Down,
+    direction=Down,
     ):
     r'''Label leaves in expression with leaf durations.
 
@@ -134,22 +134,22 @@ def label_leaves_in_expr_with_leaf_durations(
                 label = markuptools.MarkupCommand(
                     'small', '{}{}'.format(
                         str(leaf.written_duration), multiplier))
-                markup = markuptools.Markup(label, markup_direction)
+                markup = markuptools.Markup(label, direction)
                 attach(markup, leaf)
             if label_durations:
                 label = markuptools.MarkupCommand(
                     'small', str(leaf._get_duration()))
-                markup = markuptools.Markup(label, markup_direction)
+                markup = markuptools.Markup(label, direction)
                 attach(markup, leaf)
         elif tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
             tie = tie_spanners.pop()
             if label_written_durations:
                 written = sum([x.written_duration for x in tie])
                 label = markuptools.MarkupCommand('small', str(written))
-                markup = markuptools.Markup(label, markup_direction)
+                markup = markuptools.Markup(label, direction)
                 attach(markup, leaf)
             if label_durations:
                 duration = sum([x._get_duration() for x in tie])
                 label = markuptools.MarkupCommand('small', str(duration))
-                markup = markuptools.Markup(label, markup_direction)
+                markup = markuptools.Markup(label, direction)
                 attach(markup, leaf)

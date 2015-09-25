@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def label_vertical_moments_in_expr_with_interval_class_vectors(
-    expr, markup_direction=Down):
+    expr, direction=Down):
     r'''Labels interval-class vector of every vertical moment in `expr`:
 
     ::
@@ -77,7 +77,7 @@ def label_vertical_moments_in_expr_with_interval_class_vectors(
             item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
             )
         formatted = _format_interval_class_vector(interval_class_vector)
-        markup = markuptools.Markup(formatted, markup_direction)
+        markup = markuptools.Markup(formatted, direction)
         attach(markup, vertical_moment.start_leaves[-1])
 
 

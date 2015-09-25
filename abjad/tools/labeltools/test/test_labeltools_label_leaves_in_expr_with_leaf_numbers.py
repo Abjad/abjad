@@ -46,7 +46,7 @@ def test_labeltools_label_leaves_in_expr_with_leaf_numbers_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     labeltools.label_leaves_in_expr_with_leaf_numbers(
-        staff, markup_direction=Up)
+        staff, direction=Up)
 
     assert systemtools.TestManager.compare(
         staff,

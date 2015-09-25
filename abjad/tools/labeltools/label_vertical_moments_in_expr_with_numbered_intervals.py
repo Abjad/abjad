@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def label_vertical_moments_in_expr_with_numbered_intervals(
-    expr, markup_direction=Down):
+    expr, direction=Down):
     r'''Label numbered intervals of every vertical moment in `expr`:
 
     ::
@@ -104,6 +104,6 @@ def label_vertical_moments_in_expr_with_numbered_intervals(
             r'\small \column {{ {} }}'.format(
                 ' '.join(str(interval)
                     for interval in intervals)),
-            markup_direction,
+            direction,
             )
         attach(markup, vertical_moment.start_leaves[-1])

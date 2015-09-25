@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 
 
-def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
+def label_leaves_in_expr_with_leaf_numbers(expr, direction=Down):
     r'''Label leaves in `expr` with leaf numbers:
 
     ::
@@ -32,5 +32,5 @@ def label_leaves_in_expr_with_leaf_numbers(expr, markup_direction=Down):
     for i, leaf in enumerate(iterate(expr).by_class(scoretools.Leaf)):
         leaf_number = i + 1
         label = markuptools.MarkupCommand('small', str(leaf_number))
-        markup = markuptools.Markup(label, markup_direction)
+        markup = markuptools.Markup(label, direction)
         attach(markup, leaf)

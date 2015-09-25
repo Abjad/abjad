@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 
 
-def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
+def label_leaves_in_expr_with_leaf_depth(expr, direction=Down):
     r'''Label leaves in `expr` with leaf depth:
 
     ::
@@ -39,5 +39,5 @@ def label_leaves_in_expr_with_leaf_depth(expr, markup_direction=Down):
     for leaf in iterate(expr).by_class(scoretools.Leaf):
         label = markuptools.MarkupCommand(
             'small', str(leaf._get_parentage().depth))
-        markup = markuptools.Markup(label, markup_direction)
+        markup = markuptools.Markup(label, direction)
         attach(markup, leaf)

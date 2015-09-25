@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def label_leaves_in_expr_with_leaf_duration(expr, markup_direction=Down):
+def label_leaves_in_expr_with_leaf_duration(expr, direction=Down):
     r'''Label leaves in `expr` with leaf duration:
 
     ::
@@ -30,5 +30,5 @@ def label_leaves_in_expr_with_leaf_duration(expr, markup_direction=Down):
         expr,
         label_durations=True,
         label_written_durations=False,
-        markup_direction=markup_direction,
+        direction=direction,
         )

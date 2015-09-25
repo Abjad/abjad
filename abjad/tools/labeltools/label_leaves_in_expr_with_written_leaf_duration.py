@@ -2,7 +2,7 @@
 
 
 def label_leaves_in_expr_with_written_leaf_duration(
-    expr, markup_direction=Down):
+    expr, direction=Down):
     r'''Label leaves in `expr` with writen leaf duration:
 
     ::
@@ -28,5 +28,5 @@ def label_leaves_in_expr_with_written_leaf_duration(
         expr,
         label_durations=False,
         label_written_durations=True,
-        markup_direction=markup_direction,
+        direction=direction,
         )

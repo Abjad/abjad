@@ -9,7 +9,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(
     expr,
     number=True,
     color=False,
-    markup_direction=Down,
+    direction=Down,
     ):
     r'''Label leaves in `expr` with pitch-class numbers:
 
@@ -65,7 +65,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(
                 'small',
                 str(note.written_pitch.numbered_pitch_class.pitch_class_number)
                 )
-            markup = markuptools.Markup(label, markup_direction)
+            markup = markuptools.Markup(label, direction)
             attach(markup, note)
         if color:
             labeltools.color_note_head_by_numbered_pitch_class_color_map(note)

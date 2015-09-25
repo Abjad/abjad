@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def label_vertical_moments_in_expr_with_numbered_pitch_classes(
-    expr, markup_direction=Down):
+    expr, direction=Down):
     r'''Label pitch-classes of every vertical moment in `expr`:
 
     ::
@@ -101,5 +101,5 @@ def label_vertical_moments_in_expr_with_numbered_pitch_classes(
         pitch_classes.reverse()
         pitch_classes = ' '.join([str(x) for x in pitch_classes])
         pitch_classes = r'\small \column { %s }' % pitch_classes
-        markup = markuptools.Markup(pitch_classes, markup_direction)
+        markup = markuptools.Markup(pitch_classes, direction)
         attach(markup, vertical_moment.start_leaves[-1])

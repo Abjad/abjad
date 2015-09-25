@@ -2,7 +2,7 @@
 
 
 def label_logical_ties_in_expr_with_written_logical_tie_duration(
-    expr, markup_direction=Down):
+    expr, direction=Down):
     r'''Label logical ties in `expr` with written logical tie duration:
 
     ::
@@ -35,5 +35,5 @@ def label_logical_ties_in_expr_with_written_logical_tie_duration(
         expr,
         label_durations=False,
         label_written_durations=True,
-        markup_direction=markup_direction,
+        direction=direction,
         )
