@@ -2337,6 +2337,38 @@ class Markup(AbjadValueObject):
         command = markuptools.MarkupCommand('sharp')
         return Markup(contents=command)
 
+    def small(self):
+        r'''LilyPond ``\small`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.small()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \small
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'small',
+            contents,
+            )
+        return new(self, contents=command)
+
     def smaller(self):
         r'''LilyPond ``\smaller`` markup command.
 
