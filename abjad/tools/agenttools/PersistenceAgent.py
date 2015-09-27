@@ -51,7 +51,6 @@ class PersistenceAgent(abctools.AbjadObject):
     def as_ly(
         self, 
         ly_file_path=None, 
-        candidacy=False,
         illustrate_function=None, 
         **kwargs
         ):
@@ -68,17 +67,8 @@ class PersistenceAgent(abctools.AbjadObject):
             '/Users/josiah/Desktop/test.ly'
             0.04491996765136719
 
-        When `candidacy` is true, writes LilyPond output only when LilyPond 
-        output would differ from any existing output file.
-
-        When `candidacy` is false, writes LilyPond output even if LilyPond
-        output would not differ from any existing output file.
-
         Returns output path and elapsed formatting time when LilyPond output is
         written.
-
-        Returns false when when LilyPond output is not written due to 
-        `candidacy` being set.
         '''
         from abjad import abjad_configuration
         from abjad.tools import systemtools
@@ -101,23 +91,10 @@ class PersistenceAgent(abctools.AbjadObject):
         abjad_formatting_time = timer.elapsed_time
         directory = os.path.dirname(ly_file_path)
         systemtools.IOManager._ensure_directory_existence(directory)
-        if not os.path.exists(ly_file_path) or not candidacy:
+        if not os.path.exists(ly_file_path):
             with open(ly_file_path, 'w') as file_pointer:
                 file_pointer.write(lilypond_format)
-            return ly_file_path, abjad_formatting_time
-        base, extension = os.path.splitext(ly_file_path)
-        candidate_path = base + '.candidate' + extension
-        with systemtools.FilesystemState(remove=[candidate_path]):
-            with open(candidate_path, 'w') as file_pointer:
-                file_pointer.write(lilypond_format)
-            if systemtools.TestManager.compare_files(
-                ly_file_path, 
-                candidate_path,
-                ):
-                return False
-            else:
-                shutil.move(candidate_path, ly_file_path)
-                return ly_file_path, abjad_formatting_time
+        return ly_file_path, abjad_formatting_time
         
     def as_midi(self, midi_file_path=None, remove_ly=False, **kwargs):
         r'''Persists client as MIDI file.
@@ -213,7 +190,6 @@ class PersistenceAgent(abctools.AbjadObject):
     def as_pdf(
         self,
         pdf_file_path=None,
-        candidacy=False,
         illustrate_function=None,
         remove_ly=False,
         **kwargs
@@ -232,17 +208,8 @@ class PersistenceAgent(abctools.AbjadObject):
             0.047142982482910156
             0.7839350700378418
 
-        When `candidacy` is true, writes PDF output only when PDF 
-        output would differ from any existing output file.
-
-        When `candidacy` is false, writes PDF output even if PDF
-        output would not differ from any existing output file.
-
         Returns output path, elapsed formatting time and elapsed rendering
         time when PDF output is written.
-
-        Returns false when when PDF output is not written due to 
-        `candidacy` being set.
         '''
         from abjad.tools import systemtools
         if illustrate_function is None:
@@ -255,33 +222,24 @@ class PersistenceAgent(abctools.AbjadObject):
             ly_file_path = None
         result = self.as_ly(
             ly_file_path,
-            candidacy=candidacy,
             illustrate_function=illustrate_function,
             **kwargs
             )
-        if candidacy and result == False:
-            return False
         ly_file_path, abjad_formatting_time = result
         without_extension = os.path.splitext(ly_file_path)[0]
         pdf_file_path = '{}.pdf'.format(without_extension)
         timer = systemtools.Timer()
         with timer:
-            success = systemtools.IOManager.run_lilypond(
-                ly_file_path,
-                candidacy=candidacy,
-                )
+            success = systemtools.IOManager.run_lilypond(ly_file_path)
         lilypond_rendering_time = timer.elapsed_time
         if remove_ly:
             os.remove(ly_file_path)
-        if candidacy and not success:
-            return False
-        else:
-            return (
-                pdf_file_path,
-                abjad_formatting_time,
-                lilypond_rendering_time,
-                success,
-                )
+        return (
+            pdf_file_path,
+            abjad_formatting_time,
+            lilypond_rendering_time,
+            success,
+            )
 
     def as_png(
         self,

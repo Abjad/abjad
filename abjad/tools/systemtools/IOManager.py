@@ -372,10 +372,11 @@ class IOManager(AbjadObject):
         Returns none.
         '''
         from abjad import abjad_configuration
-        abjad_output_directory = abjad_configuration['abjad_output_directory']
         text_editor = abjad_configuration.get_text_editor()
-        log_file_path = os.path.join(abjad_output_directory, 'lily.log')
-        command = '{} {}'.format(text_editor, log_file_path)
+        command = '{} {}'.format(
+            text_editor, 
+            abjad_configuration.lilypond_log_file_path,
+            )
         IOManager.spawn_subprocess(command)
 
     @staticmethod
@@ -575,13 +576,8 @@ class IOManager(AbjadObject):
             return result
 
     @staticmethod
-    def run_lilypond(
-        lilypond_file_path,
-        candidacy=False,
-        flags=None,
-        lilypond_path=None,
-        ):
-        r'''Runs LilyPond on `lilypond_file_path`.
+    def run_lilypond(ly_path, flags=None, lilypond_path=None):
+        r'''Runs LilyPond on `ly_path`.
 
         Writes redirected output of Unix ``date`` to top line of LilyPond log
         file.
@@ -594,115 +590,41 @@ class IOManager(AbjadObject):
         from abjad import abjad_configuration
         from abjad.tools import stringtools
         from abjad.tools import systemtools
-        abjad_output_directory = abjad_configuration['abjad_output_directory']
         if not lilypond_path:
             lilypond_path = abjad_configuration['lilypond_path']
             if not lilypond_path:
                 lilypond_path = 'lilypond'
-        log_file_path = os.path.join(abjad_output_directory, 'lily.log')
-        lilypond_base, extension = os.path.splitext(lilypond_file_path)
-        pdf_path = lilypond_file_path.replace('.ly', '.pdf')
+        lilypond_base, extension = os.path.splitext(ly_path)
+        pdf_path = ly_path.replace('.ly', '.pdf')
         if flags:
             command = 'date > {};'
             command += ' {} {} -dno-point-and-click -o {} {} >> {} 2>&1'
             command = command.format(
-                log_file_path,
+                abjad_configuration.lilypond_log_file_path,
                 lilypond_path,
                 flags,
                 lilypond_base,
-                lilypond_file_path,
-                log_file_path,
+                ly_path,
+                abjad_configuration.lilypond_log_file_path,
                 )
         else:
             command = 'date > {}; {} -dno-point-and-click -o {} {} >> {} 2>&1'
             command = command.format(
-                log_file_path,
+                abjad_configuration.lilypond_log_file_path,
                 lilypond_path,
                 lilypond_base,
-                lilypond_file_path,
-                log_file_path,
+                ly_path,
+                abjad_configuration.lilypond_log_file_path,
                 )
-        #fail_message = 'LilyPond rendering failed. Press any key to continue.'
-        if not os.path.exists(pdf_path) or not candidacy:
-            timer = systemtools.Timer()
-            with timer:
-                exit_code = IOManager.spawn_subprocess(command)
-            elapsed_seconds = int(timer.elapsed_time)
-#            if 5 <= elapsed_seconds:
-#                unit = stringtools.pluralize('second', elapsed_seconds)
-#                message = 'LilyPond runtime: {} {}'
-#                message = message.format(elapsed_seconds, unit)
-#                print(message)
-            postscript_path = lilypond_file_path.replace('.ly', '.ps')
+        if not os.path.exists(pdf_path):
+            exit_code = IOManager.spawn_subprocess(command)
+            postscript_path = ly_path.replace('.ly', '.ps')
             try:
                 os.remove(postscript_path)
             except OSError:
                 pass
             if exit_code:
-                log_path = os.path.join(
-                    abjad_configuration.abjad_output_directory,
-                    'lily.log',
-                    )
-#                if os.path.exists(log_path):
-#                    with open(log_path, 'r') as f:
-#                        print(f.read())
-#                print(fail_message)
                 return False
-            return True
-        candidate_base = lilypond_base + '.candidate'
-        if flags:
-            command = 'date > {};'
-            command += ' {} {} -dno-point-and-click -o {} {} >> {} 2>&1'
-            command = command.format(
-                log_file_path,
-                lilypond_path,
-                flags,
-                candidate_base,
-                lilypond_file_path,
-                log_file_path,
-                )
-        else:
-            command = 'date > {};'
-            command += ' {} -dno-point-and-click -o {} {} >> {} 2>&1'
-            command = command.format(
-                log_file_path,
-                lilypond_path,
-                candidate_base,
-                lilypond_file_path,
-                log_file_path,
-                )
-        candidate_path = candidate_base + '.pdf'
-        with systemtools.FilesystemState(remove=[candidate_path]):
-            timer = systemtools.Timer()
-            with timer:
-                exit_code = IOManager.spawn_subprocess(command)
-            elapsed_seconds = int(timer.elapsed_time)
-#            if 5 <= elapsed_seconds:
-#                unit = stringtools.pluralize('second', elapsed_seconds)
-#                message = 'LilyPond runtime: {} {}'
-#                message = message.format(elapsed_seconds, unit)
-#                print(message)
-            postscript_path = lilypond_file_path.replace('.ly', '.ps')
-            try:
-                os.remove(postscript_path)
-            except OSError:
-                pass
-            if systemtools.TestManager.compare_files(
-                pdf_path,
-                candidate_path,
-                ):
-                return False
-            if exit_code:
-                log_path = os.path.join(
-                    abjad_configuration.abjad_output_directory,
-                    'lily.log',
-                    )
-#                if os.path.exists(log_path):
-#                    with open(log_path, 'r') as f:
-#                        print(f.read())
-#                print(fail_message)
-                return False
-            shutil.move(candidate_path, pdf_path)
             return True
 
     @staticmethod

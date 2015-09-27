@@ -495,3 +495,11 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         return 'abjad.cfg'
+
+    @property
+    def lilypond_log_file_path(self):
+        r'''Gets LilyPond log file path.
+
+        Returns string.
+        '''
+        return os.path.join(self.abjad_output_directory, 'lily.log')
