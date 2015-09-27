@@ -622,17 +622,17 @@ class IOManager(AbjadObject):
                 lilypond_file_path,
                 log_file_path,
                 )
-        fail_message = 'LilyPond rendering failed. Press any key to continue.'
+        #fail_message = 'LilyPond rendering failed. Press any key to continue.'
         if not os.path.exists(pdf_path) or not candidacy:
             timer = systemtools.Timer()
             with timer:
                 exit_code = IOManager.spawn_subprocess(command)
             elapsed_seconds = int(timer.elapsed_time)
-            if 5 <= elapsed_seconds:
-                unit = stringtools.pluralize('second', elapsed_seconds)
-                message = 'LilyPond runtime: {} {}'
-                message = message.format(elapsed_seconds, unit)
-                print(message)
+#            if 5 <= elapsed_seconds:
+#                unit = stringtools.pluralize('second', elapsed_seconds)
+#                message = 'LilyPond runtime: {} {}'
+#                message = message.format(elapsed_seconds, unit)
+#                print(message)
             postscript_path = lilypond_file_path.replace('.ly', '.ps')
             try:
                 os.remove(postscript_path)
@@ -643,10 +643,10 @@ class IOManager(AbjadObject):
                     abjad_configuration.abjad_output_directory,
                     'lily.log',
                     )
-                if os.path.exists(log_path):
-                    with open(log_path, 'r') as f:
-                        print(f.read())
-                print(fail_message)
+#                if os.path.exists(log_path):
+#                    with open(log_path, 'r') as f:
+#                        print(f.read())
+#                print(fail_message)
                 return False
             return True
         candidate_base = lilypond_base + '.candidate'
@@ -677,11 +677,11 @@ class IOManager(AbjadObject):
             with timer:
                 exit_code = IOManager.spawn_subprocess(command)
             elapsed_seconds = int(timer.elapsed_time)
-            if 5 <= elapsed_seconds:
-                unit = stringtools.pluralize('second', elapsed_seconds)
-                message = 'LilyPond runtime: {} {}'
-                message = message.format(elapsed_seconds, unit)
-                print(message)
+#            if 5 <= elapsed_seconds:
+#                unit = stringtools.pluralize('second', elapsed_seconds)
+#                message = 'LilyPond runtime: {} {}'
+#                message = message.format(elapsed_seconds, unit)
+#                print(message)
             postscript_path = lilypond_file_path.replace('.ly', '.ps')
             try:
                 os.remove(postscript_path)
@@ -697,10 +697,10 @@ class IOManager(AbjadObject):
                     abjad_configuration.abjad_output_directory,
                     'lily.log',
                     )
-                if os.path.exists(log_path):
-                    with open(log_path, 'r') as f:
-                        print(f.read())
-                print(fail_message)
+#                if os.path.exists(log_path):
+#                    with open(log_path, 'r') as f:
+#                        print(f.read())
+#                print(fail_message)
                 return False
             shutil.move(candidate_path, pdf_path)
             return True
