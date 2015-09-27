@@ -166,6 +166,20 @@ class Timer(ContextManager):
         return self._stop_time
 
     @property
+    def total_time_message(self):
+        r'''Gets total time message.
+
+        Truncated to the nearest second.
+
+        Returns string.
+        '''
+        from abjad.tools import stringtools
+        identifier = stringtools.pluralize('second', int(self.elapsed_time))
+        message = 'total time: {} {}'
+        message = message.format(int(self.elapsed_time), identifier)
+        return message
+
+    @property
     def verbose(self):
         r'''Is true if timer should print messages. Otherwise false.
 
