@@ -144,7 +144,10 @@ class Parser(AbjadObject):
             'parsers',
             )
         if not os.path.isdir(output_path):
-            os.makedirs(output_path)
+            try:
+                os.makedirs(output_path)
+            except (IOError, OSError):
+                traceback.print_exc()
         return output_path
 
     @property

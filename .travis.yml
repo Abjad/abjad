@@ -9,9 +9,9 @@ python:
 matrix:
     include:
         - python: 3.4
-          env: READONLY=true
+          env: TRAVIS_READ_ONLY=true
     allow_failures:
-        - env: READONLY=true
+        - env: TRAVIS_READ_ONLY=true
 
 before_install:
     - sudo apt-get update -qq
@@ -27,7 +27,7 @@ before_install:
     - pip install coveralls
     - pip install coverage
     # Make a root-controlled ~/.abjad/ when testing for read-only filesystems.
-    - if [[ $READONLY == 'true' ]]; then sudo mkdir ~/.abjad ; fi
+    - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then sudo mkdir ~/.abjad ; fi
 
 install:
     # install without development dependencies.
