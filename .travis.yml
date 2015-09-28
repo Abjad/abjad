@@ -10,6 +10,8 @@ matrix:
     include:
         - python: 3.4
           env: READONLY=true
+    allow_failures:
+        - env: READONLY=true
 
 before_install:
     - sudo apt-get update -qq
