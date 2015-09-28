@@ -52,7 +52,7 @@ class Parser(AbjadObject):
             object=self.lexer_rules_object
             )
 
-        if not os.path.exists(self.pickle_path):
+        if self.pickle_path and not os.path.exists(self.pickle_path):
             try:
                 directory_path, _ = os.path.split(self.pickle_path)
                 if not os.path.exists(directory_path):
@@ -126,6 +126,8 @@ class Parser(AbjadObject):
         r'''The output path for the parser's logfile.
         '''
         import sys
+        if self.output_path is None:
+            return None
         file_name = 'parselog_{}_{}.txt'.format(
             type(self).__name__,
             '-'.join(str(x) for x in sys.version_info),
@@ -148,6 +150,7 @@ class Parser(AbjadObject):
                 os.makedirs(output_path)
             except (IOError, OSError):
                 traceback.print_exc()
+                return None
         return output_path
 
     @property
@@ -167,6 +170,8 @@ class Parser(AbjadObject):
         r'''The output path for the parser's pickled parsing tables.
         '''
         import sys
+        if self.output_path is None:
+            return None
         file_name = 'parse_tables_{}_{}.pkl'.format(
             type(self).__name__,
             '-'.join(str(x) for x in sys.version_info),
