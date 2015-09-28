@@ -55,7 +55,10 @@ class AbjadConfiguration(Configuration):
     def __init__(self):
         Configuration.__init__(self)
         if not os.path.exists(self.abjad_output_directory):
-            os.makedirs(self.abjad_output_directory)
+            try:
+                os.makedirs(self.abjad_output_directory)
+            except (IOError, OSError):
+                pass
 
     ### PRIVATE METHODS ###
 

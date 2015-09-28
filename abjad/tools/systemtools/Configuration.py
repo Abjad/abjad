@@ -25,7 +25,10 @@ class Configuration(AbjadObject):
 
     def __init__(self):
         if not os.path.exists(self.configuration_directory):
-            os.makedirs(self.configuration_directory)
+            try:
+                os.makedirs(self.configuration_directory)
+            except (IOError, OSError):
+                pass
         old_contents = ''
         if os.path.exists(self.configuration_file_path):
             with open(self.configuration_file_path, 'r') as file_pointer:
@@ -34,8 +37,11 @@ class Configuration(AbjadObject):
         configuration = self._validate_configuration(configuration)
         new_contents = self._configuration_to_string(configuration)
         if not self._compare_configurations(old_contents, new_contents):
-            with open(self.configuration_file_path, 'w') as file_pointer:
-                file_pointer.write(new_contents)
+            try:
+                with open(self.configuration_file_path, 'w') as file_pointer:
+                    file_pointer.write(new_contents)
+            except (IOError, OSError):
+                pass
         self._settings = configuration
 
     ### SPECIAL METHODS ###
