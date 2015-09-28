@@ -149,7 +149,6 @@ class Parser(AbjadObject):
             try:
                 os.makedirs(output_path)
             except (IOError, OSError):
-                traceback.print_exc()
                 return None
         return output_path
 
