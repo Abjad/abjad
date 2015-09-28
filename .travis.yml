@@ -6,6 +6,11 @@ python:
     - 3.4
     - pypy
 
+matrix:
+    include:
+        - python: 3.4
+          env: READONLY=true
+
 before_install:
     - sudo apt-get update -qq
     - sudo apt-get install -y graphviz
@@ -19,6 +24,8 @@ before_install:
     - export PATH=/home/travis/bin:$PATH
     - pip install coveralls
     - pip install coverage
+    # Make a root-controlled ~/.abjad/ when testing for read-only filesystems.
+    - if [[ $READONLY == 'true' ]]; then sudo mkdir ~/.abjad ; fi
 
 install:
     # install without development dependencies.
