@@ -3,6 +3,7 @@ import os
 import platform
 import subprocess
 import sys
+import traceback
 from abjad.tools.systemtools.Configuration import Configuration
 
 
@@ -58,7 +59,7 @@ class AbjadConfiguration(Configuration):
             try:
                 os.makedirs(self.abjad_output_directory)
             except (IOError, OSError):
-                pass
+                traceback.print_exc()
 
     ### PRIVATE METHODS ###
 

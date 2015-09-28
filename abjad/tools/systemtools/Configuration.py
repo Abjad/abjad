@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-from abjad.tools.abctools.AbjadObject import AbjadObject
-from six.moves import StringIO
-from six.moves import configparser
 import abc
 import os
 import six
 import time
+import traceback
+from abjad.tools.abctools.AbjadObject import AbjadObject
+from six.moves import StringIO
+from six.moves import configparser
 
 
 class Configuration(AbjadObject):
@@ -28,7 +29,7 @@ class Configuration(AbjadObject):
             try:
                 os.makedirs(self.configuration_directory)
             except (IOError, OSError):
-                pass
+                traceback.print_exc()
         old_contents = ''
         if os.path.exists(self.configuration_file_path):
             with open(self.configuration_file_path, 'r') as file_pointer:
@@ -41,7 +42,7 @@ class Configuration(AbjadObject):
                 with open(self.configuration_file_path, 'w') as file_pointer:
                     file_pointer.write(new_contents)
             except (IOError, OSError):
-                pass
+                traceback.print_exc()
         self._settings = configuration
 
     ### SPECIAL METHODS ###
