@@ -77,6 +77,7 @@ class ReplaceInFilesScript(DirectoryScript):
         return [
             __file__,
             self.program_name,
+            '*.backup',
             '*.doctree',
             '*.gif',
             '*.jpg',
