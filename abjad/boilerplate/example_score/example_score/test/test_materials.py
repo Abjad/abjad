@@ -30,7 +30,7 @@ def test_materials_01():
         )
     if not os.path.exists(abbreviations_file_path):
         return
-    command = 'python {}'.format(abbreviations_file_path)
+    command = 'python {{}}'.format(abbreviations_file_path)
     exit_status = systemtools.IOManager.spawn_subprocess(command)
     assert exit_status == 0
 
