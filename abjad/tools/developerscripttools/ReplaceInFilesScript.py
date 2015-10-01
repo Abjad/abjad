@@ -2,6 +2,7 @@
 import fnmatch
 import os
 import re
+from abjad.tools import stringtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
 
 
@@ -268,8 +269,19 @@ class ReplaceInFilesScript(DirectoryScript):
                     changed_line_count += changed_lines
                     changed_item_count += changed_items
         print('')
-        print('\tReplaced {} instances over {} lines in {} files.'.format(
-            changed_item_count, changed_line_count, changed_file_count))
+        item_identifier = stringtools.pluralize('instance', changed_item_count)
+        line_identifier = stringtools.pluralize('line', changed_line_count)
+        file_identifier = stringtools.pluralize('file', changed_file_count)
+        message = '\tReplaced {} {} over {} {} in {} {}.'
+        message = message.format(
+                changed_item_count, 
+                item_identifier,
+                changed_line_count, 
+                line_identifier,
+                changed_file_count,
+                file_identifier,
+                )
+        print(message)
 
     def setup_argument_parser(self, parser):
         r'''Sets up argument `parser`.
