@@ -7,6 +7,8 @@ import traceback
 import ide
 from abjad.tools import systemtools
 abjad_ide = ide.tools.idetools.AbjadIDE()
+# remove this line to activate test file
+pytest.skip('remove this line to activate test file.')
 
 
 this_file = os.path.abspath(__file__)
