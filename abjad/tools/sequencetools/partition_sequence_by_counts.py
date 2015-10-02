@@ -9,7 +9,7 @@ def partition_sequence_by_counts(
     cyclic=False,
     overhang=False,
     ):
-    r'''Partitions sequence by counts.
+    r'''Partitions `sequence` by `counts`.
 
     ..  container:: example
 
@@ -24,8 +24,6 @@ def partition_sequence_by_counts(
             ...     overhang=False,
             ...     )
             [[0, 1, 2]]
-
-    ..  container:: example
 
         **Example 1b.** Partition sequence once by counts without overhang:
 
@@ -54,8 +52,6 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
-    ..  container:: example
-
         **Example 2b.** Partition sequence cyclically by counts without
         overhang:
 
@@ -83,8 +79,6 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
 
-    ..  container:: example
-
         **Example 3b.** Partition sequence once by counts with overhang:
 
         ::
@@ -110,8 +104,6 @@ def partition_sequence_by_counts(
             ...     overhang=True,
             ...     )
             [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
-
-    ..  container:: example
 
         **Example 4b.** Partition sequence cyclically by counts with overhang:
 
