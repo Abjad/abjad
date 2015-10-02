@@ -21,8 +21,8 @@ before_install:
     - sudo apt-get install -y texlive-fonts-recommended
     - sudo apt-get install -y texlive-latex-extra
     - sudo apt-get install -y texlive-latex-recommended
-    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.20-1.linux-64.sh
-    - sudo sh lilypond-2.19.20-1.linux-64.sh --batch
+    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.28-1.linux-64.sh
+    - sudo sh lilypond-2.19.28-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
     - pip install coveralls
     - pip install coverage
@@ -42,11 +42,15 @@ script:
     - py.test -rf experimental
 
     - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv doctest --diff abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad; fi
+    # run py.test on demos and tools but not boilerplate
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad/demos; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad/tools; fi
     - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv api -R; fi
 
     - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv doctest --diff abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad; fi
+    # run py.test on demos and tools but not boilerplate
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad/demos; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad/tools; fi
     - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv api -R; fi
 
 after_success:
