@@ -8,7 +8,6 @@ def partition_sequence_by_counts(
     counts,
     cyclic=False,
     overhang=False,
-    copy_elements=False,
     ):
     r'''Partitions sequence by counts.
 
