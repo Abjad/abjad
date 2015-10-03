@@ -41,8 +41,6 @@ class DocumentationManager(abctools.AbjadObject):
         directive,
         title,
         ):
-        r'''
-        '''
         from abjad.tools import documentationtools
         result = []
         if attrs:
@@ -87,8 +85,6 @@ class DocumentationManager(abctools.AbjadObject):
         special_methods,
         static_methods,
         ):
-        r'''
-        '''
         from abjad.tools import documentationtools
         result = []
         attributes = []
@@ -263,8 +259,6 @@ class DocumentationManager(abctools.AbjadObject):
         return api_index_path
 
     def _get_api_index_rst(self, tools_packages):
-        r'''
-        '''
         from abjad.tools import documentationtools
         document = documentationtools.ReSTDocument()
         heading = documentationtools.ReSTHeading(
@@ -399,8 +393,6 @@ class DocumentationManager(abctools.AbjadObject):
         return document
 
     def _get_class_summary(self, cls):
-        r'''
-        '''
         doc = cls.__doc__
         if doc is None:
             doc = ''
@@ -415,8 +407,6 @@ class DocumentationManager(abctools.AbjadObject):
         return summary
 
     def _get_function_rst(self, function):
-        r'''
-        '''
         import abjad
         document = abjad.documentationtools.ReSTDocument()
         tools_package_python_path = '.'.join(function.__module__.split('.')[:-1])
@@ -524,8 +514,6 @@ class DocumentationManager(abctools.AbjadObject):
         return source_directory
 
     def _get_tools_packages(self):
-        r'''
-        '''
         root_module = self._get_root_module()
         tools_packages_module = self._get_tools_packages_module()
         tools_packages = []
@@ -543,21 +531,15 @@ class DocumentationManager(abctools.AbjadObject):
         return tools_packages
 
     def _get_root_module(self):
-        r'''
-        '''
         root_module = importlib.import_module(self.root_package_name)
         return root_module
 
     def _get_tools_packages_module(self):
-        r'''
-        '''
         tools_packages_module = importlib.import_module(
             self.tools_packages_package_path)
         return tools_packages_module
 
     def _get_tools_package_contents(self, tools_package):
-        r'''
-        '''
         classes = []
         functions = []
         for name in dir(tools_package):
@@ -580,8 +562,6 @@ class DocumentationManager(abctools.AbjadObject):
         return classes, functions
 
     def _get_tools_package_rst(self, tools_package):
-        r'''
-        '''
         from abjad.tools import documentationtools
         classes, functions = self._get_tools_package_contents(
             tools_package,
@@ -730,8 +710,6 @@ class DocumentationManager(abctools.AbjadObject):
         return document
 
     def _module_path_to_file_path(self, module_path, source_directory):
-        r'''
-        '''
         parts = module_path.split('.')
         parts = parts[1:]
         if parts[-1] == 'Index':
@@ -743,8 +721,6 @@ class DocumentationManager(abctools.AbjadObject):
         return path
 
     def _package_path_to_file_path(self, package_path, source_directory):
-        r'''
-        '''
         parts = package_path.split('.')
         parts = parts[1:]
         parts.append('index.rst')
@@ -753,15 +729,11 @@ class DocumentationManager(abctools.AbjadObject):
         return path
 
     def _remove_api_directory(self):
-        r'''
-        '''
         path = self._get_api_directory_path()
         if os.path.exists(path):
             shutil.rmtree(path)
 
     def _write(self, file_path, string, rewritten_files):
-        r'''
-        '''
         should_write = True
         if os.path.exists(file_path):
             with open(file_path, 'r') as file_pointer:
