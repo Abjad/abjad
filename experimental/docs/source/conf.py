@@ -10,8 +10,8 @@
 #
 # All configuration values have a default; values that are commented out
 # serve to show the default.
-
 import os
+import sphinx_rtd_theme
 import sys
 from sphinx.highlighting import PygmentsBridge
 from pygments.formatters.latex import LatexFormatter
@@ -44,9 +44,10 @@ extensions = [
     'sphinx.ext.intersphinx',
     'sphinx.ext.todo',
     'sphinx.ext.viewcode',
-    'abjad.docs.source._ext.abjad_book',
-    'abjad.docs.source._ext.abjad_lineage',
-    'abjad.docs.source._ext.restyle',
+    #'abjad.docs.source._ext.abjad_book',
+    #'abjad.docs.source._ext.abjad_lineage',
+    #'abjad.docs.source._ext.restyle',
+    'abjad.docs.ext.abjadbook',
 ]
 
 # abjad book settings
@@ -86,7 +87,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Abjad Experimental Packages'
-copyright = u'2008 - 2014, Trevor Bača, Josiah Wolf Oberholtzer, Víctor Adán' 
+copyright = u'2008-2015, Trevor Bača & Josiah Wolf Oberholtzer'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -136,7 +137,8 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
-html_theme = 'abjadtheme'
+#html_theme = 'abjadtheme'
+html_theme = 'sphinx_rtd_theme'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -145,7 +147,8 @@ html_theme_options = {}
 
 # Add any paths that contain custom themes here, relative to this directory.
 html_theme_path = [
-    os.path.join('..', '..', '..', 'abjad', 'docs', 'source', '_themes')
+    #os.path.join('..', '..', '..', 'abjad', 'docs', 'source', '_themes')
+    sphinx_rtd_theme.get_html_theme_path()
     ]
 
 # The name for this set of Sphinx documents.  If None, it defaults to
