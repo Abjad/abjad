@@ -675,6 +675,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             )
         stdout, stderr = process.communicate()
         convert_binary_path = stdout.strip()
+        if sys.version_info[0] == 3:
+            convert_binary_path  = convert_binary_path.decode('utf-8')
         magick_bin_directory = os.path.dirname(convert_binary_path)
         magick_home_directory = os.path.dirname(magick_bin_directory)
         dyld_library_path = os.path.join(magick_home_directory, 'lib')
