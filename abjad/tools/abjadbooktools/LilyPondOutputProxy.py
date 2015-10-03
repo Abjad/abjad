@@ -101,13 +101,24 @@ class LilyPondOutputProxy(ImageOutputProxy):
             raise AssertionError
         assert systemtools.IOManager.find_executable('pdfcrop')
         command = 'pdfcrop {path} {path}'.format(path=pdf_file_path)
-        exit_code = subprocess.call(
+
+#        exit_code = subprocess.call(
+#            command,
+#            shell=True,
+#            stdout=subprocess.PIPE,
+#            stderr=subprocess.PIPE,
+#            )
+#        assert exit_code == 0
+        process = subprocess.Popen(
             command,
             shell=True,
+            stderr=subprocess.STDOUT,
             stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
             )
-        assert exit_code == 0
+        stdout, stderr = process.communicate()
+        if not process.returncode == 0:
+            raise Exception(stdout)
+
         return pdf_file_path
 
     ### PUBLIC METHODS ###
