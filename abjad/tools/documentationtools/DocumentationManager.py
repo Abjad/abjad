@@ -21,16 +21,39 @@ class DocumentationManager(abctools.AbjadObject):
     __documentation_section__ = 'Documenters'
 
     api_directory_name = 'api'
+
     api_title = 'Abjad API'
-    root_package_name = 'abjad'
-    source_directory_path_parts = ('docs', 'source')
-    tools_packages_package_path = 'abjad.tools'
+
     lineage_graph_addresses = (
         'abjad',
         'abjad.tools.abjadbooktools',
         'experimental',
         'ide',
         )
+
+    root_package_name = 'abjad'
+
+    source_directory_path_parts = ('docs', 'source')
+
+    tools_packages_package_path = 'abjad.tools'
+
+    r'''NOTE:
+
+    Use of the module.__package__ property is risky.
+
+    Python does not set the module.__package__ property consistently.
+
+    Python only sets the module.__package__ property when module imports
+    some other module. Otherwise Python sets the module.__package__ property
+    to none.
+
+    See:
+
+    http://stackoverflow.com/questions/4437394/package-is-none-when-importing-a-python-module
+
+    This is why the implementation here uses module.__name__ instead of
+    module.__package__.
+    '''
 
     ### PRIVATE METHODS ###
 
@@ -273,11 +296,12 @@ class DocumentationManager(abctools.AbjadObject):
                 },
             )
         for tools_package in tools_packages:
-            tools_package_parts = tools_package.__package__.split('.')[1:]
+            #tools_package_parts = tools_package.__package__.split('.')[1:]
+            tools_package_parts = tools_package.__name__.split('.')[1:]
             tools_package_path = '/'.join(tools_package_parts)
-            toc_item = documentationtools.ReSTTOCItem(
-                text='{}/index'.format(tools_package_path),
-                )
+            text = '{}/index'
+            text = text.format(tools_package_path)
+            toc_item = documentationtools.ReSTTOCItem(text=text)
             toc.append(toc_item)
         document.append(toc)
         return document
@@ -443,7 +467,8 @@ class DocumentationManager(abctools.AbjadObject):
         lineage_graph_addresses = self._get_lineage_graph_addresses()
         inheritance_graph = documentationtools.InheritanceGraph(
             addresses=lineage_graph_addresses,
-            lineage_addresses=[tools_package.__package__]
+            #lineage_addresses=[tools_package.__package__]
+            lineage_addresses=[tools_package.__name__]
             )
         lineage_graph = inheritance_graph.__graph__()
         lineage_graph.attributes['background'] = 'transparent'
@@ -523,7 +548,9 @@ class DocumentationManager(abctools.AbjadObject):
             module = getattr(tools_packages_module, name)
             if not isinstance(module, types.ModuleType):
                 continue
-            if not module.__package__.startswith(root_module.__package__):
+            #if not module.__package__.startswith(root_module.__package__):
+            #package_name = module.__name__.rpartition('.')[0]
+            if not module.__name__.startswith(root_module.__name__):
                 continue
             tools_packages.append(module)
         tools_packages.sort(key=lambda x: x.__name__)
@@ -547,9 +574,12 @@ class DocumentationManager(abctools.AbjadObject):
                 continue
             obj = getattr(tools_package, name)
             if not hasattr(obj, '__module__'):
-                print('Warning: no nominative object in {}'.format(obj))
+                message = 'Warning: no nominative object in {}'
+                message = message.format(obj)
+                print(message)
                 continue
-            if not obj.__module__.startswith(tools_package.__package__):
+            #if not obj.__module__.startswith(tools_package.__package__):
+            if not obj.__module__.startswith(tools_package.__name__):
                 continue
             if isinstance(obj, type):
                 classes.append(obj)
@@ -721,6 +751,7 @@ class DocumentationManager(abctools.AbjadObject):
         return path
 
     def _package_path_to_file_path(self, package_path, source_directory):
+        assert isinstance(package_path, str), repr(package_path)
         parts = package_path.split('.')
         parts = parts[1:]
         parts.append('index.rst')
@@ -786,7 +817,8 @@ class DocumentationManager(abctools.AbjadObject):
             for package in tools_packages:
                 tools_package_rst = self._get_tools_package_rst(package)
                 tools_package_file_path = self._package_path_to_file_path(
-                    package.__package__,
+                    #package.__package__,
+                    package.__name__,
                     source_directory,
                     )
                 self._ensure_directory(tools_package_file_path)
