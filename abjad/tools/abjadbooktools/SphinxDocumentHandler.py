@@ -664,6 +664,24 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         if not no_trim:
             command = '{} -trim'.format(command)
         command = '{} {}'.format(command, absolute_target_file_path)
+
+        # get ImageMagic home directory and set DYLD_LIBRARY_PATH
+        command_ = 'which convert'
+        process = subprocess.Popen(
+            command_,
+            shell=True,
+            stderr=subprocess.STDOUT,
+            stdout=subprocess.PIPE,
+            )
+        stdout, stderr = process.communicate()
+        convert_binary_path = stdout.strip()
+        magick_bin_directory = os.path.dirname(convert_binary_path)
+        magick_home_directory = os.path.dirname(magick_bin_directory)
+        dyld_library_path = os.path.join(magick_home_directory, 'lib')
+        export_command = 'export DYLD_LIBRARY_PATH="{}"'
+        export_command = export_command.format(dyld_library_path)
+
+        command = export_command + '; ' + command
         process = subprocess.Popen(
             command,
             shell=True,
