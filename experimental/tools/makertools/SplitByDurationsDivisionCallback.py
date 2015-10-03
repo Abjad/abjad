@@ -14,6 +14,8 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
 
         **Example 1.** Makes quarter-valued divisions with remainder at right:
 
+            >>> from experimental.tools import makertools
+
         ::
 
             >>> maker = makertools.SplitByDurationsDivisionCallback(durations=[(1, 4)])

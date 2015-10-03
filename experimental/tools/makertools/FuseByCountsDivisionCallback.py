@@ -13,6 +13,8 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
 
         **Example 1.** Fuses divisions together two at a time:
 
+            >>> from experimental.tools import makertools
+
         ::
 
             >>> division_maker = makertools.DivisionMaker()

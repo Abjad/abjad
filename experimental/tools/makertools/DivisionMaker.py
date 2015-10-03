@@ -13,6 +13,8 @@ class DivisionMaker(AbjadValueObject):
         **Example 1.** Splits every division by ``1/4`` with remainder at 
         right:
 
+            >>> from experimental.tools import makertools
+
         ::
 
             >>> division_maker = makertools.DivisionMaker()
