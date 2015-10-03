@@ -20,7 +20,6 @@ class BuildApiScript(DeveloperScript):
     class ExperimentalDocumentationManager(DocumentationManager):
         r'''API generator for the experimental package.
         '''
-
         api_directory_name = None
         api_title = 'Abjad Experimental API'
         root_package_name = 'experimental'
@@ -30,7 +29,6 @@ class BuildApiScript(DeveloperScript):
     class IDEDocumentationManager(DocumentationManager):
         r'''API generator for the Abjad IDE package.
         '''
-
         api_directory_name = None
         api_title = 'Abjad IDE API'
         root_package_name = 'ide'
@@ -93,11 +91,9 @@ class BuildApiScript(DeveloperScript):
         api_generator.execute()
         if rst_only:
             return
-        print('Now building the {} {} docs ...'.format(
-            api_title,
-            api_format.upper(),
-            ))
-        print('')
+        message = 'Now building the {} {} docs ...'
+        message = message.format(api_title, api_format.upper())
+        print()
         with systemtools.TemporaryDirectoryChange(docs_directory):
             if clean:
                 print('Cleaning build directory ...')

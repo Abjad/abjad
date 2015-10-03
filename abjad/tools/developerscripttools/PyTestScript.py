@@ -77,7 +77,7 @@ class PyTestScript(DirectoryScript):
         print('TESTING:')
         for path in args.path:
             print('\t{}'.format(path))
-        print('')
+        print()
         path = ' '.join(args.path)
         command = '{} {} {} {}'.format(parallel, exitfirst, report, path)
         return pytest.main(command.split())

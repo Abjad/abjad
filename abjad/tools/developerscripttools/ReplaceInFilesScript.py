@@ -195,18 +195,18 @@ class ReplaceInFilesScript(DirectoryScript):
             if force:
                 should_replace = True
                 if verbose:
-                    print('')
+                    print()
                     print('{}: {}'.format(file_name, line_number))
                     print('-{}'.format(line))
                     print('+{}'.format(replaced_line))
 
             else:
-                print('')
+                print()
                 print('{}: {}'.format(file_name, line_number))
-                print('')
+                print()
                 print('{}'.format(line))
                 print('{}'.format(carats))
-                print('')
+                print()
                 result = raw_input('Replace? [Y/n] > ').lower()
                 while result not in ('', 'y', 'yes', 'n', 'no'):
                     result = raw_input('Replace? [Y/n] > ').lower()
@@ -269,7 +269,7 @@ class ReplaceInFilesScript(DirectoryScript):
                     changed_file_count += 1
                     changed_line_count += changed_lines
                     changed_item_count += changed_items
-        print('')
+        print()
         item_identifier = stringtools.pluralize('instance', changed_item_count)
         line_identifier = stringtools.pluralize('line', changed_line_count)
         file_identifier = stringtools.pluralize('file', changed_file_count)

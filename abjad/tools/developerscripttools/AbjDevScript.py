@@ -195,9 +195,9 @@ class AbjDevScript(DeveloperScript):
                         alias = '\n[{}]'.format(instance.alias)
                 entries.append('{}{}\n\t{}'.format(
                     instance.program_name, alias, instance.short_description))
-            print('')
+            print()
             print('\n\n'.join(entries))
-            print('')
+            print()
 
         else:
             if hasattr(args, 'subsubparser_name'):

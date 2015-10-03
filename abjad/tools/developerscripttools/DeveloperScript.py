@@ -34,8 +34,9 @@ class DeveloperScript(abctools.AbjadObject):
             formatter_class=argparse.RawDescriptionHelpFormatter,
             prog=self.program_name,
             )
-        parser.add_argument('--version', action='version',
-            version='%(prog)s {}'.format(self.version))
+        version = '%(prog)s {}'
+        version = version.format(self.version)
+        parser.add_argument('--version', action='version', version=version)
         self._argument_parser = parser
         self.setup_argument_parser(parser)
 
