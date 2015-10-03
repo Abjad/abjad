@@ -192,13 +192,7 @@ class StorageFormatManager(AbjadObject):
 
         keyword_argument_pieces = []
         for name in specification.keyword_argument_names:
-            # TODO: temporary hack while debugging:
-            if (name == 'no_resize' and
-                specification.instance.__class__.__name__ ==
-                'ImageRenderSpecifier'):
-                value = None
-            else:
-                value = getattr(specification.instance, name)
+            value = getattr(specification.instance, name)
             if value is None or isinstance(value, types.MethodType):
                 continue
             if specification.keyword_argument_callables:
