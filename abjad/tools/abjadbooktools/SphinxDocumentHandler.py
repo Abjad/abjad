@@ -68,22 +68,22 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     _table_row_close_template = r'''</div>'''
 
-    command_ = 'which convert'
-    process = subprocess.Popen(
-        command_,
-        shell=True,
-        stderr=subprocess.STDOUT,
-        stdout=subprocess.PIPE,
-        )
-    stdout, stderr = process.communicate()
-    convert_binary_path = stdout.strip()
-    if sys.version_info[0] == 3:
-        convert_binary_path  = convert_binary_path.decode('utf-8')
-    magick_bin_directory = os.path.dirname(convert_binary_path)
-    magick_home_directory = os.path.dirname(magick_bin_directory)
-    dyld_library_path = os.path.join(magick_home_directory, 'lib')
-    dyld_path_setting = 'export DYLD_LIBRARY_PATH="{}"'
-    dyld_path_setting = dyld_path_setting.format(dyld_library_path)
+#    command_ = 'which convert'
+#    process = subprocess.Popen(
+#        command_,
+#        shell=True,
+#        stderr=subprocess.STDOUT,
+#        stdout=subprocess.PIPE,
+#        )
+#    stdout, stderr = process.communicate()
+#    convert_binary_path = stdout.strip()
+#    if sys.version_info[0] == 3:
+#        convert_binary_path  = convert_binary_path.decode('utf-8')
+#    magick_bin_directory = os.path.dirname(convert_binary_path)
+#    magick_home_directory = os.path.dirname(magick_bin_directory)
+#    dyld_library_path = os.path.join(magick_home_directory, 'lib')
+#    dyld_path_setting = 'export DYLD_LIBRARY_PATH="{}"'
+#    dyld_path_setting = dyld_path_setting.format(dyld_library_path)
 
     ### INITIALIZER ###
 
@@ -200,8 +200,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 continue
             resize_command = 'convert {} -filter Lanczos -resize 696x {}'
             resize_command = resize_command.format(image_path, thumbnail_path)
-            resize_command = SphinxDocumentHandler.dyld_path_setting + \
-                '; ' + resize_command
+#            resize_command = SphinxDocumentHandler.dyld_path_setting + \
+#                '; ' + resize_command
             process = subprocess.Popen(
                 resize_command,
                 shell=True,
@@ -684,7 +684,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         if not no_trim:
             command = '{} -trim'.format(command)
         command = '{} {}'.format(command, absolute_target_file_path)
-        command = SphinxDocumentHandler.dyld_path_setting + '; ' + command
+#        command = SphinxDocumentHandler.dyld_path_setting + '; ' + command
         process = subprocess.Popen(
             command,
             shell=True,
