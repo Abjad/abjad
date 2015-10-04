@@ -541,6 +541,9 @@ class DocumentationManager(abctools.AbjadObject):
     def _get_tools_packages(self):
         root_module = self._get_root_module()
         tools_packages_module = self._get_tools_packages_module()
+        if getattr(tools_packages_module, '_is_tools_package', None):
+            tools_packages = [tools_packages_module]
+            return tools_packages
         tools_packages = []
         for name in dir(tools_packages_module):
             if name.startswith('_'):
