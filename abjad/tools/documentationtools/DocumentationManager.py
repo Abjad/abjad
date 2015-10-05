@@ -540,6 +540,18 @@ class DocumentationManager(abctools.AbjadObject):
 
     def _get_tools_packages(self):
         root_module = self._get_root_module()
+        if os.path.pathsep in self.tools_packages_package_path:
+            tools_packages = []
+            parts = self.tools_packages_package_path.split(os.path.pathsep)
+            for part in parts:
+                tools_packages_module = self._get_tools_packages_module(part)
+                if getattr(tools_packages_module, '_is_tools_package', None):
+                    tools_packages.append(tools_packages_module)
+                else:
+                    message = 'when passing in a list of paths all should'
+                    message += ' be set with _is_tools_package=True.'
+                    raise Exception(message)
+            return tools_packages
         tools_packages_module = self._get_tools_packages_module()
         if getattr(tools_packages_module, '_is_tools_package', None):
             tools_packages = [tools_packages_module]
@@ -564,9 +576,11 @@ class DocumentationManager(abctools.AbjadObject):
         root_module = importlib.import_module(self.root_package_name)
         return root_module
 
-    def _get_tools_packages_module(self):
+    def _get_tools_packages_module(self, tools_packages_package_path=None):
+        if tools_packages_package_path is None:
+            tools_packages_package_path = self.tools_packages_package_path
         tools_packages_module = importlib.import_module(
-            self.tools_packages_package_path)
+            tools_packages_package_path)
         return tools_packages_module
 
     def _get_tools_package_contents(self, tools_package):
