@@ -296,8 +296,10 @@ class DocumentationManager(abctools.AbjadObject):
                 },
             )
         for tools_package in tools_packages:
-            #tools_package_parts = tools_package.__package__.split('.')[1:]
-            tools_package_parts = tools_package.__name__.split('.')[1:]
+            if self.__class__.__name__.startswith('ScoreLibrary'):
+                tools_package_parts = tools_package.__name__.split('.')
+            else:
+                tools_package_parts = tools_package.__name__.split('.')[1:]
             tools_package_path = '/'.join(tools_package_parts)
             text = '{}/index'
             text = text.format(tools_package_path)
@@ -336,27 +338,28 @@ class DocumentationManager(abctools.AbjadObject):
             directive='autoclass',
             )
         document.append(autoclass_directive)
-        try:
-            lineage_heading = abjad.documentationtools.ReSTHeading(
-                level=3,
-                text='Lineage',
-                )
-            document.append(lineage_heading)
-            lineage_graph = self._get_lineage_graph(cls)
-            lineage_graph.attributes['background'] = 'transparent'
-            lineage_graph.attributes['rankdir'] = 'LR'
-            graphviz_directive = \
-                abjad.documentationtools.ReSTGraphvizDirective(
-                    graph=lineage_graph,
+        if not self.__class__.__name__.startswith('ScoreLibrary'):
+            try:
+                lineage_heading = abjad.documentationtools.ReSTHeading(
+                    level=3,
+                    text='Lineage',
                     )
-            graphviz_container = abjad.documentationtools.ReSTDirective(
-                directive='container',
-                argument='graphviz',
-                )
-            graphviz_container.append(graphviz_directive)
-            document.append(graphviz_container)
-        except:
-            traceback.print_exc()
+                document.append(lineage_heading)
+                lineage_graph = self._get_lineage_graph(cls)
+                lineage_graph.attributes['background'] = 'transparent'
+                lineage_graph.attributes['rankdir'] = 'LR'
+                graphviz_directive = \
+                    abjad.documentationtools.ReSTGraphvizDirective(
+                        graph=lineage_graph,
+                        )
+                graphviz_container = abjad.documentationtools.ReSTDirective(
+                    directive='container',
+                    argument='graphviz',
+                    )
+                graphviz_container.append(graphviz_directive)
+                document.append(graphviz_container)
+            except:
+                traceback.print_exc()
         document.extend(self._build_bases_section(cls))
         document.extend(self._build_enumeration_section(cls))
         document.extend(self._build_attributes_autosummary(
@@ -467,7 +470,6 @@ class DocumentationManager(abctools.AbjadObject):
         lineage_graph_addresses = self._get_lineage_graph_addresses()
         inheritance_graph = documentationtools.InheritanceGraph(
             addresses=lineage_graph_addresses,
-            #lineage_addresses=[tools_package.__package__]
             lineage_addresses=[tools_package.__name__]
             )
         lineage_graph = inheritance_graph.__graph__()
@@ -531,6 +533,9 @@ class DocumentationManager(abctools.AbjadObject):
         return graph
 
     def _get_source_directory(self):
+        if hasattr(self, 'docs_directory'):
+            source_directory = os.path.join(self.docs_directory, 'source')
+            return source_directory
         root_package = importlib.import_module(self.root_package_name)
         root_package_path = root_package.__path__[0]
         path_parts = [root_package_path]
@@ -539,6 +544,13 @@ class DocumentationManager(abctools.AbjadObject):
         return source_directory
 
     def _get_tools_packages(self):
+        if hasattr(self, 'packages_to_document'):
+            packages_to_document = []
+            package_paths = self.packages_to_document.split(',')
+            for package_path in package_paths:
+                package = importlib.import_module(package_path)
+                packages_to_document.append(package)
+            return packages_to_document
         root_module = self._get_root_module()
         if os.path.pathsep in self.tools_packages_package_path:
             tools_packages = []
@@ -563,8 +575,6 @@ class DocumentationManager(abctools.AbjadObject):
             module = getattr(tools_packages_module, name)
             if not isinstance(module, types.ModuleType):
                 continue
-            #if not module.__package__.startswith(root_module.__package__):
-            #package_name = module.__name__.rpartition('.')[0]
             if not module.__name__.startswith(root_module.__name__):
                 continue
             tools_packages.append(module)
@@ -595,7 +605,6 @@ class DocumentationManager(abctools.AbjadObject):
                 message = message.format(obj)
                 print(message)
                 continue
-            #if not obj.__module__.startswith(tools_package.__package__):
             if not obj.__module__.startswith(tools_package.__name__):
                 continue
             if isinstance(obj, type):
@@ -614,10 +623,16 @@ class DocumentationManager(abctools.AbjadObject):
             tools_package,
             )
         document = documentationtools.ReSTDocument()
-        heading = documentationtools.ReSTHeading(
-            level=2,
-            text=tools_package.__name__.split('.')[-1],
-            )
+        if self.__class__.__name__.startswith('ScoreLibrary'):
+            heading = documentationtools.ReSTHeading(
+                level=2,
+                text=tools_package.__name__,
+                )
+        else:
+            heading = documentationtools.ReSTHeading(
+                level=2,
+                text=tools_package.__name__.split('.')[-1],
+                )
         document.append(heading)
         automodule_directive = documentationtools.ReSTAutodocDirective(
             argument=tools_package.__name__,
@@ -678,19 +693,10 @@ class DocumentationManager(abctools.AbjadObject):
                     level=3,
                     text=section_name,
                     )
-                #heading = documentationtools.ReSTDirective(
-                #    directive='rubric',
-                #    argument=section_name,
-                #    )
                 document.append(heading)
                 toc = documentationtools.ReSTTOCDirective(
                     options={
-                        #'caption': section_name,
                         'hidden': True,
-                        #'name': '{}__{}'.format(
-                        #    tools_package.__name__,
-                        #    section_name,
-                        #    ),
                         },
                     )
                 for cls in sections[section_name]:
@@ -722,19 +728,10 @@ class DocumentationManager(abctools.AbjadObject):
                 level=3,
                 text=section_name,
                 )
-            #heading = documentationtools.ReSTDirective(
-            #    directive='rubric',
-            #    argument=section_name,
-            #    )
             document.append(heading)
             toc = documentationtools.ReSTTOCDirective(
                 options={
-                    #'caption': section_name,
                     'hidden': True,
-                    #'name': '{}__{}'.format(
-                    #    tools_package.__name__,
-                    #    section_name,
-                    #    ),
                     },
                 )
             for function in functions:
@@ -758,7 +755,8 @@ class DocumentationManager(abctools.AbjadObject):
 
     def _module_path_to_file_path(self, module_path, source_directory):
         parts = module_path.split('.')
-        parts = parts[1:]
+        if not self.__class__.__name__.startswith('ScoreLibrary'):
+            parts = parts[1:]
         if parts[-1] == 'Index':
             parts[-1] = '_' + parts[-1] + '.rst'
         else:
@@ -770,7 +768,8 @@ class DocumentationManager(abctools.AbjadObject):
     def _package_path_to_file_path(self, package_path, source_directory):
         assert isinstance(package_path, str), repr(package_path)
         parts = package_path.split('.')
-        parts = parts[1:]
+        if not self.__class__.__name__.startswith('ScoreLibrary'):
+            parts = parts[1:]
         parts.append('index.rst')
         parts.insert(0, self._get_api_directory_path(source_directory))
         path = os.path.join(*parts)
@@ -842,7 +841,6 @@ class DocumentationManager(abctools.AbjadObject):
             for package in tools_packages:
                 tools_package_rst = self._get_tools_package_rst(package)
                 tools_package_file_path = self._package_path_to_file_path(
-                    #package.__package__,
                     package.__name__,
                     source_directory,
                     )
@@ -860,10 +858,12 @@ class DocumentationManager(abctools.AbjadObject):
                         source_directory,
                         )
                     if cls in ignored_classes:
-                        print('{}{}'.format(
+                        message = '{}{}'
+                        message = message.format(
                             self.prefix_ignored,
                             os.path.relpath(file_path),
-                            ))
+                            )
+                        print(message)
                         continue
                     rst = self._get_class_rst(cls)
                     self._write(file_path, rst.rest_format, rewritten_files)
@@ -885,16 +885,20 @@ class DocumentationManager(abctools.AbjadObject):
                     if file_path not in rewritten_files:
                         file_names.remove(file_name)
                         os.remove(file_path)
-                        print('{}{}'.format(
+                        message = '{}{}'
+                        message = message.format(
                             self.prefix_pruned,
                             os.path.relpath(file_path),
-                            ))
+                            )
+                        print(message)
                 if not file_names and not directory_names:
                     shutil.rmtree(root)
-                    print('{}{}'.format(
+                    message = '{}{}'
+                    message = message.format(
                         self.prefix_pruned,
                         os.path.relpath(root),
-                        ))
+                        )
+                    print(message)
 
     @staticmethod
     def make_readme():

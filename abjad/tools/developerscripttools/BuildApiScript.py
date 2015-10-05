@@ -54,6 +54,23 @@ class BuildApiScript(DeveloperScript):
         source_directory_path_parts = ('docs', 'source')
         tools_packages_package_path = 'ide.tools'
 
+    class ScoreLibraryDocumentationManager(DocumentationManager):
+        r'''API generator for score library documentation.
+        '''
+        api_directory_name = None
+        root_package_name = None
+        source_directory_path_parts = None
+        tools_packages_package_path = None
+        def __init__(
+            self,
+            api_title,
+            docs_directory,
+            packages_to_document,
+            ):
+            self.api_title = api_title
+            self.docs_directory = docs_directory
+            self.packages_to_document = packages_to_document
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -266,6 +283,48 @@ class BuildApiScript(DeveloperScript):
             )
         return path
 
+    def _build_score_library_api(
+        self,
+        api_title,
+        docs_directory,
+        packages_to_document,
+        api_format='html',
+        clean=False,
+        rst_only=False,
+        ):
+
+#        statement = 'import {} as root_module'
+#        statement = statement.format(root_package_name)
+#        try:
+#            exec(statement)
+#        except ImportError:
+#            message = 'Can not find root module {!r}.'
+#            message = message.format(root_package_name)
+#            print(message)
+#            traceback.print_exc()
+#            return
+
+        api_generator = BuildApiScript.ScoreLibraryDocumentationManager(
+            api_title,
+            docs_directory,
+            packages_to_document,
+            )
+        self._build_api(
+            api_generator=api_generator,
+            api_title=api_title,
+            api_format=api_format,
+            clean=clean,
+            docs_directory=docs_directory,
+            rst_only=rst_only,
+            )
+        path = os.path.join(
+            docs_directory,
+            'build',
+            'html',
+            'index.html',
+            )
+        return path
+
     ### PUBLIC METHODS ###
 
     def process_args(self, args):
@@ -277,30 +336,15 @@ class BuildApiScript(DeveloperScript):
         clean = args.clean
         rst_only = args.rst_only
         paths = []
-        prototype = (args.mainline, args.experimental, args.ide, args.composer)
+        prototype = (
+            args.composer,
+            args.experimental, 
+            args.ide, 
+            args.mainline, 
+            args.score_library,
+            )
         if not any(prototype):
             args.mainline = True
-        if args.mainline:
-            path = self._build_mainline_api(
-                api_format=api_format,
-                clean=clean,
-                rst_only=rst_only,
-                )
-            paths.append(path)
-        if args.experimental:
-            path = self._build_experimental_api(
-                api_format=api_format,
-                clean=clean,
-                rst_only=rst_only,
-                )
-            paths.append(path)
-        if args.ide:
-            path = self._build_ide_api(
-                api_format=api_format,
-                clean=clean,
-                rst_only=rst_only,
-                )
-            paths.append(path)
         if args.composer:
             messages = [
                 'Must specify all of ...',
@@ -324,6 +368,54 @@ class BuildApiScript(DeveloperScript):
                 args.root_package_name,
                 args.source_directory_path_parts,
                 args.tools_packages_package_path,
+                api_format=api_format,
+                clean=clean,
+                rst_only=rst_only,
+                )
+        if args.experimental:
+            path = self._build_experimental_api(
+                api_format=api_format,
+                clean=clean,
+                rst_only=rst_only,
+                )
+            paths.append(path)
+        if args.ide:
+            path = self._build_ide_api(
+                api_format=api_format,
+                clean=clean,
+                rst_only=rst_only,
+                )
+            paths.append(path)
+        if args.mainline:
+            path = self._build_mainline_api(
+                api_format=api_format,
+                clean=clean,
+                rst_only=rst_only,
+                )
+            paths.append(path)
+        if args.score_library:
+            messages = [
+                'Must specify all of ...',
+                '    --api-title',
+                '    --docs-directory',
+                '    --packages-to-document',
+                '... when building -Y or --score-library.',
+                ]
+            if not all((
+                args.api_title,
+                args.docs_directory,
+                args.packages_to_document,
+                )):
+                for message in messages:
+                    print(message)
+                return
+            path = self._build_score_library_api(
+                args.api_title,
+                #args.root_package_name,
+                #args.source_directory_path_parts,
+                #args.tools_packages_package_path,
+                args.docs_directory,
+                args.packages_to_document,
                 api_format=api_format,
                 clean=clean,
                 rst_only=rst_only,
@@ -379,6 +471,12 @@ class BuildApiScript(DeveloperScript):
             help='build the experimental API',
             )
         parser.add_argument(
+            '-Y',
+            '--score-library',
+            action='store_true',
+            help='build score library API',
+            )
+        parser.add_argument(
             '-Z',
             '--composer',
             action='store_true',
@@ -387,6 +485,14 @@ class BuildApiScript(DeveloperScript):
         parser.add_argument(
             '--api-title',
             help='title of API',
+            ),
+        parser.add_argument(
+            '--docs-directory',
+            help='documentation directory',
+            ),
+        parser.add_argument(
+            '--packages-to-document',
+            help='comma-delimited packages list (ex: "foo.tools,bar.tools")',
             ),
         parser.add_argument(
             '--root-package-name',
