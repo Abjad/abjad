@@ -306,7 +306,7 @@ class BuildApiScript(DeveloperScript):
                 'Must specify all of ...',
                 '    --api-title',
                 '    --root-package-name',
-                '    --source-directory-package-path',
+                '    --source-directory-path-parts',
                 '    --tools-packages-package-path',
                 '... when building -Z or --composer.',
                 ]

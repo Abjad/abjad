@@ -801,6 +801,8 @@ class DocumentationManager(abctools.AbjadObject):
         '''
         print('Rebuilding documentation source.')
         source_directory = self._get_source_directory()
+        if not os.path.exists(source_directory):
+            os.makedirs(source_directory)
         with systemtools.TemporaryDirectoryChange(
             directory=source_directory,
             verbose=True,
