@@ -803,6 +803,12 @@ class DocumentationManager(abctools.AbjadObject):
         source_directory = self._get_source_directory()
         if not os.path.exists(source_directory):
             os.makedirs(source_directory)
+        static_html_directory = os.path.join(source_directory, '_static')
+        if not os.path.exists(static_html_directory):
+            os.makedirs(static_html_directory)
+            gitignore_file = os.path.join(static_html_directory, '.gitignore')
+            with open(gitignore_file, 'w') as file_pointer:
+                file_pointer.write('')
         with systemtools.TemporaryDirectoryChange(
             directory=source_directory,
             verbose=True,
