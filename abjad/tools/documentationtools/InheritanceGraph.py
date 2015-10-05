@@ -121,7 +121,31 @@ class InheritanceGraph(AbjadObject):
         use_clusters=True,
         use_groups=True,
         ):
+        r'''Find a lot of classes by examining the contents of module objects
+        recursively and collect those classes into a big list:
+            _collect_classes()
 
+        Optionally, collect “lineage” and “root” classes, which affect how the
+        graph will later be pruned. Construct two dictionaries:
+            _build_basic_mappings()
+
+        The keys in one are parent classes and the values are sets of immediate
+        subclasses (inheriting directly from).
+
+        And the keys in the other are classes and the values are sets of their
+        immediate parent classes.
+
+        The two dictionaries give you a graph with bidirectional relationships.
+
+        Populate the two dictionaries by looking at the MROs of all previously
+        collected classes.
+
+        If any “lineage” classes were defined on init, prune the graph of all
+        classes whose inheritance chains do not pass through those classes.
+
+        Finally, on __graph__(), use the pruned mappings to build a
+        GraphvizGraph.
+        '''
         self._recurse_into_submodules = bool(recurse_into_submodules)
         if lineage_prune_distance is not None:
             lineage_prune_distance = int(lineage_prune_distance)
