@@ -298,7 +298,7 @@ class BuildApiScript(DeveloperScript):
                 '    --api-title',
                 '    --docs-directory',
                 '    --packages-to-document',
-                '... when building -Y or --score-library.',
+                '... when building -S or --score-library.',
                 ]
             if not all((
                 args.api_title,
@@ -361,16 +361,16 @@ class BuildApiScript(DeveloperScript):
             help='generate the ReSt source files but do not build',
             )
         parser.add_argument(
+            '-S',
+            '--score-library',
+            action='store_true',
+            help='build score library API',
+            )
+        parser.add_argument(
             '-X',
             '--experimental',
             action='store_true',
             help='build the experimental API',
-            )
-        parser.add_argument(
-            '-Y',
-            '--score-library',
-            action='store_true',
-            help='build score library API',
             )
         parser.add_argument(
             '--api-title',
