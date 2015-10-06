@@ -19,23 +19,6 @@ class BuildApiScript(DeveloperScript):
 
     ### CLASS VARIABLES ###
 
-    class ComposerDocumentationManager(DocumentationManager):
-        r'''API generator for composer-specific documentation.
-        '''
-        api_directory_name = None
-        def __init__(
-            self,
-            api_title,
-            root_package_name,
-            source_directory_path_parts,
-            tools_packages_package_path,
-            ):
-            self.api_title = api_title
-            self.root_package_name = root_package_name
-            parts = source_directory_path_parts.split('.')
-            self.source_directory_path_parts = parts
-            self.tools_packages_package_path = tools_packages_package_path
-
     class ExperimentalDocumentationManager(DocumentationManager):
         r'''API generator for the experimental package.
         '''
@@ -145,50 +128,6 @@ class BuildApiScript(DeveloperScript):
                 command = 'make {}'.format(api_format)
                 systemtools.IOManager.spawn_subprocess(command)
 
-    def _build_composer_api(
-        self,
-        api_title,
-        root_package_name,
-        source_directory_path_parts,
-        tools_packages_package_path,
-        api_format='html',
-        clean=False,
-        rst_only=False,
-        ):
-        statement = 'import {} as root_module'
-        statement = statement.format(root_package_name)
-        try:
-            exec(statement)
-        except ImportError:
-            message = 'Can not find root module {!r}.'
-            message = message.format(root_package_name)
-            print(message)
-            traceback.print_exc()
-            return
-        api_generator = BuildApiScript.ComposerDocumentationManager(
-            api_title,
-            root_package_name,
-            source_directory_path_parts,
-            tools_packages_package_path,
-            )
-        docs_directory = os.path.join(root_module.__path__[0], 'docs')
-        self._build_api(
-            api_generator=api_generator,
-            api_title=api_title,
-            api_format=api_format,
-            clean=clean,
-            docs_directory=docs_directory,
-            rst_only=rst_only,
-            )
-        path = os.path.join(
-            root_module.__path__[0],
-            'docs',
-            'build',
-            'html',
-            'index.html',
-            )
-        return path
-
     def _build_experimental_api(
         self,
         api_format='html',
@@ -292,18 +231,6 @@ class BuildApiScript(DeveloperScript):
         clean=False,
         rst_only=False,
         ):
-
-#        statement = 'import {} as root_module'
-#        statement = statement.format(root_package_name)
-#        try:
-#            exec(statement)
-#        except ImportError:
-#            message = 'Can not find root module {!r}.'
-#            message = message.format(root_package_name)
-#            print(message)
-#            traceback.print_exc()
-#            return
-
         api_generator = BuildApiScript.ScoreLibraryDocumentationManager(
             api_title,
             docs_directory,
@@ -337,7 +264,6 @@ class BuildApiScript(DeveloperScript):
         rst_only = args.rst_only
         paths = []
         prototype = (
-            args.composer,
             args.experimental, 
             args.ide, 
             args.mainline, 
@@ -345,33 +271,6 @@ class BuildApiScript(DeveloperScript):
             )
         if not any(prototype):
             args.mainline = True
-        if args.composer:
-            messages = [
-                'Must specify all of ...',
-                '    --api-title',
-                '    --root-package-name',
-                '    --source-directory-path-parts',
-                '    --tools-packages-package-path',
-                '... when building -Z or --composer.',
-                ]
-            if not all((
-                args.api_title,
-                args.root_package_name,
-                args.source_directory_path_parts,
-                args.tools_packages_package_path,
-                )):
-                for message in messages:
-                    print(message)
-                return
-            path = self._build_composer_api(
-                args.api_title,
-                args.root_package_name,
-                args.source_directory_path_parts,
-                args.tools_packages_package_path,
-                api_format=api_format,
-                clean=clean,
-                rst_only=rst_only,
-                )
         if args.experimental:
             path = self._build_experimental_api(
                 api_format=api_format,
@@ -411,9 +310,6 @@ class BuildApiScript(DeveloperScript):
                 return
             path = self._build_score_library_api(
                 args.api_title,
-                #args.root_package_name,
-                #args.source_directory_path_parts,
-                #args.tools_packages_package_path,
                 args.docs_directory,
                 args.packages_to_document,
                 api_format=api_format,
@@ -477,12 +373,6 @@ class BuildApiScript(DeveloperScript):
             help='build score library API',
             )
         parser.add_argument(
-            '-Z',
-            '--composer',
-            action='store_true',
-            help='build composer API',
-            )
-        parser.add_argument(
             '--api-title',
             help='title of API',
             ),
@@ -493,18 +383,6 @@ class BuildApiScript(DeveloperScript):
         parser.add_argument(
             '--packages-to-document',
             help='comma-delimited packages list (ex: "foo.tools,bar.tools")',
-            ),
-        parser.add_argument(
-            '--root-package-name',
-            help='name of root package',
-            ),
-        parser.add_argument(
-            '--source-directory-path-parts',
-            help='dot-separated string (ex: "docs.source")',
-            ),
-        parser.add_argument(
-            '--tools-packages-package-path',
-            help='tools package package path (ex: "project.tools")',
             ),
         parser.add_argument(
             '--format',
