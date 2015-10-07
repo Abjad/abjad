@@ -7,7 +7,7 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
 
     ..  container:: example
 
-        Flattens sequence completely:
+        **Example 1.** Flattens sequence completely:
 
         ::
 
@@ -17,7 +17,7 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
 
     ..  container:: example
 
-        Flattens `sequence` to depth ``1``:
+        **Example 2.** Flattens `sequence` to depth ``1``:
 
         ::
 
@@ -27,7 +27,7 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
 
     ..  container:: example
 
-        Flattens `sequence` to depth ``2``:
+        **Example 3.** Flattens `sequence` to depth ``2``:
 
         ::
 
@@ -37,7 +37,7 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
 
     ..  container:: example
 
-        Flattens `sequence` at `indices`:
+        **Example 4.** Flattens `sequence` at `indices`:
 
         ::
 
@@ -47,13 +47,23 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
 
     ..  container:: example
 
-        Flattens `sequence` at negative `indices`:
+        **Example 5.** Flattens `sequence` at negative `indices`:
 
         ::
 
             >>> sequence = [0, 1, [2, 3, 4], [5, 6, 7]]
             >>> sequencetools.flatten_sequence(sequence, indices=[-1])
             [0, 1, [2, 3, 4], 5, 6, 7]
+
+    ..  container:: example
+
+        **Example 6.** Flattens only lists in `sequence`:
+
+        ::
+
+            >>> sequence = ['ab', 'cd', ['ef', 'gh'], ['ij', 'kl']]
+            >>> sequencetools.flatten_sequence(sequence, classes=(list,))
+            ['ab', 'cd', 'ef', 'gh', 'ij', 'kl']
 
     Leaves `sequence` unchanged.
 
