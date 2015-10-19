@@ -117,11 +117,15 @@ class StorageFormatManager(AbjadObject):
             )):
             result.append('[{}'.format(infix))
             for item in list(value.items()):
-                item_pieces = StorageFormatManager.format_one_value(
-                    item,
-                    as_storage_format=as_storage_format,
-                    is_indented=is_indented,
-                    )
+                try:
+                    item_pieces = StorageFormatManager.format_one_value(
+                        item,
+                        as_storage_format=as_storage_format,
+                        is_indented=is_indented,
+                        )
+                except:
+                    print(item)
+                    raise
                 for x in item_pieces:
                     result.append('{}{}'.format(prefix, x))
                 result[-1] = '{}{}'.format(result[-1], suffix)
@@ -134,16 +138,24 @@ class StorageFormatManager(AbjadObject):
             if not isinstance(value, collections.OrderedDict):
                 items = sorted(items)
             for key, value in items:
-                key_pieces = StorageFormatManager.format_one_value(
-                    key,
-                    as_storage_format=as_storage_format,
-                    is_indented=is_indented,
-                    )
-                value_pieces = StorageFormatManager.format_one_value(
-                    value,
-                    as_storage_format=as_storage_format,
-                    is_indented=is_indented,
-                    )
+                try:
+                    key_pieces = StorageFormatManager.format_one_value(
+                        key,
+                        as_storage_format=as_storage_format,
+                        is_indented=is_indented,
+                        )
+                except:
+                    print(key)
+                    raise
+                try:
+                    value_pieces = StorageFormatManager.format_one_value(
+                        value,
+                        as_storage_format=as_storage_format,
+                        is_indented=is_indented,
+                        )
+                except:
+                    print(value)
+                    raise
                 for x in key_pieces[:-1]:
                     result.append('{}{}'.format(prefix, x))
                 result.append('{}{}: {}'.format(
@@ -181,11 +193,15 @@ class StorageFormatManager(AbjadObject):
 
         positional_argument_pieces = []
         for value in specification.positional_argument_values:
-            pieces = StorageFormatManager.format_one_value(
-                value,
-                as_storage_format=as_storage_format,
-                is_indented=specification.is_indented,
-                )
+            try:
+                pieces = StorageFormatManager.format_one_value(
+                    value,
+                    as_storage_format=as_storage_format,
+                    is_indented=specification.is_indented,
+                    )
+            except:
+                print(value)
+                raise
             for piece in pieces[:-1]:
                 positional_argument_pieces.append(prefix + piece)
             positional_argument_pieces.append(prefix + pieces[-1] + suffix)
@@ -199,11 +215,15 @@ class StorageFormatManager(AbjadObject):
                 callables = dict(specification.keyword_argument_callables)
                 if name in callables:
                     value = callables[name](value)
-            pieces = StorageFormatManager.format_one_value(
-                value,
-                as_storage_format=as_storage_format,
-                is_indented=specification.is_indented,
-                )
+            try:
+                pieces = StorageFormatManager.format_one_value(
+                    value,
+                    as_storage_format=as_storage_format,
+                    is_indented=specification.is_indented,
+                    )
+            except:
+                print(value)
+                raise
             pieces[0] = '{}={}'.format(name, pieces[0])
             for piece in pieces[:-1]:
                 keyword_argument_pieces.append(prefix + piece)
