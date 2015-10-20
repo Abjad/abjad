@@ -103,12 +103,9 @@ class Play(object):
         '''Read the base64 representation of a file and encode for HTML.
         '''
         import base64
-        import sys
         with open(file_name, 'rb') as file_pointer:
             data = file_pointer.read()
-            if sys.version_info[0] == 2:
-                return base64.b64encode(data).decode('utf-8')
-            return base64.b64encode(data)
+            return base64.b64encode(data).decode('utf-8')
 
     def _get_mp3_as_base64(
         self,
