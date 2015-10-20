@@ -25,12 +25,13 @@ class Play(object):
         configuration = ipythontools.IPythonConfiguration()
         self._midi_bank = configuration['midi_bank'] or 'gs'
         sound_font = configuration['sound_font']
-        sound_font = os.path.expanduser(sound_font)
-        if not os.path.isabs(sound_font):
-            sound_font = os.path.join(
-                configuration.configuration_directory,
-                sound_font,
-                )
+        if sound_font:
+            sound_font = os.path.expanduser(sound_font)
+            if not os.path.isabs(sound_font):
+                sound_font = os.path.join(
+                    configuration.configuration_directory,
+                    sound_font,
+                    )
         self._sound_font = sound_font
 
     ### SPECIAL METHODS ###
