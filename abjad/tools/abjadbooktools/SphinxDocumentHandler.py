@@ -68,30 +68,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     _table_row_close_template = r'''</div>'''
 
-#    command_ = 'which convert'
-#    process = subprocess.Popen(
-#        command_,
-#        shell=True,
-#        stderr=subprocess.STDOUT,
-#        stdout=subprocess.PIPE,
-#        )
-#    stdout, stderr = process.communicate()
-#    convert_binary_path = stdout.strip()
-#    if sys.version_info[0] == 3:
-#        convert_binary_path  = convert_binary_path.decode('utf-8')
-#    magick_bin_directory = os.path.dirname(convert_binary_path)
-#    magick_home_directory = os.path.dirname(magick_bin_directory)
-#    dyld_library_path = os.path.join(magick_home_directory, 'lib')
-#    dyld_path_setting = 'export DYLD_LIBRARY_PATH="{}"'
-#    dyld_path_setting = dyld_path_setting.format(dyld_library_path)
-
     ### INITIALIZER ###
 
     def __init__(self):
         self._errored = False
-
-    ### PRIVATE METHODS ###
-
 
     ### SPHINX EXTENSION SETUP ###
 
@@ -157,7 +137,11 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         if not os.path.exists(image_directory):
             os.makedirs(image_directory)
         if not os.path.exists(stylesheets_directory):
-            return
+            os.makedirs(stylesheets_directory)
+        default_stylesheet = os.path.join(stylesheets_directory, 'default.ly')
+        if not os.path.exists(default_stylesheet):
+            with open(default_stylesheet, 'w') as file_pointer:
+                file_pointer.write('')
         for file_name in os.listdir(stylesheets_directory):
             if os.path.splitext(file_name)[-1] not in ('.ly', '.ily'):
                 continue
@@ -200,8 +184,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 continue
             resize_command = 'convert {} -filter Lanczos -resize 696x {}'
             resize_command = resize_command.format(image_path, thumbnail_path)
-#            resize_command = SphinxDocumentHandler.dyld_path_setting + \
-#                '; ' + resize_command
             process = subprocess.Popen(
                 resize_command,
                 shell=True,
