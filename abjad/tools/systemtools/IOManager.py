@@ -96,15 +96,30 @@ class IOManager(AbjadObject):
                 file_ = os.path.join(root, file_name)
                 with open(file_, 'r') as file_pointer:
                     template = file_pointer.read()
-                #print(repr(file_name))
-                completed_template = template.format(
-                    score_package_name=score_package_name,
-                    composer_email=composer_email,
-                    composer_full_name=composer_full_name,
-                    composer_github_username=composer_github_username,
-                    score_title=score_title,
-                    year=year,
-                    )
+                try:
+                    completed_template = template.format(
+                        score_package_name=score_package_name,
+                        composer_email=composer_email,
+                        composer_full_name=composer_full_name,
+                        composer_github_username=composer_github_username,
+                        score_title=score_title,
+                        year=year,
+                        )
+                except KeyError:
+                    lines = template.splitlines()
+                    for i, line in enumerate(lines):
+                        try:
+                            lines[i] = line.format(
+                                score_package_name=score_package_name,
+                                composer_email=composer_email,
+                                composer_full_name=composer_full_name,
+                                composer_github_username=composer_github_username,
+                                score_title=score_title,
+                                year=year,
+                                )
+                        except ValueError:
+                            pass
+                    completed_template = '\n'.join(lines)
                 with open(file_, 'w') as file_pointer:
                     file_pointer.write(completed_template)
 
