@@ -70,6 +70,7 @@ class IOManager(AbjadObject):
         composer_full_name,
         composer_email,
         composer_github_username,
+        composer_library_package_name,
         ):
         from abjad.tools import systemtools
         configuration = systemtools.AbjadConfiguration()
@@ -113,6 +114,7 @@ class IOManager(AbjadObject):
                         composer_email=composer_email,
                         composer_full_name=composer_full_name,
                         composer_github_username=composer_github_username,
+                        composer_library_package_name=composer_library_package_name,
                         score_title=score_title,
                         year=year,
                         )
@@ -125,6 +127,7 @@ class IOManager(AbjadObject):
                                 composer_email=composer_email,
                                 composer_full_name=composer_full_name,
                                 composer_github_username=composer_github_username,
+                                composer_library_package_name=composer_library_package_name,
                                 score_title=score_title,
                                 year=year,
                                 )
