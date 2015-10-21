@@ -96,7 +96,7 @@ class IOManager(AbjadObject):
                 file_ = os.path.join(root, file_name)
                 with open(file_, 'r') as file_pointer:
                     template = file_pointer.read()
-                print(repr(file_name))
+                #print(repr(file_name))
                 completed_template = template.format(
                     score_package_name=score_package_name,
                     composer_email=composer_email,
