@@ -105,8 +105,19 @@ class CodeOutputProxy(abctools.AbjadValueObject):
         #lexer = 'pycon'
         #if not self.payload[0].startswith('>>>'):
         #    lexer = 'python'
-        start_command = r'\begin{lstlisting}'
-        stop_command = r'\end{lstlisting}'
+
+        configuration = configuration or {}
+        latex_configuration = configuration.get('latex', {})
+        start_command = latex_configuration.get(
+            'code-block-start',
+            [r'\begin{lstlisting}'],
+            )
+        start_command = '\n'.join(start_command)
+        stop_command = latex_configuration.get(
+            'code-block-stop',
+            [r'\end{lstlisting}'],
+            )
+        stop_command = '\n'.join(stop_command)
         result = []
         result.append(start_command)
         waiting_for_prompt = False
