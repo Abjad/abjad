@@ -79,7 +79,18 @@ class IOManager(AbjadObject):
             'example_score',
             )
         target_path = score_package_path
-        shutil.copytree(source_path, target_path)
+        if not os.path.exists(target_path):
+            shutil.copytree(source_path, target_path)
+        else:
+            for subentry in os.listdir(source_path):
+                subentry_source = os.path.join(source_path, subentry)
+                subentry_target = os.path.join(target_path, subentry)
+                if os.path.isfile(subentry_source):
+                    shutil.copy(subentry_source, subentry_target)
+                elif os.path.isdir(subentry_source):
+                    shutil.copytree(subentry_source, subentry_target)
+                else:
+                    raise ValueError(subentry_source)
         old_inner_score_directory = os.path.join(
             target_path,
             'example_score',
@@ -117,7 +128,7 @@ class IOManager(AbjadObject):
                                 score_title=score_title,
                                 year=year,
                                 )
-                        except ValueError:
+                        except (ValueError, KeyError):
                             pass
                     completed_template = '\n'.join(lines)
                 with open(file_, 'w') as file_pointer:
