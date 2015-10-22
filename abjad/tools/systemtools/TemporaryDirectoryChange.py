@@ -42,7 +42,9 @@ class TemporaryDirectoryChange(ContextManager):
         if self._directory is not None:
             os.chdir(self.directory)
             if self.verbose:
-                print('Changing directory to {}.'.format(self.directory))
+                message = 'Changing directory to {} ...'
+                message = message.format(self.directory)
+                print(message)
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
@@ -51,7 +53,9 @@ class TemporaryDirectoryChange(ContextManager):
         if self._directory is not None:
             os.chdir(self._original_directory)
             if self.verbose:
-                print('Returning to {}.'.format(self.original_directory))
+                message = 'Returning to {} ...'
+                message = message.format(self.original_directory)
+                print(message)
         self._original_directory = None
 
     def __repr__(self):
