@@ -16,8 +16,9 @@ install:
     - pip install -e .
 
 script:
-    - ajv doctest ./{score_package_name} -x
-    - py.test -rf ./{score_package_name} -x
+    - ajv doctest -x ./{score_package_name}
+    - py.test -xrf ./{score_package_name}
+    - python ./{score_package_name}/test/test_segments.py
 
 notifications:
     email: false
