@@ -8,7 +8,7 @@ from abjad.tools.documentationtools import DocumentationManager
 from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
 
 
-class BuildApiScript(DeveloperScript):
+class BuildAPIScript(DeveloperScript):
     r'''Builds the Abjad APIs.
 
     ..  shell::
@@ -135,7 +135,7 @@ class BuildApiScript(DeveloperScript):
         rst_only=False,
         ):
         from abjad import abjad_configuration
-        api_generator = BuildApiScript.ExperimentalDocumentationManager()
+        api_generator = BuildAPIScript.ExperimentalDocumentationManager()
         api_title = 'experimental'
         docs_directory = os.path.join(
             abjad_configuration.abjad_root_directory,
@@ -167,7 +167,7 @@ class BuildApiScript(DeveloperScript):
         rst_only=False,
         ):
         import ide
-        api_generator = BuildApiScript.IDEDocumentationManager()
+        api_generator = BuildAPIScript.IDEDocumentationManager()
         api_title = 'Abjad IDE'
         docs_directory = os.path.join(
             ide.__path__[0],
@@ -231,7 +231,7 @@ class BuildApiScript(DeveloperScript):
         clean=False,
         rst_only=False,
         ):
-        api_generator = BuildApiScript.ScoreLibraryDocumentationManager(
+        api_generator = BuildAPIScript.ScoreLibraryDocumentationManager(
             api_title,
             docs_directory,
             packages_to_document,

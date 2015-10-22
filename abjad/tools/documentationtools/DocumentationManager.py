@@ -812,7 +812,8 @@ class DocumentationManager(abctools.AbjadObject):
     def execute(self):
         r'''Executes documentation manager.
         '''
-        print('Rebuilding documentation source.')
+        message = 'Rebuilding documentation source ...'
+        print(message)
         source_directory = self._get_source_directory()
         if not os.path.exists(source_directory):
             os.makedirs(source_directory)

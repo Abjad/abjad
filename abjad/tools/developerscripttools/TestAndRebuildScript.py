@@ -85,7 +85,7 @@ class TestAndRebuildScript(DeveloperScript):
         r'''Rebuilds docs.
         '''
         from abjad.tools import developerscripttools
-        developerscripttools.BuildApiScript()(['-X', '-M'])
+        developerscripttools.BuildAPIScript()(['-X', '-M'])
 
     def run_doctest(self, args):
         r'''Runs doctest.

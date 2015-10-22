@@ -216,7 +216,7 @@ Build the coverage report with ``ajv api`` and the ``coverage`` format.
     loading pickled environment... done
     building [coverage]: coverage overview
     updating environment: 0 added, 1 changed, 0 removed
-    reading sources... [100%] api/tools/developerscripttools/BuildApiScript/BuildApiScript                                                                                              
+    reading sources... [100%] api/tools/developerscripttools/BuildAPIScript/BuildAPIScript                                                                                              
     looking for now-outdated files... none found
     pickling environment... done
     checking consistency... done
