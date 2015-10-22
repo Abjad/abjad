@@ -91,7 +91,8 @@ class ReplaceInFilesScript(DirectoryScript):
             '*.pyc',
             '*.rtf',
             '*.txt',
-        ]
+            '.DS_Store',
+            ]
 
     @property
     def version(self):
@@ -150,13 +151,14 @@ class ReplaceInFilesScript(DirectoryScript):
             )
 
     def _process_file(self, args, path):
-
         changed_items = 0
         changed_lines = 0
-
-        with open(path, 'r') as f:
-            lines = f.read().split('\n')
-
+        try:
+            with open(path, 'r') as f:
+                lines = f.read().split('\n')
+        except UnicodeDecodeError:
+            print('FAILED READING: {}'.format(path))
+            return changed_lines, changed_items
         results = []
         for i, line in enumerate(lines):
             line, changes = self._process_line(
@@ -165,11 +167,9 @@ class ReplaceInFilesScript(DirectoryScript):
             if changes:
                 changed_items += changes
                 changed_lines += 1
-
         if results != lines:
             with open(path, 'w') as f:
                 f.write('\n'.join(results))
-
         return changed_lines, changed_items
 
     def _process_line(
