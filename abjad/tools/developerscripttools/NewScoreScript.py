@@ -75,6 +75,7 @@ class NewScoreScript(DirectoryScript):
             args.composer_name,
             args.composer_email,
             args.composer_github,
+            args.composer_library
             )
 
     def setup_argument_parser(self, parser):
@@ -109,4 +110,9 @@ class NewScoreScript(DirectoryScript):
             '-G', '--composer-github',
             default='composer',
             metavar='GITHUB_USERNAME',
+            )
+        parser.add_argument(
+            '-L', '--composer-library',
+            default='library',
+            metavar='LIBRARY_NAME',
             )

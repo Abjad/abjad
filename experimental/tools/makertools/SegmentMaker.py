@@ -26,8 +26,8 @@ class SegmentMaker(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __call__(
-        self, 
-        segment_metadata=None, 
+        self,
+        segment_metadata=None,
         previous_segment_metadata=None,
         ):
         r'''Calls segment-maker.
