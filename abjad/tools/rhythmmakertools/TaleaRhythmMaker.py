@@ -583,7 +583,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         unburnished_weights = [mathtools.weight(x) for x in divisions]
         burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
-        assert burnished_weights == unburnished_weights
+        #assert burnished_weights == unburnished_weights
+        assert tuple(burnished_weights) == tuple(unburnished_weights)
         return burnished_divisions
 
     def _make_leaf_lists(self, numeric_map, talea_denominator):

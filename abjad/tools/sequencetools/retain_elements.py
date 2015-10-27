@@ -11,11 +11,19 @@ def retain_elements(
 
     ..  container:: example
 
+        Sequence for examples:
+
+        ::
+
+            >>> sequence = list(range(15))
+
+    ..  container:: example
+
         **Example 1.** Retains all elements:
 
         ::
 
-            >>> sequencetools.retain_elements(range(15))
+            >>> sequencetools.retain_elements(sequence)
             [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
     ..  container:: example
@@ -25,7 +33,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15),
+            ...     sequence,
             ...     indices=[2, 3],
             ...     )
             [2, 3]
@@ -37,7 +45,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15),
+            ...     sequence,
             ...     indices=[-2, -3],
             ...     )
             [12, 13]
@@ -49,7 +57,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15),
+            ...     sequence,
             ...     indices=[2, 3],
             ...     period=4,
             ...     )
@@ -63,7 +71,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15),
+            ...     sequence,
             ...     indices=[-2, -3],
             ...     period=4,
             ...     )
@@ -76,7 +84,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15),
+            ...     sequence,
             ...     indices=[],
             ...     )
             []
@@ -88,7 +96,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15),
+            ...     sequence,
             ...     indices=[97, 98, 99],
             ...     )
             []
@@ -100,7 +108,7 @@ def retain_elements(
         ::
 
             >>> sequencetools.retain_elements(
-            ...     range(15),
+            ...     sequence,
             ...     indices=[-97, -98, -99],
             ...     )
             []

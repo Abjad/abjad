@@ -7,13 +7,21 @@ def overwrite_elements(sequence, pairs):
 
     ..  container:: example
 
+        Sequence for examples:
+
+        ::
+
+            >>> sequence = list(range(10))
+
+    ..  container:: example
+
         **Example 1.** Overwrites list of first ten integers with a run of 0s
         and a run of 5s:
 
         ::
 
             >>> pairs = [(0, 3), (5, 3)]
-            >>> sequencetools.overwrite_elements(range(10), pairs)
+            >>> sequencetools.overwrite_elements(sequence, pairs)
             [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]
 
     ..  container:: example
@@ -24,7 +32,7 @@ def overwrite_elements(sequence, pairs):
         ::
 
             >>> pairs = [(0, 3), (5, 3)]
-            >>> sequencetools.overwrite_elements(tuple(range(10)), pairs)
+            >>> sequencetools.overwrite_elements(tuple(sequence), pairs)
             (0, 0, 0, 3, 4, 5, 5, 5, 8, 9)
 
     Set `pairs` to a list of ``(anchor_index, length)`` pairs.
