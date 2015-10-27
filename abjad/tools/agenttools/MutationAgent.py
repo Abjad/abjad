@@ -2624,7 +2624,7 @@ class MutationAgent(abctools.AbjadObject):
         # partition split components according to input durations
         result = sequencetools.flatten_sequence(result)
         result = selectiontools.ContiguousSelection(result)
-        result = result.partition_by_durations_exactly(durations_copy)
+        result = result.partition_by_durations(durations_copy, fill=Exact)
         # return list of shards
         result = [selectiontools.Selection(x) for x in result]
         return result
