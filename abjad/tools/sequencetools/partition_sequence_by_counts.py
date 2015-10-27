@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import copy
 from abjad.tools import mathtools
 
@@ -13,7 +14,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 1a.** Partition sequence once by counts without overhang:
+        **Example 1a.** Partitions sequence once by counts without overhang:
 
         ::
 
@@ -25,7 +26,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2]]
 
-        **Example 1b.** Partition sequence once by counts without overhang:
+        **Example 1b.** Partitions sequence once by counts without overhang:
 
         ::
 
@@ -39,7 +40,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 2a.** Partition sequence cyclically by counts without
+        **Example 2a.** Partitions sequence cyclically by counts without
         overhang:
 
         ::
@@ -52,7 +53,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
-        **Example 2b.** Partition sequence cyclically by counts without
+        **Example 2b.** Partitions sequence cyclically by counts without
         overhang:
 
         ::
@@ -67,7 +68,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 3a.** Partition sequence once by counts with overhang:
+        **Example 3a.** Partitions sequence once by counts with overhang:
 
         ::
 
@@ -79,7 +80,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
 
-        **Example 3b.** Partition sequence once by counts with overhang:
+        **Example 3b.** Partitions sequence once by counts with overhang:
 
         ::
 
@@ -93,7 +94,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 4a.** Partition sequence cyclically by counts with overhang:
+        **Example 4a.** Partitions sequence cyclically by counts with overhang:
 
         ::
 
@@ -105,7 +106,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
 
-        **Example 4b.** Partition sequence cyclically by counts with overhang:
+        **Example 4b.** Partitions sequence cyclically by counts with overhang:
 
         ::
 
@@ -117,17 +118,21 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2, 3], [4, 5, 6], [7, 8, 9, 10], [11, 12, 13], [14, 15]]
 
-    Returns list of sequence objects.
+    Returns list of objects with type equal to that of `sequence`.
     '''
     from abjad.tools import sequencetools
 
-    if not isinstance(counts, (tuple, list)):
-        message = 'must be list or tuple: {!r}.'
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must be sequence: {!r}.'
+        message = message.format(sequence)
+        raise TypeError(message)
+    if not isinstance(counts, collections.Iterable):
+        message = 'must be iterable: {!r}.'
         message = message.format(counts)
         raise TypeError(message)
 
+    sequence_type = type(sequence)
     result = []
-
     if cyclic:
         if overhang:
             counts = sequencetools.repeat_sequence_to_weight(
@@ -146,8 +151,7 @@ def partition_sequence_by_counts(
         if weight_counts < len_sequence:
             counts = list(counts)
             counts.append(len(sequence) - weight_counts)
-
     for start, stop in mathtools.cumulative_sums_pairwise(counts):
-        result.append(type(sequence)(sequence[start:stop]))
-
+        part = sequence_type(sequence[start:stop])
+        result.append(part)
     return result
