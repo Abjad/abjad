@@ -227,7 +227,7 @@ def partition_sequence_by_weights(
             return candidate
         else:
             message = 'can not partition exactly.'
-            raise PartitionError(message)
+            raise Exception(message)
     elif allow_part_weights == More:
         if not cyclic:
             return _partition_sequence_once_by_weights_at_least(
@@ -272,7 +272,7 @@ def _partition_sequence_once_by_weights_at_least(
                         result.append(current_part)
                         break
                 message = 'too few elements in sequence.'
-                raise PartitionError(message)
+                raise Exception(message)
             current_part.append(x)
             if target_weight <= mathtools.weight(current_part):
                 result.append(current_part)
@@ -323,7 +323,7 @@ def _partition_sequence_once_by_weights_at_most(
                 x = l_copy.pop(0)
             except IndexError:
                 message = 'too few elements in sequence.'
-                raise PartitionError(message)
+                raise Exception(message)
             current_weight = mathtools.weight(current_part)
             candidate_weight = current_weight + mathtools.weight([x])
             if candidate_weight < target_weight:
@@ -341,7 +341,7 @@ def _partition_sequence_once_by_weights_at_most(
                     break
                 else:
                     message = 'elements in sequence too big.'
-                    raise PartitionError(message)
+                    raise Exception(message)
             else:
                 message = 'candidate and target weights must compare.'
                 raise ValueError(message)
@@ -383,7 +383,7 @@ def _partition_sequence_cyclically_by_weights_at_most(
                 current_target_weight_index += 1
             else:
                 message = 'elements in sequence too big.'
-                raise PartitionError(message)
+                raise Exception(message)
         else:
             message = 'candidate and target rates must compare.'
             raise ValueError(message)

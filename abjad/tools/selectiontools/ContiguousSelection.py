@@ -629,8 +629,11 @@ class ContiguousSelection(Selection):
                 except IndexError:
                     break
             elif target_duration < candidate_duration:
+                # TODO: use Exact ordinal constant
                 if fill == 'exact':
-                    raise PartitionError
+                    message = 'must partition exactly.'
+                    raise Exception(message)
+                # TODO: use Less ordinal constant
                 elif fill == 'less':
                     result.append(part)
                     part = [component]
@@ -650,8 +653,11 @@ class ContiguousSelection(Selection):
                         message = 'target duration {}'
                         message += ' is less than cumulative duration {}.'
                         message = message.format(
-                            target_duration, cumulative_duration)
-                        raise PartitionError(message)
+                            target_duration, 
+                            cumulative_duration,
+                            )
+                        raise Exception(message)
+                # TODO: use More ordinal constant
                 elif fill == 'greater':
                     part.append(component)
                     result.append(part)
@@ -678,7 +684,6 @@ class ContiguousSelection(Selection):
         overhang=False,
         ):
         r'''Partitions components in selection by `durations` exactly.
-
 
         Returns list of selections.
         '''

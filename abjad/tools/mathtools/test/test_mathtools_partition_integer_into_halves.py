@@ -11,8 +11,10 @@ def test_mathtools_partition_integer_into_halves_01():
 def test_mathtools_partition_integer_into_halves_02():
     assert mathtools.partition_integer_into_halves(8, bigger='left') == (4, 4)
     assert mathtools.partition_integer_into_halves(8, bigger='right') == (4, 4)
-    assert mathtools.partition_integer_into_halves(8, bigger='left', even='disallowed') == (5, 3)
-    assert mathtools.partition_integer_into_halves(8, bigger='right', even='disallowed') == (3, 5)
+    assert mathtools.partition_integer_into_halves(
+        8, bigger='left', even='disallowed') == (5, 3)
+    assert mathtools.partition_integer_into_halves(
+        8, bigger='right', even='disallowed') == (3, 5)
 
 
 def test_mathtools_partition_integer_into_halves_03():
@@ -28,12 +30,12 @@ def test_mathtools_partition_integer_into_halves_04():
     '''
 
     statement = "mathtools.partition_integer_into_halves(0, even='disallowed')"
-    assert pytest.raises(PartitionError, statement)
+    assert pytest.raises(Exception, statement)
 
 
 def test_mathtools_partition_integer_into_halves_05():
-    r'''Raise TypeError on noninteger n.
-    Raise ValueError on negative n.
+    r'''Raises type error on noninteger n.
+    Raises value error on negative n.
     '''
 
     statement = "mathtools.partition_integer_into_halves('foo')"

@@ -2,7 +2,8 @@
 import math
 
 
-# TODO: replace string-value bigger='left' and even='allowed' keywords with constant-valued keywords
+# TODO: replace string-value bigger='left' and even='allowed' 
+# keywords with constant-valued keywords
 def partition_integer_into_halves(n, bigger='left', even='allowed'):
     r'''Writes positive integer `n` as the pair ``t = (left, right)``
     such that ``n == left + right``.
@@ -62,7 +63,7 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
 
     if n == 0:
         if even == 'disallowed':
-            raise PartitionError
+            raise Exception
         return (0, 0)
 
     smaller_half = int(math.floor(n / 2))
