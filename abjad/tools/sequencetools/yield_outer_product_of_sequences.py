@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import sys
 
 
@@ -29,6 +30,12 @@ def yield_outer_product_of_sequences(sequences):
 
     Returns generator.
     '''
+
+    for sequence in sequences:
+        if not isinstance(sequence, collections.Sequence):
+            message = 'must by sequence {!r}.'
+            message = message.format(sequence)
+            raise Exception(message)
 
     def _helper(list1, list2):
         result = []

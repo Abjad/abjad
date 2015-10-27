@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def negate_elements(sequence, absolute=False, indices=None, period=None):
@@ -84,8 +85,10 @@ def negate_elements(sequence, absolute=False, indices=None, period=None):
 
     indices = indices or range(len(sequence))
 
-    if not isinstance(sequence, list):
-        raise TypeError
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must be sequence: {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
 
     period = period or len(sequence)
 

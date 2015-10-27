@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import copy
+import collections
 
 
 def permute_sequence(sequence, permutation):
@@ -10,9 +10,19 @@ def permute_sequence(sequence, permutation):
         >>> sequencetools.permute_sequence([10, 11, 12, 13, 14, 15], [5, 4, 0, 1, 2, 3])
         [15, 14, 10, 11, 12, 13]
 
+    Permutes references to `sequence` elements; does not copy `sequence`
+    elements.
+
     Returns new object of `sequence` type.
     '''
     from abjad.tools import sequencetools
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     if not sequencetools.Sequence(*permutation).is_permutation() or \
         len(sequence) != len(permutation):
@@ -22,9 +32,10 @@ def permute_sequence(sequence, permutation):
 
     result = []
     for index in permutation:
-        new_element = copy.copy(sequence[index])
+        new_element = sequence[index]
         result.append(new_element)
     if isinstance(sequence, str):
-        return ''.join(result)
-    else:
-        return type(sequence)(result)
+        result = ''.join(result)
+
+    result = sequence_type(result)
+    return result

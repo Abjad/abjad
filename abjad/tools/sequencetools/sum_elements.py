@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import fractions
 
 
@@ -40,8 +41,15 @@ def sum_elements(
     Returns new list.
     '''
 
-    assert isinstance(sequence, list)
-    assert all(isinstance(x, (int, float, fractions.Fraction)) for x in sequence)
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
+
+    assert all(
+        isinstance(x, (int, float, fractions.Fraction)) for x in sequence)
     assert isinstance(period, (int, type(None)))
     assert isinstance(overhang, bool)
 
@@ -57,7 +65,7 @@ def sum_elements(
 
     if period is not None:
         if not max(indices_affected) < period:
-            message = 'affected indices must be less than period of repetition.'
+            message = 'affected indices must be less than repetition period.'
             raise ValueError(message)
     else:
         period = len(sequence)
@@ -87,6 +95,7 @@ def sum_elements(
         if overhang:
             result.append(slice_total)
 
+    result = sequence_type(result)
     return result
 
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def yield_all_subsequences_of_sequence(
@@ -55,8 +56,15 @@ def yield_all_subsequences_of_sequence(
         ...     [0, 1, 2, 3, 4], min_length=3, max_length=3))
         [[0, 1, 2], [1, 2, 3], [2, 3, 4]]
 
-    Returns generator of newly created `sequence` slices.
+    Returns generator.
     '''
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     len_sequence = len(sequence)
 

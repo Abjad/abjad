@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import copy
+import collections
 from abjad.tools import mathtools
 
 
@@ -44,8 +44,18 @@ def yield_all_combinations_of_elements(
         ...     [1, 2, 3, 4], min_length=2, max_length=2))
         [[1, 2], [1, 3], [2, 3], [1, 4], [2, 4], [3, 4]]
 
-    Returns generator of newly created `sequence` objects.
+    Yields references to `sequence` elements; does not copy `sequence`
+    elements.
+
+    Returns generator.
     '''
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     len_l = len(sequence)
     for i in range(2 ** len_l):
@@ -54,10 +64,7 @@ def yield_all_combinations_of_elements(
         sublist = []
         for j, digit in enumerate(reversed(binary_string)):
             if digit == '1':
-                # copy makes the function work with score components
-                # copy also makes twice as slow on lists of built-ins
-                #sublist.append(sequence[j])
-                sublist.append(copy.copy(sequence[j]))
+                sublist.append(sequence[j])
         yield_sublist = True
         if min_length is not None:
             if len(sublist) < min_length:

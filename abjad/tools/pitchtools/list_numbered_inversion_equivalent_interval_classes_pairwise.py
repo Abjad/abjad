@@ -2,8 +2,11 @@
 from abjad.tools import sequencetools
 
 
-def list_numbered_inversion_equivalent_interval_classes_pairwise(pitch_carriers, wrap=False):
-    r'''List numbered inversion-equivalent interval-classes pairwise between
+def list_numbered_inversion_equivalent_interval_classes_pairwise(
+    pitch_carriers, 
+    wrap=False,
+    ):
+    r'''Lists numbered inversion-equivalent interval-classes pairwise between
     `pitch_carriers`:
 
     ::
@@ -27,7 +30,7 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(pitch_carriers,
     ::
 
         >>> result = pitchtools.list_numbered_inversion_equivalent_interval_classes_pairwise(
-        ... staff, wrap=False)
+        ... staff[:], wrap=False)
 
     ::
 
@@ -44,7 +47,7 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(pitch_carriers,
     ::
 
         >>> result = pitchtools.list_numbered_inversion_equivalent_interval_classes_pairwise(
-        ... staff, wrap=True)
+        ... staff[:], wrap=True)
 
     ::
 
@@ -98,9 +101,11 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(pitch_carriers,
         NumberedInversionEquivalentIntervalClass(2)
         NumberedInversionEquivalentIntervalClass(0)
 
-    When ``wrap=False`` do not return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+    When ``wrap=False`` does not return ``pitch_carriers[-1] -
+    pitch_carriers[0]`` as last in series.
 
-    When ``wrap=True`` do return ``pitch_carriers[-1] - pitch_carriers[0]`` as last in series.
+    When ``wrap=True`` does return ``pitch_carriers[-1] - pitch_carriers[0]``
+    as last in series.
 
     Returns list.
     '''

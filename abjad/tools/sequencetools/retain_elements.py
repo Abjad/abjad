@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def retain_elements(
@@ -10,7 +11,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains all elements:
+        **Example 1.** Retains all elements:
 
         ::
 
@@ -19,7 +20,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains elements at indices 2 and 3:
+        **Example 2.** Retains elements at indices 2 and 3:
 
         ::
 
@@ -31,7 +32,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains elements at indices -2 and -3:
+        **Example 3.** Retains elements at indices -2 and -3:
 
         ::
 
@@ -43,7 +44,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains elements at indices congruent to 2 or 3 (mod 4):
+        **Example 4.** Retains elements at indices congruent to 2 or 3 (mod 4):
 
         ::
 
@@ -56,7 +57,8 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains elements at indices congruent to -2 or -3 (mod 4):
+        **Example 5.** Retains elements at indices congruent to -2 or -3 (mod
+        4):
 
         ::
 
@@ -69,7 +71,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains no elements:
+        **Example 6.** Retains no elements:
 
         ::
 
@@ -81,7 +83,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains no elements:
+        **Example 7.** Retains no elements:
 
         ::
 
@@ -93,7 +95,7 @@ def retain_elements(
 
     ..  container:: example
 
-        Retains no elements:
+        **Example 8.** Retains no elements:
 
         ::
 
@@ -105,8 +107,15 @@ def retain_elements(
 
     Returns elements in the order they appear in `sequence`.
 
-    Returns list.
+    Returns new object of `sequence` type.
     '''
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     length = len(sequence)
     period = period or length
@@ -132,4 +141,5 @@ def retain_elements(
         if i % period in indices:
             result.append(element)
 
+    result = sequence_type(result)
     return result

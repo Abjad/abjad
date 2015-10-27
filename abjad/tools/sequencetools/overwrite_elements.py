@@ -1,18 +1,43 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def overwrite_elements(sequence, pairs):
     '''Overwrites `sequence` elements at indices according to `pairs`.
 
-    ::
+    ..  container:: example
 
-        >>> sequencetools.overwrite_elements(range(10), [(0, 3), (5, 3)])
-        [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]
+        **Example 1.** Overwrites list of first ten integers with a run of 0s
+        and a run of 5s:
+
+        ::
+
+            >>> pairs = [(0, 3), (5, 3)]
+            >>> sequencetools.overwrite_elements(range(10), pairs)
+            [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]
+
+    ..  container:: example
+
+        **Example 2.** Overwrites tuples of first ten integers with a run of 0s
+        and a run of 5s:
+
+        ::
+
+            >>> pairs = [(0, 3), (5, 3)]
+            >>> sequencetools.overwrite_elements(tuple(range(10)), pairs)
+            (0, 0, 0, 3, 4, 5, 5, 5, 8, 9)
 
     Set `pairs` to a list of ``(anchor_index, length)`` pairs.
 
     Returns new list.
     '''
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must be sequence: {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     result = list(sequence)
 
@@ -25,5 +50,7 @@ def overwrite_elements(sequence, pairs):
                 result[i] = anchor
             except IndexError:
                 break
+
+    result = sequence_type(result)
 
     return result

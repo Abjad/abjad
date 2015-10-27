@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
-def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
-    '''Iterates elements in `sequence` `n` at a time.
+def iterate_sequence_nwise(iterable, n=2, cyclic=False, wrapped=False):
+    '''Iterates elements in `iterable` `n` at a time.
 
     ..  container:: example
 
-        Iterates sequence by pairs:
+        Iterates iterable by pairs:
 
         ::
 
@@ -25,7 +26,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
 
     ..  container:: example
 
-        Iterates sequence by triples:
+        Iterates iterable by triples:
 
         ::
 
@@ -44,7 +45,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
 
     ..  container:: example
 
-        Iterates sequence by pairs. Wraps around at end:
+        Iterates iterable by pairs. Wraps around at end:
 
         ::
 
@@ -65,7 +66,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
 
     ..  container:: example
 
-        Iterates sequence by triples. Wraps around at end:
+        Iterates iterable by triples. Wraps around at end:
 
         ::
 
@@ -86,7 +87,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
 
     ..  container:: example
 
-        Iterates sequence by pairs. Cycles indefinitely:
+        Iterates iterable by pairs. Cycles indefinitely:
 
         ::
 
@@ -114,7 +115,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
 
     ..  container:: example
 
-        Iterates sequence by triples. Cycles indefinitely:
+        Iterates iterable by triples. Cycles indefinitely:
 
         ::
 
@@ -146,10 +147,15 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
     Returns generator.
     '''
 
+    if not isinstance(iterable, collections.Iterable):
+        message = 'must be iterable: {!r}.'
+        message = message.format(iterable)
+        raise Exception(message)
+
     if cyclic:
         element_buffer = []
         long_enough = False
-        for element in sequence:
+        for element in iterable:
             element_buffer.append(element)
             if not long_enough:
                 if n <= len(element_buffer):
@@ -169,7 +175,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
     elif wrapped:
         first_n_minus_1 = []
         element_buffer = []
-        for element in sequence:
+        for element in iterable:
             element_buffer.append(element)
             if len(element_buffer) == n:
                 yield tuple(element_buffer)
@@ -182,7 +188,7 @@ def iterate_sequence_nwise(sequence, n=2, cyclic=False, wrapped=False):
                 yield tuple(element_buffer[x:x+n])
     else:
         element_buffer = []
-        for element in sequence:
+        for element in iterable:
             element_buffer.append(element)
             if len(element_buffer) == n:
                 yield tuple(element_buffer)

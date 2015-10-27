@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import sys
 
 
@@ -11,8 +12,8 @@ def replace_elements(
 
     ..  container:: example
 
-        Replaces elements at indices 0, 2, 4, 6 with ``'A'``, ``'B'``,
-        ``'C'``, ``'D'``, respectively:
+        **Example 1.** Replaces elements at indices 0, 2, 4, 6 with ``'A'``,
+        ``'B'``, ``'C'``, ``'D'``, respectively:
 
         ::
 
@@ -25,8 +26,8 @@ def replace_elements(
 
     ..  container:: example
 
-        Replaces elements at indices 0, 1, 8, 13 with ``'A'``, ``'B'``,
-        ``'C'``, ``'D'``, respectively:
+        **Example 2.** Replaces elements at indices 0, 1, 8, 13 with ``'A'``,
+        ``'B'``, ``'C'``, ``'D'``, respectively:
 
         ::
 
@@ -39,7 +40,7 @@ def replace_elements(
 
     ..  container:: example
 
-        Replaces every element at an even index with ``'*'``:
+        **Example 3.** Replaces every element at an even index with ``'*'``:
 
         ::
 
@@ -52,8 +53,9 @@ def replace_elements(
 
     ..  container:: example
 
-        Replaces every element at an index congruent to 0 (mod 6) with ``'A'``;
-        replaces every element at an index congruent to 2 (mod 6) with ``'B'``:
+        **Example 4.** Replaces every element at an index congruent to 0 (mod
+        6) with ``'A'``; replaces every element at an index congruent to 2 (mod
+        6) with ``'B'``:
 
         ::
 
@@ -64,13 +66,15 @@ def replace_elements(
             ...     )
             ['A', 1, 'B', 3, 4, 5, 'A', 7, 'B', 9, 10, 11, 'A', 13, 'B', 15]
 
-    Raises type error when `sequence` is not a list.
-
-    Returns object of `sequence` type.
+    Returns new object of `sequence` type.
     '''
 
-    if not isinstance(sequence, list):
-        raise TypeError
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     assert isinstance(indices, tuple) and len(indices) == 2
     index_values, index_period = indices
@@ -111,5 +115,5 @@ def replace_elements(
         else:
             result.append(element)
 
-    result = type(sequence)(result)
+    result = sequence_type(result)
     return result

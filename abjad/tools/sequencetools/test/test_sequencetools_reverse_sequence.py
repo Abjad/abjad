@@ -4,7 +4,7 @@ from abjad import *
 
 
 def test_sequencetools_reverse_sequence_01():
-    r'''Reverse sequence.
+    r'''Reverses sequence.
     '''
 
     assert sequencetools.reverse_sequence((1, 2, 3, 4, 5)) == (5, 4, 3, 2, 1)
@@ -12,7 +12,7 @@ def test_sequencetools_reverse_sequence_01():
 
 
 def test_sequencetools_reverse_sequence_02():
-    r'''Reverse sequence.
+    r'''Reverses sequence.
     '''
 
     segment = pitchtools.PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
@@ -22,7 +22,7 @@ def test_sequencetools_reverse_sequence_02():
 
 
 def test_sequencetools_reverse_sequence_03():
-    r'''Raise exception on nonsequence.
+    r'''Raises exception on nonsequence.
     '''
 
-    assert pytest.raises(TypeError, 'sequencetools.reverse_sequence(17)')
+    assert pytest.raises(Exception, 'sequencetools.reverse_sequence(17)')

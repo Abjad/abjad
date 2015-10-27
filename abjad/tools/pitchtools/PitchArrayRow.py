@@ -80,8 +80,8 @@ class PitchArrayRow(AbjadObject):
         return PitchArrayRow(new_cells)
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a pitch array row with contents equal to that of
-        this pitch array row. Otherwise false.
+        r'''Is true when `arg` is a pitch array row with contents equal to that
+        of this pitch array row. Otherwise false.
 
         Returns true or false.
         '''
@@ -157,6 +157,13 @@ class PitchArrayRow(AbjadObject):
         copy_arg = copy.copy(arg)
         self.extend(copy_arg.cells)
         return self
+
+    def __iter__(self):
+        r'''Iterates pitch array row.
+
+        Returns generator.
+        '''
+        return iter(self.cells)
 
     def __len__(self):
         r'''Length of pitch array row.
@@ -264,8 +271,8 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def is_defective(self):
-        r'''Is true when width of pitch array row does not equal width of parent
-        pitch array. Otherwise false.
+        r'''Is true when width of pitch array row does not equal width of
+        parent pitch array. Otherwise false.
 
         Returns true or false.
         '''

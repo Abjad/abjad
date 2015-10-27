@@ -74,7 +74,11 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
     if classes is None:
         classes = (collections.Sequence, selectiontools.Selection)
 
-    assert isinstance(sequence, classes), repr(sequence)
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must be sequence or selection: {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
     sequence_type = type(sequence)
 
     if indices is None:

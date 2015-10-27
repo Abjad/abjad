@@ -31,9 +31,10 @@ def increase_elements(sequence, addenda, indices=None):
     '''
     from abjad.tools import sequencetools
 
-    prototype = (collections.Sequence, types.GeneratorType)
-    if not isinstance(sequence, prototype):
-        raise TypeError(sequence)
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must be sequence: {!r}.'
+        message = message.format(sequence)
+        raise Exception(sequence)
 
     if indices is None:
         result = []

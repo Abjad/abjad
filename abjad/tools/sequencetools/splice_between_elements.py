@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def splice_between_elements(
@@ -14,41 +15,59 @@ def splice_between_elements(
         >>> sequence = [0, 1, 2, 3, 4]
         >>> new_elements = ['A', 'B']
 
-    ::
+    ..  container:: example
 
-        >>> sequencetools.splice_between_elements(sequence, new_elements)
-        [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
+        **Example 1.** Splices characters between integers:
 
-    Splices copies of `new_elements` between each of the elements of `sequence`
-    and after the last element of `sequence`:
+        ::
 
-    ::
+            >>> sequencetools.splice_between_elements(sequence, new_elements)
+            [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
 
-        >>> sequencetools.splice_between_elements(
-        ...     sequence, new_elements, overhang=(0, 1))
-        [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
+    ..  container:: example
 
-    Splices copies of `new_elements` before the first element of `sequence` and
-    between each of the other elements of `sequence`:
+        **Example 2.** Splices copies of `new_elements` between each of the
+        elements of `sequence` and after the last element of `sequence`:
 
-    ::
+        ::
 
-        >>> sequencetools.splice_between_elements(
-        ...     sequence, new_elements, overhang=(1, 0))
-        ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
+            >>> sequencetools.splice_between_elements(
+            ...     sequence, new_elements, overhang=(0, 1))
+            [0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
 
-    Splices copies of `new_elements` before the first element of `sequence`,
-    after the last element of `sequence` and between each of the other
-    elements of `sequence`:
+    ..  container:: example
 
-    ::
+        **Example 3.** Splices copies of `new_elements` before the first
+        element of `sequence` and between each of the other elements of
+        `sequence`:
 
-        >>> sequencetools.splice_between_elements(
-        ...     sequence, new_elements, overhang=(1, 1))
-        ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
+        ::
 
-    Returns newly constructed list.
+            >>> sequencetools.splice_between_elements(
+            ...     sequence, new_elements, overhang=(1, 0))
+            ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4]
+
+    ..  container:: example
+
+        **Example 4.** Splices copies of `new_elements` before the first
+        element of `sequence`, after the last element of `sequence` and between
+        each of the other elements of `sequence`:
+
+        ::
+
+            >>> sequencetools.splice_between_elements(
+            ...     sequence, new_elements, overhang=(1, 1))
+            ['A', 'B', 0, 'A', 'B', 1, 'A', 'B', 2, 'A', 'B', 3, 'A', 'B', 4, 'A', 'B']
+
+    Returns new object of `sequence` type.
     '''
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     result = []
 
@@ -64,4 +83,5 @@ def splice_between_elements(
     if overhang[-1] == 1:
         result.extend(new_elements)
 
+    result = sequence_type(result)
     return result

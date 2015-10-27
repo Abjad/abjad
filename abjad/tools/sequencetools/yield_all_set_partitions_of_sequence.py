@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def yield_all_set_partitions_of_sequence(sequence):
@@ -32,6 +33,14 @@ def yield_all_set_partitions_of_sequence(sequence):
     '''
     from abjad.tools import sequencetools
 
-    for rgf in sequencetools.yield_all_restricted_growth_functions_of_length(len(sequence)):
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
+
+    for rgf in sequencetools.yield_all_restricted_growth_functions_of_length(
+        len(sequence)):
         partition = sequencetools.partition_sequence_by_restricted_growth_function(sequence, rgf)
         yield partition

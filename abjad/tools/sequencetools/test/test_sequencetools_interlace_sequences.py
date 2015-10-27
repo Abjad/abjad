@@ -10,7 +10,7 @@ def test_sequencetools_interlace_sequences_01():
     n = range(400, 408)
     t = sequencetools.interlace_sequences(k, l, m, n)
 
-    assert t == [100, 200, 300, 400, 101, 301, 401, 102, 302, 402, 403, 404, 405, 406, 407]
+    assert t == (100, 200, 300, 400, 101, 301, 401, 102, 302, 402, 403, 404, 405, 406, 407)
 
 
 def test_sequencetools_interlace_sequences_02():

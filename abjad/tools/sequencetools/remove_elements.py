@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def remove_elements(
@@ -10,7 +11,7 @@ def remove_elements(
 
     ..  container:: example
 
-        Removes all elements:
+        **Example 1.** Removes all elements:
 
         ::
 
@@ -19,7 +20,7 @@ def remove_elements(
 
     ..  container:: example
 
-        Removes elements and indices 2 and 3:
+        **Example 2.** Removes elements and indices 2 and 3:
 
         ::
 
@@ -31,7 +32,7 @@ def remove_elements(
 
     ..  container:: example
 
-        Removes elements and indices -2 and -3:
+        **Example 3.** Removes elements and indices -2 and -3:
 
         ::
 
@@ -43,7 +44,7 @@ def remove_elements(
 
     ..  container:: example
 
-        Removes elements and indices 2 and 3 (mod 4):
+        **Example 4.** Removes elements and indices 2 and 3 (mod 4):
 
         ::
 
@@ -56,7 +57,7 @@ def remove_elements(
 
     ..  container:: example
 
-        Removes elements and indices -2 and -3 (mod 4):
+        **Example 5.** Removes elements at indices -2 and -3 (mod 4):
 
         ::
 
@@ -69,7 +70,7 @@ def remove_elements(
 
     ..  container:: example
 
-        Removes no elements:
+        **Example 6.** Removes no elements:
 
         ::
 
@@ -81,7 +82,7 @@ def remove_elements(
 
     ..  container:: example
 
-        Removes no elements:
+        **Example 7.** Removes no elements:
 
         ::
 
@@ -93,7 +94,7 @@ def remove_elements(
 
     ..  container:: example
 
-        Removes no elements:
+        **Example 8.** Removes no elements:
 
         ::
 
@@ -103,10 +104,30 @@ def remove_elements(
             ...     )
             [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
 
+    ..  container:: example
+
+        **Example 9.** Removes tuple elements at indices -2 and -3 (mod 4):
+
+        ::
+
+            >>> sequencetools.remove_elements(
+            ...     tuple(range(15)),
+            ...     indices=[-2, -3],
+            ...     period=4,
+            ...     )
+            (2, 3, 6, 7, 10, 11, 14)
+
     Returns elements in the order they appear in `sequence`.
 
-    Returns list.
+    Returns new object of `sequence` type.
     '''
+    
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     result = []
 
@@ -131,5 +152,7 @@ def remove_elements(
     for i, element in enumerate(sequence):
         if i % period not in indices:
             result.append(element)
+
+    result = sequence_type(result)
 
     return result

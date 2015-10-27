@@ -1,21 +1,18 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import mathtools
 
 
 def truncate_sequence(sequence, sum_=None, weight=None):
     '''Truncates `sequence`.
 
-    ..  container:: example
+    ::
 
-        Example sequence:
-
-        ::
-
-            >>> sequence = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
+        >>> sequence = [-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]
 
     ..  container:: example
 
-        Truncates sequence to weights ranging from 1 to 10:
+        **Example 1.** Truncates sequence to weights ranging from 1 to 10:
 
         ::
 
@@ -36,7 +33,7 @@ def truncate_sequence(sequence, sum_=None, weight=None):
 
     ..  container:: example
 
-        Truncates sequence to sums ranging from 1 to 10:
+        **Example 2.** Truncates sequence to sums ranging from 1 to 10:
 
         ::
 
@@ -57,7 +54,7 @@ def truncate_sequence(sequence, sum_=None, weight=None):
 
     ..  container:: example
 
-        Truncates sequence to zero weight:
+        **Example 3.** Truncates sequence to zero weight:
 
         ::
 
@@ -66,7 +63,7 @@ def truncate_sequence(sequence, sum_=None, weight=None):
 
     ..  container:: example
 
-        Truncates sequence to zero sum:
+        **Example 4.** Truncates sequence to zero sum:
 
         ::
 
@@ -82,8 +79,12 @@ def truncate_sequence(sequence, sum_=None, weight=None):
     Returns new object of `sequence` type.
     '''
 
-    if not isinstance(sequence, list):
-        raise TypeError
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+    
+    sequence_type = type(sequence)
 
     if weight is not None:
         if weight < 0:
@@ -116,5 +117,5 @@ def truncate_sequence(sequence, sum_=None, weight=None):
                     result.append(sum_ - sum(result))
                     break
 
-    result = type(sequence)(result)
+    result = sequence_type(result)
     return result

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import math
 import numbers
 from abjad.tools import mathtools
@@ -9,7 +10,7 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
 
     ..  container:: example
 
-        Repeats sequence to weight of 23 exactly:
+        **Example 1.** Repeats sequence to weight of 23 exactly:
 
         ::
 
@@ -20,7 +21,7 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
 
     ..  container:: example
 
-        Repeats sequence to weight of 23 more:
+        **Example 2.** Repeats sequence to weight of 23 more:
 
         ::
 
@@ -35,7 +36,7 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
 
     ..  container:: example
 
-        Repeats sequence to weight of 23 or less:
+        **Example 3.** Repeats sequence to weight of 23 or less:
 
         ::
 
@@ -48,8 +49,15 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
 
         Discards last element when necessary.
 
-    Returns newly constructed `sequence` object.
+    Returns new object of `sequence` type.
     '''
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     # check input
     assert isinstance(weight, numbers.Number)
@@ -111,4 +119,5 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
         raise ValueError(message)
 
     # return result
-    return type(sequence)(result)
+    result = sequence_type(result)
+    return result

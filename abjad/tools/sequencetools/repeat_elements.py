@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def repeat_elements(sequence, indices=None, period=None, total=1):
@@ -6,7 +7,8 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     ..  container:: example
 
-        Repeats elements at indices 1 and 2 a total of three times each:
+        **Example 1.** Repeats elements at indices 1 and 2 a total of three
+        times each:
 
         ::
 
@@ -19,7 +21,8 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     ..  container:: example
 
-        Repeats elements at indices -1 and -2 a total of three times each:
+        **Example 2.** Repeats elements at indices -1 and -2 a total of three
+        times each:
 
         ::
 
@@ -32,8 +35,8 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     ..  container:: example
 
-        Repeats elements at indices congruent to 1 and 2 (mod 5) a total of
-        three times each:
+        **Example 3.** Repeats elements at indices congruent to 1 and 2 (mod 5)
+        a total of three times each:
 
         ::
 
@@ -47,8 +50,8 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     ..  container:: example
 
-        Repeats elements at indices congruent to -1 and -2 (mod 5) a total of
-        three times each:
+        **Example 4.** Repeats elements at indices congruent to -1 and -2 (mod
+        5) a total of three times each:
 
         ::
 
@@ -62,7 +65,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     ..  container:: example
 
-        Repeats all elements a total of two times each:
+        **Example 5.** Repeats all elements a total of two times each:
 
         ::
 
@@ -74,7 +77,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     ..  container:: example
 
-        Repeats all elements a total of one time each:
+        **Example 6.** Repeats all elements a total of one time each:
 
         ::
 
@@ -86,7 +89,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     ..  container:: example
 
-        Repeats all elements a total of zero times each:
+        **Example 7.** Repeats all elements a total of zero times each:
 
         ::
 
@@ -98,7 +101,7 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     ..  container:: example
 
-        Repeats no elements:
+        **Example 8.** Repeats no elements:
 
         ::
 
@@ -110,6 +113,13 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
 
     Returns new object of `sequence` type.
     '''
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     length = len(sequence)
     period = period or length
@@ -137,5 +147,5 @@ def repeat_elements(sequence, indices=None, period=None, total=1):
         else:
             result.append(element)
 
-    result = type(sequence)(result)
+    result = sequence_type(result)
     return result

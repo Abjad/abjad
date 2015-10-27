@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def yield_all_unordered_pairs_of_sequence(sequence):
@@ -35,6 +36,13 @@ def yield_all_unordered_pairs_of_sequence(sequence):
 
     Returns generator.
     '''
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     sequence_copy = list(sequence)
     for i, x in enumerate(sequence_copy):

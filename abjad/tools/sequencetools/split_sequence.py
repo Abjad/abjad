@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import mathtools
 
 
@@ -7,7 +8,7 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
 
     ..  container:: example
 
-        **Example 1.** Split sequence cyclically by weights with overhang:
+        **Example 1.** Splits sequence cyclically by weights with overhang:
 
         ::
 
@@ -17,11 +18,11 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
             ...     cyclic=True,
             ...     overhang=True,
             ...     )
-            [(3,), (7, -8), (-2, 1), (3,), (6, -9), (-1,)]
+            ((3,), (7, -8), (-2, 1), (3,), (6, -9), (-1,))
 
     ..  container:: example
 
-        **Example 2.** Split sequence cyclically by weights without overhang:
+        **Example 2.** Splits sequence cyclically by weights without overhang:
 
         ::
 
@@ -31,11 +32,11 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
             ...     cyclic=True,
             ...     overhang=False,
             ...     )
-            [(3,), (7, -8), (-2, 1), (3,), (6, -9)]
+            ((3,), (7, -8), (-2, 1), (3,), (6, -9))
 
     ..  container:: example
 
-        **Example 3.** Split sequence once by weights with overhang:
+        **Example 3.** Splits sequence once by weights with overhang:
 
         ::
 
@@ -45,11 +46,11 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
             ...     cyclic=False,
             ...     overhang=True,
             ...     )
-            [(3,), (7, -8), (-2, 1), (9, -10)]
+            ((3,), (7, -8), (-2, 1), (9, -10))
 
     ..  container:: example
 
-        **Example 4.** Split sequence once by weights without overhang:
+        **Example 4.** Splits sequence once by weights without overhang:
 
         ::
 
@@ -59,11 +60,33 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
             ...     cyclic=False,
             ...     overhang=False,
             ...     )
-            [(3,), (7, -8), (-2, 1)]
+            ((3,), (7, -8), (-2, 1))
 
-    Returns list of sequence types.
+    ..  container:: example
+
+        **Example 5.** Splits list once by weights without overhang:
+
+        ::
+
+            >>> sequencetools.split_sequence(
+            ...     [10, -10, 10, -10],
+            ...     (3, 15, 3),
+            ...     cyclic=False,
+            ...     overhang=False,
+            ...     )
+            [[3], [7, -8], [-2, 1]]
+
+    Returns new object of `sequence` type with elements also of `sequence`
+    type.
     '''
     from abjad.tools import sequencetools
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     result = []
     current_index = 0
@@ -101,4 +124,5 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
             last_piece = type(sequence)(last_piece)
             result.append(last_piece)
 
+    result = sequence_type(result)
     return result

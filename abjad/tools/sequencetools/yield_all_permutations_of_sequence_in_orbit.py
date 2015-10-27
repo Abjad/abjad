@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
@@ -10,11 +11,18 @@ def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
         ...     (1, 2, 3, 4), [1, 2, 3, 0]))
         [(1, 2, 3, 4), (2, 3, 4, 1), (3, 4, 1, 2), (4, 1, 2, 3)]
 
-    Returns permutations in lex order.
+    Yields permutations in lex order.
 
-    Returns generator of `sequence` objects.
+    Returns generator.
     '''
     from abjad.tools import sequencetools
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     if not sequencetools.Sequence(*permutation).is_permutation() or \
         len(sequence) != len(permutation):
@@ -23,13 +31,15 @@ def yield_all_permutations_of_sequence_in_orbit(sequence, permutation):
         message = message.format(permutation, len(sequence))
         raise TypeError(message)
 
-    # return identity first
-    next_permutation = sequencetools.permute_sequence(sequence, range(len(sequence)))
+    # returns identity first
+    next_permutation = sequencetools.permute_sequence(
+        sequence, range(len(sequence)))
     yield next_permutation
 
-    # then return remaining permutations in orbit of permutation
+    # then returns remaining permutations in orbit of permutation
     while True:
-        next_permutation = sequencetools.permute_sequence(next_permutation, permutation)
+        next_permutation = sequencetools.permute_sequence(
+            next_permutation, permutation)
         if next_permutation == sequence:
             break
         else:

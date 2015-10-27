@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import itertools
 from abjad.tools import mathtools
 
@@ -59,6 +60,13 @@ def sum_consecutive_elements_by_sign(sequence, sign=(-1, 0, 1)):
     Returns list.
     '''
 
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
+
     result = []
 
     generator = itertools.groupby(sequence, mathtools.sign)
@@ -69,4 +77,5 @@ def sum_consecutive_elements_by_sign(sequence, sign=(-1, 0, 1)):
             for x in group:
                 result.append(x)
 
+    result = sequence_type(result)
     return result

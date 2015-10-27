@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 
 
 def yield_all_rotations_of_sequence(sequence, n=1):
@@ -11,9 +12,16 @@ def yield_all_rotations_of_sequence(sequence, n=1):
 
     Yields rotations up to but not including identity.
 
-    Returns generator of `sequence` objects.
+    Returns generator.
     '''
     from abjad.tools import sequencetools
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
+
+    sequence_type = type(sequence)
 
     len_sequence = len(sequence)
     total_rotations_yielded = 0

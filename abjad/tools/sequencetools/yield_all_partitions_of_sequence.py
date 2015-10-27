@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import mathtools
 
 
@@ -21,16 +22,17 @@ def yield_all_partitions_of_sequence(sequence):
         [[0], [1], [2, 3]]
         [[0], [1], [2], [3]]
 
-    Returns generator of newly created lists.
+    Returns new object of `sequence` type.
     '''
 
-    # TODO: remove type restriction
-    if not isinstance(sequence, list):
-        message = '{!r} must be list.'
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must by sequence {!r}.'
         message = message.format(sequence)
-        raise TypeError(message)
+        raise Exception(message)
 
-    partitions = []
+    sequence_type = type(sequence)
+
+    result = []
 
     len_l_minus_1 = len(sequence) - 1
     for i in range(2 ** len_l_minus_1):
@@ -44,6 +46,7 @@ def yield_all_partitions_of_sequence(sequence):
             else:
                 part = [n]
                 partition.append(part)
-        partitions.append(partition)
+        result.append(partition)
 
-    return partitions
+    result = sequence_type(result)
+    return result

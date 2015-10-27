@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import collections
 import fractions
 from abjad.tools import mathtools
 
@@ -49,6 +50,11 @@ def partition_sequence_by_ratio_of_weights(sequence, weights):
     Returns list of lists.
     '''
     from abjad.tools import sequencetools
+
+    if not isinstance(sequence, collections.Sequence):
+        message = 'must be sequence: {!r}.'
+        message = message.format(sequence)
+        raise Exception(message)
 
     list_weight = mathtools.weight(sequence)
     weights_parts = mathtools.partition_integer_by_ratio(list_weight, weights)

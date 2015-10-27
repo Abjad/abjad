@@ -7,14 +7,16 @@ def test_sequencetools_repeat_sequence_to_length_01():
     r'''Repeat list to length.
     '''
 
-    assert sequencetools.repeat_sequence_to_length(list(range(5)), 11) == [0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
+    assert sequencetools.repeat_sequence_to_length(list(range(5)), 11) == [
+        0, 1, 2, 3, 4, 0, 1, 2, 3, 4, 0]
 
 
 def test_sequencetools_repeat_sequence_to_length_02():
     r'''Repeat list to length.
     '''
 
-    sequence_2 = sequencetools.repeat_sequence_to_length([0, -1, -2, -3, -4], 11)
+    sequence_2 = sequencetools.repeat_sequence_to_length(
+        [0, -1, -2, -3, -4], 11)
     assert sequence_2 == [0, -1, -2, -3, -4, 0, -1, -2, -3, -4, 0]
 
 
@@ -59,13 +61,3 @@ def test_sequencetools_repeat_sequence_to_length_07():
     sequence_2 = sequencetools.repeat_sequence_to_length([1, 2, 3], 10, 100)
 
     assert sequence_2 == [2, 3, 1, 2, 3, 1, 2, 3, 1, 2]
-
-
-def test_sequencetools_repeat_sequence_to_length_08():
-    r'''Repeat Abjad container to length.
-    '''
-
-    container = Container("c'8 d'8 e'8")
-    new = sequencetools.repeat_sequence_to_length(container, 5)
-    assert format(new) == format(Container("c'8 d'8 e'8 c'8 d'8"))
-    assert new[0] is not container[0]
