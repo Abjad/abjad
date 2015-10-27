@@ -29,6 +29,28 @@ class Container(Component):
                 f'8
             }
 
+    ..  container:: example
+
+        **Example 2.** Containers are iterables:
+
+        ::
+
+            >>> import collections
+            >>> container = Container("c'4 e'4 d'4 e'8 f'8")
+            >>> isinstance(container, collections.Iterable)
+            True
+
+        But containers are not sequences:
+
+        ::
+
+            >>> container = Container("c'4 e'4 d'4 e'8 f'8")
+            >>> isinstance(container, collections.Sequence)
+            False
+
+        Containers are not sequences because containers do not implement a
+        ``__reversed__()`` special method.
+
     '''
 
     ### CLASS VARIABLES ###
@@ -200,6 +222,37 @@ class Container(Component):
                         table.attributes['bgcolor'] = 'grey80'
 
         return graph
+
+    def __iter__(self):
+        r'''Iterates container.
+
+        ..  container:: example
+
+            **Example 1.** Abjad containers are iterables:
+
+            ::
+
+                >>> import collections
+                >>> container = Container()
+                >>> isinstance(container, collections.Iterable)
+                True
+
+        ..  container:: example
+
+            **Example 2.** Abjad containers are not sequences:
+
+            ::
+
+                >>> import collections
+                >>> container = Container()
+                >>> isinstance(container, collections.Sequence)
+                False
+
+        Yields container elements.
+
+        Returns generator.
+        '''
+        return iter(self._music)
 
     def __len__(self):
         r'''Gets number of items in container.
