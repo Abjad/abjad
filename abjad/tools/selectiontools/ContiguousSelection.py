@@ -574,18 +574,18 @@ class ContiguousSelection(Selection):
         self,
         durations,
         cyclic=False,
-        fill='exact',
+        fill=Exact,
         in_seconds=False,
         overhang=False,
         ):
         r'''Partitions `components` according to `durations`.
 
-        When `fill` is ``'exact'`` then parts must equal `durations` exactly.
+        When `fill` is `Exact` then parts must equal `durations` exactly.
 
-        When `fill` is ``'less'`` then parts must be
+        When `fill` is `Less` then parts must be
         less than or equal to `durations`.
 
-        When `fill` is ``'greater'`` then parts must be
+        When `fill` is `More` then parts must be
         greater or equal to `durations`.
 
         Reads `durations` cyclically when `cyclic` is true.
@@ -629,12 +629,10 @@ class ContiguousSelection(Selection):
                 except IndexError:
                     break
             elif target_duration < candidate_duration:
-                # TODO: use Exact ordinal constant
-                if fill == 'exact':
+                if fill == Exact:
                     message = 'must partition exactly.'
                     raise Exception(message)
-                # TODO: use Less ordinal constant
-                elif fill == 'less':
+                elif fill == Less:
                     result.append(part)
                     part = [component]
                     if in_seconds:
@@ -657,8 +655,7 @@ class ContiguousSelection(Selection):
                             cumulative_duration,
                             )
                         raise Exception(message)
-                # TODO: use More ordinal constant
-                elif fill == 'greater':
+                elif fill == More:
                     part.append(component)
                     result.append(part)
                     part = []
@@ -690,7 +687,7 @@ class ContiguousSelection(Selection):
         return self.partition_by_durations(
             durations,
             cyclic=cyclic,
-            fill='exact',
+            fill=Exact,
             in_seconds=in_seconds,
             overhang=overhang,
             )
@@ -710,7 +707,7 @@ class ContiguousSelection(Selection):
         return self.partition_by_durations(
             durations,
             cyclic=cyclic,
-            fill='less',
+            fill=Less,
             in_seconds=in_seconds,
             overhang=overhang,
             )
@@ -730,7 +727,7 @@ class ContiguousSelection(Selection):
         return self.partition_by_durations(
             durations,
             cyclic=cyclic,
-            fill='greater',
+            fill=More,
             in_seconds=in_seconds,
             overhang=overhang,
             )
