@@ -16,7 +16,7 @@ def test_sequencetools_permute_sequence_02():
     assert sequencetools.permute_sequence((11, 12, 13, 14), [1, 0, 3, 2]) == (12, 11, 14, 13)
 
 
-def test_sequencetools_permute_sequence_04():
+def test_sequencetools_permute_sequence_03():
     r'''Permute string.
     '''
 

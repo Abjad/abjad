@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import pytest
 from abjad import *
 
 
@@ -113,7 +114,7 @@ def test_sequencetools_partition_sequence_by_counts_08():
 
 
 def test_sequencetools_partition_sequence_by_counts_09():
-    r'''Partitions list of arbitrary objects instead of just integers.
+    r'''Partitions string.
     '''
 
     parts = sequencetools.partition_sequence_by_counts(
@@ -123,3 +124,11 @@ def test_sequencetools_partition_sequence_by_counts_09():
         overhang=True,
         )
     assert parts == ['t', 'his', ' ', 'is ', 't', 'ext']
+
+
+def test_sequencetools_partition_sequence_by_counts_10():
+    r'''Raises exception when sequence does not partition exactly.
+    '''
+
+    string = 'sequencetools.partition_sequence_by_counts(list(range(10)), [3], cyclic=True, overhang=Exact)'
+    assert pytest.raises(Exception, string)

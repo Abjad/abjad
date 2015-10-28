@@ -25,7 +25,7 @@ def test_sequencetools_yield_all_unordered_pairs_of_sequence_03():
     assert list(sequencetools.yield_all_unordered_pairs_of_sequence([])) == []
 
 
-def test_sequencetools_yield_all_unordered_pairs_of_sequence_05():
+def test_sequencetools_yield_all_unordered_pairs_of_sequence_04():
     r'''Handles duplicate input values.
     '''
 
