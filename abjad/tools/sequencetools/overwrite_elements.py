@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import collections
-import types
 
 
 def overwrite_elements(sequence, pairs):
@@ -8,51 +6,48 @@ def overwrite_elements(sequence, pairs):
 
     ..  container:: example
 
-        Sequence for examples:
-
-        ::
-
-            >>> sequence = list(range(10))
-
-    ..  container:: example
-
-        **Example 1.** Overwrites list of first ten integers with a run of 0s
-        and a run of 5s:
+        **Example 1.** Overwrites range elements:
 
         ::
 
             >>> pairs = [(0, 3), (5, 3)]
-            >>> sequencetools.overwrite_elements(sequence, pairs)
+            >>> sequencetools.overwrite_elements(range(10), pairs)
             [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]
 
+        Returns list.
+
     ..  container:: example
 
-        **Example 2.** Overwrites tuples of first ten integers with a run of 0s
-        and a run of 5s:
+        **Example 2.** Overwrites list elements:
 
         ::
 
             >>> pairs = [(0, 3), (5, 3)]
-            >>> sequencetools.overwrite_elements(tuple(sequence), pairs)
-            (0, 0, 0, 3, 4, 5, 5, 5, 8, 9)
+            >>> sequencetools.overwrite_elements(list(range(10)), pairs)
+            [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]
+
+        Returns new list.
+
+    ..  container:: example
+
+        **Example 3.** Overwrites tuple elements:
+
+        ::
+
+            >>> pairs = [(0, 3), (5, 3)]
+            >>> sequencetools.overwrite_elements(tuple(range(10)), pairs)
+            [0, 0, 0, 3, 4, 5, 5, 5, 8, 9]
+
+        Returns list.
 
     Set `pairs` to a list of ``(anchor_index, length)`` pairs.
 
+    Coerces input to list.
+
     Returns new list.
     '''
-
-    if isinstance(sequence, types.GeneratorType):
-        sequence = list(sequence)
-
-    if not isinstance(sequence, collections.Sequence):
-        message = 'must be sequence: {!r}.'
-        message = message.format(sequence)
-        raise Exception(message)
-
-    sequence_type = type(sequence)
-
+    sequence = list(sequence)
     result = list(sequence)
-
     for anchor_index, length in pairs:
         anchor = result[anchor_index]
         start = anchor_index + 1
@@ -62,7 +57,5 @@ def overwrite_elements(sequence, pairs):
                 result[i] = anchor
             except IndexError:
                 break
-
-    result = sequence_type(result)
-
+    assert isinstance(result, list), repr(result)
     return result
