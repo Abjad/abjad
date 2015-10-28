@@ -493,6 +493,8 @@ class TaleaRhythmMaker(RhythmMaker):
         return burnished_divisions
 
     def _burnish_outer_divisions(self, divisions):
+        for list_ in divisions:
+            assert all(isinstance(_, int) for _ in list_), repr(list_)
         octuplet = self._prepare_input()
         burnish_settings = octuplet[2:7]
         left_classes = burnish_settings[0]
@@ -526,7 +528,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     divisions[0],
                     [left_length, middle_length, right_length],
                     cyclic=False,
-                    overhang=False,
+                    overhang=Exact,
                     )
             left_part = self._burnish_division_part(left_part, left)
             middle_part = self._burnish_division_part(middle_part, middle)
@@ -548,7 +550,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     divisions[0],
                     [left_length, middle_length],
                     cyclic=False,
-                    overhang=False,
+                    overhang=Exact,
                     )
             left_part = self._burnish_division_part(left_part, left)
             middle_part = self._burnish_division_part(middle_part, middle)
@@ -574,7 +576,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     divisions[-1],
                     [middle_length, right_length],
                     cyclic=False,
-                    overhang=False,
+                    overhang=Exact,
                     )
             middle_part = self._burnish_division_part(middle_part, middle)
             right_part = self._burnish_division_part(right_part, right)
@@ -663,22 +665,24 @@ class TaleaRhythmMaker(RhythmMaker):
         return selections
 
     def _make_numeric_map(self, divisions, talea, extra_counts_per_division):
+        assert all(isinstance(_, int) for _ in talea), repr(talea)
         prolated_divisions = self._make_prolated_divisions(
             divisions,
             extra_counts_per_division,
             )
+        prolated_divisions = [
+            mathtools.NonreducedFraction(_) for _ in prolated_divisions]
         if not talea:
             map_divisions = prolated_divisions
             return map_divisions
-        if isinstance(prolated_divisions[0], tuple):
-            prolated_numerators = [pair[0] for pair in prolated_divisions]
-        else:
-            prolated_numerators = [_.numerator for _ in prolated_divisions]
+        prolated_numerators = [_.numerator for _ in prolated_divisions]
         map_divisions = self._split_sequence_extended_to_weights(
             talea,
             prolated_numerators,
             overhang=False,
             )
+        for list_ in map_divisions:
+            assert all(isinstance(_, int) for _ in list_), repr(list_)
         if self.burnish_specifier is not None:
             map_divisions = self._apply_burnish_specifier(map_divisions)
         return map_divisions
@@ -791,17 +795,21 @@ class TaleaRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _split_sequence_extended_to_weights(sequence, weights, overhang=True):
+        assert all(isinstance(_, int) for _ in weights), repr(weights)
         n = int(
             math.ceil(float(mathtools.weight(weights)) /
             mathtools.weight(sequence))
             )
+        assert isinstance(n, int), repr(n)
         sequence = sequencetools.repeat_sequence(sequence, n)
-        return sequencetools.split_sequence(
+        assert all(isinstance(_, int) for _ in sequence), repr(sequence)
+        result = sequencetools.split_sequence(
             sequence,
             weights,
             cyclic=False,
             overhang=overhang,
             )
+        return result
 
     ### PUBLIC PROPERTIES ###
 
