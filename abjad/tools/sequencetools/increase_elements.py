@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import collections
-import types
 
 
 def increase_elements(sequence, addenda, indices=None):
@@ -8,34 +6,46 @@ def increase_elements(sequence, addenda, indices=None):
 
     ..  container:: example
 
-        Increases elements cyclically by ``10`` and ``-10`` in alternation:
+        **Example 1a.** Increases range elements by ``10`` and ``-10`` in
+        alternation:
 
         ::
 
             >>> sequencetools.increase_elements(range(10), [10, -10])
             [10, -9, 12, -7, 14, -5, 16, -3, 18, -1]
 
+
+        **Example 1b.** Increases list elements by 10 and -10 in alternation:
+
+        ::
+
+            >>> sequencetools.increase_elements(list(range(10)), [10, -10])
+            [10, -9, 12, -7, 14, -5, 16, -3, 18, -1]
+
+        **Example 1c.** Increases tuple elements by 10 and -10 in alternation:
+
+        ::
+
+            >>> sequencetools.increase_elements(tuple(range(10)), [10, -10])
+            [10, -9, 12, -7, 14, -5, 16, -3, 18, -1]
+
     ..  container:: example
 
-        Increases elements by ``0.5`` at indices 0, 4 and 8 and at one element
-        following each:
+        **Example 2.** Increases pairs of elements by ``0.5`` starting at
+        indices 0, 4, 8:
 
         ::
 
             >>> sequence = [1, 1, 2, 3, 5, 5, 1, 2, 5, 5, 6]
-            >>> sequencetools.increase_elements(
-            ...     sequence, [0.5, 0.5], indices=[0, 4, 8])
+            >>> addenda = [0.5, 0.5]
+            >>> indices = [0, 4, 8]
+            >>> sequencetools.increase_elements(sequence, addenda, indices)
             [1.5, 1.5, 2, 3, 5.5, 5.5, 1, 2, 5.5, 5.5, 6]
 
     Returns list.
     '''
     from abjad.tools import sequencetools
-
-    if not isinstance(sequence, collections.Sequence):
-        message = 'must be sequence: {!r}.'
-        message = message.format(sequence)
-        raise Exception(sequence)
-
+    sequence = list(sequence)
     if indices is None:
         result = []
         for i, element in enumerate(sequence):
@@ -50,5 +60,5 @@ def increase_elements(sequence, addenda, indices=None):
         for i in indices:
             for j in range(len(addenda)):
                 result[i + j] += addenda[j]
-
+    assert isinstance(result, list)
     return result
