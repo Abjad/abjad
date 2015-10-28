@@ -118,7 +118,7 @@ class IOManager(AbjadObject):
                         score_title=score_title,
                         year=year,
                         )
-                except KeyError:
+                except (IndexError, KeyError):
                     lines = template.splitlines()
                     for i, line in enumerate(lines):
                         try:
@@ -131,7 +131,7 @@ class IOManager(AbjadObject):
                                 score_title=score_title,
                                 year=year,
                                 )
-                        except (ValueError, KeyError):
+                        except (KeyError, IndexError, ValueError):
                             pass
                     completed_template = '\n'.join(lines)
                 with open(file_, 'w') as file_pointer:
