@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+import types
 
 
 def overwrite_elements(sequence, pairs):
@@ -39,6 +40,9 @@ def overwrite_elements(sequence, pairs):
 
     Returns new list.
     '''
+
+    if isinstance(sequence, types.GeneratorType):
+        sequence = list(sequence)
 
     if not isinstance(sequence, collections.Sequence):
         message = 'must be sequence: {!r}.'
