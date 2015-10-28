@@ -216,7 +216,7 @@ def partition_sequence_by_counts(
             message = 'sequence does not partition exactly.'
             raise Exception(message)
 
-    sequence_type = type(sequence)
+    #sequence_type = type(sequence)
     result = []
     if cyclic:
         if overhang:
@@ -237,7 +237,7 @@ def partition_sequence_by_counts(
             counts = list(counts)
             counts.append(len(sequence) - weight_counts)
     for start, stop in mathtools.cumulative_sums_pairwise(counts):
-        part = sequence_type(sequence[start:stop])
+        part = sequence[start:stop]
         result.append(part)
 
     return result
