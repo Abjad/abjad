@@ -9,8 +9,8 @@ for many of these scores is also available for pedagogical purposes.
     Click on any image to zoom in.
 
 
-Al-kitab al-khamr *(2015)*
-``````````````````````````
+Al-kitab al-khamr (2015)
+````````````````````````
 
 - For chamber orchestra.
 - Composed by `Trevor Bača`_.
@@ -31,8 +31,8 @@ Al-kitab al-khamr *(2015)*
         :title: Page 11 of Al-kitab al-khamr,
                 by Trevor Bača.
 
-Invisible Cities (iii): Ersilia *(2015)*
-````````````````````````````````````````
+Invisible Cities (iii): Ersilia (2015)
+``````````````````````````````````````
 
 - For chamber orchestra.
 - Composed by `Josiah Wolf Oberholtzer`_.
@@ -59,8 +59,8 @@ Invisible Cities (iii): Ersilia *(2015)*
         :title: Page 10 of Invisible Cities (iii): Ersilia,
                 by Josiah Wolf Oberholtzer.
 
-Ins wasser eingeschrieben *(2015)*
-``````````````````````````````````
+Ins wasser eingeschrieben (2015)
+````````````````````````````````
 
 - For two violas.
 - Composed by `Trevor Bača`_.
@@ -82,8 +82,8 @@ Ins wasser eingeschrieben *(2015)*
                 by Trevor Bača.
 
 
-Invisible Cities (ii): Armilla *(2015)*
-```````````````````````````````````````
+Invisible Cities (ii): Armilla (2015)
+`````````````````````````````````````
 
 - For two violas.
 - Composed by `Josiah Wolf Oberholtzer`_.
@@ -110,8 +110,8 @@ Invisible Cities (ii): Armilla *(2015)*
         :title: Page 9 of Invisible Cities (ii): Armilla,
                 by Josiah Wolf Oberholtzer.
 
-Refrain *(2014)*
-````````````````
+Refrain (2014)
+``````````````
 
 - For carillon.
 - Composed by `Jeffrey Treviño`_.
@@ -138,8 +138,8 @@ Refrain *(2014)*
         :title: Page 2 of Refrain,
                 by Jeffrey Treviño.
 
-Huitzil *(2014)*
-````````````````
+Huitzil (2014)
+``````````````
 
 - For cello.
 - Composed by `Trevor Bača`_.
@@ -160,8 +160,8 @@ Huitzil *(2014)*
         :title: Page 13 of Huitzil,
                 by Trevor Bača.
 
-Invisible Cities (i): Zaira *(2014)*
-`````````````````````````````````````
+Invisible Cities (i): Zaira (2014)
+``````````````````````````````````
 
 - For chamber orchestra.
 - Composed by `Josiah Wolf Oberholtzer`_.
@@ -188,8 +188,8 @@ Invisible Cities (i): Zaira *(2014)*
         :title: Page 17 of Invisible Cities (i): Zaira,
                 by Josiah Wolf Oberholtzer.
 
-Krummzeit *(2014)*
-```````````````````
+Krummzeit (2014)
+````````````````
 
 - For seven players.
 - Composed by `Trevor Bača`_.
@@ -210,8 +210,8 @@ Krummzeit *(2014)*
         :title: Page 81 of Krummzeit,
                 by Trevor Bača.
 
-Plague Water *(2014)*
-`````````````````````
+Plague Water (2014)
+```````````````````
 
 - For baritone saxophone, electric guitar, piano and percussion.
 - Composed by `Josiah Wolf Oberholtzer`_.
@@ -238,8 +238,8 @@ Plague Water *(2014)*
         :title: Page 13 of Plague Water,
                 by Josiah Wolf Oberholtzer.
 
-The World All Around *(2012-2013)*
-``````````````````````````````````
+The World All Around (2012-13)
+``````````````````````````````
 
 - For Eb clarinet, harp, and prepared piano.
 - Composed by `Jeffrey Treviño`_.
@@ -266,8 +266,8 @@ The World All Around *(2012-2013)*
         :title: Page 2 of The World All Around,
                 by Jeffrey Treviño.
 
-Traiettorie inargentate *(2013)*
-````````````````````````````````
+Traiettorie inargentate (2013)
+``````````````````````````````
 
 - For cello.
 - Composed by `Trevor Bača`_.
@@ -288,8 +288,8 @@ Traiettorie inargentate *(2013)*
         :title: Page 7 of Traiettorie inargentate,
                 by Trevor Bača.
 
-Cartography *(2013)*
-````````````````````
+Cartography (2013)
+``````````````````
 
 - For bass flute, malletkat, oboe and trumpet.
 - Composed by `Fredrik Wallberg`_.
@@ -303,8 +303,8 @@ Cartography *(2013)*
         :title: Bass flute part for Cartography,
                 by Fredrik Wallberg.
 
-Aurora *(2011)*
-```````````````
+Aurora (2011)
+`````````````
 
 - For string orchestra.
 - Composed by `Josiah Wolf Oberholtzer`_.
@@ -325,8 +325,8 @@ Aurora *(2011)*
         :title: Page 7 of Aurora,
                 by Josiah Wolf Oberholtzer.
 
-L'archipel du corps *(2011)*
-````````````````````````````
+L'archipel du corps (2011)
+``````````````````````````
 
 - For flute, guitar, accordion and percussion.
 - Composed by `Trevor Bača`_.
@@ -347,8 +347,8 @@ L'archipel du corps *(2011)*
         :title: Page 10 of L'archipel du corps,
                 by Trevor Bača.
 
-L'imaginaire *(2010)*
-`````````````````````
+L'imaginaire (2010)
+```````````````````
 
 - For accordion.
 - Composed by `Trevor Bača`_.
@@ -369,8 +369,8 @@ L'imaginaire *(2010)*
         :title: Page 5 of L'imaginaire,
                 by Trevor Bača.
 
-Lagartija *(2010)*
-``````````````````
+Lagartija (2010)
+````````````````
 
 - For piccolo, percussion, violin and cello.
 - Composed by `Josiah Wolf Oberholtzer`_.
@@ -390,8 +390,8 @@ Lagartija *(2010)*
         :title: Page 5 of Lagartija,
                 by Josiah Wolf Oberholtzer.
 
-Mon seul désir *(2009)*
-```````````````````````
+Mon seul désir (2009)
+`````````````````````
 
 - For flute, bass clarinet, violin and cello.
 - Composed by `Trevor Bača`_.
@@ -412,8 +412,8 @@ Mon seul désir *(2009)*
         :title: Page 15 of Mon seul désir,
                 by Trevor Bača.
 
-Lidércfény *(2008)*
-```````````````````
+Lidércfény (2008)
+`````````````````
 
 - For flute, violin and piano.
 - Composed by `Trevor Bača`_.
@@ -434,13 +434,19 @@ Lidércfény *(2008)*
         :title: Page 23 of Lidércfény,
                 by Trevor Bača.
 
-Sekka *(2007)*
-``````````````
+Sekka (2007)
+````````````
 
 - For bass flute.
 - Composed by `Trevor Bača`_.
 - Written for Reiko Manabe.
 - Source available from https://github.com/trevorbaca/sekka/.
+
+..  raw:: html
+
+    <p>
+    <iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/230653259&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>
+    </p>
 
 ..  container:: table-row
 
@@ -456,8 +462,8 @@ Sekka *(2007)*
         :title: Page 6 of Sekka,
                 by Trevor Bača.
 
-Čáry *(2006)*
-`````````````
+Čáry (2006)
+```````````
 
 - For bass flute.
 - Composed by `Trevor Bača`_.
@@ -478,8 +484,8 @@ Sekka *(2007)*
         :title: Page 6 of Čáry,
                 by Trevor Bača.
 
-Poème Récursif *(2005)*
-```````````````````````
+Poème Récursif (2005)
+`````````````````````
 
 - For 64 percussionists.
 - Composed by `Trevor Bača`_.
