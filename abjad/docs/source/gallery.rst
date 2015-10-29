@@ -437,7 +437,7 @@ Lidércfény (2008)
 Sekka (2007)
 ````````````
 
-- For bass flute.
+- For flute.
 - Composed by `Trevor Bača`_.
 - Written for Reiko Manabe.
 - Source available from https://github.com/trevorbaca/sekka/.
