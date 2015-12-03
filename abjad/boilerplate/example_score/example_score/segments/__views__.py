@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad import *
-from ide.tools import idetools
 
 
-view_inventory = idetools.ViewInventory([])
+view_inventory = collections.OrderedDict([])
