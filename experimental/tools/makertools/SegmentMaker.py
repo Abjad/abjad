@@ -5,7 +5,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class SegmentMaker(AbjadObject):
-    r'''Segment-maker baseclass.
+    r'''Segment-maker.
     '''
 
     ### CLASS VARIABLES ###

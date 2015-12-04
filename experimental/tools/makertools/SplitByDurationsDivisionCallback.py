@@ -8,7 +8,7 @@ from abjad.tools.topleveltools import new
 
 
 class SplitByDurationsDivisionCallback(AbjadValueObject):
-    r'''NonreducedFraction-maker.
+    r'''Split-by-durations division callback.
 
     ..  container:: example
 

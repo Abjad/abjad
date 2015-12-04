@@ -6,11 +6,11 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class PartitionDivisionCallback(AbjadValueObject):
-    r'''Beat grouper.
+    r'''Partition division callback.
 
     ..  container:: example
 
-        NonreducedFraction lists for examples:
+        Nonreduced fraction lists for examples:
 
         ::
 
