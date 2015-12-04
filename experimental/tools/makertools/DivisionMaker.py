@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import new
 
 
 class DivisionMaker(AbjadValueObject):
-    r'''NonreducedFraction-maker.
+    r'''Division-maker.
 
     ..  container:: example
 
