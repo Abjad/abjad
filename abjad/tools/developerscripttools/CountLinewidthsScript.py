@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import importlib
 from abjad.tools import documentationtools
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript

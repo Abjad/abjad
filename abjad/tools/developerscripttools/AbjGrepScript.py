@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 import argparse
 import os
 from abjad.tools import systemtools
