@@ -16,7 +16,7 @@ from abjad.tools.topleveltools import iterate
 
 
 class RhythmMaker(AbjadValueObject):
-    '''Rhythm-maker abstract base class.
+    '''Rhythm-maker.
     '''
 
     ### CLASS VARIABLES ###
