@@ -2155,9 +2155,6 @@ class TaleaRhythmMaker(RhythmMaker):
     def split_divisions_by_counts(self):
         r'''Gets secondary divisions.
 
-        .. todo:: Rename because the property is a noun but the name
-            reads like a verb.
-
         Secondary divisions impose a cyclic split operation on divisions.
 
         ..  container:: example
@@ -2661,6 +2658,62 @@ class TaleaRhythmMaker(RhythmMaker):
                     {
                         \time 3/8
                         c'8. [
+                        c'8. ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** Uses Messiaen-style ties:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[5, 3, 3, 3],
+                ...         denominator=16,
+                ...         ),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=True,
+                ...         use_messiaen_style_ties=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'4
+                        c'16 \repeatTie [
+                        c'8. ]
+                    }
+                    {
+                        \time 3/8
+                        c'8. \repeatTie [
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        c'4 \repeatTie
+                        c'16 \repeatTie [
+                        c'8. ]
+                    }
+                    {
+                        \time 3/8
+                        c'8. \repeatTie [
                         c'8. ]
                     }
                 }

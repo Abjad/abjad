@@ -60,8 +60,22 @@ class TieSpecifier(AbjadValueObject):
         if not self.strip_ties:
             self._make_ties_across_divisions(divisions)
         self._strip_ties_from_divisions(divisions)
+        if self.use_messiaen_style_ties:
+            self._configure_messiaen_style_tie_spanners(divisions)
 
     ### PRIVATE METHODS ###
+
+    def _configure_messiaen_style_tie_spanners(self, divisions):
+        tie_spanners = set()
+        prototype = spannertools.Tie
+        for leaf in iterate(divisions).by_class(scoretools.Leaf):
+            tie_spanners_ = inspect_(leaf).get_spanners(
+                prototype=spannertools.Tie,
+                in_parentage=True,
+                )
+            tie_spanners.update(tie_spanners_)
+        for tie_spanner in tie_spanners:
+            tie_spanner._use_messiaen_style_ties = True
 
     def _make_ties_across_divisions(self, divisions):
         from abjad.tools import rhythmmakertools
