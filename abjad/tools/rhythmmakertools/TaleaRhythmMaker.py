@@ -2492,6 +2492,186 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         return self._talea
 
+
+    @property
+    def tie_specifier(self):
+        r'''Gets tie specifier.
+
+        ..  container:: example
+
+            **Example 1.** Does not tie across divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[5, 3, 3, 3],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'4 ~
+                        c'16 [
+                        c'8. ]
+                    }
+                    {
+                        \time 3/8
+                        c'8. [
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        c'4 ~
+                        c'16 [
+                        c'8. ]
+                    }
+                    {
+                        \time 3/8
+                        c'8. [
+                        c'8. ]
+                    }
+                }
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Ties across divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[5, 3, 3, 3],
+                ...         denominator=16,
+                ...         ),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'4 ~
+                        c'16 [
+                        c'8. ~ ]
+                    }
+                    {
+                        \time 3/8
+                        c'8. [
+                        c'8. ~ ]
+                    }
+                    {
+                        \time 4/8
+                        c'4 ~
+                        c'16 [
+                        c'8. ~ ]
+                    }
+                    {
+                        \time 3/8
+                        c'8. [
+                        c'8. ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Patterns ties across divisions:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0],
+                ...     period=2,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[5, 3, 3, 3],
+                ...         denominator=16,
+                ...         ),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_across_divisions=pattern,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'4 ~
+                        c'16 [
+                        c'8. ~ ]
+                    }
+                    {
+                        \time 3/8
+                        c'8. [
+                        c'8. ]
+                    }
+                    {
+                        \time 4/8
+                        c'4 ~
+                        c'16 [
+                        c'8. ~ ]
+                    }
+                    {
+                        \time 3/8
+                        c'8. [
+                        c'8. ]
+                    }
+                }
+
+        Set to tie specifier or none.
+
+        Returns tie specifier.
+        '''
+        superclass = super(TaleaRhythmMaker, self)
+        return superclass.tie_specifier
+
     @property
     def tie_split_notes(self):
         r'''Is true when talea rhythm-maker should tie split notes.
