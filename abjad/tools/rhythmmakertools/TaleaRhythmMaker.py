@@ -2897,7 +2897,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
-                ...         simplify_tuplets=True,
+                ...         simplify_redundant_tuplets=True,
                 ...         ),
                 ...     )
 

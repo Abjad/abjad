@@ -48,7 +48,7 @@ def test_systemtools_StorageFormatManager_get_import_statements_04():
         tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
             avoid_dots=True,
             is_diminution=True,
-            simplify_tuplets=True,
+            simplify_redundant_tuplets=True,
             ),
         )
     assert manager.get_import_statements(subject) == (

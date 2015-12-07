@@ -251,7 +251,7 @@ class RhythmMaker(AbjadValueObject):
 
     def _apply_tuplet_spelling_specifier(self, selections):
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
-        tuplet_spelling_specifier._do_simplify_tuplets(selections)
+        tuplet_spelling_specifier._do_simplify_redundant_tuplets(selections)
         selections = self._flatten_trivial_tuplets(selections)
         return selections
 

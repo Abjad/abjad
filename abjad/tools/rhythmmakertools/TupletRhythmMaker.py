@@ -1811,7 +1811,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
-                ...         simplify_tuplets=False,
+                ...         simplify_redundant_tuplets=False,
                 ...         ),
                 ...     )
 
@@ -1868,7 +1868,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
-                ...         simplify_tuplets=True,
+                ...         simplify_redundant_tuplets=True,
                 ...         ),
                 ...     )
 

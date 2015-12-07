@@ -15,7 +15,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         '_avoid_dots',
         '_flatten_trivial_tuplets',
         '_is_diminution',
-        '_simplify_tuplets',
+        '_simplify_redundant_tuplets',
         '_use_note_duration_bracket',
         )
 
@@ -26,7 +26,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         avoid_dots=False,
         flatten_trivial_tuplets=False,
         is_diminution=True,
-        simplify_tuplets=False,
+        simplify_redundant_tuplets=False,
         use_note_duration_bracket=False,
         ):
         # TODO: Consider renaming is_diminution=True to is_augmentation=None.
@@ -35,17 +35,17 @@ class TupletSpellingSpecifier(AbjadValueObject):
         self._avoid_dots = bool(avoid_dots)
         self._flatten_trivial_tuplets = bool(flatten_trivial_tuplets)
         self._is_diminution = bool(is_diminution)
-        self._simplify_tuplets = bool(simplify_tuplets)
+        self._simplify_redundant_tuplets = bool(simplify_redundant_tuplets)
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
 
     ### PRIVATE METHODS ###
 
-    def _do_simplify_tuplets(self, selections):
+    def _do_simplify_redundant_tuplets(self, selections):
         from abjad.tools import scoretools
-        if not self.simplify_tuplets:
+        if not self.simplify_redundant_tuplets:
             return
         for tuplet in iterate(selections).by_class(scoretools.Tuplet):
-            tuplet._simplify_leaf_durations()
+            tuplet._simplify_redundant_tuplet()
 
     ### PUBLIC PROPERTIES ###
 
@@ -89,7 +89,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         return self._is_diminution
 
     @property
-    def simplify_tuplets(self):
+    def simplify_redundant_tuplets(self):
         r'''Is true when tuplets should be simplified. Otherwise false.
 
         Defaults to false.
@@ -98,7 +98,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
         Returns true or false.
         '''
-        return self._simplify_tuplets
+        return self._simplify_redundant_tuplets
 
     @property
     def use_note_duration_bracket(self):
