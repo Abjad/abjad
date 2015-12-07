@@ -671,7 +671,8 @@ class TaleaRhythmMaker(RhythmMaker):
             extra_counts_per_division,
             )
         prolated_divisions = [
-            mathtools.NonreducedFraction(_) for _ in prolated_divisions]
+            mathtools.NonreducedFraction(_) for _ in prolated_divisions
+            ]
         if not talea:
             map_divisions = prolated_divisions
             return map_divisions

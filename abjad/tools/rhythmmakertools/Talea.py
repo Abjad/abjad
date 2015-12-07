@@ -45,6 +45,7 @@ class Talea(AbjadValueObject):
     __documentation_section__ = 'Specifiers'
 
     __slots__ = (
+        '_count_masks',
         '_counts',
         '_denominator',
         )
@@ -53,9 +54,17 @@ class Talea(AbjadValueObject):
 
     def __init__(
         self,
+        count_masks=None,
         counts=(1,),
         denominator=16,
         ):
+        if count_masks is not None:
+            if isinstance(count_masks, rhythmmakertools.BooleanPattern):
+                count_masks = (count_masks,)
+            count_masks = rhythmmakertools.BooleanPatternInventory(
+                items=count_masks,
+                )
+        self._count_masks = count_masks
         counts = self._to_tuple(counts)
         assert isinstance(counts, tuple)
         assert all(isinstance(x, int) for x in counts)
@@ -145,8 +154,20 @@ class Talea(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def count_masks(self):
+        r'''Gets count masks of talea.
+
+        Set to count masks or none.
+
+        Returns boolean pattern inventory or none.
+        '''
+        return self._count_masks
+
+    @property
     def counts(self):
         r'''Gets counts of talea.
+
+        Set to integers.
 
         Returns tuple.
         '''
@@ -155,6 +176,8 @@ class Talea(AbjadValueObject):
     @property
     def denominator(self):
         r'''Gets denominator of talea.
+
+        Set to nonnegative integer power of two.
 
         Returns nonnegative integer power of two.
         '''
