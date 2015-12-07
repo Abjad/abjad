@@ -85,12 +85,8 @@ class RhythmMaker(AbjadValueObject):
         divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
         rotation = self._to_tuple(rotation)
         self._rotation = rotation
-        selections = self._make_music(
-            divisions,
-            rotation,
-            )
-        self._simplify_tuplets(selections)
-        selections = self._flatten_trivial_tuplets(selections)
+        selections = self._make_music(divisions, rotation)
+        selections = self._apply_tuplet_spelling_specifier(selections)
         self._apply_tie_specifier(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
@@ -252,6 +248,12 @@ class RhythmMaker(AbjadValueObject):
     def _apply_tie_specifier(self, selections):
         tie_specifier = self._get_tie_specifier()
         tie_specifier(selections)
+
+    def _apply_tuplet_spelling_specifier(self, selections):
+        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
+        tuplet_spelling_specifier._do_simplify_tuplets(selections)
+        selections = self._flatten_trivial_tuplets(selections)
+        return selections
 
     def _flatten_trivial_tuplets(self, selections):
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
@@ -418,23 +420,6 @@ class RhythmMaker(AbjadValueObject):
             result += ', ...'
         result = '[${}$]'.format(result)
         return result
-
-    def _simplify_tuplets(self, selections):
-        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
-        if not tuplet_spelling_specifier.simplify_tuplets:
-            return
-        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
-            if tuplet.is_trivial:
-                continue
-            duration = tuplet._get_duration()
-            if all(isinstance(x, scoretools.Rest) for x in tuplet):
-                rests = scoretools.make_rests([duration])
-                tuplet[:] = rests
-            elif all(isinstance(x, scoretools.Note) for x in tuplet):
-                logical_ties = set([x._get_logical_tie() for x in tuplet])
-                if len(logical_ties) == 1:
-                    notes = scoretools.make_notes([0], [duration])
-                    tuplet[:] = notes
 
     def _to_tuple(self, expr):
         if isinstance(expr, list):

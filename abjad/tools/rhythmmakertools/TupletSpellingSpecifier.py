@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.topleveltools import iterate
 
 
 class TupletSpellingSpecifier(AbjadValueObject):
@@ -36,6 +37,27 @@ class TupletSpellingSpecifier(AbjadValueObject):
         self._is_diminution = bool(is_diminution)
         self._simplify_tuplets = bool(simplify_tuplets)
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
+
+    ### PRIVATE METHODS ###
+
+    def _do_simplify_tuplets(self, selections):
+        from abjad.tools import scoretools
+        if not self.simplify_tuplets:
+            return
+        for tuplet in iterate(selections).by_class(scoretools.Tuplet):
+            self._simplify_tuplet(tuplet)
+
+    def _simplify_tuplet(self, tuplet):
+        from abjad.tools import scoretools
+        duration = tuplet._get_duration()
+        if all(isinstance(x, scoretools.Rest) for x in tuplet):
+            rests = scoretools.make_rests([duration])
+            tuplet[:] = rests
+        elif all(isinstance(x, scoretools.Note) for x in tuplet):
+            logical_ties = set([x._get_logical_tie() for x in tuplet])
+            if len(logical_ties) == 1:
+                notes = scoretools.make_notes([0], [duration])
+                tuplet[:] = notes
 
     ### PUBLIC PROPERTIES ###
 
