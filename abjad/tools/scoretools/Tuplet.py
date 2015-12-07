@@ -832,6 +832,97 @@ class Tuplet(Container):
         self._is_invisible = arg
 
     @property
+    def is_redundant(self):
+        r'''Is true when tuplet is redundant. Otherwise false.
+
+        Two conditions must be true for Abjad to identify a tuplet as
+        redundant. First, the tuplet must contain only leaves (not other
+        tuplets). Second, the durations of all leaves contained in the tuplet
+        must be able to be rewritten without a tuplet bracket.
+
+
+        ..  container:: example
+
+            **Example 1.** Redudant tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet(Multiplier(3, 4), "c'4 c'4")
+                >>> measure = Measure((3, 8), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 3/8
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/4 {
+                        c'4
+                        c'4
+                    }
+                }
+
+            ::
+
+                >>> tuplet.is_redundant
+                True
+
+            Can be rewritten without a tuplet bracket:
+
+                >>> measure = Measure((3, 8), "c'8. c'8.")
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 3/8
+                    c'8.
+                    c'8.
+                }
+
+        ..  container:: example
+
+            **Example 2.** Nonredundant tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet(Multiplier(3, 5), "c'4 c'4 c'4 c'4 c'4")
+                >>> measure = Measure((3, 4), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 3/4
+                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
+
+            ::
+
+                >>> tuplet.is_redundant
+                False
+
+            Can not be rewritten without a tuplet bracket.
+
+        Returns true or false.
+        '''
+        from abjad.tools import scoretools
+        if not all(isinstance(_, scoretools.Leaf) for _ in self):
+            return False
+        leaf_durations = [inspect_(_).get_duration() for _ in self]
+        return all(_.is_assignable for _ in leaf_durations)
+
+    @property
     def is_trivial(self):
         r'''Is true when tuplet multiplier is equal to ``1``.
         Otherwise false:
@@ -841,6 +932,13 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
+
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
                 >>> tuplet.is_trivial
                 True
 
@@ -857,6 +955,13 @@ class Tuplet(Container):
             ::
 
                 >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
                 >>> tuplet.multiplied_duration
                 Duration(1, 4)
 
