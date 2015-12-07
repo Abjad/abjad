@@ -2825,7 +2825,126 @@ class TaleaRhythmMaker(RhythmMaker):
     def tuplet_spelling_specifier(self):
         r'''Gets tuplet spelling specifier.
 
-        ..  todo:: Add examples.
+        ..  container:: example
+
+            **Example 1.** No tuplet spelling specifier:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     extra_counts_per_division=[0, 4],
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[3, 3, 6, 6],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'8. [
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 2/3 {
+                            c'4.
+                            c'4.
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8. [
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 2/3 {
+                            c'4.
+                            c'4.
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Simplifies tuplets:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     extra_counts_per_division=[0, 4],
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[3, 3, 6, 6],
+                ...         denominator=16,
+                ...         ),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         simplify_tuplets=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'8. [
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'4
+                            c'4
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8. [
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'4
+                            c'4
+                        }
+                    }
+                }
 
         Set to tuplet spelling specifier or none.
 
