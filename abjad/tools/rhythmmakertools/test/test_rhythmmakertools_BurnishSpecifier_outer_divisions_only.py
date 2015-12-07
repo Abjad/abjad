@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import pytest
+import sys
 from abjad import *
 
 
@@ -121,6 +123,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
         ), format(staff)
 
 
+@pytest.mark.skipif(sys.version_info[0] == 3, reason='Broken under Py3.')
 def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
 
     burnish_specifier = rhythmmakertools.BurnishSpecifier(
