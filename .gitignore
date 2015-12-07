@@ -1,4 +1,4 @@
-*.py[cod]
+G*.py[cod]
 
 # C extensions
 *.so
@@ -43,6 +43,7 @@ nosetests.xml
 # Misc.
 *.bak
 *.pkl
+.cache
 
 # OS X
 .DS_Store
