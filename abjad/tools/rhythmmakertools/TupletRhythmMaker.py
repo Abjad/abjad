@@ -1803,12 +1803,12 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3a.** Generates length-1 tuplets:
+            **Example 3a.** Does not simplify tuplets:
 
             ::
 
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1,)],
+                ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
                 ...         simplify_tuplets=False,
@@ -1854,17 +1854,18 @@ class TupletRhythmMaker(RhythmMaker):
                     {
                         \tweak #'text #tuplet-number::calc-fraction-text
                         \times 3/4 {
-                            c'2
+                            c'4
+                            c'4
                         }
                     }
                 }
 
-            **Example 3b.** Simplifies length-1 tuplets:
+            **Example 3b.** Simplifies tuplets:
 
             ::
 
                 >>> maker = rhythmmakertools.TupletRhythmMaker(
-                ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1,)],
+                ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
                 ...         simplify_tuplets=True,
@@ -1908,7 +1909,8 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         {
-                            c'4.
+                            c'8. [
+                            c'8. ]
                         }
                     }
                 }
