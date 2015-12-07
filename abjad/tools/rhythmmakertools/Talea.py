@@ -58,6 +58,7 @@ class Talea(AbjadValueObject):
         counts=(1,),
         denominator=16,
         ):
+        from abjad.tools import rhythmmakertools
         if count_masks is not None:
             if isinstance(count_masks, rhythmmakertools.BooleanPattern):
                 count_masks = (count_masks,)

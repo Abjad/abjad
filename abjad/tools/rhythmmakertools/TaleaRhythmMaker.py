@@ -394,6 +394,24 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             return self._burnish_each_division(divisions)
 
+    def _apply_count_masks(self, counts):
+        from abjad.tools import rhythmmakertools
+        if not self.talea or not self.talea.count_masks:
+            return counts
+        count_masks = self.talea.count_masks
+        new_counts = []
+        length = len(counts)
+        for i, count in enumerate(counts):
+            matching_mask = count_masks.get_matching_pattern(i, length)
+            if isinstance(matching_mask, rhythmmakertools.SustainMask):
+                new_count = abs(count)
+            elif isinstance(matching_mask, rhythmmakertools.SilenceMask):
+                new_count = -abs(count)
+            else:
+                new_count = count
+            new_counts.append(new_count)
+        return new_counts
+
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
         from abjad.tools import rhythmmakertools
         tie_specifier = self._get_tie_specifier()
@@ -794,8 +812,12 @@ class TaleaRhythmMaker(RhythmMaker):
             split_divisions_by_counts,
             )
 
-    @staticmethod
-    def _split_sequence_extended_to_weights(sequence, weights, overhang=True):
+    def _split_sequence_extended_to_weights(
+        self,
+        sequence, 
+        weights, 
+        overhang=True,
+        ):
         assert all(isinstance(_, int) for _ in weights), repr(weights)
         n = int(
             math.ceil(float(mathtools.weight(weights)) /
@@ -804,6 +826,7 @@ class TaleaRhythmMaker(RhythmMaker):
         assert isinstance(n, int), repr(n)
         sequence = sequencetools.repeat_sequence(sequence, n)
         assert all(isinstance(_, int) for _ in sequence), repr(sequence)
+        sequence = self._apply_count_masks(sequence)
         result = sequencetools.split_sequence(
             sequence,
             weights,
@@ -2480,6 +2503,65 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'8 [
                         c'16
                         c'8
+                        c'16 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Talea equal to durations ``1/16``, ``2/16``,
+            ``3/16``, ``4/16`` repeating indefinitely with every third count
+            silenced:
+
+            ::
+
+                >>> silence_mask = rhythmmakertools.silence_every(
+                ...     indices=[2],
+                ...     period=3,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         count_masks=[silence_mask],
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8 ]
+                        r8.
+                    }
+                    {
+                        c'4
+                        c'16
+                        r16
+                    }
+                    {
+                        r16
+                        c'8. [
+                        c'8 ~ ]
+                    }
+                    {
+                        c'8
+                        r16
+                        c'8 [
                         c'16 ]
                     }
                 }

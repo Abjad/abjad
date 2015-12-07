@@ -209,7 +209,10 @@ class RhythmMaker(AbjadValueObject):
         output_masks = self.output_masks
         for i, selection in enumerate(selections):
             matching_output_mask = output_masks.get_matching_pattern(
-                i, length, rotation=rotation)
+                i, 
+                length, 
+                rotation=rotation,
+                )
             if not matching_output_mask:
                 new_selections.append(selection)
                 continue

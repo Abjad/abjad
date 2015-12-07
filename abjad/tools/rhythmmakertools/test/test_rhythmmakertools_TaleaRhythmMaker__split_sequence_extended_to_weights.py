@@ -4,7 +4,7 @@ from abjad import *
 
 def test_rhythmmakertools_TaleaRhythmMaker__split_sequence_extended_to_weights_01():
 
-    maker = rhythmmakertools.TaleaRhythmMaker
+    maker = rhythmmakertools.TaleaRhythmMaker()
     parts = maker._split_sequence_extended_to_weights(
         [1, 2, 3, 4, 5],
         [7, 7, 7],
@@ -16,7 +16,7 @@ def test_rhythmmakertools_TaleaRhythmMaker__split_sequence_extended_to_weights_0
 
 def test_rhythmmakertools_TaleaRhythmMaker__split_sequence_extended_to_weights_02():
 
-    maker = rhythmmakertools.TaleaRhythmMaker
+    maker = rhythmmakertools.TaleaRhythmMaker()
     parts = maker._split_sequence_extended_to_weights(
         [1, 2, 3, 4, 5],
         [7, 7, 7],
