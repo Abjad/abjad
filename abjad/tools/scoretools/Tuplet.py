@@ -350,6 +350,22 @@ class Tuplet(Container):
                 component._set_duration(new_duration)
         self._fix()
 
+    def _simplify_leaf_durations(self):
+        from abjad.tools import scoretools
+        if not all(isinstance(_, scoretools.Leaf) for _ in self):
+            return
+        leaves = self[:]
+        leaf_durations = [inspect_(_).get_duration() for _ in leaves]
+        if not all(_.is_assignable for _ in leaf_durations):
+            return
+        tuplet_duration = sum(leaf_durations)
+        for leaf_duration, leaf in zip(leaf_durations, leaves):
+            leaf.written_duration = leaf_duration
+        if isinstance(self, scoretools.FixedDurationTuplet):
+            self.target_duration = tuplet_duration
+        else:
+            self.multiplier = durationtools.Multiplier(1)
+
     ### PUBLIC PROPERTIES ###
 
     @property

@@ -45,19 +45,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         if not self.simplify_tuplets:
             return
         for tuplet in iterate(selections).by_class(scoretools.Tuplet):
-            self._simplify_tuplet(tuplet)
-
-    def _simplify_tuplet(self, tuplet):
-        from abjad.tools import scoretools
-        duration = tuplet._get_duration()
-        if all(isinstance(x, scoretools.Rest) for x in tuplet):
-            rests = scoretools.make_rests([duration])
-            tuplet[:] = rests
-        elif all(isinstance(x, scoretools.Note) for x in tuplet):
-            logical_ties = set([x._get_logical_tie() for x in tuplet])
-            if len(logical_ties) == 1:
-                notes = scoretools.make_notes([0], [duration])
-                tuplet[:] = notes
+            tuplet._simplify_leaf_durations()
 
     ### PUBLIC PROPERTIES ###
 
