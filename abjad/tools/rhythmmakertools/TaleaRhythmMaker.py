@@ -187,7 +187,7 @@ class TaleaRhythmMaker(RhythmMaker):
         secondary_divisions_helper = self._none_to_trivial_helper(
             secondary_divisions_helper)
         assert extra_counts_per_division is None or \
-            mathtools.all_are_nonnegative_integer_equivalent_numbers(
+            mathtools.all_are_integer_equivalent_numbers(
                 extra_counts_per_division)
         assert split_divisions_by_counts is None or \
             mathtools.all_are_nonnegative_integer_equivalent_numbers(
@@ -1837,6 +1837,76 @@ class TaleaRhythmMaker(RhythmMaker):
 
             The duration of each added count equals the duration
             of each count in the rhythm-maker's input talea.
+            
+        ..  container:: example
+
+            **Example 4.** Removes one count from every other division:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     extra_counts_per_division=(0, -1),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        {
+                            c'16 [
+                            c'8
+                            c'8. ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 8/15 {
+                            c'4
+                            c'16 [
+                            c'8
+                            c'8. ]
+                            c'4
+                            c'16
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8.
+                            c'16 ~ ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        \times 8/15 {
+                            c'8. [
+                            c'16
+                            c'8
+                            c'8. ]
+                            c'4
+                            c'16 [
+                            c'16 ]
+                        }
+                    }
+                }
 
         Set to integer tuple or none.
 
