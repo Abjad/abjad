@@ -49,12 +49,7 @@ class RhythmMaker(AbjadValueObject):
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
         self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
-        if output_masks is not None:
-            if isinstance(output_masks, rhythmmakertools.BooleanPattern):
-                output_masks = (output_masks,)
-            output_masks = rhythmmakertools.BooleanPatternInventory(
-                items=output_masks,
-                )
+        output_masks = self._prepare_masks(output_masks)
         self._output_masks = output_masks
         prototype = (rhythmmakertools.TieSpecifier, type(None))
         assert isinstance(tie_specifier, prototype)
@@ -347,6 +342,18 @@ class RhythmMaker(AbjadValueObject):
             expr = ()
         assert isinstance(expr, tuple), expr
         return expr
+
+    @staticmethod
+    def _prepare_masks(masks):
+        from abjad.tools import rhythmmakertools
+        if masks is None:
+            return
+        if isinstance(masks, rhythmmakertools.BooleanPattern):
+            masks = (masks,)
+        masks = rhythmmakertools.BooleanPatternInventory(
+            items=masks,
+            )
+        return masks
 
     @staticmethod
     def _reverse_tuple(expr):
