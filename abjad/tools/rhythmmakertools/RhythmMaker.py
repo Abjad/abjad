@@ -158,34 +158,6 @@ class RhythmMaker(AbjadValueObject):
         else:
             return False
 
-    def _apply_beam_specifier(self, selections):
-        beam_specifier = self._get_beam_specifier()
-        if beam_specifier.beam_divisions_together:
-            durations = []
-            for x in selections:
-                if isinstance(x, selectiontools.Selection):
-                    duration = x.get_duration()
-                else:
-                    duration = x._get_duration()
-                durations.append(duration)
-            beam = spannertools.DuratedComplexBeam(
-                durations=durations,
-                span_beam_count=1,
-                )
-            components = []
-            for x in selections:
-                if isinstance(x, selectiontools.Selection):
-                    components.extend(x)
-                elif isinstance(x, scoretools.Tuplet):
-                    components.append(x)
-                else:
-                    raise TypeError(x)
-            attach(beam, components)
-        elif beam_specifier.beam_each_division:
-            for cell in selections:
-                beam = spannertools.MultipartBeam()
-                attach(beam, cell)
-
     def _apply_output_masks(self, selections, rotation):
         from abjad.tools import rhythmmakertools
         if not self.output_masks:

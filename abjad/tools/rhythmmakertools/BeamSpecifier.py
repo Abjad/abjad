@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import selectiontools
+from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.topleveltools import attach
 
 
 class BeamSpecifier(AbjadValueObject):
@@ -148,6 +151,35 @@ class BeamSpecifier(AbjadValueObject):
         Returns string.
         '''
         return AbjadValueObject.__repr__(self)
+
+    ### PRIVATE METHODS ###
+
+    def _apply(self, selections):
+        if self.beam_divisions_together:
+            durations = []
+            for x in selections:
+                if isinstance(x, selectiontools.Selection):
+                    duration = x.get_duration()
+                else:
+                    duration = x._get_duration()
+                durations.append(duration)
+            beam = spannertools.DuratedComplexBeam(
+                durations=durations,
+                span_beam_count=1,
+                )
+            components = []
+            for x in selections:
+                if isinstance(x, selectiontools.Selection):
+                    components.extend(x)
+                elif isinstance(x, scoretools.Tuplet):
+                    components.append(x)
+                else:
+                    raise TypeError(x)
+            attach(beam, components)
+        elif self.beam_each_division:
+            for cell in selections:
+                beam = spannertools.MultipartBeam()
+                attach(beam, cell)
 
     ### PUBLIC PROPERTIES ###
 

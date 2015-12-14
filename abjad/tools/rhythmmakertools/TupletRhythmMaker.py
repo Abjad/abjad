@@ -387,7 +387,8 @@ class TupletRhythmMaker(RhythmMaker):
                 raise ValueError(self.preferred_denominator)
             tuplets.append(tuplet)
         selections = [selectiontools.Selection(x) for x in tuplets]
-        self._apply_beam_specifier(selections)
+        beam_specifier = self._get_beam_specifier()
+        beam_specifier._apply(selections)
         selections = self._apply_output_masks(selections, rotation)
         return selections
 

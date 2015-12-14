@@ -745,6 +745,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             multiplier = durationtools.Multiplier(multiplier)
             attach(multiplier, note)
             notes.append(note)
+
+#        for i, note in enumerate(notes[:]):
+#            if i % 5 == 2:
+#                rest = scoretools.Rest(note.written_duration)
+#                inspector = inspect_(note)
+#                multiplier = inspector.get_indicator(durationtools.Multiplier)
+#                multiplier = durationtools.Multiplier(multiplier)
+#                attach(multiplier, rest)
+#                notes[i] = rest
+
         selection = selectiontools.Selection(notes)
         self._fix_rounding_error(
             selection, 
@@ -776,7 +786,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
         for index, division in enumerate(divisions):
             accelerando = self._make_accelerando(division, index)
             selections.append(accelerando)
-        self._apply_beam_specifier(selections)
+        beam_specifier = self._get_beam_specifier()
+        beam_specifier._apply(selections)
         selections = self._apply_output_masks(selections, rotation)
         return selections
 
