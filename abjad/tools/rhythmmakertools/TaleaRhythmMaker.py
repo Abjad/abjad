@@ -2612,12 +2612,73 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 4.** Talea equal to durations ``1/16``, ``2/16``,
+            ``3/16``, ``4/16`` repeating indefinitely with the first and last
+            counts silenced:
+
+            ::
+
+                >>> silence_mask = rhythmmakertools.silence_every(
+                ...     indices=[2],
+                ...     period=3,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         count_masks=[
+                ...             rhythmmakertools.silence_first(),
+                ...             rhythmmakertools.silence_last(),
+                ...             ],
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        r16
+                        c'8 [
+                        c'8. ]
+                    }
+                    {
+                        c'4
+                        c'16 [
+                        c'16 ~ ]
+                    }
+                    {
+                        c'16 [
+                        c'8.
+                        c'8 ~ ]
+                    }
+                    {
+                        c'8 [
+                        c'16
+                        c'8 ]
+                        r16
+                    }
+                }
+
         Set to talea or none.
 
         Returns talea or none.
         '''
         return self._talea
-
 
     @property
     def tie_specifier(self):
