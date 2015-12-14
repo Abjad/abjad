@@ -1241,6 +1241,89 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 6.** Beams rests with stemlets:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 1, 1, -1],
+                ...         denominator=16,
+                ...         ),
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_each_division=True,
+                ...         beam_rests=True,
+                ...         stemlet_length=0.75,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \override Staff.Stem #'stemlet-length = #0.75
+                        c'16 [
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16 ]
+                        \revert Staff.Stem #'stemlet-length
+                    }
+                    {
+                        \time 4/8
+                        \override Staff.Stem #'stemlet-length = #0.75
+                        c'16 [
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16 ]
+                        \revert Staff.Stem #'stemlet-length
+                    }
+                    {
+                        \time 3/8
+                        \override Staff.Stem #'stemlet-length = #0.75
+                        c'16 [
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16 ]
+                        \revert Staff.Stem #'stemlet-length
+                    }
+                    {
+                        \time 4/8
+                        \override Staff.Stem #'stemlet-length = #0.75
+                        c'16 [
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16 ]
+                        \revert Staff.Stem #'stemlet-length
+                    }
+                }
+
         Set to beam specifier or none.
 
         Returns beam specifier or none.

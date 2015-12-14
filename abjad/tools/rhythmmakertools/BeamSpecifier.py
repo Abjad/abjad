@@ -3,6 +3,8 @@ from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import override
 
 
 class BeamSpecifier(AbjadValueObject):
@@ -10,8 +12,8 @@ class BeamSpecifier(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Beams notes in each cell together but does not beam 
-        between cells:
+        **Example 1.** Beams notes in each division together but does not beam 
+        between divisions:
 
         ::
 
@@ -53,6 +55,7 @@ class BeamSpecifier(AbjadValueObject):
         '_beam_divisions_together',
         '_beam_each_division',
         '_beam_rests',
+        '_stemlet_length',
         '_use_feather_beams',
         )
 
@@ -63,15 +66,18 @@ class BeamSpecifier(AbjadValueObject):
         beam_each_division=True,
         beam_divisions_together=False,
         beam_rests=False,
+        stemlet_length=None,
         use_feather_beams=False,
         ):
         assert isinstance(beam_each_division, bool)
         assert isinstance(beam_divisions_together, bool)
         assert isinstance(beam_rests, bool)
+        assert isinstance(stemlet_length, (type(None), int, float))
         assert isinstance(use_feather_beams, bool)
         self._beam_each_division = beam_each_division
         self._beam_divisions_together = beam_divisions_together
         self._beam_rests = beam_rests
+        self._stemlet_length = stemlet_length
         self._use_feather_beams = use_feather_beams
 
     ### SPECIAL METHODS ###
@@ -162,29 +168,35 @@ class BeamSpecifier(AbjadValueObject):
     def _apply(self, selections):
         if self.beam_divisions_together:
             durations = []
-            for x in selections:
-                if isinstance(x, selectiontools.Selection):
-                    duration = x.get_duration()
+            for selection in selections:
+                if isinstance(selection, selectiontools.Selection):
+                    duration = selection.get_duration()
                 else:
-                    duration = x._get_duration()
+                    duration = selection._get_duration()
                 durations.append(duration)
             beam = spannertools.DuratedComplexBeam(
                 durations=durations,
                 span_beam_count=1,
                 )
             components = []
-            for x in selections:
-                if isinstance(x, selectiontools.Selection):
-                    components.extend(x)
-                elif isinstance(x, scoretools.Tuplet):
-                    components.append(x)
+            for selection in selections:
+                if isinstance(selection, selectiontools.Selection):
+                    components.extend(selection)
+                elif isinstance(selection, scoretools.Tuplet):
+                    components.append(selection)
                 else:
-                    raise TypeError(x)
+                    raise TypeError(selection)
+            if self.stemlet_length is not None:
+                grob_proxy = override(beam).staff.stem
+                grob_proxy.stemlet_length = self.stemlet_length
             attach(beam, components)
         elif self.beam_each_division:
-            for cell in selections:
+            for selection in selections:
                 beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
-                attach(beam, cell)
+                if self.stemlet_length is not None:
+                    grob_proxy = override(beam).staff.stem
+                    grob_proxy.stemlet_length = self.stemlet_length
+                attach(beam, selection)
 
     ### PUBLIC PROPERTIES ###
 
@@ -248,6 +260,28 @@ class BeamSpecifier(AbjadValueObject):
         Returns true or false.
         '''
         return self._beam_rests
+
+    @property
+    def stemlet_length(self):
+        r'''Gets stemlet length.
+
+        ..  container:: example
+
+            ::
+
+                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier.stemlet_length is None
+                True
+
+        Defaults to none.
+
+        Set to none, integer or float.
+
+        Note that stemlets appear only when `beam_rests` is set to true.
+
+        Returns none, integer or float.
+        '''
+        return self._stemlet_length
 
     @property
     def use_feather_beams(self):
