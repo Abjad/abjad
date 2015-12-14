@@ -107,35 +107,72 @@ class Beam(Spanner):
     ### PUBLIC METHODS ###
 
     @staticmethod
-    def _is_beamable_component(expr):
+    def _is_beamable_component(expr, beam_rests=False):
         '''Is true when `expr` is a beamable component. Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
-            >>> staff.extend(r"r8 e''8 ( ef'2 )")
-            >>> show(staff) # doctest: +SKIP
+            **Example 1.** Without allowing for beamed rests:
 
-        ::
+            ::
 
-            >>> for leaf in staff.select_leaves():
-            ...     beam = spannertools.Beam
-            ...     result = beam._is_beamable_component(leaf)
-            ...     print('{:<8}\t{}'.format(leaf, result))
-            ... 
-            r32     False
-            a'32    True
-            gs'32   True
-            fs''32  True
-            f''8    True
-            r8      False
-            e''8    True
-            ef'2    False
+                >>> staff = Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
+                >>> staff.extend(r"r8 e''8 ( ef'2 )")
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> for leaf in staff.select_leaves():
+                ...     beam = spannertools.Beam
+                ...     result = beam._is_beamable_component(leaf)
+                ...     print('{:<8}\t{}'.format(leaf, result))
+                ... 
+                r32     False
+                a'32    True
+                gs'32   True
+                fs''32  True
+                f''8    True
+                r8      False
+                e''8    True
+                ef'2    False
+
+        ..  container:: example
+
+            **Example 2.** Allowing for beamed rests:
+
+            ::
+
+                >>> staff = Staff(r"r32 a'32 ( [ gs'32 fs''32 \staccato f''8 ) ]")
+                >>> staff.extend(r"r8 e''8 ( ef'2 )")
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> for leaf in staff.select_leaves():
+                ...     beam = spannertools.Beam
+                ...     result = beam._is_beamable_component(
+                ...         leaf,
+                ...         beam_rests=True,
+                ...         )
+                ...     print('{:<8}\t{}'.format(leaf, result))
+                ... 
+                r32	    True
+                a'32	True
+                gs'32	True
+                fs''32	True
+                f''8	True
+                r8	    True
+                e''8	True
+                ef'2	False
 
         Returns true or false.
         '''
         from abjad.tools import scoretools
-        if isinstance(expr, (scoretools.Note, scoretools.Chord)):
+        prototype = [scoretools.Note, scoretools.Chord]
+        if beam_rests:
+            prototype.append(scoretools.Rest)
+        prototype = tuple(prototype)
+        if isinstance(expr, prototype):
             if 0 < expr.written_duration.flag_count:
                 return True
         return False
