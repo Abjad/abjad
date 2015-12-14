@@ -589,6 +589,12 @@ class TaleaRhythmMaker(RhythmMaker):
         assert tuple(burnished_weights) == tuple(unburnished_weights)
         return burnished_divisions
 
+    def _get_talea(self):
+        from abjad.tools import rhythmmakertools
+        if self.talea is not None:
+            return self.talea
+        return rhythmmakertools.Talea()
+
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         leaf_lists = []
         specifier = self._get_duration_spelling_specifier()
@@ -680,7 +686,6 @@ class TaleaRhythmMaker(RhythmMaker):
         map_divisions = self._split_sequence_extended_to_weights(
             talea,
             prolated_numerators,
-            overhang=False,
             )
         for list_ in map_divisions:
             assert all(isinstance(_, int) for _ in list_), repr(list_)
@@ -794,28 +799,16 @@ class TaleaRhythmMaker(RhythmMaker):
             split_divisions_by_counts,
             )
 
-    def _split_sequence_extended_to_weights(
-        self,
-        sequence, 
-        weights, 
-        overhang=True,
-        ):
-        assert all(isinstance(_, int) for _ in weights), repr(weights)
-        n = int(
-            math.ceil(float(mathtools.weight(weights)) /
-            mathtools.weight(sequence))
-            )
-        assert isinstance(n, int), repr(n)
-        sequence = sequencetools.repeat_sequence(sequence, n)
-        assert all(isinstance(_, int) for _ in sequence), repr(sequence)
-        if self.talea is not None:
-            sequence = self.talea._apply_count_masks(sequence)
-        result = sequencetools.split_sequence(
+    def _split_sequence_extended_to_weights(self, sequence, weights):
+        assert mathtools.all_are_positive_integers(weights), repr(weights)
+        total_weight = sum(weights)
+        sequence = sequencetools.repeat_sequence_to_weight(
             sequence,
-            weights,
-            cyclic=False,
-            overhang=overhang,
+            total_weight,
             )
+        talea = self._get_talea()
+        sequence = talea._apply_count_masks(sequence)
+        result = sequencetools.split_sequence(sequence, weights, cyclic=False)
         return result
 
     ### PUBLIC PROPERTIES ###
