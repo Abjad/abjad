@@ -394,24 +394,6 @@ class TaleaRhythmMaker(RhythmMaker):
         else:
             return self._burnish_each_division(divisions)
 
-    def _apply_count_masks(self, counts):
-        from abjad.tools import rhythmmakertools
-        if not self.talea or not self.talea.count_masks:
-            return counts
-        count_masks = self.talea.count_masks
-        new_counts = []
-        length = len(counts)
-        for i, count in enumerate(counts):
-            matching_mask = count_masks.get_matching_pattern(i, length)
-            if isinstance(matching_mask, rhythmmakertools.SustainMask):
-                new_count = abs(count)
-            elif isinstance(matching_mask, rhythmmakertools.SilenceMask):
-                new_count = -abs(count)
-            else:
-                new_count = count
-            new_counts.append(new_count)
-        return new_counts
-
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
         from abjad.tools import rhythmmakertools
         tie_specifier = self._get_tie_specifier()
@@ -826,7 +808,8 @@ class TaleaRhythmMaker(RhythmMaker):
         assert isinstance(n, int), repr(n)
         sequence = sequencetools.repeat_sequence(sequence, n)
         assert all(isinstance(_, int) for _ in sequence), repr(sequence)
-        sequence = self._apply_count_masks(sequence)
+        if self.talea is not None:
+            sequence = self.talea._apply_count_masks(sequence)
         result = sequencetools.split_sequence(
             sequence,
             weights,

@@ -146,6 +146,24 @@ class Talea(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _apply_count_masks(self, counts):
+        from abjad.tools import rhythmmakertools
+        if not self.count_masks:
+            return counts
+        count_masks = self.count_masks
+        new_counts = []
+        length = len(counts)
+        for i, count in enumerate(counts):
+            matching_mask = count_masks.get_matching_pattern(i, length)
+            if isinstance(matching_mask, rhythmmakertools.SustainMask):
+                new_count = abs(count)
+            elif isinstance(matching_mask, rhythmmakertools.SilenceMask):
+                new_count = -abs(count)
+            else:
+                new_count = count
+            new_counts.append(new_count)
+        return new_counts
+
     @staticmethod
     def _to_tuple(expr):
         if isinstance(expr, list):
