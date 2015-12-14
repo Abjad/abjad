@@ -739,15 +739,18 @@ class AccelerandoRhythmMaker(RhythmMaker):
             )
         if durations == 'too small':
             notes = scoretools.make_notes([0], [total_duration])
-            return notes
+            tuplet = scoretools.Tuplet((1, 1), notes)
+            selection = selectiontools.Selection([tuplet])
+            return selection
         durations = [
             durationtools.Duration(int(round(_ * 2**10)), 2**10)
             for _ in durations
             ]
         notes = []
         for i, duration in enumerate(durations):
-            note = scoretools.Note(0, interpolation_specifier.written_duration)
-            multiplier = duration / interpolation_specifier.written_duration
+            written_duration = interpolation_specifier.written_duration
+            note = scoretools.Note(0, written_duration)
+            multiplier = duration / written_duration
             multiplier = durationtools.Multiplier(multiplier)
             attach(multiplier, note)
             notes.append(note)
@@ -795,11 +798,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 if isinstance(matching_mask, rhythmmakertools.SilenceMask):
                     rest = scoretools.Rest(note.written_duration)
                     inspector = inspect_(note)
-                    multiplier = inspector.get_indicator(
-                        durationtools.Multiplier,
-                        )
-                    multiplier = durationtools.Multiplier(multiplier)
-                    attach(multiplier, rest)
+                    if inspector.has_indicator(durationtools.Multiplier):
+                        multiplier = inspector.get_indicator(
+                            durationtools.Multiplier,
+                            )
+                        multiplier = durationtools.Multiplier(multiplier)
+                        attach(multiplier, rest)
                     mutate(note).replace([rest])
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
@@ -2555,7 +2559,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 1/8
-                        c'8
+                        {
+                            c'8
+                        }
                     }
                 }
 
