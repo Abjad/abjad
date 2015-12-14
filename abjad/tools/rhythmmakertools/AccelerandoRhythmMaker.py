@@ -747,7 +747,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
             notes.append(note)
 
 #        for i, note in enumerate(notes[:]):
-#            if i % 5 == 2:
+#            #if i % 5 == 2:
+#            if i % 2 == 1:
 #                rest = scoretools.Rest(note.written_duration)
 #                inspector = inspect_(note)
 #                multiplier = inspector.get_indicator(durationtools.Multiplier)

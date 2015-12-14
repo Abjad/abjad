@@ -183,7 +183,7 @@ class BeamSpecifier(AbjadValueObject):
             attach(beam, components)
         elif self.beam_each_division:
             for cell in selections:
-                beam = spannertools.MultipartBeam()
+                beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
                 attach(beam, cell)
 
     ### PUBLIC PROPERTIES ###

@@ -1094,6 +1094,152 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 4.** Does not beam rests:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 1, 1, -1],
+                ...         denominator=16,
+                ...         ),
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_each_division=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'16
+                        c'16 ]
+                        r16
+                        c'16 [
+                        c'16 ]
+                    }
+                    {
+                        \time 4/8
+                        c'16
+                        r16
+                        c'16 [
+                        c'16
+                        c'16 ]
+                        r16
+                        c'16 [
+                        c'16 ]
+                    }
+                    {
+                        \time 3/8
+                        c'16
+                        r16
+                        c'16 [
+                        c'16
+                        c'16 ]
+                        r16
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'16
+                        c'16 ]
+                        r16
+                        c'16 [
+                        c'16
+                        c'16 ]
+                        r16
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 5.** Does beam rests:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 1, 1, -1],
+                ...         denominator=16,
+                ...         ),
+                ...     beam_specifier=rhythmmakertools.BeamSpecifier(
+                ...         beam_each_division=True,
+                ...         beam_rests=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16 ]
+                    }
+                    {
+                        \time 3/8
+                        c'16 [
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16 ]
+                    }
+                    {
+                        \time 4/8
+                        c'16 [
+                        c'16
+                        c'16
+                        r16
+                        c'16
+                        c'16
+                        c'16
+                        r16 ]
+                    }
+                }
 
         Set to beam specifier or none.
 
