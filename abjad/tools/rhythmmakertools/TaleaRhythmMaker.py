@@ -122,10 +122,6 @@ class TaleaRhythmMaker(RhythmMaker):
         '_tie_split_notes',
         )
 
-    _class_name_abbreviation = 'TlRM'
-
-    _human_readable_class_name = 'talea rhythm-maker'
-
     ### INITIALIZER ###
 
     def __init__(

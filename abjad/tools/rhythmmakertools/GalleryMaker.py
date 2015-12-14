@@ -128,7 +128,7 @@ class GalleryMaker(AbjadValueObject):
     @staticmethod
     def _make_class_name_markup(rhythm_maker):
         class_ = type(rhythm_maker)
-        string = class_._human_readable_class_name
+        string = class_.__name__
         string = stringtools.capitalize_start(string)
         pair = schemetools.SchemePair('font-name', 'Times')
         command = markuptools.MarkupCommand('override', pair, string)

@@ -31,8 +31,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         '_preferred_denominator',
         )
 
-    _human_readable_class_name = 'even division rhythm-maker'
-
     ### INITIALIZER ###
 
     def __init__(

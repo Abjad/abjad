@@ -459,12 +459,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         '_interpolation_specifiers',
         )
 
-    _class_name_abbreviation = 'Acc'
-
-    _human_readable_class_name = 'accelerando rhythm-maker'
-
-    ### INITIALIZER ###
-
+    ### INITIALIZER ### 
     def __init__(
         self,
         beam_specifier=None,

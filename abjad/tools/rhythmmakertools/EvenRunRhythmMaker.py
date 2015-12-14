@@ -80,10 +80,6 @@ class EvenRunRhythmMaker(RhythmMaker):
         '_exponent',
         )
 
-    _class_name_abbreviation = ('RM', 'E')
-
-    _human_readable_class_name = 'even-run rhythm-maker'
-
     ### INITIALIZER ###
 
     def __init__(

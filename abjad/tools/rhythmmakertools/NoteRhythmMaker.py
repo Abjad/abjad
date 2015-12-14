@@ -59,10 +59,6 @@ class NoteRhythmMaker(RhythmMaker):
         '_burnish_specifier',
         )
 
-    _class_name_abbreviation = 'N'
-
-    _human_readable_class_name = 'note rhythm-maker'
-
     ### INITIALIZER ###
 
     def __init__(

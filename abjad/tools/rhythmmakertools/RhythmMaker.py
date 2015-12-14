@@ -32,10 +32,6 @@ class RhythmMaker(AbjadValueObject):
         '_tuplet_spelling_specifier',
         )
 
-    _class_name_abbreviation = 'RM'
-
-    _human_readable_class_name = 'rhythm-maker'
-
     ### INITIALIZER ###
 
     def __init__(

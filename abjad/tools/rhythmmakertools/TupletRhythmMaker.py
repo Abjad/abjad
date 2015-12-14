@@ -144,10 +144,6 @@ class TupletRhythmMaker(RhythmMaker):
         '_tuplet_spelling_specifier',
         )
 
-    _class_name_abbreviation = 'T'
-
-    _human_readable_class_name = 'tuplet rhythm-maker'
-
     ### INITIALIZER ###
 
     def __init__(
