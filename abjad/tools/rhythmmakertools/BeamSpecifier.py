@@ -52,6 +52,7 @@ class BeamSpecifier(AbjadValueObject):
     __slots__ = (
         '_beam_divisions_together',
         '_beam_each_division',
+        '_beam_rests',
         '_use_feather_beams',
         )
 
@@ -61,13 +62,16 @@ class BeamSpecifier(AbjadValueObject):
         self,
         beam_each_division=True,
         beam_divisions_together=False,
+        beam_rests=False,
         use_feather_beams=False,
         ):
         assert isinstance(beam_each_division, bool)
         assert isinstance(beam_divisions_together, bool)
+        assert isinstance(beam_rests, bool)
         assert isinstance(use_feather_beams, bool)
         self._beam_each_division = beam_each_division
         self._beam_divisions_together = beam_divisions_together
+        self._beam_rests = beam_rests
         self._use_feather_beams = use_feather_beams
 
     ### SPECIAL METHODS ###
@@ -119,6 +123,7 @@ class BeamSpecifier(AbjadValueObject):
                 rhythmmakertools.BeamSpecifier(
                     beam_each_division=True,
                     beam_divisions_together=False,
+                    beam_rests=False,
                     use_feather_beams=False,
                     )
 
@@ -146,7 +151,7 @@ class BeamSpecifier(AbjadValueObject):
             ::
 
                 >>> rhythmmakertools.BeamSpecifier()
-                BeamSpecifier(beam_each_division=True, beam_divisions_together=False, use_feather_beams=False)
+                BeamSpecifier(beam_each_division=True, beam_divisions_together=False, beam_rests=False, use_feather_beams=False)
 
         Returns string.
         '''
@@ -223,6 +228,26 @@ class BeamSpecifier(AbjadValueObject):
         Returns true or false.
         '''
         return self._beam_each_division
+
+    @property
+    def beam_rests(self):
+        r'''Is true when beams should include rests. Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier.beam_rests
+                False
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._beam_rests
 
     @property
     def use_feather_beams(self):
