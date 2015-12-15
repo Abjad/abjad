@@ -13,6 +13,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 
 
 class RhythmMaker(AbjadValueObject):
@@ -215,6 +216,7 @@ class RhythmMaker(AbjadValueObject):
     def _apply_tuplet_spelling_specifier(self, selections):
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         tuplet_spelling_specifier._do_simplify_redundant_tuplets(selections)
+        selections = self._rewrite_rest_filled_tuplets(selections)
         selections = self._flatten_trivial_tuplets(selections)
         return selections
 
@@ -359,6 +361,31 @@ class RhythmMaker(AbjadValueObject):
     def _reverse_tuple(expr):
         if expr is not None:
             return tuple(reversed(expr))
+
+    def _rewrite_rest_filled_tuplets(self, selections):
+        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
+        if not tuplet_spelling_specifier.rewrite_rest_filled_tuplets:
+            return selections
+        new_selections = []
+        for selection in selections:
+            new_selection = []
+            for component in selection:
+                if not (isinstance(component, scoretools.Tuplet) and 
+                    component._is_rest_filled):
+                    new_selection.append(component)
+                    continue
+                duration = inspect_(component).get_duration()
+                new_rests = scoretools.make_rests([duration])
+                #del(component[:])
+                mutate(component[:]).replace(new_rests)
+                #component.extend(new_rests)
+                #for spanner in spanners:
+                #    new_spanner = copy.copy(spanner)
+                #    attach(new_spanner, new_rests)
+                new_selection.append(component)
+            new_selection = selectiontools.Selection(new_selection)
+            new_selections.append(new_selection)
+        return new_selections
 
     @staticmethod
     def _rotate_tuple(expr, n):

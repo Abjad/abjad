@@ -13,6 +13,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
 
     __slots__ = (
         '_avoid_dots',
+        '_rewrite_rest_filled_tuplets',
         '_flatten_trivial_tuplets',
         '_is_diminution',
         '_simplify_redundant_tuplets',
@@ -24,6 +25,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
     def __init__(
         self,
         avoid_dots=False,
+        rewrite_rest_filled_tuplets=False,
         flatten_trivial_tuplets=False,
         is_diminution=True,
         simplify_redundant_tuplets=False,
@@ -33,6 +35,7 @@ class TupletSpellingSpecifier(AbjadValueObject):
         #       That would allow for all keywords to default to None,
         #       and therefore a single-line storage format.
         self._avoid_dots = bool(avoid_dots)
+        self._rewrite_rest_filled_tuplets = bool(rewrite_rest_filled_tuplets)
         self._flatten_trivial_tuplets = bool(flatten_trivial_tuplets)
         self._is_diminution = bool(is_diminution)
         self._simplify_redundant_tuplets = bool(simplify_redundant_tuplets)
@@ -74,6 +77,19 @@ class TupletSpellingSpecifier(AbjadValueObject):
         Returns true or false.
         '''
         return self._flatten_trivial_tuplets
+
+    @property
+    def rewrite_rest_filled_tuplets(self):
+        r'''Is true when tuplet spelling should flatten rest-filled tuplets.
+        Otherwise false.
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._rewrite_rest_filled_tuplets
 
     @property
     def is_diminution(self):

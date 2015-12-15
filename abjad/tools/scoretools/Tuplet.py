@@ -150,6 +150,11 @@ class Tuplet(Container):
             return True
 
     @property
+    def _is_rest_filled(self):
+        from abjad.tools import scoretools
+        return all(isinstance(_, scoretools.Rest) for _ in self)
+
+    @property
     def _lilypond_format(self):
         self._update_now(indicators=True)
         return self._format_component()

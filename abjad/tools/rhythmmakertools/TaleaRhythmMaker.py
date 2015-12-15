@@ -3161,7 +3161,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** No tuplet spelling specifier:
+            **Example 1.** Redudant tuplets with no tuplet spelling specifier:
 
             ::
 
@@ -3220,7 +3220,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Simplifies tuplets:
+            **Example 2.** Simplifies redundant tuplets:
 
             ::
 
@@ -3276,6 +3276,136 @@ class TaleaRhythmMaker(RhythmMaker):
                         {
                             c'4
                             c'4
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Rest-filled tuplets with no tuplet spelling
+            specifier:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     extra_counts_per_division=[1, 0],
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[3, 3, -6, -6],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'8. [
+                            c'8. ]
+                            r16
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            r4
+                            r16
+                            r8.
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            r8.
+                            c'8. [
+                            c'16 ~ ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8
+                            r4.
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** Rewrites rest-filled tuplets:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     extra_counts_per_division=[1, 0],
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[3, 3, -6, -6],
+                ...         denominator=16,
+                ...         ),
+                ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
+                ...         rewrite_rest_filled_tuplets=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            c'8. [
+                            c'8. ]
+                            r16
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            r2
+                        }
+                    }
+                    {
+                        \time 3/8
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 6/7 {
+                            r8.
+                            c'8. [
+                            c'16 ~ ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8
+                            r4.
                         }
                     }
                 }
