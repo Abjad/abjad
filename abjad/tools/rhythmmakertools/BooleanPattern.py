@@ -81,7 +81,7 @@ class BooleanPattern(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Output masks'
+    __documentation_section__ = 'Masks'
 
     __slots__ = (
         '_indices',

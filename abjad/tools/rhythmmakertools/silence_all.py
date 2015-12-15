@@ -23,7 +23,7 @@ def silence_all(use_multimeasure_rests=None):
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[mask],
+            ...     division_masks=[mask],
             ...     )
             >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
             >>> music = maker(divisions)
@@ -66,7 +66,7 @@ def silence_all(use_multimeasure_rests=None):
             ...     use_multimeasure_rests=True,
             ...     )
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[mask],
+            ...     division_masks=[mask],
             ...     )
 
         ::

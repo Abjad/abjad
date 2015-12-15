@@ -36,11 +36,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     def __init__(
         self,
         denominators=[8],
-        extra_counts_per_division=None,
         beam_specifier=None,
         burnish_specifier=None,
+        division_masks=None,
         duration_spelling_specifier=None,
-        output_masks=None,
+        extra_counts_per_division=None,
         preferred_denominator='from_counts',
         tie_specifier=None,
         tuplet_spelling_specifier=None,
@@ -50,7 +50,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
-            output_masks=output_masks,
+            division_masks=division_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -487,7 +487,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         selections = self._apply_burnish_specifier(selections, rotation)
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
-        selections = self._apply_output_masks(selections, rotation)
+        selections = self._apply_division_masks(selections, rotation)
         return selections
 
     ### PUBLIC PROPERTIES ###
@@ -663,6 +663,229 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Returns burnish specifier or none.
         '''
         return self._burnish_specifier
+
+    @property
+    def division_masks(self):
+        r'''Gets division masks of even division rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No division masks:
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker()
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Silences every other division:
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     division_masks=[
+                ...         rhythmmakertools.SilenceMask(
+                ...             indices=[0],
+                ...             period=2,
+                ...             ),
+                ...         ],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Sustains every other division:
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     division_masks=[
+                ...         rhythmmakertools.SustainMask(
+                ...             indices=[0],
+                ...             period=2,
+                ...             ),
+                ...         ],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        {
+                            c'8 [
+                            c'8
+                            c'8 ]
+                        }
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** Silences every output division:
+
+            ::
+
+                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                ...     division_masks=[rhythmmakertools.silence_all()],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> print(format(staff))
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                }
+
+        Set to division masks or none.
+        '''
+        superclass = super(EvenDivisionRhythmMaker, self)
+        return superclass.division_masks
 
     @property
     def denominators(self):
@@ -1576,229 +1799,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Returns (possibly empty) tuple of integers or none.
         '''
         return self._extra_counts_per_division
-
-    @property
-    def output_masks(self):
-        r'''Gets output masks of even division rhythm-maker.
-
-        ..  container:: example
-
-            **Example 1.** No output masks:
-
-            ::
-
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker()
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        \time 3/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        \time 4/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        \time 3/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 2.** Silences every other division:
-
-            ::
-
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     output_masks=[
-                ...         rhythmmakertools.SilenceMask(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 3.** Sustains every other division:
-
-            ::
-
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     output_masks=[
-                ...         rhythmmakertools.SustainMask(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        c'2
-                    }
-                    {
-                        \time 3/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                    {
-                        \time 4/8
-                        c'2
-                    }
-                    {
-                        \time 3/8
-                        {
-                            c'8 [
-                            c'8
-                            c'8 ]
-                        }
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 4.** Silences every output division:
-
-            ::
-
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     output_masks=[rhythmmakertools.silence_all()],
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> print(format(staff))
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                }
-
-        Set to output masks or none.
-        '''
-        superclass = super(EvenDivisionRhythmMaker, self)
-        return superclass.output_masks
 
     @property
     def preferred_denominator(self):

@@ -22,7 +22,7 @@ def sustain(indices):
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[
+            ...     division_masks=[
             ...         rhythmmakertools.silence_all(),
             ...         mask,
             ...         ],
@@ -76,7 +76,7 @@ def sustain(indices):
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[
+            ...     division_masks=[
             ...         rhythmmakertools.silence_all(),
             ...         mask,
             ...         ],

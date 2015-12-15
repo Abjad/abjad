@@ -23,7 +23,7 @@ def sustain_every(indices, period):
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[mask],
+            ...     division_masks=[mask],
             ...     )
             >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
             >>> music = maker(divisions)
@@ -75,7 +75,7 @@ def sustain_every(indices, period):
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[mask],
+            ...     division_masks=[mask],
             ...     )
             >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
             >>> music = maker(divisions)

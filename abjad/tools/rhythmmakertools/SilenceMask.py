@@ -26,7 +26,7 @@ class SilenceMask(BooleanPattern):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Output masks'
+    __documentation_section__ = 'Masks'
 
     __slots__ = (
         '_use_multimeasure_rests',

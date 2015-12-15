@@ -22,7 +22,7 @@ def make_lilypond_file(
 
         ::
 
-            >>> maker = rhythmmakertools.EvenRunRhythmMaker(1)
+            >>> maker = rhythmmakertools.EvenRunRhythmMaker(exponent=1)
             >>> divisions = [(3, 4), (4, 8), (1, 4)]
             >>> music = maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(

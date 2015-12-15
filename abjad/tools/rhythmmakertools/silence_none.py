@@ -28,14 +28,14 @@ def silence_none():
 
             >>> mask = rhythmmakertools.silence_none()
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[mask],
+            ...     division_masks=[mask],
             ...     )
 
         ::
 
             >>> print(format(maker))
             rhythmmakertools.NoteRhythmMaker(
-                output_masks=rhythmmakertools.BooleanPatternInventory(
+                division_masks=rhythmmakertools.BooleanPatternInventory(
                     (
                         rhythmmakertools.SilenceMask(
                             indices=(),

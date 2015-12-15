@@ -22,7 +22,7 @@ def silence(indices):
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[
+            ...     division_masks=[
             ...         mask,
             ...         ],
             ...     )
@@ -75,7 +75,7 @@ def silence(indices):
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     output_masks=[
+            ...     division_masks=[
             ...         mask,
             ...         ],
             ...     )

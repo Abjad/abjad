@@ -26,8 +26,8 @@ class RhythmMaker(AbjadValueObject):
 
     __slots__ = (
         '_beam_specifier',
+        '_division_masks',
         '_duration_spelling_specifier',
-        '_output_masks',
         '_rotation',
         '_tie_specifier',
         '_tuplet_spelling_specifier',
@@ -38,8 +38,8 @@ class RhythmMaker(AbjadValueObject):
     def __init__(
         self,
         beam_specifier=None,
+        division_masks=None,
         duration_spelling_specifier=None,
-        output_masks=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
@@ -50,8 +50,8 @@ class RhythmMaker(AbjadValueObject):
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
         self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
-        output_masks = self._prepare_masks(output_masks)
-        self._output_masks = output_masks
+        division_masks = self._prepare_masks(division_masks)
+        self._division_masks = division_masks
         prototype = (rhythmmakertools.TieSpecifier, type(None))
         assert isinstance(tie_specifier, prototype)
         self._tie_specifier = tie_specifier
@@ -154,9 +154,9 @@ class RhythmMaker(AbjadValueObject):
         else:
             return False
 
-    def _apply_output_masks(self, selections, rotation):
+    def _apply_division_masks(self, selections, rotation):
         from abjad.tools import rhythmmakertools
-        if not self.output_masks:
+        if not self.division_masks:
             return selections
         new_selections = []
         duration_spelling_specifier = self._get_duration_spelling_specifier()
@@ -166,18 +166,18 @@ class RhythmMaker(AbjadValueObject):
             duration_spelling_specifier.forbidden_written_duration
         tie_specifier = self._get_tie_specifier()
         length = len(selections)
-        output_masks = self.output_masks
+        division_masks = self.division_masks
         for i, selection in enumerate(selections):
-            matching_output_mask = output_masks.get_matching_pattern(
+            matching_division_mask = division_masks.get_matching_pattern(
                 i, 
                 length, 
                 rotation=rotation,
                 )
-            if not matching_output_mask:
+            if not matching_division_mask:
                 new_selections.append(selection)
                 continue
             duration = selection.get_duration()
-            if isinstance(matching_output_mask, rhythmmakertools.SustainMask):
+            if isinstance(matching_division_mask, rhythmmakertools.SustainMask):
                 new_selection = scoretools.make_leaves(
                     [0],
                     [duration],
@@ -187,12 +187,12 @@ class RhythmMaker(AbjadValueObject):
                     use_messiaen_style_ties=\
                         tie_specifier.use_messiaen_style_ties,
                     )
-            elif isinstance(matching_output_mask, rhythmmakertools.NullMask):
+            elif isinstance(matching_division_mask, rhythmmakertools.NullMask):
                 new_selections.append(selection)
                 continue
             else:
                 use_multimeasure_rests = getattr(
-                    matching_output_mask,
+                    matching_division_mask,
                     'use_multimeasure_rests',
                     False,
                     )
@@ -456,20 +456,20 @@ class RhythmMaker(AbjadValueObject):
         return self._beam_specifier
 
     @property
+    def division_masks(self):
+        r'''Gets division masks of rhythm-maker.
+
+        Set to division masks or none.
+        '''
+        return self._division_masks
+
+    @property
     def duration_spelling_specifier(self):
         r'''Gets duration spelling specifier of rhythm-maker.
 
         Set to duration spelling specifier or none.
         '''
         return self._duration_spelling_specifier
-
-    @property
-    def output_masks(self):
-        r'''Gets output masks of rhythm-maker.
-
-        Set to output masks or none.
-        '''
-        return self._output_masks
 
     @property
     def tie_specifier(self):

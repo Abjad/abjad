@@ -150,8 +150,8 @@ class TupletRhythmMaker(RhythmMaker):
         self,
         tuplet_ratios=None,
         beam_specifier=None,
+        division_masks=None,
         duration_spelling_specifier=None,
-        output_masks=None,
         preferred_denominator=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
@@ -160,7 +160,7 @@ class TupletRhythmMaker(RhythmMaker):
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
-            output_masks=output_masks,
+            division_masks=division_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -389,7 +389,7 @@ class TupletRhythmMaker(RhythmMaker):
         selections = [selectiontools.Selection(x) for x in tuplets]
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
-        selections = self._apply_output_masks(selections, rotation)
+        selections = self._apply_division_masks(selections, rotation)
         return selections
 
     def _make_tuplet(
@@ -652,12 +652,12 @@ class TupletRhythmMaker(RhythmMaker):
         return superclass.beam_specifier
 
     @property
-    def output_masks(self):
-        r'''Gets output masks of tuplet rhythm-maker.
+    def division_masks(self):
+        r'''Gets division masks of tuplet rhythm-maker.
 
         ..  container:: example
 
-            **Example 1.** No output masks:
+            **Example 1.** No division masks:
 
             ::
 
@@ -726,7 +726,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...         beam_divisions_together=False,
                 ...         beam_each_division=False,
                 ...         ),
-                ...     output_masks=[
+                ...     division_masks=[
                 ...         rhythmmakertools.SilenceMask(
                 ...             indices=[1],
                 ...             period=2,
@@ -773,12 +773,12 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Set to output masks or none.
+        Set to division masks or none.
 
-        Returns output masks or none.
+        Returns division masks or none.
         '''
         superclass = super(TupletRhythmMaker, self)
-        return superclass.output_masks
+        return superclass.division_masks
 
     @property
     def preferred_denominator(self):

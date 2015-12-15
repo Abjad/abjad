@@ -65,8 +65,8 @@ class NoteRhythmMaker(RhythmMaker):
         self,
         beam_specifier=None,
         burnish_specifier=None,
+        division_masks=None,
         duration_spelling_specifier=None,
-        output_masks=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
@@ -75,7 +75,7 @@ class NoteRhythmMaker(RhythmMaker):
             self,
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
-            output_masks=output_masks,
+            division_masks=division_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -293,7 +293,7 @@ class NoteRhythmMaker(RhythmMaker):
         selections = self._apply_burnish_specifier(selections)
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
-        selections = self._apply_output_masks(selections, rotation)
+        selections = self._apply_division_masks(selections, rotation)
         if duration_specifier.rewrite_meter:
             selections = duration_specifier._rewrite_meter_(
                 selections,
@@ -637,6 +637,251 @@ class NoteRhythmMaker(RhythmMaker):
         return self._burnish_specifier
 
     @property
+    def division_masks(self):
+        r'''Gets division masks of note rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No division masks:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Silences every other division:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     division_masks=[
+                ...         rhythmmakertools.SilenceMask(
+                ...             indices=[0],
+                ...             period=2,
+                ...             ),
+                ...         ],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Silences every output division:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     division_masks=[rhythmmakertools.silence_all()],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 4.** Silences every output division and uses
+            multimeasure rests:
+
+            ::
+
+                >>> mask = rhythmmakertools.SilenceMask(
+                ...     indices=[0],
+                ...     period=1,
+                ...     use_multimeasure_rests=True,
+                ...     )
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     division_masks=[mask],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        R1 * 1/2
+                    }
+                    {
+                        \time 3/8
+                        R1 * 3/8
+                    }
+                    {
+                        \time 4/8
+                        R1 * 1/2
+                    }
+                    {
+                        \time 3/8
+                        R1 * 3/8
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 5.** Silences every other output division except for the
+            first and last:
+
+            ::
+
+                >>> rest_mask = rhythmmakertools.SilenceMask(
+                ...     indices=[0],
+                ...     period=2,
+                ...     )
+                >>> null_mask = rhythmmakertools.NullMask(
+                ...     indices=[0, -1],
+                ...     )
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     division_masks=[rest_mask, null_mask],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8), (2, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 2/8
+                        c'4
+                    }
+                }
+
+        Set to division masks or none.
+        '''
+        superclass = super(NoteRhythmMaker, self)
+        return superclass.division_masks
+
+    @property
     def duration_spelling_specifier(self):
         r'''Gets duration spelling specifier of note rhythm-maker.
 
@@ -899,251 +1144,6 @@ class NoteRhythmMaker(RhythmMaker):
         Returns duration spelling specifier or none.
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
-
-    @property
-    def output_masks(self):
-        r'''Gets output masks of note rhythm-maker.
-
-        ..  container:: example
-
-            **Example 1.** No output masks:
-
-            ::
-
-                >>> maker = rhythmmakertools.NoteRhythmMaker()
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        c'2
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 4/8
-                        c'2
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 2.** Silences every other division:
-
-            ::
-
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     output_masks=[
-                ...         rhythmmakertools.SilenceMask(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
-                ...         ],
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 3.** Silences every output division:
-
-            ::
-
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     output_masks=[rhythmmakertools.silence_all()],
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        r4.
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 4.** Silences every output division and uses
-            multimeasure rests:
-
-            ::
-
-                >>> mask = rhythmmakertools.SilenceMask(
-                ...     indices=[0],
-                ...     period=1,
-                ...     use_multimeasure_rests=True,
-                ...     )
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     output_masks=[mask],
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        R1 * 1/2
-                    }
-                    {
-                        \time 3/8
-                        R1 * 3/8
-                    }
-                    {
-                        \time 4/8
-                        R1 * 1/2
-                    }
-                    {
-                        \time 3/8
-                        R1 * 3/8
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 5.** Silences every other output division except for the
-            first and last:
-
-            ::
-
-                >>> rest_mask = rhythmmakertools.SilenceMask(
-                ...     indices=[0],
-                ...     period=2,
-                ...     )
-                >>> null_mask = rhythmmakertools.NullMask(
-                ...     indices=[0, -1],
-                ...     )
-                >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     output_masks=[rest_mask, null_mask],
-                ...     )
-
-            ::
-
-                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8), (2, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 4/8
-                        c'2
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 4/8
-                        r2
-                    }
-                    {
-                        \time 3/8
-                        c'4.
-                    }
-                    {
-                        \time 2/8
-                        c'4
-                    }
-                }
-
-        Set to output masks or none.
-        '''
-        superclass = super(NoteRhythmMaker, self)
-        return superclass.output_masks
 
     @property
     def tie_specifier(self):
