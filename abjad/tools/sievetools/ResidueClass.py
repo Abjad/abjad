@@ -31,42 +31,6 @@ class ResidueClass(BaseResidueClass):
             >>> print(format(residue_class))
             sievetools.ResidueClass(period=2, offset=0, )
 
-    ..  container:: example
-
-        **Example 2.** Sieve from the opening of Xenakis's *Psappha* for solo 
-        percussion:
-
-        ::
-
-            >>> RC = sievetools.ResidueClass
-
-        ::
-
-            >>> sieve_1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
-            >>> sieve_2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
-            >>> sieve_3 = RC(8, 3)
-            >>> sieve_4 = RC(8, 4)
-            >>> sieve_5 = (RC(8, 5) | RC(8, 6)) & (RC(5, 2) | RC(5, 3) | RC(5, 4))
-            >>> sieve_6 = (RC(8, 1) & RC(5, 2))
-            >>> sieve_7 = (RC(8, 6) & RC(5, 1))
-
-        ::
-
-            >>> sieve = sieve_1 | sieve_2 | sieve_3 | sieve_4 | sieve_5 | sieve_6 | sieve_7
-
-        ::
-
-            >>> sieve.get_congruent_bases()
-                [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22,
-                23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38]
-
-        ::
-
-            >>> sieve.get_boolean_train()
-                [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
-                1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
-
-
     '''
 
     ### CLASS VARIABLES ###
@@ -173,7 +137,7 @@ class ResidueClass(BaseResidueClass):
 
                 ::
 
-                    >>> residue_class = RC(2, 0)
+                    >>> residue_class = sievetools.ResidueClass(2, 0)
                     >>> residue_class.get_boolean_train(stop=8)
                     [1, 0, 1, 0, 1, 0, 1, 0]
 
@@ -183,7 +147,7 @@ class ResidueClass(BaseResidueClass):
 
                 ::
 
-                    >>> residue_class = RC(3, 0)
+                    >>> residue_class = sievetools.ResidueClass(3, 0)
                     >>> residue_class.get_boolean_train(stop=8)
                     [1, 0, 0, 1, 0, 0, 1, 0]
 
@@ -213,7 +177,7 @@ class ResidueClass(BaseResidueClass):
 
                 ::
 
-                    >>> residue_class = RC(2, 0)
+                    >>> residue_class = sievetools.ResidueClass(2, 0)
                     >>> residue_class.get_congruent_bases(stop=8)
                     [0, 2, 4, 6]
 
@@ -223,7 +187,7 @@ class ResidueClass(BaseResidueClass):
 
                 ::
 
-                    >>> residue_class = RC(3, 0)
+                    >>> residue_class = sievetools.ResidueClass(3, 0)
                     >>> residue_class.get_congruent_bases(stop=8)
                     [0, 3, 6]
 
