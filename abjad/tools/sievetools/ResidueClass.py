@@ -59,34 +59,34 @@ class ResidueClass(BaseResidueClass):
         ::
 
             >>> residue_class
-            ResidueClass(period=2, residue=0)
+            ResidueClass(period=2, offset=0)
 
         ::
 
             >>> print(format(residue_class))
-            sievetools.ResidueClass(period=2, residue=0, )
+            sievetools.ResidueClass(period=2, offset=0, )
 
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_offset',
         '_period',
-        '_residue',
         )
 
     ### INITIALIZER ##
 
-    def __init__(self, period=1, residue=0):
+    def __init__(self, period=1, offset=0):
         if not 0 < period:
             message = 'period must be positive: {!r}.'
             message = message.format(period)
             raise ValueError(message)
-        if not 0 <= residue < period:
-            message = 'abs(residue) must be < period.'
+        if not 0 <= offset < period:
+            message = 'abs(offset) must be < period.'
             raise ValueError(message)
         self._period = period
-        self._residue = residue
+        self._offset = offset
 
     ### SPECIAL METHODS ###
 
@@ -98,7 +98,7 @@ class ResidueClass(BaseResidueClass):
         '''
         if isinstance(expr, ResidueClass):
             if self.period == expr.period:
-                if self.residue == expr.residue:
+                if self.offset == expr.offset:
                     return True
         return False
 
@@ -121,7 +121,7 @@ class ResidueClass(BaseResidueClass):
         '''
         if isinstance(expr, ResidueClass):
             if self.period == expr.period:
-                return self.residue < expr.residue
+                return self.offset < expr.offset
             return self.period < expr.period
 
     def __ne__(self, expr):
@@ -145,20 +145,20 @@ class ResidueClass(BaseResidueClass):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def offset(self):
+        r'''Gets offset of residue class.
+
+        Returns nonnegative integer.
+        '''
+        return self._offset
+
+    @property
     def period(self):
         r'''Gets period of residue class.
 
         Returns positive integer.
         '''
         return self._period
-
-    @property
-    def residue(self):
-        r'''Gets residue of residue class.
-
-        Returns nonnegative integer.
-        '''
-        return self._residue
 
     ### PUBLIC METHODS ###
 
@@ -194,7 +194,7 @@ class ResidueClass(BaseResidueClass):
         minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
         for i in range(minimum, maximum):
-            if i % self.period == self.residue:
+            if i % self.period == self.offset:
                 result.append(1)
             else:
                 result.append(0)
@@ -228,6 +228,6 @@ class ResidueClass(BaseResidueClass):
         minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
         for i in range(minimum, maximum + 1):
-            if i % self.period == self.residue:
+            if i % self.period == self.offset:
                 result.append(i)
         return result

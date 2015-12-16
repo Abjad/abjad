@@ -57,7 +57,7 @@ class Sieve(BaseResidueClass):
             adjusted_residue = (residue + offset) % period
             residue_class = sievetools.ResidueClass(period, adjusted_residue)
             residue_classes.append(residue_class)
-        residue_classes.sort(key=lambda x: x.residue)
+        residue_classes.sort(key=lambda x: x.offset)
         sieve = Sieve(residue_classes, logical_operator='or')
         return sieve
 
@@ -157,12 +157,12 @@ class Sieve(BaseResidueClass):
                 >>> print(format(sieve))
                 sievetools.Sieve(
                     residue_classes=[
-                        sievetools.ResidueClass(period=6, residue=0, ),
-                        sievetools.ResidueClass(period=6, residue=4, ),
-                        sievetools.ResidueClass(period=6, residue=5, ),
-                        sievetools.ResidueClass(period=10, residue=6, ),
-                        sievetools.ResidueClass(period=10, residue=7, ),
-                        sievetools.ResidueClass(period=10, residue=8, ),
+                        sievetools.ResidueClass(period=6, offset=0, ),
+                        sievetools.ResidueClass(period=6, offset=4, ),
+                        sievetools.ResidueClass(period=6, offset=5, ),
+                        sievetools.ResidueClass(period=10, offset=6, ),
+                        sievetools.ResidueClass(period=10, offset=7, ),
+                        sievetools.ResidueClass(period=10, offset=8, ),
                         ],
                     logical_operator='or',
                     )
