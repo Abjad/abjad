@@ -112,14 +112,6 @@ class Sieve(BaseResidueClass):
         '''
         return self._residue_classes
 
-    @property
-    def representative_boolean_train(self):
-        r'''Gets representative boolean train.
-
-        Returns list.
-        '''
-        return self.get_boolean_train(stop=self.period)
-
     ### PUBLIC METHODS ###
 
     @staticmethod
