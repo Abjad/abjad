@@ -3,7 +3,7 @@ from abjad import *
 
 
 def test_sievetools_Sieve_from_cycle_tokens_01():
-    r'''Single length-2 cycle token with modulo and residue list.
+    r'''Single length-2 cycle token with period and residue list.
     '''
 
     cycle_token = (6, [0, 4, 5])
@@ -14,7 +14,7 @@ def test_sievetools_Sieve_from_cycle_tokens_01():
 
 
 def test_sievetools_Sieve_from_cycle_tokens_02():
-    r'''Single length-3 cycle token with modulo, residue list and offset.
+    r'''Single length-3 cycle token with period, residue list and offset.
     '''
 
     cycle_token = (6, [0, 4, 5], 1)

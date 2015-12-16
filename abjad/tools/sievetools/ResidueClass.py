@@ -59,33 +59,33 @@ class ResidueClass(BaseResidueClass):
         ::
 
             >>> residue_class
-            ResidueClass(modulo=2, residue=0)
+            ResidueClass(period=2, residue=0)
 
         ::
 
             >>> print(format(residue_class))
-            sievetools.ResidueClass(modulo=2, residue=0, )
+            sievetools.ResidueClass(period=2, residue=0, )
 
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_modulo',
+        '_period',
         '_residue',
         )
 
     ### INITIALIZER ##
 
-    def __init__(self, modulo=1, residue=0):
-        if not 0 < modulo:
-            message = 'modulo must be positive: {!r}.'
-            message = message.format(modulo)
+    def __init__(self, period=1, residue=0):
+        if not 0 < period:
+            message = 'period must be positive: {!r}.'
+            message = message.format(period)
             raise ValueError(message)
-        if not 0 <= residue < modulo:
-            message = 'abs(residue) must be < modulo.'
+        if not 0 <= residue < period:
+            message = 'abs(residue) must be < period.'
             raise ValueError(message)
-        self._modulo = modulo
+        self._period = period
         self._residue = residue
 
     ### SPECIAL METHODS ###
@@ -97,7 +97,7 @@ class ResidueClass(BaseResidueClass):
         Returns true or false.
         '''
         if isinstance(expr, ResidueClass):
-            if self.modulo == expr.modulo:
+            if self.period == expr.period:
                 if self.residue == expr.residue:
                     return True
         return False
@@ -114,15 +114,15 @@ class ResidueClass(BaseResidueClass):
     def __lt__(self, expr):
         r'''Is true when `expr` is a residue class with module greater than 
         that of this residue class. Also true when `expr` is a residue class
-        with modulo equal to that of this residue class and with residue 
+        with period equal to that of this residue class and with residue 
         greater than that of this residue class. Otherwise false.
 
         Returns true or false.
         '''
         if isinstance(expr, ResidueClass):
-            if self.modulo == expr.modulo:
+            if self.period == expr.period:
                 return self.residue < expr.residue
-            return self.modulo < expr.modulo
+            return self.period < expr.period
 
     def __ne__(self, expr):
         r'''Is true when `expr` is not equal to this residue class. Otherwise
@@ -144,18 +144,19 @@ class ResidueClass(BaseResidueClass):
 
     ### PUBLIC PROPERTIES ###
 
-    # TODO: change name to 'period'
     @property
-    def modulo(self):
-        r'''Gets modulo of residue class.
+    def period(self):
+        r'''Gets period of residue class.
 
-        Gets period of residue class.
+        Returns positive integer.
         '''
-        return self._modulo
+        return self._period
 
     @property
     def residue(self):
         r'''Gets residue of residue class.
+
+        Returns nonnegative integer.
         '''
         return self._residue
 
@@ -193,7 +194,7 @@ class ResidueClass(BaseResidueClass):
         minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
         for i in range(minimum, maximum):
-            if i % self.modulo == self.residue:
+            if i % self.period == self.residue:
                 result.append(1)
             else:
                 result.append(0)
@@ -227,6 +228,6 @@ class ResidueClass(BaseResidueClass):
         minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
         for i in range(minimum, maximum + 1):
-            if i % self.modulo == self.residue:
+            if i % self.period == self.residue:
                 result.append(i)
         return result

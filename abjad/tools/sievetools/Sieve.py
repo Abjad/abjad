@@ -46,7 +46,7 @@ class Sieve(BaseResidueClass):
         from abjad.tools import sievetools
         if isinstance(cycle_token, Sieve):
             return Sieve(cycle_token)
-        modulo = cycle_token[0]
+        period = cycle_token[0]
         residues = cycle_token[1]
         try:
             offset = cycle_token[2]
@@ -54,8 +54,8 @@ class Sieve(BaseResidueClass):
             offset = 0
         residue_classes = []
         for residue in residues:
-            adjusted_residue = (residue + offset) % modulo
-            residue_class = sievetools.ResidueClass(modulo, adjusted_residue)
+            adjusted_residue = (residue + offset) % period
+            residue_class = sievetools.ResidueClass(period, adjusted_residue)
             residue_classes.append(residue_class)
         residue_classes.sort(key=lambda x: x.residue)
         sieve = Sieve(residue_classes, logical_operator='or')
@@ -101,7 +101,7 @@ class Sieve(BaseResidueClass):
         '''
         rc_periods = []
         for rc in self.residue_classes:
-            rc_periods.append(rc.modulo)
+            rc_periods.append(rc.period)
         if rc_periods:
             period = mathtools.least_common_multiple(*rc_periods)
         else:
@@ -157,17 +157,17 @@ class Sieve(BaseResidueClass):
                 >>> print(format(sieve))
                 sievetools.Sieve(
                     residue_classes=[
-                        sievetools.ResidueClass(modulo=6, residue=0, ),
-                        sievetools.ResidueClass(modulo=6, residue=4, ),
-                        sievetools.ResidueClass(modulo=6, residue=5, ),
-                        sievetools.ResidueClass(modulo=10, residue=6, ),
-                        sievetools.ResidueClass(modulo=10, residue=7, ),
-                        sievetools.ResidueClass(modulo=10, residue=8, ),
+                        sievetools.ResidueClass(period=6, residue=0, ),
+                        sievetools.ResidueClass(period=6, residue=4, ),
+                        sievetools.ResidueClass(period=6, residue=5, ),
+                        sievetools.ResidueClass(period=10, residue=6, ),
+                        sievetools.ResidueClass(period=10, residue=7, ),
+                        sievetools.ResidueClass(period=10, residue=8, ),
                         ],
                     logical_operator='or',
                     )
 
-        Cycle token comprises `modulo`, `residues` and optional `offset`.
+        Cycle token comprises `period`, `residues` and optional `offset`.
         '''
         sieves = []
         for cycle_token in cycle_tokens:
