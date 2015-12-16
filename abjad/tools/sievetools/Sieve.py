@@ -157,12 +157,12 @@ class Sieve(BaseResidueClass):
                 >>> print(format(sieve))
                 sievetools.Sieve(
                     rcs=[
-                        sievetools.ResidueClass(6, 0),
-                        sievetools.ResidueClass(6, 4),
-                        sievetools.ResidueClass(6, 5),
-                        sievetools.ResidueClass(10, 6),
-                        sievetools.ResidueClass(10, 7),
-                        sievetools.ResidueClass(10, 8),
+                        sievetools.ResidueClass(modulo=6, residue=0, ),
+                        sievetools.ResidueClass(modulo=6, residue=4, ),
+                        sievetools.ResidueClass(modulo=6, residue=5, ),
+                        sievetools.ResidueClass(modulo=10, residue=6, ),
+                        sievetools.ResidueClass(modulo=10, residue=7, ),
+                        sievetools.ResidueClass(modulo=10, residue=8, ),
                         ],
                     logical_operator='or',
                     )

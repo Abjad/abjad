@@ -15,7 +15,8 @@ class ResidueClass(BaseResidueClass):
 
     ..  container:: example
 
-        From the opening of Xenakis's *Psappha* for solo percussion:
+        **Example 1.** From the opening of Xenakis's *Psappha* for solo 
+        percussion:
 
         ::
 
@@ -47,6 +48,24 @@ class ResidueClass(BaseResidueClass):
                 [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
+    ..  container:: example
+
+        **Example 2.** Simple residue class:
+
+        ::
+
+            >>> residue_class = sievetools.ResidueClass(2, 0)
+
+        ::
+
+            >>> residue_class
+            ResidueClass(modulo=2, residue=0)
+
+        ::
+
+            >>> print(format(residue_class))
+            sievetools.ResidueClass(modulo=2, residue=0, )
+
     '''
 
     ### CLASS VARIABLES ###
@@ -58,17 +77,16 @@ class ResidueClass(BaseResidueClass):
 
     ### INITIALIZER ##
 
-    def __init__(self, *args):
-        if len(args) == 1:
-            self._initialize_by_rc_instance(*args)
-        elif len(args) == 2:
-            self._initialize_by_modulo_and_residue(*args)
-        elif len(args) == 0:
-            self._initialize_by_modulo_and_residue(1, 0)
-        else:
-            message = 'can not intialize residue class: {!r}.'
-            message = message.format(args)
+    def __init__(self, modulo=1, residue=0):
+        if not 0 < modulo:
+            message = 'modulo must be positive: {!r}.'
+            message = message.format(modulo)
             raise ValueError(message)
+        if not 0 <= residue < modulo:
+            message = 'abs(residue) must be < modulo.'
+            raise ValueError(message)
+        self._modulo = modulo
+        self._residue = residue
 
     ### SPECIAL METHODS ###
 
@@ -122,32 +140,7 @@ class ResidueClass(BaseResidueClass):
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            positional_argument_values=(
-                self.modulo,
-                self.residue,
-                ),
             )
-
-    ### PRIVATE METHODS ###
-
-    def _initialize_by_modulo_and_residue(self, modulo, residue):
-        if not 0 < modulo:
-            message = 'modulo must be positive: {!r}.'
-            message = message.format(modulo)
-            raise ValueError(message)
-        if not 0 <= residue < modulo:
-            message = 'abs(residue) must be < modulo.'
-            raise ValueError(message)
-        self._modulo = modulo
-        self._residue = residue
-
-    def _initialize_by_rc_instance(self, rc):
-        if not isinstance(rc, ResidueClass):
-            message = 'must be residue class: {!r}.'
-            message = message.format(rc)
-            raise TypeError(message)
-        self._modulo = rc.modulo
-        self._residue = rc.residue
 
     ### PUBLIC PROPERTIES ###
 
