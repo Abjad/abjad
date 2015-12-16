@@ -122,7 +122,7 @@ class Sieve(BaseResidueClass):
 
         Returns list.
         '''
-        return self.get_boolean_train(self.period)
+        return self.get_boolean_train(stop=self.period)
 
     @property
     def representative_congruent_bases(self):
@@ -181,7 +181,7 @@ class Sieve(BaseResidueClass):
             current_sieve = Sieve([])
         return current_sieve
 
-    def get_boolean_train(self, *min_max):
+    def get_boolean_train(self, start=0, stop=1):
         r'''Gets boolean train.
         
         ..  container::
@@ -193,16 +193,15 @@ class Sieve(BaseResidueClass):
                 >>> residue_class_1 = sievetools.ResidueClass(2, 0)
                 >>> residue_class_2 = sievetools.ResidueClass(3, 0)
                 >>> sieve = residue_class_1 | residue_class_2
-                >>> sieve.get_boolean_train(6)
+                >>> sieve.get_boolean_train(stop=6)
                 [1, 0, 1, 1, 1, 0]
 
         Returns list.
         '''
-        minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
-        cb = self.get_congruent_bases(minimum, maximum)
-        for i in range(minimum, maximum ):
-            if i in cb:
+        congruent_bases = self.get_congruent_bases(start, stop)
+        for i in range(start, stop):
+            if i in congruent_bases:
                 result.append(1)
             else:
                 result.append(0)

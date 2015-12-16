@@ -44,7 +44,7 @@ class ResidueClass(BaseResidueClass):
 
         ::
 
-            >>> sieve.get_boolean_train(40)
+            >>> sieve.get_boolean_train(stop=40)
                 [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
@@ -162,7 +162,7 @@ class ResidueClass(BaseResidueClass):
 
     ### PUBLIC METHODS ###
 
-    def get_boolean_train(self, *min_max):
+    def get_boolean_train(self, start=0, stop=1):
         r'''Gets boolean train.
 
         ..  container:: example
@@ -172,7 +172,7 @@ class ResidueClass(BaseResidueClass):
                 ::
 
                     >>> residue_class = RC(2, 0)
-                    >>> residue_class.get_boolean_train(8)
+                    >>> residue_class.get_boolean_train(stop=8)
                     [1, 0, 1, 0, 1, 0, 1, 0]
 
         ..  container:: example
@@ -182,7 +182,7 @@ class ResidueClass(BaseResidueClass):
                 ::
 
                     >>> residue_class = RC(3, 0)
-                    >>> residue_class.get_boolean_train(8)
+                    >>> residue_class.get_boolean_train(stop=8)
                     [1, 0, 0, 1, 0, 0, 1, 0]
 
         Boolean train is defined equal to a list of ones and zeros: ones map to
@@ -191,9 +191,8 @@ class ResidueClass(BaseResidueClass):
 
         Returns list.
         '''
-        minimum, maximum = self._process_min_max_attribute(*min_max)
         result = []
-        for i in range(minimum, maximum):
+        for i in range(start, stop):
             if i % self.period == self.offset:
                 result.append(1)
             else:
