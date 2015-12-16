@@ -67,6 +67,40 @@ class ResidueClass(BaseResidueClass):
         r'''Is true when `expr` is a residue class with period and residue
         equal to those of this residue class. Otherwise false.
 
+        ..  container:: example
+
+            **Example 1.** With equal period:
+
+                >>> residue_class_1 = sievetools.ResidueClass(6, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(6, 1)
+
+            ::
+
+                >>> residue_class_1 == residue_class_1
+                True
+
+            ::
+
+                >>> residue_class_1 == residue_class_2
+                False
+
+        ..  container:: example
+
+            **Example 2.** With unequal period:
+
+                >>> residue_class_1 = sievetools.ResidueClass(6, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(7, 0)
+
+            ::
+
+                >>> residue_class_1 == residue_class_1
+                True
+
+            ::
+
+                >>> residue_class_1 == residue_class_2
+                False
+
         Returns true or false.
         '''
         if not isinstance(expr, type(self)):
@@ -74,6 +108,7 @@ class ResidueClass(BaseResidueClass):
         if self.period == expr.period:
             if self.offset == expr.offset:
                 return True
+        return False
 
     def __hash__(self):
         r'''Hashes residue class.
@@ -86,9 +121,108 @@ class ResidueClass(BaseResidueClass):
 
     def __lt__(self, expr):
         r'''Is true when `expr` is a residue class with period greater than 
-        that of this residue class. Also true when `expr` is a residue class
-        with period equal to that of this residue class and with residue 
-        greater than that of this residue class. Otherwise false.
+        that of this residue class.
+        
+        Is true when `expr` is a residue class with period equal to that of
+        this residue class and with residue greater than that of this residue
+        class.
+        
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal period and equal offset::
+
+                >>> residue_class_1 = sievetools.ResidueClass(6, 0)
+
+            ::
+
+                >>> residue_class_1 == residue_class_1
+                True
+                >>> residue_class_1 != residue_class_1
+                False
+                >>> residue_class_1 < residue_class_1
+                False
+                >>> residue_class_1 <= residue_class_1
+                True
+                >>> residue_class_1 > residue_class_1
+                False
+                >>> residue_class_1 >= residue_class_1
+                True
+
+        ..  container:: example
+
+            **Example 2.** With equal period but unequal offset::
+
+                >>> residue_class_1 = sievetools.ResidueClass(6, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(6, 1)
+
+            ::
+
+                >>> residue_class_1 == residue_class_2
+                False
+                >>> residue_class_1 != residue_class_2
+                True
+                >>> residue_class_1 < residue_class_2
+                True
+                >>> residue_class_1 <= residue_class_2
+                True
+                >>> residue_class_1 > residue_class_2
+                False
+                >>> residue_class_1 >= residue_class_2
+                False
+
+            ::
+
+                >>> residue_class_2 == residue_class_1
+                False
+                >>> residue_class_2 != residue_class_1
+                True
+                >>> residue_class_2 < residue_class_1
+                False
+                >>> residue_class_2 <= residue_class_1
+                False
+                >>> residue_class_2 > residue_class_1
+                True
+                >>> residue_class_2 >= residue_class_1
+                True
+
+        ..  container:: example
+
+            **Example 3.** With unequal period:
+
+                >>> residue_class_1 = sievetools.ResidueClass(6, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(7, 0)
+
+            ::
+
+                >>> residue_class_1 == residue_class_2
+                False
+                >>> residue_class_1 != residue_class_2
+                True
+                >>> residue_class_1 < residue_class_2
+                True
+                >>> residue_class_1 <= residue_class_2
+                True
+                >>> residue_class_1 > residue_class_2
+                False
+                >>> residue_class_1 >= residue_class_2
+                False
+
+            ::
+
+                >>> residue_class_2 == residue_class_1
+                False
+                >>> residue_class_2 != residue_class_1
+                True
+                >>> residue_class_2 < residue_class_1
+                False
+                >>> residue_class_2 <= residue_class_1
+                False
+                >>> residue_class_2 > residue_class_1
+                True
+                >>> residue_class_2 >= residue_class_1
+                True
 
         Returns true or false.
         '''
