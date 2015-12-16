@@ -41,17 +41,17 @@ class BaseResidueClass(AbjadObject):
 
     ### PRIVATE METHODS ###
 
-    def _operate(self, arg, op):
+    def _operate(self, arg, operator):
         from abjad.tools import sievetools
         if (isinstance(self, sievetools.Sieve) and 
-            self.logical_operator == op):
-            argA = self.residue_classes
+            self.logical_operator == operator):
+            argument_a = self.residue_classes
         else:
-            argA = [self]
+            argument_a = [self]
         if (isinstance(arg, sievetools.Sieve) and 
-            arg.logical_operator == op):
-            argB = arg.residue_classes
+            arg.logical_operator == operator):
+            argument_b = arg.residue_classes
         else:
-            argB = [arg]
-        sieve = sievetools.Sieve(argA + argB, op)
+            argument_b = [arg]
+        sieve = sievetools.Sieve(argument_a + argument_b, operator)
         return sieve
