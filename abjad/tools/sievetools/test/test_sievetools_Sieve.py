@@ -20,7 +20,7 @@ def test_sievetools_Sieve_02():
     sieve = sievetools.Sieve([sievetools.ResidueClass(2, 0), sievetools.ResidueClass(3, 0)])
 
     assert sieve.get_boolean_train(stop=6) == [1, 0, 1, 1, 1, 0]
-    assert sieve.get_congruent_bases(stop=6) == [0, 2, 3, 4, 6]
+    assert sieve.get_congruent_bases(stop=6) == [0, 2, 3, 4]
 
 
 def test_sievetools_Sieve_03():
@@ -30,7 +30,7 @@ def test_sievetools_Sieve_03():
     sieve = sievetools.Sieve([sievetools.ResidueClass(2, 1), sievetools.ResidueClass(3, 0)])
 
     assert sieve.get_boolean_train(stop=6) == [1, 1, 0, 1, 0, 1]
-    assert sieve.get_congruent_bases(stop=6) == [0, 1, 3, 5, 6]
+    assert sieve.get_congruent_bases(stop=6) == [0, 1, 3, 5]
 
 
 def test_sievetools_Sieve_04():
@@ -41,7 +41,7 @@ def test_sievetools_Sieve_04():
 
     assert sieve.logical_operator == 'and'
     assert sieve.get_boolean_train(stop=6) == [1, 0, 0, 0, 0, 0]
-    assert sieve.get_congruent_bases(stop=6) == [0, 6]
+    assert sieve.get_congruent_bases(stop=6) == [0]
 
 
 def test_sievetools_Sieve_05():
@@ -72,4 +72,4 @@ def test_sievetools_Sieve_07():
     sieve = sievetools.Sieve([sievetools.ResidueClass(2, 1), sievetools.ResidueClass(3, 0)], 'xor')
 
     assert sieve.get_boolean_train(stop=6) == [1, 1, 0, 0, 0, 1]
-    assert sieve.get_congruent_bases(stop=6) == [0, 1, 5, 6]
+    assert sieve.get_congruent_bases(stop=6) == [0, 1, 5]

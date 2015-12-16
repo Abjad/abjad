@@ -61,21 +61,14 @@ class Sieve(BaseResidueClass):
         sieve = Sieve(residue_classes, logical_operator='or')
         return sieve
 
-    # _get_congruent_bases() might implement more cleanly
-    # if the min and max parameters behaved more like the
-    # start and stop parameters passed to slice() objects in
-    # list slicing.
-    # That is, Sieve.get_congruent_bases(8) currently
-    # returns a list of up to *nine* items; should probably
-    # return a list of up to only *eight* items.
     def _get_congruent_bases(self, minimum, maximum, logical_operator):
         if logical_operator is operator.iand:
             result = set(range(minimum, maximum + 1))
         else:
             result = set([])
         for residue_class in self.residue_classes:
-            logical_operator(
-                result, set(residue_class.get_congruent_bases(minimum, maximum)))
+            bases_ = set(residue_class.get_congruent_bases(minimum, maximum))
+            logical_operator(result, bases_)
         return sorted(result)
 
     def _sort_residue_classes(self):
@@ -226,7 +219,7 @@ class Sieve(BaseResidueClass):
                 >>> residue_class_2 = sievetools.ResidueClass(3, 0)
                 >>> sieve = residue_class_1 | residue_class_2
                 >>> sieve.get_congruent_bases(-6, 6)
-                [-6, -4, -3, -2, 0, 2, 3, 4, 6]
+                [-6, -4, -3, -2, 0, 2, 3, 4]
 
         Set `stop` to period of sieve when `stop` is none.
 
@@ -267,5 +260,5 @@ class Sieve(BaseResidueClass):
         if not mathtools.is_integer_equivalent_expr(expr):
             return False
         expr = int(expr)
-        congruent_bases = self.get_congruent_bases(-abs(expr), expr)
-        return expr in congruent_bases
+        congruent_bases = self.get_congruent_bases()
+        return expr % self.period in congruent_bases

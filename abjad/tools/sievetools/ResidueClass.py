@@ -58,7 +58,7 @@ class ResidueClass(BaseResidueClass):
 
             >>> sieve.get_congruent_bases()
                 [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22,
-                23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38, 40]
+                23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38]
 
         ::
 
@@ -215,7 +215,7 @@ class ResidueClass(BaseResidueClass):
 
                     >>> residue_class = RC(2, 0)
                     >>> residue_class.get_congruent_bases(stop=8)
-                    [0, 2, 4, 6, 8]
+                    [0, 2, 4, 6]
 
         ..  container:: example
 
@@ -233,7 +233,7 @@ class ResidueClass(BaseResidueClass):
         '''
         stop = stop or self.period
         result = []
-        for i in range(start, stop + 1):
+        for i in range(start, stop):
             if i % self.period == self.offset:
                 result.append(i)
         return result
