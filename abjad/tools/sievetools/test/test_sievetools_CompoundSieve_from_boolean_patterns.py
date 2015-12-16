@@ -9,7 +9,7 @@ def test_sievetools_CompoundSieve_from_boolean_patterns_01():
     pattern = rhythmmakertools.BooleanPattern(indices=[0, 4, 5], period=6)
     sieve = sievetools.CompoundSieve.from_boolean_patterns([pattern])
 
-    assert sieve.residue_classes == [
+    assert sieve.sieves == [
         sievetools.Sieve(6, 0),
         sievetools.Sieve(6, 4),
         sievetools.Sieve(6, 5),
@@ -22,9 +22,10 @@ def test_sievetools_CompoundSieve_from_boolean_patterns_02():
 
     pattern_1 = rhythmmakertools.BooleanPattern(indices=[0, 4, 5], period=6)
     pattern_2 = rhythmmakertools.BooleanPattern(indices=[0, 1, 2], period=10)
-    sieve = sievetools.CompoundSieve.from_boolean_patterns([pattern_1, pattern_2])
+    patterns = [pattern_1, pattern_2]
+    sieve = sievetools.CompoundSieve.from_boolean_patterns(patterns)
 
-    assert sieve.residue_classes == [
+    assert sieve.sieves == [
         sievetools.Sieve(6, 0),
         sievetools.Sieve(6, 4),
         sievetools.Sieve(6, 5),
@@ -39,4 +40,4 @@ def test_sievetools_CompoundSieve_from_boolean_patterns_03():
     '''
 
     sieve = sievetools.CompoundSieve.from_boolean_patterns([])
-    assert sieve.residue_classes == []
+    assert sieve.sieves == []

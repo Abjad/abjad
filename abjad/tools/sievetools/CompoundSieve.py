@@ -5,30 +5,36 @@ from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 
 class CompoundSieve(BaseResidueClass):
-    r'''CompoundSieve.
+    r'''Compound sieve.
 
     ..  container:: example
 
-        **Example 1.** CompoundSieve from the opening of Xenakis's *Psappha* for solo 
-        percussion:
+        **Example 1.** Compound sieve from the opening of Xenakis's *Psappha*
+        for solo percussion:
 
         ::
 
-            >>> RC = sievetools.Sieve
+            >>> Sieve = sievetools.Sieve
 
         ::
 
-            >>> sieve_1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
-            >>> sieve_2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
-            >>> sieve_3 = RC(8, 3)
-            >>> sieve_4 = RC(8, 4)
-            >>> sieve_5 = (RC(8, 5) | RC(8, 6)) & (RC(5, 2) | RC(5, 3) | RC(5, 4))
-            >>> sieve_6 = (RC(8, 1) & RC(5, 2))
-            >>> sieve_7 = (RC(8, 6) & RC(5, 1))
+            >>> sieve_1 = (Sieve(8, 0) | Sieve(8, 1) | Sieve(8, 7)) 
+            >>> sieve_1 = sieve_1 & (Sieve(5, 1) | Sieve(5, 3))
+            >>> sieve_2 = (Sieve(8, 0) | Sieve(8, 1) | Sieve(8, 2)) 
+            >>> sieve_2 = sieve_2 & Sieve(5, 0)
+            >>> sieve_3 = Sieve(8, 3)
+            >>> sieve_4 = Sieve(8, 4)
+            >>> sieve_5 = (Sieve(8, 5) | Sieve(8, 6)) 
+            >>> sieve_5 = sieve_5 & (Sieve(5, 2) | Sieve(5, 3) | Sieve(5, 4))
+            >>> sieve_6 = (Sieve(8, 1) & Sieve(5, 2))
+            >>> sieve_7 = (Sieve(8, 6) & Sieve(5, 1))
 
         ::
 
-            >>> sieve = sieve_1 | sieve_2 | sieve_3 | sieve_4 | sieve_5 | sieve_6 | sieve_7
+            >>> sieve = (
+            ...     sieve_1 | sieve_2 | sieve_3 | 
+            ...     sieve_4 | sieve_5 | sieve_6 | sieve_7
+            ...     )
 
         ::
 
@@ -46,11 +52,11 @@ class CompoundSieve(BaseResidueClass):
 
             >>> print(format(sieve))
             sievetools.CompoundSieve(
-                residue_classes=[
+                sieves=[
                     sievetools.CompoundSieve(
-                        residue_classes=[
+                        sieves=[
                             sievetools.CompoundSieve(
-                                residue_classes=[
+                                sieves=[
                                     sievetools.Sieve(period=8, offset=0, ),
                                     sievetools.Sieve(period=8, offset=1, ),
                                     sievetools.Sieve(period=8, offset=7, ),
@@ -58,7 +64,7 @@ class CompoundSieve(BaseResidueClass):
                                 logical_operator='or',
                                 ),
                             sievetools.CompoundSieve(
-                                residue_classes=[
+                                sieves=[
                                     sievetools.Sieve(period=5, offset=1, ),
                                     sievetools.Sieve(period=5, offset=3, ),
                                     ],
@@ -68,9 +74,9 @@ class CompoundSieve(BaseResidueClass):
                         logical_operator='and',
                         ),
                     sievetools.CompoundSieve(
-                        residue_classes=[
+                        sieves=[
                             sievetools.CompoundSieve(
-                                residue_classes=[
+                                sieves=[
                                     sievetools.Sieve(period=8, offset=0, ),
                                     sievetools.Sieve(period=8, offset=1, ),
                                     sievetools.Sieve(period=8, offset=2, ),
@@ -84,16 +90,16 @@ class CompoundSieve(BaseResidueClass):
                     sievetools.Sieve(period=8, offset=3, ),
                     sievetools.Sieve(period=8, offset=4, ),
                     sievetools.CompoundSieve(
-                        residue_classes=[
+                        sieves=[
                             sievetools.CompoundSieve(
-                                residue_classes=[
+                                sieves=[
                                     sievetools.Sieve(period=8, offset=5, ),
                                     sievetools.Sieve(period=8, offset=6, ),
                                     ],
                                 logical_operator='or',
                                 ),
                             sievetools.CompoundSieve(
-                                residue_classes=[
+                                sieves=[
                                     sievetools.Sieve(period=5, offset=2, ),
                                     sievetools.Sieve(period=5, offset=3, ),
                                     sievetools.Sieve(period=5, offset=4, ),
@@ -104,14 +110,14 @@ class CompoundSieve(BaseResidueClass):
                         logical_operator='and',
                         ),
                     sievetools.CompoundSieve(
-                        residue_classes=[
+                        sieves=[
                             sievetools.Sieve(period=5, offset=2, ),
                             sievetools.Sieve(period=8, offset=1, ),
                             ],
                         logical_operator='and',
                         ),
                     sievetools.CompoundSieve(
-                        residue_classes=[
+                        sieves=[
                             sievetools.Sieve(period=5, offset=1, ),
                             sievetools.Sieve(period=8, offset=6, ),
                             ],
@@ -131,19 +137,19 @@ class CompoundSieve(BaseResidueClass):
         '_congruent_bases',
         '_logical_operator',
         '_period',
-        '_residue_classes',
+        '_sieves',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, residue_classes=None, logical_operator='or'):
+    def __init__(self, sieves=None, logical_operator='or'):
         from abjad.tools import sievetools
-        residue_classes = residue_classes or []
-        self._residue_classes = residue_classes[:]
+        sieves = sieves or []
+        self._sieves = sieves[:]
         self._logical_operator = logical_operator
         self._sort_sieves()
         periods = []
-        for residue_class in self.residue_classes:
+        for residue_class in self.sieves:
             periods.append(residue_class.period)
         if periods:
             period = mathtools.least_common_multiple(*periods)
@@ -176,13 +182,13 @@ class CompoundSieve(BaseResidueClass):
         period = boolean_pattern.period
         residues = boolean_pattern.indices or []
         offset = 0
-        residue_classes = []
+        sieves = []
         for residue in residues:
             adjusted_residue = (residue + offset) % period
             residue_class = sievetools.Sieve(period, adjusted_residue)
-            residue_classes.append(residue_class)
-        residue_classes.sort(key=lambda x: x.offset)
-        sieve = CompoundSieve(residue_classes, logical_operator='or')
+            sieves.append(residue_class)
+        sieves.sort(key=lambda x: x.offset)
+        sieve = CompoundSieve(sieves, logical_operator='or')
         return sieve
 
     def _get_congruent_bases(self, logical_operator):
@@ -190,7 +196,7 @@ class CompoundSieve(BaseResidueClass):
             result = set(range(0, self.period))
         else:
             result = set()
-        for residue_class in self.residue_classes:
+        for residue_class in self.sieves:
             bases_ = set()
             for i in range(0, self.period):
                 congruent_bases = residue_class.congruent_bases
@@ -203,9 +209,9 @@ class CompoundSieve(BaseResidueClass):
         from abjad.tools import sievetools
         if all(
             isinstance(residue_class, sievetools.Sieve) 
-            for residue_class in self.residue_classes
+            for residue_class in self.sieves
             ):
-            self.residue_classes.sort()
+            self.sieves.sort()
 
     ### PUBLIC PROPERTIES ###
 
@@ -338,7 +344,7 @@ class CompoundSieve(BaseResidueClass):
         return self._period
 
     @property
-    def residue_classes(self):
+    def sieves(self):
         r'''Gets residue classes of sieve.
 
         ..  container::
@@ -350,7 +356,7 @@ class CompoundSieve(BaseResidueClass):
                 >>> residue_class_1 = sievetools.Sieve(2, 0)
                 >>> residue_class_2 = sievetools.Sieve(3, 0)
                 >>> sieve = residue_class_1 | residue_class_2
-                >>> for residue_class in sieve.residue_classes:
+                >>> for residue_class in sieve.sieves:
                 ...     residue_class
                 Sieve(period=2, offset=0)
                 Sieve(period=3, offset=0)
@@ -364,14 +370,14 @@ class CompoundSieve(BaseResidueClass):
                 >>> residue_class_1 = sievetools.Sieve(2, 0)
                 >>> residue_class_2 = sievetools.Sieve(5, 0)
                 >>> sieve = residue_class_1 | residue_class_2
-                >>> for residue_class in sieve.residue_classes:
+                >>> for residue_class in sieve.sieves:
                 ...     residue_class
                 Sieve(period=2, offset=0)
                 Sieve(period=5, offset=0)
 
         Returns list.
         '''
-        return self._residue_classes
+        return self._sieves
 
     ### PUBLIC METHODS ###
 
@@ -400,7 +406,7 @@ class CompoundSieve(BaseResidueClass):
                 >>> sieve = sievetools.CompoundSieve.from_boolean_patterns(patterns)
                 >>> print(format(sieve))
                 sievetools.CompoundSieve(
-                    residue_classes=[
+                    sieves=[
                         sievetools.Sieve(period=6, offset=0, ),
                         sievetools.Sieve(period=6, offset=4, ),
                         sievetools.Sieve(period=6, offset=5, ),
