@@ -250,33 +250,3 @@ class Sieve(BaseResidueClass):
 #        else:
 #            current_sieve = Sieve([])
 #        return current_sieve
-
-    def is_congruent_base(self, expr):
-        r'''Is true when `expr` is congruent to base in sieve.
-
-        ..  container:: example
-
-            ::
-
-                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
-                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
-                >>> sieve = residue_class_1 | residue_class_2
-                >>> sieve.is_congruent_base(12)
-                True
-
-        Otherwise false:
-
-        ..  container:: example
-
-            ::
-
-                >>> sieve.is_congruent_base(13)
-                False
-
-        Returns true or false.
-        '''
-        if not mathtools.is_integer_equivalent_expr(expr):
-            return False
-        expr = int(expr)
-        congruent_bases = self.congruent_bases
-        return expr % self.period in congruent_bases
