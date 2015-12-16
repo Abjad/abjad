@@ -3,7 +3,7 @@ from abjad import *
 from abjad.tools import sievetools
 
 
-def test_sievetools_Sieve__sort_rcs_01():
+def test_sievetools_Sieve__sort_residue_classes_01():
     r'''Unsorted RCs are sorted on sieve initialization.
     '''
 
@@ -12,7 +12,7 @@ def test_sievetools_Sieve__sort_rcs_01():
     assert sieve.residue_classes == [RC(8, 0), RC(9, 0), RC(10, 0)]
 
 
-def test_sievetools_Sieve__sort_rcs_02():
+def test_sievetools_Sieve__sort_residue_classes_02():
     r'''Unsorted RCs are sorted on sieve initialization.
     '''
 

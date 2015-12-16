@@ -37,7 +37,7 @@ class Sieve(BaseResidueClass):
         else:
             self._residue_classes = residue_classes[:]
             self._logical_operator = logical_operator
-        self._sort_rcs()
+        self._sort_residue_classes()
 
     ### PRIVATE METHODS ###
 
@@ -73,14 +73,17 @@ class Sieve(BaseResidueClass):
             result = set(range(minimum, maximum + 1))
         else:
             result = set([])
-        for rc in self.residue_classes:
+        for residue_class in self.residue_classes:
             logical_operator(
-                result, set(rc.get_congruent_bases(minimum, maximum)))
+                result, set(residue_class.get_congruent_bases(minimum, maximum)))
         return sorted(result)
 
-    def _sort_rcs(self):
+    def _sort_residue_classes(self):
         from abjad.tools import sievetools
-        if all(isinstance(rc, sievetools.ResidueClass) for rc in self.residue_classes):
+        if all(
+            isinstance(residue_class, sievetools.ResidueClass) 
+            for residue_class in self.residue_classes
+            ):
             self.residue_classes.sort()
 
     ### PUBLIC PROPERTIES ###
@@ -99,11 +102,11 @@ class Sieve(BaseResidueClass):
 
         Returns positive integer.
         '''
-        rc_periods = []
-        for rc in self.residue_classes:
-            rc_periods.append(rc.period)
-        if rc_periods:
-            period = mathtools.least_common_multiple(*rc_periods)
+        periods = []
+        for residue_class in self.residue_classes:
+            periods.append(residue_class.period)
+        if periods:
+            period = mathtools.least_common_multiple(*periods)
         else:
             period = 1
         return period
@@ -237,8 +240,8 @@ class Sieve(BaseResidueClass):
         elif self.logical_operator == 'and':
             return self._get_congruent_bases(start, stop, operator.iand)
 
-    def is_congruent_base(self, integer):
-        r'''Is true when `integer` is congruent to base in sieve.
+    def is_congruent_base(self, expr):
+        r'''Is true when `expr` is congruent to base in sieve.
 
         ..  container:: example
 
@@ -261,6 +264,8 @@ class Sieve(BaseResidueClass):
 
         Returns true or false.
         '''
-        # TODO: remove +1 and -1 adjustments
-        tmp_min, tmp_max = -(abs(integer) + 1), abs(integer) + 1
-        return integer in self.get_congruent_bases(tmp_min, tmp_max)
+        if not mathtools.is_integer_equivalent_expr(expr):
+            return False
+        expr = int(expr)
+        congruent_bases = self.get_congruent_bases(-abs(expr), expr)
+        return expr in congruent_bases
