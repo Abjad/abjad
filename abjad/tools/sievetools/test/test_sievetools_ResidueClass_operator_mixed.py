@@ -65,8 +65,8 @@ def test_sievetools_ResidueClass_operator_mixed_03():
     assert isinstance(sieve.residue_classes[0], sievetools.Sieve)
     assert sieve.residue_classes[0].logical_operator == 'xor'
     assert isinstance(sieve.residue_classes[1], sievetools.ResidueClass)
-    assert sieve.get_boolean_train() == [1, 0, 1, 1, 1, 0]
-    assert sieve.get_congruent_bases() == [0, 2, 3, 4]
+    assert sieve.boolean_train == [1, 0, 1, 1, 1, 0]
+    assert sieve.congruent_bases == [0, 2, 3, 4]
 
 
 def test_sievetools_ResidueClass_operator_mixed_04():
@@ -81,5 +81,5 @@ def test_sievetools_ResidueClass_operator_mixed_04():
     assert isinstance(sieve.residue_classes[0], sievetools.Sieve)
     assert sieve.residue_classes[0].logical_operator == 'xor'
     assert isinstance(sieve.residue_classes[1], sievetools.ResidueClass)
-    assert sieve.get_boolean_train() == [1, 0, 1, 1, 1, 0]
-    assert sieve.get_congruent_bases() == [0, 2, 3, 4]
+    assert sieve.boolean_train == [1, 0, 1, 1, 1, 0]
+    assert sieve.congruent_bases == [0, 2, 3, 4]

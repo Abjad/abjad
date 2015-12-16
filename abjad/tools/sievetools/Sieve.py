@@ -34,13 +34,13 @@ class Sieve(BaseResidueClass):
 
         ::
 
-            >>> sieve.get_congruent_bases()
+            >>> sieve.congruent_bases
                 [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22,
                 23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38]
 
         ::
 
-            >>> sieve.get_boolean_train()
+            >>> sieve.boolean_train
                 [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
@@ -105,7 +105,7 @@ class Sieve(BaseResidueClass):
         for residue_class in self.residue_classes:
             bases_ = set()
             for i in range(0, self.period):
-                congruent_bases = residue_class.get_congruent_bases()
+                congruent_bases = residue_class.congruent_bases
                 if i % residue_class.period in congruent_bases:
                     bases_.add(i)
             logical_operator(result, bases_)
@@ -120,6 +120,58 @@ class Sieve(BaseResidueClass):
             self.residue_classes.sort()
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def boolean_train(self):
+        r'''Gets boolean train.
+        
+        ..  container::
+
+            **Example 1.** Gets boolean train:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve.boolean_train
+                [1, 0, 1, 1, 1, 0]
+
+        Returns list.
+        '''
+        result = []
+        congruent_bases = self.congruent_bases
+        for i in range(0, self.period):
+            if i % self.period in congruent_bases:
+                result.append(1)
+            else:
+                result.append(0)
+        return result
+
+    @property
+    def congruent_bases(self):
+        r'''Gets congruent bases.
+        
+        ..  container::
+
+            **Example 1.** Gets congruent bases of sieve with period 6:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve.congruent_bases
+                [0, 2, 3, 4]
+
+        Returns list.
+        '''
+        if self.logical_operator == 'or':
+            return self._get_congruent_bases(operator.ior)
+        elif self.logical_operator == 'xor':
+            return self._get_congruent_bases(operator.ixor)
+        elif self.logical_operator == 'and':
+            return self._get_congruent_bases(operator.iand)
 
     @property
     def logical_operator(self):
@@ -154,99 +206,50 @@ class Sieve(BaseResidueClass):
 
     ### PUBLIC METHODS ###
 
-    @staticmethod
-    def from_cycle_tokens(*cycle_tokens):
-        '''Initializes sieve from `cycle_tokens`.
-
-        ..  container:: example
-
-            **Example 1.** Initializes sieve from two cycle tokens:
-
-            ::
-
-                >>> cycle_token_1 = (6, [0, 4, 5])
-                >>> cycle_token_2 = (10, [0, 1, 2], 6)
-                >>> cycle_tokens = [cycle_token_1, cycle_token_2]
-
-            ::
-
-                >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
-                >>> print(format(sieve))
-                sievetools.Sieve(
-                    residue_classes=[
-                        sievetools.ResidueClass(period=6, offset=0, ),
-                        sievetools.ResidueClass(period=6, offset=4, ),
-                        sievetools.ResidueClass(period=6, offset=5, ),
-                        sievetools.ResidueClass(period=10, offset=6, ),
-                        sievetools.ResidueClass(period=10, offset=7, ),
-                        sievetools.ResidueClass(period=10, offset=8, ),
-                        ],
-                    logical_operator='or',
-                    )
-
-        Cycle token comprises `period`, `residues` and optional `offset`.
-        '''
-        sieves = []
-        for cycle_token in cycle_tokens:
-            sieve = Sieve._cycle_token_to_sieve(cycle_token)
-            sieves.append(sieve)
-        if sieves:
-            current_sieve = sieves[0]
-            for sieve in sieves[1:]:
-                current_sieve = current_sieve | sieve
-        else:
-            current_sieve = Sieve([])
-        return current_sieve
-
-    def get_boolean_train(self):
-        r'''Gets boolean train.
-        
-        ..  container::
-
-            **Example 1.** Gets boolean train:
-
-            ::
-
-                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
-                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
-                >>> sieve = residue_class_1 | residue_class_2
-                >>> sieve.get_boolean_train()
-                [1, 0, 1, 1, 1, 0]
-
-        Returns list.
-        '''
-        result = []
-        congruent_bases = self.get_congruent_bases()
-        for i in range(0, self.period):
-            if i % self.period in congruent_bases:
-                result.append(1)
-            else:
-                result.append(0)
-        return result
-
-    def get_congruent_bases(self):
-        r'''Gets congruent bases.
-        
-        ..  container::
-
-            **Example 1.** Gets congruent bases of sieve with period 6:
-
-            ::
-
-                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
-                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
-                >>> sieve = residue_class_1 | residue_class_2
-                >>> sieve.get_congruent_bases()
-                [0, 2, 3, 4]
-
-        Returns list.
-        '''
-        if self.logical_operator == 'or':
-            return self._get_congruent_bases(operator.ior)
-        elif self.logical_operator == 'xor':
-            return self._get_congruent_bases(operator.ixor)
-        elif self.logical_operator == 'and':
-            return self._get_congruent_bases(operator.iand)
+    # TODO: reimplement as Sieve.from_boolean_patterns()
+#    @staticmethod
+#    def from_cycle_tokens(*cycle_tokens):
+#        '''Initializes sieve from `cycle_tokens`.
+#
+#        ..  container:: example
+#
+#            **Example 1.** Initializes sieve from two cycle tokens:
+#
+#            ::
+#
+#                >>> cycle_token_1 = (6, [0, 4, 5])
+#                >>> cycle_token_2 = (10, [0, 1, 2], 6)
+#                >>> cycle_tokens = [cycle_token_1, cycle_token_2]
+#
+#            ::
+#
+#                >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
+#                >>> print(format(sieve))
+#                sievetools.Sieve(
+#                    residue_classes=[
+#                        sievetools.ResidueClass(period=6, offset=0, ),
+#                        sievetools.ResidueClass(period=6, offset=4, ),
+#                        sievetools.ResidueClass(period=6, offset=5, ),
+#                        sievetools.ResidueClass(period=10, offset=6, ),
+#                        sievetools.ResidueClass(period=10, offset=7, ),
+#                        sievetools.ResidueClass(period=10, offset=8, ),
+#                        ],
+#                    logical_operator='or',
+#                    )
+#
+#        Cycle token comprises `period`, `residues` and optional `offset`.
+#        '''
+#        sieves = []
+#        for cycle_token in cycle_tokens:
+#            sieve = Sieve._cycle_token_to_sieve(cycle_token)
+#            sieves.append(sieve)
+#        if sieves:
+#            current_sieve = sieves[0]
+#            for sieve in sieves[1:]:
+#                current_sieve = current_sieve | sieve
+#        else:
+#            current_sieve = Sieve([])
+#        return current_sieve
 
     def is_congruent_base(self, expr):
         r'''Is true when `expr` is congruent to base in sieve.
@@ -275,5 +278,5 @@ class Sieve(BaseResidueClass):
         if not mathtools.is_integer_equivalent_expr(expr):
             return False
         expr = int(expr)
-        congruent_bases = self.get_congruent_bases()
+        congruent_bases = self.congruent_bases
         return expr % self.period in congruent_bases

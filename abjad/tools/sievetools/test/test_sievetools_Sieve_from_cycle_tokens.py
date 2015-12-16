@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import pytest
 from abjad import *
+pytest.skip('reimplement as from_boolean_patterns()')
 
 
 def test_sievetools_Sieve_from_cycle_tokens_01():

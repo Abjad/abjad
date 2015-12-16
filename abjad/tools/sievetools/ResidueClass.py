@@ -7,12 +7,6 @@ from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 class ResidueClass(BaseResidueClass):
     r'''Residue class.
 
-    A residue class is a simple periodic sequence.
-
-    Residue classes can be combined with logical operators.
-
-    Residue classes form the basis of Xenakis sieves.
-
     ..  container:: example
 
         **Example 1.** A residue class:
@@ -30,6 +24,12 @@ class ResidueClass(BaseResidueClass):
 
             >>> print(format(residue_class))
             sievetools.ResidueClass(period=2, offset=0, )
+
+    A residue class is a simple periodic sequence.
+
+    Residue classes can be combined with logical operators.
+
+    Residue classes form the basis of Xenakis sieves.
 
     '''
 
@@ -111,24 +111,7 @@ class ResidueClass(BaseResidueClass):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def offset(self):
-        r'''Gets offset of residue class.
-
-        Returns nonnegative integer.
-        '''
-        return self._offset
-
-    @property
-    def period(self):
-        r'''Gets period of residue class.
-
-        Returns positive integer.
-        '''
-        return self._period
-
-    ### PUBLIC METHODS ###
-
-    def get_boolean_train(self):
+    def boolean_train(self):
         r'''Gets boolean train.
 
         ..  container:: example
@@ -137,9 +120,9 @@ class ResidueClass(BaseResidueClass):
 
                 ::
 
-                    >>> residue_class = sievetools.ResidueClass(2, 0)
-                    >>> residue_class.get_boolean_train()
-                    [1, 0]
+                    >>> residue_class = sievetools.ResidueClass(3, 0)
+                    >>> residue_class.boolean_train
+                    [1, 0, 0]
 
         ..  container:: example
 
@@ -147,13 +130,12 @@ class ResidueClass(BaseResidueClass):
 
                 ::
 
-                    >>> residue_class = sievetools.ResidueClass(3, 0)
-                    >>> residue_class.get_boolean_train()
-                    [1, 0, 0]
+                    >>> residue_class = sievetools.ResidueClass(3, 1)
+                    >>> residue_class.boolean_train
+                    [0, 1, 0]
 
-        Boolean train is defined equal to a list of ones and zeros: ones map to
-        integers included in the residue class while zeroes map to integers not
-        included in the residue class.
+        Boolean train is defined equal to a list of ones and zeros with ones
+        mapped to integers included in the residue class.
 
         Returns list.
         '''
@@ -165,7 +147,45 @@ class ResidueClass(BaseResidueClass):
                 result.append(0)
         return result
 
-    def get_congruent_bases(self):
+    @property
+    def offset(self):
+        r'''Gets offset of residue class.
+
+        ..  container:: example
+
+            **Example 1.** Offset:
+
+                ::
+
+                    >>> residue_class = sievetools.ResidueClass(3, 1)
+                    >>> residue_class.offset
+                    1
+
+        Returns nonnegative integer.
+        '''
+        return self._offset
+
+    @property
+    def period(self):
+        r'''Gets period of residue class.
+
+        ..  container:: example
+
+            **Example 2.** Period
+
+                ::
+
+                    >>> residue_class = sievetools.ResidueClass(3, 1)
+                    >>> residue_class.period
+                    3
+
+        Returns positive integer.
+        '''
+        return self._period
+
+
+    @property
+    def congruent_bases(self):
         r'''Gets congruent bases.
         
         ..  container:: example
@@ -175,7 +195,7 @@ class ResidueClass(BaseResidueClass):
                 ::
 
                     >>> residue_class = sievetools.ResidueClass(2, 0)
-                    >>> residue_class.get_congruent_bases()
+                    >>> residue_class.congruent_bases
                     [0]
 
         ..  container:: example
@@ -185,10 +205,8 @@ class ResidueClass(BaseResidueClass):
                 ::
 
                     >>> residue_class = sievetools.ResidueClass(3, 0)
-                    >>> residue_class.get_congruent_bases()
+                    >>> residue_class.congruent_bases
                     [0]
-
-        Sets `stop` to period of residue class when `stop` is none.
 
         Returns list.
         '''

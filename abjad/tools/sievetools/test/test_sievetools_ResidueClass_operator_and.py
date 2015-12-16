@@ -15,8 +15,8 @@ def test_sievetools_ResidueClass_operator_and_01():
     assert isinstance(t, sievetools.Sieve)
     assert t.logical_operator == 'and'
     assert t.residue_classes == [rc1, rc2]
-    assert t.get_boolean_train() == [0, 0, 0, 0]
-    assert t.get_congruent_bases() == []
+    assert t.boolean_train == [0, 0, 0, 0]
+    assert t.congruent_bases == []
 
 
 def test_sievetools_ResidueClass_operator_and_02():
@@ -80,8 +80,8 @@ def test_sievetools_ResidueClass_operator_and_05():
 
     assert isinstance(residueclass, sievetools.Sieve)
     assert residueclass.logical_operator == 'and'
-    assert residueclass.get_boolean_train() == [1, 0, 0, 0, 0, 0]
-    assert residueclass.get_congruent_bases() == [0]
+    assert residueclass.boolean_train == [1, 0, 0, 0, 0, 0]
+    assert residueclass.congruent_bases == [0]
 
 
 def test_sievetools_ResidueClass_operator_and_06():
@@ -91,5 +91,5 @@ def test_sievetools_ResidueClass_operator_and_06():
     residueclass = sievetools.ResidueClass(2, 1) 
     residueclass = residueclass & sievetools.ResidueClass(3, 0)
 
-    assert residueclass.get_boolean_train() == [0, 0, 0, 1, 0, 0]
-    assert residueclass.get_congruent_bases() == [3]
+    assert residueclass.boolean_train == [0, 0, 0, 1, 0, 0]
+    assert residueclass.congruent_bases == [3]
