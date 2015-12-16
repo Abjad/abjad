@@ -104,16 +104,19 @@ class Sieve(BaseResidueClass):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _cycle_token_to_sieve(cycle_token):
+    def _boolean_pattern_to_sieve(boolean_pattern):
         from abjad.tools import sievetools
-        if isinstance(cycle_token, Sieve):
-            return Sieve(cycle_token)
-        period = cycle_token[0]
-        residues = cycle_token[1]
-        try:
-            offset = cycle_token[2]
-        except IndexError:
-            offset = 0
+        if isinstance(boolean_pattern, Sieve):
+            return Sieve(boolean_pattern)
+#        period = boolean_pattern[0]
+#        residues = boolean_pattern[1]
+        period = boolean_pattern.period
+        residues = boolean_pattern.indices or []
+#        try:
+#            offset = boolean_pattern[2]
+#        except IndexError:
+#            offset = 0
+        offset = 0
         residue_classes = []
         for residue in residues:
             adjusted_residue = (residue + offset) % period
@@ -213,47 +216,74 @@ class Sieve(BaseResidueClass):
 
     ### PUBLIC METHODS ###
 
-    # TODO: reimplement as Sieve.from_boolean_patterns()
-#    @staticmethod
-#    def from_cycle_tokens(*cycle_tokens):
-#        '''Initializes sieve from `cycle_tokens`.
-#
-#        ..  container:: example
-#
-#            **Example 1.** Initializes sieve from two cycle tokens:
-#
-#            ::
-#
-#                >>> cycle_token_1 = (6, [0, 4, 5])
-#                >>> cycle_token_2 = (10, [0, 1, 2], 6)
-#                >>> cycle_tokens = [cycle_token_1, cycle_token_2]
-#
-#            ::
-#
-#                >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
-#                >>> print(format(sieve))
-#                sievetools.Sieve(
-#                    residue_classes=[
-#                        sievetools.ResidueClass(period=6, offset=0, ),
-#                        sievetools.ResidueClass(period=6, offset=4, ),
-#                        sievetools.ResidueClass(period=6, offset=5, ),
-#                        sievetools.ResidueClass(period=10, offset=6, ),
-#                        sievetools.ResidueClass(period=10, offset=7, ),
-#                        sievetools.ResidueClass(period=10, offset=8, ),
-#                        ],
-#                    logical_operator='or',
-#                    )
-#
-#        Cycle token comprises `period`, `residues` and optional `offset`.
-#        '''
-#        sieves = []
-#        for cycle_token in cycle_tokens:
-#            sieve = Sieve._cycle_token_to_sieve(cycle_token)
-#            sieves.append(sieve)
-#        if sieves:
-#            current_sieve = sieves[0]
-#            for sieve in sieves[1:]:
-#                current_sieve = current_sieve | sieve
-#        else:
-#            current_sieve = Sieve([])
-#        return current_sieve
+    @staticmethod
+    def from_boolean_patterns(boolean_patterns):
+        '''Initializes sieve from `boolean_patterns`.
+
+        ..  container:: example
+
+            **Example 1.** From two boolean patterns:
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 4, 5],
+                ...     period=6,
+                ...     )
+                >>> pattern_2 = rhythmmakertools.BooleanPattern(
+                ...     indices=[6, 7, 8],
+                ...     period=10,
+                ...     )
+                >>> patterns = [pattern_1, pattern_2]
+
+            ::
+
+                >>> sieve = sievetools.Sieve.from_boolean_patterns(patterns)
+                >>> print(format(sieve))
+                sievetools.Sieve(
+                    residue_classes=[
+                        sievetools.ResidueClass(
+                            period=6,
+                            offset=0,
+                            ),
+                        sievetools.ResidueClass(
+                            period=6,
+                            offset=4,
+                            ),
+                        sievetools.ResidueClass(
+                            period=6,
+                            offset=5,
+                            ),
+                        sievetools.ResidueClass(
+                            period=10,
+                            offset=6,
+                            ),
+                        sievetools.ResidueClass(
+                            period=10,
+                            offset=7,
+                            ),
+                        sievetools.ResidueClass(
+                            period=10,
+                            offset=8,
+                            ),
+                        ],
+                    logical_operator='or',
+                    )
+
+            ::
+
+                >>> sieve.congruent_bases
+                [0, 4, 5, 6, 7, 8, 10, 11, 12, 16, 17, 18, 22, 23, 24, 26, 27, 28, 29]
+
+        '''
+        sieves = []
+        for boolean_pattern in boolean_patterns:
+            sieve = Sieve._boolean_pattern_to_sieve(boolean_pattern)
+            sieves.append(sieve)
+        if sieves:
+            current_sieve = sieves[0]
+            for sieve in sieves[1:]:
+                current_sieve = current_sieve | sieve
+        else:
+            current_sieve = Sieve([])
+        return current_sieve
