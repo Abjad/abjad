@@ -38,7 +38,7 @@ class ResidueClass(BaseResidueClass):
 
         ::
 
-            >>> sieve.get_congruent_bases(40)
+            >>> sieve.get_congruent_bases()
                 [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22,
                 23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38, 40]
 
@@ -199,7 +199,7 @@ class ResidueClass(BaseResidueClass):
                 result.append(0)
         return result
 
-    def get_congruent_bases(self, *min_max):
+    def get_congruent_bases(self, start=0, stop=None):
         r'''Gets congruent bases.
         
         ..  container:: example
@@ -209,7 +209,7 @@ class ResidueClass(BaseResidueClass):
                 ::
 
                     >>> residue_class = RC(2, 0)
-                    >>> residue_class.get_congruent_bases(8)
+                    >>> residue_class.get_congruent_bases(stop=8)
                     [0, 2, 4, 6, 8]
 
         ..  container:: example
@@ -219,14 +219,16 @@ class ResidueClass(BaseResidueClass):
                 ::
 
                     >>> residue_class = RC(3, 0)
-                    >>> residue_class.get_congruent_bases(8)
+                    >>> residue_class.get_congruent_bases(stop=8)
                     [0, 3, 6]
+
+        Sets `stop` to period of residue class when `stop` is none.
 
         Returns list.
         '''
-        minimum, maximum = self._process_min_max_attribute(*min_max)
+        stop = stop or self.period
         result = []
-        for i in range(minimum, maximum + 1):
+        for i in range(start, stop + 1):
             if i % self.period == self.offset:
                 result.append(i)
         return result

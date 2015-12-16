@@ -79,7 +79,7 @@ def test_sievetools_ResidueClass_operator_xor_05():
     assert isinstance(residueclass, sievetools.Sieve)
     assert residueclass.logical_operator == 'xor'
     assert residueclass.get_boolean_train(stop=6) == [0, 0, 1, 1, 1, 0]
-    assert residueclass.get_congruent_bases(6) == [2, 3, 4]
+    assert residueclass.get_congruent_bases(stop=6) == [2, 3, 4]
 
 
 def test_sievetools_ResidueClass_operator_xor_06():
@@ -89,4 +89,4 @@ def test_sievetools_ResidueClass_operator_xor_06():
     residueclass = sievetools.ResidueClass(2, 1) ^ sievetools.ResidueClass(3, 0)
 
     assert residueclass.get_boolean_train(stop=6) == [1, 1, 0, 0, 0, 1]
-    assert residueclass.get_congruent_bases(6) == [0, 1, 5, 6]
+    assert residueclass.get_congruent_bases(stop=6) == [0, 1, 5, 6]

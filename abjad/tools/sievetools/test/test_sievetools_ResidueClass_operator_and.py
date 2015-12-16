@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
+import pytest
 from abjad import *
 from abjad.tools import sievetools
-import pytest
 
 
 def test_sievetools_ResidueClass_operator_and_01():
@@ -16,7 +16,7 @@ def test_sievetools_ResidueClass_operator_and_01():
     assert t.logical_operator == 'and'
     assert t.residue_classes == [rc1, rc2]
     assert t.get_boolean_train(stop=4) == [0, 0, 0, 0]
-    assert t.get_congruent_bases(6) == []
+    assert t.get_congruent_bases(stop=6) == []
 
 
 def test_sievetools_ResidueClass_operator_and_02():
@@ -81,7 +81,7 @@ def test_sievetools_ResidueClass_operator_and_05():
     assert isinstance(residueclass, sievetools.Sieve)
     assert residueclass.logical_operator == 'and'
     assert residueclass.get_boolean_train(stop=6) == [1, 0, 0, 0, 0, 0]
-    assert residueclass.get_congruent_bases(6) == [0, 6]
+    assert residueclass.get_congruent_bases(stop=6) == [0, 6]
 
 
 def test_sievetools_ResidueClass_operator_and_06():
@@ -91,4 +91,4 @@ def test_sievetools_ResidueClass_operator_and_06():
     residueclass = sievetools.ResidueClass(2, 1) & sievetools.ResidueClass(3, 0)
 
     assert residueclass.get_boolean_train(stop=6) == [0, 0, 0, 1, 0, 0]
-    assert residueclass.get_congruent_bases(6) == [3]
+    assert residueclass.get_congruent_bases(stop=6) == [3]

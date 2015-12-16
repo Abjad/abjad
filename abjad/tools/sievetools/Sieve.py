@@ -130,7 +130,7 @@ class Sieve(BaseResidueClass):
 
         Returns list.
         '''
-        congruent_bases = self.get_congruent_bases(self.period)
+        congruent_bases = self.get_congruent_bases()
         # remove redundant last element from get_congruent_bases()
         congruent_bases = congruent_bases[:-1]
         return congruent_bases
@@ -207,7 +207,7 @@ class Sieve(BaseResidueClass):
                 result.append(0)
         return result
 
-    def get_congruent_bases(self, *min_max):
+    def get_congruent_bases(self, start=0, stop=None):
         r'''Gets congruent bases.
         
         ..  container::
@@ -222,20 +222,18 @@ class Sieve(BaseResidueClass):
                 >>> sieve.get_congruent_bases(-6, 6)
                 [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
+        Set `stop` to period of sieve when `stop` is none.
+
         Returns list.
         '''
-        minimum, maximum = self._process_min_max_attribute(*min_max)
+        stop = stop or self.period
         if self.logical_operator == 'or':
-            return self._get_congruent_bases(minimum, maximum, operator.ior)
+            return self._get_congruent_bases(start, stop, operator.ior)
         elif self.logical_operator == 'xor':
-            return self._get_congruent_bases(minimum, maximum, operator.ixor)
+            return self._get_congruent_bases(start, stop, operator.ixor)
         elif self.logical_operator == 'and':
-            return self._get_congruent_bases(minimum, maximum, operator.iand)
+            return self._get_congruent_bases(start, stop, operator.iand)
 
-    # the +1 adjustment is necessary here because of
-    # self._process_min_max_attribute() demands min strictly less than max;
-    # that is, self.get_congruent_bases(0, 0) raises an exception;
-    # so we work around this with self.get_congruent_bases(-1, 1) instead.
     def is_congruent_base(self, integer):
         r'''Is true when `integer` is congruent to base in sieve.
 
@@ -260,5 +258,6 @@ class Sieve(BaseResidueClass):
 
         Returns true or false.
         '''
+        # TODO: remove +1 and -1 adjustments
         tmp_min, tmp_max = -(abs(integer) + 1), abs(integer) + 1
         return integer in self.get_congruent_bases(tmp_min, tmp_max)
