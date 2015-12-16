@@ -14,7 +14,7 @@ class Sieve(BaseResidueClass):
 
     __slots__ = (
         '_logical_operator',
-        '_rcs',
+        '_residue_classes',
         )
 
     logical_operator_dictionary = {
@@ -25,17 +25,17 @@ class Sieve(BaseResidueClass):
 
     ### INITIALIZER ###
 
-    def __init__(self, rcs=None, logical_operator='or'):
+    def __init__(self, residue_classes=None, logical_operator='or'):
         from abjad.tools import sievetools
-        if isinstance(rcs, type(self)):
-            self._rcs = rcs.rcs[:]
-            self._logical_operator = rcs.logical_operator
-        elif rcs is None:
-            rcs = [sievetools.ResidueClass()]
-            self._rcs = rcs
+        if isinstance(residue_classes, type(self)):
+            self._residue_classes = residue_classes.residue_classes[:]
+            self._logical_operator = residue_classes.logical_operator
+        elif residue_classes is None:
+            residue_classes = [sievetools.ResidueClass()]
+            self._residue_classes = residue_classes
             self._logical_operator = logical_operator
         else:
-            self._rcs = rcs[:]
+            self._residue_classes = residue_classes[:]
             self._logical_operator = logical_operator
         self._sort_rcs()
 
@@ -73,15 +73,15 @@ class Sieve(BaseResidueClass):
             result = set(range(minimum, maximum + 1))
         else:
             result = set([])
-        for rc in self.rcs:
+        for rc in self.residue_classes:
             logical_operator(
                 result, set(rc.get_congruent_bases(minimum, maximum)))
         return sorted(result)
 
     def _sort_rcs(self):
         from abjad.tools import sievetools
-        if all(isinstance(rc, sievetools.ResidueClass) for rc in self.rcs):
-            self.rcs.sort()
+        if all(isinstance(rc, sievetools.ResidueClass) for rc in self.residue_classes):
+            self.residue_classes.sort()
 
     ### PUBLIC PROPERTIES ###
 
@@ -100,7 +100,7 @@ class Sieve(BaseResidueClass):
         Returns positive integer.
         '''
         rc_periods = []
-        for rc in self.rcs:
+        for rc in self.residue_classes:
             rc_periods.append(rc.modulo)
         if rc_periods:
             period = mathtools.least_common_multiple(*rc_periods)
@@ -109,12 +109,12 @@ class Sieve(BaseResidueClass):
         return period
 
     @property
-    def rcs(self):
+    def residue_classes(self):
         r'''Gets residue classes of sieve.
 
         Returns list.
         '''
-        return self._rcs
+        return self._residue_classes
 
     @property
     def representative_boolean_train(self):
@@ -156,7 +156,7 @@ class Sieve(BaseResidueClass):
                 >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
                 >>> print(format(sieve))
                 sievetools.Sieve(
-                    rcs=[
+                    residue_classes=[
                         sievetools.ResidueClass(modulo=6, residue=0, ),
                         sievetools.ResidueClass(modulo=6, residue=4, ),
                         sievetools.ResidueClass(modulo=6, residue=5, ),
@@ -184,10 +184,6 @@ class Sieve(BaseResidueClass):
     def get_boolean_train(self, *min_max):
         r'''Gets boolean train.
         
-        Returns a boolean train with 0s mapped to the integers that are not
-        congruent bases of the residue class expression and 1s mapped to those
-        that are.
-
         ..  container::
 
             **Example 1.** Gets first six values of boolean train:
@@ -215,9 +211,6 @@ class Sieve(BaseResidueClass):
     def get_congruent_bases(self, *min_max):
         r'''Gets congruent bases.
         
-        Returns all the congruent bases of this residue class expression
-        within the given range.
-
         ..  container::
 
             **Example 1.** Gets congruent bases from -6 to 6:

@@ -45,12 +45,12 @@ class BaseResidueClass(AbjadObject):
         from abjad.tools import sievetools
         if (isinstance(self, sievetools.Sieve) and 
             self.logical_operator == op):
-            argA = self.rcs
+            argA = self.residue_classes
         else:
             argA = [self]
         if (isinstance(arg, sievetools.Sieve) and 
             arg.logical_operator == op):
-            argB = arg.rcs
+            argB = arg.residue_classes
         else:
             argB = [arg]
         sieve = sievetools.Sieve(argA + argB, op)

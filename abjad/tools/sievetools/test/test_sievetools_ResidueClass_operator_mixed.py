@@ -18,13 +18,13 @@ def test_sievetools_ResidueClass_operator_mixed_01():
 
     assert isinstance(t, sievetools.Sieve)
     assert t.logical_operator == 'xor'
-    assert len(t.rcs) == 2
-    assert isinstance(t.rcs[0], sievetools.Sieve)
-    assert t.rcs[0].logical_operator == 'and'
-    assert isinstance(t.rcs[1], sievetools.Sieve)
-    assert t.rcs[1].logical_operator == 'or'
-    assert t.rcs[0] is rcsA
-    assert t.rcs[1] is rcsB
+    assert len(t.residue_classes) == 2
+    assert isinstance(t.residue_classes[0], sievetools.Sieve)
+    assert t.residue_classes[0].logical_operator == 'and'
+    assert isinstance(t.residue_classes[1], sievetools.Sieve)
+    assert t.residue_classes[1].logical_operator == 'or'
+    assert t.residue_classes[0] is rcsA
+    assert t.residue_classes[1] is rcsB
 
 
 def test_sievetools_ResidueClass_operator_mixed_02():
@@ -43,14 +43,14 @@ def test_sievetools_ResidueClass_operator_mixed_02():
 
     assert isinstance(t, sievetools.Sieve)
     assert t.logical_operator == 'or'
-    assert len(t.rcs) == 3
-    assert isinstance(t.rcs[0], sievetools.Sieve)
-    assert t.rcs[0].logical_operator == 'and'
-    assert isinstance(t.rcs[1], ResidueClass)
-    assert isinstance(t.rcs[2], ResidueClass)
-    assert t.rcs[0] is rcsA
-    assert t.rcs[1] is rc3
-    assert t.rcs[2] is rc4
+    assert len(t.residue_classes) == 3
+    assert isinstance(t.residue_classes[0], sievetools.Sieve)
+    assert t.residue_classes[0].logical_operator == 'and'
+    assert isinstance(t.residue_classes[1], ResidueClass)
+    assert isinstance(t.residue_classes[2], ResidueClass)
+    assert t.residue_classes[0] is rcsA
+    assert t.residue_classes[1] is rc3
+    assert t.residue_classes[2] is rc4
 
 
 def test_sievetools_ResidueClass_operator_mixed_03():
@@ -60,10 +60,10 @@ def test_sievetools_ResidueClass_operator_mixed_03():
     t = (ResidueClass(2, 0) ^ ResidueClass(3, 0)) | ResidueClass(3,0)
 
     assert isinstance(t, sievetools.Sieve)
-    assert len(t.rcs) == 2
-    assert isinstance(t.rcs[0], sievetools.Sieve)
-    assert t.rcs[0].logical_operator == 'xor'
-    assert isinstance(t.rcs[1], ResidueClass)
+    assert len(t.residue_classes) == 2
+    assert isinstance(t.residue_classes[0], sievetools.Sieve)
+    assert t.residue_classes[0].logical_operator == 'xor'
+    assert isinstance(t.residue_classes[1], ResidueClass)
     assert t.get_boolean_train(6) == [1,0,1,1,1,0]
     assert t.get_congruent_bases(6) == [0,2,3,4,6]
 
@@ -75,9 +75,9 @@ def test_sievetools_ResidueClass_operator_mixed_04():
     t = (ResidueClass(2, 0) ^ ResidueClass(3, 0)) | ResidueClass(3,0)
 
     assert isinstance(t, sievetools.Sieve)
-    assert len(t.rcs) == 2
-    assert isinstance(t.rcs[0], sievetools.Sieve)
-    assert t.rcs[0].logical_operator == 'xor'
-    assert isinstance(t.rcs[1], ResidueClass)
+    assert len(t.residue_classes) == 2
+    assert isinstance(t.residue_classes[0], sievetools.Sieve)
+    assert t.residue_classes[0].logical_operator == 'xor'
+    assert isinstance(t.residue_classes[1], ResidueClass)
     assert t.get_boolean_train(6) == [1,0,1,1,1,0]
     assert t.get_congruent_bases(6) == [0,2,3,4,6]

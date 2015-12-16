@@ -10,7 +10,7 @@ def test_sievetools_Sieve_from_cycle_tokens_01():
     sieve = sievetools.Sieve.from_cycle_tokens(cycle_token)
     RC = sievetools.ResidueClass
 
-    assert sieve.rcs == [RC(6, 0), RC(6, 4), RC(6, 5)]
+    assert sieve.residue_classes == [RC(6, 0), RC(6, 4), RC(6, 5)]
 
 
 def test_sievetools_Sieve_from_cycle_tokens_02():
@@ -21,7 +21,7 @@ def test_sievetools_Sieve_from_cycle_tokens_02():
     sieve = sievetools.Sieve.from_cycle_tokens(cycle_token)
     RC = sievetools.ResidueClass
 
-    assert sieve.rcs == [RC(6, 0), RC(6, 1), RC(6, 5)]
+    assert sieve.residue_classes == [RC(6, 0), RC(6, 1), RC(6, 5)]
 
 
 def test_sievetools_Sieve_from_cycle_tokens_03():
@@ -32,7 +32,7 @@ def test_sievetools_Sieve_from_cycle_tokens_03():
     sieve = sievetools.Sieve.from_cycle_tokens(cycle_token)
     RC = sievetools.ResidueClass
 
-    assert sieve.rcs == [RC(6, 1), RC(6, 2), RC(6, 3)]
+    assert sieve.residue_classes == [RC(6, 1), RC(6, 2), RC(6, 3)]
 
 
 def test_sievetools_Sieve_from_cycle_tokens_04():
@@ -43,7 +43,7 @@ def test_sievetools_Sieve_from_cycle_tokens_04():
     sieve = sievetools.Sieve.from_cycle_tokens(cycle_token)
     RC = sievetools.ResidueClass
 
-    assert sieve.rcs == [RC(6, 0), RC(6, 4), RC(6, 5)]
+    assert sieve.residue_classes == [RC(6, 0), RC(6, 4), RC(6, 5)]
 
 def test_sievetools_Sieve_from_cycle_tokens_05():
     r'''Arbitrarily many cycle tokens.
@@ -56,7 +56,7 @@ def test_sievetools_Sieve_from_cycle_tokens_05():
     "{RC(6, 0) | RC(6, 4) | RC(6, 5) | RC(10, 0) | RC(10, 1) | RC(10, 2)}"
 
     RC = sievetools.ResidueClass
-    assert sieve.rcs == [
+    assert sieve.residue_classes == [
         RC(6, 0), RC(6, 4), RC(6, 5), RC(10, 0), RC(10, 1), RC(10, 2)]
 
 
@@ -71,7 +71,7 @@ def test_sievetools_Sieve_from_cycle_tokens_06():
     "{RC(6, 0) | RC(6, 4) | RC(6, 5) | RC(10, 0) | RC(10, 1) | RC(10, 2)}"
 
     RC = sievetools.ResidueClass
-    assert sieve.rcs == [
+    assert sieve.residue_classes == [
         RC(6, 0), RC(6, 4), RC(6, 5), RC(10, 0), RC(10, 1), RC(10, 2)]
 
 
@@ -86,7 +86,7 @@ def test_sievetools_Sieve_from_cycle_tokens_07():
     "{RC(6, 0) | RC(6, 4) | RC(6, 5) | RC(10, 6) | RC(10, 7) | RC(10, 8)}"
 
     RC = sievetools.ResidueClass
-    assert sieve.rcs == [
+    assert sieve.residue_classes == [
         RC(6, 0), RC(6, 4), RC(6, 5), RC(10, 6), RC(10, 7), RC(10, 8)]
 
 
@@ -95,7 +95,7 @@ def test_sievetools_Sieve_from_cycle_tokens_08():
     '''
 
     sieve = sievetools.Sieve.from_cycle_tokens()
-    assert sieve.rcs == []
+    assert sieve.residue_classes == []
 
 
 def test_sievetools_Sieve_from_cycle_tokens_09():
@@ -106,4 +106,4 @@ def test_sievetools_Sieve_from_cycle_tokens_09():
     sieve_cycle_token = RC(6, 0) | RC(6, 1)
     sieve = sievetools.Sieve.from_cycle_tokens(sieve_cycle_token)
 
-    assert sieve.rcs == [RC(6, 0), RC(6, 1)]
+    assert sieve.residue_classes == [RC(6, 0), RC(6, 1)]
