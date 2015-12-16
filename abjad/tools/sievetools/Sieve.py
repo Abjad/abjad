@@ -56,12 +56,6 @@ class Sieve(BaseResidueClass):
         '_residue_classes',
         )
 
-    logical_operator_dictionary = {
-        'and': '&',
-        'or': '|',
-        'xor': '^',
-        }
-
     ### INITIALIZER ###
 
     def __init__(self, residue_classes=None, logical_operator='or'):
@@ -108,14 +102,8 @@ class Sieve(BaseResidueClass):
         from abjad.tools import sievetools
         if isinstance(boolean_pattern, Sieve):
             return Sieve(boolean_pattern)
-#        period = boolean_pattern[0]
-#        residues = boolean_pattern[1]
         period = boolean_pattern.period
         residues = boolean_pattern.indices or []
-#        try:
-#            offset = boolean_pattern[2]
-#        except IndexError:
-#            offset = 0
         offset = 0
         residue_classes = []
         for residue in residues:
@@ -156,7 +144,7 @@ class Sieve(BaseResidueClass):
         
         ..  container::
 
-            **Example 1.** Gets boolean train:
+            **Example 1.** With period equal to 6:
 
             ::
 
@@ -166,7 +154,19 @@ class Sieve(BaseResidueClass):
                 >>> sieve.boolean_train
                 [1, 0, 1, 1, 1, 0]
 
-        Returns list.
+        ..  container::
+
+            **Example 2.** With period equal to 10:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(5, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve.boolean_train
+                [1, 0, 1, 0, 1, 1, 1, 0, 1, 0]
+
+        Returns list of ones and zeroes.
         '''
         return self._boolean_train
 
@@ -176,7 +176,7 @@ class Sieve(BaseResidueClass):
         
         ..  container::
 
-            **Example 1.** Gets congruent bases of sieve with period 6:
+            **Example 1.** With period equal to 6:
 
             ::
 
@@ -185,6 +185,18 @@ class Sieve(BaseResidueClass):
                 >>> sieve = residue_class_1 | residue_class_2
                 >>> sieve.congruent_bases
                 [0, 2, 3, 4]
+                
+        ..  container::
+
+            **Example 2.** With period equal to 10:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(5, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve.congruent_bases
+                [0, 2, 4, 5, 6, 8]
 
         Returns list.
         '''
@@ -194,6 +206,30 @@ class Sieve(BaseResidueClass):
     def logical_operator(self):
         r'''Gets logical operator of sieve.
 
+        ..  container::
+
+            **Example 1.** With period equal to 6:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve.logical_operator
+                'or'
+
+        ..  container::
+
+            **Example 2.** With period equal to 10:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(5, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve.logical_operator
+                'or'
+
         Returns string.
         '''
         return self._logical_operator
@@ -202,6 +238,30 @@ class Sieve(BaseResidueClass):
     def period(self):
         r'''Gets period of sieve.
 
+        ..  container::
+
+            **Example 1.** With period equal to 6:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve.period
+                6
+                
+        ..  container::
+
+            **Example 2.** With period equal to 10:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(5, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve.period
+                10
+
         Returns positive integer.
         '''
         return self._period
@@ -209,6 +269,34 @@ class Sieve(BaseResidueClass):
     @property
     def residue_classes(self):
         r'''Gets residue classes of sieve.
+
+        ..  container::
+
+            **Example 1.** With period equal to 6:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> for residue_class in sieve.residue_classes:
+                ...     residue_class
+                ResidueClass(period=2, offset=0)
+                ResidueClass(period=3, offset=0)
+
+        ..  container::
+
+            **Example 2.** With period equal to 10:
+
+            ::
+
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(5, 0)
+                >>> sieve = residue_class_1 | residue_class_2
+                >>> for residue_class in sieve.residue_classes:
+                ...     residue_class
+                ResidueClass(period=2, offset=0)
+                ResidueClass(period=5, offset=0)
 
         Returns list.
         '''

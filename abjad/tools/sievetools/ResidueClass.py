@@ -64,7 +64,7 @@ class ResidueClass(BaseResidueClass):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a residue class with module and residue
+        r'''Is true when `expr` is a residue class with period and residue
         equal to those of this residue class. Otherwise false.
 
         Returns true or false.
@@ -85,7 +85,7 @@ class ResidueClass(BaseResidueClass):
         return super(ResidueClass, self).__hash__()
 
     def __lt__(self, expr):
-        r'''Is true when `expr` is a residue class with module greater than 
+        r'''Is true when `expr` is a residue class with period greater than 
         that of this residue class. Also true when `expr` is a residue class
         with period equal to that of this residue class and with residue 
         greater than that of this residue class. Otherwise false.
@@ -102,7 +102,7 @@ class ResidueClass(BaseResidueClass):
         r'''Is true when `expr` is not equal to this residue class. Otherwise
         false.
 
-        Return boolean.
+        Returns true or false.
         '''
         return not self == expr
 
@@ -132,10 +132,7 @@ class ResidueClass(BaseResidueClass):
                     >>> residue_class.boolean_train
                     [0, 1, 0]
 
-        Boolean train is defined equal to a list of ones and zeros with ones
-        mapped to integers included in the residue class.
-
-        Returns list.
+        Returns list of ones and zeroes.
         '''
         result = []
         for i in range(0, self.period):
@@ -146,12 +143,50 @@ class ResidueClass(BaseResidueClass):
         return result
 
     @property
+    def congruent_bases(self):
+        r'''Gets congruent bases.
+        
+        ..  container:: example
+
+            **Example 1.** Without offset:
+
+                ::
+
+                    >>> residue_class = sievetools.ResidueClass(3, 0)
+                    >>> residue_class.congruent_bases
+                    [0]
+
+        ..  container:: example
+
+            **Example 2.** With offset:
+
+                ::
+
+                    >>> residue_class = sievetools.ResidueClass(3, 1)
+                    >>> residue_class.congruent_bases
+                    [1]
+
+        Returns list of nonnegative integers.
+        '''
+        return self._congruent_bases
+
+    @property
     def offset(self):
         r'''Gets offset of residue class.
 
         ..  container:: example
 
-            **Example 1.** Offset:
+            **Example 1.** Without offset
+
+                ::
+
+                    >>> residue_class = sievetools.ResidueClass(3, 0)
+                    >>> residue_class.offset
+                    0
+
+        ..  container:: example
+
+            **Example 2.** With offset
 
                 ::
 
@@ -169,43 +204,24 @@ class ResidueClass(BaseResidueClass):
 
         ..  container:: example
 
-            **Example 2.** Period
-
-                ::
-
-                    >>> residue_class = sievetools.ResidueClass(3, 1)
-                    >>> residue_class.period
-                    3
-
-        Returns positive integer.
-        '''
-        return self._period
-
-
-    @property
-    def congruent_bases(self):
-        r'''Gets congruent bases.
-        
-        ..  container:: example
-
-            **Example 1.** Gets congruent bases of pattern with period 2:
-
-                ::
-
-                    >>> residue_class = sievetools.ResidueClass(2, 0)
-                    >>> residue_class.congruent_bases
-                    [0]
-
-        ..  container:: example
-
-            **Example 2.** Gets congruent bases of pattern with period 3:
+            **Example 1.** Period equal to 3:
 
                 ::
 
                     >>> residue_class = sievetools.ResidueClass(3, 0)
-                    >>> residue_class.congruent_bases
-                    [0]
+                    >>> residue_class.period
+                    3
 
-        Returns list.
+        ..  container:: example
+
+            **Example 2.** Period equal to 99:
+
+                ::
+
+                    >>> residue_class = sievetools.ResidueClass(99, 0)
+                    >>> residue_class.period
+                    99
+
+        Returns positive integer.
         '''
-        return self._congruent_bases
+        return self._period
