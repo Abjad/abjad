@@ -23,15 +23,15 @@ def test_sievetools_ResidueClass_operator_and_02():
     r'''and-sieve AND residue class returns a flat and-sieve.
     '''
 
-    rcexpression = ResidueClass(4, 0) & ResidueClass(4, 1)
+    sieve = ResidueClass(4, 0) & ResidueClass(4, 1)
     rc = ResidueClass(3, 0)
-    t = rc & rcexpression
+    t = rc & sieve
 
     assert isinstance(t, sievetools.Sieve)
     assert t.logical_operator == 'and'
     assert len(t.residue_classes) == 3
-    assert rcexpression.residue_classes[0] in t.residue_classes
-    assert rcexpression.residue_classes[1] in t.residue_classes
+    assert sieve.residue_classes[0] in t.residue_classes
+    assert sieve.residue_classes[1] in t.residue_classes
     assert rc in t.residue_classes
 
 
@@ -39,15 +39,15 @@ def test_sievetools_ResidueClass_operator_and_03():
     r'''residue class AND and-sieve returns a flat and-sieve.
     '''
 
-    rcexpression = ResidueClass(4, 0) & ResidueClass(4, 1)
+    sieve = ResidueClass(4, 0) & ResidueClass(4, 1)
     rc = ResidueClass(3, 0)
-    t = rcexpression & rc
+    t = sieve & rc
 
     assert isinstance(t, sievetools.Sieve)
     assert t.logical_operator == 'and'
     assert len(t.residue_classes) == 3
-    assert rcexpression.residue_classes[0] in t.residue_classes
-    assert rcexpression.residue_classes[1] in t.residue_classes
+    assert sieve.residue_classes[0] in t.residue_classes
+    assert sieve.residue_classes[1] in t.residue_classes
     assert rc in t.residue_classes
 
 

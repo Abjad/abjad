@@ -21,15 +21,15 @@ def test_sievetools_ResidueClass_operator_or_02():
     r'''or-Sieve OR ResidueClass returns a flat or-sieve.
     '''
 
-    rcexpression = ResidueClass(4, 0) | ResidueClass(4, 1)
+    sieve = ResidueClass(4, 0) | ResidueClass(4, 1)
     rc = ResidueClass(3, 0)
-    t = rc | rcexpression
+    t = rc | sieve
 
     assert isinstance(t, sievetools.Sieve)
     assert t.logical_operator == 'or'
     assert len(t.residue_classes) == 3
-    assert rcexpression.residue_classes[0] in t.residue_classes
-    assert rcexpression.residue_classes[1] in t.residue_classes
+    assert sieve.residue_classes[0] in t.residue_classes
+    assert sieve.residue_classes[1] in t.residue_classes
     assert rc in t.residue_classes
 
 
@@ -37,15 +37,15 @@ def test_sievetools_ResidueClass_operator_or_03():
     r'''ResidueClass OR or-sieve returns a flat or-sieve.
     '''
 
-    rcexpression = ResidueClass(4, 0) | ResidueClass(4, 1)
+    sieve = ResidueClass(4, 0) | ResidueClass(4, 1)
     rc = ResidueClass(3, 0)
-    t = rcexpression | rc
+    t = sieve | rc
 
     assert isinstance(t, sievetools.Sieve)
     assert t.logical_operator == 'or'
     assert len(t.residue_classes) == 3
-    assert rcexpression.residue_classes[0] in t.residue_classes
-    assert rcexpression.residue_classes[1] in t.residue_classes
+    assert sieve.residue_classes[0] in t.residue_classes
+    assert sieve.residue_classes[1] in t.residue_classes
     assert rc in t.residue_classes
 
 

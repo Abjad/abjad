@@ -4,18 +4,18 @@ from abjad.tools import sievetools
 
 
 def test_sievetools_Sieve__sort_rcs_01():
-    r'''Unsorted RCs are sorted on RC expression initialization.
+    r'''Unsorted RCs are sorted on sieve initialization.
     '''
 
     RC = sievetools.ResidueClass
-    rcexpression = sievetools.Sieve([RC(10, 0), RC(9, 0), RC(8, 0)])
-    assert rcexpression.residue_classes == [RC(8, 0), RC(9, 0), RC(10, 0)]
+    sieve = sievetools.Sieve([RC(10, 0), RC(9, 0), RC(8, 0)])
+    assert sieve.residue_classes == [RC(8, 0), RC(9, 0), RC(10, 0)]
 
 
 def test_sievetools_Sieve__sort_rcs_02():
-    r'''Unsorted RCs are sorted on RC expression initialization.
+    r'''Unsorted RCs are sorted on sieve initialization.
     '''
 
     RC = sievetools.ResidueClass
-    rcexpression = sievetools.Sieve([RC(8, 7), RC(8, 1), RC(8, 2)])
-    assert rcexpression.residue_classes == [RC(8, 1), RC(8, 2), RC(8, 7)]
+    sieve = sievetools.Sieve([RC(8, 7), RC(8, 1), RC(8, 2)])
+    assert sieve.residue_classes == [RC(8, 1), RC(8, 2), RC(8, 7)]
