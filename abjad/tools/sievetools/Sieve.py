@@ -44,6 +44,85 @@ class Sieve(BaseResidueClass):
                 [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
+        ::
+
+            >>> print(format(sieve))
+            sievetools.Sieve(
+                residue_classes=[
+                    sievetools.Sieve(
+                        residue_classes=[
+                            sievetools.Sieve(
+                                residue_classes=[
+                                    sievetools.ResidueClass(period=8, offset=0, ),
+                                    sievetools.ResidueClass(period=8, offset=1, ),
+                                    sievetools.ResidueClass(period=8, offset=7, ),
+                                    ],
+                                logical_operator='or',
+                                ),
+                            sievetools.Sieve(
+                                residue_classes=[
+                                    sievetools.ResidueClass(period=5, offset=1, ),
+                                    sievetools.ResidueClass(period=5, offset=3, ),
+                                    ],
+                                logical_operator='or',
+                                ),
+                            ],
+                        logical_operator='and',
+                        ),
+                    sievetools.Sieve(
+                        residue_classes=[
+                            sievetools.Sieve(
+                                residue_classes=[
+                                    sievetools.ResidueClass(period=8, offset=0, ),
+                                    sievetools.ResidueClass(period=8, offset=1, ),
+                                    sievetools.ResidueClass(period=8, offset=2, ),
+                                    ],
+                                logical_operator='or',
+                                ),
+                            sievetools.ResidueClass(period=5, offset=0, ),
+                            ],
+                        logical_operator='and',
+                        ),
+                    sievetools.ResidueClass(period=8, offset=3, ),
+                    sievetools.ResidueClass(period=8, offset=4, ),
+                    sievetools.Sieve(
+                        residue_classes=[
+                            sievetools.Sieve(
+                                residue_classes=[
+                                    sievetools.ResidueClass(period=8, offset=5, ),
+                                    sievetools.ResidueClass(period=8, offset=6, ),
+                                    ],
+                                logical_operator='or',
+                                ),
+                            sievetools.Sieve(
+                                residue_classes=[
+                                    sievetools.ResidueClass(period=5, offset=2, ),
+                                    sievetools.ResidueClass(period=5, offset=3, ),
+                                    sievetools.ResidueClass(period=5, offset=4, ),
+                                    ],
+                                logical_operator='or',
+                                ),
+                            ],
+                        logical_operator='and',
+                        ),
+                    sievetools.Sieve(
+                        residue_classes=[
+                            sievetools.ResidueClass(period=5, offset=2, ),
+                            sievetools.ResidueClass(period=8, offset=1, ),
+                            ],
+                        logical_operator='and',
+                        ),
+                    sievetools.Sieve(
+                        residue_classes=[
+                            sievetools.ResidueClass(period=5, offset=1, ),
+                            sievetools.ResidueClass(period=8, offset=6, ),
+                            ],
+                        logical_operator='and',
+                        ),
+                    ],
+                logical_operator='or',
+                )
+
     '''
 
     ### CLASS VARIABLES ###
@@ -323,30 +402,12 @@ class Sieve(BaseResidueClass):
                 >>> print(format(sieve))
                 sievetools.Sieve(
                     residue_classes=[
-                        sievetools.ResidueClass(
-                            period=6,
-                            offset=0,
-                            ),
-                        sievetools.ResidueClass(
-                            period=6,
-                            offset=4,
-                            ),
-                        sievetools.ResidueClass(
-                            period=6,
-                            offset=5,
-                            ),
-                        sievetools.ResidueClass(
-                            period=10,
-                            offset=6,
-                            ),
-                        sievetools.ResidueClass(
-                            period=10,
-                            offset=7,
-                            ),
-                        sievetools.ResidueClass(
-                            period=10,
-                            offset=8,
-                            ),
+                        sievetools.ResidueClass(period=6, offset=0, ),
+                        sievetools.ResidueClass(period=6, offset=4, ),
+                        sievetools.ResidueClass(period=6, offset=5, ),
+                        sievetools.ResidueClass(period=10, offset=6, ),
+                        sievetools.ResidueClass(period=10, offset=7, ),
+                        sievetools.ResidueClass(period=10, offset=8, ),
                         ],
                     logical_operator='or',
                     )
