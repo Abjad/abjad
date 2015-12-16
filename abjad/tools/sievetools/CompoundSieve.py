@@ -4,14 +4,12 @@ from abjad.tools import mathtools
 from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 
-class Sieve(BaseResidueClass):
-    r'''Sieve.
-
-    Due to Xenakis.
+class CompoundSieve(BaseResidueClass):
+    r'''CompoundSieve.
 
     ..  container:: example
 
-        **Example 1.** Sieve from the opening of Xenakis's *Psappha* for solo 
+        **Example 1.** CompoundSieve from the opening of Xenakis's *Psappha* for solo 
         percussion:
 
         ::
@@ -47,11 +45,11 @@ class Sieve(BaseResidueClass):
         ::
 
             >>> print(format(sieve))
-            sievetools.Sieve(
+            sievetools.CompoundSieve(
                 residue_classes=[
-                    sievetools.Sieve(
+                    sievetools.CompoundSieve(
                         residue_classes=[
-                            sievetools.Sieve(
+                            sievetools.CompoundSieve(
                                 residue_classes=[
                                     sievetools.ResidueClass(period=8, offset=0, ),
                                     sievetools.ResidueClass(period=8, offset=1, ),
@@ -59,7 +57,7 @@ class Sieve(BaseResidueClass):
                                     ],
                                 logical_operator='or',
                                 ),
-                            sievetools.Sieve(
+                            sievetools.CompoundSieve(
                                 residue_classes=[
                                     sievetools.ResidueClass(period=5, offset=1, ),
                                     sievetools.ResidueClass(period=5, offset=3, ),
@@ -69,9 +67,9 @@ class Sieve(BaseResidueClass):
                             ],
                         logical_operator='and',
                         ),
-                    sievetools.Sieve(
+                    sievetools.CompoundSieve(
                         residue_classes=[
-                            sievetools.Sieve(
+                            sievetools.CompoundSieve(
                                 residue_classes=[
                                     sievetools.ResidueClass(period=8, offset=0, ),
                                     sievetools.ResidueClass(period=8, offset=1, ),
@@ -85,16 +83,16 @@ class Sieve(BaseResidueClass):
                         ),
                     sievetools.ResidueClass(period=8, offset=3, ),
                     sievetools.ResidueClass(period=8, offset=4, ),
-                    sievetools.Sieve(
+                    sievetools.CompoundSieve(
                         residue_classes=[
-                            sievetools.Sieve(
+                            sievetools.CompoundSieve(
                                 residue_classes=[
                                     sievetools.ResidueClass(period=8, offset=5, ),
                                     sievetools.ResidueClass(period=8, offset=6, ),
                                     ],
                                 logical_operator='or',
                                 ),
-                            sievetools.Sieve(
+                            sievetools.CompoundSieve(
                                 residue_classes=[
                                     sievetools.ResidueClass(period=5, offset=2, ),
                                     sievetools.ResidueClass(period=5, offset=3, ),
@@ -105,14 +103,14 @@ class Sieve(BaseResidueClass):
                             ],
                         logical_operator='and',
                         ),
-                    sievetools.Sieve(
+                    sievetools.CompoundSieve(
                         residue_classes=[
                             sievetools.ResidueClass(period=5, offset=2, ),
                             sievetools.ResidueClass(period=8, offset=1, ),
                             ],
                         logical_operator='and',
                         ),
-                    sievetools.Sieve(
+                    sievetools.CompoundSieve(
                         residue_classes=[
                             sievetools.ResidueClass(period=5, offset=1, ),
                             sievetools.ResidueClass(period=8, offset=6, ),
@@ -123,6 +121,7 @@ class Sieve(BaseResidueClass):
                 logical_operator='or',
                 )
 
+    Due to Xenakis.
     '''
 
     ### CLASS VARIABLES ###
@@ -172,8 +171,8 @@ class Sieve(BaseResidueClass):
     @staticmethod
     def _boolean_pattern_to_sieve(boolean_pattern):
         from abjad.tools import sievetools
-        if isinstance(boolean_pattern, Sieve):
-            return Sieve(boolean_pattern)
+        if isinstance(boolean_pattern, CompoundSieve):
+            return CompoundSieve(boolean_pattern)
         period = boolean_pattern.period
         residues = boolean_pattern.indices or []
         offset = 0
@@ -183,7 +182,7 @@ class Sieve(BaseResidueClass):
             residue_class = sievetools.ResidueClass(period, adjusted_residue)
             residue_classes.append(residue_class)
         residue_classes.sort(key=lambda x: x.offset)
-        sieve = Sieve(residue_classes, logical_operator='or')
+        sieve = CompoundSieve(residue_classes, logical_operator='or')
         return sieve
 
     def _get_congruent_bases(self, logical_operator):
@@ -398,9 +397,9 @@ class Sieve(BaseResidueClass):
 
             ::
 
-                >>> sieve = sievetools.Sieve.from_boolean_patterns(patterns)
+                >>> sieve = sievetools.CompoundSieve.from_boolean_patterns(patterns)
                 >>> print(format(sieve))
-                sievetools.Sieve(
+                sievetools.CompoundSieve(
                     residue_classes=[
                         sievetools.ResidueClass(period=6, offset=0, ),
                         sievetools.ResidueClass(period=6, offset=4, ),
@@ -420,12 +419,12 @@ class Sieve(BaseResidueClass):
         '''
         sieves = []
         for boolean_pattern in boolean_patterns:
-            sieve = Sieve._boolean_pattern_to_sieve(boolean_pattern)
+            sieve = CompoundSieve._boolean_pattern_to_sieve(boolean_pattern)
             sieves.append(sieve)
         if sieves:
             current_sieve = sieves[0]
             for sieve in sieves[1:]:
                 current_sieve = current_sieve | sieve
         else:
-            current_sieve = Sieve([])
+            current_sieve = CompoundSieve([])
         return current_sieve

@@ -43,15 +43,15 @@ class BaseResidueClass(AbjadObject):
 
     def _operate(self, arg, operator):
         from abjad.tools import sievetools
-        if (isinstance(self, sievetools.Sieve) and 
+        if (isinstance(self, sievetools.CompoundSieve) and 
             self.logical_operator == operator):
             argument_a = self.residue_classes
         else:
             argument_a = [self]
-        if (isinstance(arg, sievetools.Sieve) and 
+        if (isinstance(arg, sievetools.CompoundSieve) and 
             arg.logical_operator == operator):
             argument_b = arg.residue_classes
         else:
             argument_b = [arg]
-        sieve = sievetools.Sieve(argument_a + argument_b, operator)
+        sieve = sievetools.CompoundSieve(argument_a + argument_b, operator)
         return sieve

@@ -12,7 +12,7 @@ def test_sievetools_ResidueClass_operator_and_01():
     rc2 = sievetools.ResidueClass(4, 1)
     t = rc1 & rc2
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'and'
     assert t.residue_classes == [rc1, rc2]
     assert t.boolean_train == [0, 0, 0, 0]
@@ -27,7 +27,7 @@ def test_sievetools_ResidueClass_operator_and_02():
     rc = sievetools.ResidueClass(3, 0)
     t = rc & sieve
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'and'
     assert len(t.residue_classes) == 3
     assert sieve.residue_classes[0] in t.residue_classes
@@ -43,7 +43,7 @@ def test_sievetools_ResidueClass_operator_and_03():
     rc = sievetools.ResidueClass(3, 0)
     t = sieve & rc
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'and'
     assert len(t.residue_classes) == 3
     assert sieve.residue_classes[0] in t.residue_classes
@@ -63,7 +63,7 @@ def test_sievetools_ResidueClass_operator_and_04():
     rcsB = rc3 & rc4
     t = rcsA & rcsB
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'and'
     assert len(t.residue_classes) == 4
     assert rc1 in t.residue_classes
@@ -78,7 +78,7 @@ def test_sievetools_ResidueClass_operator_and_05():
 
     residueclass = sievetools.ResidueClass(2, 0) & sievetools.ResidueClass(3, 0)
 
-    assert isinstance(residueclass, sievetools.Sieve)
+    assert isinstance(residueclass, sievetools.CompoundSieve)
     assert residueclass.logical_operator == 'and'
     assert residueclass.boolean_train == [1, 0, 0, 0, 0, 0]
     assert residueclass.congruent_bases == [0]

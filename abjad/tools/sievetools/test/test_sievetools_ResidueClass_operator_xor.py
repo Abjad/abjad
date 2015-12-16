@@ -12,7 +12,7 @@ def test_sievetools_ResidueClass_operator_xor_01():
     rc2 = sievetools.ResidueClass(4, 1)
     t = rc1 ^ rc2
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'xor'
     assert t.residue_classes == [rc1, rc2]
 
@@ -25,7 +25,7 @@ def test_sievetools_ResidueClass_operator_xor_02():
     rc = sievetools.ResidueClass(3, 0)
     t = rc ^ sieve
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'xor'
     assert len(t.residue_classes) == 3
     assert sieve.residue_classes[0] in t.residue_classes
@@ -41,7 +41,7 @@ def test_sievetools_ResidueClass_operator_xor_03():
     rc = sievetools.ResidueClass(3, 0)
     t = sieve ^ rc
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'xor'
     assert len(t.residue_classes) == 3
     assert sieve.residue_classes[0] in t.residue_classes
@@ -61,7 +61,7 @@ def test_sievetools_ResidueClass_operator_xor_04():
     rcsB = rc3 ^ rc4
     t = rcsA ^ rcsB
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'xor'
     assert len(t.residue_classes) == 4
     assert rc1 in t.residue_classes
@@ -76,7 +76,7 @@ def test_sievetools_ResidueClass_operator_xor_05():
 
     residueclass = sievetools.ResidueClass(2, 0) ^ sievetools.ResidueClass(3, 0)
 
-    assert isinstance(residueclass, sievetools.Sieve)
+    assert isinstance(residueclass, sievetools.CompoundSieve)
     assert residueclass.logical_operator == 'xor'
     assert residueclass.boolean_train == [0, 0, 1, 1, 1, 0]
     assert residueclass.congruent_bases == [2, 3, 4]

@@ -12,20 +12,20 @@ def test_sievetools_ResidueClass_operator_or_01():
     rc2 = sievetools.ResidueClass(4, 1)
     t = rc1 | rc2
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'or'
     assert t.residue_classes == [rc1, rc2]
 
 
 def test_sievetools_ResidueClass_operator_or_02():
-    r'''or-Sieve OR ResidueClass returns a flat or-sieve.
+    r'''or-CompoundSieve OR ResidueClass returns a flat or-sieve.
     '''
 
     sieve = sievetools.ResidueClass(4, 0) | sievetools.ResidueClass(4, 1)
     rc = sievetools.ResidueClass(3, 0)
     t = rc | sieve
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'or'
     assert len(t.residue_classes) == 3
     assert sieve.residue_classes[0] in t.residue_classes
@@ -41,7 +41,7 @@ def test_sievetools_ResidueClass_operator_or_03():
     rc = sievetools.ResidueClass(3, 0)
     t = sieve | rc
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'or'
     assert len(t.residue_classes) == 3
     assert sieve.residue_classes[0] in t.residue_classes
@@ -50,7 +50,7 @@ def test_sievetools_ResidueClass_operator_or_03():
 
 
 def test_sievetools_ResidueClass_operator_or_04():
-    r'''or-sieve OR or-Sieve returns a flat or-sieve.
+    r'''or-sieve OR or-CompoundSieve returns a flat or-sieve.
     '''
 
     rc1 = sievetools.ResidueClass(4, 0)
@@ -61,7 +61,7 @@ def test_sievetools_ResidueClass_operator_or_04():
     rcsB = rc3 | rc4
     t = rcsA | rcsB
 
-    assert isinstance(t, sievetools.Sieve)
+    assert isinstance(t, sievetools.CompoundSieve)
     assert t.logical_operator == 'or'
     assert len(t.residue_classes) == 4
     assert rc1 in t.residue_classes
@@ -77,7 +77,7 @@ def test_sievetools_ResidueClass_operator_or_05():
     residueclass = sievetools.ResidueClass(2, 0) 
     residueclass = residueclass | sievetools.ResidueClass(3, 0)
 
-    assert isinstance(residueclass, sievetools.Sieve)
+    assert isinstance(residueclass, sievetools.CompoundSieve)
     assert residueclass.logical_operator == 'or'
     assert residueclass.boolean_train == [1, 0, 1, 1, 1, 0]
     assert residueclass.congruent_bases == [0, 2, 3, 4]
