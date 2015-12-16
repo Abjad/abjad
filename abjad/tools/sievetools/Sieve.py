@@ -60,17 +60,10 @@ class Sieve(BaseResidueClass):
 
     def __init__(self, residue_classes=None, logical_operator='or'):
         from abjad.tools import sievetools
-        if isinstance(residue_classes, type(self)):
-            self._residue_classes = residue_classes.residue_classes[:]
-            self._logical_operator = residue_classes.logical_operator
-        elif residue_classes is None:
-            residue_classes = [sievetools.ResidueClass()]
-            self._residue_classes = residue_classes
-            self._logical_operator = logical_operator
-        else:
-            self._residue_classes = residue_classes[:]
-            self._logical_operator = logical_operator
-        self._sort_residue_classes()
+        residue_classes = residue_classes or []
+        self._residue_classes = residue_classes[:]
+        self._logical_operator = logical_operator
+        self._sort_sieves()
         periods = []
         for residue_class in self.residue_classes:
             periods.append(residue_class.period)
@@ -128,7 +121,7 @@ class Sieve(BaseResidueClass):
             logical_operator(result, bases_)
         return sorted(result)
 
-    def _sort_residue_classes(self):
+    def _sort_sieves(self):
         from abjad.tools import sievetools
         if all(
             isinstance(residue_class, sievetools.ResidueClass) 
