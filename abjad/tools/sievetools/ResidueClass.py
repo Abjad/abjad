@@ -15,7 +15,25 @@ class ResidueClass(BaseResidueClass):
 
     ..  container:: example
 
-        **Example 1.** From the opening of Xenakis's *Psappha* for solo 
+        **Example 1.** A residue class:
+
+        ::
+
+            >>> residue_class = sievetools.ResidueClass(2, 0)
+
+        ::
+
+            >>> residue_class
+            ResidueClass(period=2, offset=0)
+
+        ::
+
+            >>> print(format(residue_class))
+            sievetools.ResidueClass(period=2, offset=0, )
+
+    ..  container:: example
+
+        **Example 2.** Sieve from the opening of Xenakis's *Psappha* for solo 
         percussion:
 
         ::
@@ -44,27 +62,10 @@ class ResidueClass(BaseResidueClass):
 
         ::
 
-            >>> sieve.get_boolean_train(stop=40)
+            >>> sieve.get_boolean_train()
                 [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
-    ..  container:: example
-
-        **Example 2.** Simple residue class:
-
-        ::
-
-            >>> residue_class = sievetools.ResidueClass(2, 0)
-
-        ::
-
-            >>> residue_class
-            ResidueClass(period=2, offset=0)
-
-        ::
-
-            >>> print(format(residue_class))
-            sievetools.ResidueClass(period=2, offset=0, )
 
     '''
 
@@ -96,11 +97,11 @@ class ResidueClass(BaseResidueClass):
 
         Returns true or false.
         '''
-        if isinstance(expr, ResidueClass):
-            if self.period == expr.period:
-                if self.offset == expr.offset:
-                    return True
-        return False
+        if not isinstance(expr, type(self)):
+            return False
+        if self.period == expr.period:
+            if self.offset == expr.offset:
+                return True
 
     def __hash__(self):
         r'''Hashes residue class.
@@ -119,10 +120,11 @@ class ResidueClass(BaseResidueClass):
 
         Returns true or false.
         '''
-        if isinstance(expr, ResidueClass):
-            if self.period == expr.period:
-                return self.offset < expr.offset
-            return self.period < expr.period
+        if not isinstance(expr, type(self)):
+            return False
+        if self.period == expr.period:
+            return self.offset < expr.offset
+        return self.period < expr.period
 
     def __ne__(self, expr):
         r'''Is true when `expr` is not equal to this residue class. Otherwise
@@ -162,7 +164,7 @@ class ResidueClass(BaseResidueClass):
 
     ### PUBLIC METHODS ###
 
-    def get_boolean_train(self, start=0, stop=1):
+    def get_boolean_train(self, start=0, stop=None):
         r'''Gets boolean train.
 
         ..  container:: example
@@ -189,8 +191,11 @@ class ResidueClass(BaseResidueClass):
         integers included in the residue class while zeroes map to integers not
         included in the residue class.
 
+        Sets `stop` to period of residue class when `stop` is none.
+
         Returns list.
         '''
+        stop = stop or self.period
         result = []
         for i in range(start, stop):
             if i % self.period == self.offset:

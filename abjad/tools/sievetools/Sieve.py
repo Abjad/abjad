@@ -181,7 +181,7 @@ class Sieve(BaseResidueClass):
             current_sieve = Sieve([])
         return current_sieve
 
-    def get_boolean_train(self, start=0, stop=1):
+    def get_boolean_train(self, start=0, stop=None):
         r'''Gets boolean train.
         
         ..  container::
@@ -196,8 +196,11 @@ class Sieve(BaseResidueClass):
                 >>> sieve.get_boolean_train(stop=6)
                 [1, 0, 1, 1, 1, 0]
 
+        Sets `stop` to period of sieve when `stop` is none.
+
         Returns list.
         '''
+        stop = stop or self.period
         result = []
         congruent_bases = self.get_congruent_bases(start, stop)
         for i in range(start, stop):
