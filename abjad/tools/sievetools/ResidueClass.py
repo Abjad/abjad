@@ -9,33 +9,36 @@ class ResidueClass(BaseResidueClass):
 
     ..  container:: example
 
-        **Example 1.** A residue class:
+        **Example 1.** Residue class without offset:
 
         ::
 
-            >>> residue_class = sievetools.ResidueClass(2, 0)
-
-        ::
-
+            >>> residue_class = sievetools.ResidueClass(3, 0)
             >>> residue_class
-            ResidueClass(period=2, offset=0)
+            ResidueClass(period=3, offset=0)
+
+    ..  container:: example
+
+        **Example 2.** Residue class with offset:
 
         ::
 
-            >>> print(format(residue_class))
-            sievetools.ResidueClass(period=2, offset=0, )
+            >>> residue_class = sievetools.ResidueClass(3, 1)
+            >>> residue_class
+            ResidueClass(period=3, offset=1)
 
     A residue class is a simple periodic sequence.
 
     Residue classes can be combined with logical operators.
 
     Residue classes form the basis of Xenakis sieves.
-
     '''
 
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_boolean_train',
+        '_congruent_bases',
         '_offset',
         '_period',
         )
@@ -52,6 +55,11 @@ class ResidueClass(BaseResidueClass):
             raise ValueError(message)
         self._period = period
         self._offset = offset
+        congruent_bases = []
+        for i in range(0, self.period):
+            if i % self.period == self.offset:
+                congruent_bases.append(i)
+        self._congruent_bases = congruent_bases
 
     ### SPECIAL METHODS ###
 
@@ -97,16 +105,6 @@ class ResidueClass(BaseResidueClass):
         Return boolean.
         '''
         return not self == expr
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -210,8 +208,4 @@ class ResidueClass(BaseResidueClass):
 
         Returns list.
         '''
-        result = []
-        for i in range(0, self.period):
-            if i % self.period == self.offset:
-                result.append(i)
-        return result
+        return self._congruent_bases

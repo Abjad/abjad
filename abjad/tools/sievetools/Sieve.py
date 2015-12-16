@@ -49,7 +49,10 @@ class Sieve(BaseResidueClass):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_boolean_train',
+        '_congruent_bases',
         '_logical_operator',
+        '_period',
         '_residue_classes',
         )
 
@@ -74,6 +77,29 @@ class Sieve(BaseResidueClass):
             self._residue_classes = residue_classes[:]
             self._logical_operator = logical_operator
         self._sort_residue_classes()
+        periods = []
+        for residue_class in self.residue_classes:
+            periods.append(residue_class.period)
+        if periods:
+            period = mathtools.least_common_multiple(*periods)
+        else:
+            period = 1
+        self._period = period
+        if self.logical_operator == 'or':
+            congruent_bases = self._get_congruent_bases(operator.ior)
+        elif self.logical_operator == 'xor':
+            congruent_bases = self._get_congruent_bases(operator.ixor)
+        elif self.logical_operator == 'and':
+            congruent_bases = self._get_congruent_bases(operator.iand)
+        self._congruent_bases = congruent_bases
+        boolean_train = []
+        congruent_bases = self.congruent_bases
+        for i in range(0, self.period):
+            if i % self.period in congruent_bases:
+                boolean_train.append(1)
+            else:
+                boolean_train.append(0)
+        self._boolean_train = boolean_train
 
     ### PRIVATE METHODS ###
 
@@ -139,14 +165,7 @@ class Sieve(BaseResidueClass):
 
         Returns list.
         '''
-        result = []
-        congruent_bases = self.congruent_bases
-        for i in range(0, self.period):
-            if i % self.period in congruent_bases:
-                result.append(1)
-            else:
-                result.append(0)
-        return result
+        return self._boolean_train
 
     @property
     def congruent_bases(self):
@@ -166,12 +185,7 @@ class Sieve(BaseResidueClass):
 
         Returns list.
         '''
-        if self.logical_operator == 'or':
-            return self._get_congruent_bases(operator.ior)
-        elif self.logical_operator == 'xor':
-            return self._get_congruent_bases(operator.ixor)
-        elif self.logical_operator == 'and':
-            return self._get_congruent_bases(operator.iand)
+        return self._congruent_bases
 
     @property
     def logical_operator(self):
@@ -187,14 +201,7 @@ class Sieve(BaseResidueClass):
 
         Returns positive integer.
         '''
-        periods = []
-        for residue_class in self.residue_classes:
-            periods.append(residue_class.period)
-        if periods:
-            period = mathtools.least_common_multiple(*periods)
-        else:
-            period = 1
-        return period
+        return self._period
 
     @property
     def residue_classes(self):
