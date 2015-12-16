@@ -5,7 +5,9 @@ from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 
 class Sieve(BaseResidueClass):
-    r'''A Xenakis sieve.
+    r'''Sieve.
+
+    Due to Xenakis.
     '''
 
     ### CLASS VARIABLES ###
@@ -85,13 +87,17 @@ class Sieve(BaseResidueClass):
 
     @property
     def logical_operator(self):
-        r'''Residue class expression logical operator.
+        r'''Gets logical operator of sieve.
+
+        Returns string.
         '''
         return self._logical_operator
 
     @property
     def period(self):
-        r'''Residue class expression period.
+        r'''Gets period of sieve.
+
+        Returns positive integer.
         '''
         rc_periods = []
         for rc in self.rcs:
@@ -104,19 +110,25 @@ class Sieve(BaseResidueClass):
 
     @property
     def rcs(self):
-        r'''Residue class expression residue classes.
+        r'''Gets residue classes of sieve.
+
+        Returns list.
         '''
         return self._rcs
 
     @property
     def representative_boolean_train(self):
-        r'''Residue class expression representative boolean train.
+        r'''Gets representative boolean train.
+
+        Returns list.
         '''
         return self.get_boolean_train(self.period)
 
     @property
     def representative_congruent_bases(self):
-        r'''Residue class expression representative congruent bases.
+        r'''Gets representative congruent bases.
+
+        Returns list.
         '''
         congruent_bases = self.get_congruent_bases(self.period)
         # remove redundant last element from get_congruent_bases()
@@ -127,29 +139,33 @@ class Sieve(BaseResidueClass):
 
     @staticmethod
     def from_cycle_tokens(*cycle_tokens):
-        '''Makes Xenakis sieve from `cycle_tokens`.
+        '''Initializes sieve from `cycle_tokens`.
 
-        ::
+        ..  container:: example
 
-            >>> cycle_token_1 = (6, [0, 4, 5])
-            >>> cycle_token_2 = (10, [0, 1, 2], 6)
-            >>> cycle_tokens = [cycle_token_1, cycle_token_2]
+            **Example 1.** Initializes sieve from two cycle tokens:
 
-        ::
+            ::
 
-            >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
-            >>> print(format(sieve))
-            sievetools.Sieve(
-                rcs=[
-                    sievetools.ResidueClass(6, 0),
-                    sievetools.ResidueClass(6, 4),
-                    sievetools.ResidueClass(6, 5),
-                    sievetools.ResidueClass(10, 6),
-                    sievetools.ResidueClass(10, 7),
-                    sievetools.ResidueClass(10, 8),
-                    ],
-                logical_operator='or',
-                )
+                >>> cycle_token_1 = (6, [0, 4, 5])
+                >>> cycle_token_2 = (10, [0, 1, 2], 6)
+                >>> cycle_tokens = [cycle_token_1, cycle_token_2]
+
+            ::
+
+                >>> sieve = sievetools.Sieve.from_cycle_tokens(*cycle_tokens)
+                >>> print(format(sieve))
+                sievetools.Sieve(
+                    rcs=[
+                        sievetools.ResidueClass(6, 0),
+                        sievetools.ResidueClass(6, 4),
+                        sievetools.ResidueClass(6, 5),
+                        sievetools.ResidueClass(10, 6),
+                        sievetools.ResidueClass(10, 7),
+                        sievetools.ResidueClass(10, 8),
+                        ],
+                    logical_operator='or',
+                    )
 
         Cycle token comprises `modulo`, `residues` and optional `offset`.
         '''
@@ -166,26 +182,23 @@ class Sieve(BaseResidueClass):
         return current_sieve
 
     def get_boolean_train(self, *min_max):
-        r'''Returns a boolean train with 0s mapped to the integers that are not
+        r'''Gets boolean train.
+        
+        Returns a boolean train with 0s mapped to the integers that are not
         congruent bases of the residue class expression and 1s mapped to those
         that are.
 
-        The method takes one or two integer arguments. If only one is given, it
-        is taken as the max range and min is assumed to be 0.
-
         ..  container::
 
-            ::
-
-                >>> from abjad.tools.sievetools import ResidueClass
+            **Example 1.** Gets first six values of boolean train:
 
             ::
 
-                >>> sieve = ResidueClass(3, 0) | ResidueClass(2, 0)
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
+                >>> sieve = residue_class_1 | residue_class_2
                 >>> sieve.get_boolean_train(6)
                 [1, 0, 1, 1, 1, 0]
-                >>> sieve.get_congruent_bases(-6, 6)
-                [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
         Returns list.
         '''
@@ -200,19 +213,20 @@ class Sieve(BaseResidueClass):
         return result
 
     def get_congruent_bases(self, *min_max):
-        r'''Returns all the congruent bases of this residue class expression
+        r'''Gets congruent bases.
+        
+        Returns all the congruent bases of this residue class expression
         within the given range.
 
-        The method takes one or two integer arguments. If only one it given, it
-        is taken as the max range and min is assumed to be 0.
+        ..  container::
 
-        ..  container:: example
+            **Example 1.** Gets congruent bases from -6 to 6:
 
             ::
 
-                >>> sieve = ResidueClass(3, 0) | ResidueClass(2, 0)
-                >>> sieve.get_congruent_bases(6)
-                [0, 2, 3, 4, 6]
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
+                >>> sieve = residue_class_1 | residue_class_2
                 >>> sieve.get_congruent_bases(-6, 6)
                 [-6, -4, -3, -2, 0, 2, 3, 4, 6]
 
@@ -232,17 +246,20 @@ class Sieve(BaseResidueClass):
     # so we work around this with self.get_congruent_bases(-1, 1) instead.
     def is_congruent_base(self, integer):
         r'''Is true when `integer` is congruent to base in sieve.
-        Otherwise false.
+
+        ..  container:: example
 
             ::
 
-                >>> sieve = ResidueClass(3, 0) | ResidueClass(2, 0)
-                >>> sieve.get_congruent_bases(6)
-                [0, 2, 3, 4, 6]
+                >>> residue_class_1 = sievetools.ResidueClass(2, 0)
+                >>> residue_class_2 = sievetools.ResidueClass(3, 0)
+                >>> sieve = residue_class_1 | residue_class_2
                 >>> sieve.is_congruent_base(12)
                 True
 
         Otherwise false:
+
+        ..  container:: example
 
             ::
 

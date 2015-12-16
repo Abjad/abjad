@@ -5,11 +5,13 @@ from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
 
 @functools.total_ordering
 class ResidueClass(BaseResidueClass):
-    r'''Residue class (or congruence class).
+    r'''Residue class.
 
-    Residue classes form the basis of Xenakis sieves. They can be used to
-    make any complex periodic integer or boolean sequence as a
-    combination of simple periodic sequences.
+    A residue class is a simple periodic sequence.
+
+    Residue classes can be combined with logical operators.
+
+    Residue classes form the basis of Xenakis sieves.
 
     ..  container:: example
 
@@ -21,27 +23,27 @@ class ResidueClass(BaseResidueClass):
 
         ::
 
-            >>> s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
-            >>> s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
-            >>> s3 = RC(8, 3)
-            >>> s4 = RC(8, 4)
-            >>> s5 = (RC(8, 5) | RC(8, 6)) & (RC(5, 2) | RC(5, 3) | RC(5, 4))
-            >>> s6 = (RC(8, 1) & RC(5, 2))
-            >>> s7 = (RC(8, 6) & RC(5, 1))
+            >>> sieve_1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
+            >>> sieve_2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
+            >>> sieve_3 = RC(8, 3)
+            >>> sieve_4 = RC(8, 4)
+            >>> sieve_5 = (RC(8, 5) | RC(8, 6)) & (RC(5, 2) | RC(5, 3) | RC(5, 4))
+            >>> sieve_6 = (RC(8, 1) & RC(5, 2))
+            >>> sieve_7 = (RC(8, 6) & RC(5, 1))
 
         ::
 
-            >>> y = s1 | s2 | s3 | s4 | s5 | s6 | s7
+            >>> sieve = sieve_1 | sieve_2 | sieve_3 | sieve_4 | sieve_5 | sieve_6 | sieve_7
 
         ::
 
-            >>> y.get_congruent_bases(40)
+            >>> sieve.get_congruent_bases(40)
                 [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22,
                 23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38, 40]
 
         ::
 
-            >>> y.get_boolean_train(40)
+            >>> sieve.get_boolean_train(40)
                 [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
                 1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
 
@@ -71,8 +73,8 @@ class ResidueClass(BaseResidueClass):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a residue class with module and residue equal
-        to those of this residue class. Otherwise false.
+        r'''Is true when `expr` is a residue class with module and residue
+        equal to those of this residue class. Otherwise false.
 
         Returns true or false.
         '''
@@ -92,10 +94,10 @@ class ResidueClass(BaseResidueClass):
         return super(ResidueClass, self).__hash__()
 
     def __lt__(self, expr):
-        r'''Is true when `expr` is a residue class with module greater than that
-        of this residue class. Also true when `expr` is a residue class with
-        modulo equal to that of this residue class and with residue greater
-        than that of this residue class. Otherwise false.
+        r'''Is true when `expr` is a residue class with module greater than 
+        that of this residue class. Also true when `expr` is a residue class
+        with modulo equal to that of this residue class and with residue 
+        greater than that of this residue class. Otherwise false.
 
         Returns true or false.
         '''
@@ -149,40 +151,49 @@ class ResidueClass(BaseResidueClass):
 
     ### PUBLIC PROPERTIES ###
 
+    # TODO: change name to 'period'
     @property
     def modulo(self):
-        r'''Period of residue class.
+        r'''Gets modulo of residue class.
+
+        Gets period of residue class.
         '''
         return self._modulo
 
     @property
     def residue(self):
-        r'''Residue of residue class.
+        r'''Gets residue of residue class.
         '''
         return self._residue
 
     ### PUBLIC METHODS ###
 
     def get_boolean_train(self, *min_max):
-        r'''Returns a boolean train with 0s mapped to the integers
-        that are not congruent bases of the residue class and 1s mapped
-        to those that are.
-
-        The method takes one or two integer arguments. If only one is given,
-        it is taken as the max range and the min is assumed to be 0.
+        r'''Gets boolean train.
 
         ..  container:: example
 
-            ::
+            **Example 1.** Gets first eight values of boolean train:
 
-                >>> r = RC(3, 0)
-                >>> r.get_boolean_train(6)
-                [1, 0, 0, 1, 0, 0]
+                ::
 
-            ::
+                    >>> residue_class = RC(2, 0)
+                    >>> residue_class.get_boolean_train(8)
+                    [1, 0, 1, 0, 1, 0, 1, 0]
 
-                >>> r.get_congruent_bases(-6, 6)
-                [-6, -3, 0, 3, 6]
+        ..  container:: example
+
+            **Example 2.** Gets first eight values of boolean train:
+
+                ::
+
+                    >>> residue_class = RC(3, 0)
+                    >>> residue_class.get_boolean_train(8)
+                    [1, 0, 0, 1, 0, 0, 1, 0]
+
+        Boolean train is defined equal to a list of ones and zeros: ones map to
+        integers included in the residue class while zeroes map to integers not
+        included in the residue class.
 
         Returns list.
         '''
@@ -196,24 +207,27 @@ class ResidueClass(BaseResidueClass):
         return result
 
     def get_congruent_bases(self, *min_max):
-        r'''Returns all the congruent bases of this residue class within the
-        given range.
+        r'''Gets congruent bases.
+        
+        ..  container:: example
 
-        The method takes one or two integer arguments. If only one it given, it
-        is taken as the max range and the min is assumed to be 0.
+            **Example 1.** Gets congruent bases:
+
+                ::
+
+                    >>> residue_class = RC(2, 0)
+                    >>> residue_class.get_congruent_bases(8)
+                    [0, 2, 4, 6, 8]
 
         ..  container:: example
 
-            ::
+            **Example 2.** Gets congruent bases:
 
-                >>> r = RC(3, 0)
-                >>> r.get_congruent_bases(6)
-                [0, 3, 6]
+                ::
 
-            ::
-
-                >>> r.get_congruent_bases(-6, 6)
-                [-6, -3, 0, 3, 6]
+                    >>> residue_class = RC(3, 0)
+                    >>> residue_class.get_congruent_bases(8)
+                    [0, 3, 6]
 
         Returns list.
         '''
@@ -223,20 +237,3 @@ class ResidueClass(BaseResidueClass):
             if i % self.modulo == self.residue:
                 result.append(i)
         return result
-
-
-if __name__ == '__main__':
-    print('Psappha B2[0:40]')
-    RC = ResidueClass
-    s1 = (RC(8, 0) | RC(8, 1) | RC(8, 7)) & (RC(5, 1) | RC(5, 3))
-    s2 = (RC(8, 0) | RC(8, 1) | RC(8, 2)) & RC(5, 0)
-    s3 = RC(8, 3) #&  RC(1, 0)
-    s4 = RC(8, 4) #&  RC(1, 0)
-    s5 = (RC(8, 5) | RC(8, 6)) & (RC(5, 2) | RC(5, 3) | RC(5, 4))
-    s6 = (RC(8, 1) & RC(5, 2))
-    s7 = (RC(8, 6) & RC(5, 1))
-
-    y = s1 | s2 | s3 | s4 | s5 | s6 | s7
-    print(y)
-    print('congruent bases:\n', y.get_congruent_bases(40))
-    print('boolen train:\n', y.get_boolean_train(40))

@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
-import abc
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class BaseResidueClass(AbjadObject):
-    r'''Abstract base class for ResidueClass and Sieve.
+    r'''Base residue class.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
@@ -20,7 +20,7 @@ class BaseResidueClass(AbjadObject):
 
         Returns sieve.
         '''
-        assert isinstance(arg, BaseResidueClass)
+        assert isinstance(arg, BaseResidueClass), repr(arg)
         return self._operate(arg, 'and')
 
     def __or__(self, arg):
@@ -28,7 +28,7 @@ class BaseResidueClass(AbjadObject):
 
         Returns sieve.
         '''
-        assert isinstance(arg, BaseResidueClass)
+        assert isinstance(arg, BaseResidueClass), repr(arg)
         return self._operate(arg, 'or')
 
     def __xor__(self, arg):
@@ -36,23 +36,27 @@ class BaseResidueClass(AbjadObject):
 
         Returns sieve.
         '''
-        assert isinstance(arg, BaseResidueClass)
+        assert isinstance(arg, BaseResidueClass), repr(arg)
         return self._operate(arg, 'xor')
 
     ### PRIVATE METHODS ###
 
     def _operate(self, arg, op):
-        from abjad.tools.sievetools.Sieve import Sieve
-        if isinstance(self, Sieve) and self.logical_operator == op:
+        from abjad.tools import sievetools
+        if (isinstance(self, sievetools.Sieve) and 
+            self.logical_operator == op):
             argA = self.rcs
         else:
             argA = [self]
-        if isinstance(arg, Sieve) and arg.logical_operator == op:
+        if (isinstance(arg, sievetools.Sieve) and 
+            arg.logical_operator == op):
             argB = arg.rcs
         else:
             argB = [arg]
-        return Sieve(argA + argB, op)
+        sieve = sievetools.Sieve(argA + argB, op)
+        return sieve
 
+    # TODO: deprecated
     @staticmethod
     def _process_min_max_attribute(*min_max):
         r'''Process minimum and maximum attributes.
