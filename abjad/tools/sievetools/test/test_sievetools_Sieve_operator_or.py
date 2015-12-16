@@ -4,12 +4,12 @@ from abjad import *
 from abjad.tools import sievetools
 
 
-def test_sievetools_ResidueClass_operator_or_01():
-    r'''ResidueClass OR ResidueClass returns a sieve.
+def test_sievetools_Sieve_operator_or_01():
+    r'''Sieve OR Sieve returns a sieve.
     '''
 
-    rc1 = sievetools.ResidueClass(4, 0)
-    rc2 = sievetools.ResidueClass(4, 1)
+    rc1 = sievetools.Sieve(4, 0)
+    rc2 = sievetools.Sieve(4, 1)
     t = rc1 | rc2
 
     assert isinstance(t, sievetools.CompoundSieve)
@@ -17,12 +17,12 @@ def test_sievetools_ResidueClass_operator_or_01():
     assert t.residue_classes == [rc1, rc2]
 
 
-def test_sievetools_ResidueClass_operator_or_02():
-    r'''or-CompoundSieve OR ResidueClass returns a flat or-sieve.
+def test_sievetools_Sieve_operator_or_02():
+    r'''or-CompoundSieve OR Sieve returns a flat or-sieve.
     '''
 
-    sieve = sievetools.ResidueClass(4, 0) | sievetools.ResidueClass(4, 1)
-    rc = sievetools.ResidueClass(3, 0)
+    sieve = sievetools.Sieve(4, 0) | sievetools.Sieve(4, 1)
+    rc = sievetools.Sieve(3, 0)
     t = rc | sieve
 
     assert isinstance(t, sievetools.CompoundSieve)
@@ -33,12 +33,12 @@ def test_sievetools_ResidueClass_operator_or_02():
     assert rc in t.residue_classes
 
 
-def test_sievetools_ResidueClass_operator_or_03():
-    r'''ResidueClass OR or-sieve returns a flat or-sieve.
+def test_sievetools_Sieve_operator_or_03():
+    r'''Sieve OR or-sieve returns a flat or-sieve.
     '''
 
-    sieve = sievetools.ResidueClass(4, 0) | sievetools.ResidueClass(4, 1)
-    rc = sievetools.ResidueClass(3, 0)
+    sieve = sievetools.Sieve(4, 0) | sievetools.Sieve(4, 1)
+    rc = sievetools.Sieve(3, 0)
     t = sieve | rc
 
     assert isinstance(t, sievetools.CompoundSieve)
@@ -49,14 +49,14 @@ def test_sievetools_ResidueClass_operator_or_03():
     assert rc in t.residue_classes
 
 
-def test_sievetools_ResidueClass_operator_or_04():
+def test_sievetools_Sieve_operator_or_04():
     r'''or-sieve OR or-CompoundSieve returns a flat or-sieve.
     '''
 
-    rc1 = sievetools.ResidueClass(4, 0)
-    rc2 = sievetools.ResidueClass(4, 1)
-    rc3 = sievetools.ResidueClass(3, 0)
-    rc4 = sievetools.ResidueClass(3, 1)
+    rc1 = sievetools.Sieve(4, 0)
+    rc2 = sievetools.Sieve(4, 1)
+    rc3 = sievetools.Sieve(3, 0)
+    rc4 = sievetools.Sieve(3, 1)
     rcsA = rc1 | rc2
     rcsB = rc3 | rc4
     t = rcsA | rcsB
@@ -70,12 +70,12 @@ def test_sievetools_ResidueClass_operator_or_04():
     assert rc4 in t.residue_classes
 
 
-def test_sievetools_ResidueClass_operator_or_05():
+def test_sievetools_Sieve_operator_or_05():
     r'''OR.
     '''
 
-    residueclass = sievetools.ResidueClass(2, 0) 
-    residueclass = residueclass | sievetools.ResidueClass(3, 0)
+    residueclass = sievetools.Sieve(2, 0) 
+    residueclass = residueclass | sievetools.Sieve(3, 0)
 
     assert isinstance(residueclass, sievetools.CompoundSieve)
     assert residueclass.logical_operator == 'or'
@@ -83,12 +83,12 @@ def test_sievetools_ResidueClass_operator_or_05():
     assert residueclass.congruent_bases == [0, 2, 3, 4]
 
 
-def test_sievetools_ResidueClass_operator_or_06():
+def test_sievetools_Sieve_operator_or_06():
     r'''OR.
     '''
 
-    residueclass = sievetools.ResidueClass(2, 1) 
-    residueclass = residueclass | sievetools.ResidueClass(3, 0)
+    residueclass = sievetools.Sieve(2, 1) 
+    residueclass = residueclass | sievetools.Sieve(3, 0)
 
     assert residueclass.boolean_train == [1, 1, 0, 1, 0, 1]
     assert residueclass.congruent_bases == [0, 1, 3, 5]

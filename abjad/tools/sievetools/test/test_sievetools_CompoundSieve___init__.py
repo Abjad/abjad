@@ -7,9 +7,9 @@ def test_sievetools_CompoundSieve___init___01():
     '''
 
     residue_classes = []
-    residue_classes.append(sievetools.ResidueClass(6, 0))
-    residue_classes.append(sievetools.ResidueClass(6, 1))
-    residue_classes.append(sievetools.ResidueClass(6, 4))
+    residue_classes.append(sievetools.Sieve(6, 0))
+    residue_classes.append(sievetools.Sieve(6, 1))
+    residue_classes.append(sievetools.Sieve(6, 4))
     sieve = sievetools.CompoundSieve(residue_classes, logical_operator='or')
 
     assert isinstance(sieve, sievetools.CompoundSieve)

@@ -1,13 +1,13 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import sievetools
-from abjad.tools.sievetools.ResidueClass import ResidueClass
+from abjad.tools.sievetools.Sieve import Sieve
 from abjad.tools.sievetools.CompoundSieve import CompoundSieve
 import pytest
 
 
-RC = ResidueClass
+RC = Sieve
 
-def test_sievetools_ResidueClass_equality_01():
+def test_sievetools_Sieve_equality_01():
     r'''non-equal residue classes
     '''
 
@@ -17,7 +17,7 @@ def test_sievetools_ResidueClass_equality_01():
     assert t1 != t2
 
 
-def test_sievetools_ResidueClass_equality_02():
+def test_sievetools_Sieve_equality_02():
     r'''non-equal objects
     '''
 
@@ -27,7 +27,7 @@ def test_sievetools_ResidueClass_equality_02():
     assert 2 != rc
 
 
-def test_sievetools_ResidueClass_equality_03():
+def test_sievetools_Sieve_equality_03():
     r'''equal
     '''
 
