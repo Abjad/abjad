@@ -126,10 +126,7 @@ class Sieve(BaseResidueClass):
 
         Returns list.
         '''
-        congruent_bases = self.get_congruent_bases()
-        # remove redundant last element from get_congruent_bases()
-        congruent_bases = congruent_bases[:-1]
-        return congruent_bases
+        return self.get_congruent_bases()
 
     ### PUBLIC METHODS ###
 
