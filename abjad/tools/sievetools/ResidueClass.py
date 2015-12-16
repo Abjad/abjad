@@ -128,76 +128,72 @@ class ResidueClass(BaseResidueClass):
 
     ### PUBLIC METHODS ###
 
-    def get_boolean_train(self, start=0, stop=None):
+    def get_boolean_train(self):
         r'''Gets boolean train.
 
         ..  container:: example
 
-            **Example 1.** Gets first eight values of boolean train:
+            **Example 1.** Gets boolean train:
 
                 ::
 
                     >>> residue_class = sievetools.ResidueClass(2, 0)
-                    >>> residue_class.get_boolean_train(stop=8)
-                    [1, 0, 1, 0, 1, 0, 1, 0]
+                    >>> residue_class.get_boolean_train()
+                    [1, 0]
 
         ..  container:: example
 
-            **Example 2.** Gets first eight values of boolean train:
+            **Example 2.** Gets boolean train:
 
                 ::
 
                     >>> residue_class = sievetools.ResidueClass(3, 0)
-                    >>> residue_class.get_boolean_train(stop=8)
-                    [1, 0, 0, 1, 0, 0, 1, 0]
+                    >>> residue_class.get_boolean_train()
+                    [1, 0, 0]
 
         Boolean train is defined equal to a list of ones and zeros: ones map to
         integers included in the residue class while zeroes map to integers not
         included in the residue class.
 
-        Sets `stop` to period of residue class when `stop` is none.
-
         Returns list.
         '''
-        stop = stop or self.period
         result = []
-        for i in range(start, stop):
+        for i in range(0, self.period):
             if i % self.period == self.offset:
                 result.append(1)
             else:
                 result.append(0)
         return result
 
-    def get_congruent_bases(self, start=0, stop=None):
+    def get_congruent_bases(self):
         r'''Gets congruent bases.
         
         ..  container:: example
 
-            **Example 1.** Gets congruent bases:
+            **Example 1.** Gets congruent bases of pattern with period 2:
 
                 ::
 
                     >>> residue_class = sievetools.ResidueClass(2, 0)
-                    >>> residue_class.get_congruent_bases(stop=8)
-                    [0, 2, 4, 6]
+                    >>> residue_class.get_congruent_bases()
+                    [0]
 
         ..  container:: example
 
-            **Example 2.** Gets congruent bases:
+            **Example 2.** Gets congruent bases of pattern with period 3:
 
                 ::
 
                     >>> residue_class = sievetools.ResidueClass(3, 0)
-                    >>> residue_class.get_congruent_bases(stop=8)
-                    [0, 3, 6]
+                    >>> residue_class.get_congruent_bases()
+                    [0]
 
         Sets `stop` to period of residue class when `stop` is none.
 
         Returns list.
         '''
-        stop = stop or self.period
         result = []
-        for i in range(start, stop):
+        for i in range(0, self.period):
             if i % self.period == self.offset:
                 result.append(i)
         return result

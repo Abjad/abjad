@@ -97,13 +97,17 @@ class Sieve(BaseResidueClass):
         sieve = Sieve(residue_classes, logical_operator='or')
         return sieve
 
-    def _get_congruent_bases(self, minimum, maximum, logical_operator):
+    def _get_congruent_bases(self, logical_operator):
         if logical_operator is operator.iand:
-            result = set(range(minimum, maximum + 1))
+            result = set(range(0, self.period))
         else:
-            result = set([])
+            result = set()
         for residue_class in self.residue_classes:
-            bases_ = set(residue_class.get_congruent_bases(minimum, maximum))
+            bases_ = set()
+            for i in range(0, self.period):
+                congruent_bases = residue_class.get_congruent_bases()
+                if i % residue_class.period in congruent_bases:
+                    bases_.add(i)
             logical_operator(result, bases_)
         return sorted(result)
 
@@ -194,61 +198,55 @@ class Sieve(BaseResidueClass):
             current_sieve = Sieve([])
         return current_sieve
 
-    def get_boolean_train(self, start=0, stop=None):
+    def get_boolean_train(self):
         r'''Gets boolean train.
         
         ..  container::
 
-            **Example 1.** Gets first six values of boolean train:
+            **Example 1.** Gets boolean train:
 
             ::
 
                 >>> residue_class_1 = sievetools.ResidueClass(2, 0)
                 >>> residue_class_2 = sievetools.ResidueClass(3, 0)
                 >>> sieve = residue_class_1 | residue_class_2
-                >>> sieve.get_boolean_train(stop=6)
+                >>> sieve.get_boolean_train()
                 [1, 0, 1, 1, 1, 0]
-
-        Sets `stop` to period of sieve when `stop` is none.
 
         Returns list.
         '''
-        stop = stop or self.period
         result = []
-        congruent_bases = self.get_congruent_bases(start, stop)
-        for i in range(start, stop):
-            if i in congruent_bases:
+        congruent_bases = self.get_congruent_bases()
+        for i in range(0, self.period):
+            if i % self.period in congruent_bases:
                 result.append(1)
             else:
                 result.append(0)
         return result
 
-    def get_congruent_bases(self, start=0, stop=None):
+    def get_congruent_bases(self):
         r'''Gets congruent bases.
         
         ..  container::
 
-            **Example 1.** Gets congruent bases from -6 to 6:
+            **Example 1.** Gets congruent bases of sieve with period 6:
 
             ::
 
                 >>> residue_class_1 = sievetools.ResidueClass(2, 0)
                 >>> residue_class_2 = sievetools.ResidueClass(3, 0)
                 >>> sieve = residue_class_1 | residue_class_2
-                >>> sieve.get_congruent_bases(-6, 6)
-                [-6, -4, -3, -2, 0, 2, 3, 4]
-
-        Set `stop` to period of sieve when `stop` is none.
+                >>> sieve.get_congruent_bases()
+                [0, 2, 3, 4]
 
         Returns list.
         '''
-        stop = stop or self.period
         if self.logical_operator == 'or':
-            return self._get_congruent_bases(start, stop, operator.ior)
+            return self._get_congruent_bases(operator.ior)
         elif self.logical_operator == 'xor':
-            return self._get_congruent_bases(start, stop, operator.ixor)
+            return self._get_congruent_bases(operator.ixor)
         elif self.logical_operator == 'and':
-            return self._get_congruent_bases(start, stop, operator.iand)
+            return self._get_congruent_bases(operator.iand)
 
     def is_congruent_base(self, expr):
         r'''Is true when `expr` is congruent to base in sieve.

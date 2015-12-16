@@ -74,19 +74,21 @@ def test_sievetools_ResidueClass_operator_or_05():
     r'''OR.
     '''
 
-    residueclass = sievetools.ResidueClass(2, 0) | sievetools.ResidueClass(3, 0)
+    residueclass = sievetools.ResidueClass(2, 0) 
+    residueclass = residueclass | sievetools.ResidueClass(3, 0)
 
     assert isinstance(residueclass, sievetools.Sieve)
     assert residueclass.logical_operator == 'or'
-    assert residueclass.get_boolean_train(stop=6) == [1, 0, 1, 1, 1, 0]
-    assert residueclass.get_congruent_bases(stop=6) == [0, 2, 3, 4]
+    assert residueclass.get_boolean_train() == [1, 0, 1, 1, 1, 0]
+    assert residueclass.get_congruent_bases() == [0, 2, 3, 4]
 
 
 def test_sievetools_ResidueClass_operator_or_06():
     r'''OR.
     '''
 
-    residueclass = sievetools.ResidueClass(2, 1) | sievetools.ResidueClass(3, 0)
+    residueclass = sievetools.ResidueClass(2, 1) 
+    residueclass = residueclass | sievetools.ResidueClass(3, 0)
 
-    assert residueclass.get_boolean_train(stop=6) == [1, 1, 0, 1, 0, 1]
-    assert residueclass.get_congruent_bases(stop=6) == [0, 1, 3, 5]
+    assert residueclass.get_boolean_train() == [1, 1, 0, 1, 0, 1]
+    assert residueclass.get_congruent_bases() == [0, 1, 3, 5]
