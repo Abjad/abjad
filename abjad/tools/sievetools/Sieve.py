@@ -120,14 +120,6 @@ class Sieve(BaseResidueClass):
         '''
         return self.get_boolean_train(stop=self.period)
 
-    @property
-    def representative_congruent_bases(self):
-        r'''Gets representative congruent bases.
-
-        Returns list.
-        '''
-        return self.get_congruent_bases()
-
     ### PUBLIC METHODS ###
 
     @staticmethod
