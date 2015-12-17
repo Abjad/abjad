@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import operator
 from abjad.tools import mathtools
-from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
-class CompoundSieve(BaseResidueClass):
+class CompoundSieve(AbjadObject):
     r'''Compound sieve.
 
     ..  container:: example
@@ -172,6 +172,29 @@ class CompoundSieve(BaseResidueClass):
                 boolean_train.append(0)
         self._boolean_train = boolean_train
 
+    ### SPECIAL METHODS ###
+
+    def __and__(self, arg):
+        r'''Logical AND of compound sieve and `arg`.
+
+        Returns new compound sieve.
+        '''
+        return self._operate(arg, 'and')
+
+    def __or__(self, arg):
+        r'''Logical OR of compound sieve and `arg`.
+
+        Returns new compound sieve.
+        '''
+        return self._operate(arg, 'or')
+
+    def __xor__(self, arg):
+        r'''Logical XOR of compound sieve and `arg`.
+
+        Returns new compound sieve.
+        '''
+        return self._operate(arg, 'xor')
+
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -204,6 +227,21 @@ class CompoundSieve(BaseResidueClass):
                     bases_.add(i)
             logical_operator(result, bases_)
         return sorted(result)
+
+    def _operate(self, arg, operator):
+        from abjad.tools import sievetools
+        if (isinstance(self, sievetools.CompoundSieve) and 
+            self.logical_operator == operator):
+            argument_a = self.sieves
+        else:
+            argument_a = [self]
+        if (isinstance(arg, sievetools.CompoundSieve) and 
+            arg.logical_operator == operator):
+            argument_b = arg.sieves
+        else:
+            argument_b = [arg]
+        sieve = sievetools.CompoundSieve(argument_a + argument_b, operator)
+        return sieve
 
     def _sort_sieves(self):
         from abjad.tools import sievetools

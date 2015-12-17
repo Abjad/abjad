@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import functools
-from abjad.tools.sievetools.BaseResidueClass import BaseResidueClass
+from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 @functools.total_ordering
-class Sieve(BaseResidueClass):
+class Sieve(AbjadObject):
     r'''Sieve.
 
     ..  container:: example
@@ -62,6 +62,13 @@ class Sieve(BaseResidueClass):
         self._congruent_bases = congruent_bases
 
     ### SPECIAL METHODS ###
+
+    def __and__(self, arg):
+        r'''Logical AND of sieve and `arg`.
+
+        Returns compound sieve.
+        '''
+        return self._operate(arg, 'and')
 
     def __eq__(self, expr):
         r'''Is true when `expr` is a sieve with period and offset
@@ -240,6 +247,20 @@ class Sieve(BaseResidueClass):
         '''
         return not self == expr
 
+    def __or__(self, arg):
+        r'''Logical OR of sieve and `arg`.
+
+        Returns compound sieve.
+        '''
+        return self._operate(arg, 'or')
+
+    def __xor__(self, arg):
+        r'''Logical XOR of sieve and `arg`.
+
+        Returns compound sieve.
+        '''
+        return self._operate(arg, 'xor')
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -249,6 +270,23 @@ class Sieve(BaseResidueClass):
             self,
             is_indented=False,
             )
+    
+    ### PRIVATE METHODS ###
+
+    def _operate(self, arg, operator):
+        from abjad.tools import sievetools
+        if (isinstance(self, sievetools.CompoundSieve) and 
+            self.logical_operator == operator):
+            argument_a = self.sieves
+        else:
+            argument_a = [self]
+        if (isinstance(arg, sievetools.CompoundSieve) and 
+            arg.logical_operator == operator):
+            argument_b = arg.sieves
+        else:
+            argument_b = [arg]
+        sieve = sievetools.CompoundSieve(argument_a + argument_b, operator)
+        return sieve
 
     ### PUBLIC PROPERTIES ###
 
