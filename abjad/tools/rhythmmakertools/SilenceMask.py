@@ -3,7 +3,7 @@ from abjad.tools.rhythmmakertools.BooleanPattern import BooleanPattern
 
 
 class SilenceMask(BooleanPattern):
-    r'''A silence mask.
+    r'''Silence mask.
 
     ..  container:: example
 

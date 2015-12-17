@@ -3,7 +3,7 @@ from abjad.tools.rhythmmakertools.BooleanPattern import BooleanPattern
 
 
 class NullMask(BooleanPattern):
-    r'''A sustain mask.
+    r'''Null mask.
 
     ..  container:: example
 
@@ -28,4 +28,5 @@ class NullMask(BooleanPattern):
 
     __documentation_section__ = 'Masks'
 
-    __slots__ = ()
+    __slots__ = (
+        )

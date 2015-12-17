@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
 class BooleanPatternInventory(TypedTuple):
-    r'''Ordered list of boolean patterns.
+    r'''Boolean pattern inventory.
 
     ..  container:: example
 
@@ -81,7 +81,8 @@ class BooleanPatternInventory(TypedTuple):
 
     __documentation_section__ = 'Masks'
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### PUBLIC METHODS ###
 
@@ -170,8 +171,8 @@ class BooleanPatternInventory(TypedTuple):
 
             Matching indices of first pattern offset by ``1``.
 
-            **Example 1b.** Gets patterns that match next ten indices with rotation
-            set to ``1``:
+            **Example 2b.** Gets patterns that match next ten indices with
+            rotation set to ``1``:
 
             ::
 
@@ -191,6 +192,36 @@ class BooleanPatternInventory(TypedTuple):
                 19 None
 
             Matching indices of first pattern offset by ``1``.
+
+        ..  container:: example
+
+            **Example 3.** With inverted patterns:
+
+            ::
+
+                >>> inventory = rhythmmakertools.BooleanPatternInventory([
+                ...     rhythmmakertools.BooleanPattern(
+                ...         indices=[-3],
+                ...         invert=True,
+                ...         ),
+                ...     ])
+
+            ::
+
+                >>> for i in range(10):
+                ...     match = inventory.get_matching_pattern(i, 10)
+                ...     print(i, match)
+                ...
+                0 BooleanPattern(indices=(-3,), invert=True)
+                1 BooleanPattern(indices=(-3,), invert=True)
+                2 BooleanPattern(indices=(-3,), invert=True)
+                3 BooleanPattern(indices=(-3,), invert=True)
+                4 BooleanPattern(indices=(-3,), invert=True)
+                5 BooleanPattern(indices=(-3,), invert=True)
+                6 BooleanPattern(indices=(-3,), invert=True)
+                7 None
+                8 BooleanPattern(indices=(-3,), invert=True)
+                9 BooleanPattern(indices=(-3,), invert=True)
 
         Returns pattern or none.
         '''
