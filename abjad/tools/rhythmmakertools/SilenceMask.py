@@ -45,7 +45,7 @@ class SilenceMask(BooleanPattern):
         superclass.__init__(
             indices=indices,
             period=period,
-            invert=None,
+            invert=invert,
             )
         if use_multimeasure_rests is not None:
             assert isinstance(use_multimeasure_rests, type(True))

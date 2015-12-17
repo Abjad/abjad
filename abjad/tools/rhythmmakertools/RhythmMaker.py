@@ -177,7 +177,10 @@ class RhythmMaker(AbjadValueObject):
                 new_selections.append(selection)
                 continue
             duration = selection.get_duration()
-            if isinstance(matching_division_mask, rhythmmakertools.SustainMask):
+            if isinstance(
+                matching_division_mask,
+                rhythmmakertools.SustainMask,
+                ):
                 new_selection = scoretools.make_leaves(
                     [0],
                     [duration],
