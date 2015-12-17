@@ -5,8 +5,6 @@ from abjad.tools import sievetools
 
 
 def test_sievetools_Sieve___and___01():
-    r'''Residue class AND residue class returns a sieve.
-    '''
 
     sieve_1 = sievetools.Sieve(4, 0)
     sieve_2 = sievetools.Sieve(4, 1)
@@ -20,76 +18,62 @@ def test_sievetools_Sieve___and___01():
 
 
 def test_sievetools_Sieve___and___02():
-    r'''and-sieve AND residue class returns a flat and-sieve.
-    '''
 
-    sieve = sievetools.Sieve(4, 0) & sievetools.Sieve(4, 1)
-    rc = sievetools.Sieve(3, 0)
-    compound_sieve = rc & sieve
+    compound_sieve_1 = sievetools.Sieve(4, 0) & sievetools.Sieve(4, 1)
+    sieve = sievetools.Sieve(3, 0)
+    compound_sieve_2 = compound_sieve_1 & sieve
 
-    assert isinstance(compound_sieve, sievetools.CompoundSieve)
-    assert compound_sieve.logical_operator == 'and'
-    assert len(compound_sieve.sieves) == 3
-    assert sieve.sieves[0] in compound_sieve.sieves
-    assert sieve.sieves[1] in compound_sieve.sieves
-    assert rc in compound_sieve.sieves
+    assert compound_sieve_2.logical_operator == 'and'
+    assert len(compound_sieve_2.sieves) == 3
+    assert compound_sieve_1.sieves[0] in compound_sieve_2.sieves
+    assert compound_sieve_1.sieves[1] in compound_sieve_2.sieves
+    assert sieve in compound_sieve_2.sieves
 
 
 def test_sievetools_Sieve___and___03():
-    r'''residue class AND and-sieve returns a flat and-sieve.
-    '''
 
-    sieve = sievetools.Sieve(4, 0) & sievetools.Sieve(4, 1)
-    rc = sievetools.Sieve(3, 0)
-    compound_sieve = sieve & rc
+    compound_sieve_1 = sievetools.Sieve(4, 0) & sievetools.Sieve(4, 1)
+    sieve = sievetools.Sieve(3, 0)
+    compound_sieve_2 = compound_sieve_1 & sieve
 
-    assert isinstance(compound_sieve, sievetools.CompoundSieve)
-    assert compound_sieve.logical_operator == 'and'
-    assert len(compound_sieve.sieves) == 3
-    assert sieve.sieves[0] in compound_sieve.sieves
-    assert sieve.sieves[1] in compound_sieve.sieves
-    assert rc in compound_sieve.sieves
+    assert compound_sieve_2.logical_operator == 'and'
+    assert len(compound_sieve_2.sieves) == 3
+    assert compound_sieve_1.sieves[0] in compound_sieve_2.sieves
+    assert compound_sieve_1.sieves[1] in compound_sieve_2.sieves
+    assert sieve in compound_sieve_2.sieves
 
 
 def test_sievetools_Sieve___and___04():
-    r'''and-sieve AND and-sieve returns a flat and-sieve.
-    '''
 
     sieve_1 = sievetools.Sieve(4, 0)
     sieve_2 = sievetools.Sieve(4, 1)
     sieve_3 = sievetools.Sieve(3, 0)
     sieve_4 = sievetools.Sieve(3, 1)
-    rcsA = sieve_1 & sieve_2
-    rcsB = sieve_3 & sieve_4
-    compound_sieve = rcsA & rcsB
+    compound_sieve_1 = sieve_1 & sieve_2
+    compound_sieve_2 = sieve_3 & sieve_4
+    compound_sieve_3 = compound_sieve_1 & compound_sieve_2
 
-    assert isinstance(compound_sieve, sievetools.CompoundSieve)
-    assert compound_sieve.logical_operator == 'and'
-    assert len(compound_sieve.sieves) == 4
-    assert sieve_1 in compound_sieve.sieves
-    assert sieve_2 in compound_sieve.sieves
-    assert sieve_3 in compound_sieve.sieves
-    assert sieve_4 in compound_sieve.sieves
+    assert compound_sieve_3.logical_operator == 'and'
+    assert len(compound_sieve_3.sieves) == 4
+    assert sieve_1 in compound_sieve_3.sieves
+    assert sieve_2 in compound_sieve_3.sieves
+    assert sieve_3 in compound_sieve_3.sieves
+    assert sieve_4 in compound_sieve_3.sieves
 
 
 def test_sievetools_Sieve___and___05():
-    r'''AND.
-    '''
 
-    residueclass = sievetools.Sieve(2, 0) & sievetools.Sieve(3, 0)
+    compound_sieve = sievetools.Sieve(2, 0) & sievetools.Sieve(3, 0)
 
-    assert isinstance(residueclass, sievetools.CompoundSieve)
-    assert residueclass.logical_operator == 'and'
-    assert residueclass.boolean_train == [1, 0, 0, 0, 0, 0]
-    assert residueclass.congruent_bases == [0]
+    assert compound_sieve.logical_operator == 'and'
+    assert compound_sieve.boolean_train == [1, 0, 0, 0, 0, 0]
+    assert compound_sieve.congruent_bases == [0]
 
 
 def test_sievetools_Sieve___and___06():
-    r'''AND.
-    '''
 
-    residueclass = sievetools.Sieve(2, 1) 
-    residueclass = residueclass & sievetools.Sieve(3, 0)
+    compound_sieve = sievetools.Sieve(2, 1) & sievetools.Sieve(3, 0)
 
-    assert residueclass.boolean_train == [0, 0, 0, 1, 0, 0]
-    assert residueclass.congruent_bases == [3]
+    assert compound_sieve.logical_operator == 'and'
+    assert compound_sieve.boolean_train == [0, 0, 0, 1, 0, 0]
+    assert compound_sieve.congruent_bases == [3]

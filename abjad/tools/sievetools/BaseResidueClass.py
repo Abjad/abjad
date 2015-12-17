@@ -16,7 +16,7 @@ class BaseResidueClass(AbjadObject):
     # TODO: implement __neg__() #
 
     def __and__(self, arg):
-        r'''Logical AND of residue class and `arg`.
+        r'''Logical AND of sieve and `arg`.
 
         Returns sieve.
         '''
@@ -24,7 +24,7 @@ class BaseResidueClass(AbjadObject):
         return self._operate(arg, 'and')
 
     def __or__(self, arg):
-        r'''Logical OR of residue class and `arg`.
+        r'''Logical OR of sieve and `arg`.
 
         Returns sieve.
         '''
@@ -32,7 +32,7 @@ class BaseResidueClass(AbjadObject):
         return self._operate(arg, 'or')
 
     def __xor__(self, arg):
-        r'''Logical XOR of residue class and `arg`.
+        r'''Logical XOR of sieve and `arg`.
 
         Returns sieve.
         '''

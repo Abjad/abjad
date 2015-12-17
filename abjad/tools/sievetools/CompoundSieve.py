@@ -149,8 +149,8 @@ class CompoundSieve(BaseResidueClass):
         self._logical_operator = logical_operator
         self._sort_sieves()
         periods = []
-        for residue_class in self.sieves:
-            periods.append(residue_class.period)
+        for sieve in self.sieves:
+            periods.append(sieve.period)
         if periods:
             period = mathtools.least_common_multiple(*periods)
         else:
@@ -175,18 +175,18 @@ class CompoundSieve(BaseResidueClass):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _boolean_pattern_to_sieve(boolean_pattern):
+    def _boolean_pattern_to_compound_sieve(boolean_pattern):
         from abjad.tools import sievetools
         if isinstance(boolean_pattern, CompoundSieve):
             return CompoundSieve(boolean_pattern)
         period = boolean_pattern.period
-        residues = boolean_pattern.indices or []
+        indices = boolean_pattern.indices or []
         offset = 0
         sieves = []
-        for residue in residues:
-            adjusted_residue = (residue + offset) % period
-            residue_class = sievetools.Sieve(period, adjusted_residue)
-            sieves.append(residue_class)
+        for index in indices:
+            adjusted_index = (index + offset) % period
+            sieve = sievetools.Sieve(period, adjusted_index)
+            sieves.append(sieve)
         sieves.sort(key=lambda x: x.offset)
         sieve = CompoundSieve(sieves, logical_operator='or')
         return sieve
@@ -196,11 +196,11 @@ class CompoundSieve(BaseResidueClass):
             result = set(range(0, self.period))
         else:
             result = set()
-        for residue_class in self.sieves:
+        for sieve in self.sieves:
             bases_ = set()
             for i in range(0, self.period):
-                congruent_bases = residue_class.congruent_bases
-                if i % residue_class.period in congruent_bases:
+                congruent_bases = sieve.congruent_bases
+                if i % sieve.period in congruent_bases:
                     bases_.add(i)
             logical_operator(result, bases_)
         return sorted(result)
@@ -208,8 +208,8 @@ class CompoundSieve(BaseResidueClass):
     def _sort_sieves(self):
         from abjad.tools import sievetools
         if all(
-            isinstance(residue_class, sievetools.Sieve) 
-            for residue_class in self.sieves
+            isinstance(sieve, sievetools.Sieve) 
+            for sieve in self.sieves
             ):
             self.sieves.sort()
 
@@ -225,9 +225,9 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(3, 0)
-                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve = sieve_1 | sieve_2
                 >>> sieve.boolean_train
                 [1, 0, 1, 1, 1, 0]
 
@@ -237,9 +237,9 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(5, 0)
-                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve = sieve_1 | sieve_2
                 >>> sieve.boolean_train
                 [1, 0, 1, 0, 1, 1, 1, 0, 1, 0]
 
@@ -257,9 +257,9 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(3, 0)
-                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve = sieve_1 | sieve_2
                 >>> sieve.congruent_bases
                 [0, 2, 3, 4]
                 
@@ -269,9 +269,9 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(5, 0)
-                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve = sieve_1 | sieve_2
                 >>> sieve.congruent_bases
                 [0, 2, 4, 5, 6, 8]
 
@@ -289,9 +289,9 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(3, 0)
-                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve = sieve_1 | sieve_2
                 >>> sieve.logical_operator
                 'or'
 
@@ -301,9 +301,9 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(5, 0)
-                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve = sieve_1 | sieve_2
                 >>> sieve.logical_operator
                 'or'
 
@@ -321,9 +321,9 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(3, 0)
-                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve = sieve_1 | sieve_2
                 >>> sieve.period
                 6
                 
@@ -333,9 +333,9 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(5, 0)
-                >>> sieve = residue_class_1 | residue_class_2
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve = sieve_1 | sieve_2
                 >>> sieve.period
                 10
 
@@ -345,7 +345,7 @@ class CompoundSieve(BaseResidueClass):
 
     @property
     def sieves(self):
-        r'''Gets residue classes of sieve.
+        r'''Gets sieves of compound sieve.
 
         ..  container::
 
@@ -353,11 +353,11 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(3, 0)
-                >>> sieve = residue_class_1 | residue_class_2
-                >>> for residue_class in sieve.sieves:
-                ...     residue_class
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve = sieve_1 | sieve_2
+                >>> for sieve in sieve.sieves:
+                ...     sieve
                 Sieve(period=2, offset=0)
                 Sieve(period=3, offset=0)
 
@@ -367,11 +367,11 @@ class CompoundSieve(BaseResidueClass):
 
             ::
 
-                >>> residue_class_1 = sievetools.Sieve(2, 0)
-                >>> residue_class_2 = sievetools.Sieve(5, 0)
-                >>> sieve = residue_class_1 | residue_class_2
-                >>> for residue_class in sieve.sieves:
-                ...     residue_class
+                >>> sieve_1 = sievetools.Sieve(2, 0)
+                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve = sieve_1 | sieve_2
+                >>> for sieve in sieve.sieves:
+                ...     sieve
                 Sieve(period=2, offset=0)
                 Sieve(period=5, offset=0)
 
@@ -425,8 +425,9 @@ class CompoundSieve(BaseResidueClass):
         '''
         sieves = []
         for boolean_pattern in boolean_patterns:
-            sieve = CompoundSieve._boolean_pattern_to_sieve(boolean_pattern)
-            sieves.append(sieve)
+            compound_sieve = CompoundSieve._boolean_pattern_to_compound_sieve(
+                boolean_pattern)
+            sieves.append(compound_sieve)
         if sieves:
             current_sieve = sieves[0]
             for sieve in sieves[1:]:

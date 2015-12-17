@@ -64,7 +64,7 @@ class Sieve(BaseResidueClass):
     ### SPECIAL METHODS ###
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a sieve with period and residue
+        r'''Is true when `expr` is a sieve with period and offset
         equal to those of this sieve. Otherwise false.
 
         ..  container:: example
@@ -124,7 +124,7 @@ class Sieve(BaseResidueClass):
         that of this sieve.
         
         Is true when `expr` is a sieve with period equal to that of
-        this sieve and with residue greater than that of this residue
+        this sieve and with offset greater than that of this offset
         class.
         
         Otherwise false.

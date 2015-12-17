@@ -3,13 +3,13 @@ from abjad import *
 
 
 def test_sievetools_CompoundSieve_from_boolean_patterns_01():
-    r'''Single length-2 boolean pattern with period and residue list.
+    r'''From one boolean pattern.
     '''
 
     pattern = rhythmmakertools.BooleanPattern(indices=[0, 4, 5], period=6)
-    sieve = sievetools.CompoundSieve.from_boolean_patterns([pattern])
+    compound_sieve = sievetools.CompoundSieve.from_boolean_patterns([pattern])
 
-    assert sieve.sieves == [
+    assert compound_sieve.sieves == [
         sievetools.Sieve(6, 0),
         sievetools.Sieve(6, 4),
         sievetools.Sieve(6, 5),
@@ -17,15 +17,15 @@ def test_sievetools_CompoundSieve_from_boolean_patterns_01():
 
 
 def test_sievetools_CompoundSieve_from_boolean_patterns_02():
-    r'''Arbitrarily many boolean patterns.
+    r'''From multiple boolean patterns.
     '''
 
     pattern_1 = rhythmmakertools.BooleanPattern(indices=[0, 4, 5], period=6)
     pattern_2 = rhythmmakertools.BooleanPattern(indices=[0, 1, 2], period=10)
     patterns = [pattern_1, pattern_2]
-    sieve = sievetools.CompoundSieve.from_boolean_patterns(patterns)
+    compound_sieve = sievetools.CompoundSieve.from_boolean_patterns(patterns)
 
-    assert sieve.sieves == [
+    assert compound_sieve.sieves == [
         sievetools.Sieve(6, 0),
         sievetools.Sieve(6, 4),
         sievetools.Sieve(6, 5),
@@ -36,8 +36,8 @@ def test_sievetools_CompoundSieve_from_boolean_patterns_02():
 
 
 def test_sievetools_CompoundSieve_from_boolean_patterns_03():
-    r'''Works with no boolean patterns.
+    r'''From no boolean patterns.
     '''
 
-    sieve = sievetools.CompoundSieve.from_boolean_patterns([])
-    assert sieve.sieves == []
+    compound_sieve = sievetools.CompoundSieve.from_boolean_patterns([])
+    assert compound_sieve.sieves == []
