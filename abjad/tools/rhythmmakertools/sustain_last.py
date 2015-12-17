@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def sustain_last(n=1):
-    r'''Makes sustain mask with last `n` indices set.
+def sustain_last(n=1, invert=None):
+    r'''Makes sustain mask that matches the last `n` indices.
 
     ..  container:: example
 
@@ -170,9 +170,8 @@ def sustain_last(n=1):
     '''
     from abjad.tools import rhythmmakertools
 
-    assert 0 <= n, repr(n)
     indices = list(reversed(range(-1, -n-1, -1)))
-
     return rhythmmakertools.SustainMask(
         indices=indices,
+        invert=invert,
         )

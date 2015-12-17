@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def select_all():
-    r'''Makes cyclic boolean pattern equal to all indices.
+def select_all(invert=None):
+    r'''Makes boolean pattern that matches all indices.
 
     ..  container:: example
 
@@ -65,5 +65,6 @@ def select_all():
 
     return rhythmmakertools.BooleanPattern(
         indices=[0],
+        invert=invert,
         period=1,
         )

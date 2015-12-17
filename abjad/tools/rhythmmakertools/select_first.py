@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def select_first(n=1):
-    r'''Makes acyclic boolean pattern equal to first `n` indices.
+def select_first(n=1, invert=None):
+    r'''Makes boolean pattern that matches the first `n` indices.
 
     ..  container:: example
 
@@ -170,9 +170,8 @@ def select_first(n=1):
     '''
     from abjad.tools import rhythmmakertools
 
-    assert 0 <= n, repr(n)
     indices = list(range(n))
-
     return rhythmmakertools.BooleanPattern(
         indices=indices,
+        invert=invert,
         )

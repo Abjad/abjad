@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def select_last(n=1):
-    r'''Makes acyclic boolean pattern equal to last `n` indices.
+def select_last(n=1, invert=None):
+    r'''Makes boolean pattern that matches the last `n` indices.
 
     ..  container:: example
 
@@ -119,9 +119,8 @@ def select_last(n=1):
     '''
     from abjad.tools import rhythmmakertools
 
-    assert 0 <= n, repr(n)
     indices = list(reversed(range(-1, -n-1, -1)))
-
     return rhythmmakertools.BooleanPattern(
         indices=indices,
+        invert=invert,
         )

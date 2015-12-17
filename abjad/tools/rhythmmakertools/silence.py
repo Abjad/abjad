@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def silence(indices):
-    r'''Makes ayclic silence mask.
+def silence(indices=None, invert=None):
+    r'''Makes silence mask that matches `indices`.
 
     ..  container:: example
 
@@ -114,5 +114,8 @@ def silence(indices):
     '''
     from abjad.tools import rhythmmakertools
 
-    indices = list(indices)
-    return rhythmmakertools.SilenceMask(indices=indices)
+    indices = indices or []
+    return rhythmmakertools.SilenceMask(
+        indices=indices,
+        invert=invert,
+        )

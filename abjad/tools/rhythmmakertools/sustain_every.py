@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def sustain_every(indices, period):
-    r'''Makes sustain mask with `indices` set equal (at `period`) to sustain.
+def sustain_every(indices, period, invert=None):
+    r'''Makes sustain mask that matches `indices` at `period`.
 
     ..  container:: example
 
@@ -113,10 +113,8 @@ def sustain_every(indices, period):
     from abjad.tools import rhythmmakertools
 
     indices = list(indices)
-    assert isinstance(period, int)
-    assert 0 < period
-
     return rhythmmakertools.SustainMask(
         indices=indices,
+        invert=invert,
         period=period,
         )

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def sustain_first(n=1):
-    r'''Makes sustain mask equal to first `n` indices.
+def sustain_first(n=1, invert=None):
+    r'''Makes sustain mask that matches the first `n` indices.
 
     ..  container:: example
 
@@ -149,9 +149,8 @@ def sustain_first(n=1):
     '''
     from abjad.tools import rhythmmakertools
 
-    assert 0 <= n, repr(n)
     indices = list(range(n))
-
     return rhythmmakertools.SustainMask(
         indices=indices,
+        invert=invert,
         )

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def sustain_all():
-    r'''Makes sustain mask equal to all ones.
+def sustain_all(invert=None):
+    r'''Makes sustain mask that matches all indices.
 
     ..  container:: example
 
@@ -123,5 +123,6 @@ def sustain_all():
 
     return rhythmmakertools.SustainMask(
         indices=[0],
+        invert=invert,
         period=1,
         )

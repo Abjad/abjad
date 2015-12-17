@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def silence_all(use_multimeasure_rests=None):
-    r'''Makes silence mask equal to all zeros.
+def silence_all(invert=None, use_multimeasure_rests=None):
+    r'''Makes silence that matches all indices.
 
     ..  container:: example
 
@@ -108,6 +108,7 @@ def silence_all(use_multimeasure_rests=None):
 
     return rhythmmakertools.SilenceMask(
         indices=[0],
+        invert=invert,
         period=1,
         use_multimeasure_rests=use_multimeasure_rests,
         )

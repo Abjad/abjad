@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def select(indices=[]):
-    r'''Makes acyclic boolean pattern equal to `indices`.
+def select(indices=None, invert=None):
+    r'''Makes boolean pattern that matches `indices`.
 
     ..  container:: example
 
@@ -38,8 +38,8 @@ def select(indices=[]):
     '''
     from abjad.tools import rhythmmakertools
 
-    assert all(isinstance(_, int) for _ in indices), repr(indices)
-
+    indices = indices or []
     return rhythmmakertools.BooleanPattern(
         indices=indices,
+        invert=invert,
         )

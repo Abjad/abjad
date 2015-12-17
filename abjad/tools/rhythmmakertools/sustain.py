@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def sustain(indices):
-    r'''Makes ayclic sustain mask.
+def sustain(indices, invert=None):
+    r'''Makes sustain mask that matches `indices`.
 
     ..  container:: example
 
@@ -117,4 +117,7 @@ def sustain(indices):
     from abjad.tools import rhythmmakertools
 
     indices = list(indices)
-    return rhythmmakertools.SustainMask(indices=indices)
+    return rhythmmakertools.SustainMask(
+        indices=indices,
+        invert=invert,
+        )

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
-def silence_first(n=1, use_multimeasure_rests=None):
-    r'''Makes silence mask with first `n` indices equal to zero.
+def silence_first(n=1, invert=None, use_multimeasure_rests=None):
+    r'''Makes silence mask that matches the first `n` indices.
 
     ..  container:: example
 
@@ -161,10 +161,9 @@ def silence_first(n=1, use_multimeasure_rests=None):
     '''
     from abjad.tools import rhythmmakertools
 
-    assert 0 <= n, repr(n)
     indices = list(range(n))
-
     return rhythmmakertools.SilenceMask(
         indices=indices,
+        invert=invert,
         use_multimeasure_rests=use_multimeasure_rests,
         )
