@@ -16,7 +16,7 @@ def offset_happens_before_timespan_stops(
         timespantools.OffsetTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [
-                    timespantools.SimpleInequality('offset < timespan.stop'),
+                    timespantools.Inequality('offset < timespan.stop'),
                     ],
                 logical_operator='and',
                 ),

@@ -4,16 +4,16 @@ from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 
 
-class SimpleInequality(AbjadObject):
-    '''A simple inequality.
+class Inequality(AbjadObject):
+    '''An inequality.
 
         >>> template = 'timespan_2.start_offset < timespan_1.start_offset'
-        >>> simple_inequality = timespantools.SimpleInequality(template)
+        >>> inequality = timespantools.Inequality(template)
 
     ::
 
-        >>> simple_inequality
-        SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
+        >>> inequality
+        Inequality('timespan_2.start_offset < timespan_1.start_offset')
 
     '''
 
@@ -75,10 +75,10 @@ class SimpleInequality(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __format__(self, format_specification=''):
-        r'''Formats simple inequality.
+        r'''Formats inequality.
 
-            >>> print(format(simple_inequality))
-            timespantools.SimpleInequality('timespan_2.start_offset < timespan_1.start_offset')
+            >>> print(format(inequality))
+            timespantools.Inequality('timespan_2.start_offset < timespan_1.start_offset')
 
         Returns string.
         '''
@@ -147,9 +147,9 @@ class SimpleInequality(AbjadObject):
 
     @property
     def template(self):
-        r'''Template of simple inequality.
+        r'''Gets template of inequality.
 
-            >>> simple_inequality.template
+            >>> inequality.template
             'timespan_2.start_offset < timespan_1.start_offset'
 
         Returns string.
@@ -165,7 +165,7 @@ class SimpleInequality(AbjadObject):
         timespan_2_start_offset,
         timespan_2_stop_offset,
         ):
-        r'''Evalutes simple inequality.
+        r'''Evalutes inequality.
 
         Returns true or false.
         '''
@@ -204,18 +204,18 @@ class SimpleInequality(AbjadObject):
         timespan_2_start_offsets,
         timespan_2_stop_offsets,
         ):
-        r'''Gets offset indices of simple inequality.
+        r'''Gets offset indices of inequality.
 
         .. todo:: add example.
 
         Returns nonnegative integer pair.
         '''
-        simple_inequality = self.template
-        assert isinstance(simple_inequality, str), repr(simple_inequality)
+        inequality = self.template
+        assert isinstance(inequality, str), repr(inequality)
         leftmost_index, rightmost_index = None, None
 
         # 1.a
-        if simple_inequality == \
+        if inequality == \
             'timespan_1.start_offset == timespan_2.start_offset':
             try:
                 leftmost_index = self._find_index(
@@ -224,7 +224,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 1.b
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.start_offset < timespan_2.start_offset':
             try:
                 leftmost_index = self._find_index_gt(
@@ -233,7 +233,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 1.c
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.start_offset <= timespan_2.start_offset':
             try:
                 leftmost_index = self._find_index_ge(
@@ -242,7 +242,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 2.a
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.start_offset == timespan_2.stop_offset':
             try:
                 leftmost_index = self._find_index(
@@ -251,7 +251,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 2.b
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.start_offset < timespan_2.stop_offset':
             try:
                 leftmost_index = self._find_index_gt(
@@ -260,7 +260,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 2.c
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.start_offset <= timespan_2.stop_offset':
             try:
                 leftmost_index = self._find_index_ge(
@@ -269,7 +269,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 3.a
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.stop_offset == timespan_2.start_offset':
             try:
                 leftmost_index = self._find_index(
@@ -278,7 +278,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 3.b
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.stop_offset < timespan_2.start_offset':
             try:
                 leftmost_index = self._find_index_gt(
@@ -287,7 +287,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 3.c
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.stop_offset <= timespan_2.start_offset':
             try:
                 leftmost_index = self._find_index_ge(
@@ -296,7 +296,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 4.a
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.stop_offset == timespan_2.stop_offset':
             try:
                 leftmost_index = self._find_index(
@@ -305,7 +305,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 4.b
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.stop_offset < timespan_2.stop_offset':
             try:
                 leftmost_index = self._find_index_gt(
@@ -314,7 +314,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 4.c
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_1.stop_offset <= timespan_2.stop_offset':
             try:
                 leftmost_index = self._find_index_ge(
@@ -323,7 +323,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 5.a
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.start_offset == timespan_1.start_offset':
             try:
                 leftmost_index = self._find_index(
@@ -332,7 +332,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 5.b
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.start_offset < timespan_1.start_offset':
             try:
                 leftmost_index = 0
@@ -341,7 +341,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 5.c
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.start_offset <= timespan_1.start_offset':
             try:
                 leftmost_index = 0
@@ -350,7 +350,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 6.a
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.start_offset == timespan_1.stop_offset':
             try:
                 leftmost_index = self._find_index(
@@ -359,7 +359,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 6.b
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.start_offset < timespan_1.stop_offset':
             try:
                 leftmost_index = 0
@@ -368,7 +368,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 6.c
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.start_offset <= timespan_1.stop_offset':
             try:
                 leftmost_index = 0
@@ -377,7 +377,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 7.a
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.stop_offset == timespan_1.start_offset':
             try:
                 leftmost_index = self._find_index(
@@ -386,7 +386,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 7.b
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.stop_offset < timespan_1.start_offset':
             try:
                 leftmost_index = 0
@@ -395,7 +395,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 7.c
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.stop_offset <= timespan_1.start_offset':
             try:
                 leftmost_index = 0
@@ -404,7 +404,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 8.a
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.stop_offset == timespan_1.stop_offset':
             try:
                 leftmost_index = self._find_index(
@@ -413,7 +413,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 8.b
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.stop_offset < timespan_1.stop_offset':
             try:
                 leftmost_index = 0
@@ -422,7 +422,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         # 8.c
-        elif simple_inequality == \
+        elif inequality == \
             'timespan_2.stop_offset <= timespan_1.stop_offset':
             try:
                 leftmost_index = 0
@@ -431,7 +431,7 @@ class SimpleInequality(AbjadObject):
             except ValueError:
                 pass
         else:
-            raise ValueError(simple_inequality)
+            raise ValueError(inequality)
 
         if leftmost_index is not None and rightmost_index is not None:
             return leftmost_index, rightmost_index

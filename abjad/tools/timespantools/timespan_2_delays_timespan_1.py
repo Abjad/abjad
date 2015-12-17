@@ -11,8 +11,8 @@ def timespan_2_delays_timespan_1(timespan_1=None, timespan_2=None, hold=False):
         timespantools.TimespanTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [
-                    timespantools.SimpleInequality('timespan_2.start_offset <= timespan_1.start_offset'),
-                    timespantools.SimpleInequality('timespan_1.start_offset < timespan_2.stop_offset'),
+                    timespantools.Inequality('timespan_2.start_offset <= timespan_1.start_offset'),
+                    timespantools.Inequality('timespan_1.start_offset < timespan_2.stop_offset'),
                     ],
                 logical_operator='and',
                 ),

@@ -14,7 +14,7 @@ def test_timespantools_TimespanTimespanTimeRelation___init___01():
         timespantools.TimespanTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [
-                    timespantools.SimpleInequality('timespan_1.start_offset < timespan_2.start_offset'),
+                    timespantools.Inequality('timespan_1.start_offset < timespan_2.start_offset'),
                     ],
                 logical_operator='and',
                 ),

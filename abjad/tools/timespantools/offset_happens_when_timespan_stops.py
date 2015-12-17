@@ -12,7 +12,7 @@ def offset_happens_when_timespan_stops(timespan=None, offset=None, hold=False):
         timespantools.OffsetTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [
-                    timespantools.SimpleInequality('offset == timespan.stop'),
+                    timespantools.Inequality('offset == timespan.stop'),
                     ],
                 logical_operator='and',
                 ),

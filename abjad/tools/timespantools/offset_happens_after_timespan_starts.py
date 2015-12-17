@@ -15,7 +15,7 @@ def offset_happens_after_timespan_starts(
         timespantools.OffsetTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [
-                    timespantools.SimpleInequality('timespan.start < offset'),
+                    timespantools.Inequality('timespan.start < offset'),
                     ],
                 logical_operator='and',
                 ),

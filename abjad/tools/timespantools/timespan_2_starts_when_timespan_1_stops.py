@@ -16,7 +16,7 @@ def timespan_2_starts_when_timespan_1_stops(
         timespantools.TimespanTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [
-                    timespantools.SimpleInequality('timespan_2.start_offset == timespan_1.stop_offset'),
+                    timespantools.Inequality('timespan_2.start_offset == timespan_1.stop_offset'),
                     ],
                 logical_operator='and',
                 ),

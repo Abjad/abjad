@@ -22,8 +22,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
         timespantools.OffsetTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(
                 [
-                    timespantools.SimpleInequality('timespan.start <= offset'),
-                    timespantools.SimpleInequality('offset < timespan.stop'),
+                    timespantools.Inequality('timespan.start <= offset'),
+                    timespantools.Inequality('offset < timespan.stop'),
                     ],
                 logical_operator='and',
                 ),
@@ -121,8 +121,8 @@ class OffsetTimespanTimeRelation(TimeRelation):
             timespantools.OffsetTimespanTimeRelation(
                 inequality=timespantools.CompoundInequality(
                     [
-                        timespantools.SimpleInequality('timespan.start <= offset'),
-                        timespantools.SimpleInequality('offset < timespan.stop'),
+                        timespantools.Inequality('timespan.start <= offset'),
+                        timespantools.Inequality('offset < timespan.stop'),
                         ],
                     logical_operator='and',
                     ),
