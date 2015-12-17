@@ -828,7 +828,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> rest_mask = rhythmmakertools.SilenceMask(
+                >>> silence_mask = rhythmmakertools.SilenceMask(
                 ...     indices=[0],
                 ...     period=2,
                 ...     )
@@ -836,7 +836,7 @@ class NoteRhythmMaker(RhythmMaker):
                 ...     indices=[0, -1],
                 ...     )
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[rest_mask, null_mask],
+                ...     division_masks=[silence_mask, null_mask],
                 ...     )
 
             ::
