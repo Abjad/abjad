@@ -38,7 +38,7 @@ class Sieve(AbjadObject):
 
     __slots__ = (
         '_boolean_train',
-        '_congruent_bases',
+        '_indices',
         '_offset',
         '_period',
         )
@@ -55,11 +55,11 @@ class Sieve(AbjadObject):
             raise ValueError(message)
         self._period = period
         self._offset = offset
-        congruent_bases = []
+        indices = []
         for i in range(0, self.period):
             if i % self.period == self.offset:
-                congruent_bases.append(i)
-        self._congruent_bases = congruent_bases
+                indices.append(i)
+        self._indices = indices
 
     ### SPECIAL METHODS ###
 
@@ -325,8 +325,8 @@ class Sieve(AbjadObject):
         return result
 
     @property
-    def congruent_bases(self):
-        r'''Gets congruent bases.
+    def indices(self):
+        r'''Gets indices.
         
         ..  container:: example
 
@@ -335,7 +335,7 @@ class Sieve(AbjadObject):
                 ::
 
                     >>> sieve = sievetools.Sieve(3, 0)
-                    >>> sieve.congruent_bases
+                    >>> sieve.indices
                     [0]
 
         ..  container:: example
@@ -345,12 +345,12 @@ class Sieve(AbjadObject):
                 ::
 
                     >>> sieve = sievetools.Sieve(3, 1)
-                    >>> sieve.congruent_bases
+                    >>> sieve.indices
                     [1]
 
         Returns list of nonnegative integers.
         '''
-        return self._congruent_bases
+        return self._indices
 
     @property
     def offset(self):
@@ -386,7 +386,7 @@ class Sieve(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Period equal to 3:
+            **Example 1.** Without offset:
 
                 ::
 
@@ -396,13 +396,13 @@ class Sieve(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Period equal to 99:
+            **Example 2.** With offset:
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(99, 0)
+                    >>> sieve = sievetools.Sieve(3, 1)
                     >>> sieve.period
-                    99
+                    3
 
         Returns positive integer.
         '''

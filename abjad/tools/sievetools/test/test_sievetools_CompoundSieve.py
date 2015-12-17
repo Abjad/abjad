@@ -20,7 +20,7 @@ def test_sievetools_CompoundSieve_02():
     sieve = sievetools.CompoundSieve([sievetools.Sieve(2, 0), sievetools.Sieve(3, 0)])
 
     assert sieve.boolean_train == [1, 0, 1, 1, 1, 0]
-    assert sieve.congruent_bases == [0, 2, 3, 4]
+    assert sieve.indices == [0, 2, 3, 4]
 
 
 def test_sievetools_CompoundSieve_03():
@@ -30,7 +30,7 @@ def test_sievetools_CompoundSieve_03():
     sieve = sievetools.CompoundSieve([sievetools.Sieve(2, 1), sievetools.Sieve(3, 0)])
 
     assert sieve.boolean_train == [1, 1, 0, 1, 0, 1]
-    assert sieve.congruent_bases == [0, 1, 3, 5]
+    assert sieve.indices == [0, 1, 3, 5]
 
 
 def test_sievetools_CompoundSieve_04():
@@ -41,7 +41,7 @@ def test_sievetools_CompoundSieve_04():
 
     assert sieve.logical_operator == 'and'
     assert sieve.boolean_train == [1, 0, 0, 0, 0, 0]
-    assert sieve.congruent_bases == [0]
+    assert sieve.indices == [0]
 
 
 def test_sievetools_CompoundSieve_05():
@@ -51,7 +51,7 @@ def test_sievetools_CompoundSieve_05():
     sieve = sievetools.CompoundSieve([sievetools.Sieve(2, 1), sievetools.Sieve(3, 0)], 'and')
 
     assert sieve.boolean_train == [0, 0, 0, 1, 0, 0]
-    assert sieve.congruent_bases == [3]
+    assert sieve.indices == [3]
 
 
 def test_sievetools_CompoundSieve_06():
@@ -62,7 +62,7 @@ def test_sievetools_CompoundSieve_06():
 
     assert sieve.logical_operator == 'xor'
     assert sieve.boolean_train == [0, 0, 1, 1, 1, 0]
-    assert sieve.congruent_bases == [2, 3, 4]
+    assert sieve.indices == [2, 3, 4]
 
 
 def test_sievetools_CompoundSieve_07():
@@ -72,4 +72,4 @@ def test_sievetools_CompoundSieve_07():
     sieve = sievetools.CompoundSieve([sievetools.Sieve(2, 1), sievetools.Sieve(3, 0)], 'xor')
 
     assert sieve.boolean_train == [1, 1, 0, 0, 0, 1]
-    assert sieve.congruent_bases == [0, 1, 5]
+    assert sieve.indices == [0, 1, 5]

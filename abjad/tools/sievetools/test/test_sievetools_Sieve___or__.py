@@ -62,7 +62,7 @@ def test_sievetools_Sieve___or___05():
 
     assert compound_sieve.logical_operator == 'or'
     assert compound_sieve.boolean_train == [1, 0, 1, 1, 1, 0]
-    assert compound_sieve.congruent_bases == [0, 2, 3, 4]
+    assert compound_sieve.indices == [0, 2, 3, 4]
 
 
 def test_sievetools_Sieve___or___06():
@@ -70,4 +70,4 @@ def test_sievetools_Sieve___or___06():
     compound_sieve = sievetools.Sieve(2, 1) | sievetools.Sieve(3, 0)
 
     assert compound_sieve.boolean_train == [1, 1, 0, 1, 0, 1]
-    assert compound_sieve.congruent_bases == [0, 1, 3, 5]
+    assert compound_sieve.indices == [0, 1, 3, 5]

@@ -14,7 +14,7 @@ def test_sievetools_Sieve___and___01():
     assert compound_sieve.logical_operator == 'and'
     assert compound_sieve.sieves == [sieve_1, sieve_2]
     assert compound_sieve.boolean_train == [0, 0, 0, 0]
-    assert compound_sieve.congruent_bases == []
+    assert compound_sieve.indices == []
 
 
 def test_sievetools_Sieve___and___02():
@@ -67,7 +67,7 @@ def test_sievetools_Sieve___and___05():
 
     assert compound_sieve.logical_operator == 'and'
     assert compound_sieve.boolean_train == [1, 0, 0, 0, 0, 0]
-    assert compound_sieve.congruent_bases == [0]
+    assert compound_sieve.indices == [0]
 
 
 def test_sievetools_Sieve___and___06():
@@ -76,4 +76,4 @@ def test_sievetools_Sieve___and___06():
 
     assert compound_sieve.logical_operator == 'and'
     assert compound_sieve.boolean_train == [0, 0, 0, 1, 0, 0]
-    assert compound_sieve.congruent_bases == [3]
+    assert compound_sieve.indices == [3]

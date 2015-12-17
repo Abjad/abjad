@@ -64,7 +64,7 @@ def test_sievetools_Sieve_operators_03():
     assert sieve.sieves[0].logical_operator == 'xor'
     assert isinstance(sieve.sieves[1], sievetools.Sieve)
     assert sieve.boolean_train == [1, 0, 1, 1, 1, 0]
-    assert sieve.congruent_bases == [0, 2, 3, 4]
+    assert sieve.indices == [0, 2, 3, 4]
 
 
 def test_sievetools_Sieve_operators_04():
@@ -78,4 +78,4 @@ def test_sievetools_Sieve_operators_04():
     assert sieve.sieves[0].logical_operator == 'xor'
     assert isinstance(sieve.sieves[1], sievetools.Sieve)
     assert sieve.boolean_train == [1, 0, 1, 1, 1, 0]
-    assert sieve.congruent_bases == [0, 2, 3, 4]
+    assert sieve.indices == [0, 2, 3, 4]

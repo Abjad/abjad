@@ -38,7 +38,7 @@ class CompoundSieve(AbjadObject):
 
         ::
 
-            >>> sieve.congruent_bases
+            >>> sieve.indices
                 [0, 1, 3, 4, 6, 8, 10, 11, 12, 13, 14, 16, 17, 19, 20, 22,
                 23, 25, 27, 28, 29, 31, 33, 35, 36, 37, 38]
 
@@ -134,7 +134,7 @@ class CompoundSieve(AbjadObject):
 
     __slots__ = (
         '_boolean_train',
-        '_congruent_bases',
+        '_indices',
         '_logical_operator',
         '_period',
         '_sieves',
@@ -157,16 +157,16 @@ class CompoundSieve(AbjadObject):
             period = 1
         self._period = period
         if self.logical_operator == 'or':
-            congruent_bases = self._get_congruent_bases(operator.ior)
+            indices = self._get_indices(operator.ior)
         elif self.logical_operator == 'xor':
-            congruent_bases = self._get_congruent_bases(operator.ixor)
+            indices = self._get_indices(operator.ixor)
         elif self.logical_operator == 'and':
-            congruent_bases = self._get_congruent_bases(operator.iand)
-        self._congruent_bases = congruent_bases
+            indices = self._get_indices(operator.iand)
+        self._indices = indices
         boolean_train = []
-        congruent_bases = self.congruent_bases
+        indices = self.indices
         for i in range(0, self.period):
-            if i % self.period in congruent_bases:
+            if i % self.period in indices:
                 boolean_train.append(1)
             else:
                 boolean_train.append(0)
@@ -214,7 +214,7 @@ class CompoundSieve(AbjadObject):
         sieve = CompoundSieve(sieves, logical_operator='or')
         return sieve
 
-    def _get_congruent_bases(self, logical_operator):
+    def _get_indices(self, logical_operator):
         if logical_operator is operator.iand:
             result = set(range(0, self.period))
         else:
@@ -222,8 +222,8 @@ class CompoundSieve(AbjadObject):
         for sieve in self.sieves:
             bases_ = set()
             for i in range(0, self.period):
-                congruent_bases = sieve.congruent_bases
-                if i % sieve.period in congruent_bases:
+                indices = sieve.indices
+                if i % sieve.period in indices:
                     bases_.add(i)
             logical_operator(result, bases_)
         return sorted(result)
@@ -286,8 +286,8 @@ class CompoundSieve(AbjadObject):
         return self._boolean_train
 
     @property
-    def congruent_bases(self):
-        r'''Gets congruent bases.
+    def indices(self):
+        r'''Gets indices.
         
         ..  container::
 
@@ -298,7 +298,7 @@ class CompoundSieve(AbjadObject):
                 >>> sieve_1 = sievetools.Sieve(2, 0)
                 >>> sieve_2 = sievetools.Sieve(3, 0)
                 >>> sieve = sieve_1 | sieve_2
-                >>> sieve.congruent_bases
+                >>> sieve.indices
                 [0, 2, 3, 4]
                 
         ..  container::
@@ -310,12 +310,12 @@ class CompoundSieve(AbjadObject):
                 >>> sieve_1 = sievetools.Sieve(2, 0)
                 >>> sieve_2 = sievetools.Sieve(5, 0)
                 >>> sieve = sieve_1 | sieve_2
-                >>> sieve.congruent_bases
+                >>> sieve.indices
                 [0, 2, 4, 5, 6, 8]
 
         Returns list.
         '''
-        return self._congruent_bases
+        return self._indices
 
     @property
     def logical_operator(self):
@@ -457,7 +457,7 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve.congruent_bases
+                >>> sieve.indices
                 [0, 4, 5, 6, 7, 8, 10, 11, 12, 16, 17, 18, 22, 23, 24, 26, 27, 28, 29]
 
         '''
