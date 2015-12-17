@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def sustain_all(use_multimeasure_rests=None):
+def sustain_all():
     r'''Makes sustain mask equal to all ones.
 
     ..  container:: example
