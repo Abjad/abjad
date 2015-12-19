@@ -8,20 +8,49 @@ from abjad.tools.abctools import AbjadValueObject
 class CountsSelectorCallback(AbjadValueObject):
     r'''A counts selector callback.
 
-    ::
+    ..  container:: example
 
-        >>> callback = selectortools.CountsSelectorCallback([3])
-        >>> print(format(callback))
-        selectortools.CountsSelectorCallback(
-            counts=datastructuretools.CyclicTuple(
-                [3]
-                ),
-            cyclic=True,
-            fuse_overhang=False,
-            nonempty=False,
-            overhang=True,
-            rotate=True,
-            )
+        **Example 1.** Initializes callback by hand:
+
+        ::
+
+            >>> callback = selectortools.CountsSelectorCallback([3])
+            >>> print(format(callback))
+            selectortools.CountsSelectorCallback(
+                counts=datastructuretools.CyclicTuple(
+                    [3]
+                    ),
+                cyclic=True,
+                fuse_overhang=False,
+                nonempty=False,
+                overhang=True,
+                rotate=True,
+                )
+
+    ..  container:: example
+
+        **Example 2.** Selects components:
+
+        ::
+
+            >>> selector = selectortools.Selector()
+            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_counts([3])
+            >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+            >>> selector(staff)
+            Selection(Selection(Note("c'8"), Rest('r8'), Note("d'8")),)
+
+    ..  container:: example
+
+        **Example 3.** Selects objects:
+
+        ::
+
+            >>> selector = selectortools.Selector()
+            >>> selector = selector.by_counts([3])
+            >>> numbers = [1, 'two', 'three', 4, -5, 'foo', 7.0, 8]
+            >>> selector(numbers)
+            Selection(Selection(1, 'two', 'three'),)
 
     '''
 
