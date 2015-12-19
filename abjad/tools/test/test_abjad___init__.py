@@ -56,24 +56,27 @@ valid_types = (
 def test_abjad___init___02(obj):
     r'''Make sure class initializer keyword argument values are immutable.
     '''
-    for attr in inspect.classify_class_attrs(obj):
-        if attr.defining_class is not obj:
-            continue
-        elif attr.kind != 'method':
-            continue
-        obj = attr.object
-        if isinstance(obj, functools.partial):
-            obj = obj.function
-        argument_specification = inspect.getargspec(obj)
-        keyword_argument_names = argument_specification.args[1:]
-        keyword_argument_values = argument_specification.defaults
-        if keyword_argument_values is None:
-            continue
-        for name, value in zip(
-            keyword_argument_names, keyword_argument_values):
-            assert isinstance(value, valid_types), (attr.name, name, value)
-            if isinstance(value, tuple):
-                assert all(isinstance(x, valid_types) for x in value)
+    version = sys.version()
+    # NOTE: something changed in 3.5's "inspect" module
+    if not version.startswith('3.5'):
+        for attr in inspect.classify_class_attrs(obj):
+            if attr.defining_class is not obj:
+                continue
+            elif attr.kind != 'method':
+                continue
+            obj = attr.object
+            if isinstance(obj, functools.partial):
+                obj = obj.function
+            argument_specification = inspect.getargspec(obj)
+            keyword_argument_names = argument_specification.args[1:]
+            keyword_argument_values = argument_specification.defaults
+            if keyword_argument_values is None:
+                continue
+            for name, value in zip(
+                keyword_argument_names, keyword_argument_values):
+                assert isinstance(value, valid_types), (attr.name, name, value)
+                if isinstance(value, tuple):
+                    assert all(isinstance(x, valid_types) for x in value)
 
 
 functions = documentationtools.list_all_abjad_functions()

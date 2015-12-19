@@ -32,4 +32,5 @@ def test_systemtools_IOManager_count_function_calls_02():
     if sys.version_info[0] == 2:
         assert result == 187
     else:
-        assert result == 204
+        # inequality because Pythons 3.2, 3.3, 3.4, 3.5 vary somewhat
+        assert result <= 204

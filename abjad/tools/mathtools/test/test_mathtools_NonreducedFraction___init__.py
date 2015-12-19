@@ -16,14 +16,13 @@ def test_mathtools_NonreducedFraction___init___01():
         result = systemtools.IOManager.count_function_calls(
             'fractions.Fraction(3, 6)', globals())
         assert result == 13
-
         result = systemtools.IOManager.count_function_calls(
             'mathtools.NonreducedFraction(3, 6)', globals())
         assert result == 30
     else:
         result = systemtools.IOManager.count_function_calls(
             'fractions.Fraction(3, 6)', globals())
-        assert result == 12
+        assert result < 20
         result = systemtools.IOManager.count_function_calls(
             'mathtools.NonreducedFraction(3, 6)', globals())
-        assert result == 32
+        assert result < 100
