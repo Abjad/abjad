@@ -2,6 +2,7 @@
 import functools
 import inspect
 import pytest
+import sys
 from abjad.tools import abjadbooktools
 from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
