@@ -79,6 +79,7 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import graph
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import label
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import new
 from abjad.tools.topleveltools import override
