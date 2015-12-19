@@ -407,6 +407,8 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 1.** Selects first three components:
+
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
@@ -426,6 +428,8 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"))
 
         ..  container:: example
+
+            **Example 2.** Selects every complete group of three components:
 
             ::
 
@@ -447,6 +451,9 @@ class Selector(AbjadValueObject):
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"))
 
         ..  container:: example
+
+            **Example 3.** Selects every group of three components plus any
+            overhang:
 
             ::
 
@@ -470,6 +477,9 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
+            **Example 4.** Selects the first three components and then the
+            remaining components:
+
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
@@ -491,6 +501,8 @@ class Selector(AbjadValueObject):
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
 
         ..  container:: example
+
+            **Example 5.** Selects components grouped 1, 2, 3:
 
             ::
 
@@ -516,6 +528,9 @@ class Selector(AbjadValueObject):
                 Selection(Rest('r8'), Note("c''8"))
 
         ..  container:: example
+
+            **Example 6.** Selects components grouped 1, 2, 3 rotated one to
+            the left:
 
             ::
 

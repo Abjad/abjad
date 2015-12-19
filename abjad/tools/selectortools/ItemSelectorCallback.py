@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import select
 
 
 class ItemSelectorCallback(AbjadValueObject):
-    r'''A item selector callback.
+    r'''An item selector callback.
     '''
 
     ### CLASS VARIABLES ###
