@@ -111,6 +111,55 @@ class BooleanPattern(AbjadValueObject):
         self._payload = payload
         self._period = period
 
+    ### SPECIAL METHODS ###
+
+
+    def __len__(self):
+        r'''Gets length of boolean pattern.
+
+        ..  container:: example
+
+            **Example 1.** Gets length of cyclic pattern:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> len(pattern)
+                8
+
+            Length of cyclic pattern defined equal to period of the pattern.
+
+        ..  container:: example
+
+            **Example 2.** Gets length of acyclic pattern:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 2, 3],
+                ...     )
+
+            ::
+
+                >>> len(pattern)
+                4
+
+            Length of acyclic pattern defined equal to greatest index in
+            pattern, plus 1.
+
+        Returns nonnegative integer.
+        '''
+        if self.period is not None:
+            return self.period
+        maximum_index = max(self.indices)
+        return maximum_index + 1
+
     ### PUBLIC METHODS ###
 
     @classmethod
