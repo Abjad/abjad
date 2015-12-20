@@ -153,12 +153,39 @@ class BooleanPattern(AbjadValueObject):
             Length of acyclic pattern defined equal to greatest index in
             pattern, plus 1.
 
+        ..  container:: example
+
+            **Example 3.** Gets length of pattern with negative indices:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[-3],
+                ...     )
+
+            ::
+
+                >>> len(pattern)
+                3
+
+            Length of pattern with negative indices defined equal to absolute
+            value of least index.
+
         Returns nonnegative integer.
         '''
         if self.period is not None:
             return self.period
-        maximum_index = max(self.indices)
-        return maximum_index + 1
+        if self.indices:
+            absolute_indices = []
+            for index in self.indices:
+                if 0 <= index:
+                    absolute_indices.append(index)
+                else:
+                    index = abs(index) - 1
+                    absolute_indices.append(index)
+            maximum_index = max(absolute_indices)
+            return maximum_index + 1
+        return 0
 
     ### PUBLIC PROPERTIES ###
 
