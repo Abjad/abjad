@@ -57,7 +57,7 @@ valid_types = (
 def test_abjad___init___02(obj):
     r'''Make sure class initializer keyword argument values are immutable.
     '''
-    version = sys.version()
+    version = sys.version
     # NOTE: something changed in 3.5's "inspect" module
     if not version.startswith('3.5'):
         for attr in inspect.classify_class_attrs(obj):
