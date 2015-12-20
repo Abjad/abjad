@@ -120,7 +120,7 @@ class Container(Component):
         elif isinstance(i, slice) and not self.is_simultaneous:
             return selectiontools.ContiguousSelection(self._music[i])
         elif isinstance(i, slice) and self.is_simultaneous:
-            return selectiontools.SimultaneousSelection(self._music[i])
+            return selectiontools.Selection(self._music[i])
         elif isinstance(i, str):
             if i not in self._named_children:
                 message = 'can not find component named {!r}.'

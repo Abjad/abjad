@@ -479,5 +479,10 @@ class Selection(object):
             result.update(spanners)
         return result
 
+    def get_vertical_moment_at(self, offset):
+        r'''Select vertical moment at `offset`.
+        '''
+        from abjad.tools import selectiontools
+        return selectiontools.VerticalMoment(self, offset)
 
 collections.Sequence.register(Selection)

@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.topleveltools import iterate
-from abjad.tools.selectiontools.SimultaneousSelection \
-    import SimultaneousSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class Descendants(SimultaneousSelection):
+class Descendants(Selection):
     r'''A selection of components that descend from a component.
 
     ::
@@ -89,7 +88,7 @@ class Descendants(SimultaneousSelection):
                     append_x = False
                 if append_x:
                     result.append(x)
-        SimultaneousSelection.__init__(self, result)
+        Selection.__init__(self, result)
         self._component = component
 
     ### PUBLIC PROPERTIES ###

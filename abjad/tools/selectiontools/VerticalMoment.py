@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.selectiontools.SimultaneousSelection \
-    import SimultaneousSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class VerticalMoment(SimultaneousSelection):
+class VerticalMoment(Selection):
     r'''A selection of components happening at a single moment in musical time.
 
     ::
@@ -172,7 +171,7 @@ class VerticalMoment(SimultaneousSelection):
         from abjad.tools import selectiontools
         offset = durationtools.Offset(offset)
         governors = []
-        prototype = (list, tuple, selectiontools.SimultaneousSelection)
+        prototype = (list, tuple, selectiontools.Selection)
         message = 'must be component or of Abjad components: {!r}.'
         message = message.format(expr)
         if isinstance(expr, scoretools.Component):

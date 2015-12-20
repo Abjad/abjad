@@ -12,11 +12,3 @@ class SimultaneousSelection(Selection):
 
     __slots__ = (
         )
-
-    ### PUBLIC METHODS ###
-
-    def get_vertical_moment_at(self, offset):
-        r'''Select vertical moment at `offset`.
-        '''
-        from abjad.tools import selectiontools
-        return selectiontools.VerticalMoment(self, offset)

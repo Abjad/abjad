@@ -2,11 +2,10 @@
 import collections
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools.selectiontools.SimultaneousSelection \
-    import SimultaneousSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class Parentage(SimultaneousSelection):
+class Parentage(Selection):
     r'''A selection of components in the parentage of a component.
 
     ..  container:: example
@@ -82,7 +81,7 @@ class Parentage(SimultaneousSelection):
                 music.append(parent)
                 parent = parent._parent
             music = tuple(music)
-        SimultaneousSelection.__init__(self, music)
+        Selection.__init__(self, music)
         self._component = component
 
     ### PRIVATE PROPERTIES ###
