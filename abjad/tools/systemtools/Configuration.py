@@ -20,12 +20,14 @@ class Configuration(AbjadObject):
     __documentation_section__ = 'System configuration'
 
     __slots__ = (
+        '_cached_configuration_directory_path',
         '_settings',
         )
 
     ### INITIALIZER ###
 
     def __init__(self):
+        self._cached_configuration_directory_path = None
         if not os.path.exists(self.configuration_directory_path):
             try:
                 os.makedirs(self.configuration_directory_path)
@@ -211,26 +213,32 @@ class Configuration(AbjadObject):
         Defaults to $HOME/{configuration_directory_name}.
 
         If $HOME is read-only or
-        $HOME/{configuration_directory_name} is read-only, this
-        will return $TEMP/{configuration_directory_name}.
+        $HOME/{configuration_directory_name} is read-only,
+        returns $TEMP/{configuration_directory_name}.
+
+        Also caches the initial result to reduce filesystem interaction.
 
         Returns string.
         '''
-        home_directory = self.home_directory
-        flags = os.W_OK | os.X_OK
-        if os.access(home_directory, flags):
+        if self._cached_configuration_directory_path is None:
+            home_directory = self.home_directory
+            flags = os.W_OK | os.X_OK
+            if os.access(home_directory, flags):
+                path = os.path.join(
+                    home_directory,
+                    self.configuration_directory_name,
+                    )
+                if os.path.exists(path) and os.access(path, flags):
+                    self._cached_configuration_directory_path = path
+                    return path
+            temp_directory = self.temp_directory
             path = os.path.join(
-                home_directory,
+                temp_directory,
                 self.configuration_directory_name,
                 )
-            if os.path.exists(path) and os.access(path, flags):
-                return path
-        temp_directory = self.temp_directory
-        path = os.path.join(
-            temp_directory,
-            self.configuration_directory_name,
-            )
-        return path
+            self._cached_configuration_directory_path = path
+            return path
+        return self._cached_configuration_directory_path
 
     @abc.abstractproperty
     def configuration_file_name(self):
