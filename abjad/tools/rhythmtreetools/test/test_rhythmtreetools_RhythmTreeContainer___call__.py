@@ -8,7 +8,7 @@ def test_rhythmtreetools_RhythmTreeContainer___call___01():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert isinstance(result, (list, selectiontools.SliceSelection))
+    assert isinstance(result, (list, selectiontools.ContiguousSelection))
     assert len(result) == 1
 
     assert systemtools.TestManager.compare(
@@ -33,6 +33,6 @@ def test_rhythmtreetools_RhythmTreeContainer___call___02():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert isinstance(result, (list, selectiontools.SliceSelection))
+    assert isinstance(result, (list, selectiontools.ContiguousSelection))
     assert len(result) == 6
     assert [format(x) for x in result] == ["c'16", "c'32", "c'32", "c'32", "c'32", "c'16"]

@@ -363,7 +363,7 @@ class ContiguousSelection(Selection):
         implicit_scaling = self[0].implicit_scaling
         assert all(
             x.implicit_scaling == implicit_scaling for x in self)
-        selection = selectiontools.SliceSelection(self)
+        selection = selectiontools.ContiguousSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         old_denominators = []
         new_duration = durationtools.Duration(0)
@@ -490,6 +490,17 @@ class ContiguousSelection(Selection):
             stop_offsets.append(component._get_timespan().stop_offset)
         return start_offsets, stop_offsets
 
+    def _get_parent_and_start_stop_indices(self):
+        assert self._all_are_contiguous_components_in_same_parent(self)
+        if self:
+            first, last = self[0], self[-1]
+            parent = first._parent
+            if parent is not None:
+                first_index = parent.index(first)
+                last_index = parent.index(last)
+                return parent, first_index, last_index
+        return None, None, None
+
     def _give_dominant_spanners(self, recipients):
         r'''Find all spanners dominating music.
         Insert each component in recipients into each dominant spanner.
@@ -506,6 +517,31 @@ class ContiguousSelection(Selection):
                 spanner._insert(index, recipient)
             for component in self:
                 spanner._remove(component)
+
+    def _give_music_to_empty_container(self, container):
+        r'''Not composer-safe.
+        '''
+        from abjad.tools import scoretools
+        assert self._all_are_contiguous_components_in_same_parent(self)
+        assert isinstance(container, scoretools.Container)
+        assert not container
+        music = []
+        for component in self:
+            music.extend(getattr(component, '_music', ()))
+        container._music.extend(music)
+        container[:]._set_parents(container)
+
+    def _give_position_in_parent_to_container(self, container):
+        r'''Not composer-safe.
+        '''
+        from abjad.tools import scoretools
+        assert self._all_are_contiguous_components_in_same_parent(self)
+        assert isinstance(container, scoretools.Container)
+        parent, start, stop = self._get_parent_and_start_stop_indices()
+        if parent is not None:
+            parent._music.__setitem__(slice(start, start), [container])
+            container._set_parent(parent)
+            self._set_parents(None)
 
     def _make_spanner_schema(self):
         schema = {}

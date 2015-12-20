@@ -27,7 +27,7 @@ class SliceSelection(ContiguousSelection):
         ::
 
             >>> staff[:2]
-            SliceSelection(Note("c'4"), Note("d'4"))
+            ContiguousSelection(Note("c'4"), Note("d'4"))
 
     '''
 
@@ -42,41 +42,3 @@ class SliceSelection(ContiguousSelection):
     def __init__(self, music=None):
         music = self._coerce_music(music)
         ContiguousSelection.__init__(self, music=music)
-
-    ### PRIVATE METHODS ###
-
-    def _get_parent_and_start_stop_indices(self):
-        assert self._all_are_contiguous_components_in_same_parent(self)
-        if self:
-            first, last = self[0], self[-1]
-            parent = first._parent
-            if parent is not None:
-                first_index = parent.index(first)
-                last_index = parent.index(last)
-                return parent, first_index, last_index
-        return None, None, None
-
-    def _give_music_to_empty_container(self, container):
-        r'''Not composer-safe.
-        '''
-        from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_parent(self)
-        assert isinstance(container, scoretools.Container)
-        assert not container
-        music = []
-        for component in self:
-            music.extend(getattr(component, '_music', ()))
-        container._music.extend(music)
-        container[:]._set_parents(container)
-
-    def _give_position_in_parent_to_container(self, container):
-        r'''Not composer-safe.
-        '''
-        from abjad.tools import scoretools
-        assert self._all_are_contiguous_components_in_same_parent(self)
-        assert isinstance(container, scoretools.Container)
-        parent, start, stop = self._get_parent_and_start_stop_indices()
-        if parent is not None:
-            parent._music.__setitem__(slice(start, start), [container])
-            container._set_parent(parent)
-            self._set_parents(None)

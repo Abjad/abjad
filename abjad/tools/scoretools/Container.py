@@ -101,9 +101,9 @@ class Container(Component):
         Returns none.
         '''
         components = self[i]
-        #if not isinstance(components, selectiontools.SliceSelection):
+        #if not isinstance(components, selectiontools.ContiguousSelection):
         if not isinstance(components, selectiontools.Selection):
-            components = selectiontools.SliceSelection([components])
+            components = selectiontools.ContiguousSelection([components])
         if not self.is_simultaneous:
             components._withdraw_from_crossing_spanners()
         components._set_parents(None)
@@ -118,7 +118,7 @@ class Container(Component):
         if isinstance(i, int):
             return self._music[i]
         elif isinstance(i, slice) and not self.is_simultaneous:
-            return selectiontools.SliceSelection(self._music[i])
+            return selectiontools.ContiguousSelection(self._music[i])
         elif isinstance(i, slice) and self.is_simultaneous:
             return selectiontools.SimultaneousSelection(self._music[i])
         elif isinstance(i, str):
@@ -635,7 +635,7 @@ class Container(Component):
         # must withdraw before setting in self!
         # otherwise circular withdraw ensues!
         if withdraw_components_in_expr_from_crossing_spanners:
-            selection = selectiontools.SliceSelection(expr)
+            selection = selectiontools.ContiguousSelection(expr)
             if selection._all_are_contiguous_components_in_same_logical_voice(
                 selection):
                 selection._withdraw_from_crossing_spanners()
@@ -779,7 +779,7 @@ class Container(Component):
             self[:]._set_parents(self)
         elif Selection._all_are_contiguous_components_in_same_logical_voice(
             music):
-            music = selectiontools.SliceSelection(music)
+            music = selectiontools.ContiguousSelection(music)
             parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)
             self[:]._set_parents(self)
@@ -902,7 +902,7 @@ class Container(Component):
         # give my attached spanners to my children
         self._move_spanners_to_children()
         # incorporate left and right parents in score if possible
-        selection = selectiontools.SliceSelection(self)
+        selection = selectiontools.ContiguousSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._music.__setitem__(slice(start, stop + 1), nonempty_halves)

@@ -178,7 +178,7 @@ instead of a list of components:
 ::
 
    >>> staff[:4]
-   SliceSelection(Note("d'8"), Note("f'8"), Note("a'8"), Note("d''8"))
+   ContiguousSelection(Note("d'8"), Note("f'8"), Note("a'8"), Note("d''8"))
 
 
 You can also create your own selections of components with the new ``select()``

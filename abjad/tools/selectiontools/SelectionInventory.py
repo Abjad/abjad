@@ -21,4 +21,4 @@ class SelectionInventory(TypedList):
     @property
     def _item_coercer(self):
         from abjad.tools import selectiontools
-        return selectiontools.SliceSelection
+        return selectiontools.ContiguousSelection

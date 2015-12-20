@@ -20,7 +20,7 @@ class MutationAgent(abctools.AbjadObject):
         ::
 
             >>> mutate(staff[2:])
-            MutationAgent(client=SliceSelection(Note("d'4"), Note("f'4")))
+            MutationAgent(client=ContiguousSelection(Note("d'4"), Note("f'4")))
 
     '''
 
@@ -404,13 +404,13 @@ class MutationAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-        if isinstance(self._client, selectiontools.SliceSelection):
+        if isinstance(self._client, selectiontools.ContiguousSelection):
             donors = self._client
         else:
-            donors = selectiontools.SliceSelection(self._client)
+            donors = selectiontools.ContiguousSelection(self._client)
         assert donors._all_are_contiguous_components_in_same_parent(donors)
         if not isinstance(recipients, selectiontools.Selection):
-            recipients = selectiontools.SliceSelection(recipients)
+            recipients = selectiontools.ContiguousSelection(recipients)
         assert recipients._all_are_contiguous_components_in_same_parent(
             recipients)
         if donors:
@@ -2691,10 +2691,10 @@ class MutationAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-        if isinstance(self._client, selectiontools.SliceSelection):
+        if isinstance(self._client, selectiontools.ContiguousSelection):
             donors = self._client
         else:
-            donors = selectiontools.SliceSelection(self._client)
+            donors = selectiontools.ContiguousSelection(self._client)
         assert donors._all_are_contiguous_components_in_same_parent(donors)
         assert isinstance(container, scoretools.Container)
         assert not container, repr(container)

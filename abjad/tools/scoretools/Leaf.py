@@ -499,7 +499,7 @@ class Leaf(Component):
             shard = [x._get_parentage().root for x in shard]
             result.append(shard)
         flattened_result = sequencetools.flatten_sequence(result)
-        flattened_result = selectiontools.SliceSelection(flattened_result)
+        flattened_result = selectiontools.ContiguousSelection(flattened_result)
         prototype = (spannertools.Tie,)
         parentage = self._get_parentage()
         if parentage._get_spanners(prototype=prototype):
@@ -510,7 +510,7 @@ class Leaf(Component):
                     spanner._sever_all_components()
                 #detach(prototype, component)
         # replace leaf with flattened result
-        selection = selectiontools.SliceSelection(self)
+        selection = selectiontools.ContiguousSelection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent:
             parent.__setitem__(slice(start, stop + 1), flattened_result)
@@ -550,7 +550,7 @@ class Leaf(Component):
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterate(flattened_result).by_class(
                 scoretools.Leaf)
-            # TODO: implement SliceSelection._attach_tie_spanner_to_leaves()
+            # TODO: implement ContiguousSelection._attach_tie_spanner_to_leaves()
             for leaf_pair in sequencetools.iterate_sequence_nwise(
                 flattened_result_leaves):
                 selection = selectiontools.ContiguousSelection(leaf_pair)

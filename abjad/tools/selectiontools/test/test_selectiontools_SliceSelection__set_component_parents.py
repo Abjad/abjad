@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_selectiontools_SliceSelection__set_component_parents_01():
+def test_selectiontools_ContiguousSelection__set_component_parents_01():
 
     voice = Voice([])
     u = Voice("c'8 d'8 e'8 f'8")
@@ -21,7 +21,7 @@ def test_selectiontools_SliceSelection__set_component_parents_01():
 
     voice._music.extend(selection)
 
-    "SliceSelection now in container voice."
+    "ContiguousSelection now in container voice."
 
     assert inspect_(voice).is_well_formed()
     assert selection[0]._parent is voice
