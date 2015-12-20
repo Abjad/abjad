@@ -1,5 +1,7 @@
 language: python
 
+sudo: false
+
 python:
     - 2.7
     - 3.3
@@ -14,20 +16,31 @@ matrix:
     allow_failures:
         - env: TRAVIS_READ_ONLY=true
 
+addons:
+    apt:
+        packages:
+            - graphviz
+            - imagemagick
+            - texlive
+            - texlive-fonts-recommended
+            - texlive-latex-extra
+            - texlive-latex-recommended
+
 before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get install -y graphviz
-    - sudo apt-get install -y imagemagick
-    - sudo apt-get install -y texlive
-    - sudo apt-get install -y texlive-fonts-recommended
-    - sudo apt-get install -y texlive-latex-extra
-    - sudo apt-get install -y texlive-latex-recommended
+    # - sudo apt-get update -qq
+    # - sudo apt-get install -y graphviz
+    # - sudo apt-get install -y imagemagick
+    # - sudo apt-get install -y texlive
+    # - sudo apt-get install -y texlive-fonts-recommended
+    # - sudo apt-get install -y texlive-latex-extra
+    # - sudo apt-get install -y texlive-latex-recommended
     - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.28-1.linux-64.sh
-    - sudo sh lilypond-2.19.28-1.linux-64.sh --batch
+    # - sudo sh lilypond-2.19.28-1.linux-64.sh --batch
+    - sh lilypond-2.19.28-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
     - pip install coveralls
     - pip install coverage
-    # Make a root-controlled ~/.abjad/ when testing for read-only filesystems.
+    # Make a non-accessible ~/.abjad/ when testing for read-only filesystems.
     - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
 
 install:
