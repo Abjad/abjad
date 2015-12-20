@@ -5,7 +5,7 @@ from abjad.tools.selectiontools.SimultaneousSelection \
 
 
 class Descendants(SimultaneousSelection):
-    r'''Abjad model of Component descendants:
+    r'''A selection of components that descend from a component.
 
     ::
 

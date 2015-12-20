@@ -8,7 +8,7 @@ from abjad.tools.selectiontools.ContiguousSelection import ContiguousSelection
 
 
 class LogicalTie(ContiguousSelection):
-    r'''All the notes in a logical tie.
+    r'''A selection of components in a logical tie.
 
     ..  container:: example
 

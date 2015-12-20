@@ -4,7 +4,7 @@ from abjad.tools.selectiontools.SimultaneousSelection \
 
 
 class Lineage(SimultaneousSelection):
-    r'''Abjad model of Component lineage:
+    r'''A selection of components in the lineage of a component.
 
     ::
 

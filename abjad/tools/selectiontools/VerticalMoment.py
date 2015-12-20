@@ -5,7 +5,7 @@ from abjad.tools.selectiontools.SimultaneousSelection \
 
 
 class VerticalMoment(SimultaneousSelection):
-    r'''Everything happening at a single moment in musical time:
+    r'''A selection of components happening at a single moment in musical time.
 
     ::
 

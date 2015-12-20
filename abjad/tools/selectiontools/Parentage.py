@@ -7,7 +7,7 @@ from abjad.tools.selectiontools.SimultaneousSelection \
 
 
 class Parentage(SimultaneousSelection):
-    r'''The parentage of a component.
+    r'''A selection of components in the parentage of a component.
 
     ..  container:: example
 
