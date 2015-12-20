@@ -160,6 +160,49 @@ class BooleanPattern(AbjadValueObject):
         maximum_index = max(self.indices)
         return maximum_index + 1
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def weight(self):
+        r'''Gets weight of pattern.
+
+        ..  container:: example
+
+            **Example 1.** Gets weight of cyclic pattern:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern.weight
+                3
+
+        ..  container:: example
+
+            **Example 2.** Gets weight of acyclic pattern:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 2, 3],
+                ...     )
+
+            ::
+
+                >>> pattern.weight
+                3
+
+        Weight defined equal to number of indices in pattern.
+
+        Returns nonnegative integer.
+        '''
+        return len(self.indices)
+
     ### PUBLIC METHODS ###
 
     @classmethod
