@@ -28,7 +28,7 @@ before_install:
     - pip install coveralls
     - pip install coverage
     # Make a root-controlled ~/.abjad/ when testing for read-only filesystems.
-    - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then sudo mkdir ~/.abjad ; fi
+    - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
 
 install:
     # install without development dependencies.
