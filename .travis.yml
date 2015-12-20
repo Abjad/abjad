@@ -29,6 +29,7 @@ before_install:
     - pip install coverage
     # Make a root-controlled ~/.abjad/ when testing for read-only filesystems.
     - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then sudo mkdir ~/.abjad ; fi
+    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
 
 install:
     # install without development dependencies.
