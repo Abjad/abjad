@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import operator
 from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class CompoundSieve(AbjadObject):
+class CompoundSieve(AbjadValueObject):
     r'''Compound sieve.
 
     ..  container:: example
@@ -14,7 +14,7 @@ class CompoundSieve(AbjadObject):
 
         ::
 
-            >>> Sieve = sievetools.Sieve
+            >>> Sieve = rhythmmakertools.Sieve
 
         ::
 
@@ -51,75 +51,75 @@ class CompoundSieve(AbjadObject):
         ::
 
             >>> print(format(sieve))
-            sievetools.CompoundSieve(
+            rhythmmakertools.CompoundSieve(
                 sieves=[
-                    sievetools.CompoundSieve(
+                    rhythmmakertools.CompoundSieve(
                         sieves=[
-                            sievetools.CompoundSieve(
+                            rhythmmakertools.CompoundSieve(
                                 sieves=[
-                                    sievetools.Sieve(period=8, offset=0, ),
-                                    sievetools.Sieve(period=8, offset=1, ),
-                                    sievetools.Sieve(period=8, offset=7, ),
+                                    rhythmmakertools.Sieve(period=8, offset=0, ),
+                                    rhythmmakertools.Sieve(period=8, offset=1, ),
+                                    rhythmmakertools.Sieve(period=8, offset=7, ),
                                     ],
                                 logical_operator='or',
                                 ),
-                            sievetools.CompoundSieve(
+                            rhythmmakertools.CompoundSieve(
                                 sieves=[
-                                    sievetools.Sieve(period=5, offset=1, ),
-                                    sievetools.Sieve(period=5, offset=3, ),
-                                    ],
-                                logical_operator='or',
-                                ),
-                            ],
-                        logical_operator='and',
-                        ),
-                    sievetools.CompoundSieve(
-                        sieves=[
-                            sievetools.CompoundSieve(
-                                sieves=[
-                                    sievetools.Sieve(period=8, offset=0, ),
-                                    sievetools.Sieve(period=8, offset=1, ),
-                                    sievetools.Sieve(period=8, offset=2, ),
-                                    ],
-                                logical_operator='or',
-                                ),
-                            sievetools.Sieve(period=5, offset=0, ),
-                            ],
-                        logical_operator='and',
-                        ),
-                    sievetools.Sieve(period=8, offset=3, ),
-                    sievetools.Sieve(period=8, offset=4, ),
-                    sievetools.CompoundSieve(
-                        sieves=[
-                            sievetools.CompoundSieve(
-                                sieves=[
-                                    sievetools.Sieve(period=8, offset=5, ),
-                                    sievetools.Sieve(period=8, offset=6, ),
-                                    ],
-                                logical_operator='or',
-                                ),
-                            sievetools.CompoundSieve(
-                                sieves=[
-                                    sievetools.Sieve(period=5, offset=2, ),
-                                    sievetools.Sieve(period=5, offset=3, ),
-                                    sievetools.Sieve(period=5, offset=4, ),
+                                    rhythmmakertools.Sieve(period=5, offset=1, ),
+                                    rhythmmakertools.Sieve(period=5, offset=3, ),
                                     ],
                                 logical_operator='or',
                                 ),
                             ],
                         logical_operator='and',
                         ),
-                    sievetools.CompoundSieve(
+                    rhythmmakertools.CompoundSieve(
                         sieves=[
-                            sievetools.Sieve(period=5, offset=2, ),
-                            sievetools.Sieve(period=8, offset=1, ),
+                            rhythmmakertools.CompoundSieve(
+                                sieves=[
+                                    rhythmmakertools.Sieve(period=8, offset=0, ),
+                                    rhythmmakertools.Sieve(period=8, offset=1, ),
+                                    rhythmmakertools.Sieve(period=8, offset=2, ),
+                                    ],
+                                logical_operator='or',
+                                ),
+                            rhythmmakertools.Sieve(period=5, offset=0, ),
                             ],
                         logical_operator='and',
                         ),
-                    sievetools.CompoundSieve(
+                    rhythmmakertools.Sieve(period=8, offset=3, ),
+                    rhythmmakertools.Sieve(period=8, offset=4, ),
+                    rhythmmakertools.CompoundSieve(
                         sieves=[
-                            sievetools.Sieve(period=5, offset=1, ),
-                            sievetools.Sieve(period=8, offset=6, ),
+                            rhythmmakertools.CompoundSieve(
+                                sieves=[
+                                    rhythmmakertools.Sieve(period=8, offset=5, ),
+                                    rhythmmakertools.Sieve(period=8, offset=6, ),
+                                    ],
+                                logical_operator='or',
+                                ),
+                            rhythmmakertools.CompoundSieve(
+                                sieves=[
+                                    rhythmmakertools.Sieve(period=5, offset=2, ),
+                                    rhythmmakertools.Sieve(period=5, offset=3, ),
+                                    rhythmmakertools.Sieve(period=5, offset=4, ),
+                                    ],
+                                logical_operator='or',
+                                ),
+                            ],
+                        logical_operator='and',
+                        ),
+                    rhythmmakertools.CompoundSieve(
+                        sieves=[
+                            rhythmmakertools.Sieve(period=5, offset=2, ),
+                            rhythmmakertools.Sieve(period=8, offset=1, ),
+                            ],
+                        logical_operator='and',
+                        ),
+                    rhythmmakertools.CompoundSieve(
+                        sieves=[
+                            rhythmmakertools.Sieve(period=5, offset=1, ),
+                            rhythmmakertools.Sieve(period=8, offset=6, ),
                             ],
                         logical_operator='and',
                         ),
@@ -132,6 +132,8 @@ class CompoundSieve(AbjadObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Masks'
+
     __slots__ = (
         '_boolean_train',
         '_indices',
@@ -143,7 +145,7 @@ class CompoundSieve(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(self, sieves=None, logical_operator='or'):
-        from abjad.tools import sievetools
+        from abjad.tools import rhythmmakertools
         sieves = sieves or []
         self._sieves = sieves[:]
         self._logical_operator = logical_operator
@@ -199,7 +201,7 @@ class CompoundSieve(AbjadObject):
 
     @staticmethod
     def _boolean_pattern_to_compound_sieve(boolean_pattern):
-        from abjad.tools import sievetools
+        from abjad.tools import rhythmmakertools
         if isinstance(boolean_pattern, CompoundSieve):
             return CompoundSieve(boolean_pattern)
         period = boolean_pattern.period
@@ -208,7 +210,7 @@ class CompoundSieve(AbjadObject):
         sieves = []
         for index in indices:
             adjusted_index = (index + offset) % period
-            sieve = sievetools.Sieve(period, adjusted_index)
+            sieve = rhythmmakertools.Sieve(period, adjusted_index)
             sieves.append(sieve)
         sieves.sort(key=lambda x: x.offset)
         sieve = CompoundSieve(sieves, logical_operator='or')
@@ -229,24 +231,24 @@ class CompoundSieve(AbjadObject):
         return sorted(result)
 
     def _operate(self, arg, operator):
-        from abjad.tools import sievetools
-        if (isinstance(self, sievetools.CompoundSieve) and 
+        from abjad.tools import rhythmmakertools
+        if (isinstance(self, rhythmmakertools.CompoundSieve) and 
             self.logical_operator == operator):
             argument_a = self.sieves
         else:
             argument_a = [self]
-        if (isinstance(arg, sievetools.CompoundSieve) and 
+        if (isinstance(arg, rhythmmakertools.CompoundSieve) and 
             arg.logical_operator == operator):
             argument_b = arg.sieves
         else:
             argument_b = [arg]
-        sieve = sievetools.CompoundSieve(argument_a + argument_b, operator)
+        sieve = rhythmmakertools.CompoundSieve(argument_a + argument_b, operator)
         return sieve
 
     def _sort_sieves(self):
-        from abjad.tools import sievetools
+        from abjad.tools import rhythmmakertools
         if all(
-            isinstance(sieve, sievetools.Sieve) 
+            isinstance(sieve, rhythmmakertools.Sieve) 
             for sieve in self.sieves
             ):
             self.sieves.sort()
@@ -263,8 +265,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(3, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> sieve.boolean_train
                 [1, 0, 1, 1, 1, 0]
@@ -275,8 +277,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(5, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> sieve.boolean_train
                 [1, 0, 1, 0, 1, 1, 1, 0, 1, 0]
@@ -295,8 +297,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(3, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> sieve.indices
                 [0, 2, 3, 4]
@@ -307,8 +309,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(5, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> sieve.indices
                 [0, 2, 4, 5, 6, 8]
@@ -327,8 +329,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(3, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> sieve.logical_operator
                 'or'
@@ -339,8 +341,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(5, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> sieve.logical_operator
                 'or'
@@ -359,8 +361,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(3, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> sieve.period
                 6
@@ -371,8 +373,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(5, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> sieve.period
                 10
@@ -391,8 +393,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(3, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(3, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> for sieve in sieve.sieves:
                 ...     sieve
@@ -405,8 +407,8 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve_1 = sievetools.Sieve(2, 0)
-                >>> sieve_2 = sievetools.Sieve(5, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(2, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(5, 0)
                 >>> sieve = sieve_1 | sieve_2
                 >>> for sieve in sieve.sieves:
                 ...     sieve
@@ -441,16 +443,16 @@ class CompoundSieve(AbjadObject):
 
             ::
 
-                >>> sieve = sievetools.CompoundSieve.from_boolean_patterns(patterns)
+                >>> sieve = rhythmmakertools.CompoundSieve.from_boolean_patterns(patterns)
                 >>> print(format(sieve))
-                sievetools.CompoundSieve(
+                rhythmmakertools.CompoundSieve(
                     sieves=[
-                        sievetools.Sieve(period=6, offset=0, ),
-                        sievetools.Sieve(period=6, offset=4, ),
-                        sievetools.Sieve(period=6, offset=5, ),
-                        sievetools.Sieve(period=10, offset=6, ),
-                        sievetools.Sieve(period=10, offset=7, ),
-                        sievetools.Sieve(period=10, offset=8, ),
+                        rhythmmakertools.Sieve(period=6, offset=0, ),
+                        rhythmmakertools.Sieve(period=6, offset=4, ),
+                        rhythmmakertools.Sieve(period=6, offset=5, ),
+                        rhythmmakertools.Sieve(period=10, offset=6, ),
+                        rhythmmakertools.Sieve(period=10, offset=7, ),
+                        rhythmmakertools.Sieve(period=10, offset=8, ),
                         ],
                     logical_operator='or',
                     )

@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import functools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 @functools.total_ordering
-class Sieve(AbjadObject):
+class Sieve(AbjadValueObject):
     r'''Sieve.
 
     ..  container:: example
@@ -13,7 +13,7 @@ class Sieve(AbjadObject):
 
         ::
 
-            >>> sieve = sievetools.Sieve(3, 0)
+            >>> sieve = rhythmmakertools.Sieve(3, 0)
             >>> sieve
             Sieve(period=3, offset=0)
 
@@ -23,7 +23,7 @@ class Sieve(AbjadObject):
 
         ::
 
-            >>> sieve = sievetools.Sieve(3, 1)
+            >>> sieve = rhythmmakertools.Sieve(3, 1)
             >>> sieve
             Sieve(period=3, offset=1)
 
@@ -35,6 +35,8 @@ class Sieve(AbjadObject):
     '''
 
     ### CLASS VARIABLES ###
+
+    __documentation_section__ = 'Masks'
 
     __slots__ = (
         '_boolean_train',
@@ -78,8 +80,8 @@ class Sieve(AbjadObject):
 
             **Example 1.** With equal period:
 
-                >>> sieve_1 = sievetools.Sieve(6, 0)
-                >>> sieve_2 = sievetools.Sieve(6, 1)
+                >>> sieve_1 = rhythmmakertools.Sieve(6, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(6, 1)
 
             ::
 
@@ -95,8 +97,8 @@ class Sieve(AbjadObject):
 
             **Example 2.** With unequal period:
 
-                >>> sieve_1 = sievetools.Sieve(6, 0)
-                >>> sieve_2 = sievetools.Sieve(7, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(6, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(7, 0)
 
             ::
 
@@ -140,7 +142,7 @@ class Sieve(AbjadObject):
 
             **Example 1.** With equal period and equal offset::
 
-                >>> sieve_1 = sievetools.Sieve(6, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(6, 0)
 
             ::
 
@@ -161,8 +163,8 @@ class Sieve(AbjadObject):
 
             **Example 2.** With equal period but unequal offset::
 
-                >>> sieve_1 = sievetools.Sieve(6, 0)
-                >>> sieve_2 = sievetools.Sieve(6, 1)
+                >>> sieve_1 = rhythmmakertools.Sieve(6, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(6, 1)
 
             ::
 
@@ -198,8 +200,8 @@ class Sieve(AbjadObject):
 
             **Example 3.** With unequal period:
 
-                >>> sieve_1 = sievetools.Sieve(6, 0)
-                >>> sieve_2 = sievetools.Sieve(7, 0)
+                >>> sieve_1 = rhythmmakertools.Sieve(6, 0)
+                >>> sieve_2 = rhythmmakertools.Sieve(7, 0)
 
             ::
 
@@ -274,18 +276,18 @@ class Sieve(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _operate(self, arg, operator):
-        from abjad.tools import sievetools
-        if (isinstance(self, sievetools.CompoundSieve) and 
+        from abjad.tools import rhythmmakertools
+        if (isinstance(self, rhythmmakertools.CompoundSieve) and 
             self.logical_operator == operator):
             argument_a = self.sieves
         else:
             argument_a = [self]
-        if (isinstance(arg, sievetools.CompoundSieve) and 
+        if (isinstance(arg, rhythmmakertools.CompoundSieve) and 
             arg.logical_operator == operator):
             argument_b = arg.sieves
         else:
             argument_b = [arg]
-        sieve = sievetools.CompoundSieve(argument_a + argument_b, operator)
+        sieve = rhythmmakertools.CompoundSieve(argument_a + argument_b, operator)
         return sieve
 
     ### PUBLIC PROPERTIES ###
@@ -300,7 +302,7 @@ class Sieve(AbjadObject):
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(3, 0)
+                    >>> sieve = rhythmmakertools.Sieve(3, 0)
                     >>> sieve.boolean_train
                     [1, 0, 0]
 
@@ -310,7 +312,7 @@ class Sieve(AbjadObject):
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(3, 1)
+                    >>> sieve = rhythmmakertools.Sieve(3, 1)
                     >>> sieve.boolean_train
                     [0, 1, 0]
 
@@ -334,7 +336,7 @@ class Sieve(AbjadObject):
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(3, 0)
+                    >>> sieve = rhythmmakertools.Sieve(3, 0)
                     >>> sieve.indices
                     [0]
 
@@ -344,7 +346,7 @@ class Sieve(AbjadObject):
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(3, 1)
+                    >>> sieve = rhythmmakertools.Sieve(3, 1)
                     >>> sieve.indices
                     [1]
 
@@ -362,7 +364,7 @@ class Sieve(AbjadObject):
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(3, 0)
+                    >>> sieve = rhythmmakertools.Sieve(3, 0)
                     >>> sieve.offset
                     0
 
@@ -372,7 +374,7 @@ class Sieve(AbjadObject):
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(3, 1)
+                    >>> sieve = rhythmmakertools.Sieve(3, 1)
                     >>> sieve.offset
                     1
 
@@ -390,7 +392,7 @@ class Sieve(AbjadObject):
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(3, 0)
+                    >>> sieve = rhythmmakertools.Sieve(3, 0)
                     >>> sieve.period
                     3
 
@@ -400,7 +402,7 @@ class Sieve(AbjadObject):
 
                 ::
 
-                    >>> sieve = sievetools.Sieve(3, 1)
+                    >>> sieve = rhythmmakertools.Sieve(3, 1)
                     >>> sieve.period
                     3
 
