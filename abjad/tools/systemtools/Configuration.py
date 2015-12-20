@@ -228,7 +228,8 @@ class Configuration(AbjadObject):
                     home_directory,
                     self.configuration_directory_name,
                     )
-                if os.path.exists(path) and os.access(path, flags):
+                if not os.path.exists(path) or (
+                    os.path.exists(path) and os.access(path, flags)):
                     self._cached_configuration_directory_path = path
                     return path
             temp_directory = self.temp_directory
