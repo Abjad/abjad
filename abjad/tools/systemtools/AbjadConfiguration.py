@@ -485,12 +485,12 @@ class AbjadConfiguration(Configuration):
         return os.path.abspath(relative_path)
 
     @property
-    def configuration_directory(self):
-        r'''Gets configuration directory.
+    def configuration_directory_name(self):
+        r'''Gets configuration directory name.
 
         Returns string.
         '''
-        return self.abjad_configuration_directory
+        return '.abjad'
 
     @property
     def configuration_file_name(self):
