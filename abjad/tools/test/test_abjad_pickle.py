@@ -29,7 +29,6 @@ ignored_classes = (
     selectiontools.Lineage,
     selectiontools.Parentage,
     selectiontools.Selection,
-    selectiontools.SimultaneousSelection,
     selectiontools.ContiguousSelection,
     selectiontools.VerticalMoment,
     systemtools.LilyPondFormatBundle,
