@@ -163,8 +163,56 @@ class BooleanPattern(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def vector(self):
+        r'''Gets vector boolean pattern.
+        
+        ..  container:: example
+
+            **Example 1.** Gets vector of cyclic pattern:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern.vector
+                [1, 1, 0, 0, 0, 0, 0, 1]
+
+        ..  container:: example
+
+            **Example 2.** Gets vector of acyclic pattern:
+
+            ::
+
+                >>> pattern = rhythmmakertools.BooleanPattern(
+                ...     indices=[0, 2, 3],
+                ...     )
+
+            ::
+
+                >>> pattern.vector
+                [1, 0, 1, 1]
+
+        Vector defined equal to list of ones and zeroes with length equal to
+        length of pattern.
+
+        Returns list.
+        '''
+        result = []
+        for i in range(len(self)):
+            if i in self.indices:
+                result.append(1)
+            else:
+                result.append(0)
+        return result
+
+    @property
     def weight(self):
-        r'''Gets weight of pattern.
+        r'''Gets weight of boolean pattern.
 
         ..  container:: example
 
