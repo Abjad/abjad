@@ -13,8 +13,6 @@ matrix:
     include:
         - python: 3.4
           env: TRAVIS_READ_ONLY=true
-    allow_failures:
-        - env: TRAVIS_READ_ONLY=true
 
 addons:
     apt:
