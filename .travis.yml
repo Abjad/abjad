@@ -29,7 +29,6 @@ before_install:
     - pip install coverage
     # Make a root-controlled ~/.abjad/ when testing for read-only filesystems.
     - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then sudo mkdir ~/.abjad ; fi
-    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
 
 install:
     # install without development dependencies.
@@ -38,6 +37,8 @@ install:
     - abjad/scr/devel/prime-parser-tables
     # then install development dependencies.
     - pip install -e .[development]
+    # echo the configuration file path to debug read-only-filesystem handling
+    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
 
 script:
     - abjad/scr/ajv doctest --diff experimental
