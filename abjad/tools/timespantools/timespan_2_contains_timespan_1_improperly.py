@@ -42,7 +42,7 @@ def timespan_2_contains_timespan_1_improperly(
 
         ::
 
-            >>> labeltools.color_leaves_in_expr(selected_notes, 'red')
+            >>> label(selected_notes).color_leaves('red')
             >>> show(staff) # doctest: +SKIP
 
     Returns time relation or boolean.

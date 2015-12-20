@@ -54,7 +54,7 @@ def timespan_2_starts_during_timespan_1(
 
         ::
 
-            >>> labeltools.color_leaves_in_expr(selected_notes, 'red')
+            >>> label(selected_notes).color_leaves('red')
 
         ::
 
