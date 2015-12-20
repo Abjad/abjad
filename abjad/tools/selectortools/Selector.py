@@ -150,7 +150,7 @@ class Selector(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
+    def __call__(self, expr, rotation=None, start_offset=None):
         r'''Selects components from component or selection `expr`.
 
         Returns a selection of selections or containers.
@@ -170,10 +170,17 @@ class Selector(AbjadValueObject):
         for callback in callbacks:
             #print('EXPR', expr)
             try:
-                expr = callback(expr, rotation=rotation)
+                expr, start_offset = callback(
+                    expr, 
+                    rotation=rotation,
+                    start_offset=start_offset,
+                    )
             except TypeError:
-                expr = callback(expr)
-        return selectiontools.Selection(expr)
+                expr, start_offset = callback(expr, start_offset=start_offset)
+        if start_offset is None:
+            return selectiontools.Selection(expr)
+        else:
+            return selectiontools.Selection(expr), start_offset
 
     def __getitem__(self, item):
         r'''Gets `item` from selector.
@@ -231,7 +238,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> class CMajorSelectorCallback(abctools.AbjadValueObject):
-                ...     def __call__(self, expr):
+                ...     def __call__(self, expr, start_offset=None):
                 ...         c_major_pcs = pitchtools.PitchClassSet("c e g")
                 ...         result = []
                 ...         for subexpr in expr:
@@ -245,7 +252,7 @@ class Selector(AbjadValueObject):
                 ...                     subresult.append(x)
                 ...             if subresult:
                 ...                 result.append(tuple(subresult))
-                ...         return tuple(result)
+                ...         return tuple(result), start_offset
 
             ::
 
@@ -1600,7 +1607,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     @staticmethod
-    def run_selectors(expr, selectors, rotation=None):
+    def run_selectors(expr, selectors, rotation=None, start_offset=None):
         r'''Processes multiple selectors against a single selection.
 
         Minimizes re-selection when selectors share identical prefixes of
@@ -1677,7 +1684,6 @@ class Selector(AbjadValueObject):
 
         Returns a dictionary of selector/selection pairs.
         '''
-
         if rotation is None:
             rotation = 0
         rotation = int(rotation)
@@ -1689,17 +1695,14 @@ class Selector(AbjadValueObject):
             expr = select(expr)
         expr = (expr,)
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
-
         maximum_length = 0
         for selector in selectors:
             if selector.callbacks:
                 maximum_length = max(maximum_length, len(selector.callbacks))
         #print('MAX LENGTH', maximum_length)
-
         selectors = list(selectors)
         results_by_prefix = {(): expr}
         results_by_selector = collections.OrderedDict()
-
         for index in range(1, maximum_length + 2):
             #print('INDEX', index)
             #print('PRUNING')
@@ -1727,11 +1730,17 @@ class Selector(AbjadValueObject):
                 previous_expr = results_by_prefix[previous_prefix]
                 callback = this_prefix[-1]
                 try:
-                    expr = callback(previous_expr, rotation=rotation)
+                    expr, start_offset = callback(
+                        previous_expr, 
+                        rotation=rotation,
+                        start_offset=start_offset,
+                        )
                 except TypeError:
-                    expr = callback(previous_expr)
+                    expr, start_offset = callback(
+                        previous_expr, 
+                        start_offset=start_offset,
+                        )
                 results_by_prefix[this_prefix] = expr
-
         return results_by_selector
 
     def with_next_leaf(self):

@@ -25,12 +25,13 @@ class ItemSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, start_offset=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple of selections.
         '''
         assert isinstance(expr, tuple), repr(tuple)
+        new_start_offset = None
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
         if self.apply_to_each:
@@ -48,7 +49,7 @@ class ItemSelectorCallback(AbjadValueObject):
                 result.append(subresult)
             except IndexError:
                 pass
-        return tuple(result)
+        return tuple(result), new_start_offset
 
     ### PUBLIC PROPERTIES ###
 

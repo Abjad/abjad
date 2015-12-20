@@ -8,13 +8,15 @@ class ContiguitySelectorCallback(AbjadValueObject):
     '''
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, start_offset=None):
         r'''Iterates tuple `expr`.
         '''
+        new_start_offset = None
         result = []
         subresult = []
         subresult.extend(expr[:1])
@@ -34,4 +36,4 @@ class ContiguitySelectorCallback(AbjadValueObject):
                 subresult = [subexpr]
         if subresult:
             result.append(select(subresult))
-        return tuple(result)
+        return tuple(result), new_start_offset

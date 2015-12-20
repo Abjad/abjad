@@ -31,11 +31,12 @@ class PatternedSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None):
+    def __call__(self, expr, rotation=None, start_offset=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple in which each item is a selection or component.
         '''
+        new_start_offset = None
         if rotation is None:
             rotation = 0
         rotation = int(rotation)
@@ -65,7 +66,7 @@ class PatternedSelectorCallback(AbjadValueObject):
                     rotation=rotation,
                     ):
                     result.append(item)
-        return tuple(result)
+        return tuple(result), new_start_offset
 
     ### PUBLIC PROPERTIES ###
 

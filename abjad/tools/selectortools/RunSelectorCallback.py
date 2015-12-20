@@ -27,12 +27,13 @@ class RunSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, start_offset=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple of selections.
         '''
         assert isinstance(expr, tuple), repr(tuple)
+        new_start_offset = None
         result = []
         prototype = self.prototype
         if not isinstance(prototype, tuple):
@@ -41,7 +42,7 @@ class RunSelectorCallback(AbjadValueObject):
             for run in iterate(subexpr).by_run(prototype):
                 run = selectiontools.Selection(run)
                 result.append(run)
-        return tuple(result)
+        return tuple(result), new_start_offset
 
     ### PUBLIC PROPERTIES ###
 

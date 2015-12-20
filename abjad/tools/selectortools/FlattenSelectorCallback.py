@@ -20,16 +20,17 @@ class FlattenSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, start_offset=None):
         r'''Iterates tuple `expr`.
 
         ..  todo:: Does this always return a tuple of selections?
         '''
         assert isinstance(expr, tuple), repr(tuple)
-        return sequencetools.flatten_sequence(
+        expr = sequencetools.flatten_sequence(
             expr, 
             depth=self.depth,
             )
+        return expr, start_offset
 
     ### PUBLIC PROPERTIES ###
 

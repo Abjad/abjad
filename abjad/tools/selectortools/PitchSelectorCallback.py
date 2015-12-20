@@ -31,11 +31,12 @@ class PitchSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, start_offset=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple in which each item is a selection or component.
         '''
+        new_start_offset = None
         if not self.pitches:
             return ()
         result = []
@@ -46,7 +47,7 @@ class PitchSelectorCallback(AbjadValueObject):
                 )
             if self.pitches.intersection(pitch_set):
                 result.append(subexpr)
-        return tuple(result)
+        return tuple(result), new_start_offset
 
     ### PUBLIC PROPERTIES ###
 

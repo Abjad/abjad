@@ -25,7 +25,7 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, start_offset=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple in which each item is a selection or component.
@@ -33,6 +33,7 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
         from abjad.tools import selectiontools
         from abjad.tools.topleveltools import select
         assert isinstance(expr, tuple), repr(tuple)
+        new_start_offset = None
         result = []
         for subexpr in expr:
             subresult = []
@@ -52,7 +53,7 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
                     subresult.append(next_leaf)
             subresult = select(subresult)
             result.append(subresult)
-        return tuple(result)
+        return tuple(result), new_start_offset
 
     ### PUBLIC PROPERTIES ###
 

@@ -110,17 +110,18 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, start_offset=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple of selections.
         '''
         assert isinstance(expr, tuple), repr(expr)
+        new_start_offset = None
         selections = []
         for subexpr in expr:
             selections_ = self._group(subexpr)
             selections.extend(selections_)
-        return tuple(selections)
+        return tuple(selections), new_start_offset
 
     ### PRIVATE METHODS ###
 

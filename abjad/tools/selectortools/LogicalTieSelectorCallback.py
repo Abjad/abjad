@@ -31,12 +31,13 @@ class LogicalTieSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr):
+    def __call__(self, expr, start_offset=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple of selections.
         '''
         assert isinstance(expr, tuple), repr(tuple)
+        new_start_offset = None
         result = []
         if self.flatten:
             visited_logical_ties = set()
@@ -57,7 +58,7 @@ class LogicalTieSelectorCallback(AbjadValueObject):
                     visited_logical_ties.add(logical_tie)
                 subresult = selectiontools.Selection(subresult)
                 result.append(subresult)
-        return tuple(result)
+        return tuple(result), new_start_offset
 
     ### PRIVATE METHODS ###
 
