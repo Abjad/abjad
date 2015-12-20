@@ -208,6 +208,12 @@ class Configuration(AbjadObject):
     def configuration_directory_path(self):
         r'''Gets configuration directory path.
 
+        Defaults to $HOME/{configuration_directory_name}.
+
+        If $HOME is read-only or
+        $HOME/{configuration_directory_name} is read-only, this
+        will return $TEMP/{configuration_directory_name}.
+
         Returns string.
         '''
         home_directory = self.home_directory

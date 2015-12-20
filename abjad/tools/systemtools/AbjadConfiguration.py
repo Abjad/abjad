@@ -71,7 +71,8 @@ class AbjadConfiguration(Configuration):
                     '(such as PDFs and LilyPond files) should be saved.',
                     'Defaults to $HOME/.abjad/output/'
                     ],
-                'default': os.path.join(self.abjad_configuration_directory,
+                'default': os.path.join(
+                    self.configuration_directory_path,
                     'output',
                     ),
                 'validator': str,
@@ -468,7 +469,7 @@ class AbjadConfiguration(Configuration):
         if 'abjad_output_directory' in self._settings:
             return self._settings['abjad_output_directory']
         return os.path.join(
-            self.abjad_configuration_directory,
+            self.configuration_directory_path,
             'output'
             )
 
