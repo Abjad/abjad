@@ -7,6 +7,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class Sieve(AbjadValueObject):
     r'''Sieve.
 
+    ..  note:: Deprecated. Use boolean patterns instead.
+
     ..  container:: example
 
         **Example 1.** Sieve without offset:

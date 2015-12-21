@@ -7,6 +7,8 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class CompoundSieve(AbjadValueObject):
     r'''Compound sieve.
 
+    ..  note:: Deprecated. Use compound patterns instead.
+
     ..  container:: example
 
         **Example 1.** Compound sieve from the opening of Xenakis's *Psappha*
