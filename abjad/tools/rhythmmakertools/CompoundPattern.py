@@ -77,6 +77,147 @@ class CompoundPattern(Expression):
                     operator='and',
                     )
 
+        ..  container:: example
+
+            **Example 3.** Sieve from opening of Xenakis's **Psappha**:
+
+            ::
+
+                >>> sieve_1a = rhythmmakertools.select_every([0, 1, 7], period=8)
+                >>> sieve_1b = rhythmmakertools.select_every([1, 3], period=5)
+                >>> sieve_1 = rhythmmakertools.CompoundPattern(
+                ...     [sieve_1a, sieve_1b],
+                ...     operator='and',
+                ...     )
+                >>> sieve_2a = rhythmmakertools.select_every([0, 1, 2], period=8)
+                >>> sieve_2b = rhythmmakertools.select_every([0], period=5)
+                >>> sieve_2 = rhythmmakertools.CompoundPattern(
+                ...     [sieve_2a, sieve_2b],
+                ...     operator='and',
+                ...     )
+                >>> sieve_3 = rhythmmakertools.select_every([3], period=8)
+                >>> sieve_4 = rhythmmakertools.select_every([4], period=8)
+                >>> sieve_5a = rhythmmakertools.select_every([5, 6], period=8)
+                >>> sieve_5b = rhythmmakertools.select_every([2, 3, 4], period=5)
+                >>> sieve_5 = rhythmmakertools.CompoundPattern(
+                ...     [sieve_5a, sieve_5b],
+                ...     operator='and',
+                ...     )
+                >>> sieve_6 = rhythmmakertools.CompoundPattern(
+                ...     [
+                ...         rhythmmakertools.select_every([1], period=8),
+                ...         rhythmmakertools.select_every([2], period=5),
+                ...         ],
+                ...     operator='and',
+                ...     )
+                >>> sieve_7 = rhythmmakertools.CompoundPattern(
+                ...     [
+                ...         rhythmmakertools.select_every([6], period=8),
+                ...         rhythmmakertools.select_every([1], period=5),
+                ...         ],
+                ...     operator='and',
+                ...     )
+                >>> sieve = rhythmmakertools.CompoundPattern(
+                ...     [
+                ...         sieve_1,
+                ...         sieve_2,
+                ...         sieve_3,
+                ...         sieve_4,
+                ...         sieve_5,
+                ...         sieve_6,
+                ...         sieve_7,
+                ...         ],
+                ...     operator='or',
+                ...     )
+
+            ::
+
+                >>> print(format(sieve))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.CompoundPattern(
+                            (
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(0, 1, 7),
+                                    period=8,
+                                    ),
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(1, 3),
+                                    period=5,
+                                    ),
+                                ),
+                            operator='and',
+                            ),
+                        rhythmmakertools.CompoundPattern(
+                            (
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(0, 1, 2),
+                                    period=8,
+                                    ),
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(0,),
+                                    period=5,
+                                    ),
+                                ),
+                            operator='and',
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(3,),
+                            period=8,
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(4,),
+                            period=8,
+                            ),
+                        rhythmmakertools.CompoundPattern(
+                            (
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(5, 6),
+                                    period=8,
+                                    ),
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(2, 3, 4),
+                                    period=5,
+                                    ),
+                                ),
+                            operator='and',
+                            ),
+                        rhythmmakertools.CompoundPattern(
+                            (
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(1,),
+                                    period=8,
+                                    ),
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(2,),
+                                    period=5,
+                                    ),
+                                ),
+                            operator='and',
+                            ),
+                        rhythmmakertools.CompoundPattern(
+                            (
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(6,),
+                                    period=8,
+                                    ),
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(1,),
+                                    period=5,
+                                    ),
+                                ),
+                            operator='and',
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+            ::
+
+                >>> sieve.get_boolean_vector(total_length=40)
+                [1, 1, 0, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 0, 1,
+                1, 0, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1, 0]
+
     '''
 
     ### CLASS VARIABLES ###
