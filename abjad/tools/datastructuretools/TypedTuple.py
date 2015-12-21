@@ -16,7 +16,8 @@ class TypedTuple(TypedCollection):
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
-        TypedCollection.__init__(self,
+        TypedCollection.__init__(
+            self,
             item_class=item_class,
             items=items,
             )
