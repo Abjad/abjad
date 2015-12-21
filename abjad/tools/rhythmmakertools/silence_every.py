@@ -21,8 +21,10 @@ def silence_every(
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(1,),
-                period=2,
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(1,),
+                    period=2,
+                    ),
                 )
 
         ::
@@ -73,8 +75,10 @@ def silence_every(
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(1, 2),
-                period=3,
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(1, 2),
+                    period=3,
+                    ),
                 )
 
         ::
@@ -125,8 +129,10 @@ def silence_every(
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(-1,),
-                invert=True,
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(-1,),
+                    invert=True,
+                    ),
                 )
 
         ::
@@ -168,10 +174,13 @@ def silence_every(
     Returns silence mask.
     '''
     from abjad.tools import rhythmmakertools
-
-    return rhythmmakertools.SilenceMask(
+    pattern = rhythmmakertools.BooleanPattern(
         indices=indices,
         invert=invert,
         period=period,
+        )
+    mask = rhythmmakertools.SilenceMask(
+        pattern=pattern,
         use_multimeasure_rests=use_multimeasure_rests,
         )
+    return mask

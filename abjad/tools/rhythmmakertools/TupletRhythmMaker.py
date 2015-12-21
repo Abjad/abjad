@@ -727,10 +727,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...         beam_each_division=False,
                 ...         ),
                 ...     division_masks=[
-                ...         rhythmmakertools.SilenceMask(
-                ...             indices=[1],
-                ...             period=2,
-                ...             ),
+                ...         rhythmmakertools.silence_every([1], period=2),
                 ...         ],
                 ...     )
 

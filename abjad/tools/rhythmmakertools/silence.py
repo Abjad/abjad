@@ -16,15 +16,15 @@ def silence(indices=None, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(1, 2),
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(1, 2),
+                    ),
                 )
 
         ::
 
             >>> maker = rhythmmakertools.NoteRhythmMaker(
-            ...     division_masks=[
-            ...         mask,
-            ...         ],
+            ...     division_masks=[mask],
             ...     )
             >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
             >>> music = maker(divisions)
@@ -69,7 +69,9 @@ def silence(indices=None, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(-1, -2),
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(-1, -2),
+                    ),
                 )
 
         ::
@@ -113,9 +115,9 @@ def silence(indices=None, invert=None):
     Returns silence mask.
     '''
     from abjad.tools import rhythmmakertools
-
     indices = indices or []
-    return rhythmmakertools.SilenceMask(
+    pattern = rhythmmakertools.BooleanPattern(
         indices=indices,
         invert=invert,
         )
+    return rhythmmakertools.SilenceMask(pattern=pattern)

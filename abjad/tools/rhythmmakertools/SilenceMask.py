@@ -1,25 +1,25 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.rhythmmakertools.BooleanPattern import BooleanPattern
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class SilenceMask(BooleanPattern):
+class SilenceMask(AbjadValueObject):
     r'''Silence mask.
 
     ..  container:: example
 
         ::
 
-            >>> mask = rhythmmakertools.SilenceMask(
-            ...     indices=[0, 1, 7],
-            ...     period=16,
-            ...     )
+            >>> pattern = rhythmmakertools.select_every([0, 1, 7], period=16)
+            >>> mask = rhythmmakertools.SilenceMask(pattern)
 
         ::
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(0, 1, 7),
-                period=16,
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(0, 1, 7),
+                    period=16,
+                    ),
                 )
 
     '''
@@ -29,6 +29,7 @@ class SilenceMask(BooleanPattern):
     __documentation_section__ = 'Masks'
 
     __slots__ = (
+        '_pattern',
         '_use_multimeasure_rests',
         )
 
@@ -36,22 +37,31 @@ class SilenceMask(BooleanPattern):
 
     def __init__(
         self,
-        indices=None,
-        period=None,
-        invert=None,
+        pattern=None,
         use_multimeasure_rests=None,
         ):
-        superclass = super(SilenceMask, self)
-        superclass.__init__(
-            indices=indices,
-            period=period,
-            invert=invert,
+        from abjad.tools import rhythmmakertools
+        prototype = (
+            rhythmmakertools.BooleanPattern,
+            rhythmmakertools.CompoundPattern,
             )
+        if pattern is None:
+            pattern = rhythmmakertools.select_all()
+        assert isinstance(pattern, prototype), repr(pattern)
+        self._pattern = pattern
         if use_multimeasure_rests is not None:
             assert isinstance(use_multimeasure_rests, type(True))
         self._use_multimeasure_rests = use_multimeasure_rests
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def pattern(self):
+        r'''Gets pattern of silence mask.
+
+        Returns pattern.
+        '''
+        return self._pattern
 
     @property
     def use_multimeasure_rests(self):
@@ -63,9 +73,9 @@ class SilenceMask(BooleanPattern):
 
             ::
 
+            
                 >>> mask = rhythmmakertools.SilenceMask(
-                ...     indices=[0, 1, 7],
-                ...     period=16,
+                ...     rhythmmakertools.select_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=False,
                 ...     )
 
@@ -83,8 +93,7 @@ class SilenceMask(BooleanPattern):
             ::
 
                 >>> mask = rhythmmakertools.SilenceMask(
-                ...     indices=[0, 1, 7],
-                ...     period=16,
+                ...     rhythmmakertools.select_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=True,
                 ...     )
 

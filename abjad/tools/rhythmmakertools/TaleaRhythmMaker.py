@@ -1537,8 +1537,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     division_masks=[
                 ...         rhythmmakertools.SilenceMask(
-                ...             indices=[1],
-                ...             period=2,
+                ...             pattern=rhythmmakertools.select_every([1], period=2),
                 ...             ),
                 ...         ],
                 ...     )
@@ -1648,8 +1647,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     split_divisions_by_counts=[9],
                 ...     division_masks=[
                 ...         rhythmmakertools.SilenceMask(
-                ...             indices=[1],
-                ...             period=2,
+                ...             pattern=rhythmmakertools.select_every([1], period=2),
                 ...             ),
                 ...         ],
                 ...     )

@@ -16,7 +16,9 @@ def silence_first(n=1, invert=None, use_multimeasure_rests=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(0,),
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(0,),
+                    ),
                 )
 
         ::
@@ -67,7 +69,9 @@ def silence_first(n=1, invert=None, use_multimeasure_rests=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(0, 1),
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(0, 1),
+                    ),
                 )
 
         ::
@@ -118,7 +122,9 @@ def silence_first(n=1, invert=None, use_multimeasure_rests=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                indices=(),
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(),
+                    ),
                 )
 
         ::
@@ -160,10 +166,13 @@ def silence_first(n=1, invert=None, use_multimeasure_rests=None):
     Returns silence mask.
     '''
     from abjad.tools import rhythmmakertools
-
     indices = list(range(n))
-    return rhythmmakertools.SilenceMask(
+    pattern = rhythmmakertools.BooleanPattern(
         indices=indices,
         invert=invert,
+        )
+    mask = rhythmmakertools.SilenceMask(
+        pattern=pattern,
         use_multimeasure_rests=use_multimeasure_rests,
         )
+    return mask
