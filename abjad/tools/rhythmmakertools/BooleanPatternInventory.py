@@ -226,8 +226,12 @@ class BooleanPatternInventory(TypedTuple):
         Returns pattern or none.
         '''
         from abjad.tools import rhythmmakertools
+        prototype = (
+            rhythmmakertools.SilenceMask,
+            rhythmmakertools.SustainMask,
+            )
         for pattern in reversed(self):
-            if isinstance(pattern, rhythmmakertools.SilenceMask):
+            if isinstance(pattern, prototype):
                 if pattern.pattern.matches_index(
                     index, total_length, rotation=rotation):
                     return pattern
@@ -311,8 +315,12 @@ class BooleanPatternInventory(TypedTuple):
     @property
     def _item_coercer(self):
         from abjad.tools import rhythmmakertools
+        prototype = (
+            rhythmmakertools.SilenceMask,
+            rhythmmakertools.SustainMask,
+            )
         def coerce_(expr):
-            if isinstance(expr, rhythmmakertools.SilenceMask):
+            if isinstance(expr, prototype):
                 pass
             elif not isinstance(expr, rhythmmakertools.BooleanPattern):
                 expr = rhythmmakertools.BooleanPattern(*expr)

@@ -351,11 +351,15 @@ class RhythmMaker(AbjadValueObject):
     @staticmethod
     def _prepare_masks(masks):
         from abjad.tools import rhythmmakertools
+        prototype = (
+            rhythmmakertools.SilenceMask,
+            rhythmmakertools.SustainMask,
+            )
         if masks is None:
             return
         if isinstance(masks, rhythmmakertools.BooleanPattern):
             masks = (masks,)
-        if isinstance(masks, rhythmmakertools.SilenceMask):
+        if isinstance(masks, prototype):
             masks = (masks,)
         masks = rhythmmakertools.BooleanPatternInventory(
             items=masks,

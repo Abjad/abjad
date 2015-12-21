@@ -16,7 +16,9 @@ def sustain_first(n=1, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                indices=(0,),
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(0,),
+                    ),
                 )
 
         ::
@@ -90,7 +92,9 @@ def sustain_first(n=1, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                indices=(0, 1),
+                pattern=rhythmmakertools.BooleanPattern(
+                    indices=(0, 1),
+                    ),
                 )
 
         ::
@@ -148,9 +152,10 @@ def sustain_first(n=1, invert=None):
     Returns sustain mask.
     '''
     from abjad.tools import rhythmmakertools
-
     indices = list(range(n))
-    return rhythmmakertools.SustainMask(
+    pattern = rhythmmakertools.BooleanPattern(
         indices=indices,
         invert=invert,
         )
+    mask = rhythmmakertools.SustainMask(pattern=pattern)
+    return mask

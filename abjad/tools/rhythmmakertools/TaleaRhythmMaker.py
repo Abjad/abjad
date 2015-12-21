@@ -1590,10 +1590,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     division_masks=[
-                ...         rhythmmakertools.SustainMask(
-                ...             indices=[1],
-                ...             period=2,
-                ...             ),
+                ...         rhythmmakertools.sustain_every([1], period=2),
                 ...         ],
                 ...     )
 
@@ -1711,10 +1708,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         ),
                 ...     split_divisions_by_counts=[9],
                 ...     division_masks=[
-                ...         rhythmmakertools.SustainMask(
-                ...             indices=[1],
-                ...             period=2,
-                ...             ),
+                ...         rhythmmakertools.sustain_every([1], period=2),
                 ...         ],
                 ...     )
 

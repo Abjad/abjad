@@ -790,10 +790,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     division_masks=[
-                ...         rhythmmakertools.SustainMask(
-                ...             indices=[0],
-                ...             period=2,
-                ...             ),
+                ...         rhythmmakertools.sustain_every([0], period=2),
                 ...         ],
                 ...     )
 
