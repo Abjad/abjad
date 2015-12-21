@@ -113,6 +113,38 @@ class BooleanPattern(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __and__(self, other):
+        r'''Logical AND of two patterns.
+
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern = pattern_1 & pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(-3, -2, -1),
+                            ),
+                        ),
+                    operator='and',
+                    )
+
+        Returns compound pattern.
+        '''
+        from abjad.tools import rhythmmakertools
+        return rhythmmakertools.CompoundPattern([self, other], operator='and')
 
     def __len__(self):
         r'''Gets length of boolean pattern.
@@ -186,6 +218,72 @@ class BooleanPattern(AbjadValueObject):
             maximum_index = max(absolute_indices)
             return maximum_index + 1
         return 0
+
+    def __or__(self, other):
+        r'''Logical OR of two patterns.
+
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern = pattern_1 | pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(-3, -2, -1),
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+        Returns compound pattern.
+        '''
+        from abjad.tools import rhythmmakertools
+        return rhythmmakertools.CompoundPattern([self, other], operator='or')
+
+    def __xor__(self, other):
+        r'''Logical XOR of two patterns.
+
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern = pattern_1 ^ pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(-3, -2, -1),
+                            ),
+                        ),
+                    operator='xor',
+                    )
+
+        Returns compound pattern.
+        '''
+        from abjad.tools import rhythmmakertools
+        return rhythmmakertools.CompoundPattern([self, other], operator='xor')
 
     ### PUBLIC PROPERTIES ###
 
