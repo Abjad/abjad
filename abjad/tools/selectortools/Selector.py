@@ -272,6 +272,7 @@ class Selector(AbjadValueObject):
         '''
         return self._append_callback(callback)
 
+    # TODO: maybe add a depth=None keyword
     def by_class(
         self,
         prototype=None,
@@ -279,7 +280,103 @@ class Selector(AbjadValueObject):
         ):
         r'''Configures selector to select components of class `prototype`.
 
-        ..  todo:: Maybe add a depth=None keyword.
+        ..  container:: example
+
+            **Example 1.** Selects notes and does not flatten:
+
+            ::
+
+                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'8 ~
+                    d'16
+                    e'16 ~
+                    e'8
+                    r4
+                    g'8
+                }
+
+            ::
+
+                >>> selector = select().by_class(prototype=Note)
+                >>> for selection in selector(staff):
+                ...     selection
+                Selection(Note("c'4"), Note("d'8"), Note("d'16"), Note("e'16"), Note("e'8"), Note("g'8"))
+
+            Call returns a selection containing a selection of notes.
+
+        ..  container:: example
+
+            **Example 2.** Selects notes and flattens:
+
+            ::
+
+                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'8 ~
+                    d'16
+                    e'16 ~
+                    e'8
+                    r4
+                    g'8
+                }
+
+            ::
+
+                >>> selector = select().by_class(prototype=Note, flatten=True)
+                >>> for note in selector(staff):
+                ...     note
+                Note("c'4")
+                Note("d'8")
+                Note("d'16")
+                Note("e'16")
+                Note("e'8")
+                Note("g'8")
+
+            Call returns a selection of notes.
+
+        ..  container:: example
+
+            **Example 3.** Selects rests:
+
+            ::
+
+                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 r4 g'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'8 ~
+                    d'16
+                    e'16 ~
+                    e'8
+                    r4
+                    g'8
+                }
+
+            ::
+
+                >>> selector = select().by_class(prototype=Rest, flatten=True)
+                >>> for rest in selector(staff):
+                ...     rest
+                Rest('r4')
+
+            Call returns a selection of rests.
 
         Returns new selector.
         '''
@@ -291,14 +388,35 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def by_contiguity(self):
-        r'''Configures selector select components based on time-wise
-        contiguity.
+        r'''Configures selector to select timewise contiguous components.
 
         ..  container:: example
+
+            **Example 1.** Selects contiguous groups of sixteenth notes:
 
             ::
 
                 >>> staff = Staff("c'4 d'16 d' d' d' e'4 f'16 f' f' f'")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'16
+                    d'16
+                    d'16
+                    d'16
+                    e'4
+                    f'16
+                    f'16
+                    f'16
+                    f'16
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.flatten()
@@ -314,6 +432,9 @@ class Selector(AbjadValueObject):
                 Selection(Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16"))
 
         ..  container:: example
+
+            **Example 2.** Selects contiguous groups of logical ties each less
+            than a quarter note in duration:
 
             ::
 
