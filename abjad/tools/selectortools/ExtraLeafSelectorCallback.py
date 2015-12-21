@@ -8,6 +8,8 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Callbacks'
+
     __slots__ = (
         '_with_next_leaf',
         '_with_previous_leaf',

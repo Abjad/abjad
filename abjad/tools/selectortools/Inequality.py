@@ -10,6 +10,8 @@ class Inequality(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Inequalities'
+
     __slots__ = (
         '_operator_string',
         '_operator_function',

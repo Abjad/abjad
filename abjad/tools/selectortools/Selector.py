@@ -134,6 +134,8 @@ class Selector(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Selectors'
+
     __slots__ = (
         '_callbacks',
         )

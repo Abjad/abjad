@@ -10,6 +10,8 @@ class PitchSelectorCallback(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Callbacks'
+
     __slots__ = (
         '_pitches',
         )

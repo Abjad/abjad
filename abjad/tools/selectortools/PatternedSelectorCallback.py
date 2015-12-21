@@ -10,6 +10,8 @@ class PatternedSelectorCallback(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Callbacks'
+
     __slots__ = (
         '_apply_to_each',
         '_pattern',
