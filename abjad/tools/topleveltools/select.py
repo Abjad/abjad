@@ -4,11 +4,34 @@
 def select(expr=None, contiguous=False):
     r'''Selects `expr`.
 
+
+    ..  container:: example
+
+        **Example 1.** Returns selection when `expr` is not none:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> select(staff[:2])
+            Selection(Note("c'8"), Note("d'8"))
+
+    ..  container:: example
+
+        **Example 2.** Returns selector when `expr` is none:
+
+        ::
+
+            >>> select()
+            Selector()
+
     Returns selection.
     '''
     from abjad.tools import scoretools
     from abjad.tools import selectiontools
+    from abjad.tools import selectortools
     from abjad.tools import spannertools
+    if expr is None:
+        return selectortools.Selector()
     Selection = selectiontools.Selection
     if contiguous:
         if isinstance(expr, (list, tuple)):
