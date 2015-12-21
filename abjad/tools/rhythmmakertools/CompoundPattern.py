@@ -230,8 +230,8 @@ class CompoundPattern(Expression):
             result = type(self)([self, pattern], operator='and')
         return result
 
-    def __neg__(self):
-        r'''Logical NOT of pattern.
+    def __invert__(self):
+        r'''Inverts pattern.
 
         ..  container:: example
 
@@ -271,7 +271,7 @@ class CompoundPattern(Expression):
 
             ::
 
-                >>> pattern = -pattern
+                >>> pattern = ~pattern
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
