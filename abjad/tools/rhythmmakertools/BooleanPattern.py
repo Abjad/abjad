@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.topleveltools.new import new
 
 
 class BooleanPattern(AbjadValueObject):
@@ -218,6 +219,47 @@ class BooleanPattern(AbjadValueObject):
             maximum_index = max(absolute_indices)
             return maximum_index + 1
         return 0
+
+    def __neg__(self):
+        r'''Logical NOT of pattern.
+
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> pattern = rhythmmakertools.select_first(3)
+                >>> print(format(pattern))
+                rhythmmakertools.BooleanPattern(
+                    indices=(0, 1, 2),
+                    )
+
+            ::
+
+                >>> pattern = -pattern
+                >>> print(format(pattern))
+                rhythmmakertools.BooleanPattern(
+                    indices=(0, 1, 2),
+                    invert=True,
+                    )
+
+            ::
+
+                >>> pattern = -pattern
+                >>> print(format(pattern))
+                rhythmmakertools.BooleanPattern(
+                    indices=(0, 1, 2),
+                    invert=False,
+                    )
+                    
+            Negation defined equal to inversion.
+
+        Returns new pattern.
+        '''
+        invert = not self.invert
+        pattern = new(self, invert=invert)
+        return pattern
 
     def __or__(self, other):
         r'''Logical OR of two patterns.
