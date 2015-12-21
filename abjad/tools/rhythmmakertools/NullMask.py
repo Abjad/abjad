@@ -5,6 +5,8 @@ from abjad.tools.rhythmmakertools.BooleanPattern import BooleanPattern
 class NullMask(BooleanPattern):
     r'''Null mask.
 
+    ..  note:: Deprecated. Use compound and inverted patterns instead.
+
     ..  container:: example
 
         ::
