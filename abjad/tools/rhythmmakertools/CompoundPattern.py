@@ -248,6 +248,251 @@ class CompoundPattern(Expression):
             operator=operator,
             )
 
+    ### SPECIAL METHODS ###
+
+    def __and__(self, pattern):
+        r'''Logical AND of two patterns.
+
+        ..  container:: example
+
+            **Example 1.** Flat grouping:
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = pattern_1 & pattern_2 & pattern_3
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(-3, -2, -1),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0,),
+                            period=2,
+                            ),
+                        ),
+                    operator='and',
+                    )
+
+        ..  container:: example
+
+            **Example 2.** Nested grouping:
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = pattern_1 & pattern_2 | pattern_3
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.CompoundPattern(
+                            (
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(0, 1, 2),
+                                    ),
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(-3, -2, -1),
+                                    ),
+                                ),
+                            operator='and',
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0,),
+                            period=2,
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+        Returns new compound pattern.
+        '''
+        if self._can_append_to_self(pattern, 'and'):
+            patterns = self.items + [pattern]
+            result = type(self)(patterns, operator='and')
+        else:
+            result = type(self)([self, pattern], operator='and')
+        return result
+
+    def __or__(self, pattern):
+        r'''Logical OR of two patterns.
+
+        ..  container:: example
+
+            **Example 1.** Flat grouping:
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = pattern_1 | pattern_2 | pattern_3
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(-3, -2, -1),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0,),
+                            period=2,
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+        ..  container:: example
+
+            **Example 2.** Nested grouping:
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = pattern_1 | pattern_2 & pattern_3
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.CompoundPattern(
+                            (
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(-3, -2, -1),
+                                    ),
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(0,),
+                                    period=2,
+                                    ),
+                                ),
+                            operator='and',
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+        Returns new compound pattern.
+        '''
+        if self._can_append_to_self(pattern, 'or'):
+            patterns = self.items + [pattern]
+            result = type(self)(patterns, operator='or')
+        else:
+            result = type(self)([self, pattern], operator='or')
+        return result
+
+    def __xor__(self, pattern):
+        r'''Logical XOR of two patterns.
+
+        ..  container:: example
+
+            **Example 1.** Flat grouping:
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(-3, -2, -1),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0,),
+                            period=2,
+                            ),
+                        ),
+                    operator='xor',
+                    )
+
+        ..  container:: example
+
+            **Example 2.** Nested grouping:
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = pattern_1 ^ pattern_2 & pattern_3
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.CompoundPattern(
+                            (
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(-3, -2, -1),
+                                    ),
+                                rhythmmakertools.BooleanPattern(
+                                    indices=(0,),
+                                    period=2,
+                                    ),
+                                ),
+                            operator='and',
+                            ),
+                        ),
+                    operator='xor',
+                    )
+
+        Returns new compound pattern.
+        '''
+        if self._can_append_to_self(pattern, 'xor'):
+            patterns = self.items + [pattern]
+            result = type(self)(patterns, operator='xor')
+        else:
+            result = type(self)([self, pattern], operator='xor')
+        return result
+
+    ### PRIVATE METHODS ###
+
+    def _can_append_to_self(self, pattern, operator_):
+        from abjad.tools import rhythmmakertools
+        if operator_ == self.operator:
+            if isinstance(pattern, rhythmmakertools.BooleanPattern):
+                return True
+            if (isinstance(pattern, type(self)) and 
+                pattern.operator == self.operator):
+                return True
+        return False
+
     ### PUBLIC METHODS ###
 
     def get_boolean_vector(self, total_length, rotation=None):
