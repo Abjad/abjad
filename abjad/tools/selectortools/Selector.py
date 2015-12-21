@@ -438,7 +438,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 f'4 g'8.")
+                >>> staff = Staff("c'4 d'8 ~ d'16 e'16 ~ e'8 f'4 g'8")
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -451,7 +451,7 @@ class Selector(AbjadValueObject):
                     e'16 ~
                     e'8
                     f'4
-                    g'8.
+                    g'8
                 }
 
             ::
@@ -465,7 +465,7 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("d'8"), Note("d'16"))
                 LogicalTie(Note("e'16"), Note("e'8"))
                 LogicalTie(Note("f'4"),)
-                LogicalTie(Note("g'8."),)
+                LogicalTie(Note("g'8"),)
 
             ::
 
@@ -475,7 +475,7 @@ class Selector(AbjadValueObject):
                 ...
                 LogicalTie(Note("d'8"), Note("d'16"))
                 LogicalTie(Note("e'16"), Note("e'8"))
-                LogicalTie(Note("g'8."),)
+                LogicalTie(Note("g'8"),)
 
             ::
 
@@ -484,7 +484,7 @@ class Selector(AbjadValueObject):
                 ...     x
                 ...
                 Selection(LogicalTie(Note("d'8"), Note("d'16")), LogicalTie(Note("e'16"), Note("e'8")))
-                Selection(LogicalTie(Note("g'8."),),)
+                Selection(LogicalTie(Note("g'8"),),)
 
             ::
 
@@ -493,7 +493,7 @@ class Selector(AbjadValueObject):
                 ...     x
                 ...
                 Selection(Note("d'8"), Note("d'16"), Note("e'16"), Note("e'8"))
-                Selection(Note("g'8."),)
+                Selection(Note("g'8"),)
 
             ::
 
@@ -513,7 +513,7 @@ class Selector(AbjadValueObject):
                     e'16 ~
                     e'8
                     f'4
-                    g'8. -\snappizzicato
+                    g'8 -\snappizzicato
                 }
 
         Returns new selector.
@@ -540,6 +540,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_counts(
@@ -550,10 +568,12 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"))
+
+            Call returns a selection containing a component selection.
 
         ..  container:: example
 
@@ -562,6 +582,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_counts(
@@ -572,11 +610,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"))
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+
+            Call returns a selection containing two component selections.
 
         ..  container:: example
 
@@ -586,6 +626,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_counts(
@@ -596,12 +654,14 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"))
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"))
                 Selection(Note("g'8"), Note("a'8"))
+
+            Call returns a selection containing three component selections.
 
         ..  container:: example
 
@@ -611,6 +671,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_counts(
@@ -622,19 +700,42 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"))
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
 
+            Call returns a selection of two component selections.
+
         ..  container:: example
 
-            **Example 5.** Selects components grouped 1, 2, 3:
+            **Example 5.** Selects components grouped by counts 1, 2, 3:
 
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                    b'8
+                    r8
+                    c''8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_counts(
@@ -645,8 +746,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'8"),)
                 Selection(Rest('r8'), Note("d'8"))
@@ -654,6 +755,8 @@ class Selector(AbjadValueObject):
                 Selection(Note("g'8"),)
                 Selection(Note("a'8"), Note("b'8"))
                 Selection(Rest('r8'), Note("c''8"))
+
+            Call returns a selection containing multiple component selections.
 
         ..  container:: example
 
@@ -663,6 +766,27 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                    b'8
+                    r8
+                    c''8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_counts(
@@ -674,14 +798,16 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff, rotation=1):
-                ...     x
+                >>> for selection in selector(staff, rotation=1):
+                ...     selection
                 ...
                 Selection(Note("c'8"), Rest('r8'))
                 Selection(Note("d'8"), Note("e'8"), Rest('r8'))
                 Selection(Note("f'8"),)
                 Selection(Note("g'8"), Note("a'8"))
                 Selection(Note("b'8"), Rest('r8'), Note("c''8"))
+
+            Call returns a selection containing multiple component selections.
 
         Returns new selector.
         '''
@@ -697,8 +823,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def by_duration(self, inequality=None, duration=None, preprolated=None):
-        r'''Configures selector to select containers or selections of
-        duration `duration`.
+        r'''Configures selector to select components by duration.
 
         ..  container:: example
 
@@ -708,6 +833,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_run(Note)
@@ -715,10 +858,12 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("d'8"), Note("e'8"))
+
+            Call returns a selection containing one component selection.
 
         ..  container:: example
 
@@ -728,6 +873,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_run(Note)
@@ -740,11 +903,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'8"),)
                 Selection(Note("d'8"), Note("e'8"))
+
+            Call returns a selection containing component selections.
 
         ..  container:: example
 
@@ -754,6 +919,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.by_run(Note)
@@ -766,11 +949,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("d'8"), Note("e'8"))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+
+            Call returns a selection containing component selections.
 
         ..  container:: example
 
@@ -813,10 +998,11 @@ class Selector(AbjadValueObject):
 
                 >>> show(staff) # doctest: +SKIP
 
+            Call returns a selection containing logical tie selections.
+
         Returns new selector.
         '''
         from abjad.tools import selectortools
-
         duration_expr = None
         if isinstance(inequality, (
             durationtools.Duration,
@@ -833,13 +1019,11 @@ class Selector(AbjadValueObject):
                 duration=duration,
                 operator_string='==',
                 )
-
         if not isinstance(duration_expr, (
             durationtools.Duration,
             selectortools.DurationInequality,
             )):
             raise ValueError(inequality, duration)
-
         callback = selectortools.DurationSelectorCallback(
             duration=duration_expr,
             preprolated=preprolated,
