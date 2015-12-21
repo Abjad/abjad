@@ -65,7 +65,7 @@ class IPythonConfiguration(Configuration):
         import abjad
         return os.path.join(
             abjad.abjad_configuration.configuration_directory_path,
-            'ipython',
+            self.configuration_directory_name,
             )
 
     @property
