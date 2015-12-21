@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import operator
 from abjad.tools.rhythmmakertools.Expression import Expression
+from abjad.tools.topleveltools.new import new
 
 
 class CompoundPattern(Expression):
@@ -225,6 +226,7 @@ class CompoundPattern(Expression):
     __documentation_section__ = 'Masks'
 
     __slots__ = (
+        '_invert',
         )
 
     _name_to_operator = {
@@ -235,7 +237,7 @@ class CompoundPattern(Expression):
 
     ### INITIALIZER ###
 
-    def __init__(self, items=None, operator='or'):
+    def __init__(self, items=None, invert=None, operator='or'):
         from abjad.tools import rhythmmakertools
         items = items or ()
         prototype = (rhythmmakertools.BooleanPattern, type(self))
@@ -247,6 +249,7 @@ class CompoundPattern(Expression):
             items=items,
             operator=operator,
             )
+        self._invert = invert
 
     ### SPECIAL METHODS ###
 
@@ -283,6 +286,11 @@ class CompoundPattern(Expression):
                     operator='and',
                     )
 
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
         ..  container:: example
 
             **Example 2.** Nested grouping:
@@ -318,6 +326,11 @@ class CompoundPattern(Expression):
                     operator='or',
                     )
 
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]
+
         Returns new compound pattern.
         '''
         if self._can_append_to_self(pattern, 'and'):
@@ -326,6 +339,73 @@ class CompoundPattern(Expression):
         else:
             result = type(self)([self, pattern], operator='and')
         return result
+
+    def __neg__(self):
+        r'''Logical NOT of pattern.
+
+        ..  container:: example
+
+            **Example 1.** Matches every index that is (one of the first three
+            indices) or (one of the last three indices):
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern = pattern_1 | pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(-3, -2, -1),
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
+
+        ..  container:: example
+
+            **Example 2.** Matches every index that is NOT (one of the first
+            three indices) or (one of the last three indices):
+
+            ::
+
+                >>> pattern = -pattern
+                >>> print(format(pattern))
+                rhythmmakertools.CompoundPattern(
+                    (
+                        rhythmmakertools.BooleanPattern(
+                            indices=(0, 1, 2),
+                            ),
+                        rhythmmakertools.BooleanPattern(
+                            indices=(-3, -2, -1),
+                            ),
+                        ),
+                    invert=True,
+                    operator='or',
+                    )
+
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+
+        Returns new compound pattern.
+        '''
+        invert = not self.invert
+        pattern = new(self, invert=invert)
+        return pattern
 
     def __or__(self, pattern):
         r'''Logical OR of two patterns.
@@ -359,6 +439,11 @@ class CompoundPattern(Expression):
                         ),
                     operator='or',
                     )
+
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [1, 1, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 1, 1]
 
         ..  container:: example
 
@@ -394,6 +479,11 @@ class CompoundPattern(Expression):
                         ),
                     operator='or',
                     )
+
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
 
         Returns new compound pattern.
         '''
@@ -437,6 +527,11 @@ class CompoundPattern(Expression):
                     operator='xor',
                     )
 
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [0, 1, 0, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 1, 0, 1]
+
         ..  container:: example
 
             **Example 2.** Nested grouping:
@@ -472,6 +567,11 @@ class CompoundPattern(Expression):
                     operator='xor',
                     )
 
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0]
+
         Returns new compound pattern.
         '''
         if self._can_append_to_self(pattern, 'xor'):
@@ -492,6 +592,53 @@ class CompoundPattern(Expression):
                 pattern.operator == self.operator):
                 return True
         return False
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def invert(self):
+        '''Gets inversion flag of pattern.
+
+        ..  container:: example
+
+            **Example 1.** Matches every index that is (one of the first three
+            indices) OR (one of the last three indices):
+
+            ::
+
+                >>> pattern_1 = rhythmmakertools.select_first(3)
+                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern = pattern_1 | pattern_2
+                >>> pattern.invert is None
+                True
+
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
+
+
+        ..  container:: example
+
+            **Example 2.** Matches every index that is NOT (one of the first
+            three indices) OR (one of the last three indices):
+
+            ::
+
+                >>> pattern = new(pattern, invert=True)
+                >>> pattern.invert
+                True
+
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        '''
+        return self._invert
 
     ### PUBLIC METHODS ###
 
@@ -1202,22 +1349,29 @@ class CompoundPattern(Expression):
         Returns true or false.
         '''
         if not self.items:
-            return False
-        if len(self.items) == 1:
+            result = False
+        elif len(self.items) == 1:
             pattern = self.items[0]
-            return pattern.matches_index(
+            result = pattern.matches_index(
                 index, 
                 total_length,
                 rotation=rotation,
                 )
-        operator_ = self._name_to_operator[self.operator]
-        pattern = self.items[0]
-        result = pattern.matches_index(index, total_length, rotation=rotation)
-        for pattern in self.items[1:]:
-            result_ = pattern.matches_index(
+        else:
+            operator_ = self._name_to_operator[self.operator]
+            pattern = self.items[0]
+            result = pattern.matches_index(
                 index, 
-                total_length,
+                total_length, 
                 rotation=rotation,
                 )
-            result = operator_(result, result_)
+            for pattern in self.items[1:]:
+                result_ = pattern.matches_index(
+                    index, 
+                    total_length,
+                    rotation=rotation,
+                    )
+                result = operator_(result, result_)
+        if self.invert:
+            result = not(result)
         return result
