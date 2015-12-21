@@ -15,7 +15,7 @@ def select(indices=None, invert=None):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(2,),
                 )
 
@@ -30,7 +30,7 @@ def select(indices=None, invert=None):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(2, 3, 5),
                 )
 
@@ -39,7 +39,7 @@ def select(indices=None, invert=None):
     from abjad.tools import rhythmmakertools
 
     indices = indices or []
-    return rhythmmakertools.BooleanPattern(
+    return rhythmmakertools.Pattern(
         indices=indices,
         invert=invert,
         )

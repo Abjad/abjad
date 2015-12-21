@@ -1480,7 +1480,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...     pattern=rhythmmakertools.Pattern(
                 ...         indices=[1],
                 ...         ),
                 ...     )
@@ -1502,7 +1502,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...     pattern=rhythmmakertools.Pattern(
                 ...         indices=[0],
                 ...         period=2,
                 ...         ),
@@ -1526,7 +1526,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...     pattern=rhythmmakertools.Pattern(
                 ...         indices=[0],
                 ...         period=2,
                 ...         ),
@@ -1552,7 +1552,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
                 >>> selector = selector.by_pattern(
-                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...     pattern=rhythmmakertools.Pattern(
                 ...         indices=[0],
                 ...         period=2,
                 ...         ),
@@ -1579,7 +1579,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
                 ...     apply_to_each=True,
-                ...     pattern=rhythmmakertools.BooleanPattern(
+                ...     pattern=rhythmmakertools.Pattern(
                 ...         indices=[1],
                 ...         ),
                 ...     )

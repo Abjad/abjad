@@ -24,11 +24,11 @@ class Expression(TypedTuple):
             >>> print(format(expression))
             rhythmmakertools.Expression(
                 (
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(0,),
                         period=2,
                         ),
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(-3, -2, -1),
                         invert=True,
                         ),

@@ -4,8 +4,8 @@ from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools.new import new
 
 
-class BooleanPattern(AbjadValueObject):
-    r'''Boolean pattern.
+class Pattern(AbjadValueObject):
+    r'''Pattern.
 
     ..  container:: example
 
@@ -13,7 +13,7 @@ class BooleanPattern(AbjadValueObject):
 
         ::
 
-            >>> pattern = rhythmmakertools.BooleanPattern(
+            >>> pattern = rhythmmakertools.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
             ...     )
@@ -49,7 +49,7 @@ class BooleanPattern(AbjadValueObject):
 
         ::
 
-            >>> pattern = rhythmmakertools.BooleanPattern(
+            >>> pattern = rhythmmakertools.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=16,
             ...     )
@@ -132,10 +132,10 @@ class BooleanPattern(AbjadValueObject):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -158,7 +158,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> pattern = rhythmmakertools.select_first(3)
                 >>> print(format(pattern))
-                rhythmmakertools.BooleanPattern(
+                rhythmmakertools.Pattern(
                     indices=(0, 1, 2),
                     )
 
@@ -166,7 +166,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> pattern = ~pattern
                 >>> print(format(pattern))
-                rhythmmakertools.BooleanPattern(
+                rhythmmakertools.Pattern(
                     indices=(0, 1, 2),
                     invert=True,
                     )
@@ -175,7 +175,7 @@ class BooleanPattern(AbjadValueObject):
 
                 >>> pattern = ~pattern
                 >>> print(format(pattern))
-                rhythmmakertools.BooleanPattern(
+                rhythmmakertools.Pattern(
                     indices=(0, 1, 2),
                     invert=False,
                     )
@@ -197,7 +197,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -215,7 +215,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 2, 3],
                 ...     )
 
@@ -233,7 +233,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[-3],
                 ...     )
 
@@ -279,10 +279,10 @@ class BooleanPattern(AbjadValueObject):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -312,10 +312,10 @@ class BooleanPattern(AbjadValueObject):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -339,7 +339,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -355,7 +355,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 2, 3],
                 ...     )
 
@@ -387,7 +387,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -403,7 +403,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 2, 3],
                 ...     )
 
@@ -433,9 +433,9 @@ class BooleanPattern(AbjadValueObject):
             ::
 
                 >>> pattern = [1, 0, 0, 1, 1]
-                >>> pattern = rhythmmakertools.BooleanPattern.from_sequence(pattern)
+                >>> pattern = rhythmmakertools.Pattern.from_sequence(pattern)
                 >>> print(format(pattern))
-                rhythmmakertools.BooleanPattern(
+                rhythmmakertools.Pattern(
                     indices=(0, 3, 4),
                     period=5,
                     )
@@ -466,9 +466,9 @@ class BooleanPattern(AbjadValueObject):
             ::
 
                 >>> pattern = [1, 0, 0, 1, 1, 0]
-                >>> pattern = rhythmmakertools.BooleanPattern.from_sequence(pattern)
+                >>> pattern = rhythmmakertools.Pattern.from_sequence(pattern)
                 >>> print(format(pattern))
-                rhythmmakertools.BooleanPattern(
+                rhythmmakertools.Pattern(
                     indices=(0, 3, 4),
                     period=6,
                     )
@@ -514,7 +514,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -548,7 +548,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -586,7 +586,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -626,7 +626,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -660,7 +660,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -698,7 +698,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -770,7 +770,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -787,7 +787,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -816,7 +816,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -857,7 +857,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     invert=True
@@ -912,7 +912,7 @@ class BooleanPattern(AbjadValueObject):
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     payload=maker,
                 ...     period=8,
@@ -957,7 +957,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -997,7 +997,7 @@ class BooleanPattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )

@@ -354,7 +354,7 @@ class RhythmMaker(AbjadValueObject):
             )
         if masks is None:
             return
-        if isinstance(masks, rhythmmakertools.BooleanPattern):
+        if isinstance(masks, rhythmmakertools.Pattern):
             masks = (masks,)
         if isinstance(masks, prototype):
             masks = (masks,)

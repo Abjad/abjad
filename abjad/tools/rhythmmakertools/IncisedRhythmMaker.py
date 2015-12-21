@@ -531,7 +531,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...         talea_denominator=16,
                 ...         ),
                 ...     division_masks=[
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
@@ -1143,7 +1143,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern = rhythmmakertools.BooleanPattern(
+                >>> pattern = rhythmmakertools.Pattern(
                 ...     indices=[0],
                 ...     period=2,
                 ...     )

@@ -15,7 +15,7 @@ def select_all(invert=None):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(0,),
                 period=1,
                 )
@@ -63,7 +63,7 @@ def select_all(invert=None):
     '''
     from abjad.tools import rhythmmakertools
 
-    return rhythmmakertools.BooleanPattern(
+    return rhythmmakertools.Pattern(
         indices=[0],
         invert=invert,
         period=1,

@@ -75,7 +75,7 @@ Rhythmmakertools improvements
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Rhythm-makers can now mask their divisions in a patterned way via the new
-`BooleanPattern` class.
+`Pattern` class.
 
 
 Spannertools improvements

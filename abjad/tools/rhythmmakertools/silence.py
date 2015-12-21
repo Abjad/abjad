@@ -16,7 +16,7 @@ def silence(indices=None, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.BooleanPattern(
+                pattern=rhythmmakertools.Pattern(
                     indices=(1, 2),
                     ),
                 )
@@ -69,7 +69,7 @@ def silence(indices=None, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.BooleanPattern(
+                pattern=rhythmmakertools.Pattern(
                     indices=(-1, -2),
                     ),
                 )
@@ -116,7 +116,7 @@ def silence(indices=None, invert=None):
     '''
     from abjad.tools import rhythmmakertools
     indices = indices or []
-    pattern = rhythmmakertools.BooleanPattern(
+    pattern = rhythmmakertools.Pattern(
         indices=indices,
         invert=invert,
         )

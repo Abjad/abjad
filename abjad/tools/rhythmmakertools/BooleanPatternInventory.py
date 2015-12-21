@@ -12,14 +12,14 @@ class BooleanPatternInventory(TypedTuple):
         ::
 
             >>> inventory = rhythmmakertools.BooleanPatternInventory([
-            ...     rhythmmakertools.BooleanPattern(
+            ...     rhythmmakertools.Pattern(
             ...         indices=[0, 1, 7],
             ...         period=10,
             ...         ),
-            ...     rhythmmakertools.BooleanPattern(
+            ...     rhythmmakertools.Pattern(
             ...         indices=[-2, -1],
             ...         ),
-            ...     rhythmmakertools.BooleanPattern(
+            ...     rhythmmakertools.Pattern(
             ...         indices=[2],
             ...         period=3,
             ...         ),
@@ -30,14 +30,14 @@ class BooleanPatternInventory(TypedTuple):
             >>> print(format(inventory))
             rhythmmakertools.BooleanPatternInventory(
                 (
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(0, 1, 7),
                         period=10,
                         ),
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(-2, -1),
                         ),
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(2,),
                         period=3,
                         ),
@@ -51,11 +51,11 @@ class BooleanPatternInventory(TypedTuple):
         ::
 
             >>> inventory = rhythmmakertools.BooleanPatternInventory([
-            ...     rhythmmakertools.BooleanPattern(
+            ...     rhythmmakertools.Pattern(
             ...         indices=[1],
             ...         period=2,
             ...         ),
-            ...     rhythmmakertools.BooleanPattern(
+            ...     rhythmmakertools.Pattern(
             ...         indices=[-3, -2, -1],
             ...         ),
             ...     ])
@@ -65,11 +65,11 @@ class BooleanPatternInventory(TypedTuple):
             >>> print(format(inventory))
             rhythmmakertools.BooleanPatternInventory(
                 (
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(1,),
                         period=2,
                         ),
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(-3, -2, -1),
                         ),
                     )
@@ -96,11 +96,11 @@ class BooleanPatternInventory(TypedTuple):
             ::
 
                 >>> inventory = rhythmmakertools.BooleanPatternInventory([
-                ...     rhythmmakertools.BooleanPattern(
+                ...     rhythmmakertools.Pattern(
                 ...         indices=[1],
                 ...         period=2,
                 ...         ),
-                ...     rhythmmakertools.BooleanPattern(
+                ...     rhythmmakertools.Pattern(
                 ...         indices=[-3, -2, -1],
                 ...         ),
                 ...     ])
@@ -114,15 +114,15 @@ class BooleanPatternInventory(TypedTuple):
                 ...     print(i, match)
                 ...
                 0 None
-                1 BooleanPattern(indices=(1,), period=2)
+                1 Pattern(indices=(1,), period=2)
                 2 None
-                3 BooleanPattern(indices=(1,), period=2)
+                3 Pattern(indices=(1,), period=2)
                 4 None
-                5 BooleanPattern(indices=(1,), period=2)
+                5 Pattern(indices=(1,), period=2)
                 6 None
-                7 BooleanPattern(indices=(-3, -2, -1))
-                8 BooleanPattern(indices=(-3, -2, -1))
-                9 BooleanPattern(indices=(-3, -2, -1))
+                7 Pattern(indices=(-3, -2, -1))
+                8 Pattern(indices=(-3, -2, -1))
+                9 Pattern(indices=(-3, -2, -1))
 
             Last three indices match the second pattern.
 
@@ -135,15 +135,15 @@ class BooleanPatternInventory(TypedTuple):
                 ...     print(i, match)
                 ...
                 10 None
-                11 BooleanPattern(indices=(1,), period=2)
+                11 Pattern(indices=(1,), period=2)
                 12 None
-                13 BooleanPattern(indices=(1,), period=2)
+                13 Pattern(indices=(1,), period=2)
                 14 None
-                15 BooleanPattern(indices=(1,), period=2)
+                15 Pattern(indices=(1,), period=2)
                 16 None
-                17 BooleanPattern(indices=(1,), period=2)
+                17 Pattern(indices=(1,), period=2)
                 18 None
-                19 BooleanPattern(indices=(1,), period=2)
+                19 Pattern(indices=(1,), period=2)
 
             Last three indices no longer match the second pattern.
 
@@ -158,16 +158,16 @@ class BooleanPatternInventory(TypedTuple):
                 ...     match = inventory.get_matching_pattern(i, 10, rotation=1)
                 ...     print(i, match)
                 ...
-                0 BooleanPattern(indices=(1,), period=2)
+                0 Pattern(indices=(1,), period=2)
                 1 None
-                2 BooleanPattern(indices=(1,), period=2)
+                2 Pattern(indices=(1,), period=2)
                 3 None
-                4 BooleanPattern(indices=(1,), period=2)
+                4 Pattern(indices=(1,), period=2)
                 5 None
-                6 BooleanPattern(indices=(1,), period=2)
-                7 BooleanPattern(indices=(-3, -2, -1))
-                8 BooleanPattern(indices=(-3, -2, -1))
-                9 BooleanPattern(indices=(-3, -2, -1))
+                6 Pattern(indices=(1,), period=2)
+                7 Pattern(indices=(-3, -2, -1))
+                8 Pattern(indices=(-3, -2, -1))
+                9 Pattern(indices=(-3, -2, -1))
 
             Matching indices of first pattern offset by ``1``.
 
@@ -180,15 +180,15 @@ class BooleanPatternInventory(TypedTuple):
                 ...     match = inventory.get_matching_pattern(i, 10, rotation=1)
                 ...     print(i, match)
                 ...
-                10 BooleanPattern(indices=(1,), period=2)
+                10 Pattern(indices=(1,), period=2)
                 11 None
-                12 BooleanPattern(indices=(1,), period=2)
+                12 Pattern(indices=(1,), period=2)
                 13 None
-                14 BooleanPattern(indices=(1,), period=2)
+                14 Pattern(indices=(1,), period=2)
                 15 None
-                16 BooleanPattern(indices=(1,), period=2)
+                16 Pattern(indices=(1,), period=2)
                 17 None
-                18 BooleanPattern(indices=(1,), period=2)
+                18 Pattern(indices=(1,), period=2)
                 19 None
 
             Matching indices of first pattern offset by ``1``.
@@ -200,7 +200,7 @@ class BooleanPatternInventory(TypedTuple):
             ::
 
                 >>> inventory = rhythmmakertools.BooleanPatternInventory([
-                ...     rhythmmakertools.BooleanPattern(
+                ...     rhythmmakertools.Pattern(
                 ...         indices=[-3],
                 ...         invert=True,
                 ...         ),
@@ -212,16 +212,16 @@ class BooleanPatternInventory(TypedTuple):
                 ...     match = inventory.get_matching_pattern(i, 10)
                 ...     print(i, match)
                 ...
-                0 BooleanPattern(indices=(-3,), invert=True)
-                1 BooleanPattern(indices=(-3,), invert=True)
-                2 BooleanPattern(indices=(-3,), invert=True)
-                3 BooleanPattern(indices=(-3,), invert=True)
-                4 BooleanPattern(indices=(-3,), invert=True)
-                5 BooleanPattern(indices=(-3,), invert=True)
-                6 BooleanPattern(indices=(-3,), invert=True)
+                0 Pattern(indices=(-3,), invert=True)
+                1 Pattern(indices=(-3,), invert=True)
+                2 Pattern(indices=(-3,), invert=True)
+                3 Pattern(indices=(-3,), invert=True)
+                4 Pattern(indices=(-3,), invert=True)
+                5 Pattern(indices=(-3,), invert=True)
+                6 Pattern(indices=(-3,), invert=True)
                 7 None
-                8 BooleanPattern(indices=(-3,), invert=True)
-                9 BooleanPattern(indices=(-3,), invert=True)
+                8 Pattern(indices=(-3,), invert=True)
+                9 Pattern(indices=(-3,), invert=True)
 
         Returns pattern or none.
         '''
@@ -249,12 +249,12 @@ class BooleanPatternInventory(TypedTuple):
             ::
 
                 >>> inventory = rhythmmakertools.BooleanPatternInventory([
-                ...     rhythmmakertools.BooleanPattern(
+                ...     rhythmmakertools.Pattern(
                 ...         indices=[0],
                 ...         payload=rhythmmakertools.NoteRhythmMaker(),
                 ...         period=1,
                 ...         ),
-                ...     rhythmmakertools.BooleanPattern(
+                ...     rhythmmakertools.Pattern(
                 ...         indices=[-3, -2, -1],
                 ...         payload=rhythmmakertools.EvenDivisionRhythmMaker(),
                 ...         ),
@@ -322,7 +322,7 @@ class BooleanPatternInventory(TypedTuple):
         def coerce_(expr):
             if isinstance(expr, prototype):
                 pass
-            elif not isinstance(expr, rhythmmakertools.BooleanPattern):
-                expr = rhythmmakertools.BooleanPattern(*expr)
+            elif not isinstance(expr, rhythmmakertools.Pattern):
+                expr = rhythmmakertools.Pattern(*expr)
             return expr
         return coerce_

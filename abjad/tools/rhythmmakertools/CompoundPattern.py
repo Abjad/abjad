@@ -16,10 +16,10 @@ class CompoundPattern(Expression):
 
             >>> pattern = rhythmmakertools.CompoundPattern(
             ...     [
-            ...         rhythmmakertools.BooleanPattern(
+            ...         rhythmmakertools.Pattern(
             ...             indices=[0, 1, 2],
             ...             ),
-            ...         rhythmmakertools.BooleanPattern(
+            ...         rhythmmakertools.Pattern(
             ...             indices=[-3, -2, -1],
             ...             ),
             ...         ],
@@ -30,10 +30,10 @@ class CompoundPattern(Expression):
             >>> print(format(pattern))
             rhythmmakertools.CompoundPattern(
                 (
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(0, 1, 2),
                         ),
-                    rhythmmakertools.BooleanPattern(
+                    rhythmmakertools.Pattern(
                         indices=(-3, -2, -1),
                         ),
                     ),
@@ -49,11 +49,11 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             invert=True,
                 ...             ),
@@ -66,11 +66,11 @@ class CompoundPattern(Expression):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             invert=True,
                             ),
@@ -130,7 +130,7 @@ class CompoundPattern(Expression):
     def __init__(self, items=None, invert=None, operator='or'):
         from abjad.tools import rhythmmakertools
         items = items or ()
-        prototype = (rhythmmakertools.BooleanPattern, type(self))
+        prototype = (rhythmmakertools.Pattern, type(self))
         for item in items:
             assert isinstance(item, prototype), repr(item)
         assert operator in self._name_to_operator, repr(operator)
@@ -162,13 +162,13 @@ class CompoundPattern(Expression):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
@@ -199,16 +199,16 @@ class CompoundPattern(Expression):
                     (
                         rhythmmakertools.CompoundPattern(
                             (
-                                rhythmmakertools.BooleanPattern(
+                                rhythmmakertools.Pattern(
                                     indices=(0, 1, 2),
                                     ),
-                                rhythmmakertools.BooleanPattern(
+                                rhythmmakertools.Pattern(
                                     indices=(-3, -2, -1),
                                     ),
                                 ),
                             operator='and',
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
@@ -249,10 +249,10 @@ class CompoundPattern(Expression):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -275,10 +275,10 @@ class CompoundPattern(Expression):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -316,13 +316,13 @@ class CompoundPattern(Expression):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
@@ -351,15 +351,15 @@ class CompoundPattern(Expression):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
                         rhythmmakertools.CompoundPattern(
                             (
-                                rhythmmakertools.BooleanPattern(
+                                rhythmmakertools.Pattern(
                                     indices=(-3, -2, -1),
                                     ),
-                                rhythmmakertools.BooleanPattern(
+                                rhythmmakertools.Pattern(
                                     indices=(0,),
                                     period=2,
                                     ),
@@ -403,13 +403,13 @@ class CompoundPattern(Expression):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(-3, -2, -1),
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
@@ -438,15 +438,15 @@ class CompoundPattern(Expression):
                 >>> print(format(pattern))
                 rhythmmakertools.CompoundPattern(
                     (
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
                         rhythmmakertools.CompoundPattern(
                             (
-                                rhythmmakertools.BooleanPattern(
+                                rhythmmakertools.Pattern(
                                     indices=(-3, -2, -1),
                                     ),
-                                rhythmmakertools.BooleanPattern(
+                                rhythmmakertools.Pattern(
                                     indices=(0,),
                                     period=2,
                                     ),
@@ -476,7 +476,7 @@ class CompoundPattern(Expression):
     def _can_append_to_self(self, pattern, operator_):
         from abjad.tools import rhythmmakertools
         if operator_ == self.operator:
-            if isinstance(pattern, rhythmmakertools.BooleanPattern):
+            if isinstance(pattern, rhythmmakertools.Pattern):
                 return True
             if (isinstance(pattern, type(self)) and 
                 pattern.operator == self.operator):
@@ -544,10 +544,10 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -582,11 +582,11 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             invert=True,
                 ...             ),
@@ -702,7 +702,7 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -736,7 +736,7 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -770,7 +770,7 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -810,10 +810,10 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -889,10 +889,10 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -968,10 +968,10 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -1048,11 +1048,11 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             invert=True,
                 ...             ),
@@ -1129,11 +1129,11 @@ class CompoundPattern(Expression):
 
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             invert=True,
                 ...             ),
@@ -1143,7 +1143,7 @@ class CompoundPattern(Expression):
                 >>> pattern = rhythmmakertools.CompoundPattern(
                 ...     [
                 ...         pattern,
-                ...         rhythmmakertools.BooleanPattern(
+                ...         rhythmmakertools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -1157,18 +1157,18 @@ class CompoundPattern(Expression):
                     (
                         rhythmmakertools.CompoundPattern(
                             (
-                                rhythmmakertools.BooleanPattern(
+                                rhythmmakertools.Pattern(
                                     indices=(0,),
                                     period=2,
                                     ),
-                                rhythmmakertools.BooleanPattern(
+                                rhythmmakertools.Pattern(
                                     indices=(-3, -2, -1),
                                     invert=True,
                                     ),
                                 ),
                             operator='and',
                             ),
-                        rhythmmakertools.BooleanPattern(
+                        rhythmmakertools.Pattern(
                             indices=(0, 1, 2),
                             ),
                         ),

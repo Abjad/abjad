@@ -15,7 +15,7 @@ def select_first(n=1, invert=None):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(0,),
                 )
 
@@ -69,7 +69,7 @@ def select_first(n=1, invert=None):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(0, 1),
                 )
 
@@ -123,7 +123,7 @@ def select_first(n=1, invert=None):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(),
                 )
 
@@ -171,7 +171,7 @@ def select_first(n=1, invert=None):
     from abjad.tools import rhythmmakertools
 
     indices = list(range(n))
-    return rhythmmakertools.BooleanPattern(
+    return rhythmmakertools.Pattern(
         indices=indices,
         invert=invert,
         )

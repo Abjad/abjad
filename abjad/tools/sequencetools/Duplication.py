@@ -214,7 +214,7 @@ class Duplication(AbjadValueObject):
                 result = result + shard
             return result
 
-        pattern = rhythmmakertools.BooleanPattern(
+        pattern = rhythmmakertools.Pattern(
             indices=self.indices,
             period=self.period,
             )

@@ -15,7 +15,7 @@ def select_every(indices, period=None, invert=None):
         ::
 
             >>> print(format(mask))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(1,),
                 period=2,
                 )
@@ -67,7 +67,7 @@ def select_every(indices, period=None, invert=None):
         ::
 
             >>> print(format(mask))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(1, 2),
                 period=3,
                 )
@@ -113,7 +113,7 @@ def select_every(indices, period=None, invert=None):
     '''
     from abjad.tools import rhythmmakertools
 
-    return rhythmmakertools.BooleanPattern(
+    return rhythmmakertools.Pattern(
         indices=indices,
         invert=invert,
         period=period,

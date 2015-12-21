@@ -25,7 +25,7 @@ class PatternedSelectorCallback(AbjadValueObject):
         apply_to_each=None,
         ):
         if pattern is not None:
-            assert isinstance(pattern, rhythmmakertools.BooleanPattern)
+            assert isinstance(pattern, rhythmmakertools.Pattern)
         self._pattern = pattern
         if apply_to_each is not None:
             apply_to_each = bool(apply_to_each)

@@ -41,7 +41,7 @@ class TieSpecifier(AbjadValueObject):
             type(None),
             bool,
             collections.Sequence,
-            rhythmmakertools.BooleanPattern,
+            rhythmmakertools.Pattern,
             rhythmmakertools.BooleanPatternInventory,
             )
         assert isinstance(tie_across_divisions, prototype)
@@ -86,9 +86,9 @@ class TieSpecifier(AbjadValueObject):
         if isinstance(tie_across_divisions, bool):
             tie_across_divisions = [tie_across_divisions]
         if not isinstance(tie_across_divisions,
-            rhythmmakertools.BooleanPattern):
+            rhythmmakertools.Pattern):
             tie_across_divisions = \
-                rhythmmakertools.BooleanPattern.from_sequence(
+                rhythmmakertools.Pattern.from_sequence(
                     tie_across_divisions)
         pairs = sequencetools.iterate_sequence_nwise(divisions)
         for i, pair in enumerate(pairs):

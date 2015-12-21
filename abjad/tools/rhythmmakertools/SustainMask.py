@@ -17,7 +17,7 @@ class SustainMask(AbjadValueObject):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.BooleanPattern(
+                pattern=rhythmmakertools.Pattern(
                     indices=(0, 1, 7),
                     period=16,
                     ),
@@ -41,7 +41,7 @@ class SustainMask(AbjadValueObject):
         ):
         from abjad.tools import rhythmmakertools
         prototype = (
-            rhythmmakertools.BooleanPattern,
+            rhythmmakertools.Pattern,
             rhythmmakertools.CompoundPattern,
             )
         if pattern is None:

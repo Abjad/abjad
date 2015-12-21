@@ -15,7 +15,7 @@ def select_last(n=1, invert=None):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(-2, -1),
                 )
 
@@ -72,7 +72,7 @@ def select_last(n=1, invert=None):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.BooleanPattern(
+            rhythmmakertools.Pattern(
                 indices=(),
                 )
 
@@ -120,7 +120,7 @@ def select_last(n=1, invert=None):
     from abjad.tools import rhythmmakertools
 
     indices = list(reversed(range(-1, -n-1, -1)))
-    return rhythmmakertools.BooleanPattern(
+    return rhythmmakertools.Pattern(
         indices=indices,
         invert=invert,
         )

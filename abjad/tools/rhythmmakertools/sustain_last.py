@@ -16,7 +16,7 @@ def sustain_last(n=1, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.BooleanPattern(
+                pattern=rhythmmakertools.Pattern(
                     indices=(-1,),
                     ),
                 )
@@ -72,7 +72,7 @@ def sustain_last(n=1, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.BooleanPattern(
+                pattern=rhythmmakertools.Pattern(
                     indices=(-2, -1),
                     ),
                 )
@@ -128,7 +128,7 @@ def sustain_last(n=1, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.BooleanPattern(
+                pattern=rhythmmakertools.Pattern(
                     indices=(),
                     ),
                 )
@@ -177,7 +177,7 @@ def sustain_last(n=1, invert=None):
     from abjad.tools import rhythmmakertools
 
     indices = list(reversed(range(-1, -n-1, -1)))
-    pattern = rhythmmakertools.BooleanPattern(
+    pattern = rhythmmakertools.Pattern(
         indices=indices,
         invert=invert,
         )
