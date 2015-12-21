@@ -11,7 +11,7 @@ class Expression(TypedTuple):
 
         ::
 
-            >>> expression = rhythmmakertools.Expression(
+            >>> expression = datastructuretools.Expression(
             ...    items=[
             ...        rhythmmakertools.select_every(indices=[0], period=2),
             ...        rhythmmakertools.select_last(3, invert=True),
@@ -22,7 +22,7 @@ class Expression(TypedTuple):
         ::
 
             >>> print(format(expression))
-            rhythmmakertools.Expression(
+            datastructuretools.Expression(
                 (
                     rhythmmakertools.Pattern(
                         indices=(0,),
@@ -39,8 +39,6 @@ class Expression(TypedTuple):
     '''
 
     ### CLASS VARIABLES ###
-
-    __documentation_section__ = 'Masks'
 
     __slots__ = (
         '_operator',

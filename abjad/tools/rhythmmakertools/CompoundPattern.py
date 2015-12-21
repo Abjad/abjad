@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import operator
-from abjad.tools.rhythmmakertools.Expression import Expression
+from abjad.tools.datastructuretools.Expression import Expression
 from abjad.tools.topleveltools.new import new
 
 
