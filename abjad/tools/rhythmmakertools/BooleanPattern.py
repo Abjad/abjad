@@ -280,6 +280,7 @@ class BooleanPattern(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
+    # TODO: change name to from_vector()
     @classmethod
     def from_sequence(cls, sequence):
         r'''Makes boolean pattern from sequence.

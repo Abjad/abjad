@@ -61,8 +61,8 @@ class Expression(TypedTuple):
     def operator(self):
         r'''Gets operator of expression.
 
-        Set to object.
+        Set to string.
 
-        Returns object.
+        Returns string.
         '''
         return self._operator
