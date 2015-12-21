@@ -122,7 +122,7 @@ def test_agenttools_MutationAgent_fuse_06():
         '''
         )
 
-    tuplets = select([tuplet_1, tuplet_2], contiguous=True)
+    tuplets = select([tuplet_1, tuplet_2])
     new = mutate(tuplets).fuse()
 
     assert systemtools.TestManager.compare(
@@ -262,7 +262,7 @@ def test_agenttools_MutationAgent_fuse_09():
     tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 8), [])
     tuplet_2.extend("c'8 d'8 e'8 f'8 g'8")
-    tuplets = select([tuplet_1, tuplet_2], contiguous=True)
+    tuplets = select([tuplet_1, tuplet_2])
 
     assert pytest.raises(Exception, 'mutate(tuplets).fuse()')
 
@@ -273,7 +273,7 @@ def test_agenttools_MutationAgent_fuse_10():
 
     tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     tuplet_2 = Tuplet(Multiplier(2, 3), "c'8 d'8 e'8")
-    tuplets = select([tuplet_1, tuplet_2], contiguous=True)
+    tuplets = select([tuplet_1, tuplet_2])
 
     assert pytest.raises(Exception, 'mutate(tuplets).fuse()')
 
