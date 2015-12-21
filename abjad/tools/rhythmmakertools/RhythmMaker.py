@@ -190,9 +190,6 @@ class RhythmMaker(AbjadValueObject):
                     use_messiaen_style_ties=\
                         tie_specifier.use_messiaen_style_ties,
                     )
-            elif isinstance(matching_division_mask, rhythmmakertools.NullMask):
-                new_selections.append(selection)
-                continue
             else:
                 use_multimeasure_rests = getattr(
                     matching_division_mask,

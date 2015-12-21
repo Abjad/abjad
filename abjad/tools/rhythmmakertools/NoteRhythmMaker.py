@@ -826,14 +826,14 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> silence_mask = rhythmmakertools.SilenceMask(
-                ...     pattern=rhythmmakertools.select_every([0], period=2),
-                ...     )
-                >>> null_mask = rhythmmakertools.NullMask(
-                ...     indices=[0, -1],
+                >>> pattern_1 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern_2 = rhythmmakertools.select([0, -1])
+                >>> pattern = pattern_1 & ~pattern_2
+                >>> mask = rhythmmakertools.SilenceMask(
+                ...     pattern=pattern,
                 ...     )
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
-                ...     division_masks=[silence_mask, null_mask],
+                ...     division_masks=[mask],
                 ...     )
 
             ::
