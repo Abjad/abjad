@@ -7,8 +7,8 @@ def test_systemtools_AbjadConfiguration___init___01():
 
     abjad_configuration = systemtools.AbjadConfiguration()
 
-    assert os.path.exists(abjad_configuration.abjad_configuration_directory)
-    assert os.path.exists(abjad_configuration.abjad_configuration_file_path)
+    assert os.path.exists(abjad_configuration.configuration_directory_path)
+    assert os.path.exists(abjad_configuration.configuration_file_path)
     assert os.path.exists(abjad_configuration.abjad_output_directory)
 
     keys = [

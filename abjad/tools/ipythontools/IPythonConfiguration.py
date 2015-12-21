@@ -49,15 +49,23 @@ class IPythonConfiguration(Configuration):
     ### PUBLIC METHODS ###
 
     @property
-    def configuration_directory(self):
-        r'''Configuration directory.
+    def configuration_directory_name(self):
+        r'''Gets configuration directory name.
+
+        Returns string.
+        '''
+        return 'ipython'
+
+    @property
+    def configuration_directory_path(self):
+        r'''Gets configuration directory path.
 
         Returns string.
         '''
         import abjad
         return os.path.join(
-            abjad.abjad_configuration.abjad_configuration_directory,
-            'ipython',
+            abjad.abjad_configuration.configuration_directory_path,
+            self.configuration_directory_name,
             )
 
     @property

@@ -3,6 +3,7 @@ from __future__ import print_function
 import abc
 import os
 import six
+import tempfile
 import time
 import traceback
 from abjad.tools.abctools.AbjadObject import AbjadObject
@@ -19,15 +20,17 @@ class Configuration(AbjadObject):
     __documentation_section__ = 'System configuration'
 
     __slots__ = (
+        '_cached_configuration_directory_path',
         '_settings',
         )
 
     ### INITIALIZER ###
 
     def __init__(self):
-        if not os.path.exists(self.configuration_directory):
+        self._cached_configuration_directory_path = None
+        if not os.path.exists(self.configuration_directory_path):
             try:
-                os.makedirs(self.configuration_directory)
+                os.makedirs(self.configuration_directory_path)
             except (IOError, OSError):
                 traceback.print_exc()
         old_contents = ''
@@ -196,12 +199,47 @@ class Configuration(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @abc.abstractproperty
-    def configuration_directory(self):
-        r'''Gets configuration directory.
+    def configuration_directory_name(self):
+        r'''Gets configuration directory name.
 
         Returns string.
         '''
         raise NotImplementedError
+
+    @property
+    def configuration_directory_path(self):
+        r'''Gets configuration directory path.
+
+        Defaults to $HOME/{configuration_directory_name}.
+
+        If $HOME is read-only or
+        $HOME/{configuration_directory_name} is read-only,
+        returns $TEMP/{configuration_directory_name}.
+
+        Also caches the initial result to reduce filesystem interaction.
+
+        Returns string.
+        '''
+        if self._cached_configuration_directory_path is None:
+            home_directory = self.home_directory
+            flags = os.W_OK | os.X_OK
+            if os.access(home_directory, flags):
+                path = os.path.join(
+                    home_directory,
+                    self.configuration_directory_name,
+                    )
+                if not os.path.exists(path) or (
+                    os.path.exists(path) and os.access(path, flags)):
+                    self._cached_configuration_directory_path = path
+                    return path
+            temp_directory = self.temp_directory
+            path = os.path.join(
+                temp_directory,
+                self.configuration_directory_name,
+                )
+            self._cached_configuration_directory_path = path
+            return path
+        return self._cached_configuration_directory_path
 
     @abc.abstractproperty
     def configuration_file_name(self):
@@ -218,7 +256,7 @@ class Configuration(AbjadObject):
         Returns string.
         '''
         return os.path.join(
-            self.configuration_directory,
+            self.configuration_directory_path,
             self.configuration_file_name,
             )
 
@@ -234,3 +272,11 @@ class Configuration(AbjadObject):
             os.environ.get('APPDATA')
             )
         return os.path.abspath(path)
+
+    @property
+    def temp_directory(self):
+        r'''Gets system temp directory.
+
+        Returns string.
+        '''
+        return tempfile.gettempdir()

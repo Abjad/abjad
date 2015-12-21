@@ -139,10 +139,10 @@ class Parser(AbjadObject):
         r'''The output path for files associated with the parser.
         '''
         from abjad import abjad_configuration
-        abjad_configuration_directory = \
-            abjad_configuration.abjad_configuration_directory
+        configuration_directory_path = \
+            abjad_configuration.configuration_directory_path
         output_path = os.path.join(
-            abjad_configuration_directory,
+            configuration_directory_path,
             'parsers',
             )
         if not os.path.isdir(output_path):

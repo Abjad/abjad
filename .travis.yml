@@ -1,5 +1,7 @@
 language: python
 
+sudo: false
+
 python:
     - 2.7
     - 3.3
@@ -11,24 +13,26 @@ matrix:
     include:
         - python: 3.4
           env: TRAVIS_READ_ONLY=true
-    allow_failures:
-        - env: TRAVIS_READ_ONLY=true
+
+addons:
+    apt:
+        packages:
+            - graphviz
+            - imagemagick
+            - texlive
+            - texlive-extra-utils
+            - texlive-fonts-recommended
+            - texlive-latex-extra
+            - texlive-latex-recommended
 
 before_install:
-    - sudo apt-get update -qq
-    - sudo apt-get install -y graphviz
-    - sudo apt-get install -y imagemagick
-    - sudo apt-get install -y texlive
-    - sudo apt-get install -y texlive-fonts-recommended
-    - sudo apt-get install -y texlive-latex-extra
-    - sudo apt-get install -y texlive-latex-recommended
     - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.28-1.linux-64.sh
-    - sudo sh lilypond-2.19.28-1.linux-64.sh --batch
+    - sh lilypond-2.19.28-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
     - pip install coveralls
     - pip install coverage
-    # Make a root-controlled ~/.abjad/ when testing for read-only filesystems.
-    - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then sudo mkdir ~/.abjad ; fi
+    # Make a non-accessible ~/.abjad/ when testing for read-only filesystems.
+    - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
 
 install:
     # install without development dependencies.
@@ -37,21 +41,19 @@ install:
     - abjad/scr/devel/prime-parser-tables
     # then install development dependencies.
     - pip install -e .[development]
+    # echo the configuration file path to debug read-only-filesystem handling
+    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
 
 script:
     - abjad/scr/ajv doctest --diff experimental
     - py.test -rf experimental
 
     - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv doctest --diff abjad; fi
-    # run py.test on demos and tools but not boilerplate
-    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad/demos; fi
-    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad/tools; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad; fi
     - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv api -R; fi
 
     - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv doctest --diff abjad; fi
-    # run py.test on demos and tools but not boilerplate
-    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad/demos; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad/tools; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad; fi
     - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv api -R; fi
 
 after_success:

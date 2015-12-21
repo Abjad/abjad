@@ -71,7 +71,8 @@ class AbjadConfiguration(Configuration):
                     '(such as PDFs and LilyPond files) should be saved.',
                     'Defaults to $HOME/.abjad/output/'
                     ],
-                'default': os.path.join(self.abjad_configuration_directory,
+                'default': os.path.join(
+                    self.configuration_directory_path,
                     'output',
                     ),
                 'validator': str,
@@ -393,26 +394,6 @@ class AbjadConfiguration(Configuration):
         return os.path.abspath(relative_path)
 
     @property
-    def abjad_configuration_directory(self):
-        r'''Gets Abjad configuration directory.
-
-        Returns string.
-        '''
-        relative_path = os.path.join(
-            self.home_directory,
-            '.abjad',
-            )
-        return os.path.abspath(relative_path)
-
-    @property
-    def abjad_configuration_file_path(self):
-        r'''Gets Abjad configuration file path.
-
-        Returns string.
-        '''
-        return self.configuration_file_path
-
-    @property
     def abjad_directory(self):
         r'''Gets Abjad directory.
 
@@ -434,32 +415,6 @@ class AbjadConfiguration(Configuration):
         return os.path.abspath(relative_path)
 
     @property
-    def abjad_ide_directory(self):
-        r'''Gets Abjad IDE directory.
-
-        Returns string.
-        '''
-        try:
-            import ide
-            return ide.__path__[0]
-        except ImportError:
-            return None
-
-    @property
-    def abjad_ide_root_directory(self):
-        r'''Gets Abjad IDE root directory.
-
-        Returns string.
-        '''
-        try:
-            import ide
-            path = ide.__path__[0]
-            path, _ = os.path.split(path)
-            return path
-        except ImportError:
-            return None
-
-    @property
     def abjad_output_directory(self):
         r'''Gets Abjad output directory.
 
@@ -468,7 +423,7 @@ class AbjadConfiguration(Configuration):
         if 'abjad_output_directory' in self._settings:
             return self._settings['abjad_output_directory']
         return os.path.join(
-            self.abjad_configuration_directory,
+            self.configuration_directory_path,
             'output'
             )
 
@@ -485,12 +440,12 @@ class AbjadConfiguration(Configuration):
         return os.path.abspath(relative_path)
 
     @property
-    def configuration_directory(self):
-        r'''Gets configuration directory.
+    def configuration_directory_name(self):
+        r'''Gets configuration directory name.
 
         Returns string.
         '''
-        return self.abjad_configuration_directory
+        return '.abjad'
 
     @property
     def configuration_file_name(self):
