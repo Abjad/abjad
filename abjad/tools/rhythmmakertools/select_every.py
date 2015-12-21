@@ -2,7 +2,7 @@
 
 
 def select_every(indices, period=None, invert=None):
-    r'''Makes boolean pattern that matches `indices` at `period`.
+    r'''Makes pattern that matches `indices` at `period`.
 
     ..  container:: example
 
@@ -109,7 +109,7 @@ def select_every(indices, period=None, invert=None):
             }
 
 
-    Returns boolean pattern.
+    Returns pattern.
     '''
     from abjad.tools import rhythmmakertools
 

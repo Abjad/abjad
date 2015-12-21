@@ -2,7 +2,7 @@
 
 
 def select_last(n=1, invert=None):
-    r'''Makes boolean pattern that matches the last `n` indices.
+    r'''Makes pattern that matches the last `n` indices.
 
     ..  container:: example
 
@@ -115,7 +115,7 @@ def select_last(n=1, invert=None):
                 }
             }
 
-    Returns boolean pattern.
+    Returns pattern.
     '''
     from abjad.tools import rhythmmakertools
 

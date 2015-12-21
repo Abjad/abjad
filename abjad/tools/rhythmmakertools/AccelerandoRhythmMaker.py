@@ -1986,9 +1986,9 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         Defaults to none.
 
-        Set to boolean pattern inventory or none.
+        Set to pattern inventory or none.
 
-        Returns boolean pattern inventory or none.
+        Returns pattern inventory or none.
         '''
         return self._count_masks
 

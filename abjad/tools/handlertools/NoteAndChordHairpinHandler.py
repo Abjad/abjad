@@ -454,7 +454,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     def patterns(self):
         r'''Gets patterns of handler.
 
-        Set to boolean patterns or none.
+        Set to patterns or none.
         '''
         return self._patterns
 

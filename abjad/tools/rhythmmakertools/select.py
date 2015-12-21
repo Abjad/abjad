@@ -2,7 +2,7 @@
 
 
 def select(indices=None, invert=None):
-    r'''Makes boolean pattern that matches `indices`.
+    r'''Makes pattern that matches `indices`.
 
     ..  container:: example
 
@@ -34,7 +34,7 @@ def select(indices=None, invert=None):
                 indices=(2, 3, 5),
                 )
 
-    Returns boolean pattern.
+    Returns pattern.
     '''
     from abjad.tools import rhythmmakertools
 

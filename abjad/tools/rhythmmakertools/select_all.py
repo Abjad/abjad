@@ -2,7 +2,7 @@
 
 
 def select_all(invert=None):
-    r'''Makes boolean pattern that matches all indices.
+    r'''Makes pattern that matches all indices.
 
     ..  container:: example
 
@@ -59,7 +59,7 @@ def select_all(invert=None):
                 }
             }
 
-    Returns boolean pattern.
+    Returns pattern.
     '''
     from abjad.tools import rhythmmakertools
 

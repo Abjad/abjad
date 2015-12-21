@@ -173,7 +173,7 @@ class Talea(AbjadValueObject):
 
         Set to count masks or none.
 
-        Returns boolean pattern inventory or none.
+        Returns pattern inventory or none.
         '''
         return self._count_masks
 

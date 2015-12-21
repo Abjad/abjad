@@ -2,7 +2,7 @@
 
 
 def select_first(n=1, invert=None):
-    r'''Makes boolean pattern that matches the first `n` indices.
+    r'''Makes pattern that matches the first `n` indices.
 
     ..  container:: example
 
@@ -166,7 +166,7 @@ def select_first(n=1, invert=None):
                 }
             }
 
-    Returns boolean pattern.
+    Returns pattern.
     '''
     from abjad.tools import rhythmmakertools
 

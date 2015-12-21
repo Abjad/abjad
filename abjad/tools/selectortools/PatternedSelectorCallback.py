@@ -85,6 +85,6 @@ class PatternedSelectorCallback(AbjadValueObject):
     def pattern(self):
         r'''Gets pattern of patterned selector callback.
 
-        Returns boolean pattern.
+        Returns pattern.
         '''
         return self._pattern

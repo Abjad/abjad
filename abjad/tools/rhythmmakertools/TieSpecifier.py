@@ -42,7 +42,7 @@ class TieSpecifier(AbjadValueObject):
             bool,
             collections.Sequence,
             rhythmmakertools.Pattern,
-            rhythmmakertools.BooleanPatternInventory,
+            rhythmmakertools.PatternInventory,
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions

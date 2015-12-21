@@ -189,7 +189,7 @@ class Pattern(AbjadValueObject):
         return pattern
 
     def __len__(self):
-        r'''Gets length of boolean pattern.
+        r'''Gets length of pattern.
 
         ..  container:: example
 
@@ -331,7 +331,7 @@ class Pattern(AbjadValueObject):
 
     @property
     def vector(self):
-        r'''Gets vector boolean pattern.
+        r'''Gets vector pattern.
         
         ..  container:: example
 
@@ -379,7 +379,7 @@ class Pattern(AbjadValueObject):
 
     @property
     def weight(self):
-        r'''Gets weight of boolean pattern.
+        r'''Gets weight of pattern.
 
         ..  container:: example
 
@@ -423,7 +423,7 @@ class Pattern(AbjadValueObject):
     # TODO: change name to from_vector()
     @classmethod
     def from_sequence(cls, sequence):
-        r'''Makes boolean pattern from sequence.
+        r'''Makes pattern from sequence.
 
         ..  container:: example
 
@@ -493,7 +493,7 @@ class Pattern(AbjadValueObject):
                 10 True
                 11 
 
-        Returns boolean pattern.
+        Returns pattern.
         '''
         sequence = [bool(_) for _ in sequence]
         period = len(sequence)

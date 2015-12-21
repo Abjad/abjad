@@ -2,8 +2,8 @@
 from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
-class BooleanPatternInventory(TypedTuple):
-    r'''Boolean pattern inventory.
+class PatternInventory(TypedTuple):
+    r'''Pattern inventory.
 
     ..  container:: example
 
@@ -11,7 +11,7 @@ class BooleanPatternInventory(TypedTuple):
 
         ::
 
-            >>> inventory = rhythmmakertools.BooleanPatternInventory([
+            >>> inventory = rhythmmakertools.PatternInventory([
             ...     rhythmmakertools.Pattern(
             ...         indices=[0, 1, 7],
             ...         period=10,
@@ -28,7 +28,7 @@ class BooleanPatternInventory(TypedTuple):
         ::
 
             >>> print(format(inventory))
-            rhythmmakertools.BooleanPatternInventory(
+            rhythmmakertools.PatternInventory(
                 (
                     rhythmmakertools.Pattern(
                         indices=(0, 1, 7),
@@ -50,7 +50,7 @@ class BooleanPatternInventory(TypedTuple):
 
         ::
 
-            >>> inventory = rhythmmakertools.BooleanPatternInventory([
+            >>> inventory = rhythmmakertools.PatternInventory([
             ...     rhythmmakertools.Pattern(
             ...         indices=[1],
             ...         period=2,
@@ -63,7 +63,7 @@ class BooleanPatternInventory(TypedTuple):
         ::
 
             >>> print(format(inventory))
-            rhythmmakertools.BooleanPatternInventory(
+            rhythmmakertools.PatternInventory(
                 (
                     rhythmmakertools.Pattern(
                         indices=(1,),
@@ -95,7 +95,7 @@ class BooleanPatternInventory(TypedTuple):
 
             ::
 
-                >>> inventory = rhythmmakertools.BooleanPatternInventory([
+                >>> inventory = rhythmmakertools.PatternInventory([
                 ...     rhythmmakertools.Pattern(
                 ...         indices=[1],
                 ...         period=2,
@@ -199,7 +199,7 @@ class BooleanPatternInventory(TypedTuple):
 
             ::
 
-                >>> inventory = rhythmmakertools.BooleanPatternInventory([
+                >>> inventory = rhythmmakertools.PatternInventory([
                 ...     rhythmmakertools.Pattern(
                 ...         indices=[-3],
                 ...         invert=True,
@@ -248,7 +248,7 @@ class BooleanPatternInventory(TypedTuple):
 
             ::
 
-                >>> inventory = rhythmmakertools.BooleanPatternInventory([
+                >>> inventory = rhythmmakertools.PatternInventory([
                 ...     rhythmmakertools.Pattern(
                 ...         indices=[0],
                 ...         payload=rhythmmakertools.NoteRhythmMaker(),
