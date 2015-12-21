@@ -1035,35 +1035,73 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.**
+            **Example 1.** Selects leaves without flattening:
 
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
 
+            Call returns a selection containing a component selection.
+
         ..  container:: example
 
-            **Example 2.**
+            **Example 2.** Selects leaves with flattening:
 
             ::
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for leaf in selector(staff):
+                ...     leaf
                 ...
                 Note("c'8")
                 Rest('r8')
@@ -1074,33 +1112,81 @@ class Selector(AbjadValueObject):
                 Note("g'8")
                 Note("a'8")
 
-            **Example 3.**
+            Call returns a component selection.
+
+        ..  container:: example
+
+            **Example 3.** Selects leaves:
 
             ::
 
                 >>> staff = Staff("abj: | 4/4 c'2 d'2 || 3/4 e'4 f'4 g'4 |")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 4/4
+                        c'2
+                        d'2
+                    }
+                    {
+                        \time 3/4
+                        e'4
+                        f'4
+                        g'4
+                    }
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_class(Measure)
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Measure((4, 4), "c'2 d'2"), Measure((3, 4), "e'4 f'4 g'4"))
 
             ::
 
                 >>> selector = selector.by_leaves()
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'2"), Note("d'2"), Note("e'4"), Note("f'4"), Note("g'4"))
 
+            Call returns a selection containing a component selection.
+
         ..  container:: example
 
-            **Example 4.**
+            **Example 4.** Selects leaves grouped by measure:
 
             ::
 
                 >>> staff = Staff("abj: | 4/4 c'2 d'2 || 3/4 e'4 f'4 g'4 |")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 4/4
+                        c'2
+                        d'2
+                    }
+                    {
+                        \time 3/4
+                        e'4
+                        f'4
+                        g'4
+                    }
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_class(Measure, flatten=True)
                 >>> for x in selector(staff):
@@ -1112,19 +1198,43 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selector.by_leaves()
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'2"), Note("d'2"))
                 Selection(Note("e'4"), Note("f'4"), Note("g'4"))
 
+            Call returns a selection containing one component selection per
+            measure.
+
         ..  container:: example
 
-            **Example 5.**
+            **Example 5.** Selects leaves:
 
             ::
 
                 >>> staff = Staff("abj: | 4/4 c'2 d'2 || 3/4 e'4 f'4 g'4 |")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 4/4
+                        c'2
+                        d'2
+                    }
+                    {
+                        \time 3/4
+                        e'4
+                        f'4
+                        g'4
+                    }
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_class(Measure, flatten=True)
                 >>> for x in selector(staff):
@@ -1145,6 +1255,8 @@ class Selector(AbjadValueObject):
                 Note("f'4")
                 Note("g'4")
 
+            Call returns a component selection.
+
         Returns new selector.
         '''
         from abjad.tools import selectortools
@@ -1160,7 +1272,7 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Selects all runs of more than ``1`` note:
+            **Example 1.** Selects all runs of more than one note:
 
             ::
 
@@ -1185,8 +1297,7 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Selects all runs ``3`` or fewer notes:
-            ``3``:
+            **Example 2.** Selects all runs of less than three notes:
 
             ::
 
