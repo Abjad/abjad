@@ -49,10 +49,10 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> for x in selector(staff):
             ...     x
             ...
-            ContiguousSelection(Note("c'8"),)
-            ContiguousSelection(Note("e'8"),)
-            ContiguousSelection(Note("g'8"),)
-            ContiguousSelection(Note("c''8"),)
+            Selection(Note("c'8"),)
+            Selection(Note("e'8"),)
+            Selection(Note("g'8"),)
+            Selection(Note("c''8"),)
 
     ..  container:: example
 
@@ -67,10 +67,10 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> for x in selector(staff):
             ...     x
             ...
-            ContiguousSelection(Note("d'8"),)
-            ContiguousSelection(Note("f'8"),)
-            ContiguousSelection(Note("b'8"),)
-            ContiguousSelection(Note("c''8"),)
+            Selection(Note("d'8"),)
+            Selection(Note("f'8"),)
+            Selection(Note("b'8"),)
+            Selection(Note("c''8"),)
 
     ..  container:: example
 

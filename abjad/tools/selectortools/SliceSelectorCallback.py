@@ -57,7 +57,7 @@ class SliceSelectorCallback(AbjadValueObject):
 
                 >>> for selection in selections:
                 ...     selection
-                ContiguousSelection(Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
+                Selection(Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
 
             Returns tuple of selections.
 
@@ -74,7 +74,7 @@ class SliceSelectorCallback(AbjadValueObject):
 
                 >>> for selection in selections:
                 ...     selection
-                ContiguousSelection(Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
+                Selection(Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
 
             ::
 
@@ -99,7 +99,7 @@ class SliceSelectorCallback(AbjadValueObject):
 
                 >>> for selection in selections:
                 ...     selection
-                ContiguousSelection(Note("f'16"), Note("g'8"), Note("a'4"))
+                Selection(Note("f'16"), Note("g'8"), Note("a'4"))
 
             ::
 

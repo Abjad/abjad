@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_01():
+def test_selectiontools_Selection__get_dominant_spanners_01():
     r'''Returns Python list of (spanner, index) pairs.
     Each (spanner, index) pair gives a spanner which dominates
     all components in list, together with the start-index
@@ -47,7 +47,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_01():
     assert (trill, 0) in receipt
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_02():
+def test_selectiontools_Selection__get_dominant_spanners_02():
     r'''Beam, glissando and trill all dominante second container.
     '''
 
@@ -67,7 +67,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_02():
     assert (trill, 2) in receipt
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_03():
+def test_selectiontools_Selection__get_dominant_spanners_03():
     r'''Glissando and trill dominate last container.
     '''
 
@@ -86,7 +86,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_03():
     assert (trill, 4) in receipt
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_04():
+def test_selectiontools_Selection__get_dominant_spanners_04():
     r'''Beam and trill dominate first two containers.
     '''
 
@@ -105,7 +105,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_04():
     assert (trill, 0) in receipt
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_05():
+def test_selectiontools_Selection__get_dominant_spanners_05():
     r'''Glissando and trill dominate last two containers.
     '''
 
@@ -124,7 +124,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_05():
     assert (trill, 2) in receipt
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_06():
+def test_selectiontools_Selection__get_dominant_spanners_06():
     r'''Only trill dominates all three containers.
     '''
 
@@ -142,7 +142,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_06():
     assert (trill, 0) in receipt
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_07():
+def test_selectiontools_Selection__get_dominant_spanners_07():
     r'''Only trill dominates voice.
     '''
 
@@ -160,7 +160,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_07():
     assert (trill, 0) in receipt
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_08():
+def test_selectiontools_Selection__get_dominant_spanners_08():
     r'''Only trill dominates first two notes.
     Note that trill attaches to notes.
     Note that beam and glissando attach to containers.
@@ -180,7 +180,7 @@ def test_selectiontools_ContiguousSelection__get_dominant_spanners_08():
     assert (trill, 0) in receipt
 
 
-def test_selectiontools_ContiguousSelection__get_dominant_spanners_09():
+def test_selectiontools_Selection__get_dominant_spanners_09():
     r'''Works on empty containers.
     Implementation does not depend on component duration.
     Only beam dominates first container.

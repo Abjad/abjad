@@ -242,7 +242,7 @@ class Component(AbjadObject):
     # TODO: remove scale_contents keyword
     def _extract(self, scale_contents=None):
         from abjad.tools import selectiontools
-        selection = selectiontools.ContiguousSelection([self])
+        selection = selectiontools.Selection([self])
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         music_list = list(getattr(self, '_music', ()))
         parent.__setitem__(slice(start, stop + 1), music_list)
@@ -300,7 +300,7 @@ class Component(AbjadObject):
         if include_self:
             result.append(self)
         result.extend(getattr(self, '_music', []))
-        result = selectiontools.ContiguousSelection(result)
+        result = selectiontools.Selection(result)
         return result
 
     def _get_descendants(
@@ -786,7 +786,7 @@ class Component(AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         assert all(isinstance(x, scoretools.Component) for x in components)
-        selection = selectiontools.ContiguousSelection(self)
+        selection = selectiontools.Selection(self)
         if direction == Right:
             if grow_spanners:
                 insert_offset = self._get_timespan().stop_offset
@@ -805,7 +805,7 @@ class Component(AbjadObject):
                     for component in reversed(components):
                         spanner._insert(insert_index, component)
                         component._spanners.add(spanner)
-            selection = selectiontools.ContiguousSelection(self)
+            selection = selectiontools.Selection(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             if parent is not None:
@@ -832,7 +832,7 @@ class Component(AbjadObject):
                     for component in reversed(components):
                         spanner._insert(index, component)
                         component._spanners.add(spanner)
-            selection = selectiontools.ContiguousSelection(self)
+            selection = selectiontools.Selection(self)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             if parent is not None:

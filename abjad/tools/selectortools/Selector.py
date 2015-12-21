@@ -92,7 +92,7 @@ class Selector(AbjadValueObject):
             >>> for x in selector(staff):
             ...     x
             ...
-            ContiguousSelection(Note("f'16"),)
+            Selection(Note("f'16"),)
 
     ..  container:: example
 
@@ -1382,10 +1382,10 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                ContiguousSelection(Note("c'4"),)
-                ContiguousSelection(Note("d'4"),)
-                ContiguousSelection(Note("e'4"),)
-                ContiguousSelection(Note("f'4"),)
+                Selection(Note("c'4"),)
+                Selection(Note("d'4"),)
+                Selection(Note("e'4"),)
+                Selection(Note("f'4"),)
 
         ..  container:: example
 

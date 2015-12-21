@@ -532,7 +532,7 @@ def test_agenttools_MutationAgent_fuse_16():
 
     staff = Staff()
     result = mutate(staff[:]).fuse()
-    assert result == selectiontools.ContiguousSelection()
+    assert result == selectiontools.Selection()
 
 
 def test_agenttools_MutationAgent_fuse_17():

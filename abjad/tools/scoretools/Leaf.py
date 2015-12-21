@@ -499,7 +499,7 @@ class Leaf(Component):
             shard = [x._get_parentage().root for x in shard]
             result.append(shard)
         flattened_result = sequencetools.flatten_sequence(result)
-        flattened_result = selectiontools.ContiguousSelection(flattened_result)
+        flattened_result = selectiontools.Selection(flattened_result)
         prototype = (spannertools.Tie,)
         parentage = self._get_parentage()
         if parentage._get_spanners(prototype=prototype):
@@ -510,7 +510,7 @@ class Leaf(Component):
                     spanner._sever_all_components()
                 #detach(prototype, component)
         # replace leaf with flattened result
-        selection = selectiontools.ContiguousSelection(self)
+        selection = selectiontools.Selection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent:
             parent.__setitem__(slice(start, stop + 1), flattened_result)
@@ -550,10 +550,10 @@ class Leaf(Component):
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
             flattened_result_leaves = iterate(flattened_result).by_class(
                 scoretools.Leaf)
-            # TODO: implement ContiguousSelection._attach_tie_spanner_to_leaves()
+            # TODO: implement Selection._attach_tie_spanner_to_leaves()
             for leaf_pair in sequencetools.iterate_sequence_nwise(
                 flattened_result_leaves):
-                selection = selectiontools.ContiguousSelection(leaf_pair)
+                selection = selectiontools.Selection(leaf_pair)
                 selection._attach_tie_spanner_to_leaf_pair(
                     use_messiaen_style_ties=use_messiaen_style_ties,
                     )
@@ -610,7 +610,7 @@ class Leaf(Component):
                 spanner._fracture(index, direction=Right)
         # tie split notes, rests and chords as specified
         if pitchtools.Pitch.is_pitch_carrier(self) and tie_split_notes:
-            selection = selectiontools.ContiguousSelection(leaves_around_split)
+            selection = selectiontools.Selection(leaves_around_split)
             selection._attach_tie_spanner_to_leaf_pair(
                 use_messiaen_style_ties=use_messiaen_style_ties,
                 )

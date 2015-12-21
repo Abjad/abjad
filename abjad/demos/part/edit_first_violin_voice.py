@@ -8,7 +8,7 @@ def edit_first_violin_voice(score, durated_reservoir):
 
     voice = score['First Violin Voice']
     descents = durated_reservoir['First Violin']
-    descents = selectiontools.ContiguousSelection(descents)
+    descents = selectiontools.Selection(descents)
 
     last_descent = select(descents[-1], contiguous=True)
     copied_descent = mutate(last_descent).copy()

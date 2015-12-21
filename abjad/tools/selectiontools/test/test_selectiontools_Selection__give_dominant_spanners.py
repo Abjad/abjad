@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
+def test_selectiontools_Selection__give_dominant_spanners_01():
     r'''Find spanners that dominate donor_components.
     Apply dominant spanners to recipient_components.
     Withdraw donor_components from spanners.
@@ -80,7 +80,7 @@ def test_selectiontools_ContiguousSelection__give_dominant_spanners_01():
     assert not inspect_(recipient).is_well_formed()
 
 
-def test_selectiontools_ContiguousSelection__give_dominant_spanners_02():
+def test_selectiontools_Selection__give_dominant_spanners_02():
     r'''Not composer-safe.
     '''
 

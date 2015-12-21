@@ -63,8 +63,8 @@ def apply_full_measure_tuplets_to_contents_of_measures_in_expr(
     from abjad.tools import selectiontools
     from abjad.tools import scoretools
 
-    supplement = selectiontools.ContiguousSelection(supplement)
-    assert isinstance(supplement, selectiontools.ContiguousSelection)
+    supplement = selectiontools.Selection(supplement)
+    assert isinstance(supplement, selectiontools.Selection)
 
     for measure in iterate(expr).by_class(scoretools.Measure):
         target_duration = measure._preprolated_duration

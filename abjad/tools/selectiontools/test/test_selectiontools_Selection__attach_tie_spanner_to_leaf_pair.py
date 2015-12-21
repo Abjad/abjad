@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_01():
+def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_01():
     r'''Span left leaf with spanner and right leaf without spanner.
     '''
 
@@ -39,7 +39,7 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_01(
     assert inspect_(voice).is_well_formed()
 
 
-def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_02():
+def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_02():
     r'''Span left leaf with spanner and right leaf with spanner.
     '''
 
@@ -78,7 +78,7 @@ def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_02(
     assert inspect_(voice).is_well_formed()
 
 
-def test_selectiontools_ContiguousSelection__attach_tie_spanner_to_leaf_pair_03():
+def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_03():
     r'''Span left leaves with no spanner.
     '''
 

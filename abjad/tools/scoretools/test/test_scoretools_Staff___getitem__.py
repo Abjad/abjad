@@ -131,7 +131,7 @@ def test_scoretools_Staff___getitem___08():
     assert inspect_(staff).is_well_formed()
     slice = staff[:]
     assert len(slice) == 5
-    assert isinstance(slice, (list, selectiontools.ContiguousSelection))
+    assert isinstance(slice, (list, selectiontools.Selection))
     assert isinstance(slice[0], Note)
     assert isinstance(slice[1], Rest)
     assert isinstance(slice[2], Chord)

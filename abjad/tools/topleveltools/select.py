@@ -13,9 +13,9 @@ def select(expr=None, contiguous=False):
     if contiguous:
         if isinstance(expr, (list, tuple)):
             assert Selection._all_are_contiguous_components_in_same_logical_voice(expr)
-        return selectiontools.ContiguousSelection(expr)
+        return selectiontools.Selection(expr)
     elif isinstance(expr, scoretools.Component):
-        return selectiontools.ContiguousSelection(expr)
+        return selectiontools.Selection(expr)
     elif hasattr(expr, '_music'):
         music = expr._music
         return selectiontools.Selection(music)

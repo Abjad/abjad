@@ -3,7 +3,7 @@ from abjad import *
 import pytest
 
 
-def test_selectiontools_ContiguousSelection__get_crossing_spanners_01():
+def test_selectiontools_Selection__get_crossing_spanners_01():
     r'''Returns unordered set of spanners crossing
     over the begin- or end-bounds of logical-voice-contiguous
     components.
@@ -47,7 +47,7 @@ def test_selectiontools_ContiguousSelection__get_crossing_spanners_01():
     assert trill in spanners
 
 
-def test_selectiontools_ContiguousSelection__get_crossing_spanners_02():
+def test_selectiontools_Selection__get_crossing_spanners_02():
     r'''Helper gets spanners that cross in from above.
     '''
 

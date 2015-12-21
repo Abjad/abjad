@@ -419,7 +419,7 @@ class TaleaRhythmMaker(RhythmMaker):
         for part in parts:
             if any(isinstance(_, scoretools.Rest) for _ in part):
                 continue
-            part = selectiontools.ContiguousSelection(part)
+            part = selectiontools.Selection(part)
             tie_spanner = spannertools.Tie()
             # voodoo to temporarily neuter the contiguity constraint
             tie_spanner._unconstrain_contiguity()

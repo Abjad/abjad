@@ -358,7 +358,7 @@ New functionality is available for working with ties.
     LogicalTie.get_duration(in_seconds=True)
     LogicalTie.written_duration
 
-  The ``LogicalTie`` class inherits from the new ``ContiguousSelection`` abstract base class.
+  The ``LogicalTie`` class inherits from the new ``Selection`` abstract base class.
 
   Added new ``tietools`` functions:: 
 

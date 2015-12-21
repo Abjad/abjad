@@ -4,10 +4,10 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import mutate
-from abjad.tools.selectiontools.ContiguousSelection import ContiguousSelection
+from abjad.tools.selectiontools.Selection import Selection
 
 
-class LogicalTie(ContiguousSelection):
+class LogicalTie(Selection):
     r'''A selection of components in a logical tie.
 
     ..  container:: example
@@ -161,7 +161,7 @@ class LogicalTie(ContiguousSelection):
         result = []
         pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
         for key, values_generator in pairs_generator:
-            group = selectiontools.ContiguousSelection(list(values_generator))
+            group = selectiontools.Selection(list(values_generator))
             result.append(group)
         return result
 

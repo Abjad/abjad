@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_01():
+def test_selectiontools_Selection_partition_by_durations_01():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -57,7 +57,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_01():
     assert parts[1] == list(staff.select_leaves()[3:6])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_02():
+def test_selectiontools_Selection_partition_by_durations_02():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -113,7 +113,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_02():
     assert parts[2] == list(staff.select_leaves()[6:8])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_03():
+def test_selectiontools_Selection_partition_by_durations_03():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -166,7 +166,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_03():
     assert parts[2] == list(staff.select_leaves()[6:8])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_04():
+def test_selectiontools_Selection_partition_by_durations_04():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -214,7 +214,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_04():
     assert parts[0] == list(staff.select_leaves()[:3])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_05():
+def test_selectiontools_Selection_partition_by_durations_05():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -259,7 +259,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_05():
     assert parts[0] == list(staff.select_leaves()[:3])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_06():
+def test_selectiontools_Selection_partition_by_durations_06():
 
     staff = Staff()
     staff.extend("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
@@ -315,7 +315,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_06():
     assert parts[4] == list(staff.select_leaves()[6:])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_07():
+def test_selectiontools_Selection_partition_by_durations_07():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -379,7 +379,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_07():
     assert parts[6] == list(staff.select_leaves()[6:7])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_08():
+def test_selectiontools_Selection_partition_by_durations_08():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -440,7 +440,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_08():
     assert parts[6] == list(staff.select_leaves()[6:7])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_09():
+def test_selectiontools_Selection_partition_by_durations_09():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
@@ -462,7 +462,7 @@ def test_selectiontools_ContiguousSelection_partition_by_durations_09():
     assert parts[0] == list(staff.select_leaves()[:1])
 
 
-def test_selectiontools_ContiguousSelection_partition_by_durations_10():
+def test_selectiontools_Selection_partition_by_durations_10():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")

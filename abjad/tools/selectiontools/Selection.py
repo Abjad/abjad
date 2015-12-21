@@ -697,7 +697,7 @@ class Selection(object):
         implicit_scaling = self[0].implicit_scaling
         assert all(
             x.implicit_scaling == implicit_scaling for x in self)
-        selection = selectiontools.ContiguousSelection(self)
+        selection = selectiontools.Selection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         old_denominators = []
         new_duration = durationtools.Duration(0)

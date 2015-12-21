@@ -251,7 +251,7 @@ def test_agenttools_MutationAgent_copy_05():
         '''
         )
 
-    selection = selectiontools.ContiguousSelection(music=voice)
+    selection = selectiontools.Selection(music=voice)
     new_selection = mutate(selection).copy()
     new_voice = new_selection[0]
     for component in iterate(new_voice).by_class():

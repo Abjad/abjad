@@ -23,7 +23,7 @@ class IterationAgent(abctools.AbjadObject):
         ::
 
             >>> iterate(staff[2:])
-            IterationAgent(client=ContiguousSelection(Note("d'4"), Note("f'4")))
+            IterationAgent(client=Selection(Note("d'4"), Note("f'4")))
 
     '''
 
@@ -812,7 +812,7 @@ class IterationAgent(abctools.AbjadObject):
         from abjad.tools import selectiontools
         if not isinstance(classes, collections.Sequence):
             classes = (classes,)
-        sequence = selectiontools.ContiguousSelection(self._client)
+        sequence = selectiontools.Selection(self._client)
         current_group = ()
         for group in sequence.group_by(type):
             if any(isinstance(group[0], class_) for class_ in classes):
@@ -1339,7 +1339,7 @@ class IterationAgent(abctools.AbjadObject):
             self._client, (
                 collections.Sequence,
                 scoretools.Container,
-                selectiontools.ContiguousSelection,
+                selectiontools.Selection,
                 )):
             for component in self._client:
                 if isinstance(component, scoretools.Leaf):
@@ -1489,7 +1489,7 @@ class IterationAgent(abctools.AbjadObject):
             from abjad.tools import selectiontools
             if not isinstance(component, scoretools.Component):
                 raise TypeError
-            selection = selectiontools.ContiguousSelection(component)
+            selection = selectiontools.Selection(component)
             parent, start, stop = \
                 selection._get_parent_and_start_stop_indices()
             assert start == stop

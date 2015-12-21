@@ -3,7 +3,7 @@ from abjad import *
 import pytest
 
 
-def test_selectiontools_ContiguousSelection__withdraw_from_crossing_spanners_01():
+def test_selectiontools_Selection__withdraw_from_crossing_spanners_01():
     r'''Withdraw components from crossing spanners.
     No spanners cross voice.
     '''
@@ -35,7 +35,7 @@ def test_selectiontools_ContiguousSelection__withdraw_from_crossing_spanners_01(
         '''
         )
 
-    voice_selection = selectiontools.ContiguousSelection([voice])
+    voice_selection = selectiontools.Selection([voice])
     voice_selection._withdraw_from_crossing_spanners()
 
     assert systemtools.TestManager.compare(
@@ -57,7 +57,7 @@ def test_selectiontools_ContiguousSelection__withdraw_from_crossing_spanners_01(
     assert inspect_(voice).is_well_formed()
 
 
-def test_selectiontools_ContiguousSelection__withdraw_from_crossing_spanners_02():
+def test_selectiontools_Selection__withdraw_from_crossing_spanners_02():
     r'''Withdraw logical-voice-contiguous components from crossing spanners.
     '''
 
@@ -109,7 +109,7 @@ def test_selectiontools_ContiguousSelection__withdraw_from_crossing_spanners_02(
     assert inspect_(voice).is_well_formed()
 
 
-def test_selectiontools_ContiguousSelection__withdraw_from_crossing_spanners_03():
+def test_selectiontools_Selection__withdraw_from_crossing_spanners_03():
     r'''Withdraw logical-voice-contiguous components from crossing spanners.
     Operation leaves score tree in weird state.
     Both slur and trill become discontiguous.

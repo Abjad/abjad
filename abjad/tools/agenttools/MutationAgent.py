@@ -20,7 +20,7 @@ class MutationAgent(abctools.AbjadObject):
         ::
 
             >>> mutate(staff[2:])
-            MutationAgent(client=ContiguousSelection(Note("d'4"), Note("f'4")))
+            MutationAgent(client=Selection(Note("d'4"), Note("f'4")))
 
     '''
 
@@ -57,7 +57,7 @@ class MutationAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         if isinstance(self._client, scoretools.Component):
-            selection = selectiontools.ContiguousSelection(self._client)
+            selection = selectiontools.Selection(self._client)
         else:
             selection = self._client
         result = selection._copy(
@@ -327,12 +327,12 @@ class MutationAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         if isinstance(self._client, scoretools.Component):
-            selection = selectiontools.ContiguousSelection(self._client)
+            selection = selectiontools.Selection(self._client)
             return selection._fuse()
         elif isinstance(self._client, selectiontools.Selection) and \
             self._client._all_are_contiguous_components_in_same_logical_voice(
             self._client):
-            selection = selectiontools.ContiguousSelection(self._client)
+            selection = selectiontools.Selection(self._client)
             return selection._fuse()
 
     def replace(self, recipients):
@@ -404,13 +404,13 @@ class MutationAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-        if isinstance(self._client, selectiontools.ContiguousSelection):
+        if isinstance(self._client, selectiontools.Selection):
             donors = self._client
         else:
-            donors = selectiontools.ContiguousSelection(self._client)
+            donors = selectiontools.Selection(self._client)
         assert donors._all_are_contiguous_components_in_same_parent(donors)
         if not isinstance(recipients, selectiontools.Selection):
-            recipients = selectiontools.ContiguousSelection(recipients)
+            recipients = selectiontools.Selection(recipients)
         assert recipients._all_are_contiguous_components_in_same_parent(
             recipients)
         if donors:
@@ -2623,7 +2623,7 @@ class MutationAgent(abctools.AbjadObject):
             result.append(remaining_components)
         # partition split components according to input durations
         result = sequencetools.flatten_sequence(result)
-        result = selectiontools.ContiguousSelection(result)
+        result = selectiontools.Selection(result)
         result = result.partition_by_durations(durations_copy, fill=Exact)
         # return list of shards
         result = [selectiontools.Selection(x) for x in result]
@@ -2691,10 +2691,10 @@ class MutationAgent(abctools.AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         Selection = selectiontools.Selection
-        if isinstance(self._client, selectiontools.ContiguousSelection):
+        if isinstance(self._client, selectiontools.Selection):
             donors = self._client
         else:
-            donors = selectiontools.ContiguousSelection(self._client)
+            donors = selectiontools.Selection(self._client)
         assert donors._all_are_contiguous_components_in_same_parent(donors)
         assert isinstance(container, scoretools.Container)
         assert not container, repr(container)

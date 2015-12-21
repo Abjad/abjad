@@ -101,9 +101,9 @@ class Container(Component):
         Returns none.
         '''
         components = self[i]
-        #if not isinstance(components, selectiontools.ContiguousSelection):
+        #if not isinstance(components, selectiontools.Selection):
         if not isinstance(components, selectiontools.Selection):
-            components = selectiontools.ContiguousSelection([components])
+            components = selectiontools.Selection([components])
         if not self.is_simultaneous:
             components._withdraw_from_crossing_spanners()
         components._set_parents(None)
@@ -118,7 +118,7 @@ class Container(Component):
         if isinstance(i, int):
             return self._music[i]
         elif isinstance(i, slice) and not self.is_simultaneous:
-            return selectiontools.ContiguousSelection(self._music[i])
+            return selectiontools.Selection(self._music[i])
         elif isinstance(i, slice) and self.is_simultaneous:
             return selectiontools.Selection(self._music[i])
         elif isinstance(i, str):
@@ -471,7 +471,7 @@ class Container(Component):
         If both `left` and `right` are components,
         then `left` and `right` must be logical-voice-contiguous.
 
-        This is a version of ContiguousSelection._get_dominant_spanners().
+        This is a version of Selection._get_dominant_spanners().
         This version is useful for finding spanners that dominant
         a zero-length slice between components, as in staff[2:2].
         '''
@@ -635,7 +635,7 @@ class Container(Component):
         # must withdraw before setting in self!
         # otherwise circular withdraw ensues!
         if withdraw_components_in_expr_from_crossing_spanners:
-            selection = selectiontools.ContiguousSelection(expr)
+            selection = selectiontools.Selection(expr)
             if selection._all_are_contiguous_components_in_same_logical_voice(
                 selection):
                 selection._withdraw_from_crossing_spanners()
@@ -779,7 +779,7 @@ class Container(Component):
             self[:]._set_parents(self)
         elif Selection._all_are_contiguous_components_in_same_logical_voice(
             music):
-            music = selectiontools.ContiguousSelection(music)
+            music = selectiontools.Selection(music)
             parent, start, stop = music._get_parent_and_start_stop_indices()
             self._music = list(music)
             self[:]._set_parents(self)
@@ -902,7 +902,7 @@ class Container(Component):
         # give my attached spanners to my children
         self._move_spanners_to_children()
         # incorporate left and right parents in score if possible
-        selection = selectiontools.ContiguousSelection(self)
+        selection = selectiontools.Selection(self)
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         if parent is not None:
             parent._music.__setitem__(slice(start, stop + 1), nonempty_halves)
@@ -1066,7 +1066,7 @@ class Container(Component):
                     leaf_right_of_split._get_parentage().root):
                     leaves_around_split = \
                         (leaf_left_of_split, leaf_right_of_split)
-                    selection = selectiontools.ContiguousSelection(
+                    selection = selectiontools.Selection(
                         leaves_around_split)
                     selection._attach_tie_spanner_to_leaf_pair(
                         use_messiaen_style_ties=use_messiaen_style_ties,
@@ -1499,7 +1499,7 @@ class Container(Component):
             ::
 
                 >>> container.select_leaves()
-                ContiguousSelection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
 
         Returns contiguous leaf selection or free leaf selection.
         '''
@@ -1520,5 +1520,5 @@ class Container(Component):
         else:
             assert Selection._all_are_contiguous_components_in_same_logical_voice(
                 music)
-            selection = selectiontools.ContiguousSelection(music=music)
+            selection = selectiontools.Selection(music=music)
         return selection
