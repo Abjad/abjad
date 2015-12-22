@@ -1479,7 +1479,7 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.**
+            **Example 1.** Selects logical tie at index 1:
 
             ::
 
@@ -1504,22 +1504,22 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> selector = selector.by_pattern(
-                ...     pattern=rhythmmakertools.Pattern(
-                ...         indices=[1],
-                ...         ),
-                ...     )
+                >>> pattern = rhythmmakertools.select([1])
+                >>> selector = selector.by_pattern(pattern=pattern)
 
             ::
 
-                >>> for logical_tie in selector(staff):
+                >>> selection = selector(staff)
+                >>> for logical_tie in selection:
                 ...     logical_tie
                 ...
                 LogicalTie(Note("d'4"), Note("d'4"))
 
+            Returns selection of logical tie.
+
         ..  container:: example
 
-            **Example 2.**
+            **Example 2.** Selects every second logical tie:
 
             ::
 
@@ -1544,24 +1544,23 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> selector = selector.by_pattern(
-                ...     pattern=rhythmmakertools.Pattern(
-                ...         indices=[0],
-                ...         period=2,
-                ...         ),
-                ...     )
+                >>> pattern = rhythmmakertools.select_every([0], period=2)
+                >>> selector = selector.by_pattern(pattern=pattern)
 
             ::
 
-                >>> for logical_tie in selector(staff):
+                >>> selection = selector(staff)
+                >>> for logical_tie in selection:
                 ...     logical_tie
                 ...
                 LogicalTie(Note("c'4"),)
                 LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
 
+            Returns selection of logical ties.
+
         ..  container:: example
 
-            **Example 3.**
+            **Example 3.** Selects every second leaf:
 
             ::
 
@@ -1586,16 +1585,13 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
-                >>> selector = selector.by_pattern(
-                ...     pattern=rhythmmakertools.Pattern(
-                ...         indices=[0],
-                ...         period=2,
-                ...         ),
-                ...     )
+                >>> pattern = rhythmmakertools.select_every([0], period=2)
+                >>> selector = selector.by_pattern(pattern=pattern)
 
             ::
 
-                >>> for note in selector(staff):
+                >>> selection = selector(staff)
+                >>> for note in selection:
                 ...     print(staff.index(note), repr(note))
                 ...
                 0 Note("c'4")
@@ -1603,9 +1599,11 @@ class Selector(AbjadValueObject):
                 4 Note("e'4")
                 6 Rest('r4')
 
+            Returns selection of leaves.
+
         ..  container:: example
 
-            **Example 4.**
+            **Example 4.** Selects every other leaf rotated one to the right:
 
             ::
 
@@ -1630,16 +1628,13 @@ class Selector(AbjadValueObject):
                 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
-                >>> selector = selector.by_pattern(
-                ...     pattern=rhythmmakertools.Pattern(
-                ...         indices=[0],
-                ...         period=2,
-                ...         ),
-                ...     )
+                >>> pattern = rhythmmakertools.select_every([0], period=2)
+                >>> selector = selector.by_pattern(pattern=pattern)
 
             ::
 
-                >>> for note in selector(staff, rotation=1):
+                >>> selection = selector(staff, rotation=1)
+                >>> for note in selection:
                 ...     print(staff.index(note), repr(note))
                 ...
                 1 Note("d'4")
@@ -1647,9 +1642,11 @@ class Selector(AbjadValueObject):
                 5 Note("e'4")
                 7 Note("f'4")
 
+            Returns selection of leaves.
+
         ..  container:: example
 
-            **Example 5.**
+            **Example 5.** Selects note at index 1 in each logical tie:
 
             ::
 
@@ -1674,27 +1671,29 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
+                >>> pattern = rhythmmakertools.select([1])
                 >>> selector = selector.by_pattern(
                 ...     apply_to_each=True,
-                ...     pattern=rhythmmakertools.Pattern(
-                ...         indices=[1],
-                ...         ),
+                ...     pattern=pattern,
                 ...     )
 
             ::
 
-                >>> for selection in selector(staff):
-                ...     selection
+                >>> selection = selector(staff)
+                >>> for selection_ in selection:
+                ...     selection_
                 ...
                 Selection(Note("d'4"),)
                 Selection(Note("e'4"),)
+
+            Returns a selection of note selections.
 
         Returns new selector.
         '''
         from abjad.tools import selectortools
         callback = selectortools.PatternedSelectorCallback(
-            pattern=pattern,
             apply_to_each=apply_to_each,
+            pattern=pattern,
             )
         return self._append_callback(callback)
 
