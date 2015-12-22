@@ -1567,20 +1567,56 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> label(staff).leaf_indices()
+                >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> f(staff)
-                \new Staff {
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #2
+                } {
                     c'4
+                        ^ \markup {
+                            \small
+                                0
+                            }
                     d'4 ~
+                        ^ \markup {
+                            \small
+                                1
+                            }
                     d'4
+                        ^ \markup {
+                            \small
+                                2
+                            }
                     e'4 ~
+                        ^ \markup {
+                            \small
+                                3
+                            }
                     e'4 ~
+                        ^ \markup {
+                            \small
+                                4
+                            }
                     e'4
+                        ^ \markup {
+                            \small
+                                5
+                            }
                     r4
+                        ^ \markup {
+                            \small
+                                6
+                            }
                     f'4
+                        ^ \markup {
+                            \small
+                                7
+                            }
                 }
 
             ::
@@ -1610,20 +1646,56 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> label(staff).leaf_indices()
+                >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> f(staff)
-                \new Staff {
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #2
+                } {
                     c'4
+                        ^ \markup {
+                            \small
+                                0
+                            }
                     d'4 ~
+                        ^ \markup {
+                            \small
+                                1
+                            }
                     d'4
+                        ^ \markup {
+                            \small
+                                2
+                            }
                     e'4 ~
+                        ^ \markup {
+                            \small
+                                3
+                            }
                     e'4 ~
+                        ^ \markup {
+                            \small
+                                4
+                            }
                     e'4
+                        ^ \markup {
+                            \small
+                                5
+                            }
                     r4
+                        ^ \markup {
+                            \small
+                                6
+                            }
                     f'4
+                        ^ \markup {
+                            \small
+                                7
+                            }
                 }
 
             ::
@@ -1653,20 +1725,56 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> label(staff).leaf_indices()
+                >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> f(staff)
-                \new Staff {
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #2
+                } {
                     c'4
+                        ^ \markup {
+                            \small
+                                0
+                            }
                     d'4 ~
+                        ^ \markup {
+                            \small
+                                1
+                            }
                     d'4
+                        ^ \markup {
+                            \small
+                                2
+                            }
                     e'4 ~
+                        ^ \markup {
+                            \small
+                                3
+                            }
                     e'4 ~
+                        ^ \markup {
+                            \small
+                                4
+                            }
                     e'4
+                        ^ \markup {
+                            \small
+                                5
+                            }
                     r4
+                        ^ \markup {
+                            \small
+                                6
+                            }
                     f'4
+                        ^ \markup {
+                            \small
+                                7
+                            }
                 }
 
             ::
@@ -1683,10 +1791,10 @@ class Selector(AbjadValueObject):
 
                 >>> selection = selector(staff)
                 >>> for selection_ in selection:
-                ...     selection_
-                ...
-                Selection(Note("d'4"),)
-                Selection(Note("e'4"),)
+                ...     note = selection_[0]
+                ...     print(staff.index(note), repr(note))
+                2 Note("d'4")
+                4 Note("e'4")
 
             Returns a selection of note selections.
 
