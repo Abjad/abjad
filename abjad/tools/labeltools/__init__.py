@@ -1,12 +1,4 @@
 # -*- coding: utf-8 -*-
-'''Abjad ``labeltools`` package.
-
-Dependencies:
-
-The ``labeltools`` package is a high-level labeling package.
-The package may import essentially all of the core packages
-at top level.
-'''
 from abjad.tools import systemtools
 
 systemtools.ImportManager.import_structured_package(
