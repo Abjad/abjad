@@ -5,7 +5,9 @@ from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
+from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import iterate
 
@@ -308,6 +310,115 @@ class LabelAgent(abctools.AbjadObject):
         """
         for leaf in iterate(self.client).by_class(scoretools.Leaf):
             self._color_leaf(leaf, color)
+
+    def with_leaf_durations(self, direction=Up):
+        r'''Labels leaves with leaf durations.
+
+
+        ..  container:: example
+
+            **Example 1.** Above staff:
+
+            ::
+
+                >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                >>> label(staff).with_leaf_durations(direction=Up)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> override(staff).tuplet_bracket.staff_padding = 0
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                    \override TupletBracket #'staff-padding = #0
+                } {
+                    \times 2/3 {
+                        c'4
+                            ^ \markup {
+                                \small
+                                    1/6
+                                }
+                        d'4
+                            ^ \markup {
+                                \small
+                                    1/6
+                                }
+                        e'4 ~
+                            ^ \markup {
+                                \small
+                                    1/6
+                                }
+                    }
+                    e'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                    ef'4
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Below staff:
+
+            ::
+
+                >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                >>> label(staff).with_leaf_durations(direction=Down)
+                >>> override(staff).text_script.staff_padding = 6
+                >>> override(staff).tuplet_bracket.staff_padding = 0
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #6
+                    \override TupletBracket #'staff-padding = #0
+                } {
+                    \times 2/3 {
+                        c'4
+                            _ \markup {
+                                \small
+                                    1/6
+                                }
+                        d'4
+                            _ \markup {
+                                \small
+                                    1/6
+                                }
+                        e'4 ~
+                            _ \markup {
+                                \small
+                                    1/6
+                                }
+                    }
+                    e'4
+                        _ \markup {
+                            \small
+                                1/4
+                            }
+                    ef'4
+                        _ \markup {
+                            \small
+                                1/4
+                            }
+                }
+
+        Returns none.
+        '''
+        leaves = iterate(self.client).by_class(scoretools.Leaf)
+        for leaf in leaves:
+            duration = inspect_(leaf).get_duration()
+            label = markuptools.Markup(str(duration), direction=direction)
+            label = label.small()
+            attach(label, leaf)
 
     def with_leaf_indices(self, direction=Up):
         r'''Labels leaf indices.

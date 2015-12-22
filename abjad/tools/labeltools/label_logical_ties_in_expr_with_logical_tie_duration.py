@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import markuptools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 
 
 def label_logical_ties_in_expr_with_logical_tie_duration(
@@ -28,11 +31,9 @@ def label_logical_ties_in_expr_with_logical_tie_duration(
 
     Returns none.
     '''
-    from abjad.tools import labeltools
-
-    return labeltools.label_leaves_in_expr_with_leaf_durations(
-        expr,
-        label_durations=True,
-        label_written_durations=False,
-        direction=direction,
-        )
+    logical_ties = iterate(expr).by_logical_tie()
+    for index, logical_tie in enumerate(logical_ties):
+        duration = logical_tie.get_duration()
+        label = markuptools.Markup(duration, direction=direction)
+        label = label.small()
+        attach(label, logical_tie.head)
