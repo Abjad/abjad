@@ -413,7 +413,7 @@ class LabelAgent(abctools.AbjadObject):
             attach(label, logical_tie.head)
 
     def with_intervals(self, direction=Up, prototype=None):
-        r'''Labels intervals.
+        r"""Labels intervals.
 
         ..  container:: example
 
@@ -421,17 +421,78 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
-                >>> label(staff).with_pitches(prototype=None)
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> label(staff).with_intervals(prototype=None)
                 >>> override(staff).text_script.staff_padding = 4
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { +aug15 }
+                    cs'''4 ^ \markup { -M9 }
+                    b'4 ^ \markup { -aug9 }
+                    af4 ^ \markup { -m7 }
+                    bf,4 ^ \markup { +aug1 }
+                    b,4 ^ \markup { +m14 }
+                    a'4 ^ \markup { +m2 }
+                    bf'4
+                }
 
-        '''
-        pass
+        ..  container:: example
+
+            **Example 2.** Labels interval class names:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> prototype = pitchtools.NamedIntervalClass
+                >>> label(staff).with_intervals(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { +aug8 }
+                    cs'''4 ^ \markup { -M2 }
+                    b'4 ^ \markup { -aug2 }
+                    af4 ^ \markup { -m7 }
+                    bf,4 ^ \markup { aug1 }
+                    b,4 ^ \markup { +m7 }
+                    a'4 ^ \markup { +m2 }
+                    bf'4
+                }
+                
+        Returns none.
+        """
+        prototype = prototype or pitchtools.NamedInterval
+        notes = iterate(self.client).by_class(scoretools.Note)
+        for note in notes:
+            label = None
+            next_leaf = inspect_(note).get_leaf(1)
+            if isinstance(next_leaf, scoretools.Note):
+                named_interval = pitchtools.NamedInterval.from_pitch_carriers(
+                    note, 
+                    next_leaf,
+                    )
+                if prototype is pitchtools.NamedInterval:
+                    label = markuptools.Markup(named_interval, direction)
+                elif prototype is pitchtools.NamedIntervalClass:
+                    label = pitchtools.NamedIntervalClass(named_interval)
+                    label = markuptools.Markup(label, direction)
+                if label is not None:
+                    attach(label, note)
 
     def with_leaf_indices(self, direction=Up):
         r'''Labels leaf indices.
