@@ -412,6 +412,27 @@ class LabelAgent(abctools.AbjadObject):
             label = label.small()
             attach(label, logical_tie.head)
 
+    def with_intervals(self, direction=Up, prototype=None):
+        r'''Labels intervals.
+
+        ..  container:: example
+
+            **Example 1.** Labels interval names:
+
+            ::
+
+                >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                >>> label(staff).with_pitches(prototype=None)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+
+        '''
+        pass
+
     def with_leaf_indices(self, direction=Up):
         r'''Labels leaf indices.
 

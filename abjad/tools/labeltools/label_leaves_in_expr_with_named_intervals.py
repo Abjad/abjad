@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import scoretools
-from abjad.tools import scoretools
 from abjad.tools import markuptools
-from abjad.tools import scoretools
 from abjad.tools import pitchtools
+from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
 
@@ -39,18 +38,9 @@ def label_leaves_in_expr_with_named_intervals(expr, direction=Up):
 
     Returns none.
     """
-
     for note in iterate(expr).by_class(scoretools.Note):
-        logical_voice_iterator = iterate(note).by_logical_voice_from_component(
-            scoretools.Leaf,
-            )
-        try:
-            next(logical_voice_iterator)
-            next_leaf = next(logical_voice_iterator)
-            if isinstance(next_leaf, scoretools.Note):
-                mdi = pitchtools.NamedInterval.from_pitch_carriers(
-                    note, next_leaf)
-                markup = markuptools.Markup(mdi, direction)
-                attach(markup, note)
-        except StopIteration:
-            pass
+        next_leaf = inspect_(note).get_leaf(1)
+        if isinstance(next_leaf, scoretools.Note):
+            mdi = pitchtools.NamedInterval.from_pitch_carriers(note, next_leaf)
+            markup = markuptools.Markup(mdi, direction)
+            attach(markup, note)
