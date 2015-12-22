@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
 from abjad.tools import durationtools
+from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import iterate
 
@@ -306,3 +308,93 @@ class LabelAgent(abctools.AbjadObject):
         """
         for leaf in iterate(self.client).by_class(scoretools.Leaf):
             self._color_leaf(leaf, color)
+
+    def leaf_indices(self, direction=Up):
+        r'''Labels leaf indices.
+
+        ..  container:: example
+
+            **Example 1.** Labels leaf indices above staff:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> label(staff).leaf_indices(direction=Up)
+                >>> override(staff).text_script.staff_padding = 2
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #2
+                } {
+                    c'8
+                        ^ \markup {
+                            \small
+                                0
+                            }
+                    d'8
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                    e'8
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                    f'8
+                        ^ \markup {
+                            \small
+                                3
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Labels leaf indices below staff:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> label(staff).leaf_indices(direction=Down)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'8
+                        _ \markup {
+                            \small
+                                0
+                            }
+                    d'8
+                        _ \markup {
+                            \small
+                                1
+                            }
+                    e'8
+                        _ \markup {
+                            \small
+                                2
+                            }
+                    f'8
+                        _ \markup {
+                            \small
+                                3
+                            }
+                }
+
+        Returns none.
+        '''
+        leaves = iterate(self.client).by_class(scoretools.Leaf)
+        for index, leaf in enumerate(leaves):
+            string = str(index)
+            label = markuptools.Markup(string, direction=direction)
+            label = label.small()
+            attach(label, leaf)
