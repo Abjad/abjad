@@ -153,9 +153,15 @@ class Selector(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, rotation=None, start_offset=None):
-        r'''Selects components from component or selection `expr`.
+        r'''Calls selector on `expr`.
 
-        Returns a selection of selections or containers.
+        Assumes `expr` starts at `start_offset` when `start_offset` is not
+        none.
+
+        Returns a selection when `start_offset` is none.
+
+        Returns a selection together with start offset of selection when
+        `start_offset` is not none.
         '''
         if rotation is None:
             rotation = 0
@@ -170,7 +176,6 @@ class Selector(AbjadValueObject):
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
         for callback in callbacks:
-            #print('EXPR', expr)
             try:
                 expr, start_offset = callback(
                     expr, 
@@ -185,7 +190,7 @@ class Selector(AbjadValueObject):
             return selectiontools.Selection(expr), start_offset
 
     def __getitem__(self, item):
-        r'''Gets `item` from selector.
+        r'''Gets `item` in selector.
 
         Returns another selector.
         '''
@@ -216,14 +221,14 @@ class Selector(AbjadValueObject):
 
     @property
     def callbacks(self):
-        r'''Gets selector callbacks.
+        r'''Gets callbacks of selector.
         '''
         return self._callbacks
 
     ### PUBLIC METHODS ###
 
     def append_callback(self, callback):
-        r'''Configures selector with arbitrary `callback`.
+        r'''Appends `callback` to selector.
 
         Composers can create their own selector callback classes with
         specialized composition-specific logic. `Selector.append_callback()`
@@ -280,7 +285,7 @@ class Selector(AbjadValueObject):
         prototype=None,
         flatten=None,
         ):
-        r'''Configures selector to select components of class `prototype`.
+        r'''Configures selector by class.
 
         ..  container:: example
 
@@ -390,7 +395,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def by_contiguity(self):
-        r'''Configures selector to select timewise contiguous components.
+        r'''Configures selector by contiguity.
 
         ..  container:: example
 
@@ -533,7 +538,9 @@ class Selector(AbjadValueObject):
         overhang=False,
         rotate=False,
         ):
-        r'''Configures selector to select components partitioned by `counts`.
+        r'''Configures selector by counts.
+
+        Partitions components.
 
         ..  container:: example
 
@@ -825,7 +832,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def by_duration(self, inequality=None, duration=None, preprolated=None):
-        r'''Configures selector to select components by duration.
+        r'''Configures selector by duration.
 
         ..  container:: example
 
@@ -1033,7 +1040,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def by_leaves(self, flatten=None):
-        r'''Configures selector to select leaves.
+        r'''Configures selector by leaves.
 
         ..  container:: example
 
@@ -1268,9 +1275,9 @@ class Selector(AbjadValueObject):
             )
         return self._append_callback(callback)
 
+    # TODO: change *args to explicit signature
     def by_length(self, *args):
-        r'''Configures selector to selector containers or selections of length
-        `length`.
+        r'''Configures selector by length.
 
         ..  container:: example
 
@@ -1342,7 +1349,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def by_logical_measure(self):
-        r'''Configures selector to group components by logical measure.
+        r'''Configures selector by logical measure.
 
         Returns new selector.
         '''
@@ -1356,7 +1363,7 @@ class Selector(AbjadValueObject):
         pitched=False,
         trivial=True,
         ):
-        r'''Configures selector to select logical ties.
+        r'''Configures selector by logical tie.
 
         ..  container:: example
 
@@ -1468,7 +1475,7 @@ class Selector(AbjadValueObject):
         pattern=None,
         apply_to_each=None,
         ):
-        r'''Configures selector to select by `pattern`:
+        r'''Configures selector by `pattern`.
 
         ..  container:: example
 
@@ -1477,6 +1484,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
@@ -1487,8 +1512,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for logical_tie in selector(staff):
+                ...     logical_tie
                 ...
                 LogicalTie(Note("d'4"), Note("d'4"))
 
@@ -1499,6 +1524,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
@@ -1510,8 +1553,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for logical_tie in selector(staff):
+                ...     logical_tie
                 ...
                 LogicalTie(Note("c'4"),)
                 LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
@@ -1523,6 +1566,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
                 >>> selector = selector.by_pattern(
@@ -1534,8 +1595,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     print(staff.index(x), repr(x))
+                >>> for note in selector(staff):
+                ...     print(staff.index(note), repr(note))
                 ...
                 0 Note("c'4")
                 2 Note("d'4")
@@ -1549,6 +1610,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            ::
+                
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
                 >>> selector = selector.by_pattern(
@@ -1560,8 +1639,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff, rotation=1):
-                ...     print(staff.index(x), repr(x))
+                >>> for note in selector(staff, rotation=1):
+                ...     print(staff.index(note), repr(note))
                 ...
                 1 Note("d'4")
                 3 Note("e'4")
@@ -1575,6 +1654,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.by_pattern(
@@ -1586,8 +1683,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("d'4"),)
                 Selection(Note("e'4"),)
@@ -1601,13 +1698,12 @@ class Selector(AbjadValueObject):
             )
         return self._append_callback(callback)
 
+    # TODO: implement pitch-inequality class.
     def by_pitch(
         self,
         pitches=None,
         ):
-        r'''Configures selector to selector expressions by `pitches`.
-
-        ..  todo:: Implement a pitch-inequality class.
+        r'''Configures selector by pitch.
 
         ..  container:: example
 
@@ -1683,7 +1779,7 @@ class Selector(AbjadValueObject):
         self,
         prototype=None,
         ):
-        r'''Configures selector to select runs of `prototype`.
+        r'''Configures selector by run.
 
         ..  container:: example
 
@@ -1713,7 +1809,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def first(self):
-        r'''Configures selector to select first selection.
+        r'''Gets first item in selection.
 
         ..  container:: example
 
@@ -1728,8 +1824,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'4"),)
 
@@ -1743,7 +1839,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def flatten(self, depth=-1):
-        r'''Configures selector to flatten its selections to `depth`.
+        r'''Flattens selection.
 
         ..  container:: example
 
@@ -1776,7 +1872,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def get_item(self, item, apply_to_each=True):
-        r'''Configures selector to select `item`.
+        r'''Gets `item` in selection.
 
         Maps the callback to each item in sequence when `apply_to_each` is
         true.
@@ -1832,7 +1928,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def get_slice(self, start=None, stop=None, apply_to_each=True):
-        r'''Configures selector to select `start`:`stop`.
+        r'''Gets slice from `start` to `stop` in selection.
 
         Maps the callback to each item in sequence when `apply_to_each` is
         true.
@@ -1898,7 +1994,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def last(self):
-        r'''Configures selector to select the last selection.
+        r'''Gets last item in selection.
 
         ..  container:: example
 
@@ -1928,7 +2024,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def middle(self):
-        r'''Configures selector to select all but the first or last selection.
+        r'''Gets all but the first and last items in selection.
 
         ..  container:: example
 
@@ -1961,7 +2057,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def most(self):
-        r'''Configures selector to select all but the last selection.
+        r'''Gets all but the last item in selection.
 
         ..  container:: example
 
@@ -1993,7 +2089,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def rest(self):
-        r'''Configures selector to select all but the first selection.
+        r'''Gets all but the first item in selection.
 
         ..  container:: example
 
@@ -2162,7 +2258,7 @@ class Selector(AbjadValueObject):
         return results_by_selector
 
     def with_next_leaf(self):
-        r'''Configures selector to select the next leaf after each selection.
+        r'''Configures selector with next leaf after each selection.
 
         ..  container:: example
 
@@ -2192,8 +2288,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     def with_previous_leaf(self):
-        r'''Configures selector to select the previous leaf before each
-        selection.
+        r'''Configures selector with previous leaf before each selection.
 
         ..  container:: example
 
