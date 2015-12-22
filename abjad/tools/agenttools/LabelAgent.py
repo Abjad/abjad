@@ -311,8 +311,8 @@ class LabelAgent(abctools.AbjadObject):
         for leaf in iterate(self.client).by_class(scoretools.Leaf):
             self._color_leaf(leaf, color)
 
-    def with_leaf_durations(self, direction=Up):
-        r'''Labels leaves with leaf durations.
+    def with_durations(self, direction=Up):
+        r'''Labels durations.
 
 
         ..  container:: example
@@ -322,7 +322,7 @@ class LabelAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-                >>> label(staff).with_leaf_durations(direction=Up)
+                >>> label(staff).with_durations(direction=Up)
                 >>> override(staff).text_script.staff_padding = 4
                 >>> override(staff).tuplet_bracket.staff_padding = 0
                 >>> show(staff) # doctest: +SKIP
@@ -348,14 +348,10 @@ class LabelAgent(abctools.AbjadObject):
                         e'4 ~
                             ^ \markup {
                                 \small
-                                    1/6
+                                    5/12
                                 }
                     }
                     e'4
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
                     ef'4
                         ^ \markup {
                             \small
@@ -370,7 +366,7 @@ class LabelAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-                >>> label(staff).with_leaf_durations(direction=Down)
+                >>> label(staff).with_durations(direction=Down)
                 >>> override(staff).text_script.staff_padding = 6
                 >>> override(staff).tuplet_bracket.staff_padding = 0
                 >>> show(staff) # doctest: +SKIP
@@ -396,14 +392,10 @@ class LabelAgent(abctools.AbjadObject):
                         e'4 ~
                             _ \markup {
                                 \small
-                                    1/6
+                                    5/12
                                 }
                     }
                     e'4
-                        _ \markup {
-                            \small
-                                1/4
-                            }
                     ef'4
                         _ \markup {
                             \small
@@ -413,12 +405,12 @@ class LabelAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        leaves = iterate(self.client).by_class(scoretools.Leaf)
-        for leaf in leaves:
-            duration = inspect_(leaf).get_duration()
+        logical_ties = iterate(self.client).by_logical_tie()
+        for logical_tie in logical_ties:
+            duration = logical_tie.get_duration()
             label = markuptools.Markup(str(duration), direction=direction)
             label = label.small()
-            attach(label, leaf)
+            attach(label, logical_tie.head)
 
     def with_leaf_indices(self, direction=Up):
         r'''Labels leaf indices.

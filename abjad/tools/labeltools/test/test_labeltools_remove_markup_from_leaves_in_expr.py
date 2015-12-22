@@ -7,7 +7,7 @@ def test_labeltools_remove_markup_from_leaves_in_expr_01():
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    label(tuplet).with_leaf_durations()
+    label(tuplet).with_durations()
 
     assert systemtools.TestManager.compare(
         tuplet,
