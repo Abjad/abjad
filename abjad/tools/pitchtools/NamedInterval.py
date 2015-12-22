@@ -523,14 +523,13 @@ class NamedInterval(Interval):
         ::
 
             >>> interval.named_interval_class
-            NamedInversionEquivalentIntervalClass('+M2')
+            NamedIntervalClass('+M2')
 
         Returns named inversion-equivalent interval-class.
         '''
         from abjad.tools import pitchtools
         quality_string, number = self._quality_string, self.number
-        return pitchtools.NamedInversionEquivalentIntervalClass(
-            quality_string, number)
+        return pitchtools.NamedIntervalClass(quality_string, number)
 
     @property
     def number(self):
