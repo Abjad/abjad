@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import iterate
 
 def label_vertical_moments_in_expr_with_interval_class_vectors(
     expr, direction=Down):
-    r'''Labels interval-class vector of every vertical moment in `expr`:
+    r'''Labels interval-class vector of every vertical moment in `expr`.
 
     ::
 

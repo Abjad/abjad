@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def label_leaves_in_expr_with_pitch_numbers(expr, direction=Down):
-    r'''Label leaves in `expr` with pitch numbers:
+    r'''Labels leaves in `expr` with pitch numbers.
 
     ::
 

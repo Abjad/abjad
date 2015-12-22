@@ -5,12 +5,16 @@ from abjad.tools.topleveltools import iterate
 
 
 def remove_markup_from_leaves_in_expr(expr):
-    r'''Remove markup from leaves in `expr`:
+    r'''Removes markup from leaves in `expr`.
 
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> labeltools.label_leaves_in_expr_with_pitch_class_numbers(staff)
+        >>> show(staff) # doctest: +SKIP
+
+    ..  doctest::
+
         >>> print(format(staff))
         \new Staff {
             c'8 _ \markup { \small 0 }
@@ -21,11 +25,11 @@ def remove_markup_from_leaves_in_expr(expr):
 
     ::
 
+        >>> labeltools.remove_markup_from_leaves_in_expr(staff)
         >>> show(staff) # doctest: +SKIP
 
-    ::
+    ..  doctest::
 
-        >>> labeltools.remove_markup_from_leaves_in_expr(staff)
         >>> print(format(staff))
         \new Staff {
             c'8
@@ -33,10 +37,6 @@ def remove_markup_from_leaves_in_expr(expr):
             e'8
             f'8
         }
-
-    ::
-
-        >>> show(staff) # doctest: +SKIP
 
     Returns none.
     '''

@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import iterate
 
 def label_vertical_moments_in_expr_with_pitch_numbers(
     expr, direction=Down):
-    r'''Label pitch numbers of every vertical moment in `expr`:
+    r'''Labels pitch numbers of every vertical moment in `expr`.
 
     ::
 

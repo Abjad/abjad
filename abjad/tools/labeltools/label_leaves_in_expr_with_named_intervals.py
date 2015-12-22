@@ -9,7 +9,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def label_leaves_in_expr_with_named_intervals(expr, direction=Up):
-    r"""Label leaves in `expr` with named intervals:
+    r"""Labels leaves in `expr` with named intervals.
 
     ::
 

@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import iterate
 
 def label_logical_ties_in_expr_with_logical_tie_duration(
     expr, direction=Down):
-    r'''Label logical ties in `expr` with logical tie durations:
+    r'''Labels logical ties in `expr` with logical tie durations.
 
     ::
 

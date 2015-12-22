@@ -11,7 +11,7 @@ def label_leaves_in_expr_with_pitch_class_numbers(
     color=False,
     direction=Down,
     ):
-    r'''Label leaves in `expr` with pitch-class numbers:
+    r'''Labels leaves in `expr` with pitch-class numbers.
 
     ::
 

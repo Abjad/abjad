@@ -8,7 +8,7 @@ from abjad.tools.topleveltools import iterate
 
 def label_vertical_moments_in_expr_with_named_intervals(
     expr, direction=Down):
-    r'''Label named intervals of every vertical moment in `expr`:
+    r'''Labels named intervals of every vertical moment in `expr`.
 
     ::
 
