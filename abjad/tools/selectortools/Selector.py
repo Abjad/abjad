@@ -1477,6 +1477,8 @@ class Selector(AbjadValueObject):
         ):
         r'''Configures selector by `pattern`.
 
+        ..  todo:: Merge into Selector.get_item().
+
         ..  container:: example
 
             **Example 1.** Selects logical tie at index 1:
