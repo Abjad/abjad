@@ -1567,7 +1567,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
-                >>> label(staff).leaf_indices()
+                >>> label(staff).with_leaf_indices()
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
@@ -1646,7 +1646,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
-                >>> label(staff).leaf_indices()
+                >>> label(staff).with_leaf_indices()
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
@@ -1725,7 +1725,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
-                >>> label(staff).leaf_indices()
+                >>> label(staff).with_leaf_indices()
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 

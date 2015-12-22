@@ -309,7 +309,7 @@ class LabelAgent(abctools.AbjadObject):
         for leaf in iterate(self.client).by_class(scoretools.Leaf):
             self._color_leaf(leaf, color)
 
-    def leaf_indices(self, direction=Up):
+    def with_leaf_indices(self, direction=Up):
         r'''Labels leaf indices.
 
         ..  container:: example
@@ -319,7 +319,7 @@ class LabelAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> label(staff).leaf_indices(direction=Up)
+                >>> label(staff).with_leaf_indices(direction=Up)
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
@@ -358,7 +358,7 @@ class LabelAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> label(staff).leaf_indices(direction=Down)
+                >>> label(staff).with_leaf_indices(direction=Down)
                 >>> override(staff).text_script.staff_padding = 4
                 >>> show(staff) # doctest: +SKIP
 
