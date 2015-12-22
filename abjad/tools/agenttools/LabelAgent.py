@@ -509,3 +509,179 @@ class LabelAgent(abctools.AbjadObject):
             label = markuptools.Markup(string, direction=direction)
             label = label.small()
             attach(label, leaf)
+
+    def with_pitches(self, direction=Up, prototype=None):
+        r'''Labels pitches.
+
+        ..  container:: example
+
+            **Example 1.** Labels pitch names:
+
+            ::
+
+                >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                >>> label(staff).with_pitches(prototype=None)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    <a d' fs'>4
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        fs'
+                                        d'
+                                        a
+                                    }
+                            }
+                    g'4 ~
+                        ^ \markup {
+                            \small
+                                g'
+                            }
+                    g'8
+                    r8
+                    fs''4
+                        ^ \markup {
+                            \small
+                                fs''
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Labels pitch numbers:
+
+            ::
+
+                >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                >>> prototype = pitchtools.NumberedPitch
+                >>> label(staff).with_pitches(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    <a d' fs'>4
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        6
+                                        2
+                                        -3
+                                    }
+                            }
+                    g'4 ~
+                        ^ \markup {
+                            \small
+                                7
+                            }
+                    g'8
+                    r8
+                    fs''4
+                        ^ \markup {
+                            \small
+                                18
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Labels pitch-class numbers:
+
+            ::
+
+                >>> staff = Staff("<a d' fs'>4 g'4 ~ g'8 r8 fs''4")
+                >>> prototype = pitchtools.NumberedPitchClass
+                >>> label(staff).with_pitches(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    <a d' fs'>4
+                        ^ \markup {
+                            \small
+                                \column
+                                    {
+                                        6
+                                        2
+                                        9
+                                    }
+                            }
+                    g'4 ~
+                        ^ \markup {
+                            \small
+                                7
+                            }
+                    g'8
+                    r8
+                    fs''4
+                        ^ \markup {
+                            \small
+                                6
+                            }
+                }
+
+        Returns none.
+        '''
+        prototype = prototype or pitchtools.NamedPitch
+        logical_ties = iterate(self.client).by_logical_tie()
+        for logical_tie in logical_ties:
+            leaf = logical_tie.head
+            label = None
+            if prototype is pitchtools.NamedPitch:
+                if isinstance(leaf, scoretools.Note):
+                    pitch = leaf.written_pitch
+                    label = str(pitch)
+                    label = markuptools.Markup(label, direction=direction)
+                    label = label.small()
+                elif isinstance(leaf, scoretools.Chord):
+                    pitches = leaf.written_pitches
+                    pitches = reversed(pitches)
+                    pitches = [markuptools.Markup(_) for _ in pitches]
+                    label = markuptools.Markup.column(pitches)
+                    label = label.small()
+            elif prototype is pitchtools.NumberedPitch:
+                if isinstance(leaf, scoretools.Note):
+                    pitch = leaf.written_pitch.pitch_number
+                    label = str(pitch)
+                    label = markuptools.Markup(label, direction=direction)
+                    label = label.small()
+                elif isinstance(leaf, scoretools.Chord):
+                    pitches = leaf.written_pitches
+                    pitches = reversed(pitches)
+                    pitches = [_.pitch_number for _ in pitches]
+                    pitches = [markuptools.Markup(_) for _ in pitches]
+                    label = markuptools.Markup.column(pitches)
+                    label = label.small()
+            elif prototype is pitchtools.NumberedPitchClass:
+                if isinstance(leaf, scoretools.Note):
+                    pitch = leaf.written_pitch.pitch_class_number
+                    label = str(pitch)
+                    label = markuptools.Markup(label, direction=direction)
+                    label = label.small()
+                elif isinstance(leaf, scoretools.Chord):
+                    pitches = leaf.written_pitches
+                    pitches = reversed(pitches)
+                    pitches = [_.pitch_class_number for _ in pitches]
+                    pitches = [markuptools.Markup(_) for _ in pitches]
+                    label = markuptools.Markup.column(pitches)
+                    label = label.small()
+            if label is not None:
+                attach(label, leaf)
