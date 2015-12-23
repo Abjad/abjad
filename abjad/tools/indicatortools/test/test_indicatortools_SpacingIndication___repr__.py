@@ -4,7 +4,7 @@ from abjad.tools.indicatortools import Tempo
 from abjad.tools.layouttools import SpacingIndication
 
 
-def test_layouttools_SpacingIndication___repr___01():
+def test_indicatortools_SpacingIndication___repr___01():
     r'''Repr is evaluable.
     '''
 

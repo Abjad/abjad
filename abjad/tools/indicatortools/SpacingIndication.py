@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
 from abjad.tools import durationtools
+from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import new
 
 
@@ -16,7 +16,7 @@ class SpacingIndication(AbjadObject):
     ::
 
         >>> tempo = Tempo(Duration(1, 8), 44)
-        >>> indication = layouttools.SpacingIndication(tempo, Duration(1, 68))
+        >>> indication = indicatortools.SpacingIndication(tempo, Duration(1, 68))
 
     ::
 
@@ -27,14 +27,14 @@ class SpacingIndication(AbjadObject):
 
     ::
 
-        >>> layouttools.SpacingIndication(((1, 8), 44), (1, 68))
+        >>> indicatortools.SpacingIndication(((1, 8), 44), (1, 68))
         SpacingIndication(Tempo(reference_duration=Duration(1, 8), units_per_minute=44), Duration(1, 68))
 
     Initialize from other spacing indication:
 
     ::
 
-        >>> layouttools.SpacingIndication(indication)
+        >>> indicatortools.SpacingIndication(indication)
         SpacingIndication(Tempo(reference_duration=Duration(1, 8), units_per_minute=44), Duration(1, 68))
 
     Spacing indications are immutable.
