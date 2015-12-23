@@ -39,7 +39,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
         Returns tuple of selections.
         '''
         assert isinstance(expr, tuple), repr(tuple)
-        new_start_offset = None
+        new_start_offset = start_offset
         result = []
         prototype = self.prototype
         if not isinstance(prototype, tuple):
@@ -52,6 +52,8 @@ class PrototypeSelectorCallback(AbjadValueObject):
                     result.extend(subresult)
                 else:
                     result.append(subresult)
+        # TODO: calculate new_start_offset in a non-naive way;
+        #       this naive assignment will fail in some cases
         return tuple(result), new_start_offset
 
     ### PUBLIC PROPERTIES ###

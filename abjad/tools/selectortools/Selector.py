@@ -1279,6 +1279,48 @@ class Selector(AbjadValueObject):
 
             Returns a leaf selection.
 
+        ..  container:: example
+
+            **Example 7.** Selects leaves with flattening:
+
+            ::
+
+                >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    r8
+                    d'8
+                    e'8
+                    r8
+                    f'8
+                    g'8
+                    a'8
+                }
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves(flatten=True)
+                >>> result = selector(staff, start_offset=Offset(4))
+                >>> selection, start_offset = result
+
+            ::
+
+                >>> start_offset
+                Offset(4, 1)
+
+            ::
+
+                >>> selection
+                Selection(Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+
+            Returns leaf selection and start offset.
+
         Returns new selector.
         '''
         from abjad.tools import selectortools
@@ -2062,27 +2104,100 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Selects all pitched logical ties (except the first
-            and last) and then flattens the pitch logical ties:
+            **Example 1.** Selects all pitched logical ties except the first
+            and last:
 
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_logical_tie(pitched=True)
-                >>> selector = selector.middle()
-                >>> selector = selector.flatten()
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            Returns logical tie selection:
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
-                ...
-                Note("d'4")
-                Note("d'4")
-                Note("e'4")
-                Note("e'4")
-                Note("e'4")
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.middle()
+                >>> selector(staff)
+                Selection(LogicalTie(Note("d'4"), Note("d'4")), LogicalTie(Note("e'4"), Note("e'4"), Note("e'4")))
+
+            Returns leaf selection:
+
+                >>> selector = selector.flatten()
+                >>> selector(staff)
+                Selection(Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"))
+
+        ..  container:: example
+
+            **Example 2.** Selects leaves:
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            Returns selection of leaf selections:
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector(staff)
+                Selection(Selection(Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4")),)
+
+            Returns leaf selection:
+
+            ::
+
+                >>> selector = selector.flatten()
+                >>> selector(staff)
+                Selection(Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4"))
+
+            Works with start offset:
+
+            ::
+
+                >>> result = selector(staff, start_offset=Offset(4))
+                >>> selection, start_offset = result
+
+            ::
+
+                >>> selection
+                Selection(Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4"))
+
+            ::
+
+                >>> start_offset
+                Offset(4, 1)
 
         Returns new selector.
         '''
