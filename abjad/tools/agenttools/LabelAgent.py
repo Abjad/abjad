@@ -91,6 +91,20 @@ class LabelAgent(abctools.AbjadObject):
             override(leaf).rest.color = color
         return leaf
 
+    def _format_interval_class_vector(self, interval_class_vector):
+        counts = []
+        for i in range(7):
+            counts.append(interval_class_vector[i])
+        counts = ''.join([str(x) for x in counts])
+        if len(interval_class_vector) == 13:
+            quartertones = []
+            for i in range(6):
+                quartertones.append(interval_class_vector[i+0.5])
+            quartertones = ''.join([str(x) for x in quartertones])
+            return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
+        else:
+            return r'\tiny %s' % counts
+
     ### PUBLIC METHODS ###
 
     def color_container(self, color):
@@ -371,6 +385,559 @@ class LabelAgent(abctools.AbjadObject):
         leaves = iterate(self.client).by_class(scoretools.Leaf)
         for leaf in leaves:
             detach(markuptools.Markup, leaf)
+
+    def vertical_moments(self, direction=Up, prototype=None):
+        r'''Labels vertical moments.
+
+        ..  container:: example
+
+            **Example 1.** Labels indices:
+
+            ::
+
+                >>> staff_group = StaffGroup([])
+                >>> staff = Staff("c'8 d'4 e'16 f'16")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "bass" c,2""")
+                >>> staff_group.append(staff)
+
+            ::
+
+                >>> label(staff_group).vertical_moments()
+                >>> show(staff_group) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff_group))
+                \new StaffGroup <<
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \tiny
+                                    0
+                                }
+                        d'4
+                            ^ \markup {
+                                \tiny
+                                    1
+                                }
+                        e'16
+                            ^ \markup {
+                                \tiny
+                                    3
+                                }
+                        f'16
+                            ^ \markup {
+                                \tiny
+                                    4
+                                }
+                    }
+                    \new Staff {
+                        \clef "alto"
+                        g4
+                        f4
+                            ^ \markup {
+                                \tiny
+                                    2
+                                }
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c,2
+                    }
+                >>
+
+        ..  container:: example
+
+            **Example 2.** Labels pitch numbers:
+
+            ::
+
+                >>> staff_group = StaffGroup([])
+                >>> staff = Staff("c'8 d'4 e'16 f'16")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "bass" c,2""")
+                >>> staff_group.append(staff)
+
+            ::
+
+                >>> prototype = pitchtools.NumberedPitch
+                >>> label(staff_group).vertical_moments(prototype=prototype)
+                >>> show(staff_group) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff_group))
+                \new StaffGroup <<
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            0
+                                            -5
+                                            -24
+                                        }
+                                }
+                        d'4
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            -5
+                                            -24
+                                        }
+                                }
+                        e'16
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            4
+                                            -7
+                                            -24
+                                        }
+                                }
+                        f'16
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            -7
+                                            -24
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "alto"
+                        g4
+                        f4
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            -7
+                                            -24
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c,2
+                    }
+                >>
+
+        ..  container:: example
+
+            **Example 3.** Labels pitch-class numbers:
+
+            ::
+
+                >>> staff_group = StaffGroup([])
+                >>> staff = Staff("c'8 d'4 e'16 f'16")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "bass" c,2""")
+                >>> staff_group.append(staff)
+
+            ::
+
+                >>> prototype = pitchtools.NumberedPitchClass
+                >>> label(staff_group).vertical_moments(prototype=prototype)
+                >>> show(staff_group) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff_group))
+                \new StaffGroup <<
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            7
+                                            0
+                                        }
+                                }
+                        d'4
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            7
+                                            2
+                                            0
+                                        }
+                                }
+                        e'16
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            4
+                                            0
+                                        }
+                                }
+                        f'16
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            0
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "alto"
+                        g4
+                        f4
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            2
+                                            0
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c,2
+                    }
+                >>
+
+        ..  container:: example
+
+            **Example 4.** Labels interval numbers:
+
+            ::
+
+                >>> staff_group = StaffGroup([])
+                >>> staff = Staff("c'8 d'4 e'16 f'16")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "bass" c,2""")
+                >>> staff_group.append(staff)
+
+            ::
+
+                >>> prototype = pitchtools.NumberedInterval
+                >>> label(staff_group).vertical_moments(prototype=prototype)
+                >>> show(staff_group) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff_group))
+                \new StaffGroup <<
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            15
+                                            12
+                                        }
+                                }
+                        d'4
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            16
+                                            12
+                                        }
+                                }
+                        e'16
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            17
+                                            11
+                                        }
+                                }
+                        f'16
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            18
+                                            11
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "alto"
+                        g4
+                        f4
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            16
+                                            11
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c,2
+                    }
+                >>
+
+        ..  container:: example
+
+            **Example 5.** Labels interval-class numbers:
+
+            ::
+
+                >>> staff_group = StaffGroup([])
+                >>> staff = Staff("c'8 d'4 e'16 f'16")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "bass" c,2""")
+                >>> staff_group.append(staff)
+
+            ::
+
+                >>> prototype = pitchtools.NumberedIntervalClass
+                >>> label(staff_group).vertical_moments(prototype=prototype)
+                >>> show(staff_group) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff_group))
+                \new StaffGroup <<
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            12
+                                            7
+                                        }
+                                }
+                        d'4
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            7
+                                        }
+                                }
+                        e'16
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            4
+                                            5
+                                        }
+                                }
+                        f'16
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            5
+                                            5
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "alto"
+                        g4
+                        f4
+                            ^ \markup {
+                                \tiny
+                                    \column
+                                        {
+                                            2
+                                            5
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c,2
+                    }
+                >>
+
+        ..  container:: example
+
+            **Example 6.** Labels interval-class vectors:
+
+            ::
+
+                >>> staff_group = StaffGroup([])
+                >>> staff = Staff("c'8 d'4 e'16 f'16")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "bass" c,2""")
+                >>> staff_group.append(staff)
+
+            ::
+
+                >>> prototype = pitchtools.IntervalClassVector
+                >>> label(staff_group).vertical_moments(prototype=prototype)
+                >>> show(staff_group) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff_group))
+                \new StaffGroup <<
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \tiny
+                                    \tiny
+                                        1000020
+                                }
+                        d'4
+                            ^ \markup {
+                                \tiny
+                                    \tiny
+                                        0010020
+                                }
+                        e'16
+                            ^ \markup {
+                                \tiny
+                                    \tiny
+                                        0100110
+                                }
+                        f'16
+                            ^ \markup {
+                                \tiny
+                                    \tiny
+                                        1000020
+                                }
+                    }
+                    \new Staff {
+                        \clef "alto"
+                        g4
+                        f4
+                            ^ \markup {
+                                \tiny
+                                    \tiny
+                                        0011010
+                                }
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c,2
+                    }
+                >>
+
+        Set `prototype` to one of the classes shown above.
+
+        Returns none.
+        '''
+        prototype = prototype or int
+        vertical_moments =  iterate(self.client).by_vertical_moment()
+        for index, vertical_moment in enumerate(vertical_moments):
+            label = None
+            if prototype is int:
+                label = markuptools.Markup(index, direction=direction)
+            elif prototype is pitchtools.NumberedPitch:
+                leaves = vertical_moment.leaves
+                pitches = pitchtools.PitchSegment.from_selection(leaves)
+                if not pitches:
+                    continue
+                pitch_numbers = [
+                    pitch.numbered_pitch.pitch_number
+                    for pitch in pitches
+                    ]
+                pitch_numbers = [markuptools.Markup(_) for _ in pitch_numbers]
+                label = markuptools.Markup.column(pitch_numbers, direction)
+            elif prototype is pitchtools.NumberedPitchClass:
+                leaves = vertical_moment.leaves
+                pitches = pitchtools.PitchSegment.from_selection(leaves)
+                if not pitches:
+                    continue
+                pitch_classes = [
+                    pitch.numbered_pitch_class.pitch_class_number
+                    for pitch in pitches
+                    ]
+                pitch_classes = list(set(pitch_classes))
+                pitch_classes.sort()
+                pitch_classes.reverse()
+                numbers = [str(_) for _ in pitch_classes]
+                markup = [markuptools.Markup(_) for _ in numbers]
+                label = markuptools.Markup.column(markup)
+            elif prototype is pitchtools.NumberedInterval:
+                leaves = vertical_moment.leaves
+                notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
+                if not notes:
+                    continue
+                notes.sort(key=lambda x: x.written_pitch.numbered_pitch)
+                notes.reverse()
+                bass_note = notes[-1]
+                upper_notes = notes[:-1]
+                named_intervals = []
+                for upper_note in upper_notes:
+                    named_interval = pitchtools.NamedInterval.from_pitch_carriers(
+                        bass_note.written_pitch, upper_note.written_pitch)
+                    named_intervals.append(named_interval)
+                numbers = [x.number for x in named_intervals]
+                markup = [markuptools.Markup(_) for _ in numbers]
+                label = markuptools.Markup.column(markup, direction)
+            elif prototype is pitchtools.NumberedIntervalClass:
+                leaves = vertical_moment.leaves
+                notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
+                if not notes:
+                    continue
+                notes.sort(key=lambda x: x.written_pitch.numbered_pitch)
+                notes.reverse()
+                bass_note = notes[-1]
+                upper_notes = notes[:-1]
+                numbers = []
+                for upper_note in upper_notes:
+                    interval = pitchtools.NamedInterval.from_pitch_carriers(
+                        bass_note.written_pitch, upper_note.written_pitch)
+                    interval_class = pitchtools.NumberedIntervalClass(interval)
+                    number = interval_class.number
+                    numbers.append(number)
+                markup = [markuptools.Markup(_) for _ in numbers]
+                label = markuptools.Markup.column(markup, direction)
+            elif prototype is pitchtools.IntervalClassVector:
+                leaves = vertical_moment.leaves
+                pitches = pitchtools.PitchSegment.from_selection(leaves)
+                if not pitches:
+                    continue
+                interval_class_vector = pitchtools.IntervalClassVector(
+                    pitches,
+                    item_class=\
+                        pitchtools.NumberedInversionEquivalentIntervalClass,
+                    )
+                formatted = self._format_interval_class_vector(
+                    interval_class_vector)
+                label = markuptools.Markup(formatted, direction=direction)
+            if label is not None:
+                label = label.tiny()
+                if direction is Up:
+                    leaf = vertical_moment.start_leaves[0]
+                else:
+                    leaf = vertical_moment.start_leaves[-1]
+                attach(label, leaf)
 
     def with_durations(self, direction=Up):
         r'''Labels durations.
