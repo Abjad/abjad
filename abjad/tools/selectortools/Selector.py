@@ -2248,6 +2248,23 @@ class Selector(AbjadValueObject):
                 >>> selector(staff)
                 Selection(Selection(Note("d'4"),),)
 
+            Works with start offset:
+
+            ::
+
+                >>> result = selector(staff, start_offset=Offset(4))
+                >>> selection, start_offset = result
+
+            ::
+
+                >>> selection
+                Selection(Selection(Note("d'4"),),)
+
+            ::
+
+                >>> start_offset
+                Offset(17, 4)
+
         ..  container:: example
 
             **Example 2.** Selects logical tie at index 1:

@@ -1,7 +1,10 @@
 # -*- coding: utf-8 -*-
+import numbers
+from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import select
 
 
@@ -33,13 +36,16 @@ class ItemSelectorCallback(AbjadValueObject):
         Returns tuple of selections.
         '''
         assert isinstance(expr, tuple), repr(tuple)
-        new_start_offset = None
+        new_start_offset = start_offset
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
         if self.apply_to_each:
             for subexpr in expr:
                 try:
-                    subresult = subexpr.__getitem__(self.item)
+                    subresult, new_start_offset = self._get_item(
+                        subexpr,
+                        start_offset,
+                        )
                     if not isinstance(subresult, prototype):
                         subresult = select(subresult)
                     result.append(subresult)
@@ -47,11 +53,38 @@ class ItemSelectorCallback(AbjadValueObject):
                     pass
         else:
             try:
-                subresult = select(expr.__getitem__(self.item))
+                subresult, new_start_offset = self._get_item(
+                    expr, 
+                    start_offset,
+                    )
+                subresult = select(subresult)
                 result.append(subresult)
             except IndexError:
                 pass
         return tuple(result), new_start_offset
+
+    ### PRIVATE METHODS ###
+
+    def _get_item(self, expr, start_offset=None):
+        result = expr.__getitem__(self.item)
+        new_start_offset = start_offset
+        if new_start_offset is not None:
+            preceding_items = expr[:self.item]
+            for item in preceding_items:
+                if isinstance(item, numbers.Number):
+                    new_start_offset += item
+                    continue
+                if hasattr(item, 'duration'):
+                    duration = item.duration
+                    new_start_offset += duration
+                    continue
+                try:
+                    duration = inspect_(item).get_duration()
+                    new_start_offset += duration
+                except AssertionError:
+                    pass
+            new_start_offset = durationtools.Offset(new_start_offset)
+        return result, new_start_offset
 
     ### PUBLIC PROPERTIES ###
 
