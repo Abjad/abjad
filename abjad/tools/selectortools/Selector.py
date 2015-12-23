@@ -1886,7 +1886,7 @@ class Selector(AbjadValueObject):
         callback = selectortools.PitchSelectorCallback(pitches=pitches)
         return self._append_callback(callback)
 
-    def by_ratio(self, ratio):
+    def partition_by_ratio(self, ratio):
         r'''Configures selector by ratio.
 
         ..  container:: example
@@ -1926,7 +1926,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selector.by_ratio(mathtools.Ratio((1, 1)))
+                >>> selector = selector.partition_by_ratio(mathtools.Ratio((1, 1)))
                 >>> result = selector(staff)
                 >>> for selection in result:
                 ...     selection
@@ -1972,7 +1972,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selector.by_ratio(mathtools.Ratio((1, 1, 1)))
+                >>> selector = selector.partition_by_ratio(mathtools.Ratio((1, 1, 1)))
                 >>> result = selector(staff)
                 >>> for selection in result:
                 ...     selection
@@ -1985,7 +1985,7 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from abjad.tools import selectortools
-        callback = selectortools.RatioSelectorCallback(ratio)
+        callback = selectortools.PartitionByRatioCallback(ratio)
         return self._append_callback(callback)
 
     def by_run(

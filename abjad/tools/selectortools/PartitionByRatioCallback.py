@@ -5,7 +5,7 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 
 
-class RatioSelectorCallback(AbjadValueObject):
+class PartitionByRatioCallback(AbjadValueObject):
     r'''A ratio selector callback.
     '''
 
