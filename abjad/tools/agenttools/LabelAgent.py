@@ -7,6 +7,7 @@ from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import iterate
@@ -310,6 +311,66 @@ class LabelAgent(abctools.AbjadObject):
         """
         for leaf in iterate(self.client).by_class(scoretools.Leaf):
             self._color_leaf(leaf, color)
+
+    def remove_markup(self):
+        r'''Removes markup from leaves.
+
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> label(staff).with_pitches()
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8
+                        ^ \markup {
+                            \small
+                                c'
+                            }
+                    d'8
+                        ^ \markup {
+                            \small
+                                d'
+                            }
+                    e'8
+                        ^ \markup {
+                            \small
+                                e'
+                            }
+                    f'8
+                        ^ \markup {
+                            \small
+                                f'
+                            }
+                }
+
+            ::
+
+                >>> label(staff).remove_markup()
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8
+                    d'8
+                    e'8
+                    f'8
+                }
+
+        Returns none.
+        '''
+        leaves = iterate(self.client).by_class(scoretools.Leaf)
+        for leaf in leaves:
+            detach(markuptools.Markup, leaf)
 
     def with_durations(self, direction=Up):
         r'''Labels durations.
