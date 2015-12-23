@@ -2216,17 +2216,106 @@ class Selector(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Selects the first note of each logical tie:
+            **Example 1.** Selects leaf at index 1:
 
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            Returns selection of leaf selections:
+
+            ::
+            
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_logical_tie(pitched=True)
-                >>> selector = selector.get_item(0, apply_to_each=True)
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.flatten()
+                >>> selector = selector.get_item(1, apply_to_each=False)
+                >>> selector(staff)
+                Selection(Selection(Note("d'4"),),)
+
+        ..  container:: example
+
+            **Example 2.** Selects logical tie at index 1:
 
             ::
 
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            Returns selection of leaf selections:
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.get_item(1, apply_to_each=False)
+                >>> selections = selector(staff)
+                >>> for selection in selections:
+                ...     selection
+                ...
+                Selection(Note("d'4"), Note("d'4"))
+
+            ..  todo:: Shouldn't this return a selection of logical ties?
+
+        ..  container:: example
+
+            **Example 3.** Selects the first note of each logical tie:
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            Returns selection of leaf selections:
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.get_item(0, apply_to_each=True)
                 >>> selections = selector(staff)
                 >>> for selection in selections:
                 ...     selection
@@ -2236,25 +2325,7 @@ class Selector(AbjadValueObject):
                 Selection(Note("e'4"),)
                 Selection(Note("f'4"),)
 
-        ..  container:: example
-
-            **Example 2.** Selects logical tie at index ``1``:
-
-            ::
-
-                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_logical_tie(pitched=True)
-                >>> selector = selector.get_item(1, apply_to_each=False)
-
-            ::
-
-                >>> selections = selector(staff)
-                >>> for selection in selections:
-                ...     selection
-                ...
-                Selection(Note("d'4"), Note("d'4"))
-
+        Returns new selector.
         '''
         from abjad.tools import selectortools
         callback = selectortools.ItemSelectorCallback(
