@@ -2176,7 +2176,7 @@ class Selector(AbjadValueObject):
         callback = selectortools.FlattenSelectorCallback(depth=depth)
         return self._append_callback(callback)
 
-    def get_item(self, item, apply_to_each=True):
+    def get_item(self, item, apply_to_each=False):
         r'''Gets `item` in selection.
 
         Maps the callback to each item in sequence when `apply_to_each` is
@@ -2215,7 +2215,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.flatten()
-                >>> selector = selector.get_item(1, apply_to_each=False)
+                >>> selector = selector.get_item(1)
                 >>> selector(staff)
                 Note("d'4")
 
@@ -2265,7 +2265,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> selector = selector.get_item(1, apply_to_each=False)
+                >>> selector = selector.get_item(1)
                 >>> selector(staff)
                 LogicalTie(Note("d'4"), Note("d'4"))
 
