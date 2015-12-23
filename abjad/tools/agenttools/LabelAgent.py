@@ -473,6 +473,96 @@ class LabelAgent(abctools.AbjadObject):
                     a'4 ^ \markup { +m2 }
                     bf'4
                 }
+
+        ..  container:: example
+
+            **Example 3.** Labels interval numbers:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> prototype = pitchtools.NumberedInterval
+                >>> label(staff).with_intervals(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { +25 }
+                    cs'''4 ^ \markup { -14 }
+                    b'4 ^ \markup { -15 }
+                    af4 ^ \markup { -10 }
+                    bf,4 ^ \markup { +1 }
+                    b,4 ^ \markup { +22 }
+                    a'4 ^ \markup { +1 }
+                    bf'4
+                }
+
+        ..  container:: example
+
+            **Example 4.** Labels interval-class numbers:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> prototype = pitchtools.NumberedIntervalClass
+                >>> label(staff).with_intervals(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { +1 }
+                    cs'''4 ^ \markup { -2 }
+                    b'4 ^ \markup { -3 }
+                    af4 ^ \markup { -10 }
+                    bf,4 ^ \markup { +1 }
+                    b,4 ^ \markup { +10 }
+                    a'4 ^ \markup { +1 }
+                    bf'4
+                }
+
+        ..  container:: example
+
+            **Example 5.** Labels inversion-equivalent interval-class numbers:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
+                >>> label(staff).with_intervals(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { 1 }
+                    cs'''4 ^ \markup { 2 }
+                    b'4 ^ \markup { 3 }
+                    af4 ^ \markup { 2 }
+                    bf,4 ^ \markup { 1 }
+                    b,4 ^ \markup { 2 }
+                    a'4 ^ \markup { 1 }
+                    bf'4
+                }
                 
         Returns none.
         """
@@ -482,14 +572,23 @@ class LabelAgent(abctools.AbjadObject):
             label = None
             next_leaf = inspect_(note).get_leaf(1)
             if isinstance(next_leaf, scoretools.Note):
-                named_interval = pitchtools.NamedInterval.from_pitch_carriers(
+                interval = pitchtools.NamedInterval.from_pitch_carriers(
                     note, 
                     next_leaf,
                     )
                 if prototype is pitchtools.NamedInterval:
-                    label = markuptools.Markup(named_interval, direction)
+                    label = markuptools.Markup(interval, direction)
                 elif prototype is pitchtools.NamedIntervalClass:
-                    label = pitchtools.NamedIntervalClass(named_interval)
+                    label = pitchtools.NamedIntervalClass(interval)
+                    label = markuptools.Markup(label, direction)
+                elif prototype is pitchtools.NumberedInterval:
+                    label = pitchtools.NumberedInterval(interval)
+                    label = markuptools.Markup(label, direction)
+                elif prototype is pitchtools.NumberedIntervalClass:
+                    label = pitchtools.NumberedIntervalClass(interval)
+                    label = markuptools.Markup(label, direction)
+                elif prototype is pitchtools.NumberedInversionEquivalentIntervalClass:
+                    label = pitchtools.NumberedInversionEquivalentIntervalClass(interval)
                     label = markuptools.Markup(label, direction)
                 if label is not None:
                     attach(label, note)
