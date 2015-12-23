@@ -2385,6 +2385,8 @@ class Selector(AbjadValueObject):
                     f'4
                 }
 
+            Returns leaf selection:
+
             ::
 
                 >>> selector = selectortools.Selector()
@@ -2394,13 +2396,25 @@ class Selector(AbjadValueObject):
                 ...     start=-3,
                 ...     apply_to_each=False,
                 ...     )
-
-            ::
-
                 >>> selector(staff)
                 Selection(Note("e'4"), Rest('r4'), Note("f'4"))
 
-            Returns selection.
+            Works with start offset:
+
+            ::
+
+                >>> result = selector(staff, start_offset=Offset(4))
+                >>> selection, start_offset = result
+
+            ::
+
+                >>> selection
+                Selection(Note("e'4"), Rest('r4'), Note("f'4"))
+
+            ::
+
+                >>> start_offset
+                Offset(21, 4)
 
         Returns new selector.
         '''
