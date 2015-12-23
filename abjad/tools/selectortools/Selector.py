@@ -1919,13 +1919,16 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
-                >>> ratio = mathtools.Ratio((1, 1))
-                >>> selector = selector.by_ratio(ratio)
+                >>> result = selector(staff)
+                >>> for selection in result:
+                ...     selection
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
 
             ::
 
-                >>> selections = selector(staff)
-                >>> for selection in selections:
+                >>> selector = selector.by_ratio(mathtools.Ratio((1, 1)))
+                >>> result = selector(staff)
+                >>> for selection in result:
                 ...     selection
                 Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
@@ -1962,13 +1965,16 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
-                >>> ratio = mathtools.Ratio((1, 1, 1))
-                >>> selector = selector.by_ratio(ratio)
+                >>> result = selector(staff)
+                >>> for selection in result:
+                ...     selection
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
 
             ::
 
-                >>> selections = selector(staff)
-                >>> for selection in selections:
+                >>> selector = selector.by_ratio(mathtools.Ratio((1, 1, 1)))
+                >>> result = selector(staff)
+                >>> for selection in result:
                 ...     selection
                 Selection(Note("c'8"), Note("d'8"), Rest('r8'))
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"))
