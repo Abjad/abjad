@@ -54,10 +54,11 @@ class ItemSelectorCallback(AbjadValueObject):
         else:
             try:
                 subresult, new_start_offset = self._get_item(
-                    expr, 
+                    expr,
                     start_offset,
                     )
-                subresult = select(subresult)
+                if not isinstance(subresult, prototype):
+                    subresult = select(subresult)
                 result.append(subresult)
             except IndexError:
                 pass

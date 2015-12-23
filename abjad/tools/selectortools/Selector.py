@@ -2088,7 +2088,7 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'4"),)
+                LogicalTie(Note("c'4"),)
 
         Returns new selector.
         '''
@@ -2299,7 +2299,7 @@ class Selector(AbjadValueObject):
                 >>> for selection in selections:
                 ...     selection
                 ...
-                Selection(Note("d'4"), Note("d'4"))
+                LogicalTie(Note("d'4"), Note("d'4"))
 
             ..  todo:: Shouldn't this return a selection of logical ties?
 
@@ -2533,7 +2533,7 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(Note("f'4"),)
+                LogicalTie(Note("f'4"),)
 
         Returns new selector.
         '''
