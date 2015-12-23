@@ -35,38 +35,16 @@ class ItemSelectorCallback(AbjadValueObject):
 
         Returns item.
         '''
-        assert isinstance(expr, tuple), repr(tuple)
-        #new_start_offset = start_offset
-        #prototype = (scoretools.Container, selectiontools.Selection)
-        #result = []
+        assert isinstance(expr, tuple), repr(expr)
         if self.apply_to_each:
             result = []
-            for subexpr in expr:
-                #try:
-                if True:
-                    subresult, new_start_offset = self._get_item(
-                        subexpr,
-                        start_offset,
-                        )
-                    #if not isinstance(subresult, prototype):
-                    #    subresult = select(subresult)
-                    result.append(subresult)
-                #except IndexError:
-                #    pass
+            for element in expr:
+                result_ = self._get_item(element, start_offset)
+                result_, new_start_offset = result_
+                result.append(result_)
             result = tuple(result)
         else:
-            #try:
-            if True:
-                result, new_start_offset = self._get_item(
-                    expr,
-                    start_offset,
-                    )
-                #if not isinstance(subresult, prototype):
-                #    subresult = select(subresult)
-                #result.append(subresult)
-            #except IndexError:
-            #    pass
-        #return tuple(result), new_start_offset
+            result, new_start_offset = self._get_item(expr, start_offset)
         return result, new_start_offset
 
     ### PRIVATE METHODS ###
