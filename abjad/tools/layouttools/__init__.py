@@ -1,11 +1,4 @@
 # -*- coding: utf-8 -*-
-'''Page layout tools.
-
-   This package depends on the following:
-
-      * rational numbers
-'''
-
 from abjad.tools import systemtools
 
 systemtools.ImportManager.import_structured_package(
