@@ -128,12 +128,9 @@ class Selector(AbjadValueObject):
                 expr, start_offset = callback(expr, start_offset=start_offset)
         if isinstance(expr, tuple):
             expr = selectiontools.Selection(expr)
-
         if start_offset is None:
-            #return selectiontools.Selection(expr)
             return expr
         else:
-            #return selectiontools.Selection(expr), start_offset
             return expr, start_offset
 
     def __getitem__(self, item):
@@ -2502,6 +2499,24 @@ class Selector(AbjadValueObject):
                 ...     selection
                 Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
 
+            Works with start offset:
+
+            ::
+
+                >>> result = selector(staff, start_offset=Offset(4))
+                >>> result, start_offset = result
+
+            ::
+
+                >>> for selection in result:
+                ...     selection
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+
+            ::
+
+                >>> start_offset
+                Offset(4, 1)
+
             Returns selection of leaf selections:
 
             ::
@@ -2513,6 +2528,25 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
 
+            Works with start offset:
+
+            ::
+
+                >>> result = selector(staff, start_offset=Offset(4))
+                >>> result, start_offset = result
+
+            ::
+
+                >>> for selection in result:
+                ...     selection
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'))
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+
+            ::
+
+                >>> start_offset
+                Offset(4, 1)
+
             Gets second leaf selection:
 
             ::
@@ -2520,6 +2554,25 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.get_item(1)
                 >>> selector(staff)
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+
+            Works with start offset:
+
+            ::
+
+                >>> result = selector(staff, start_offset=Offset(4))
+                >>> result, start_offset = result
+
+            ::
+
+                >>> result
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+
+            ::
+
+                >>> start_offset
+                Offset(4, 1)
+
+            .. todo:: Offset should be 4 1/2.
 
         ..  container:: example
 
