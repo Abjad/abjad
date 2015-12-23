@@ -39,8 +39,8 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> for x in selector(staff):
-            ...     x
+            >>> for component in selector(staff):
+            ...     component
             ...
             <Staff{6}>
 
@@ -51,8 +51,8 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selector.by_leaves()
-            >>> for x in selector(staff):
-            ...     x
+            >>> for selection in selector(staff):
+            ...     selection
             ...
             Selection(Note("c'4"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
 
@@ -63,8 +63,8 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selector.by_run(Note)
-            >>> for x in selector(staff):
-            ...     x
+            >>> for selection in selector(staff):
+            ...     selection
             ...
             Selection(Note("c'4"), Note("d'8"))
             Selection(Note("e'8"),)
@@ -77,8 +77,8 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selector.by_length(3)
-            >>> for x in selector(staff):
-            ...     x
+            >>> for selection in selector(staff):
+            ...     selection
             ...
             Selection(Note("f'16"), Note("g'8"), Note("a'4"))
 
@@ -89,8 +89,8 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selector[0]
-            >>> for x in selector(staff):
-            ...     x
+            >>> for selection in selector(staff):
+            ...     selection
             ...
             Selection(Note("f'16"),)
 
@@ -101,8 +101,8 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selector.flatten()
-            >>> for x in selector(staff):
-            ...     x
+            >>> for leaf in selector(staff):
+            ...     leaf
             ...
             Note("f'16")
 
@@ -2099,8 +2099,9 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> selections = selector(staff)
+                >>> for selection in selections:
+                ...     selection
                 ...
                 Selection(Note("c'4"),)
                 Selection(Note("d'4"),)
@@ -2120,8 +2121,9 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> selections = selector(staff)
+                >>> for selection in selections:
+                ...     selection
                 ...
                 Selection(Note("d'4"), Note("d'4"))
 
@@ -2160,8 +2162,9 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> logical_ties = selector(staff)
+                >>> for logical_tie in logical_ties:
+                ...     logical_tie
                 ...
                 LogicalTie(Note("d'4"),)
                 LogicalTie(Note("e'4"), Note("e'4"))
@@ -2183,8 +2186,9 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> logical_ties = selector(staff)
+                >>> for logical_tie in logical_ties:
+                ...     logical_tie
                 ...
                 LogicalTie(Note("c'4"),)
                 LogicalTie(Note("d'4"), Note("d'4"))
