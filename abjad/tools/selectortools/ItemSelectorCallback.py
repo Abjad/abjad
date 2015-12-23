@@ -62,6 +62,10 @@ class ItemSelectorCallback(AbjadValueObject):
                     duration = item.duration
                     new_start_offset += duration
                     continue
+                if hasattr(item, 'get_duration'):
+                    duration = item.get_duration()
+                    new_start_offset += duration
+                    continue
                 try:
                     duration = inspect_(item).get_duration()
                     new_start_offset += duration

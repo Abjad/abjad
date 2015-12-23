@@ -2570,9 +2570,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> start_offset
-                Offset(4, 1)
-
-            .. todo:: Offset should be 4 1/2.
+                Offset(109, 24)
 
         ..  container:: example
 
