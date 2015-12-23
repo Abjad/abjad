@@ -212,14 +212,14 @@ Finally, we create some functions to apply formatting directives to our `Score`
 object, then wrap it into a `LilyPondFile` and apply some more formatting.
 
 In our `configure_score()` functions, we use
-`layouttools.make_spacing_vector()` to create the correct Scheme construct to
+`schemetools.make_spacing_vector()` to create the correct Scheme construct to
 tell LilyPond how to handle vertical space for its staves and staff groups. You
 should consult LilyPond's vertical spacing documentation for a complete
 explanation of what this Scheme code means:
 
 ..  abjad::
 
-    spacing_vector = layouttools.make_spacing_vector(0, 0, 8, 0)
+    spacing_vector = schemetools.make_spacing_vector(0, 0, 8, 0)
     print(format(spacing_vector))
 
 ..  import:: abjad.demos.part.configure_score:configure_score

@@ -165,7 +165,7 @@ def format_score(score):
     set_(score).proportionalNotationDuration = schemetools.SchemeMoment((1, 64))
     set_(score).tupletFullLength = True
 
-    vector = layouttools.make_spacing_vector(0, 0, 6, 0)
+    vector = schemetools.make_spacing_vector(0, 0, 6, 0)
     score[0].override.staff_grouper.staff_staff_spacing = vector
 
     return score
@@ -175,7 +175,7 @@ def format_lilypond_file(lilypond_file):
     lilypond_file.header_block.title = markuptools.Markup('Turkish text')
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
-    vector = layouttools.make_spacing_vector(0, 0, 12, 0)
+    vector = schemetools.make_spacing_vector(0, 0, 12, 0)
     lilypond_file.paper_block.markup_system_spacing = vector
     lilypond_file.paper_block.top_margin = 10
     return lilypond_file

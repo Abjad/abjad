@@ -164,7 +164,7 @@ def make_floating_time_signature_lilypond_file(music=None):
     lilypond_file.global_staff_size = 12
 
     lilypond_file.paper_block.left_margin = 20
-    vector = layouttools.make_spacing_vector(0, 0, 12, 0)
+    vector = schemetools.make_spacing_vector(0, 0, 12, 0)
     lilypond_file.paper_block.system_system_spacing = vector
 
     #lilypond_file.layout_block.indent = 0
@@ -244,7 +244,7 @@ def _make_time_signature_context_block(
     override(context_block).time_signature.font_size = font_size
     override(context_block).time_signature.self_alignment_X = \
         schemetools.Scheme('center')
-    spacing_vector = layouttools.make_spacing_vector(
+    spacing_vector = schemetools.make_spacing_vector(
         0,
         minimum_distance,
         padding,

@@ -3,9 +3,9 @@ from abjad import *
 from abjad.tools import layouttools
 
 
-def test_layouttools_make_spacing_vector_01():
+def test_schemetools_make_spacing_vector_01():
 
-    spacing_vector = layouttools.make_spacing_vector(0, 0, 12, 0)
+    spacing_vector = schemetools.make_spacing_vector(0, 0, 12, 0)
     assert spacing_vector == schemetools.SchemeVector(
         schemetools.SchemePair('basic-distance', 0),
         schemetools.SchemePair('minimum-distance', 0),

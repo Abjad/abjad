@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import schemetools
 
 
 def make_spacing_vector(
@@ -12,7 +11,7 @@ def make_spacing_vector(
 
     ::
 
-        >>> vector = layouttools.make_spacing_vector(0, 0, 12, 0)
+        >>> vector = schemetools.make_spacing_vector(0, 0, 12, 0)
 
     Use to set paper block spacing attributes:
 
@@ -20,7 +19,7 @@ def make_spacing_vector(
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
         >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        >>> spacing_vector = layouttools.make_spacing_vector(0, 0, 12, 0)
+        >>> spacing_vector = schemetools.make_spacing_vector(0, 0, 12, 0)
         >>> lilypond_file.paper_block.system_system_spacing = spacing_vector
 
     ..  doctest::
@@ -48,7 +47,7 @@ def make_spacing_vector(
 
     Returns scheme vector.
     '''
-
+    from abjad.tools import schemetools
     return schemetools.SchemeVector(
         schemetools.SchemePair('basic-distance', basic_distance),
         schemetools.SchemePair('minimum-distance', minimum_distance),

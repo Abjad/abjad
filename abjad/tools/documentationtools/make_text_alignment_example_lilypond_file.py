@@ -88,7 +88,7 @@ def make_text_alignment_example_lilypond_file(music=None):
     lilypond_file.paper_block.left_margin = 10
     lilypond_file.paper_block.line_width = 150
 
-    vector = layouttools.make_spacing_vector(0, 0, 15, 0)
+    vector = schemetools.make_spacing_vector(0, 0, 15, 0)
     lilypond_file.paper_block.system_system_spacing = vector
 
     return lilypond_file
