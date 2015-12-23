@@ -2301,8 +2301,6 @@ class Selector(AbjadValueObject):
                 ...
                 LogicalTie(Note("d'4"), Note("d'4"))
 
-            ..  todo:: Shouldn't this return a selection of logical ties?
-
         ..  container:: example
 
             **Example 3.** Selects the first note of each logical tie:
