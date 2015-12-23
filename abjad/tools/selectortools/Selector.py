@@ -1886,108 +1886,6 @@ class Selector(AbjadValueObject):
         callback = selectortools.PitchSelectorCallback(pitches=pitches)
         return self._append_callback(callback)
 
-    def partition_by_ratio(self, ratio):
-        r'''Configures selector by ratio.
-
-        ..  container:: example
-
-            **Example 1.** Partitions leaves by ratio of `1:1`:
-
-            ::
-
-                >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
-                >>> show(staff) # doctest:+SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                    d'8
-                    r8
-                    \times 2/3 {
-                        e'8
-                        r8
-                        f'8
-                    }
-                    g'8
-                    a'8
-                    r8
-                }
-
-            ::
-
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
-                >>> result = selector(staff)
-                >>> for selection in result:
-                ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
-
-            ::
-
-                >>> selector = selector.partition_by_ratio(mathtools.Ratio((1, 1)))
-                >>> result = selector(staff)
-                >>> for selection in result:
-                ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
-
-            Returns selection of leaf selections.
-
-        ..  container:: example
-
-            **Example 2.** Partitions leaves by ratio of `1:1:1`:
-
-            ::
-
-                >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                    d'8
-                    r8
-                    \times 2/3 {
-                        e'8
-                        r8
-                        f'8
-                    }
-                    g'8
-                    a'8
-                    r8
-                }
-
-            ::
-
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
-                >>> result = selector(staff)
-                >>> for selection in result:
-                ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
-
-            ::
-
-                >>> selector = selector.partition_by_ratio(mathtools.Ratio((1, 1, 1)))
-                >>> result = selector(staff)
-                >>> for selection in result:
-                ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'))
-                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
-                Selection(Note("g'8"), Note("a'8"), Rest('r8'))
-
-            Returns selection of leaf selections.
-
-        Returns new selector.
-        '''
-        from abjad.tools import selectortools
-        callback = selectortools.PartitionByRatioCallback(ratio)
-        return self._append_callback(callback)
-
     def by_run(
         self,
         prototype=None,
@@ -2562,6 +2460,128 @@ class Selector(AbjadValueObject):
             stop=-1,
             apply_to_each=False,
             )
+        return self._append_callback(callback)
+
+    def partition_by_ratio(self, ratio):
+        r'''Configures selector to partition by ratio.
+
+        ..  container:: example
+
+            **Example 1.** Partitions leaves by ratio of `1:1`:
+
+            ::
+
+                >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
+                >>> show(staff) # doctest:+SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                    r8
+                    \times 2/3 {
+                        e'8
+                        r8
+                        f'8
+                    }
+                    g'8
+                    a'8
+                    r8
+                }
+
+            Returns selection of leaf selection:
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> result = selector(staff)
+                >>> for selection in result:
+                ...     selection
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+
+            Returns selection of leaf selections:
+
+            ::
+
+                >>> selector = selector.partition_by_ratio(mathtools.Ratio((1, 1)))
+                >>> result = selector(staff)
+                >>> for selection in result:
+                ...     selection
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'))
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+
+            Gets second leaf selection:
+
+            ::
+
+                >>> selector = selector.get_item(1)
+                >>> selector(staff)
+                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+
+        ..  container:: example
+
+            **Example 2.** Partitions leaves by ratio of `1:1:1`:
+
+            ::
+
+                >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                    r8
+                    \times 2/3 {
+                        e'8
+                        r8
+                        f'8
+                    }
+                    g'8
+                    a'8
+                    r8
+                }
+
+            Returns selection of leaf selection:
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> result = selector(staff)
+                >>> for selection in result:
+                ...     selection
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+
+            Return selection of leaf selections:
+
+            ::
+
+                >>> selector = selector.partition_by_ratio(mathtools.Ratio((1, 1, 1)))
+                >>> result = selector(staff)
+                >>> for selection in result:
+                ...     selection
+                Selection(Note("c'8"), Note("d'8"), Rest('r8'))
+                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+                Selection(Note("g'8"), Note("a'8"), Rest('r8'))
+
+            Gets second leaf selection:
+
+            ::
+
+                >>> selector = selector.get_item(1)
+                >>> selector(staff)
+                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+
+        Returns new selector.
+        '''
+        from abjad.tools import selectortools
+        callback = selectortools.PartitionByRatioCallback(ratio)
         return self._append_callback(callback)
 
     def rest(self):
