@@ -1072,12 +1072,13 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for selection in selector(staff):
+                >>> selections = selector(staff)
+                >>> for selection in selections:
                 ...     selection
                 ...
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
 
-            Call returns a selection containing a component selection.
+            Returns a selection of leaf selections.
 
         ..  container:: example
 
@@ -1109,7 +1110,8 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for leaf in selector(staff):
+                >>> selection = selector(staff)
+                >>> for leaf in selection:
                 ...     leaf
                 ...
                 Note("c'8")
@@ -1121,7 +1123,7 @@ class Selector(AbjadValueObject):
                 Note("g'8")
                 Note("a'8")
 
-            Call returns a component selection.
+            Returns a leaf selection.
 
         ..  container:: example
 
@@ -1153,20 +1155,24 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_class(Measure)
-                >>> for selection in selector(staff):
+                >>> selections = selector(staff)
+                >>> for selection in selections:
                 ...     selection
                 ...
                 Selection(Measure((4, 4), "c'2 d'2"), Measure((3, 4), "e'4 f'4 g'4"))
 
+            Returns a selection of measure selections.
+
             ::
 
                 >>> selector = selector.by_leaves()
-                >>> for selection in selector(staff):
+                >>> selections = selector(staff)
+                >>> for selection in selections:
                 ...     selection
                 ...
                 Selection(Note("c'2"), Note("d'2"), Note("e'4"), Note("f'4"), Note("g'4"))
 
-            Call returns a selection containing a component selection.
+            Returns a selection of leaf selections.
 
         ..  container:: example
 
@@ -1198,23 +1204,26 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_class(Measure, flatten=True)
-                >>> for x in selector(staff):
-                ...     x
+                >>> selection = selector(staff)
+                >>> for measure in selection:
+                ...     measure
                 ...
                 Measure((4, 4), "c'2 d'2")
                 Measure((3, 4), "e'4 f'4 g'4")
 
+            Returns a measure selection.
+
             ::
 
                 >>> selector = selector.by_leaves()
-                >>> for selection in selector(staff):
+                >>> selections = selector(staff)
+                >>> for selection in selections:
                 ...     selection
                 ...
                 Selection(Note("c'2"), Note("d'2"))
                 Selection(Note("e'4"), Note("f'4"), Note("g'4"))
 
-            Call returns a selection containing one component selection per
-            measure.
+            Returns a selection of leaf selections.
 
         ..  container:: example
 
@@ -1246,17 +1255,21 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_class(Measure, flatten=True)
-                >>> for x in selector(staff):
-                ...     x
+                >>> selection = selector(staff)
+                >>> for measure in selection:
+                ...     measure
                 ...
                 Measure((4, 4), "c'2 d'2")
                 Measure((3, 4), "e'4 f'4 g'4")
 
+            Returns a measure selection.
+
             ::
 
                 >>> selector = selector.by_leaves(flatten=True)
-                >>> for x in selector(staff):
-                ...     x
+                >>> selection = selector(staff)
+                >>> for leaf in selection:
+                ...     leaf
                 ...
                 Note("c'2")
                 Note("d'2")
@@ -1264,7 +1277,7 @@ class Selector(AbjadValueObject):
                 Note("f'4")
                 Note("g'4")
 
-            Call returns a component selection.
+            Returns a leaf selection.
 
         Returns new selector.
         '''
@@ -2152,6 +2165,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_slice(
@@ -2169,6 +2200,8 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("d'4"),)
                 LogicalTie(Note("e'4"), Note("e'4"))
 
+            Returns selection of logical ties.
+
         ..  container:: example
 
             **Example 2.** Gets all pitched logical ties (except the last):
@@ -2176,6 +2209,24 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            ::
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_slice(
@@ -2194,6 +2245,49 @@ class Selector(AbjadValueObject):
                 LogicalTie(Note("d'4"), Note("d'4"))
                 LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
 
+            Returns selection of logical ties.
+
+        ..  container:: example
+
+            **Example 3.** Selects last three leaves:
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.flatten()
+                >>> selector = selector.get_slice(
+                ...     start=-3,
+                ...     apply_to_each=False,
+                ...     )
+
+            ::
+
+                >>> selector(staff)
+                Selection(Note("e'4"), Rest('r4'), Note("f'4"))
+
+            Returns selection.
+
+        Returns new selector.
         '''
         from abjad.tools import selectortools
         callback = selectortools.SliceSelectorCallback(

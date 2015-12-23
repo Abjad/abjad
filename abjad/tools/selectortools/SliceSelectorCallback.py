@@ -120,7 +120,6 @@ class SliceSelectorCallback(AbjadValueObject):
         if self.apply_to_each:
             for subexpr in expr:
                 try:
-                    #subresult = subexpr.__getitem__(slice_)
                     subresult, new_start_offset = self._get_item(
                         subexpr, 
                         start_offset,
@@ -136,8 +135,6 @@ class SliceSelectorCallback(AbjadValueObject):
                     pass
         else:
             try:
-                #subresult = select(expr.__getitem__(slice_))
-                #subresult = select(self._get_item(expr, start_offset))
                 subresult, new_start_offset = self._get_item(
                     expr, 
                     start_offset,
