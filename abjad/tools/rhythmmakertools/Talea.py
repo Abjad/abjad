@@ -38,6 +38,14 @@ class Talea(AbjadValueObject):
             NonreducedFraction(2, 16)
             NonreducedFraction(1, 16)
 
+    ..  container:: example
+
+        Taleas can be instantiated without keyword arguments.
+
+        ::
+
+            >>> talea = rhythmmakertools.Talea([1, 2, 3], 8)
+
     '''
 
     ### CLASS VARIABLES ###
@@ -54,9 +62,9 @@ class Talea(AbjadValueObject):
 
     def __init__(
         self,
-        count_masks=None,
         counts=(1,),
         denominator=16,
+        count_masks=None,
         ):
         from abjad.tools import rhythmmakertools
         count_masks = rhythmmakertools.RhythmMaker._prepare_masks(count_masks)
