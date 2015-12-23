@@ -19,7 +19,8 @@ class RatioSelectorCallback(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, ratio):
+    def __init__(self, ratio=None):
+        ratio = ratio or mathtools.Ratio((1,))
         ratio = mathtools.Ratio(ratio)
         self._ratio = ratio
 
