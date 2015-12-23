@@ -39,10 +39,8 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> for component in selector(staff):
-            ...     component
-            ...
-            <Staff{6}>
+            >>> selector(staff)
+            Selection(<Staff{6}>,)
 
     ..  container:: example
 
@@ -51,10 +49,8 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selector.by_leaves()
-            >>> for selection in selector(staff):
-            ...     selection
-            ...
-            Selection(Note("c'4"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
+            >>> selector(staff)
+            Selection(Selection(Note("c'4"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4")),)
 
     ..  container:: example
 
@@ -63,72 +59,18 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selector.by_run(Note)
-            >>> for selection in selector(staff):
-            ...     selection
-            ...
-            Selection(Note("c'4"), Note("d'8"))
-            Selection(Note("e'8"),)
-            Selection(Note("f'16"), Note("g'8"), Note("a'4"))
+            >>> selector(staff)
+            Selection(Selection(Note("c'4"), Note("d'8")), Selection(Note("e'8"),), Selection(Note("f'16"), Note("g'8"), Note("a'4")))
 
     ..  container:: example
 
-        **Example 4.** Selects subselections with lengths equal to ``3``:
+        **Example 4.** Selects the first item in each selection:
 
         ::
 
-            >>> selector = selector.by_length(3)
-            >>> for selection in selector(staff):
-            ...     selection
-            ...
-            Selection(Note("f'16"), Note("g'8"), Note("a'4"))
-
-    ..  container:: example
-
-        **Example 5.** Selects the first item in each subselection:
-
-        ::
-
-            >>> selector = selector[0]
-            >>> for selection in selector(staff):
-            ...     selection
-            ...
-            Selection(Note("f'16"),)
-
-    ..  container:: example
-
-        **Example 6.** Flattens all subselections and containers:
-
-        ::
-
-            >>> selector = selector.flatten()
-            >>> for leaf in selector(staff):
-            ...     leaf
-            ...
-            Note("f'16")
-
-        ::
-
-            >>> print(format(selector))
-            selectortools.Selector(
-                callbacks=(
-                    selectortools.PrototypeSelectorCallback(
-                        prototype=scoretools.Leaf,
-                        ),
-                    selectortools.RunSelectorCallback(
-                        prototype=scoretools.Note,
-                        ),
-                    selectortools.LengthSelectorCallback(
-                        length=3,
-                        ),
-                    selectortools.ItemSelectorCallback(
-                        item=0,
-                        apply_to_each=True,
-                        ),
-                    selectortools.FlattenSelectorCallback(
-                        depth=-1,
-                        ),
-                    ),
-                )
+            >>> selector = selector.get_item(0, apply_to_each=True)
+            >>> selector(staff)
+            Selection(Note("c'4"), Note("e'8"), Note("f'16"))
 
     '''
 
@@ -184,10 +126,15 @@ class Selector(AbjadValueObject):
                     )
             except TypeError:
                 expr, start_offset = callback(expr, start_offset=start_offset)
+        if isinstance(expr, tuple):
+            expr = selectiontools.Selection(expr)
+
         if start_offset is None:
-            return selectiontools.Selection(expr)
+            #return selectiontools.Selection(expr)
+            return expr
         else:
-            return selectiontools.Selection(expr), start_offset
+            #return selectiontools.Selection(expr), start_offset
+            return expr, start_offset
 
     def __getitem__(self, item):
         r'''Gets `item` in selector.
@@ -2079,15 +2026,33 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.by_logical_tie(pitched=True)
-                >>> selector = selector.first()
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff) 
+                \new Staff {
+                    c'4
+                    d'4 ~
+                    d'4
+                    e'4 ~
+                    e'4 ~
+                    e'4
+                    r4
+                    f'4
+                }
 
             ::
 
-                >>> for selection in selector(staff):
-                ...     selection
-                ...
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector(staff)
+                Selection(LogicalTie(Note("c'4"),), LogicalTie(Note("d'4"), Note("d'4")), LogicalTie(Note("e'4"), Note("e'4"), Note("e'4")), LogicalTie(Note("f'4"),))
+
+            ::
+
+                >>> selector = selector.first()
+                >>> selector(staff)
                 LogicalTie(Note("c'4"),)
 
         Returns new selector.
@@ -2246,19 +2211,19 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.flatten()
                 >>> selector = selector.get_item(1, apply_to_each=False)
                 >>> selector(staff)
-                Selection(Selection(Note("d'4"),),)
+                Note("d'4")
 
             Works with start offset:
 
             ::
 
                 >>> result = selector(staff, start_offset=Offset(4))
-                >>> selection, start_offset = result
+                >>> note, start_offset = result
 
             ::
 
-                >>> selection
-                Selection(Selection(Note("d'4"),),)
+                >>> note
+                Note("d'4")
 
             ::
 
@@ -2295,10 +2260,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(1, apply_to_each=False)
-                >>> selections = selector(staff)
-                >>> for selection in selections:
-                ...     selection
-                ...
+                >>> selector(staff)
                 LogicalTie(Note("d'4"), Note("d'4"))
 
         ..  container:: example
@@ -2324,21 +2286,15 @@ class Selector(AbjadValueObject):
                     f'4
                 }
 
-            Returns selection of leaf selections:
+            Returns leaf selection:
 
             ::
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(0, apply_to_each=True)
-                >>> selections = selector(staff)
-                >>> for selection in selections:
-                ...     selection
-                ...
-                Selection(Note("c'4"),)
-                Selection(Note("d'4"),)
-                Selection(Note("e'4"),)
-                Selection(Note("f'4"),)
+                >>> selector(staff)
+                Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
 
         Returns new selector.
         '''
@@ -2525,12 +2481,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.last()
-
-            ::
-
-                >>> for x in selector(staff):
-                ...     x
-                ...
+                >>> selector(staff)
                 LogicalTie(Note("f'4"),)
 
         Returns new selector.

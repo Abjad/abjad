@@ -46,13 +46,8 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> selector = selector.by_leaves()
             >>> selector = selector.by_logical_measure()
             >>> selector = selector[0]
-            >>> for x in selector(staff):
-            ...     x
-            ...
-            Selection(Note("c'8"),)
-            Selection(Note("e'8"),)
-            Selection(Note("g'8"),)
-            Selection(Note("c''8"),)
+            >>> selector(staff)
+            Selection(Note("c'8"), Note("e'8"), Note("g'8"), Note("c''8"))
 
     ..  container:: example
 
@@ -64,13 +59,8 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> selector = selector.by_leaves()
             >>> selector = selector.by_logical_measure()
             >>> selector = selector[-1]
-            >>> for x in selector(staff):
-            ...     x
-            ...
-            Selection(Note("d'8"),)
-            Selection(Note("f'8"),)
-            Selection(Note("b'8"),)
-            Selection(Note("c''8"),)
+            >>> selector(staff)
+            Selection(Note("d'8"), Note("f'8"), Note("b'8"), Note("c''8"))
 
     ..  container:: example
 

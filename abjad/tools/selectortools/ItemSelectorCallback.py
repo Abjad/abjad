@@ -31,38 +31,43 @@ class ItemSelectorCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, expr, start_offset=None):
-        r'''Iterates tuple `expr`.
+        r'''Gets item from `expr`.
 
-        Returns tuple of selections.
+        Returns item.
         '''
         assert isinstance(expr, tuple), repr(tuple)
-        new_start_offset = start_offset
-        prototype = (scoretools.Container, selectiontools.Selection)
-        result = []
+        #new_start_offset = start_offset
+        #prototype = (scoretools.Container, selectiontools.Selection)
+        #result = []
         if self.apply_to_each:
+            result = []
             for subexpr in expr:
-                try:
+                #try:
+                if True:
                     subresult, new_start_offset = self._get_item(
                         subexpr,
                         start_offset,
                         )
-                    if not isinstance(subresult, prototype):
-                        subresult = select(subresult)
+                    #if not isinstance(subresult, prototype):
+                    #    subresult = select(subresult)
                     result.append(subresult)
-                except IndexError:
-                    pass
+                #except IndexError:
+                #    pass
+            result = tuple(result)
         else:
-            try:
-                subresult, new_start_offset = self._get_item(
+            #try:
+            if True:
+                result, new_start_offset = self._get_item(
                     expr,
                     start_offset,
                     )
-                if not isinstance(subresult, prototype):
-                    subresult = select(subresult)
-                result.append(subresult)
-            except IndexError:
-                pass
-        return tuple(result), new_start_offset
+                #if not isinstance(subresult, prototype):
+                #    subresult = select(subresult)
+                #result.append(subresult)
+            #except IndexError:
+            #    pass
+        #return tuple(result), new_start_offset
+        return result, new_start_offset
 
     ### PRIVATE METHODS ###
 
