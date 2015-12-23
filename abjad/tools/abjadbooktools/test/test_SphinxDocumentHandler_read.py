@@ -473,7 +473,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     'handlertools', 'indicatortools',
                     'inspect_', 'instrumenttools',
                     'ipythontools', 'iterate', 'label',
-                    'layouttools', 'lilypondfiletools',
+                    'lilypondfiletools',
                     'lilypondnametools',
                     'lilypondparsertools', 'ly',
                     'markuptools', 'mathtools',

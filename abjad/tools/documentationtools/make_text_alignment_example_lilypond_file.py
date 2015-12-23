@@ -57,7 +57,6 @@ def make_text_alignment_example_lilypond_file(music=None):
 
     Returns LilyPond file.
     '''
-    from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools
     from abjad.tools import schemetools
 

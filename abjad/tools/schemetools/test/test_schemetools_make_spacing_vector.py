@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad import *
-from abjad.tools import layouttools
 
 
 def test_schemetools_make_spacing_vector_01():

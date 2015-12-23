@@ -185,7 +185,6 @@ class TestManager(AbjadObject):
 
         Returns none.
         '''
-        from abjad.tools import layouttools
         from abjad.tools import lilypondfiletools
         from abjad.tools import scoretools
         from abjad.tools import topleveltools

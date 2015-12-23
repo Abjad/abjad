@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad import *
-from abjad.tools import layouttools
 
 
 def test_indicatortools_SpacingIndication_normalized_spacing_duration_01():

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad import *
+from abjad.tools.indicatortools import SpacingIndication
 from abjad.tools.indicatortools import Tempo
-from abjad.tools.layouttools import SpacingIndication
 
 
 def test_indicatortools_SpacingIndication___repr___01():

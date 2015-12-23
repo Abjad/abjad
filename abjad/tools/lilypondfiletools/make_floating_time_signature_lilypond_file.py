@@ -155,7 +155,6 @@ def make_floating_time_signature_lilypond_file(music=None):
 
     Returns LilyPond file.
     '''
-    from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools
 
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(music=music)
@@ -224,7 +223,6 @@ def _make_time_signature_context_block(
     minimum_distance=10,
     padding=4,
     ):
-    from abjad.tools import layouttools
     from abjad.tools import lilypondfiletools
     assert isinstance(font_size, (int, float))
     assert isinstance(padding, (int, float))
