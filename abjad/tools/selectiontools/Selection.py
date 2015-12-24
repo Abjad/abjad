@@ -980,10 +980,14 @@ class Selection(object):
 
         Returns duration.
         '''
-        return sum(
-            component._get_duration(in_seconds=in_seconds)
-            for component in self
-            )
+        durations = []
+        for element in self:
+            if hasattr(element, '_get_duration'):
+                duration = element._get_duration(in_seconds=in_seconds)
+            else:
+                duration = durationtools.Duration(element)
+            durations.append(duration)
+        return sum(durations)
 
     def get_spanners(self, prototype=None, in_parentage=False):
         r'''Gets spanners attached to any component in selection.

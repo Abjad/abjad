@@ -44,7 +44,8 @@ class ItemSelectorCallback(AbjadValueObject):
                 result.append(result_)
             result = tuple(result)
         else:
-            result, new_start_offset = self._get_item(expr, start_offset)
+            result = self._get_item(expr, start_offset)
+            result, new_start_offset = result
         return result, new_start_offset
 
     ### PRIVATE METHODS ###
