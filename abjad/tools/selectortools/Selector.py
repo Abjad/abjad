@@ -2469,6 +2469,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
+                >>> label(staff).with_offsets()
                 >>> show(staff) # doctest:+SKIP
 
             ..  doctest::
@@ -2476,17 +2477,54 @@ class Selector(AbjadValueObject):
                 >>> f(staff)
                 \new Staff {
                     c'8
+                        ^ \markup {
+                            \small
+                                0
+                            }
                     d'8
+                        ^ \markup {
+                            \small
+                                1/8
+                            }
                     r8
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
                     \times 2/3 {
                         e'8
+                            ^ \markup {
+                                \small
+                                    3/8
+                                }
                         r8
+                            ^ \markup {
+                                \small
+                                    11/24
+                                }
                         f'8
+                            ^ \markup {
+                                \small
+                                    13/24
+                                }
                     }
                     g'8
+                        ^ \markup {
+                            \small
+                                5/8
+                            }
                     a'8
+                        ^ \markup {
+                            \small
+                                3/4
+                            }
                     r8
+                        ^ \markup {
+                            \small
+                                7/8
+                            }
                 }
+
 
             Returns selection of leaf selection:
 
@@ -2499,24 +2537,6 @@ class Selector(AbjadValueObject):
                 ...     selection
                 Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
 
-            Works with start offset:
-
-            ::
-
-                >>> result = selector(staff, start_offset=Offset(4))
-                >>> result, start_offset = result
-
-            ::
-
-                >>> for selection in result:
-                ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
-
-            ::
-
-                >>> start_offset
-                Offset(4, 1)
-
             Returns selection of leaf selections:
 
             ::
@@ -2528,38 +2548,12 @@ class Selector(AbjadValueObject):
                 Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
 
-            Works with start offset:
-
-            ::
-
-                >>> result = selector(staff, start_offset=Offset(4))
-                >>> result, start_offset = result
-
-            ::
-
-                >>> for selection in result:
-                ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
-
-            ::
-
-                >>> start_offset
-                Offset(4, 1)
-
             Gets second leaf selection:
 
             ::
 
                 >>> selector = selector.get_item(1)
-                >>> selector(staff)
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
-
-            Works with start offset:
-
-            ::
-
-                >>> result = selector(staff, start_offset=Offset(4))
+                >>> result = selector(staff, start_offset=Offset(0))
                 >>> result, start_offset = result
 
             ::
@@ -2570,7 +2564,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> start_offset
-                Offset(109, 24)
+                Offset(13, 24)
 
         ..  container:: example
 
@@ -2579,6 +2573,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
+                >>> label(staff).with_offsets()
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -2586,16 +2581,52 @@ class Selector(AbjadValueObject):
                 >>> f(staff)
                 \new Staff {
                     c'8
+                        ^ \markup {
+                            \small
+                                0
+                            }
                     d'8
+                        ^ \markup {
+                            \small
+                                1/8
+                            }
                     r8
+                        ^ \markup {
+                            \small
+                                1/4
+                            }
                     \times 2/3 {
                         e'8
+                            ^ \markup {
+                                \small
+                                    3/8
+                                }
                         r8
+                            ^ \markup {
+                                \small
+                                    11/24
+                                }
                         f'8
+                            ^ \markup {
+                                \small
+                                    13/24
+                                }
                     }
                     g'8
+                        ^ \markup {
+                            \small
+                                5/8
+                            }
                     a'8
+                        ^ \markup {
+                            \small
+                                3/4
+                            }
                     r8
+                        ^ \markup {
+                            \small
+                                7/8
+                            }
                 }
 
             Returns selection of leaf selection:
@@ -2626,8 +2657,18 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selector.get_item(1)
-                >>> selector(staff)
+                >>> result = selector(staff, start_offset=Offset(0))
+                >>> result, start_offset = result
+
+            ::
+
+                >>> result
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+
+            ::
+
+                >>> start_offset
+                Offset(3, 8)
 
         Returns new selector.
         '''
