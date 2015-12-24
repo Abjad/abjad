@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Cursor(AbjadObject):
-    r'''Cursor.
+    r'''A cursor.
 
     ..  container:: example
 
