@@ -11,12 +11,14 @@ def partition_sequence_by_ratio_of_lengths(sequence, ratio):
 
         ::
 
-            >>> sequence = tuple(range(10))
+            >>> sequence = list(range(10))
             >>> sequencetools.partition_sequence_by_ratio_of_lengths(
             ...     sequence,
             ...     [1, 1, 1],
             ...     )
-            [(0, 1, 2), (3, 4, 5, 6), (7, 8, 9)]
+            [[0, 1, 2], [3, 4, 5, 6], [7, 8, 9]]
+
+        Returns list of lists.
 
     ..  container:: example
 
@@ -31,6 +33,8 @@ def partition_sequence_by_ratio_of_lengths(sequence, ratio):
             ...     )
             [(0, 1, 2), (3, 4), (5, 6, 7, 8, 9)]
 
+        Returns list of tuples.
+
     Uses the rounding magic implemented in
     ``mathtools.partition_integer_by_ratio()`` to avoid fractional part
     lengths.
@@ -38,6 +42,11 @@ def partition_sequence_by_ratio_of_lengths(sequence, ratio):
     Returns list of `sequence` objects.
     '''
     from abjad.tools import sequencetools
+    if sequence is None:
+        callback = sequencetools.PartitionByRatioOfLengthsCallback(
+            ratio=ratio,
+            )
+        return callback
     ratio = mathtools.Ratio(ratio)
     counts = mathtools.partition_integer_by_ratio(len(sequence), ratio)
     return sequencetools.partition_sequence_by_counts(
