@@ -36,7 +36,7 @@ class DurationSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, start_offset=None):
+    def __call__(self, expr, rotation=None, start_offset=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple in which each item is a selection or component.

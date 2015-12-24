@@ -118,14 +118,11 @@ class Selector(AbjadValueObject):
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
         for callback in callbacks:
-            try:
-                expr, start_offset = callback(
-                    expr, 
-                    rotation=rotation,
-                    start_offset=start_offset,
-                    )
-            except TypeError:
-                expr, start_offset = callback(expr, start_offset=start_offset)
+            expr, start_offset = callback(
+                expr,
+                rotation=rotation,
+                start_offset=start_offset,
+                )
         if isinstance(expr, tuple):
             expr = selectiontools.Selection(expr)
         if start_offset is None:
@@ -189,7 +186,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> class CMajorSelectorCallback(abctools.AbjadValueObject):
-                ...     def __call__(self, expr, start_offset=None):
+                ...     def __call__(self, expr, rotation=None, start_offset=None):
                 ...         c_major_pcs = pitchtools.PitchClassSet("c e g")
                 ...         result = []
                 ...         for subexpr in expr:
@@ -1698,7 +1695,7 @@ class Selector(AbjadValueObject):
                 }
 
             ::
-                
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
                 >>> pattern = rhythmmakertools.select_every([0], period=2)
@@ -1931,7 +1928,7 @@ class Selector(AbjadValueObject):
 
             ..  doctest::
 
-                >>> f(staff) 
+                >>> f(staff)
                 \new Staff {
                     c'4
                     d'4 ~
@@ -2106,7 +2103,7 @@ class Selector(AbjadValueObject):
             Returns selection of leaf selections:
 
             ::
-            
+
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves()
                 >>> selector = selector.flatten()
@@ -2831,17 +2828,11 @@ class Selector(AbjadValueObject):
                 previous_prefix = callbacks[:index - 1]
                 previous_expr = results_by_prefix[previous_prefix]
                 callback = this_prefix[-1]
-                try:
-                    expr, start_offset = callback(
-                        previous_expr, 
-                        rotation=rotation,
-                        start_offset=start_offset,
-                        )
-                except TypeError:
-                    expr, start_offset = callback(
-                        previous_expr, 
-                        start_offset=start_offset,
-                        )
+                expr, start_offset = callback(
+                    previous_expr,
+                    rotation=rotation,
+                    start_offset=start_offset,
+                    )
                 results_by_prefix[this_prefix] = expr
         return results_by_selector
 

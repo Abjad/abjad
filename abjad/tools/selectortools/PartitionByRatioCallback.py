@@ -26,7 +26,7 @@ class PartitionByRatioCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, start_offset=None):
+    def __call__(self, expr, rotation=None, start_offset=None):
         r'''Calls ratio selector callback on `expr`.
 
         Returns tuple of selections.
