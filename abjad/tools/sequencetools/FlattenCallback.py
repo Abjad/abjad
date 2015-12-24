@@ -71,20 +71,6 @@ class FlattenCallback(AbjadValueObject):
             >>> callback(sequence)
             ['ab', 'cd', 'ef', 'gh', 'ij', 'kl']
 
-    ..  container:: example
-
-        **Example 7.** Storage format:
-
-        ::
-
-            >>> print(format(callback))
-            sequencetools.FlattenCallback(
-                classes=(
-                    __builtin__.list,
-                    ),
-                depth=-1,
-                )
-
     '''
 
     ### CLASS VARIABLES ###
