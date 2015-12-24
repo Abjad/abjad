@@ -942,7 +942,6 @@ class LabelAgent(abctools.AbjadObject):
     def with_durations(self, direction=Up):
         r'''Labels durations.
 
-
         ..  container:: example
 
             **Example 1.** Above staff:
@@ -1310,6 +1309,107 @@ class LabelAgent(abctools.AbjadObject):
             label = markuptools.Markup(string, direction=direction)
             label = label.small()
             attach(label, leaf)
+
+    def with_offsets(self, direction=Up):
+        r'''Labels offsets.
+
+        ..  container:: example
+
+            **Example 1.** Above staff:
+
+            ::
+
+                >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                >>> label(staff).with_offsets(direction=Up)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> override(staff).tuplet_bracket.staff_padding = 0
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                    \override TupletBracket #'staff-padding = #0
+                } {
+                    \times 2/3 {
+                        c'4
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        d'4
+                            ^ \markup {
+                                \small
+                                    1/6
+                                }
+                        e'4 ~
+                            ^ \markup {
+                                \small
+                                    1/3
+                                }
+                    }
+                    e'4
+                    ef'4
+                        ^ \markup {
+                            \small
+                                3/4
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Below staff:
+
+            ::
+
+                >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
+                >>> label(staff).with_offsets(direction=Down)
+                >>> override(staff).text_script.staff_padding = 6
+                >>> override(staff).tuplet_bracket.staff_padding = 0
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #6
+                    \override TupletBracket #'staff-padding = #0
+                } {
+                    \times 2/3 {
+                        c'4
+                            _ \markup {
+                                \small
+                                    0
+                                }
+                        d'4
+                            _ \markup {
+                                \small
+                                    1/6
+                                }
+                        e'4 ~
+                            _ \markup {
+                                \small
+                                    1/3
+                                }
+                    }
+                    e'4
+                    ef'4
+                        _ \markup {
+                            \small
+                                3/4
+                            }
+                }
+
+        Returns none.
+        '''
+        logical_ties = iterate(self.client).by_logical_tie()
+        for logical_tie in logical_ties:
+            timespan = inspect_(logical_tie.head).get_timespan()
+            offset = timespan.start_offset
+            label = markuptools.Markup(offset, direction=direction)
+            label = label.small()
+            attach(label, logical_tie.head)
 
     def with_pitches(self, direction=Up, prototype=None):
         r'''Labels pitches.
