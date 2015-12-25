@@ -70,6 +70,15 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
     Returns new object of `sequence` type.
     '''
     from abjad.tools import selectiontools
+    from abjad.tools import sequencetools
+
+    if sequence is None:
+        callback = sequencetools.FlattenCallback(
+            classes=classes,
+            depth=depth,
+            indices=indices,
+            )
+        return callback
 
     if classes is None:
         classes = (collections.Sequence, selectiontools.Selection)

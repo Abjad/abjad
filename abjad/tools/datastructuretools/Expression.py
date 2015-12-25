@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
 class Expression(TypedTuple):
-    r'''Expression.
+    r'''An expression.
 
     ..  container:: example
 
