@@ -37,7 +37,7 @@ class PartitionByRatioCallback(AbjadValueObject):
         new_start_offset = start_offset
         selection = expr[0]
         counts = mathtools.partition_integer_by_ratio(
-            len(selection), 
+            len(selection),
             self.ratio,
             )
         selections = sequencetools.partition_sequence_by_counts(

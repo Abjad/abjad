@@ -29,7 +29,7 @@ class FlattenSelectorCallback(AbjadValueObject):
         '''
         assert isinstance(expr, tuple), repr(tuple)
         expr = sequencetools.flatten_sequence(
-            expr, 
+            expr,
             depth=self.depth,
             )
         return expr, start_offset

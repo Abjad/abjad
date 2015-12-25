@@ -116,12 +116,11 @@ class SliceSelectorCallback(AbjadValueObject):
         new_start_offset = start_offset
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
-        slice_ = slice(self.start, self.stop)
         if self.apply_to_each:
             for subexpr in expr:
                 try:
                     subresult, new_start_offset = self._get_item(
-                        subexpr, 
+                        subexpr,
                         start_offset,
                         )
                     if not isinstance(subresult, prototype):
@@ -136,7 +135,7 @@ class SliceSelectorCallback(AbjadValueObject):
         else:
             try:
                 subresult, new_start_offset = self._get_item(
-                    expr, 
+                    expr,
                     start_offset,
                     )
                 subresult = select(subresult)
