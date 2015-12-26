@@ -164,7 +164,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
         durations = durations or ()
         pattern_ = []
         for division in durations:
-            division = mathtools.NonreducedFraction(division)
+            division = durationtools.Division(division)
             pattern_.append(division)
         durations = tuple(pattern_)
         self._pattern = durations
@@ -186,7 +186,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** NonreducedFraction without remainder:
+            **Example 1.** Splits divisions without remainder:
 
             ::
 
@@ -230,7 +230,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** NonreducedFraction with remainder:
+            **Example 2.** Splits divisions with remainder:
 
             ::
 
@@ -386,7 +386,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
             return divisions
         division_lists = []
         for i, division in enumerate(divisions):
-            input_division = mathtools.NonreducedFraction(division)
+            input_division = durationtools.Division(division)
             input_duration = durationtools.Duration(input_division)
             input_meter = metertools.Meter(input_division)
             assert 0 < input_division, repr(input_division)
@@ -399,10 +399,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
             elif input_meter.is_compound:
                 multiplier = self.compound_meter_multiplier
                 durations = [
-                    mathtools.NonreducedFraction(multiplier * _)
+                    durationtools.Duration(multiplier * _)
                     for _ in self.durations
                     ]
-            #division_list = list(self.durations)
             division_list = list(durations)
             pattern_rotation_index = self.pattern_rotation_index or 0
             pattern_rotation_index *= i
@@ -422,18 +421,16 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 continue
             if self.remainder is None:
                 message = 'can not fill {} from {} exactly.'
-                #message = message.format(input_division, self.durations)
                 message = message.format(input_division, durations)
                 raise Exception(message)
             remainder = input_division - total_duration
-            remainder = durationtools.Duration(remainder)
-            remainder = mathtools.NonreducedFraction(remainder)
+            remainder = durationtools.Division(remainder)
             if self.remainder == Left:
                 if self.remainder_fuse_threshold is None:
                     division_list.insert(0, remainder)
                 elif remainder <= self.remainder_fuse_threshold:
                     fused_value = division_list[0] + remainder
-                    fused_value = mathtools.NonreducedFraction(fused_value)
+                    fused_value = durationtools.Division(fused_value)
                     division_list[0] = fused_value
                 else:
                     division_list.insert(0, remainder)
@@ -442,7 +439,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                     division_list.append(remainder)
                 elif remainder <= self.remainder_fuse_threshold:
                     fused_value = division_list[-1] + remainder
-                    fused_value = mathtools.NonreducedFraction(fused_value)
+                    fused_value = durationtools.Division(fused_value)
                     division_list[-1] = fused_value
                 else:
                     division_list.append(remainder)

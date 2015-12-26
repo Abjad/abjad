@@ -10,7 +10,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
     ..  container:: example
 
-        Nonreduced fraction lists for examples:
+        Division lists for examples:
 
         ::
 
@@ -187,20 +187,19 @@ class PartitionDivisionCallback(AbjadValueObject):
 
     def _beat_list_to_grouped_beat_list(self, beat_list):
         assert isinstance(beat_list, (list, tuple)), repr(beat_list)
-        #beat_list = [mathtools.NonreducedFraction(_) for _ in beat_list]
         beat_list_ = []
         for beat in beat_list:
             if hasattr(beat, 'duration'):
-                beat = mathtools.NonreducedFraction(beat.duration)
+                beat = durationtools.Division(beat.duration)
             else:
-                beat = mathtools.NonreducedFraction(beat)
+                beat = durationtools.Division(beat)
             beat_list_.append(beat)
         beat_list = beat_list_
         total_duration = sum(beat_list)
         total_duration = durationtools.Duration(total_duration)
         if (total_duration.is_assignable and 
             self.fuse_assignable_total_duration):
-            return [[mathtools.NonreducedFraction(total_duration)]]
+            return [[durationtools.Division(total_duration)]]
         if self.counts is None:
             beat_group = list(beat_list)
             grouped_beat_list = [beat_group]

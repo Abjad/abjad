@@ -530,7 +530,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 overhang=True,
                 )
             divisions = [sum(_) for _ in parts]
-        divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
+        divisions = [durationtools.Division(_) for _ in divisions]
         if self.secondary_division_maker is None:
             return divisions
         division_lists = []
@@ -539,7 +539,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 division_list = self.secondary_division_maker([division])[0]
             else:
                 division_list = [division]
-            division_list = [mathtools.NonreducedFraction(_) for _ in division_list]
+            division_list = [durationtools.Division(_) for _ in division_list]
             division_lists.append(division_list)
         return division_lists
 
@@ -564,20 +564,17 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
     ### PRIVATE METHODS ###
 
     def _coerce_divisions(self, divisions):
-        nonreduced_fractions = []
+        divisions_ = []
         for division in divisions:
             if hasattr(division, 'time_signature'):
-                nonreduced_fraction = mathtools.NonreducedFraction(
-                    division.time_signature.pair,
-                    )
+                argument = division.time_signature.pair
             elif hasattr(division, 'duration'):
-                nonreduced_fraction = mathtools.NonreducedFraction(
-                    division.duration,
-                    )
+                argument = division.duration
             else:
-                nonreduced_fraction = mathtools.NonreducedFraction(division)
-            nonreduced_fractions.append(nonreduced_fraction)
-        return nonreduced_fractions
+                argument = division
+            division_ = durationtools.Division(argument)
+            divisions_.append(division_)
+        return divisions_
 
     ### PUBLIC PROPERTIES ###
 

@@ -176,7 +176,7 @@ class DivisionMaker(AbjadValueObject):
             ...     division_list
             [Division((3, 8)), Division((3, 8)), Division((1, 8))]
             [Division((3, 8))]
-            [Division((3, 8)), Division((1, 4))]
+            [Division((3, 8)), Division((2, 8))]
 
         ::
 
@@ -231,7 +231,7 @@ class DivisionMaker(AbjadValueObject):
             >>> input_divisions = [(7, 8), (3, 8), (5, 8)]
             >>> divisions = division_maker(input_divisions)
             >>> divisions
-            [Division((6, 8)), Division((7, 8)), Division((1, 4))]
+            [Division((6, 8)), Division((7, 8)), Division((2, 8))]
 
         ::
 
@@ -254,7 +254,7 @@ class DivisionMaker(AbjadValueObject):
                 c'4
             }
 
-    NonreducedFraction-makers object-model a sequence of partially evaluated functions 
+    Division-makers object-model a sequence of partially evaluated functions 
     taken together in functional composition.
 
     Usage follows the two-step configure-once / call-repeatedly pattern shown 
@@ -368,7 +368,7 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> division_maker.callbacks
-                (SplitByDurationsDivisionCallback(compound_meter_multiplier=Multiplier(1, 1), durations=(NonreducedFraction(1, 4),)),)
+                (SplitByDurationsDivisionCallback(compound_meter_multiplier=Multiplier(1, 1), durations=(Division((1, 4)),)),)
 
         Returns tuple of zero or more callbacks.
         '''
