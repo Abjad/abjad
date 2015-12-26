@@ -60,7 +60,7 @@ def repeat_sequence_to_weight(sequence, weight, allow_total=Exact):
     sequence_type = type(sequence)
 
     # check input
-    assert isinstance(weight, numbers.Number)
+    assert isinstance(weight, numbers.Number), repr(weight)
     assert 0 <= weight
 
     if allow_total == Exact:

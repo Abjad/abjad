@@ -67,7 +67,29 @@ class Division(AbjadObject):
 
     ..  container:: example
 
-        **Example 4.** Makes divisions from durations:
+        **Example 4.** Initializes from other division:
+
+        ::
+
+            >>> division = durationtools.Division(
+            ...     duration=Duration((3, 8)),
+            ...     payload=rhythmmakertools.NoteRhythmMaker(),
+            ...     start_offset=Offset((5, 4)),
+            ...     )
+            >>> new_division = durationtools.Division(division)
+
+        ::
+
+            >>> print(format(new_division))
+            durationtools.Division(
+                duration=durationtools.Duration(3, 8),
+                payload=rhythmmakertools.NoteRhythmMaker(),
+                start_offset=durationtools.Offset(5, 4),
+                )
+
+    ..  container:: example
+
+        **Example 5.** Makes divisions from durations:
 
         ::
 
@@ -143,6 +165,11 @@ class Division(AbjadObject):
         start_offset=None,
         ):
         from abjad.tools import durationtools
+        if isinstance(duration, type(self)):
+            division = duration
+            duration = division.duration
+            payload = payload or division.payload
+            start_offset = start_offset or division.start_offset
         if duration is not None:
             duration = durationtools.Duration(duration)
         self._duration = duration
