@@ -204,12 +204,15 @@ class Division(NonreducedFraction):
         if isinstance(argument, str):
             division = eval(argument)
             argument = division
-            payload = payload or argument.payload
-            start_offset = start_offset or argument.start_offset
+            if payload is None:
+                payload = argument.payload
+            if start_offset is None:
+                start_offset = argument.start_offset
         if isinstance(argument, mathtools.NonreducedFraction):
-            payload = payload or getattr(argument, 'payload', None)
-            start_offset = start_offset or \
-                getattr(argument, 'start_offset', None)
+            if payload is None:
+                payload = getattr(argument, 'payload', None)
+            if start_offset is None:
+                start_offset = getattr(argument, 'start_offset', None)
         self = NonreducedFraction.__new__(class_, argument)
         self._payload = payload
         if start_offset is not None:
