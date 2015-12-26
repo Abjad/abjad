@@ -112,22 +112,17 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
         output_division_lists = []
         ratios = self._get_ratios()
         for i, input_division in enumerate(input_divisions):
-            input_division = mathtools.NonreducedFraction(input_division)
+            input_division = durationtools.Division(input_division)
             ratio = ratios[i]
             numerators = mathtools.partition_integer_by_ratio(
                 input_division.numerator,
                 ratio,
                 )
             output_division_list = [
-                mathtools.NonreducedFraction(
-                    numerator,
-                    input_division.denominator,
-                    )
+                durationtools.Division((numerator, input_division.denominator))
                 for numerator in numerators
                 ]
             output_division_lists.append(output_division_list)
-        output_division_lists = makertools.DivisionMaker._to_divisions(
-            output_division_lists)
         return output_division_lists
 
     ### PRIVATE METHODS ###

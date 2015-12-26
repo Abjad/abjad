@@ -289,10 +289,7 @@ class DivisionMaker(AbjadValueObject):
         Returns either a list of divisions or a list of division lists.
         '''
         expr = expr or []
-        expr = list(expr)
-        assert isinstance(expr, list), repr(expr)
-        if self._is_flat_list(expr):
-            expr = [mathtools.NonreducedFraction(_) for _ in expr]
+        expr = self._to_divisions(expr)
         for callback in self.callbacks:
             expr = callback(expr)
         result = self._to_divisions(expr)
@@ -322,6 +319,12 @@ class DivisionMaker(AbjadValueObject):
             return expr
         elif isinstance(expr, mathtools.NonreducedFraction):
             division = durationtools.Division(expr.pair)
+            return division
+        elif hasattr(expr, 'pair'):
+            division = durationtools.Division(expr.pair)
+            return division
+        elif isinstance(expr, tuple):
+            division = durationtools.Division(expr)
             return division
         elif isinstance(expr, list):
             new_list = []

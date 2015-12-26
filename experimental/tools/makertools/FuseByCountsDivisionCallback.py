@@ -516,7 +516,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         Returns list of division lists.
         '''
         divisions = divisions or ()
-        divisions = self._coerce_divisions(divisions)
+#        divisions = self._coerce_divisions(divisions)
         if not divisions:
             pass
         elif (self.counts == mathtools.Infinity or 
