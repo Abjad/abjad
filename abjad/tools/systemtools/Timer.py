@@ -57,9 +57,9 @@ class Timer(ContextManager):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        enter_message=None, 
-        exit_message=None, 
+        self,
+        exit_message=None,
+        enter_message=None,
         print_continuously_from_background=False,
         verbose=True,
         ):
