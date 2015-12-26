@@ -27,7 +27,7 @@ class FlattenSelectorCallback(AbjadValueObject):
 
         ..  todo:: Does this always return a tuple of selections?
         '''
-        assert isinstance(expr, tuple), repr(tuple)
+        assert isinstance(expr, tuple), repr(expr)
         expr = sequencetools.flatten_sequence(
             expr,
             depth=self.depth,

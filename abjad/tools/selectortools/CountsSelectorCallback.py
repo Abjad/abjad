@@ -93,7 +93,7 @@ class CountsSelectorCallback(AbjadValueObject):
 
         Returns tuple in which each item is a selection or component.
         '''
-        assert isinstance(expr, tuple), repr(tuple)
+        assert isinstance(expr, tuple), repr(expr)
         new_start_offset = None
         if rotation is None:
             rotation = 0

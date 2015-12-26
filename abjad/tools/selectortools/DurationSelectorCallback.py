@@ -43,7 +43,7 @@ class DurationSelectorCallback(AbjadValueObject):
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectortools
-        assert isinstance(expr, tuple), repr(tuple)
+        assert isinstance(expr, tuple), repr(expr)
         new_start_offset = None
         inequality = self.duration
         if not isinstance(inequality, selectortools.DurationInequality):

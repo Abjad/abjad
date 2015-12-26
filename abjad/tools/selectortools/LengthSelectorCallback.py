@@ -36,7 +36,7 @@ class LengthSelectorCallback(AbjadValueObject):
         Returns tuple in which each item is a selection or component.
         '''
         from abjad.tools import selectortools
-        assert isinstance(expr, tuple), repr(tuple)
+        assert isinstance(expr, tuple), repr(expr)
         new_start_offset = None
         inequality = self.length
         if not isinstance(inequality, selectortools.LengthInequality):

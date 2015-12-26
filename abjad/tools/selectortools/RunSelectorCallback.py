@@ -34,7 +34,7 @@ class RunSelectorCallback(AbjadValueObject):
 
         Returns tuple of selections.
         '''
-        assert isinstance(expr, tuple), repr(tuple)
+        assert isinstance(expr, tuple), repr(expr)
         new_start_offset = None
         result = []
         prototype = self.prototype

@@ -112,7 +112,7 @@ class SliceSelectorCallback(AbjadValueObject):
 
         Returns tuple of selections or tuple of selections with offset.
         '''
-        assert isinstance(expr, tuple), repr(tuple)
+        assert isinstance(expr, tuple), repr(expr)
         new_start_offset = start_offset
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
