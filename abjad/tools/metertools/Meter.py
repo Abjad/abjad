@@ -1148,6 +1148,22 @@ class Meter(AbjadObject):
         return self._numerator
 
     @property
+    def pair(self):
+        r'''Gets pair of numerator and denominator of meter.
+
+        ..  container:: example
+
+            ::
+
+                >>> meter = metertools.Meter((6, 4))
+                >>> meter.pair
+                (6, 4)
+
+        Returns pair.
+        '''
+        return (self.numerator, self.denominator)
+
+    @property
     def preferred_boundary_depth(self):
         r'''Gets preferred boundary depth of meter.
 
