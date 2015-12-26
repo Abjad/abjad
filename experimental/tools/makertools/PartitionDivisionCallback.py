@@ -28,10 +28,10 @@ class PartitionDivisionCallback(AbjadValueObject):
             >>> beat_lists = division_maker(meters)
             >>> for beat_list in beat_lists:
             ...     beat_list
-            [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
-            [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
-            [NonreducedFraction(3, 8), NonreducedFraction(3, 8), NonreducedFraction(3, 8), NonreducedFraction(3, 8)]
-            [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
+            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
+            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
+            [Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))]
+            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
 
     ..  container:: example
 
@@ -47,10 +47,10 @@ class PartitionDivisionCallback(AbjadValueObject):
             >>> grouped_beat_lists = grouper(beat_lists)
             >>> for grouped_beat_list in grouped_beat_lists:
             ...     grouped_beat_list
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
-            [[NonreducedFraction(3, 8), NonreducedFraction(3, 8)], [NonreducedFraction(3, 8), NonreducedFraction(3, 8)]]
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
+            [[Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))], [Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
 
         **Example 1b.** Beat lists grouped in pairs. Remainder fused at right:
 
@@ -64,10 +64,10 @@ class PartitionDivisionCallback(AbjadValueObject):
             >>> grouped_beat_lists = grouper(beat_lists)
             >>> for grouped_beat_list in grouped_beat_lists:
             ...     grouped_beat_list
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
-            [[NonreducedFraction(3, 8), NonreducedFraction(3, 8)], [NonreducedFraction(3, 8), NonreducedFraction(3, 8)]]
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
+            [[Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))], [Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
 
     ..  container:: example
 
@@ -83,10 +83,10 @@ class PartitionDivisionCallback(AbjadValueObject):
             >>> grouped_beat_lists = grouper(beat_lists)
             >>> for grouped_beat_list in grouped_beat_lists:
             ...     grouped_beat_list
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
-            [[NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
-            [[NonreducedFraction(3, 8), NonreducedFraction(3, 8)], [NonreducedFraction(3, 8), NonreducedFraction(3, 8)]]
-            [[NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
+            [[Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
+            [[Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))], [Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))]]
+            [[Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
 
         **Example 1b.** Beat lists grouped in pairs. Remainder fused at left:
 
@@ -100,10 +100,10 @@ class PartitionDivisionCallback(AbjadValueObject):
             >>> grouped_beat_lists = grouper(beat_lists)
             >>> for grouped_beat_list in grouped_beat_lists:
             ...     grouped_beat_list
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
-            [[NonreducedFraction(3, 8), NonreducedFraction(3, 8)], [NonreducedFraction(3, 8), NonreducedFraction(3, 8)]]
-            [[NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
+            [[Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))], [Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))]]
+            [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
 
     Groups beats into conductors' groups.
     '''
@@ -148,7 +148,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
@@ -164,27 +164,38 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [3, 3]
 
         Returns list of beat lists.
         '''
+        from experimental import makertools
         grouped_beat_lists = []
         if beat_lists and isinstance(beat_lists[0], list):
             for beat_list in beat_lists:
                 grouped_beat_list = \
                     self._beat_list_to_grouped_beat_list(beat_list)
                 grouped_beat_lists.append(grouped_beat_list)
-            return grouped_beat_lists
+            result = grouped_beat_lists
         else:
             grouped_beat_list = \
                 self._beat_list_to_grouped_beat_list(beat_lists)
-            return grouped_beat_list
+            result = grouped_beat_list
+        result = makertools.DivisionMaker._to_divisions(result)
+        return result
 
     def _beat_list_to_grouped_beat_list(self, beat_list):
         assert isinstance(beat_list, (list, tuple)), repr(beat_list)
-        beat_list = [mathtools.NonreducedFraction(_) for _ in beat_list]
+        #beat_list = [mathtools.NonreducedFraction(_) for _ in beat_list]
+        beat_list_ = []
+        for beat in beat_list:
+            if hasattr(beat, 'duration'):
+                beat = mathtools.NonreducedFraction(beat.duration)
+            else:
+                beat = mathtools.NonreducedFraction(beat)
+            beat_list_.append(beat)
+        beat_list = beat_list_
         total_duration = sum(beat_list)
         total_duration = durationtools.Duration(total_duration)
         if (total_duration.is_assignable and 
@@ -284,7 +295,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [6]
 
@@ -300,7 +311,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
@@ -316,7 +327,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [3, 3]
 
@@ -348,7 +359,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 5 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 1]
 
@@ -357,7 +368,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
@@ -366,7 +377,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 7 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 1]
 
@@ -375,7 +386,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 8 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2]
 
@@ -384,7 +395,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 9 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2, 1]
 
@@ -405,7 +416,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 5 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 1]
 
@@ -414,7 +425,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(3, 2)]]
+                [[Division(duration=Duration(3, 2))]]
                 >>> [len(beat_group) for beat_group in _]
                 [1]
 
@@ -423,7 +434,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 7 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(7, 4)]]
+                [[Division(duration=Duration(7, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [1]
 
@@ -432,7 +443,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 8 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(2, 1)]]
+                [[Division(duration=Duration(2, 1))]]
                 >>> [len(beat_group) for beat_group in _]
                 [1]
 
@@ -441,7 +452,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 9 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2, 1]
 
@@ -476,7 +487,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 5 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 1]
 
@@ -485,7 +496,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
@@ -494,7 +505,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 7 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 1]
 
@@ -503,7 +514,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 8 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2]
 
@@ -512,7 +523,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 9 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2, 1]
 
@@ -534,7 +545,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 5 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 3]
 
@@ -543,7 +554,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
@@ -552,7 +563,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 7 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 3]
 
@@ -561,7 +572,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 8 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 2]
 
@@ -570,7 +581,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 9 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 3]
 
@@ -600,7 +611,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 4 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2]
 
@@ -609,7 +620,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 5 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 1]
 
@@ -618,7 +629,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
@@ -627,7 +638,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 7 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2, 1]
 
@@ -647,7 +658,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 4 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2]
 
@@ -656,7 +667,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 5 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [1, 2, 2]
 
@@ -665,7 +676,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 6 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
 
@@ -674,7 +685,7 @@ class PartitionDivisionCallback(AbjadValueObject):
                 >>> beat_list = 7 * [(1, 4)]
                 >>> grouped_beat_lists = grouper([beat_list])
                 >>> grouped_beat_lists[0]
-                [[NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)]]
+                [[Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [1, 2, 2, 2]
 

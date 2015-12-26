@@ -28,9 +28,9 @@ class DivisionMaker(AbjadValueObject):
             >>> division_lists = division_maker(input_divisions)
             >>> for division_list in division_lists:
             ...     division_list
-            [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
-            [NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
-            [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
+            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
+            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
 
 
         ::
@@ -86,7 +86,7 @@ class DivisionMaker(AbjadValueObject):
             >>> input_divisions = [(7, 8), (3, 8), (5, 8)]
             >>> divisions = division_maker(input_divisions)
             >>> divisions
-            [NonreducedFraction(15, 8)]
+            [Division(duration=Duration(15, 8))]
 
 
         ::
@@ -127,7 +127,7 @@ class DivisionMaker(AbjadValueObject):
             >>> division_lists = division_maker(input_divisions)
             >>> for division_list in division_lists:
             ...     division_list
-            [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
+            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
 
         ::
 
@@ -174,9 +174,9 @@ class DivisionMaker(AbjadValueObject):
             >>> division_lists = division_maker(input_divisions)
             >>> for division_list in division_lists:
             ...     division_list
-            [NonreducedFraction(3, 8), NonreducedFraction(3, 8), NonreducedFraction(1, 8)]
-            [NonreducedFraction(3, 8)]
-            [NonreducedFraction(3, 8), NonreducedFraction(1, 4)]
+            [Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8)), Division(duration=Duration(1, 8))]
+            [Division(duration=Duration(3, 8))]
+            [Division(duration=Duration(3, 8)), Division(duration=Duration(1, 4))]
 
         ::
 
@@ -231,7 +231,7 @@ class DivisionMaker(AbjadValueObject):
             >>> input_divisions = [(7, 8), (3, 8), (5, 8)]
             >>> divisions = division_maker(input_divisions)
             >>> divisions
-            [NonreducedFraction(6, 8), NonreducedFraction(7, 8), NonreducedFraction(1, 4)]
+            [Division(duration=Duration(3, 4)), Division(duration=Duration(7, 8)), Division(duration=Duration(1, 4))]
 
         ::
 
@@ -295,7 +295,8 @@ class DivisionMaker(AbjadValueObject):
             expr = [mathtools.NonreducedFraction(_) for _ in expr]
         for callback in self.callbacks:
             expr = callback(expr)
-        return expr
+        result = self._to_divisions(expr)
+        return result
 
     ### PRIVATE METHODS ###
 
@@ -314,6 +315,22 @@ class DivisionMaker(AbjadValueObject):
             elif not isinstance(expr[0], list):
                 return True
         return False
+
+    @staticmethod
+    def _to_divisions(expr):
+        if isinstance(expr, durationtools.Division):
+            return expr
+        elif isinstance(expr, mathtools.NonreducedFraction):
+            division = durationtools.Division(duration=expr)
+            return division
+        elif isinstance(expr, list):
+            new_list = []
+            for element in expr:
+                new_element = DivisionMaker._to_divisions(element)
+                new_list.append(new_element)
+            return new_list
+        else:
+            raise TypeError(repr(expr))
 
     ### PUBLIC PROPERTIES ###
 
@@ -395,7 +412,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> input_divisions = [(7, 8), (7, 8), (7, 16)]
                 >>> divisions = division_maker(input_divisions)
                 >>> divisions
-                [NonreducedFraction(14, 8), NonreducedFraction(7, 16)]
+                [Division(duration=Duration(7, 4)), Division(duration=Duration(7, 16))]
 
             ::
 
@@ -453,7 +470,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> divisions = [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)]
                 >>> division_list = division_maker(divisions)
                 >>> division_list
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 16)]]
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 16))]]
 
             **Example 1b.** Partitions divisions into pairs with remainder
             appended at right:
@@ -472,7 +489,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> divisions = [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)]
                 >>> division_list = division_maker(divisions)
                 >>> division_list
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 16)]]
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]]
 
             **Example 1c.** Partitions divisions into pairs with remainder at
             left:
@@ -491,7 +508,7 @@ class DivisionMaker(AbjadValueObject):
                 >>> divisions = [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)]
                 >>> division_list = division_maker(divisions)
                 >>> division_list
-                [[NonreducedFraction(1, 8)], [NonreducedFraction(1, 8), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 16)]]
+                [[Division(duration=Duration(1, 8))], [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]]
 
             **Example 1d.** Partitions divisions into pairs with remainder
             appeneded at left:
@@ -508,9 +525,9 @@ class DivisionMaker(AbjadValueObject):
             ::
 
                 >>> divisions = [(1, 8), (1, 8), (1, 4), (1, 4), (1, 16)]
-                >>> division_list = division_maker(divisions)
-                >>> division_list
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 16)]]
+                >>> division_lists = division_maker(divisions)
+                >>> division_lists
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]]
 
             These examples show how the class partitions a flat list of
             divisions. Output equal to one nested division list.
@@ -538,8 +555,8 @@ class DivisionMaker(AbjadValueObject):
                 >>> partitioned_division_lists = division_maker(division_lists)
                 >>> for partitioned_division_list in partitioned_division_lists:
                 ...     partitioned_division_list
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8)], [NonreducedFraction(1, 4)]]
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4)], [NonreducedFraction(1, 16)]]
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8))], [Division(duration=Duration(1, 4))]]
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 16))]]
 
             **Example 2b.** Partitions division lists into pairs with
             remainders appended at right:
@@ -562,8 +579,8 @@ class DivisionMaker(AbjadValueObject):
                 >>> partitioned_division_lists = division_maker(division_lists)
                 >>> for partitioned_division_list in partitioned_division_lists:
                 ...     partitioned_division_list
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]]
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8)], [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 16)]]
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))]]
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]]
 
             **Example 2c.** Partitions division lists into pairs with
             remainders at left:
@@ -586,8 +603,8 @@ class DivisionMaker(AbjadValueObject):
                 >>> partitioned_division_lists = division_maker(division_lists)
                 >>> for partitioned_division_list in partitioned_division_lists:
                 ...     partitioned_division_list
-                [[NonreducedFraction(1, 8)], [NonreducedFraction(1, 8), NonreducedFraction(1, 4)]]
-                [[NonreducedFraction(1, 8)], [NonreducedFraction(1, 8), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 16)]]
+                [[Division(duration=Duration(1, 8))], [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))]]
+                [[Division(duration=Duration(1, 8))], [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]]
 
             **Example 2d.** Partitions division lists into pairs with
             remainders appended at left:
@@ -610,8 +627,8 @@ class DivisionMaker(AbjadValueObject):
                 >>> partitioned_division_lists = division_maker(division_lists)
                 >>> for partitioned_division_list in partitioned_division_lists:
                 ...     partitioned_division_list
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8), NonreducedFraction(1, 4)]]
-                [[NonreducedFraction(1, 8), NonreducedFraction(1, 8), NonreducedFraction(1, 4)], [NonreducedFraction(1, 4), NonreducedFraction(1, 16)]]
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))]]
+                [[Division(duration=Duration(1, 8)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))], [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]]
 
             These examples show how the class automatically maps over multiple
             input division lists. Output equal to arbitrarily many nested
@@ -657,9 +674,9 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_lists = division_maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
-                [NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 8)]
-                [NonreducedFraction(1, 4), NonreducedFraction(3, 16)]
+                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
+                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
+                [Division(duration=Duration(1, 4)), Division(duration=Duration(3, 16))]
 
             ::
 
@@ -717,9 +734,9 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_lists = division_maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
-                [NonreducedFraction(1, 8), NonreducedFraction(1, 4), NonreducedFraction(1, 4), NonreducedFraction(1, 4)]
-                [NonreducedFraction(3, 16), NonreducedFraction(1, 4)]
+                [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
+                [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
+                [Division(duration=Duration(3, 16)), Division(duration=Duration(1, 4))]
 
             ::
 
@@ -794,8 +811,8 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [NonreducedFraction(3, 8), NonreducedFraction(2, 8)]
-                [NonreducedFraction(4, 8), NonreducedFraction(2, 8)]
+                [Division(duration=Duration(3, 8)), Division(duration=Duration(1, 4))]
+                [Division(duration=Duration(1, 2)), Division(duration=Duration(1, 4))]
 
             ::
 
@@ -848,8 +865,8 @@ class DivisionMaker(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [NonreducedFraction(3, 8), NonreducedFraction(2, 8)]
-                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(2, 8)]
+                [Division(duration=Duration(3, 8)), Division(duration=Duration(1, 4))]
+                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
 
             ::
 

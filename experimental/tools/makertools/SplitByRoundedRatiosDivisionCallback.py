@@ -20,8 +20,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             >>> lists = maker([(7, 4), (6, 4)])
             >>> for list_ in lists:
             ...     list_
-            [NonreducedFraction(5, 4), NonreducedFraction(2, 4)]
-            [NonreducedFraction(4, 4), NonreducedFraction(2, 4)]
+            [Division(duration=Duration(5, 4)), Division(duration=Duration(1, 2))]
+            [Division(duration=Duration(1, 1)), Division(duration=Duration(1, 2))]
 
     ..  container:: example
 
@@ -36,10 +36,10 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
             >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
             >>> for list_ in lists:
             ...     list_
-            [NonreducedFraction(5, 4), NonreducedFraction(2, 4)]
-            [NonreducedFraction(2, 4), NonreducedFraction(2, 4), NonreducedFraction(2, 4)]
-            [NonreducedFraction(3, 4), NonreducedFraction(2, 4)]
-            [NonreducedFraction(1, 4), NonreducedFraction(2, 4), NonreducedFraction(1, 4)]
+            [Division(duration=Duration(5, 4)), Division(duration=Duration(1, 2))]
+            [Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2))]
+            [Division(duration=Duration(3, 4)), Division(duration=Duration(1, 2))]
+            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 4))]
 
     Object model of a partially evaluated function that accepts a (possibly
     empty) list of divisions as input and returns a (possibly empty) nested
@@ -84,8 +84,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(4, 4), NonreducedFraction(3, 4)]
-                [NonreducedFraction(3, 4), NonreducedFraction(3, 4)]
+                [Division(duration=Duration(1, 1)), Division(duration=Duration(3, 4))]
+                [Division(duration=Duration(3, 4)), Division(duration=Duration(3, 4))]
 
             Returns list of division lists.
 
@@ -105,6 +105,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
 
         Returns possibly empty list of division lists.
         '''
+        from experimental import makertools
         input_divisions = divisions or []
         if not input_divisions:
             return []
@@ -125,6 +126,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 for numerator in numerators
                 ]
             output_division_lists.append(output_division_list)
+        output_division_lists = makertools.DivisionMaker._to_divisions(
+            output_division_lists)
         return output_division_lists
 
     ### PRIVATE METHODS ###
@@ -155,8 +158,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(7, 4)]
-                [NonreducedFraction(6, 4)]
+                [Division(duration=Duration(7, 4))]
+                [Division(duration=Duration(3, 2))]
 
             This is default behavior when `ratios` is set to none.
 
@@ -172,8 +175,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(4, 4), NonreducedFraction(3, 4)]
-                [NonreducedFraction(3, 4), NonreducedFraction(3, 4)]
+                [Division(duration=Duration(1, 1)), Division(duration=Duration(3, 4))]
+                [Division(duration=Duration(3, 4)), Division(duration=Duration(3, 4))]
 
         ..  container:: example
 
@@ -187,8 +190,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(5, 4), NonreducedFraction(2, 4)]
-                [NonreducedFraction(4, 4), NonreducedFraction(2, 4)]
+                [Division(duration=Duration(5, 4)), Division(duration=Duration(1, 2))]
+                [Division(duration=Duration(1, 1)), Division(duration=Duration(1, 2))]
 
         ..  container:: example
 
@@ -202,8 +205,8 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(2, 4), NonreducedFraction(3, 4), NonreducedFraction(2, 4)]
-                [NonreducedFraction(2, 4), NonreducedFraction(2, 4), NonreducedFraction(2, 4)]
+                [Division(duration=Duration(1, 2)), Division(duration=Duration(3, 4)), Division(duration=Duration(1, 2))]
+                [Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2))]
 
         ..  container:: example
 
@@ -218,10 +221,10 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
                 >>> lists = maker([(7, 4), (6, 4), (5, 4), (4, 4)])
                 >>> for list_ in lists:
                 ...     list_
-                [NonreducedFraction(5, 4), NonreducedFraction(2, 4)]
-                [NonreducedFraction(2, 4), NonreducedFraction(2, 4), NonreducedFraction(2, 4)]
-                [NonreducedFraction(3, 4), NonreducedFraction(2, 4)]
-                [NonreducedFraction(1, 4), NonreducedFraction(2, 4), NonreducedFraction(1, 4)]
+                [Division(duration=Duration(5, 4)), Division(duration=Duration(1, 2))]
+                [Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2))]
+                [Division(duration=Duration(3, 4)), Division(duration=Duration(1, 2))]
+                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 4))]
 
         Set to ratios or none.
         '''

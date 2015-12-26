@@ -27,7 +27,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
             >>> divisions = division_maker(input_divisions)
             >>> divisions
-            [NonreducedFraction(4, 8), NonreducedFraction(8, 8), NonreducedFraction(2, 4)]
+            [Division(duration=Duration(1, 2)), Division(duration=Duration(1, 1)), Division(duration=Duration(1, 2))]
 
         ::
 
@@ -72,10 +72,9 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             >>> division_lists = division_maker(input_divisions)
             >>> for division_list in division_lists:
             ...     division_list
-            [NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(1, 8)]
-            [NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(1, 16)]
-            [NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(1, 8)]
-
+            [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
+            [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 16))]
+            [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
 
         ::
 
@@ -169,7 +168,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
                 >>> divisions = division_maker(input_divisions)
                 >>> divisions
-                [NonreducedFraction(2, 8), NonreducedFraction(2, 8), NonreducedFraction(4, 8), NonreducedFraction(4, 8), NonreducedFraction(2, 4)]
+                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2))]
 
             ::
 
@@ -223,7 +222,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
                 >>> divisions = division_maker(input_divisions)
                 >>> divisions
-                [NonreducedFraction(4, 8), NonreducedFraction(8, 8), NonreducedFraction(2, 4)]
+                [Division(duration=Duration(1, 2)), Division(duration=Duration(1, 1)), Division(duration=Duration(1, 2))]
 
             ::
 
@@ -270,9 +269,9 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(1, 8)]
-                [NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(1, 16)]
-                [NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(1, 8)]
+                [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
+                [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 16))]
+                [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
 
             ::
 
@@ -324,9 +323,9 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [NonreducedFraction(1, 8), NonreducedFraction(3, 16), NonreducedFraction(3, 16)]
-                [NonreducedFraction(1, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16)]
-                [NonreducedFraction(1, 8), NonreducedFraction(3, 16), NonreducedFraction(3, 16)]
+                [Division(duration=Duration(1, 8)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16))]
+                [Division(duration=Duration(1, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16))]
+                [Division(duration=Duration(1, 8)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16))]
 
             ::
 
@@ -375,7 +374,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
                 >>> divisions = division_maker(input_divisions)
                 >>> divisions
-                [NonreducedFraction(16, 8)]
+                [Division(duration=Duration(2, 1))]
 
             ::
 
@@ -420,7 +419,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(1, 8)]
+                [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
 
             ::
 
@@ -471,7 +470,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [NonreducedFraction(1, 8), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16), NonreducedFraction(3, 16)]
+                [Division(duration=Duration(1, 8)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16))]
 
             ::
 
@@ -569,7 +568,11 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
         for division in divisions:
             if hasattr(division, 'time_signature'):
                 nonreduced_fraction = mathtools.NonreducedFraction(
-                    division.time_signature.pair
+                    division.time_signature.pair,
+                    )
+            elif hasattr(division, 'duration'):
+                nonreduced_fraction = mathtools.NonreducedFraction(
+                    division.duration,
                     )
             else:
                 nonreduced_fraction = mathtools.NonreducedFraction(division)

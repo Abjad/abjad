@@ -74,7 +74,20 @@ class RhythmMaker(AbjadValueObject):
 
         Returns list of selections.
         '''
-        divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
+        #divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
+        divisions_ = []
+        for division in divisions:
+            if isinstance(division, mathtools.NonreducedFraction):
+                divisions_.append(division)
+            elif isinstance(division, durationtools.Division):
+                division = mathtools.NonreducedFraction(division.duration)
+                divisions_.append(division)
+            else:
+                division = mathtools.NonreducedFraction(division)
+                divisions_.append(division)
+        divisions = divisions_
+        prototype = mathtools.NonreducedFraction
+        assert all( isinstance(_, prototype) for _ in divisions)
         rotation = self._to_tuple(rotation)
         self._rotation = rotation
         selections = self._make_music(divisions, rotation)
