@@ -65,6 +65,16 @@ def flatten_sequence(sequence, classes=None, depth=-1, indices=None):
             >>> sequencetools.flatten_sequence(sequence, classes=(list,))
             ['ab', 'cd', 'ef', 'gh', 'ij', 'kl']
 
+        ..  todo:: Above example only works because sequence itself is a list.
+            Following example should produce
+            ``('ab', 'cd', 'ef', 'gh', 'ij', 'kl')`` but doesn't:
+
+        ::
+
+            >>> sequence = ('ab', 'cd', ['ef', 'gh'], ['ij', 'kl'])
+            >>> sequencetools.flatten_sequence(sequence, classes=(list,))
+            (('ab', 'cd', ['ef', 'gh'], ['ij', 'kl']),)
+
     Leaves `sequence` unchanged.
 
     Returns new object of `sequence` type.
