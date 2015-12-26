@@ -110,7 +110,22 @@ class Division(NonreducedFraction):
 
     ..  container:: example
 
-        **Example 6.** Makes divisions from durations:
+        **Example 6.** Empty initialization:
+
+        ::
+
+            >>> division = durationtools.Division()
+
+        ::
+
+            >>> print(format(division))
+            durationtools.Division(
+                (0, 1)
+                )
+
+    ..  container:: example
+
+        **Example 7.** Makes divisions from durations:
 
         ::
 
@@ -180,11 +195,17 @@ class Division(NonreducedFraction):
 
     def __new__(
         class_,
-        argument,
+        argument=None,
         payload=None, 
         start_offset=None,
         ):
         from abjad.tools import durationtools
+        argument = argument or (0, 1)
+        if isinstance(argument, str):
+            division = eval(argument)
+            argument = division
+            payload = payload or argument.payload
+            start_offset = start_offset or argument.start_offset
         if isinstance(argument, mathtools.NonreducedFraction):
             payload = payload or getattr(argument, 'payload', None)
             start_offset = start_offset or \
@@ -198,11 +219,41 @@ class Division(NonreducedFraction):
 
     ### SPECIAL METHODS###
 
+    def __copy__(self, *args):
+        r'''Copies division.
+
+        Returns new division.
+        '''
+        arguments = self.__getnewargs__()
+        return type(self)(*arguments)
+
+    def __deepcopy__(self, *args):
+        r'''Deep copies division.
+
+        Returns new division.
+        '''
+        return self.__copy__(*args)
+
+    def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
+        return (self.pair, self.payload, self.start_offset)
+
     def __repr__(self):
+        r'''Gets interpreter representation of division.
+
+        Returns string.
+        '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.get_repr_format(self)
 
     def __str__(self):
+        r'''Gets string representation of division.
+
+        Returns string.
+        '''
         return repr(self)
 
     ### PRIVATE PROPERTIES ###
