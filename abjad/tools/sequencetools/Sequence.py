@@ -319,6 +319,86 @@ class Sequence(AbjadObject):
 
     ### PUBLIC METHODS ###
 
+    def flatten(self, classes=None, depth=-1, indices=None):
+        r'''Flattens sequence.
+
+        ..  container:: example
+
+            **Example 1.** Flattens sequence completely:
+
+            ::
+
+                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence.flatten()
+                >>> sequence
+                Sequence(1, 2, 3, 4, 5, 6, 7, 8)
+
+        ..  container:: example
+
+            **Example 2.** Flattens `sequence` to depth ``1``:
+
+            ::
+
+                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence.flatten(depth=1)
+                >>> sequence
+                Sequence(1, 2, 3, [4], 5, 6, 7, [8])
+
+        ..  container:: example
+
+            **Example 3.** Flattens `sequence` to depth ``2``:
+
+            ::
+
+                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence.flatten(depth=2)
+                >>> sequence
+                Sequence(1, 2, 3, 4, 5, 6, 7, 8)
+
+        ..  container:: example
+
+            **Example 4.** Flattens `sequence` at `indices`:
+
+            ::
+
+                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence.flatten(indices=[3])
+                >>> sequence
+                Sequence(1, [2, 3, [4]], 5, 6, 7, 8)
+
+        ..  container:: example
+
+            **Example 5.** Flattens `sequence` at negative `indices`:
+
+            ::
+
+                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence.flatten(indices=[-1])
+                >>> sequence
+                Sequence(1, [2, 3, [4]], 5, 6, 7, 8)
+
+        ..  container:: example
+
+            **Example 6.** Flattens only tuples in `sequence`:
+
+            ::
+
+                >>> sequence = Sequence('ab', 'cd', ('ef', 'gh'), ('ij', 'kl'))
+                >>> sequence.flatten(classes=(tuple,))
+                >>> sequence
+                Sequence('ab', 'cd', 'ef', 'gh', 'ij', 'kl')
+
+        Returns none.
+        '''
+        from abjad.tools import sequencetools
+        elements = sequencetools.flatten_sequence(
+            self._elements[:],
+            classes=classes,
+            depth=depth,
+            indices=indices,
+            )
+        self._elements = tuple(elements[:])
+
     def is_decreasing(self, strict=True):
         r'''Is true when sequence decreases.
 
