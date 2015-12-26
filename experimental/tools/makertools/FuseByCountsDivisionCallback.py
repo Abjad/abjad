@@ -27,7 +27,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
             >>> divisions = division_maker(input_divisions)
             >>> divisions
-            [Division(duration=Duration(1, 2)), Division(duration=Duration(1, 1)), Division(duration=Duration(1, 2))]
+            [Division((4, 8)), Division((8, 8)), Division((2, 4))]
 
         ::
 
@@ -72,9 +72,9 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             >>> division_lists = division_maker(input_divisions)
             >>> for division_list in division_lists:
             ...     division_list
-            [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
-            [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 16))]
-            [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
+            [Division((3, 16)), Division((3, 16)), Division((1, 8))]
+            [Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((1, 16))]
+            [Division((3, 16)), Division((3, 16)), Division((1, 8))]
 
         ::
 
@@ -168,7 +168,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
                 >>> divisions = division_maker(input_divisions)
                 >>> divisions
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2)), Division(duration=Duration(1, 2))]
+                [Division((2, 8)), Division((2, 8)), Division((4, 8)), Division((4, 8)), Division((2, 4))]
 
             ::
 
@@ -222,7 +222,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
                 >>> divisions = division_maker(input_divisions)
                 >>> divisions
-                [Division(duration=Duration(1, 2)), Division(duration=Duration(1, 1)), Division(duration=Duration(1, 2))]
+                [Division((4, 8)), Division((8, 8)), Division((2, 4))]
 
             ::
 
@@ -269,9 +269,9 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
-                [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 16))]
-                [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
+                [Division((3, 16)), Division((3, 16)), Division((1, 8))]
+                [Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((1, 16))]
+                [Division((3, 16)), Division((3, 16)), Division((1, 8))]
 
             ::
 
@@ -323,9 +323,9 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 8)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16))]
-                [Division(duration=Duration(1, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16))]
-                [Division(duration=Duration(1, 8)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16))]
+                [Division((1, 8)), Division((3, 16)), Division((3, 16))]
+                [Division((1, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16))]
+                [Division((1, 8)), Division((3, 16)), Division((3, 16))]
 
             ::
 
@@ -374,7 +374,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> input_divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
                 >>> divisions = division_maker(input_divisions)
                 >>> divisions
-                [Division(duration=Duration(2, 1))]
+                [Division((16, 8))]
 
             ::
 
@@ -419,7 +419,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(1, 8))]
+                [Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((1, 8))]
 
             ::
 
@@ -470,7 +470,7 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(input_divisions)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 8)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16)), Division(duration=Duration(3, 16))]
+                [Division((1, 8)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16)), Division((3, 16))]
 
             ::
 

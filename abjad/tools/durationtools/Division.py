@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 from abjad.tools.topleveltools.override import override
 from abjad.tools.topleveltools.set_ import set_
 
 
-class Division(AbjadObject):
+class Division(NonreducedFraction):
     r'''A division.
 
     ..  container:: example
@@ -15,7 +15,7 @@ class Division(AbjadObject):
         ::
 
             >>> division = durationtools.Division(
-            ...     duration=Duration((3, 8)),
+            ...     (3, 8),
             ...     payload=rhythmmakertools.NoteRhythmMaker(),
             ...     start_offset=Offset((5, 4)),
             ...     )
@@ -24,7 +24,7 @@ class Division(AbjadObject):
 
             >>> print(format(division))
             durationtools.Division(
-                duration=durationtools.Duration(3, 8),
+                (3, 8),
                 payload=rhythmmakertools.NoteRhythmMaker(),
                 start_offset=durationtools.Offset(5, 4),
                 )
@@ -36,7 +36,7 @@ class Division(AbjadObject):
         ::
 
             >>> division = durationtools.Division(
-            ...     duration=Duration((3, 8)),
+            ...     (3, 8),
             ...     start_offset=Offset((5, 4)),
             ...     )
 
@@ -44,7 +44,7 @@ class Division(AbjadObject):
 
             >>> print(format(division))
             durationtools.Division(
-                duration=durationtools.Duration(3, 8),
+                (3, 8),
                 start_offset=durationtools.Offset(5, 4),
                 )
 
@@ -54,15 +54,13 @@ class Division(AbjadObject):
 
         ::
 
-            >>> division = durationtools.Division(
-            ...     duration=Duration((3, 8)),
-            ...     )
+            >>> division = durationtools.Division((3, 8))
 
         ::
 
             >>> print(format(division))
             durationtools.Division(
-                duration=durationtools.Duration(3, 8),
+                (3, 8)
                 )
 
     ..  container:: example
@@ -72,7 +70,7 @@ class Division(AbjadObject):
         ::
 
             >>> division = durationtools.Division(
-            ...     duration=Duration((3, 8)),
+            ...     (3, 8),
             ...     payload=rhythmmakertools.NoteRhythmMaker(),
             ...     start_offset=Offset((5, 4)),
             ...     )
@@ -82,7 +80,7 @@ class Division(AbjadObject):
 
             >>> print(format(new_division))
             durationtools.Division(
-                duration=durationtools.Duration(3, 8),
+                (3, 8),
                 payload=rhythmmakertools.NoteRhythmMaker(),
                 start_offset=durationtools.Offset(5, 4),
                 )
@@ -98,7 +96,7 @@ class Division(AbjadObject):
             >>> divisions = []
             >>> for duration, start_offset in zip(durations, start_offsets):
             ...     division = durationtools.Division(
-            ...         duration=duration,
+            ...         duration,
             ...         start_offset=start_offset,
             ...         )
             ...     divisions.append(division)
@@ -107,16 +105,16 @@ class Division(AbjadObject):
 
             >>> for division in divisions:
             ...     print(division)
-            Division(duration=Duration(1, 8), start_offset=Offset(0, 1))
-            Division(duration=Duration(1, 8), start_offset=Offset(1, 8))
-            Division(duration=Duration(1, 8), start_offset=Offset(1, 4))
-            Division(duration=Duration(1, 8), start_offset=Offset(3, 8))
-            Division(duration=Duration(1, 8), start_offset=Offset(1, 2))
-            Division(duration=Duration(1, 8), start_offset=Offset(5, 8))
-            Division(duration=Duration(1, 8), start_offset=Offset(3, 4))
-            Division(duration=Duration(1, 8), start_offset=Offset(7, 8))
-            Division(duration=Duration(1, 8), start_offset=Offset(1, 1))
-            Division(duration=Duration(1, 8), start_offset=Offset(9, 8))
+            Division((1, 8), start_offset=Offset(0, 1))
+            Division((1, 8), start_offset=Offset(1, 8))
+            Division((1, 8), start_offset=Offset(1, 4))
+            Division((1, 8), start_offset=Offset(3, 8))
+            Division((1, 8), start_offset=Offset(1, 2))
+            Division((1, 8), start_offset=Offset(5, 8))
+            Division((1, 8), start_offset=Offset(3, 4))
+            Division((1, 8), start_offset=Offset(7, 8))
+            Division((1, 8), start_offset=Offset(1, 1))
+            Division((1, 8), start_offset=Offset(9, 8))
 
         Partitions divisions into thirds:
 
@@ -134,10 +132,10 @@ class Division(AbjadObject):
 
             >>> for division in parts[1]:
             ...     division
-            Division(duration=Duration(1, 8), start_offset=Offset(3, 8))
-            Division(duration=Duration(1, 8), start_offset=Offset(1, 2))
-            Division(duration=Duration(1, 8), start_offset=Offset(5, 8))
-            Division(duration=Duration(1, 8), start_offset=Offset(3, 4))
+            Division((1, 8), start_offset=Offset(3, 8))
+            Division((1, 8), start_offset=Offset(1, 2))
+            Division((1, 8), start_offset=Offset(5, 8))
+            Division((1, 8), start_offset=Offset(3, 4))
 
         Gets start offset of middle third:
 
@@ -151,32 +149,53 @@ class Division(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_duration',
         '_payload',
         '_start_offset',
         )
 
     ### INITIALIZER ###
 
-    def __init__(
-        self, 
-        duration=None, 
+    def __new__(
+        class_,
+        argument,
         payload=None, 
         start_offset=None,
         ):
         from abjad.tools import durationtools
-        if isinstance(duration, type(self)):
-            division = duration
-            duration = division.duration
-            payload = payload or division.payload
-            start_offset = start_offset or division.start_offset
-        if duration is not None:
-            duration = durationtools.Duration(duration)
-        self._duration = duration
+        if isinstance(argument, mathtools.NonreducedFraction):
+            payload = payload or argument.payload
+            start_offset = start_offset or argument.start_offset
+        self = NonreducedFraction.__new__(class_, argument)
         self._payload = payload
         if start_offset is not None:
             start_offset = durationtools.Offset(start_offset)
         self._start_offset = start_offset
+        return self
+
+    ### SPECIAL METHODS###
+
+    def __repr__(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatManager.get_repr_format(self)
+
+    def __str__(self):
+        return repr(self)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            keyword_argument_names=(
+                'payload',
+                'start_offset',
+                ),
+            positional_argument_values=(
+                self.pair,
+                ),
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -186,13 +205,11 @@ class Division(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Division with duration:
+            **Example 1.** Gets duration:
 
             ::
 
-                >>> division = durationtools.Division(
-                ...     duration=Duration((3, 8)),
-                ...     )
+                >>> division = durationtools.Division((3, 8))
 
             ::
 
@@ -201,24 +218,21 @@ class Division(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Division without duration:
+            **Example 2.** Gets duration:
 
             ::
 
-                >>> division = durationtools.Division()
+                >>> division = durationtools.Division((6, 4))
 
             ::
 
-                >>> division.duration is None
-                True
+                >>> division.duration
+                Duration(3, 2)
 
-        Set to duration or none.
-
-        Defaults to none.
-
-        Returns duration or none.
+        Returns duration.
         '''
-        return self._duration        
+        from abjad.tools import durationtools
+        return durationtools.Duration(self)
 
     @property
     def payload(self):
@@ -231,7 +245,7 @@ class Division(AbjadObject):
             ::
 
                 >>> division = durationtools.Division(
-                ...     duration=Duration((3, 8)),
+                ...     (3, 8),
                 ...     payload=rhythmmakertools.NoteRhythmMaker(),
                 ...     start_offset=Offset((5, 4)),
                 ...     )
@@ -248,7 +262,7 @@ class Division(AbjadObject):
             ::
 
                 >>> division = durationtools.Division(
-                ...     duration=Duration((3, 8)),
+                ...     (3, 8),
                 ...     start_offset=Offset((5, 4)),
                 ...     )
 
@@ -277,7 +291,7 @@ class Division(AbjadObject):
             ::
 
                 >>> division = durationtools.Division(
-                ...     duration=Duration((3, 8)),
+                ...     (3, 8),
                 ...     start_offset=Offset((5, 4)),
                 ...     )
 
@@ -292,9 +306,7 @@ class Division(AbjadObject):
 
             ::
 
-                >>> division = durationtools.Division(
-                ...     duration=Duration((3, 8)),
-                ...     )
+                >>> division = durationtools.Division((3, 8))
 
             ::
 
@@ -321,7 +333,7 @@ class Division(AbjadObject):
             ::
 
                 >>> division = durationtools.Division(
-                ...     duration=Duration((3, 8)),
+                ...     (3, 8),
                 ...     start_offset=Offset((5, 4)),
                 ...     )
 
@@ -336,9 +348,7 @@ class Division(AbjadObject):
 
             ::
 
-                >>> division = durationtools.Division(
-                ...     duration=Duration((3, 8)),
-                ...     )
+                >>> division = durationtools.Division((3, 8))
 
             ::
 
@@ -347,27 +357,8 @@ class Division(AbjadObject):
 
             Returns none when start offset is none.
 
-        ..  container:: example
-
-            **Example 3.** Division without duration
-
-            ::
-
-                >>> division = durationtools.Division(
-                ...     start_offset=Offset((5, 4)),
-                ...     )
-
-            ::
-
-                >>> division.stop_offset is None
-                True
-
-            Returns none when duration is none.
-
         Returns offset or none.
         '''
-        if self.duration is None:
-            return
         if self.start_offset is None:
             return
         return self.start_offset + self.duration

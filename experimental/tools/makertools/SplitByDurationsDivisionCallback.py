@@ -26,9 +26,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
             >>> division_lists = maker(time_signatures)
             >>> for division_list in division_lists:
             ...     division_list
-            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
-            [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
-            [Division(duration=Duration(1, 4)), Division(duration=Duration(3, 16))]
+            [Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 8))]
+            [Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 8))]
+            [Division((1, 4)), Division((3, 16))]
 
         ::
 
@@ -84,9 +84,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
             >>> division_lists = maker(time_signatures)
             >>> for division_list in division_lists:
             ...     division_list
-            [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
-            [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
-            [Division(duration=Duration(3, 16)), Division(duration=Duration(1, 4))]
+            [Division((1, 8)), Division((1, 4)), Division((1, 4)), Division((1, 4))]
+            [Division((1, 8)), Division((1, 4)), Division((1, 4)), Division((1, 4))]
+            [Division((3, 16)), Division((1, 4))]
 
         ::
 
@@ -201,7 +201,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4))]
 
             ::
 
@@ -244,7 +244,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list 
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 8))]
 
             ::
 
@@ -292,8 +292,8 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
+                [Division((1, 4)), Division((1, 4))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4))]
 
             ::
 
@@ -339,7 +339,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(3, 16))]
+                [Division((6, 32))]
 
             ::
 
@@ -502,8 +502,8 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4))]
 
             ::
 
@@ -554,8 +554,8 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = division_maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
-                [Division(duration=Duration(3, 8)), Division(duration=Duration(3, 8))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4))]
+                [Division((3, 8)), Division((3, 8))]
 
             ::
 
@@ -619,9 +619,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(3, 16))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 8))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 8))]
+                [Division((1, 4)), Division((3, 16))]
 
             ::
 
@@ -677,9 +677,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(5, 8))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(5, 8))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(3, 16))]
+                [Division((1, 4)), Division((5, 8))]
+                [Division((1, 4)), Division((5, 8))]
+                [Division((1, 4)), Division((3, 16))]
 
             ::
 
@@ -741,9 +741,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(7, 8))]
-                [Division(duration=Duration(7, 8))]
-                [Division(duration=Duration(7, 16))]
+                [Division((7, 8))]
+                [Division((7, 8))]
+                [Division((7, 16))]
 
             ::
 
@@ -789,9 +789,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(3, 16))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 8))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 8))]
+                [Division((1, 4)), Division((3, 16))]
 
             ::
 
@@ -859,9 +859,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 16)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))]
-                [Division(duration=Duration(1, 16)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))]
-                [Division(duration=Duration(1, 16)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))]
+                [Division((1, 16)), Division((1, 8)), Division((1, 4))]
+                [Division((1, 16)), Division((1, 8)), Division((1, 4))]
+                [Division((1, 16)), Division((1, 8)), Division((1, 4))]
 
             ::
 
@@ -917,9 +917,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker([(7, 16), (7, 16), (7, 16)])
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 16)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))]
-                [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16)), Division(duration=Duration(1, 8))]
+                [Division((1, 16)), Division((1, 8)), Division((1, 4))]
+                [Division((1, 8)), Division((1, 4)), Division((1, 16))]
+                [Division((1, 4)), Division((1, 16)), Division((1, 8))]
 
             ::
 
@@ -975,9 +975,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 16)), Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4))]
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16)), Division(duration=Duration(1, 8))]
-                [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]
+                [Division((1, 16)), Division((1, 8)), Division((1, 4))]
+                [Division((1, 4)), Division((1, 16)), Division((1, 8))]
+                [Division((1, 8)), Division((1, 4)), Division((1, 16))]
 
             ::
 
@@ -1043,7 +1043,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16)), Division(duration=Duration(7, 16))]
+                [Division((4, 16)), Division((1, 16)), Division((7, 16))]
 
             ::
 
@@ -1086,7 +1086,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16)), Division(duration=Duration(1, 8))]
+                [Division((4, 16)), Division((1, 16)), Division((4, 16)), Division((1, 16)), Division((1, 8))]
 
             ::
 
@@ -1133,7 +1133,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(7, 16)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]
+                [Division((7, 16)), Division((1, 4)), Division((1, 16))]
 
             ::
 
@@ -1178,7 +1178,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 16))]
+                [Division((1, 8)), Division((1, 4)), Division((1, 16)), Division((1, 4)), Division((1, 16))]
 
             ::
 
@@ -1236,7 +1236,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 8))]
+                [Division((1, 4)), Division((1, 4)), Division((1, 8))]
 
             ::
 
@@ -1281,7 +1281,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 4)), Division(duration=Duration(3, 8))]
+                [Division((1, 4)), Division((3, 8))]
 
             ::
 
@@ -1326,7 +1326,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(1, 8)), Division(duration=Duration(1, 4)), Division(duration=Duration(1, 4))]
+                [Division((1, 8)), Division((1, 4)), Division((1, 4))]
 
             ::
 
@@ -1373,7 +1373,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
                 >>> division_lists = maker(time_signatures)
                 >>> for division_list in division_lists:
                 ...     division_list
-                [Division(duration=Duration(3, 8)), Division(duration=Duration(1, 4))]
+                [Division((3, 8)), Division((1, 4))]
 
             ::
 
