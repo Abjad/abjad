@@ -65,6 +65,65 @@ class Division(AbjadObject):
                 duration=durationtools.Duration(3, 8),
                 )
 
+    ..  container:: example
+
+        **Example 4.** Makes divisions from durations:
+
+        ::
+
+            >>> durations = 10 * [Duration(1, 8)]
+            >>> start_offsets = mathtools.cumulative_sums(durations)[:-1]
+            >>> divisions = []
+            >>> for duration, start_offset in zip(durations, start_offsets):
+            ...     division = durationtools.Division(
+            ...         duration=duration,
+            ...         start_offset=start_offset,
+            ...         )
+            ...     divisions.append(division)
+
+        ::
+
+            >>> for division in divisions:
+            ...     print(division)
+            Division(duration=Duration(1, 8), start_offset=Offset(0, 1))
+            Division(duration=Duration(1, 8), start_offset=Offset(1, 8))
+            Division(duration=Duration(1, 8), start_offset=Offset(1, 4))
+            Division(duration=Duration(1, 8), start_offset=Offset(3, 8))
+            Division(duration=Duration(1, 8), start_offset=Offset(1, 2))
+            Division(duration=Duration(1, 8), start_offset=Offset(5, 8))
+            Division(duration=Duration(1, 8), start_offset=Offset(3, 4))
+            Division(duration=Duration(1, 8), start_offset=Offset(7, 8))
+            Division(duration=Duration(1, 8), start_offset=Offset(1, 1))
+            Division(duration=Duration(1, 8), start_offset=Offset(9, 8))
+
+        Partitions divisions into thirds:
+
+        ::
+
+            >>> ratio = mathtools.Ratio((1, 1, 1))
+            >>> parts = sequencetools.partition_sequence_by_ratio_of_lengths(
+            ...     divisions,
+            ...     ratio,
+            ...     )
+
+        Gets middle third:
+
+        ::
+
+            >>> for division in parts[1]:
+            ...     division
+            Division(duration=Duration(1, 8), start_offset=Offset(3, 8))
+            Division(duration=Duration(1, 8), start_offset=Offset(1, 2))
+            Division(duration=Duration(1, 8), start_offset=Offset(5, 8))
+            Division(duration=Duration(1, 8), start_offset=Offset(3, 4))
+
+        Gets start offset of middle third:
+
+        ::
+
+            >>> parts[1][0].start_offset
+            Offset(3, 8)
+            
     '''
 
     ### CLASS VARIABLES ###
