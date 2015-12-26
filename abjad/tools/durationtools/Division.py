@@ -87,7 +87,30 @@ class Division(NonreducedFraction):
 
     ..  container:: example
 
-        **Example 5.** Makes divisions from durations:
+        **Example 5.** Initializes from nonreduced fraction:
+
+        ::
+
+            >>> fraction = mathtools.NonreducedFraction((6, 4))
+            >>> division = durationtools.Division(
+            ...     fraction,
+            ...     payload=rhythmmakertools.NoteRhythmMaker(),
+            ...     start_offset=Offset((5, 4)),
+            ...     )
+            >>> new_division = durationtools.Division(division)
+
+        ::
+
+            >>> print(format(new_division))
+            durationtools.Division(
+                (6, 4),
+                payload=rhythmmakertools.NoteRhythmMaker(),
+                start_offset=durationtools.Offset(5, 4),
+                )
+
+    ..  container:: example
+
+        **Example 6.** Makes divisions from durations:
 
         ::
 
@@ -163,8 +186,9 @@ class Division(NonreducedFraction):
         ):
         from abjad.tools import durationtools
         if isinstance(argument, mathtools.NonreducedFraction):
-            payload = payload or argument.payload
-            start_offset = start_offset or argument.start_offset
+            payload = payload or getattr(argument, 'payload', None)
+            start_offset = start_offset or \
+                getattr(argument, 'start_offset', None)
         self = NonreducedFraction.__new__(class_, argument)
         self._payload = payload
         if start_offset is not None:
