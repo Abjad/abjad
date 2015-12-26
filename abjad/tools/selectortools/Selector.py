@@ -2858,6 +2858,38 @@ class Selector(AbjadValueObject):
                 Selection(Note("d'8"), Note("e'8"), Rest('r8'))
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"))
 
+        ..  container:: example
+
+            Handles flattened selections of leaves.
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.get_item(-1, apply_to_each=True)
+                >>> selector(staff)
+                Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
+
+            ::
+
+                >>> selector = selector.with_next_leaf()
+
+            ::
+
+                >>> for selection in selector(staff):
+                ...     selection
+                ...
+                Selection(Note("c'4"), Note("d'4"))
+                Selection(Note("d'4"), Note("e'4"))
+                Selection(Note("e'4"), Rest('r4'))
+                Selection(Note("f'4"),)
+
         Returns new selector.
         '''
         from abjad.tools import selectortools
@@ -2881,12 +2913,44 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> for x in selector(staff):
-                ...     x
+                >>> for selection in selector(staff):
+                ...     selection
                 ...
                 Selection(Note("c'8"),)
                 Selection(Rest('r8'), Note("d'8"), Note("e'8"))
                 Selection(Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+
+        ..  container:: example
+
+            Handles flattened selections of leaves.
+
+            ::
+
+                >>> staff = Staff(r"c'4 d'4 ~ d'4 e'4 ~ e'4 ~ e'4 r4 f'4")
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> selector = selectortools.Selector()
+                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_logical_tie(pitched=True)
+                >>> selector = selector.get_item(0, apply_to_each=True)
+                >>> selector(staff)
+                Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
+
+            ::
+
+                >>> selector = selector.with_previous_leaf()
+
+            ::
+
+                >>> for selection in selector(staff):
+                ...     selection
+                ...
+                Selection(Note("c'4"),)
+                Selection(Note("c'4"), Note("d'4"))
+                Selection(Note("d'4"), Note("e'4"))
+                Selection(Rest('r4'), Note("f'4"))
 
         Returns new selector.
         '''

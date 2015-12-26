@@ -32,12 +32,15 @@ class ExtraLeafSelectorCallback(AbjadValueObject):
 
         Returns tuple in which each item is a selection or component.
         '''
+        from abjad.tools import scoretools
         from abjad.tools import selectiontools
         from abjad.tools.topleveltools import select
-        assert isinstance(expr, tuple), repr(tuple)
+        assert isinstance(expr, tuple), repr(expr)
         new_start_offset = None
         result = []
         for subexpr in expr:
+            if isinstance(subexpr, scoretools.Leaf):
+                subexpr = selectiontools.Selection([subexpr])
             subresult = []
             if self.with_previous_leaf:
                 first_leaf = subexpr[0]
