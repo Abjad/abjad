@@ -94,16 +94,10 @@ class Selector(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None, start_offset=None):
+    def __call__(self, expr, rotation=None):
         r'''Calls selector on `expr`.
 
-        Assumes `expr` starts at `start_offset` when `start_offset` is not
-        none.
-
-        Returns a selection when `start_offset` is none.
-
-        Returns a selection together with start offset of selection when
-        `start_offset` is not none.
+        Returns a selection.
         '''
         if rotation is None:
             rotation = 0
@@ -118,17 +112,10 @@ class Selector(AbjadValueObject):
         assert all(isinstance(x, prototype) for x in expr), repr(expr)
         callbacks = self.callbacks or ()
         for callback in callbacks:
-            expr, start_offset = callback(
-                expr,
-                rotation=rotation,
-                start_offset=start_offset,
-                )
+            expr = callback(expr, rotation=rotation)
         if isinstance(expr, tuple):
             expr = selectiontools.Selection(expr)
-        if start_offset is None:
-            return expr
-        else:
-            return expr, start_offset
+        return expr
 
     def __getitem__(self, item):
         r'''Gets `item` in selector.
@@ -186,7 +173,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> class CMajorSelectorCallback(abctools.AbjadValueObject):
-                ...     def __call__(self, expr, rotation=None, start_offset=None):
+                ...     def __call__(self, expr, rotation=None):
                 ...         c_major_pcs = pitchtools.PitchClassSet("c e g")
                 ...         result = []
                 ...         for subexpr in expr:
@@ -200,7 +187,7 @@ class Selector(AbjadValueObject):
                 ...                     subresult.append(x)
                 ...             if subresult:
                 ...                 result.append(tuple(subresult))
-                ...         return tuple(result), start_offset
+                ...         return tuple(result)
 
             ::
 
@@ -2493,18 +2480,8 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selector.get_item(1)
-                >>> result = selector(staff, start_offset=Offset(0))
-                >>> result, start_offset = result
-
-            ::
-
-                >>> result
+                >>> selector(staff)
                 Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
-
-            ::
-
-                >>> start_offset
-                Offset(13, 24)
 
         ..  container:: example
 
@@ -2597,18 +2574,8 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selector.get_item(1)
-                >>> result = selector(staff, start_offset=Offset(0))
-                >>> result, start_offset = result
-
-            ::
-
-                >>> result
+                >>> selector(staff)
                 Selection(Note("e'8"), Rest('r8'), Note("f'8"))
-
-            ::
-
-                >>> start_offset
-                Offset(3, 8)
 
         Returns new selector.
         '''
@@ -2649,7 +2616,7 @@ class Selector(AbjadValueObject):
         return self._append_callback(callback)
 
     @staticmethod
-    def run_selectors(expr, selectors, rotation=None, start_offset=None):
+    def run_selectors(expr, selectors, rotation=None):
         r'''Processes multiple selectors against a single selection.
 
         Minimizes re-selection when selectors share identical prefixes of
@@ -2771,10 +2738,9 @@ class Selector(AbjadValueObject):
                 previous_prefix = callbacks[:index - 1]
                 previous_expr = results_by_prefix[previous_prefix]
                 callback = this_prefix[-1]
-                expr, start_offset = callback(
+                expr = callback(
                     previous_expr,
                     rotation=rotation,
-                    start_offset=start_offset,
                     )
                 results_by_prefix[this_prefix] = expr
         return results_by_selector

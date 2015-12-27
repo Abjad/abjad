@@ -22,7 +22,7 @@ class FlattenSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None, start_offset=None):
+    def __call__(self, expr, rotation=None):
         r'''Iterates tuple `expr`.
 
         ..  todo:: Does this always return a tuple of selections?
@@ -32,7 +32,7 @@ class FlattenSelectorCallback(AbjadValueObject):
             expr,
             depth=self.depth,
             )
-        return expr, start_offset
+        return expr
 
     ### PUBLIC PROPERTIES ###
 

@@ -26,7 +26,7 @@ class PartitionByRatioCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None, start_offset=None):
+    def __call__(self, expr, rotation=None):
         r'''Calls ratio selector callback on `expr`.
 
         Returns tuple of selections.
@@ -34,7 +34,6 @@ class PartitionByRatioCallback(AbjadValueObject):
         assert isinstance(expr, tuple), repr(expr)
         assert len(expr) == 1, repr(expr)
         assert isinstance(expr[0], selectiontools.Selection), repr(expr)
-        new_start_offset = start_offset
         selection = expr[0]
         counts = mathtools.partition_integer_by_ratio(
             len(selection),
@@ -44,7 +43,7 @@ class PartitionByRatioCallback(AbjadValueObject):
             selection,
             counts=counts,
             )
-        return tuple(selections), new_start_offset
+        return tuple(selections)
 
     ### PUBLIC PROPERTIES ###
 

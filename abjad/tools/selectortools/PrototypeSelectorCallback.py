@@ -33,13 +33,12 @@ class PrototypeSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None, start_offset=None):
+    def __call__(self, expr, rotation=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple of selections.
         '''
         assert isinstance(expr, tuple), repr(expr)
-        new_start_offset = start_offset
         result = []
         prototype = self.prototype
         if not isinstance(prototype, tuple):
@@ -52,9 +51,7 @@ class PrototypeSelectorCallback(AbjadValueObject):
                     result.extend(subresult)
                 else:
                     result.append(subresult)
-        # TODO: calculate new_start_offset in a non-naive way;
-        #       this naive assignment will fail in some cases
-        return tuple(result), new_start_offset
+        return tuple(result)
 
     ### PUBLIC PROPERTIES ###
 

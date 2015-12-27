@@ -34,7 +34,7 @@ class SliceSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None, start_offset=None):
+    def __call__(self, expr, rotation=None):
         r'''Iterates tuple `expr`.
 
         ..  container:: example
@@ -49,7 +49,7 @@ class SliceSelectorCallback(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** When start offset is none:
+            **Example 1.**
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.get_slice(start=-4)
@@ -63,66 +63,15 @@ class SliceSelectorCallback(AbjadValueObject):
 
             Returns tuple of selections.
 
-        ..  container:: example
-
-            **Example 2.** When start offset is not none:
-
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.get_slice(start=-4)
-                >>> result = selector(staff, start_offset=Offset(0))
-                >>> selections, start_offset = result
-
-            ::
-
-                >>> for selection in selections:
-                ...     selection
-                Selection(Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
-
-            ::
-
-                >>> start_offset
-                Offset(1, 2)
-
-            Returns tuple of selections together with start offset of
-            selection.
-
-            Selection starts at offset 1/2 (from start of input expression).
-
-        ..  container:: example
-
-            **Example 3.** When start offset is not none, again:
-
-                >>> selector = selectortools.Selector()
-                >>> selector = selector.get_slice(start=-3)
-                >>> result = selector(staff, start_offset=Offset(0))
-                >>> selections, start_offset = result
-
-            ::
-
-                >>> for selection in selections:
-                ...     selection
-                Selection(Note("f'16"), Note("g'8"), Note("a'4"))
-
-            ::
-
-                >>> start_offset
-                Offset(9, 16)
-
-            Selection starts at offset 9/16 (from start of input expression).
-
         Returns tuple of selections or tuple of selections with offset.
         '''
         assert isinstance(expr, tuple), repr(expr)
-        new_start_offset = start_offset
         prototype = (scoretools.Container, selectiontools.Selection)
         result = []
         if self.apply_to_each:
             for subexpr in expr:
                 try:
-                    subresult, new_start_offset = self._get_item(
-                        subexpr,
-                        start_offset,
-                        )
+                    subresult = self._get_item(subexpr)
                     if not isinstance(subresult, prototype):
                         subresult = select(subresult)
                     if isinstance(subresult, selectiontools.Selection):
@@ -134,10 +83,7 @@ class SliceSelectorCallback(AbjadValueObject):
                     pass
         else:
             try:
-                subresult, new_start_offset = self._get_item(
-                    expr,
-                    start_offset,
-                    )
+                subresult = self._get_item(expr)
                 subresult = select(subresult)
                 if isinstance(subresult, selectiontools.Selection):
                     if subresult:
@@ -146,32 +92,14 @@ class SliceSelectorCallback(AbjadValueObject):
                     result.extend(subresult)
             except IndexError:
                 pass
-        return tuple(result), new_start_offset
+        return tuple(result)
 
     ### PRIVATE METHODS ###
 
-    def _get_item(self, expr, start_offset=None):
+    def _get_item(self, expr):
         slice_ = slice(self.start, self.stop)
         result = expr.__getitem__(slice_)
-        start, stop, stride = slice_.indices(len(expr))
-        new_start_offset = start_offset
-        if new_start_offset is not None:
-            preceding_items = expr[:start]
-            for item in preceding_items:
-                if isinstance(item, numbers.Number):
-                    new_start_offset += item
-                    continue
-                if hasattr(item, 'duration'):
-                    duration = item.duration
-                    new_start_offset += duration
-                    continue
-                try:
-                    duration = inspect_(item).get_duration()
-                    new_start_offset += duration
-                except AssertionError:
-                    pass
-            new_start_offset = durationtools.Offset(new_start_offset)
-        return result, new_start_offset
+        return result
 
     ### PUBLIC PROPERTIES ###
 

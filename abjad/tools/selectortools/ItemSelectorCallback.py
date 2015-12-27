@@ -30,7 +30,7 @@ class ItemSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None, start_offset=None):
+    def __call__(self, expr, rotation=None):
         r'''Gets item from `expr`.
 
         Returns item.
@@ -39,42 +39,18 @@ class ItemSelectorCallback(AbjadValueObject):
         if self.apply_to_each:
             result = []
             for element in expr:
-                result_ = self._get_item(element, start_offset)
-                result_, new_start_offset = result_
+                result_ = self._get_item(element)
                 result.append(result_)
             result = tuple(result)
-            new_start_offset = start_offset
         else:
-            result = self._get_item(expr, start_offset)
-            result, new_start_offset = result
-        return result, new_start_offset
+            result = self._get_item(expr)
+        return result
 
     ### PRIVATE METHODS ###
 
-    def _get_item(self, expr, start_offset=None):
+    def _get_item(self, expr):
         result = expr.__getitem__(self.item)
-        new_start_offset = start_offset
-        if new_start_offset is not None:
-            preceding_items = expr[:self.item]
-            for item in preceding_items:
-                if isinstance(item, numbers.Number):
-                    new_start_offset += item
-                    continue
-                if hasattr(item, 'duration'):
-                    duration = item.duration
-                    new_start_offset += duration
-                    continue
-                if hasattr(item, 'get_duration'):
-                    duration = item.get_duration()
-                    new_start_offset += duration
-                    continue
-                try:
-                    duration = inspect_(item).get_duration()
-                    new_start_offset += duration
-                except AssertionError:
-                    pass
-            new_start_offset = durationtools.Offset(new_start_offset)
-        return result, new_start_offset
+        return result
 
     ### PUBLIC PROPERTIES ###
 

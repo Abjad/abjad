@@ -36,7 +36,7 @@ class DurationSelectorCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, rotation=None, start_offset=None):
+    def __call__(self, expr, rotation=None):
         r'''Iterates tuple `expr`.
 
         Returns tuple in which each item is a selection or component.
@@ -44,7 +44,6 @@ class DurationSelectorCallback(AbjadValueObject):
         from abjad.tools import scoretools
         from abjad.tools import selectortools
         assert isinstance(expr, tuple), repr(expr)
-        new_start_offset = None
         inequality = self.duration
         if not isinstance(inequality, selectortools.DurationInequality):
             inequality = selectortools.DurationInequality(
@@ -72,7 +71,7 @@ class DurationSelectorCallback(AbjadValueObject):
                     duration = sum(durations)
             if inequality(duration):
                 result.append(subexpr)
-        return tuple(result), new_start_offset
+        return tuple(result)
 
     ### PUBLIC PROPERTIES ###
 
