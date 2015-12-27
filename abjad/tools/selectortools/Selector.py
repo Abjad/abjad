@@ -1247,20 +1247,14 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
-                >>> result = selector(staff, start_offset=Offset(4))
-                >>> selection, start_offset = result
-
-            ::
-
-                >>> start_offset
-                Offset(4, 1)
+                >>> selection = selector(staff)
 
             ::
 
                 >>> selection
                 Selection(Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
 
-            Returns leaf selection and start offset.
+            Returns leaf selection.
 
         Returns new selector.
         '''
@@ -2045,23 +2039,6 @@ class Selector(AbjadValueObject):
                 >>> selector(staff)
                 Selection(Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4"))
 
-            Works with start offset:
-
-            ::
-
-                >>> result = selector(staff, start_offset=Offset(4))
-                >>> selection, start_offset = result
-
-            ::
-
-                >>> selection
-                Selection(Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4"))
-
-            ::
-
-                >>> start_offset
-                Offset(4, 1)
-
         Returns new selector.
         '''
         from abjad.tools import selectortools
@@ -2110,23 +2087,6 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.get_item(1)
                 >>> selector(staff)
                 Note("d'4")
-
-            Works with start offset:
-
-            ::
-
-                >>> result = selector(staff, start_offset=Offset(4))
-                >>> note, start_offset = result
-
-            ::
-
-                >>> note
-                Note("d'4")
-
-            ::
-
-                >>> start_offset
-                Offset(17, 4)
 
         ..  container:: example
 
@@ -2338,23 +2298,6 @@ class Selector(AbjadValueObject):
                 ...     )
                 >>> selector(staff)
                 Selection(Note("e'4"), Rest('r4'), Note("f'4"))
-
-            Works with start offset:
-
-            ::
-
-                >>> result = selector(staff, start_offset=Offset(4))
-                >>> selection, start_offset = result
-
-            ::
-
-                >>> selection
-                Selection(Note("e'4"), Rest('r4'), Note("f'4"))
-
-            ::
-
-                >>> start_offset
-                Offset(21, 4)
 
         Returns new selector.
         '''
