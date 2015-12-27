@@ -87,6 +87,8 @@ class CallbackStack(TypedList):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Expressions'
+
     __slots__ = (
         )
 

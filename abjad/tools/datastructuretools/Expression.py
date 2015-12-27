@@ -40,6 +40,8 @@ class Expression(TypedTuple):
 
     ### CLASS VARIABLES ###
 
+    __documentation_section__ = 'Expressions'
+
     __slots__ = (
         '_operator',
         )

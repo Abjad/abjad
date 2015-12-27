@@ -668,9 +668,10 @@ class DocumentationManager(abctools.AbjadObject):
                     None,
                     )
                 if documentation_section is None:
-                    if issubclass(cls, enum.Enum):
-                        documentation_section = 'Enumerations'
-                    elif issubclass(cls, Exception):
+                    #if issubclass(cls, enum.Enum):
+                    #    documentation_section = 'Enumerations'
+                    #elif issubclass(cls, Exception):
+                    if issubclass(cls, Exception):
                         documentation_section = 'Errors'
                     else:
                         documentation_section = 'Classes'
