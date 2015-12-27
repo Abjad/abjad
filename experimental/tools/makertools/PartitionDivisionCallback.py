@@ -39,12 +39,12 @@ class PartitionDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> grouper = makertools.PartitionDivisionCallback(
+            >>> callback = makertools.PartitionDivisionCallback(
             ...     counts=[2],
             ...     append_remainder=False,
             ...     remainder_direction=Right,
             ...     )
-            >>> grouped_beat_lists = grouper(beat_lists)
+            >>> grouped_beat_lists = callback(beat_lists)
             >>> for grouped_beat_list in grouped_beat_lists:
             ...     grouped_beat_list
             [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
@@ -56,12 +56,12 @@ class PartitionDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> grouper = makertools.PartitionDivisionCallback(
+            >>> callback = makertools.PartitionDivisionCallback(
             ...     counts=[2],
             ...     append_remainder=True,
             ...     remainder_direction=Right,
             ...     )
-            >>> grouped_beat_lists = grouper(beat_lists)
+            >>> grouped_beat_lists = callback(beat_lists)
             >>> for grouped_beat_list in grouped_beat_lists:
             ...     grouped_beat_list
             [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
@@ -75,12 +75,12 @@ class PartitionDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> grouper = makertools.PartitionDivisionCallback(
+            >>> callback = makertools.PartitionDivisionCallback(
             ...     counts=[2],
             ...     append_remainder=False,
             ...     remainder_direction=Left,
             ...     )
-            >>> grouped_beat_lists = grouper(beat_lists)
+            >>> grouped_beat_lists = callback(beat_lists)
             >>> for grouped_beat_list in grouped_beat_lists:
             ...     grouped_beat_list
             [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
@@ -92,12 +92,12 @@ class PartitionDivisionCallback(AbjadValueObject):
 
         ::
 
-            >>> grouper = makertools.PartitionDivisionCallback(
+            >>> callback = makertools.PartitionDivisionCallback(
             ...     counts=[2],
             ...     append_remainder=True,
             ...     remainder_direction=Left,
             ...     )
-            >>> grouped_beat_lists = grouper(beat_lists)
+            >>> grouped_beat_lists = callback(beat_lists)
             >>> for grouped_beat_list in grouped_beat_lists:
             ...     grouped_beat_list
             [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
@@ -133,8 +133,8 @@ class PartitionDivisionCallback(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, beat_lists):
-        r'''Calls beat grouper on `beat_lists`.
+    def __call__(self, divisions):
+        r'''Calls partition division callback on `divisions`.
 
         ..  container:: example
 
@@ -142,12 +142,12 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     )
-                >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
-                >>> grouped_beat_lists[0]
+                >>> division = 6 * [(1, 4)]
+                >>> grouped_divisions = callback([division])
+                >>> grouped_divisions[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [2, 2, 2]
@@ -158,31 +158,70 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[3],
                 ...     )
-                >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
-                >>> grouped_beat_lists[0]
+                >>> division = 6 * [(1, 4)]
+                >>> grouped_divisions = callback([division])
+                >>> grouped_divisions[0]
                 [[Division((1, 4)), Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
                 [3, 3]
 
-        Returns list of beat lists.
+        ..  container:: example
+
+            **Example 3.** Works with start offset:
+
+            ::
+
+                >>> callback = makertools.PartitionDivisionCallback(counts=[3])
+                >>> divisions = 6 * [durationtools.Division((1, 4))]
+                >>> divisions[0]._start_offset = Offset(1, 4)
+
+            ::
+
+                >>> division_lists = callback(divisions)
+                >>> len(division_lists)
+                2
+
+            ::
+
+                >>> for division in division_lists[0]:
+                ...     division
+                Division((1, 4), start_offset=Offset(1, 4))
+                Division((1, 4), start_offset=Offset(1, 2))
+                Division((1, 4), start_offset=Offset(3, 4))
+
+            ::
+
+                >>> for division in division_lists[1]:
+                ...     division
+                Division((1, 4), start_offset=Offset(1, 1))
+                Division((1, 4), start_offset=Offset(5, 4))
+                Division((1, 4), start_offset=Offset(3, 2))
+
+        Returns list of division lists.
         '''
         from experimental import makertools
-        grouped_beat_lists = []
-        if beat_lists and isinstance(beat_lists[0], list):
-            for beat_list in beat_lists:
-                grouped_beat_list = \
-                    self._beat_list_to_grouped_beat_list(beat_list)
-                grouped_beat_lists.append(grouped_beat_list)
-            result = grouped_beat_lists
+        grouped_divisions = []
+        divisions, start_offset = makertools.DivisionMaker._to_divisions(
+            divisions)
+        if divisions and isinstance(divisions[0], list):
+            start_offset = divisions[0][0].start_offset
+            for division in divisions:
+                grouped_division = \
+                    self._beat_list_to_grouped_beat_list(division)
+                grouped_divisions.append(grouped_division)
+            result = grouped_divisions
         else:
-            grouped_beat_list = \
-                self._beat_list_to_grouped_beat_list(beat_lists)
-            result = grouped_beat_list
-        result, start_offset = makertools.DivisionMaker._to_divisions(result)
+            start_offset = divisions[0].start_offset
+            grouped_division = \
+                self._beat_list_to_grouped_beat_list(divisions)
+            result = grouped_division
+        result, start_offset = makertools.DivisionMaker._to_divisions(
+            result,
+            start_offset=start_offset,
+            )
         return result
 
     def _beat_list_to_grouped_beat_list(self, beat_list):
@@ -241,14 +280,14 @@ class PartitionDivisionCallback(AbjadValueObject):
         return grouped_beat_list
 
     def __format__(self, format_specification=''):
-        r'''Formats beat grouper.
+        r'''Formats beat callback.
 
         ..  container:: example
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback()
-                >>> print(format(grouper))
+                >>> callback = makertools.PartitionDivisionCallback()
+                >>> print(format(callback))
                 makertools.PartitionDivisionCallback(
                     fuse_assignable_total_duration=False,
                     append_remainder=False,
@@ -263,7 +302,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             )
 
     def __repr__(self):
-        r'''Gets interpreter representation of beat grouper.
+        r'''Gets interpreter representation of beat callback.
 
         ..  container:: example
 
@@ -280,7 +319,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
     @property
     def counts(self):
-        r'''Gets counts of beat grouper.
+        r'''Gets counts of beat callback.
 
         ..  container:: example
 
@@ -288,11 +327,11 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=None,
                 ...     )
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -304,11 +343,11 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     )
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -320,11 +359,11 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[3],
                 ...     )
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -348,7 +387,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     fuse_assignable_total_duration=False,
                 ...     )
@@ -356,7 +395,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 5 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -365,7 +404,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -374,7 +413,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 7 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -383,7 +422,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 8 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -392,7 +431,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 9 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -405,7 +444,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     fuse_assignable_total_duration=True,
                 ...     )
@@ -413,7 +452,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 5 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -422,7 +461,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((3, 2))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -431,7 +470,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 7 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((7, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -440,7 +479,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 8 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((2, 1))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -449,7 +488,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 9 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -475,7 +514,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     append_remainder=False,
                 ...     remainder_direction=Right,
@@ -484,7 +523,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 5 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -493,7 +532,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -502,7 +541,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 7 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -511,7 +550,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 8 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -520,7 +559,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 9 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -533,7 +572,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     append_remainder=True,
                 ...     remainder_direction=Right,
@@ -542,7 +581,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 5 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -551,7 +590,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -560,7 +599,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 7 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -569,7 +608,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 8 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -578,7 +617,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 9 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -592,7 +631,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
     @property
     def remainder_direction(self):
-        r'''Gets remainder direction of beat grouper.
+        r'''Gets remainder direction of beat callback.
 
         ..  container:: example
 
@@ -600,7 +639,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     remainder_direction=Right,
                 ...     )
@@ -608,7 +647,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 4 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -617,7 +656,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 5 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -626,7 +665,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -635,7 +674,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 7 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -647,7 +686,7 @@ class PartitionDivisionCallback(AbjadValueObject):
 
             ::
 
-                >>> grouper = makertools.PartitionDivisionCallback(
+                >>> callback = makertools.PartitionDivisionCallback(
                 ...     counts=[2],
                 ...     remainder_direction=Left,
                 ...     )
@@ -655,7 +694,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 4 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -664,7 +703,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 5 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -673,7 +712,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 6 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
@@ -682,7 +721,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             ::
 
                 >>> beat_list = 7 * [(1, 4)]
-                >>> grouped_beat_lists = grouper([beat_list])
+                >>> grouped_beat_lists = callback([beat_list])
                 >>> grouped_beat_lists[0]
                 [[Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))], [Division((1, 4)), Division((1, 4))]]
                 >>> [len(beat_group) for beat_group in _]
