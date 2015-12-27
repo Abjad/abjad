@@ -484,8 +484,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     'rhythmtreetools', 'schemetools',
                     'scoretools', 'select',
                     'selectiontools', 'selectortools',
-                    'sequencetools', 'set_', 'show',
-                    'spannertools', 'stringtools',
+                    'sequence', 'sequencetools', 'set_',
+                    'show', 'spannertools', 'stringtools',
                     'systemtools', 'templatetools',
                     'timespantools', 'tonalanalysistools',
                     'topleveltools']
