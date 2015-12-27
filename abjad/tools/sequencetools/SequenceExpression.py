@@ -136,7 +136,23 @@ class SequenceExpression(AbjadObject):
 
     ..  container:: example
 
-        **Example 10.** Gets storage format:
+        **Example 10.** Partitions sequence and gets middle part:
+
+        ::
+
+            >>> expression = sequence()
+            >>> ratio = mathtools.Ratio((1, 1, 1))
+            >>> expression = expression.partition_by_ratio_of_lengths(ratio)
+            >>> expression = expression[1]
+
+        ::
+
+            >>> expression(range(10))
+            Sequence((3, 4, 5, 6))
+
+    ..  container:: example
+
+        **Example 11.** Gets storage format:
 
         ::
 
@@ -253,6 +269,23 @@ class SequenceExpression(AbjadObject):
             )
         return self._append_callback(callback)
 
+    ### PRIVATE METHODS ###
+
+    def _append_callback(self, callback):
+        callbacks = self.callbacks or ()
+        callbacks = callbacks + (callback,)
+        return type(self)(callbacks)
+        
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def callbacks(self):
+        r'''Gets callbacks of selector.
+
+        Returns tuple or none.
+        '''
+        return self._callbacks
+
     ### PUBLIC METHODS ###
 
     def flatten(self, classes=None, depth=-1, indices=None):
@@ -267,6 +300,19 @@ class SequenceExpression(AbjadObject):
                 'depth': depth,
                 'indices': indices,
                 }
+            )
+        return self._append_callback(callback)
+
+    def partition_by_ratio_of_lengths(self, ratio):
+        r'''Partitions sequence by `ratio` of lengths.
+
+        Returns new sequence.
+        '''
+        callback = datastructuretools.Callback(
+            name='Sequence.partition_by_ratio_of_lengths',
+            arguments=(
+                ratio,
+                ),
             )
         return self._append_callback(callback)
 
@@ -289,20 +335,3 @@ class SequenceExpression(AbjadObject):
             name='Sequence.rotate',
             )
         return self._append_callback(callback)
-
-    ### PRIVATE METHODS ###
-
-    def _append_callback(self, callback):
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-        
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def callbacks(self):
-        r'''Gets callbacks of selector.
-
-        Returns tuple or none.
-        '''
-        return self._callbacks

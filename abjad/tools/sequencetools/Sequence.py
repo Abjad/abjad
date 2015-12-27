@@ -657,6 +657,41 @@ class Sequence(AbjadObject):
         except TypeError:
             return False
 
+    def partition_by_ratio_of_lengths(self, ratio):
+        r'''Partitions sequence by `ratio` of lengths.
+
+        ..  container:: example
+
+            **Example 1.** Partitions sequence by ``1:1:1`` ratio:
+
+            ::
+
+                >>> numbers = Sequence(range(10))
+                >>> ratio = mathtools.Ratio((1, 1, 1))
+                >>> numbers.partition_by_ratio_of_lengths(ratio)
+                Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5, 6)), Sequence((7, 8, 9))))
+
+        ..  container:: example
+
+            **Example 2.** Partitions sequence by ``1:1:2`` ratio:
+
+            ::
+
+                >>> numbers = Sequence(range(10))
+                >>> ratio = mathtools.Ratio((1, 1, 2))
+                >>> numbers.partition_by_ratio_of_lengths(ratio)
+                Sequence((Sequence((0, 1, 2)), Sequence((3, 4)), Sequence((5, 6, 7, 8, 9))))
+
+        Returns a sequence of sequences.
+        '''
+        from abjad.tools import sequencetools
+        parts = sequencetools.partition_sequence_by_ratio_of_lengths(
+            self.items,
+            ratio=ratio,
+            )
+        parts = [type(self)(_) for _ in parts]
+        return type(self)(parts)
+
     def reverse(self):
         '''Reverses sequence.
 

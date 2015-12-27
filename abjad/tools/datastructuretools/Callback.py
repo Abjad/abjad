@@ -116,9 +116,9 @@ class Callback(AbjadObject):
         r'''Calls callback on `argument`.
         '''
         import abjad
-        items = [str(_) for _ in args]
+        items = [repr(_) for _ in args]
         if self.arguments:
-            items_ = [str(_) for _ in self.arguments]
+            items_ = [format(_) for _ in self.arguments]
             items.extend(items_)
         if self.keywords:
             for key, value in self.keywords:
