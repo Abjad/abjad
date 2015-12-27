@@ -67,11 +67,12 @@ def sequence():
                         ),
                     expressiontools.Callback(
                         name='Sequence.__getitem__',
-                        arguments=datastructuretools.TypedTuple(
+                        keywords=[
                             (
+                                'i',
                                 slice(-3, None, None),
-                                )
-                            ),
+                                ),
+                            ],
                         ),
                     ),
                 )

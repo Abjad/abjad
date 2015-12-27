@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import functools
 from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
@@ -186,17 +185,18 @@ class SequenceExpression(AbjadObject):
                         ),
                     expressiontools.Callback(
                         name='Sequence.__getitem__',
-                        arguments=datastructuretools.TypedTuple(
+                        keywords=[
                             (
+                                'i',
                                 slice(None, -3, None),
-                                )
-                            ),
+                                ),
+                            ],
                         ),
                     expressiontools.Callback(
                         name='Sequence.__getitem__',
-                        arguments=datastructuretools.TypedTuple(
-                            (0,)
-                            ),
+                        keywords=[
+                            ('i', 0),
+                            ],
                         ),
                     ),
                 )
@@ -229,14 +229,18 @@ class SequenceExpression(AbjadObject):
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
             name='Sequence.__add__',
-            arguments=(
-                expr,
-                ),
+            keywords={
+                'expr': expr,
+                },
             )
         return self._append_callback(callback)
 
     def __call__(self, items=None):
-        r'''Calls sequence expression on `item`.
+        r'''Calls sequence expression on `items`.
+
+        Makes sequence from `items`.
+
+        Then applies callbacks to sequence.
 
         Returns sequence.
         '''
@@ -258,9 +262,9 @@ class SequenceExpression(AbjadObject):
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
             name='Sequence.__getitem__',
-            arguments=(
-                i,
-                ),
+            keywords={
+                'i': i,
+                },
             )
         return self._append_callback(callback)
 
@@ -272,9 +276,9 @@ class SequenceExpression(AbjadObject):
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
             name='Sequence.__radd__',
-            arguments=(
-                expr,
-                ),
+            keywords={
+                'expr': expr,
+                }
             )
         return self._append_callback(callback)
 
@@ -321,9 +325,9 @@ class SequenceExpression(AbjadObject):
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
             name='Sequence.partition_by_ratio_of_lengths',
-            arguments=(
-                ratio,
-                ),
+            keywords={
+                'ratio': ratio,
+                },
             )
         return self._append_callback(callback)
 
@@ -336,7 +340,6 @@ class SequenceExpression(AbjadObject):
         callback = expressiontools.Callback(
             name='Sequence.reverse',
             )
-        #callback = functools.partial(sequencetools.Sequence.reverse)
         return self._append_callback(callback)
 
     def rotate(self):

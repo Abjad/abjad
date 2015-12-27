@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import functools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -84,7 +85,6 @@ class Callback(AbjadObject):
     __documentation_section__ = 'Expressions'
 
     __slots__ = (
-        '_arguments',
         '_keywords',
         '_name',
         )
@@ -94,16 +94,12 @@ class Callback(AbjadObject):
     def __init__(
         self,
         name=None,
-        arguments=None,
         keywords=None,
         ):
         from abjad.tools import datastructuretools
         if name is not None:
             assert isinstance(name, str), repr(name)
         self._name = name
-        if arguments is not None:
-            arguments = datastructuretools.TypedTuple(arguments)
-        self._arguments = arguments
         if keywords is not None:
             keywords = dict(keywords)
             keywords = list(sorted(keywords.items()))
@@ -112,44 +108,45 @@ class Callback(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, *args):
-        r'''Calls callback on `argument`.
+    def __call__(self, *args, **kwargs):
+        r'''Calls callback on `args` and `kwargs`.
+
+        Returns object.
         '''
         import abjad
         import experimental
-        items = [repr(_) for _ in args]
-        if self.arguments:
-            items_ = [format(_) for _ in self.arguments]
-            items.extend(items_)
+        arguments = []
         if self.keywords:
             for key, value in self.keywords:
-                item = '{}={}'
-                item = item.format(key, value)
-                items.append(item)
-        items = ', '.join(items)
-        string = '{}({})'
-        string = string.format(self.name, items)
+                argument = '{}={}'
+                argument = argument.format(key, value)
+                arguments.append(argument)
+        arguments = ', '.join(arguments)
+        string = 'functools.partial({}, {})'
+        string = string.format(self.name, arguments)
         globals_ = {}
         globals_.update(abjad.__dict__.copy())
         globals_.update(experimental.__dict__.copy())
-        result = eval(string, globals_)
+        globals_['functools'] = functools
+        partial = eval(string, globals_)
+        result = partial(*args, **kwargs)
         return result
 
     ### PUBLIC PROPERTIES ###
 
-    @property
-    def arguments(self):
-        r'''Gets positional argument values of callback.
-
-        Returns tuple.
-        '''
-        return self._arguments
+#    @property
+#    def arguments(self):
+#        r'''Gets positional arguments callback.
+#
+#        Returns tuple or none.
+#        '''
+#        return self._arguments
 
     @property
     def keywords(self):
-        r'''Gets keyword argument names of callback.
+        r'''Gets keyword arguments of callback.
 
-        Returns tuple.
+        Returns dictionary or none.
         '''
         return self._keywords
 
