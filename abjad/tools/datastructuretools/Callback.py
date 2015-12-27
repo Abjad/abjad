@@ -116,6 +116,7 @@ class Callback(AbjadObject):
         r'''Calls callback on `argument`.
         '''
         import abjad
+        import experimental
         items = [repr(_) for _ in args]
         if self.arguments:
             items_ = [format(_) for _ in self.arguments]
@@ -128,7 +129,9 @@ class Callback(AbjadObject):
         items = ', '.join(items)
         string = '{}({})'
         string = string.format(self.name, items)
-        globals_ = abjad.__dict__.copy()
+        globals_ = {}
+        globals_.update(abjad.__dict__.copy())
+        globals_.update(experimental.__dict__.copy())
         result = eval(string, globals_)
         return result
 
