@@ -254,6 +254,56 @@ class DivisionMaker(AbjadValueObject):
                 c'4
             }
 
+    ..  container:: example
+
+        **Example 4.** Splits every division by ``3/8`` and then fuses
+        flattened divisions into differently sized groups. Works with start
+        offset:
+
+        ::
+
+            >>> division_maker = makertools.DivisionMaker()
+            >>> division_maker = division_maker.split_by_durations(
+            ...     durations=[(3, 8)],
+            ...     )
+            >>> division_maker = division_maker.flatten()
+            >>> division_maker = division_maker.fuse_by_counts(
+            ...     counts=[2, 3, 1],
+            ...     )
+
+        ::
+
+            >>> divisions = [(7, 8), (3, 8), (5, 8)]
+            >>> divisions = [durationtools.Division(_) for _ in divisions]
+            >>> divisions[0]._start_offset = Offset(1, 4)
+            >>> divisions = division_maker(divisions)
+            >>> for division in divisions:
+            ...     division
+            Division((6, 8), start_offset=Offset(1, 4))
+            Division((7, 8), start_offset=Offset(1, 1))
+            Division((2, 8), start_offset=Offset(15, 8))
+
+        ::
+
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
+            >>> music = rhythm_maker(divisions)
+            >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+            ...     music,
+            ...     divisions,
+            ...     time_signatures=input_divisions,
+            ...     )
+            >>> show(lilypond_file) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> f(staff)
+            \new RhythmicStaff {
+                c'2.
+                c'2..
+                c'4
+            }
+
     Division-makers object-model a sequence of partially evaluated functions 
     taken together in functional composition.
 
