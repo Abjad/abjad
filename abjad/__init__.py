@@ -87,6 +87,7 @@ from abjad.tools.topleveltools import parse
 from abjad.tools.topleveltools import play
 from abjad.tools.topleveltools import persist
 from abjad.tools.topleveltools import select
+from abjad.tools.topleveltools import sequence
 from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import show
 

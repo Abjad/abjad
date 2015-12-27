@@ -12,7 +12,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
 
         ::
 
@@ -25,7 +25,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression.flatten()
 
         ::
@@ -39,7 +39,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression.reverse()
 
         ::
@@ -53,7 +53,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression.flatten()
             >>> expression = expression.reverse()
 
@@ -68,7 +68,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression.reverse()
             >>> expression = expression.flatten()
 
@@ -83,7 +83,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression[-1]
 
         ::
@@ -97,7 +97,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression[:-1]
 
         ::
@@ -111,7 +111,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression[:-1]
             >>> expression = expression.flatten()
 
@@ -126,7 +126,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression.__add__([4, 5])
 
         ::
@@ -140,7 +140,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = sequence()
             >>> expression = expression.reverse()
             >>> expression = expression.flatten()
             >>> expression = expression[:-3]
