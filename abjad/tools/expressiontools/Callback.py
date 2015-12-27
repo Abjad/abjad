@@ -11,7 +11,7 @@ class Callback(AbjadObject):
 
         ::
 
-            >>> callback = datastructuretools.Callback(name='int')
+            >>> callback = expressiontools.Callback(name='int')
 
         ::
 
@@ -21,7 +21,7 @@ class Callback(AbjadObject):
         ::
 
             >>> print(format(callback))
-            datastructuretools.Callback(
+            expressiontools.Callback(
                 name='int',
                 )
 
@@ -31,7 +31,7 @@ class Callback(AbjadObject):
 
         ::
 
-            >>> callback = datastructuretools.Callback(
+            >>> callback = expressiontools.Callback(
             ...     name='sequencetools.flatten_sequence',
             ...     )
 
@@ -47,7 +47,7 @@ class Callback(AbjadObject):
 
         ::
 
-            >>> callback = datastructuretools.Callback(
+            >>> callback = expressiontools.Callback(
             ...     name='sequencetools.flatten_sequence',
             ...     keywords={'depth': 1},
             ...     )
@@ -64,7 +64,7 @@ class Callback(AbjadObject):
 
         ::
 
-            >>> callback = datastructuretools.Callback(
+            >>> callback = expressiontools.Callback(
             ...     name='Sequence',
             ...     )
 

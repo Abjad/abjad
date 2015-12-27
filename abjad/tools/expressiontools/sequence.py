@@ -17,9 +17,9 @@ def sequence():
         ::
 
             >>> print(format(expression))
-            sequencetools.SequenceExpression(
+            expressiontools.SequenceExpression(
                 callbacks=(
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.flatten',
                         keywords=[
                             ('classes', None),
@@ -27,7 +27,7 @@ def sequence():
                             ('indices', None),
                             ],
                         ),
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.reverse',
                         ),
                     ),
@@ -52,9 +52,9 @@ def sequence():
         ::
 
             >>> print(format(expression))
-            sequencetools.SequenceExpression(
+            expressiontools.SequenceExpression(
                 callbacks=(
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.flatten',
                         keywords=[
                             ('classes', None),
@@ -62,10 +62,10 @@ def sequence():
                             ('indices', None),
                             ],
                         ),
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.reverse',
                         ),
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.__getitem__',
                         arguments=datastructuretools.TypedTuple(
                             (
@@ -83,5 +83,5 @@ def sequence():
 
     Returns sequence expression.
     '''
-    from abjad.tools import sequencetools
-    return sequencetools.SequenceExpression()
+    from abjad.tools import expressiontools
+    return expressiontools.SequenceExpression()

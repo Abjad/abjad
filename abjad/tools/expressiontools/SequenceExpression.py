@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import datastructuretools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -165,12 +164,12 @@ class SequenceExpression(AbjadObject):
         ::
 
             >>> print(format(expression))
-            sequencetools.SequenceExpression(
+            expressiontools.SequenceExpression(
                 callbacks=(
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.reverse',
                         ),
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.flatten',
                         keywords=[
                             ('classes', None),
@@ -178,7 +177,7 @@ class SequenceExpression(AbjadObject):
                             ('indices', None),
                             ],
                         ),
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.__getitem__',
                         arguments=datastructuretools.TypedTuple(
                             (
@@ -186,7 +185,7 @@ class SequenceExpression(AbjadObject):
                                 )
                             ),
                         ),
-                    datastructuretools.Callback(
+                    expressiontools.Callback(
                         name='Sequence.__getitem__',
                         arguments=datastructuretools.TypedTuple(
                             (0,)
@@ -220,7 +219,8 @@ class SequenceExpression(AbjadObject):
     def __add__(self, expr):
         r'''Adds `expr` to sequence.
         '''
-        callback = datastructuretools.Callback(
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
             name='Sequence.__add__',
             arguments=(
                 expr,
@@ -248,7 +248,8 @@ class SequenceExpression(AbjadObject):
 
         Returns item.
         '''
-        callback = datastructuretools.Callback(
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
             name='Sequence.__getitem__',
             arguments=(
                 i,
@@ -261,7 +262,8 @@ class SequenceExpression(AbjadObject):
 
         Returns new sequence.
         '''
-        callback = datastructuretools.Callback(
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
             name='Sequence.__radd__',
             arguments=(
                 expr,
@@ -293,7 +295,8 @@ class SequenceExpression(AbjadObject):
 
         Returns new sequence.
         '''
-        callback = datastructuretools.Callback(
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
             name='Sequence.flatten',
             keywords={
                 'classes': classes,
@@ -308,7 +311,8 @@ class SequenceExpression(AbjadObject):
 
         Returns new sequence.
         '''
-        callback = datastructuretools.Callback(
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
             name='Sequence.partition_by_ratio_of_lengths',
             arguments=(
                 ratio,
@@ -321,7 +325,8 @@ class SequenceExpression(AbjadObject):
 
         Returns new sequence.
         '''
-        callback = datastructuretools.Callback(
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
             name='Sequence.reverse',
             )
         return self._append_callback(callback)
@@ -331,7 +336,8 @@ class SequenceExpression(AbjadObject):
 
         Returns new sequence.
         '''
-        callback = datastructuretools.Callback(
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
             name='Sequence.rotate',
             )
         return self._append_callback(callback)
