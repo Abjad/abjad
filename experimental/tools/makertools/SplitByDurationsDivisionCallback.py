@@ -378,12 +378,83 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
 
             Returns empty list.
 
+        ..  container:: example
+
+            **Example 6.** Works with start offset:
+
+            ::
+
+                >>> callback = makertools.SplitByDurationsDivisionCallback(
+                ...     cyclic=True,
+                ...     durations=[(1, 4)],
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 4), (3, 4)]
+                >>> divisions = [durationtools.Division(_) for _ in divisions]
+                >>> divisions[0]._start_offset = Offset(1, 4)
+                >>> divisions
+                [Division((2, 4), start_offset=Offset(1, 4)), Division((3, 4))]
+
+            ::
+
+                >>> division_lists = callback(divisions)
+                >>> for division_list in division_lists:
+                ...     division_list
+                [Division((1, 4), start_offset=Offset(1, 4)), Division((1, 4), start_offset=Offset(1, 2))]
+                [Division((1, 4), start_offset=Offset(3, 4)), Division((1, 4), start_offset=Offset(1, 1)), Division((1, 4), start_offset=Offset(5, 4))]
+
+            **Example 7.** Works with start offset:
+
+            ::
+
+                >>> division_maker = makertools.DivisionMaker()
+                >>> division_maker = division_maker.fuse_by_counts(
+                ...     counts=mathtools.Infinity,
+                ...     )
+                >>> division_maker = division_maker.split_by_durations(
+                ...     durations=[Duration(3, 16)],
+                ...     remainder=Left,
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> divisions = [durationtools.Division(_) for _ in divisions]
+                >>> divisions[0]._start_offset = Offset(1, 4)
+
+            ::
+
+                >>> division_lists = division_maker(divisions)
+                >>> len(division_lists)
+                1
+
+            ::
+
+                >>> for division in division_lists[0]:
+                ...     division
+                Division((1, 8), start_offset=Offset(1, 4))
+                Division((3, 16), start_offset=Offset(3, 8))
+                Division((3, 16), start_offset=Offset(9, 16))
+                Division((3, 16), start_offset=Offset(3, 4))
+                Division((3, 16), start_offset=Offset(15, 16))
+                Division((3, 16), start_offset=Offset(9, 8))
+                Division((3, 16), start_offset=Offset(21, 16))
+                Division((3, 16), start_offset=Offset(3, 2))
+                Division((3, 16), start_offset=Offset(27, 16))
+                Division((3, 16), start_offset=Offset(15, 8))
+                Division((3, 16), start_offset=Offset(33, 16))
+
         Returns possibly empty list of division lists.
         '''
         from experimental import makertools
         divisions = divisions or []
         if not divisions:
             return divisions
+        divisions, start_offset = makertools.DivisionMaker._to_divisions(
+            divisions)
+        start_offset = divisions[0].start_offset
         division_lists = []
         for i, division in enumerate(divisions):
             input_division = durationtools.Division(division)
@@ -452,7 +523,9 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
         for _ in division_lists:
             assert isinstance(_, list), repr(_)
         division_lists, start_offset = makertools.DivisionMaker._to_divisions(
-            division_lists)
+            division_lists,
+            start_offset
+            )
         return division_lists
 
     ### PRIVATE PROPERTIES ###
