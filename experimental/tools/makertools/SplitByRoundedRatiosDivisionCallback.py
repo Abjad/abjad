@@ -70,7 +70,7 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions=None):
-        r'''Calls rounded ratio division maker on `division`.
+        r'''Calls rounded ratio division maker on `divisions`.
 
         ..  container:: example
 
@@ -103,27 +103,71 @@ class SplitByRoundedRatiosDivisionCallback(AbjadValueObject):
 
             Returns empty list.
 
+        ..  container:: example
+
+            **Example 3.** Works with start offset:
+
+            ::
+
+                >>> maker = makertools.SplitByRoundedRatiosDivisionCallback(
+                ...     ratios=[mathtools.Ratio([1, 1])],
+                ...     )
+
+            ::
+
+                >>> divisions = [(7, 4), (6, 4)]
+                >>> divisions = [durationtools.Division(_) for _ in divisions]
+                >>> divisions[0]._start_offset = Offset(1, 4)
+                >>> divisions
+                [Division((7, 4), start_offset=Offset(1, 4)), Division((6, 4))]
+
+            ::
+
+                >>> division_lists = maker(divisions)
+                >>> len(division_lists)
+                2
+
+            ::
+
+                >>> for division in division_lists[0]:
+                ...     division
+                Division((4, 4), start_offset=Offset(1, 4))
+                Division((3, 4), start_offset=Offset(5, 4))
+
+            ::
+
+                >>> for division in division_lists[1]:
+                ...     division
+                Division((3, 4), start_offset=Offset(2, 1))
+                Division((3, 4), start_offset=Offset(11, 4))
+
         Returns possibly empty list of division lists.
         '''
         from experimental import makertools
-        input_divisions = divisions or []
-        if not input_divisions:
+        divisions = divisions or []
+        if not divisions:
             return []
-        output_division_lists = []
+        divisions, start_offset = makertools.DivisionMaker._to_divisions(
+            divisions)
+        start_offset = divisions[0].start_offset
+        division_lists = []
         ratios = self._get_ratios()
-        for i, input_division in enumerate(input_divisions):
-            input_division = durationtools.Division(input_division)
+        for i, division in enumerate(divisions):
             ratio = ratios[i]
             numerators = mathtools.partition_integer_by_ratio(
-                input_division.numerator,
+                division.numerator,
                 ratio,
                 )
-            output_division_list = [
-                durationtools.Division((numerator, input_division.denominator))
+            division_list = [
+                durationtools.Division((numerator, division.denominator))
                 for numerator in numerators
                 ]
-            output_division_lists.append(output_division_list)
-        return output_division_lists
+            division_lists.append(division_list)
+        division_lists, start_offset = makertools.DivisionMaker._to_divisions(
+            division_lists,
+            start_offset=start_offset,
+            )
+        return division_lists
 
     ### PRIVATE METHODS ###
 
