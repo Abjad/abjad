@@ -113,24 +113,6 @@ class Sequence(AbjadObject):
             return type(self)(*result)
         return result
 
-    def __getslice__(self, start, stop):
-        r'''Gets slice from `start` to `stop`.
-
-        ..  container:: example
-
-            Gets last three items in sequence:
-
-            ::
-
-                >>> Sequence(1, 2, 3, 4, 5, 6)[-3:]
-                Sequence(4, 5, 6)
-
-        Returns new sequence.
-        '''
-        result = self._elements.__getslice__(start, stop)
-        result = type(self)(*result)
-        return result
-
     def __hash__(self):
         r'''Hashes sequence.
 

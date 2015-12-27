@@ -75,7 +75,7 @@ class FlattenCallback(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Callbacks'
+    __documentation_section__ = 'Expressions'
 
     __slots__ = (
         '__callback',
