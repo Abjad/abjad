@@ -289,10 +289,10 @@ class DivisionMaker(AbjadValueObject):
         Returns either a list of divisions or a list of division lists.
         '''
         expr = expr or []
-        expr = self._to_divisions(expr)
+        expr, start_offset = self._to_divisions(expr)
         for callback in self.callbacks:
             expr = callback(expr)
-        result = self._to_divisions(expr)
+        result, start_offset = self._to_divisions(expr)
         return result
 
     ### PRIVATE METHODS ###
@@ -314,26 +314,38 @@ class DivisionMaker(AbjadValueObject):
         return False
 
     @staticmethod
-    def _to_divisions(expr):
+    def _to_divisions(expr, start_offset=None):
         if isinstance(expr, durationtools.Division):
-            return expr
+            result = durationtools.Division(expr)
+            if start_offset is not None:
+                result._start_offset = start_offset
+                start_offset += result.duration
         elif isinstance(expr, mathtools.NonreducedFraction):
-            division = durationtools.Division(expr.pair)
-            return division
+            result = durationtools.Division(expr.pair)
+            if start_offset is not None:
+                result._start_offset = start_offset
+                start_offset += result.duration
         elif hasattr(expr, 'pair'):
-            division = durationtools.Division(expr.pair)
-            return division
+            result = durationtools.Division(expr.pair)
+            if start_offset is not None:
+                result._start_offset = start_offset
+                start_offset += result.duration
         elif isinstance(expr, tuple):
-            division = durationtools.Division(expr)
-            return division
+            result = durationtools.Division(expr)
+            if start_offset is not None:
+                result._start_offset = start_offset
+                start_offset += result.duration
         elif isinstance(expr, list):
-            new_list = []
+            result = []
             for element in expr:
-                new_element = DivisionMaker._to_divisions(element)
-                new_list.append(new_element)
-            return new_list
+                new_element, start_offset = DivisionMaker._to_divisions(
+                    element,
+                    start_offset=start_offset,
+                    )
+                result.append(new_element)
         else:
             raise TypeError(repr(expr))
+        return result, start_offset
 
     ### PUBLIC PROPERTIES ###
 

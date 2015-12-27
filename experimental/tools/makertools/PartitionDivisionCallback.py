@@ -182,7 +182,7 @@ class PartitionDivisionCallback(AbjadValueObject):
             grouped_beat_list = \
                 self._beat_list_to_grouped_beat_list(beat_lists)
             result = grouped_beat_list
-        result = makertools.DivisionMaker._to_divisions(result)
+        result, start_offset = makertools.DivisionMaker._to_divisions(result)
         return result
 
     def _beat_list_to_grouped_beat_list(self, beat_list):

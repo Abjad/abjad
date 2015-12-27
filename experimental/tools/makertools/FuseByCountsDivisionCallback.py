@@ -513,10 +513,34 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 >>> for division_list in division_lists:
                 ...     division_list
 
+            **Example 7.** Works with start offset:
+
+            ::
+
+                >>> callback = makertools.FuseByCountsDivisionCallback(
+                ...     counts=mathtools.Infinity,
+                ...     )
+
+            ::
+
+                >>> divisions = [(2, 8), (2, 8), (4, 8), (4, 8), (2, 4)]
+                >>> divisions = [durationtools.Division(_) for _ in divisions]
+                >>> divisions[0] = new(divisions[0], start_offset=Offset(1, 4))
+                >>> divisions
+                [Division((0, 1), start_offset=Offset(1, 4)), Division((2, 8)), Division((4, 8)), Division((4, 8)), Division((2, 4))]
+
+            ::
+
+                >>> callback(divisions)
+                [Division((14, 8), start_offset=Offset(1, 4))]
+
         Returns list of division lists.
         '''
+        from experimental import makertools
         divisions = divisions or ()
-#        divisions = self._coerce_divisions(divisions)
+        start_offset = None
+        if divisions:
+            start_offset = divisions[0].start_offset
         if not divisions:
             pass
         elif (self.counts == mathtools.Infinity or 
@@ -532,6 +556,10 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
             divisions = [sum(_) for _ in parts]
         divisions = [durationtools.Division(_) for _ in divisions]
         if self.secondary_division_maker is None:
+            divisions, start_offset = makertools.DivisionMaker._to_divisions(
+                divisions,
+                start_offset,
+                )
             return divisions
         division_lists = []
         for division in divisions:
@@ -541,6 +569,10 @@ class FuseByCountsDivisionCallback(AbjadValueObject):
                 division_list = [division]
             division_list = [durationtools.Division(_) for _ in division_list]
             division_lists.append(division_list)
+        division_lists, start_offset = makertools.DivisionMaker._to_divisions(
+            division_lists, 
+            start_offset=start_offset,
+            )
         return division_lists
 
     ### PRIVATE PROPERTIES ###

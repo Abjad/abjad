@@ -451,7 +451,8 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
             division_lists.append(division_list)
         for _ in division_lists:
             assert isinstance(_, list), repr(_)
-        division_lists = makertools.DivisionMaker._to_divisions(division_lists)
+        division_lists, start_offset = makertools.DivisionMaker._to_divisions(
+            division_lists)
         return division_lists
 
     ### PRIVATE PROPERTIES ###
