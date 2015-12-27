@@ -11,14 +11,11 @@ class Callback(AbjadObject):
 
         ::
 
-            >>> callback = datastructuretools.Callback(
-            ...     name='int',
-            ...     arguments=(99.25,),
-            ...     )
+            >>> callback = datastructuretools.Callback(name='int')
 
         ::
 
-            >>> callback()
+            >>> callback(99.25)
             99
 
         ::
@@ -26,9 +23,6 @@ class Callback(AbjadObject):
             >>> print(format(callback))
             datastructuretools.Callback(
                 name='int',
-                arguments=datastructuretools.TypedTuple(
-                    (99.25,)
-                    ),
                 )
 
     ..  container:: example
@@ -39,12 +33,12 @@ class Callback(AbjadObject):
 
             >>> callback = datastructuretools.Callback(
             ...     name='sequencetools.flatten_sequence',
-            ...     arguments=([1, 2, [3, [4]], 5],),
             ...     )
 
         ::
 
-            >>> callback()
+            >>> list_ = [1, 2, [3, [4]], 5]
+            >>> callback(list_)
             [1, 2, 3, 4, 5]
 
     ..  container:: example
@@ -55,13 +49,13 @@ class Callback(AbjadObject):
 
             >>> callback = datastructuretools.Callback(
             ...     name='sequencetools.flatten_sequence',
-            ...     arguments=([1, 2, [3, [4]], 5],),
             ...     keywords={'depth': 1},
             ...     )
 
         ::
 
-            >>> callback()
+            >>> list_ = [1, 2, [3, [4]], 5]
+            >>> callback(list_)
             [1, 2, 3, [4], 5]
 
     ..  container:: example
@@ -72,15 +66,17 @@ class Callback(AbjadObject):
 
             >>> callback = datastructuretools.Callback(
             ...     name='Sequence',
-            ...     arguments=(1, 2, [3, 4], 5),
             ...     )
 
         ::
 
-            >>> callback()
-            Sequence(1, 2, [3, 4], 5)
+            >>> list_ = [1, 2, [3, [4]], 5]
+            >>> callback(*list_)
+            Sequence(1, 2, [3, [4]], 5)
 
-    Returns callback.
+    Initializer returns callback.
+
+    Call returns object.
     '''
 
     ### CLASS VARIABLES ###
@@ -116,11 +112,11 @@ class Callback(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self):
-        r'''Calls callback.
+    def __call__(self, *args):
+        r'''Calls callback on `argument`.
         '''
         import abjad
-        items = []
+        items = [str(_) for _ in args]
         if self.arguments:
             items_ = [str(_) for _ in self.arguments]
             items.extend(items_)
