@@ -77,10 +77,24 @@ def sequence():
                     ),
                 )
 
+        Works with numbers:
+
         ::
 
             >>> expression([1, 2, [3, [4]], 5])
             Sequence((3, 2, 1))
+
+        Works with divisions:
+
+        ::
+
+            >>> divisions = [(1, 8), (2, 8), (3, 8), (4, 8), (5, 8)]
+            >>> divisions = [durationtools.Division(_) for _ in divisions]
+            >>> expression(divisions)
+            Sequence((Division((3, 8)), Division((2, 8)), Division((1, 8))))
+
+        The example with divisions shows that the input argument need not be
+        available in the Abjad global namespace.
 
     Returns sequence expression.
     '''
