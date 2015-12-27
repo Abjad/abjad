@@ -330,7 +330,6 @@ class Sequence(AbjadObject):
 
                 >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
                 >>> sequence.flatten()
-                >>> sequence
                 Sequence(1, 2, 3, 4, 5, 6, 7, 8)
 
         ..  container:: example
@@ -341,7 +340,6 @@ class Sequence(AbjadObject):
 
                 >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
                 >>> sequence.flatten(depth=1)
-                >>> sequence
                 Sequence(1, 2, 3, [4], 5, 6, 7, [8])
 
         ..  container:: example
@@ -352,7 +350,6 @@ class Sequence(AbjadObject):
 
                 >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
                 >>> sequence.flatten(depth=2)
-                >>> sequence
                 Sequence(1, 2, 3, 4, 5, 6, 7, 8)
 
         ..  container:: example
@@ -363,7 +360,6 @@ class Sequence(AbjadObject):
 
                 >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
                 >>> sequence.flatten(indices=[3])
-                >>> sequence
                 Sequence(1, [2, 3, [4]], 5, 6, 7, 8)
 
         ..  container:: example
@@ -374,7 +370,6 @@ class Sequence(AbjadObject):
 
                 >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
                 >>> sequence.flatten(indices=[-1])
-                >>> sequence
                 Sequence(1, [2, 3, [4]], 5, 6, 7, 8)
 
         ..  container:: example
@@ -385,10 +380,9 @@ class Sequence(AbjadObject):
 
                 >>> sequence = Sequence('ab', 'cd', ('ef', 'gh'), ('ij', 'kl'))
                 >>> sequence.flatten(classes=(tuple,))
-                >>> sequence
                 Sequence('ab', 'cd', 'ef', 'gh', 'ij', 'kl')
 
-        Returns none.
+        Returns new sequence.
         '''
         from abjad.tools import sequencetools
         elements = sequencetools.flatten_sequence(
@@ -397,7 +391,8 @@ class Sequence(AbjadObject):
             depth=depth,
             indices=indices,
             )
-        self._elements = tuple(elements[:])
+        result = type(self)(*elements)
+        return result
 
     def is_decreasing(self, strict=True):
         r'''Is true when sequence decreases.
@@ -676,53 +671,60 @@ class Sequence(AbjadObject):
         except TypeError:
             return False
 
-    ### PUBLIC METHODS ###
-
     def reverse(self):
-        '''Reverses this sequence.
+        '''Reverses sequence.
 
-        ::
+        ..  container:: example
 
-            >>> sequencetools.Sequence(1, 2, 3, 4, 5).reverse()
-            Sequence(5, 4, 3, 2, 1)
+            **Example.**
 
-        Emits new sequence.
+            ::
+
+                >>> sequencetools.Sequence(1, 2, 3, 4, 5).reverse()
+                Sequence(5, 4, 3, 2, 1)
+
+        Returns new sequence.
         '''
         return type(self)(*reversed(self))
 
     def rotate(self, n):
-        '''Rotates this sequence.
+        '''Rotates sequence.
 
-        Rotates `sequence` to the right:
+        ..  container:: example
 
-        ::
+            **Example 1.** Rotates `sequence` to the right:
 
-            >>> sequencetools.Sequence(*list(range(10))).rotate(4)
-            Sequence(6, 7, 8, 9, 0, 1, 2, 3, 4, 5)
+            ::
 
-        Rotates `sequence` to the left:
+                >>> sequencetools.Sequence(*list(range(10))).rotate(4)
+                Sequence(6, 7, 8, 9, 0, 1, 2, 3, 4, 5)
 
-        ::
+        ..  container:: example
 
-            >>> sequencetools.Sequence(*list(range(10))).rotate(-3)
-            Sequence(3, 4, 5, 6, 7, 8, 9, 0, 1, 2)
+            **Example 2.** Rotates `sequence` to the left:
 
-        Rotates `sequence` neither to the right nor the left:
+            ::
 
-        ::
+                >>> sequencetools.Sequence(*list(range(10))).rotate(-3)
+                Sequence(3, 4, 5, 6, 7, 8, 9, 0, 1, 2)
 
-            >>> sequencetools.Sequence(*list(range(10))).rotate(0)
-            Sequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+        ..  container:: example
 
-        Emits new sequence.
+            **Example 3.** Rotates `sequence` neither to the right nor the
+            left:
+
+            ::
+
+                >>> sequencetools.Sequence(*list(range(10))).rotate(0)
+                Sequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+        Returns new sequence.
         '''
-
         result = []
         if len(self):
             n = n % len(self)
             for element in self[-n:len(self)] + self[:-n]:
                 result.append(element)
-                #result.append(copy.deepcopy(element))
         return type(self)(*result)
 
 
