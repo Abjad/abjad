@@ -134,6 +134,51 @@ class SequenceExpression(AbjadObject):
             >>> expression(1, 2, 3)
             Sequence(1, 2, 3, 4, 5)
 
+    ..  container:: example
+
+        **Example 10.** Gets storage format:
+
+        ::
+
+            >>> expression = sequencetools.SequenceExpression()
+            >>> expression = expression.reverse()
+            >>> expression = expression.flatten()
+            >>> expression = expression[:-3]
+            >>> expression = expression[0]
+
+        ::
+
+            >>> print(format(expression))
+            sequencetools.SequenceExpression(
+                callbacks=(
+                    datastructuretools.Callback(
+                        name='Sequence.reverse',
+                        ),
+                    datastructuretools.Callback(
+                        name='Sequence.flatten',
+                        keywords=[
+                            ('classes', None),
+                            ('depth', -1),
+                            ('indices', None),
+                            ],
+                        ),
+                    datastructuretools.Callback(
+                        name='Sequence.__getitem__',
+                        arguments=datastructuretools.TypedTuple(
+                            (
+                                slice(None, -3, None),
+                                )
+                            ),
+                        ),
+                    datastructuretools.Callback(
+                        name='Sequence.__getitem__',
+                        arguments=datastructuretools.TypedTuple(
+                            (0,)
+                            ),
+                        ),
+                    ),
+                )
+
     Initializer returns expression.
 
     Call returns object.
