@@ -12,20 +12,20 @@ class Callback(AbjadObject):
         ::
 
             >>> callback = datastructuretools.Callback(
-            ...     name='round',
+            ...     name='int',
             ...     arguments=(99.25,),
             ...     )
 
         ::
 
             >>> callback()
-            99.0
+            99
 
         ::
 
             >>> print(format(callback))
             datastructuretools.Callback(
-                name='round',
+                name='int',
                 arguments=datastructuretools.TypedTuple(
                     (99.25,)
                     ),
