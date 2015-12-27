@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import operator
-from abjad.tools.datastructuretools.Expression import Expression
 from abjad.tools.topleveltools.new import new
+from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
 
-class CompoundPattern(Expression):
+class CompoundPattern(TypedTuple):
     r'''Compound pattern.
 
     ..  container:: example
@@ -117,6 +117,7 @@ class CompoundPattern(Expression):
 
     __slots__ = (
         '_invert',
+        '_operator',
         )
 
     _name_to_operator = {
@@ -134,12 +135,12 @@ class CompoundPattern(Expression):
         for item in items:
             assert isinstance(item, prototype), repr(item)
         assert operator in self._name_to_operator, repr(operator)
-        Expression.__init__(
+        TypedTuple.__init__(
             self,
             items=items,
-            operator=operator,
             )
         self._invert = invert
+        self._operator = operator
 
     ### SPECIAL METHODS ###
 
@@ -529,6 +530,16 @@ class CompoundPattern(Expression):
         Returns true, false or none.
         '''
         return self._invert
+
+    @property
+    def operator(self):
+        r'''Gets operator of compounnd pattern.
+
+        Set to string.
+
+        Returns string.
+        '''
+        return self._operator
 
     ### PUBLIC METHODS ###
 
