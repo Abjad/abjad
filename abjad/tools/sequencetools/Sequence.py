@@ -10,15 +10,15 @@ class Sequence(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
-        '_elements',
+        '_items',
         )
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
-        args = args or ()
-        elements = tuple(args)
-        self._elements = elements
+    def __init__(self, items=None):
+        items = items or ()
+        items = tuple(items)
+        self._items = items
 
     ### SPECIAL METHODS ###
 
@@ -31,48 +31,49 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 2, 3) + Sequence(4, 5, 6)
-                Sequence(1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3)) + Sequence((4, 5, 6))
+                Sequence((1, 2, 3, 4, 5, 6))
 
             Adds tuple to sequence:
 
             ::
 
-                >>> Sequence(1, 2, 3) + (4, 5, 6)
-                Sequence(1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3)) + (4, 5, 6)
+                Sequence((1, 2, 3, 4, 5, 6))
 
             Adds list to sequence:
 
             ::
 
-                >>> Sequence(1, 2, 3) + [4, 5, 6]
-                Sequence(1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3)) + [4, 5, 6]
+                Sequence((1, 2, 3, 4, 5, 6))
 
         Returns new sequence.
         '''
-        expr = type(self)(*expr)
-        elements = self._elements + expr._elements
-        return type(self)(*elements)
+        expr = type(self)(expr)
+        items = self._items + expr._items
+        return type(self)(items)
 
     def __eq__(self, expr):
-        r'''Is true when `expr` is a sequence with elements equal to those of
+        r'''Is true when `expr` is a sequence with items equal to those of
         this sequence. Otherwise false.
 
         ..  container:: example
 
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6) == Sequence(1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3, 4, 5, 6)) == Sequence((1, 2, 3, 4, 5, 6))
                 True
 
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6) == (1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3, 4, 5, 6)) == ((1, 2, 3, 4, 5, 6))
                 False
 
+        Returns true or false.
         '''
         if isinstance(expr, type(self)):
-            return self._elements == expr._elements
+            return self._items == expr._items
         return False
 
     def __format__(self, format_specification=''):
@@ -80,12 +81,14 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Prints format:
+            **Example.** Prints format:
 
             ::
 
-                >>> print(format(Sequence(1, 2, 3, 4, 5, 6)))
-                sequencetools.Sequence(1, 2, 3, 4, 5, 6)
+                >>> print(format(Sequence((1, 2, 3, 4, 5, 6))))
+                sequencetools.Sequence(
+                    items=(1, 2, 3, 4, 5, 6),
+                    )
 
         Returns string.
         '''
@@ -99,18 +102,18 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Gets last item in sequence:
+            **Example.** Gets last item in sequence:
 
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6)[-1]
+                >>> Sequence((1, 2, 3, 4, 5, 6))[-1]
                 6
 
         Returns item.
         '''
-        result = self._elements.__getitem__(i)
+        result = self._items.__getitem__(i)
         if isinstance(i, slice):
-            return type(self)(*result)
+            return type(self)(result)
         return result
 
     def __hash__(self):
@@ -131,12 +134,12 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> len(Sequence(1, 2, 3, 4, 5, 6))
+                >>> len(Sequence((1, 2, 3, 4, 5, 6)))
                 6
 
         Returns nonnegative integer.
         '''
-        return len(self._elements)
+        return len(self._items)
 
     def __ne__(self, expr):
         r'''Is true when sequence is not equal to `expr`. Otherwise false.
@@ -145,12 +148,12 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6) != (1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3, 4, 5, 6)) != (1, 2, 3, 4, 5, 6)
                 True
 
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6) != Sequence(1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3, 4, 5, 6)) != Sequence((1, 2, 3, 4, 5, 6))
                 False
 
         '''
@@ -161,62 +164,55 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            Adds sequence to sequence:
+            **Example 1.** Adds sequence to sequence:
 
             ::
 
-                >>> Sequence(1, 2, 3) + Sequence(4, 5, 6)
-                Sequence(1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3)) + Sequence((4, 5, 6))
+                Sequence((1, 2, 3, 4, 5, 6))
 
-            Adds sequence to tuple:
+        ..  container:: example
 
-            ::
-
-                >>> (1, 2, 3) + Sequence(4, 5, 6)
-                Sequence(1, 2, 3, 4, 5, 6)
-
-            Adds sequence to list:
+            **Example 2.** Adds sequence to tuple:
 
             ::
 
-                >>> [1, 2, 3] + Sequence(4, 5, 6)
-                Sequence(1, 2, 3, 4, 5, 6)
+                >>> (1, 2, 3) + Sequence((4, 5, 6))
+                Sequence((1, 2, 3, 4, 5, 6))
+
+        ..  container:: example
+
+            **Example 3.** Adds sequence to list:
+
+            ::
+
+                >>> [1, 2, 3] + Sequence((4, 5, 6))
+                Sequence((1, 2, 3, 4, 5, 6))
 
         Returns new sequence.
         '''
-        expr = type(self)(*expr)
-        elements = expr._elements + self._elements
-        return type(self)(*elements)
+        expr = type(self)(expr)
+        items = expr._items + self._items
+        return type(self)(items)
 
     def __repr__(self):
         r'''Gets interpreter representation of sequence.
 
         ..  container:: example
 
+            **Example.**
+
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6)
-                Sequence(1, 2, 3, 4, 5, 6)
+                >>> Sequence((1, 2, 3, 4, 5, 6))
+                Sequence((1, 2, 3, 4, 5, 6))
 
         Returns string.
         '''
-        return AbjadObject.__repr__(self)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = tuple(self._elements)
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=positional_argument_values,
-            )
+        items = ', '.join([repr(_) for _ in self.items])
+        string = '{}(({}))'
+        string = string.format(type(self).__name__, items)
+        return string
 
     ### PUBLIC PROPERTIES ###
 
@@ -228,22 +224,22 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 1, 1, 1, 1, 1).degree_of_rotational_symmetry
+                >>> Sequence((1, 1, 1, 1, 1, 1)).degree_of_rotational_symmetry
                 6
 
             ::
 
-                >>> Sequence(1, 2, 1, 2, 1, 2).degree_of_rotational_symmetry
+                >>> Sequence((1, 2, 1, 2, 1, 2)).degree_of_rotational_symmetry
                 3
 
             ::
 
-                >>> Sequence(1, 2, 3, 1, 2, 3).degree_of_rotational_symmetry
+                >>> Sequence((1, 2, 3, 1, 2, 3)).degree_of_rotational_symmetry
                 2
 
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6).degree_of_rotational_symmetry
+                >>> Sequence((1, 2, 3, 4, 5, 6)).degree_of_rotational_symmetry
                 1
 
             ::
@@ -262,6 +258,14 @@ class Sequence(AbjadObject):
         return degree_of_rotational_symmetry
 
     @property
+    def items(self):
+        r'''Gets sequence items.
+
+        Returns tuple.
+        '''
+        return self._items
+
+    @property
     def period_of_rotation(self):
         '''Gets period of rotation.
 
@@ -269,22 +273,22 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 2, 3, 4, 5, 6).period_of_rotation
+                >>> Sequence((1, 2, 3, 4, 5, 6)).period_of_rotation
                 6
 
             ::
 
-                >>> Sequence(1, 2, 3, 1, 2, 3).period_of_rotation
+                >>> Sequence((1, 2, 3, 1, 2, 3)).period_of_rotation
                 3
 
             ::
 
-                >>> Sequence(1, 2, 1, 2, 1, 2).period_of_rotation
+                >>> Sequence((1, 2, 1, 2, 1, 2)).period_of_rotation
                 2
 
             ::
 
-                >>> Sequence(1, 1, 1, 1, 1, 1).period_of_rotation
+                >>> Sequence((1, 1, 1, 1, 1, 1)).period_of_rotation
                 1
 
             ::
@@ -310,9 +314,9 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence = Sequence((1, [2, 3, [4]], 5, [6, 7, [8]]))
                 >>> sequence.flatten()
-                Sequence(1, 2, 3, 4, 5, 6, 7, 8)
+                Sequence((1, 2, 3, 4, 5, 6, 7, 8))
 
         ..  container:: example
 
@@ -320,9 +324,9 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence = Sequence((1, [2, 3, [4]], 5, [6, 7, [8]]))
                 >>> sequence.flatten(depth=1)
-                Sequence(1, 2, 3, [4], 5, 6, 7, [8])
+                Sequence((1, 2, 3, [4], 5, 6, 7, [8]))
 
         ..  container:: example
 
@@ -330,9 +334,9 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence = Sequence((1, [2, 3, [4]], 5, [6, 7, [8]]))
                 >>> sequence.flatten(depth=2)
-                Sequence(1, 2, 3, 4, 5, 6, 7, 8)
+                Sequence((1, 2, 3, 4, 5, 6, 7, 8))
 
         ..  container:: example
 
@@ -340,9 +344,9 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence = Sequence((1, [2, 3, [4]], 5, [6, 7, [8]]))
                 >>> sequence.flatten(indices=[3])
-                Sequence(1, [2, 3, [4]], 5, 6, 7, 8)
+                Sequence((1, [2, 3, [4]], 5, 6, 7, 8))
 
         ..  container:: example
 
@@ -350,9 +354,9 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence = Sequence(1, [2, 3, [4]], 5, [6, 7, [8]])
+                >>> sequence = Sequence((1, [2, 3, [4]], 5, [6, 7, [8]]))
                 >>> sequence.flatten(indices=[-1])
-                Sequence(1, [2, 3, [4]], 5, 6, 7, 8)
+                Sequence((1, [2, 3, [4]], 5, 6, 7, 8))
 
         ..  container:: example
 
@@ -360,20 +364,20 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence = Sequence('ab', 'cd', ('ef', 'gh'), ('ij', 'kl'))
+                >>> sequence = Sequence(('ab', 'cd', ('ef', 'gh'), ('ij', 'kl')))
                 >>> sequence.flatten(classes=(tuple,))
-                Sequence('ab', 'cd', 'ef', 'gh', 'ij', 'kl')
+                Sequence(('ab', 'cd', 'ef', 'gh', 'ij', 'kl'))
 
         Returns new sequence.
         '''
         from abjad.tools import sequencetools
-        elements = sequencetools.flatten_sequence(
-            self._elements[:],
+        items = sequencetools.flatten_sequence(
+            self._items[:],
             classes=classes,
             depth=depth,
             indices=indices,
             )
-        result = type(self)(*elements)
+        result = type(self)(items)
         return result
 
     def is_decreasing(self, strict=True):
@@ -385,17 +389,17 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(5, 4, 3, 2, 1, 0).is_decreasing(strict=True)
+                >>> Sequence((5, 4, 3, 2, 1, 0)).is_decreasing(strict=True)
                 True
 
             ::
 
-                >>> Sequence(3, 3, 3, 2, 1, 0).is_decreasing(strict=True)
+                >>> Sequence((3, 3, 3, 2, 1, 0)).is_decreasing(strict=True)
                 False
 
             ::
 
-                >>> Sequence(3, 3, 3, 3, 3, 3).is_decreasing(strict=True)
+                >>> Sequence((3, 3, 3, 3, 3, 3)).is_decreasing(strict=True)
                 False
 
             ::
@@ -409,17 +413,17 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(5, 4, 3, 2, 1, 0).is_decreasing(strict=False)
+                >>> Sequence((5, 4, 3, 2, 1, 0)).is_decreasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence(3, 3, 3, 2, 1, 0).is_decreasing(strict=False)
+                >>> Sequence((3, 3, 3, 2, 1, 0)).is_decreasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence(3, 3, 3, 3, 3, 3).is_decreasing(strict=False)
+                >>> Sequence((3, 3, 3, 3, 3, 3)).is_decreasing(strict=False)
                 True
 
             ::
@@ -461,17 +465,17 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(0, 1, 2, 3, 4, 5).is_increasing(strict=True)
+                >>> Sequence((0, 1, 2, 3, 4, 5)).is_increasing(strict=True)
                 True
 
             ::
 
-                >>> Sequence(0, 1, 2, 3, 3, 3).is_increasing(strict=True)
+                >>> Sequence((0, 1, 2, 3, 3, 3)).is_increasing(strict=True)
                 False
 
             ::
 
-                >>> Sequence(3, 3, 3, 3, 3, 3).is_increasing(strict=True)
+                >>> Sequence((3, 3, 3, 3, 3, 3)).is_increasing(strict=True)
                 False
 
             ::
@@ -485,17 +489,17 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(0, 1, 2, 3, 4, 5).is_increasing(strict=False)
+                >>> Sequence((0, 1, 2, 3, 4, 5)).is_increasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence(0, 1, 2, 3, 3, 3).is_increasing(strict=False)
+                >>> Sequence((0, 1, 2, 3, 3, 3)).is_increasing(strict=False)
                 True
 
             ::
 
-                >>> Sequence(3, 3, 3, 3, 3, 3).is_increasing(strict=False)
+                >>> Sequence((3, 3, 3, 3, 3, 3)).is_increasing(strict=False)
                 True
 
             ::
@@ -537,7 +541,7 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(4, 5, 0, 3, 2, 1).is_permutation()
+                >>> Sequence((4, 5, 0, 3, 2, 1)).is_permutation()
                 True
 
         ..  container:: example
@@ -546,7 +550,7 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 1, 5, 3, 2, 1).is_permutation()
+                >>> Sequence((1, 1, 5, 3, 2, 1)).is_permutation()
                 False
 
         Returns true or false.
@@ -562,7 +566,7 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(0, 1, 2, 6, 7, 8).is_repetition_free()
+                >>> Sequence((0, 1, 2, 6, 7, 8)).is_repetition_free()
                 True
 
             Is true when sequence is empty:
@@ -578,7 +582,7 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(0, 1, 2, 2, 7, 8).is_repetition_free()
+                >>> Sequence((0, 1, 2, 2, 7, 8)).is_repetition_free()
                 False
 
         Returns true or false.
@@ -602,23 +606,23 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 1, 1, 1).is_restricted_growth_function()
+                >>> Sequence((1, 1, 1, 1)).is_restricted_growth_function()
                 True
 
             ::
 
 
-                >>> Sequence(1, 1, 1, 2).is_restricted_growth_function()
+                >>> Sequence((1, 1, 1, 2)).is_restricted_growth_function()
                 True
 
             ::
 
-                >>> Sequence(1, 1, 2, 1).is_restricted_growth_function()
+                >>> Sequence((1, 1, 2, 1)).is_restricted_growth_function()
                 True
 
             ::
 
-                >>> Sequence(1, 1, 2, 2).is_restricted_growth_function()
+                >>> Sequence((1, 1, 2, 2)).is_restricted_growth_function()
                 True
 
         ..  container:: example
@@ -627,12 +631,12 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> Sequence(1, 1, 1, 3).is_restricted_growth_function()
+                >>> Sequence((1, 1, 1, 3)).is_restricted_growth_function()
                 False
 
             ::
 
-                >>> Sequence(17).is_restricted_growth_function()
+                >>> Sequence((17,)).is_restricted_growth_function()
                 False
 
         A restricted growth function is a sequence ``l`` such that
@@ -662,12 +666,12 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequencetools.Sequence(1, 2, 3, 4, 5).reverse()
-                Sequence(5, 4, 3, 2, 1)
+                >>> Sequence((1, 2, 3, 4, 5)).reverse()
+                Sequence((5, 4, 3, 2, 1))
 
         Returns new sequence.
         '''
-        return type(self)(*reversed(self))
+        return type(self)(reversed(self))
 
     def rotate(self, n):
         '''Rotates sequence.
@@ -678,8 +682,8 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequencetools.Sequence(*list(range(10))).rotate(4)
-                Sequence(6, 7, 8, 9, 0, 1, 2, 3, 4, 5)
+                >>> Sequence(tuple(range(10))).rotate(4)
+                Sequence((6, 7, 8, 9, 0, 1, 2, 3, 4, 5))
 
         ..  container:: example
 
@@ -687,8 +691,8 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequencetools.Sequence(*list(range(10))).rotate(-3)
-                Sequence(3, 4, 5, 6, 7, 8, 9, 0, 1, 2)
+                >>> Sequence(tuple(range(10))).rotate(-3)
+                Sequence((3, 4, 5, 6, 7, 8, 9, 0, 1, 2))
 
         ..  container:: example
 
@@ -697,17 +701,17 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequencetools.Sequence(*list(range(10))).rotate(0)
-                Sequence(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+                >>> Sequence(tuple(range(10))).rotate(0)
+                Sequence((0, 1, 2, 3, 4, 5, 6, 7, 8, 9))
 
         Returns new sequence.
         '''
         result = []
         if len(self):
             n = n % len(self)
-            for element in self[-n:len(self)] + self[:-n]:
-                result.append(element)
-        return type(self)(*result)
+            for item in self[-n:len(self)] + self[:-n]:
+                result.append(item)
+        return type(self)(result)
 
 
 collections.Sequence.register(Sequence)

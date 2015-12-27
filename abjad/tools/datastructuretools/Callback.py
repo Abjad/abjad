@@ -71,8 +71,8 @@ class Callback(AbjadObject):
         ::
 
             >>> list_ = [1, 2, [3, [4]], 5]
-            >>> callback(*list_)
-            Sequence(1, 2, [3, [4]], 5)
+            >>> callback(list_)
+            Sequence((1, 2, [3, [4]], 5))
 
     Initializer returns callback.
 

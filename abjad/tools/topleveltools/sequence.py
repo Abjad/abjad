@@ -35,8 +35,8 @@ def sequence():
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
-            Sequence(5, 4, 3, 2, 1)
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((5, 4, 3, 2, 1))
 
     ..  container:: example
 
@@ -78,8 +78,8 @@ def sequence():
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
-            Sequence(3, 2, 1)
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((3, 2, 1))
 
     Returns sequence expression.
     '''

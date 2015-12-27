@@ -17,7 +17,7 @@ class SequenceExpression(AbjadObject):
         ::
 
             >>> expression()
-            Sequence()
+            Sequence(())
             
     ..  container:: example
 
@@ -30,8 +30,8 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
-            Sequence(1, 2, 3, 4, 5)
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((1, 2, 3, 4, 5))
 
     ..  container:: example
 
@@ -44,8 +44,8 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
-            Sequence(5, [3, [4]], 2, 1)
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((5, [3, [4]], 2, 1))
 
     ..  container:: example
 
@@ -59,8 +59,8 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
-            Sequence(5, 4, 3, 2, 1)
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((5, 4, 3, 2, 1))
 
     ..  container:: example
 
@@ -74,8 +74,8 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
-            Sequence(5, 3, 4, 2, 1)
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((5, 3, 4, 2, 1))
 
     ..  container:: example
 
@@ -88,7 +88,7 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
+            >>> expression([1, 2, [3, [4]], 5])
             5
 
     ..  container:: example
@@ -102,8 +102,8 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
-            Sequence(1, 2, [3, [4]])
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((1, 2, [3, [4]]))
 
     ..  container:: example
 
@@ -117,8 +117,8 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression(1, 2, [3, [4]], 5)
-            Sequence(1, 2, 3, 4)
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((1, 2, 3, 4))
 
     ..  container:: example
 
@@ -131,8 +131,8 @@ class SequenceExpression(AbjadObject):
 
         ::
 
-            >>> expression(1, 2, 3)
-            Sequence(1, 2, 3, 4, 5)
+            >>> expression([1, 2, 3])
+            Sequence((1, 2, 3, 4, 5))
 
     ..  container:: example
 
@@ -221,7 +221,7 @@ class SequenceExpression(AbjadObject):
         if args is None:
             sequence = sequencetools.Sequence()
         else:
-            sequence = sequencetools.Sequence(*args)
+            sequence = sequencetools.Sequence(args)
         callbacks = self.callbacks or ()
         for callback in callbacks:
             sequence = callback(sequence)

@@ -26,7 +26,7 @@ def partition_sequence_by_restricted_growth_function(
     from abjad.tools import sequencetools
 
     restricted_growth_function = sequencetools.Sequence(
-        *restricted_growth_function)
+        restricted_growth_function)
     if not restricted_growth_function.is_restricted_growth_function():
         message = 'must be restricted growth function: {!r}.'
         message = message.format(restricted_growth_function)

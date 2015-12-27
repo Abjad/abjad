@@ -24,7 +24,7 @@ def permute_sequence(sequence, permutation):
 
     sequence_type = type(sequence)
 
-    if not sequencetools.Sequence(*permutation).is_permutation() or \
+    if not sequencetools.Sequence(permutation).is_permutation() or \
         len(sequence) != len(permutation):
         message = '{!r} must be permutation of length {}.'
         message = message.format(permutation, len(sequence))

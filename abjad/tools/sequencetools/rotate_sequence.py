@@ -63,7 +63,7 @@ def rotate_sequence(sequence, n):
 
     sequence_type = type(sequence)
 
-    result = sequencetools.Sequence(*sequence)
+    result = sequencetools.Sequence(sequence)
     result = result.rotate(n)
     result = sequence_type(result)
     return result

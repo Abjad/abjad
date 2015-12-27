@@ -34,6 +34,6 @@ def reverse_sequence(sequence):
 
     sequence_type = type(sequence)
 
-    result = sequencetools.Sequence(*sequence).reverse()
+    result = sequencetools.Sequence(sequence).reverse()
     result = sequence_type(result)
     return result
