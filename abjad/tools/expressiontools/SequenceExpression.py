@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import functools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -17,6 +19,11 @@ class SequenceExpression(AbjadObject):
 
             >>> expression()
             Sequence(())
+
+        ::
+
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((1, 2, [3, [4]], 5))
             
     ..  container:: example
 
@@ -228,16 +235,16 @@ class SequenceExpression(AbjadObject):
             )
         return self._append_callback(callback)
 
-    def __call__(self, *args):
-        r'''Calls sequence expression on `expr`.
+    def __call__(self, items=None):
+        r'''Calls sequence expression on `item`.
 
         Returns sequence.
         '''
         from abjad.tools import sequencetools
-        if args is None:
+        if items is None:
             sequence = sequencetools.Sequence()
         else:
-            sequence = sequencetools.Sequence(args)
+            sequence = sequencetools.Sequence(items)
         callbacks = self.callbacks or ()
         for callback in callbacks:
             sequence = callback(sequence)
@@ -329,6 +336,7 @@ class SequenceExpression(AbjadObject):
         callback = expressiontools.Callback(
             name='Sequence.reverse',
             )
+        #callback = functools.partial(sequencetools.Sequence.reverse)
         return self._append_callback(callback)
 
     def rotate(self):
