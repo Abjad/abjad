@@ -9,7 +9,7 @@ class Pattern(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Pattern that matches three indices out of every eight:
+        **Example 1.** Matches three indices out of every eight:
 
         ::
 
@@ -44,8 +44,7 @@ class Pattern(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Pattern that matches three indices out of every
-        sixteen:
+        **Example 2.** Matches three indices out of every sixteen:
 
         ::
 
@@ -426,8 +425,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that matches three indices out of every
-            five:
+            **Example 1.** Matches three indices out of every five:
 
             ::
 
@@ -459,8 +457,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Pattern that matches three indices out of every
-            six:
+            **Example 2.** Matches three indices out of every six:
 
             ::
 
@@ -508,8 +505,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1a.** Pattern that matches three indices out of every 
-            eight:
+            **Example 1a.** Matches three indices out of every eight:
 
             ::
 
@@ -542,8 +538,8 @@ class Pattern(AbjadValueObject):
                 14 
                 15 True
 
-            **Example 1b.** Pattern that matches three indices out of every 
-            eight, offset ``1`` to the left:
+            **Example 1b.** Matches three indices out of every eight, offset
+            ``1`` to the left:
 
             ::
 
@@ -580,8 +576,8 @@ class Pattern(AbjadValueObject):
                 14 True
                 15 True
 
-            **Example 1c.** Pattern that matches three indices out of every 
-            eight, offset ``2`` to the left:
+            **Example 1c.** Matches three indices out of every eight, offset
+            ``2`` to the left:
 
             ::
 
@@ -620,8 +616,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2a.** Pattern that matches three indices out of every
-            sixteen:
+            **Example 2a.** Matches three indices out of every sixteen:
 
             ::
 
@@ -654,8 +649,8 @@ class Pattern(AbjadValueObject):
                 14 
                 15
 
-            **Example 2b.** Pattern that matches three indices out of every
-            sixteen, offset ``1`` to the left:
+            **Example 2b.** Matches three indices out of every sixteen, offset
+            ``1`` to the left:
 
             ::
 
@@ -692,8 +687,8 @@ class Pattern(AbjadValueObject):
                 14 
                 15 True
 
-            **Example 2c.** Pattern that matches three indices out of every
-            sixteen, offset ``2`` to the left:
+            **Example 2c.** Matches three indices out of every sixteen, offset
+            ``2`` to the left:
 
             ::
 
@@ -756,6 +751,93 @@ class Pattern(AbjadValueObject):
                     return True ^ invert
         return False ^ invert
 
+    def reverse(self):
+        r'''Reverses pattern.
+
+        ..  container:: example
+
+            **Example 1.** Matches three indices out of every eight:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+        ..  container:: example
+
+            **Example 2.** Reverses pattern:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern = pattern.reverse()
+                >>> print(format(pattern))
+                patterntools.Pattern(
+                    indices=(-1, -2, -8),
+                    period=8,
+                    )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 
+                2 
+                3 
+                4 
+                5 
+                6 True
+                7 True
+                8 True
+                9 
+                10 
+                11 
+                12 
+                13 
+                14 True
+                15 True
+
+        Returns new pattern.
+        '''
+        indices = [-index - 1 for index in self.indices]
+        return new(self, indices=indices)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -764,8 +846,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that matches three indices out of every
-            eight:
+            **Example 1.** Matches three indices out of every eight:
 
             ::
 
@@ -781,8 +862,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Pattern that matches three indices out of every
-            sixteen:
+            **Example 2.** Matches three indices out of every sixteen:
 
             ::
 
@@ -810,8 +890,7 @@ class Pattern(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Pattern that matches three indices out of every
-            eight:
+            **Example 1.** Matches three indices out of every eight:
 
             ::
 
