@@ -116,8 +116,6 @@ class Pattern(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Masks'
-
     __slots__ = (
         '_indices',
         '_inverted',

@@ -79,8 +79,6 @@ class PatternInventory(TypedTuple):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Masks'
-
     __slots__ = (
         )
 

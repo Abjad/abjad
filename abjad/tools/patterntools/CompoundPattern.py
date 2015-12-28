@@ -113,8 +113,6 @@ class CompoundPattern(TypedTuple):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Masks'
-
     __slots__ = (
         '_inverted',
         '_operator',
@@ -488,7 +486,7 @@ class CompoundPattern(TypedTuple):
 
     @property
     def inverted(self):
-        '''Gets inversion flag of pattern.
+        '''Is true when compound pattern is inverted. Otherwise false.
 
         ..  container:: example
 
@@ -524,6 +522,8 @@ class CompoundPattern(TypedTuple):
 
                 >>> pattern.get_boolean_vector(total_length=16)
                 [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+
+        Defaults to none.
 
         Set to true, false or none.
 
@@ -1344,4 +1344,73 @@ class CompoundPattern(TypedTuple):
         Returns new compound pattern.
         '''
         patterns = [_.reverse() for _ in self]
+        return new(self, items=patterns)
+
+    def rotate(self, n=0):
+        r'''Rotates compound pattern.
+
+        ..  container:: example
+
+            **Example 1.** Matches every index that is (equal to 0 % 2) AND
+            (not one of the last three indices):
+
+            ::
+
+                >>> pattern = patterntools.CompoundPattern(
+                ...     [
+                ...         patterntools.Pattern(
+                ...             indices=[0],
+                ...             period=2,
+                ...             ),
+                ...         patterntools.Pattern(
+                ...             indices=[-3, -2, -1],
+                ...             inverted=True,
+                ...             ),
+                ...         ],
+                ...     operator='and',
+                ...     )
+
+            ::
+
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=2,
+                            ),
+                        patterntools.Pattern(
+                            indices=(-3, -2, -1),
+                            inverted=True,
+                            ),
+                        ),
+                    operator='and',
+                    )
+
+            Rotates pattern two elements to the right:
+
+            ::
+
+                >>> pattern = pattern.rotate(n=2)
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(2,),
+                            period=2,
+                            ),
+                        patterntools.Pattern(
+                            indices=(-1, 0, 1),
+                            inverted=True,
+                            ),
+                        ),
+                    operator='and',
+                    )
+            
+            New pattern matches every index that is (equal to 2 % 2) AND (not
+            the first, second or last index in the pattern).
+
+        Returns new compound pattern.
+        '''
+        patterns = [_.rotate(n=n) for _ in self]
         return new(self, items=patterns)
