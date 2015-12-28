@@ -457,7 +457,6 @@ class AccelerandoRhythmMaker(RhythmMaker):
     __documentation_section__ = 'Rhythm-makers'
 
     __slots__ = (
-        '_count_masks',
         '_exponent',
         '_interpolation_specifiers',
         )
@@ -476,13 +475,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
+            count_masks=count_masks,
             duration_spelling_specifier=duration_spelling_specifier,
             division_masks=division_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
-        count_masks = self._prepare_masks(count_masks)
-        self._count_masks = count_masks
         self._interpolation_specifiers = interpolation_specifiers
 
     ### SPECIAL METHODS ###
@@ -786,25 +784,26 @@ class AccelerandoRhythmMaker(RhythmMaker):
         for index, division in enumerate(divisions):
             accelerando = self._make_accelerando(division, index)
             selections.append(accelerando)
-        if self.count_masks is not None:
-            notes = iterate(selections).by_class(scoretools.Note)
-            notes = list(notes)
-            total_notes = len(notes)
-            for i, note in enumerate(notes[:]):
-                matching_mask = self.count_masks.get_matching_pattern(
-                    i,
-                    total_notes,
-                    )
-                if isinstance(matching_mask, rhythmmakertools.SilenceMask):
-                    rest = scoretools.Rest(note.written_duration)
-                    inspector = inspect_(note)
-                    if inspector.has_indicator(durationtools.Multiplier):
-                        multiplier = inspector.get_indicator(
-                            durationtools.Multiplier,
-                            )
-                        multiplier = durationtools.Multiplier(multiplier)
-                        attach(multiplier, rest)
-                    mutate(note).replace([rest])
+#        if self.count_masks is not None:
+#            notes = iterate(selections).by_class(scoretools.Note)
+#            notes = list(notes)
+#            total_notes = len(notes)
+#            for i, note in enumerate(notes[:]):
+#                matching_mask = self.count_masks.get_matching_pattern(
+#                    i,
+#                    total_notes,
+#                    )
+#                if isinstance(matching_mask, rhythmmakertools.SilenceMask):
+#                    rest = scoretools.Rest(note.written_duration)
+#                    inspector = inspect_(note)
+#                    if inspector.has_indicator(durationtools.Multiplier):
+#                        multiplier = inspector.get_indicator(
+#                            durationtools.Multiplier,
+#                            )
+#                        multiplier = durationtools.Multiplier(multiplier)
+#                        attach(multiplier, rest)
+#                    mutate(note).replace([rest])
+        self._apply_count_masks(selections)
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
         selections = self._apply_division_masks(selections, rotation)

@@ -26,6 +26,7 @@ class RhythmMaker(AbjadValueObject):
 
     __slots__ = (
         '_beam_specifier',
+        '_count_masks',
         '_division_masks',
         '_duration_spelling_specifier',
         '_rotation',
@@ -38,6 +39,7 @@ class RhythmMaker(AbjadValueObject):
     def __init__(
         self,
         beam_specifier=None,
+        count_masks=None,
         division_masks=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
@@ -47,6 +49,8 @@ class RhythmMaker(AbjadValueObject):
         prototype = (rhythmmakertools.BeamSpecifier, type(None))
         assert isinstance(beam_specifier, prototype)
         self._beam_specifier = beam_specifier
+        count_masks = self._prepare_masks(count_masks)
+        self._count_masks = count_masks
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
         self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
@@ -166,6 +170,29 @@ class RhythmMaker(AbjadValueObject):
             return True
         else:
             return False
+
+    def _apply_count_masks(self, selections):
+        from abjad.tools import rhythmmakertools
+        if self.count_masks is None:
+            return
+        notes = iterate(selections).by_class(scoretools.Note)
+        notes = list(notes)
+        total_notes = len(notes)
+        for i, note in enumerate(notes[:]):
+            matching_mask = self.count_masks.get_matching_pattern(
+                i,
+                total_notes,
+                )
+            if isinstance(matching_mask, rhythmmakertools.SilenceMask):
+                rest = scoretools.Rest(note.written_duration)
+                inspector = inspect_(note)
+                if inspector.has_indicator(durationtools.Multiplier):
+                    multiplier = inspector.get_indicator(
+                        durationtools.Multiplier,
+                        )
+                    multiplier = durationtools.Multiplier(multiplier)
+                    attach(multiplier, rest)
+                mutate(note).replace([rest])
 
     def _apply_division_masks(self, selections, rotation):
         from abjad.tools import rhythmmakertools
@@ -473,6 +500,18 @@ class RhythmMaker(AbjadValueObject):
         Set to beam specifier or none.
         '''
         return self._beam_specifier
+
+    @property
+    def count_masks(self):
+        r'''Gets count masks of rhythm-maker.
+
+        Set to patterns or none.
+
+        Defaults to none.
+
+        Returns patterns or none.
+        '''
+        return self._count_masks
 
     @property
     def division_masks(self):
