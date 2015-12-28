@@ -53,7 +53,7 @@ class Talea(AbjadValueObject):
     __documentation_section__ = 'Specifiers'
 
     __slots__ = (
-        '_count_masks',
+        '_logical_tie_masks',
         '_counts',
         '_denominator',
         )
@@ -64,11 +64,11 @@ class Talea(AbjadValueObject):
         self,
         counts=(1,),
         denominator=16,
-        count_masks=None,
+        logical_tie_masks=None,
         ):
         from abjad.tools import rhythmmakertools
-        count_masks = rhythmmakertools.RhythmMaker._prepare_masks(count_masks)
-        self._count_masks = count_masks
+        logical_tie_masks = rhythmmakertools.RhythmMaker._prepare_masks(logical_tie_masks)
+        self._logical_tie_masks = logical_tie_masks
         counts = self._to_tuple(counts)
         assert isinstance(counts, tuple)
         assert all(isinstance(x, int) for x in counts)
@@ -149,15 +149,15 @@ class Talea(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _apply_count_masks(self, counts):
+    def _apply_logical_tie_masks(self, counts):
         from abjad.tools import rhythmmakertools
-        if not self.count_masks:
+        if not self.logical_tie_masks:
             return counts
-        count_masks = self.count_masks
+        logical_tie_masks = self.logical_tie_masks
         new_counts = []
         length = len(counts)
         for i, count in enumerate(counts):
-            matching_mask = count_masks.get_matching_pattern(i, length)
+            matching_mask = logical_tie_masks.get_matching_pattern(i, length)
             if isinstance(matching_mask, rhythmmakertools.SustainMask):
                 new_count = abs(count)
             elif isinstance(matching_mask, rhythmmakertools.SilenceMask):
@@ -176,14 +176,14 @@ class Talea(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def count_masks(self):
+    def logical_tie_masks(self):
         r'''Gets count masks of talea.
 
         Set to count masks or none.
 
         Returns pattern inventory or none.
         '''
-        return self._count_masks
+        return self._logical_tie_masks
 
     @property
     def counts(self):

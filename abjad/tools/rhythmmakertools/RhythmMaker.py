@@ -27,7 +27,7 @@ class RhythmMaker(AbjadValueObject):
 
     __slots__ = (
         '_beam_specifier',
-        '_count_masks',
+        '_logical_tie_masks',
         '_division_masks',
         '_duration_spelling_specifier',
         '_rotation',
@@ -40,7 +40,7 @@ class RhythmMaker(AbjadValueObject):
     def __init__(
         self,
         beam_specifier=None,
-        count_masks=None,
+        logical_tie_masks=None,
         division_masks=None,
         duration_spelling_specifier=None,
         tie_specifier=None,
@@ -50,8 +50,8 @@ class RhythmMaker(AbjadValueObject):
         prototype = (rhythmmakertools.BeamSpecifier, type(None))
         assert isinstance(beam_specifier, prototype)
         self._beam_specifier = beam_specifier
-        count_masks = self._prepare_masks(count_masks)
-        self._count_masks = count_masks
+        logical_tie_masks = self._prepare_masks(logical_tie_masks)
+        self._logical_tie_masks = logical_tie_masks
         prototype = (rhythmmakertools.DurationSpellingSpecifier, type(None))
         self._duration_spelling_specifier = duration_spelling_specifier
         assert isinstance(duration_spelling_specifier, prototype)
@@ -172,15 +172,15 @@ class RhythmMaker(AbjadValueObject):
         else:
             return False
 
-    def _apply_count_masks(self, selections):
+    def _apply_logical_tie_masks(self, selections):
         from abjad.tools import rhythmmakertools
-        if self.count_masks is None:
+        if self.logical_tie_masks is None:
             return
         notes = iterate(selections).by_class(scoretools.Note)
         notes = list(notes)
         total_notes = len(notes)
         for i, note in enumerate(notes[:]):
-            matching_mask = self.count_masks.get_matching_pattern(
+            matching_mask = self.logical_tie_masks.get_matching_pattern(
                 i,
                 total_notes,
                 )
@@ -503,7 +503,7 @@ class RhythmMaker(AbjadValueObject):
         return self._beam_specifier
 
     @property
-    def count_masks(self):
+    def logical_tie_masks(self):
         r'''Gets count masks of rhythm-maker.
 
         Set to patterns or none.
@@ -512,7 +512,7 @@ class RhythmMaker(AbjadValueObject):
 
         Returns patterns or none.
         '''
-        return self._count_masks
+        return self._logical_tie_masks
 
     @property
     def division_masks(self):

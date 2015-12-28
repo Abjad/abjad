@@ -806,7 +806,7 @@ class TaleaRhythmMaker(RhythmMaker):
             total_weight,
             )
         talea = self._get_talea()
-        sequence = talea._apply_count_masks(sequence)
+        sequence = talea._apply_logical_tie_masks(sequence)
         result = sequencetools.split_sequence(sequence, weights, cyclic=False)
         return result
 
@@ -2787,7 +2787,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
-                ...         count_masks=[silence_mask],
+                ...         logical_tie_masks=[silence_mask],
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
@@ -2846,7 +2846,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...     )
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     talea=rhythmmakertools.Talea(
-                ...         count_masks=[
+                ...         logical_tie_masks=[
                 ...             rhythmmakertools.silence_first(),
                 ...             rhythmmakertools.silence_last(),
                 ...             ],

@@ -465,7 +465,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
     def __init__(
         self,
         beam_specifier=None,
-        count_masks=None,
+        logical_tie_masks=None,
         division_masks=None,
         duration_spelling_specifier=None,
         interpolation_specifiers=None,
@@ -475,7 +475,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            count_masks=count_masks,
+            logical_tie_masks=logical_tie_masks,
             duration_spelling_specifier=duration_spelling_specifier,
             division_masks=division_masks,
             tie_specifier=tie_specifier,
@@ -784,12 +784,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
         for index, division in enumerate(divisions):
             accelerando = self._make_accelerando(division, index)
             selections.append(accelerando)
-#        if self.count_masks is not None:
+#        if self.logical_tie_masks is not None:
 #            notes = iterate(selections).by_class(scoretools.Note)
 #            notes = list(notes)
 #            total_notes = len(notes)
 #            for i, note in enumerate(notes[:]):
-#                matching_mask = self.count_masks.get_matching_pattern(
+#                matching_mask = self.logical_tie_masks.get_matching_pattern(
 #                    i,
 #                    total_notes,
 #                    )
@@ -803,7 +803,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 #                        multiplier = durationtools.Multiplier(multiplier)
 #                        attach(multiplier, rest)
 #                    mutate(note).replace([rest])
-        self._apply_count_masks(selections)
+        self._apply_logical_tie_masks(selections)
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
         selections = self._apply_division_masks(selections, rotation)
@@ -1510,7 +1510,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
         return superclass.beam_specifier
 
     @property
-    def count_masks(self):
+    def logical_tie_masks(self):
         r'''Gets count masks of accelerando rhythm-maker.
 
         ..  container:: example
@@ -1526,7 +1526,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         stemlet_length=0.75,
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     count_masks=[
+                ...     logical_tie_masks=[
                 ...         rhythmmakertools.silence_first(),
                 ...         rhythmmakertools.silence_last(),
                 ...         ],
@@ -1762,7 +1762,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...         stemlet_length=0.75,
                 ...         use_feather_beams=True,
                 ...         ),
-                ...     count_masks=[
+                ...     logical_tie_masks=[
                 ...         rhythmmakertools.silence_every([2], period=3),
                 ...         ],
                 ...     interpolation_specifiers=[
@@ -1989,7 +1989,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         Returns pattern inventory or none.
         '''
-        return self._count_masks
+        return self._logical_tie_masks
 
     @property
     def division_masks(self):

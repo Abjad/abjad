@@ -36,7 +36,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         denominators=[8],
         beam_specifier=None,
         burnish_specifier=None,
-        count_masks=None,
+        logical_tie_masks=None,
         division_masks=None,
         duration_spelling_specifier=None,
         extra_counts_per_division=None,
@@ -48,7 +48,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         RhythmMaker.__init__(
             self,
             beam_specifier=beam_specifier,
-            count_masks=count_masks,
+            logical_tie_masks=logical_tie_masks,
             duration_spelling_specifier=duration_spelling_specifier,
             division_masks=division_masks,
             tie_specifier=tie_specifier,
@@ -480,7 +480,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 tuplet.preferred_denominator = self.preferred_denominator
             selection = selectiontools.Selection(tuplet)
             selections.append(selection)
-        self._apply_count_masks(selections)
+        self._apply_logical_tie_masks(selections)
         selections = self._apply_burnish_specifier(selections, rotation)
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
@@ -662,7 +662,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         return self._burnish_specifier
 
     @property
-    def count_masks(self):
+    def logical_tie_masks(self):
         r'''Gets count masks of even division rhythm-maker.
 
         ..  container:: example
@@ -731,7 +731,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     count_masks=[
+                ...     logical_tie_masks=[
                 ...         rhythmmakertools.silence_every([0], period=3),
                 ...         ],
                 ...     )
@@ -799,7 +799,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
                 >>> mask = rhythmmakertools.silence(pattern)
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     count_masks=mask,
+                ...     logical_tie_masks=mask,
                 ...     )
 
             ::
@@ -856,7 +856,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         Returns patterns or none.
         '''
         superclass = super(EvenDivisionRhythmMaker, self)
-        return superclass.count_masks
+        return superclass.logical_tie_masks
 
     @property
     def division_masks(self):
