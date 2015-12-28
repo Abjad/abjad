@@ -2,7 +2,7 @@
 from abjad.tools import patterntools
 
 
-def sustain_all(invert=None):
+def sustain_all(inverted=None):
     r'''Makes sustain mask that matches all indices.
 
     ..  container:: example
@@ -125,7 +125,7 @@ def sustain_all(invert=None):
     from abjad.tools import rhythmmakertools
     pattern = patterntools.Pattern(
         indices=[0],
-        invert=invert,
+        inverted=inverted,
         period=1,
         )
     mask = rhythmmakertools.SustainMask(pattern=pattern)

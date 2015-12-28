@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def select_last(n=1, invert=None):
+def select_last(n=1, inverted=None):
     r'''Makes pattern that matches the last `n` indices.
 
     ..  container:: example
@@ -121,5 +121,5 @@ def select_last(n=1, invert=None):
     indices = list(reversed(range(-1, -n-1, -1)))
     return patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         )

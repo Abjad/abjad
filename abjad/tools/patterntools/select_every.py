@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def select_every(indices, period=None, invert=None):
+def select_every(indices, period=None, inverted=None):
     r'''Makes pattern that matches `indices` at `period`.
 
     ..  container:: example
@@ -114,6 +114,6 @@ def select_every(indices, period=None, invert=None):
     from abjad.tools import patterntools
     return patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         period=period,
         )

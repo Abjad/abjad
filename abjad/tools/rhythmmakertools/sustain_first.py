@@ -2,7 +2,7 @@
 from abjad.tools import patterntools
 
 
-def sustain_first(n=1, invert=None):
+def sustain_first(n=1, inverted=None):
     r'''Makes sustain mask that matches the first `n` indices.
 
     ..  container:: example
@@ -156,7 +156,7 @@ def sustain_first(n=1, invert=None):
     indices = list(range(n))
     pattern = patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         )
     mask = rhythmmakertools.SustainMask(pattern=pattern)
     return mask

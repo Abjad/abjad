@@ -5,7 +5,7 @@ from abjad.tools import patterntools
 def silence_every(
     indices, 
     period=None, 
-    invert=None, 
+    inverted=None, 
     use_multimeasure_rests=None,
     ):
     r'''Makes silence mask that matches `indices` at `period`.
@@ -124,7 +124,7 @@ def silence_every(
 
         ::
 
-            >>> mask = rhythmmakertools.silence_every(indices=[-1], invert=True)
+            >>> mask = rhythmmakertools.silence_every(indices=[-1], inverted=True)
 
         ::
 
@@ -132,7 +132,7 @@ def silence_every(
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(-1,),
-                    invert=True,
+                    inverted=True,
                     ),
                 )
 
@@ -177,7 +177,7 @@ def silence_every(
     from abjad.tools import rhythmmakertools
     pattern = patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         period=period,
         )
     mask = rhythmmakertools.SilenceMask(

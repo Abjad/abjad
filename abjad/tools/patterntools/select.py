@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def select(indices=None, invert=None):
+def select(indices=None, inverted=None):
     r'''Makes pattern that matches `indices`.
 
     ..  container:: example
@@ -40,5 +40,5 @@ def select(indices=None, invert=None):
     indices = indices or []
     return patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         )

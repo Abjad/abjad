@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def select_first(n=1, invert=None):
+def select_first(n=1, inverted=None):
     r'''Makes pattern that matches the first `n` indices.
 
     ..  container:: example
@@ -172,5 +172,5 @@ def select_first(n=1, invert=None):
     indices = list(range(n))
     return patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         )

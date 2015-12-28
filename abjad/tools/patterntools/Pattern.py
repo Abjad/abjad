@@ -120,7 +120,7 @@ class Pattern(AbjadValueObject):
 
     __slots__ = (
         '_indices',
-        '_invert',
+        '_inverted',
         '_payload',
         '_period',
         )
@@ -130,7 +130,7 @@ class Pattern(AbjadValueObject):
     def __init__(
         self,
         indices=None,
-        invert=None,
+        inverted=None,
         payload=None,
         period=None,
         ):
@@ -138,9 +138,9 @@ class Pattern(AbjadValueObject):
             assert all(isinstance(_, int) for _ in indices), repr(indices)
             indices = tuple(indices)
         self._indices = indices
-        if invert is not None:
-            invert = bool(invert)
-        self._invert = invert
+        if inverted is not None:
+            inverted = bool(inverted)
+        self._inverted = inverted
         if period is not None:
             assert mathtools.is_positive_integer(period), repr(period)
         self._payload = payload
@@ -202,7 +202,7 @@ class Pattern(AbjadValueObject):
                 >>> print(format(pattern))
                 patterntools.Pattern(
                     indices=(0, 1, 2),
-                    invert=True,
+                    inverted=True,
                     )
 
             ::
@@ -211,15 +211,15 @@ class Pattern(AbjadValueObject):
                 >>> print(format(pattern))
                 patterntools.Pattern(
                     indices=(0, 1, 2),
-                    invert=False,
+                    inverted=False,
                     )
                     
             Negation defined equal to inversion.
 
         Returns new pattern.
         '''
-        invert = not self.invert
-        pattern = new(self, invert=invert)
+        inverted = not self.inverted
+        pattern = new(self, inverted=inverted)
         return pattern
 
     def __len__(self):
@@ -767,13 +767,13 @@ class Pattern(AbjadValueObject):
             nonnegative_index = index
         else:
             nonnegative_index = total_length - abs(index)
-        invert = bool(self.invert)
+        inverted = bool(self.inverted)
         if self.period is None:
             for index in self.indices:
                 if index < 0:
                     index = total_length - abs(index)
                 if index == nonnegative_index and index < total_length:
-                    return True ^ invert
+                    return True ^ inverted
         else:
             if rotation is not None:
                 nonnegative_index += rotation
@@ -783,11 +783,11 @@ class Pattern(AbjadValueObject):
                     index = total_length - abs(index)
                     index = index % self.period
                 if index == nonnegative_index and index < total_length:
-                    return True ^ invert
+                    return True ^ inverted
                 if ((index % self.period) == nonnegative_index and
                     (index % self.period < total_length)):
-                    return True ^ invert
-        return False ^ invert
+                    return True ^ inverted
+        return False ^ inverted
 
     def reverse(self):
         r'''Reverses pattern.
@@ -1086,8 +1086,8 @@ class Pattern(AbjadValueObject):
         return self._indices
 
     @property
-    def invert(self):
-        r'''Gets inversion flag of pattern.
+    def inverted(self):
+        r'''Is true when pattern is inverted. Otherwise false.
 
         ..  container:: example
 
@@ -1102,7 +1102,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern.invert is None
+                >>> pattern.inverted is None
                 True
 
             ::
@@ -1139,12 +1139,12 @@ class Pattern(AbjadValueObject):
                 >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
-                ...     invert=True
+                ...     inverted=True
                 ...     )
 
             ::
 
-                >>> pattern.invert
+                >>> pattern.inverted
                 True
 
             ::
@@ -1173,11 +1173,11 @@ class Pattern(AbjadValueObject):
 
         Defaults to none.
 
-        Set to boolean or none.
+        Set to true, false or none.
 
-        Returns boolean or none.
+        Returns true, false or none.
         '''
-        return self._invert
+        return self._inverted
 
     @property
     def payload(self):

@@ -2,7 +2,7 @@
 from abjad.tools import patterntools
 
 
-def silence_first(n=1, invert=None, use_multimeasure_rests=None):
+def silence_first(n=1, inverted=None, use_multimeasure_rests=None):
     r'''Makes silence mask that matches the first `n` indices.
 
     ..  container:: example
@@ -170,7 +170,7 @@ def silence_first(n=1, invert=None, use_multimeasure_rests=None):
     indices = list(range(n))
     pattern = patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         )
     mask = rhythmmakertools.SilenceMask(
         pattern=pattern,

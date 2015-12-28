@@ -55,7 +55,7 @@ class CompoundPattern(TypedTuple):
                 ...             ),
                 ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
-                ...             invert=True,
+                ...             inverted=True,
                 ...             ),
                 ...         ],
                 ...     operator='and',
@@ -72,7 +72,7 @@ class CompoundPattern(TypedTuple):
                             ),
                         patterntools.Pattern(
                             indices=(-3, -2, -1),
-                            invert=True,
+                            inverted=True,
                             ),
                         ),
                     operator='and',
@@ -116,7 +116,7 @@ class CompoundPattern(TypedTuple):
     __documentation_section__ = 'Masks'
 
     __slots__ = (
-        '_invert',
+        '_inverted',
         '_operator',
         )
 
@@ -128,7 +128,7 @@ class CompoundPattern(TypedTuple):
 
     ### INITIALIZER ###
 
-    def __init__(self, items=None, invert=None, operator='or'):
+    def __init__(self, items=None, inverted=None, operator='or'):
         from abjad.tools import patterntools
         items = items or ()
         prototype = (patterntools.Pattern, type(self))
@@ -139,7 +139,7 @@ class CompoundPattern(TypedTuple):
             self,
             items=items,
             )
-        self._invert = invert
+        self._inverted = inverted
         self._operator = operator
 
     ### SPECIAL METHODS ###
@@ -283,7 +283,7 @@ class CompoundPattern(TypedTuple):
                             indices=(-3, -2, -1),
                             ),
                         ),
-                    invert=True,
+                    inverted=True,
                     operator='or',
                     )
 
@@ -294,8 +294,8 @@ class CompoundPattern(TypedTuple):
 
         Returns new compound pattern.
         '''
-        invert = not self.invert
-        pattern = new(self, invert=invert)
+        inverted = not self.inverted
+        pattern = new(self, inverted=inverted)
         return pattern
 
     def __or__(self, pattern):
@@ -487,7 +487,7 @@ class CompoundPattern(TypedTuple):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def invert(self):
+    def inverted(self):
         '''Gets inversion flag of pattern.
 
         ..  container:: example
@@ -500,7 +500,7 @@ class CompoundPattern(TypedTuple):
                 >>> pattern_1 = patterntools.select_first(3)
                 >>> pattern_2 = patterntools.select_last(3)
                 >>> pattern = pattern_1 | pattern_2
-                >>> pattern.invert is None
+                >>> pattern.inverted is None
                 True
 
             ::
@@ -516,8 +516,8 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = new(pattern, invert=True)
-                >>> pattern.invert
+                >>> pattern = new(pattern, inverted=True)
+                >>> pattern.inverted
                 True
 
             ::
@@ -529,7 +529,7 @@ class CompoundPattern(TypedTuple):
 
         Returns true, false or none.
         '''
-        return self._invert
+        return self._inverted
 
     @property
     def operator(self):
@@ -599,7 +599,7 @@ class CompoundPattern(TypedTuple):
                 ...             ),
                 ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
-                ...             invert=True,
+                ...             inverted=True,
                 ...             ),
                 ...         ],
                 ...     operator='and',
@@ -1065,7 +1065,7 @@ class CompoundPattern(TypedTuple):
                 ...             ),
                 ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
-                ...             invert=True,
+                ...             inverted=True,
                 ...             ),
                 ...         ],
                 ...     operator='and',
@@ -1146,7 +1146,7 @@ class CompoundPattern(TypedTuple):
                 ...             ),
                 ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
-                ...             invert=True,
+                ...             inverted=True,
                 ...             ),
                 ...         ],
                 ...     operator='and',
@@ -1174,7 +1174,7 @@ class CompoundPattern(TypedTuple):
                                     ),
                                 patterntools.Pattern(
                                     indices=(-3, -2, -1),
-                                    invert=True,
+                                    inverted=True,
                                     ),
                                 ),
                             operator='and',
@@ -1273,6 +1273,6 @@ class CompoundPattern(TypedTuple):
                     rotation=rotation,
                     )
                 result = operator_(result, result_)
-        if self.invert:
+        if self.inverted:
             result = not(result)
         return result

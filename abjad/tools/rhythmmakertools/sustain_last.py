@@ -2,7 +2,7 @@
 from abjad.tools import patterntools
 
 
-def sustain_last(n=1, invert=None):
+def sustain_last(n=1, inverted=None):
     r'''Makes sustain mask that matches the last `n` indices.
 
     ..  container:: example
@@ -180,7 +180,7 @@ def sustain_last(n=1, invert=None):
     indices = list(reversed(range(-1, -n-1, -1)))
     pattern = patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         )
     mask = rhythmmakertools.SustainMask(pattern=pattern)
     return mask

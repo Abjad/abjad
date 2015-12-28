@@ -2,7 +2,7 @@
 from abjad.tools import patterntools
 
 
-def silence_all(invert=None, use_multimeasure_rests=None):
+def silence_all(inverted=None, use_multimeasure_rests=None):
     r'''Makes silence that matches all indices.
 
     ..  container:: example
@@ -110,7 +110,7 @@ def silence_all(invert=None, use_multimeasure_rests=None):
     from abjad.tools import rhythmmakertools
     pattern = patterntools.Pattern(
         indices=[0],
-        invert=invert,
+        inverted=inverted,
         period=1,
         )
     mask = rhythmmakertools.SilenceMask(

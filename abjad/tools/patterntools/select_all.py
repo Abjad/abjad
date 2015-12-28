@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-def select_all(invert=None):
+def select_all(inverted=None):
     r'''Makes pattern that matches all indices.
 
     ..  container:: example
@@ -64,6 +64,6 @@ def select_all(invert=None):
     from abjad.tools import patterntools
     return patterntools.Pattern(
         indices=[0],
-        invert=invert,
+        inverted=inverted,
         period=1,
         )

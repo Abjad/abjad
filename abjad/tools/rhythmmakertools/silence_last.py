@@ -2,7 +2,7 @@
 from abjad.tools import patterntools
 
 
-def silence_last(n=1, invert=None, use_multimeasure_rests=None):
+def silence_last(n=1, inverted=None, use_multimeasure_rests=None):
     r'''Makes silence mask that matches the last `n` indices.
 
     ..  container:: example
@@ -170,7 +170,7 @@ def silence_last(n=1, invert=None, use_multimeasure_rests=None):
     indices = list(reversed(range(-1, -n-1, -1)))
     pattern = patterntools.Pattern(
         indices=indices,
-        invert=invert,
+        inverted=inverted,
         )
     mask = rhythmmakertools.SilenceMask(
         pattern=pattern,

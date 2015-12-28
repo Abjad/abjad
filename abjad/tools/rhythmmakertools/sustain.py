@@ -3,7 +3,7 @@ from abjad.tools import patterntools
 from abjad.tools.topleveltools import new
 
 
-def sustain(indices=None, invert=None):
+def sustain(indices=None, inverted=None):
     r'''Makes sustain mask that matches `indices`.
 
     ..  container:: example
@@ -192,7 +192,7 @@ def sustain(indices=None, invert=None):
 
     ..  container:: example
 
-        **Example 4.** Works with pattern input and invert flag:
+        **Example 4.** Works with pattern input and inverted flag:
 
         ::
 
@@ -200,7 +200,7 @@ def sustain(indices=None, invert=None):
             >>> pattern_2 = patterntools.select_first()
             >>> pattern_3 = patterntools.select_last()
             >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-            >>> mask = rhythmmakertools.sustain(pattern, invert=True)
+            >>> mask = rhythmmakertools.sustain(pattern, inverted=True)
 
         ::
 
@@ -219,7 +219,7 @@ def sustain(indices=None, invert=None):
                             indices=(-1,),
                             ),
                         ),
-                    invert=True,
+                    inverted=True,
                     operator='xor',
                     ),
                 )
@@ -273,7 +273,7 @@ def sustain(indices=None, invert=None):
     else:
         pattern = patterntools.Pattern(
             indices=indices,
-            invert=invert,
+            inverted=inverted,
             )
-    pattern = new(pattern, invert=invert)
+    pattern = new(pattern, inverted=inverted)
     return rhythmmakertools.SustainMask(pattern=pattern)

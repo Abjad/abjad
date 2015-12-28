@@ -3,7 +3,7 @@ from abjad.tools import patterntools
 from abjad.tools.topleveltools import new
 
 
-def silence(indices=None, invert=None):
+def silence(indices=None, inverted=None):
     r'''Makes silence mask that matches `indices`.
 
     ..  container:: example
@@ -187,7 +187,7 @@ def silence(indices=None, invert=None):
 
     ..  container:: example
 
-        **Example 4.** Works with pattern input and invert flag:
+        **Example 4.** Works with pattern input and inverted flag:
 
         ::
 
@@ -195,7 +195,7 @@ def silence(indices=None, invert=None):
             >>> pattern_2 = patterntools.select_first()
             >>> pattern_3 = patterntools.select_last()
             >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
-            >>> mask = rhythmmakertools.silence(pattern, invert=True)
+            >>> mask = rhythmmakertools.silence(pattern, inverted=True)
 
         ::
 
@@ -214,7 +214,7 @@ def silence(indices=None, invert=None):
                             indices=(-1,),
                             ),
                         ),
-                    invert=True,
+                    inverted=True,
                     operator='xor',
                     ),
                 )
@@ -267,7 +267,7 @@ def silence(indices=None, invert=None):
     else:
         pattern = patterntools.Pattern(
             indices=indices,
-            invert=invert,
+            inverted=inverted,
             )
-    pattern = new(pattern, invert=invert)
+    pattern = new(pattern, inverted=inverted)
     return rhythmmakertools.SilenceMask(pattern=pattern)

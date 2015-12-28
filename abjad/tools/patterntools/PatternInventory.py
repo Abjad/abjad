@@ -202,7 +202,7 @@ class PatternInventory(TypedTuple):
                 >>> inventory = patterntools.PatternInventory([
                 ...     patterntools.Pattern(
                 ...         indices=[-3],
-                ...         invert=True,
+                ...         inverted=True,
                 ...         ),
                 ...     ])
 
@@ -212,16 +212,16 @@ class PatternInventory(TypedTuple):
                 ...     match = inventory.get_matching_pattern(i, 10)
                 ...     print(i, match)
                 ...
-                0 Pattern(indices=(-3,), invert=True)
-                1 Pattern(indices=(-3,), invert=True)
-                2 Pattern(indices=(-3,), invert=True)
-                3 Pattern(indices=(-3,), invert=True)
-                4 Pattern(indices=(-3,), invert=True)
-                5 Pattern(indices=(-3,), invert=True)
-                6 Pattern(indices=(-3,), invert=True)
+                0 Pattern(indices=(-3,), inverted=True)
+                1 Pattern(indices=(-3,), inverted=True)
+                2 Pattern(indices=(-3,), inverted=True)
+                3 Pattern(indices=(-3,), inverted=True)
+                4 Pattern(indices=(-3,), inverted=True)
+                5 Pattern(indices=(-3,), inverted=True)
+                6 Pattern(indices=(-3,), inverted=True)
                 7 None
-                8 Pattern(indices=(-3,), invert=True)
-                9 Pattern(indices=(-3,), invert=True)
+                8 Pattern(indices=(-3,), inverted=True)
+                9 Pattern(indices=(-3,), inverted=True)
 
         Returns pattern or none.
         '''
