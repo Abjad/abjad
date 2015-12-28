@@ -77,6 +77,41 @@ class Pattern(AbjadValueObject):
             14 
             15
 
+    ..  container:: example
+
+        **Example 3.** Works with improper indices:
+
+        ::
+
+            >>> pattern = patterntools.Pattern(
+            ...     indices=[16, 17, 23],
+            ...     period=16,
+            ...     )
+
+        ::
+
+            >>> total_length = 16
+            >>> for index in range(16):
+            ...     match = pattern.matches_index(index, total_length)
+            ...     match = match or ''
+            ...     print(index, match)
+            0 True
+            1 True
+            2 
+            3 
+            4 
+            5 
+            6 
+            7 True
+            8 
+            9 
+            10 
+            11 
+            12 
+            13 
+            14 
+            15 
+
     '''
 
     ### CLASS VARIABLES ###
@@ -748,6 +783,9 @@ class Pattern(AbjadValueObject):
                     index = total_length - abs(index)
                     index = index % self.period
                 if index == nonnegative_index and index < total_length:
+                    return True ^ invert
+                if ((index % self.period) == nonnegative_index and
+                    (index % self.period < total_length)):
                     return True ^ invert
         return False ^ invert
 
