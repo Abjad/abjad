@@ -1276,3 +1276,72 @@ class CompoundPattern(TypedTuple):
         if self.inverted:
             result = not(result)
         return result
+
+    def reverse(self):
+        r'''Reverses compound pattern.
+
+        ..  container:: example
+
+            **Example 1.** Matches every index that is (equal to 0 % 2) AND
+            (not one of the last three indices):
+
+            ::
+
+                >>> pattern = patterntools.CompoundPattern(
+                ...     [
+                ...         patterntools.Pattern(
+                ...             indices=[0],
+                ...             period=2,
+                ...             ),
+                ...         patterntools.Pattern(
+                ...             indices=[-3, -2, -1],
+                ...             inverted=True,
+                ...             ),
+                ...         ],
+                ...     operator='and',
+                ...     )
+
+            ::
+
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=2,
+                            ),
+                        patterntools.Pattern(
+                            indices=(-3, -2, -1),
+                            inverted=True,
+                            ),
+                        ),
+                    operator='and',
+                    )
+
+            Reverses pattern:
+
+            ::
+
+                >>> pattern = pattern.reverse()
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(-1,),
+                            period=2,
+                            ),
+                        patterntools.Pattern(
+                            indices=(2, 1, 0),
+                            inverted=True,
+                            ),
+                        ),
+                    operator='and',
+                    )
+
+            New pattern matches every index that is (equal to -1 % 2) AND
+            (not one of the first three indices).
+
+        Returns new compound pattern.
+        '''
+        patterns = [_.reverse() for _ in self]
+        return new(self, items=patterns)
