@@ -876,6 +876,169 @@ class Pattern(AbjadValueObject):
         indices = [-index - 1 for index in self.indices]
         return new(self, indices=indices)
 
+    def rotate(self, n=0):
+        r'''Rotates pattern.
+
+        ..  container:: example
+
+            **Example 1.** Matches three indices out of every eight:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+            Rotates pattern two elements to the right:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern = pattern.rotate(n=2)
+                >>> print(format(pattern))
+                patterntools.Pattern(
+                    indices=(2, 3, 9),
+                    period=8,
+                    )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 
+                1 True
+                2 True
+                3 True
+                4 
+                5 
+                6 
+                7 
+                8 
+                9 True
+                10 True
+                11 True
+                12 
+                13 
+                14 
+                15 
+
+        ..  container:: example
+
+            **Example 2.** Matches three indices out of every eight with
+            negative indices:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[-3, -2, -1],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 
+                1 
+                2 
+                3 
+                4 
+                5 True
+                6 True
+                7 True
+                8 
+                9 
+                10 
+                11 
+                12 
+                13 True
+                14 True
+                15 True
+
+            Rotates pattern two elements to the right:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[-3, -2, -1],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern = pattern.rotate(n=2)
+                >>> print(format(pattern))
+                patterntools.Pattern(
+                    indices=(-1, 0, 1),
+                    period=8,
+                    )
+
+            ::
+
+                >>> total_length = 16
+                >>> for index in range(16):
+                ...     match = pattern.matches_index(index, total_length)
+                ...     match = match or ''
+                ...     print(index, match)
+                0 True
+                1 True
+                2 
+                3 
+                4 
+                5 
+                6 
+                7 True
+                8 True
+                9 True
+                10 
+                11 
+                12 
+                13 
+                14 
+                15 True
+
+        Returns new pattern.
+        '''
+        indices = [index + n for index in self.indices]
+        return new(self, indices=indices)
+
     ### PUBLIC PROPERTIES ###
 
     @property
