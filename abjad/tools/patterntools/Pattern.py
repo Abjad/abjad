@@ -420,10 +420,9 @@ class Pattern(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    # TODO: change name to from_vector()
     @classmethod
-    def from_sequence(cls, sequence):
-        r'''Makes pattern from sequence.
+    def from_vector(class_, vector):
+        r'''Makes pattern from boolean `vector`.
 
         ..  container:: example
 
@@ -433,7 +432,7 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = [1, 0, 0, 1, 1]
-                >>> pattern = patterntools.Pattern.from_sequence(pattern)
+                >>> pattern = patterntools.Pattern.from_vector(pattern)
                 >>> print(format(pattern))
                 patterntools.Pattern(
                     indices=(0, 3, 4),
@@ -466,7 +465,7 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = [1, 0, 0, 1, 1, 0]
-                >>> pattern = patterntools.Pattern.from_sequence(pattern)
+                >>> pattern = patterntools.Pattern.from_vector(pattern)
                 >>> print(format(pattern))
                 patterntools.Pattern(
                     indices=(0, 3, 4),
@@ -495,10 +494,10 @@ class Pattern(AbjadValueObject):
 
         Returns pattern.
         '''
-        sequence = [bool(_) for _ in sequence]
-        period = len(sequence)
-        indices = [i for i, x in enumerate(sequence) if x]
-        return cls(
+        vector = [bool(_) for _ in vector]
+        period = len(vector)
+        indices = [i for i, x in enumerate(vector) if x]
+        return class_(
             period=period,
             indices=indices,
             )
