@@ -25,9 +25,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
     __slots__ = (
         '_burnish_specifier',
         '_denominators',
-        #'_denominators_generator',
         '_extra_counts_per_division',
-        #'_extra_counts_per_division_generator',
         '_preferred_denominator',
         )
 
@@ -58,8 +56,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             denominators), repr(denominators)
         denominators = tuple(denominators)
         self._denominators = denominators
-        #self._denominators_generator = self._make_cyclic_tuple_generator(
-        #    denominators)
         if extra_counts_per_division is not None:
             assert mathtools.all_are_integer_equivalent_exprs(
                 extra_counts_per_division), repr(extra_counts_per_division)
@@ -72,8 +68,6 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         assert isinstance(burnish_specifier, prototype)
         self._burnish_specifier = burnish_specifier
         extra_counts_per_division = extra_counts_per_division or (0,)
-        #self._extra_counts_per_division_generator = \
-        #    self._make_cyclic_tuple_generator(extra_counts_per_division)
         self._preferred_denominator = preferred_denominator
 
     ### SPECIAL METHODS ###
@@ -84,7 +78,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         ..  container:: example
 
             **Example 1.** Fills divisions with alternating eighth and
-            sixteenth notes.
+            sixteenth notes:
 
             ::
 
@@ -155,7 +149,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
         ..  container:: example
 
             **Example 2.** Adds extra counts per division according to a
-            pattern of three elements.
+            pattern of three elements:
 
             ::
 
@@ -735,9 +729,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     division_masks=[
-                ...         rhythmmakertools.SilenceMask(
-                ...             pattern=rhythmmakertools.select_every([0], period=2),
-                ...             ),
+                ...         rhythmmakertools.silence_every([0], period=2),
                 ...         ],
                 ...     )
 
@@ -842,7 +834,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
-                ...     division_masks=[rhythmmakertools.silence_all()],
+                ...     division_masks=rhythmmakertools.silence_all(),
                 ...     )
 
             ::
@@ -1004,8 +996,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Divisions less than twice the duration of an eighth note are filled
-            with a single attack.
+            Fills divisions less than twice the duration of an eighth note with
+            a single attack.
 
         ..  container:: example
 
@@ -1104,8 +1096,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Divisions less than twice the duration of a half note are filled
-            with a single attack.
+            Fills divisions less than twice the duration of a half note with a
+            single attack.
 
         Returns tuple of nonnegative integer powers of two.
         '''
@@ -1419,7 +1411,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 0.** No extra counts per division:
+            **Example 0.** Neither missing nor extra counts per division:
 
             ::
 
@@ -1895,7 +1887,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Tuplet ratios expressed in the usual way with numerator and
+            Expresses tuplet ratios in the usual way with numerator and
             denominator relatively prime.
 
         ..  container:: example
