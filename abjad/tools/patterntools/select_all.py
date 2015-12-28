@@ -10,12 +10,12 @@ def select_all(invert=None):
 
         ::
 
-            >>> pattern = rhythmmakertools.select_all()
+            >>> pattern = patterntools.select_all()
 
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.Pattern(
+            patterntools.Pattern(
                 indices=(0,),
                 period=1,
                 )
@@ -61,9 +61,8 @@ def select_all(invert=None):
 
     Returns pattern.
     '''
-    from abjad.tools import rhythmmakertools
-
-    return rhythmmakertools.Pattern(
+    from abjad.tools import patterntools
+    return patterntools.Pattern(
         indices=[0],
         invert=invert,
         period=1,

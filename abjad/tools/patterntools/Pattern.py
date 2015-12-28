@@ -13,7 +13,7 @@ class Pattern(AbjadValueObject):
 
         ::
 
-            >>> pattern = rhythmmakertools.Pattern(
+            >>> pattern = patterntools.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=8,
             ...     )
@@ -49,7 +49,7 @@ class Pattern(AbjadValueObject):
 
         ::
 
-            >>> pattern = rhythmmakertools.Pattern(
+            >>> pattern = patterntools.Pattern(
             ...     indices=[0, 1, 7],
             ...     period=16,
             ...     )
@@ -123,19 +123,19 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
                 >>> pattern = pattern_1 & pattern_2
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -144,8 +144,8 @@ class Pattern(AbjadValueObject):
 
         Returns compound pattern.
         '''
-        from abjad.tools import rhythmmakertools
-        return rhythmmakertools.CompoundPattern([self, other], operator='and')
+        from abjad.tools import patterntools
+        return patterntools.CompoundPattern([self, other], operator='and')
 
     def __invert__(self):
         r'''Inverts pattern.
@@ -156,9 +156,9 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.select_first(3)
+                >>> pattern = patterntools.select_first(3)
                 >>> print(format(pattern))
-                rhythmmakertools.Pattern(
+                patterntools.Pattern(
                     indices=(0, 1, 2),
                     )
 
@@ -166,7 +166,7 @@ class Pattern(AbjadValueObject):
 
                 >>> pattern = ~pattern
                 >>> print(format(pattern))
-                rhythmmakertools.Pattern(
+                patterntools.Pattern(
                     indices=(0, 1, 2),
                     invert=True,
                     )
@@ -175,7 +175,7 @@ class Pattern(AbjadValueObject):
 
                 >>> pattern = ~pattern
                 >>> print(format(pattern))
-                rhythmmakertools.Pattern(
+                patterntools.Pattern(
                     indices=(0, 1, 2),
                     invert=False,
                     )
@@ -197,7 +197,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -215,7 +215,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 2, 3],
                 ...     )
 
@@ -233,7 +233,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[-3],
                 ...     )
 
@@ -270,19 +270,19 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
                 >>> pattern = pattern_1 | pattern_2
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -291,8 +291,8 @@ class Pattern(AbjadValueObject):
 
         Returns compound pattern.
         '''
-        from abjad.tools import rhythmmakertools
-        return rhythmmakertools.CompoundPattern([self, other], operator='or')
+        from abjad.tools import patterntools
+        return patterntools.CompoundPattern([self, other], operator='or')
 
     def __xor__(self, other):
         r'''Logical XOR of two patterns.
@@ -303,19 +303,19 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
                 >>> pattern = pattern_1 ^ pattern_2
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -324,8 +324,8 @@ class Pattern(AbjadValueObject):
 
         Returns compound pattern.
         '''
-        from abjad.tools import rhythmmakertools
-        return rhythmmakertools.CompoundPattern([self, other], operator='xor')
+        from abjad.tools import patterntools
+        return patterntools.CompoundPattern([self, other], operator='xor')
 
     ### PUBLIC PROPERTIES ###
 
@@ -339,7 +339,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -355,7 +355,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 2, 3],
                 ...     )
 
@@ -387,7 +387,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -403,7 +403,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 2, 3],
                 ...     )
 
@@ -433,9 +433,9 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = [1, 0, 0, 1, 1]
-                >>> pattern = rhythmmakertools.Pattern.from_sequence(pattern)
+                >>> pattern = patterntools.Pattern.from_sequence(pattern)
                 >>> print(format(pattern))
-                rhythmmakertools.Pattern(
+                patterntools.Pattern(
                     indices=(0, 3, 4),
                     period=5,
                     )
@@ -466,9 +466,9 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern = [1, 0, 0, 1, 1, 0]
-                >>> pattern = rhythmmakertools.Pattern.from_sequence(pattern)
+                >>> pattern = patterntools.Pattern.from_sequence(pattern)
                 >>> print(format(pattern))
-                rhythmmakertools.Pattern(
+                patterntools.Pattern(
                     indices=(0, 3, 4),
                     period=6,
                     )
@@ -514,7 +514,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -548,7 +548,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -586,7 +586,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -626,7 +626,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -660,7 +660,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -698,7 +698,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -770,7 +770,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -787,7 +787,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )
@@ -816,7 +816,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -857,7 +857,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     invert=True
@@ -912,7 +912,7 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> maker = rhythmmakertools.NoteRhythmMaker()
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     payload=maker,
                 ...     period=8,
@@ -957,7 +957,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=8,
                 ...     )
@@ -997,7 +997,7 @@ class Pattern(AbjadValueObject):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0, 1, 7],
                 ...     period=16,
                 ...     )

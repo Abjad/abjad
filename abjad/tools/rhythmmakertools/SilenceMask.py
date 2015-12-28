@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import patterntools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -9,14 +10,14 @@ class SilenceMask(AbjadValueObject):
 
         ::
 
-            >>> pattern = rhythmmakertools.select_every([0, 1, 7], period=16)
+            >>> pattern = patterntools.select_every([0, 1, 7], period=16)
             >>> mask = rhythmmakertools.SilenceMask(pattern)
 
         ::
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(0, 1, 7),
                     period=16,
                     ),
@@ -42,11 +43,11 @@ class SilenceMask(AbjadValueObject):
         ):
         from abjad.tools import rhythmmakertools
         prototype = (
-            rhythmmakertools.Pattern,
-            rhythmmakertools.CompoundPattern,
+            patterntools.Pattern,
+            patterntools.CompoundPattern,
             )
         if pattern is None:
-            pattern = rhythmmakertools.select_all()
+            pattern = patterntools.select_all()
         assert isinstance(pattern, prototype), repr(pattern)
         self._pattern = pattern
         if use_multimeasure_rests is not None:
@@ -75,7 +76,7 @@ class SilenceMask(AbjadValueObject):
 
             
                 >>> mask = rhythmmakertools.SilenceMask(
-                ...     rhythmmakertools.select_every([0, 1, 7], period=16),
+                ...     patterntools.select_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=False,
                 ...     )
 
@@ -93,7 +94,7 @@ class SilenceMask(AbjadValueObject):
             ::
 
                 >>> mask = rhythmmakertools.SilenceMask(
-                ...     rhythmmakertools.select_every([0, 1, 7], period=16),
+                ...     patterntools.select_every([0, 1, 7], period=16),
                 ...     use_multimeasure_rests=True,
                 ...     )
 

@@ -690,7 +690,7 @@ class NoteRhythmMaker(RhythmMaker):
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
                 ...     division_masks=[
                 ...         rhythmmakertools.SilenceMask(
-                ...             pattern=rhythmmakertools.select_every([0], period=2),
+                ...             pattern=patterntools.select_every([0], period=2),
                 ...             ),
                 ...         ],
                 ...     )
@@ -779,7 +779,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> mask = rhythmmakertools.SilenceMask(
-                ...     pattern=rhythmmakertools.select_all(),
+                ...     pattern=patterntools.select_all(),
                 ...     use_multimeasure_rests=True,
                 ...     )
                 >>> maker = rhythmmakertools.NoteRhythmMaker(
@@ -826,8 +826,8 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_every([0], period=2)
-                >>> pattern_2 = rhythmmakertools.select([0, -1])
+                >>> pattern_1 = patterntools.select_every([0], period=2)
+                >>> pattern_2 = patterntools.select([0, -1])
                 >>> pattern = pattern_1 & ~pattern_2
                 >>> mask = rhythmmakertools.SilenceMask(
                 ...     pattern=pattern,
@@ -1244,7 +1244,7 @@ class NoteRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0],
                 ...     period=2,
                 ...     )

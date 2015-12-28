@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import collections
+from abjad.tools import patterntools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
@@ -33,7 +34,6 @@ class TieSpecifier(AbjadValueObject):
         tie_across_divisions=None,
         use_messiaen_style_ties=None,
         ):
-        from abjad.tools import rhythmmakertools
         if strip_ties is not None:
             strip_ties = bool(strip_ties)
         self._strip_ties = strip_ties
@@ -41,8 +41,8 @@ class TieSpecifier(AbjadValueObject):
             type(None),
             bool,
             collections.Sequence,
-            rhythmmakertools.Pattern,
-            rhythmmakertools.PatternInventory,
+            patterntools.Pattern,
+            patterntools.PatternInventory,
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions
@@ -86,9 +86,9 @@ class TieSpecifier(AbjadValueObject):
         if isinstance(tie_across_divisions, bool):
             tie_across_divisions = [tie_across_divisions]
         if not isinstance(tie_across_divisions,
-            rhythmmakertools.Pattern):
+            patterntools.Pattern):
             tie_across_divisions = \
-                rhythmmakertools.Pattern.from_sequence(
+                patterntools.Pattern.from_sequence(
                     tie_across_divisions)
         pairs = sequencetools.iterate_sequence_nwise(divisions)
         for i, pair in enumerate(pairs):

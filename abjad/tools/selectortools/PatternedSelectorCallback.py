@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import rhythmmakertools
+from abjad.tools import patterntools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
 
@@ -25,7 +25,7 @@ class PatternedSelectorCallback(AbjadValueObject):
         apply_to_each=None,
         ):
         if pattern is not None:
-            assert isinstance(pattern, rhythmmakertools.Pattern)
+            assert isinstance(pattern, patterntools.Pattern)
         self._pattern = pattern
         if apply_to_each is not None:
             apply_to_each = bool(apply_to_each)

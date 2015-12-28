@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import patterntools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -10,14 +11,14 @@ class SustainMask(AbjadValueObject):
         ::
 
             >>> mask = rhythmmakertools.SustainMask(
-            ...     pattern=rhythmmakertools.select_every([0, 1, 7], period=16),
+            ...     pattern=patterntools.select_every([0, 1, 7], period=16),
             ...     )
 
         ::
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(0, 1, 7),
                     period=16,
                     ),
@@ -41,11 +42,11 @@ class SustainMask(AbjadValueObject):
         ):
         from abjad.tools import rhythmmakertools
         prototype = (
-            rhythmmakertools.Pattern,
-            rhythmmakertools.CompoundPattern,
+            patterntools.Pattern,
+            patterntools.CompoundPattern,
             )
         if pattern is None:
-            pattern = rhythmmakertools.select_all()
+            pattern = patterntools.select_all()
         assert isinstance(pattern, prototype), repr(pattern)
         self._pattern = pattern
 

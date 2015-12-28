@@ -1394,7 +1394,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> pattern = rhythmmakertools.Pattern(
+                >>> pattern = patterntools.Pattern(
                 ...     indices=[0],
                 ...     period=2,
                 ...     )

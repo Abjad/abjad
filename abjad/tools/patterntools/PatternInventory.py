@@ -11,15 +11,15 @@ class PatternInventory(TypedTuple):
 
         ::
 
-            >>> inventory = rhythmmakertools.PatternInventory([
-            ...     rhythmmakertools.Pattern(
+            >>> inventory = patterntools.PatternInventory([
+            ...     patterntools.Pattern(
             ...         indices=[0, 1, 7],
             ...         period=10,
             ...         ),
-            ...     rhythmmakertools.Pattern(
+            ...     patterntools.Pattern(
             ...         indices=[-2, -1],
             ...         ),
-            ...     rhythmmakertools.Pattern(
+            ...     patterntools.Pattern(
             ...         indices=[2],
             ...         period=3,
             ...         ),
@@ -28,16 +28,16 @@ class PatternInventory(TypedTuple):
         ::
 
             >>> print(format(inventory))
-            rhythmmakertools.PatternInventory(
+            patterntools.PatternInventory(
                 (
-                    rhythmmakertools.Pattern(
+                    patterntools.Pattern(
                         indices=(0, 1, 7),
                         period=10,
                         ),
-                    rhythmmakertools.Pattern(
+                    patterntools.Pattern(
                         indices=(-2, -1),
                         ),
-                    rhythmmakertools.Pattern(
+                    patterntools.Pattern(
                         indices=(2,),
                         period=3,
                         ),
@@ -50,12 +50,12 @@ class PatternInventory(TypedTuple):
 
         ::
 
-            >>> inventory = rhythmmakertools.PatternInventory([
-            ...     rhythmmakertools.Pattern(
+            >>> inventory = patterntools.PatternInventory([
+            ...     patterntools.Pattern(
             ...         indices=[1],
             ...         period=2,
             ...         ),
-            ...     rhythmmakertools.Pattern(
+            ...     patterntools.Pattern(
             ...         indices=[-3, -2, -1],
             ...         ),
             ...     ])
@@ -63,13 +63,13 @@ class PatternInventory(TypedTuple):
         ::
 
             >>> print(format(inventory))
-            rhythmmakertools.PatternInventory(
+            patterntools.PatternInventory(
                 (
-                    rhythmmakertools.Pattern(
+                    patterntools.Pattern(
                         indices=(1,),
                         period=2,
                         ),
-                    rhythmmakertools.Pattern(
+                    patterntools.Pattern(
                         indices=(-3, -2, -1),
                         ),
                     )
@@ -95,12 +95,12 @@ class PatternInventory(TypedTuple):
 
             ::
 
-                >>> inventory = rhythmmakertools.PatternInventory([
-                ...     rhythmmakertools.Pattern(
+                >>> inventory = patterntools.PatternInventory([
+                ...     patterntools.Pattern(
                 ...         indices=[1],
                 ...         period=2,
                 ...         ),
-                ...     rhythmmakertools.Pattern(
+                ...     patterntools.Pattern(
                 ...         indices=[-3, -2, -1],
                 ...         ),
                 ...     ])
@@ -199,8 +199,8 @@ class PatternInventory(TypedTuple):
 
             ::
 
-                >>> inventory = rhythmmakertools.PatternInventory([
-                ...     rhythmmakertools.Pattern(
+                >>> inventory = patterntools.PatternInventory([
+                ...     patterntools.Pattern(
                 ...         indices=[-3],
                 ...         invert=True,
                 ...         ),
@@ -248,13 +248,13 @@ class PatternInventory(TypedTuple):
 
             ::
 
-                >>> inventory = rhythmmakertools.PatternInventory([
-                ...     rhythmmakertools.Pattern(
+                >>> inventory = patterntools.PatternInventory([
+                ...     patterntools.Pattern(
                 ...         indices=[0],
                 ...         payload=rhythmmakertools.NoteRhythmMaker(),
                 ...         period=1,
                 ...         ),
-                ...     rhythmmakertools.Pattern(
+                ...     patterntools.Pattern(
                 ...         indices=[-3, -2, -1],
                 ...         payload=rhythmmakertools.EvenDivisionRhythmMaker(),
                 ...         ),
@@ -314,6 +314,7 @@ class PatternInventory(TypedTuple):
 
     @property
     def _item_coercer(self):
+        from abjad.tools import patterntools
         from abjad.tools import rhythmmakertools
         prototype = (
             rhythmmakertools.SilenceMask,
@@ -322,7 +323,7 @@ class PatternInventory(TypedTuple):
         def coerce_(expr):
             if isinstance(expr, prototype):
                 pass
-            elif not isinstance(expr, rhythmmakertools.Pattern):
-                expr = rhythmmakertools.Pattern(*expr)
+            elif not isinstance(expr, patterntools.Pattern):
+                expr = patterntools.Pattern(*expr)
             return expr
         return coerce_

@@ -2,9 +2,9 @@
 from abjad import *
 
 
-def test_rhythmmakertools_Pattern_matches_index_01():
+def test_patterntools_Pattern_matches_index_01():
 
-    mask = rhythmmakertools.Pattern(
+    mask = patterntools.Pattern(
         indices=[0, 1],
         period=None,
         )
@@ -20,9 +20,9 @@ def test_rhythmmakertools_Pattern_matches_index_01():
     assert not mask.matches_index(7, length)
 
 
-def test_rhythmmakertools_Pattern_matches_index_02():
+def test_patterntools_Pattern_matches_index_02():
 
-    mask = rhythmmakertools.Pattern(
+    mask = patterntools.Pattern(
         indices=[0, 1],
         period=4,
         )
@@ -38,9 +38,9 @@ def test_rhythmmakertools_Pattern_matches_index_02():
     assert not mask.matches_index(7, length)
 
 
-def test_rhythmmakertools_Pattern_matches_index_03():
+def test_patterntools_Pattern_matches_index_03():
 
-    mask = rhythmmakertools.Pattern(
+    mask = patterntools.Pattern(
         indices=[0, 1, 2, 3, 4, 5, 6, 7],
         period=None,
         )
@@ -56,9 +56,9 @@ def test_rhythmmakertools_Pattern_matches_index_03():
     assert mask.matches_index(7, length)
 
 
-def test_rhythmmakertools_Pattern_matches_index_04():
+def test_patterntools_Pattern_matches_index_04():
 
-    mask = rhythmmakertools.Pattern(
+    mask = patterntools.Pattern(
         indices=[0, 1, 2, 3, 4, 5, 6, 7],
         period=None,
         )
@@ -74,9 +74,9 @@ def test_rhythmmakertools_Pattern_matches_index_04():
     assert not mask.matches_index(7, length)
 
 
-def test_rhythmmakertools_Pattern_matches_index_05():
+def test_patterntools_Pattern_matches_index_05():
 
-    mask = rhythmmakertools.Pattern(
+    mask = patterntools.Pattern(
         indices=[-2, -1],
         period=None,
         )
@@ -92,9 +92,9 @@ def test_rhythmmakertools_Pattern_matches_index_05():
     assert not mask.matches_index(7, length)
 
 
-def test_rhythmmakertools_Pattern_matches_index_06():
+def test_patterntools_Pattern_matches_index_06():
 
-    mask = rhythmmakertools.Pattern(
+    mask = patterntools.Pattern(
         indices=[-2, -1],
         period=4,
         )

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import patterntools
 
 
 def sustain_first(n=1, invert=None):
@@ -16,7 +17,7 @@ def sustain_first(n=1, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(0,),
                     ),
                 )
@@ -92,7 +93,7 @@ def sustain_first(n=1, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(0, 1),
                     ),
                 )
@@ -153,7 +154,7 @@ def sustain_first(n=1, invert=None):
     '''
     from abjad.tools import rhythmmakertools
     indices = list(range(n))
-    pattern = rhythmmakertools.Pattern(
+    pattern = patterntools.Pattern(
         indices=indices,
         invert=invert,
         )

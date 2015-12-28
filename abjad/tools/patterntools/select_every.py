@@ -10,12 +10,12 @@ def select_every(indices, period=None, invert=None):
 
         ::
 
-            >>> mask = rhythmmakertools.select_every(indices=[1], period=2)
+            >>> mask = patterntools.select_every(indices=[1], period=2)
 
         ::
 
             >>> print(format(mask))
-            rhythmmakertools.Pattern(
+            patterntools.Pattern(
                 indices=(1,),
                 period=2,
                 )
@@ -62,12 +62,12 @@ def select_every(indices, period=None, invert=None):
 
         ::
 
-            >>> mask = rhythmmakertools.select_every(indices=[1, 2], period=3)
+            >>> mask = patterntools.select_every(indices=[1, 2], period=3)
 
         ::
 
             >>> print(format(mask))
-            rhythmmakertools.Pattern(
+            patterntools.Pattern(
                 indices=(1, 2),
                 period=3,
                 )
@@ -111,9 +111,8 @@ def select_every(indices, period=None, invert=None):
 
     Returns pattern.
     '''
-    from abjad.tools import rhythmmakertools
-
-    return rhythmmakertools.Pattern(
+    from abjad.tools import patterntools
+    return patterntools.Pattern(
         indices=indices,
         invert=invert,
         period=period,

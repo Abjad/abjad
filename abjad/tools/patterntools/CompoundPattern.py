@@ -14,12 +14,12 @@ class CompoundPattern(TypedTuple):
 
         ::
 
-            >>> pattern = rhythmmakertools.CompoundPattern(
+            >>> pattern = patterntools.CompoundPattern(
             ...     [
-            ...         rhythmmakertools.Pattern(
+            ...         patterntools.Pattern(
             ...             indices=[0, 1, 2],
             ...             ),
-            ...         rhythmmakertools.Pattern(
+            ...         patterntools.Pattern(
             ...             indices=[-3, -2, -1],
             ...             ),
             ...         ],
@@ -28,12 +28,12 @@ class CompoundPattern(TypedTuple):
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.CompoundPattern(
+            patterntools.CompoundPattern(
                 (
-                    rhythmmakertools.Pattern(
+                    patterntools.Pattern(
                         indices=(0, 1, 2),
                         ),
-                    rhythmmakertools.Pattern(
+                    patterntools.Pattern(
                         indices=(-3, -2, -1),
                         ),
                     ),
@@ -47,13 +47,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             invert=True,
                 ...             ),
@@ -64,13 +64,13 @@ class CompoundPattern(TypedTuple):
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             invert=True,
                             ),
@@ -84,22 +84,22 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> sieve_1a = rhythmmakertools.select_every([0, 1, 7], period=8)
-                >>> sieve_1b = rhythmmakertools.select_every([1, 3], period=5)
+                >>> sieve_1a = patterntools.select_every([0, 1, 7], period=8)
+                >>> sieve_1b = patterntools.select_every([1, 3], period=5)
                 >>> sieve_1 = sieve_1a & sieve_1b
-                >>> sieve_2a = rhythmmakertools.select_every([0, 1, 2], period=8)
-                >>> sieve_2b = rhythmmakertools.select_every([0], period=5)
+                >>> sieve_2a = patterntools.select_every([0, 1, 2], period=8)
+                >>> sieve_2b = patterntools.select_every([0], period=5)
                 >>> sieve_2 = sieve_2a & sieve_2b
-                >>> sieve_3 = rhythmmakertools.select_every([3], period=8)
-                >>> sieve_4 = rhythmmakertools.select_every([4], period=8)
-                >>> sieve_5a = rhythmmakertools.select_every([5, 6], period=8)
-                >>> sieve_5b = rhythmmakertools.select_every([2, 3, 4], period=5)
+                >>> sieve_3 = patterntools.select_every([3], period=8)
+                >>> sieve_4 = patterntools.select_every([4], period=8)
+                >>> sieve_5a = patterntools.select_every([5, 6], period=8)
+                >>> sieve_5b = patterntools.select_every([2, 3, 4], period=5)
                 >>> sieve_5 = sieve_5a & sieve_5b
-                >>> sieve_6a = rhythmmakertools.select_every([1], period=8)
-                >>> sieve_6b = rhythmmakertools.select_every([2], period=5)
+                >>> sieve_6a = patterntools.select_every([1], period=8)
+                >>> sieve_6b = patterntools.select_every([2], period=5)
                 >>> sieve_6 = sieve_6a & sieve_6b
-                >>> sieve_7a = rhythmmakertools.select_every([6], period=8)
-                >>> sieve_7b = rhythmmakertools.select_every([1], period=5)
+                >>> sieve_7a = patterntools.select_every([6], period=8)
+                >>> sieve_7b = patterntools.select_every([1], period=5)
                 >>> sieve_7 = sieve_7a & sieve_7b
                 >>> sieve = sieve_1 | sieve_2 | sieve_3 | sieve_4 | sieve_5 | sieve_6 | sieve_7
 
@@ -129,9 +129,9 @@ class CompoundPattern(TypedTuple):
     ### INITIALIZER ###
 
     def __init__(self, items=None, invert=None, operator='or'):
-        from abjad.tools import rhythmmakertools
+        from abjad.tools import patterntools
         items = items or ()
-        prototype = (rhythmmakertools.Pattern, type(self))
+        prototype = (patterntools.Pattern, type(self))
         for item in items:
             assert isinstance(item, prototype), repr(item)
         assert operator in self._name_to_operator, repr(operator)
@@ -153,23 +153,23 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
-                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_3 = patterntools.select_every([0], period=2)
                 >>> pattern = pattern_1 & pattern_2 & pattern_3
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
@@ -188,28 +188,28 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
-                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_3 = patterntools.select_every([0], period=2)
                 >>> pattern = pattern_1 & pattern_2 | pattern_3
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.CompoundPattern(
+                        patterntools.CompoundPattern(
                             (
-                                rhythmmakertools.Pattern(
+                                patterntools.Pattern(
                                     indices=(0, 1, 2),
                                     ),
-                                rhythmmakertools.Pattern(
+                                patterntools.Pattern(
                                     indices=(-3, -2, -1),
                                     ),
                                 ),
                             operator='and',
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
@@ -241,19 +241,19 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
                 >>> pattern = pattern_1 | pattern_2
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -274,12 +274,12 @@ class CompoundPattern(TypedTuple):
 
                 >>> pattern = ~pattern
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             ),
                         ),
@@ -307,23 +307,23 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
-                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_3 = patterntools.select_every([0], period=2)
                 >>> pattern = pattern_1 | pattern_2 | pattern_3
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
@@ -342,25 +342,25 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
-                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_3 = patterntools.select_every([0], period=2)
                 >>> pattern = pattern_1 | pattern_2 & pattern_3
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.CompoundPattern(
+                        patterntools.CompoundPattern(
                             (
-                                rhythmmakertools.Pattern(
+                                patterntools.Pattern(
                                     indices=(-3, -2, -1),
                                     ),
-                                rhythmmakertools.Pattern(
+                                patterntools.Pattern(
                                     indices=(0,),
                                     period=2,
                                     ),
@@ -394,23 +394,23 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
-                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_3 = patterntools.select_every([0], period=2)
                 >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-3, -2, -1),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             period=2,
                             ),
@@ -429,25 +429,25 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
-                >>> pattern_3 = rhythmmakertools.select_every([0], period=2)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern_3 = patterntools.select_every([0], period=2)
                 >>> pattern = pattern_1 ^ pattern_2 & pattern_3
 
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
-                        rhythmmakertools.CompoundPattern(
+                        patterntools.CompoundPattern(
                             (
-                                rhythmmakertools.Pattern(
+                                patterntools.Pattern(
                                     indices=(-3, -2, -1),
                                     ),
-                                rhythmmakertools.Pattern(
+                                patterntools.Pattern(
                                     indices=(0,),
                                     period=2,
                                     ),
@@ -475,9 +475,9 @@ class CompoundPattern(TypedTuple):
     ### PRIVATE METHODS ###
 
     def _can_append_to_self(self, pattern, operator_):
-        from abjad.tools import rhythmmakertools
+        from abjad.tools import patterntools
         if operator_ == self.operator:
-            if isinstance(pattern, rhythmmakertools.Pattern):
+            if isinstance(pattern, patterntools.Pattern):
                 return True
             if (isinstance(pattern, type(self)) and 
                 pattern.operator == self.operator):
@@ -497,8 +497,8 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern_1 = rhythmmakertools.select_first(3)
-                >>> pattern_2 = rhythmmakertools.select_last(3)
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
                 >>> pattern = pattern_1 | pattern_2
                 >>> pattern.invert is None
                 True
@@ -553,12 +553,12 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -591,13 +591,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             invert=True,
                 ...             ),
@@ -641,7 +641,7 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern()
+                >>> pattern = patterntools.CompoundPattern()
 
             Total length 16:
 
@@ -711,9 +711,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -745,9 +745,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -779,9 +779,9 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -819,12 +819,12 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -898,12 +898,12 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -977,12 +977,12 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             ),
                 ...         ],
@@ -1057,13 +1057,13 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             invert=True,
                 ...             ),
@@ -1138,23 +1138,23 @@ class CompoundPattern(TypedTuple):
 
             ::
 
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0],
                 ...             period=2,
                 ...             ),
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[-3, -2, -1],
                 ...             invert=True,
                 ...             ),
                 ...         ],
                 ...     operator='and',
                 ...     )
-                >>> pattern = rhythmmakertools.CompoundPattern(
+                >>> pattern = patterntools.CompoundPattern(
                 ...     [
                 ...         pattern,
-                ...         rhythmmakertools.Pattern(
+                ...         patterntools.Pattern(
                 ...             indices=[0, 1, 2],
                 ...             ),
                 ...         ],
@@ -1164,22 +1164,22 @@ class CompoundPattern(TypedTuple):
             ::
 
                 >>> print(format(pattern))
-                rhythmmakertools.CompoundPattern(
+                patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.CompoundPattern(
+                        patterntools.CompoundPattern(
                             (
-                                rhythmmakertools.Pattern(
+                                patterntools.Pattern(
                                     indices=(0,),
                                     period=2,
                                     ),
-                                rhythmmakertools.Pattern(
+                                patterntools.Pattern(
                                     indices=(-3, -2, -1),
                                     invert=True,
                                     ),
                                 ),
                             operator='and',
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0, 1, 2),
                             ),
                         ),

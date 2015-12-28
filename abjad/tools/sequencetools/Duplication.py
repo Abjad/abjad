@@ -171,7 +171,7 @@ class Duplication(AbjadValueObject):
         Returns new object with type equal to that of `expr`.
         '''
         from abjad.tools import datastructuretools
-        from abjad.tools import rhythmmakertools
+        from abjad.tools import patterntools
         from abjad.tools import sequencetools
 
         if not isinstance(expr, collections.Sequence):
@@ -214,7 +214,7 @@ class Duplication(AbjadValueObject):
                 result = result + shard
             return result
 
-        pattern = rhythmmakertools.Pattern(
+        pattern = patterntools.Pattern(
             indices=self.indices,
             period=self.period,
             )

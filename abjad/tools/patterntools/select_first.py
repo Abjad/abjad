@@ -10,12 +10,12 @@ def select_first(n=1, invert=None):
 
         ::
 
-            >>> pattern = rhythmmakertools.select_first()
+            >>> pattern = patterntools.select_first()
 
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.Pattern(
+            patterntools.Pattern(
                 indices=(0,),
                 )
 
@@ -64,12 +64,12 @@ def select_first(n=1, invert=None):
 
         ::
 
-            >>> pattern = rhythmmakertools.select_first(n=2)
+            >>> pattern = patterntools.select_first(n=2)
 
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.Pattern(
+            patterntools.Pattern(
                 indices=(0, 1),
                 )
 
@@ -118,12 +118,12 @@ def select_first(n=1, invert=None):
 
         ::
 
-            >>> pattern = rhythmmakertools.select_first(n=0)
+            >>> pattern = patterntools.select_first(n=0)
 
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.Pattern(
+            patterntools.Pattern(
                 indices=(),
                 )
 
@@ -168,10 +168,9 @@ def select_first(n=1, invert=None):
 
     Returns pattern.
     '''
-    from abjad.tools import rhythmmakertools
-
+    from abjad.tools import patterntools
     indices = list(range(n))
-    return rhythmmakertools.Pattern(
+    return patterntools.Pattern(
         indices=indices,
         invert=invert,
         )

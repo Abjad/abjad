@@ -1483,7 +1483,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> pattern = rhythmmakertools.select([1])
+                >>> pattern = patterntools.select([1])
                 >>> selector = selector.by_pattern(pattern=pattern)
 
             ::
@@ -1523,7 +1523,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> pattern = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = patterntools.select_every([0], period=2)
                 >>> selector = selector.by_pattern(pattern=pattern)
 
             ::
@@ -1600,7 +1600,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
-                >>> pattern = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = patterntools.select_every([0], period=2)
                 >>> selector = selector.by_pattern(pattern=pattern)
 
             ::
@@ -1679,7 +1679,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaves(flatten=True)
-                >>> pattern = rhythmmakertools.select_every([0], period=2)
+                >>> pattern = patterntools.select_every([0], period=2)
                 >>> selector = selector.by_pattern(pattern=pattern)
 
             ::
@@ -1758,7 +1758,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> pattern = rhythmmakertools.select([1])
+                >>> pattern = patterntools.select([1])
                 >>> selector = selector.by_pattern(
                 ...     apply_to_each=True,
                 ...     pattern=pattern,

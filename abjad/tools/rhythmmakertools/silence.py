@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import patterntools
 from abjad.tools.topleveltools import new
 
 
@@ -17,7 +18,7 @@ def silence(indices=None, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(1, 2),
                     ),
                 )
@@ -70,7 +71,7 @@ def silence(indices=None, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(-1, -2),
                     ),
                 )
@@ -119,9 +120,9 @@ def silence(indices=None, invert=None):
 
         ::
 
-            >>> pattern_1 = rhythmmakertools.select_all()
-            >>> pattern_2 = rhythmmakertools.select_first()
-            >>> pattern_3 = rhythmmakertools.select_last()
+            >>> pattern_1 = patterntools.select_all()
+            >>> pattern_2 = patterntools.select_first()
+            >>> pattern_3 = patterntools.select_last()
             >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
             >>> mask = rhythmmakertools.silence(pattern)
 
@@ -129,16 +130,16 @@ def silence(indices=None, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.CompoundPattern(
+                pattern=patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             period=1,
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-1,),
                             ),
                         ),
@@ -190,9 +191,9 @@ def silence(indices=None, invert=None):
 
         ::
 
-            >>> pattern_1 = rhythmmakertools.select_all()
-            >>> pattern_2 = rhythmmakertools.select_first()
-            >>> pattern_3 = rhythmmakertools.select_last()
+            >>> pattern_1 = patterntools.select_all()
+            >>> pattern_2 = patterntools.select_first()
+            >>> pattern_3 = patterntools.select_last()
             >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
             >>> mask = rhythmmakertools.silence(pattern, invert=True)
 
@@ -200,16 +201,16 @@ def silence(indices=None, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.CompoundPattern(
+                pattern=patterntools.CompoundPattern(
                     (
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             period=1,
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(0,),
                             ),
-                        rhythmmakertools.Pattern(
+                        patterntools.Pattern(
                             indices=(-1,),
                             ),
                         ),
@@ -260,11 +261,11 @@ def silence(indices=None, invert=None):
     '''
     from abjad.tools import rhythmmakertools
     indices = indices or []
-    prototype = (rhythmmakertools.Pattern, rhythmmakertools.CompoundPattern)
+    prototype = (patterntools.Pattern, patterntools.CompoundPattern)
     if isinstance(indices, prototype):
         pattern = indices
     else:
-        pattern = rhythmmakertools.Pattern(
+        pattern = patterntools.Pattern(
             indices=indices,
             invert=invert,
             )

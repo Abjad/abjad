@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import patterntools
 
 
 def sustain_every(indices, period, invert=None):
@@ -16,7 +17,7 @@ def sustain_every(indices, period, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(1,),
                     period=2,
                     ),
@@ -70,7 +71,7 @@ def sustain_every(indices, period, invert=None):
 
             >>> print(format(mask))
             rhythmmakertools.SustainMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(1, 2),
                     period=3,
                     ),
@@ -116,7 +117,7 @@ def sustain_every(indices, period, invert=None):
     '''
     from abjad.tools import rhythmmakertools
     indices = list(indices)
-    pattern = rhythmmakertools.Pattern(
+    pattern = patterntools.Pattern(
         indices=indices,
         invert=invert,
         period=period,

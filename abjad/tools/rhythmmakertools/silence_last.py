@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import patterntools
 
 
 def silence_last(n=1, invert=None, use_multimeasure_rests=None):
@@ -16,7 +17,7 @@ def silence_last(n=1, invert=None, use_multimeasure_rests=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(-1,),
                     ),
                 )
@@ -69,7 +70,7 @@ def silence_last(n=1, invert=None, use_multimeasure_rests=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(-2, -1),
                     ),
                 )
@@ -122,7 +123,7 @@ def silence_last(n=1, invert=None, use_multimeasure_rests=None):
 
             >>> print(format(mask))
             rhythmmakertools.SilenceMask(
-                pattern=rhythmmakertools.Pattern(
+                pattern=patterntools.Pattern(
                     indices=(),
                     ),
                 )
@@ -167,7 +168,7 @@ def silence_last(n=1, invert=None, use_multimeasure_rests=None):
     '''
     from abjad.tools import rhythmmakertools
     indices = list(reversed(range(-1, -n-1, -1)))
-    pattern = rhythmmakertools.Pattern(
+    pattern = patterntools.Pattern(
         indices=indices,
         invert=invert,
         )

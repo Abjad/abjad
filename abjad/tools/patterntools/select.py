@@ -10,12 +10,12 @@ def select(indices=None, invert=None):
 
         ::
 
-            >>> pattern = rhythmmakertools.select([2])
+            >>> pattern = patterntools.select([2])
 
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.Pattern(
+            patterntools.Pattern(
                 indices=(2,),
                 )
 
@@ -25,21 +25,20 @@ def select(indices=None, invert=None):
 
         ::
 
-            >>> pattern = rhythmmakertools.select([2, 3, 5])
+            >>> pattern = patterntools.select([2, 3, 5])
 
         ::
 
             >>> print(format(pattern))
-            rhythmmakertools.Pattern(
+            patterntools.Pattern(
                 indices=(2, 3, 5),
                 )
 
     Returns pattern.
     '''
-    from abjad.tools import rhythmmakertools
-
+    from abjad.tools import patterntools
     indices = indices or []
-    return rhythmmakertools.Pattern(
+    return patterntools.Pattern(
         indices=indices,
         invert=invert,
         )
