@@ -12,15 +12,18 @@ class PitchArray(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, *args):
+    def __init__(self, rows=None):
+        from abjad.tools import pitchtools
         self._rows = []
         self._columns = []
-        if len(args) == 1:
-            if isinstance(args[0], (tuple, list)):
-                self._initialize_by_cell_token_lists(*args)
-        elif len(args) == 2:
-            if all(isinstance(arg, int) for arg in args):
-                self._initialize_by_counts(*args)
+        if not rows:
+            return
+        for row in rows:
+            row_ = pitchtools.PitchArrayRow([])
+            for cell_token in row:
+                cell = self._parse_cell_token(cell_token)
+                row_.append(cell)
+            self.append_row(row_)
 
     ### SPECIAL METHODS ###
 
@@ -223,20 +226,12 @@ class PitchArray(AbjadObject):
         return list(mathtools.difference_series(offsets))
 
     def _initialize_by_cell_token_lists(self, cell_token_lists):
+        raise Exception(cell_token_lists)
         from abjad.tools import pitchtools
         for cell_token_list in cell_token_lists:
             row = pitchtools.PitchArrayRow([])
             for cell_token in cell_token_list:
                 cell = self._parse_cell_token(cell_token)
-                row.append(cell)
-            self.append_row(row)
-
-    def _initialize_by_counts(self, row_count, column_count):
-        from abjad.tools import pitchtools
-        for i in range(row_count):
-            row = pitchtools.PitchArrayRow([])
-            for j in range(column_count):
-                cell = pitchtools.PitchArrayCell()
                 row.append(cell)
             self.append_row(row)
 
@@ -465,6 +460,18 @@ class PitchArray(AbjadObject):
         return new_array
 
     @classmethod
+    def from_counts(class_, row_count, column_count):
+        from abjad.tools import pitchtools
+        array = class_()
+        for i in range(row_count):
+            row = pitchtools.PitchArrayRow([])
+            for j in range(column_count):
+                cell = pitchtools.PitchArrayCell()
+                row.append(cell)
+            array.append_row(row)
+        return array
+
+    @classmethod
     def from_score(class_, score, populate=True):
         r'''Makes pitch array from `score`.
 
@@ -591,7 +598,7 @@ class PitchArray(AbjadObject):
         time_intervals = class_._get_leaf_offsets(score)
         array_width = len(time_intervals)
         array_depth = len(score)
-        pitch_array = class_(array_depth, array_width)
+        pitch_array = class_.from_counts(array_depth, array_width)
         items = scoretools.make_multiplied_quarter_notes([0], time_intervals)
         for leaf_iterable, pitch_array_row in zip(score, pitch_array.rows):
             durations = []

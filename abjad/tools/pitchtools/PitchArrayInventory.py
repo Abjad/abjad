@@ -25,8 +25,72 @@ class PitchArrayInventory(TypedList):
         >>> print(format(inventory))
         pitchtools.PitchArrayInventory(
             [
-                pitchtools.PitchArray(),
-                pitchtools.PitchArray(),
+                pitchtools.PitchArray(
+                    rows=(
+                        pitchtools.PitchArrayRow(
+                            cells=(
+                                pitchtools.PitchArrayCell(
+                                    item=1,
+                                    ),
+                                pitchtools.PitchArrayCell(
+                                    item=('d', 4),
+                                    ),
+                                pitchtools.PitchArrayCell(
+                                    item=(
+                                        [
+                                            ('bf', 3),
+                                            ('bqf', 3),
+                                            ],
+                                        2,
+                                        ),
+                                    ),
+                                ),
+                            ),
+                        pitchtools.PitchArrayRow(
+                            cells=(
+                                pitchtools.PitchArrayCell(
+                                    item=('g', 4, 2),
+                                    ),
+                                pitchtools.PitchArrayCell(
+                                    item=('fs', 4),
+                                    ),
+                                pitchtools.PitchArrayCell(
+                                    item=1,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
+                pitchtools.PitchArray(
+                    rows=(
+                        pitchtools.PitchArrayRow(
+                            cells=(
+                                pitchtools.PitchArrayCell(
+                                    item=1,
+                                    ),
+                                pitchtools.PitchArrayCell(
+                                    item=1,
+                                    ),
+                                pitchtools.PitchArrayCell(
+                                    item=1,
+                                    ),
+                                ),
+                            ),
+                        pitchtools.PitchArrayRow(
+                            cells=(
+                                pitchtools.PitchArrayCell(
+                                    item=1,
+                                    ),
+                                pitchtools.PitchArrayCell(
+                                    item=1,
+                                    ),
+                                pitchtools.PitchArrayCell(
+                                    item=1,
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),
                 ]
             )
 
