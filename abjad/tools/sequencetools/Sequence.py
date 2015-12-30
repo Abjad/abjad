@@ -657,6 +657,214 @@ class Sequence(AbjadObject):
         except TypeError:
             return False
 
+    def partition_by_counts(self, counts, cyclic=False, overhang=False):
+        r'''Partitions sequence by `counts`.
+
+        ..  container:: example
+
+            **Example 1.** Partitions sequence once by counts without overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(10))
+                >>> sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     )
+                Sequence((Sequence((0, 1, 2))))
+
+        ..  container:: example
+
+            **Example 2.** Partitions sequence once by counts without
+            overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> sequence_.partition_by_counts(
+                ...     [4, 3],
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     )
+                Sequence((Sequence((0, 1, 2, 3)), Sequence((4, 5, 6))))
+
+        ..  container:: example
+
+            **Example 3.** Partitions sequence cyclically by counts without
+            overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(10))
+                >>> sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=True,
+                ...     overhang=False,
+                ...     )
+                Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5)), Sequence((6, 7, 8))))
+
+        ..  container:: example
+
+            **Example 4.** Partitions sequence cyclically by counts without
+            overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> result = sequence_.partition_by_counts(
+                ...     [4, 3],
+                ...     cyclic=True,
+                ...     overhang=False,
+                ...     )
+                >>> for part in result:
+                ...     part
+                Sequence((0, 1, 2, 3))
+                Sequence((4, 5, 6))
+                Sequence((7, 8, 9, 10))
+                Sequence((11, 12, 13))
+
+        ..  container:: example
+
+            **Example 5.** Partitions sequence once by counts with overhang:
+
+            ::
+
+                
+                >>> sequence_ = Sequence(range(10))
+                >>> sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     )
+                Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5, 6, 7, 8, 9))))
+
+        ..  container:: example
+
+            **Example 6.** Partitions sequence once by counts with overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> result = sequence_.partition_by_counts(
+                ...     [4, 3],
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     )
+                >>> for part in result:
+                ...     part
+                Sequence((0, 1, 2, 3))
+                Sequence((4, 5, 6))
+                Sequence((7, 8, 9, 10, 11, 12, 13, 14, 15))
+
+        ..  container:: example
+
+            **Example 7.** Partitions sequence cyclically by counts with
+            overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(10))
+                >>> result = sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     )
+                >>> for part in result:
+                ...     part
+                Sequence((0, 1, 2))
+                Sequence((3, 4, 5))
+                Sequence((6, 7, 8))
+                Sequence((9))
+
+        ..  container:: example
+
+            **Example 8.** Partitions sequence cyclically by counts with
+            overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> result = sequence_.partition_by_counts(
+                ...     [4, 3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     )
+                >>> for part in result:
+                ...     part
+                Sequence((0, 1, 2, 3))
+                Sequence((4, 5, 6))
+                Sequence((7, 8, 9, 10))
+                Sequence((11, 12, 13))
+                Sequence((14, 15))
+
+        ..  container:: example
+
+            **Example 9.** Partitions sequence once by counts and asserts
+            that sequence partitions exactly (with no overhang):
+
+            ::
+
+                >>> sequence_ = Sequence(range(10))
+                >>> sequence_.partition_by_counts(
+                ...     [2, 3, 5],
+                ...     cyclic=False,
+                ...     overhang=Exact,
+                ...     )
+                Sequence((Sequence((0, 1)), Sequence((2, 3, 4)), Sequence((5, 6, 7, 8, 9))))
+
+        ..  container:: example
+
+            **Example 10.** Partitions sequence cyclically by counts and
+            asserts that sequence partitions exactly:
+
+            ::
+
+                >>> sequence_ = Sequence(range(10))
+                >>> result = sequence_.partition_by_counts(
+                ...     [2],
+                ...     cyclic=True,
+                ...     overhang=Exact,
+                ...     )
+                >>> for part in result:
+                ...     part
+                Sequence((0, 1))
+                Sequence((2, 3))
+                Sequence((4, 5))
+                Sequence((6, 7))
+                Sequence((8, 9))
+
+            Exact partitioning means partitioning with no overhang.
+
+        ..  container:: example
+
+            **Example 11.** Partitions string:
+
+            ::
+
+                >>> sequence_ = Sequence('some text')
+                >>> sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     )
+                Sequence((Sequence(('s', 'o', 'm')), Sequence(('e', ' ', 't', 'e', 'x', 't'))))
+
+        Returns nested sequence.
+        '''
+        from abjad.tools import sequencetools
+        items = self._items[:]
+        subsequences = []
+        parts = sequencetools.partition_sequence_by_counts(
+            items,
+            counts,
+            cyclic=cyclic,
+            overhang=overhang,
+            )
+        parts = [type(self)(_) for _ in parts]
+        sequence = type(self)(parts)
+        return sequence
+
     def partition_by_ratio_of_lengths(self, ratio):
         r'''Partitions sequence by `ratio` of lengths.
 
