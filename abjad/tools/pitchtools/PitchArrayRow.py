@@ -25,7 +25,7 @@ class PitchArrayRow(AbjadObject):
         ::
 
             >>> array[0]
-            PitchArrayRow(c', d' x2, x1)
+            PitchArrayRow(cells=(PitchArrayCell(item=('c', 4)), PitchArrayCell(item=('d', 4, 2)), PitchArrayCell(item=1)))
 
         ::
 
@@ -49,7 +49,6 @@ class PitchArrayRow(AbjadObject):
     def __init__(self, cells=None):
         from abjad.tools import pitchtools
         self._parent_array = None
-        #self._pitch_range = pitchtools.PitchRange(None, None)
         self._pitch_range = pitchtools.PitchRange()
         self._cells = []
         cells = cells or []
@@ -185,12 +184,12 @@ class PitchArrayRow(AbjadObject):
         '''
         return not self == arg
 
-    def __repr__(self):
-        r'''Gets interpreter representation of pitch array row.
-
-        Returns string.
-        '''
-        return '{}({})'.format(type(self).__name__, self._compact_summary)
+#    def __repr__(self):
+#        r'''Gets interpreter representation of pitch array row.
+#
+#        Returns string.
+#        '''
+#        return '{}({})'.format(type(self).__name__, self._compact_summary)
 
     def __str__(self):
         r'''String representation of pitch array row.

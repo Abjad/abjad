@@ -23,7 +23,7 @@ class PitchArrayCell(AbjadObject):
         ::
 
             >>> cell
-            PitchArrayCell(x2)
+            PitchArrayCell(width=2)
 
         ::
 
@@ -48,22 +48,22 @@ class PitchArrayCell(AbjadObject):
         ::
 
             >>> cell.next
-            PitchArrayCell(x1)
+            PitchArrayCell(width=1)
 
         ::
 
             >>> cell.parent_array
-            PitchArray(PitchArrayRow(x1, x2, x1), PitchArrayRow(x2, x1, x1))
+            PitchArray(rows=(PitchArrayRow(cells=(PitchArrayCell(item=1), PitchArrayCell(item=2), PitchArrayCell(item=1))), PitchArrayRow(cells=(PitchArrayCell(item=2), PitchArrayCell(item=1), PitchArrayCell(item=1)))))
 
         ::
 
             >>> cell.parent_column
-            PitchArrayColumn(x2, x2)
+            PitchArrayColumn(cells=(PitchArrayCell(item=2), PitchArrayCell(item=2)))
 
         ::
 
             >>> cell.parent_row
-            PitchArrayRow(x1, x2, x1)
+            PitchArrayRow(cells=(PitchArrayCell(item=1), PitchArrayCell(item=2), PitchArrayCell(item=1)))
 
         ::
 
@@ -73,7 +73,7 @@ class PitchArrayCell(AbjadObject):
         ::
 
             >>> cell.previous
-            PitchArrayCell(x1)
+            PitchArrayCell(width=1)
 
         ::
 
@@ -113,9 +113,9 @@ class PitchArrayCell(AbjadObject):
 
         Returns string.
         '''
-        return '{}({})'.format(
+        return '{}(width={})'.format(
             type(self).__name__,
-            self._format_pitch_width_string,
+            self.width,
             )
 
     def __str__(self):

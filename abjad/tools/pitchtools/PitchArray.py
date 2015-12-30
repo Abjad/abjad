@@ -205,16 +205,6 @@ class PitchArray(AbjadObject):
         '''
         return not self == arg
 
-    def __repr__(self):
-        r'''Intepreter representation of pitch array.
-
-        Returns string.
-        '''
-        rows = self.rows
-        rows = [repr(row) for row in rows]
-        rows = ', '.join(rows)
-        return '{}({})'.format(type(self).__name__, rows)
-
     def __setitem__(self, i, arg):
         r'''Sets pitch array row `i` to `arg`.
 

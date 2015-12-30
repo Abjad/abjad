@@ -13,9 +13,12 @@ class PitchArrayColumn(AbjadObject):
 
         ::
 
-            >>> array = pitchtools.PitchArray([
-            ...   [1, (2, 1), (-1.5, 2)],
-            ...   [(7, 2), (6, 1), 1]])
+            >>> array = pitchtools.PitchArray(
+            ...     [
+            ...         [1, (2, 1), (-1.5, 2)],
+            ...         [(7, 2), (6, 1), 1],
+            ...         ]
+            ...     )
 
         ::
 
@@ -26,7 +29,7 @@ class PitchArrayColumn(AbjadObject):
         ::
 
             >>> array.columns[0]
-            PitchArrayColumn(x1, g' x2)
+            PitchArrayColumn(cells=(PitchArrayCell(item=1), PitchArrayCell(item=('g', 4, 2))))
 
         ::
 
@@ -82,21 +85,12 @@ class PitchArrayColumn(AbjadObject):
         return super(PitchArrayColumn, self).__hash__()
 
     def __ne__(self, arg):
-        r'''Is true when pitch array column does not equal `arg`. Otherwise false.
+        r'''Is true when pitch array column does not equal `arg`. Otherwise
+        false.
 
         Returns true or false.
         '''
         return not self == arg
-
-    def __repr__(self):
-        r'''Gets interpreter representation of pitch array column.
-
-        Returns string.
-        '''
-        return '{}({})'.format(
-            type(self).__name__,
-            self._format_contents_string,
-            )
 
     def __str__(self):
         r'''String representation of pitch array column.
