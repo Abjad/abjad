@@ -8,6 +8,52 @@ from abjad.tools.topleveltools import mutate
 
 class PitchArray(AbjadObject):
     r'''A pitch array.
+
+    ..  container:: example
+
+        **Example 1.**
+
+        ::
+
+            >>> pitch_array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+            >>> print(pitch_array)
+            [ ] [     ] [ ]
+            [     ] [ ] [ ]
+
+        ::
+
+            >>> print(format(pitch_array))
+            pitchtools.PitchArray(
+                rows=(
+                    pitchtools.PitchArrayRow(
+                        cells=(
+                            pitchtools.PitchArrayCell(
+                                item=1,
+                                ),
+                            pitchtools.PitchArrayCell(
+                                item=2,
+                                ),
+                            pitchtools.PitchArrayCell(
+                                item=1,
+                                ),
+                            ),
+                        ),
+                    pitchtools.PitchArrayRow(
+                        cells=(
+                            pitchtools.PitchArrayCell(
+                                item=2,
+                                ),
+                            pitchtools.PitchArrayCell(
+                                item=1,
+                                ),
+                            pitchtools.PitchArrayCell(
+                                item=1,
+                                ),
+                            ),
+                        ),
+                    ),
+                )
+
     '''
 
     ### INITIALIZER ###
