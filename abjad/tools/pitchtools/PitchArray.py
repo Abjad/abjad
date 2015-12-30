@@ -4,14 +4,10 @@ from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
-from abjad.tools.pitchtools.PitchArrayCell import PitchArrayCell
-from abjad.tools.pitchtools.PitchArrayColumn import PitchArrayColumn
-from abjad.tools.pitchtools.PitchArrayRow import PitchArrayRow
-from abjad.tools.pitchtools.NamedPitch import NamedPitch
 
 
 class PitchArray(AbjadObject):
-    r'''A two-dimensional array of pitches.
+    r'''A pitch array.
     '''
 
     ### INITIALIZER ###
@@ -33,13 +29,14 @@ class PitchArray(AbjadObject):
 
         Returns new pitch array.
         '''
-        if not isinstance(arg, PitchArray):
+        from abjad.tools import pitchtools
+        if not isinstance(arg, pitchtools.PitchArray):
             message = 'must be pitch array.'
             raise TypeError(message)
         if not self.depth == arg.depth:
             message = 'array depth must match.'
             raise ValueError(message)
-        new_array = PitchArray([])
+        new_array = pitchtools.PitchArray([])
         for self_row, arg_row in zip(self.rows, arg.rows):
             new_row = self_row + arg_row
             new_array.append_row(new_row)
@@ -50,13 +47,14 @@ class PitchArray(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(arg, PitchArrayRow):
+        from abjad.tools import pitchtools
+        if isinstance(arg, pitchtools.PitchArrayRow):
             return arg in self.rows
-        elif isinstance(arg, PitchArrayColumn):
+        elif isinstance(arg, pitchtools.PitchArrayColumn):
             return arg in self.columns
-        elif isinstance(arg, PitchArrayCell):
+        elif isinstance(arg, pitchtools.PitchArrayCell):
             return arg in self.cells
-        elif isinstance(arg, NamedPitch):
+        elif isinstance(arg, pitchtools.NamedPitch):
             for pitch in self.pitches:
                 if arg == pitch:
                     return True
@@ -70,7 +68,7 @@ class PitchArray(AbjadObject):
 
         Returns new pitch array.
         '''
-        return PitchArray(self.cell_tokens_by_row)
+        return type(self)(self.cell_tokens_by_row)
 
     def __eq__(self, arg):
         r'''Is true when `arg` is a pitch aarray with contents equal to that of
@@ -78,7 +76,7 @@ class PitchArray(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(arg, PitchArray):
+        if isinstance(arg, type(self)):
             for self_row, arg_row in zip(self.rows, arg.rows):
                 if not self_row == arg_row:
                     return False
@@ -104,7 +102,7 @@ class PitchArray(AbjadObject):
 
         Returns integer.
         '''
-        return super(PitchArray, self).__hash__()
+        return super(type(self), self).__hash__()
 
     def __iadd__(self, arg):
         r'''Adds `arg` to pitch array in place.
@@ -144,7 +142,7 @@ class PitchArray(AbjadObject):
 
         Returns pitch array.
         '''
-        if not isinstance(arg, PitchArray):
+        if not isinstance(arg, type(self)):
             message = 'must be pitch array.'
             raise TypeError(message)
         for self_row, arg_row in zip(self.rows, arg.rows):
@@ -173,8 +171,9 @@ class PitchArray(AbjadObject):
 
         Retunrs none.
         '''
+        from abjad.tools import pitchtools
         if isinstance(i, int):
-            if not isinstance(arg, PitchArrayRow):
+            if not isinstance(arg, pitchtools.PitchArrayRow):
                 message = 'can assign only pitch array row to pitch array.'
                 raise TypeError(message)
             self._rows[i]._parent_array = None
@@ -210,7 +209,7 @@ class PitchArray(AbjadObject):
         return result
 
     @staticmethod
-    def _get_composite_offset_difference_series_from_leaves_in_expr(expr):
+    def _get_leaf_offsets(expr):
         from abjad.tools import scoretools
         offsets = []
         for leaf in iterate(expr).by_class(scoretools.Leaf):
@@ -224,23 +223,26 @@ class PitchArray(AbjadObject):
         return list(mathtools.difference_series(offsets))
 
     def _initialize_by_cell_token_lists(self, cell_token_lists):
+        from abjad.tools import pitchtools
         for cell_token_list in cell_token_lists:
-            row = PitchArrayRow([])
+            row = pitchtools.PitchArrayRow([])
             for cell_token in cell_token_list:
                 cell = self._parse_cell_token(cell_token)
                 row.append(cell)
             self.append_row(row)
 
     def _initialize_by_counts(self, row_count, column_count):
+        from abjad.tools import pitchtools
         for i in range(row_count):
-            row = PitchArrayRow([])
+            row = pitchtools.PitchArrayRow([])
             for j in range(column_count):
-                cell = PitchArrayCell()
+                cell = pitchtools.PitchArrayCell()
                 row.append(cell)
             self.append_row(row)
 
     def _parse_cell_token(self, cell_token):
-        return PitchArrayCell(cell_token)
+        from abjad.tools import pitchtools
+        return pitchtools.PitchArrayCell(cell_token)
 
     ### PUBLIC PROPERTIES ###
 
@@ -277,11 +279,12 @@ class PitchArray(AbjadObject):
 
         Returns tuple.
         '''
+        from abjad.tools import pitchtools
         columns = []
         rows = self.rows
         for i, cells in enumerate(
             sequencetools.zip_sequences(self.rows, truncate=False)):
-            column = PitchArrayColumn(cells)
+            column = pitchtools.PitchArrayColumn(cells)
             column._parent_array = self
             column._column_index = i
             columns.append(column)
@@ -403,7 +406,8 @@ class PitchArray(AbjadObject):
 
         Returns none.
         '''
-        if not isinstance(column, PitchArrayColumn):
+        from abjad.tools import pitchtools
+        if not isinstance(column, pitchtools.PitchArrayColumn):
             message = 'must be column.'
             raise TypeError(message)
         column._parent_array = self
@@ -419,7 +423,8 @@ class PitchArray(AbjadObject):
 
         Returns none.
         '''
-        if not isinstance(row, PitchArrayRow):
+        from abjad.tools import pitchtools
+        if not isinstance(row, pitchtools.PitchArrayRow):
             message = 'must be row.'
             raise TypeError(message)
         row._parent_array = self
@@ -438,6 +443,7 @@ class PitchArray(AbjadObject):
 
         Returns new pitch array.
         '''
+        from abjad.tools import pitchtools
         if not isinstance(upper_left_pair, tuple):
             raise TypeError
         if not isinstance(lower_right_pair, tuple):
@@ -450,7 +456,7 @@ class PitchArray(AbjadObject):
         if not start_j <= stop_j:
             message = 'start column must not be greater than stop column.'
             raise ValueError(message)
-        new_array = PitchArray([])
+        new_array = type(self)([])
         rows = self.rows
         row_indices = range(start_i, stop_i)
         for row_index in row_indices:
@@ -458,8 +464,8 @@ class PitchArray(AbjadObject):
             new_array.append_row(new_row)
         return new_array
 
-    @staticmethod
-    def from_score(score, populate=True):
+    @classmethod
+    def from_score(class_, score, populate=True):
         r'''Makes pitch array from `score`.
 
         ..  container:: example
@@ -582,18 +588,15 @@ class PitchArray(AbjadObject):
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        time_intervals = \
-            PitchArray._get_composite_offset_difference_series_from_leaves_in_expr(
-            score)
+        time_intervals = class_._get_leaf_offsets(score)
         array_width = len(time_intervals)
         array_depth = len(score)
-        pitch_array = PitchArray(array_depth, array_width)
-        items = scoretools.make_multiplied_quarter_notes(
-            [0], time_intervals)
-        for leaf_iterable, pitch_array_row in \
-            zip(score, pitch_array.rows):
+        pitch_array = class_(array_depth, array_width)
+        items = scoretools.make_multiplied_quarter_notes([0], time_intervals)
+        for leaf_iterable, pitch_array_row in zip(score, pitch_array.rows):
             durations = []
-            for leaf in iterate(leaf_iterable).by_class(scoretools.Leaf):
+            leaves = iterate(leaf_iterable).by_class(scoretools.Leaf)
+            for leaf in leaves:
                 durations.append(leaf._get_duration())
             parts = mutate(items).split(
                 durations,
@@ -618,8 +621,8 @@ class PitchArray(AbjadObject):
         return pitch_array
 
     def has_spanning_cell_over_index(self, index):
-        r'''Is true when pitch array has one or more spanning cells over `index`.
-        Otherwise false.
+        r'''Is true when pitch array has one or more spanning cells over
+        `index`. Otherwise false.
 
         Returns true or false.
         '''
@@ -688,6 +691,7 @@ class PitchArray(AbjadObject):
 
         Returns none.
         '''
+        from abjad.tools import pitchtools
         self_depth = self.depth
         if depth < self_depth:
             message = 'pad depth must be not less than array depth.'
@@ -695,7 +699,7 @@ class PitchArray(AbjadObject):
         self_width = self.width
         missing_rows = depth - self_depth
         for i in range(missing_rows):
-            row = PitchArrayRow([])
+            row = pitchtools.PitchArrayRow([])
             row.pad_to_width(self_width)
             self.append_row(row)
 
@@ -743,10 +747,11 @@ class PitchArray(AbjadObject):
         row._parent_array = None
 
     def to_measures(self, cell_duration_denominator=8):
-        r'''Changes pitch array  to measures with time signatures
-        with numerators equal to row width and denominators
-        equal to `cell_duration_denominator` for each row
-        in pitch array.
+        r'''Changes pitch array  to measures.
+        
+        Makes time signatures with numerators equal to row width and
+        denominators equal to `cell_duration_denominator` for each row in pitch
+        array.
 
         ::
 

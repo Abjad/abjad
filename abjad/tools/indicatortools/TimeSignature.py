@@ -122,69 +122,26 @@ class TimeSignature(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    #def __init__(self, *args, **kwargs):
     def __init__(self, pair=(4, 4), partial=None, suppress=None):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
-
-#        #partial, suppress = None, None
-#        # initialize numerator and denominator from *args
-#        if len(args) == 0:
-#            numerator = 4
-#            denominator = 4
-#        elif len(args) == 1 and isinstance(args[0], type(self)):
-#            time_signature = args[0]
-#            numerator = time_signature.numerator
-#            denominator = time_signature.denominator
-#            partial = time_signature.partial
-#            suppress = time_signature.suppress
-#        elif len(args) == 1 and isinstance(args[0], durationtools.Duration):
-#            numerator, denominator = args[0].numerator, args[0].denominator
-#        elif len(args) == 1 and isinstance(args[0], tuple):
-#            numerator, denominator = args[0][0], args[0][1]
-#        elif (len(args) == 1 and hasattr(args[0], 'numerator') and
-#            hasattr(args[0], 'denominator')):
-#            numerator, denominator = args[0].numerator, args[0].denominator
-#        else:
-#            message = 'invalid time_signature initialization: {!r}.'
-#            message = message.format(args)
-#            raise TypeError(message)
-
         pair = getattr(pair, 'pair', pair)
-
         assert isinstance(pair, tuple), repr(pair)
         assert len(pair) == 2, repr(pair)
         numerator, denominator = pair
         assert isinstance(numerator, int), repr(numerator)
         assert isinstance(denominator, int), repr(denominator)
-
         self._numerator = numerator
         self._denominator = denominator
-
-#        # initialize partial from **kwargs
-#        partial = partial or kwargs.get('partial', None)
-#        if not isinstance(partial, (type(None), durationtools.Duration)):
-#            raise TypeError
-
         prototype = (durationtools.Duration, type(None))
         assert isinstance(partial, prototype), repr(partial)
-
         self._partial = partial
         if partial is not None:
             self._partial_repr_string = ', partial=%r' % self._partial
         else:
             self._partial_repr_string = ''
-
-#        # initialize suppress from kwargs
-#        suppress = suppress or kwargs.get('suppress', None)
-#        if not isinstance(suppress, (bool, type(None))):
-#            raise TypeError
-
         assert isinstance(suppress, (bool, type(None))), repr(suppress)
-
         self._suppress = suppress
-
-        # initialize derived attributes
         self._multiplier = self.implied_prolation
         self._has_non_power_of_two_denominator = \
             not mathtools.is_nonnegative_integer_power_of_two(
