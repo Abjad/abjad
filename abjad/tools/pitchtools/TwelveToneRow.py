@@ -8,8 +8,7 @@ class TwelveToneRow(PitchClassSegment):
 
     ..  container:: example
 
-        **Example.** Initializes twelve-tone row from list of nonnegative 
-        integers:
+        **Example 1.** Initializes row from integers:
 
         ::
 
@@ -20,10 +19,7 @@ class TwelveToneRow(PitchClassSegment):
 
     Twelve-tone rows inherit canonical operators from pitch-class segment.
 
-    Twelve-tone rows return numbered pitch-class segments
-    on calls to getslice.
-
-    Twelve-tone rows are immutable.
+    Twelve-tone rows return numbered pitch-class segments on calls to getslice.
     '''
 
     ### CLASS VARIABLES ###

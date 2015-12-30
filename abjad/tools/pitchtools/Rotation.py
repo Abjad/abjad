@@ -9,6 +9,8 @@ class Rotation(AbjadValueObject):
 
     ..  container:: example:
 
+        **Example.**
+
         ::
 
             >>> operator_ = pitchtools.Rotation(1)

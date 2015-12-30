@@ -12,7 +12,8 @@ class Segment(TypedTuple):
 
     ### CLASS VARIABLES ##
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

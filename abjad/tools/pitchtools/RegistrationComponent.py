@@ -21,8 +21,6 @@ class RegistrationComponent(AbjadObject):
     Models
     ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
     input part. (See the docs for that function.)
-
-    Registration components are immutable.
     '''
 
     ### INITIALIZER ###

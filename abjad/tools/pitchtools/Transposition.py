@@ -7,6 +7,8 @@ class Transposition(AbjadValueObject):
 
     ..  container:: example
 
+        **Example.**
+
         ::
 
             >>> operator_ = pitchtools.Transposition(2)

@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from abjad.tools.pitchtools.Vector import Vector
 
 

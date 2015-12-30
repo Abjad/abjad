@@ -8,6 +8,8 @@ class Registration(TypedList):
 
     ..  container:: example
 
+        **Example 1.** Registration in two parts:
+
         ::
 
         

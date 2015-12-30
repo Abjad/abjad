@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools.datastructuretools.TypedList import TypedList
-from abjad.tools.pitchtools.Registration import Registration
 
 
 class RegistrationInventory(TypedList):
@@ -67,4 +66,5 @@ class RegistrationInventory(TypedList):
 
     @property
     def _item_coercer(self):
-        return Registration
+        from abjad.tools import pitchtools
+        return pitchtools.Registration

@@ -9,6 +9,8 @@ class Retrogression(AbjadValueObject):
 
     ..  container:: example:
 
+        **Example.**
+
         ::
 
             >>> operator_ = pitchtools.Retrogression()
