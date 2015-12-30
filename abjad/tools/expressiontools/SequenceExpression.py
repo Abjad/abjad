@@ -169,6 +169,11 @@ class SequenceExpression(AbjadObject):
             >>> expression(range(10))
             Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5)), Sequence((6, 7, 8))))
 
+    ..  note:: Aadd usage examples to this docstring. Do not add
+        usage examples to property and method docstrings. Properties
+        and methods will all be derived automatically from the Sequence class
+        at some point in future.
+
     Initializer returns expression.
 
     Expression returns object.
@@ -192,18 +197,14 @@ class SequenceExpression(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
-        r'''Adds `expr` to sequence.
+        r'''Makes add callback.
 
         Returns callback.
         '''
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name='Sequence.__add__',
-            keywords={
-                'expr': expr,
-                },
-            )
-        return self._append_callback(callback)
+        keywords={
+            'expr': expr,
+            }
+        return self._make_callback('Sequence.__add__', keywords)
 
     def __call__(self, items=None):
         r'''Calls sequence expression on `items`.
@@ -225,18 +226,14 @@ class SequenceExpression(AbjadObject):
         return sequence
 
     def __getitem__(self, i):
-        r'''Gets item `i` from sequence.
+        r'''Makes get-item callback.
 
         Returns callback.
         '''
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name='Sequence.__getitem__',
-            keywords={
-                'i': i,
-                },
-            )
-        return self._append_callback(callback)
+        keywords={
+            'i': i,
+            }
+        return self._make_callback('Sequence.__getitem__', keywords)
 
     def __format__(self, format_specification=''):
         r'''Formats sequence expression.
@@ -296,18 +293,14 @@ class SequenceExpression(AbjadObject):
 
 
     def __radd__(self, expr):
-        r'''Adds sequence to `expr`.
+        r'''Makes right-add callback.
 
         Returns callback.
         '''
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name='Sequence.__radd__',
-            keywords={
-                'expr': expr,
-                }
-            )
-        return self._append_callback(callback)
+        keywords={
+            'expr': expr,
+            }
+        return self._make_callback('Sequence.__radd__', keywords)
 
     ### PRIVATE METHODS ###
 
@@ -315,12 +308,20 @@ class SequenceExpression(AbjadObject):
         callbacks = self.callbacks or ()
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
+
+    def _make_callback(self, name, keywords=None):
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
+            name=name,
+            keywords=keywords,
+            )
+        return self._append_callback(callback)
         
     ### PUBLIC PROPERTIES ###
 
     @property
     def callbacks(self):
-        r'''Gets callbacks of selector.
+        r'''Gets callbacks.
 
         Returns tuple or none.
         '''
@@ -329,69 +330,50 @@ class SequenceExpression(AbjadObject):
     ### PUBLIC METHODS ###
 
     def flatten(self, classes=None, depth=-1, indices=None):
-        r'''Flattens sequence.
+        r'''Makes flatten callback.
 
         Returns callback.
         '''
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name='Sequence.flatten',
-            keywords={
-                'classes': classes,
-                'depth': depth,
-                'indices': indices,
-                }
-            )
-        return self._append_callback(callback)
+        keywords = {
+            'classes': classes,
+            'depth': depth,
+            'indices': indices,
+            }
+        return self._make_callback('Sequence.flatten', keywords)
 
     def partition_by_counts(self, counts, cyclic=False, overhang=False):
-        r'''Partitions sequence by `counts`.
+        r'''Makes partition-by-counts callback.
 
         Returns callback.
         '''
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name='Sequence.partition_by_counts',
-            keywords={
-                'counts': counts,
-                'cyclic': cyclic,
-                'overhang': overhang,
-                },
-            )
-        return self._append_callback(callback)
+        keywords={
+            'counts': counts,
+            'cyclic': cyclic,
+            'overhang': overhang,
+            }
+        return self._make_callback('Sequence.partition_by_counts', keywords)
 
     def partition_by_ratio_of_lengths(self, ratio):
-        r'''Partitions sequence by `ratio` of lengths.
+        r'''Makes partition-by-ratio-of-lengths callback.
 
         Returns callback.
         '''
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name='Sequence.partition_by_ratio_of_lengths',
-            keywords={
-                'ratio': ratio,
-                },
-            )
-        return self._append_callback(callback)
+        name = 'Sequence.partition_by_ratio_of_lengths'
+        keywords={
+            'ratio': ratio,
+            }
+        return self._make_callback(name, keywords)
 
     def reverse(self):
-        r'''Reverses sequence.
+        r'''Makes reverse callback.
 
         Returns callback.
         '''
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name='Sequence.reverse',
-            )
-        return self._append_callback(callback)
+        return self._make_callback('Sequence.reverse')
 
     def rotate(self):
-        r'''Rotates sequence.
+        r'''Makes rotate callback.
 
         Returns callback.
         '''
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name='Sequence.rotate',
-            )
-        return self._append_callback(callback)
+        return self._make_callback('Sequence.rotate')
