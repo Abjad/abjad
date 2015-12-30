@@ -103,10 +103,10 @@ class IncisedRhythmMaker(RhythmMaker):
         prototype = (rhythmmakertools.InciseSpecifier, type(None))
         assert isinstance(incise_specifier, prototype)
         self._incise_specifier = incise_specifier
-        extra_counts_per_division = \
-            self._to_tuple(extra_counts_per_division)
-        split_divisions_by_counts = \
-            self._to_tuple(split_divisions_by_counts)
+        if extra_counts_per_division is not None:
+            extra_counts_per_division = tuple(extra_counts_per_division)
+        if split_divisions_by_counts is not None:
+            split_divisions_by_counts = tuple(split_divisions_by_counts)
         assert extra_counts_per_division is None or \
             mathtools.all_are_nonnegative_integer_equivalent_numbers(
             extra_counts_per_division), extra_counts_per_division

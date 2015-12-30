@@ -127,13 +127,18 @@ class BurnishSpecifier(AbjadValueObject):
         ):
         assert isinstance(outer_divisions_only, bool)
         self._outer_divisions_only = outer_divisions_only
-        left_classes = self._to_tuple(left_classes)
-        middle_classes = self._to_tuple(middle_classes)
+        if left_classes is not None:
+            left_classes = tuple(left_classes)
+        if middle_classes is not None:
+            middle_classes = tuple(middle_classes)
         if middle_classes == (0,):
             middle_classes = ()
-        right_classes = self._to_tuple(right_classes)
-        left_counts = self._to_tuple(left_counts)
-        right_counts = self._to_tuple(right_counts)
+        if right_classes is not None:
+            right_classes = tuple(right_classes)
+        if left_counts is not None:
+            left_counts = tuple(left_counts)
+        if right_counts is not None:
+            right_counts = tuple(right_counts)
         assert self._is_sign_tuple(left_classes)
         assert self._is_sign_tuple(middle_classes)
         assert self._is_sign_tuple(right_classes)
@@ -144,10 +149,6 @@ class BurnishSpecifier(AbjadValueObject):
         self._rights = right_classes
         self._left_lengths = left_counts
         self._right_lengths = right_counts
-#        if outer_divisions_only and left_counts:
-#            assert len(left_counts) <= 1, repr(left_counts)
-#        if outer_divisions_only and right_counts:
-#            assert len(right_counts) <= 1, repr(right_counts)
 
     ### SPECIAL METHODS ###
 
@@ -343,12 +344,6 @@ class BurnishSpecifier(AbjadValueObject):
             prototype = (-1, 0, 1, scoretools.Note, scoretools.Rest)
             return all(_ in prototype for _ in expr)
         return False
-
-    @staticmethod
-    def _to_tuple(expr):
-        if isinstance(expr, list):
-            expr = tuple(expr)
-        return expr
 
     ### PUBLIC PROPERTIES ###
 

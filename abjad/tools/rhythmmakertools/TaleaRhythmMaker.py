@@ -166,11 +166,13 @@ class TaleaRhythmMaker(RhythmMaker):
         right_lengths_helper = helper_functions.get('right_counts')
         secondary_divisions_helper = \
             helper_functions.get('split_divisions_by_counts')
-        extra_counts_per_division = self._to_tuple(extra_counts_per_division)
+        if extra_counts_per_division is not None:
+            extra_counts_per_division = tuple(extra_counts_per_division)
         prototype = (rhythmmakertools.BurnishSpecifier, type(None))
         assert isinstance(burnish_specifier, prototype)
         self._burnish_specifier = burnish_specifier
-        split_divisions_by_counts = self._to_tuple(split_divisions_by_counts)
+        if split_divisions_by_counts is not None:
+            split_divisions_by_counts = tuple(split_divisions_by_counts)
         talea_helper = self._none_to_trivial_helper(talea_helper)
         prolation_addenda_helper = self._none_to_trivial_helper(
             prolation_addenda_helper)

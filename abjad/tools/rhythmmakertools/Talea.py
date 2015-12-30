@@ -69,8 +69,7 @@ class Talea(AbjadValueObject):
         from abjad.tools import rhythmmakertools
         logical_tie_masks = rhythmmakertools.RhythmMaker._prepare_masks(logical_tie_masks)
         self._logical_tie_masks = logical_tie_masks
-        counts = self._to_tuple(counts)
-        assert isinstance(counts, tuple)
+        counts = tuple(counts)
         assert all(isinstance(x, int) for x in counts)
         self._counts = counts
         assert mathtools.is_nonnegative_integer_power_of_two(denominator)
@@ -166,12 +165,6 @@ class Talea(AbjadValueObject):
                 new_count = count
             new_counts.append(new_count)
         return new_counts
-
-    @staticmethod
-    def _to_tuple(expr):
-        if isinstance(expr, list):
-            expr = tuple(expr)
-        return expr
 
     ### PUBLIC PROPERTIES ###
 

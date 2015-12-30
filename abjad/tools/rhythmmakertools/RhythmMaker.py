@@ -93,7 +93,6 @@ class RhythmMaker(AbjadValueObject):
         divisions = divisions_
         prototype = mathtools.NonreducedFraction
         assert all( isinstance(_, prototype) for _ in divisions)
-        rotation = self._to_tuple(rotation)
         self._rotation = rotation
         selections = self._make_music(divisions, rotation)
         selections = self._apply_tuplet_spelling_specifier(selections)
@@ -380,12 +379,6 @@ class RhythmMaker(AbjadValueObject):
         assert callable(expr)
         return expr
 
-    def _none_to_tuple(self, expr):
-        if expr is None:
-            expr = ()
-        assert isinstance(expr, tuple), expr
-        return expr
-
     @staticmethod
     def _prepare_masks(masks):
         from abjad.tools import rhythmmakertools
@@ -469,11 +462,6 @@ class RhythmMaker(AbjadValueObject):
             result += ', ...'
         result = '[${}$]'.format(result)
         return result
-
-    def _to_tuple(self, expr):
-        if isinstance(expr, list):
-            expr = tuple(expr)
-        return expr
 
     def _trivial_helper(self, talea, rotation):
         if isinstance(rotation, int) and len(talea):

@@ -172,12 +172,6 @@ class InciseSpecifier(AbjadValueObject):
         if expr is not None:
             return tuple(sequencetools.rotate_sequence(expr, n))
 
-    @staticmethod
-    def _to_tuple(expr):
-        if isinstance(expr, list):
-            expr = tuple(expr)
-        return expr
-
     ### PUBLIC PROPERTIES ###
 
     @property
