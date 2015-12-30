@@ -19,10 +19,3 @@ def test_pitchtools_PitchArrayCell_indices_01():
     assert array[1].cells[0].indices == (1, (0, 1))
     assert array[1].cells[1].indices == (1, (2,))
     assert array[1].cells[2].indices == (1, (3,))
-
-
-def test_pitchtools_PitchArrayCell_indices_02():
-
-    cell = pitchtools.PitchArrayCell([NamedPitch(1)])
-
-    assert pytest.raises(IndexError, 'cell.indices')

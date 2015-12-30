@@ -15,7 +15,13 @@ class PitchArrayCell(AbjadObject):
             >>> print(array)
             [ ] [     ] [ ]
             [     ] [ ] [ ]
+
+        ::
+
             >>> cell = array[0][1]
+
+        ::
+
             >>> cell
             PitchArrayCell(x2)
 
@@ -113,7 +119,7 @@ class PitchArrayCell(AbjadObject):
             )
 
     def __str__(self):
-        r'''String representation of pitch array cell.
+        r'''Gets string representation of pitch array cell.
 
         Returns string.
         '''
@@ -208,7 +214,7 @@ class PitchArrayCell(AbjadObject):
             else:
                 pitch_token, width = cell_token
                 pitches = self._parse_pitch_token(pitch_token)
-        elif isinstance(cell_token, PitchArrayCell):
+        elif isinstance(cell_token, type(self)):
             pitches, width = cell_token.pitches, cell_token.width
         else:
             message = 'cell item must be integer width, pitch or pair.'
@@ -241,26 +247,106 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def column_indices(self):
-        r'''Tuple of one or more nonnegative integer indices.
+        r'''Gets column start and stop indices.
+        
+        ..  container:: example
 
-        Returns tuple.
+            **Example 1.** Gets column start and stop indices of cell in array:
+
+            ::
+
+                >>> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+                >>> cell = array[0][1]
+                >>> cell.column_indices
+                (1, 2)
+
+        ..  container:: example
+
+            **Example 2.** Gets column start and stop indices of cell outside
+            array:
+
+            ::
+
+                >>> cell = pitchtools.PitchArrayCell()
+                >>> cell.column_indices is None
+                True
+
+        Returns tuple or none.
         '''
-        parent_row = self.parent_row
-        if parent_row is not None:
-            cumulative_width = 0
-            for cell in parent_row.cells:
-                if cell is self:
-                    start = cumulative_width
-                    stop = start + self.width
-                    indices = tuple(range(start, stop))
-                    return indices
-                cumulative_width += cell.width
-        message = 'cell has no parent row.'
-        raise IndexError(message)
+        if self.parent_row is not None:
+            if self.width == 1:
+                return (self.column_start_index,)
+            elif 1 < self.width:
+                return self.column_start_index, self.column_stop_index
+
+    @property
+    def column_start_index(self):
+        r'''Gets column start index.
+
+        ..  container:: example
+
+            **Example 1.** Gets column start index of cell in array:
+
+            ::
+
+                >>> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+                >>> cell = array[0][1]
+                >>> cell.column_start_index
+                1
+
+        ..  container:: example
+
+            **Example 2.** Gets column start index of cell outside array:
+
+            ::
+
+                >>> cell = pitchtools.PitchArrayCell()
+                >>> cell.column_start_index is None
+                True
+
+        Returns nonnegative integer or none.
+        '''
+        if self.parent_row is None:
+            return
+        start_index = 0
+        for cell in self.parent_row.cells:
+            if cell is self:
+                return start_index
+            start_index += cell.width
+
+    @property
+    def column_stop_index(self):
+        r'''Gets column stop index.
+
+        ..  container:: example
+
+            **Example 1.** Gets column stop index of cell in array:
+
+            ::
+
+                >>> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+                >>> cell = array[0][1]
+                >>> cell.column_stop_index
+                2
+
+        ..  container:: example
+
+            **Example 2.** Gets column stop index of cell outside array:
+
+            ::
+
+                >>> cell = pitchtools.PitchArrayCell()
+                >>> cell.column_stop_index is None
+                True
+
+        Returns nonnegative integer or none.
+        '''
+        if self.parent_row is not None:
+            return self.column_start_index + self.width - 1
 
     @property
     def indices(self):
-        r'''Indices of pitch array cell.
+        r'''Gets indices.
 
         Returns pair.
         '''
@@ -290,7 +376,9 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def item(self):
-        r'''Token of pitch array cell.
+        r'''Gets item.
+
+        Complicated return type.
         '''
         if not self.pitches:
             return self.width
@@ -334,7 +422,7 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def parent_array(self):
-        r'''Gets pitch array that houses pitch array cell.
+        r'''Gets parent array.
 
         Return pitch array.
         '''
@@ -345,7 +433,7 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def parent_column(self):
-        r'''Gets column that houses pitch array cell.
+        r'''Gets parent column.
 
         Returns pitch array column.
         '''
@@ -357,7 +445,7 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def parent_row(self):
-        r'''Gets pitch array rown that houses pitch array cell.
+        r'''Gets parent row.
 
         Returns pitch array row.
         '''
@@ -386,7 +474,7 @@ class PitchArrayCell(AbjadObject):
     def previous(self):
         r'''Gets pitch array cell in row prior to this pitch array cell.
 
-        Returns pitch arracy cell.
+        Returns pitch array cell.
         '''
         if self.parent_row is not None:
             if self.is_first_in_row:
@@ -398,7 +486,7 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def row_index(self):
-        r'''Row index of pitch array cell.
+        r'''Gets row index.
 
         Returns nonnegative integer or none.
         '''
@@ -409,9 +497,9 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def weight(self):
-        r'''Weight of pitch array cell.
+        r'''Gets weight.
 
-        Defined equal to number of pitches in pitch array cell.
+        Weight defined equal to number of pitches in cell.
 
         Returns nonnegative integer.
         '''
@@ -419,7 +507,9 @@ class PitchArrayCell(AbjadObject):
 
     @property
     def width(self):
-        r'''Width of pitch array cell.
+        r'''Gets width.
+
+        Width defined equal to number of columns spanned by cell.
 
         Returns positive integer.
         '''
@@ -432,7 +522,7 @@ class PitchArrayCell(AbjadObject):
 
         Returns true or false.
         '''
-        if isinstance(arg, PitchArrayCell):
+        if isinstance(arg, type(self)):
             if self.pitches == arg.pitches:
                 if self.width == arg.width:
                     return True
