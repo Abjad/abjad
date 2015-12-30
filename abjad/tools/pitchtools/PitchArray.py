@@ -497,6 +497,10 @@ class PitchArray(AbjadObject):
 
     @classmethod
     def from_counts(class_, row_count, column_count):
+        r'''Makes pitch array from row and column counts.
+
+        Returns pitch array.
+        '''
         from abjad.tools import pitchtools
         array = class_()
         for i in range(row_count):
