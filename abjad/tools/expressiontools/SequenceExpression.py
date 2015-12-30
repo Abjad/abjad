@@ -157,53 +157,21 @@ class SequenceExpression(AbjadObject):
 
     ..  container:: example
 
-        **Example 11.** Gets storage format:
+        **Example 11.** Partitions sequence by counts:
 
         ::
 
             >>> expression = sequence()
-            >>> expression = expression.reverse()
-            >>> expression = expression.flatten()
-            >>> expression = expression[:-3]
-            >>> expression = expression[0]
+            >>> expression = expression.partition_by_counts([3], cyclic=True)
 
         ::
 
-            >>> print(format(expression))
-            expressiontools.SequenceExpression(
-                callbacks=(
-                    expressiontools.Callback(
-                        name='Sequence.reverse',
-                        ),
-                    expressiontools.Callback(
-                        name='Sequence.flatten',
-                        keywords=[
-                            ('classes', None),
-                            ('depth', -1),
-                            ('indices', None),
-                            ],
-                        ),
-                    expressiontools.Callback(
-                        name='Sequence.__getitem__',
-                        keywords=[
-                            (
-                                'i',
-                                slice(None, -3, None),
-                                ),
-                            ],
-                        ),
-                    expressiontools.Callback(
-                        name='Sequence.__getitem__',
-                        keywords=[
-                            ('i', 0),
-                            ],
-                        ),
-                    ),
-                )
+            >>> expression(range(10))
+            Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5)), Sequence((6, 7, 8))))
 
     Initializer returns expression.
 
-    Call returns object.
+    Expression returns object.
     '''
 
     ### CLASS VARIABLES ###
@@ -225,6 +193,8 @@ class SequenceExpression(AbjadObject):
 
     def __add__(self, expr):
         r'''Adds `expr` to sequence.
+
+        Returns callback.
         '''
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
@@ -257,7 +227,7 @@ class SequenceExpression(AbjadObject):
     def __getitem__(self, i):
         r'''Gets item `i` from sequence.
 
-        Returns item.
+        Returns callback.
         '''
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
@@ -268,10 +238,67 @@ class SequenceExpression(AbjadObject):
             )
         return self._append_callback(callback)
 
+    def __format__(self, format_specification=''):
+        r'''Formats sequence expression.
+
+        ..  container:: example
+
+            **Example 1.** Gets storage format:
+
+            ::
+
+                >>> expression = sequence()
+                >>> expression = expression.reverse()
+                >>> expression = expression.flatten()
+                >>> expression = expression[:-3]
+                >>> expression = expression[0]
+
+            ::
+
+                >>> print(format(expression))
+                expressiontools.SequenceExpression(
+                    callbacks=(
+                        expressiontools.Callback(
+                            name='Sequence.reverse',
+                            ),
+                        expressiontools.Callback(
+                            name='Sequence.flatten',
+                            keywords=[
+                                ('classes', None),
+                                ('depth', -1),
+                                ('indices', None),
+                                ],
+                            ),
+                        expressiontools.Callback(
+                            name='Sequence.__getitem__',
+                            keywords=[
+                                (
+                                    'i',
+                                    slice(None, -3, None),
+                                    ),
+                                ],
+                            ),
+                        expressiontools.Callback(
+                            name='Sequence.__getitem__',
+                            keywords=[
+                                ('i', 0),
+                                ],
+                            ),
+                        ),
+                    )
+
+        Returns string.
+        '''
+        return AbjadObject.__format__(
+            self,
+            format_specification=format_specification,
+            )
+
+
     def __radd__(self, expr):
         r'''Adds sequence to `expr`.
 
-        Returns new sequence.
+        Returns callback.
         '''
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
@@ -304,7 +331,7 @@ class SequenceExpression(AbjadObject):
     def flatten(self, classes=None, depth=-1, indices=None):
         r'''Flattens sequence.
 
-        Returns new sequence.
+        Returns callback.
         '''
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
@@ -317,10 +344,26 @@ class SequenceExpression(AbjadObject):
             )
         return self._append_callback(callback)
 
+    def partition_by_counts(self, counts, cyclic=False, overhang=False):
+        r'''Partitions sequence by `counts`.
+
+        Returns callback.
+        '''
+        from abjad.tools import expressiontools
+        callback = expressiontools.Callback(
+            name='Sequence.partition_by_counts',
+            keywords={
+                'counts': counts,
+                'cyclic': cyclic,
+                'overhang': overhang,
+                },
+            )
+        return self._append_callback(callback)
+
     def partition_by_ratio_of_lengths(self, ratio):
         r'''Partitions sequence by `ratio` of lengths.
 
-        Returns new sequence.
+        Returns callback.
         '''
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
@@ -334,7 +377,7 @@ class SequenceExpression(AbjadObject):
     def reverse(self):
         r'''Reverses sequence.
 
-        Returns new sequence.
+        Returns callback.
         '''
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
@@ -345,7 +388,7 @@ class SequenceExpression(AbjadObject):
     def rotate(self):
         r'''Rotates sequence.
 
-        Returns new sequence.
+        Returns callback.
         '''
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
