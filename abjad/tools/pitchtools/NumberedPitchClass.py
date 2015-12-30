@@ -7,7 +7,7 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 
 @functools.total_ordering
 class NumberedPitchClass(PitchClass):
-    '''A numbered pitch-class.
+    '''Numbered pitch-class.
 
     ::
 

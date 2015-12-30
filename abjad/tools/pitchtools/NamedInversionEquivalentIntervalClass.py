@@ -4,14 +4,14 @@ from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
 
 
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
-    '''An inversion-equivalent diatonic interval-class.
+    '''Named inversion-equivalent interval-class.
 
     ::
 
         >>> pitchtools.NamedInversionEquivalentIntervalClass('-m14')
         NamedInversionEquivalentIntervalClass('+M2')
 
-    Inversion-equivalent diatonic interval-classes are immutable.
+    Named inversion-equivalent interval-classes are immutable.
     '''
 
     ### CLASS VARIABLES ###

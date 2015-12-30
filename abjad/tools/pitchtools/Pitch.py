@@ -32,7 +32,7 @@ class Pitch(AbjadObject):
 
     _pitch_class_octave_number_regex_body = '''
         ([A-G])         # exactly one diatonic pitch-class letter
-        {}                # plus an optional symbolic accidental string
+        {}              # plus an optional symbolic accidental string
         ([-]?           # plus an optional negative sign
         [0-9]+)         # plus one or more digits
         '''.format(

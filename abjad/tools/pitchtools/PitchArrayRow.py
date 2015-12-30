@@ -6,7 +6,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class PitchArrayRow(AbjadObject):
-    r'''A pitch array row.
+    r'''Pitch array row.
 
     ::
 

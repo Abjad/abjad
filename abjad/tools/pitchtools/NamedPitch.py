@@ -8,7 +8,7 @@ from abjad.tools.pitchtools.Pitch import Pitch
 
 
 class NamedPitch(Pitch):
-    '''A named pitch.
+    '''Named pitch.
 
     ..  container:: example
 

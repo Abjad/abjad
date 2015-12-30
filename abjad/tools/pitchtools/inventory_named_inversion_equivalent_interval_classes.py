@@ -2,7 +2,7 @@
 
 
 def inventory_named_inversion_equivalent_interval_classes():
-    '''Inventory inversion-equivalent diatonic interval-classes:
+    '''Inventory named inversion-equivalent interval-classes:
 
     ::
 
@@ -21,11 +21,11 @@ def inventory_named_inversion_equivalent_interval_classes():
         NamedInversionEquivalentIntervalClass('+P4')
         NamedInversionEquivalentIntervalClass('+aug4')
 
-    There are 11 inversion-equivalent diatonic interval-classes.
+    There are 11 named inversion-equivalent interval-classes.
 
     It is an open question as to whether octaves should be included.
 
-    Returns list of inversion-equivalent diatonic interval-classes.
+    Returns list of named inversion-equivalent interval-classes.
     '''
     from abjad.tools import pitchtools
 

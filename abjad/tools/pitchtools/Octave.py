@@ -6,7 +6,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class Octave(AbjadObject):
-    r'''An octave.
+    r'''Octave.
 
     ..  container:: example:
 

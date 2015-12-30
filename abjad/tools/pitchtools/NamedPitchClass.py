@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 
 
 class NamedPitchClass(PitchClass):
-    '''A named pitch-class.
+    '''Named pitch-class.
 
     ::
 

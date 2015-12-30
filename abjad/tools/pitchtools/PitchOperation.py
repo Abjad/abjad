@@ -5,7 +5,7 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 class PitchOperation(AbjadValueObject):
-    r'''A pitch operation stack.
+    r'''Pitch operation.
 
     ::
 

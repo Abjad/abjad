@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import new
 
 
 class PitchClassSegment(Segment):
-    '''A pitch-class segment.
+    '''Pitch-class segment.
 
     ::
 

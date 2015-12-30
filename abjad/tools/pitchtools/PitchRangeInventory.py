@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class PitchRangeInventory(TypedList):
-    r'''An ordered list of pitch ranges.
+    r'''Pitch range inventory.
 
     ::
 

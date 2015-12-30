@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import new
 
 
 class Segment(TypedTuple):
-    r'''Music-theoretic segment base class.
+    r'''Segment base class.
     '''
 
     ### CLASS VARIABLES ##

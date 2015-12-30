@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import new
 
 
 class PitchSet(Set):
-    r'''A pitch set.
+    r'''Pitch set.
 
     ::
 

@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.NamedPitch import NamedPitch
 
 
 class PitchArrayCell(AbjadObject):
-    '''One cell in a pitch array.
+    '''Pitch array cell.
 
     ::
 

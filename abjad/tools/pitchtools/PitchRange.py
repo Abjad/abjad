@@ -11,7 +11,7 @@ from abjad.tools.topleveltools import inspect_
 
 # TODO: make iterable so that for x in PitchRange works
 class PitchRange(AbjadObject):
-    r"""A pitch range.
+    r"""Pitch range.
 
     ::
 

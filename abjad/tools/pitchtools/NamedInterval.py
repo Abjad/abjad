@@ -6,7 +6,7 @@ from abjad.tools.pitchtools.Interval import Interval
 
 @functools.total_ordering
 class NamedInterval(Interval):
-    '''A named interval.
+    '''Named interval.
 
     ::
 

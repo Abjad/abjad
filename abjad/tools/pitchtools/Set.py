@@ -8,7 +8,7 @@ from abjad.tools.topleveltools import new
 
 
 class Set(TypedFrozenset):
-    '''Music-theoretic set base class.
+    '''Set base class.
     '''
 
     ### CLASS VARIABLES ###

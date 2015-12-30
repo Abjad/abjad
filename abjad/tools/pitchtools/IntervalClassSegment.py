@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import new
 
 
 class IntervalClassSegment(Segment):
-    r'''An interval-class segment.
+    r'''Interval-class segment.
 
     ::
 
@@ -89,7 +89,7 @@ class IntervalClassSegment(Segment):
 
     @property
     def is_tertian(self):
-        r'''Is true when all diatonic interval-classes in segment are tertian.
+        r'''Is true when all named interval-classes in segment are tertian.
         Otherwise false:
 
         ::

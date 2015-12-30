@@ -4,7 +4,7 @@ from abjad.tools.topleveltools import new
 
 
 class TwelveToneRow(PitchClassSegment):
-    '''A twelve-tone row.
+    '''Twelve-tone row.
 
     ..  container:: example
 

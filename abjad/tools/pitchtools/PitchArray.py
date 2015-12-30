@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import mutate
 
 
 class PitchArray(AbjadObject):
-    r'''A pitch array.
+    r'''Pitch array.
 
     ..  container:: example
 

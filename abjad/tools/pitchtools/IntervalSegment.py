@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import new
 
 
 class IntervalSegment(Segment):
-    r'''An interval segment.
+    r'''Interval segment.
 
     ::
 

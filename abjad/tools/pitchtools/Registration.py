@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class Registration(TypedList):
-    '''A registration.
+    '''Registration.
 
     ..  container:: example
 

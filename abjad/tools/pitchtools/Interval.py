@@ -25,7 +25,7 @@ class Interval(AbjadObject):
 
     _interval_name_abbreviation_regex_body = '''
         ([+,-]?)    # one plus, one minus, or neither
-        {}          # exactly one diatonic quality abbreviation
+        {}          # exactly one quality abbreviation
         (\d+)       # followed by one or more digits
         '''.format(
         _named_interval_quality_abbreviation_regex_body,

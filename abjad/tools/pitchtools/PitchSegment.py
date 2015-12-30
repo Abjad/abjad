@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import select
 
 
 class PitchSegment(Segment):
-    r'''A pitch segment.
+    r'''Pitch segment.
 
     ::
 

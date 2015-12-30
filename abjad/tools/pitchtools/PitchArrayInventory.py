@@ -3,7 +3,7 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class PitchArrayInventory(TypedList):
-    r'''Ordered collection of pitch arrays.
+    r'''Pitch arraay inventory.
 
         >>> array_1 = pitchtools.PitchArray([
         ...   [1, (2, 1), ([-2, -1.5], 2)],

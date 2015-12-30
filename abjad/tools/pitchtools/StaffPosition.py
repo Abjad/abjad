@@ -4,7 +4,7 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class StaffPosition(AbjadObject):
-    r'''A staff position.
+    r'''Staff position.
 
     ..  container:: example
 

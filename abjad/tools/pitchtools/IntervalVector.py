@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.Vector import Vector
 
 
 class IntervalVector(Vector):
-    r'''An interval vector.
+    r'''Interval vector.
 
     ..  container:: example
 

@@ -29,8 +29,6 @@ def test_pitchtools_NumberedInterval_to_named_interval_01():
     assert named_interval == pitchtools.NamedInterval('augmented', 2)
 
 
-# TODO: Refactor all diatonic stuff so unison is 0 instead of 1 #
-
 def test_pitchtools_NumberedInterval_to_named_interval_02():
 
     numbered_interval = pitchtools.NumberedInterval(0)

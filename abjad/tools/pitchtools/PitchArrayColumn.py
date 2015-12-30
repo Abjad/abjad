@@ -5,7 +5,7 @@ from abjad.tools.pitchtools.PitchArrayCell import PitchArrayCell
 
 
 class PitchArrayColumn(AbjadObject):
-    '''Column in a pitch array.
+    '''Pitch array column.
 
     ::
 

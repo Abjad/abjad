@@ -8,7 +8,7 @@ from abjad.tools.topleveltools import new
 
 
 class Vector(TypedCounter):
-    '''Music-theoretic vector base class.
+    '''Vector base class.
     '''
 
     ### CLASS VARIABLES ##

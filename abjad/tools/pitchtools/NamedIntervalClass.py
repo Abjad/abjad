@@ -4,7 +4,7 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 
 
 class NamedIntervalClass(IntervalClass):
-    '''A named interval-class.
+    '''Named interval-class.
 
     ::
 

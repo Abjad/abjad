@@ -4,7 +4,7 @@ from abjad.tools.datastructuretools.PayloadTree import PayloadTree
 
 
 class PitchClassTree(PayloadTree):
-    r'''A pitch-class tree.
+    r'''Pitch-class tree.
 
     ..  container:: example
 

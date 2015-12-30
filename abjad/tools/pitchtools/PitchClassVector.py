@@ -2,7 +2,7 @@ from abjad.tools.pitchtools.Vector import Vector
 
 
 class PitchClassVector(Vector):
-    '''A pitch-class vector.
+    '''Pitch-class vector.
 
     ..  container:: example
 

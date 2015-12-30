@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 # TODO: implement __illustrate__
 class NumberedPitchClassColorMap(AbjadObject):
-    '''A numbered pitch-class color map.
+    '''Numbered pitch-class color map.
 
     ::
 
