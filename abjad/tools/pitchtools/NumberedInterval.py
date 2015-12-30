@@ -8,11 +8,15 @@ from abjad.tools.pitchtools.Interval import Interval
 class NumberedInterval(Interval):
     '''Numbered interval.
 
-    ::
+    ..  container:: example
 
-        >>> numbered_interval = pitchtools.NumberedInterval(-14)
-        >>> numbered_interval
-        NumberedInterval(-14)
+        **Example 1.** Initializes from number of semitones:
+
+        ::
+
+            >>> numbered_interval = pitchtools.NumberedInterval(-14)
+            >>> numbered_interval
+            NumberedInterval(-14)
 
     '''
 

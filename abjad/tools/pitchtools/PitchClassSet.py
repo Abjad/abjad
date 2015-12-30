@@ -6,23 +6,31 @@ from abjad.tools.topleveltools import new
 class PitchClassSet(Set):
     '''Pitch-class set.
 
-    ::
+    ..  container:: example
 
-        >>> numbered_pitch_class_set = pitchtools.PitchClassSet(
-        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-        ...     item_class=pitchtools.NumberedPitchClass,
-        ...     )
-        >>> numbered_pitch_class_set
-        PitchClassSet([6, 7, 10, 10.5])
+        **Example 1.** Numbered pitch-class set:
 
-    ::
+        ::
 
-        >>> named_pitch_class_set = pitchtools.PitchClassSet(
-        ...     items=['c', 'ef', 'bqs,', 'd'],
-        ...     item_class=pitchtools.NamedPitchClass,
-        ...     )
-        >>> named_pitch_class_set
-        PitchClassSet(['c', 'd', 'ef', 'bqs'])
+            >>> numbered_pitch_class_set = pitchtools.PitchClassSet(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=pitchtools.NumberedPitchClass,
+            ...     )
+            >>> numbered_pitch_class_set
+            PitchClassSet([6, 7, 10, 10.5])
+
+    ..  container:: example
+        
+        **Example 2.** Named pitch-class set:
+
+        ::
+
+            >>> named_pitch_class_set = pitchtools.PitchClassSet(
+            ...     items=['c', 'ef', 'bqs,', 'd'],
+            ...     item_class=pitchtools.NamedPitchClass,
+            ...     )
+            >>> named_pitch_class_set
+            PitchClassSet(['c', 'd', 'ef', 'bqs'])
 
     '''
 

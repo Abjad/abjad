@@ -8,15 +8,19 @@ from abjad.tools.pitchtools.Pitch import Pitch
 class NumberedPitch(Pitch):
     '''Numbered pitch.
 
-    ::
+    ..  container:: example
 
-        >>> numbered_pitch = pitchtools.NumberedPitch(13)
-        >>> numbered_pitch
-        NumberedPitch(13)
+        **Example 1.** Initializes from pitch number:
 
-    ::
+        ::
 
-        >>> show(numbered_pitch) # doctest: +SKIP
+            >>> numbered_pitch = pitchtools.NumberedPitch(13)
+            >>> numbered_pitch
+            NumberedPitch(13)
+
+        ::
+
+            >>> show(numbered_pitch) # doctest: +SKIP
 
     '''
 

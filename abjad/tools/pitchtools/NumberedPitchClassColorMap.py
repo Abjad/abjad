@@ -6,15 +6,19 @@ from abjad.tools.abctools import AbjadObject
 class NumberedPitchClassColorMap(AbjadObject):
     '''Numbered pitch-class color map.
 
-    ::
+    ..  container:: example
 
-        >>> pitches = [
-        ...     [-8, 2, 10, 21],
-        ...     [0, 11, 32, 41],
-        ...     [15, 25, 42, 43],
-        ...     ]
-        >>> colors = ['red', 'green', 'blue']
-        >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
+        **Example 1.** Maps pitch-classes to red, green and blue:
+
+        ::
+
+            >>> pitches = [
+            ...     [-8, 2, 10, 21],
+            ...     [0, 11, 32, 41],
+            ...     [15, 25, 42, 43],
+            ...     ]
+            >>> colors = ['red', 'green', 'blue']
+            >>> color_map = pitchtools.NumberedPitchClassColorMap(pitches, colors)
 
     Numbered pitch-class color maps are immutable.
     '''

@@ -7,32 +7,36 @@ from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 class PitchOperation(AbjadValueObject):
     r'''Pitch operation.
 
-    ::
+    ..  container:: example
 
-        >>> pitch_operation = pitchtools.PitchOperation(
-        ...     operators=(
-        ...         pitchtools.Rotation(1),
-        ...         pitchtools.Transposition(2),
-        ...         ),
-        ...     )
-        >>> print(format(pitch_operation))
-        pitchtools.PitchOperation(
-            operators=(
-                pitchtools.Rotation(
-                    index=1,
-                    transpose=True,
+        **Example 1.** Rotation followed by transposition:
+
+        ::
+
+            >>> pitch_operation = pitchtools.PitchOperation(
+            ...     operators=(
+            ...         pitchtools.Rotation(1),
+            ...         pitchtools.Transposition(2),
+            ...         ),
+            ...     )
+            >>> print(format(pitch_operation))
+            pitchtools.PitchOperation(
+                operators=(
+                    pitchtools.Rotation(
+                        index=1,
+                        transpose=True,
+                        ),
+                    pitchtools.Transposition(
+                        index=2,
+                        ),
                     ),
-                pitchtools.Transposition(
-                    index=2,
-                    ),
-                ),
-            )
+                )
 
-    ::
+        ::
 
-        >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
-        >>> pitch_operation(pitch_classes)
-        PitchClassSegment([2, 7, 8, 11])
+            >>> pitch_classes = pitchtools.PitchClassSegment([0, 1, 4, 7])
+            >>> pitch_operation(pitch_classes)
+            PitchClassSegment([2, 7, 8, 11])
 
     '''
 

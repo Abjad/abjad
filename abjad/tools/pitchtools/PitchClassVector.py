@@ -6,6 +6,8 @@ class PitchClassVector(Vector):
 
     ..  container:: example
 
+        **Example 1.**
+
         ::
 
             >>> vector = pitchtools.PitchClassVector(

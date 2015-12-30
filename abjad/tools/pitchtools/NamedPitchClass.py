@@ -6,44 +6,78 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 class NamedPitchClass(PitchClass):
     '''Named pitch-class.
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NamedPitchClass('cs')
-        NamedPitchClass('cs')
+        **Example 1.** Initializes from pitch-class name:
 
-    ::
+        ::
 
-        >>> pitchtools.NamedPitchClass(14)
-        NamedPitchClass('d')
+            >>> pitchtools.NamedPitchClass('cs')
+            NamedPitchClass('cs')
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NamedPitchClass(NamedPitch('g,'))
-        NamedPitchClass('g')
+        **Example 2.** Initializes from number of semitones:
 
-    ::
+        ::
 
-        >>> pitchtools.NamedPitchClass(pitchtools.NumberedPitch(15))
-        NamedPitchClass('ef')
+            >>> pitchtools.NamedPitchClass(14)
+            NamedPitchClass('d')
 
-    ::
+    ..  container:: example
+        
+        **Example 3.** Initializes from named pitch:
 
-        >>> pitchtools.NamedPitchClass(pitchtools.NumberedPitchClass(4))
-        NamedPitchClass('e')
+        ::
 
-    ::
+            >>> pitchtools.NamedPitchClass(NamedPitch('g,'))
+            NamedPitchClass('g')
 
-        >>> pitchtools.NamedPitchClass('C#5')
-        NamedPitchClass('cs')
+    ..  container:: example
 
-    ::
+        **Example 4.** Initializes from numbered pitch:
 
-        >>> pitchtools.NamedPitchClass(Note("a'8."))
-        NamedPitchClass('a')
+        ::
 
-    ::
+            >>> pitchtools.NamedPitchClass(pitchtools.NumberedPitch(15))
+            NamedPitchClass('ef')
 
-        >>> pitch_class = pitchtools.NamedPitchClass('cs')
+    ..  container:: example
+
+        **Example 5.** Initializes from numbered pitch-class:
+
+        ::
+
+            >>> pitchtools.NamedPitchClass(pitchtools.NumberedPitchClass(4))
+            NamedPitchClass('e')
+
+    ..  container:: example
+
+        **Example 6.** Initializes from named pitch-class:
+
+
+        ::
+
+            >>> pitchtools.NamedPitchClass('C#5')
+            NamedPitchClass('cs')
+
+
+    ..  container:: example
+
+        **Example 7.** Initializes from named pitch-class:
+
+        ::
+
+            >>> pitchtools.NamedPitchClass(Note("a'8."))
+            NamedPitchClass('a')
+
+    ..  container:: example
+
+        **Example 9.** Initializes from pitch-class name:
+
+            >>> pitch_class = pitchtools.NamedPitchClass('cs')
+            >>> pitch_class
+            NamedPitchClass('cs')
 
     '''
 

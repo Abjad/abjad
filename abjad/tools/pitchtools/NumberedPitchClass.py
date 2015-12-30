@@ -9,40 +9,68 @@ from abjad.tools.pitchtools.PitchClass import PitchClass
 class NumberedPitchClass(PitchClass):
     '''Numbered pitch-class.
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NumberedPitchClass(13)
-        NumberedPitchClass(1)
+        **Example 1.** Initializes from number of semitones:
 
-    ::
+        ::
 
-        >>> pitchtools.NumberedPitchClass('d')
-        NumberedPitchClass(2)
+            >>> pitchtools.NumberedPitchClass(13)
+            NumberedPitchClass(1)
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NumberedPitchClass(NamedPitch('g,'))
-        NumberedPitchClass(7)
+        **Example 2.** Initializes from pitch name.
 
-    ::
+        ::
 
-        >>> pitchtools.NumberedPitchClass(pitchtools.NumberedPitch(15))
-        NumberedPitchClass(3)
+            >>> pitchtools.NumberedPitchClass('d')
+            NumberedPitchClass(2)
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NumberedPitchClass(pitchtools.NamedPitchClass('e'))
-        NumberedPitchClass(4)
+        **Example 3.** Initializes from named pitch.
 
-    ::
+        ::
 
-        >>> pitchtools.NumberedPitchClass('C#5')
-        NumberedPitchClass(1)
+            >>> pitchtools.NumberedPitchClass(NamedPitch('g,'))
+            NumberedPitchClass(7)
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NumberedPitchClass(Note("a'8."))
-        NumberedPitchClass(9)
+        **Example 4.** Initializes from numbered pitch.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(pitchtools.NumberedPitch(15))
+            NumberedPitchClass(3)
+
+    ..  container:: example
+
+        **Example 5.** Initializes from named pitch-class.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(pitchtools.NamedPitchClass('e'))
+            NumberedPitchClass(4)
+
+    ..  container:: example
+
+        **Example 6.** Initializes from numbered pitch-class.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass('C#5')
+            NumberedPitchClass(1)
+
+    ..  container:: example
+
+        **Example 7.** Initializes from numbered pitch-class.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(Note("a'8."))
+            NumberedPitchClass(9)
 
     '''
 

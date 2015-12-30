@@ -8,6 +8,8 @@ class IntervalVector(Vector):
 
     ..  container:: example
 
+        **Example 1.** Initializes from pitch segment:
+
         ::
 
             >>> pitch_segment = pitchtools.PitchSegment(

@@ -8,17 +8,26 @@ from abjad.tools.pitchtools.Interval import Interval
 class NamedInterval(Interval):
     '''Named interval.
 
-    ::
+    ..  container:: example
 
-        >>> interval = pitchtools.NamedInterval('+M9')
-        >>> interval
-        NamedInterval('+M9')
+        **Example 1.** Initializes ascending major ninth from string:
 
-    ::
+        ::
 
-        >>> interval = pitchtools.NamedInterval(-4)
-        >>> interval
-        NamedInterval('-M3')
+            >>> interval = pitchtools.NamedInterval('+M9')
+            >>> interval
+            NamedInterval('+M9')
+
+    ..  container:: example
+
+        **Example 2.** Initializes descending major third from number of
+        semitones:
+
+        ::
+
+            >>> interval = pitchtools.NamedInterval(-4)
+            >>> interval
+            NamedInterval('-M3')
 
     '''
 

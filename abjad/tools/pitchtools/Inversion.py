@@ -7,6 +7,8 @@ class Inversion(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.**
+
         ::
 
             >>> operator_ = pitchtools.Inversion()

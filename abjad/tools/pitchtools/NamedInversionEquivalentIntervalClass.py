@@ -6,10 +6,14 @@ from abjad.tools.pitchtools.NamedIntervalClass import NamedIntervalClass
 class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     '''Named inversion-equivalent interval-class.
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NamedInversionEquivalentIntervalClass('-m14')
-        NamedInversionEquivalentIntervalClass('+M2')
+        **Example 1.** Initializes from string:
+
+        ::
+
+            >>> pitchtools.NamedInversionEquivalentIntervalClass('-m14')
+            NamedInversionEquivalentIntervalClass('+M2')
 
     Named inversion-equivalent interval-classes are immutable.
     '''

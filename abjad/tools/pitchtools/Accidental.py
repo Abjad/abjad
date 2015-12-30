@@ -6,10 +6,23 @@ from abjad.tools.abctools import AbjadObject
 class Accidental(AbjadObject):
     '''Accidental.
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.Accidental('s')
-        Accidental('s')
+        **Example 1.** Sharp:
+
+        ::
+
+            >>> pitchtools.Accidental('s')
+            Accidental('s')
+
+    ..  container:: example
+
+        **Example 2.** Quarter-sharp:
+
+        ::
+
+            >>> pitchtools.Accidental('qs')
+            Accidental('qs')
 
     Accidentals are immutable.
     '''

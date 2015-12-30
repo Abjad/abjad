@@ -8,6 +8,8 @@ class IntervalClassVector(Vector):
 
     ..  container:: example
 
+        **Example 1.** An interval-class vector:
+
         ::
 
             >>> pitch_segment = pitchtools.PitchSegment(
@@ -17,6 +19,9 @@ class IntervalClassVector(Vector):
             ...     items=pitch_segment,
             ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
             ...     )
+
+        ::
+
             >>> items = sorted(numbered_interval_class_vector.items())
             >>> for interval, count in items:
             ...     print(interval, count)

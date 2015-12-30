@@ -7,18 +7,33 @@ from abjad.tools.topleveltools import new
 class IntervalClassSegment(Segment):
     r'''Interval-class segment.
 
-    ::
+    ..  container:: example
 
-        >>> intervals = 'm2 M10 -aug4 P5'
-        >>> pitchtools.IntervalClassSegment(intervals)
-        IntervalClassSegment(['+m2', '+M3', '-aug4', '+P5'])
+        **Example 1.** An interval-class segment:
+
+        ::
+
+            >>> intervals = 'm2 M10 -aug4 P5'
+            >>> pitchtools.IntervalClassSegment(intervals)
+            IntervalClassSegment(['+m2', '+M3', '-aug4', '+P5'])
+
+    ..  container:: example
+
+        **Example 2.** Another interval-class segment:
+
+        ::
+
+            >>> intervals = 'P4 P5 P11 P12'
+            >>> pitchtools.IntervalClassSegment(intervals)
+            IntervalClassSegment(['+P4', '+P5', '+P4', '+P5'])
 
     Returns interval-class segment.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### PRIVATE PROPERTIES ###
 

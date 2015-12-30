@@ -6,10 +6,24 @@ from abjad.tools.pitchtools.IntervalClass import IntervalClass
 class NamedIntervalClass(IntervalClass):
     '''Named interval-class.
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.NamedIntervalClass('-M9')
-        NamedIntervalClass('-M2')
+        **Example 1.** Initializes descending major second from string:
+
+        ::
+
+            >>> pitchtools.NamedIntervalClass('-M9')
+            NamedIntervalClass('-M2')
+
+    ..  container:: example
+
+        **Example 2.** Initializes descending major second from quality string
+        and number of semitones:
+
+        ::
+
+            >>> pitchtools.NamedIntervalClass(('major', -9))
+            NamedIntervalClass('-M2')
 
     '''
 

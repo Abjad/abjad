@@ -8,35 +8,39 @@ from abjad.tools.abctools import AbjadObject
 class PitchArrayRow(AbjadObject):
     r'''Pitch array row.
 
-    ::
+    ..  container:: example
 
-        >>> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-        >>> array[0].cells[0].pitches.append(0)
-        >>> array[0].cells[1].pitches.append(2)
-        >>> array[1].cells[2].pitches.append(4)
-        >>> print(array)
-        [c'] [d'    ] [  ]
-        [       ] [ ] [e']
+        **Example 1.** A pitch array row:
 
-    ::
+        ::
 
-        >>> array[0]
-        PitchArrayRow(c', d' x2, x1)
+            >>> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
+            >>> array[0].cells[0].pitches.append(0)
+            >>> array[0].cells[1].pitches.append(2)
+            >>> array[1].cells[2].pitches.append(4)
+            >>> print(array)
+            [c'] [d'    ] [  ]
+            [       ] [ ] [e']
 
-    ::
+        ::
 
-        >>> array[0].cell_widths
-        (1, 2, 1)
+            >>> array[0]
+            PitchArrayRow(c', d' x2, x1)
 
-    ::
+        ::
 
-        >>> array[0].dimensions
-        (1, 4)
+            >>> array[0].cell_widths
+            (1, 2, 1)
 
-    ::
+        ::
 
-        >>> array[0].pitches
-        (NamedPitch("c'"), NamedPitch("d'"))
+            >>> array[0].dimensions
+            (1, 4)
+
+        ::
+
+            >>> array[0].pitches
+            (NamedPitch("c'"), NamedPitch("d'"))
 
     '''
 

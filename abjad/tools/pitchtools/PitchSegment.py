@@ -8,38 +8,47 @@ from abjad.tools.topleveltools import select
 class PitchSegment(Segment):
     r'''Pitch segment.
 
-    ::
+    ..  container:: example
+    
+        **Example 1.** Numbered pitch segment:
 
-        >>> numbered_pitch_segment = pitchtools.PitchSegment(
-        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-        ...     item_class=pitchtools.NumberedPitch,
-        ...     )
-        >>> numbered_pitch_segment
-        PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
+        ::
 
-    ::
+            >>> numbered_pitch_segment = pitchtools.PitchSegment(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=pitchtools.NumberedPitch,
+            ...     )
+            >>> numbered_pitch_segment
+            PitchSegment([-2, -1.5, 6, 7, -1.5, 7])
 
-        >>> show(numbered_pitch_segment) # doctest: +SKIP
+        ::
 
-    ::
+            >>> show(numbered_pitch_segment) # doctest: +SKIP
 
-        >>> named_pitch_segment = pitchtools.PitchSegment(
-        ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
-        ...     item_class=NamedPitch,
-        ...     )
-        >>> named_pitch_segment
-        PitchSegment(['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"])
+    ..  container:: example
 
-    ::
+        **Example 2.** Named pitch segment:
 
-        >>> show(named_pitch_segment) # doctest: +SKIP
+        ::
+
+            >>> named_pitch_segment = pitchtools.PitchSegment(
+            ...     ['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"],
+            ...     item_class=NamedPitch,
+            ...     )
+            >>> named_pitch_segment
+            PitchSegment(['bf,', 'aqs', "fs'", "g'", 'bqf', "g'"])
+
+        ::
+
+            >>> show(named_pitch_segment) # doctest: +SKIP
 
     Pitch segments are immutable.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

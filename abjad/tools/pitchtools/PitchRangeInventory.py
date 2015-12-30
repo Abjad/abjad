@@ -4,19 +4,61 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class PitchRangeInventory(TypedList):
-    r'''Pitch range inventory.
+    r"""Pitch range inventory.
 
-    ::
+    ..  container:: example
 
-        >>> inventory = pitchtools.PitchRangeInventory([
-        ...     '[C3, C6]',
-        ...     '[C4, C6]',
-        ...     ])
-        >>> inventory
-        PitchRangeInventory([PitchRange(range_string='[C3, C6]'), PitchRange(range_string='[C4, C6]')])
+        **Example 1.** Inventory of two pitch ranges:
+
+        ::
+
+            >>> inventory = pitchtools.PitchRangeInventory([
+            ...     '[C3, C6]',
+            ...     '[C4, C6]',
+            ...     ])
+
+        ::
+
+            >>> inventory
+            PitchRangeInventory([PitchRange(range_string='[C3, C6]'), PitchRange(range_string='[C4, C6]')])
+
+        ::
+
+            >>> show(inventory) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> lilypond_file = inventory.__illustrate__()
+            >>> f(lilypond_file.score_block)
+            \score {
+                \new Score \with {
+                    \override BarLine #'stencil = ##f
+                    \override Glissando #'thickness = #2
+                    \override SpanBar #'stencil = ##f
+                    \override TimeSignature #'stencil = ##f
+                } <<
+                    \new PianoStaff <<
+                        \context Staff = "treble" {
+                            \clef "treble"
+                            s1 * 1/4
+                            s1 * 1/4
+                            c'1 * 1/4 \glissando
+                            c'''1 * 1/4
+                        }
+                        \context Staff = "bass" {
+                            \clef "bass"
+                            c1 * 1/4 \glissando
+                            \change Staff = treble
+                            c'''1 * 1/4
+                            s1 * 1/4
+                            s1 * 1/4
+                        }
+                    >>
+                >>
+            }
 
     Pitch range inventories implement list interface and are mutable.
-    '''
+    """
 
     ### CLASS VARIABLES ###
 

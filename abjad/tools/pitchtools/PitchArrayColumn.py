@@ -7,28 +7,32 @@ from abjad.tools.pitchtools.PitchArrayCell import PitchArrayCell
 class PitchArrayColumn(AbjadObject):
     '''Pitch array column.
 
-    ::
+    ..  container:: example
 
-        >>> array = pitchtools.PitchArray([
-        ...   [1, (2, 1), (-1.5, 2)],
-        ...   [(7, 2), (6, 1), 1]])
+        **Example 1.** A column:
 
-    ::
+        ::
 
-        >>> print(array)
-        [  ] [d'] [bqf    ]
-        [g'     ] [fs'] [ ]
+            >>> array = pitchtools.PitchArray([
+            ...   [1, (2, 1), (-1.5, 2)],
+            ...   [(7, 2), (6, 1), 1]])
 
-    ::
+        ::
 
-        >>> array.columns[0]
-        PitchArrayColumn(x1, g' x2)
+            >>> print(array)
+            [  ] [d'] [bqf    ]
+            [g'     ] [fs'] [ ]
 
-    ::
+        ::
 
-        >>> print(array.columns[0])
-        [  ]
-        [g'     ]
+            >>> array.columns[0]
+            PitchArrayColumn(x1, g' x2)
+
+        ::
+
+            >>> print(array.columns[0])
+            [  ]
+            [g'     ]
 
     '''
 

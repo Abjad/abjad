@@ -8,30 +8,39 @@ from abjad.tools.topleveltools import new
 class PitchClassSegment(Segment):
     '''Pitch-class segment.
 
-    ::
+    ..  container:: example
 
-        >>> numbered_pitch_class_segment = pitchtools.PitchClassSegment(
-        ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-        ...     item_class=pitchtools.NumberedPitchClass,
-        ...     )
-        >>> numbered_pitch_class_segment
-        PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+        **Example 1.** Numbered pitch-class segment:
 
-    ::
+        ::
 
-        >>> named_pitch_class_segment = pitchtools.PitchClassSegment(
-        ...     items=['c', 'ef', 'bqs,', 'd'],
-        ...     item_class=pitchtools.NamedPitchClass,
-        ...     )
-        >>> named_pitch_class_segment
-        PitchClassSegment(['c', 'ef', 'bqs', 'd'])
+            >>> numbered_pitch_class_segment = pitchtools.PitchClassSegment(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     item_class=pitchtools.NumberedPitchClass,
+            ...     )
+            >>> numbered_pitch_class_segment
+            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+
+    ..  container:: example
+
+        **Example 2.** Named pitch-class segment:
+
+        ::
+
+            >>> named_pitch_class_segment = pitchtools.PitchClassSegment(
+            ...     items=['c', 'ef', 'bqs,', 'd'],
+            ...     item_class=pitchtools.NamedPitchClass,
+            ...     )
+            >>> named_pitch_class_segment
+            PitchClassSegment(['c', 'ef', 'bqs', 'd'])
 
     Pitch-class segments are immutable.
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### INITIALIZER ###
 

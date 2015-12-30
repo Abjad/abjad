@@ -13,19 +13,23 @@ from abjad.tools.topleveltools import inspect_
 class PitchRange(AbjadObject):
     r"""Pitch range.
 
-    ::
+    ..  container:: example
 
-        >>> pitch_range = pitchtools.PitchRange('[C3, C7]')
-        >>> print(format(pitch_range))
-        pitchtools.PitchRange(
-            range_string='[C3, C7]',
-            )
+        **Example 1.** Pitches from C3 to C7, inclusive:
 
-    ::
+        ::
 
-        >>> show(pitch_range) # doctest: +SKIP
+            >>> pitch_range = pitchtools.PitchRange('[C3, C7]')
+            >>> print(format(pitch_range))
+            pitchtools.PitchRange(
+                range_string='[C3, C7]',
+                )
 
-    Initalize from pitch numbers, pitch names, pitch instances,
+        ::
+
+            >>> show(pitch_range) # doctest: +SKIP
+
+    Initalizes from pitch numbers, pitch names, pitch instances,
     one-line reprs or other pitch range objects.
 
     Pitch ranges implement equality testing against other pitch ranges.

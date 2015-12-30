@@ -8,12 +8,17 @@ class PitchClassTree(PayloadTree):
 
     ..  container:: example
 
-        Numbered pitch-class tree::
+        **Example 1.** Numbered pitch-class tree:
+
+        ::
 
             >>> tree = pitchtools.PitchClassTree(
             ...     items=[[0, 4, 7, 8], [9, 2, 3, 11]],
             ...     item_class=pitchtools.NumberedPitchClass,
             ...     )
+
+        ::
+
             >>> print(format(tree, 'storage'))
             pitchtools.PitchClassTree(
                 [
@@ -34,12 +39,17 @@ class PitchClassTree(PayloadTree):
 
     ..  container:: example
 
-        Named pitch-class tree::
+        **Example 2.** Named pitch-class tree:
+
+        ::
 
             >>> tree = pitchtools.PitchClassTree(
             ...     items=[['c', 'e', 'g', 'af'], ['a', 'd', 'ef', 'b']],
             ...     item_class=pitchtools.NamedPitchClass,
             ...     )
+
+        ::
+
             >>> print(format(tree, 'storage'))
             pitchtools.PitchClassTree(
                 [

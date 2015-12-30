@@ -7,6 +7,8 @@ class Multiplication(AbjadValueObject):
 
     ..  container:: example
 
+        **Example 1.**
+
         ::
 
             >>> operator_ = pitchtools.Multiplication(index=5)

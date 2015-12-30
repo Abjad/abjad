@@ -3,96 +3,102 @@ from abjad.tools.datastructuretools.TypedList import TypedList
 
 
 class PitchArrayInventory(TypedList):
-    r'''Pitch arraay inventory.
+    r'''Pitch array inventory.
 
-        >>> array_1 = pitchtools.PitchArray([
-        ...   [1, (2, 1), ([-2, -1.5], 2)],
-        ...   [(7, 2), (6, 1), 1]])
+    ..  container:: example
 
-    ::
+        **Example 1.** A pitch array inventory:
+    
+        ::
 
-        >>> array_2 = pitchtools.PitchArray([
-        ...   [1, 1, 1],
-        ...   [1, 1, 1]])
+            >>> array_1 = pitchtools.PitchArray([
+            ...   [1, (2, 1), ([-2, -1.5], 2)],
+            ...   [(7, 2), (6, 1), 1]])
 
-    ::
+        ::
 
-        >>> arrays = [array_1, array_2]
-        >>> inventory = pitchtools.PitchArrayInventory(arrays)
+            >>> array_2 = pitchtools.PitchArray([
+            ...   [1, 1, 1],
+            ...   [1, 1, 1]])
 
-    ::
+        ::
 
-        >>> print(format(inventory))
-        pitchtools.PitchArrayInventory(
-            [
-                pitchtools.PitchArray(
-                    rows=(
-                        pitchtools.PitchArrayRow(
-                            cells=(
-                                pitchtools.PitchArrayCell(
-                                    item=1,
+            >>> arrays = [array_1, array_2]
+            >>> inventory = pitchtools.PitchArrayInventory(arrays)
+
+        ::
+
+            >>> print(format(inventory))
+            pitchtools.PitchArrayInventory(
+                [
+                    pitchtools.PitchArray(
+                        rows=(
+                            pitchtools.PitchArrayRow(
+                                cells=(
+                                    pitchtools.PitchArrayCell(
+                                        item=1,
+                                        ),
+                                    pitchtools.PitchArrayCell(
+                                        item=('d', 4),
+                                        ),
+                                    pitchtools.PitchArrayCell(
+                                        item=(
+                                            [
+                                                ('bf', 3),
+                                                ('bqf', 3),
+                                                ],
+                                            2,
+                                            ),
+                                        ),
                                     ),
-                                pitchtools.PitchArrayCell(
-                                    item=('d', 4),
-                                    ),
-                                pitchtools.PitchArrayCell(
-                                    item=(
-                                        [
-                                            ('bf', 3),
-                                            ('bqf', 3),
-                                            ],
-                                        2,
+                                ),
+                            pitchtools.PitchArrayRow(
+                                cells=(
+                                    pitchtools.PitchArrayCell(
+                                        item=('g', 4, 2),
+                                        ),
+                                    pitchtools.PitchArrayCell(
+                                        item=('fs', 4),
+                                        ),
+                                    pitchtools.PitchArrayCell(
+                                        item=1,
                                         ),
                                     ),
                                 ),
                             ),
-                        pitchtools.PitchArrayRow(
-                            cells=(
-                                pitchtools.PitchArrayCell(
-                                    item=('g', 4, 2),
+                        ),
+                    pitchtools.PitchArray(
+                        rows=(
+                            pitchtools.PitchArrayRow(
+                                cells=(
+                                    pitchtools.PitchArrayCell(
+                                        item=1,
+                                        ),
+                                    pitchtools.PitchArrayCell(
+                                        item=1,
+                                        ),
+                                    pitchtools.PitchArrayCell(
+                                        item=1,
+                                        ),
                                     ),
-                                pitchtools.PitchArrayCell(
-                                    item=('fs', 4),
-                                    ),
-                                pitchtools.PitchArrayCell(
-                                    item=1,
+                                ),
+                            pitchtools.PitchArrayRow(
+                                cells=(
+                                    pitchtools.PitchArrayCell(
+                                        item=1,
+                                        ),
+                                    pitchtools.PitchArrayCell(
+                                        item=1,
+                                        ),
+                                    pitchtools.PitchArrayCell(
+                                        item=1,
+                                        ),
                                     ),
                                 ),
                             ),
                         ),
-                    ),
-                pitchtools.PitchArray(
-                    rows=(
-                        pitchtools.PitchArrayRow(
-                            cells=(
-                                pitchtools.PitchArrayCell(
-                                    item=1,
-                                    ),
-                                pitchtools.PitchArrayCell(
-                                    item=1,
-                                    ),
-                                pitchtools.PitchArrayCell(
-                                    item=1,
-                                    ),
-                                ),
-                            ),
-                        pitchtools.PitchArrayRow(
-                            cells=(
-                                pitchtools.PitchArrayCell(
-                                    item=1,
-                                    ),
-                                pitchtools.PitchArrayCell(
-                                    item=1,
-                                    ),
-                                pitchtools.PitchArrayCell(
-                                    item=1,
-                                    ),
-                                ),
-                            ),
-                        ),
-                    ),
-                ]
-            )
+                    ]
+                )
 
     '''
 
