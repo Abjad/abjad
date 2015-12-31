@@ -53,7 +53,6 @@ class Talea(AbjadValueObject):
     __documentation_section__ = 'Specifiers'
 
     __slots__ = (
-        '_logical_tie_masks',
         '_counts',
         '_denominator',
         )
@@ -64,11 +63,8 @@ class Talea(AbjadValueObject):
         self,
         counts=(1,),
         denominator=16,
-        logical_tie_masks=None,
         ):
         from abjad.tools import rhythmmakertools
-        logical_tie_masks = rhythmmakertools.RhythmMaker._prepare_masks(logical_tie_masks)
-        self._logical_tie_masks = logical_tie_masks
         counts = tuple(counts)
         assert all(isinstance(x, int) for x in counts)
         self._counts = counts
@@ -146,37 +142,7 @@ class Talea(AbjadValueObject):
         '''
         return len(self.counts)
 
-    ### PRIVATE METHODS ###
-
-    def _apply_logical_tie_masks(self, counts):
-        from abjad.tools import rhythmmakertools
-        if not self.logical_tie_masks:
-            return counts
-        logical_tie_masks = self.logical_tie_masks
-        new_counts = []
-        length = len(counts)
-        for i, count in enumerate(counts):
-            matching_mask = logical_tie_masks.get_matching_pattern(i, length)
-            if isinstance(matching_mask, rhythmmakertools.SustainMask):
-                new_count = abs(count)
-            elif isinstance(matching_mask, rhythmmakertools.SilenceMask):
-                new_count = -abs(count)
-            else:
-                new_count = count
-            new_counts.append(new_count)
-        return new_counts
-
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def logical_tie_masks(self):
-        r'''Gets count masks of talea.
-
-        Set to count masks or none.
-
-        Returns pattern inventory or none.
-        '''
-        return self._logical_tie_masks
 
     @property
     def counts(self):

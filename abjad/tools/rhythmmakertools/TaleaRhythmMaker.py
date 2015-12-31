@@ -812,7 +812,6 @@ class TaleaRhythmMaker(RhythmMaker):
             total_weight,
             )
         talea = self._get_talea()
-        sequence = talea._apply_logical_tie_masks(sequence)
         result = sequencetools.split_sequence(sequence, weights, cyclic=False)
         return result
 
@@ -2440,11 +2439,14 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1.** Talea generates some ties across divisions:
+            **Example 1.** Silences every third logical tie:
 
             ::
 
                 >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     logical_tie_masks=[
+                ...         rhythmmakertools.silence_every([2], period=3),
+                ...         ],
                 ...     talea=rhythmmakertools.Talea(
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
@@ -2469,7 +2471,67 @@ class TaleaRhythmMaker(RhythmMaker):
                     {
                         \time 3/8
                         c'16 [
+                        c'8 ]
+                        r8.
+                    }
+                    {
+                        c'4
+                        c'16
+                        r16
+                    }
+                    {
+                        r16
+                        c'8. [
+                        c'8 ~ ]
+                    }
+                    {
                         c'8
+                        r16
+                        c'8 [
+                        c'16 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Silences the first and last logical ties:
+
+            ::
+
+                >>> silence_mask = rhythmmakertools.silence_every(
+                ...     indices=[2],
+                ...     period=3,
+                ...     )
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     logical_tie_masks=[
+                ...         rhythmmakertools.silence_first(),
+                ...         rhythmmakertools.silence_last(),
+                ...         ],
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        r16
+                        c'8 [
                         c'8. ]
                     }
                     {
@@ -2485,63 +2547,10 @@ class TaleaRhythmMaker(RhythmMaker):
                     {
                         c'8 [
                         c'16
-                        c'8
-                        c'16 ]
-                    }
-                }
-
-            Logical tie mask silences logical ties at indices 5 and 7:
-
-            ::
-
-                >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     logical_tie_masks=rhythmmakertools.silence([5, 7]),
-                ...     talea=rhythmmakertools.Talea(
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        c'16 [
-                        c'8
-                        c'8. ]
-                    }
-                    {
-                        c'4
-                        c'16
+                        c'8 ]
                         r16
                     }
-                    {
-                        r16
-                        c'8.
-                        r8
-                    }
-                    {
-                        r8
-                        c'16 [
-                        c'8
-                        c'16 ]
-                    }
                 }
-
-            Changes all notes in logical tie to rests.
 
         Returns patterns or none.
         '''
@@ -2890,127 +2899,6 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         c'8
                         c'16 ]
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 3.** Talea equal to durations ``1/16``, ``2/16``,
-            ``3/16``, ``4/16`` repeating indefinitely with every third count
-            silenced:
-
-            ::
-
-                >>> silence_mask = rhythmmakertools.silence_every(
-                ...     indices=[2],
-                ...     period=3,
-                ...     )
-                >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
-                ...         logical_tie_masks=[silence_mask],
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        c'16 [
-                        c'8 ]
-                        r8.
-                    }
-                    {
-                        c'4
-                        c'16
-                        r16
-                    }
-                    {
-                        r16
-                        c'8. [
-                        c'8 ~ ]
-                    }
-                    {
-                        c'8
-                        r16
-                        c'8 [
-                        c'16 ]
-                    }
-                }
-
-        ..  container:: example
-
-            **Example 4.** Talea equal to durations ``1/16``, ``2/16``,
-            ``3/16``, ``4/16`` repeating indefinitely with the first and last
-            counts silenced:
-
-            ::
-
-                >>> silence_mask = rhythmmakertools.silence_every(
-                ...     indices=[2],
-                ...     period=3,
-                ...     )
-                >>> maker = rhythmmakertools.TaleaRhythmMaker(
-                ...     talea=rhythmmakertools.Talea(
-                ...         logical_tie_masks=[
-                ...             rhythmmakertools.silence_first(),
-                ...             rhythmmakertools.silence_last(),
-                ...             ],
-                ...         counts=[1, 2, 3, 4],
-                ...         denominator=16,
-                ...         ),
-                ...     )
-
-            ::
-
-                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> music = maker(divisions)
-                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
-                ...     divisions,
-                ...     )
-                >>> show(lilypond_file) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
-                >>> f(staff)
-                \new RhythmicStaff {
-                    {
-                        \time 3/8
-                        r16
-                        c'8 [
-                        c'8. ]
-                    }
-                    {
-                        c'4
-                        c'16 [
-                        c'16 ~ ]
-                    }
-                    {
-                        c'16 [
-                        c'8.
-                        c'8 ~ ]
-                    }
-                    {
-                        c'8 [
-                        c'16
-                        c'8 ]
-                        r16
                     }
                 }
 
