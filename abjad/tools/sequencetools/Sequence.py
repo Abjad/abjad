@@ -956,5 +956,30 @@ class Sequence(AbjadObject):
                 result.append(item)
         return type(self)(result)
 
+    def sum(self):
+        '''Sums sequence.
+
+        ..  container:: example
+
+            **Example 1.** Sums sequence of positive numbers:
+
+            ::
+
+                >>> Sequence([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]).sum()
+                55
+
+        ..  container:: example
+
+            **Example 2.** Sum sequence of numbers with mixed signs:
+
+            ::
+
+                >>> Sequence([-1, 2, -3, 4, -5, 6, -7, 8, -9, 10]).sum()
+                5
+
+        Returns new sequence.
+        '''
+        return sum(self)
+
 
 collections.Sequence.register(Sequence)

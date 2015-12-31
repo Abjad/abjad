@@ -377,3 +377,10 @@ class SequenceExpression(AbjadObject):
         Returns callback.
         '''
         return self._make_callback('Sequence.rotate')
+
+    def sum(self):
+        r'''Makes sum callback.
+
+        Returns callback.
+        '''
+        return self._make_callback('Sequence.sum')
