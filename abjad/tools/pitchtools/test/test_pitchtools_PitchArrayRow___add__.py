@@ -5,9 +5,9 @@ from abjad import *
 def test_pitchtools_PitchArrayRow___add___01():
 
     array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-    array[0].cells[0].pitches.append(0)
-    array[0].cells[1].pitches.append(2)
-    array[1].cells[2].pitches.append(4)
+    array[0].cells[0].append_pitch(0)
+    array[0].cells[1].append_pitch(2)
+    array[1].cells[2].append_pitch(4)
 
     '''
     [c'] [d'     ] [  ]

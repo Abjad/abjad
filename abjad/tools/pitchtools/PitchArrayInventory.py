@@ -36,32 +36,39 @@ class PitchArrayInventory(TypedList):
                             pitchtools.PitchArrayRow(
                                 cells=(
                                     pitchtools.PitchArrayCell(
-                                        item=1,
+                                        width=1,
                                         ),
                                     pitchtools.PitchArrayCell(
-                                        item=('d', 4),
+                                        pitches=[
+                                            pitchtools.NamedPitch("d'"),
+                                            ],
+                                        width=1,
                                         ),
                                     pitchtools.PitchArrayCell(
-                                        item=(
-                                            [
-                                                ('bf', 3),
-                                                ('bqf', 3),
-                                                ],
-                                            2,
-                                            ),
+                                        pitches=[
+                                            pitchtools.NamedPitch('bf'),
+                                            pitchtools.NamedPitch('bqf'),
+                                            ],
+                                        width=2,
                                         ),
                                     ),
                                 ),
                             pitchtools.PitchArrayRow(
                                 cells=(
                                     pitchtools.PitchArrayCell(
-                                        item=('g', 4, 2),
+                                        pitches=[
+                                            pitchtools.NamedPitch("g'"),
+                                            ],
+                                        width=2,
                                         ),
                                     pitchtools.PitchArrayCell(
-                                        item=('fs', 4),
+                                        pitches=[
+                                            pitchtools.NamedPitch("fs'"),
+                                            ],
+                                        width=1,
                                         ),
                                     pitchtools.PitchArrayCell(
-                                        item=1,
+                                        width=1,
                                         ),
                                     ),
                                 ),
@@ -72,26 +79,26 @@ class PitchArrayInventory(TypedList):
                             pitchtools.PitchArrayRow(
                                 cells=(
                                     pitchtools.PitchArrayCell(
-                                        item=1,
+                                        width=1,
                                         ),
                                     pitchtools.PitchArrayCell(
-                                        item=1,
+                                        width=1,
                                         ),
                                     pitchtools.PitchArrayCell(
-                                        item=1,
+                                        width=1,
                                         ),
                                     ),
                                 ),
                             pitchtools.PitchArrayRow(
                                 cells=(
                                     pitchtools.PitchArrayCell(
-                                        item=1,
+                                        width=1,
                                         ),
                                     pitchtools.PitchArrayCell(
-                                        item=1,
+                                        width=1,
                                         ),
                                     pitchtools.PitchArrayCell(
-                                        item=1,
+                                        width=1,
                                         ),
                                     ),
                                 ),

@@ -80,9 +80,12 @@ class NamedPitch(Pitch):
                     self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
                         *args)
                 elif isinstance(args[1], pitchtools.NamedPitchClass):
-                    self._initialize_by_pitch_number_and_named_pitch_class(*args)
+                    self._initialize_by_pitch_number_and_named_pitch_class(
+                        *args)
                 else:
-                    raise TypeError
+                    message = 'can not initialize {}: {!r}.'
+                    message = message.format(type(self).__name__, args)
+                    raise TypeError(message)
             else:
                 message = 'can not initialize {}: {!r}.'
                 message = message.format(type(self).__name__, args)

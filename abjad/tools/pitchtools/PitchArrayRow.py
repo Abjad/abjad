@@ -15,17 +15,35 @@ class PitchArrayRow(AbjadObject):
         ::
 
             >>> array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-            >>> array[0].cells[0].pitches.append(0)
-            >>> array[0].cells[1].pitches.append(2)
-            >>> array[1].cells[2].pitches.append(4)
+            >>> array[0].cells[0].append_pitch(0)
+            >>> array[0].cells[1].append_pitch(2)
+            >>> array[1].cells[2].append_pitch(4)
             >>> print(array)
             [c'] [d'    ] [  ]
             [       ] [ ] [e']
 
         ::
 
-            >>> array[0]
-            PitchArrayRow(cells=(PitchArrayCell(item=('c', 4)), PitchArrayCell(item=('d', 4, 2)), PitchArrayCell(item=1)))
+            >>> print(format(array[0]))
+            pitchtools.PitchArrayRow(
+                cells=(
+                    pitchtools.PitchArrayCell(
+                        pitches=[
+                            pitchtools.NamedPitch("c'"),
+                            ],
+                        width=1,
+                        ),
+                    pitchtools.PitchArrayCell(
+                        pitches=[
+                            pitchtools.NamedPitch("d'"),
+                            ],
+                        width=2,
+                        ),
+                    pitchtools.PitchArrayCell(
+                        width=1,
+                        ),
+                    ),
+                )
 
         ::
 
@@ -169,9 +187,9 @@ class PitchArrayRow(AbjadObject):
         return iter(self.cells)
 
     def __len__(self):
-        r'''Length of pitch array row.
+        r'''Gets length of pitch array row.
 
-        Defined equal to the width of pitch array row.
+        Length defined equal to the width of pitch array row.
 
         Returns nonnegative integer.
         '''
@@ -184,15 +202,8 @@ class PitchArrayRow(AbjadObject):
         '''
         return not self == arg
 
-#    def __repr__(self):
-#        r'''Gets interpreter representation of pitch array row.
-#
-#        Returns string.
-#        '''
-#        return '{}({})'.format(type(self).__name__, self._compact_summary)
-
     def __str__(self):
-        r'''String representation of pitch array row.
+        r'''Gets string representation of pitch array row.
 
         Returns string.
         '''
@@ -232,7 +243,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def cell_tokens(self):
-        r'''Cell items of pitch array row.
+        r'''Gets cell items of pitch array row.
 
         Returns tuple.
         '''
@@ -240,7 +251,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def cell_widths(self):
-        r'''Cell widths of pitch array row.
+        r'''Gets cell widths of pitch array row.
 
         Returns tuple.
         '''
@@ -248,7 +259,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def cells(self):
-        r'''Cells of pitch array row.
+        r'''Gets cells of pitch array row.
 
         Returns tuple.
         '''
@@ -256,7 +267,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def depth(self):
-        r'''Depth of pitch array row.
+        r'''Gets depth of pitch array row.
 
         Defined equal to ``1``.
 
@@ -266,7 +277,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def dimensions(self):
-        r'''Dimensions of pitch array row.
+        r'''Gets dimensions of pitch array row.
 
         Returns pair.
         '''
@@ -294,7 +305,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def parent_array(self):
-        r'''Parent pitch array housing pitch array row.
+        r'''Gets parent pitch array housing pitch array row.
 
         Returns pitch array or none.
         '''
@@ -302,7 +313,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def pitch_range(self):
-        r'''Gets and set pitch range of pitch array row.
+        r'''Gets and sets pitch range of pitch array row.
 
         Returns pitch range.
         '''
@@ -318,18 +329,19 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def pitches(self):
-        r'''Pitches in pitch array row.
+        r'''Gets pitches in pitch array row.
 
         Returns tuple.
         '''
         pitches = []
         for cell in self.cells:
-            pitches.extend(cell.pitches)
+            if cell.pitches is not None:
+                pitches.extend(cell.pitches)
         return tuple(pitches)
 
     @property
     def row_index(self):
-        r'''Row index of pitch array row in parent pitch array.
+        r'''Gets row index of pitch array row in parent pitch array.
 
         Returns nonnegative integer.
         '''
@@ -341,7 +353,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def weight(self):
-        r'''Weight of pitch array row.
+        r'''Gets weight of pitch array row.
 
         Defined equal to sum of weights of pitch array cells in pitch array
         row.
@@ -352,7 +364,7 @@ class PitchArrayRow(AbjadObject):
 
     @property
     def width(self):
-        r'''Width of pitch array row.
+        r'''Gets width of pitch array row.
 
         Defined equal to sum of widths of pitch array cells in pitch array row.
 
@@ -362,13 +374,13 @@ class PitchArrayRow(AbjadObject):
 
     ### PUBLIC METHODS ###
 
-    def append(self, cell_token):
-        r'''Appends `cell_token` to pitch array row.
+    def append(self, cell):
+        r'''Appends `cell` to pitch array row.
 
         Returns none.
         '''
         from abjad.tools import pitchtools
-        cell = pitchtools.PitchArrayCell(cell_token)
+        assert isinstance(cell, pitchtools.PitchArrayCell), repr(cell)
         cell._parent_row = self
         self._cells.append(cell)
 
@@ -418,13 +430,13 @@ class PitchArrayRow(AbjadObject):
         for cell in self.cells:
             cell.pitches = []
 
-    def extend(self, cell_tokens):
-        r'''Extends `cell_tokens` against pitch array row.
+    def extend(self, cells):
+        r'''Extends pitch array row with `cells`.
 
         Returns none.
         '''
-        for cell_token in cell_tokens:
-            self.append(cell_token)
+        for cell in cells:
+            self.append(cell)
 
     def has_spanning_cell_over_index(self, i):
         r'''Is true when pitch array row has one or more cells spanning over
@@ -439,7 +451,7 @@ class PitchArrayRow(AbjadObject):
             return False
 
     def index(self, cell):
-        r'''Index of pitch array `cell` in pitch array row.
+        r'''Gets index of pitch array `cell` in pitch array row.
 
         Retunrs nonnegative integer.
         '''
@@ -461,7 +473,8 @@ class PitchArrayRow(AbjadObject):
                 message = 'cells must belong to row.'
                 raise ValueError(message)
             column_indices.extend(cell.column_indices)
-            pitches.extend(cell.pitches)
+            if cell.pitches is not None:
+                pitches.extend(cell.pitches)
             width += cell.width
         start = min(column_indices)
         stop = start + len(column_indices)
@@ -512,35 +525,41 @@ class PitchArrayRow(AbjadObject):
         cell._parent_row = None
 
     def to_measure(self, cell_duration_denominator=8):
-        r'''Changes pitch array row to measure with time signature
-        numerator equal to pitch array row width and
-        time signature denominator equal to `cell_duration_denominator`.
+        r'''Changes pitch array row to measures.
+        
+        Sets time signature numerators equal to pitch array row widths and time
+        signature denominators equal to `cell_duration_denominator`.
 
-        ::
+        ..  container:: example
 
-            >>> array = pitchtools.PitchArray([
-            ...     [1, (2, 1), ([-2, -1.5], 2)],
-            ...     [(7, 2), (6, 1), 1]])
+            **Example 1.** Changes row to measure:
 
-        ::
+            ::
 
-            >>> print(array)
-            [  ] [d'] [bf bqf    ]
-            [g'     ] [fs'   ] [ ]
+                >>> array = pitchtools.PitchArray([
+                ...     [1, (2, 1), ([-2, -1.5], 2)],
+                ...     [(7, 2), (6, 1), 1]])
 
-        ::
+            ::
 
-            >>> measure = array.rows[0].to_measure()
+                >>> print(array)
+                [  ] [d'] [bf bqf    ]
+                [g'     ] [fs'   ] [ ]
 
-        ..  doctest::
+            ::
 
-            >>> print(format(measure))
-            {
-                \time 4/8
-                r8
-                d'8
-                <bf bqf>4
-            }
+                >>> measure = array.rows[0].to_measure()
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 4/8
+                    r8
+                    d'8
+                    <bf bqf>4
+                }
 
         Returns measure.
         '''

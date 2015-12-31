@@ -11,7 +11,7 @@ class PitchArray(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.**
+        **Example 1.** A two-by-three pitch array:
 
         ::
 
@@ -28,26 +28,26 @@ class PitchArray(AbjadObject):
                     pitchtools.PitchArrayRow(
                         cells=(
                             pitchtools.PitchArrayCell(
-                                item=1,
+                                width=1,
                                 ),
                             pitchtools.PitchArrayCell(
-                                item=2,
+                                width=2,
                                 ),
                             pitchtools.PitchArrayCell(
-                                item=1,
+                                width=1,
                                 ),
                             ),
                         ),
                     pitchtools.PitchArrayRow(
                         cells=(
                             pitchtools.PitchArrayCell(
-                                item=2,
+                                width=2,
                                 ),
                             pitchtools.PitchArrayCell(
-                                item=1,
+                                width=1,
                                 ),
                             pitchtools.PitchArrayCell(
-                                item=1,
+                                width=1,
                                 ),
                             ),
                         ),
@@ -66,8 +66,18 @@ class PitchArray(AbjadObject):
             return
         for row in rows:
             row_ = pitchtools.PitchArrayRow([])
-            for cell_token in row:
-                cell = self._parse_cell_token(cell_token)
+            for cell in row:
+                if isinstance(cell, int):
+                    cell = pitchtools.PitchArrayCell(width=cell)
+                elif isinstance(cell, tuple):
+                    assert len(cell) == 2, repr(cell)
+                    pitches, width = cell
+                    if isinstance(pitches, int):
+                        pitches = [pitches]
+                    cell = pitchtools.PitchArrayCell(
+                        pitches=pitches,
+                        width=width,
+                        )
                 row_.append(cell)
             self.append_row(row_)
 
@@ -261,25 +271,11 @@ class PitchArray(AbjadObject):
         offsets.sort()
         return list(mathtools.difference_series(offsets))
 
-    def _initialize_by_cell_token_lists(self, cell_token_lists):
-        raise Exception(cell_token_lists)
-        from abjad.tools import pitchtools
-        for cell_token_list in cell_token_lists:
-            row = pitchtools.PitchArrayRow([])
-            for cell_token in cell_token_list:
-                cell = self._parse_cell_token(cell_token)
-                row.append(cell)
-            self.append_row(row)
-
-    def _parse_cell_token(self, cell_token):
-        from abjad.tools import pitchtools
-        return pitchtools.PitchArrayCell(cell_token)
-
     ### PUBLIC PROPERTIES ###
 
     @property
     def cell_tokens_by_row(self):
-        r'''Cells items of pitch array by row.
+        r'''Gets cells tokens of pitch array by row.
 
         Returns tuple.
         '''
@@ -287,7 +283,7 @@ class PitchArray(AbjadObject):
 
     @property
     def cell_widths_by_row(self):
-        r'''Cell widths of pitch array by row.
+        r'''Gets cell widths of pitch array by row.
 
         Returns tuple.
         '''
@@ -295,7 +291,7 @@ class PitchArray(AbjadObject):
 
     @property
     def cells(self):
-        r'''Cells of pitch array.
+        r'''Gets cells of pitch array.
 
         Returns set.
         '''
@@ -306,7 +302,7 @@ class PitchArray(AbjadObject):
 
     @property
     def columns(self):
-        r'''Columns of pitch array.
+        r'''Gets columns of pitch array.
 
         Returns tuple.
         '''
@@ -323,7 +319,7 @@ class PitchArray(AbjadObject):
 
     @property
     def depth(self):
-        r'''Depth of pitch array.
+        r'''Gets depth of pitch array.
 
         Defined equal to number of pitch array rows in pitch array.
 
@@ -333,7 +329,7 @@ class PitchArray(AbjadObject):
 
     @property
     def dimensions(self):
-        r'''Dimensions of pitch array.
+        r'''Gets dimensions of pitch array.
 
         Returns pair.
         '''
@@ -360,7 +356,7 @@ class PitchArray(AbjadObject):
 
     @property
     def pitches(self):
-        r'''Pitches in pitch array.
+        r'''Gets pitches in pitch array.
 
         Returns tuple.
         '''
@@ -368,7 +364,7 @@ class PitchArray(AbjadObject):
 
     @property
     def pitches_by_row(self):
-        r'''Pitches in pitch array by row.
+        r'''Gets pitches in pitch array by row.
 
         Returns tuple.
         '''
@@ -379,7 +375,7 @@ class PitchArray(AbjadObject):
 
     @property
     def rows(self):
-        r'''Rows in pitch array.
+        r'''Gets rows in pitch array.
 
         Returns tuple.
         '''
@@ -387,7 +383,7 @@ class PitchArray(AbjadObject):
 
     @property
     def size(self):
-        r'''Size of pitch array.
+        r'''Gets size of pitch array.
 
         Defined equal to the product of depth and width.
 
@@ -397,7 +393,7 @@ class PitchArray(AbjadObject):
 
     @property
     def voice_crossing_count(self):
-        r'''Voice crossing count.
+        r'''Gets voice crossing count of pitch array.
 
         Returns nonnegative integer.
         '''
@@ -409,7 +405,7 @@ class PitchArray(AbjadObject):
 
     @property
     def weight(self):
-        r'''Weight of pitch array.
+        r'''Gets weight of pitch array.
 
         Defined equal to the sum of the weight of the rows in pitch array.
 
@@ -419,7 +415,7 @@ class PitchArray(AbjadObject):
 
     @property
     def width(self):
-        r'''Width of pitch array.
+        r'''Gets width of pitch array.
 
         Defined equal to the width of the widest row in pitch array.
 
@@ -433,7 +429,7 @@ class PitchArray(AbjadObject):
     ### PUBLIC METHODS ###
 
     def append_column(self, column):
-        r'''Append `column` to pitch array.
+        r'''Appends `column` to pitch array.
 
         Returns none.
         '''
@@ -679,43 +675,47 @@ class PitchArray(AbjadObject):
     def list_nonspanning_subarrays(self):
         r'''Lists nonspanning subarrays of pitch array.
 
-        ::
+        ..  container:: example
 
-            >>> array = pitchtools.PitchArray([
-            ...     [2, 2, 3, 1],
-            ...     [1, 2, 1, 1, 2, 1],
-            ...     [1, 1, 1, 1, 1, 1, 1, 1]])
-            >>> print(array)
-            [     ] [     ] [         ] [ ]
-            [ ] [     ] [ ] [ ] [     ] [ ]
-            [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ]
+            **Example 1.** Lists three nonspanning subarrays:
 
-        ::
+            ::
 
-            >>> subarrays = array.list_nonspanning_subarrays()
-            >>> len(subarrays)
-            3
+                >>> array = pitchtools.PitchArray([
+                ...     [2, 2, 3, 1],
+                ...     [1, 2, 1, 1, 2, 1],
+                ...     [1, 1, 1, 1, 1, 1, 1, 1]])
+                >>> print(array)
+                [     ] [     ] [         ] [ ]
+                [ ] [     ] [ ] [ ] [     ] [ ]
+                [ ] [ ] [ ] [ ] [ ] [ ] [ ] [ ]
 
-        ::
+            ::
 
-            >>> print(subarrays[0])
-            [     ] [     ]
-            [ ] [     ] [ ]
-            [ ] [ ] [ ] [ ]
+                >>> subarrays = array.list_nonspanning_subarrays()
+                >>> len(subarrays)
+                3
 
-        ::
+            ::
 
-            >>> print(subarrays[1])
-            [         ]
-            [ ] [     ]
-            [ ] [ ] [ ]
+                >>> print(subarrays[0])
+                [     ] [     ]
+                [ ] [     ] [ ]
+                [ ] [ ] [ ] [ ]
 
-        ::
+            ::
 
-            >>> print(subarrays[2])
-            [ ]
-            [ ]
-            [ ]
+                >>> print(subarrays[1])
+                [         ]
+                [ ] [     ]
+                [ ] [ ] [ ]
+
+            ::
+
+                >>> print(subarrays[2])
+                [ ]
+                [ ]
+                [ ]
 
         Returns list.
         '''
@@ -800,39 +800,45 @@ class PitchArray(AbjadObject):
         denominators equal to `cell_duration_denominator` for each row in pitch
         array.
 
-        ::
+        ..  container:: example
 
-            >>> array = pitchtools.PitchArray([
-            ...     [1, (2, 1), ([-2, -1.5], 2)],
-            ...     [(7, 2), (6, 1), 1]])
+            **Example 1.** Changes two-by-three pitch array to measures:
 
-        ::
+            ::
 
-            >>> print(array)
-            [  ] [d'] [bf bqf    ]
-            [g'     ] [fs'   ] [ ]
+                >>> array = pitchtools.PitchArray([
+                ...     [1, (2, 1), ([-2, -1.5], 2)],
+                ...     [(7, 2), (6, 1), 1],
+                ...     ])
 
-        ::
+            ::
 
-            >>> measures = array.to_measures()
+                >>> print(array)
+                [  ] [d'] [bf bqf    ]
+                [g'     ] [fs'   ] [ ]
 
-        ::
+            ::
 
-            >>> for measure in measures:
-            ...     f(measure)
-            ...
-            {
-                \time 4/8
-                r8
-                d'8
-                <bf bqf>4
-            }
-            {
-                \time 4/8
-                g'4
-                fs'8
-                r8
-            }
+                >>> measures = array.to_measures()
+                >>> staff = Staff(measures)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 4/8
+                        r8
+                        d'8
+                        <bf bqf>4
+                    }
+                    {
+                        g'4
+                        fs'8
+                        r8
+                    }
+                }
 
         Returns list of measures.
         '''

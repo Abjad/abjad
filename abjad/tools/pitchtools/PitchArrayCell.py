@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import numbers
 from abjad.tools.abctools import AbjadObject
 
 
@@ -7,7 +8,7 @@ class PitchArrayCell(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** A cell:
+        **Example 1.** A pitch array cell:
 
         ::
 
@@ -52,23 +53,73 @@ class PitchArrayCell(AbjadObject):
 
         ::
 
-            >>> cell.parent_array
-            PitchArray(rows=(PitchArrayRow(cells=(PitchArrayCell(item=1), PitchArrayCell(item=2), PitchArrayCell(item=1))), PitchArrayRow(cells=(PitchArrayCell(item=2), PitchArrayCell(item=1), PitchArrayCell(item=1)))))
+            >>> print(format(cell.parent_array))
+            pitchtools.PitchArray(
+                rows=(
+                    pitchtools.PitchArrayRow(
+                        cells=(
+                            pitchtools.PitchArrayCell(
+                                width=1,
+                                ),
+                            pitchtools.PitchArrayCell(
+                                width=2,
+                                ),
+                            pitchtools.PitchArrayCell(
+                                width=1,
+                                ),
+                            ),
+                        ),
+                    pitchtools.PitchArrayRow(
+                        cells=(
+                            pitchtools.PitchArrayCell(
+                                width=2,
+                                ),
+                            pitchtools.PitchArrayCell(
+                                width=1,
+                                ),
+                            pitchtools.PitchArrayCell(
+                                width=1,
+                                ),
+                            ),
+                        ),
+                    ),
+                )
 
         ::
 
-            >>> cell.parent_column
-            PitchArrayColumn(cells=(PitchArrayCell(item=2), PitchArrayCell(item=2)))
+            >>> print(format(cell.parent_column))
+            pitchtools.PitchArrayColumn(
+                cells=(
+                    pitchtools.PitchArrayCell(
+                        width=2,
+                        ),
+                    pitchtools.PitchArrayCell(
+                        width=2,
+                        ),
+                    ),
+                )
 
         ::
 
-            >>> cell.parent_row
-            PitchArrayRow(cells=(PitchArrayCell(item=1), PitchArrayCell(item=2), PitchArrayCell(item=1)))
+            >>> print(format(cell.parent_row))
+            pitchtools.PitchArrayRow(
+                cells=(
+                    pitchtools.PitchArrayCell(
+                        width=1,
+                        ),
+                    pitchtools.PitchArrayCell(
+                        width=2,
+                        ),
+                    pitchtools.PitchArrayCell(
+                        width=1,
+                        ),
+                    ),
+                )
 
         ::
 
-            >>> cell.pitches
-            []
+            >>> cell.pitches is None
+            True
 
         ::
 
@@ -94,12 +145,21 @@ class PitchArrayCell(AbjadObject):
 
     ### INTIALIZER ###
 
-    def __init__(self, item=None):
-        self._parent_row = None
-        self._pitches = []
-        pitches, width = self._parse_cell_token(item)
-        self._pitches.extend(pitches)
+    def __init__(self, pitches=None, width=1):
+        from abjad.tools import pitchtools
+        self._pitches = None
+        if pitches is not None:
+            if isinstance(pitches, str):
+                pitches = pitches.split()
+            if isinstance(pitches, numbers.Number):
+                pitches = [pitches]
+            assert isinstance(pitches, (tuple, list)), repr(pitches)
+            pitches = [pitchtools.NamedPitch(_) for _ in pitches]
+            self._pitches = pitches
+        assert isinstance(width, int), repr(width)
+        assert 1 <= width, repr(width)
         self._width = width
+        self._parent_row = None
 
     ### SPECIAL METHODS ###
 
@@ -107,16 +167,6 @@ class PitchArrayCell(AbjadObject):
         r'''Gets object state.
         '''
         return vars(self)
-
-    def __repr__(self):
-        r'''Gets interpreter representation of pitch array cell.
-
-        Returns string.
-        '''
-        return '{}(width={})'.format(
-            type(self).__name__,
-            self.width,
-            )
 
     def __str__(self):
         r'''Gets string representation of pitch array cell.
@@ -457,18 +507,19 @@ class PitchArrayCell(AbjadObject):
 
         Returns list.
         '''
-        from abjad.tools import pitchtools
-        for i, pitch in enumerate(self._pitches):
-            if not isinstance(pitch, pitchtools.NamedPitch):
-                self._pitches[i] = pitchtools.NamedPitch(pitch)
         return self._pitches
 
     @pitches.setter
-    def pitches(self, arg):
-        if not isinstance(arg, (list, tuple)):
-            message = 'must be list or tuple of pitches.'
-            raise TypeError(message)
-        self._pitches = arg
+    def pitches(self, pitches):
+        from abjad.tools import pitchtools
+        if pitches is None:
+            self._pitches = None
+            return
+        if isinstance(pitches, str):
+            pitches = pitches.split()
+        assert isinstance(pitches, (tuple, list)), repr(pitches)
+        pitches = [pitchtools.NamedPitch(_) for _ in pitches]
+        self._pitches = pitches
 
     @property
     def previous(self):
@@ -516,6 +567,17 @@ class PitchArrayCell(AbjadObject):
         return self._width
 
     ### PUBLIC METHODS ###
+
+    def append_pitch(self, pitch):
+        r'''Appends `pitch` to cell.
+
+        Returns none.
+        '''
+        from abjad.tools import pitchtools
+        if self.pitches is None:
+            self._pitches = []
+        pitch = pitchtools.NamedPitch(pitch)
+        self._pitches.append(pitch)
 
     def matches_cell(self, arg):
         r'''Is true when pitch array cell matches `arg`. Otherwise false.

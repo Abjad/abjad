@@ -7,16 +7,19 @@ def test_pitchtools_PitchArrayRow_append_01():
     '''
 
     array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-    array[0].cells[0].pitches.append(NamedPitch(0))
-    array[0].cells[1].pitches.extend([NamedPitch(2), NamedPitch(4)])
+    array[0].cells[0].append_pitch(NamedPitch(0))
+    array[0].cells[1].append_pitch(NamedPitch(2))
+    array[0].cells[1].append_pitch(NamedPitch(4))
 
     '''
     [c'] [d' e'    ] [ ]
     [          ] [ ] [ ]
     '''
 
-    array[0].append(1)
-    array[1].append(1)
+    cell = pitchtools.PitchArrayCell(width=1)
+    array[0].append(cell)
+    cell = pitchtools.PitchArrayCell(width=1)
+    array[1].append(cell)
 
     '''
     [c'] [d' e'    ] [ ] [ ]
@@ -29,16 +32,19 @@ def test_pitchtools_PitchArrayRow_append_01():
 def test_pitchtools_PitchArrayRow_append_02():
 
     array = pitchtools.PitchArray([[1, 2, 1], [2, 1, 1]])
-    array[0].cells[0].pitches.append(NamedPitch(0))
-    array[0].cells[1].pitches.extend([NamedPitch(2), NamedPitch(4)])
+    array[0].cells[0].append_pitch(NamedPitch(0))
+    array[0].cells[1].append_pitch(NamedPitch(2))
+    array[0].cells[1].append_pitch(NamedPitch(4))
 
     '''
     [c'] [d' e'     ] [ ]
     [           ] [ ] [ ]
     '''
 
-    array[0].append(NamedPitch(0))
-    array[1].append(NamedPitch(2))
+    cell = pitchtools.PitchArrayCell(pitches=[0])
+    array[0].append(cell)
+    cell = pitchtools.PitchArrayCell(pitches=[2])
+    array[1].append(cell)
 
     '''
     [c'] [d' e'    ] [ ] [c']
