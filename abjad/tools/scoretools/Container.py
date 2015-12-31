@@ -93,15 +93,89 @@ class Container(Component):
                 return False
 
     def __delitem__(self, i):
-        r'''Deletes container `i`.
-        Detaches component(s) from parentage.
+        r'''Deletes components(s) at index `i` in container.
+
+        ..  container:: example
+
+            **Example 1.** Deletes first tuplet in voice:
+
+            ::
+
+                >>> voice = Voice()
+                >>> voice.append(Tuplet((2, 3), "c'4 d'4 e'4"))
+                >>> voice.append(Tuplet((2, 3), "e'4 d'4 c'4"))
+                >>> leaves = iterate(voice).by_class(scoretools.Leaf)
+                >>> attach(Slur(), list(leaves))
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    \times 2/3 {
+                        c'4 (
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        e'4
+                        d'4
+                        c'4 )
+                    }
+                }
+
+            ::
+
+                >>> tuplet_1 = voice[0]
+                >>> del(voice[0])
+
+            First tuplet no longer appears in voice:
+
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    \times 2/3 {
+                        e'4 (
+                        d'4
+                        c'4 )
+                    }
+                }
+
+            ::
+
+                >>> inspect_(voice).is_well_formed()
+                True
+
+            First tuplet is no longer slurred but is still well-formed:
+
+            ::
+
+                >>> show(tuplet_1) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(tuplet_1)
+                \times 2/3 {
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            ::
+
+                >>> inspect_(tuplet_1).is_well_formed()
+                True
+
         Withdraws component(s) from crossing spanners.
+
         Preserves spanners that component(s) cover(s).
 
         Returns none.
         '''
         components = self[i]
-        #if not isinstance(components, selectiontools.Selection):
         if not isinstance(components, selectiontools.Selection):
             components = selectiontools.Selection([components])
         if not self.is_simultaneous:

@@ -5,10 +5,6 @@ from abjad import *
 
 def test_scoretools_Container___delitem___01():
     r'''Deletes in-score container.
-
-    Component withdraws crossing spanners.
-    Component carries covered spanners forward.
-    Operation always leaves all expressions in tact.
     '''
 
     voice = Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
