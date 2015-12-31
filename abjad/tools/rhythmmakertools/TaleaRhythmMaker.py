@@ -133,6 +133,7 @@ class TaleaRhythmMaker(RhythmMaker):
         division_masks=None,
         duration_spelling_specifier=None,
         extra_counts_per_division=None,
+        logical_tie_masks=None,
         rest_tied_notes=False,
         split_divisions_by_counts=None,
         tie_specifier=None,
@@ -146,6 +147,7 @@ class TaleaRhythmMaker(RhythmMaker):
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             division_masks=division_masks,
+            logical_tie_masks=logical_tie_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -2431,6 +2433,120 @@ class TaleaRhythmMaker(RhythmMaker):
         Returns dictionary or none.
         '''
         return self._helper_functions
+
+    @property
+    def logical_tie_masks(self):
+        r'''Gets logical tie masks.
+
+        ..  container:: example
+
+            **Example 1.** Talea generates some ties across divisions:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        c'4
+                        c'16 [
+                        c'16 ~ ]
+                    }
+                    {
+                        c'16 [
+                        c'8.
+                        c'8 ~ ]
+                    }
+                    {
+                        c'8 [
+                        c'16
+                        c'8
+                        c'16 ]
+                    }
+                }
+
+            Logical tie mask silences logical ties at indices 5 and 7:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     logical_tie_masks=rhythmmakertools.silence([5, 7]),
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        c'4
+                        c'16
+                        r16
+                    }
+                    {
+                        r16
+                        c'8.
+                        r8
+                    }
+                    {
+                        r8
+                        c'16 [
+                        c'8
+                        c'16 ]
+                    }
+                }
+
+            Changes all notes in logical tie to rests.
+
+        Returns patterns or none.
+        '''
+        superclass = super(TaleaRhythmMaker, self)
+        return superclass.logical_tie_masks
 
     @property
     def rest_tied_notes(self):

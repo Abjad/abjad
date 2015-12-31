@@ -78,7 +78,6 @@ class RhythmMaker(AbjadValueObject):
 
         Returns list of selections.
         '''
-        #divisions = [mathtools.NonreducedFraction(_) for _ in divisions]
         divisions_ = []
         for division in divisions:
             if isinstance(division, mathtools.NonreducedFraction):
@@ -96,7 +95,7 @@ class RhythmMaker(AbjadValueObject):
         selections = self._make_music(divisions, rotation)
         selections = self._apply_tuplet_spelling_specifier(selections)
         self._apply_tie_specifier(selections)
-        self._apply_logical_tie_masks(selections)
+        selections = self._apply_logical_tie_masks(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
         return selections
@@ -174,7 +173,14 @@ class RhythmMaker(AbjadValueObject):
     def _apply_logical_tie_masks(self, selections):
         from abjad.tools import rhythmmakertools
         if self.logical_tie_masks is None:
-            return
+            return selections
+        # wrap every selection in a temporary container;
+        # this allows the call to mutate().replace() to work
+        containers = []
+        for selection in selections:
+            container = scoretools.Container(selection)
+            attach('temporary container', container)
+            containers.append(container)
         logical_ties = iterate(selections).by_logical_tie()
         logical_ties = list(logical_ties)
         total_logical_ties = len(logical_ties)
@@ -197,6 +203,14 @@ class RhythmMaker(AbjadValueObject):
                     multiplier = durationtools.Multiplier(multiplier)
                     attach(multiplier, rest)
                 mutate(leaf).replace([rest])
+        # remove every temporary container and generate a selection instead
+        new_selections = []
+        for container in containers:
+            inspector = inspect_(container)
+            assert inspector.get_indicator(str) == 'temporary container'
+            new_selection = mutate(container).eject_contents()
+            new_selections.append(new_selection)
+        return new_selections
 
     def _apply_division_masks(self, selections, rotation):
         from abjad.tools import rhythmmakertools
