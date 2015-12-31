@@ -4,6 +4,7 @@ from abjad import *
 
 def test_agenttools_MutationAgent_replace_01():
     r'''Moves parentage and spanners from two old notes to five new notes.
+
     Equivalent to staff[1:3] = new_notes.
     '''
 
@@ -51,6 +52,7 @@ def test_agenttools_MutationAgent_replace_01():
 
 def test_agenttools_MutationAgent_replace_02():
     r'''Moves parentage and spanners from one old note to five new notes.
+
     Equivalent to staff[:1] = new_notes.
     '''
 
@@ -99,6 +101,7 @@ def test_agenttools_MutationAgent_replace_02():
 
 def test_agenttools_MutationAgent_replace_03():
     r'''Moves parentage and spanners from two old notes to five new notes.
+
     Equivalent to staff[:2] = new_notes.
     '''
 
@@ -146,6 +149,7 @@ def test_agenttools_MutationAgent_replace_03():
 
 def test_agenttools_MutationAgent_replace_04():
     r'''Moves parentage and spanners from three old notes to five new notes.
+
     "Equivalent to staff[:3] = new_notes."
     '''
 
@@ -192,6 +196,7 @@ def test_agenttools_MutationAgent_replace_04():
 
 def test_agenttools_MutationAgent_replace_05():
     r'''Moves parentage and spanners from four old notes to five new notes.
+
     Equivalent to staff[:] = new_notes.
     '''
 
@@ -237,6 +242,11 @@ def test_agenttools_MutationAgent_replace_05():
 
 def test_agenttools_MutationAgent_replace_06():
     r'''Moves parentage and spanners from container to children of container.
+
+    Replaces container with contents of container.
+
+    Effectively removes container from score.
+
     Equivalent to staff[:1] = staff[0][:].
     '''
 

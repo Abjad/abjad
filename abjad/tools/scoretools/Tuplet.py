@@ -231,11 +231,6 @@ class Tuplet(Container):
             ])
         return node
 
-    def _extract(self, scale_contents=False):
-        if scale_contents:
-            self._scale_contents(self.multiplier)
-        return super(Tuplet, self)._extract()
-
     # TODO: hoist to Tuplet and make work for all tuplet instances
     def _fix(self):
         from abjad.tools import scoretools

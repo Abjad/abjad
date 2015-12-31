@@ -239,9 +239,10 @@ class Component(AbjadObject):
             spanner._sever_all_components()
         return spanners
 
-    # TODO: remove scale_contents keyword
-    def _extract(self, scale_contents=None):
+    def _extract(self, scale_contents=False):
         from abjad.tools import selectiontools
+        if scale_contents:
+            self._scale_contents(self.multiplier)
         selection = selectiontools.Selection([self])
         parent, start, stop = selection._get_parent_and_start_stop_indices()
         music_list = list(getattr(self, '_music', ()))
