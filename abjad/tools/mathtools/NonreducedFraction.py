@@ -121,11 +121,11 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         from abjad.tools import mathtools
         if isinstance(expr, int):
             numerator = self.numerator + expr * self.denominator
-            return NonreducedFraction(numerator, self.denominator)
+            return type(self)((numerator, self.denominator))
         elif hasattr(expr, 'denominator'):
             if self.denominator == expr.denominator:
                 numerator = self.numerator + expr.numerator
-                return NonreducedFraction(numerator, self.denominator)
+                return type(self)((numerator, self.denominator))
             else:
                 denominator = mathtools.least_common_multiple(
                     self.denominator, expr.denominator)
@@ -133,8 +133,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
                 expr_multiplier = denominator // expr.denominator
                 self_numerator = self_multiplier * self.numerator
                 expr_numerator = expr_multiplier * expr.numerator
-                return NonreducedFraction(
-                    self_numerator + expr_numerator, denominator)
+                return type(self)(
+                    (self_numerator + expr_numerator, denominator))
         else:
             raise ValueError(expr)
 

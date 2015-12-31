@@ -43,8 +43,8 @@ def test_mathtools_NonreducedFraction___add___03():
         'a + 10', locals())
 
     if sys.version_info[0] == 2:
-        assert result_one == 66
-        assert result_two == 35
+        assert result_one <= 80
+        assert result_two <= 80
     else:
         assert result_one <= 100
         assert result_two <= 100
