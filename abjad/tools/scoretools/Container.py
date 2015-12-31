@@ -753,6 +753,72 @@ class Container(Component):
         self._is_simultaneous = expr
         self._update_later(offsets=True)
 
+    @property
+    def name(self):
+        r'''Gets and sets name of container.
+
+        ..  container:: example
+
+            **Example 1.** Gets container name:
+
+            ::
+
+                >>> container = Container("c'4 d'4 e'4 f'4")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            ::
+
+                >>> container.name is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Sets container name:
+
+            ::
+
+                >>> container = Container("c'4 d'4 e'4 f'4", name='Special')
+                >>> show(container) # doctest: +SKIP
+
+            ::
+
+                >>> container.name 
+                'Special'
+
+            Container name does not appear in LilyPond output:
+
+            ::
+
+                >>> f(container)
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        Defaults to none.
+
+        Set to string or none.
+
+        Returns string or none.
+        '''
+        return Component.name.fget(self)
+
+    @name.setter
+    def name(self, arg):
+        return Component.name.fset(self, arg)
+
     ### PRIVATE METHODS ###
 
     @staticmethod
