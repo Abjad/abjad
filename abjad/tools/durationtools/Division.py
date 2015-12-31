@@ -222,6 +222,134 @@ class Division(NonreducedFraction):
 
     ### SPECIAL METHODS###
 
+    def __add__(self, expr):
+        r'''Add `expr` to division.
+
+        ..  container:: example
+
+            **Example 1.** No start offsets:
+
+            ::
+
+                >>> division_1 = durationtools.Division((2, 4))
+                >>> division_2 = durationtools.Division((4, 4))
+                >>> division_1 + division_2
+                Division((6, 4))
+
+        ..  container:: example
+
+            **Example 2.** One start offset:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (2, 4),
+                ...     start_offset=Offset(1),
+                ...     )
+                >>> division_2 = durationtools.Division((4, 4))
+                >>> division_1 + division_2
+                Division((6, 4), start_offset=Offset(1, 1))
+
+        ..  container:: example
+
+            **Example 3.** Contiguous start offsets:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (2, 4),
+                ...     start_offset=Offset(1),
+                ...     )
+                >>> division_2 = durationtools.Division(
+                ...     (4, 4),
+                ...     start_offset=Offset((3, 2)),
+                ...     )
+                >>> division_1 + division_2
+                Division((6, 4), start_offset=Offset(1, 1))
+
+        ..  container:: example
+
+            **Example 4.** Noncontiguous start offsets:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (2, 4),
+                ...     start_offset=Offset(1),
+                ...     )
+                >>> division_2 = durationtools.Division(
+                ...     (4, 4),
+                ...     start_offset=Offset(10),
+                ...     )
+                >>> division_1 + division_2
+                Division((40, 4), start_offset=Offset(1, 1))
+
+        ..  container:: example
+
+            **Example 5.** Identical start offsets:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (2, 4),
+                ...     start_offset=Offset(1),
+                ...     )
+                >>> division_2 = durationtools.Division(
+                ...     (4, 4),
+                ...     start_offset=Offset(1),
+                ...     )
+                >>> division_1 + division_2
+                Division((4, 4), start_offset=Offset(1, 1))
+
+        ..  container:: example
+
+            **Example 6.** Overlapping start offsets:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (2, 4),
+                ...     start_offset=Offset(1),
+                ...     )
+                >>> division_2 = durationtools.Division(
+                ...     (4, 4),
+                ...     start_offset=Offset((5, 4)),
+                ...     )
+                >>> division_1 + division_2
+                Division((5, 4), start_offset=Offset(1, 1))
+
+        Returns new division.
+        '''
+        if not isinstance(expr, type(self)):
+            expr = type(self)(expr)
+        start_offsets = []
+        stop_offsets = []
+        if self.start_offset is not None:
+            start_offsets.append(self.start_offset)
+            stop_offsets.append(self.stop_offset)
+        if expr.start_offset is not None:
+            start_offsets.append(expr.start_offset)
+            stop_offsets.append(expr.stop_offset)
+        superclass = super(Division, self)
+        sum_ = superclass.__add__(expr)
+        if not start_offsets:
+            division = type(self)(sum_)
+        elif len(start_offsets) == 1:
+            start_offset = start_offsets[0]
+            division = type(self)(sum_, start_offset=start_offset)
+        elif len(start_offsets) == 2:
+            start_offset = min(start_offsets)
+            stop_offset = max(stop_offsets)
+            duration = stop_offset - start_offset
+            division = type(self)(duration)
+            division = division.with_denominator(self.denominator)
+            if not division.denominator == self.denominator:
+                division = division.with_denominator(expr.denominator)
+            division = type(self)(division, start_offset=start_offset)
+        else:
+            raise Exception
+        return division
+
     def __copy__(self, *args):
         r'''Copies division.
 

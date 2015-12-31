@@ -710,9 +710,9 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         if new_numerator.denominator == 1 and \
             new_denominator.denominator == 1:
             return type(self)(
-                new_numerator.numerator, new_denominator.numerator)
+                (new_numerator.numerator, new_denominator.numerator))
         else:
-            return type(self)(n, d)
+            return type(self)((n, d))
 
     def with_multiple_of_denominator(self, denominator):
         r'''Returns new nonreduced fraction with multiple of integer
