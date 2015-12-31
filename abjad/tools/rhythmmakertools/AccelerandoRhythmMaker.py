@@ -784,26 +784,6 @@ class AccelerandoRhythmMaker(RhythmMaker):
         for index, division in enumerate(divisions):
             accelerando = self._make_accelerando(division, index)
             selections.append(accelerando)
-#        if self.logical_tie_masks is not None:
-#            notes = iterate(selections).by_class(scoretools.Note)
-#            notes = list(notes)
-#            total_notes = len(notes)
-#            for i, note in enumerate(notes[:]):
-#                matching_mask = self.logical_tie_masks.get_matching_pattern(
-#                    i,
-#                    total_notes,
-#                    )
-#                if isinstance(matching_mask, rhythmmakertools.SilenceMask):
-#                    rest = scoretools.Rest(note.written_duration)
-#                    inspector = inspect_(note)
-#                    if inspector.has_indicator(durationtools.Multiplier):
-#                        multiplier = inspector.get_indicator(
-#                            durationtools.Multiplier,
-#                            )
-#                        multiplier = durationtools.Multiplier(multiplier)
-#                        attach(multiplier, rest)
-#                    mutate(note).replace([rest])
-        self._apply_logical_tie_masks(selections)
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
         selections = self._apply_division_masks(selections, rotation)
@@ -1511,11 +1491,11 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @property
     def logical_tie_masks(self):
-        r'''Gets count masks of accelerando rhythm-maker.
+        r'''Gets logical tie masks of accelerando rhythm-maker.
 
         ..  container:: example
 
-            **Example 1.** Silences first and last count:
+            **Example 1.** Silences first and last logical tie:
 
             ::
 
@@ -1751,7 +1731,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2.** Silences every third count:
+            **Example 2.** Silences every third logical tie:
 
             ::
 
@@ -1985,11 +1965,12 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         Defaults to none.
 
-        Set to pattern inventory or none.
+        Set to patterns or none.
 
-        Returns pattern inventory or none.
+        Returns patterns or none.
         '''
-        return self._logical_tie_masks
+        superclass = super(AccelerandoRhythmMaker, self)
+        return superclass.logical_tie_masks
 
     @property
     def division_masks(self):

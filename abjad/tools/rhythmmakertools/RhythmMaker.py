@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import abc
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
@@ -97,6 +96,7 @@ class RhythmMaker(AbjadValueObject):
         selections = self._make_music(divisions, rotation)
         selections = self._apply_tuplet_spelling_specifier(selections)
         self._apply_tie_specifier(selections)
+        self._apply_logical_tie_masks(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
         return selections
@@ -175,24 +175,28 @@ class RhythmMaker(AbjadValueObject):
         from abjad.tools import rhythmmakertools
         if self.logical_tie_masks is None:
             return
-        notes = iterate(selections).by_class(scoretools.Note)
-        notes = list(notes)
-        total_notes = len(notes)
-        for i, note in enumerate(notes[:]):
+        logical_ties = iterate(selections).by_logical_tie()
+        logical_ties = list(logical_ties)
+        total_logical_ties = len(logical_ties)
+        for index, logical_tie in enumerate(logical_ties[:]):
             matching_mask = self.logical_tie_masks.get_matching_pattern(
-                i,
-                total_notes,
+                index,
+                total_logical_ties,
                 )
-            if isinstance(matching_mask, rhythmmakertools.SilenceMask):
-                rest = scoretools.Rest(note.written_duration)
-                inspector = inspect_(note)
+            if not isinstance(matching_mask, rhythmmakertools.SilenceMask):
+                continue
+            if isinstance(logical_tie.head, scoretools.Rest):
+                continue
+            for leaf in logical_tie:
+                rest = scoretools.Rest(leaf.written_duration)
+                inspector = inspect_(leaf)
                 if inspector.has_indicator(durationtools.Multiplier):
                     multiplier = inspector.get_indicator(
                         durationtools.Multiplier,
                         )
                     multiplier = durationtools.Multiplier(multiplier)
                     attach(multiplier, rest)
-                mutate(note).replace([rest])
+                mutate(leaf).replace([rest])
 
     def _apply_division_masks(self, selections, rotation):
         from abjad.tools import rhythmmakertools
@@ -334,10 +338,6 @@ class RhythmMaker(AbjadValueObject):
         while True:
             yield cyclic_tuple[i]
             i += 1
-
-    @abc.abstractmethod
-    def _make_music(self, divisions, rotation):
-        raise NotImplementedError
 
     def _make_secondary_divisions(
         self,
