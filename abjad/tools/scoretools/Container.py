@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.scoretools.Component import Component
 
@@ -468,6 +469,16 @@ class Container(Component):
         new.is_simultaneous = self.is_simultaneous
         return new
 
+    def _eject_contents(self):
+        if inspect_(self).get_parentage().parent is not None:
+            message = 'can not eject contents of in-score container.'
+            raise Exception(message)
+        contents = self[:]
+        for component in contents:
+            component._set_parent(None)
+        self._music[:] = []
+        return contents
+
     def _format_after_slot(self, bundle):
         result = []
         result.append(('commands', bundle.after.commands))
@@ -551,9 +562,6 @@ class Container(Component):
         '''
         if left is None or right is None:
             return set([])
-        #Selection = selectiontools.Selection
-        #assert Selection._all_are_contiguous_components_in_same_logical_voice(
-        #    [left, right])
         left_contained = left._get_descendants()._get_spanners()
         right_contained = right._get_descendants()._get_spanners()
         dominant_spanners = left_contained & right_contained
@@ -640,10 +648,12 @@ class Container(Component):
         withdraw_components_in_expr_from_crossing_spanners=True,
         ):
         r'''This method exists because __setitem__ can not accept keywords.
+
         Note that setting
         withdraw_components_in_expr_from_crossing_spanners=False constitutes a
-        composer-unsafe use of this method. Only private methods should set
-        this keyword.
+        composer-unsafe use of this method.
+        
+        Only private methods should set this keyword.
         '''
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
@@ -670,10 +680,8 @@ class Container(Component):
                 len(expr) == 1 and
                 isinstance(expr[0], str)):
                 expr = self._parse_string(expr[0])[:]
-
         prototype = (scoretools.Component, selectiontools.Selection)
         assert all(isinstance(x, prototype) for x in expr)
-
         new_expr = []
         for item in expr:
             if isinstance(item, selectiontools.Selection):
@@ -681,7 +689,6 @@ class Container(Component):
             else:
                 new_expr.append(item)
         expr = new_expr
-
         assert all(isinstance(x, scoretools.Component) for x in expr)
         if any(isinstance(x, scoretools.GraceContainer) for x in expr):
             message = 'must attach grace container to note or chord.'
@@ -696,16 +703,13 @@ class Container(Component):
         else:
             start, stop, stride = i.indices(len(self))
         old = self[start:stop]
-        spanners_receipt = self._get_spanners_that_dominate_slice(
-            start, stop)
+        spanners_receipt = self._get_spanners_that_dominate_slice(start, stop)
         #print('RECEIPT', spanners_receipt, self, expr)
-
         for component in old:
             for child in iterate([component]).by_class():
                 for spanner in child._get_spanners():
                     spanner._remove(child)
         del(self[start:stop])
-
         # must withdraw before setting in self!
         # otherwise circular withdraw ensues!
         if withdraw_components_in_expr_from_crossing_spanners:
@@ -720,7 +724,6 @@ class Container(Component):
             for component in reversed(expr):
                 spanner._insert(index, component)
                 component._spanners.add(spanner)
-
         for indicator in expr_indicators:
             if hasattr(indicator, '_update_effective_context'):
                 indicator._update_effective_context()

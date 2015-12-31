@@ -69,6 +69,71 @@ class MutationAgent(abctools.AbjadObject):
                 result = result[0]
         return result
 
+    def eject_contents(self):
+        r'''Ejects contents from outside-of-score container.
+
+        ..  container:: example
+
+            **Example 1.** Ejects leaves from container:
+
+            ::
+
+                >>> container = Container("c'4 ~ c'4 d'4 ~ d'4")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'4 ~
+                    c'4
+                    d'4 ~
+                    d'4
+                }
+
+            Returns container contents as a selection with spanners preserved:
+
+            ::
+
+                >>> contents = mutate(container).eject_contents()
+                >>> contents
+                Selection(Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4"))
+
+            Container contents can be safely added to a new container:
+
+            ::
+
+                >>> staff = Staff(contents, context_name='RhythmicStaff')
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new RhythmicStaff {
+                    c'4 ~
+                    c'4
+                    d'4 ~
+                    d'4
+                }
+
+            New container is well formed:
+
+            ::
+
+                >>> inspect_(staff).is_well_formed()
+                True
+
+            Old container is empty:
+
+            ::
+
+                >>> container
+                Container()
+
+        Returns container contents as selection.
+        '''
+        return self._client._eject_contents()
+
     def extract(self, scale_contents=False):
         r'''Extracts mutation client from score.
 
