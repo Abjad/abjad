@@ -645,10 +645,12 @@ class TaleaRhythmMaker(RhythmMaker):
             else:
                 tuplets = self._make_tuplets(secondary_divisions, leaf_lists)
                 result = tuplets
+            # TODO: insert into temporary voice here
             selections = [selectiontools.Selection(x) for x in result]
         else:
             selections = []
             for division in secondary_divisions:
+                # TODO: insert into temporary voice here
                 selection = scoretools.make_leaves([0], [division])
                 selections.append(selection)
         beam_specifier = self._get_beam_specifier()
