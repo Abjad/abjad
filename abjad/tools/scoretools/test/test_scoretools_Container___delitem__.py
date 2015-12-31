@@ -4,19 +4,15 @@ from abjad import *
 
 
 def test_scoretools_Container___delitem___01():
-    r'''Delete spanned component.
+    r'''Deletes in-score container.
+
     Component withdraws crossing spanners.
     Component carries covered spanners forward.
     Operation always leaves all expressions in tact.
     '''
 
-    voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    beam = Beam()
-    attach(beam, voice[:])
-    slur = Slur()
-    attach(slur, voice[0][:])
-    slur = Slur()
-    attach(slur, voice[1][:])
+    voice = Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
+    attach(Beam(), voice[:])
 
     assert systemtools.TestManager.compare(
         voice,
@@ -34,11 +30,10 @@ def test_scoretools_Container___delitem___01():
         '''
         )
 
-    old = voice[0]
+    container = voice[0]
     del(voice[0])
 
-    "Container voice is now ..."
-
+    # container no longer appears in score
     assert systemtools.TestManager.compare(
         voice,
         r'''
@@ -53,10 +48,9 @@ def test_scoretools_Container___delitem___01():
 
     assert inspect_(voice).is_well_formed()
 
-    "Deleted component is now ..."
-
+    # container leaves are still slurred
     assert systemtools.TestManager.compare(
-        old,
+        container,
         r'''
         {
             c'8 (
@@ -65,18 +59,14 @@ def test_scoretools_Container___delitem___01():
         '''
         )
 
-    assert inspect_(old).is_well_formed()
+    assert inspect_(container).is_well_formed()
 
 
 def test_scoretools_Container___delitem___02():
-    r'''Delete 1 leaf in container.
-    Spanner structure is preserved.
+    r'''Deletes in-score leaf.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:])
-
+    voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[1])
 
     assert systemtools.TestManager.compare(
@@ -94,13 +84,10 @@ def test_scoretools_Container___delitem___02():
 
 
 def test_scoretools_Container___delitem___03():
-    r'''Delete slice in middle of container.
+    r'''Deletes slice in middle of container.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:])
-
+    voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[1:3])
 
     assert systemtools.TestManager.compare(
@@ -117,13 +104,10 @@ def test_scoretools_Container___delitem___03():
 
 
 def test_scoretools_Container___delitem___04():
-    r'''Delete slice from beginning to middle of container.
+    r'''Delete slice at beginning of container.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:])
-
+    voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[:2])
 
     assert systemtools.TestManager.compare(
@@ -140,13 +124,10 @@ def test_scoretools_Container___delitem___04():
 
 
 def test_scoretools_Container___delitem___05():
-    r'''Delete slice from middle to end of container.
+    r'''Deletes slice at end of container.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:])
-
+    voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[2:])
 
     assert systemtools.TestManager.compare(
@@ -163,13 +144,10 @@ def test_scoretools_Container___delitem___05():
 
 
 def test_scoretools_Container___delitem___06():
-    r'''Delete slice from beginning to end of container.
+    r'''Deletes container contents.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:])
-
+    voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[:])
 
     assert systemtools.TestManager.compare(
@@ -184,19 +162,17 @@ def test_scoretools_Container___delitem___06():
 
 
 def test_scoretools_Container___delitem___07():
-    r'''Delete leaf from tuplet.
+    r'''Deletes leaf from tuplet.
     '''
 
-    tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    beam = Beam()
-    attach(beam, tuplet[:])
-
+    tuplet = Tuplet(Multiplier((2, 3)), "c'8 [ d'8 e'8 ]")
     del(tuplet[1])
 
     assert systemtools.TestManager.compare(
         tuplet,
         r'''
-        {
+        \tweak #'edge-height #'(0.7 . 0)
+        \times 2/3 {
             c'8 [
             e'8 ]
         }
@@ -207,14 +183,12 @@ def test_scoretools_Container___delitem___07():
 
 
 def test_scoretools_Container___delitem___08():
-    r'''Delete leaf from nested container.
+    r'''Deletes leaf from nested container.
     '''
 
-    voice = Voice("c'8 { d'8 e'8 } f'8")
-    beam = Beam()
-    attach(beam, voice.select_leaves())
-    glissando = spannertools.Glissando()
-    attach(glissando, voice.select_leaves())
+    voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
+    leaves = iterate(voice).by_class(scoretools.Leaf)
+    attach(Glissando(), list(leaves))
 
     assert systemtools.TestManager.compare(
         voice,
