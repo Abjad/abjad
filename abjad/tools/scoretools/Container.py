@@ -1488,6 +1488,8 @@ class Container(Component):
         ):
         r'''Selects leaves in container.
 
+        ..  todo:: Deprecated. Use ``iterate().by_class()`` instead.
+
         ..  container:: example
 
             **Example 1.** Selects leaves from container:
