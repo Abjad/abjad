@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
-from abjad import *
 import pytest
+from abjad import *
 
 
 def test_scoretools_Container___setitem___slice_01():
-    r'''Containers set single leaves correctly in an unspanned structure.
+    r'''Sets leaf between unspanned components.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
-    staff[2:2] = [Note(7, (1, 8))]
+    staff[2:2] = [Note("g'8")]
 
     assert systemtools.TestManager.compare(
         staff,
@@ -27,13 +27,13 @@ def test_scoretools_Container___setitem___slice_01():
 
 
 def test_scoretools_Container___setitem___slice_02():
-    r'''Set single leaf between spanned components.
+    r'''Sets leaf between spanned compoennts.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, staff[:])
-    note = Note(7, (1, 8))
+    note = Note("g'8")
     staff[2:2] = [note]
 
     assert systemtools.TestManager.compare(
@@ -53,7 +53,7 @@ def test_scoretools_Container___setitem___slice_02():
 
 
 def test_scoretools_Container___setitem___slice_03():
-    r'''Containers set sequence of leaves between spanned components.
+    r'''Sets multiple leaves between spanned components.
     '''
 
     notes = [
@@ -101,13 +101,13 @@ def test_scoretools_Container___setitem___slice_03():
 
 
 def test_scoretools_Container___setitem___slice_04():
-    r'''Replace sequence of spanned components with a single leaf.
+    r'''Replaces multiple spanned leaves with with single leaf.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, staff[:])
-    note = Note(12, (1, 8))
+    note = Note("c''8")
     staff[1:3] = [note]
 
     assert systemtools.TestManager.compare(
@@ -125,14 +125,13 @@ def test_scoretools_Container___setitem___slice_04():
 
 
 def test_scoretools_Container___setitem___slice_05():
-    r'''Replace a sequence of multiple components with
-    a different sequence of multiple components.
+    r'''Replaces three spanned leaves with three different leaves.
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, staff[:])
-    notes = [Note(11, (1, 8)), Note(9, (1, 8)), Note(7, (1, 8))]
+    notes = [Note("b'8"), Note("a'8"), Note("g'8")]
     staff[1:3] = notes
 
     assert systemtools.TestManager.compare(
@@ -152,12 +151,10 @@ def test_scoretools_Container___setitem___slice_05():
 
 
 def test_scoretools_Container___setitem___slice_06():
-    r'''Donor and recipient container are the same.
+    r'''Replaces in-score container with contents of container.
     '''
 
-    staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    beam = Beam()
-    attach(beam, staff.select_leaves())
+    staff = Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
     assert systemtools.TestManager.compare(
         staff,
@@ -175,8 +172,8 @@ def test_scoretools_Container___setitem___slice_06():
         '''
         )
 
-    sequential = staff[0]
-    staff[0:1] = sequential.select_leaves()
+    container = staff[0]
+    staff[0:1] = container[:]
 
     assert systemtools.TestManager.compare(
         staff,
@@ -193,16 +190,15 @@ def test_scoretools_Container___setitem___slice_06():
         )
 
     assert inspect_(staff).is_well_formed()
-    assert len(sequential) == 0
+    assert len(container) == 0
 
 
 def test_scoretools_Container___setitem___slice_07():
-    r'''Donor and recipient container are the same.
+    r'''Sets first slice of staff equal to first element of first container in
+    staff.
     '''
 
-    staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    beam = Beam()
-    attach(beam, staff.select_leaves())
+    staff = Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
     assert systemtools.TestManager.compare(
         staff,
@@ -242,12 +238,15 @@ def test_scoretools_Container___setitem___slice_07():
 
 
 def test_scoretools_Container___setitem___slice_08():
-    r'''Donor and recipient container are the same.
+    r'''Sets first slice of staff equal to contents of first container in
+    staff.
+
+    Empties first container in staff.
+
+    Leaves empty container in staff.
     '''
 
-    staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    beam = Beam()
-    attach(beam, staff.select_leaves())
+    staff = Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
     assert systemtools.TestManager.compare(
         staff,
@@ -285,12 +284,14 @@ def test_scoretools_Container___setitem___slice_08():
 
 
 def test_scoretools_Container___setitem___slice_09():
-    r'''Donor and recipient container are the same.
+    r'''Set first slice of staff equal to contents of first container in staff;
+    empties first container in staff.
+
+    Sets contents of empty first container in staff equal to first component in
+    second container in staff.
     '''
 
-    staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    beam = Beam()
-    attach(beam, staff.select_leaves())
+    staff = Staff("{ c'8 [ d'8 } { e'8 f'8 ] }")
 
     assert systemtools.TestManager.compare(
         staff,
@@ -308,9 +309,9 @@ def test_scoretools_Container___setitem___slice_09():
         '''
         )
 
-    sequential = staff[0]
-    staff[0:0] = sequential[:]
-    sequential[0:0] = staff[-1][:1]
+    container = staff[0]
+    staff[0:0] = container[:]
+    container[0:0] = staff[-1][:1]
 
     assert systemtools.TestManager.compare(
         staff,
@@ -332,98 +333,57 @@ def test_scoretools_Container___setitem___slice_09():
 
 
 def test_scoretools_Container___setitem___slice_10():
-    r'''Donor and recipient container are the same.
+    r'''Extremely small coequal indices indicate first slice in staff.
     '''
 
-    staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    beam = Beam()
-    attach(beam, staff.select_leaves())
+    voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+    voice[-1000:-1000] = [Rest('r8')]
 
     assert systemtools.TestManager.compare(
-        staff,
+        voice,
         r'''
-        \new Staff {
-            {
-                c'8 [
-                d'8
-            }
-            {
-                e'8
-                f'8 ]
-            }
-        }
-        '''
-        )
-
-    staff[0:0] = staff[0][:1]
-    staff[len(staff):len(staff)] = staff[-1][-1:]
-
-    assert systemtools.TestManager.compare(
-        staff,
-        r'''
-        \new Staff {
-            c'8
-            {
-                d'8 [
-            }
-            {
-                e'8 ]
-            }
-            f'8
+        \new Voice {
+            r8
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
         }
         '''
         )
 
     assert systemtools.TestManager.compare(
-        staff,
+        voice,
         r'''
-        \new Staff {
-            c'8
-            {
-                d'8 [
-            }
-            {
-                e'8 ]
-            }
-            f'8
+        \new Voice {
+            r8
+            c'8 [
+            d'8
+            e'8
+            f'8 ]
         }
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert inspect_(voice).is_well_formed()
 
 
 def test_scoretools_Container___setitem___slice_11():
-    r'''Extremely small coequal indices act as zero.
+    r'''Extremely large coequal indices indicate last slice in staff.
     '''
 
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:])
-    voice[-1000:-1000] = [Rest((1, 8))]
+    voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+    voice[1000:1000] = [Rest('r8')]
 
     assert systemtools.TestManager.compare(
         voice,
         r'''
         \new Voice {
-            r8
             c'8 [
             d'8
             e'8
             f'8 ]
-        }
-        '''
-        )
-
-    assert systemtools.TestManager.compare(
-        voice,
-        r'''
-        \new Voice {
             r8
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
         }
         '''
         )
@@ -432,31 +392,6 @@ def test_scoretools_Container___setitem___slice_11():
 
 
 def test_scoretools_Container___setitem___slice_12():
-    r'''Extremely large, coequal indices work correctly.
-    '''
-
-    voice = Voice("c'8 d'8 e'8 f'8")
-    beam = Beam()
-    attach(beam, voice[:])
-    voice[1000:1000] = [Rest((1, 8))]
-
-    assert systemtools.TestManager.compare(
-        voice,
-        r'''
-        \new Voice {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-            r8
-        }
-        '''
-        )
-
-    assert inspect_(voice).is_well_formed()
-
-
-def test_scoretools_Container___setitem___slice_13():
     r'''You can use setitem to empty the contents of a container.
     When you do this, emptied components withdraw
     from absolutely all spanners.
@@ -466,11 +401,9 @@ def test_scoretools_Container___setitem___slice_13():
     use del(container) instead.
     '''
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    inner = Container(staff[1:3])
-    outer = Container([inner])
-    beam = Beam()
-    attach(beam, inner[:])
+    staff = Staff("c'8 d'8 [ e'8 ] f'8")
+    inner_container = Container(staff[1:3])
+    outer_container = Container([inner_container])
 
     assert systemtools.TestManager.compare(
         staff,
@@ -488,9 +421,10 @@ def test_scoretools_Container___setitem___slice_13():
         '''
         )
 
-    # empty outer container
-    outer[:] = []
+    # sets contents of outer container to nothing
+    outer_container[:] = []
 
+    # outer container is empty and remains in score
     assert systemtools.TestManager.compare(
         staff,
         r'''
@@ -503,9 +437,9 @@ def test_scoretools_Container___setitem___slice_13():
         '''
         )
 
-    # inner container leaves DO withdraw from all spanners
+    # inner container leaves are no longer spanned
     assert systemtools.TestManager.compare(
-        inner,
+        inner_container,
         r'''
         {
             d'8
@@ -515,34 +449,45 @@ def test_scoretools_Container___setitem___slice_13():
         )
 
     # ALTERNATIVE: use del(container)
+    staff = Staff("c'8 d'8 [ e'8 ] f'8")
+    inner_container = Container(staff[1:3])
+    outer_container = Container([inner_container])
 
-    staff = Staff("c'8 d'8 e'8 f'8")
-    inner = Container(staff[1:3])
-    outer = Container([inner])
-    beam = Beam()
-    attach(beam, inner[:])
-
-    del(outer[:])
-
-    r'''
-    \new Staff {
-        c'8
-        {
-        }
-        f'8
-    }
-    '''
-
-    r'''
-    {
-        d'8 [
-        e'8 ]
-    }
-    '''
-
-    # inner container leaves DO NOT withdraw from spanners
     assert systemtools.TestManager.compare(
-        inner,
+        staff,
+        r'''
+        \new Staff {
+            c'8
+            {
+                {
+                    d'8 [
+                    e'8 ]
+                }
+            }
+            f'8
+        }
+        '''
+        )
+
+    # deletes outer container
+    del(outer_container[:])
+
+    # outer container is empty and remains in score (as before)
+    assert systemtools.TestManager.compare(
+        staff,
+        r'''
+        \new Staff {
+            c'8
+            {
+            }
+            f'8
+        }
+        '''
+        )
+
+    # inner container leaves are still spanned
+    assert systemtools.TestManager.compare(
+        inner_container,
         r'''
         {
             d'8 [
@@ -552,24 +497,31 @@ def test_scoretools_Container___setitem___slice_13():
         )
 
 
-def test_scoretools_Container___setitem___slice_14():
+def test_scoretools_Container___setitem___slice_13():
+    r'''Extends beam as leaves append and insert into staff.
+    '''
 
-    staff = Staff("c'8 { d'8 e'8 } f'8")
-    beam = Beam()
-    attach(beam, staff.select_leaves())
-    assert beam.components == staff.select_leaves()
+    staff = Staff("c'8 [ { d'8 e'8 } f'8 ]")
+    beam = inspect_(staff[0]).get_spanner(prototype=Beam)
+
+    leaves = iterate(staff).by_class(scoretools.Leaf)
+    assert beam.components == list(leaves)
 
     staff[1].append("g'8")
-    assert beam.components == staff.select_leaves()
+    leaves = iterate(staff).by_class(scoretools.Leaf)
+    assert beam.components == list(leaves)
 
     staff[1].insert(0, "b'8")
-    assert beam.components == staff.select_leaves()
+    leaves = iterate(staff).by_class(scoretools.Leaf)
+    assert beam.components == list(leaves)
 
     staff.insert(1, "a'8")
-    assert beam.components == staff.select_leaves()
+    leaves = iterate(staff).by_class(scoretools.Leaf)
+    assert beam.components == list(leaves)
 
     staff.insert(3, "fs'8")
-    assert beam.components == staff.select_leaves()
+    leaves = iterate(staff).by_class(scoretools.Leaf)
+    assert beam.components == list(leaves)
 
     assert format(staff) == systemtools.TestManager.clean_string(
         r'''
