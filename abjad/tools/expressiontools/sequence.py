@@ -21,7 +21,7 @@ def sequence():
                 callbacks=(
                     expressiontools.Callback(
                         name='Sequence.flatten',
-                        keywords=[
+                        arguments=[
                             ('classes', None),
                             ('depth', -1),
                             ('indices', None),
@@ -56,7 +56,7 @@ def sequence():
                 callbacks=(
                     expressiontools.Callback(
                         name='Sequence.flatten',
-                        keywords=[
+                        arguments=[
                             ('classes', None),
                             ('depth', -1),
                             ('indices', None),
@@ -67,7 +67,7 @@ def sequence():
                         ),
                     expressiontools.Callback(
                         name='Sequence.__getitem__',
-                        keywords=[
+                        arguments=[
                             (
                                 'i',
                                 slice(-3, None, None),

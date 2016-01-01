@@ -201,10 +201,10 @@ class SequenceExpression(AbjadObject):
 
         Returns callback.
         '''
-        keywords={
+        arguments={
             'expr': expr,
             }
-        return self._make_callback('Sequence.__add__', keywords)
+        return self._make_callback('Sequence.__add__', arguments)
 
     def __call__(self, items=None):
         r'''Calls sequence expression on `items`.
@@ -230,10 +230,10 @@ class SequenceExpression(AbjadObject):
 
         Returns callback.
         '''
-        keywords={
+        arguments={
             'i': i,
             }
-        return self._make_callback('Sequence.__getitem__', keywords)
+        return self._make_callback('Sequence.__getitem__', arguments)
 
     def __format__(self, format_specification=''):
         r'''Formats sequence expression.
@@ -260,7 +260,7 @@ class SequenceExpression(AbjadObject):
                             ),
                         expressiontools.Callback(
                             name='Sequence.flatten',
-                            keywords=[
+                            arguments=[
                                 ('classes', None),
                                 ('depth', -1),
                                 ('indices', None),
@@ -268,7 +268,7 @@ class SequenceExpression(AbjadObject):
                             ),
                         expressiontools.Callback(
                             name='Sequence.__getitem__',
-                            keywords=[
+                            arguments=[
                                 (
                                     'i',
                                     slice(None, -3, None),
@@ -277,7 +277,7 @@ class SequenceExpression(AbjadObject):
                             ),
                         expressiontools.Callback(
                             name='Sequence.__getitem__',
-                            keywords=[
+                            arguments=[
                                 ('i', 0),
                                 ],
                             ),
@@ -297,10 +297,10 @@ class SequenceExpression(AbjadObject):
 
         Returns callback.
         '''
-        keywords={
+        arguments={
             'expr': expr,
             }
-        return self._make_callback('Sequence.__radd__', keywords)
+        return self._make_callback('Sequence.__radd__', arguments)
 
     ### PRIVATE METHODS ###
 
@@ -309,11 +309,11 @@ class SequenceExpression(AbjadObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def _make_callback(self, name, keywords=None):
+    def _make_callback(self, name, arguments=None):
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
             name=name,
-            keywords=keywords,
+            arguments=arguments,
             )
         return self._append_callback(callback)
         
@@ -334,24 +334,24 @@ class SequenceExpression(AbjadObject):
 
         Returns callback.
         '''
-        keywords = {
+        arguments = {
             'classes': classes,
             'depth': depth,
             'indices': indices,
             }
-        return self._make_callback('Sequence.flatten', keywords)
+        return self._make_callback('Sequence.flatten', arguments)
 
     def partition_by_counts(self, counts, cyclic=False, overhang=False):
         r'''Makes partition-by-counts callback.
 
         Returns callback.
         '''
-        keywords={
+        arguments={
             'counts': counts,
             'cyclic': cyclic,
             'overhang': overhang,
             }
-        return self._make_callback('Sequence.partition_by_counts', keywords)
+        return self._make_callback('Sequence.partition_by_counts', arguments)
 
     def partition_by_ratio_of_lengths(self, ratio):
         r'''Makes partition-by-ratio-of-lengths callback.
@@ -359,10 +359,10 @@ class SequenceExpression(AbjadObject):
         Returns callback.
         '''
         name = 'Sequence.partition_by_ratio_of_lengths'
-        keywords={
+        arguments={
             'ratio': ratio,
             }
-        return self._make_callback(name, keywords)
+        return self._make_callback(name, arguments)
 
     def reverse(self):
         r'''Makes reverse callback.

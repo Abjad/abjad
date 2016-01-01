@@ -353,11 +353,11 @@ class LabelExpression(AbjadObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def _make_callback(self, name, keywords=None):
+    def _make_callback(self, name, arguments=None):
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
             name=name,
-            keywords=keywords,
+            arguments=arguments,
             )
         return self._append_callback(callback)
 
@@ -376,34 +376,34 @@ class LabelExpression(AbjadObject):
     def color_container(self, color='red'):
         r'''Colors contents of container.
         '''
-        keywords = {
+        arguments = {
             'color': color,
             }
         return self._make_callback(
             'agenttools.LabelAgent.color_container', 
-            keywords,
+            arguments,
             )
 
     def color_leaves(self, color='red'):
         r'''Colors leaves.
         '''
-        keywords = {
+        arguments = {
             'color': color,
             }
         return self._make_callback(
             'agenttools.LabelAgent.color_leaves', 
-            keywords,
+            arguments,
             )
 
     def color_note_heads(self, color_map=None):
         r'''Colors note note heads by `color_map`.
         '''
-        keywords = {
+        arguments = {
             'color_map': color_map,
             }
         return self._make_callback(
             'agenttools.LabelAgent.color_note_heads', 
-            keywords,
+            arguments,
             )
 
     def remove_markup(self):
@@ -414,69 +414,69 @@ class LabelExpression(AbjadObject):
     def vertical_moments(self, direction=Up, prototype=None):
         r'''Labels vertical moments.
         '''
-        keywords = {
+        arguments = {
             'direction': direction,
             'prototype': prototype,
             }
         return self._make_callback(
             'agenttools.LabelAgent.vertical_moments', 
-            keywords,
+            arguments,
             )
 
     def with_durations(self, direction=Up):
         r'''Labels durations.
         '''
-        keywords = {
+        arguments = {
             'direction': direction,
             }
         return self._make_callback(
             'agenttools.LabelAgent.with_durations', 
-            keywords,
+            arguments,
             )
 
     def with_indices(self, direction=Up, prototype=None):
         r'''Labels indices.
         '''
-        keywords = {
+        arguments = {
             'direction': direction,
             'prototype': prototype,
             }
         return self._make_callback(
             'agenttools.LabelAgent.with_indices', 
-            keywords,
+            arguments,
             )
 
     def with_intervals(self, direction=Up, prototype=None):
         r'''Labels intervals.
         '''
-        keywords = {
+        arguments = {
             'direction': direction,
             'prototype': prototype,
             }
         return self._make_callback(
             'agenttools.LabelAgent.with_intervals', 
-            keywords,
+            arguments,
             )
 
     def with_pitches(self, direction=Up, prototype=None):
         r'''Labels pitches.
         '''
-        keywords = {
+        arguments = {
             'direction': direction,
             'prototype': prototype,
             }
         return self._make_callback(
             'agenttools.LabelAgent.with_pitches', 
-            keywords,
+            arguments,
             )
 
     def with_start_offsets(self, direction=Up):
         r'''Labels offsets.
         '''
-        keywords = {
+        arguments = {
             'direction': direction,
             }
         return self._make_callback(
             'agenttools.LabelAgent.with_start_offsets', 
-            keywords,
+            arguments,
             )

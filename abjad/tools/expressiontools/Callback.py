@@ -44,13 +44,13 @@ class Callback(AbjadObject):
 
     ..  container:: example
 
-        **Example 3.** Function callback with keywords:
+        **Example 3.** Function callback with arguments:
 
         ::
 
             >>> callback = expressiontools.Callback(
             ...     name='sequencetools.flatten_sequence',
-            ...     keywords={'depth': 1},
+            ...     arguments={'depth': 1},
             ...     )
 
         ::
@@ -85,7 +85,7 @@ class Callback(AbjadObject):
     __documentation_section__ = 'Expressions'
 
     __slots__ = (
-        '_keywords',
+        '_arguments',
         '_name',
         )
 
@@ -94,17 +94,17 @@ class Callback(AbjadObject):
     def __init__(
         self,
         name=None,
-        keywords=None,
+        arguments=None,
         ):
         from abjad.tools import datastructuretools
         if name is not None:
             assert isinstance(name, str), repr(name)
         self._name = name
-        if keywords is not None:
-            keywords = dict(keywords)
-            keywords = list(sorted(keywords.items()))
-            datastructuretools.TypedOrderedDict(keywords)
-        self._keywords = keywords
+        if arguments is not None:
+            arguments = dict(arguments)
+            arguments = list(sorted(arguments.items()))
+            datastructuretools.TypedOrderedDict(arguments)
+        self._arguments = arguments
 
     ### SPECIAL METHODS ###
 
@@ -116,8 +116,8 @@ class Callback(AbjadObject):
         import abjad
         import experimental
         arguments = []
-        if self.keywords:
-            for key, value in self.keywords:
+        if self.arguments:
+            for key, value in self.arguments:
                 argument = '{}={!r}'
                 argument = argument.format(key, value)
                 arguments.append(argument)
@@ -135,12 +135,12 @@ class Callback(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def keywords(self):
-        r'''Gets keyword arguments of callback.
+    def arguments(self):
+        r'''Gets arguments of callback.
 
         Returns dictionary or none.
         '''
-        return self._keywords
+        return self._arguments
 
     @property
     def name(self):
