@@ -288,20 +288,29 @@ class InspectionAgent(abctools.AbjadObject):
     def get_indicator(
         self,
         prototype=None,
+        default=None,
         unwrap=True,
         ):
-        r'''Gets exactly one indicator matching `prototype` attached to
+        r'''Gets indicator of `prototype` attached to client.
+
+        Raises exception when more than one indicator of `prototype` attach to
         client.
 
-        Raises exception when no indicator matching `prototype` is attached
-        to client.
+        Returns default when no indicator of `prototype` attaches to client.
 
-        Returns indicator.
+        Returns indicator or default.
         '''
-        return self._client._get_indicator(
-            prototype=prototype,
-            unwrap=unwrap,
-            )
+        indicators = self._client._get_indicators(
+                prototype=prototype,
+                unwrap=unwrap,
+                )
+        if not indicators:
+            return default
+        elif len(indicators) == 1:
+            return list(indicators)[0]
+        else:
+            message = 'multiple indicators attached to client.'
+            raise Exception(message)
 
     def get_indicators(
         self,
@@ -583,20 +592,29 @@ class InspectionAgent(abctools.AbjadObject):
     def get_spanner(
         self,
         prototype=None,
+        default=None,
         in_parentage=False,
         ):
-        r'''Gets exactly one spanner of `prototype` attached to
+        r'''Gets spanner of `prototype` attached to client.
+
+        Raises exception when more than one spanner of `prototype` attaches to
         client.
 
-        Raises exception when no spanner of `prototype` is attached
-        to client.
+        Returns `default` when no spanner of `prototype` attaches to client.
 
-        Returns spanner.
+        Returns spanner or default.
         '''
-        return self._client._get_spanner(
+        spanners = self._client._get_spanners(
             prototype=prototype,
             in_parentage=in_parentage,
             )
+        if not spanners:
+            return default
+        elif len(spanners) == 1:
+            return list(spanners)[0]
+        else:
+            message = 'multiple spanners attached to client.'
+            raise Exception(message)
 
     def get_spanners(
         self,

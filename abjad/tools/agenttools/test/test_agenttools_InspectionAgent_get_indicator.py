@@ -9,10 +9,10 @@ def test_agenttools_InspectionAgent_get_indicator_01():
     attach('color', staff)
 
     assert inspect_(staff).get_indicator('color') == 'color'
-    assert pytest.raises(Exception, "inspect_(staff[0]).get_indicator('color')")
-    assert pytest.raises(Exception, "inspect_(staff[1]).get_indicator('color')")
-    assert pytest.raises(Exception, "inspect_(staff[2]).get_indicator('color')")
-    assert pytest.raises(Exception, "inspect_(staff[3]).get_indicator('color')")
+    assert inspect_(staff[0]).get_indicator('color') is None
+    assert inspect_(staff[1]).get_indicator('color') is None
+    assert inspect_(staff[2]).get_indicator('color') is None
+    assert inspect_(staff[3]).get_indicator('color') is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_02():
@@ -21,10 +21,10 @@ def test_agenttools_InspectionAgent_get_indicator_02():
     attach('color', staff)
 
     assert inspect_(staff).get_indicator(str) == 'color'
-    assert pytest.raises(Exception, "inspect_(staff[0]).get_indicator(str)")
-    assert pytest.raises(Exception, "inspect_(staff[1]).get_indicator(str)")
-    assert pytest.raises(Exception, "inspect_(staff[2]).get_indicator(str)")
-    assert pytest.raises(Exception, "inspect_(staff[3]).get_indicator(str)")
+    assert inspect_(staff[0]).get_indicator(str) is None
+    assert inspect_(staff[1]).get_indicator(str) is None
+    assert inspect_(staff[2]).get_indicator(str) is None
+    assert inspect_(staff[3]).get_indicator(str) is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_03():
@@ -40,8 +40,7 @@ def test_agenttools_InspectionAgent_get_indicator_04():
 
     note = Note("c'8")
 
-    statement = 'inspect_(note).get_indicator(indicatortools.Annotation)'
-    assert pytest.raises(Exception, statement)
+    assert inspect_(note).get_indicator(indicatortools.Annotation) is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_05():
@@ -69,8 +68,7 @@ def test_agenttools_InspectionAgent_get_indicator_07():
 
     note = Note("c'8")
 
-    statement = 'inspect_(note).get_indicator(Articulation)'
-    assert pytest.raises(Exception, statement)
+    assert inspect_(note).get_indicator(Articulation) is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_08():
@@ -99,8 +97,7 @@ def test_agenttools_InspectionAgent_get_indicator_10():
 
     note = Note("c'8")
 
-    statement = 'inspect_(note).get_indicator(indicatortools.LilyPondCommand)'
-    assert pytest.raises(Exception, statement)
+    assert inspect_(note).get_indicator(indicatortools.LilyPondCommand) is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_11():
@@ -161,8 +158,7 @@ def test_agenttools_InspectionAgent_get_indicator_14():
 
     note = Note("c'8")
 
-    statement = 'inspect_(note).get_indicator(indicatortools.LilyPondComment)'
-    assert pytest.raises(Exception, statement)
+    assert inspect_(note).get_indicator(indicatortools.LilyPondComment) is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_15():
@@ -181,7 +177,7 @@ def test_agenttools_InspectionAgent_get_indicator_16():
 
     note = Note("c'8")
 
-    assert pytest.raises(Exception, 'inspect_(note).get_indicator()')
+    assert inspect_(note).get_indicator() is None
 
 
 def test_agenttools_InspectionAgent_get_indicator_17():

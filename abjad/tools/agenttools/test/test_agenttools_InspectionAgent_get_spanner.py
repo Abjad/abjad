@@ -30,8 +30,7 @@ def test_agenttools_InspectionAgent_get_spanner_01():
     string = 'inspect_(container[0]).get_spanner()'
     assert pytest.raises(Exception, string)
 
-    string = 'inspect_(container[-1]).get_spanner()'
-    assert pytest.raises(Exception, string)
+    assert inspect_(container[-1]).get_spanner() is None
 
 
 def test_agenttools_InspectionAgent_get_spanner_02():
