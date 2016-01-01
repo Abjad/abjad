@@ -213,7 +213,7 @@ class LabelExpression(AbjadObject):
         ::
 
             >>> expression = expressiontools.LabelExpression()
-            >>> expression = expression.with_offsets()
+            >>> expression = expression.with_start_offsets()
 
         ::
 
@@ -458,17 +458,6 @@ class LabelExpression(AbjadObject):
             keywords,
             )
 
-    def with_offsets(self, direction=Up):
-        r'''Labels offsets.
-        '''
-        keywords = {
-            'direction': direction,
-            }
-        return self._make_callback(
-            'agenttools.LabelAgent.with_offsets', 
-            keywords,
-            )
-
     def with_pitches(self, direction=Up, prototype=None):
         r'''Labels pitches.
         '''
@@ -478,5 +467,16 @@ class LabelExpression(AbjadObject):
             }
         return self._make_callback(
             'agenttools.LabelAgent.with_pitches', 
+            keywords,
+            )
+
+    def with_start_offsets(self, direction=Up):
+        r'''Labels offsets.
+        '''
+        keywords = {
+            'direction': direction,
+            }
+        return self._make_callback(
+            'agenttools.LabelAgent.with_start_offsets', 
             keywords,
             )

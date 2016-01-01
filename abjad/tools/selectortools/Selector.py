@@ -2396,7 +2396,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
-                >>> label(staff).with_offsets()
+                >>> label(staff).with_start_offsets()
                 >>> show(staff) # doctest:+SKIP
 
             ..  doctest::
@@ -2490,7 +2490,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
-                >>> label(staff).with_offsets()
+                >>> label(staff).with_start_offsets()
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
