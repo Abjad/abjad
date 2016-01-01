@@ -118,7 +118,7 @@ class Callback(AbjadObject):
         arguments = []
         if self.keywords:
             for key, value in self.keywords:
-                argument = '{}={}'
+                argument = '{}={!r}'
                 argument = argument.format(key, value)
                 arguments.append(argument)
         arguments = ', '.join(arguments)
@@ -133,14 +133,6 @@ class Callback(AbjadObject):
         return result
 
     ### PUBLIC PROPERTIES ###
-
-#    @property
-#    def arguments(self):
-#        r'''Gets positional arguments callback.
-#
-#        Returns tuple or none.
-#        '''
-#        return self._arguments
 
     @property
     def keywords(self):
