@@ -71,7 +71,7 @@ class LabelAgent(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Gets client of inspection agent.
+        r'''Gets client of label agent.
 
         Returns component, selection, spanner or none.
         '''
@@ -272,7 +272,7 @@ class LabelAgent(abctools.AbjadObject):
                 if color is not None:
                     override(leaf).note_head.color = color
 
-    def color_leaves(self, color):
+    def color_leaves(self, color='red'):
         r"""Colors leaves.
 
         ..  container:: example
@@ -1220,17 +1220,17 @@ class LabelAgent(abctools.AbjadObject):
                 if label is not None:
                     attach(label, note)
 
-    def with_leaf_indices(self, direction=Up):
+    def with_indices(self, direction=Up, prototype=None):
         r'''Labels leaf indices.
 
         ..  container:: example
 
-            **Example 1.** Labels leaf indices above staff:
+            **Example 1.** Labels logical tie indices:
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> label(staff).with_leaf_indices(direction=Up)
+                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+                >>> label(staff).with_indices()
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
@@ -1240,22 +1240,65 @@ class LabelAgent(abctools.AbjadObject):
                 \new Staff \with {
                     \override TextScript #'staff-padding = #2
                 } {
-                    c'8
+                    <c' bf'>8
                         ^ \markup {
                             \small
                                 0
                             }
-                    d'8
+                    <g' a'>4
                         ^ \markup {
                             \small
                                 1
                             }
-                    e'8
+                    af'8 ~
                         ^ \markup {
                             \small
                                 2
                             }
-                    f'8
+                    af'8
+                    gf'8 ~
+                        ^ \markup {
+                            \small
+                                3
+                            }
+                    gf'4
+                }
+
+        ..  container:: example
+
+            **Example 2.** Labels note indices:
+
+            ::
+
+                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+                >>> label(staff).with_indices(prototype=Note)
+                >>> override(staff).text_script.staff_padding = 2
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #2
+                } {
+                    <c' bf'>8
+                    <g' a'>4
+                    af'8 ~
+                        ^ \markup {
+                            \small
+                                0
+                            }
+                    af'8
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                    gf'8 ~
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                    gf'4
                         ^ \markup {
                             \small
                                 3
@@ -1264,51 +1307,101 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Labels leaf indices below staff:
+            **Example 3.** Labels chord indices:
 
             ::
 
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> label(staff).with_leaf_indices(direction=Down)
-                >>> override(staff).text_script.staff_padding = 4
+                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+                >>> label(staff).with_indices(prototype=Chord)
+                >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript #'staff-padding = #2
                 } {
-                    c'8
-                        _ \markup {
+                    <c' bf'>8
+                        ^ \markup {
                             \small
                                 0
                             }
-                    d'8
-                        _ \markup {
+                    <g' a'>4
+                        ^ \markup {
                             \small
                                 1
                             }
-                    e'8
-                        _ \markup {
+                    af'8 ~
+                    af'8
+                    gf'8 ~
+                    gf'4
+                }
+
+        ..  container:: example
+
+            **Example 4.** Labels leaf indices:
+
+            ::
+
+                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+                >>> label(staff).with_indices(prototype=scoretools.Leaf)
+                >>> override(staff).text_script.staff_padding = 2
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #2
+                } {
+                    <c' bf'>8
+                        ^ \markup {
+                            \small
+                                0
+                            }
+                    <g' a'>4
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                    af'8 ~
+                        ^ \markup {
                             \small
                                 2
                             }
-                    f'8
-                        _ \markup {
+                    af'8
+                        ^ \markup {
                             \small
                                 3
                             }
+                    gf'8 ~
+                        ^ \markup {
+                            \small
+                                4
+                            }
+                    gf'4
+                        ^ \markup {
+                            \small
+                                5
+                            }
                 }
+
+
 
         Returns none.
         '''
-        leaves = iterate(self.client).by_class(scoretools.Leaf)
-        for index, leaf in enumerate(leaves):
+        if prototype is None:
+            items = iterate(self.client).by_logical_tie()
+        else:
+            items = iterate(self.client).by_class(prototype=prototype)
+        for index, item in enumerate(items):
             string = str(index)
             label = markuptools.Markup(string, direction=direction)
             label = label.small()
-            attach(label, leaf)
+            leaves = iterate(item).by_class(scoretools.Leaf)
+            first_leaf = list(leaves)[0]
+            attach(label, first_leaf)
 
     def with_offsets(self, direction=Up):
         r'''Labels offsets.
