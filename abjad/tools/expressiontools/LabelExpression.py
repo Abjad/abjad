@@ -100,7 +100,7 @@ class LabelExpression(Expression):
         ::
 
             >>> expression = label()
-            >>> expression = expression.with_durations()
+            >>> expression = expression.with_durations(preferred_denominator=8)
 
         ::
 
@@ -120,12 +120,12 @@ class LabelExpression(Expression):
                 <g' a'>4
                     ^ \markup {
                         \small
-                            1/4
+                            2/8 
                         }
                 af'8 ~
                     ^ \markup {
                         \small
-                            1/4
+                            2/8
                         }
                 af'8
                 gf'8 ~
@@ -388,11 +388,12 @@ class LabelExpression(Expression):
             arguments,
             )
 
-    def with_durations(self, direction=Up):
+    def with_durations(self, direction=Up, preferred_denominator=None):
         r'''Labels durations.
         '''
         arguments = {
             'direction': direction,
+            'preferred_denominator': preferred_denominator,
             }
         return self._make_callback(
             'agenttools.LabelAgent.with_durations', 

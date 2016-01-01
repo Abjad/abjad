@@ -2,6 +2,7 @@
 from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import markuptools
+from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
@@ -939,94 +940,80 @@ class LabelAgent(abctools.AbjadObject):
                     leaf = vertical_moment.start_leaves[-1]
                 attach(label, leaf)
 
-    def with_durations(self, direction=Up):
+    def with_durations(self, direction=Up, preferred_denominator=None):
         r'''Labels logical ties with durations.
 
         ..  container:: example
 
-            **Example 1.** Above staff:
+            **Example 1.** Labels logical tie durations:
 
             ::
 
-                >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-                >>> label(staff).with_durations(direction=Up)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> override(staff).tuplet_bracket.staff_padding = 0
+                >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                >>> label(staff).with_durations()
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> print(format(staff))
-                \new Staff \with {
-                    \override TextScript #'staff-padding = #4
-                    \override TupletBracket #'staff-padding = #0
-                } {
-                    \times 2/3 {
-                        c'4
-                            ^ \markup {
-                                \small
-                                    1/6
-                                }
-                        d'4
-                            ^ \markup {
-                                \small
-                                    1/6
-                                }
-                        e'4 ~
-                            ^ \markup {
-                                \small
-                                    5/12
-                                }
-                    }
-                    e'4
-                    ef'4
+                \new Staff {
+                    c'4.
                         ^ \markup {
                             \small
-                                1/4
+                                3/8
+                            }
+                    d'8 ~
+                        ^ \markup {
+                            \small
+                                1/2
+                            }
+                    d'4.
+                    e'16 [
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
+                    ef'16 ]
+                        ^ \markup {
+                            \small
+                                1/16
                             }
                 }
 
         ..  container:: example
 
-            **Example 2.** Below staff:
+            **Example 2.** Labels logical ties with preferred denominator:
 
             ::
 
-                >>> staff = Staff(r"\times 2/3 { c'4 d'4 e'4 ~ } e'4 ef'4")
-                >>> label(staff).with_durations(direction=Down)
-                >>> override(staff).text_script.staff_padding = 6
-                >>> override(staff).tuplet_bracket.staff_padding = 0
+                >>> staff = Staff(r"c'4. d'8 ~ d'4. e'16 [ ef'16 ]")
+                >>> label(staff).with_durations(preferred_denominator=16)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> print(format(staff))
-                \new Staff \with {
-                    \override TextScript #'staff-padding = #6
-                    \override TupletBracket #'staff-padding = #0
-                } {
-                    \times 2/3 {
-                        c'4
-                            _ \markup {
-                                \small
-                                    1/6
-                                }
-                        d'4
-                            _ \markup {
-                                \small
-                                    1/6
-                                }
-                        e'4 ~
-                            _ \markup {
-                                \small
-                                    5/12
-                                }
-                    }
-                    e'4
-                    ef'4
-                        _ \markup {
+                \new Staff {
+                    c'4.
+                        ^ \markup {
                             \small
-                                1/4
+                                6/16
+                            }
+                    d'8 ~
+                        ^ \markup {
+                            \small
+                                8/16
+                            }
+                    d'4.
+                    e'16 [
+                        ^ \markup {
+                            \small
+                                1/16
+                            }
+                    ef'16 ]
+                        ^ \markup {
+                            \small
+                                1/16
                             }
                 }
 
@@ -1035,6 +1022,9 @@ class LabelAgent(abctools.AbjadObject):
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
             duration = logical_tie.get_duration()
+            if preferred_denominator is not None:
+                duration = mathtools.NonreducedFraction(duration)
+                duration = duration.with_denominator(preferred_denominator)
             label = markuptools.Markup(str(duration), direction=direction)
             label = label.small()
             attach(label, logical_tie.head)
