@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.expressiontools.Expression import Expression
 
 
-class LabelExpression(AbjadObject):
-    r'''A label expression.
+class LabelExpression(Expression):
+    r'''Label expression.
 
     ..  container:: example
 
@@ -312,18 +312,8 @@ class LabelExpression(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Expressions'
-
     __slots__ = (
-        '_callbacks',
         )
-
-    ### INITIALIZER ###
-
-    def __init__(self, callbacks=None):
-        if callbacks is not None:
-            callbacks = tuple(callbacks)
-        self._callbacks = callbacks
 
     ### SPECIAL METHODS ###
 
@@ -345,31 +335,6 @@ class LabelExpression(AbjadObject):
         callbacks = self.callbacks or ()
         for callback in callbacks:
             callback(agent)
-
-    ### PRIVATE METHODS ###
-
-    def _append_callback(self, callback):
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
-    def _make_callback(self, name, arguments=None):
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name=name,
-            arguments=arguments,
-            )
-        return self._append_callback(callback)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def callbacks(self):
-        r'''Gets callbacks.
-
-        Returns tuple or none.
-        '''
-        return self._callbacks
 
     ### PUBLIC METHODS ###
 

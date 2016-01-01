@@ -76,7 +76,6 @@ from abjad.tools.timespantools import Timespan
 from fractions import Fraction
 
 # import some frequently used functions for direct user access
-from abjad.tools.expressiontools import sequence
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import graph
@@ -90,6 +89,7 @@ from abjad.tools.topleveltools import parse
 from abjad.tools.topleveltools import play
 from abjad.tools.topleveltools import persist
 from abjad.tools.topleveltools import select
+from abjad.tools.topleveltools import sequence
 from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import show
 

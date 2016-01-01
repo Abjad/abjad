@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Callback(AbjadObject):
-    r'''A callback.
+    r'''Callback.
 
     ..  container:: example
 

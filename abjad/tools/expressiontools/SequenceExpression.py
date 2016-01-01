@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import sequencetools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.expressiontools.Expression import Expression
 
 
-class SequenceExpression(AbjadObject):
-    r'''A sequence expression.
+class SequenceExpression(Expression):
+    r'''Sequence expression.
 
     ..  container:: example
 
@@ -181,18 +181,8 @@ class SequenceExpression(AbjadObject):
 
     ### CLASS VARIABLES ###
 
-    __documentation_section__ = 'Expressions'
-
     __slots__ = (
-        '_callbacks',
         )
-
-    ### INITIALIZER ###
-
-    def __init__(self, callbacks=None):
-        if callbacks is not None:
-            callbacks = tuple(callbacks)
-        self._callbacks = callbacks
 
     ### SPECIAL METHODS ###
 
@@ -286,11 +276,10 @@ class SequenceExpression(AbjadObject):
 
         Returns string.
         '''
-        return AbjadObject.__format__(
-            self,
+        superclass = super(SequenceExpression, self)
+        return superclass.__format__(
             format_specification=format_specification,
             )
-
 
     def __radd__(self, expr):
         r'''Makes right-add callback.
@@ -301,31 +290,6 @@ class SequenceExpression(AbjadObject):
             'expr': expr,
             }
         return self._make_callback('Sequence.__radd__', arguments)
-
-    ### PRIVATE METHODS ###
-
-    def _append_callback(self, callback):
-        callbacks = self.callbacks or ()
-        callbacks = callbacks + (callback,)
-        return type(self)(callbacks)
-
-    def _make_callback(self, name, arguments=None):
-        from abjad.tools import expressiontools
-        callback = expressiontools.Callback(
-            name=name,
-            arguments=arguments,
-            )
-        return self._append_callback(callback)
-        
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def callbacks(self):
-        r'''Gets callbacks.
-
-        Returns tuple or none.
-        '''
-        return self._callbacks
 
     ### PUBLIC METHODS ###
 
