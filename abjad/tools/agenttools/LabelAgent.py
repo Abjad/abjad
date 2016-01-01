@@ -67,16 +67,6 @@ class LabelAgent(abctools.AbjadObject):
         assert isinstance(client, prototype), repr(client)
         self._client = client
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Gets client of label agent.
-
-        Returns component, selection, spanner or none.
-        '''
-        return self._client
-
     ### PRIVATE METHODS ###
 
     def _color_leaf(self, leaf, color):
@@ -105,9 +95,19 @@ class LabelAgent(abctools.AbjadObject):
         else:
             return r'\tiny %s' % counts
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Gets client of label agent.
+
+        Returns component, selection, spanner or none.
+        '''
+        return self._client
+
     ### PUBLIC METHODS ###
 
-    def color_container(self, color):
+    def color_container(self, color='red'):
         r'''Colors contents of `container`.
 
         ..  container:: example
@@ -156,8 +156,62 @@ class LabelAgent(abctools.AbjadObject):
         override(self.client).tuplet_bracket.color = color
         override(self.client).tuplet_number.color = color
 
+    def color_leaves(self, color='red'):
+        r"""Colors leaves.
+
+        ..  container:: example
+
+            **Example 1.** Colors leaves red:
+
+            ::
+
+                >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    cs'8. [
+                    r8.
+                    s8.
+                    <c' cs' a'>8. ]
+                }
+
+            ::
+
+                >>> label(staff).color_leaves('red')
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \once \override Accidental #'color = #red
+                    \once \override Beam #'color = #red
+                    \once \override Dots #'color = #red
+                    \once \override NoteHead #'color = #red
+                    \once \override Stem #'color = #red
+                    cs'8. [
+                    \once \override Dots #'color = #red
+                    \once \override Rest #'color = #red
+                    r8.
+                    s8.
+                    \once \override Accidental #'color = #red
+                    \once \override Beam #'color = #red
+                    \once \override Dots #'color = #red
+                    \once \override NoteHead #'color = #red
+                    \once \override Stem #'color = #red
+                    <c' cs' a'>8. ]
+                }
+
+        Returns none.
+        """
+        for leaf in iterate(self.client).by_class(scoretools.Leaf):
+            self._color_leaf(leaf, color)
+
     def color_note_heads(self, color_map=None):
-        r'''Colors note heads by `color_map`.
+        r'''Colors note note heads.
 
         ..  container:: example
 
@@ -271,60 +325,6 @@ class LabelAgent(abctools.AbjadObject):
                 color = color_map[pc.pitch_class_number]
                 if color is not None:
                     override(leaf).note_head.color = color
-
-    def color_leaves(self, color='red'):
-        r"""Colors leaves.
-
-        ..  container:: example
-
-            **Example 1.** Colors leaves red:
-
-            ::
-
-                >>> staff = Staff("cs'8. [ r8. s8. <c' cs' a'>8. ]")
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    cs'8. [
-                    r8.
-                    s8.
-                    <c' cs' a'>8. ]
-                }
-
-            ::
-
-                >>> label(staff).color_leaves('red')
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    \once \override Accidental #'color = #red
-                    \once \override Beam #'color = #red
-                    \once \override Dots #'color = #red
-                    \once \override NoteHead #'color = #red
-                    \once \override Stem #'color = #red
-                    cs'8. [
-                    \once \override Dots #'color = #red
-                    \once \override Rest #'color = #red
-                    r8.
-                    s8.
-                    \once \override Accidental #'color = #red
-                    \once \override Beam #'color = #red
-                    \once \override Dots #'color = #red
-                    \once \override NoteHead #'color = #red
-                    \once \override Stem #'color = #red
-                    <c' cs' a'>8. ]
-                }
-
-        Returns none.
-        """
-        for leaf in iterate(self.client).by_class(scoretools.Leaf):
-            self._color_leaf(leaf, color)
 
     def remove_markup(self):
         r'''Removes markup from leaves.
@@ -940,7 +940,7 @@ class LabelAgent(abctools.AbjadObject):
                 attach(label, leaf)
 
     def with_durations(self, direction=Up):
-        r'''Labels durations.
+        r'''Labels logical ties with durations.
 
         ..  container:: example
 
@@ -1039,189 +1039,8 @@ class LabelAgent(abctools.AbjadObject):
             label = label.small()
             attach(label, logical_tie.head)
 
-    def with_intervals(self, direction=Up, prototype=None):
-        r"""Labels intervals.
-
-        ..  container:: example
-
-            **Example 1.** Labels interval names:
-
-            ::
-
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> label(staff).with_intervals(prototype=None)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript #'staff-padding = #4
-                } {
-                    c'4 ^ \markup { +aug15 }
-                    cs'''4 ^ \markup { -M9 }
-                    b'4 ^ \markup { -aug9 }
-                    af4 ^ \markup { -m7 }
-                    bf,4 ^ \markup { +aug1 }
-                    b,4 ^ \markup { +m14 }
-                    a'4 ^ \markup { +m2 }
-                    bf'4
-                }
-
-        ..  container:: example
-
-            **Example 2.** Labels interval class names:
-
-            ::
-
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> prototype = pitchtools.NamedIntervalClass
-                >>> label(staff).with_intervals(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript #'staff-padding = #4
-                } {
-                    c'4 ^ \markup { +aug8 }
-                    cs'''4 ^ \markup { -M2 }
-                    b'4 ^ \markup { -aug2 }
-                    af4 ^ \markup { -m7 }
-                    bf,4 ^ \markup { aug1 }
-                    b,4 ^ \markup { +m7 }
-                    a'4 ^ \markup { +m2 }
-                    bf'4
-                }
-
-        ..  container:: example
-
-            **Example 3.** Labels interval numbers:
-
-            ::
-
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> prototype = pitchtools.NumberedInterval
-                >>> label(staff).with_intervals(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript #'staff-padding = #4
-                } {
-                    c'4 ^ \markup { +25 }
-                    cs'''4 ^ \markup { -14 }
-                    b'4 ^ \markup { -15 }
-                    af4 ^ \markup { -10 }
-                    bf,4 ^ \markup { +1 }
-                    b,4 ^ \markup { +22 }
-                    a'4 ^ \markup { +1 }
-                    bf'4
-                }
-
-        ..  container:: example
-
-            **Example 4.** Labels interval-class numbers:
-
-            ::
-
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> prototype = pitchtools.NumberedIntervalClass
-                >>> label(staff).with_intervals(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript #'staff-padding = #4
-                } {
-                    c'4 ^ \markup { +1 }
-                    cs'''4 ^ \markup { -2 }
-                    b'4 ^ \markup { -3 }
-                    af4 ^ \markup { -10 }
-                    bf,4 ^ \markup { +1 }
-                    b,4 ^ \markup { +10 }
-                    a'4 ^ \markup { +1 }
-                    bf'4
-                }
-
-        ..  container:: example
-
-            **Example 5.** Labels inversion-equivalent interval-class numbers:
-
-            ::
-
-                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
-                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
-                >>> staff = Staff(notes)
-                >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
-                >>> label(staff).with_intervals(prototype=prototype)
-                >>> override(staff).text_script.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff \with {
-                    \override TextScript #'staff-padding = #4
-                } {
-                    c'4 ^ \markup { 1 }
-                    cs'''4 ^ \markup { 2 }
-                    b'4 ^ \markup { 3 }
-                    af4 ^ \markup { 2 }
-                    bf,4 ^ \markup { 1 }
-                    b,4 ^ \markup { 2 }
-                    a'4 ^ \markup { 1 }
-                    bf'4
-                }
-                
-        Returns none.
-        """
-        prototype = prototype or pitchtools.NamedInterval
-        notes = iterate(self.client).by_class(scoretools.Note)
-        for note in notes:
-            label = None
-            next_leaf = inspect_(note).get_leaf(1)
-            if isinstance(next_leaf, scoretools.Note):
-                interval = pitchtools.NamedInterval.from_pitch_carriers(
-                    note, 
-                    next_leaf,
-                    )
-                if prototype is pitchtools.NamedInterval:
-                    label = markuptools.Markup(interval, direction)
-                elif prototype is pitchtools.NamedIntervalClass:
-                    label = pitchtools.NamedIntervalClass(interval)
-                    label = markuptools.Markup(label, direction)
-                elif prototype is pitchtools.NumberedInterval:
-                    label = pitchtools.NumberedInterval(interval)
-                    label = markuptools.Markup(label, direction)
-                elif prototype is pitchtools.NumberedIntervalClass:
-                    label = pitchtools.NumberedIntervalClass(interval)
-                    label = markuptools.Markup(label, direction)
-                elif prototype is pitchtools.NumberedInversionEquivalentIntervalClass:
-                    label = pitchtools.NumberedInversionEquivalentIntervalClass(interval)
-                    label = markuptools.Markup(label, direction)
-                if label is not None:
-                    attach(label, note)
-
     def with_indices(self, direction=Up, prototype=None):
-        r'''Labels leaf indices.
+        r'''Labels logical ties with indices.
 
         ..  container:: example
 
@@ -1403,8 +1222,191 @@ class LabelAgent(abctools.AbjadObject):
             first_leaf = list(leaves)[0]
             attach(label, first_leaf)
 
+    def with_intervals(self, direction=Up, prototype=None):
+        r"""Labels consecutive notes with intervals.
+
+        ..  container:: example
+
+            **Example 1.** Labels consecutive notes with interval names:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> label(staff).with_intervals(prototype=None)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { +aug15 }
+                    cs'''4 ^ \markup { -M9 }
+                    b'4 ^ \markup { -aug9 }
+                    af4 ^ \markup { -m7 }
+                    bf,4 ^ \markup { +aug1 }
+                    b,4 ^ \markup { +m14 }
+                    a'4 ^ \markup { +m2 }
+                    bf'4
+                }
+
+        ..  container:: example
+
+            **Example 2.** Labels consecutive notes with interval-class names:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> prototype = pitchtools.NamedIntervalClass
+                >>> label(staff).with_intervals(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { +aug8 }
+                    cs'''4 ^ \markup { -M2 }
+                    b'4 ^ \markup { -aug2 }
+                    af4 ^ \markup { -m7 }
+                    bf,4 ^ \markup { aug1 }
+                    b,4 ^ \markup { +m7 }
+                    a'4 ^ \markup { +m2 }
+                    bf'4
+                }
+
+        ..  container:: example
+
+            **Example 3.** Labels consecutive notes with interval numbers:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> prototype = pitchtools.NumberedInterval
+                >>> label(staff).with_intervals(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { +25 }
+                    cs'''4 ^ \markup { -14 }
+                    b'4 ^ \markup { -15 }
+                    af4 ^ \markup { -10 }
+                    bf,4 ^ \markup { +1 }
+                    b,4 ^ \markup { +22 }
+                    a'4 ^ \markup { +1 }
+                    bf'4
+                }
+
+        ..  container:: example
+
+            **Example 4.** Labels consecutive notes with interval-class
+            numbers:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> prototype = pitchtools.NumberedIntervalClass
+                >>> label(staff).with_intervals(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { +1 }
+                    cs'''4 ^ \markup { -2 }
+                    b'4 ^ \markup { -3 }
+                    af4 ^ \markup { -10 }
+                    bf,4 ^ \markup { +1 }
+                    b,4 ^ \markup { +10 }
+                    a'4 ^ \markup { +1 }
+                    bf'4
+                }
+
+        ..  container:: example
+
+            **Example 5.** Labels consecutive notes with inversion-equivalent
+            interval-class numbers:
+
+            ::
+
+                >>> pitch_numbers = [0, 25, 11, -4, -14, -13, 9, 10]
+                >>> notes = scoretools.make_notes(pitch_numbers, [(1, 4)])
+                >>> staff = Staff(notes)
+                >>> prototype = pitchtools.NumberedInversionEquivalentIntervalClass
+                >>> label(staff).with_intervals(prototype=prototype)
+                >>> override(staff).text_script.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #4
+                } {
+                    c'4 ^ \markup { 1 }
+                    cs'''4 ^ \markup { 2 }
+                    b'4 ^ \markup { 3 }
+                    af4 ^ \markup { 2 }
+                    bf,4 ^ \markup { 1 }
+                    b,4 ^ \markup { 2 }
+                    a'4 ^ \markup { 1 }
+                    bf'4
+                }
+                
+        Returns none.
+        """
+        prototype = prototype or pitchtools.NamedInterval
+        notes = iterate(self.client).by_class(scoretools.Note)
+        for note in notes:
+            label = None
+            next_leaf = inspect_(note).get_leaf(1)
+            if isinstance(next_leaf, scoretools.Note):
+                interval = pitchtools.NamedInterval.from_pitch_carriers(
+                    note, 
+                    next_leaf,
+                    )
+                if prototype is pitchtools.NamedInterval:
+                    label = markuptools.Markup(interval, direction)
+                elif prototype is pitchtools.NamedIntervalClass:
+                    label = pitchtools.NamedIntervalClass(interval)
+                    label = markuptools.Markup(label, direction)
+                elif prototype is pitchtools.NumberedInterval:
+                    label = pitchtools.NumberedInterval(interval)
+                    label = markuptools.Markup(label, direction)
+                elif prototype is pitchtools.NumberedIntervalClass:
+                    label = pitchtools.NumberedIntervalClass(interval)
+                    label = markuptools.Markup(label, direction)
+                elif prototype is pitchtools.NumberedInversionEquivalentIntervalClass:
+                    label = pitchtools.NumberedInversionEquivalentIntervalClass(interval)
+                    label = markuptools.Markup(label, direction)
+                if label is not None:
+                    attach(label, note)
+
     def with_offsets(self, direction=Up):
-        r'''Labels offsets.
+        r'''Labels logical ties with start offsets.
 
         ..  container:: example
 
@@ -1505,11 +1507,11 @@ class LabelAgent(abctools.AbjadObject):
             attach(label, logical_tie.head)
 
     def with_pitches(self, direction=Up, prototype=None):
-        r'''Labels pitches.
+        r'''Labels logical ties with pitches.
 
         ..  container:: example
 
-            **Example 1.** Labels pitch names:
+            **Example 1.** Labels logical ties with pitch names:
 
             ::
 
@@ -1550,7 +1552,7 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Labels pitch numbers:
+            **Example 2.** Labels logical ties with pitch numbers:
 
             ::
 
@@ -1592,7 +1594,7 @@ class LabelAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3.** Labels pitch-class numbers:
+            **Example 3.** Labels logical ties with pitch-class numbers:
 
             ::
 
