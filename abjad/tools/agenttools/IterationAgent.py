@@ -11,20 +11,66 @@ from abjad.tools.topleveltools import iterate
 
 
 class IterationAgent(abctools.AbjadObject):
-    r'''A wrapper around the Abjad iteration methods.
+    r'''Iteration agent.
 
     ..  container:: example
+
+        **Example 1.** Iterates components:
 
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
             >>> show(staff) # doctest: +SKIP
 
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
         ::
 
-            >>> iterate(staff[2:])
-            IterationAgent(client=Selection(Note("d'4"), Note("f'4")))
+            >>> for component in iterate(staff).by_class():
+            ...     component
+            Staff("c'4 e'4 d'4 f'4")
+            Note("c'4")
+            Note("e'4")
+            Note("d'4")
+            Note("f'4")
 
+    ..  container:: example
+
+        **Example 2.** Iterates leaves:
+
+        ::
+
+            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                e'4
+                d'4
+                f'4
+            }
+
+        ::
+
+            >>> for leaf in iterate(staff).by_leaf():
+            ...     leaf
+            Note("c'4")
+            Note("e'4")
+            Note("d'4")
+            Note("f'4")
+
+    Iterates client.
     '''
 
     ### CLASS VARIABLES ###
@@ -42,9 +88,37 @@ class IterationAgent(abctools.AbjadObject):
 
     @property
     def client(self):
-        r'''Client of iteration agent.
+        r'''Gets client of iteration agent.
 
-        Returns selection.
+        ..  container:: example
+
+            **Example 1.** Gets component client:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> agent = iterate(staff)
+
+            ::
+
+                >>> agent.client
+                Staff("c'4 d'4 e'4 f'4")
+
+        ..  container:: example
+
+            **Example 2.** Gets selection client:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> agent = iterate(staff[:2])
+
+            ::
+
+                >>> agent.client
+                Selection(Note("c'4"), Note("d'4"))
+
+        Returns component or selection.
         '''
         return self._client
 
@@ -57,142 +131,98 @@ class IterationAgent(abctools.AbjadObject):
         start=0,
         stop=None,
         ):
-        r'''Iterate components forward in `expr`.
+        r'''Iterates client by class.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff()
-            >>> staff.append(Measure((2, 8), "c'8 d'8"))
-            >>> staff.append(Measure((2, 8), "e'8 f'8"))
-            >>> staff.append(Measure((2, 8), "g'8 a'8"))
+            **Example 1.** Iterates notes:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                {
-                    \time 2/8
-                    c'8
-                    d'8
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "c'8 d'8"))
+                >>> staff.append(Measure((2, 8), "e'8 f'8"))
+                >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
                 }
-                {
-                    e'8
-                    f'8
-                }
-                {
-                    g'8
-                    a'8
-                }
-            }
 
-        ::
+            ::
 
-            >>> for note in iterate(staff).by_class(Note):
-            ...     note
-            ...
-            Note("c'8")
-            Note("d'8")
-            Note("e'8")
-            Note("f'8")
-            Note("g'8")
-            Note("a'8")
+                >>> for note in iterate(staff).by_class(prototype=Note):
+                ...     note
+                ...
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+                Note("g'8")
+                Note("a'8")
 
-        Use optional `start` and `stop` keyword parameters to control
-        start and stop indices of iteration:
+        ..  container:: example
 
-        ::
+            **Example 2.** Constrains iteration by index:
 
-            >>> for note in iterate(staff).by_class(
-            ...     Note, start=0, stop=3):
-            ...     note
-            ...
-            Note("c'8")
-            Note("d'8")
-            Note("e'8")
+            ::
 
-        ::
+                >>> for note in iterate(staff).by_class(
+                ...     prototype=Note,
+                ...     start=0,
+                ...     stop=3,
+                ...     ):
+                ...     note
+                ...
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
 
-            >>> for note in iterate(staff).by_class(
-            ...     Note, start=2, stop=4):
-            ...     note
-            ...
-            Note("e'8")
-            Note("f'8")
+            ::
 
-        Yield right-to-left notes in `expr`:
+                >>> for note in iterate(staff).by_class(
+                ...     prototype=Note,
+                ...     start=2,
+                ...     stop=4,
+                ...     ):
+                ...     note
+                ...
+                Note("e'8")
+                Note("f'8")
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff()
-            >>> staff.append(Measure((2, 8), "c'8 d'8"))
-            >>> staff.append(Measure((2, 8), "e'8 f'8"))
-            >>> staff.append(Measure((2, 8), "g'8 a'8"))
+            **Example 3.** Reverses direction of iteration:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                {
-                    \time 2/8
-                    c'8
-                    d'8
-                }
-                {
-                    e'8
-                    f'8
-                }
-                {
-                    g'8
-                    a'8
-                }
-            }
-
-        ::
-
-            >>> for note in iterate(staff).by_class(
-            ...     Note, reverse=True):
-            ...     note
-            ...
-            Note("a'8")
-            Note("g'8")
-            Note("f'8")
-            Note("e'8")
-            Note("d'8")
-            Note("c'8")
-
-        Use optional `start` and `stop` keyword parameters to control
-        indices of iteration:
-
-        ::
-
-            >>> for note in iterate(staff).by_class(
-            ...     Note, reverse=True, start=3):
-            ...     note
-            ...
-            Note("e'8")
-            Note("d'8")
-            Note("c'8")
-
-        ::
-
-            >>> for note in iterate(staff).by_class(
-            ...     Note, reverse=True, start=0, stop=3):
-            ...     note
-            ...
-            Note("a'8")
-            Note("g'8")
-            Note("f'8")
-
-        ::
-
-            >>> for note in iterate(staff).by_class(
-            ...     Note, reverse=True, start=2, stop=4):
-            ...     note
-            ...
-            Note("f'8")
-            Note("e'8")
-
-        Iterates across different logical voices.
+                >>> for note in iterate(staff).by_class(
+                ...     prototype=Note,
+                ...     reverse=True,
+                ...     ):
+                ...     note
+                ...
+                Note("a'8")
+                Note("g'8")
+                Note("f'8")
+                Note("e'8")
+                Note("d'8")
+                Note("c'8")
 
         Returns generator.
         '''
@@ -210,13 +240,11 @@ class IterationAgent(abctools.AbjadObject):
                     for x in component_iterator(
                         component, component_class, reverse=reverse):
                         yield x
-
         def subrange(iter, start=0, stop=None):
             # if start<0, then 'stop-start' gives a funny result
             # don not have to check stop>=start
             # because range(stop-start) already handles that
             assert 0 <= start
-
             try:
                 # skip the first few elements, up to 'start' of them:
                 for i in range(start):
@@ -235,7 +263,6 @@ class IterationAgent(abctools.AbjadObject):
                 # this happens if we exhaust the list before
                 # we generate a total of 'stop' elements
                 pass
-
         return subrange(
             component_iterator(
                 self._client,
@@ -246,68 +273,75 @@ class IterationAgent(abctools.AbjadObject):
             )
 
     def by_components_and_grace_containers(self, prototype=None):
-        r'''Iterate components of `component_class` forward in `expr`:
+        r'''Iterates client by components and grace containers.
 
-        ::
+        ..  container:: example
 
-            >>> voice = Voice("c'8 d'8 e'8 f'8")
-            >>> beam = spannertools.Beam()
-            >>> attach(beam, voice[:])
+            **Example 1.** Iterates notes and grace notes:
 
-        ::
+            ::
 
-            >>> grace_notes = [Note("c'16"), Note("d'16")]
-            >>> grace = scoretools.GraceContainer(
-            ...     grace_notes,
-            ...     kind='grace',
-            ...     )
-            >>> attach(grace, voice[1])
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
 
-        ::
+            ::
 
-            >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-            >>> after_grace = scoretools.GraceContainer(
-            ...     after_grace_notes,
-            ...     kind='after')
-            >>> attach(after_grace, voice[1])
+                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
 
-        ..  doctest::
+            ::
 
-            >>> print(format(voice))
-            \new Voice {
-                c'8 [
-                \grace {
-                    c'16
-                    d'16
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(voice))
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        e'16
+                        f'16
+                    }
+                    e'8
+                    f'8 ]
                 }
-                \afterGrace
-                d'8
-                {
-                    e'16
-                    f'16
-                }
-                e'8
-                f'8 ]
-            }
 
-        ::
+            ::
 
-            >>> x = iterate(voice).by_components_and_grace_containers(Note)
-            >>> for note in x:
-            ...     note
-            ...
-            Note("c'8")
-            Note("c'16")
-            Note("d'16")
-            Note("d'8")
-            Note("e'16")
-            Note("f'16")
-            Note("e'8")
-            Note("f'8")
+                >>> generator = iterate(voice).by_components_and_grace_containers(
+                ...     prototype=Note,
+                ...     )
+                >>> for note in generator:
+                ...     note
+                ...
+                Note("c'8")
+                Note("c'16")
+                Note("d'16")
+                Note("d'8")
+                Note("e'16")
+                Note("f'16")
+                Note("e'8")
+                Note("f'8")
 
-        Include grace leaves before main leaves.
+        Includes grace leaves before main leaves.
 
-        Include grace leaves after main leaves.
+        Includes grace leaves after main leaves.
+
+        Returns generator.
         '''
         prototype = prototype or scoretools.Leaf
         if self._client._grace is not None:
@@ -346,7 +380,7 @@ class IterationAgent(abctools.AbjadObject):
         start=0,
         stop=None,
         ):
-        r'''Iterates `expr` by leaf.
+        r'''Iterates client by leaf.
 
         ..  container:: example
 
@@ -439,60 +473,60 @@ class IterationAgent(abctools.AbjadObject):
             )
 
     def by_leaf_pair(self):
-        r'''Iterate leaf pairs forward in `expr`:
+        r'''Iterates client by leaf pair.
 
-        ::
+        ..  container:: example
 
-            >>> score = Score([])
-            >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"),
-            ...     Note("f'8"), Note("g'4")]
-            >>> score.append(Staff(notes))
-            >>> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
-            >>> score.append(Staff(notes))
-            >>> clef = Clef('bass')
-            >>> attach(clef, score[1])
-            >>> show(score) # doctest: +SKIP
+            **Example 1.** Iterates leaf pairs:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(score))
-            \new Score <<
-                \new Staff {
-                    c'8
-                    d'8
-                    e'8
-                    f'8
-                    g'4
-                }
-                \new Staff {
-                    \clef "bass"
-                    c4
-                    a,4
-                    g,4
-                }
-            >>
+                >>> score = Score([])
+                >>> score.append(Staff("c'8 d'8 e'8 f'8 g'4"))
+                >>> score.append(Staff("c4 a,4 g,4"))
+                >>> attach(Clef('bass'), score[1])
+                >>> show(score) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> for pair in iterate(score).by_leaf_pair():
-            ...        pair
-            (Note("c'8"), Note('c4'))
-            (Note("c'8"), Note("d'8"))
-            (Note('c4'), Note("d'8"))
-            (Note("d'8"), Note("e'8"))
-            (Note("d'8"), Note('a,4'))
-            (Note('c4'), Note("e'8"))
-            (Note('c4'), Note('a,4'))
-            (Note("e'8"), Note('a,4'))
-            (Note("e'8"), Note("f'8"))
-            (Note('a,4'), Note("f'8"))
-            (Note("f'8"), Note("g'4"))
-            (Note("f'8"), Note('g,4'))
-            (Note('a,4'), Note("g'4"))
-            (Note('a,4'), Note('g,4'))
-            (Note("g'4"), Note('g,4'))
+                >>> print(format(score))
+                \new Score <<
+                    \new Staff {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                        g'4
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c4
+                        a,4
+                        g,4
+                    }
+                >>
 
-        Iterate leaf pairs left-to-right and top-to-bottom.
+            ::
+
+                >>> for leaf_pair in iterate(score).by_leaf_pair():
+                ...        leaf_pair
+                (Note("c'8"), Note('c4'))
+                (Note("c'8"), Note("d'8"))
+                (Note('c4'), Note("d'8"))
+                (Note("d'8"), Note("e'8"))
+                (Note("d'8"), Note('a,4'))
+                (Note('c4'), Note("e'8"))
+                (Note('c4'), Note('a,4'))
+                (Note("e'8"), Note('a,4'))
+                (Note("e'8"), Note("f'8"))
+                (Note('a,4'), Note("f'8"))
+                (Note("f'8"), Note("g'4"))
+                (Note("f'8"), Note('g,4'))
+                (Note('a,4'), Note("g'4"))
+                (Note('a,4'), Note('g,4'))
+                (Note("g'4"), Note('g,4'))
+
+        Iterates leaf pairs left-to-right and top-to-bottom.
 
         Returns generator.
         '''
@@ -517,69 +551,80 @@ class IterationAgent(abctools.AbjadObject):
         pitched=False,
         reverse=False,
         ):
-        r'''Iterate logical ties forward in `expr`:
+        r'''Iterates client by logical tie.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+            **Example 1.** Iterates logical ties:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                c'4 ~
-                \times 2/3 {
-                    c'16
-                    d'8
+                >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~
+                    \times 2/3 {
+                        c'16
+                        d'8
+                    }
+                    e'8
+                    f'4 ~
+                    f'16
                 }
-                e'8
-                f'4 ~
-                f'16
-            }
 
-        ::
+            ::
 
-            >>> for x in iterate(staff).by_logical_tie():
-            ...     x
-            ...
-            LogicalTie(Note("c'4"), Note("c'16"))
-            LogicalTie(Note("d'8"),)
-            LogicalTie(Note("e'8"),)
-            LogicalTie(Note("f'4"), Note("f'16"))
+                >>> for logical_tie in iterate(staff).by_logical_tie():
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c'4"), Note("c'16"))
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'4"), Note("f'16"))
 
-        Iterate logical ties backward in `expr`:
+        ..  container:: example
 
-        ::
+            **Example 2.** Reverses direction of iteration:
 
-            >>> for x in iterate(staff).by_logical_tie(reverse=True):
-            ...     x
-            ...
-            LogicalTie(Note("f'4"), Note("f'16"))
-            LogicalTie(Note("e'8"),)
-            LogicalTie(Note("d'8"),)
-            LogicalTie(Note("c'4"), Note("c'16"))
+            ::
 
-        Iterate pitched logical ties in `expr`:
+                >>> for logical_tie in iterate(staff).by_logical_tie(reverse=True):
+                ...     logical_tie
+                ...
+                LogicalTie(Note("f'4"), Note("f'16"))
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("c'4"), Note("c'16"))
 
-        ::
+        ..  container:: example
 
-            >>> for x in iterate(staff).by_logical_tie(pitched=True):
-            ...     x
-            ...
-            LogicalTie(Note("c'4"), Note("c'16"))
-            LogicalTie(Note("d'8"),)
-            LogicalTie(Note("e'8"),)
-            LogicalTie(Note("f'4"), Note("f'16"))
+            **Example 3.** Iterates pitched logical ties:
 
-        Iterate nontrivial logical ties in `expr`:
+            ::
 
-        ::
+                >>> for logical_tie in iterate(staff).by_logical_tie(pitched=True):
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c'4"), Note("c'16"))
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'4"), Note("f'16"))
 
-            >>> for x in iterate(staff).by_logical_tie(nontrivial=True):
-            ...     x
-            ...
-            LogicalTie(Note("c'4"), Note("c'16"))
-            LogicalTie(Note("f'4"), Note("f'16"))
+        ..  container:: example
+
+            **Example 4.** Iterates nontrivial logical ties:
+
+            ::
+
+                >>> for logical_tie in iterate(staff).by_logical_tie(nontrivial=True):
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c'4"), Note("c'16"))
+                LogicalTie(Note("f'4"), Note("f'16"))
 
         Returns generator.
         '''
@@ -610,59 +655,62 @@ class IterationAgent(abctools.AbjadObject):
         logical_voice,
         reverse=False,
         ):
-        r'''Yield left-to-right instances of `component_class` in `expr`
-        with `logical_voice`:
+        r'''Iterates client by logical voice.
 
-        ::
+        ..  container:: example
 
-            >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
-            >>> container_1.is_simultaneous = True
-            >>> container_1[0].name = 'voice 1'
-            >>> container_1[1].name = 'voice 2'
-            >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
-            >>> container_2.is_simultaneous = True
-            >>> container_2[0].name = 'voice 1'
-            >>> container_2[1].name = 'voice 2'
-            >>> staff = Staff([container_1, container_2])
-            >>> show(staff) # doctest: +SKIP
+            **Example 1.** Iterates notes in logical voice 1:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                <<
-                    \context Voice = "voice 1" {
-                        c'8
-                        d'8
-                    }
-                    \context Voice = "voice 2" {
-                        e'8
-                        f'8
-                    }
-                >>
-                <<
-                    \context Voice = "voice 1" {
-                        g'8
-                        a'8
-                    }
-                    \context Voice = "voice 2" {
-                        b'8
-                        c''8
-                    }
-                >>
-            }
+                >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                >>> container_1.is_simultaneous = True
+                >>> container_1[0].name = 'voice 1'
+                >>> container_1[1].name = 'voice 2'
+                >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                >>> container_2.is_simultaneous = True
+                >>> container_2[0].name = 'voice 1'
+                >>> container_2[1].name = 'voice 2'
+                >>> staff = Staff([container_1, container_2])
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
-            >>> signature = inspect_(leaf).get_parentage().logical_voice
-            >>> for x in iterate(staff).by_logical_voice(Note, signature):
-            ...     x
-            ...
-            Note("c'8")
-            Note("d'8")
-            Note("g'8")
-            Note("a'8")
+                >>> print(format(staff))
+                \new Staff {
+                    <<
+                        \context Voice = "voice 1" {
+                            c'8
+                            d'8
+                        }
+                        \context Voice = "voice 2" {
+                            e'8
+                            f'8
+                        }
+                    >>
+                    <<
+                        \context Voice = "voice 1" {
+                            g'8
+                            a'8
+                        }
+                        \context Voice = "voice 2" {
+                            b'8
+                            c''8
+                        }
+                    >>
+                }
+
+            ::
+
+                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+                >>> signature = inspect_(leaf).get_parentage().logical_voice
+                >>> for note in iterate(staff).by_logical_voice(Note, signature):
+                ...     note
+                ...
+                Note("c'8")
+                Note("d'8")
+                Note("g'8")
+                Note("a'8")
 
         Returns generator.
         '''
@@ -670,7 +718,6 @@ class IterationAgent(abctools.AbjadObject):
             self._client._get_parentage().logical_voice == \
                 logical_voice:
             yield self._client
-
         if not reverse:
             if isinstance(self._client, (list, tuple)):
                 for component in self._client:
@@ -709,119 +756,123 @@ class IterationAgent(abctools.AbjadObject):
         component_class=None,
         reverse=False,
         ):
-        r'''Iterate logical voice forward from `component` and yield instances
-        of `component_class`.
+        r'''Iterates by logical voice from client.
 
-        ::
+        ..  container:: example
 
-            >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
-            >>> container_1.is_simultaneous = True
-            >>> container_1[0].name = 'voice 1'
-            >>> container_1[1].name = 'voice 2'
-            >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
-            >>> container_2.is_simultaneous = True
-            >>> container_2[0].name = 'voice 1'
-            >>> container_2[1].name = 'voice 2'
-            >>> staff = Staff([container_1, container_2])
-            >>> show(staff) # doctest: +SKIP
+            **Example 1.** Iterates from first leaf in score:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                <<
-                    \context Voice = "voice 1" {
-                        c'8
-                        d'8
-                    }
-                    \context Voice = "voice 2" {
-                        e'8
-                        f'8
-                    }
-                >>
-                <<
-                    \context Voice = "voice 1" {
-                        g'8
-                        a'8
-                    }
-                    \context Voice = "voice 2" {
-                        b'8
-                        c''8
-                    }
-                >>
-            }
+                >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                >>> container_1.is_simultaneous = True
+                >>> container_1[0].name = 'voice 1'
+                >>> container_1[1].name = 'voice 2'
+                >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                >>> container_2.is_simultaneous = True
+                >>> container_2[0].name = 'voice 1'
+                >>> container_2[1].name = 'voice 2'
+                >>> staff = Staff([container_1, container_2])
+                >>> show(staff) # doctest: +SKIP
 
-        Starting from the first leaf in score:
+            ..  doctest::
 
-        ::
+                >>> print(format(staff))
+                \new Staff {
+                    <<
+                        \context Voice = "voice 1" {
+                            c'8
+                            d'8
+                        }
+                        \context Voice = "voice 2" {
+                            e'8
+                            f'8
+                        }
+                    >>
+                    <<
+                        \context Voice = "voice 1" {
+                            g'8
+                            a'8
+                        }
+                        \context Voice = "voice 2" {
+                            b'8
+                            c''8
+                        }
+                    >>
+                }
 
-            >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
-            >>> for x in iterate(leaf).by_logical_voice_from_component(Note):
-            ...     x
-            ...
-            Note("c'8")
-            Note("d'8")
-            Note("g'8")
-            Note("a'8")
+            ::
 
-        Starting from the second leaf in score:
+                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+                >>> for x in iterate(leaf).by_logical_voice_from_component(Note):
+                ...     x
+                ...
+                Note("c'8")
+                Note("d'8")
+                Note("g'8")
+                Note("a'8")
 
-        ::
+        ..  container:: example
 
-            >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[1]
-            >>> for x in iterate(leaf).by_logical_voice_from_component(Note):
-            ...     x
-            ...
-            Note("d'8")
-            Note("g'8")
-            Note("a'8")
+            **Example 2.** Iterates from second leaf in score:
 
-        Yield all components in logical voice:
+            ::
 
-        ::
+                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[1]
+                >>> for x in iterate(leaf).by_logical_voice_from_component(Note):
+                ...     x
+                ...
+                Note("d'8")
+                Note("g'8")
+                Note("a'8")
 
-            >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
-            >>> for x in iterate(leaf).by_logical_voice_from_component():
-            ...     x
-            ...
-            Note("c'8")
-            Voice("c'8 d'8")
-            Note("d'8")
-            Voice("g'8 a'8")
-            Note("g'8")
-            Note("a'8")
+        ..  container:: example
 
-        Iterate logical voice backward from `component` and yield instances
-        of `component_class`, starting from the last leaf in score:
+            **Example 3.** Iterates all components in logical voice:
 
-        ::
+            ::
 
-            >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
-            >>> for x in iterate(leaf).by_logical_voice_from_component(
-            ...     Note,
-            ...     reverse=True,
-            ...     ):
-            ...     x
-            Note("c''8")
-            Note("b'8")
-            Note("f'8")
-            Note("e'8")
+                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+                >>> for x in iterate(leaf).by_logical_voice_from_component():
+                ...     x
+                ...
+                Note("c'8")
+                Voice("c'8 d'8")
+                Note("d'8")
+                Voice("g'8 a'8")
+                Note("g'8")
+                Note("a'8")
 
-        Yield all components in logical voice:
+        ..  container:: example
 
-        ::
+            **Example 4.** Reverses direction of iteration:
 
-            >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
-            >>> for x in iterate(leaf).by_logical_voice_from_component(
-            ...     reverse=True,
-            ...     ):
-            ...     x
-            Note("c''8")
-            Voice("b'8 c''8")
-            Note("b'8")
-            Voice("e'8 f'8")
-            Note("f'8")
-            Note("e'8")
+            ::
+
+                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
+                >>> for x in iterate(leaf).by_logical_voice_from_component(
+                ...     Note,
+                ...     reverse=True,
+                ...     ):
+                ...     x
+                Note("c''8")
+                Note("b'8")
+                Note("f'8")
+                Note("e'8")
+
+            ::
+
+                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
+                >>> for x in iterate(leaf).by_logical_voice_from_component(
+                ...     reverse=True,
+                ...     ):
+                ...     x
+                Note("c''8")
+                Voice("b'8 c''8")
+                Note("b'8")
+                Voice("e'8 f'8")
+                Note("f'8")
+                Note("e'8")
 
         Returns generator.
         '''
@@ -845,11 +896,11 @@ class IterationAgent(abctools.AbjadObject):
                         yield x
 
     def by_run(self, classes):
-        r'''Iterate runs in expression.
+        r'''Iterates client by run.
 
         ..  container:: example
 
-            **Example 1.** Iterate runs of notes and chords at only the
+            **Example 1.** Iterates runs of notes and chords at only the
             top level of score:
 
             ::
@@ -857,6 +908,7 @@ class IterationAgent(abctools.AbjadObject):
                 >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
                 >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
                 >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
+                >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
 
@@ -890,7 +942,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Iterate runs of notes and chords at all levels of
+            **Example 2.** Iterates runs of notes and chords at all levels of
             score:
 
             ::
@@ -929,59 +981,68 @@ class IterationAgent(abctools.AbjadObject):
         start=0,
         stop=None,
         ):
-        r'''Iterate semantic voices forward in `expr`:
+        r'''Iterates client by semantic voice.
 
-        ::
+        ..  todo:: Deprecated. Use ``IterationAgent.by_class(Voice)`` instead.
 
-            >>> pairs = [(3, 8), (5, 16), (5, 16)]
-            >>> measures = scoretools.make_spacer_skip_measures(pairs)
-            >>> time_signature_voice = Voice(measures)
-            >>> time_signature_voice.name = 'TimeSignatuerVoice'
-            >>> time_signature_voice.is_nonsemantic = True
-            >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
-            >>> music_voice.name = 'MusicVoice'
-            >>> staff = Staff([time_signature_voice, music_voice])
-            >>> staff.is_simultaneous = True
+        ..  container:: example
 
-        ..  doctest::
+            **Example 1.** Iterates semantic voices:
 
-            >>> print(format(staff))
-            \new Staff <<
-                \context Voice = "TimeSignatuerVoice" {
-                    {
-                        \time 3/8
-                        s1 * 3/8
+            ::
+
+                >>> pairs = [(3, 8), (5, 16), (5, 16)]
+                >>> measures = scoretools.make_spacer_skip_measures(pairs)
+                >>> time_signature_voice = Voice(measures)
+                >>> time_signature_voice.name = 'TimeSignatuerVoice'
+                >>> time_signature_voice.is_nonsemantic = True
+                >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
+                >>> music_voice.name = 'MusicVoice'
+                >>> staff = Staff([time_signature_voice, music_voice])
+                >>> staff.is_simultaneous = True
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff <<
+                    \context Voice = "TimeSignatuerVoice" {
+                        {
+                            \time 3/8
+                            s1 * 3/8
+                        }
+                        {
+                            \time 5/16
+                            s1 * 5/16
+                        }
+                        {
+                            s1 * 5/16
+                        }
                     }
-                    {
-                        \time 5/16
-                        s1 * 5/16
+                    \context Voice = "MusicVoice" {
+                        c'4.
+                        d'4
+                        e'16
+                        f'4
+                        g'16
                     }
-                    {
-                        s1 * 5/16
-                    }
-                }
-                \context Voice = "MusicVoice" {
-                    c'4.
-                    d'4
-                    e'16
-                    f'4
-                    g'16
-                }
-            >>
+                >>
 
-            >>> for voice in iterate(staff).by_semantic_voice():
-            ...   voice
-            ...
-            Voice("c'4. d'4 e'16 f'4 g'16")
+                >>> for voice in iterate(staff).by_semantic_voice():
+                ...   voice
+                ...
+                Voice("c'4. d'4 e'16 f'4 g'16")
 
-        Iterate semantic voices backward in `expr`:
+        ..  container:: example
 
-        ::
+            **Example 2.** Reverses direction of iteration:
 
-            >>> for voice in iterate(staff).by_semantic_voice(reverse=True):
-            ...   voice
-            ...
-            Voice("c'4. d'4 e'16 f'4 g'16")
+            ::
+
+                >>> for voice in iterate(staff).by_semantic_voice(reverse=True):
+                ...   voice
+                ...
+                Voice("c'4. d'4 e'16 f'4 g'16")
 
         Returns generator.
         '''
@@ -999,34 +1060,56 @@ class IterationAgent(abctools.AbjadObject):
         prototype=None,
         reverse=False,
         ):
-        r'''Iterates spanners forward in `expr`:
+        r'''Iterates client by spanner.
 
-        ::
+        ..  container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
-            >>> attach(Slur(), staff[:4])
-            >>> attach(Slur(), staff[4:])
-            >>> attach(Beam(), staff[:])
+            **Example 1.** Iterates spanners:
 
-        ::
+            ::
 
-            >>> for spanner in iterate(staff).by_spanner():
-            ...     spanner
-            ...
-            Beam("c'8, d'8, ... [5] ..., b'8, c''8")
-            Slur("c'8, d'8, e'8, f'8")
-            Slur("g'8, a'8, f'8, b'8, c''8")
+                >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
+                >>> attach(Slur(), staff[:4])
+                >>> attach(Slur(), staff[4:])
+                >>> attach(Beam(), staff[:])
+                >>> show(staff) # doctest: +SKIP
 
-        Iterates spanners backward in `expr`:
+            ..  doctest::
 
-        ::
+                >>> f(staff)
+                \new Staff {
+                    c'8 [ (
+                    d'8
+                    e'8
+                    f'8 )
+                    g'8 (
+                    a'8
+                    f'8
+                    b'8
+                    c''8 ] )
+                }
 
-            >>> for spanner in iterate(staff).by_spanner(reverse=True):
-            ...     spanner
-            ...
-            Beam("c'8, d'8, ... [5] ..., b'8, c''8")
-            Slur("g'8, a'8, f'8, b'8, c''8")
-            Slur("c'8, d'8, e'8, f'8")
+            ::
+
+                >>> for spanner in iterate(staff).by_spanner():
+                ...     spanner
+                ...
+                Beam("c'8, d'8, ... [5] ..., b'8, c''8")
+                Slur("c'8, d'8, e'8, f'8")
+                Slur("g'8, a'8, f'8, b'8, c''8")
+
+        ..  container:: example
+
+            **Example 2.** Reverses direction of iteration:
+
+            ::
+
+                >>> for spanner in iterate(staff).by_spanner(reverse=True):
+                ...     spanner
+                ...
+                Beam("c'8, d'8, ... [5] ..., b'8, c''8")
+                Slur("g'8, a'8, f'8, b'8, c''8")
+                Slur("c'8, d'8, e'8, f'8")
 
         Returns generator.
         '''
@@ -1045,71 +1128,77 @@ class IterationAgent(abctools.AbjadObject):
                 visited_spanners.add(spanner)
                 yield spanner
 
+
+    # TODO: optimize to avoid behind-the-scenes full-score traversal.
     def by_timeline(
         self,
         component_class=None,
         reverse=False,
         ):
-        r'''Iterate timeline forward in `expr`:
+        r'''Iterates client by timeline.
 
-        ::
+        ..  container:: example
 
-            >>> score = Score([])
-            >>> score.append(Staff("c'4 d'4 e'4 f'4"))
-            >>> score.append(Staff("g'8 a'8 b'8 c''8"))
-            >>> show(score) # doctest: +SKIP
+            **Example 1.** Iterates leaves by timeline.
 
-        ..  doctest::
+            ::
 
-            >>> print(format(score))
-            \new Score <<
-                \new Staff {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-                \new Staff {
-                    g'8
-                    a'8
-                    b'8
-                    c''8
-                }
-            >>
+                >>> score = Score([])
+                >>> score.append(Staff("c'4 d'4 e'4 f'4"))
+                >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                >>> show(score) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> for leaf in iterate(score).by_timeline():
-            ...     leaf
-            ...
-            Note("c'4")
-            Note("g'8")
-            Note("a'8")
-            Note("d'4")
-            Note("b'8")
-            Note("c''8")
-            Note("e'4")
-            Note("f'4")
+                >>> print(format(score))
+                \new Score <<
+                    \new Staff {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                    \new Staff {
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                >>
 
-        Iterate timeline backward in `expr`:
+            ::
 
-        ::
+                >>> for leaf in iterate(score).by_timeline():
+                ...     leaf
+                ...
+                Note("c'4")
+                Note("g'8")
+                Note("a'8")
+                Note("d'4")
+                Note("b'8")
+                Note("c''8")
+                Note("e'4")
+                Note("f'4")
 
-            >>> for leaf in iterate(score).by_timeline(reverse=True):
-            ...     leaf
-            ...
-            Note("f'4")
-            Note("e'4")
-            Note("d'4")
-            Note("c''8")
-            Note("b'8")
-            Note("c'4")
-            Note("a'8")
-            Note("g'8")
+        ..  container:: example
 
-        Iterate leaves when `component_class` is none.
+            **Example 2.** Reverses direction of iteration:
 
-        .. todo:: Optimize to avoid behind-the-scenes full-score traversal.
+            ::
+
+                >>> for leaf in iterate(score).by_timeline(reverse=True):
+                ...     leaf
+                ...
+                Note("f'4")
+                Note("e'4")
+                Note("d'4")
+                Note("c''8")
+                Note("b'8")
+                Note("c'4")
+                Note("a'8")
+                Note("g'8")
+
+        Iterates leaves when `component_class` is none.
         '''
         if component_class is None:
             component_class = scoretools.Leaf
@@ -1197,95 +1286,103 @@ class IterationAgent(abctools.AbjadObject):
         pitched=False,
         reverse=False,
         ):
-        r'''Iterate timeline by logical tie forward in `expr`:
+        r'''Iterates client by timeline and logical tie.
 
-        ::
+        ..  container:: example
 
-            >>> score = Score([])
-            >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
-            >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
-            >>> show(score) # doctest: +SKIP
+            ::
 
-        ..  doctest::
+                >>> score = Score([])
+                >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                >>> show(score) # doctest: +SKIP
 
-            >>> print(format(score))
-            \new Score <<
-                \new Staff {
-                    c''4 ~
-                    c''8
-                    d''8
-                    r4
-                    ef''4
-                }
-                \new Staff {
-                    r8
-                    g'4. ~
-                    g'8
-                    r16
-                    f'8. ~
-                    f'8
-                }
-            >>
+            ..  doctest::
 
-        ::
+                >>> print(format(score))
+                \new Score <<
+                    \new Staff {
+                        c''4 ~
+                        c''8
+                        d''8
+                        r4
+                        ef''4
+                    }
+                    \new Staff {
+                        r8
+                        g'4. ~
+                        g'8
+                        r16
+                        f'8. ~
+                        f'8
+                    }
+                >>
 
-            >>> for logical_tie in iterate(score).by_timeline_and_logical_tie():
-            ...     logical_tie
-            ...
-            LogicalTie(Note("c''4"), Note("c''8"))
-            LogicalTie(Rest('r8'),)
-            LogicalTie(Note("g'4."), Note("g'8"))
-            LogicalTie(Note("d''8"),)
-            LogicalTie(Rest('r4'),)
-            LogicalTie(Rest('r16'),)
-            LogicalTie(Note("f'8."), Note("f'8"))
-            LogicalTie(Note("ef''4"),)
+            ::
 
-        Iterate timeline backward by logical tie in `expr`:
+                >>> for logical_tie in iterate(score).by_timeline_and_logical_tie():
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c''4"), Note("c''8"))
+                LogicalTie(Rest('r8'),)
+                LogicalTie(Note("g'4."), Note("g'8"))
+                LogicalTie(Note("d''8"),)
+                LogicalTie(Rest('r4'),)
+                LogicalTie(Rest('r16'),)
+                LogicalTie(Note("f'8."), Note("f'8"))
+                LogicalTie(Note("ef''4"),)
 
-        ::
+        ..  container:: example
 
-            >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
-            ...     reverse=True,
-            ...     ):
-            ...     logical_tie
-            ...
-            LogicalTie(Note("ef''4"),)
-            LogicalTie(Note("f'8."), Note("f'8"))
-            LogicalTie(Rest('r4'),)
-            LogicalTie(Rest('r16'),)
-            LogicalTie(Note("g'4."), Note("g'8"))
-            LogicalTie(Note("d''8"),)
-            LogicalTie(Note("c''4"), Note("c''8"))
-            LogicalTie(Rest('r8'),)
+            **Example 2.** Reverses direction of iteration:
 
-        Iterate timeline by pitched logical tie in `expr`:
+            ::
 
-        ::
+                >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
+                ...     reverse=True,
+                ...     ):
+                ...     logical_tie
+                ...
+                LogicalTie(Note("ef''4"),)
+                LogicalTie(Note("f'8."), Note("f'8"))
+                LogicalTie(Rest('r4'),)
+                LogicalTie(Rest('r16'),)
+                LogicalTie(Note("g'4."), Note("g'8"))
+                LogicalTie(Note("d''8"),)
+                LogicalTie(Note("c''4"), Note("c''8"))
+                LogicalTie(Rest('r8'),)
 
-            >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
-            ...     pitched=True,
-            ...     ):
-            ...     logical_tie
-            ...
-            LogicalTie(Note("c''4"), Note("c''8"))
-            LogicalTie(Note("g'4."), Note("g'8"))
-            LogicalTie(Note("d''8"),)
-            LogicalTie(Note("f'8."), Note("f'8"))
-            LogicalTie(Note("ef''4"),)
+        ..  container:: example
 
-        Iterate timeline by nontrivial logical tie in `expr`:
+            **Example 3.** Iterates pitched logical ties by timeline:
 
-        ::
+            ::
 
-            >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
-            ...     nontrivial=True,
-            ...     ):
-            ...     logical_tie
-            ...
-            LogicalTie(Note("c''4"), Note("c''8"))
-            LogicalTie(Note("g'4."), Note("g'8"))
-            LogicalTie(Note("f'8."), Note("f'8"))
+                >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
+                ...     pitched=True,
+                ...     ):
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c''4"), Note("c''8"))
+                LogicalTie(Note("g'4."), Note("g'8"))
+                LogicalTie(Note("d''8"),)
+                LogicalTie(Note("f'8."), Note("f'8"))
+                LogicalTie(Note("ef''4"),)
+
+        ..  container:: example
+
+            **Example 4.** Iterates nontrivial logical ties by timeline:
+
+            ::
+
+                >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
+                ...     nontrivial=True,
+                ...     ):
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c''4"), Note("c''8"))
+                LogicalTie(Note("g'4."), Note("g'8"))
+                LogicalTie(Note("f'8."), Note("f'8"))
 
         '''
         visited_logical_ties = set()
@@ -1304,67 +1401,73 @@ class IterationAgent(abctools.AbjadObject):
             visited_logical_ties.add(logical_tie)
             yield logical_tie
 
+
+    # TODO: optimize to avoid behind-the-scenes full-score traversal
     def by_timeline_from_component(
         self,
         component_class=None,
         reverse=False,
         ):
-        r'''Iterate timeline forward from `component`:
+        r'''Iterates from client by timeline.
 
-        ::
+        ..  container:: example
 
-            >>> score = Score([])
-            >>> score.append(Staff("c'4 d'4 e'4 f'4"))
-            >>> score.append(Staff("g'8 a'8 b'8 c''8"))
-            >>> show(score) # doctest: +SKIP
+            **Example 1.** Iterates from note by timeline:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(score))
-            \new Score <<
-                \new Staff {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-                \new Staff {
-                    g'8
-                    a'8
-                    b'8
-                    c''8
-                }
-            >>
+                >>> score = Score([])
+                >>> score.append(Staff("c'4 d'4 e'4 f'4"))
+                >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                >>> show(score) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> for leaf in iterate(score[1][2]).by_timeline_from_component():
-            ...     leaf
-            ...
-            Note("b'8")
-            Note("c''8")
-            Note("e'4")
-            Note("f'4")
+                >>> print(format(score))
+                \new Score <<
+                    \new Staff {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                    \new Staff {
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                >>
 
-        Iterate timeline backward from `component`:
+            ::
 
-        ::
+                >>> for leaf in iterate(score[1][2]).by_timeline_from_component():
+                ...     leaf
+                ...
+                Note("b'8")
+                Note("c''8")
+                Note("e'4")
+                Note("f'4")
 
-            >>> for leaf in iterate(score[1][2]).by_timeline_from_component(
-            ...     reverse=True):
-            ...     leaf
-            ...
-            Note("b'8")
-            Note("c'4")
-            Note("a'8")
-            Note("g'8")
+        ..  container:: example
 
-        Yield components sorted backward by score offset stop time
-        when `reverse` is True.
+            **Example 2.** Reverses direction of iteration:
 
-        Iterate leaves when `component_class` is none.
+            ::
 
-        .. todo:: Optimize to avoid behind-the-scenes full-score traversal.
+                >>> for leaf in iterate(score[1][2]).by_timeline_from_component(
+                ...     reverse=True):
+                ...     leaf
+                ...
+                Note("b'8")
+                Note("c'4")
+                Note("a'8")
+                Note("g'8")
+
+        Yields components sorted backward by score offset stop time
+        when `reverse` is true.
+
+        Iterates leaves when `component_class` is none.
         '''
         assert isinstance(self._client, scoretools.Component)
         if component_class is None:
@@ -1383,45 +1486,48 @@ class IterationAgent(abctools.AbjadObject):
                 yielded_expr = True
 
     def by_topmost_logical_ties_and_components(self):
-        r'''Iterate topmost logical ties and components forward in `expr`:
+        r'''Iterates client by topmost logical ties and components.
 
-        ::
+        ..  container:: example
 
-            >>> string = r"c'8 ~ c'32 d'8 ~ d'32 \times 2/3 { e'8 f'8 g'8 } "
-            >>> string += "a'8 ~ a'32 b'8 ~ b'32"
-            >>> staff = Staff(string)
+            **Example 1.** Iterates topmost logical ties and components:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(staff))
-            \new Staff {
-                c'8 ~
-                c'32
-                d'8 ~
-                d'32
-                \times 2/3 {
-                    e'8
-                    f'8
-                    g'8
+                >>> string = r"c'8 ~ c'32 d'8 ~ d'32 \times 2/3 { e'8 f'8 g'8 } "
+                >>> string += "a'8 ~ a'32 b'8 ~ b'32"
+                >>> staff = Staff(string)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8 ~
+                    c'32
+                    d'8 ~
+                    d'32
+                    \times 2/3 {
+                        e'8
+                        f'8
+                        g'8
+                    }
+                    a'8 ~
+                    a'32
+                    b'8 ~
+                    b'32
                 }
-                a'8 ~
-                a'32
-                b'8 ~
-                b'32
-            }
 
-        ::
+            ::
 
-            >>> for x in iterate(staff).by_topmost_logical_ties_and_components():
-            ...     x
-            ...
-            LogicalTie(Note("c'8"), Note("c'32"))
-            LogicalTie(Note("d'8"), Note("d'32"))
-            Tuplet(Multiplier(2, 3), "e'8 f'8 g'8")
-            LogicalTie(Note("a'8"), Note("a'32"))
-            LogicalTie(Note("b'8"), Note("b'32"))
-
-        Raise logical tie error on overlapping logical ties.
+                >>> for item in iterate(staff).by_topmost_logical_ties_and_components():
+                ...     item
+                ...
+                LogicalTie(Note("c'8"), Note("c'32"))
+                LogicalTie(Note("d'8"), Note("d'32"))
+                Tuplet(Multiplier(2, 3), "e'8 f'8 g'8")
+                LogicalTie(Note("a'8"), Note("a'32"))
+                LogicalTie(Note("b'8"), Note("b'32"))
 
         Returns generator.
         '''
@@ -1457,99 +1563,108 @@ class IterationAgent(abctools.AbjadObject):
         self,
         reverse=False,
         ):
-        r'''Iterate vertical moments forward in `expr`:
+        r'''Iterates client by vertical moment.
 
-        ::
+        ..  container:: example
 
-            >>> score = Score([])
-            >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
-            >>> score.append(staff)
+            **Example 1.** Iterates vertical moments:
 
-        ::
+            ::
 
-            >>> staff_group = StaffGroup([])
-            >>> staff_group.context_name = 'PianoStaff'
-            >>> staff_group.append(Staff("a'4 g'4"))
-            >>> staff_group.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
-            >>> score.append(staff_group)
+                >>> score = Score([])
+                >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
+                >>> score.append(staff)
 
-        ..  doctest::
+            ::
 
-            >>> print(format(score))
-            \new Score <<
-                \new Staff {
-                    \tweak #'text #tuplet-number::calc-fraction-text
-                    \times 4/3 {
-                        d''8
-                        c''8
-                        b'8
-                    }
-                }
-                \new PianoStaff <<
+                >>> staff_group = StaffGroup([])
+                >>> staff_group.context_name = 'PianoStaff'
+                >>> staff_group.append(Staff("a'4 g'4"))
+                >>> staff_group.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
+                >>> score.append(staff_group)
+
+            ::
+
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(score))
+                \new Score <<
                     \new Staff {
-                        a'4
-                        g'4
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            d''8
+                            c''8
+                            b'8
+                        }
                     }
-                    \new Staff {
-                        \clef "bass"
-                        f'8
-                        e'8
-                        d'8
-                        c'8
-                    }
+                    \new PianoStaff <<
+                        \new Staff {
+                            a'4
+                            g'4
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            f'8
+                            e'8
+                            d'8
+                            c'8
+                        }
+                    >>
                 >>
-            >>
 
-        ::
+            ::
 
-            >>> for x in iterate(score).by_vertical_moment():
-            ...     x.leaves
-            ...
-            (Note("d''8"), Note("a'4"), Note("f'8"))
-            (Note("d''8"), Note("a'4"), Note("e'8"))
-            (Note("c''8"), Note("a'4"), Note("e'8"))
-            (Note("c''8"), Note("g'4"), Note("d'8"))
-            (Note("b'8"), Note("g'4"), Note("d'8"))
-            (Note("b'8"), Note("g'4"), Note("c'8"))
+                >>> for vertical_moment in iterate(score).by_vertical_moment():
+                ...     vertical_moment.leaves
+                ...
+                (Note("d''8"), Note("a'4"), Note("f'8"))
+                (Note("d''8"), Note("a'4"), Note("e'8"))
+                (Note("c''8"), Note("a'4"), Note("e'8"))
+                (Note("c''8"), Note("g'4"), Note("d'8"))
+                (Note("b'8"), Note("g'4"), Note("d'8"))
+                (Note("b'8"), Note("g'4"), Note("c'8"))
 
-        ::
+            ::
 
-            >>> for x in iterate(staff_group).by_vertical_moment():
-            ...     x.leaves
-            ...
-            (Note("a'4"), Note("f'8"))
-            (Note("a'4"), Note("e'8"))
-            (Note("g'4"), Note("d'8"))
-            (Note("g'4"), Note("c'8"))
+                >>> for vertical_moment in iterate(staff_group).by_vertical_moment():
+                ...     vertical_moment.leaves
+                ...
+                (Note("a'4"), Note("f'8"))
+                (Note("a'4"), Note("e'8"))
+                (Note("g'4"), Note("d'8"))
+                (Note("g'4"), Note("c'8"))
 
-        Iterate vertical moments backward in `expr`:
+        ..  container:: example
 
-        ::
+            **Example 2.** Reverses direction of iteration:
 
-            >>> for x in iterate(score).by_vertical_moment(reverse=True):
-            ...     x.leaves
-            ...
-            (Note("b'8"), Note("g'4"), Note("c'8"))
-            (Note("b'8"), Note("g'4"), Note("d'8"))
-            (Note("c''8"), Note("g'4"), Note("d'8"))
-            (Note("c''8"), Note("a'4"), Note("e'8"))
-            (Note("d''8"), Note("a'4"), Note("e'8"))
-            (Note("d''8"), Note("a'4"), Note("f'8"))
+            ::
 
-        ::
+                >>> for vertical_moment in iterate(score).by_vertical_moment(reverse=True):
+                ...     vertical_moment.leaves
+                ...
+                (Note("b'8"), Note("g'4"), Note("c'8"))
+                (Note("b'8"), Note("g'4"), Note("d'8"))
+                (Note("c''8"), Note("g'4"), Note("d'8"))
+                (Note("c''8"), Note("a'4"), Note("e'8"))
+                (Note("d''8"), Note("a'4"), Note("e'8"))
+                (Note("d''8"), Note("a'4"), Note("f'8"))
 
-            >>> for x in iterate(staff_group).by_vertical_moment(reverse=True):
-            ...     x.leaves
-            ...
-            (Note("g'4"), Note("c'8"))
-            (Note("g'4"), Note("d'8"))
-            (Note("a'4"), Note("e'8"))
-            (Note("a'4"), Note("f'8"))
+            ::
+
+                >>> for vertical_moment in iterate(staff_group).by_vertical_moment(reverse=True):
+                ...     vertical_moment.leaves
+                ...
+                (Note("g'4"), Note("c'8"))
+                (Note("g'4"), Note("d'8"))
+                (Note("a'4"), Note("e'8"))
+                (Note("a'4"), Note("f'8"))
 
         Returns generator.
         '''
         from abjad.tools import selectiontools
-
         def _buffer_components_starting_with(component, buffer, stop_offsets):
             #if not isinstance(component, scoretools.Component):
             #    raise TypeError
@@ -1564,7 +1679,6 @@ class IterationAgent(abctools.AbjadObject):
                     if component:
                         _buffer_components_starting_with(
                             component[0], buffer, stop_offsets)
-
         def _iterate_vertical_moments_forward_in_expr(expr):
             #if not isinstance(expr, scoretools.Component):
             #    raise TypeError
@@ -1583,7 +1697,6 @@ class IterationAgent(abctools.AbjadObject):
                 yield vertical_moment
                 current_offset, stop_offsets = min(stop_offsets), []
                 _update_buffer(current_offset, buffer, stop_offsets)
-
         def _next_in_parent(component):
             from abjad.tools import selectiontools
             if not isinstance(component, scoretools.Component):
@@ -1601,7 +1714,6 @@ class IterationAgent(abctools.AbjadObject):
                 return parent[start + 1]
             except IndexError:
                 raise StopIteration
-
         def _update_buffer(current_offset, buffer, stop_offsets):
             #print 'At %s with %s ...' % (current_offset, buffer)
             for component in buffer[:]:
@@ -1615,7 +1727,6 @@ class IterationAgent(abctools.AbjadObject):
                         pass
                 else:
                     stop_offsets.append(component._get_timespan().stop_offset)
-
         if not reverse:
             for x in _iterate_vertical_moments_forward_in_expr(self._client):
                 yield x
@@ -1636,11 +1747,86 @@ class IterationAgent(abctools.AbjadObject):
         forbid=None,
         unique=True,
         ):
-        '''Iterate components depth-first from `component`.
+        r'''Iterates client depth first.
 
-        .. todo:: Add usage examples.
+        ..  container:: example
+
+            **Example 1.** Iterates depth first:
+
+            ::
+
+                >>> score = Score([])
+                >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(score))
+                \new Score <<
+                    \new Staff {
+                        c''4 ~
+                        c''8
+                        d''8
+                        r4
+                        ef''4
+                    }
+                    \new Staff {
+                        r8
+                        g'4. ~
+                        g'8
+                        r16
+                        f'8. ~
+                        f'8
+                    }
+                >>
+
+            ::
+
+                >>> for component in iterate(score).depth_first():
+                ...     component
+                ...
+                <Score<<2>>>
+                Staff("c''4 ~ c''8 d''8 r4 ef''4")
+                Note("c''4")
+                Note("c''8")
+                Note("d''8")
+                Rest('r4')
+                Note("ef''4")
+                Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8")
+                Rest('r8')
+                Note("g'4.")
+                Note("g'8")
+                Rest('r16')
+                Note("f'8.")
+                Note("f'8")
+
+        ..  container:: example
+
+            **Example 2.** Reverses direction of iteration:
+
+            ::
+
+                >>> for component in iterate(score).depth_first(direction=Right):
+                ...     component
+                ...
+                <Score<<2>>>
+                Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8")
+                Note("f'8")
+                Note("f'8.")
+                Rest('r16')
+                Note("g'8")
+                Note("g'4.")
+                Rest('r8')
+                Staff("c''4 ~ c''8 d''8 r4 ef''4")
+                Note("ef''4")
+                Rest('r4')
+                Note("d''8")
+                Note("c''8")
+                Note("c''4")
+
+        Returns generator.
         '''
-
         def _next_node_depth_first(component, total):
             r'''If client has unvisited music, return next unvisited node in
             client's music.
@@ -1648,9 +1834,8 @@ class IterationAgent(abctools.AbjadObject):
             If client has no univisited music and has a parent, return client's
             parent.
 
-            If client has no univisited music and no parent, return None.
+            If client has no univisited music and no parent, return none.
             '''
-
             client = component
             if hasattr(client, '_music') and \
                 0 < len(client) and \
@@ -1662,17 +1847,15 @@ class IterationAgent(abctools.AbjadObject):
                     return parent, parent.index(client) + 1
                 else:
                     return None, None
-
         def _previous_node_depth_first(component, total=0):
-            r'''If client has unvisited music, return previous unvisited node in
-            client's music.
+            r'''If client has unvisited music, return previous unvisited node
+            in client's music.
 
             If client has no univisited music and has a parent, return client's
             parent.
 
-            If client has no univisited music and no parent, return None.
+            If client has no univisited music and no parent, return none.
             '''
-
             client = component
             if hasattr(client, '_music') and \
                 0 < len(client) and \
@@ -1684,7 +1867,6 @@ class IterationAgent(abctools.AbjadObject):
                     return parent, len(parent) - parent.index(client)
                 else:
                     return None, None
-
         def _handle_forbidden_node(node, queue):
             node_parent = node._parent
             if node_parent is not None:
@@ -1694,7 +1876,6 @@ class IterationAgent(abctools.AbjadObject):
                 node, rank = None, None
             queue.pop()
             return node, rank
-
         def _advance_node_depth_first(node, rank, direction):
             # TODO: remove 'left'
             if direction in ('left', Left):
@@ -1702,7 +1883,6 @@ class IterationAgent(abctools.AbjadObject):
             else:
                 node, rank = _previous_node_depth_first(node, rank)
             return node, rank
-
         def _is_node_forbidden(node, forbid):
             if forbid is None:
                 return False
@@ -1710,7 +1890,6 @@ class IterationAgent(abctools.AbjadObject):
                 return getattr(node, 'is_simultaneous', False)
             else:
                 return isinstance(node, forbid)
-
         def _find_yield(node, rank, queue, unique):
             if hasattr(node, '_music'):
                 try:
@@ -1725,7 +1904,6 @@ class IterationAgent(abctools.AbjadObject):
                     return None
             else:
                 return node
-
         assert isinstance(self._client, scoretools.Component)
         component = self._client
         client_parent, node, rank = component._parent, component, 0
