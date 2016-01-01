@@ -11,7 +11,7 @@ class LabelExpression(AbjadObject):
 
         ::
 
-            >>> expression = expressiontools.LabelExpression()
+            >>> expression = label()
             >>> expression = expression.color_leaves()
 
         ::
@@ -68,7 +68,7 @@ class LabelExpression(AbjadObject):
 
         ::
 
-            >>> expression = expressiontools.LabelExpression()
+            >>> expression = label()
             >>> expression = expression.color_note_heads()
 
         ::
@@ -99,7 +99,7 @@ class LabelExpression(AbjadObject):
 
         ::
 
-            >>> expression = expressiontools.LabelExpression()
+            >>> expression = label()
             >>> expression = expression.with_durations()
 
         ::
@@ -142,7 +142,7 @@ class LabelExpression(AbjadObject):
 
         ::
 
-            >>> expression = expressiontools.LabelExpression()
+            >>> expression = label()
             >>> expression = expression.with_indices()
 
         ::
@@ -185,7 +185,7 @@ class LabelExpression(AbjadObject):
 
         ::
 
-            >>> expression = expressiontools.LabelExpression()
+            >>> expression = label()
             >>> expression = expression.with_intervals()
 
         ::
@@ -212,7 +212,7 @@ class LabelExpression(AbjadObject):
 
         ::
 
-            >>> expression = expressiontools.LabelExpression()
+            >>> expression = label()
             >>> expression = expression.with_start_offsets()
 
         ::
@@ -255,7 +255,7 @@ class LabelExpression(AbjadObject):
 
         ::
 
-            >>> expression = expressiontools.LabelExpression()
+            >>> expression = label()
             >>> expression = expression.with_pitches()
 
         ::
