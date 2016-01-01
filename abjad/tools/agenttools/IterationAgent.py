@@ -339,6 +339,105 @@ class IterationAgent(abctools.AbjadObject):
                     ):
                     yield x
 
+    def by_leaf(
+        self,
+        prototype=None,
+        reverse=False,
+        start=0,
+        stop=None,
+        ):
+        r'''Iterates `expr` by leaf.
+
+        ..  container:: example
+
+            **Example 1.** Iterates leaves: 
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_leaf():
+                ...     leaf
+                ...
+                Chord("<c' bf'>8")
+                Chord("<g' a'>8")
+                Note("af'8")
+                Rest('r8')
+                Rest('r8')
+                Note("gf'8")
+
+        ..  container:: example
+
+            **Example 2.** Constrains iteration by index:
+
+            ::
+
+                >>> for leaf in iterate(staff).by_leaf(start=0, stop=3):
+                ...     leaf
+                ...
+                Chord("<c' bf'>8")
+                Chord("<g' a'>8")
+                Note("af'8")
+
+            ::
+
+                >>> for leaf in iterate(staff).by_leaf(start=2, stop=4):
+                ...     leaf
+                ...
+                Note("af'8")
+                Rest('r8')
+
+        ..  container:: example
+
+            **Example 3.** Reverses direction of iteration:
+
+            ::
+
+                >>> for leaf in iterate(staff).by_leaf(reverse=True):
+                ...     leaf
+                ...
+                Note("gf'8")
+                Rest('r8')
+                Rest('r8')
+                Note("af'8")
+                Chord("<g' a'>8")
+                Chord("<c' bf'>8")
+
+        Returns generator.
+        '''
+        prototype = prototype or scoretools.Leaf
+        return self.by_class(
+            prototype=prototype,
+            reverse=reverse,
+            start=start,
+            stop=stop,
+            )
+
     def by_leaf_pair(self):
         r'''Iterate leaf pairs forward in `expr`:
 
