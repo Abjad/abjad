@@ -8,6 +8,7 @@ from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import mutate
 
 
@@ -178,7 +179,8 @@ class QTarget(AbjadObject):
                 if grace_container:
                     attach(grace_container, new_leaf)
                 tie = spannertools.Tie()
-                attach(tie, new_leaf)
+                if tie._attachment_test(new_leaf):
+                    attach(tie, new_leaf)
                 mutate(leaf).replace(new_leaf)
             else:
                 previous_leaf = leaf._get_leaf(-1)
@@ -197,8 +199,9 @@ class QTarget(AbjadObject):
                         leaf.written_duration,
                         )
                 mutate(leaf).replace(new_leaf)
-                tie = previous_leaf._get_spanner(spannertools.Tie)
-                tie._append(new_leaf)
+                tie = inspect_(previous_leaf).get_spanner(spannertools.Tie)
+                if tie is not None:
+                    tie._append(new_leaf)
             if leaf._has_indicator(indicatortools.Tempo):
                 tempo = leaf._get_indicator(indicatortools.Tempo)
                 detach(indicatortools.Tempo, leaf)

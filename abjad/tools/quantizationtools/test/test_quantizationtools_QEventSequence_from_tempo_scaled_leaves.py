@@ -23,8 +23,6 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_01():
     attach(tie, staff[3:5])
     tie = spannertools.Tie()
     attach(tie, staff[5:7])
-    tie = spannertools.Tie()
-    attach(tie, staff[7:11])
 
     tempo = Tempo((1, 4), 55)
 
@@ -93,8 +91,6 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_02():
     attach(tie, staff[3:5])
     tie = spannertools.Tie()
     attach(tie, staff[5:7])
-    tie = spannertools.Tie()
-    attach(tie, staff[7:11])
 
     tempo = Tempo((1, 4), 58)
     attach(tempo, staff[0], scope=Staff)

@@ -111,8 +111,13 @@ class Quantizer(AbjadObject):
                         }
                         \times 4/7 {
                             g'32
-                            r4.
                             r32
+                            r16
+                            r16
+                            r16
+                            r16
+                            r16
+                            r16
                         }
                         r4
                     }
@@ -169,8 +174,8 @@ class Quantizer(AbjadObject):
                     \times 2/3 {
                         fs'32
                         g'8.
-                        r8
                         r32
+                        r8
                     }
                 }
             }
