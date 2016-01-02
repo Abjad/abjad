@@ -455,19 +455,19 @@ class WellformednessManager(AbjadObject):
             total += 1
         return violators, total
 
-#    def check_tied_rests(self):
-#        r'''Checks to make sure there are no tied rests.
-#
-#        Returns violators and total.
-#        '''
-#        from abjad.tools import scoretools
-#        from abjad.tools import spannertools
-#        from abjad.tools.topleveltools import inspect_
-#        from abjad.tools.topleveltools import iterate
-#        violators = []
-#        total = 0
-#        for rest in iterate(self.expr).by_class(scoretools.Rest):
-#            if inspect_(rest).has_spanner(spannertools.Tie):
-#                violators.append(rest)
-#            total += 1
-#        return violators, total
+    def check_tied_rests(self):
+        r'''Checks to make sure there are no tied rests.
+
+        Returns violators and total.
+        '''
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import inspect_
+        from abjad.tools.topleveltools import iterate
+        violators = []
+        total = 0
+        for rest in iterate(self.expr).by_class(scoretools.Rest):
+            if inspect_(rest).has_spanner(spannertools.Tie):
+                violators.append(rest)
+            total += 1
+        return violators, total

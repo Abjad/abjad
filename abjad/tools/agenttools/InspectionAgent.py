@@ -878,6 +878,7 @@ class InspectionAgent(abctools.AbjadObject):
                 0 / 0 overlapping glissandi
                 0 / 0 overlapping octavation spanners
                 0 / 0 short hairpins
+                0 / 0 tied rests
 
             Beamed quarter notes are not well formed.
 

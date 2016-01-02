@@ -211,12 +211,16 @@ class Spanner(AbjadObject):
     def _attach(self, components):
         from abjad.tools import selectiontools
         assert not self, repr(self)
+        #assert self._attachment_test(components), repr(components)
         if isinstance(components, scoretools.Component):
             self._append(components)
         elif isinstance(components, (list, tuple, selectiontools.Selection)):
             self._extend(components)
         else:
             raise TypeError(components)
+
+    def _attachment_test(self, components):
+        return True
 
     def _block_all_components(self):
         r'''Not composer-safe.

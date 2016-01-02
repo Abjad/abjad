@@ -98,12 +98,7 @@ class RhythmMaker(AbjadValueObject):
         selections = self._apply_logical_tie_masks(selections)
         self._validate_selections(selections)
         self._validate_tuplets(selections)
-        for component in iterate(selections).by_class():
-            inspector = inspect_(component)
-            if not inspector.is_well_formed():
-                report = inspector.tabulate_well_formedness_violations()
-                report = repr(component) + '\n' + report
-                raise Exception(report)
+        self._check_well_formedness(selections)
         return selections
 
     def __eq__(self, expr):
@@ -209,7 +204,7 @@ class RhythmMaker(AbjadValueObject):
                     multiplier = durationtools.Multiplier(multiplier)
                     attach(multiplier, rest)
                 mutate(leaf).replace([rest])
-                detach(spannertools.Tie, leaf)
+                detach(spannertools.Tie, rest)
         # remove every temporary container and generate a selection instead
         new_selections = []
         for container in containers:
@@ -284,6 +279,14 @@ class RhythmMaker(AbjadValueObject):
         selections = self._rewrite_rest_filled_tuplets(selections)
         selections = self._flatten_trivial_tuplets(selections)
         return selections
+
+    def _check_well_formedness(self, selections):
+        for component in iterate(selections).by_class():
+            inspector = inspect_(component)
+            if not inspector.is_well_formed():
+                report = inspector.tabulate_well_formedness_violations()
+                report = repr(component) + '\n' + report
+                raise Exception(report)
 
     def _flatten_trivial_tuplets(self, selections):
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()

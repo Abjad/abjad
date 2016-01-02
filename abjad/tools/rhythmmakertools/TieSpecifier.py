@@ -85,11 +85,11 @@ class TieSpecifier(AbjadValueObject):
         tie_across_divisions = self.tie_across_divisions
         if isinstance(tie_across_divisions, bool):
             tie_across_divisions = [tie_across_divisions]
-        if not isinstance(tie_across_divisions,
-            patterntools.Pattern):
+        if not isinstance(tie_across_divisions, patterntools.Pattern):
             tie_across_divisions = patterntools.Pattern.from_vector(
                 tie_across_divisions)
         pairs = sequencetools.iterate_sequence_nwise(divisions)
+        rest_prototype = (scoretools.Rest, scoretools.MultimeasureRest)
         for i, pair in enumerate(pairs):
             if not tie_across_divisions.matches_index(i, length):
                 continue
@@ -102,6 +102,10 @@ class TieSpecifier(AbjadValueObject):
                 prototype=scoretools.Leaf,
                 ))
             leaves = [leaf_one, leaf_two]
+            if isinstance(leaf_one, rest_prototype):
+                continue
+            if isinstance(leaf_two, rest_prototype):
+                continue
             prototype = (scoretools.Note, scoretools.Chord)
             if not all(isinstance(x, prototype) for x in leaves):
                 continue

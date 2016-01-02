@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
+from abjad.tools.topleveltools import iterate
 
 
 class Tie(Spanner):
@@ -53,6 +54,14 @@ class Tie(Spanner):
         self._use_messiaen_style_ties = use_messiaen_style_ties
 
     ### PRIVATE METHODS ###
+
+    def _attachment_test(self, components):
+        from abjad.tools import scoretools
+        rest_prototype = (scoretools.Rest, scoretools.MultimeasureRest)
+        for component in iterate(components).by_class():
+            if isinstance(component, rest_prototype):
+                return False
+        return True
 
     def _copy_keyword_args(self, new):
         new._direction = self.direction
