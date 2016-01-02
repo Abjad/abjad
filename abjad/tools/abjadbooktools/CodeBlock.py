@@ -272,10 +272,14 @@ class CodeBlock(abctools.AbjadValueObject):
         while not document_source and getattr(parent, 'parent'):
             document_source = getattr(parent, 'source', None)
             parent = parent.parent
+        code_block_specifier = abjadbooktools.CodeBlockSpecifier(
+            allow_exceptions=True,
+            )
         code_block = abjadbooktools.CodeBlock(
+            code_block_specifier=code_block_specifier,
+            document_source=document_source,
             input_file_contents=input_file_contents,
             starting_line_number=block.line,
-            document_source=document_source,
             )
         return code_block
 

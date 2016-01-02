@@ -218,6 +218,9 @@ class CodeBlockTests(unittest.TestCase):
         result = abjadbooktools.CodeBlock.from_docutils_literal_block(block)
         assert result == abjadbooktools.CodeBlock(
             ("print('Hello, world!')",),
+            code_block_specifier=abjadbooktools.CodeBlockSpecifier(
+                allow_exceptions=True,
+                ),
             starting_line_number=3,
             )
 
