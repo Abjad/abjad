@@ -390,44 +390,6 @@ def test_scoretools_Leaf__split_by_duration_14():
 
 
 def test_scoretools_Leaf__split_by_duration_15():
-    r'''Split leaf is not tied again when a container containing it
-    is already tie-spanned.
-    '''
-
-    container = Container("c'8 c'8 c'8 c'8")
-    tie = spannertools.Tie()
-    attach(tie, container)
-    halves = container[0]._split_by_duration(Duration(5, 64))
-
-    assert inspect_(container).get_spanner(spannertools.Tie) is tie
-    assert tie.components == (container, )
-    for l in container.select_leaves():
-        assert not inspect_(l).get_spanners()
-
-    assert inspect_(container).is_well_formed()
-
-
-def test_scoretools_Leaf__split_by_duration_16():
-    r'''Split leaf is not tied again when a container containing it
-    is already tie-spanned.
-    '''
-
-    staff = Staff(2 * Container("c'8 c'8 c'8 c'8"))
-    tie = spannertools.Tie()
-    attach(tie, staff[:])
-    halves = staff[0][0]._split_by_duration(Duration(5, 64))
-
-    assert tie.components == tuple(staff[:])
-    for v in staff:
-        assert inspect_(v).get_spanners() == set([tie])
-        for l in v.select_leaves():
-            assert not inspect_(l).get_spanners()
-            assert l._parent is v
-
-    assert inspect_(staff).is_well_formed()
-
-
-def test_scoretools_Leaf__split_by_duration_17():
     r'''After grace notes are removed from first leaf in bipartition.
     '''
 
@@ -441,7 +403,7 @@ def test_scoretools_Leaf__split_by_duration_17():
     assert len(after_grace) == 1
 
 
-def test_scoretools_Leaf__split_by_duration_18():
+def test_scoretools_Leaf__split_by_duration_16():
     r'''After grace notes are removed from first tied leaves in bipartition.
     '''
 
@@ -458,7 +420,7 @@ def test_scoretools_Leaf__split_by_duration_18():
     assert len(after_grace) == 1
 
 
-def test_scoretools_Leaf__split_by_duration_19():
+def test_scoretools_Leaf__split_by_duration_17():
     r'''Grace notes are removed from second leaf in bipartition.
     '''
 
