@@ -440,12 +440,7 @@ class RhythmMaker(AbjadValueObject):
                     continue
                 duration = inspect_(component).get_duration()
                 new_rests = scoretools.make_rests([duration])
-                #del(component[:])
                 mutate(component[:]).replace(new_rests)
-                #component.extend(new_rests)
-                #for spanner in spanners:
-                #    new_spanner = copy.copy(spanner)
-                #    attach(new_spanner, new_rests)
                 new_selection.append(component)
             new_selection = selectiontools.Selection(new_selection)
             new_selections.append(new_selection)

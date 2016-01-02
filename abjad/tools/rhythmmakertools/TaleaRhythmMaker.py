@@ -116,6 +116,7 @@ class TaleaRhythmMaker(RhythmMaker):
         '_burnish_specifier',
         '_extra_counts_per_division',
         '_helper_functions',
+        '_read_talea_once_only',
         '_rest_tied_notes',
         '_split_divisions_by_counts',
         '_talea',
@@ -134,6 +135,7 @@ class TaleaRhythmMaker(RhythmMaker):
         duration_spelling_specifier=None,
         extra_counts_per_division=None,
         logical_tie_masks=None,
+        read_talea_once_only=None,
         rest_tied_notes=False,
         split_divisions_by_counts=None,
         tie_specifier=None,
@@ -153,6 +155,8 @@ class TaleaRhythmMaker(RhythmMaker):
             )
         prototype = (rhythmmakertools.Talea, type(None))
         assert isinstance(talea, prototype)
+        assert isinstance(read_talea_once_only, (bool, type(None)))
+        self._read_talea_once_only = read_talea_once_only
         self._talea = talea
         if tie_split_notes is not None:
             assert isinstance(tie_split_notes, bool), repr(tie_split_notes)
@@ -647,12 +651,10 @@ class TaleaRhythmMaker(RhythmMaker):
             else:
                 tuplets = self._make_tuplets(secondary_divisions, leaf_lists)
                 result = tuplets
-            # TODO: insert into temporary voice here
             selections = [selectiontools.Selection(x) for x in result]
         else:
             selections = []
             for division in secondary_divisions:
-                # TODO: insert into temporary voice here
                 selection = scoretools.make_leaves([0], [division])
                 selections.append(selection)
         beam_specifier = self._get_beam_specifier()
@@ -806,7 +808,14 @@ class TaleaRhythmMaker(RhythmMaker):
 
     def _split_sequence_extended_to_weights(self, sequence, weights):
         assert mathtools.all_are_positive_integers(weights), repr(weights)
-        total_weight = sum(weights)
+        sequence_weight = mathtools.weight(sequence)
+        total_weight = mathtools.weight(weights)
+        if self.read_talea_once_only:
+            if sequence_weight < total_weight:
+                message = 'talea is too short to read once only:'
+                message += '\n{!r} in {!r}.'
+                message = message.format(sequence, weights)
+                raise Exception(message)
         sequence = sequencetools.repeat_sequence_to_weight(
             sequence,
             total_weight,
@@ -2556,6 +2565,102 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         superclass = super(TaleaRhythmMaker, self)
         return superclass.logical_tie_masks
+
+    @property
+    def read_talea_once_only(self):
+        r'''Is true when rhythm-maker should read talea once only.
+
+        ..  container:: example
+
+            **Example 1.** Reads talea cyclically:
+            
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        c'4
+                        c'16 [
+                        c'16 ~ ]
+                    }
+                    {
+                        c'16 [
+                        c'8.
+                        c'8 ~ ]
+                    }
+                    {
+                        c'8 [
+                        c'16
+                        c'8
+                        c'16 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Reads talea once only:
+            
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     read_talea_once_only=True,
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            Calling maker on these divisions raises an exception because talea
+            is too short to read once only:
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+
+            ::
+
+                Exception: talea is too short to read once only:
+                   CyclicTuple([1, 2, 3, 4]) in [6, 6, 6, 6].
+
+        Set to true to ensure talea is long enough to cover all divisions
+        without repeating.
+        
+        Provides way of using talea noncyclically when, for example,
+        interpolating from short durations to long durations.
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._read_talea_once_only
 
     @property
     def rest_tied_notes(self):
