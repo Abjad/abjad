@@ -19,6 +19,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
     ..  container:: example
 
+        **Example 1.** Repeats talea of 1/16, 2/16, 3/16, 4/16:
+
         ::
 
             >>> maker = rhythmmakertools.TaleaRhythmMaker(
@@ -69,6 +71,29 @@ class TaleaRhythmMaker(RhythmMaker):
                     c'8 ]
                 }
             }
+
+    ..  container:: example
+
+        **Example 2.** Formats rhythm-maker:
+
+        ::
+
+            >>> maker = rhythmmakertools.TaleaRhythmMaker(
+            ...     talea=rhythmmakertools.Talea(
+            ...         counts=[1, 2, 3, 4],
+            ...         denominator=16,
+            ...         ),
+            ...     )
+
+        ::
+
+            >>> print(format(maker))
+            rhythmmakertools.TaleaRhythmMaker(
+                talea=rhythmmakertools.Talea(
+                    counts=(1, 2, 3, 4),
+                    denominator=16,
+                    ),
+                )
 
     Follows the two-step configure-once / call-repeatedly pattern shown here.
 
@@ -136,7 +161,7 @@ class TaleaRhythmMaker(RhythmMaker):
         extra_counts_per_division=None,
         logical_tie_masks=None,
         read_talea_once_only=None,
-        rest_tied_notes=False,
+        rest_tied_notes=None,
         split_divisions_by_counts=None,
         tie_specifier=None,
         tie_split_notes=True,
@@ -206,7 +231,7 @@ class TaleaRhythmMaker(RhythmMaker):
         assert callable(right_lengths_helper)
         self._extra_counts_per_division = extra_counts_per_division
         self._split_divisions_by_counts = split_divisions_by_counts
-        assert isinstance(rest_tied_notes, bool), rest_tied_notes
+        assert isinstance(rest_tied_notes, (bool, type(None))), rest_tied_notes
         self._rest_tied_notes = rest_tied_notes
         if helper_functions == {}:
             helper_functions = None
@@ -382,8 +407,6 @@ class TaleaRhythmMaker(RhythmMaker):
         keyword_argument_names = \
             manager.get_signature_keyword_argument_names(self)
         keyword_argument_names = list(keyword_argument_names)
-        if self.rest_tied_notes == False:
-            keyword_argument_names.remove('rest_tied_notes')
         if self.tie_split_notes == True:
             keyword_argument_names.remove('tie_split_notes')
         return systemtools.StorageFormatSpecification(
@@ -2669,9 +2692,11 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  todo:: Add examples.
 
-        Set to true or false.
+        Defaults to none.
 
-        Returns true or false.
+        Set to true, false or none.
+
+        Returns true, false or none.
         '''
         return self._rest_tied_notes
 
