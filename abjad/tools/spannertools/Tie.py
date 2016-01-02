@@ -55,13 +55,11 @@ class Tie(Spanner):
 
     ### PRIVATE METHODS ###
 
-    def _attachment_test(self, components):
+    def _attachment_test(self, component):
         from abjad.tools import scoretools
         rest_prototype = (scoretools.Rest, scoretools.MultimeasureRest)
-        for component in iterate(components).by_class():
-            if isinstance(component, rest_prototype):
-                return False
-        return True
+        pitched_prototype = (scoretools.Note, scoretools.Chord)
+        return isinstance(component, pitched_prototype)
 
     def _copy_keyword_args(self, new):
         new._direction = self.direction

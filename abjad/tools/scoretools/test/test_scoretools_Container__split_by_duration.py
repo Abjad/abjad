@@ -1470,7 +1470,8 @@ def test_scoretools_Container__split_by_duration_25():
             {
                 \time 9/80
                 \scaleDurations #'(4 . 5) {
-                    s1 * 9/64
+                    s1 * 1/16
+                    s4 * 5/16
                 }
             }
         }

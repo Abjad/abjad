@@ -73,7 +73,8 @@ class LogicalTie(Selection):
                 ties = self[-1]._get_spanners(spannertools.Tie)
                 if not ties:
                     tie = spannertools.Tie()
-                    attach(tie, list(self))
+                    if all(tie._attachment_test(_) for _ in self):
+                        attach(tie, list(self))
                 self[-1]._splice(extra_leaves, grow_spanners=True)
         else:
             durations = scoretools.make_notes(0, new_written_duration)
