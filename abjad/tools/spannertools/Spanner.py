@@ -219,7 +219,8 @@ class Spanner(AbjadObject):
         else:
             raise TypeError(components)
 
-    def _attachment_test(self, components):
+    @staticmethod
+    def _attachment_test(component):
         return True
 
     def _block_all_components(self):
