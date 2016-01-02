@@ -8,7 +8,9 @@ from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
+from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 
@@ -624,6 +626,31 @@ class TaleaRhythmMaker(RhythmMaker):
             return self.talea
         return rhythmmakertools.Talea()
 
+    def _handle_rest_tied_notes(self, selections):
+        if not self.rest_tied_notes:
+            return selections
+        # wrap every selection in a temporary container;
+        # this allows the call to mutate().replace() to work
+        containers = []
+        for selection in selections:
+            container = scoretools.Container(selection)
+            attach('temporary container', container)
+            containers.append(container)
+        for logical_tie in iterate(selections).by_logical_tie():
+            if not logical_tie.is_trivial:
+                for note in logical_tie[1:]:
+                    rest = scoretools.Rest(note)
+                    mutate(note).replace(rest)
+                detach(spannertools.Tie, logical_tie.head)
+        # remove every temporary container and recreate selections
+        new_selections = []
+        for container in containers:
+            inspector = inspect_(container)
+            assert inspector.get_indicator(str) == 'temporary container'
+            new_selection = mutate(container).eject_contents()
+            new_selections.append(new_selection)
+        return new_selections
+
     def _make_leaf_lists(self, numeric_map, talea_denominator):
         leaf_lists = []
         specifier = self._get_duration_spelling_specifier()
@@ -684,13 +711,7 @@ class TaleaRhythmMaker(RhythmMaker):
         beam_specifier._apply(selections)
         if talea:
             self._apply_ties_to_split_notes(selections, unscaled_talea)
-        if self.rest_tied_notes:
-            for logical_tie in iterate(selections).by_logical_tie():
-                if not logical_tie.is_trivial:
-                    for note in logical_tie[1:]:
-                        rest = scoretools.Rest(note)
-                        mutate(note).replace(rest)
-                    detach(spannertools.Tie, logical_tie.head)
+        selections = self._handle_rest_tied_notes(selections)
         selections = self._apply_division_masks(selections, rotation)
         specifier = self._get_duration_spelling_specifier()
         if specifier.rewrite_meter:
@@ -2690,7 +2711,110 @@ class TaleaRhythmMaker(RhythmMaker):
         r'''Is true when rhythm-maker should leave the head of each logical
         tie but change tied notes to rests and remove ties.
 
-        ..  todo:: Add examples.
+        ..  container:: example
+
+            **Example 1.** Does not rest tied notes:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        c'4
+                        c'16 [
+                        c'16 ~ ]
+                    }
+                    {
+                        c'16 [
+                        c'8.
+                        c'8 ~ ]
+                    }
+                    {
+                        c'8 [
+                        c'16
+                        c'8
+                        c'16 ]
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Rests tied notes:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     rest_tied_notes=True,
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[1, 2, 3, 4],
+                ...         denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 3/8
+                        c'16 [
+                        c'8
+                        c'8. ]
+                    }
+                    {
+                        c'4
+                        c'16 [
+                        c'16 ]
+                    }
+                    {
+                        r16
+                        c'8. [
+                        c'8 ]
+                    }
+                    {
+                        r8
+                        c'16 [
+                        c'8
+                        c'16 ]
+                    }
+                }
 
         Defaults to none.
 

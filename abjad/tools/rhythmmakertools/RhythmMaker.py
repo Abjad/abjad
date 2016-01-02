@@ -205,7 +205,7 @@ class RhythmMaker(AbjadValueObject):
                     attach(multiplier, rest)
                 mutate(leaf).replace([rest])
                 detach(spannertools.Tie, rest)
-        # remove every temporary container and generate a selection instead
+        # remove every temporary container and recreate selections
         new_selections = []
         for container in containers:
             inspector = inspect_(container)
