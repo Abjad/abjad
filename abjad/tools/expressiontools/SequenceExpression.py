@@ -170,8 +170,8 @@ class SequenceExpression(Expression):
 
         ::
 
-            >>> expression(range(10))
-            Sequence((3, 4, 5, 6))
+            >>> expression(range(1, 10+1))
+            Sequence((4, 5, 6, 7))
 
     ..  container:: example
 
@@ -185,12 +185,27 @@ class SequenceExpression(Expression):
 
         ::
 
-            >>> expression(range(10))
-            Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5)), Sequence((6, 7, 8))))
+            >>> expression(range(1, 10+1))
+            Sequence((Sequence((1, 2, 3)), Sequence((4, 5, 6)), Sequence((7, 8, 9))))
 
     ..  container:: example
 
-        **Example 13.** Makes expression to sum sequence:
+        **Example 13.** Makes expression to partition sequence and sum parts:
+
+        ::
+
+            >>> expression = sequence()
+            >>> expression = expression.partition_by_counts([3], cyclic=True)
+            >>> expression = expression.map().sum()
+
+        ::
+
+            >>> expression(range(1, 10+1))
+            Sequence((6, 15, 24))
+
+    ..  container:: example
+
+        **Example 14.** Makes expression to sum sequence:
 
         ::
 
@@ -204,7 +219,7 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 14.** Makes expression to sum sequence and wrap result in new
+        **Example 15.** Makes expression to sum sequence and wrap result in new
         sequence:
 
         ::
@@ -215,8 +230,8 @@ class SequenceExpression(Expression):
 
         ::
 
-            >>> expression(range(10))
-            Sequence((45,))
+            >>> expression(range(1, 10+1))
+            Sequence((55,))
 
     ..  note:: Aadd usage examples to this docstring. Do not add
         usage examples to property and method docstrings. Properties
@@ -260,11 +275,20 @@ class SequenceExpression(Expression):
         else:
             result = sequencetools.Sequence(items)
         callbacks = self.callbacks or ()
+        map_next = False
         for callback in callbacks:
             if callback.name == 'Sequence.__init__':
                 result = sequencetools.Sequence(result)
+                map_next = False
+            elif callback.name == 'map':
+                map_next = True
             else:
-                result = callback(result)
+                if map_next:
+                    class_ = type(result)
+                    result = class_([callback(_) for _ in result])
+                else:
+                    result = callback(result)
+                map_next = False
         return result
 
     def __getitem__(self, i):
@@ -357,6 +381,13 @@ class SequenceExpression(Expression):
             }
         return self._make_callback('Sequence.flatten', arguments)
 
+    def map(self):
+        r'''Makes map callback.
+
+        Returns callback.
+        '''
+        return self._make_callback('map')
+
     def partition_by_counts(self, counts, cyclic=False, overhang=False):
         r'''Makes partition-by-counts callback.
 
@@ -395,7 +426,7 @@ class SequenceExpression(Expression):
         return self._make_callback('Sequence.rotate')
 
     def sequence(self):
-        r'''Makes sequence initializer callback.
+        r'''Makes sequence callback.
 
         Returns callback.
         '''
