@@ -17,7 +17,10 @@ class Sequence(AbjadObject):
 
     def __init__(self, items=None):
         items = items or ()
-        items = tuple(items)
+        if isinstance(items, collections.Iterable):
+            items = tuple(items)
+        else:
+            items = (items,)
         self._items = items
 
     ### SPECIAL METHODS ###
@@ -200,7 +203,18 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            **Example.**
+            **Example 1.** Gets interpreter representation of sequence with
+            length equal to one:
+
+            ::
+
+                >>> Sequence((99,))
+                Sequence((99,))
+
+        ..  container:: example
+
+            **Example 2.** Gets interpreter representation of sequence with
+            length greater than one:
 
             ::
 
@@ -210,6 +224,8 @@ class Sequence(AbjadObject):
         Returns string.
         '''
         items = ', '.join([repr(_) for _ in self.items])
+        if len(self.items) == 1:
+            items = items + ','
         string = '{}(({}))'
         string = string.format(type(self).__name__, items)
         return string
@@ -672,7 +688,7 @@ class Sequence(AbjadObject):
                 ...     cyclic=False,
                 ...     overhang=False,
                 ...     )
-                Sequence((Sequence((0, 1, 2))))
+                Sequence((Sequence((0, 1, 2)),))
 
         ..  container:: example
 
@@ -775,7 +791,7 @@ class Sequence(AbjadObject):
                 Sequence((0, 1, 2))
                 Sequence((3, 4, 5))
                 Sequence((6, 7, 8))
-                Sequence((9))
+                Sequence((9,))
 
         ..  container:: example
 

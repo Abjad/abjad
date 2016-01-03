@@ -8,7 +8,7 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 1.** Initializes sequence:
+        **Example 1.** Makes expression to initialize sequence:
 
         ::
 
@@ -26,7 +26,7 @@ class SequenceExpression(Expression):
             
     ..  container:: example
 
-        **Example 2.** Flattens sequence:
+        **Example 2.** Makes expression to flatten sequence:
 
         ::
 
@@ -40,7 +40,7 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 3.** Reverses sequence:
+        **Example 3.** Makes expression ot reverse sequence:
 
         ::
 
@@ -54,7 +54,7 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 4.** Flattens and reverses sequence:
+        **Example 4.** Makes expression to flatten and reverse sequence:
 
         ::
 
@@ -69,7 +69,7 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 5.** Reverses and flattens sequence:
+        **Example 5.** Makes expression to reverse and flatten sequence:
 
         ::
 
@@ -84,7 +84,7 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 6.** Gets item from sequence:
+        **Example 6.** Makes expression to get item from sequence:
 
         ::
 
@@ -98,7 +98,23 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 7.** Gets slice from sequence:
+        **Example 7.** Makes expression to get item from sequence and wrap
+        result in new sequence:
+
+        ::
+
+            >>> expression = sequence()
+            >>> expression = expression[-1]
+            >>> expression = expression.sequence()
+
+        ::
+
+            >>> expression([1, 2, [3, [4]], 5])
+            Sequence((5,))
+
+    ..  container:: example
+
+        **Example 8.** Makes expression to get slice from sequence:
 
         ::
 
@@ -112,7 +128,8 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 8.** Gets slice from sequence and flattens slice:
+        **Example 9.** Makes expression to get slice from sequence and flatten
+        slice:
 
         ::
 
@@ -127,7 +144,7 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 9.** Adds sequence to sequence:
+        **Example 10.** Makes expression to add ``[4, 5]`` to sequence:
 
         ::
 
@@ -141,7 +158,8 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 10.** Partitions sequence and gets middle part:
+        **Example 11.** Makes expression to partition sequence into thirds and
+        get middle third:
 
         ::
 
@@ -157,7 +175,8 @@ class SequenceExpression(Expression):
 
     ..  container:: example
 
-        **Example 11.** Partitions sequence by counts:
+        **Example 12.** Makes expression to partition sequence into parts with
+        lengths equal to three:
 
         ::
 
@@ -168,6 +187,36 @@ class SequenceExpression(Expression):
 
             >>> expression(range(10))
             Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5)), Sequence((6, 7, 8))))
+
+    ..  container:: example
+
+        **Example 13.** Makes expression to sum sequence:
+
+        ::
+
+            >>> expression = sequence()
+            >>> expression = expression.sum()
+
+        ::
+
+            >>> expression(range(10))
+            45
+
+    ..  container:: example
+
+        **Example 14.** Makes expression to sum sequence and wrap result in new
+        sequence:
+
+        ::
+
+            >>> expression = sequence()
+            >>> expression = expression.sum()
+            >>> expression = expression.sequence()
+
+        ::
+
+            >>> expression(range(10))
+            Sequence((45,))
 
     ..  note:: Aadd usage examples to this docstring. Do not add
         usage examples to property and method docstrings. Properties
@@ -207,13 +256,16 @@ class SequenceExpression(Expression):
         '''
         from abjad.tools import sequencetools
         if items is None:
-            sequence = sequencetools.Sequence()
+            result = sequencetools.Sequence()
         else:
-            sequence = sequencetools.Sequence(items)
+            result = sequencetools.Sequence(items)
         callbacks = self.callbacks or ()
         for callback in callbacks:
-            sequence = callback(sequence)
-        return sequence
+            if callback.name == 'Sequence.__init__':
+                result = sequencetools.Sequence(result)
+            else:
+                result = callback(result)
+        return result
 
     def __getitem__(self, i):
         r'''Makes get-item callback.
@@ -341,6 +393,13 @@ class SequenceExpression(Expression):
         Returns callback.
         '''
         return self._make_callback('Sequence.rotate')
+
+    def sequence(self):
+        r'''Makes sequence initializer callback.
+
+        Returns callback.
+        '''
+        return self._make_callback('Sequence.__init__')
 
     def sum(self):
         r'''Makes sum callback.
