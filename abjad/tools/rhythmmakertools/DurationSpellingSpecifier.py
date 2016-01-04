@@ -138,9 +138,15 @@ class DurationSpellingSpecifier(AbjadValueObject):
         durations = [durationtools.Duration(_) for _ in meters]
         music = sequencetools.flatten_sequence(selections)
         assert isinstance(music, list), repr(music)
-        total_duration = sum(durations)
+        meter_duration = sum(durations)
         music_duration = sum(inspect_(_).get_duration() for _ in music)
-        assert total_duration == music_duration
+        if not meter_duration == music_duration:
+            message = 'Duration of meters is {!s}'
+            message += ' but duration of music is {!s}:'
+            message = message.format(meter_duration, music_duration)
+            message += '\nmeters: {}.'.format(meters)
+            message += '\nmusic: {}.'.format(music)
+            raise Exception(message)
         voice = scoretools.Voice(music)
         mutate(voice[:]).split(
             durations=durations,
