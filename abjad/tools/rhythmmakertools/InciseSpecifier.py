@@ -63,7 +63,7 @@ class InciseSpecifier(AbjadValueObject):
         talea_denominator=None,
         body_ratio=None,
         fill_with_notes=True,
-        outer_divisions_only=False,
+        outer_divisions_only=None,
         ):
         prefix_talea = prefix_talea or ()
         prefix_talea = tuple(prefix_talea)
@@ -104,7 +104,7 @@ class InciseSpecifier(AbjadValueObject):
         self._body_ratio = body_ratio
         assert isinstance(fill_with_notes, bool)
         self._fill_with_notes = fill_with_notes
-        assert isinstance(outer_divisions_only, bool)
+        assert isinstance(outer_divisions_only, (bool, type(None)))
         self._outer_divisions_only = outer_divisions_only
 
     ### SPECIAL METHODS ###
@@ -114,7 +114,28 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.**
+            **Example 1.** Formats incise specifier:
+
+            ::
+
+                >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+                ...     prefix_talea=[-1],
+                ...     prefix_counts=[1],
+                ...     talea_denominator=16,
+                ...     )
+
+            ::
+
+                >>> print(format(incise_specifier))
+                rhythmmakertools.InciseSpecifier(
+                    prefix_talea=(-1,),
+                    prefix_counts=(1,),
+                    talea_denominator=16,
+                    )
+
+        ..  container:: example
+
+            **Example 2.** Formats incise specifier:
 
             ::
 
@@ -293,11 +314,11 @@ class InciseSpecifier(AbjadValueObject):
 
         ..  todo:: Add examples.
 
-        Defaults to false.
+        Set to true, false or none.
 
-        Set to true or false.
+        Defaults to none.
         
-        Returns true or false.
+        Returns true, false or none.
         '''
         return self._outer_divisions_only
 
