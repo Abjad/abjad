@@ -1196,7 +1196,60 @@ class LabelAgent(abctools.AbjadObject):
                             }
                 }
 
+        ..  container:: example
 
+            **Example 5.** Labels tuplet indices:
+
+            ::
+
+                >>> staff = Staff(4 * Tuplet((2, 3), "c'8 [ d'8 e'8 ]"))
+                >>> label(staff).with_indices(prototype=Tuplet)
+                >>> override(staff).text_script.staff_padding = 2
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    \override TextScript #'staff-padding = #2
+                } {
+                    \times 2/3 {
+                        c'8
+                            ^ \markup {
+                                \small
+                                    0
+                                }
+                        d'8
+                        e'8
+                    }
+                    \times 2/3 {
+                        c'8
+                            ^ \markup {
+                                \small
+                                    1
+                                }
+                        d'8
+                        e'8
+                    }
+                    \times 2/3 {
+                        c'8
+                            ^ \markup {
+                                \small
+                                    2
+                                }
+                        d'8
+                        e'8
+                    }
+                    \times 2/3 {
+                        c'8
+                            ^ \markup {
+                                \small
+                                    3
+                                }
+                        d'8
+                        e'8
+                    }
+                }
 
         Returns none.
         '''
