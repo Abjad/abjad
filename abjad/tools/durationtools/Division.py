@@ -138,6 +138,7 @@ class Division(NonreducedFraction):
             ...         start_offset=start_offset,
             ...         )
             ...     divisions.append(division)
+            >>> divisions = Sequence(divisions)
 
         ::
 
@@ -159,10 +160,7 @@ class Division(NonreducedFraction):
         ::
 
             >>> ratio = mathtools.Ratio((1, 1, 1))
-            >>> parts = sequencetools.partition_sequence_by_ratio_of_lengths(
-            ...     divisions,
-            ...     ratio,
-            ...     )
+            >>> parts = divisions.partition_by_ratio_of_lengths(ratio)
 
         Gets middle third:
 
@@ -181,6 +179,72 @@ class Division(NonreducedFraction):
 
             >>> parts[1][0].start_offset
             Offset(3, 8)
+
+    ..  container:: example
+
+        **Example 8.** Makes divisions from durations:
+
+        ::
+
+            >>> durations = 10 * [Duration(1, 8)]
+            >>> start_offsets = mathtools.cumulative_sums(durations)[:-1]
+            >>> divisions = []
+            >>> for duration, start_offset in zip(durations, start_offsets):
+            ...     division = durationtools.Division(
+            ...         duration,
+            ...         start_offset=start_offset,
+            ...         )
+            ...     divisions.append(division)
+            >>> divisions = Sequence(divisions)
+
+        ::
+
+            >>> for division in divisions:
+            ...     print(division)
+            Division((1, 8), start_offset=Offset(0, 1))
+            Division((1, 8), start_offset=Offset(1, 8))
+            Division((1, 8), start_offset=Offset(1, 4))
+            Division((1, 8), start_offset=Offset(3, 8))
+            Division((1, 8), start_offset=Offset(1, 2))
+            Division((1, 8), start_offset=Offset(5, 8))
+            Division((1, 8), start_offset=Offset(3, 4))
+            Division((1, 8), start_offset=Offset(7, 8))
+            Division((1, 8), start_offset=Offset(1, 1))
+            Division((1, 8), start_offset=Offset(9, 8))
+
+        Splits divisions every five sixteenths:
+
+        ::
+
+            >>> parts = divisions.split([Fraction(5, 16)], cyclic=True)
+            >>> for i, part in enumerate(parts):
+            ...     message = 'part {}'.format(i)
+            ...     print(message)
+            ...     for division in part:
+            ...         print('\t' + str(division))
+            part 0
+                Division((1, 8), start_offset=Offset(0, 1))
+                Division((1, 8), start_offset=Offset(1, 8))
+                Division((1, 16), start_offset=Offset(1, 4))
+            part 1
+                Division((1, 16), start_offset=Offset(5, 16))
+                Division((1, 8), start_offset=Offset(3, 8))
+                Division((1, 8), start_offset=Offset(1, 2))
+            part 2
+                Division((1, 8), start_offset=Offset(5, 8))
+                Division((1, 8), start_offset=Offset(3, 4))
+                Division((1, 16), start_offset=Offset(7, 8))
+            part 3
+                Division((1, 16), start_offset=Offset(15, 16))
+                Division((1, 8), start_offset=Offset(1, 1))
+                Division((1, 8), start_offset=Offset(9, 8))
+
+        Gets start offset of first division of last part:
+
+        ::
+
+            >>> parts[-1][0].start_offset
+            Offset(15, 16)
             
     '''
 
