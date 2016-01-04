@@ -134,6 +134,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         from abjad.tools import sequencetools
         from abjad.tools.topleveltools import inspect_
         from abjad.tools.topleveltools import mutate
+        from abjad.tools.topleveltools import select
         meters = [metertools.Meter(_) for _ in meters]
         durations = [durationtools.Duration(_) for _ in meters]
         music = sequencetools.flatten_sequence(selections)
@@ -153,7 +154,23 @@ class DurationSpellingSpecifier(AbjadValueObject):
             tie_split_notes=True,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-        selections = list(voice[:])
+        #raise Exception(voice)
+        #selections = list(voice[:])
+        #return selections
+        components = mutate(voice).eject_contents()
+        component_durations = [inspect_(_).get_duration() for _ in components]
+        parts = sequencetools.partition_sequence_by_weights(
+            component_durations,
+            weights=durations,
+            allow_part_weights=Exact,
+            )
+        part_lengths = [len(_) for _ in parts]
+        parts = sequencetools.partition_sequence_by_counts(
+            components,
+            counts=part_lengths,
+            overhang=Exact,
+            )
+        selections = [select(_) for _ in parts]
         return selections
 
     ### PUBLIC PROPERTIES ###
