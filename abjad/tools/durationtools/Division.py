@@ -392,69 +392,168 @@ class Division(NonreducedFraction):
 
         ..  container:: example
 
-            **Example 1.** No start offsets:
+            **Example 1.** No timespans:
 
             ::
 
-                >>> division_1 = durationtools.Division((4, 4))
-                >>> division_2 = durationtools.Division((2, 4))
-                >>> division_1 - division_2
-                Division((2, 4))
-
-        ..  container:: example
-
-            **Example 2.** Ignores start offset of division 2:
+                >>> division_1 = durationtools.Division((6, 2))
+                >>> division_2 = durationtools.Division((4, 2))
 
             ::
 
-                >>> division_1 = durationtools.Division((4, 4))
-                >>> division_2 = durationtools.Division(
-                ...     (2, 4),
-                ...     start_offset=Offset(5),
-                ...     )
                 >>> division_1 - division_2
-                Division((2, 4))
+                Division((2, 2))
+
+            ::
+
+                >>> division_2 - division_1
+                Division((-2, 2))
 
         ..  container:: example
 
-            **Example 3.** Copies start offset from first division:
+            **Example 2.** Overlapping timespans that start at the same time:
 
             ::
 
                 >>> division_1 = durationtools.Division(
-                ...     (4, 4),
-                ...     start_offset=Offset(5),
+                ...     (4, 1),
+                ...     start_offset=Offset(10),
                 ...     )
-                >>> division_2 = durationtools.Division((2, 4))
+                >>> division_2 = durationtools.Division(
+                ...     (2, 1),
+                ...     start_offset=Offset(10),
+                ...     )
+
+            ::
+
                 >>> division_1 - division_2
-                Division((2, 4), start_offset=Offset(5, 1))
+                Division((2, 1), start_offset=Offset(12, 1))
+
+            ::
+
+                >>> division_2 - division_1
+                Division((-2, 1), start_offset=Offset(12, 1))
 
         ..  container:: example
 
-            **Example 4.** Copies start offset of division 1 and ignores start
-            offset of division 2:
+            **Example 3.** Overlapping timespans that start at different times:
 
             ::
 
                 >>> division_1 = durationtools.Division(
-                ...     (4, 4),
-                ...     start_offset=Offset(5),
+                ...     (4, 1),
+                ...     start_offset=Offset(10),
                 ...     )
                 >>> division_2 = durationtools.Division(
-                ...     (2, 4),
-                ...     start_offset=Offset(9),
+                ...     (4, 1),
+                ...     start_offset=Offset(12),
                 ...     )
+
+            ::
+
                 >>> division_1 - division_2
-                Division((2, 4), start_offset=Offset(5, 1))
+                Division((2, 1), start_offset=Offset(10, 1))
+
+            ::
+
+                >>> division_2 - division_1
+                Division((2, 1), start_offset=Offset(14, 1))
+
+        ..  container:: example
+
+            **Example 4.** Nonoverlapping timespans:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (6, 2),
+                ...     start_offset=Offset(0),
+                ...     )
+                >>> division_2 = durationtools.Division(
+                ...     (4, 2),
+                ...     start_offset=Offset(20),
+                ...     )
+
+            ::
+
+                >>> division_1 - division_2
+                Division((6, 2), start_offset=Offset(0, 1))
+
+            ::
+
+                >>> division_2 - division_1
+                Division((4, 2), start_offset=Offset(20, 1))
+
+        ..  container:: example
+
+            **Exceptions.** Raises exception when one division has a start
+            offset and the other does not:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (6, 4),
+                ...     start_offset=Offset(5),
+                ...     )
+                >>> division_2 = durationtools.Division((2, 4))
+
+            ::
+
+                >>> division_1 - division_2
+                Traceback (most recent call last):
+                ...
+                Exception: both divisions must have (or not have) start offsets.
+
+            ::
+
+                >>> division_2 - division_1
+                Traceback (most recent call last):
+                ...
+                Exception: both divisions must have (or not have) start offsets.
+
+        Uses timespan arithmetic when both divisions have a start offset.
 
         Returns new division.
         '''
         if not isinstance(expr, type(self)):
-            expr = type(self)(expr)
-        superclass = super(Division, self)
-        difference = superclass.__sub__(expr)
-        division = type(self)(difference, start_offset=self.start_offset)
-        return division
+            expr = type(self)(expr, start_offset=self.start_offset)
+
+        self_has_start_offset = bool(self.start_offset is not None)
+        expr_has_start_offset = bool(expr.start_offset is not None)
+        if not self_has_start_offset == expr_has_start_offset:
+            message = 'both divisions must have (or not have) start offsets.'
+            raise Exception(message)
+            
+        if self.start_offset is expr.start_offset is None:
+            superclass = super(Division, self)
+            difference = superclass.__sub__(expr)
+            return self._from_pair(difference)
+
+        my_timespan = self._to_timespan()
+        expr_timespan = expr._to_timespan()
+        inventory = my_timespan - expr_timespan
+
+        negate_result = False
+        if len(inventory) == 0:
+            #message = 'subtraction destroys division.'
+            #raise Exception(message)
+            inventory = expr_timespan - my_timespan
+            negate_result = True
+
+        assert 0 < len(inventory), repr(inventory)
+        if len(inventory) == 1:
+            result_timespan = inventory[0]
+            duration = result_timespan.duration
+            nonreduced_fraction = duration.with_denominator(self.denominator)
+            pair = nonreduced_fraction.pair
+            start_offset = result_timespan.start_offset
+            division = type(self)(pair, start_offset=start_offset)
+            if negate_result:
+                division = -division
+            return division
+        else:
+            message = 'timespan subtraction creates more than one division.'
+            raise Exception(message)
 
     ### PRIVATE PROPERTIES ###
 
@@ -476,6 +575,18 @@ class Division(NonreducedFraction):
 
     def _from_pair(self, pair):
         return type(self)(pair, start_offset=self.start_offset)
+
+    def _to_timespan(self):
+        from abjad.tools import timespantools
+        if self.start_offset is None:
+            message = 'division must have start offset: {!r}.'
+            message = message.format(self)
+            raise Exception(message)
+        stop_offset = self.start_offset + self
+        return timespantools.Timespan(
+            start_offset=self.start_offset,
+            stop_offset=stop_offset,
+            )
 
     ### PUBLIC PROPERTIES ###
 
