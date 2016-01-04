@@ -6,6 +6,35 @@ from abjad.tools.abctools import AbjadValueObject
 
 class InciseSpecifier(AbjadValueObject):
     r'''Incise specifier.
+
+    ..  container:: example
+
+        **Example 1.** Specifies one sixteenth rest cut out of the beginning
+        of every division:
+
+        ::
+
+            >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+            ...     prefix_talea=[-1],
+            ...     prefix_counts=[1],
+            ...     talea_denominator=16,
+            ...     )
+
+    ..  container:: example
+
+        **Example 2.** Specifies sixteenth rests cut out of the beginning and
+        end of each division:
+
+        ::
+
+            >>> incise_specifier = rhythmmakertools.InciseSpecifier(
+            ...     prefix_talea=[-1],
+            ...     prefix_counts=[1],
+            ...     suffix_talea=[-1],
+            ...     suffix_counts=[1],
+            ...     talea_denominator=16,
+            ...     )
+
     '''
 
     ### CLASS VARIABLES ###
