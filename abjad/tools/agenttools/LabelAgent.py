@@ -1257,6 +1257,8 @@ class LabelAgent(abctools.AbjadObject):
             items = iterate(self.client).by_logical_tie()
         else:
             items = iterate(self.client).by_class(prototype=prototype)
+        items = list(items)
+        #raise Exception((self.client, items))
         for index, item in enumerate(items):
             string = str(index)
             label = markuptools.Markup(string, direction=direction)
