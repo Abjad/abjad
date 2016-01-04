@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import functools
-import types
 from abjad.tools.abctools import AbjadObject
 
 
@@ -119,7 +118,7 @@ class Callback(AbjadObject):
         arguments = []
         if self.arguments:
             for key, value in self.arguments:
-                if isinstance(value, types.TypeType):
+                if '<' in repr(value) and '>' in repr(value):
                     value = value.__name__
                 else:
                     value = repr(value)
