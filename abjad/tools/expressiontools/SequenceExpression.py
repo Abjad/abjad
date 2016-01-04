@@ -233,6 +233,21 @@ class SequenceExpression(Expression):
             >>> expression(range(1, 10+1))
             Sequence((55,))
 
+    ..  container:: example
+
+        **Example 16.** Makes expression to split sequence by weights:
+
+        ::
+
+            >>> expression = sequence()
+            >>> expression = expression.split([10], cyclic=True)
+            >>> expression = expression.sequence()
+
+        ::
+
+            >>> expression(range(1, 10+1))
+            Sequence((Sequence((1, 2, 3, 4)), Sequence((5, 5)), Sequence((1, 7, 2)), Sequence((6, 4)), Sequence((5, 5))))
+
     ..  note:: Aadd usage examples to this docstring. Do not add
         usage examples to property and method docstrings. Properties
         and methods will all be derived automatically from the Sequence class
@@ -431,6 +446,18 @@ class SequenceExpression(Expression):
         Returns callback.
         '''
         return self._make_callback('Sequence.__init__')
+
+    def split(self, weights, cyclic=False, overhang=False):
+        r'''Makes split callback.
+
+        Returns callback.
+        '''
+        arguments = {
+            'weights': weights,
+            'cyclic': cyclic,
+            'overhang': overhang,
+            }
+        return self._make_callback('Sequence.split', arguments)
 
     def sum(self):
         r'''Makes sum callback.

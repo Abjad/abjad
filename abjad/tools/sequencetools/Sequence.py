@@ -972,6 +972,38 @@ class Sequence(AbjadObject):
                 result.append(item)
         return type(self)(result)
 
+    def split(self, weights, cyclic=False, overhang=False):
+        r'''Splits sequence by `weights`.
+
+        ..  todo:: Port remaining examples from
+            ``sequencetools.split_sequence()``.
+
+        ..  container:: example
+
+            **Example 1.** Splits sequence cyclically by weights with overhang:
+
+            ::
+
+                >>> sequence_ = Sequence((10, -10, 10, -10))
+                >>> sequence_.split(
+                ...     (3, 15, 3),
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     )
+                Sequence((Sequence((3,)), Sequence((7, -8)), Sequence((-2, 1)), Sequence((3,)), Sequence((6, -9)), Sequence((-1,))))
+
+        Returns new sequence.
+        '''
+        from abjad.tools import sequencetools
+        parts = sequencetools.split_sequence(
+            self.items,
+            weights,
+            cyclic=cyclic,
+            overhang=overhang,
+            )
+        parts = [type(self)(_) for _ in parts]
+        return type(self)(parts)
+
     def sum(self):
         '''Sums sequence.
 
