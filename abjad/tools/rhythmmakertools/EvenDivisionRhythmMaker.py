@@ -441,8 +441,11 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             )
         for i, division in enumerate(divisions, rotation):
             # not yet extended to work with non-power-of-two divisions
-            assert mathtools.is_positive_integer_power_of_two(
-                division.denominator), repr(division)
+            if not mathtools.is_positive_integer_power_of_two(
+                division.denominator):
+                message = 'non-power-of-two divisions not implemented: {!r}.'
+                message = message.format(division)
+                raise Exception(message)
             denominator = denominators[i]
             extra_count = extra_counts_per_division[i]
             basic_duration = durationtools.Duration(1, denominator)
