@@ -94,7 +94,10 @@ def split_sequence(sequence, weights, cyclic=False, overhang=False):
 
     if cyclic:
         weights = sequencetools.repeat_sequence_to_weight(
-            weights, mathtools.weight(sequence), allow_total=Less)
+            weights,
+            mathtools.weight(sequence),
+            allow_total=Less,
+            )
 
     for weight in weights:
         current_piece_weight = mathtools.weight(current_piece)

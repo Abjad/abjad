@@ -223,7 +223,7 @@ class Division(NonreducedFraction):
     ### SPECIAL METHODS###
 
     def __add__(self, expr):
-        r'''Add `expr` to division.
+        r'''Adds `expr` to division.
 
         ..  container:: example
 
@@ -387,6 +387,75 @@ class Division(NonreducedFraction):
         '''
         return repr(self)
 
+    def __sub__(self, expr):
+        r'''Subtracts `expr` from division.
+
+        ..  container:: example
+
+            **Example 1.** No start offsets:
+
+            ::
+
+                >>> division_1 = durationtools.Division((4, 4))
+                >>> division_2 = durationtools.Division((2, 4))
+                >>> division_1 - division_2
+                Division((2, 4))
+
+        ..  container:: example
+
+            **Example 2.** Ignores start offset of division 2:
+
+            ::
+
+                >>> division_1 = durationtools.Division((4, 4))
+                >>> division_2 = durationtools.Division(
+                ...     (2, 4),
+                ...     start_offset=Offset(5),
+                ...     )
+                >>> division_1 - division_2
+                Division((2, 4))
+
+        ..  container:: example
+
+            **Example 3.** Copies start offset from first division:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (4, 4),
+                ...     start_offset=Offset(5),
+                ...     )
+                >>> division_2 = durationtools.Division((2, 4))
+                >>> division_1 - division_2
+                Division((2, 4), start_offset=Offset(5, 1))
+
+        ..  container:: example
+
+            **Example 4.** Copies start offset of division 1 and ignores start
+            offset of division 2:
+
+            ::
+
+                >>> division_1 = durationtools.Division(
+                ...     (4, 4),
+                ...     start_offset=Offset(5),
+                ...     )
+                >>> division_2 = durationtools.Division(
+                ...     (2, 4),
+                ...     start_offset=Offset(9),
+                ...     )
+                >>> division_1 - division_2
+                Division((2, 4), start_offset=Offset(5, 1))
+
+        Returns new division.
+        '''
+        if not isinstance(expr, type(self)):
+            expr = type(self)(expr)
+        superclass = super(Division, self)
+        difference = superclass.__sub__(expr)
+        division = type(self)(difference, start_offset=self.start_offset)
+        return division
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -402,6 +471,11 @@ class Division(NonreducedFraction):
                 self.pair,
                 ),
             )
+
+    ### PRIVATE METHODS ###
+
+    def _from_pair(self, pair):
+        return type(self)(pair, start_offset=self.start_offset)
 
     ### PUBLIC PROPERTIES ###
 

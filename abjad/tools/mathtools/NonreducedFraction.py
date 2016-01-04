@@ -57,7 +57,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
 
     ### CONSTRUCTOR ###
 
@@ -106,7 +107,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns nonreduced fraction.
         '''
-        return type(self)((abs(self.numerator), self.denominator))
+        pair = (abs(self.numerator), self.denominator)
+        return self._from_pair(pair)
 
     def __add__(self, expr):
         r'''Adds `expr` to nonreduced fraction.
@@ -121,20 +123,22 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         from abjad.tools import mathtools
         if isinstance(expr, int):
             numerator = self.numerator + expr * self.denominator
-            return type(self)((numerator, self.denominator))
+            pair = (numerator, self.denominator)
+            return self._from_pair(pair)
         elif hasattr(expr, 'denominator'):
             if self.denominator == expr.denominator:
                 numerator = self.numerator + expr.numerator
-                return type(self)((numerator, self.denominator))
+                pair = (numerator, self.denominator)
+                return self._from_pair(pair)
             else:
-                denominator = mathtools.least_common_multiple(
-                    self.denominator, expr.denominator)
+                denominators = [self.denominator, expr.denominator]
+                denominator = mathtools.least_common_multiple(*denominators)
                 self_multiplier = denominator // self.denominator
                 expr_multiplier = denominator // expr.denominator
                 self_numerator = self_multiplier * self.numerator
                 expr_numerator = expr_multiplier * expr.numerator
-                return type(self)(
-                    (self_numerator + expr_numerator, denominator))
+                pair = (self_numerator + expr_numerator, denominator)
+                return self._from_pair(pair)
         else:
             raise ValueError(expr)
 
@@ -217,7 +221,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns integer.
         '''
-        return super(NonreducedFraction, self).__hash__()
+        superclass = super(NonreducedFraction, self)
+        return superclass.__hash__()
 
     def __le__(self, expr):
         r'''Is true when nonreduced fraction is less than or equal to `expr`.
@@ -282,7 +287,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns nonreduced fraction.
         '''
-        return type(self)((-self.numerator, self.denominator))
+        pair = (-self.numerator, self.denominator)
+        return self._from_pair(pair)
 
     def __pow__(self, expr):
         r'''Raises nonreduced fraction to `expr`.
@@ -295,8 +301,10 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         Returns nonreduced fraction.
         '''
         if expr == -1:
-            return type(self)(self.denominator, self.numerator)
-        return super(NonreducedFraction, self).__pow__(expr)
+            pair = (self.denominator, self.numerator)
+            return self._from_pair(pair)
+        superclass = super(NonreducedFraction, self)
+        return superclass.__pow__(expr)
 
     def __radd__(self, expr):
         r'''Adds nonreduced fraction to `expr`.
@@ -428,9 +436,16 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
     def _fraction_with_denominator(self, fraction, denominator):
         from abjad.tools import mathtools
-        denominator = mathtools.least_common_multiple(
-            denominator, fraction.denominator)
-        return NonreducedFraction(fraction).with_denominator(denominator)
+        denominators = [denominator, fraction.denominator]
+        denominator = mathtools.least_common_multiple(*denominators)
+        result = self._from_pair(fraction)
+        result = result.with_denominator(denominator)
+        return result
+
+    def _from_pair(self, pair):
+        r'''Method is designed to be subclassed.
+        '''
+        return type(self)(pair)
 
     @staticmethod
     def _parse_input_string(string):
@@ -561,9 +576,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         '''
         from abjad.tools import durationtools
         from abjad.tools import mathtools
-
         multiplier = durationtools.Multiplier(multiplier)
-
         self_numerator_factors = mathtools.factors(self.numerator)
         multiplier_denominator_factors = mathtools.factors(
             multiplier.denominator)
@@ -571,28 +584,24 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             if factor in self_numerator_factors:
                 self_numerator_factors.remove(factor)
                 multiplier_denominator_factors.remove(factor)
-
         self_denominator_factors = mathtools.factors(self.denominator)
         multiplier_numerator_factors = mathtools.factors(multiplier.numerator)
         for factor in multiplier_numerator_factors[:]:
             if factor in self_denominator_factors:
                 self_denominator_factors.remove(factor)
                 multiplier_numerator_factors.remove(factor)
-
         result_numerator_factors = self_numerator_factors + \
             multiplier_numerator_factors
         result_denominator_factors = self_denominator_factors + \
             multiplier_denominator_factors
-
         result_numerator = 1
         for factor in result_numerator_factors:
             result_numerator *= factor
-
         result_denominator = 1
         for factor in result_denominator_factors:
             result_denominator *= factor
-
-        return NonreducedFraction(result_numerator, result_denominator)
+        pair = (result_numerator, result_denominator)
+        return self._from_pair(pair)
 
     def multiply_with_numerator_preservation(self, multiplier):
         r'''Multiplies nonreduced fraction by `multiplier` with numerator
@@ -629,19 +638,18 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         Returns nonreduced fraction.
         '''
         from abjad.tools import durationtools
-
         multiplier = durationtools.Multiplier(multiplier)
         self_denominator = self.denominator
         candidate_result_denominator = self_denominator / multiplier
-
         if candidate_result_denominator.denominator == 1:
-            return NonreducedFraction(
-                self.numerator, candidate_result_denominator.numerator)
+            pair = (self.numerator, candidate_result_denominator.numerator)
+            return self._from_pair(pair)
         else:
             result_numerator = \
                 self.numerator * candidate_result_denominator.denominator
             result_denominator = candidate_result_denominator.numerator
-            return NonreducedFraction(result_numerator, result_denominator)
+            pair = (result_numerator, result_denominator)
+            return self._from_pair(pair)
 
     def multiply_without_reducing(self, expr):
         r'''Multiplies nonreduced fraction by `expr` without reducing.
@@ -671,10 +679,11 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns nonreduced fraction.
         '''
-        expr = NonreducedFraction(expr)
+        expr = self._from_pair(expr)
         numerator = self.numerator * expr.numerator
         denominator = self.denominator * expr.denominator
-        return NonreducedFraction(numerator, denominator)
+        pair = (numerator, denominator)
+        return self._from_pair(pair)
 
     def reduce(self):
         r'''Reduces nonreduced fraction.
@@ -703,16 +712,16 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         Returns nonreduced fraction.
         '''
         from abjad.tools import durationtools
-        n, d = self.pair
-        multiplier = durationtools.Multiplier(denominator, d)
-        new_numerator = multiplier * n
-        new_denominator = multiplier * d
-        if new_numerator.denominator == 1 and \
-            new_denominator.denominator == 1:
-            return type(self)(
-                (new_numerator.numerator, new_denominator.numerator))
+        current_numerator, current_denominator = self.pair
+        multiplier = durationtools.Multiplier(denominator, current_denominator)
+        new_numerator = multiplier * current_numerator
+        new_denominator = multiplier * current_denominator
+        if (new_numerator.denominator == 1 and
+            new_denominator.denominator == 1):
+            pair = (new_numerator.numerator, new_denominator.numerator)
         else:
-            return type(self)((n, d))
+            pair = (current_numerator, current_denominator)
+        return self._from_pair(pair)
 
     def with_multiple_of_denominator(self, denominator):
         r'''Returns new nonreduced fraction with multiple of integer
