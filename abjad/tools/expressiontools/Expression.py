@@ -28,11 +28,12 @@ class Expression(AbjadObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    def _make_callback(self, name, arguments=None):
+    def _make_callback(self, name, arguments=None, module_names=None):
         from abjad.tools import expressiontools
         callback = expressiontools.Callback(
             name=name,
             arguments=arguments,
+            module_names=module_names,
             )
         return self._append_callback(callback)
 

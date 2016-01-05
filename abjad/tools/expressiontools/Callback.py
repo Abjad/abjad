@@ -86,6 +86,7 @@ class Callback(AbjadObject):
 
     __slots__ = (
         '_arguments',
+        '_module_names',
         '_name',
         )
 
@@ -95,6 +96,7 @@ class Callback(AbjadObject):
         self,
         name=None,
         arguments=None,
+        module_names=None,
         ):
         from abjad.tools import datastructuretools
         if name is not None:
@@ -105,6 +107,7 @@ class Callback(AbjadObject):
             arguments = list(sorted(arguments.items()))
             datastructuretools.TypedOrderedDict(arguments)
         self._arguments = arguments
+        self._module_names = module_names
 
     ### SPECIAL METHODS ###
 
@@ -132,6 +135,10 @@ class Callback(AbjadObject):
         globals_.update(abjad.__dict__.copy())
         globals_.update(experimental.__dict__.copy())
         globals_['functools'] = functools
+        module_names = self.module_names or ()
+        for module_name in module_names:
+            module = __import__(module_name)
+            globals_[module_name] = module
         partial = eval(string, globals_)
         result = partial(*args, **kwargs)
         return result
@@ -142,13 +149,31 @@ class Callback(AbjadObject):
     def arguments(self):
         r'''Gets arguments of callback.
 
+        Set to dictionary or none.
+
+        Defaults to none.
+
         Returns dictionary or none.
         '''
         return self._arguments
 
     @property
+    def module_names(self):
+        r'''Gets module names of callback.
+
+        Set to strings or none.
+
+        Defaults to none.
+
+        Returns strings or none.
+        '''
+        return self._module_names
+
+    @property
     def name(self):
         r'''Gets name of callback.
+
+        Set to string.
 
         Returns string.
         '''
