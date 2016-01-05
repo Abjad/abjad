@@ -86,6 +86,7 @@ class IncisedRhythmMaker(RhythmMaker):
         division_masks=None,
         extra_counts_per_division=None,
         incise_specifier=None,
+        logical_tie_masks=None,
         split_divisions_by_counts=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
@@ -97,6 +98,7 @@ class IncisedRhythmMaker(RhythmMaker):
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             division_masks=division_masks,
+            logical_tie_masks=logical_tie_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -1021,6 +1023,128 @@ class IncisedRhythmMaker(RhythmMaker):
         Returns incise specifier or none.
         '''
         return self._incise_specifier
+
+    @property
+    def logical_tie_masks(self):
+        r'''Gets logical tie masks of incised rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No logical tie masks:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=rhythmmakertools.InciseSpecifier(
+                ...         outer_divisions_only=True,
+                ...         prefix_talea=[-1],
+                ...         prefix_counts=[1],
+                ...         suffix_talea=[-1],
+                ...         suffix_counts=[1],
+                ...         talea_denominator=16,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r16
+                        c'4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4 ~
+                        c'16
+                        r16
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Silences every other logical tie:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=rhythmmakertools.InciseSpecifier(
+                ...         outer_divisions_only=True,
+                ...         prefix_talea=[-1],
+                ...         prefix_counts=[1],
+                ...         suffix_talea=[-1],
+                ...         suffix_counts=[1],
+                ...         talea_denominator=16,
+                ...         ),
+                ...     logical_tie_masks=[
+                ...         rhythmmakertools.silence_every([1], period=2),
+                ...         ],
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r16
+                        r4..
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4 ~
+                        c'16
+                        r16
+                    }
+                }
+
+        Set to masks or none.
+
+        Defaults to none.
+
+        Returns masks or none.
+        '''
+        superclass = super(IncisedRhythmMaker, self)
+        return superclass.logical_tie_masks
 
     @property
     def split_divisions_by_counts(self):
