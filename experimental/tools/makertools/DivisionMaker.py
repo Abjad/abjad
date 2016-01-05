@@ -1,6 +1,7 @@
 # -*- encoding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import sequencetools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import new
 
@@ -385,7 +386,7 @@ class DivisionMaker(AbjadValueObject):
             if start_offset is not None:
                 result._start_offset = start_offset
                 start_offset += result.duration
-        elif isinstance(expr, list):
+        elif isinstance(expr, (list, sequencetools.Sequence)):
             result = []
             for element in expr:
                 new_element, start_offset = DivisionMaker._to_divisions(
@@ -393,6 +394,7 @@ class DivisionMaker(AbjadValueObject):
                     start_offset=start_offset,
                     )
                 result.append(new_element)
+            result = type(expr)(result)
         else:
             raise TypeError(repr(expr))
         return result, start_offset

@@ -156,6 +156,7 @@ class SplitByDurationsDivisionCallback(AbjadValueObject):
         remainder=Right,
         remainder_fuse_threshold=None,
         ):
+        compound_meter_multiplier = compound_meter_multiplier or 1
         compound_meter_multiplier = durationtools.Multiplier(
             compound_meter_multiplier)
         self._compound_meter_multiplier = compound_meter_multiplier
