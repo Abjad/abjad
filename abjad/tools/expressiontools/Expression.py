@@ -12,6 +12,7 @@ class Expression(AbjadObject):
 
     __slots__ = (
         '_callbacks',
+        '_client_class',
         )
 
     ### INITIALIZER ###
@@ -20,6 +21,7 @@ class Expression(AbjadObject):
         if callbacks is not None:
             callbacks = tuple(callbacks)
         self._callbacks = callbacks
+        self._client_class = None
 
     ### PRIVATE METHODS ###
 

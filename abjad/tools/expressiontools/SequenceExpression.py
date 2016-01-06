@@ -263,6 +263,13 @@ class SequenceExpression(Expression):
     __slots__ = (
         )
 
+    ### INITIALIZER ###
+
+    def __init__(self, callbacks=None):
+        superclass = super(SequenceExpression, self)
+        superclass.__init__(callbacks=callbacks)
+        self._client_class = sequencetools.Sequence
+
     ### SPECIAL METHODS ###
 
     def __add__(self, expr):
@@ -286,9 +293,11 @@ class SequenceExpression(Expression):
         '''
         from abjad.tools import sequencetools
         if items is None:
-            result = sequencetools.Sequence()
+            #result = sequencetools.Sequence()
+            result = self._client_class()
         else:
-            result = sequencetools.Sequence(items)
+            #result = sequencetools.Sequence(items)
+            result = self._client_class(items)
         callbacks = self.callbacks or ()
         map_next = False
         for callback in callbacks:
