@@ -248,6 +248,20 @@ class SequenceExpression(Expression):
             >>> expression(range(1, 10+1))
             Sequence((Sequence((1, 2, 3, 4)), Sequence((5, 5)), Sequence((1, 7, 2)), Sequence((6, 4)), Sequence((5, 5))))
 
+    ..  container:: example
+
+        **Example 17.** Makes expression to rotate sequence:
+
+        ::
+
+            >>> expression = sequence()
+            >>> expression = expression.rotate(-1)
+
+        ::
+
+            >>> expression(range(1, 10+1))
+            Sequence((2, 3, 4, 5, 6, 7, 8, 9, 10, 1))
+
     ..  note:: Aadd usage examples to this docstring. Do not add
         usage examples to property and method docstrings. Properties
         and methods will all be derived automatically from the Sequence class
@@ -442,12 +456,15 @@ class SequenceExpression(Expression):
         '''
         return self._make_callback('Sequence.reverse')
 
-    def rotate(self):
+    def rotate(self, n=None):
         r'''Makes rotate callback.
 
         Returns callback.
         '''
-        return self._make_callback('Sequence.rotate')
+        arguments = {
+            'n': n,
+            }
+        return self._make_callback('Sequence.rotate', arguments)
 
     def sequence(self):
         r'''Makes sequence callback.
