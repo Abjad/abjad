@@ -7,7 +7,7 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 1.** Colors leaves:
+        **Example 1.** Makes expression to color leaves:
 
         ::
 
@@ -64,7 +64,7 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 2.** Colors note note heads:
+        **Example 2.** Makes expression to color note note heads:
 
         ::
 
@@ -95,7 +95,7 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 3.** Labels logical ties with durations:
+        **Example 3.** Makes expression to label logical ties with durations:
 
         ::
 
@@ -138,7 +138,7 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 4.** Labels logical ties with indices:
+        **Example 4.** Makes expression to label logical ties with indices:
 
         ::
 
@@ -181,7 +181,8 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 5.** Labels consecutive notes with named intervals:
+        **Example 5.** Makes expression to label consecutive notes with named
+        intervals:
 
         ::
 
@@ -208,7 +209,8 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 6.** Labels logical ties with start offsets:
+        **Example 6.** Makes expression to label logical ties with start
+        offsets:
 
         ::
 
@@ -251,7 +253,7 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 7.** Labels logical ties with pitch names:
+        **Example 7.** Makes expression to label logical ties with pitch names:
 
         ::
 
@@ -339,7 +341,9 @@ class LabelExpression(Expression):
     ### PUBLIC METHODS ###
 
     def color_container(self, color='red'):
-        r'''Colors contents of container.
+        r'''Make color-container callback.
+
+        Returns callback.
         '''
         arguments = {
             'color': color,
@@ -350,7 +354,9 @@ class LabelExpression(Expression):
             )
 
     def color_leaves(self, color='red'):
-        r'''Colors leaves.
+        r'''Makes color-leaves callback.
+
+        Returns callback.
         '''
         arguments = {
             'color': color,
@@ -361,7 +367,9 @@ class LabelExpression(Expression):
             )
 
     def color_note_heads(self, color_map=None):
-        r'''Colors note note heads by `color_map`.
+        r'''Makes color-note-heads callback.
+
+        Returns callback.
         '''
         arguments = {
             'color_map': color_map,
@@ -372,12 +380,16 @@ class LabelExpression(Expression):
             )
 
     def remove_markup(self):
-        r'''Removes markup from leaves.
+        r'''Makes remove-markup callback.
+
+        Returns callback.
         '''
         return self._make_callback('agenttools.LabelAgent.remove_markup')
 
     def vertical_moments(self, direction=Up, prototype=None):
-        r'''Labels vertical moments.
+        r'''Makes vertical-moments callback.
+
+        Returns callback.
         '''
         arguments = {
             'direction': direction,
@@ -389,7 +401,9 @@ class LabelExpression(Expression):
             )
 
     def with_durations(self, direction=Up, preferred_denominator=None):
-        r'''Labels durations.
+        r'''Makes with-durations callback.
+
+        Returns callback.
         '''
         arguments = {
             'direction': direction,
@@ -401,7 +415,9 @@ class LabelExpression(Expression):
             )
 
     def with_indices(self, direction=Up, prototype=None):
-        r'''Labels indices.
+        r'''Makes with-indices callback.
+
+        Returns callback.
         '''
         arguments = {
             'direction': direction,
@@ -413,7 +429,9 @@ class LabelExpression(Expression):
             )
 
     def with_intervals(self, direction=Up, prototype=None):
-        r'''Labels intervals.
+        r'''Makes with-intervals callback.
+
+        Returns callback.
         '''
         arguments = {
             'direction': direction,
@@ -425,7 +443,9 @@ class LabelExpression(Expression):
             )
 
     def with_pitches(self, direction=Up, prototype=None):
-        r'''Labels pitches.
+        r'''Makes with-pitches callback.
+
+        Returns callback.
         '''
         arguments = {
             'direction': direction,
@@ -437,7 +457,9 @@ class LabelExpression(Expression):
             )
 
     def with_start_offsets(self, direction=Up):
-        r'''Labels offsets.
+        r'''Makes with-start-offsets callback.
+
+        Returns callback.
         '''
         arguments = {
             'direction': direction,

@@ -2,7 +2,7 @@
 
 
 def label(expr=None):
-    r'''Labels `expr`.
+    r'''Labels `expr` or makes label expression.
 
     ..  container:: example
 

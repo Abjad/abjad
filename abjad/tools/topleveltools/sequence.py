@@ -6,7 +6,7 @@ def sequence():
 
     ..  container:: example
 
-        **Example 1.** Flattens and reverses sequence:
+        **Example 1.** FMakes expression to flatten and reverse sequence:
 
         ::
 
@@ -40,7 +40,7 @@ def sequence():
 
     ..  container:: example
 
-        **Example 2.** Flattens, reverses and slices sequence:
+        **Example 2.** Makes expression to flatten, reverse and slice sequence:
 
         ::
 
