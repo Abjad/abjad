@@ -24,28 +24,12 @@ def label(expr=None):
                 \override TupletBracket #'staff-padding = #0
             } {
                 \times 2/3 {
-                    c'4
-                        ^ \markup {
-                            \small
-                                0
-                            }
-                    d'4
-                        ^ \markup {
-                            \small
-                                1/6
-                            }
-                    e'4 ~
-                        ^ \markup {
-                            \small
-                                1/3
-                            }
+                    c'4 ^ \markup { 0 }
+                    d'4 ^ \markup { 1/6 }
+                    e'4 ~ ^ \markup { 1/3 }
                 }
                 e'4
-                ef'4
-                    ^ \markup {
-                        \small
-                            3/4
-                        }
+                ef'4 ^ \markup { 3/4 }
             }
 
         See the ``LabelAgent`` API entry for many more examples.
@@ -73,28 +57,12 @@ def label(expr=None):
                 \override TupletBracket #'staff-padding = #0
             } {
                 \times 2/3 {
-                    c'4
-                        ^ \markup {
-                            \small
-                                0
-                            }
-                    d'4
-                        ^ \markup {
-                            \small
-                                1/6
-                            }
-                    e'4 ~
-                        ^ \markup {
-                            \small
-                                1/3
-                            }
+                    c'4 ^ \markup { 0 }
+                    d'4 ^ \markup { 1/6 }
+                    e'4 ~ ^ \markup { 1/3 }
                 }
                 e'4
-                ef'4
-                    ^ \markup {
-                        \small
-                            3/4
-                        }
+                ef'4 ^ \markup { 3/4 }
             }
 
         See the ``LabelExpression`` API entry for many more examples.
