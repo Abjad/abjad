@@ -1626,7 +1626,12 @@ class LabelAgent(abctools.AbjadObject):
             if label is not None:
                 attach(label, leaf)
 
-    def with_start_offsets(self, clock_time=False, direction=Up):
+    def with_start_offsets(
+        self, 
+        clock_time=False, 
+        direction=Up,
+        font_size=None,
+        ):
         r'''Labels logical ties with start offsets.
 
         ..  container:: example
@@ -1649,28 +1654,12 @@ class LabelAgent(abctools.AbjadObject):
                     \override TupletBracket #'staff-padding = #0
                 } {
                     \times 2/3 {
-                        c'4
-                            ^ \markup {
-                                \small
-                                    0
-                                }
-                        d'4
-                            ^ \markup {
-                                \small
-                                    1/6
-                                }
-                        e'4 ~
-                            ^ \markup {
-                                \small
-                                    1/3
-                                }
+                        c'4 ^ \markup { 0 }
+                        d'4 ^ \markup { 1/6 }
+                        e'4 ~ ^ \markup { 1/3 }
                     }
                     e'4
-                    ef'4
-                        ^ \markup {
-                            \small
-                                3/4
-                            }
+                    ef'4 ^ \markup { 3/4 }
                 }
 
         ..  container:: example
@@ -1681,7 +1670,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> staff = Staff(r"c'2 d' e' f'")
                 >>> score = Score([staff])
-                >>> attach(Tempo(Duration(1, 4), 40), staff[0])
+                >>> attach(Tempo(Duration(1, 4), 60), staff[0])
                 >>> label(staff).with_start_offsets(clock_time=True)
                 >>> override(staff).text_script.staff_padding = 4
                 >>> override(staff).tuplet_bracket.staff_padding = 0
@@ -1695,26 +1684,64 @@ class LabelAgent(abctools.AbjadObject):
                         \override TextScript #'staff-padding = #4
                         \override TupletBracket #'staff-padding = #0
                     } {
-                        \tempo 4=40
+                        \tempo 4=60
+                        c'2 ^ \markup { 0'00'' }
+                        d'2 ^ \markup { 0'02'' }
+                        e'2 ^ \markup { 0'04'' }
+                        f'2 ^ \markup { 0'06'' }
+                    }
+                >>
+
+        ..  container:: example
+
+            **Example 3.** Labels logical tie start offsets with clock time and
+            custom font size:
+
+            ::
+
+                >>> staff = Staff(r"c'2 d' e' f'")
+                >>> score = Score([staff])
+                >>> attach(Tempo(Duration(1, 4), 60), staff[0])
+                >>> label(staff).with_start_offsets(
+                ...     clock_time=True, 
+                ...     font_size=-3,
+                ...     )
+                >>> override(staff).text_script.staff_padding = 4
+                >>> override(staff).tuplet_bracket.staff_padding = 0
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(score))
+                \new Score <<
+                    \new Staff \with {
+                        \override TextScript #'staff-padding = #4
+                        \override TupletBracket #'staff-padding = #0
+                    } {
+                        \tempo 4=60
                         c'2
                             ^ \markup {
-                                \small
+                                \fontsize
+                                    #-3
                                     0'00''
                                 }
                         d'2
                             ^ \markup {
-                                \small
-                                    0'00''
+                                \fontsize
+                                    #-3
+                                    0'02''
                                 }
                         e'2
                             ^ \markup {
-                                \small
-                                    0'01''
+                                \fontsize
+                                    #-3
+                                    0'04''
                                 }
                         f'2
                             ^ \markup {
-                                \small
-                                    0'01''
+                                \fontsize
+                                    #-3
+                                    0'06''
                                 }
                     }
                 >>
@@ -1723,12 +1750,17 @@ class LabelAgent(abctools.AbjadObject):
         '''
         logical_ties = iterate(self.client).by_logical_tie()
         for logical_tie in logical_ties:
-            timespan = inspect_(logical_tie.head).get_timespan()
-            offset = timespan.start_offset
-            string = str(offset)
             if clock_time:
-                string = offset.to_clock_string()
+                inspector = inspect_(logical_tie.head)
+                timespan = inspector.get_timespan(in_seconds=True)
+                start_offset = timespan.start_offset
+                string = start_offset.to_clock_string()
                 string = '"{}"'.format(string)
+            else:
+                timespan = inspect_(logical_tie.head).get_timespan()
+                start_offset = timespan.start_offset
+                string = str(start_offset)
             label = markuptools.Markup(string, direction=direction)
-            label = label.small()
+            if font_size is not None:
+                label = label.fontsize(font_size)
             attach(label, logical_tie.head)

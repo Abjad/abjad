@@ -227,27 +227,11 @@ class LabelExpression(Expression):
 
             >>> f(staff)
             \new Staff {
-                <c' bf'>8
-                    ^ \markup {
-                        \small
-                            0
-                        }
-                <g' a'>4
-                    ^ \markup {
-                        \small
-                            1/8
-                        }
-                af'8 ~
-                    ^ \markup {
-                        \small
-                            3/8
-                        }
+                <c' bf'>8 ^ \markup { 0 }
+                <g' a'>4 ^ \markup { 1/8 }
+                af'8 ~ ^ \markup { 3/8 }
                 af'8
-                gf'8 ~
-                    ^ \markup {
-                        \small
-                            5/8
-                        }
+                gf'8 ~ ^ \markup { 5/8 }
                 gf'4
             }
 
@@ -456,13 +440,20 @@ class LabelExpression(Expression):
             arguments,
             )
 
-    def with_start_offsets(self, direction=Up):
+    def with_start_offsets(
+        self, 
+        clock_time=False, 
+        direction=Up, 
+        font_size=None,
+        ):
         r'''Makes with-start-offsets callback.
 
         Returns callback.
         '''
         arguments = {
+            'clock_time': clock_time,
             'direction': direction,
+            'font_size': font_size,
             }
         return self._make_callback(
             'agenttools.LabelAgent.with_start_offsets', 
