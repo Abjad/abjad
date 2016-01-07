@@ -7,7 +7,27 @@ class Fermata(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** A fermata:
+        **Example 1.** A short fermata:
+
+        ::
+
+            >>> score = Score([Staff([Note("c'4")])])
+            >>> fermata = indicatortools.Fermata(command='shortfermata')
+            >>> attach(fermata, score[0][0])
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    c'4 \shortfermata
+                }
+            >>
+
+    ..  container:: example
+
+        **Example 2.** A fermata:
 
         ::
 
@@ -27,7 +47,7 @@ class Fermata(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** A long fermata:
+        **Example 3.** A long fermata:
 
         ::
 
@@ -42,6 +62,26 @@ class Fermata(AbjadValueObject):
             \new Score <<
                 \new Staff {
                     c'4 \longfermata
+                }
+            >>
+
+    ..  container:: example
+
+        **Example 4.** A very long fermata:
+
+        ::
+
+            >>> score = Score([Staff([Note("c'4")])])
+            >>> fermata = indicatortools.Fermata('verylongfermata')
+            >>> attach(fermata, score[0][0])
+            >>> show(score) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(format(score))
+            \new Score <<
+                \new Staff {
+                    c'4 \verylongfermata
                 }
             >>
 
