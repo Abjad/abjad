@@ -1060,50 +1060,40 @@ class Duration(AbjadObject, fractions.Fraction):
         except:
             return False
 
-    def to_clock_string(self, escape_ticks=False):
+    def to_clock_string(self):
         r'''Changes duration to clock string.
 
         ..  container:: example
 
-            Changes numeric `seconds` to clock string:
-
-            ::
-
-                >>> duration = Duration(117)
-                >>> duration.to_clock_string()
-                '1\'57"'
-
-        ..  container:: example
-
-            Changes numeric `seconds` to escaped clock string:
+            **Example 1.** Changes duration to clock string:
 
             ::
 
                 >>> note = Note("c'4")
-                >>> clock_string = duration.to_clock_string(escape_ticks=True)
+                >>> duration = Duration(117)
+                >>> clock_string = duration.to_clock_string()
+                >>> clock_string
+                "1'57''"
 
             ::
 
-                >>> markup = markuptools.Markup('"%s"' % clock_string, Up)
+                >>> string = '"{}"'.format(clock_string)
+                >>> markup = markuptools.Markup(string, direction=Up)
                 >>> attach(markup, note)
+                >>> show(note) # doctest: +SKIP
 
             ..  doctest::
 
                 >>> print(format(note))
-                c'4 ^ \markup { 1'57\\" }
+                c'4 ^ \markup { 1'57'' }
+
+        Rounds down to nearest second.
 
         Returns string.
         '''
-        if self < 0:
-            message = 'seconds must be positive: {!r}.'
-            message = message.format(self)
-            raise ValueError(message)
         minutes = int(self / 60)
-        remaining_seconds = str(int(self - minutes * 60)).zfill(2)
-        if escape_ticks:
-            clock_string = "{}'{}\\\"".format(minutes, remaining_seconds)
-        else:
-            clock_string = "{}'{}\"".format(minutes, remaining_seconds)
+        seconds = str(int(self - minutes * 60)).zfill(2)
+        clock_string = "{}'{}''".format(minutes, seconds)
         return clock_string
 
     def to_score_markup(self):
