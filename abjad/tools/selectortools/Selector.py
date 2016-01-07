@@ -2403,55 +2403,18 @@ class Selector(AbjadValueObject):
 
                 >>> f(staff)
                 \new Staff {
-                    c'8
-                        ^ \markup {
-                            \small
-                                0
-                            }
-                    d'8
-                        ^ \markup {
-                            \small
-                                1/8
-                            }
-                    r8
-                        ^ \markup {
-                            \small
-                                1/4
-                            }
+                    c'8 ^ \markup { 0 }
+                    d'8 ^ \markup { 1/8 }
+                    r8 ^ \markup { 1/4 }
                     \times 2/3 {
-                        e'8
-                            ^ \markup {
-                                \small
-                                    3/8
-                                }
-                        r8
-                            ^ \markup {
-                                \small
-                                    11/24
-                                }
-                        f'8
-                            ^ \markup {
-                                \small
-                                    13/24
-                                }
+                        e'8 ^ \markup { 3/8 }
+                        r8 ^ \markup { 11/24 }
+                        f'8 ^ \markup { 13/24 }
                     }
-                    g'8
-                        ^ \markup {
-                            \small
-                                5/8
-                            }
-                    a'8
-                        ^ \markup {
-                            \small
-                                3/4
-                            }
-                    r8
-                        ^ \markup {
-                            \small
-                                7/8
-                            }
+                    g'8 ^ \markup { 5/8 }
+                    a'8 ^ \markup { 3/4 }
+                    r8 ^ \markup { 7/8 }
                 }
-
 
             Returns selection of leaf selection:
 
