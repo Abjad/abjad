@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import operator
+from abjad.tools import mathtools
 from abjad.tools.topleveltools.new import new
 from abjad.tools.datastructuretools.TypedTuple import TypedTuple
 
@@ -540,6 +541,80 @@ class CompoundPattern(TypedTuple):
         Returns string.
         '''
         return self._operator
+
+    @property
+    def period(self):
+        r'''Gets period of compound pattern.
+
+        ..  container:: example
+
+            **Example 1.** Gets period of pattern that selects every fourth and
+            fifth element:
+
+            ::
+
+                >>> pattern_1 = patterntools.Pattern([0], period=4)
+                >>> pattern_2 = patterntools.Pattern([0], period=5)
+                >>> pattern = pattern_1 | pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=4,
+                            ),
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=5,
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+            ::
+
+                >>> pattern.period
+                20
+
+        ..  container:: example
+
+            **Example 2.** Returns none when pattern contains acyclic parts:
+
+            ::
+
+                >>> pattern_1 = patterntools.Pattern([0], period=4)
+                >>> pattern_2 = patterntools.Pattern([0])
+                >>> pattern = pattern_1 | pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=4,
+                            ),
+                        patterntools.Pattern(
+                            indices=(0,),
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+            ::
+
+                >>> pattern.period is None
+                True
+
+        Returns positive integer.
+        '''
+        periods = [_.period for _ in self]
+        if None not in periods:
+            return mathtools.least_common_multiple(*periods)
 
     ### PUBLIC METHODS ###
 
