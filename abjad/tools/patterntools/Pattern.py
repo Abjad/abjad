@@ -364,37 +364,53 @@ class Pattern(AbjadValueObject):
     @property
     def vector(self):
         r'''Gets vector pattern.
+
+        ..  container:: example
+
+            **Example 1.** Gets vector of acyclic pattern:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[4, 5, 6, 7],
+                ...     )
+
+            ::
+
+                >>> pattern.vector
+                [0, 0, 0, 0, 1, 1, 1, 1]
         
         ..  container:: example
 
-            **Example 1.** Gets vector of cyclic pattern:
+            **Example 2.** Gets vector of cyclic pattern:
 
             ::
 
                 >>> pattern = patterntools.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
+                ...     indices=[4, 5, 6, 7],
+                ...     period=20,
                 ...     )
 
             ::
 
                 >>> pattern.vector
-                [1, 1, 0, 0, 0, 0, 0, 1]
+                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         ..  container:: example
 
-            **Example 2.** Gets vector of acyclic pattern:
+            **Example 3.** Gets vector of inverted pattern:
 
             ::
 
                 >>> pattern = patterntools.Pattern(
-                ...     indices=[0, 2, 3],
+                ...     indices=[4, 5, 6, 7],
+                ...     period=20,
                 ...     )
 
             ::
 
                 >>> pattern.vector
-                [1, 0, 1, 1]
+                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
         Vector defined equal to list of ones and zeroes with length equal to
         length of pattern.
@@ -404,9 +420,15 @@ class Pattern(AbjadValueObject):
         result = []
         for i in range(len(self)):
             if i in self.indices:
-                result.append(1)
+                if self.inverted:
+                    result.append(0)
+                else:
+                    result.append(1)
             else:
-                result.append(0)
+                if self.inverted:
+                    result.append(1)
+                else:
+                    result.append(0)
         return result
 
     @property
