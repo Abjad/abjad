@@ -932,8 +932,8 @@ class Sequence(AbjadObject):
         '''
         return type(self)(reversed(self))
 
-    def rotate(self, n):
-        '''Rotates sequence.
+    def rotate(self, index=None):
+        '''Rotates sequence by `index`.
 
         ..  container:: example
 
@@ -965,10 +965,11 @@ class Sequence(AbjadObject):
 
         Returns new sequence.
         '''
+        index = index or 0
         result = []
         if len(self):
-            n = n % len(self)
-            for item in self[-n:len(self)] + self[:-n]:
+            index = index % len(self)
+            for item in self[-index:len(self)] + self[:-index]:
                 result.append(item)
         return type(self)(result)
 

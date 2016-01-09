@@ -456,13 +456,13 @@ class SequenceExpression(Expression):
         '''
         return self._make_callback('Sequence.reverse')
 
-    def rotate(self, n=None):
+    def rotate(self, index=None):
         r'''Makes rotate callback.
 
         Returns callback.
         '''
         arguments = {
-            'n': n,
+            'index': index,
             }
         return self._make_callback('Sequence.rotate', arguments)
 

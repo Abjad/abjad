@@ -2,7 +2,7 @@
 import collections
 
 
-def rotate_sequence(sequence, n):
+def rotate_sequence(sequence, index=None):
     '''Rotates `sequence`.
 
     ..  container:: example
@@ -55,15 +55,8 @@ def rotate_sequence(sequence, n):
     Returns new object of `sequence` type.
     '''
     from abjad.tools import sequencetools
-
-    if not isinstance(sequence, collections.Sequence):
-        message = 'must by sequence {!r}.'
-        message = message.format(sequence)
-        raise Exception(message)
-
     sequence_type = type(sequence)
-
     result = sequencetools.Sequence(sequence)
-    result = result.rotate(n)
+    result = result.rotate(index=index)
     result = sequence_type(result)
     return result
