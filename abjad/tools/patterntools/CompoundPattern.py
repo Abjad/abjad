@@ -618,7 +618,7 @@ class CompoundPattern(TypedTuple):
 
     ### PUBLIC METHODS ###
 
-    def get_boolean_vector(self, total_length, rotation=None):
+    def get_boolean_vector(self, total_length=None):
         r'''Gets boolean vector of pattern applied to input sequence with
         `total_length`.
 
@@ -698,11 +698,72 @@ class CompoundPattern(TypedTuple):
             Matches every index that is (equal to 0 % 2) AND (not one of the
             last three indices).
 
+        ..  container:: example
+
+            **Example 3.** Cyclic pattern that selects every fourth and fifth
+            item:
+
+            ::
+
+                >>> pattern_1 = patterntools.Pattern([0], period=4)
+                >>> pattern_2 = patterntools.Pattern([0], period=5)
+                >>> pattern = pattern_1 | pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=4,
+                            ),
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=5,
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+            ::
+
+                >>> pattern.get_boolean_vector(4)
+                [1, 0, 0, 0]
+
+            ::
+
+                >>> pattern.get_boolean_vector(8)
+                [1, 0, 0, 0, 1, 1, 0, 0]
+
+            ::
+
+                >>> pattern.get_boolean_vector(16)
+                [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1]
+
+            Sets total length to period of pattern when `total_length` is none:
+
+            ::
+
+                >>> pattern.period
+                20
+
+            ::
+
+                >>> pattern.get_boolean_vector()
+                [1, 0, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 1, 0, 0, 1, 1, 0, 0, 0]
+
+            ::
+
+                >>> pattern.period == len(pattern.get_boolean_vector())
+                True
+
         Returns list of ones and zeroes.
         '''
+        total_length = total_length or self.period
         boolean_vector = []
         for index in range(total_length):
-            result = self.matches_index(index, total_length, rotation=rotation)
+            result = self.matches_index(index, total_length)
             boolean_vector.append(int(result))
         return boolean_vector
 

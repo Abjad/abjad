@@ -587,10 +587,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern.get_boolean_vector()
                 [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
 
-        Vector defined equal to list of ones and zeroes with length equal to
-        length of pattern.
-
-        Sets `total_length` to period of pattern when `total_length` is none.
+        Returns list of ones and zeroes.
         '''
         total_length = total_length or len(self)
         boolean_vector = []
