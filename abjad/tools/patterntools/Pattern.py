@@ -362,76 +362,6 @@ class Pattern(AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def vector(self):
-        r'''Gets vector pattern.
-
-        ..  container:: example
-
-            **Example 1.** Gets vector of acyclic pattern:
-
-            ::
-
-                >>> pattern = patterntools.Pattern(
-                ...     indices=[4, 5, 6, 7],
-                ...     )
-
-            ::
-
-                >>> pattern.vector
-                [0, 0, 0, 0, 1, 1, 1, 1]
-        
-        ..  container:: example
-
-            **Example 2.** Gets vector of cyclic pattern:
-
-            ::
-
-                >>> pattern = patterntools.Pattern(
-                ...     indices=[4, 5, 6, 7],
-                ...     period=20,
-                ...     )
-
-            ::
-
-                >>> pattern.vector
-                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-        ..  container:: example
-
-            **Example 3.** Gets vector of inverted pattern:
-
-            ::
-
-                >>> pattern = patterntools.Pattern(
-                ...     indices=[4, 5, 6, 7],
-                ...     period=20,
-                ...     )
-
-            ::
-
-                >>> pattern.vector
-                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
-        Vector defined equal to list of ones and zeroes with length equal to
-        length of pattern.
-
-        Returns list.
-        '''
-        result = []
-        for i in range(len(self)):
-            if i in self.indices:
-                if self.inverted:
-                    result.append(0)
-                else:
-                    result.append(1)
-            else:
-                if self.inverted:
-                    result.append(1)
-                else:
-                    result.append(0)
-        return result
-
-    @property
     def weight(self):
         r'''Gets weight of pattern.
 
@@ -553,6 +483,121 @@ class Pattern(AbjadValueObject):
             period=period,
             indices=indices,
             )
+
+    def get_boolean_vector(self, total_length=None):
+        r'''Gets boolean vector of pattern applied to input sequence with
+        `total_length`.
+
+        ..  container:: example
+
+            **Example 1.** Gets boolean vector of acyclic pattern:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[4, 5, 6, 7],
+                ...     )
+
+
+            ::
+
+                >>> pattern.get_boolean_vector(4)
+                [0, 0, 0, 0]
+
+            ::
+
+                >>> pattern.get_boolean_vector(8)
+                [0, 0, 0, 0, 1, 1, 1, 1]
+
+            ::
+
+                >>> pattern.get_boolean_vector(16)
+                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+
+            Sets total length to length of pattern when `total_length` is none:
+
+            ::
+
+                >>> pattern.get_boolean_vector()
+                [0, 0, 0, 0, 1, 1, 1, 1]
+        
+        ..  container:: example
+
+            **Example 2.** Gets vector of cyclic pattern:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[4, 5, 6, 7],
+                ...     period=20,
+                ...     )
+
+            ::
+
+                >>> pattern.get_boolean_vector(4)
+                [0, 0, 0, 0]
+
+            ::
+
+                >>> pattern.get_boolean_vector(8)
+                [0, 0, 0, 0, 1, 1, 1, 1]
+
+            ::
+
+                >>> pattern.get_boolean_vector(16)
+                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+
+            Sets total length to length of pattern when `total_length` is none:
+
+            ::
+
+                >>> pattern.get_boolean_vector()
+                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+        ..  container:: example
+
+            **Example 3.** Gets vector of inverted pattern:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[4, 5, 6, 7],
+                ...     period=20,
+                ...     )
+
+            ::
+
+                >>> pattern.get_boolean_vector(4)
+                [0, 0, 0, 0]
+
+            ::
+
+                >>> pattern.get_boolean_vector(8)
+                [0, 0, 0, 0, 1, 1, 1, 1]
+
+            ::
+
+                >>> pattern.get_boolean_vector(16)
+                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0]
+
+            Sets total length to length of pattern when `total_length` is none:
+
+            ::
+
+                >>> pattern.get_boolean_vector()
+                [0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+        Vector defined equal to list of ones and zeroes with length equal to
+        length of pattern.
+
+        Sets `total_length` to period of pattern when `total_length` is none.
+        '''
+        total_length = total_length or len(self)
+        boolean_vector = []
+        for index in range(total_length):
+            result = self.matches_index(index, total_length)
+            boolean_vector.append(int(result))
+        return boolean_vector
 
     def matches_index(self, index, total_length, rotation=None):
         r'''Is true when pattern matches `index` taken under `total_length`.
