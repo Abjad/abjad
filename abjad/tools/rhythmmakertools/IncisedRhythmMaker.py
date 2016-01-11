@@ -277,7 +277,10 @@ class IncisedRhythmMaker(RhythmMaker):
                 selections,
                 )
             result.extend(tuplets)
-        assert self._all_are_tuplets_or_all_are_leaf_selections(result)
+        if not self._all_are_tuplets_or_all_are_leaf_selections(result):
+            message = 'should be tuplets or leaf selections: {!r}.'
+            message = message.format(result)
+            raise Exception(message)
         beam_specifier = self._get_beam_specifier()
         if beam_specifier.beam_divisions_together:
             beam = spannertools.MultipartBeam()
