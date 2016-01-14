@@ -37,7 +37,7 @@ class NoteAndChordHairpinsHandler(DynamicHandler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, logical_ties, timespan=None, offset=0):
+    def __call__(self, logical_ties, offset=0):
         r'''Calls handler on `logical_ties` with `offset`.
 
         Returns none.

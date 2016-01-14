@@ -28,7 +28,7 @@ class StemTremoloHandler(Handler):
 
     ### SPECIAL METHODS ###
 
-    def __call__(self, expr, timespan=None):
+    def __call__(self, expr):
         r'''Calls handler on `expr`.
 
         Returns none.

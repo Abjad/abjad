@@ -88,7 +88,6 @@ class PatternedArticulationsHandler(ArticulationHandler):
     def __call__(
         self, 
         expr, 
-        timespan=None, 
         offset=0, 
         skip_first=0, 
         skip_last=0,
