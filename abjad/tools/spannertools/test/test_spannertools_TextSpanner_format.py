@@ -48,6 +48,57 @@ def test_spannertools_TextSpanner_format_01():
 
 
 def test_spannertools_TextSpanner_format_02():
+    r'''Regression test: makes sure text spanner ignores nonannotated markup;
+    also makes sure nonannotated markup formats and appears in LilyPond
+    output.
+    '''
+
+    staff = scoretools.Staff("c'4 d'4 e'4 f'4")
+    nonannotated_markup = Markup('leggieriss.')
+    attach(nonannotated_markup, staff[0])
+
+    arrow_start = markuptools.Markup('ord.').upright()
+    arrow_stop = markuptools.Markup('pont.').upright()
+    markup_three = markuptools.Markup('three')
+    arrow = indicatortools.Arrow()
+    text_spanner = spannertools.TextSpanner()
+    attach(arrow_start, staff[0], is_annotation=True)
+    attach(arrow, staff[0])
+    attach(arrow_stop, staff[-1], is_annotation=True)
+    attach(text_spanner, staff[:])
+
+    assert format(staff) == systemtools.TestManager.clean_string(
+        r'''
+        \new Staff {
+            \once \override TextSpanner.arrow-width = 0.25
+            \once \override TextSpanner.bound-details.left-broken.text = ##f
+            \once \override TextSpanner.bound-details.left.stencil-align-dir-y = #center
+            \once \override TextSpanner.bound-details.left.text = \markup {
+                \concat
+                    {
+                        \upright
+                            ord.
+                        \hspace
+                            #0.25
+                    }
+                }
+            \once \override TextSpanner.bound-details.right-broken.padding = 0
+            \once \override TextSpanner.bound-details.right.arrow = ##t
+            \once \override TextSpanner.bound-details.right.padding = 1.5
+            \once \override TextSpanner.bound-details.right.stencil-align-dir-y = #center
+            \once \override TextSpanner.dash-fraction = 1
+            c'4 \startTextSpan - \markup { leggieriss. }
+            d'4
+            e'4
+            f'4 \stopTextSpan ^ \markup {
+                \upright
+                    pont.
+                }
+        }
+        ''')
+
+
+def test_spannertools_TextSpanner_format_03():
 
     staff = scoretools.Staff("c'4 d'4 e'4 f'4")
     markup_one = markuptools.Markup('one')

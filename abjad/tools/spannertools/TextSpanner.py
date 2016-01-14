@@ -67,7 +67,7 @@ class TextSpanner(Spanner):
 
     ..  container:: example
 
-        **Example 3a.** Text spanner interacting with annotated markup.
+        **Example 3.** Text spanner interacting with annotated markup.
         At the beginning of the spanner:
 
         ::
@@ -89,7 +89,11 @@ class TextSpanner(Spanner):
                 f'4
             }
 
-        **Example 3b.** Text spanner interacting with annotated markup.
+        Text spanner is suppresssed and only the markup appears.
+
+    ..  container:: example
+
+        **Example 4.** Text spanner interacting with annotated markup.
         At the end of the spanner:
 
         ::
@@ -111,7 +115,11 @@ class TextSpanner(Spanner):
                 f'4 ^ \markup { tasto }
             }
 
-        **Example 3c.** Text spanner interacting with annotated markup.
+        Text spanner is suppresssed and only the markup appears.
+
+    ..  container:: example
+
+        **Example 5.** Text spanner interacting with annotated markup.
         At the beginning and the end of the spanner:
 
         ::
@@ -135,8 +143,7 @@ class TextSpanner(Spanner):
                 f'4 ^ \markup { tasto }
             }
 
-        In all cases the text spanner is suppresssed and only the markup
-        appear.
+        Text spanner is suppresssed and only the markup appear.
 
     '''
 
@@ -154,10 +161,17 @@ class TextSpanner(Spanner):
 
     def _get_annotations(self, leaf):
         inspector = inspect_(leaf)
-        markups = None
+        markups = []
         prototype = markuptools.Markup
         if inspector.has_indicator(prototype):
-            markups = inspector.get_indicators(markuptools.Markup)
+            indicator_expressions = inspector.get_indicators(
+                markuptools.Markup,
+                unwrap=False,
+                )
+            for indicator_expression in indicator_expressions:
+                if indicator_expression.is_annotation:
+                    markups.append(indicator_expression.indicator)
+        markups = markups or None
         line_segment = None
         prototype = indicatortools.LineSegment
         if inspector.has_indicator(prototype):
