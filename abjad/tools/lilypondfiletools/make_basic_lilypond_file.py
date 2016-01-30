@@ -2,12 +2,11 @@
 from abjad.tools import scoretools
 
 
-def make_basic_lilypond_file(music=None, date_time_token=None):
+def make_basic_lilypond_file(music=None):
     r'''Makes basic LilyPond file.
 
     ..  container:: example
 
-        **Example 1.** Makes basic LilyPond file:
 
         ::
 
@@ -61,9 +60,7 @@ def make_basic_lilypond_file(music=None, date_time_token=None):
     from abjad.tools import lilypondfiletools
     if isinstance(music, lilypondfiletools.LilyPondFile):
         return music
-    lilypond_file = lilypondfiletools.LilyPondFile(
-        date_time_token=date_time_token,
-        )
+    lilypond_file = lilypondfiletools.LilyPondFile()
     header_block = lilypondfiletools.Block(name='header')
     layout_block = lilypondfiletools.Block(name='layout')
     paper_block = lilypondfiletools.Block(name='paper')

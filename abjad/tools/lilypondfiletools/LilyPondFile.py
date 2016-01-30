@@ -7,8 +7,6 @@ class LilyPondFile(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** Makes LilyPond file:
-
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
@@ -71,21 +69,14 @@ class LilyPondFile(AbjadObject):
 
             >>> show(lilypond_file) # doctest: +SKIP
 
-
     '''
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        date_time_token=None,
-        ):
+    def __init__(self):
         from abjad.tools import lilypondfiletools
         self._items = []
         self._file_initial_system_comments = []
-        if date_time_token in (None, True):
-            token = lilypondfiletools.DateTimeToken()
-            self._file_initial_system_comments.append(token)
+        token = lilypondfiletools.DateTimeToken()
+        self._file_initial_system_comments.append(token)
         self._file_initial_user_comments = []
         self._file_initial_system_includes = []
         token = lilypondfiletools.LilyPondVersionToken()
@@ -271,117 +262,10 @@ class LilyPondFile(AbjadObject):
             self,
             is_bracketed=True,
             is_indented=False,
-            keyword_argument_names=(),
             positional_argument_values=positional_argument_values,
             )
 
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def date_time_token(self):
-        r'''Gets date-time token of LilyPond file.
-
-        ..  container:: example
-
-            **Example 1.** Makes LilyPond file with date / time token:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     staff,
-                ...     )
-                >>> lilypond_file
-                <LilyPondFile(4)>
-
-            ::
-
-                >>> lilypond_file.date_time_token
-                DateTimeToken()
-
-            ::
-
-                >>> print(format(lilypond_file)) # doctest: +SKIP
-                % 2016-01-30 13:48
-
-                \version "2.19.35"
-                \language "english"
-
-                \header {}
-
-                \layout {}
-
-                \paper {}
-
-                \score {
-                    \new Staff {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                    }
-                }
-
-            ::
-
-                >>> show(lilypond_file) # doctest: +SKIP
-
-        ..  container:: example
-
-            **Example 2.** Makes LilyPond file without date / time token:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     staff,
-                ...     date_time_token=False,
-                ...     )
-                >>> lilypond_file
-                <LilyPondFile(4)>
-
-            ::
-
-                >>> lilypond_file.date_time_token is None
-                True
-
-            ::
-
-                >>> print(format(lilypond_file)) # doctest: +SKIP
-                \version "2.19.35"
-                \language "english"
-
-                \header {}
-
-                \layout {}
-
-                \paper {}
-
-                \score {
-                    \new Staff {
-                        c'8
-                        d'8
-                        e'8
-                        f'8
-                    }
-                }
-
-            ::
-
-                >>> show(lilypond_file) # doctest: +SKIP
-
-        Set to true, false or none.
-
-        Includes date-time token when set to true or none.
-
-        Excludes date-time token when set to false.
-
-        Returns date-time token or none.
-        '''
-        from abjad.tools import lilypondfiletools
-        for item in self.file_initial_system_comments:
-            if isinstance(item, lilypondfiletools.DateTimeToken):
-                return item
 
     @property
     def default_paper_size(self):
@@ -389,22 +273,10 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Sets and gets default paper size:
-
-            ::
-
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
-                >>> lilypond_file.default_paper_size = ('a5', 'portrait')
-
             ::
 
                 >>> lilypond_file.default_paper_size
                 ('a5', 'portrait')
-
-        Set to pair or none.
 
         Returns pair or none.
         '''
@@ -456,24 +328,13 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Sets and gets default paper size:
-
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
-                >>> lilypond_file.file_initial_user_comments.append('First comment')
-                >>> lilypond_file.file_initial_user_comments.append('Second comment')
-
-            ::
-
-                >>> for string in lilypond_file.file_initial_user_comments:
-                ...     string
+                >>> for x in lilypond_file.file_initial_user_comments:
+                ...     x
                 ...
-                'First comment'
-                'Second comment'
+                'File construct as an example.'
+                'Parts shown here for positioning.'
 
         Returns list.
         '''
@@ -485,21 +346,10 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets and sets file-initial user include commands:
-
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
-                >>> lilypond_file.file_initial_user_includes.append('external-settings-file-1.ly')
-                >>> lilypond_file.file_initial_user_includes.append('external-settings-file-2.ly')
-
-            ::
-
-                >>> for string in lilypond_file.file_initial_user_includes:
-                ...     string
+                >>> for x in lilypond_file.file_initial_user_includes:
+                ...     x
                 ...
                 'external-settings-file-1.ly'
                 'external-settings-file-2.ly'
@@ -514,22 +364,10 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets and sets global staff size:
-
-            ::
-
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
-
             ::
 
                 >>> lilypond_file.global_staff_size
-
-        Defaults to 16.
-
-        Set to number.
+                16
 
         Returns number.
         '''
@@ -562,7 +400,7 @@ class LilyPondFile(AbjadObject):
 
     @property
     def use_relative_includes(self):
-        r'''Is true when LilyPond file uses relative includes.
+        r'''Gets boolean flag to use relative include paths.
 
         ..  container:: example
 
@@ -570,8 +408,6 @@ class LilyPondFile(AbjadObject):
 
                 >>> lilypond_file.use_relative_includes
                 False
-
-        Set to true or false.
 
         Returns true or false.
         '''
