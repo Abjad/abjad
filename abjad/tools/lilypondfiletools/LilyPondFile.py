@@ -74,28 +74,11 @@ class LilyPondFile(AbjadObject):
 
     '''
 
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        '_date_time_token',
-        '_default_paper_size',
-        '_file_initial_system_comments',
-        '_file_initial_system_includes',
-        '_file_initial_user_comments',
-        '_file_initial_user_includes',
-        '_global_staff_size',
-        '_items',
-        '_use_relative_includes',
-        )
-
     ### INITIALIZER ###
 
     def __init__(
         self,
         date_time_token=None,
-        default_paper_size=None,
-        global_staff_size=None,
-        use_relative_includes=None,
         ):
         from abjad.tools import lilypondfiletools
         self._items = []
@@ -558,34 +541,6 @@ class LilyPondFile(AbjadObject):
         self._global_staff_size = arg
 
     @property
-    def header_block(self):
-        r'''Gets header block.
-
-        ..  container:: example
-
-            **Example 1.** Gets header block:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     staff,
-                ...     )
-
-            ::
-
-                >>> lilypond_file.header_block
-                <Block(name='header')>
-
-        Returns block with name equal to ``'header'`` or none.
-        '''
-        from abjad.tools import lilypondfiletools
-        for item in self.items:
-            if isinstance(item, lilypondfiletools.Block):
-                if item.name == 'header':
-                    return item
-
-    @property
     def items(self):
         r'''Gets items in LilyPond file.
 
@@ -604,90 +559,6 @@ class LilyPondFile(AbjadObject):
         Returns list.
         '''
         return self._items
-
-    @property
-    def layout_block(self):
-        r'''Gets layout block.
-
-        ..  container:: example
-
-            **Example 1.** Gets layout block:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     staff,
-                ...     )
-
-            ::
-
-                >>> lilypond_file.layout_block
-                <Block(name='layout')>
-
-        Returns block with name equal to ``'layout'`` or none.
-        '''
-        from abjad.tools import lilypondfiletools
-        for item in self.items:
-            if isinstance(item, lilypondfiletools.Block):
-                if item.name == 'layout':
-                    return item
-
-    @property
-    def paper_block(self):
-        r'''Gets paper block.
-
-        ..  container:: example
-
-            **Example 1.** Gets paper block:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     staff,
-                ...     )
-
-            ::
-
-                >>> lilypond_file.paper_block
-                <Block(name='paper')>
-
-        Returns block with name equal to ``'paper'`` or none.
-        '''
-        from abjad.tools import lilypondfiletools
-        for item in self.items:
-            if isinstance(item, lilypondfiletools.Block):
-                if item.name == 'paper':
-                    return item
-
-    @property
-    def score_block(self):
-        r'''Gets score block.
-
-        ..  container:: example
-
-            **Example 1.** Gets score block:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     staff,
-                ...     )
-
-            ::
-
-                >>> lilypond_file.score_block
-                <Block(name='score')>
-
-        Returns block with name equal to ``'score'`` or none.
-        '''
-        from abjad.tools import lilypondfiletools
-        for item in self.items:
-            if isinstance(item, lilypondfiletools.Block):
-                if item.name == 'score':
-                    return item
 
     @property
     def use_relative_includes(self):
