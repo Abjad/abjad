@@ -74,10 +74,6 @@ def make_basic_lilypond_file(music=None, date_time_token=None):
         paper_block,
         score_block,
         ])
-    lilypond_file.header_block = header_block
-    lilypond_file.layout_block = layout_block
-    lilypond_file.paper_block = paper_block
-    lilypond_file.score_block = score_block
     if music is not None:
         score_block.items.append(music)
     return lilypond_file
