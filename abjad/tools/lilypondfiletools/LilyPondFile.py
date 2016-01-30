@@ -133,15 +133,6 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets item with name equal to ``'header'``:
-
-            ::
-
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
-
             ::
 
                 >>> lilypond_file['header']
@@ -165,15 +156,6 @@ class LilyPondFile(AbjadObject):
         r'''Gets interpreter representation of LilyPond file.
 
         ..  container:: example
-
-            **Example 1.** Gets interpreter representation:
-
-            ::
-
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
 
             ::
 
@@ -334,6 +316,33 @@ class LilyPondFile(AbjadObject):
                 >>> lilypond_file.date_time_token
                 DateTimeToken()
 
+            ::
+
+                >>> print(format(lilypond_file)) # doctest: +SKIP
+                % 2016-01-30 13:48
+
+                \version "2.19.35"
+                \language "english"
+
+                \header {}
+
+                \layout {}
+
+                \paper {}
+
+                \score {
+                    \new Staff {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+                }
+
+            ::
+
+                >>> show(lilypond_file) # doctest: +SKIP
+
         ..  container:: example
 
             **Example 2.** Makes LilyPond file without date / time token:
@@ -352,6 +361,31 @@ class LilyPondFile(AbjadObject):
 
                 >>> lilypond_file.date_time_token is None
                 True
+
+            ::
+
+                >>> print(format(lilypond_file)) # doctest: +SKIP
+                \version "2.19.35"
+                \language "english"
+
+                \header {}
+
+                \layout {}
+
+                \paper {}
+
+                \score {
+                    \new Staff {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                    }
+                }
+
+            ::
+
+                >>> show(lilypond_file) # doctest: +SKIP
 
         Set to true, false or none.
 
@@ -404,19 +438,12 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets file-initial system comments:
-
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
-
-            ::
-
-                >>> lilypond_file.file_initial_system_comments
-                [DateTimeToken()]
+                >>> for x in lilypond_file.file_initial_system_comments: # doctest: +SKIP
+                ...     x
+                ...
+                DateTimeToken('2014-01-04 17:16')
 
         Returns list.
         '''
@@ -428,19 +455,13 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets file-initial system includes:
-
             ::
 
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
-
-            ::
-
-                >>> lilypond_file.file_initial_system_includes # doctest: +SKIP
-                [LilyPondVersionToken('2.19.35'), LilyPondLanguageToken()]
+                >>> for x in lilypond_file.file_initial_system_includes:
+                ...     x
+                ...
+                LilyPondVersionToken('...')
+                LilyPondLanguageToken()
 
         Returns list.
         '''
@@ -523,6 +544,8 @@ class LilyPondFile(AbjadObject):
 
                 >>> lilypond_file.global_staff_size
 
+        Defaults to 16.
+
         Set to number.
 
         Returns number.
@@ -554,7 +577,7 @@ class LilyPondFile(AbjadObject):
                 >>> lilypond_file.header_block
                 <Block(name='header')>
 
-        Returns block or none.
+        Returns block with name equal to ``'header'`` or none.
         '''
         from abjad.tools import lilypondfiletools
         for item in self.items:
@@ -567,15 +590,6 @@ class LilyPondFile(AbjadObject):
         r'''Gets items in LilyPond file.
 
         ..  container:: example
-
-            **Example 1.** Gets items:
-
-            ::
-
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
 
             ::
 
@@ -611,7 +625,7 @@ class LilyPondFile(AbjadObject):
                 >>> lilypond_file.layout_block
                 <Block(name='layout')>
 
-        Returns block or none.
+        Returns block with name equal to ``'layout'`` or none.
         '''
         from abjad.tools import lilypondfiletools
         for item in self.items:
@@ -639,7 +653,7 @@ class LilyPondFile(AbjadObject):
                 >>> lilypond_file.paper_block
                 <Block(name='paper')>
 
-        Returns block or none.
+        Returns block with name equal to ``'paper'`` or none.
         '''
         from abjad.tools import lilypondfiletools
         for item in self.items:
@@ -667,7 +681,7 @@ class LilyPondFile(AbjadObject):
                 >>> lilypond_file.score_block
                 <Block(name='score')>
 
-        Returns block or none.
+        Returns block with name equal to ``'score'`` or none.
         '''
         from abjad.tools import lilypondfiletools
         for item in self.items:
@@ -681,21 +695,14 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets relative include flag:
-
             ::
-
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-                ...     music=staff,
-                ...     )
 
                 >>> lilypond_file.use_relative_includes
                 False
 
-        Set to true, false or none.
+        Set to true or false.
 
-        Returns true, false or none.
+        Returns true or false.
         '''
         return self._use_relative_includes
 
