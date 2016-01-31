@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import pytest
 from abjad import *
 
 
@@ -71,7 +70,6 @@ def test_indicatortools_Articulation___init___06():
     r'''Direction can be set to default.
     '''
 
-    note = Note("c'4")
     articulation = Articulation('staccato')
     assert articulation.direction is None
     assert str(articulation) == r'-\staccato'
@@ -79,7 +77,6 @@ def test_indicatortools_Articulation___init___06():
     articulation = Articulation('staccato', '-')
     assert articulation.direction == Center
     assert str(articulation) == r'-\staccato'
-
 
 
 def test_indicatortools_Articulation___init___07():
@@ -96,6 +93,6 @@ def test_indicatortools_Articulation___init___07():
     assert articulation.name == '-'
     assert str(articulation) == r'-\tenuto'
 
-    articulation = Articulation('|')
-    assert articulation.name == '|'
+    articulation = Articulation('!')
+    assert articulation.name == '!'
     assert str(articulation) == r'-\staccatissimo'

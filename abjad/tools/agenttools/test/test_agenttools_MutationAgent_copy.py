@@ -1158,7 +1158,7 @@ def test_agenttools_MutationAgent_copy_23():
     old_staff = Staff("c'4 d'4 e'4 f'4")
     indicator = indicatortools.BendAfter()
     attach(indicator, old_staff[0], is_annotation=True)
-    assert format(old_staff) == systemtools.TestManager.clean_string(
+    assert format(old_staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'4
@@ -1170,7 +1170,7 @@ def test_agenttools_MutationAgent_copy_23():
     assert inspect_(old_staff[0]).get_indicators() == (indicator,)
 
     new_staff = mutate(old_staff).copy()
-    assert format(new_staff) == systemtools.TestManager.clean_string(
+    assert format(new_staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'4

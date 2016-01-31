@@ -14,7 +14,7 @@ def test_indicatortools_Clef___copy___01():
     copied_notes = mutate(staff[:2]).copy()
     staff.extend(copied_notes)
 
-    assert format(staff) == systemtools.TestManager.clean_string(
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \clef "treble"
@@ -70,7 +70,7 @@ def test_indicatortools_Clef___copy___02():
     assert inspect_(staff[8]).get_effective(Clef) == Clef('bass')
     assert inspect_(staff[9]).get_effective(Clef) == Clef('bass')
 
-    assert format(staff) == systemtools.TestManager.clean_string(
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \clef "treble"

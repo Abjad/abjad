@@ -100,7 +100,7 @@ def test_markuptools_Markup___init___08():
     markup = markuptools.Markup([fraction_one, delimiter_string, fraction_two])
     markup = markup.pad_around(0.5).box()
 
-    assert format(markup, 'lilypond') == systemtools.TestManager.clean_string(
+    assert format(markup, 'lilypond') == stringtools.normalize(
         r'''
         \markup {
             \box

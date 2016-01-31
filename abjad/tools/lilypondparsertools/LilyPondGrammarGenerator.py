@@ -1,81 +1,158 @@
 # -*- coding: utf-8 -*-
+import re
+from abjad.tools import stringtools
 from abjad.tools.abctools import AbjadObject
 
 
 class LilyPondGrammarGenerator(AbjadObject):
     r'''Generates a syntax skeleton from LilyPond grammar files.
+
+    To generate LilyPond's ``parser.output`` and ``parser.tab.cc`` files,
+    navigate to the ``lily`` directory in LilyPond's source code and run the
+    following command::
+
+        $ bison --defines --verbose parser.yy
+
     '''
+
+    ### CLASS VARIABLES ###
+
+    _module_header = stringtools.normalize(r"""
+        # -*- encoding: utf-8 -*-
+        from abjad.tools.abctools import AbjadObject
+        from abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode import SyntaxNode
+
+
+        class _LilyPondSyntacticalDefinition(AbjadObject):
+            r'''The syntactical definition of LilyPond's syntax.
+
+            Effectively equivalent to LilyPond's ``parser.yy`` file.
+
+            Not composer-safe.
+
+            Used internally by ``LilyPondParser``.
+            '''
+
+            ### CLASS VARIABLES ###
+
+            __slots__ = ()
+
+            start_symbol = 'start_symbol'
+
+            precedence = (
+                # ('nonassoc', 'REPEAT'),
+                # ('nonassoc', 'ALTERNATIVE'),
+                ('nonassoc', 'COMPOSITE'),
+                # ('left', 'ADDLYRICS'),
+                ('nonassoc', 'DEFAULT'),
+                ('nonassoc', 'FUNCTION_ARGLIST'),
+                ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH',
+                    'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),
+                ('nonassoc', 'NUMBER_IDENTIFIER', '/'),
+                ('left', '+', '-'),
+                # ('left', 'UNARY_MINUS')
+                )
+
+            ### INITIALIZER ###
+
+            def __init__(self, client=None):
+                self.client = client
+                if client is not None:
+                    self.tokens = self.client._lexdef.tokens
+                else:
+                    self.tokens = []
+
+            ### SYNTACTICAL RULES (ALPHABETICAL) ###
+
+        """
+        )
+
+    _production_template = stringtools.normalize(r'''
+        def {funcname}(self, production):
+            {docstring!r}
+            production[0] = SyntaxNode({nonterminal!r}, production[1:])
+        ''',
+        indent=4,
+        )
+
+    _production_regex = re.compile(r'''\d+\s+([\w\$\@]+): (.+)''')
+
+    _terminal_regex = re.compile(r'''^(".+"|'.+'|[A-Z_]+)\s+\((\d+)\).*$''')
 
     ### SPECIAL METHODS ###
 
     def __call__(
         self,
-        skeleton_path,
-        parser_output_path,
-        parser_tab_hh_path,
+        output_path=None,
+        parser_output_path=None,
+        parser_tab_hh_path=None,
         ):
         r'''Calls LilyPond grammar generator.
         '''
-        self._write_parser_syntax_skeleton(
-            self,
-            skeleton_path,
-            parser_output_path,
-            parser_tab_hh_path,
+        with open(parser_output_path, 'r') as file_pointer:
+            parser_output_lines = file_pointer.readlines()
+        with open(parser_tab_hh_path, 'r') as file_pointer:
+            parser_tab_hh_lines = file_pointer.readlines()
+        productions = self._generate_production_map(
+            parser_output_lines,
+            parser_tab_hh_lines,
             )
+        skeleton_string = self._build_parser_syntax_skeleton(productions)
+        with open(output_path, 'w') as file_pointer:
+            file_pointer.write(skeleton_string)
 
     ### PRIVATE METHODS ###
 
     def _extract_productions_from_parser_output(
         self,
-        file_path,
+        parser_output_lines,
         ):
-        with open(file_path, 'r') as f:
-            lines = f.read().split('\n')
-        productions = { }
-        nonterminal = None
+        productions = {}
+        current_nonterminal = None
         in_grammar = False
-        for line in lines:
-            text = line.strip()
-            # starting and stopping
-            if text == 'Terminals, with rules where they appear':
+        for line in parser_output_lines:
+            line = line.strip()
+            if line == 'Terminals, with rules where they appear':
                 break
-            elif text == 'Grammar':
+            elif line == 'Grammar':
                 in_grammar = True
                 continue
             if not in_grammar:
                 continue
-            if not text:
+            if not line:
                 continue
-            parts = text.split()[1:]
-            if parts[0].startswith('$'):
-                continue
-            elif parts[0] == '|':
-                right_hand = filter(lambda x: not x.startswith('$'), parts[1:])
-                productions[nonterminal].append(parts[1:])
-            else:
-                nonterminal = parts[0][:-1]
-                if nonterminal not in productions:
-                    productions[nonterminal] = []
-                right_hand = parts[1:]
-                if right_hand[0] == '/*': # /* empty */
-                    productions[nonterminal].append([])
+            match = self._production_regex.match(line)
+            if match:
+                current_nonterminal, right_hand_side = match.groups()
+                if current_nonterminal.startswith(('$', '@')):
+                    continue
+                if current_nonterminal not in productions:
+                    productions[current_nonterminal] = []
+                if right_hand_side == '/* empty */':
+                    productions[current_nonterminal].append([])
                 else:
-                    right_hand = filter(lambda x: not x.startswith('$'), right_hand)
-                    productions[nonterminal].append(right_hand)
+                    right_hand_side = right_hand_side.split()
+                    right_hand_side = [_ for _ in right_hand_side
+                        if not _.startswith('@')]
+                    productions[current_nonterminal].append(right_hand_side)
+                continue
+            right_hand_side = line.partition('|')[-1].strip()
+            right_hand_side = right_hand_side.split()
+            right_hand_side = [_ for _ in right_hand_side
+                if not _.startswith('@')]
+            productions[current_nonterminal].append(right_hand_side)
         return productions
 
     def _extract_token_names_from_parser_tab_hh(
         self,
-        file_path,
+        parser_tab_hh_lines,
         ):
-        with open(file_path, 'r') as f:
-            lines = f.read().split('\n')
-        token_names = { }
+        token_names = {}
         in_enum = False
-        for line in lines:
+        for line in parser_tab_hh_lines:
             text = line.strip()
             if in_enum and text == '};':
-                break;
+                break
             if in_enum:
                 parts = text.split(' ')
                 name = parts[0]
@@ -90,57 +167,56 @@ class LilyPondGrammarGenerator(AbjadObject):
 
     def _extract_token_values_from_parser_output(
         self,
-        file_path,
+        parser_output_lines,
         ):
-        with open(file_path, 'r') as f:
-            lines = f.read().split('\n')
-        token_values = { }
+        token_values = {}
         in_token_list = False
-        for line in lines:
-            text = line.strip()
-            if in_token_list and text == 'Nonterminals, with rules where they appear':
-                break;
-            elif text == 'Terminals, with rules where they appear':
+        for line in parser_output_lines:
+            line = line.strip()
+            if (
+                in_token_list and
+                line == 'Nonterminals, with rules where they appear'
+                ):
+                break
+            elif line == 'Terminals, with rules where they appear':
                 in_token_list = True
-                continue
-            elif not text:
                 continue
             elif not in_token_list:
                 continue
-            parts = text.split()
-            if parts[0].isdigit():
+            match = self._terminal_regex.match(line)
+            if not match:
                 continue
-            elif parts[0].startswith('$'):
-                continue
-            value = parts[0]
-            number = int(parts[1][1:-1])
+            value, number = match.groups()
+            number = int(number)
             token_values[number] = value
         return token_values
 
     def _generate_production_map(
         self,
-        output_path,
-        tab_hh_path,
+        parser_output_lines,
+        parser_tab_hh_lines,
         ):
         productions = self._extract_productions_from_parser_output(
-            output_path)
+            parser_output_lines)
         names = self._extract_token_names_from_parser_tab_hh(
-            tab_hh_path)
+            parser_tab_hh_lines)
         values = self._extract_token_values_from_parser_output(
-            output_path)
+            parser_output_lines)
         matches = self._match_token_names_with_token_values(
             names, values)
-        rewrites = { }
+        rewrites = {}
         for nonterminal in productions:
-            for rh in productions[nonterminal]:
-                for i, r in enumerate(rh):
-                    if r in matches:
-                        rh[i] = matches[r]
-                docstring = '{} : {}'.format(nonterminal, ' '.join(rh))
-                for i, r in enumerate(rh):
-                    if r[0] == "'" and r[-1] == "'":
-                        rh[i] = 'Chr{}'.format(ord(r[-2]))
-                funcname = 'p_{}__{}'.format(nonterminal, '__'.join(rh))
+            for right_hand_side in productions[nonterminal]:
+                for i, right_hand_item in enumerate(right_hand_side):
+                    if right_hand_item in matches:
+                        right_hand_side[i] = matches[right_hand_item]
+                docstring = '{} : {}'.format(nonterminal, ' '.join(right_hand_side))
+                for i, right_hand_item in enumerate(right_hand_side):
+                    if right_hand_item[0] == "'" and right_hand_item[-1] == "'":
+                        right_hand_side[i] = 'Chr{}'.format(ord(right_hand_item[-2]))
+                if not right_hand_side:
+                    right_hand_side = ['Empty']
+                funcname = 'p_{}__{}'.format(nonterminal, '__'.join(right_hand_side))
                 rewrites[funcname] = docstring
         return rewrites
 
@@ -149,62 +225,56 @@ class LilyPondGrammarGenerator(AbjadObject):
         names,
         values,
         ):
-        matches = { }
+        matches = {}
         for number, value in values.items():
             if number in names:
                 name = names[number]
                 matches[value] = name
         return matches
 
-    def _write_parser_syntax_skeleton(
+    def _build_parser_syntax_skeleton(
         self,
-        skeleton_path,
-        parser_output_path,
-        parser_tab_hh_path,
+        productions,
         ):
-        productions = self._generate_production_map(
-            parser_output_path, parser_tab_hh_path)
-        with open(skeleton_path, 'w') as f:
-            f.write('from abjad import *\n')
-            f.write('from abjad.tools import durationtools\n')
-            f.write('from abjad.tools.lilypondparsertools.SyntaxNode.SyntaxNode \\\n')
-            f.write('    import SyntaxNode as Node\n\n\n')
-            f.write('class _LilyPondSyntacticalDefinition(object):\n\n')
-            f.write('    def __init__(self, client):\n')
-            f.write('        self.client = client\n')
-            f.write('        self.tokens = self.client.lexdef.tokens\n\n\n')
-            f.write("    start_symbol = 'start_symbol'\n\n\n")
-            f.write("    precedence = (\n")
-            f.write("        ('nonassoc', 'COMPOSITE'),\n")
-            f.write("        ('nonassoc', 'REPEAT'),\n")
-            f.write("        ('nonassoc', 'ALTERNATIVE'),\n")
-            f.write("        ('left', 'ADDLYRICS'),\n")
-            f.write("        ('nonassoc', 'DEFAULT'),\n")
-            f.write("        ('nonassoc', 'FUNCTION_ARGLIST'),\n")
-            f.write("        ('right', 'PITCH_IDENTIFIER', 'NOTENAME_PITCH', 'TONICNAME_PITCH', 'UNSIGNED', 'REAL', 'DURATION_IDENTIFIER', ':'),\n")
-            f.write("        ('nonassoc', 'NUMBER_IDENTIFIER', '/'),\n")
-            f.write("    )\n\n\n")
-            f.write('    ### SYNTACTICAL RULES (ALPHABETICAL) ###\n\n\n')
-            current_nonterminal = 'start_symbol'
-            ly_keys = sorted(key for key in productions
-                if key.startswith('p_start_symbol'))
-            for key in ly_keys:
-                funcname = key
-                docstring = productions[key]
-                f.write('    def {}(self, p):\n'.format(funcname))
-                f.write("        {!r}\n".format(docstring))
-                f.write("        p[0] = Node('{}', p[1:])\n\n\n".format(
-                    current_nonterminal))
-            for funcname, docstring in sorted(productions.items()):
-                nonterminal = funcname.split('__')[0][2:]
-                if nonterminal == 'start_symbol':
-                    continue
-                if nonterminal != current_nonterminal:
-                    current_nonterminal = nonterminal
-                    f.write('    ### {} ###\n\n\n'.format(current_nonterminal))
-                f.write('    def {}(self, p):\n'.format(funcname))
-                f.write("        {!r}\n".format(docstring))
-                f.write("        p[0] = Node('{}', p[1:])\n\n\n".format(
-                    current_nonterminal))
-            f.write('    def p_error(self, p):\n')
-            f.write('        pass\n\n')
+        result = []
+        result.append('{}\n'.format(self._module_header))
+        current_nonterminal = 'start_symbol'
+        ly_keys = sorted(key for key in productions
+            if key.startswith('p_start_symbol'))
+        for key in ly_keys:
+            funcname = key
+            docstring = productions[key]
+            method_string = self._production_template.format(
+                docstring=docstring,
+                funcname=funcname,
+                nonterminal=current_nonterminal,
+                )
+            method_string = '{}\n'.format(method_string)
+            result.append(method_string)
+        for funcname, docstring in sorted(productions.items()):
+            nonterminal = funcname.split('__')[0][2:]
+            if nonterminal == 'start_symbol':
+                continue
+            if nonterminal != current_nonterminal:
+                current_nonterminal = nonterminal
+                comment_string = '    ### {} ###\n'.format(nonterminal)
+                result.append(comment_string)
+            method_string = self._production_template.format(
+                docstring=docstring,
+                funcname=funcname,
+                nonterminal=current_nonterminal,
+                )
+            method_string = '{}\n'.format(method_string)
+            result.append(method_string)
+        method_string = stringtools.normalize(r"""
+            ### ERROR ###
+
+            def p_error(self, production):
+                r'''Error handling.'''
+                pass
+            """,
+            indent=4,
+            )
+        result.append(method_string)
+        string = '\n'.join(result)
+        return string
