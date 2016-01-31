@@ -230,6 +230,7 @@ def test_scoretools_Note___init___18():
     assert format(note) == "c'!?4"
 
 
+@pytest.skip('Pending 2.19.24 update.')
 def test_scoretools_Note___init___19():
     r'''Initialize note with drum pitch.
     '''

@@ -3,6 +3,8 @@ import copy
 from ply import lex
 from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.exceptiontools import LilyPondParserError
+from abjad.tools.exceptiontools import SchemeParserFinishedError
 
 
 class LilyPondLexicalDefinition(AbjadObject):
@@ -15,386 +17,484 @@ class LilyPondLexicalDefinition(AbjadObject):
     Used internally by ``LilyPondParser``.
     '''
 
-    def __init__(self, client=None):
-        self.client = client
+    ### CHARACTERS ###
 
+    characters = {
+        '>': 'E_ANGLE_CLOSE',
+        '<': 'E_ANGLE_OPEN',
+        '!': 'E_EXCLAMATION',
+        '(': 'E_OPEN',
+        ')': 'E_CLOSE',
+        '[': 'E_BRACKET_OPEN',
+        '+': 'E_PLUS',
+        ']': 'E_BRACKET_CLOSE',
+        '~': 'E_TILDE',
+        '\\': 'E_BACKSLASH',
+        }
+
+    ### IDENTIFIERS ###
+
+    identifiers = {
+        'book_block': 'BOOK_IDENTIFIER',
+        'bookpart_block': 'BOOK_IDENTIFIER',
+        'context_def_spec_block': 'CONTEXT_DEF_IDENTIFIER',
+        'context_modification': 'CONTEXT_MOD_IDENTIFIER',
+        'post_event_nofinger': 'EVENT_IDENTIFIER',
+        'full_markup': 'MARKUP_IDENTIFIER',
+        'full_markup_list': 'MARKUPLINES_IDENTIFIER',
+        'music': 'MUSIC_IDENTIFIER',
+        'number_expression': 'NUMBER_IDENTIFIER',
+        'output_def': 'OUTPUT_DEF_IDENTIFIER',
+        'embedded_scm': 'SCM_IDENTIFIER',
+        'score_block': 'SCORE_IDENTIFIER',
+        'string': 'STRING_IDENTIFIER',
+        # 'PITCH_IDENTIFIER' ?
+        # 'DURATION_IDENTIFIER' ?
+        # 'LYRIC_MARKUP_IDENTIFIER' ?
+        }
+
+    ### PREDICATES ###
+
+    predicates = {
+        'ly:music?': 'EXPECT_SCM',
+        'ly:pitch?': 'EXPECT_PITCH',
+        'ly:duration?': 'EXPECT_DURATION',
+        'markup?': 'EXPECT_MARKUP',
+        'cheap-markup?': 'EXPECT_MARKUP',
+        'markup-list?': 'EXPECT_MARKUP_LIST',
+        }
+
+    function_predicates = {
+        'ly:music?': 'MUSIC_FUNCTION',
+        'ly:event?': 'EVENT_FUNCTION',
+        }
+
+    ### STATES ###
+
+    # SOURCE: lexer.ll +126
     states = (
-        # lexer.ll:115
-#        ('extratoken', 'exclusive'),
-#        ('chords', 'exclusive'),
-#        ('figures', 'exclusive'),
-#        ('incl', 'exclusive'),
-#        ('lyrics', 'exclusive'),
-#        ('lyric_quote ', 'exclusive'),
+        # ('chords', 'exclusive'),
+        # ('figures', 'exclusive'),
+        # ('incl', 'exclusive'),
+        # ('lyrics', 'exclusive'),
         ('longcomment', 'exclusive'),
+        # ('maininput', 'exclusive'),
         ('markup', 'exclusive'),
         ('notes', 'exclusive'),
         ('quote', 'exclusive'),
-#        ('sourcefileline', 'exclusive'),
-#        ('sourcefilename', 'exclusive'),
+        ('commandquote', 'exclusive'),
+        # ('sourcefileline', 'exclusive'),
+        # ('sourcefilename', 'exclusive'),
         ('version', 'exclusive'),
-        ('scheme', 'exclusive'),
-    )
+        )
 
-    # lexer.ll:129
-    A               = r'[a-zA-Z\200-\377]'
-    AA              = r'(%s|_)' % A
-    N               = r'[0-9]'
-    AN              = r'(%s|%s)' % (AA, N)
-    ANY_CHAR        = r'(.|\n)'
-    PUNCT           = r"[?!:'`]"
-    ACCENT          = r'''\\[`'"^]'''
-    NATIONAL        = r'[\001-\006\021-\027\031\036]'
-    TEX             = r'%s|-|%s|%s|%s' % (AA, PUNCT, ACCENT, NATIONAL)
-    WORD            = r'%s%s*' % (A, AN)
-    DASHED_WORD     = r'%s(%s|-)*' % (A, AN)
-    DASHED_KEY_WORD = r'\\%s' % DASHED_WORD
+    states += (
+        ('scheme', 'exclusive'),  # For Abjad.
+        )
 
-    # lexer.ll:144
-    ALPHAWORD       = r'%s+' % A
-    DIGIT           = r'%s' % N
-    UNSIGNED        = r'%s+' % N
-    INT             = r'(-?%s)' % UNSIGNED
-    REAL            = r'((%s\.%s*)|(-?\.%s+))' % (INT, N, N)
-    E_UNSIGNED      = r'\\%s+' % N
-    FRACTION        = r'%s+\/%s+' % (N, N)
-    KEYWORD         = r'\\%s' % WORD
-    WHITE           = r'[ \n\t\f\r]' # only whitespace
-    HORIZONTALWHITE = r'[ \t]' # only non-line-breaking whitespace
-    BLACK           = r'[^ \n\t\f\r]' # only non-whitespace
-    RESTNAME        = r'[rs]'
-    NOTECOMMAND     = r'\\%s+' % A
-    MARKUPCOMMAND   = r'\\(%s|[-_])+' % A
-    LYRICS          = r'(%s|%s)[^0-9 \t\n\r\f]*' % (AA, TEX)
-    ESCAPED         = r'''[nt\\'"]'''
-    EXTENDER        = r'__'
-    HYPHEN          = r'--'
-    BOM_UTF8        = r'\357\273\277'
+    ### PATTERNS ###
 
+    # SOURCE: lexer.ll +156
+    A = r'[a-zA-Z\200-\377]'
+    AA = r'({A}|_)'.format(A=A)
+    N = r'[0-9]'
+    ANY_CHAR = r'(.|\n)'
+    WORD = r'{A}([-_]{A}|{A})*'.format(A=A)
+    COMMAND = r'\\{WORD}'.format(WORD=WORD)
+
+    # SOURCE: lexer.ll +164
+    SPECIAL = r'[-+*/=<>{}!?_^'',.:]'
+    SHORTHAND = r'(.|\\.)'
+    UNSIGNED = r'{N}+'.format(N=N)
+    E_UNSIGNED = r'\\{N}+'.format(N=N)
+    FRACTION = r'{N}+\/{N}+'.format(N=N)
+    INT = r'-?{UNSIGNED}'.format(UNSIGNED=UNSIGNED)
+    REAL = r'({INT}\.{N}*)|(-?\.{N}+)'.format(INT=INT, N=N)
+    STRICTREAL = r'{UNSIGNED}\.{UNSIGNED}'.format(UNSIGNED=UNSIGNED)
+    WHITE = r'[ \n\t\f\r]'
+    HORIZONTALWHITE = r'[ \t]'
+    BLACK = r'[^ \n\t\f\r]'
+    RESTNAME = r'[rs]'
+    ESCAPED = r'''[nt\\''""]'''
+    EXTENDER = r'__'
+    HYPHEN = r'--'
+    BOM_UTF8 = r'\357\273\277'
+
+    ### TOKENS ###
+
+    # SOURCE: parser.yy +250
     keywords = {
-        # parser.yy:182, lily-lexer.cc:39
-#        '\\accepts': 'ACCEPTS',
-#        '\\addlyrics': 'ADDLYRICS',
-#        '\\alias': 'ALIAS',
-#        '\\alternative': 'ALTERNATIVE',
-#        '\\book': 'BOOK',
-#        '\\bookpart': 'BOOKPART',
-        '\\change': 'CHANGE',
-#        '\\chordmode': 'CHORDMODE',
-#        '\\chords': 'CHORDS',
-#        '\\consists': 'CONSISTS',
-        '\\context': 'CONTEXT',
-        '\\default': 'DEFAULT',
-#        '\\defaultchild': 'DEFAULTCHILD',
-#        '\\denies': 'DENIES',
-#        '\\description': 'DESCRIPTION',
-#        '\\drummode': 'DRUMMODE',
-#        '\\drums': 'DRUMS',
-#        '\\figuremode': 'FIGUREMODE',
-#        '\\figures': 'FIGURES',
-        '\\header': 'HEADER',
-#        '\\version-error': 'INVALID',
-        '\\layout': 'LAYOUT',
-#        '\\lyricmode': 'LYRICMODE',
-#        '\\lyrics': 'LYRICS',
-#        '\\lyricsto': 'LYRICSTO',
-        '\\markup': 'MARKUP',
-        '\\markuplist': 'MARKUPLIST',
-        '\\midi': 'MIDI',
-#        '\\name': 'NAME',
-#        '\\notemode': 'NOTEMODE',
-        '\\override': 'OVERRIDE',
-        '\\paper': 'PAPER',
-#        '\\remove': 'REMOVE',
-#        '\\repeat': 'REPEAT',
-        '\\rest': 'REST',
-        '\\revert': 'REVERT',
-        '\\score': 'SCORE',
-        '\\sequential': 'SEQUENTIAL',
-        '\\set': 'SET',
-        '\\simultaneous': 'SIMULTANEOUS',
-        '\\tempo': 'TEMPO',
-#        '\\type': 'TYPE',
-        '\\unset': 'UNSET',
-        '\\with': 'WITH',
+        #r'\accepts': 'ACCEPTS',
+        #r'\addlyrics': 'ADDLYRICS',
+        #r'\alias': 'ALIAS',
+        #r'\alternative': 'ALTERNATIVE',
+        #r'\book': 'BOOK',
+        #r'\bookpart': 'BOOKPART',
+        r'\change': 'CHANGE',
+        #r'\chordmode': 'CHORDMODE',
+        #r'\chords': 'CHORDS',
+        #r'\consists': 'CONSISTS',
+        r'\context': 'CONTEXT',
+        r'\default': 'DEFAULT',
+        #r'\defaultchild': 'DEFAULTCHILD',
+        #r'\denies': 'DENIES',
+        #r'\description': 'DESCRIPTION',
+        #r'\drummode': 'DRUMMODE',
+        #r'\drums': 'DRUMS',
+        #r'\etc': 'ETC',
+        #r'\figuremode': 'FIGUREMODE',
+        #r'\figures': 'FIGURES',
+        r'\header': 'HEADER',
+        #r'\version-error': 'INVALID',
+        r'\layout': 'LAYOUT',
+        #r'\lyricmode': 'LYRICMODE',
+        #r'\lyrics': 'LYRICS',
+        #r'\lyricsto': 'LYRICSTO',
+        r'\markup': 'MARKUP',
+        r'\markuplist': 'MARKUPLIST',
+        r'\midi': 'MIDI',
+        #r'\name': 'NAME',
+        r'\new': 'NEWCONTEXT',
+        #r'\notemode': 'NOTEMODE',
+        r'\override': 'OVERRIDE',
+        r'\paper': 'PAPER',
+        #r'\remove': 'REMOVE',
+        #r'\repeat': 'REPEAT',
+        r'\rest': 'REST',
+        r'\revert': 'REVERT',
+        r'\score': 'SCORE',
+        #r'\score-lines': 'SCORELINES',
+        r'\sequential': 'SEQUENTIAL',
+        r'\set': 'SET',
+        r'\simultaneous': 'SIMULTANEOUS',
+        r'\tempo': 'TEMPO',
+        #r'\type': 'TYPE',
+        r'\unset': 'UNSET',
+        r'\with': 'WITH',
+        }
 
-        # parser.yy:233
-        '\\new': 'NEWCONTEXT',
+    single_characters = {
+        #r'/+': 'CHORD_BASS',
+        #r'^': 'CHORD_CARET',
+        #r':': 'CHORD_COLON',
+        #r'-': 'CHORD_MINUS',
+        #r'/': 'CHORD_SLASH',
+        r'<': 'ANGLE_OPEN',
+        r'>': 'ANGLE_CLOSE',
+        #r'_': 'FIGURE_SPACE',
+        }
 
-        # ???
-#        '\\objectid': 'OBJECTID',
-    }
+    double_characters = {
+        r'<<': 'DOUBLE_ANGLE_OPEN',
+        r'>>': 'DOUBLE_ANGLE_CLOSE',
+        r'\!': 'E_EXCLAMATION',
+        r'\\': 'E_BACKSLASH',
+        #r'\+': 'E_PLUS',
+        #r'\>': 'FIGURE_CLOSE',
+        #r'\<': 'FIGURE_OPEN',
+        r'--': 'HYPHEN',
+        #r'#{': 'EMBEDDED_LILY',
+        }
 
-    tokens = [
-#        'CHORD_BASS', # "/+"
-#        'CHORD_CARET', # "^"
-#        'CHORD_COLON', # ":"
-#        'CHORD_MINUS', # "-"
-#        'CHORD_SLASH', # "/"
-        'ANGLE_OPEN', # "<"
-        'ANGLE_CLOSE', # ">"
-        'DOUBLE_ANGLE_OPEN', # "<<"
-        'DOUBLE_ANGLE_CLOSE', # ">>"
-        'E_BACKSLASH', # "\\"
-        'E_ANGLE_CLOSE', # "\\>"
-#        'E_CHAR', # "\\C[haracter]"
-        'E_CLOSE', # "\\)"
-        'E_EXCLAMATION', # "\\!"
-#        'E_BRACKET_OPEN', # "\\["
-        'E_OPEN', # "\\("
-#        'E_BRACKET_CLOSE', # "\\]"
-        'E_ANGLE_OPEN', # "\\<"
-#        'E_PLUS', # "\\+"
-#        'E_TILDE', # "\\~"
-        'EXTENDER', # "__"
+    with_predicates = {
+        'EXPECT_MARKUP': 'markup?',
+        'EXPECT_SCM': 'scheme?',
+        'BACKUP': '(backed-up?)',
+        'REPARSE': '(reparsed?)',
+        'EXPECT_MARKUP_LIST': 'markup-list?',
+        'EXPECT_OPTIONAL': 'optional?',
+        }
 
-#        'FIGURE_CLOSE', # "\\>"
-#        'FIGURE_OPEN', # "\\<"
-#        'FIGURE_SPACE', # "_"
-        'HYPHEN', # "--"
-
-#        'LYRIC_MARKUP',
-        'MULTI_MEASURE_REST',
-
-        'E_UNSIGNED',
-        'UNSIGNED',
-
-        'EXPECT_MARKUP', # "markup?"
-        'EXPECT_PITCH', # "ly:pitch?"
-        'EXPECT_DURATION', # "ly:duration?"
-        'EXPECT_SCM', # "scheme?"
-        'BACKUP', # "(backed-up?)"
-        'REPARSE', # "(reparsed?)"
-        'EXPECT_MARKUP_LIST', # "markup-list?"
-        'EXPECT_OPTIONAL', # "optional?"
-        'EXPECT_NO_MORE_ARGS', #
-
-#        'EMBEDDED_LILY', # "#{"
-
-#        'BOOK_IDENTIFIER',
-#        'CHORD_MODIFIER',
+    tokens = (
+        #'BOOK_IDENTIFIER',
+        #'CHORD_MODIFIER',
         'CHORD_REPETITION',
-        'CONTEXT_DEF_IDENTIFIER',
         'CONTEXT_MOD_IDENTIFIER',
-#        'DRUM_PITCH',
-        'PITCH_IDENTIFIER',
+        #'DRUM_PITCH',
         'DURATION_IDENTIFIER',
-        'EVENT_IDENTIFIER',
         'EVENT_FUNCTION',
+        'EVENT_IDENTIFIER',
+        'EXPECT_NO_MORE_ARGS',
+        'E_UNSIGNED',
         'FRACTION',
-#        'LYRICS_STRING',
-#        'LYRIC_ELEMENT',
-#        'LYRIC_MARKUP_IDENTIFIER',
-        'MARKUP_FUNCTION',
-        'MARKUP_LIST_FUNCTION',
-        'MARKUP_IDENTIFIER',
+        #'LYRIC_ELEMENT',
         'MARKUPLIST_IDENTIFIER',
+        'MARKUP_FUNCTION',
+        'MARKUP_IDENTIFIER',
+        'MARKUP_LIST_FUNCTION',
+        'MULTI_MEASURE_REST',
         'MUSIC_FUNCTION',
         'MUSIC_IDENTIFIER',
         'NOTENAME_PITCH',
         'NUMBER_IDENTIFIER',
-        'output_DEF_IDENTIFIER',
+        'PITCH_IDENTIFIER',
         'REAL',
         'RESTNAME',
+        #'SCM_ARG',
         'SCM_FUNCTION',
         'SCM_IDENTIFIER',
         'SCM_TOKEN',
-        'SCORE_IDENTIFIER',
         'STRING',
-        'STRING_IDENTIFIER',
+        #'SYMBOL_LIST',
         'TONICNAME_PITCH',
-    ] + list(keywords.values())
+        'UNSIGNED',
+        )
+    tokens += tuple(keywords.values())
+    tokens += tuple(single_characters.values())
+    tokens += tuple(double_characters.values())
+    tokens += tuple(with_predicates)
+
+    # These do not exist in 2.19.24, or have been renamed.
+    in_deprecation = (
+        'CONTEXT_DEF_IDENTIFIER',
+        'EXPECT_DURATION',
+        'EXPECT_PITCH',
+        'EXTENDER',
+        'E_ANGLE_CLOSE',
+        'E_ANGLE_OPEN',
+        'E_CLOSE',
+        'E_OPEN',
+        'SCORE_IDENTIFIER',
+        'STRING_IDENTIFIER',
+        'OUTPUT_DEF_IDENTIFIER',
+        )
+
+    tokens += in_deprecation
+
+    ### LITERALS ###
 
     literals = (
-        '!', "'", '(', ')', '*', '+', ',', '-',
-        '.', '/', ':', '<', '=', '>', '?', '[',
-        '\\', '^', '_', '{', '|', '}', '~', ']',
-    )
+        '!',
+        "'",
+        '(',
+        ')',
+        '*',
+        '+',
+        ',',
+        '-',
+        '.',
+        '/',
+        ':',
+        '<',
+        '=',
+        '>',
+        '?',
+        '[',
+        '\\',
+        '^',
+        '_',
+        '{',
+        '|',
+        '}',
+        '~',
+        ']',
+        )
+
+    ### CLASS VARIABLES ###
 
     string_accumulator = ''
 
+    ### INITIALIZER ###
+
+    def __init__(self, client=None):
+        self.client = client
+
     ### LEXICAL RULES ###
 
-    # lexer.ll:165
+    # VERIFIED
+    # SOURCE: lexer.ll +184
     # <*>\r
-    def t_ANY_165(self, t):
+    def t_ANY_184(self, token):
         r'\r'
         pass
 
-    # lexer.ll:169
-    # <extratoken>{ANY_CHAR}
-
-    # lexer.ll:186
-    # <extratoken><<EOF>>
-
-    # lexer.ll:201
+    # VERIFIED
+    # SOURCE: lexer.ll +190
     # <INITIAL,chords,lyrics,figures,notes>{BOM_UTF8}/.*
 
-    # lexer.ll:210
+    # VERIFIED
+    # SOURCE: lexer.ll +200
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>"%{"
-    def t_INITIAL_markup_notes_210(self, t):
+    def t_INITIAL_markup_notes_200(self, token):
         r'%{'
-        t.lexer.push_state('longcomment')
+        token.lexer.push_state('longcomment')
+
+    # VERIFIED
+    # SOURCE: lexer.ll +203
+    # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*[\n\r]?
+    def t_INITIAL_markup_notes_203(self, token):
+        r'%[^{\n\r][^\n\r]*[\n\r]?'
         pass
 
-    # lexer.ll:214
-    # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*[\n\r]
-    def t_INITIAL_markup_notes_214(self, t):
-        r'%[^{\n\r][^\n\r]*[\n\r]'
+    # VERIFIED
+    # SOURCE: lexer.ll:206
+    # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[\n\r]?
+    def t_INITIAL_markup_notes_206(self, token):
+        r'%[\n\r]?'
         pass
 
-    def t_INITIAL_markup_notes_214_EOF(self, t):
-        r'%[^{\n\r][^\n\r]*$'
-        pass
-
-    #lexer.ll:216
-    # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r]
-    def t_INITIAL_markup_notes_216(self, t):
-        r'%[^{\n\r]'
-        pass
-
-    #lexer.ll:218
-    # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[\n\r]
-    def t_INITIAL_markup_notes_218(self, t):
-        r'%[\n\r]'
-        pass
-
-    # lexer.ll:220
-    # <INITIAL,chords,figures,incl,lyrics,markup,notes>%[^{\n\r][^\n\r]*
-    def t_INITIAL_markup_notes_220(self, t):
-        r'%[^{\n\r][^\n\r]*'
-        pass
-
-    # lexer.ll:222
+    # VERIFIED
+    # SOURCE: lexer.ll +208
     # <INITIAL,chords,figures,incl,lyrics,markup,notes>{WHITE}+
-    def t_INITIAL_markup_notes_222(self, t):
-        '[ \n\t\f\r]'
+    @lex.TOKEN('{WHITE}+'.format(WHITE=WHITE))
+    def t_INITIAL_markup_notes_208(self, token):
         pass
 
-    # lexer.ll:227
+    # VERIFIED
+    # SOURCE: lexer.ll +213
     # <INITIAL,notes,figures,chords,markup>\"
-    def t_INITIAL_markup_notes_227(self, t):
+    def t_INITIAL_markup_notes_213(self, token):
         r'\"'
-        t.lexer.push_state('quote')
+        token.lexer.push_state('quote')
+        #print("ENTERED QUOTE", token)
         self.string_accumulator = ''
-        pass
 
-    # lexer.ll:233
+    # VERIFIED
+    # SOURCE: lexer.ll +219
     # <INITIAL,chords,lyrics,notes,figures>\\version{WHITE}*
-    def t_INITIAL_notes_233(self, t):
-        r'\\version[ \n\t\f\r]*'
-        t.lexer.push_state('version')
-        pass
+    @lex.TOKEN(r'\\version{WHITE}*'.format(WHITE=WHITE))
+    def t_INITIAL_notes_219(self, token):
+        token.lexer.push_state('version')
 
-    # lexer.ll:236
+    # VERIFIED
+    # SOURCE: lexer.ll +222
     # <INITIAL,chords,lyrics,notes,figures>\\sourcefilename{WHITE}*
 
-    # lexer.ll:239
-    # <INITIAL,chords,lyrics,notes,figures>\\sourcefileline{WHITE}*
+    # VERIFIED
+    # SOURCE: lexer.ll +225
+    # <INITIAL,chords,lyrics,notes,figures>\\sourcefileline{WHITE}*	{
 
-    # lexer.ll:242
-    # <version>\"[^"]*\"
-    def t_version_242(self, t):
-        r'\"[^"]*\"'
-        t.lexer.pop_state()
-        pass
+    # VERIFIED
+    # SOURCE: lexer.ll +228
+    # <version>\"[^""]*\"
+    def t_version_228(self, token):
+        r'\"[^""]*\"'
+        # We don't care whether the version is correct.
+        token.lexer.pop_state()
 
-    # lexer.ll:256
-    # <sourcefilename>\"[^"]*\"
+    # VERIFIED
+    # SOURCE: lexer.ll +242
+    # <sourcefilename>\"[^""]*\"
 
-    # lexer.ll:270
+    # VERIFIED
+    # SOURCE: lexer.ll +256
     # <sourcefileline>{INT}
 
-    # lexer.ll:278
+    # VERIFIED
+    # SOURCE: lexer.ll +264
     # <version>{ANY_CHAR}
     @lex.TOKEN(ANY_CHAR)
-    def t_version_278(self, t):
-        print(("LilyPondParser: Illegal character '%s'" % t.value[0]))
-        t.lexer.skip(1)
+    def t_version_264(self, token):
+        message = 'LilyPondParser: Illegal character {!r}'
+        message = message.format(token.value[0])
+        raise LilyPondParserError(message)
+        token.lexer.pop_state()
 
-    # lexer.ll:282
+    # VERIFIED
+    # SOURCE: lexer.ll +268
     # <sourcefilename>{ANY_CHAR}
 
-    # lexer.ll:286
+    # VERIFIED
+    # SOURCE: lexer.ll +272
     # <sourcefileline>{ANY_CHAR}
 
-    # lexer.ll:296
-    # <longcomment>"%"+"}"
-    def t_longcomment_296(self, t):
-        r'%}'
-        t.lexer.pop_state()
-        pass
-
-    # lexer.ll:291
+    # VERIFIED
+    # SOURCE: lexer.ll +277
     # <longcomment>[^\%]*
-    def t_longcomment_291(self, t):
+    def t_longcomment_277(self, token):
         r'[^%]+'
+        # This pattern has been adjusted.
+        # The original matches the empty string.
         pass
 
-    # lexer.ll:293
-    # <longcomment>\%*[^}%]*
-    def t_longcomment_293(self, t):
-        r'%+[^}%]*'
+    # VERIFIED
+    # SOURCE: lexer.ll +280
+    # <longcomment>%*[^}%]*
+    def t_longcomment_280(self, token):
+        r'%*[^}%]+'
+        # This pattern has been adjusted.
+        # The original matches the empty string.
         pass
 
-    # lexer.ll:302
+    # VERIFIED
+    # SOURCE: lexer.ll +283
+    # <longcomment>"%"+"}"
+    def t_longcomment_283(self, token):
+        r'%}'
+        token.lexer.pop_state()
+
+    # VERIFIED
+    # SOURCE: lexer.ll +289
     # <INITIAL,chords,lyrics,notes,figures>\\maininput
 
-    # lexer.ll:312
+    # VERIFIED
+    # SOURCE: lexer.ll +303
     # <INITIAL,chords,lyrics,figures,notes>\\include
 
-    # lexer.ll:315
-    # <incl>\"[^"]*\"
+    # VERIFIED
+    # SOURCE: lexer.ll +306
+    # <incl>\"[^""]*\"   { /* got the include file name */
 
-    # lexer.ll:322
-    # <incl>\\{BLACK}*{WHITE}?
+    # VERIFIED
+    # SOURCE: lexer.ll +313
+    # <incl>\\{BLACK}*{WHITE}? { /* got the include identifier */
 
-    # lexer.ll:341
+    # VERIFIED
+    # SOURCE: lexer.ll +332
+    # <incl>(\$|#) { // scm for the filename
+
+    # VERIFIED
+    # SOURCE: lexer.ll +358
     # <incl,version,sourcefilename>\"[^"]*
-    def t_version_341(self, t):
+    def t_version_358(self, token):
         r'"[^"]*'
         message = 'end quote missing: {!r}.'
-        message = message.format(t)
-        raise Exception(message)
+        message = message.format(token)
+        raise LilyPondParserError(message)
+        token.lexer.pop_state()
 
-    # lexer.ll:345
-    # <chords,notes,figures>{RESTNAME}
-#    @lex.token.TOKEN(RESTNAME)
-#    def t_notes_345(self, t):
-#        t.type = 'RESTNAME'
-#        return t
+    # VERIFIED
+    # SOURCE: lexer.ll +369
+    # <chords,notes,figures>{RESTNAME}/[-_]|{RESTNAME}
+    #@lex.TOKEN('{RESTNAME}(?=[-_])|{RESTNAME}'.format(RESTNAME=RESTNAME))
+    @lex.TOKEN(RESTNAME)
+    def t_notes_369(self, token):
+        token.type = 'RESTNAME'
+        return token
 
-    # lexer.ll:350
-    # <chords,notes,figures>R
-#    def t_notes_350(self, t):
-#        'R'
-#        t.type = 'MULTI_MEASURE_REST'
-#        return t
+    # VERIFIED
+    # SOURCE: lexer.ll +375
+    # <chords,notes,figures>q/[-_]|q
+    #@lex.TOKEN(r'q(?=[-_])|q')
+    @lex.TOKEN('q')
+    def t_notes_375(self, token):
+        token.type = 'CHORD_REPETITION'
+        if self.client._last_chord is None:
+            self.client._last_chord = scoretools.Chord(
+                ['c', 'g', "c'"],
+                (1, 4),
+                )
+        return token
 
-    #def t_INITIAL_markup_notes_353_boolean(self, t):
-    #    '\#\#(t|f)'
-    #    t.type = 'SCM_TOKEN'
-    #    if t.value[2] == 't':
-    #        t.value = True
-    #    else:
-    #        t.value = False
-    #    return t
+    # VERIFIED
+    # SOURCE: lexer.ll +381
+    # <chords,notes,figures>R/[-_]|R
+    #@lex.TOKEN(r'R(?=[-_])|R')
+    @lex.TOKEN('R')
+    def t_notes_381(self, token):
+        token.type = 'MULTI_MEASURE_REST'
+        return token
 
-    #@lex.TOKEN("\#'%s" % DASHED_WORD)
-    #def t_INITIAL_markup_notes_353_identifier(self, t):
-    #    t.type = 'SCM_IDENTIFIER'
-    #    t.value = t.value[2:]
-    #    return t
-
-    # lexer.ll:353
+    # VERIFIED
+    # SOURCE: lexer.ll +386
     # <INITIAL,chords,figures,lyrics,markup,notes>#
-    def t_INITIAL_markup_notes_353(self, t):
+    def t_INITIAL_markup_notes_386(self, token):
         '\#'
         from abjad.tools import lilypondparsertools
-        #t.type = 'SCHEME_START'
-        #t.lexer.push_state('INITIAL')
+        #token.type = 'SCHEME_START'
+        #token.lexer.push_state('INITIAL')
         scheme_parser = lilypondparsertools.SchemeParser(debug=False)
-        input_string = t.lexer.lexdata[t.lexpos+1:]
+        input_string = token.lexer.lexdata[token.lexpos + 1:]
         #print 'PREPARSE'
         try:
             scheme_parser(input_string)
@@ -402,531 +502,584 @@ class LilyPondLexicalDefinition(AbjadObject):
             result = scheme_parser.result
             cursor_end = scheme_parser.cursor_end
             #print 'PARSED: {!r}'.format(input_string[:cursor_end])
-            t.value = result
-            t.type = 'SCM_TOKEN'
+            token.value = result
+            token.type = 'SCM_TOKEN'
             #if isinstance(result, str):
-            #    t.type = 'STRING'
-            #    if t.value.find(' ') != -1:
-            #        t.value = '"{}"'.format(t.value)
+            #    token.type = 'STRING'
+            #    if token.value.find(' ') != -1:
+            #        token.value = '"{}"'.format(token.value)
             #else:
-            #    t.type = 'SCM_TOKEN'
-            t.lexer.skip(scheme_parser.cursor_end + 1)
-        return t
+            #    token.type = 'SCM_TOKEN'
+            token.lexer.skip(cursor_end + 1)
+        return token
 
-    # lexer.ll:387
+    # VERIFIED
+    # SOURCE: lexer.ll +405
+    # <INITIAL,chords,figures,lyrics,markup,notes>\$	{ //immediate scm
+
+    # VERIFIED
+    # SOURCE: lexer.ll +426
     # <INITIAL,notes,lyrics>\<\<
-    def t_INITIAL_notes_387(self, t):
+    def t_INITIAL_notes_426(self, token):
         r'\<\<'
-        t.type = 'DOUBLE_ANGLE_OPEN'
-        return t
+        token.type = 'DOUBLE_ANGLE_OPEN'
+        return token
 
-    # lexer.ll:390
+    # VERIFIED
+    # SOURCE: lexer.ll +430
     # <INITIAL,notes,lyrics>\>\>
-    def t_INITIAL_notes_390(self, t):
+    def t_INITIAL_notes_430(self, token):
         r'\>\>'
-        t.type = 'DOUBLE_ANGLE_CLOSE'
-        return t
+        token.type = 'DOUBLE_ANGLE_CLOSE'
+        return token
 
-    # lexer.ll:396
+    # VERIFIED
+    # SOURCE: lexer.ll +437
     # <INITIAL,notes>\<
-    def t_INITIAL_notes_396(self, t):
+    def t_INITIAL_notes_437(self, token):
         r'\<'
-        t.type = 'ANGLE_OPEN'
-        return t
+        token.type = 'ANGLE_OPEN'
+        return token
 
-    # lexer.ll:399
+    # VERIFIED
+    # SOURCE: lexer.ll +441
     # <INITIAL,notes>\>
-    def t_INITIAL_notes_399(self, t):
+    def t_INITIAL_notes_441(self, token):
         r'\>'
-        t.type = 'ANGLE_CLOSE'
-        return t
+        token.type = 'ANGLE_CLOSE'
+        return token
 
-    # lexer.ll:405
-    # <figures>_
+    # VERIFIED
+    # SOURCE: lexer.ll +448
+    # <figures>-
 
-    # lexer.ll:408
+    # VERIFIED
+    # SOURCE: lexer.ll +452
     # <figures>\>
 
-    # lexer.ll:411
+    # VERIFIED
+    # SOURCE: lexer.ll +456
     # <figures>\<
 
-    # lexer.ll:417
-    # <notes,figures>{ALPHAWORD}
-    @lex.TOKEN(ALPHAWORD)
-    def t_notes_417(self, t):
-        from abjad.ly import drums
-        pitch_names = self.client._pitch_names
-        value = t.value
-        if value in pitch_names:
-            t.type = 'NOTENAME_PITCH'
-            t.value = pitch_names[t.value]
-        elif value in drums:
-            t.type = 'NOTENAME_PITCH'
-            t.value = drums[value]
-        elif value in ['r', 's']:
-            t.type = 'RESTNAME'
-        elif value == 'R':
-            t.type = 'MULTI_MEASURE_REST'
-        elif value == 'q':
-            if self.client._last_chord is None:
-                self.client._last_chord = scoretools.Chord(
-                    ['c', 'g', "c'"], (1, 4))
-            t.type = 'CHORD_REPETITION'
-        else:
-            t.type = 'STRING'
-        return t
+    # VERIFIED
+    # SOURCE: lexer.ll +460
+    # <figures>\\\+
 
-    # lexer.ll:421
-    # <notes,figures>{NOTECOMMAND}
-    @lex.TOKEN(NOTECOMMAND)
-    def t_notes_421(self, t):
-        t.type = self.scan_escaped_word(t)
-        return t
+    # VERIFIED
+    # SOURCE: lexer.ll +464
+    # <figures>\\!
 
-    # lexer.ll:424
+    # VERIFIED
+    # SOURCE: lexer.ll +468
+    # <figures>\\\\
+
+    # VERIFIED
+    # SOURCE: lexer.ll +472
+    # <figures>[][]
+
+    # VERIFIED
+    # SOURCE: lexer.ll +479
+    # <notes,figures>{WORD}/[-_]|{WORD}
+    #@lex.TOKEN('{WORD}(?=[-_])|{WORD}'.format(WORD=WORD))
+    @lex.TOKEN(WORD)
+    def t_notes_479(self, token):
+        self.scan_bare_word(token)
+        return token
+
+    # SOURCE: lexer.ll +483
+    # <notes,figures>\\\"
+    def t_notes_483(self, token):
+        r'\\\"'
+        token.lexer.push_state('commandquote')
+        self.string_accumulator = ''
+
+    # VERIFIED
+    # SOURCE: lexer.ll +486
+    # <notes,figures>{COMMAND}/[-_]|{COMMAND}
+    #@lex.TOKEN('{COMMAND}(?=[-_])|{COMMAND}'.format(COMMAND=COMMAND))
+    @lex.TOKEN(COMMAND)
+    def t_notes_486(self, token):
+        token.type = self.scan_escaped_word(token)
+        return token
+
+    # VERIFIED
+    # SOURCE: lexer.ll +490
     # <notes,figures>{FRACTION}
     @lex.TOKEN(FRACTION)
-    def t_notes_424(self, t):
+    def t_notes_490(self, token):
         from abjad.tools import lilypondparsertools
-        t.type = 'FRACTION'
-        parts = t.value.split('/')
-        t.value = lilypondparsertools.LilyPondFraction(int(parts[0]), int(parts[1]))
-        return t
+        token.type = 'FRACTION'
+        parts = token.value.split('/')
+        token.value = lilypondparsertools.LilyPondFraction(
+            int(parts[0]),
+            int(parts[1]),
+            )
+        return token
 
-    # lexer.ll:428
-    # <notes,figures>{UNSIGNED}/\/|{UNSIGNED}
-    #@lex.TOKEN('%s/\/|%s' % (UNSIGNED, UNSIGNED))
-    @lex.TOKEN('%s/\/' % UNSIGNED)
-    def t_notes_428(self, t):
-        t.type = 'UNSIGNED'
-        t.value = int(t.value)
-        return t
+    # VERIFIED
+    # SOURCE: lexer.ll +494
+    # <notes,figures>{STRICTREAL}
+    @lex.TOKEN(STRICTREAL)
+    def t_notes_494(self, token):
+        token.type = 'REAL'
+        token.value = float(token.value)
+        return token
 
+    # VERIFIED
+    # SOURCE: lexer.ll +498
+    # <notes,figures>{UNSIGNED}/[/.]|{UNSIGNED}
+    #@lex.TOKEN('{UNSIGNED}(?=[/.])|{UNSIGNED}'.format(UNSIGNED=UNSIGNED))
     @lex.TOKEN(UNSIGNED)
-    def t_notes_428b(self, t):
-        t.type = 'UNSIGNED'
-        t.value = int(t.value)
-        return t
+    def t_notes_498(self, token):
+        token.type = 'UNSIGNED'
+        token.value = int(token.value)
+        return token
 
-    # lexer.ll:433
+    # VERIFIED
+    # SOURCE: lexer.ll +503
     # <notes,figures>{E_UNSIGNED}
     @lex.TOKEN(E_UNSIGNED)
-    def t_notes_433(self, t):
-        t.type = 'E_UNSIGNED'
-        t.value = int(t.value[1:])
-        return t
+    def t_notes_503(self, token):
+        token.type = 'E_UNSIGNED'
+        token.value = int(token.value[1:])
+        return token
 
-    # lexer.ll:440
-    # <quote,lyric_quote>\\{ESCAPED}
-    @lex.TOKEN('\\%s' % ESCAPED)
-    def t_quote_440(self, t):
-        self.string_accumulator += t.value
-        pass
+    # VERIFIED
+    # SOURCE: lexer.ll +510
+    # <quote,commandquote>\\{ESCAPED}
+    @lex.TOKEN('\\{ESCAPED}'.format(ESCAPED=ESCAPED))
+    def t_quote_commandquote_510(self, token):
+        self.string_accumulator += token.value
 
-    def t_quote_XXX(self, t):
-        r'\\"'
-        self.string_accumulator += t.value
-        pass
-
-    # lexer.ll:443
-    # <quote,lyric_quote>[^\\""]+
-    def t_quote_443(self, t):
+    # VERIFIED
+    # SOURCE: lexer.ll +515
+    # <quote,commandquote>[^\\""]+
+    def t_quote_commandquote_515(self, token):
         r'[^\\""]+'
-        self.string_accumulator += t.value
-        pass
+        self.string_accumulator += token.value
 
-    # lexer.ll:446
-    # <quote,lyric_quote>\"
-    def t_quote_446(self, t):
+    # VERIFIED
+    # SOURCE: lexer.ll +515
+    # <quote,commandquote>[^\\""]+
+    def t_quote_commandquote_515_b(self, token):
+        r'\\"'
+        # This catches quotation marks inside quotes.
+        # Why doesn't the earlier rule at t_quote_commandquote_515() work?
+        self.string_accumulator += token.value
+
+    # VERIFIED
+    # SOURCE: lexer.ll +519
+    # <quote,commandquote>\"
+    def t_quote_commandquote_519(self, token):
         r'\"'
-        t.lexer.pop_state()
-        t.type = 'STRING'
-        t.value = self.string_accumulator
-        return t
+        token.value = self.string_accumulator
+        if token.lexer.current_state() == 'commandquote':
+            token.type = self.scan_escaped_word(token)
+        else:
+            token.type = 'STRING'
+        token.lexer.pop_state()
+        #print("EXITED QUOTE", token)
+        return token
 
-    # lexer.ll:456
-    # <quote,lyric_quote>.
-    def t_quote_456(self, t):
-        r'.'
-        self.string_accumulator += t.value
-        pass
+    # VERIFIED
+    # SOURCE: lexer.ll +536
+    # <quote,commandquote>\\
+    def t_quote_commandquote_536(self, token):
+        r'\\'
+        self.string_accumulator += token.value
 
-    # lexer.ll:462
+    # VERIFIED
+    # SOURCE: lexer.ll +543
     # <lyrics>\"
 
-    # lexer.ll:465
+    # VERIFIED
+    # SOURCE: lexer.ll +546
     # <lyrics>{FRACTION}
 
-    # lexer.ll:469
-    # <lyrics>{UNSIGNED}/\/[^0-9]
+    # VERIFIED
+    # SOURCE: lexer.ll +550
+    # <lyrics>{STRICTREAL}
 
-    # lexer.ll:473
-    # <lyrics>{UNSIGNED}/\/|{UNSIGNED}
+    # VERIFIED
+    # SOURCE: lexer.ll +554
+    # <lyrics>{UNSIGNED}/[/.]|{UNSIGNED}
 
-    # lexer.ll:478
-    # <lyrics>{NOTECOMMAND}
+    # VERIFIED
+    # SOURCE: lexer.ll +559
+    # <lyrics>\\\"
 
-    # lexer.ll:481
-    # <lyrics>{LYRICS}
+    # VERIFIED
+    # SOURCE: lexer.ll +562
+    # <lyrics>{COMMAND}/[-_]|{COMMAND}
 
-    # lexer.ll:499
-    # <lyrics>.
+    # VERIFIED
+    # SOURCE: lexer.ll +566
+    # <lyrics>\\.|\|
 
-    # lexer.ll:504
-    # <chords>{ALPHAWORD}
+    # VERIFIED
+    # SOURCE: lexer.ll +571
+    # <lyrics>[*.=]
 
-    # lexer.ll:507
-    # <chords>{NOTECOMMAND}
+    # VERIFIED
+    # SOURCE: lexer.ll +575
+    # <lyrics>[^|*.=$#{}\"\\ \t\n\r\f0-9][^$#{}\"\\ \t\n\r\f0-9]*
 
-    # lexer.ll:510
+    # VERIFIED
+    # SOURCE: lexer.ll +589
+    # <lyrics>[{}]
+
+    # VERIFIED
+    # SOURCE: lexer.ll +595
+    # <chords>{WORD}/[-_]|{WORD}
+
+    # VERIFIED
+    # SOURCE: lexer.ll +599
+    # <chords>\\\"
+
+    # VERIFIED
+    # SOURCE: lexer.ll +602
+    # <chords>{COMMAND}/[-_]|{COMMAND}
+
+    # VERIFIED
+    # SOURCE: lexer.ll +606
     # <chords>{FRACTION}
 
-    # lexer.ll:514
-    # <chords>{UNSIGNED}/\/[^0-9]
-
-    # lexer.ll:518
+    # VERIFIED
+    # SOURCE: lexer.ll +610
     # <chords>{UNSIGNED}/\/|{UNSIGNED}
 
-    # lexer.ll:523
+    # VERIFIED
+    # SOURCE: lexer.ll +615
     # <chords>-
 
-    # lexer.ll:526
+    # VERIFIED
+    # SOURCE: lexer.ll +619
     # <chords>:
 
-    # lexer.ll:529
+    # VERIFIED
+    # SOURCE: lexer.ll +623
     # <chords>\/\+
 
-    # lexer.ll:532
+    # VERIFIED
+    # SOURCE: lexer.ll +627
     # <chords>\/
 
-    # lexer.ll:535
+    # VERIFIED
+    # SOURCE: lexer.ll +631
     # <chords>\^
 
-    # lexer.ll:538
-    # <chords>.
-
-    # lexer.ll:545
+    # VERIFIED
+    # SOURCE: lexer.ll +639
     # <markup>\\score
-    def t_markup_545(self, t):
+    def t_markup_639(self, token):
         r'\\score'
-        t.type = 'SCORE'
-        return t
+        token.type = 'SCORE'
+        return token
 
-    # lexer.ll:548
-    # <markup>{MARKUPCOMMAND}
-    @lex.TOKEN(MARKUPCOMMAND)
-    def t_markup_548(self, t):
-        value = t.value[1:]
+    # VERIFIED
+    # SOURCE: lexer.ll +643
+    # <markup>\\score-lines
+    def t_markup_643(self, token):
+        r'\\score-lines'
+        token.type = 'SCORELINES'
+        return token
 
-        if value in self.client._markup_functions or \
-            value in self.client._markup_list_functions:
+    # VERIFIED
+    # SOURCE: lexer.ll +647
+    # <markup>\\\"
+    def t_markup_647(self, token):
+        r'\\\\"'
+        token.lexer.push_state('commandquote')
+        self.string_accumulator = ''
+
+    # VERIFIED
+    # SOURCE: lexer.ll +650
+    # <markup>{COMMAND}/[-_]|{COMMAND}
+    #@lex.TOKEN('{COMMAND}(?=[-_])|{COMMAND}'.format(COMMAND=COMMAND))
+    @lex.TOKEN(COMMAND)
+    def t_markup_650(self, token):
+        value = token.value[1:]
+        if (
+            value in self.client._markup_functions or
+            value in self.client._markup_list_functions
+            ):
             if value in self.client._markup_functions:
-                t.type = 'MARKUP_FUNCTION'
+                token.type = 'MARKUP_FUNCTION'
                 signature = self.client._markup_functions[value]
             else:
-                t.type = 'MARKUP_LIST_FUNCTION'
+                token.type = 'MARKUP_LIST_FUNCTION'
                 signature = self.client._markup_list_functions[value]
-
-            #print t.type, value, signature
-
-            self.push_signature(signature, t)
-
+            self.push_signature(signature, token)
         else:
-            t.type = self.scan_escaped_word(t)
+            token.type = self.scan_escaped_word(token)
+        return token
 
-        return t
+    # VERIFIED
+    # SOURCE: lexer.ll +701
+    # <markup>[^$#{}\"\\ \t\n\r\f]+
+    def t_markup_701(self, token):
+        r'[^\$#{}\"\\ \t\n\r\f]+'
+        token.type = 'STRING'
+        return token
 
-    # lexer.ll:598
+    # SOURCE: lexer.ll +707
     # <markup>[{}]
-#    def t_markup_598(self, t):
-#        r'[{}]'
-#        t.type = t.value
-#        return t
+    def t_markup_707(self, token):
+        r'[{}]'
+        # Set token type equal to value when returning character literal.
+        token.type = token.value
+        return token
 
-    # lexer.ll:601
-    # <markup>[^#{}\"\\ \t\n\r\f]+
-    def t_markup_601(self, t):
-        r'[^#{}\"\\ \t\n\r\f]+'
-        t.type = 'STRING'
-        return t
+    # REVERIFY
+    ## SOURCE: lexer.ll +713
+    ## <longcomment><<EOF>>
+    #def t_longcomment_713(self, token):
+    #    r'$'
+    #    message = 'EOF!'
+    #    raise LilyPondParserError(message)
+    #    token.lexer.pop_state()
 
-    # lexer.ll:614
-    # <markup>.
+    # REVERIFY
+    ## SOURCE: lexer.ll +718
+    ## <quote,commandquote><<EOF>>
+    #def t_quote_commandquote_718(self, token):
+    #    r'$'
+    #    message = 'EOF!'
+    #    raise LilyPondParserError(message)
+    #    token.lexer.pop_state()
 
-    # lexer.ll:619
-    # <longcomment><<EOF>>
+    # REVERIFY
+    ## SOURCE: lexer.ll +723
+    ## <<EOF>>
+    #def t_INITIAL_723(self, token):
+    #    r'$'
+    #    message = 'EOF!'
+    #    raise LilyPondParserError(message)
+    #    token.lexer.pop_state()
 
-    # lexer.ll:626
-    # <<EOF>>
+    # VERIFIED
+    # SOURCE: lexer.ll +751
+    # <maininput>{ANY_CHAR}
 
-    # lexer.ll:643
-    # <INITIAL>{DASHED_WORD}
-    @lex.TOKEN(DASHED_WORD)
-    def t_INITIAL_643(self, t):
-        t.type = self.scan_bare_word(t)
-        return t
+    # VERIFIED
+    # SOURCE: lexer.ll +759
+    # <INITIAL>{WORD}/[-_]|{WORD}
+    #@lex.TOKEN(r'{WORD}(?=[-_])|{WORD}'.format(WORD=WORD))
+    @lex.TOKEN(WORD)
+    def t_INITIAL_759(self, token):
+        self.scan_bare_word(token)
+        return token
 
-    # lexer.ll:646
-    # <INITIAL>{DASHED_KEY_WORD}
-    @lex.TOKEN(DASHED_KEY_WORD)
-    def t_INITIAL_646(self, t):
-        t.type = self.scan_escaped_word(t)
-        return t
+    # VERIFIED
+    # SOURCE: lexer.ll +763
+    # <INITIAL>\\\"
+    def t_INITIAL_763(self, token):
+        r'\\\"'
+        token.lexer.push_state('commandquote')
+        self.string_accumulator = ''
 
-    # lexer.ll:651
+    # VERIFIED
+    # SOURCE: lexer.ll +766
+    # <INITIAL>{COMMAND}/[-_]|{COMMAND}
+    #@lex.TOKEN(r'{COMMAND}(?=[-_])|{COMMAND}'.format(COMMAND=COMMAND))
+    @lex.TOKEN(COMMAND)
+    def t_INITIAL_766(self, token):
+        token.type = self.scan_escaped_word(token)
+        return token
+
+    ### IN PROGRESS ###
+
+    # SOURCE: lexer.ll +772
+    # {FRACTION}
+    @lex.TOKEN(FRACTION)
+    def t_772(self, token):
+        from abjad.tools import lilypondparsertools
+        token.type = 'FRACTION'
+        parts = token.value.split('/')
+        token.value = lilypondparsertools.LilyPondFraction(
+            int(parts[0]),
+            int(parts[1]),
+            )
+        return token
+
+    # SOURCE: lexer.ll +777
     # -{UNSIGNED}|{REAL}
-    @lex.TOKEN(REAL)
-    def t_651_a(self, t):
-        t.type = 'REAL'
-        t.value = float(t.value)
-        return t
+    @lex.TOKEN('-{UNSIGNED}|{REAL}'.format(UNSIGNED=UNSIGNED, REAL=REAL))
+    def t_777(self, token):
+        token.type = 'REAL'
+        token.value = float(token.value)
+        return token
 
-    @lex.TOKEN('-%s' % UNSIGNED)
-    def t_651_b(self, t):
-        t.type = 'REAL'
-        t.value = float(t.value)
-        return t
-
-    # lexer.ll:661
-    # -\.
-    def t_661(self, t):
-        '-\.'
-        t.type = 'REAL'
-        t.value = 0.0
-        return t
-
-    # lexer.ll:666
-    # {UNSIGNED}
+    # SOURCE: lexer.ll +783
+    # {UNSIGNED}/\/|{UNSIGNED}
     @lex.TOKEN(UNSIGNED)
-    def t_666(self, t):
-        t.type = 'UNSIGNED'
-        t.value = float(t.value)
-        return t
+    def t_783(self, token):
+        token.type = 'UNSIGNED'
+        token.value = int(token.value)
+        return token
 
-    # lexer.ll:672
-    # [{}]
+    # SOURCE: lexer.ll +790
+    # -/\.
+    @lex.TOKEN('-(?=[\.])')
+    def t_790(self, token):
+        token.type = token.value
+        return token
 
-    # lexer.ll:676
-    # [*:=]
+    # SOURCE: lexer.ll +795
+    # <INITIAL,chords,lyrics,figures,notes>{SPECIAL}
+    @lex.TOKEN(SPECIAL)
+    def t_INITIAL_note_795(self, token):
+        token.type = token.value
+        return token
 
-    # lexer.ll:682
-    # <INITIAL,notes,figures>.
+    # SOURCE: lexer.ll +800
+    # <INITIAL,chords,lyrics,figures,notes>{SHORTHAND}
+    #@lex.TOKEN(SHORTHAND)
+    @lex.TOKEN(r'\\.')
+    def t_INITIAL_notes_800(self, token):
+        # Why doesn't {SHORTHAND} work here?
+        token.type = self.characters.get(token.value[1], 'E_CHAR')
+        return token
 
-    # lexer.ll:686
-    # <INITIAL,lyrics,notes,figures>\\.
-    def t_INITIAL_notes_686(self, t):
-        r'\\.'
-        if t.value[1] == '>':
-            t.type = 'E_ANGLE_CLOSE'
-        elif t.value[1] == '<':
-            t.type = 'E_ANGLE_OPEN'
-        elif t.value[1] == '!':
-            t.type = 'E_EXCLAMATION'
-        elif t.value[1] == '(':
-            t.type = 'E_OPEN'
-        elif t.value[1] == ')':
-            t.type = 'E_CLOSE'
-        elif t.value[1] == '[':
-            t.type = 'E_BRACKET_OPEN'
-        elif t.value[1] == '+':
-            t.type = 'E_PLUS'
-        elif t.value[1] == ']':
-            t.type = 'E_BRACKET_CLOSE'
-        elif t.value[1] == '~':
-            t.type = 'E_TILDE'
-        elif t.value[1] == '\\':
-            t.type = 'E_BACKSLASH'
-        else:
-            t.type = 'E_CHAR'
-        return t
-
-    # lexer.ll:
-    # <*>.716
-#    def t_ANY_716(self, t):
-#        r'.'
-#        raise Exception
+    # SOURCE: lexer.ll +804
+    # <*>.[\200-\277]*
+    @lex.TOKEN('.[\200-\277]*')
+    def t_804(self, token):
+        # Is this even necessary under Python?
+        pass
 
     ### DEFAULT RULES ###
 
-    t_ignore = '' # let the grammar handle ignoring things
-
-    #    t_extratoken_ignore = t_ignore
-    #    t_chords_ignore = t_ignore
-    #    t_figures_ignore = t_ignore
-    #    t_incl_ignore = t_ignore
-    #    t_lyrics_ignore = t_ignore
-    #    t_lyric_quote_ignore = t_ignore
+    t_ignore = ''  # let the grammar handle ignoring things
+    # t_extratoken_ignore = t_ignore
+    # t_chords_ignore = t_ignore
+    t_commandquote_ignore = t_ignore
+    # t_figures_ignore = t_ignore
+    # t_incl_ignore = t_ignore
+    # t_lyrics_ignore = t_ignore
+    # t_lyric_quote_ignore = t_ignore
     t_longcomment_ignore = t_ignore
     t_markup_ignore = t_ignore
     t_notes_ignore = t_ignore
     t_quote_ignore = t_ignore
-    #    t_sourcefileline_ignore = t_ignore
-    #    t_sourcefilename_ignore = t_ignore
+    # t_sourcefileline_ignore = t_ignore
+    # t_sourcefilename_ignore = t_ignore
     t_version_ignore = t_ignore
-
     t_scheme_ignore = t_ignore
 
-    def t_newline(self, t):
+    def t_newline(self, token):
         r'\n+'
-        t.lexer.lineno += t.value.count("\n")
+        token.lexer.lineno += token.value.count("\n")
 
-    def t_error(self, t):
-        print(("LilyPondParser: Illegal character '%s'" % t.value[0]))
-        t.lexer.skip(1)
+    def t_error(self, token):
+        message = 'LilyPondParser: Illegal character {!r}'
+        message = message.format(token.value[0])
+        print(message)
+        token.lexer.skip(1)
 
-    #    t_extratoken_error = t_error
-    #    t_chords_error = t_error
-    #    t_figures_error = t_error
-    #    t_incl_error = t_error
-    #    t_lyrics_error = t_error
-    #    t_lyric_quote_error = t_error
+    # t_extratoken_error = t_error
+    # t_chords_error = t_error
+    t_commandquote_error = t_error
+    # t_figures_error = t_error
+    # t_incl_error = t_error
+    # t_lyrics_error = t_error
+    # t_lyric_quote_error = t_error
     t_longcomment_error = t_error
     t_markup_error = t_error
     t_notes_error = t_error
     t_quote_error = t_error
-    #    t_sourcefileline_error = t_error
-    #    t_sourcefilename_error = t_error
+    # t_sourcefileline_error = t_error
+    # t_sourcefilename_error = t_error
     t_version_error = t_error
-
     t_scheme_error = t_error
 
+    ### PUBLIC METHODS ###
 
-    def scan_bare_word(self, t):
-        if t.lexer.current_state() in ('notes',):
+    def scan_bare_word(self, token):
+        from abjad.ly import drums
+        if token.lexer.current_state() in ('notes',):
+            value = token.value
             pitch_names = self.client._pitch_names
-            if t.value in pitch_names:
-                t.type = 'NOTENAME_PITCH'
-            elif t.value == 'q' and self.client._last_chord:
-                t.type = 'CHORD_REPETITION'
-        return 'STRING'
+            if value in pitch_names:
+                token.type = 'NOTENAME_PITCH'
+                token.value = pitch_names[value]
+            elif value in drums:
+                token.type = 'NOTENAME_PITCH'
+                token.value = drums[value]
+            elif value == 'q' and self.client._last_chord:
+                token.type = 'CHORD_REPETITION'
+            else:
+                token.type = 'STRING'
+        else:
+            token.type = 'STRING'
 
-
-    def scan_escaped_word(self, t):
+    def scan_escaped_word(self, token):
         from abjad.tools import lilypondparsertools
-
         # first, check for it in the keyword list
-        if t.value in self.keywords:
-            value = self.keywords[t.value]
-
+        if token.value in self.keywords:
+            value = self.keywords[token.value]
             if value == 'MARKUP':
-                t.lexer.push_state('markup')
-                if t.lexer.current_state() == 'lyrics':
+                token.lexer.push_state('markup')
+                if token.lexer.current_state() == 'lyrics':
                     return 'LYRIC_MARKUP'
-
             elif value == 'WITH':
-                t.lexer.push_state('INITIAL')
-
+                token.lexer.push_state('INITIAL')
             return value
-
-        identifier = t.value[1:]
-
+        identifier = token.value[1:]
         # check for the identifier in the scope stack
         lookup = self.client._resolve_identifier(identifier)
         if lookup is not None:
-
-            identifier_lookup = {
-                'book_block': 'BOOK_IDENTIFIER',
-                'bookpart_block': 'BOOK_IDENTIFIER',
-                'context_def_spec_block': 'CONTEXT_DEF_IDENTIFIER',
-                'context_modification': 'CONTEXT_MOD_IDENTIFIER',
-                'post_event_nofinger': 'EVENT_IDENTIFIER',
-                'full_markup': 'MARKUP_IDENTIFIER',
-                'full_markup_list': 'MARKUPLINES_IDENTIFIER',
-                'music': 'MUSIC_IDENTIFIER',
-                'number_expression': 'NUMBER_IDENTIFIER',
-                'output_def': 'output_DEF_IDENTIFIER',
-                'embedded_scm': 'SCM_IDENTIFIER',
-                'score_block': 'SCORE_IDENTIFIER',
-                'string': 'STRING_IDENTIFIER',
-                # 'PITCH_IDENTIFIER' ?
-                # 'DURATION_IDENTIFIER' ?
-                # 'LYRIC_MARKUP_IDENTIFIER' ?
-            }
-
-            t.value = copy.deepcopy(lookup.value)
-            return identifier_lookup[lookup.type]
-
+            token.value = copy.deepcopy(lookup.value)
+            return self.identifiers[lookup.type]
         # then, check for it in the "current_module" dictionary
         # which we've dumped out of LilyPond
         if identifier not in self.client._current_module:
             message = 'unknown escaped word: {!r}.'
-            message = message.format(t.value)
-            raise Exception(message)
-
+            message = message.format(token.value)
+            raise LilyPondParserError(message)
         lookup = self.client._current_module[identifier]
-
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
         # the tokens are pushed in reverse order (LIFO).
         if isinstance(lookup, dict) and 'type' in lookup:
-
             if lookup['type'] == 'ly:music-function?':
-
                 signature = lookup['signature']
-                funtype = 'SCM_FUNCTION'
-                if signature[0] == 'ly:music?':
-                    funtype = 'MUSIC_FUNCTION'
-                elif signature[0] == 'ly:event?':
-                    funtype = 'EVENT_FUNCTION'
-
-                self.push_signature(signature[1:], t)
-
+                funtype = self.function_predicates.get(signature[0], 'SCM_FUNCTION')
+                self.push_signature(signature[1:], token)
                 return funtype
-
             elif lookup['type'] == 'ly:prob?' and 'event' in lookup['types']:
                 return 'EVENT_IDENTIFIER'
-
         # we also check for other types, to handle \longa, \breve etc.
         elif isinstance(lookup, lilypondparsertools.LilyPondDuration):
-            t.value = copy.copy(lookup)
+            token.value = copy.copy(lookup)
             return 'DURATION_IDENTIFIER'
-
         # else...
-        t.value = copy.copy(lookup)
+        token.value = copy.copy(lookup)
         return 'SCM_IDENTIFIER'
 
-
-    def push_signature(self, signature, t):
-
-        token = lex.LexToken()
-        token.type = 'EXPECT_NO_MORE_ARGS'
-        token.value = None
-        token.lineno = t.lineno
-        token.lexpos = t.lexpos
-        self.client._push_extra_token(token)
-
+    def push_signature(self, signature, token):
+        artificial_token = lex.LexToken()
+        artificial_token.type = 'EXPECT_NO_MORE_ARGS'
+        artificial_token.value = None
+        artificial_token.lineno = token.lineno
+        artificial_token.lexpos = token.lexpos
+        self.client._push_extra_token(artificial_token)
         optional = False
         for predicate in signature:
-
             if predicate == 'optional?':
                 optional = True
                 continue
-
-            token = lex.LexToken()
-            token.value = predicate
-            token.lineno = t.lineno
-            token.lexpos = t.lexpos
-
-            if predicate == 'ly:music?':
-                token.type = 'EXPECT_SCM' # ?!?!
-            elif predicate == 'ly:pitch?':
-                token.type = 'EXPECT_PITCH'
-            elif predicate == 'ly:duration?':
-                token.type = 'EXPECT_DURATION'
-            elif predicate in ['markup?', 'cheap-markup?']:
-                token.type = 'EXPECT_MARKUP'
-            elif predicate == 'markup-list?':
-                token.type = 'EXPECT_MARKUP_LIST'
-            else:
-                token.type = 'EXPECT_SCM'
-
-            self.client._push_extra_token(token)
-
+            artificial_token = lex.LexToken()
+            artificial_token.value = predicate
+            artificial_token.lineno = token.lineno
+            artificial_token.lexpos = token.lexpos
+            artificial_token.type = self.predicates.get(predicate, 'EXPECT_SCM')
+            self.client._push_extra_token(artificial_token)
             if optional:
                 optional_token = lex.LexToken()
                 optional_token.value = 'optional?'
-                optional_token.lineno = t.lineno
-                optional_token.lexpos = t.lexpos
+                optional_token.lineno = token.lineno
+                optional_token.lexpos = token.lexpos
                 optional_token.type = 'EXPECT_OPTIONAL'
                 self.client._push_extra_token(optional_token)
                 optional = False

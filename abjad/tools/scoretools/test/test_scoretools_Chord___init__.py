@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import pytest
 from abjad import *
 
 
@@ -216,6 +217,7 @@ def test_scoretools_Chord___init___20():
     assert format(chord_2) == "<c' e' g' bf'>8"
 
 
+@pytest.skip('Pending 2.19.24 update.')
 def test_scoretools_Chord___init___21():
     r'''Initialize chord with drum pitches.
     '''

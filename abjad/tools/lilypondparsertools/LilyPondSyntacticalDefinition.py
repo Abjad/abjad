@@ -11,6 +11,7 @@ from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
 from abjad.tools.abctools import AbjadObject
+from abjad.tools.exceptiontools import LilyPondParserError
 from abjad.tools.topleveltools import attach
 
 
@@ -122,233 +123,190 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'bare_number_closed : UNSIGNED'
         p[0] = p[1]
 
-
     ### bare_unsigned ###
-
 
     def p_bare_unsigned__UNSIGNED(self, p):
         'bare_unsigned : UNSIGNED'
         p[0] = p[1]
 
-
     ### bass_figure ###
-
 
 #    def p_bass_figure__FIGURE_SPACE(self, p):
 #        'bass_figure : FIGURE_SPACE'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bass_figure', p[1:])
 
-
 #    def p_bass_figure__bass_figure__Chr93(self, p):
 #        "bass_figure : bass_figure ']'"
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bass_figure', p[1:])
-
 
 #    def p_bass_figure__bass_figure__figured_bass_alteration(self, p):
 #        'bass_figure : bass_figure figured_bass_alteration'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bass_figure', p[1:])
 
-
 #    def p_bass_figure__bass_figure__figured_bass_modification(self, p):
 #        'bass_figure : bass_figure figured_bass_modification'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bass_figure', p[1:])
-
 
 #    def p_bass_figure__bass_number(self, p):
 #        'bass_figure : bass_number'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bass_figure', p[1:])
 
-
     ### bass_number ###
-
 
 #    def p_bass_number__STRING(self, p):
 #        'bass_number : STRING'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bass_number', p[1:])
 
-
 #    def p_bass_number__UNSIGNED(self, p):
 #        'bass_number : UNSIGNED'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bass_number', p[1:])
-
 
 #    def p_bass_number__full_markup(self, p):
 #        'bass_number : full_markup'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bass_number', p[1:])
 
-
     ### book_block ###
-
 
 #    def p_book_block__BOOK__Chr123__book_body__Chr125(self, p):
 #        "book_block : BOOK '{' book_body '}'"
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_block', p[1:])
 
-
     ### book_body ###
-
 
 #    def p_book_body__Empty(self, p):
 #        'book_body : '
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
 
-
 #    def p_book_body__BOOK_IDENTIFIER(self, p):
 #        'book_body : BOOK_IDENTIFIER'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
-
 
 #    def p_book_body__book_body__bookpart_block(self, p):
 #        'book_body : book_body bookpart_block'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
 
-
 #    def p_book_body__book_body__composite_music(self, p):
 #        'book_body : book_body composite_music'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
-
 
 #    def p_book_body__book_body__embedded_scm(self, p):
 #        'book_body : book_body embedded_scm'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
 
-
 #    def p_book_body__book_body__error(self, p):
 #        'book_body : book_body error'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
-
 
 #    def p_book_body__book_body__full_markup(self, p):
 #        'book_body : book_body full_markup'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
 
-
 #    def p_book_body__book_body__full_markup_list(self, p):
 #        'book_body : book_body full_markup_list'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
-
 
 #    def p_book_body__book_body__lilypond_header(self, p):
 #        'book_body : book_body lilypond_header'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
 
-
 #    def p_book_body__book_body__paper_block(self, p):
 #        'book_body : book_body paper_block'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
-
 
 #    def p_book_body__book_body__score_block(self, p):
 #        'book_body : book_body score_block'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_body', p[1:])
 
-
     ### bookpart_block ###
-
 
 #    def p_bookpart_block__BOOKPART__Chr123__bookpart_body__Chr125(self, p):
 #        "bookpart_block : BOOKPART '{' bookpart_body '}'"
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_block', p[1:])
 
-
     ### bookpart_body ###
-
 
 #    def p_bookpart_body__Empty(self, p):
 #        'bookpart_body : '
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
 
-
 #    def p_bookpart_body__BOOK_IDENTIFIER(self, p):
 #        'bookpart_body : BOOK_IDENTIFIER'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
-
 
 #    def p_bookpart_body__bookpart_body__composite_music(self, p):
 #        'bookpart_body : bookpart_body composite_music'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
 
-
 #    def p_bookpart_body__bookpart_body__embedded_scm(self, p):
 #        'bookpart_body : bookpart_body embedded_scm'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
-
 
 #    def p_bookpart_body__bookpart_body__error(self, p):
 #        'bookpart_body : bookpart_body error'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
 
-
 #    def p_bookpart_body__bookpart_body__full_markup(self, p):
 #        'bookpart_body : bookpart_body full_markup'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
-
 
 #    def p_bookpart_body__bookpart_body__full_markup_list(self, p):
 #        'bookpart_body : bookpart_body full_markup_list'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
 
-
 #    def p_bookpart_body__bookpart_body__lilypond_header(self, p):
 #        'bookpart_body : bookpart_body lilypond_header'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
-
 
 #    def p_bookpart_body__bookpart_body__paper_block(self, p):
 #        'bookpart_body : bookpart_body paper_block'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
 
-
 #    def p_bookpart_body__bookpart_body__score_block(self, p):
 #        'bookpart_body : bookpart_body score_block'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_body', p[1:])
 
-
     ### br_bass_figure ###
-
 
 #    def p_br_bass_figure__Chr91__bass_figure(self, p):
 #        "br_bass_figure : '[' bass_figure"
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('br_bass_figure', p[1:])
 
-
 #    def p_br_bass_figure__bass_figure(self, p):
 #        'br_bass_figure : bass_figure'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('br_bass_figure', p[1:])
-
 
     ### braced_music_list ###
 
@@ -364,18 +322,15 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### chord_body_element ###
 
-
 #    def p_chord_body_element__DRUM_PITCH__post_events(self, p):
 #        'chord_body_element : DRUM_PITCH post_events'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_body_element', p[1:])
 
-
     def p_chord_body_element__music_function_chord_body(self, p):
         'chord_body_element : music_function_chord_body'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('chord_body_element', p[1:])
-
 
     def p_chord_body_element__pitch__exclamations__questions__octave_check__post_events(self, p):
         'chord_body_element : pitch exclamations questions octave_check post_events'
@@ -395,147 +350,117 @@ class LilyPondSyntacticalDefinition(AbjadObject):
                 )
         p[0] = lilypondparsertools.SyntaxNode('chord_body_element', (note_head, p[5]))
 
-
-
     ### chord_body_elements ###
-
 
     def p_chord_body_elements__Empty(self, p):
         'chord_body_elements : '
         p[0] = []
 
-
     def p_chord_body_elements__chord_body_elements__chord_body_element(self, p):
         'chord_body_elements : chord_body_elements chord_body_element'
         p[0] = p[1] + [p[2]]
 
-
     ### chord_item ###
-
 
 #    def p_chord_item__CHORD_MODIFIER(self, p):
 #        'chord_item : CHORD_MODIFIER'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_item', p[1:])
 
-
 #    def p_chord_item__chord_separator(self, p):
 #        'chord_item : chord_separator'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_item', p[1:])
-
 
 #    def p_chord_item__step_numbers(self, p):
 #        'chord_item : step_numbers'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_item', p[1:])
 
-
     ### chord_items ###
-
 
 #    def p_chord_items__Empty(self, p):
 #        'chord_items : '
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_items', p[1:])
 
-
 #    def p_chord_items__chord_items__chord_item(self, p):
 #        'chord_items : chord_items chord_item'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_items', p[1:])
 
-
     ### chord_separator ###
-
 
 #    def p_chord_separator__CHORD_BASS__steno_tonic_pitch(self, p):
 #        'chord_separator : CHORD_BASS steno_tonic_pitch'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_separator', p[1:])
 
-
 #    def p_chord_separator__CHORD_CARET(self, p):
 #        'chord_separator : CHORD_CARET'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_separator', p[1:])
-
 
 #    def p_chord_separator__CHORD_COLON(self, p):
 #        'chord_separator : CHORD_COLON'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_separator', p[1:])
 
-
 #    def p_chord_separator__CHORD_SLASH__steno_tonic_pitch(self, p):
 #        'chord_separator : CHORD_SLASH steno_tonic_pitch'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('chord_separator', p[1:])
 
-
     ### closed_music ###
-
 
     def p_closed_music__complex_music_prefix__closed_music(self, p):
         'closed_music : complex_music_prefix closed_music'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('closed_music', p[1:])
 
-
     def p_closed_music__music_bare(self, p):
         'closed_music : music_bare'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('closed_music', p[1:])
 
-
     ### command_element ###
-
 
     def p_command_element__Chr124(self, p):
         "command_element : '|'"
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.LilyPondEvent('BarCheck')
 
-
     def p_command_element__E_BACKSLASH(self, p):
         'command_element : E_BACKSLASH'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.LilyPondEvent('VoiceSeparator')
-
 
 #    def p_command_element__E_BRACKET_CLOSE(self, p):
 #        'command_element : E_BRACKET_CLOSE'
 #        message = 'ligatures not supported.'
 #        raise Exception(message)
 
-
 #    def p_command_element__E_BRACKET_OPEN(self, p):
 #        'command_element : E_BRACKET_OPEN'
 #        message = 'ligatures not supported.'
 #        raise Exception(message)
 
-
     def p_command_element__command_event(self, p):
         'command_element : command_event'
         p[0] = p[1]
 
-
     ### command_event ###
-
 
 #    def p_command_event__E_TILDE(self, p):
 #        'command_event : E_TILDE'
 #        message = 'pes and flexa events not supported.'
 #        raise Exception(message)
 
-
     def p_command_event__tempo_event(self, p):
         'command_event : tempo_event'
         p[0] = p[1]
 
-
     ### complex_music ###
-
 
     def p_complex_music__complex_music_prefix__music(self, p):
         'complex_music : complex_music_prefix music'
@@ -546,26 +471,21 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         p[0] = self.client._construct_context_specced_music(
             context, optional_id, optional_context_mod, music)
 
-
     def p_complex_music__music_function_call(self, p):
         'complex_music : music_function_call'
         p[0] = p[1]
-
 
 #    def p_complex_music__re_rhythmed_music(self, p):
 #        'complex_music : re_rhythmed_music'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('complex_music', p[1:])
 
-
 #    def p_complex_music__repeated_music(self, p):
 #        'complex_music : repeated_music'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('complex_music', p[1:])
 
-
     ### complex_music_prefix ###
-
 
     def p_complex_music_prefix__CONTEXT__simple_string__optional_id__optional_context_mod(self, p):
         'complex_music_prefix : CONTEXT simple_string optional_id optional_context_mod'
@@ -610,48 +530,40 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
 
-
 #    def p_context_def_mod__ALIAS(self, p):
 #        'context_def_mod : ALIAS'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
-
 
 #    def p_context_def_mod__CONSISTS(self, p):
 #        'context_def_mod : CONSISTS'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
 
-
 #    def p_context_def_mod__DEFAULTCHILD(self, p):
 #        'context_def_mod : DEFAULTCHILD'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
-
 
 #    def p_context_def_mod__DENIES(self, p):
 #        'context_def_mod : DENIES'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
 
-
 #    def p_context_def_mod__DESCRIPTION(self, p):
 #        'context_def_mod : DESCRIPTION'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
-
 
 #    def p_context_def_mod__NAME(self, p):
 #        'context_def_mod : NAME'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
 
-
 #    def p_context_def_mod__REMOVE(self, p):
 #        'context_def_mod : REMOVE'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_def_mod', p[1:])
-
 
 #    def p_context_def_mod__TYPE(self, p):
 #        'context_def_mod : TYPE'
@@ -712,12 +624,10 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### context_mod ###
 
-
 #    def p_context_mod__context_def_mod__STRING(self, p):
 #        'context_mod : context_def_mod STRING'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('context_mod', p[1:])
-
 
 #    def p_context_mod__context_def_mod__embedded_scm(self, p):
 #        'context_mod : context_def_mod embedded_scm'
@@ -786,56 +696,45 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### direction_less_char ###
 
-
     def p_direction_less_char__Chr126(self, p):
         "direction_less_char : '~'"
-        p[0] = self.client._resolve_event_identifier('tildeSymbol')
-
+        p[0] = self.client._resolve_event_identifier('~')
 
     def p_direction_less_char__Chr40(self, p):
         "direction_less_char : '('"
-        p[0] = self.client._resolve_event_identifier('parenthesisOpenSymbol')
-
+        p[0] = self.client._resolve_event_identifier('#{\(}#')
 
     def p_direction_less_char__Chr41(self, p):
         "direction_less_char : ')'"
-        p[0] = self.client._resolve_event_identifier('parenthesisCloseSymbol')
-
+        p[0] = self.client._resolve_event_identifier('#{\)}#')
 
     def p_direction_less_char__Chr91(self, p):
         "direction_less_char : '['"
-        p[0] = self.client._resolve_event_identifier('bracketOpenSymbol')
-
+        p[0] = self.client._resolve_event_identifier('[')
 
     def p_direction_less_char__Chr93(self, p):
         "direction_less_char : ']'"
-        p[0] = self.client._resolve_event_identifier('bracketCloseSymbol')
-
+        p[0] = self.client._resolve_event_identifier(']')
 
     def p_direction_less_char__E_ANGLE_CLOSE(self, p):
         'direction_less_char : E_ANGLE_CLOSE'
-        p[0] = self.client._resolve_event_identifier('escapedBiggerSymbol')
-
+        p[0] = self.client._resolve_event_identifier('\>')
 
     def p_direction_less_char__E_ANGLE_OPEN(self, p):
         'direction_less_char : E_ANGLE_OPEN'
-        p[0] = self.client._resolve_event_identifier('escapedSmallerSymbol')
-
+        p[0] = self.client._resolve_event_identifier('\<')
 
     def p_direction_less_char__E_CLOSE(self, p):
         'direction_less_char : E_CLOSE'
-        p[0] = self.client._resolve_event_identifier('escapedParenthesisCloseSymbol')
-
+        p[0] = self.client._resolve_event_identifier('#{\\\)}#')
 
     def p_direction_less_char__E_EXCLAMATION(self, p):
         'direction_less_char : E_EXCLAMATION'
-        p[0] = self.client._resolve_event_identifier('escapedExclamationSymbol')
-
+        p[0] = self.client._resolve_event_identifier('\!')
 
     def p_direction_less_char__E_OPEN(self, p):
         'direction_less_char : E_OPEN'
-        p[0] = self.client._resolve_event_identifier('escapedParenthesisOpenSymbol')
-
+        p[0] = self.client._resolve_event_identifier('#{\\\(}#')
 
     ### direction_less_event ###
 
@@ -886,211 +785,167 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### duration_length ###
 
-
     def p_duration_length__multiplied_duration(self, p):
         'duration_length : multiplied_duration'
         p[0] = p[1]
 
-
     ### embedded_lilypond ###
-
 
 #    def p_embedded_lilypond__Empty(self, p):
 #        'embedded_lilypond : '
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('embedded_lilypond', p[1:])
 
-
 #    def p_embedded_lilypond__INVALID__embedded_lilypond(self, p):
 #        'embedded_lilypond : INVALID embedded_lilypond'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('embedded_lilypond', p[1:])
-
 
 #    def p_embedded_lilypond__error(self, p):
 #        'embedded_lilypond : error'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('embedded_lilypond', p[1:])
 
-
 #    def p_embedded_lilypond__identifier_init(self, p):
 #        'embedded_lilypond : identifier_init'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('embedded_lilypond', p[1:])
-
 
 #    def p_embedded_lilypond__music__music__music_list(self, p):
 #        'embedded_lilypond : music music music_list'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('embedded_lilypond', p[1:])
 
-
     ### embedded_scm ###
-
 
     def p_embedded_scm__embedded_scm_bare(self, p):
         'embedded_scm : embedded_scm_bare'
         p[0] = p[1]
 
-
     def p_embedded_scm__scm_function_call(self, p):
         'embedded_scm : scm_function_call'
         p[0] = p[1]
 
-
     ### embedded_scm_arg ###
-
 
     def p_embedded_scm_arg__embedded_scm_bare_arg(self, p):
         'embedded_scm_arg : embedded_scm_bare_arg'
         p[0] = p[1]
 
-
     def p_embedded_scm_arg__music_arg(self, p):
         'embedded_scm_arg : music_arg'
         p[0] = p[1]
-
 
     def p_embedded_scm_arg__scm_function_call(self, p):
         'embedded_scm_arg : scm_function_call'
         p[0] = p[1]
 
-
     ### embedded_scm_arg_closed ###
-
 
     def p_embedded_scm_arg_closed__closed_music(self, p):
         'embedded_scm_arg_closed : closed_music'
         p[0] = p[1]
 
-
     def p_embedded_scm_arg_closed__embedded_scm_bare_arg(self, p):
         'embedded_scm_arg_closed : embedded_scm_bare_arg'
         p[0] = p[1]
-
 
     def p_embedded_scm_arg_closed__scm_function_call_closed(self, p):
         'embedded_scm_arg_closed : scm_function_call_closed'
         p[0] = p[1]
 
-
     ### embedded_scm_bare ###
-
 
     def p_embedded_scm_bare__SCM_IDENTIFIER(self, p):
         'embedded_scm_bare : SCM_IDENTIFIER'
         p[0] = p[1]
 
-
     def p_embedded_scm_bare__SCM_TOKEN(self, p):
         'embedded_scm_bare : SCM_TOKEN'
         p[0] = p[1]
 
-
     ### embedded_scm_bare_arg ###
-
 
     def p_embedded_scm_bare_arg__STRING(self, p):
         'embedded_scm_bare_arg : STRING'
         p[0] = p[1]
 
-
     def p_embedded_scm_bare_arg__STRING_IDENTIFIER(self, p):
         'embedded_scm_bare_arg : STRING_IDENTIFIER'
         p[0] = p[1]
-
 
 #    def p_embedded_scm_bare_arg__book_block(self, p):
 #        'embedded_scm_bare_arg : book_block'
 #        p[0] = p[1]
 
-
 #    def p_embedded_scm_bare_arg__bookpart_block(self, p):
 #        'embedded_scm_bare_arg : bookpart_block'
 #        p[0] = p[1]
-
 
     def p_embedded_scm_bare_arg__context_def_spec_block(self, p):
         'embedded_scm_bare_arg : context_def_spec_block'
         p[0] = p[1]
 
-
     def p_embedded_scm_bare_arg__context_modification(self, p):
         'embedded_scm_bare_arg : context_modification'
         p[0] = p[1]
-
 
     def p_embedded_scm_bare_arg__embedded_scm_bare(self, p):
         'embedded_scm_bare_arg : embedded_scm_bare'
         p[0] = p[1]
 
-
     def p_embedded_scm_bare_arg__full_markup(self, p):
         'embedded_scm_bare_arg : full_markup'
         p[0] = p[1]
-
 
     def p_embedded_scm_bare_arg__full_markup_list(self, p):
         'embedded_scm_bare_arg : full_markup_list'
         p[0] = p[1]
 
-
     def p_embedded_scm_bare_arg__output_def(self, p):
         'embedded_scm_bare_arg : output_def'
         p[0] = p[1]
-
 
     def p_embedded_scm_bare_arg__score_block(self, p):
         'embedded_scm_bare_arg : score_block'
         p[0] = p[1]
 
-
     ### embedded_scm_chord_body ###
-
 
     def p_embedded_scm_chord_body__SCM_FUNCTION__music_function_chord_body_arglist(self, p):
         'embedded_scm_chord_body : SCM_FUNCTION music_function_chord_body_arglist'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('embedded_scm_chord_body', p[1:])
 
-
     def p_embedded_scm_chord_body__bare_number(self, p):
         'embedded_scm_chord_body : bare_number'
         p[0] = p[1]
-
 
     def p_embedded_scm_chord_body__chord_body_element(self, p):
         'embedded_scm_chord_body : chord_body_element'
         p[0] = p[1]
 
-
     def p_embedded_scm_chord_body__embedded_scm_bare_arg(self, p):
         'embedded_scm_chord_body : embedded_scm_bare_arg'
         p[0] = p[1]
-
 
     def p_embedded_scm_chord_body__fraction(self, p):
         'embedded_scm_chord_body : fraction'
         p[0] = p[1]
 
-
 #    def p_embedded_scm_chord_body__lyric_element(self, p):
 #        'embedded_scm_chord_body : lyric_element'
 #        p[0] = p[1]
 
-
     ### embedded_scm_closed ###
-
 
     def p_embedded_scm_closed__embedded_scm_bare(self, p):
         'embedded_scm_closed : embedded_scm_bare'
         p[0] = p[1]
 
-
     def p_embedded_scm_closed__scm_function_call_closed(self, p):
         'embedded_scm_closed : scm_function_call_closed'
         p[0] = p[1]
-
 
     ### event_chord ###
 
@@ -1236,16 +1091,13 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p.__getslice__(1, None),
             )
 
-
     def p_full_markup__MARKUP__markup_top(self, p):
         'full_markup : MARKUP markup_top'
         p[0] = markuptools.Markup(p[2])
         self.client._lexer.pop_state()
         self.client._relex_lookahead()
 
-
     ### full_markup_list ###
-
 
     def p_full_markup_list__MARKUPLIST_IDENTIFIER(self, p):
         'full_markup_list : MARKUPLIST_IDENTIFIER'
@@ -1253,45 +1105,36 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         #p[0] = lilypondparsertools.SyntaxNode('full_markup_list', p[1:])
         p[0] = p[1]
 
-
     def p_full_markup_list__MARKUPLIST__markup_list(self, p):
         'full_markup_list : MARKUPLIST markup_list'
         #from abjad.tools import lilypondparsertools
         #p[0] = lilypondparsertools.SyntaxNode('full_markup_list', p[1:])
         p[0] = p[2]
 
-
     ### function_arglist ###
-
 
     def p_function_arglist__function_arglist_common(self, p):
         'function_arglist : function_arglist_common'
         p[0] = p[1]
 
-
     def p_function_arglist__function_arglist_nonbackup(self, p):
         'function_arglist : function_arglist_nonbackup'
         p[0] = p[1]
 
-
     ### function_arglist_backup ###
-
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed_keep__duration_length(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_keep duration_length'
         p[0] = p[3] + [p[4]]
 
-
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_keep__pitch_also_in_chords(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_keep pitch_also_in_chords'
         p[0] = p[3] + [p[4]]
-
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_backup__BACKUP(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_backup BACKUP'
         p[0] = p[3] + [p[1]]
         self.client._backup_token(False, None)
-
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' NUMBER_IDENTIFIER"
@@ -1301,7 +1144,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             self.client._backup_token('NUMBER_IDENTIFIER', n)
 
-
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__REAL(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' REAL"
         n = -1 * p[5]
@@ -1310,7 +1152,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[0] = p[3]
         else:
             self.client._backup_token('REAL', n)
-
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__Chr45__UNSIGNED(self, p):
         "function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep '-' UNSIGNED"
@@ -1323,7 +1164,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             self.client._backup_token('REAL', n)
             p[0] = p[3] + [p[1]]
 
-
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__FRACTION(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep FRACTION'
         if self.client._test_scheme_predicate(p[2], p[4]):
@@ -1332,7 +1172,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[0] = p[3] + [p[1]]
             self.client._backup_token('FRACTION', p[4])
 
-
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__NUMBER_IDENTIFIER(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep NUMBER_IDENTIFIER'
         if self.client._test_scheme_predicate(p[2], p[4]):
@@ -1340,7 +1179,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             p[0] = p[3] + [p[1]]
             self.client._backup_token('NUMBER_IDENTIFIER', p[4])
-
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__REAL(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep REAL'
@@ -1351,7 +1189,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[0] = p[3] + [p[1]]
             self.client._backup_token('REAL', p[4])
 
-
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__UNSIGNED(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep UNSIGNED'
         if self.client._test_scheme_predicate(p[2], p[4]):
@@ -1361,7 +1198,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[0] = p[3] + [p[1]]
             self.client._backup_token('UNSIGNED', p[4])
 
-
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed_keep__post_event_nofinger(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed_keep post_event_nofinger'
         if self.client._test_scheme_predicate(p[2], p[4]):
@@ -1369,7 +1205,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         else:
             p[0] = p[3] + [p[1]]
             self.client._backup_token('EVENT_IDENTIFIER', p[4])
-
 
     def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__embedded_scm_arg_closed(self, p):
         'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep embedded_scm_arg_closed'
@@ -1379,7 +1214,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[0] = p[3] + [p[1]]
             self.client._backup_token('SCM_IDENTIFIER', p[4])
 
-
 #    def p_function_arglist_backup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_keep__lyric_element(self, p):
 #        'function_arglist_backup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_keep lyric_element'
 #        if self.client._test_scheme_predicate(p[2], p[4]):
@@ -1388,452 +1222,358 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #            p[0] = p[3] + [p[1]]
 #            self.client._backup_token('LYRICS_STRING', p[4])
 
-
     def p_function_arglist_backup__function_arglist_backup__REPARSE__bare_number(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE bare_number'
         p[0] = self.client._check_scheme_argument(p[1], p[3], p[2])
-
 
     def p_function_arglist_backup__function_arglist_backup__REPARSE__embedded_scm_arg_closed(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE embedded_scm_arg_closed'
         p[0] = self.client._check_scheme_argument(p[1], p[3], p[2])
 
-
     def p_function_arglist_backup__function_arglist_backup__REPARSE__fraction(self, p):
         'function_arglist_backup : function_arglist_backup REPARSE fraction'
         p[0] = self.client._check_scheme_argument(p[1], p[3], p[2])
 
-
     ### function_arglist_bare ###
-
 
     def p_function_arglist_bare__EXPECT_DURATION__function_arglist_closed_optional__duration_length(self, p):
         'function_arglist_bare : EXPECT_DURATION function_arglist_closed_optional duration_length'
         p[0] = p[2] + [p[3]]
 
-
     def p_function_arglist_bare__EXPECT_NO_MORE_ARGS(self, p):
         'function_arglist_bare : EXPECT_NO_MORE_ARGS'
         p[0] = []
-
 
     def p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_skip__DEFAULT(self, p):
         'function_arglist_bare : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_skip DEFAULT'
         p[0] = p[3] + [p[1]]
 
-
     def p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_skip__DEFAULT(self, p):
         'function_arglist_bare : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_skip DEFAULT'
         p[0] = p[3] + [p[1]]
-
 
     def p_function_arglist_bare__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_skip__DEFAULT(self, p):
         'function_arglist_bare : EXPECT_OPTIONAL EXPECT_SCM function_arglist_skip DEFAULT'
         p[0] = p[3] + [p[1]]
 
-
     def p_function_arglist_bare__EXPECT_PITCH__function_arglist_optional__pitch_also_in_chords(self, p):
         'function_arglist_bare : EXPECT_PITCH function_arglist_optional pitch_also_in_chords'
         p[0] = p[2] + [p[3]]
 
-
     ### function_arglist_closed ###
-
 
     def p_function_arglist_closed__function_arglist_closed_common(self, p):
         'function_arglist_closed : function_arglist_closed_common'
         p[0] = p[1]
 
-
     def p_function_arglist_closed__function_arglist_nonbackup(self, p):
         'function_arglist_closed : function_arglist_nonbackup'
         p[0] = p[1]
 
-
     ### function_arglist_closed_common ###
-
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional '-' NUMBER_IDENTIFIER"
         p[0] = p[2] + [-1 * p[4]]
 
-
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__REAL(self, p):
         "function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional '-' REAL"
         p[0] = p[2] + [-1 * p[4]]
-
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__Chr45__UNSIGNED(self, p):
         "function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional '-' UNSIGNED"
         p[0] = p[2] + [-1 * p[4]]
 
-
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__bare_number(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional bare_number'
         p[0] = p[2] + [p[3]]
-
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__fraction(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional fraction'
         p[0] = p[2] + [p[3]]
 
-
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_closed_optional__post_event_nofinger(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_closed_optional post_event_nofinger'
         p[0] = p[2] + [p[3]]
-
 
     def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_optional__embedded_scm_arg_closed(self, p):
         'function_arglist_closed_common : EXPECT_SCM function_arglist_optional embedded_scm_arg_closed'
         p[0] = p[2] + [p[3]]
 
-
 #    def p_function_arglist_closed_common__EXPECT_SCM__function_arglist_optional__lyric_element(self, p):
 #        'function_arglist_closed_common : EXPECT_SCM function_arglist_optional lyric_element'
 #        p[0] = p[2] + [p[3]]
-
 
     def p_function_arglist_closed_common__function_arglist_bare(self, p):
         'function_arglist_closed_common : function_arglist_bare'
         p[0] = p[1]
 
-
     ### function_arglist_closed_keep ###
-
 
     def p_function_arglist_closed_keep__function_arglist_backup(self, p):
         'function_arglist_closed_keep : function_arglist_backup'
         p[0] = p[1]
 
-
     def p_function_arglist_closed_keep__function_arglist_closed_common(self, p):
         'function_arglist_closed_keep : function_arglist_closed_common'
         p[0] = p[1]
 
-
     ### function_arglist_closed_optional ###
-
 
     def p_function_arglist_closed_optional__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed_optional(self, p):
         'function_arglist_closed_optional : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed_optional'
         p[0] = p[3] + [p[1]]
 
-
     def p_function_arglist_closed_optional__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_closed_optional(self, p):
         'function_arglist_closed_optional : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_closed_optional'
         p[0] = p[3] + [p[1]]
-
 
     def p_function_arglist_closed_optional__function_arglist_backup__BACKUP(self, p):
         'function_arglist_closed_optional : function_arglist_backup BACKUP'
         p[0] = p[1]
 
-
     def p_function_arglist_closed_optional__function_arglist_closed_keep(self, p):
         'function_arglist_closed_optional : function_arglist_closed_keep %prec FUNCTION_ARGLIST'
         p[0] = p[1]
 
-
     ### function_arglist_common ###
-
 
     def p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__bare_number(self, p):
         'function_arglist_common : EXPECT_SCM function_arglist_closed_optional bare_number'
         p[0] = p[2] + [p[3]]
 
-
     def p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__fraction(self, p):
         'function_arglist_common : EXPECT_SCM function_arglist_closed_optional fraction'
         p[0] = p[2] + [p[3]]
-
 
     def p_function_arglist_common__EXPECT_SCM__function_arglist_closed_optional__post_event_nofinger(self, p):
         'function_arglist_common : EXPECT_SCM function_arglist_closed_optional post_event_nofinger'
         p[0] = p[2] + [p[3]]
 
-
     def p_function_arglist_common__EXPECT_SCM__function_arglist_optional__embedded_scm_arg(self, p):
         'function_arglist_common : EXPECT_SCM function_arglist_optional embedded_scm_arg'
         p[0] = p[2] + [p[3]]
-
 
     def p_function_arglist_common__function_arglist_bare(self, p):
         'function_arglist_common : function_arglist_bare'
         p[0] = p[1]
 
-
 #    def p_function_arglist_common__function_arglist_common_lyric(self, p):
 #        'function_arglist_common : function_arglist_common_lyric'
 #        p[0] = p[1]
-
 
     def p_function_arglist_common__function_arglist_common_minus(self, p):
         'function_arglist_common : function_arglist_common_minus'
         p[0] = p[1]
 
-
     ### function_arglist_common_lyric ###
-
 
 #    def p_function_arglist_common_lyric__EXPECT_SCM__function_arglist_optional__lyric_element(self, p):
 #        'function_arglist_common_lyric : EXPECT_SCM function_arglist_optional lyric_element'
 #        p[0] = p[2] + [p[3]]
 
-
 #    def p_function_arglist_common_lyric__function_arglist_common_lyric__REPARSE__lyric_element_arg(self, p):
 #        'function_arglist_common_lyric : function_arglist_common_lyric REPARSE lyric_element_arg'
 #        p[0] = p[1] + [p[3]]
 
-
     ### function_arglist_common_minus ###
-
 
     def p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_common_minus : EXPECT_SCM function_arglist_closed_optional '-' NUMBER_IDENTIFIER"
         p[0] = p[2] + [-1 * p[4]]
 
-
     def p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__REAL(self, p):
         "function_arglist_common_minus : EXPECT_SCM function_arglist_closed_optional '-' REAL"
         p[0] = p[2] + [-1 * p[3]]
-
 
     def p_function_arglist_common_minus__EXPECT_SCM__function_arglist_closed_optional__Chr45__UNSIGNED(self, p):
         "function_arglist_common_minus : EXPECT_SCM function_arglist_closed_optional '-' UNSIGNED"
         p[0] = p[2] + [-1 * p[3]]
 
-
     def p_function_arglist_common_minus__function_arglist_common_minus__REPARSE__bare_number(self, p):
         'function_arglist_common_minus : function_arglist_common_minus REPARSE bare_number'
         p[0] = p[1] + [p[3]]
 
-
     ### function_arglist_keep ###
-
 
     def p_function_arglist_keep__function_arglist_backup(self, p):
         'function_arglist_keep : function_arglist_backup'
         p[0] = p[1]
 
-
     def p_function_arglist_keep__function_arglist_common(self, p):
         'function_arglist_keep : function_arglist_common'
         p[0] = p[1]
 
-
     ### function_arglist_nonbackup ###
-
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_closed__duration_length(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_closed duration_length'
         p[0] = p[3] + [p[4]]
 
-
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist__pitch_also_in_chords(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_PITCH function_arglist pitch_also_in_chords'
         p[0] = p[3] + [p[4]]
-
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist__embedded_scm_arg_closed(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist embedded_scm_arg_closed'
         p[0] = p[3] + [p[4]]
 
-
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__NUMBER_IDENTIFIER(self, p):
         "function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed '-' NUMBER_IDENTIFIER"
         p[0] = p[3] + [-1 * p[4]]
-
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__REAL(self, p):
         "function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed '-' REAL"
         p[0] = p[3] + [-1 * p[4]]
 
-
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__Chr45__UNSIGNED(self, p):
         "function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed '-' UNSIGNED"
         p[0] = p[3] + [-1 * p[4]]
-
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__FRACTION(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed FRACTION'
         p[0] = p[3] + [p[4]]
 
-
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__bare_number_closed(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed bare_number_closed'
         p[0] = p[3] + [p[4]]
-
 
     def p_function_arglist_nonbackup__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_closed__post_event_nofinger(self, p):
         'function_arglist_nonbackup : EXPECT_OPTIONAL EXPECT_SCM function_arglist_closed post_event_nofinger'
         p[0] = p[3] + [p[4]]
 
-
     ### function_arglist_optional ###
-
 
     def p_function_arglist_optional__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_optional(self, p):
         'function_arglist_optional : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_optional'
         p[0] = p[3] + [p[1]]
 
-
     def p_function_arglist_optional__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_optional(self, p):
         'function_arglist_optional : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_optional'
         p[0] = p[3] + [p[1]]
-
 
     def p_function_arglist_optional__function_arglist_backup__BACKUP(self, p):
         'function_arglist_optional : function_arglist_backup BACKUP'
         p[0] = p[1]
 
-
     def p_function_arglist_optional__function_arglist_keep(self, p):
         'function_arglist_optional : function_arglist_keep %prec FUNCTION_ARGLIST'
         p[0] = p[1]
 
-
     ### function_arglist_skip ###
-
 
     def p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_DURATION__function_arglist_skip(self, p):
         'function_arglist_skip : EXPECT_OPTIONAL EXPECT_DURATION function_arglist_skip %prec FUNCTION_ARGLIST'
         p[0] = p[3] + [p[1]]
 
-
     def p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_PITCH__function_arglist_skip(self, p):
         'function_arglist_skip : EXPECT_OPTIONAL EXPECT_PITCH function_arglist_skip %prec FUNCTION_ARGLIST'
         p[0] = p[3] + [p[1]]
-
 
     def p_function_arglist_skip__EXPECT_OPTIONAL__EXPECT_SCM__function_arglist_skip(self, p):
         'function_arglist_skip : EXPECT_OPTIONAL EXPECT_SCM function_arglist_skip %prec FUNCTION_ARGLIST'
         p[0] = p[3] + [p[1]]
 
-
     def p_function_arglist_skip__function_arglist_common(self, p):
         'function_arglist_skip : function_arglist_common'
         p[0] = p[1]
 
-
     ### gen_text_def ###
-
 
     def p_gen_text_def__full_markup(self, p):
         'gen_text_def : full_markup'
         p[0] = p[1]
 
-
     def p_gen_text_def__simple_string(self, p):
         'gen_text_def : simple_string'
         p[0] = markuptools.Markup(p[1])
 
-
     ### grouped_music_list ###
-
 
     def p_grouped_music_list__sequential_music(self, p):
         'grouped_music_list : sequential_music'
         p[0] = p[1]
 
-
     def p_grouped_music_list__simultaneous_music(self, p):
         'grouped_music_list : simultaneous_music'
         p[0] = p[1]
 
-
     ### identifier_init ###
-
 
 #    def p_identifier_init__book_block(self, p):
 #        'identifier_init : book_block'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('book_block', p[1])
 
-
 #    def p_identifier_init__bookpart_block(self, p):
 #        'identifier_init : bookpart_block'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('bookpart_block', p[1])
-
 
     def p_identifier_init__context_def_spec_block(self, p):
         'identifier_init : context_def_spec_block'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('context_def_spec_block', p[1])
 
-
     def p_identifier_init__context_modification(self, p):
         'identifier_init : context_modification'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('context_modification', p[1])
-
 
     def p_identifier_init__embedded_scm(self, p):
         'identifier_init : embedded_scm'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('embedded_scm', p[1])
 
-
     def p_identifier_init__full_markup(self, p):
         'identifier_init : full_markup'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('full_markup', p[1])
-
 
     def p_identifier_init__full_markup_list(self, p):
         'identifier_init : full_markup_list'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('full_markup_list', p[1])
 
-
     def p_identifier_init__music(self, p):
         'identifier_init : music'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('music', p[1])
-
 
     def p_identifier_init__number_expression(self, p):
         'identifier_init : number_expression'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('number_expression', p[1])
 
-
     def p_identifier_init__output_def(self, p):
         'identifier_init : output_def'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('output_def', p[1])
-
 
     def p_identifier_init__post_event_nofinger(self, p):
         'identifier_init : post_event_nofinger'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('post_event_nofinger', p[1])
 
-
     def p_identifier_init__score_block(self, p):
         'identifier_init : score_block'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('score_block', p[1])
-
 
     def p_identifier_init__string(self, p):
         'identifier_init : string'
         from abjad.tools import lilypondparsertools
         p[0] = lilypondparsertools.SyntaxNode('string', p[1])
 
-
     ### lilypond ###
-
 
     def p_lilypond__Empty(self, p):
         'lilypond : '
         p[0] = []
 
-
 #    def p_lilypond__lilypond__INVALID(self, p):
 #        'lilypond : lilypond INVALID'
 #        p[0] = p[1]
-
 
     def p_lilypond__lilypond__assignment(self, p):
         'lilypond : lilypond assignment'
@@ -1841,34 +1581,27 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         if p[2] is not None:
             self.client._assign_variable(p[2][0], p[2][1])
 
-
     def p_lilypond__lilypond__error(self, p):
         'lilypond : lilypond error'
         p[0] = p[1]
-
 
     def p_lilypond__lilypond__toplevel_expression(self, p):
         'lilypond : lilypond toplevel_expression'
         p[0] = p[1] + [p[2]]
 
-
     ### lilypond_header ###
-
 
     def p_lilypond_header__HEADER__Chr123__lilypond_header_body__Chr125(self, p):
         "lilypond_header : HEADER '{' lilypond_header_body '}'"
         self.client._pop_variable_scope()
         p[0] = p[3]
 
-
     ### lilypond_header_body ###
-
 
     def p_lilypond_header_body__Empty(self, p):
         'lilypond_header_body : '
         self.client._push_variable_scope()
         p[0] = lilypondfiletools.Block(name='header')
-
 
     def p_lilypond_header_body__lilypond_header_body__assignment(self, p):
         'lilypond_header_body : lilypond_header_body assignment'
@@ -1876,76 +1609,60 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         setattr(p[1], p[2][0], p[2][1].value)
         p[0] = p[1]
 
-
-
     ### lyric_element ###
-
 
 #    def p_lyric_element__LYRICS_STRING(self, p):
 #        'lyric_element : LYRICS_STRING'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_element', p[1:])
 
-
 #    def p_lyric_element__lyric_markup(self, p):
 #        'lyric_element : lyric_markup'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_element', p[1:])
 
-
     ### lyric_element_arg ###
-
 
 #    def p_lyric_element_arg__LYRIC_ELEMENT__optional_notemode_duration__post_events(self, p):
 #        'lyric_element_arg : LYRIC_ELEMENT optional_notemode_duration post_events'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_element_arg', p[1:])
 
-
 #    def p_lyric_element_arg__lyric_element(self, p):
 #        'lyric_element_arg : lyric_element'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_element_arg', p[1:])
-
 
 #    def p_lyric_element_arg__lyric_element__multiplied_duration__post_events(self, p):
 #        'lyric_element_arg : lyric_element multiplied_duration post_events'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_element_arg', p[1:])
 
-
 #    def p_lyric_element_arg__lyric_element__post_event__post_events(self, p):
 #        'lyric_element_arg : lyric_element post_event post_events'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_element_arg', p[1:])
 
-
     ### lyric_element_music ###
-
 
 #    def p_lyric_element_music__lyric_element__optional_notemode_duration__post_events(self, p):
 #        'lyric_element_music : lyric_element optional_notemode_duration post_events'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_element_music', p[1:])
 
-
     ### lyric_markup ###
-
 
 #    def p_lyric_markup__LYRIC_MARKUP_IDENTIFIER(self, p):
 #        'lyric_markup : LYRIC_MARKUP_IDENTIFIER'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_markup', p[1:])
 
-
 #    def p_lyric_markup__LYRIC_MARKUP__markup_top(self, p):
 #        'lyric_markup : LYRIC_MARKUP markup_top'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('lyric_markup', p[1:])
 
-
     ### markup ###
-
 
     def p_markup__markup_head_1_list__simple_markup(self, p):
         'markup : markup_head_1_list simple_markup'
@@ -1957,79 +1674,61 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             markup = markuptools.MarkupCommand(command, *args)
         p[0] = markup
 
-
     def p_markup__simple_markup(self, p):
         'markup : simple_markup'
         p[0] = p[1]
 
-
     ### markup_braced_list ###
-
 
     def p_markup_braced_list__Chr123__markup_braced_list_body__Chr125(self, p):
         "markup_braced_list : '{' markup_braced_list_body '}'"
         p[0] = p[2]
 
-
     ### markup_braced_list_body ###
-
 
     def p_markup_braced_list_body__Empty(self, p):
         'markup_braced_list_body : '
         p[0] = []
 
-
     def p_markup_braced_list_body__markup_braced_list_body__markup(self, p):
         'markup_braced_list_body : markup_braced_list_body markup'
         p[0] = p[1] + [p[2]]
-
 
     def p_markup_braced_list_body__markup_braced_list_body__markup_list(self, p):
         'markup_braced_list_body : markup_braced_list_body markup_list'
         p[0] = p[1] + [p[2]]
 
-
     ### markup_command_basic_arguments ###
-
 
     def p_markup_command_basic_arguments__EXPECT_MARKUP_LIST__markup_command_list_arguments__markup_list(self, p):
         'markup_command_basic_arguments : EXPECT_MARKUP_LIST markup_command_list_arguments markup_list'
         p[0] = p[2] + [p[3]]
 
-
     def p_markup_command_basic_arguments__EXPECT_NO_MORE_ARGS(self, p):
         'markup_command_basic_arguments : EXPECT_NO_MORE_ARGS'
         p[0] = []
-
 
     def p_markup_command_basic_arguments__EXPECT_SCM__markup_command_list_arguments__embedded_scm_closed(self, p):
         'markup_command_basic_arguments : EXPECT_SCM markup_command_list_arguments embedded_scm_closed'
         p[0] = p[2] + [p[3]]
 
-
     ### markup_command_list ###
-
 
     def p_markup_command_list__MARKUP_LIST_FUNCTION__markup_command_list_arguments(self, p):
         'markup_command_list : MARKUP_LIST_FUNCTION markup_command_list_arguments'
         p[0] = markuptools.MarkupCommand(p[1][1:], *p[2])
 
-
     ### markup_command_list_arguments ###
-
 
     def p_markup_command_list_arguments__EXPECT_MARKUP__markup_command_list_arguments__markup(self, p):
         'markup_command_list_arguments : EXPECT_MARKUP markup_command_list_arguments markup'
         p[0] = p[2] + [p[3]]
 
-
     def p_markup_command_list_arguments__markup_command_basic_arguments(self, p):
         'markup_command_list_arguments : markup_command_basic_arguments'
         p[0] = p[1]
 
-
     ### markup_composed_list ###
-
 
     def p_markup_composed_list__markup_head_1_list__markup_braced_list(self, p):
         'markup_composed_list : markup_head_1_list markup_braced_list'
@@ -2041,50 +1740,39 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             markup = markuptools.MarkupCommand(command, *args)
         p[0] = markup
 
-
     ### markup_head_1_item ###
-
 
     def p_markup_head_1_item__MARKUP_FUNCTION__EXPECT_MARKUP__markup_command_list_arguments(self, p):
         'markup_head_1_item : MARKUP_FUNCTION EXPECT_MARKUP markup_command_list_arguments'
         p[0] = [p[1]] + p[3]
 
-
     ### markup_head_1_list ###
-
 
     def p_markup_head_1_list__markup_head_1_item(self, p):
         'markup_head_1_list : markup_head_1_item'
         p[0] = [p[1]]
 
-
     def p_markup_head_1_list__markup_head_1_list__markup_head_1_item(self, p):
         'markup_head_1_list : markup_head_1_list markup_head_1_item'
         p[0] = p[1] + [p[2]]
 
-
     ### markup_list ###
-
 
     def p_markup_list__MARKUPLIST_IDENTIFIER(self, p):
         'markup_list : MARKUPLIST_IDENTIFIER'
         p[0] = p[1]
 
-
     def p_markup_list__markup_braced_list(self, p):
         'markup_list : markup_braced_list'
         p[0] = p[1]
-
 
     def p_markup_list__markup_command_list(self, p):
         'markup_list : markup_command_list'
         p[0] = p[1]
 
-
     def p_markup_list__markup_composed_list(self, p):
         'markup_list : markup_composed_list'
         p[0] = p[1]
-
 
     def p_markup_list__markup_scm__MARKUPLIST_IDENTIFIER(self, p):
         'markup_list : markup_scm MARKUPLIST_IDENTIFIER'
@@ -2094,9 +1782,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p.__getslice__(1, None),
             )
 
-
     ### markup_scm ###
-
 
     def p_markup_scm__embedded_scm_bare__BACKUP(self, p):
         'markup_scm : embedded_scm_bare BACKUP'
@@ -2116,7 +1802,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### markup_top ###
 
-
     def p_markup_top__markup_head_1_list__simple_markup(self, p):
         'markup_top : markup_head_1_list simple_markup'
         markup = p[2]
@@ -2127,64 +1812,52 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             markup = markuptools.MarkupCommand(command, *args)
         p[0] = markup
 
-
     def p_markup_top__markup_list(self, p):
         'markup_top : markup_list'
         p[0] = p[1]
-
 
     def p_markup_top__simple_markup(self, p):
         'markup_top : simple_markup'
         p[0] = p[1]
 
-
     ### mode_changed_music ###
-
 
 #    def p_mode_changed_music__mode_changing_head__grouped_music_list(self, p):
 #        'mode_changed_music : mode_changing_head grouped_music_list'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('mode_changed_music', p[1:])
 
-
 #    def p_mode_changed_music__mode_changing_head_with_context__optional_context_mod__grouped_music_list(self, p):
 #        'mode_changed_music : mode_changing_head_with_context optional_context_mod grouped_music_list'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('mode_changed_music', p[1:])
 
-
     ### mode_changing_head ###
-
 
 #    def p_mode_changing_head__CHORDMODE(self, p):
 #        'mode_changing_head : CHORDMODE'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('mode_changing_head', p[1:])
 
-
 #    def p_mode_changing_head__DRUMMODE(self, p):
 #        'mode_changing_head : DRUMMODE'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('mode_changing_head', p[1:])
-
 
 #    def p_mode_changing_head__FIGUREMODE(self, p):
 #        'mode_changing_head : FIGUREMODE'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('mode_changing_head', p[1:])
 
-
 #    def p_mode_changing_head__LYRICMODE(self, p):
 #        'mode_changing_head : LYRICMODE'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('mode_changing_head', p[1:])
 
-
 #    def p_mode_changing_head__NOTEMODE(self, p):
 #        'mode_changing_head : NOTEMODE'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('mode_changing_head', p[1:])
-
 
     ### mode_changing_head_with_context ###
 
@@ -2355,7 +2028,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('new_lyrics', p[1:])
 
-
 #    def p_new_lyrics__new_lyrics__ADDLYRICS__composite_music(self, p):
 #        'new_lyrics : new_lyrics ADDLYRICS composite_music'
 #        from abjad.tools import lilypondparsertools
@@ -2367,7 +2039,7 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'note_chord_element : chord_body optional_notemode_duration post_events'
         chord = scoretools.Chord([], p[2].duration)
         pitches = []
-        post_events =[]
+        post_events = []
         for node in p[1]:
             pitches.append(node[0].written_pitch)
             chord.note_heads.append(node[0])
@@ -2382,52 +2054,41 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### number_expression ###
 
-
     def p_number_expression__number_expression__Chr43__number_term(self, p):
         "number_expression : number_expression '+' number_term"
         p[0] = float(p[1]) + p[3]
-
 
     def p_number_expression__number_expression__Chr45__number_term(self, p):
         "number_expression : number_expression '-' number_term"
         p[0] = float(p[1]) - p[3]
 
-
     def p_number_expression__number_term(self, p):
         'number_expression : number_term'
         p[0] = p[1]
 
-
     ### number_factor ###
-
 
     def p_number_factor__Chr45__number_factor(self, p):
         "number_factor : '-' number_factor"
         p[0] = -1 * p[2]
 
-
     def p_number_factor__bare_number(self, p):
         'number_factor : bare_number'
         p[0] = p[1]
 
-
     ### number_term ###
-
 
     def p_number_term__number_factor(self, p):
         'number_term : number_factor'
         p[0] = p[1]
 
-
     def p_number_term__number_factor__Chr42__number_factor(self, p):
         "number_term : number_factor '*' number_factor"
         p[0] = float(p[1]) * p[3]
 
-
     def p_number_term__number_factor__Chr47__number_factor(self, p):
         "number_term : number_factor '/' number_factor"
         p[0] = float(p[1]) / p[3]
-
 
     ### octave_check ###
 
@@ -2534,8 +2195,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         "output_def_body : output_def_head_with_mode_switch '{'"
         p[0] = p[1]
 
-    def p_output_def_body__output_def_head_with_mode_switch__Chr123__output_DEF_IDENTIFIER(self, p):
-        "output_def_body : output_def_head_with_mode_switch '{' output_DEF_IDENTIFIER"
+    def p_output_def_body__output_def_head_with_mode_switch__Chr123__OUTPUT_DEF_IDENTIFIER(self, p):
+        "output_def_body : output_def_head_with_mode_switch '{' OUTPUT_DEF_IDENTIFIER"
         p[0] = p[2]
 
     ### output_def_head ###
@@ -2557,87 +2218,68 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 
     ### output_def_head_with_mode_switch ###
 
-
     def p_output_def_head_with_mode_switch__output_def_head(self, p):
         'output_def_head_with_mode_switch : output_def_head'
         p[0] = p[1]
         self.client._lexer.push_state('INITIAL')
 
-
     ### paper_block ###
-
 
 #    def p_paper_block__output_def(self, p):
 #        'paper_block : output_def'
 #        p[0] = p[1]
 
-
     ### pitch ###
-
 
     def p_pitch__PITCH_IDENTIFIER(self, p):
         'pitch : PITCH_IDENTIFIER'
         p[0] = p[1]
 
-
     def p_pitch__steno_pitch(self, p):
         'pitch : steno_pitch'
         p[0] = p[1]
 
-
     ### pitch_also_in_chords ###
-
 
     def p_pitch_also_in_chords__pitch(self, p):
         'pitch_also_in_chords : pitch'
         p[0] = p[1]
 
-
     def p_pitch_also_in_chords__steno_tonic_pitch(self, p):
         'pitch_also_in_chords : steno_tonic_pitch'
         p[0] = p[1]
 
-
     ### post_event ###
-
 
     def p_post_event__Chr45__fingering(self, p):
         "post_event : '-' fingering"
         p[0] = None
 
-
     def p_post_event__post_event_nofinger(self, p):
         'post_event : post_event_nofinger'
         p[0] = p[1]
 
-
     ### post_event_nofinger ###
-
 
     def p_post_event_nofinger__Chr94__fingering(self, p):
         "post_event_nofinger : '^' fingering"
         p[0] = None
 
-
     def p_post_event_nofinger__Chr95__fingering(self, p):
         "post_event_nofinger : '_' fingering"
         p[0] = None
-
 
     def p_post_event_nofinger__EXTENDER(self, p):
         'post_event_nofinger : EXTENDER'
         p[0] = None
 
-
     def p_post_event_nofinger__HYPHEN(self, p):
         'post_event_nofinger : HYPHEN'
         p[0] = None
 
-
     def p_post_event_nofinger__direction_less_event(self, p):
         'post_event_nofinger : direction_less_event'
         p[0] = p[1]
-
 
     def p_post_event_nofinger__script_dir__direction_less_event(self, p):
         'post_event_nofinger : script_dir direction_less_event'
@@ -2652,7 +2294,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             assert hasattr(p[2], '_direction')
             p[2]._direction = direction
         p[0] = p[2]
-
 
     def p_post_event_nofinger__script_dir__direction_reqd_event(self, p):
         'post_event_nofinger : script_dir direction_reqd_event'
@@ -2669,32 +2310,25 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             p[2]._direction = direction
         p[0] = p[2]
 
-
     def p_post_event_nofinger__script_dir__music_function_event(self, p):
         'post_event_nofinger : script_dir music_function_event'
         p[0] = p[2]
-
 
     def p_post_event_nofinger__string_number_event(self, p):
         'post_event_nofinger : string_number_event'
         p[0] = None
 
-
     ### post_events ###
-
 
     def p_post_events__Empty(self, p):
         'post_events : '
         p[0] = []
 
-
     def p_post_events__post_events__post_event(self, p):
         'post_events : post_events post_event'
         p[0] = p[1] + [p[2]]
 
-
     ### property_operation ###
-
 
     def p_property_operation__OVERRIDE__simple_string__property_path__Chr61__scalar(self, p):
         "property_operation : OVERRIDE simple_string property_path '=' scalar"
@@ -2705,7 +2339,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             property=p[3],
             value=p[5])
 
-
     def p_property_operation__REVERT__simple_string__embedded_scm(self, p):
         'property_operation : REVERT simple_string embedded_scm'
         from abjad.tools import lilypondparsertools
@@ -2713,7 +2346,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             keyword='revert',
             context=p[2],
             property=p[3])
-
 
     def p_property_operation__STRING__Chr61__scalar(self, p):
         "property_operation : STRING '=' scalar"
@@ -2723,7 +2355,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             property=p[1],
             value=p[2])
 
-
     def p_property_operation__UNSET__simple_string(self, p):
         'property_operation : UNSET simple_string'
         from abjad.tools import lilypondparsertools
@@ -2731,125 +2362,97 @@ class LilyPondSyntacticalDefinition(AbjadObject):
             keyword='unset',
             property=p[2])
 
-
     ### property_path ###
-
 
     def p_property_path__property_path_revved(self, p):
         'property_path : property_path_revved'
         p[0] = p[1]
 
-
     ### property_path_revved ###
-
 
     def p_property_path_revved__embedded_scm_closed(self, p):
         'property_path_revved : embedded_scm_closed'
         p[0] = [p[1]]
 
-
     def p_property_path_revved__property_path_revved__embedded_scm_closed(self, p):
         'property_path_revved : property_path_revved embedded_scm_closed'
         p[0] = p[1] + [p[2]]
 
-
     ### questions ###
-
 
     def p_questions__Empty(self, p):
         'questions : '
         p[0] = 0
 
-
     def p_questions__questions__Chr63(self, p):
         "questions : questions '?'"
         p[0] = p[1] + 1
 
-
     ### re_rhythmed_music ###
-
 
 #    def p_re_rhythmed_music__LYRICSTO__simple_string__music(self, p):
 #        're_rhythmed_music : LYRICSTO simple_string music'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('re_rhythmed_music', p[1:])
 
-
 #    def p_re_rhythmed_music__composite_music__new_lyrics(self, p):
 #        're_rhythmed_music : composite_music new_lyrics %prec COMPOSITE'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('re_rhythmed_music', p[1:])
 
-
     ### repeated_music ###
-
 
 #    def p_repeated_music__REPEAT__simple_string__unsigned_number__music(self, p):
 #        'repeated_music : REPEAT simple_string unsigned_number music'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('repeated_music', p[1:])
 
-
 #    def p_repeated_music__REPEAT__simple_string__unsigned_number__music__ALTERNATIVE__braced_music_list(self, p):
 #        'repeated_music : REPEAT simple_string unsigned_number music ALTERNATIVE braced_music_list'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('repeated_music', p[1:])
 
-
     ### scalar ###
-
 
     def p_scalar__bare_number(self, p):
         'scalar : bare_number'
         p[0] = p[1]
 
-
     def p_scalar__embedded_scm_arg(self, p):
         'scalar : embedded_scm_arg'
         p[0] = p[1]
-
 
 #    def p_scalar__lyric_element(self, p):
 #        'scalar : lyric_element'
 #        p[0] = p[1]
 
-
     ### scalar_closed ###
-
 
     def p_scalar_closed__bare_number(self, p):
         'scalar_closed : bare_number'
         p[0] = p[1]
 
-
     def p_scalar_closed__embedded_scm_arg_closed(self, p):
         'scalar_closed : embedded_scm_arg_closed'
         p[0] = p[1]
-
 
 #    def p_scalar_closed__lyric_element(self, p):
 #        'scalar_closed : lyric_element'
 #        p[0] = p[1]
 
-
     ### scm_function_call ###
-
 
     def p_scm_function_call__SCM_FUNCTION__function_arglist(self, p):
         'scm_function_call : SCM_FUNCTION function_arglist'
         p[0] = self.client._guile(p[1], p[2])
 
-
     ### scm_function_call_closed ###
-
 
     def p_scm_function_call_closed__SCM_FUNCTION__function_arglist_closed(self, p):
         'scm_function_call_closed : SCM_FUNCTION function_arglist_closed %prec FUNCTION_ARGLIST'
         p[0] = self.client._guile(p[1], p[2])
 
-
     ### score_block ###
-
 
     def p_score_block__SCORE__Chr123__score_body__Chr125(self, p):
         "score_block : SCORE '{' score_body '}'"
@@ -2857,98 +2460,79 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         score_block.items.extend(p[3])
         p[0] = score_block
 
-
     ### score_body ###
-
 
     def p_score_body__SCORE_IDENTIFIER(self, p):
         'score_body : SCORE_IDENTIFIER'
         p[0] = [p[1]]
 
-
     def p_score_body__music(self, p):
         'score_body : music'
         p[0] = [p[1]]
-
 
 #    def p_score_body__score_body__error(self, p):
 #        'score_body : score_body error'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('score_body', p[1:])
 
-
     def p_score_body__score_body__lilypond_header(self, p):
         'score_body : score_body lilypond_header'
         p[0] = p[1] + [p[2]]
-
 
     def p_score_body__score_body__output_def(self, p):
         'score_body : score_body output_def'
         p[0] = p[1] + [p[2]]
 
-
     ### script_abbreviation ###
-
 
     def p_script_abbreviation__ANGLE_CLOSE(self, p):
         'script_abbreviation : ANGLE_CLOSE'
-        kind = self.client._current_module['dashLarger']['alias']
-        p[0] = indicatortools.Articulation(kind)
+        articulation_type = self.client._current_module['dashLarger']['articulation-type']
+        p[0] = indicatortools.Articulation(articulation_type)
 
-
-    def p_script_abbreviation__Chr124(self, p):
-        "script_abbreviation : '|'"
-        kind = self.client._current_module['dashBar']['alias']
-        p[0] = indicatortools.Articulation(kind)
-
+    def p_script_abbreviation__Chr33(self, p):
+        "script_abbreviation : '!'"
+        articulation_type = self.client._current_module['dashBang']['articulation-type']
+        p[0] = indicatortools.Articulation(articulation_type)
 
     def p_script_abbreviation__Chr43(self, p):
         "script_abbreviation : '+'"
-        kind = self.client._current_module['dashPlus']['alias']
-        p[0] = indicatortools.Articulation(kind)
-
+        articulation_type = self.client._current_module['dashPlus']['articulation-type']
+        p[0] = indicatortools.Articulation(articulation_type)
 
     def p_script_abbreviation__Chr45(self, p):
         "script_abbreviation : '-'"
-        kind = self.client._current_module['dashDash']['alias']
-        p[0] = indicatortools.Articulation(kind)
-
+        articulation_type = self.client._current_module['dashDash']['articulation-type']
+        p[0] = indicatortools.Articulation(articulation_type)
 
     def p_script_abbreviation__Chr46(self, p):
         "script_abbreviation : '.'"
-        kind = self.client._current_module['dashDot']['alias']
-        p[0] = indicatortools.Articulation(kind)
-
+        articulation_type = self.client._current_module['dashDot']['articulation-type']
+        p[0] = indicatortools.Articulation(articulation_type)
 
     def p_script_abbreviation__Chr94(self, p):
         "script_abbreviation : '^'"
-        kind = self.client._current_module['dashHat']['alias']
-        p[0] = indicatortools.Articulation(kind)
-
+        articulation_type = self.client._current_module['dashHat']['articulation-type']
+        p[0] = indicatortools.Articulation(articulation_type)
 
     def p_script_abbreviation__Chr95(self, p):
         "script_abbreviation : '_'"
-        kind = self.client._current_module['dashUnderscore']['alias']
-        p[0] = indicatortools.Articulation(kind)
-
+        articulation_type = self.client._current_module['dashUnderscore']['articulation-type']
+        p[0] = indicatortools.Articulation(articulation_type)
 
     ### script_dir ###
-
 
     def p_script_dir__Chr45(self, p):
         "script_dir : '-'"
         p[0] = p[1]
 
-
     def p_script_dir__Chr94(self, p):
         "script_dir : '^'"
         p[0] = p[1]
 
-
     def p_script_dir__Chr95(self, p):
         "script_dir : '_'"
         p[0] = p[1]
-
 
     ### sequential_music ###
 
@@ -2966,7 +2550,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
 #        'simple_chord_elements : figure_spec optional_notemode_duration'
 #        from abjad.tools import lilypondparsertools
 #        p[0] = lilypondparsertools.SyntaxNode('simple_chord_elements', p[1:])
-
 
 #    def p_simple_chord_elements__new_chord(self, p):
 #        'simple_chord_elements : new_chord'
@@ -3110,7 +2693,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         'simple_string : STRING_IDENTIFIER'
         p[0] = p[1]
 
-
     ### simultaneous_music ###
 
     def p_simultaneous_music__DOUBLE_ANGLE_OPEN__music_list__DOUBLE_ANGLE_CLOSE(self, p):
@@ -3120,7 +2702,6 @@ class LilyPondSyntacticalDefinition(AbjadObject):
     def p_simultaneous_music__SIMULTANEOUS__braced_music_list(self, p):
         'simultaneous_music : SIMULTANEOUS braced_music_list'
         p[0] = self.client._construct_simultaneous_music(p[2])
-
 
     ### steno_duration ###
 
