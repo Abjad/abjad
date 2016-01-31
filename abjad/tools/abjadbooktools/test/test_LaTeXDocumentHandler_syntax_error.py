@@ -2,7 +2,7 @@
 import platform
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import systemtools
+from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -35,7 +35,7 @@ class TestLaTeXDocumentHandler_syntax_error(unittest.TestCase):
             input_file_contents=input_file_contents,
             )
         rebuilt_source = document_handler(return_source=True)
-        assert rebuilt_source == systemtools.TestManager.clean_string(
+        assert rebuilt_source == stringtools.normalize(
             '''
             <abjad>[allow_exceptions=true]
             foo bar baz

@@ -15,6 +15,7 @@ import sys
 import traceback
 from abjad.tools.topleveltools import new
 from abjad.tools import abctools
+from abjad.tools import stringtools
 from abjad.tools import systemtools
 from docutils import nodes
 from docutils.frontend import OptionParser
@@ -52,13 +53,13 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     _image_target_pattern = re.compile('.+-page(\d+)\..+')
 
-    _basic_template = systemtools.TestManager.clean_string(u'''
+    _basic_template = stringtools.normalize(u'''
         <a href="{source_path}" title="{title}" class="{cls}">
             <img src="{target_path}" alt="{alt}"/>
         </a>
         ''')
 
-    _thumbnail_template = systemtools.TestManager.clean_string(u'''
+    _thumbnail_template = stringtools.normalize(u'''
         <a data-lightbox="{group}" href="{target_path}" title="{title}" data-title="{title}" class="{cls}">
             <img src="{thumbnail_path}" alt="{alt}"/>
         </a>
@@ -400,8 +401,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             new_nodes = code_block.as_docutils()
             if (
                 len(new_nodes) == 1 and
-                systemtools.TestManager.clean_string(old_node.pformat()) ==
-                systemtools.TestManager.clean_string(new_nodes[0].pformat())
+                stringtools.normalize(old_node.pformat()) ==
+                stringtools.normalize(new_nodes[0].pformat())
                 ):
                 continue
             old_node.parent.replace(old_node, new_nodes)
@@ -760,7 +761,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             #print()
             message = bold(red('Found abjad_import_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            #print(systemtools.TestManager.clean_string(node.pformat()))
+            #print(stringtools.normalize(node.pformat()))
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -771,7 +772,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             #print()
             message = bold(red('Found abjad_input_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            #print(systemtools.TestManager.clean_string(node.pformat()))
+            #print(stringtools.normalize(node.pformat()))
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -824,7 +825,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                             title='',
                             thumbnail_path=thumbnail_path,
                             )
-                        result = systemtools.TestManager.clean_string(result)
+                        result = stringtools.normalize(result)
                         result = ('    ' + _ for _ in result.splitlines())
                         result = '\n'.join(result)
                         self.body.append(result)
@@ -843,7 +844,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                         title='',
                         thumbnail_path=thumbnail_path,
                         )
-                    result = systemtools.TestManager.clean_string(result)
+                    result = stringtools.normalize(result)
                     self.body.append(result)
         except:
             traceback.print_exc()
@@ -859,7 +860,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             #print()
             message = bold(red('Found abjad_reveal_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            #print(systemtools.TestManager.clean_string(node.pformat()))
+            #print(stringtools.normalize(node.pformat()))
         except:
             traceback.print_exc()
         raise nodes.SkipNode
@@ -900,7 +901,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             print()
             message = bold(red('Found abjad_thumbnail_block.'))
             self.builder.warn(message, (self.builder.current_docname, node.line))
-            print(systemtools.TestManager.clean_string(node.pformat()))
+            print(stringtools.normalize(node.pformat()))
         except:
             traceback.print_exc()
         raise nodes.SkipNode

@@ -4,7 +4,7 @@ import platform
 import shutil
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import systemtools
+from abjad.tools import stringtools
 
 
 @unittest.skipIf(
@@ -67,7 +67,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             latex_root_directory=latex_root_directory,
             )
         rebuilt_source = document_handler(return_source=True)
-        assert rebuilt_source == systemtools.TestManager.clean_string(
+        assert rebuilt_source == stringtools.normalize(
             '''
             \\begin{comment}
             <abjad>

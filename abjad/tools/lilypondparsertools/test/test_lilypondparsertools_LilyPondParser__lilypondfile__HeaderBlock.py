@@ -1,15 +1,17 @@
 # -*- coding: utf-8 -*-
+import pytest
 from abjad import *
 
 
+@pytest.skip('Pending 2.19.24 update.')
 def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     string = r'''
     globalvariable = "This is a global variable."
     \header {
         globalvariable = "This overrides the global variable"
         localvariable = "and this is a local variable."
-        title = \markup { \globalvariable \localvariable }
         something = #4
+        title = \markup { \globalvariable \localvariable }
     }
     \score {
         \new Staff { c'4 ^ \markup { \globalvariable } }
@@ -59,7 +61,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
     result = parse(string)
     assert isinstance(result, lilypondfiletools.LilyPondFile)
     assert len(result.items) == 2
-    assert format(result.items[0]) == systemtools.TestManager.clean_string(
+    assert format(result.items[0]) == stringtools.normalize(
         r'''
         \header {
             composer = \markup {
@@ -77,7 +79,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
                 }
         }
         ''')
-    assert format(result.items[1]) == systemtools.TestManager.clean_string(
+    assert format(result.items[1]) == stringtools.normalize(
         r'''
         {
             c'1

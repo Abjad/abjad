@@ -2,7 +2,7 @@
 from abjad.tools import abjadbooktools
 import textwrap
 import unittest
-from abjad.tools import systemtools
+from abjad.tools import stringtools
 
 
 class AbjadDirectiveTests(unittest.TestCase):
@@ -19,8 +19,8 @@ class AbjadDirectiveTests(unittest.TestCase):
                 note.written_pitch = "ds,"
         ''')
         document = self.handler.parse_rst(source)
-        result = systemtools.TestManager.clean_string(document.pformat())
-        expected = systemtools.TestManager.clean_string(
+        result = stringtools.normalize(document.pformat())
+        expected = stringtools.normalize(
             r'''
             <document source="test">
                 <abjad_input_block>
@@ -46,8 +46,8 @@ class AbjadDirectiveTests(unittest.TestCase):
                 note.written_pitch = "ds,"
         ''')
         document = self.handler.parse_rst(source)
-        result = systemtools.TestManager.clean_string(document.pformat())
-        expected = systemtools.TestManager.clean_string(
+        result = stringtools.normalize(document.pformat())
+        expected = stringtools.normalize(
             r'''
             <document source="test">
                 <abjad_input_block allow-exceptions="True" hide="True" no-resize="True" no-trim="True" strip-prompt="True" with-thumbnail="True">
@@ -69,8 +69,8 @@ class AbjadDirectiveTests(unittest.TestCase):
             assert True is False
             ''')
         document = self.handler.parse_rst(source)
-        result = systemtools.TestManager.clean_string(document.pformat())
-        expected = systemtools.TestManager.clean_string(
+        result = stringtools.normalize(document.pformat())
+        expected = stringtools.normalize(
             r'''
             <document source="test">
                 <abjad_input_block allow-exceptions="True" hide="True" pages="(1, 2, 3, 5, 7, 10, 9, 8)" strip-prompt="True">
@@ -87,8 +87,8 @@ class AbjadDirectiveTests(unittest.TestCase):
             show(Note("c'4"))
         ''')
         document = self.handler.parse_rst(source)
-        result = systemtools.TestManager.clean_string(document.pformat())
-        expected = systemtools.TestManager.clean_string(
+        result = stringtools.normalize(document.pformat())
+        expected = stringtools.normalize(
             r'''
             <document source="test">
                 <abjad_input_block stylesheet="non-proportional.ly">
@@ -106,8 +106,8 @@ class AbjadDirectiveTests(unittest.TestCase):
             show(Note("c'4"))
         ''')
         document = self.handler.parse_rst(source)
-        result = systemtools.TestManager.clean_string(document.pformat())
-        expected = systemtools.TestManager.clean_string(
+        result = stringtools.normalize(document.pformat())
+        expected = stringtools.normalize(
             r'''
             <document source="test">
                 <abjad_input_block no-stylesheet="True">
@@ -125,8 +125,8 @@ class AbjadDirectiveTests(unittest.TestCase):
             show(Note("c'4"))
         ''')
         document = self.handler.parse_rst(source)
-        result = systemtools.TestManager.clean_string(document.pformat())
-        expected = systemtools.TestManager.clean_string(
+        result = stringtools.normalize(document.pformat())
+        expected = stringtools.normalize(
             r'''
             <document source="test">
                 <abjad_input_block text-width="80" with-columns="2">

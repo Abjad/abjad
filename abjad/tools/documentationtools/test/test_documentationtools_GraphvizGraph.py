@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad import documentationtools
-from abjad import systemtools
+from abjad import stringtools
 
 
 def test_documentationtools_GraphvizGraph_01():
@@ -58,7 +58,7 @@ def test_documentationtools_GraphvizGraph_01():
 
     graphviz_format = str(graph)
 
-    assert graphviz_format == systemtools.TestManager.clean_string(
+    assert graphviz_format == stringtools.normalize(
         '''
         digraph G {
             node [shape=record];
