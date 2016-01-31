@@ -277,10 +277,10 @@ class NamedPitchClass(PitchClass):
 
     def _initialize_by_pitch_class_octave_number_string(self, expr):
         from abjad.tools import pitchtools
-        groups = pitchtools.Pitch._pitch_class_octave_number_regex.match(
-            expr).groups()
-        diatonic_pitch_class_name = groups[0].lower()
-        symbolic_string = groups[1]
+        group_dict = pitchtools.Pitch._pitch_class_octave_number_regex.match(
+            expr).groupdict()
+        diatonic_pitch_class_name = group_dict['diatonic_pitch_class_name'].lower()
+        symbolic_string = group_dict['symbolic_string']
         self._alteration_in_semitones = \
             pitchtools.Accidental._symbolic_string_to_semitones[
                 symbolic_string]

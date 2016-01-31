@@ -42,10 +42,12 @@ class NamedPitch(Pitch):
 
     def __init__(self, *args):
         from abjad.tools import pitchtools
-        if (args and
+        if (
+            args and
             isinstance(args[0], collections.Iterable) and
             not stringtools.is_string(args[0]) and
-            len(args) == 1):
+            len(args) == 1
+            ):
             args = args[0]
         if len(args) == 1:
             if isinstance(args[0], (int, float)):
@@ -468,11 +470,11 @@ class NamedPitch(Pitch):
     def _initialize_by_pitch_class_octave_number_string(
         self, pitch_class_octave_number_string):
         from abjad.tools import pitchtools
-        groups = self._pitch_class_octave_number_regex.match(
-            pitch_class_octave_number_string).groups()
+        group_dict = self._pitch_class_octave_number_regex.match(
+            pitch_class_octave_number_string).groupdict()
         named_pitch_class = pitchtools.NamedPitchClass(
             pitch_class_octave_number_string)
-        octave_number = int(groups[2])
+        octave_number = int(group_dict['octave_number'])
         self._initialize_by_named_pitch_class_and_octave_number(
             named_pitch_class, octave_number)
 
@@ -1613,6 +1615,8 @@ class NamedPitch(Pitch):
             named_pitch_class = pitch_carrier.named_pitch_class
             named_pitch = pitchtools.NamedPitch(named_pitch_class)
             return named_pitch
+        elif isinstance(pitch_carrier, str):
+            return pitchtools.NamedPitch(pitch_carrier)
         else:
             message = 'pitch carrier {!r} must be'
             message += ' pitch, note, note head or chord.'
