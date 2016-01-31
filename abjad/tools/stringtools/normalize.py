@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+import six
 import textwrap
 
 
-def normalize(string):
+def normalize(string, indent=None):
     r"""Normalizes `string`.
 
     ::
@@ -23,6 +24,18 @@ def normalize(string):
         foo
             bar
 
+    ::
+
+        >>> print(stringtools.normalize(string, indent=4))
+            foo
+                bar
+
+    ::
+
+        >>> print(stringtools.normalize(string, indent='* '))
+        * foo
+        *     bar
+
     Returns string.
     """
     string = string.replace('\t', '    ')
@@ -35,4 +48,12 @@ def normalize(string):
         lines[i] = line.rstrip()
     string = '\n'.join(lines)
     string = textwrap.dedent(string)
+    if indent:
+        if not isinstance(indent, six.string_types):
+            indent = ' ' * abs(int(indent))
+        lines = string.split('\n')
+        for i, line in enumerate(lines):
+            if line:
+                lines[i] = '{}{}'.format(indent, line)
+        string = '\n'.join(lines)
     return string
