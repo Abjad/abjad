@@ -7,10 +7,15 @@ class LilyPondFile(AbjadObject):
 
     ..  container:: example
 
+        **Example 1.** Makes LilyPond file:
+
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+
+        ::
+
             >>> comment = 'File construct as an example.'
             >>> lilypond_file.file_initial_user_comments.append(comment)
             >>> comment = 'Parts shown here for positioning.'
@@ -108,6 +113,26 @@ class LilyPondFile(AbjadObject):
     def __format__(self, format_specification=''):
         r'''Formats LilyPond file.
 
+        ..  container:: example
+
+            **Example 1.** Gets format:
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> print(format(lilypond_file)) # doctest: +SKIP
+                % 2016-01-31 20:29
+                <BLANKLINE>
+                \version "2.19.35"
+                \language "english"
+                <BLANKLINE>
+                \header {}
+                <BLANKLINE>
+                \layout {}
+                <BLANKLINE>
+                \paper {}
+
         Returns string.
         '''
         from abjad.tools import systemtools
@@ -121,6 +146,10 @@ class LilyPondFile(AbjadObject):
         r'''Gets LilyPond file item with `name`.
 
         ..  container:: example
+
+            **Example 1.** Gets header block:
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
 
             ::
 
@@ -145,6 +174,10 @@ class LilyPondFile(AbjadObject):
         r'''Gets interpreter representation of LilyPond file.
 
         ..  container:: example
+
+            **Example 1.** Gets interpreter representation:
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
 
             ::
 
@@ -288,10 +321,20 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Gets default paper size:
+
             ::
 
-                >>> lilypond_file.default_paper_size
-                ('a5', 'portrait')
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.default_paper_size is None
+                True
+
+        Set to pair or none.
+
+        Defaults to none.
 
         Returns pair or none.
         '''
@@ -308,12 +351,16 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Gets file-initial system comments:
+
             ::
 
-                >>> for x in lilypond_file.file_initial_system_comments: # doctest: +SKIP
-                ...     x
-                ...
-                DateTimeToken('2014-01-04 17:16')
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.file_initial_system_comments
+                [DateTimeToken()]
 
         Returns list.
         '''
@@ -325,13 +372,16 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Gets file-initial system includes:
+
             ::
 
-                >>> for x in lilypond_file.file_initial_system_includes:
-                ...     x
-                ...
-                LilyPondVersionToken('...')
-                LilyPondLanguageToken()
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.file_initial_system_includes
+                [LilyPondVersionToken('...'), LilyPondLanguageToken()]
 
         Returns list.
         '''
@@ -343,13 +393,16 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Gets file-initial user comments:
+
             ::
 
-                >>> for x in lilypond_file.file_initial_user_comments:
-                ...     x
-                ...
-                'File construct as an example.'
-                'Parts shown here for positioning.'
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.file_initial_user_comments
+                []
 
         Returns list.
         '''
@@ -359,15 +412,18 @@ class LilyPondFile(AbjadObject):
     def file_initial_user_includes(self):
         r'''Gets file-initial user include commands of LilyPond file.
 
-        ..  container:: example
+        ..  container:: example 
+
+            **Example 1.** Gets file-initial user includes:
 
             ::
 
-                >>> for x in lilypond_file.file_initial_user_includes:
-                ...     x
-                ...
-                'external-settings-file-1.ly'
-                'external-settings-file-2.ly'
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.file_initial_user_includes
+                []
 
         Returns list.
         '''
@@ -379,12 +435,22 @@ class LilyPondFile(AbjadObject):
 
         ..  container:: example
 
+            **Example 1.** Gets global staff size:
+
             ::
 
-                >>> lilypond_file.global_staff_size
-                16
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
 
-        Returns number.
+            ::
+
+                >>> lilypond_file.global_staff_size is None
+                True
+
+        Set to number or none.
+
+        Defaults to none.
+
+        Returns number or none.
         '''
         return self._global_staff_size
 
@@ -396,6 +462,19 @@ class LilyPondFile(AbjadObject):
     @property
     def header_block(self):
         r'''Gets header block.
+
+        ..  container:: example
+
+            **Example 1.** Gets header block:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.header_block
+                <Block(name='header')>
 
         Returns block or none.
         '''
@@ -410,6 +489,12 @@ class LilyPondFile(AbjadObject):
         r'''Gets items in LilyPond file.
 
         ..  container:: example
+
+            **Example 1.** Gets items:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
 
             ::
 
@@ -429,6 +514,19 @@ class LilyPondFile(AbjadObject):
     def layout_block(self):
         r'''Gets layout block.
 
+        ..  container:: example
+
+            **Example 1.** Gets layout block:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.layout_block
+                <Block(name='layout')>
+
         Returns block or none.
         '''
         from abjad.tools import lilypondfiletools
@@ -440,6 +538,19 @@ class LilyPondFile(AbjadObject):
     @property
     def paper_block(self):
         r'''Gets paper block.
+
+        ..  container:: example
+
+            **Example 1.** Gets paper block:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.paper_block
+                <Block(name='paper')>
 
         Returns block or none.
         '''
@@ -453,6 +564,19 @@ class LilyPondFile(AbjadObject):
     def score_block(self):
         r'''Gets score block.
 
+        ..  container:: example
+
+            **Example 1.** Gets score block:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.score_block
+                <Block(name='score')>
+
         Returns block or none.
         '''
         from abjad.tools import lilypondfiletools
@@ -463,16 +587,24 @@ class LilyPondFile(AbjadObject):
 
     @property
     def use_relative_includes(self):
-        r'''Gets boolean flag to use relative include paths.
+        r'''Is true when LilyPond file should use relative includes.
 
         ..  container:: example
+
+            **Example 1.** Gets relative include flag:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
 
             ::
 
                 >>> lilypond_file.use_relative_includes
                 False
 
-        Returns true or false.
+        Set to true, false or none.
+
+        Returns true, false or none.
         '''
         return self._use_relative_includes
 
