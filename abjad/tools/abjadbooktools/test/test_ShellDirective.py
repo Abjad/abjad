@@ -2,7 +2,7 @@
 from abjad.tools import abjadbooktools
 import textwrap
 import unittest
-from abjad.tools import systemtools
+from abjad.tools import stringtools
 
 
 class ShellDirectiveTests(unittest.TestCase):
@@ -17,8 +17,8 @@ class ShellDirectiveTests(unittest.TestCase):
             echo "foo"
         ''')
         document = self.handler.parse_rst(source)
-        result = systemtools.TestManager.clean_string(document.pformat())
-        expected = systemtools.TestManager.clean_string(
+        result = stringtools.normalize(document.pformat())
+        expected = stringtools.normalize(
             r'''
             <document source="test">
                 <literal_block language="console" xml:space="preserve">

@@ -7,7 +7,7 @@ import platform
 import shutil
 import unittest
 from abjad.tools import abjadbooktools
-from abjad.tools import systemtools
+from abjad.tools import stringtools
 from sphinx.util import FilenameUniqDict
 
 
@@ -66,7 +66,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -78,7 +78,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <a href="../_images/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.ly" title="" class="abjadbook">
                 <img src="../_images/abjadbook/lilypond-0088e89b7def5c05b2a96e22136edef1cd638d75.png" alt=""/>
             </a>
@@ -101,7 +101,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -113,7 +113,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <a href="../_images/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.ly" title="" class="abjadbook">
                 <img src="../_images/abjadbook/lilypond-32d88a2354ecb601e788a6d43e67625f59dc61d1.png" alt=""/>
             </a>
@@ -137,7 +137,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -149,8 +149,8 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
-            <a href="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly" title="" class="abjadbook"> 
+        expected = stringtools.normalize(r'''
+            <a href="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly" title="" class="abjadbook">
                 <img src="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png" alt=""/>
             </a>
             ''')
@@ -174,7 +174,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -188,7 +188,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
         assert len(self.app.builder.thumbnails) == 1
         assert '../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png' in self.app.builder.thumbnails
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <a data-lightbox="group-lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.ly" href="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e.png" title="" data-title="" class="abjadbook thumbnail">
                 <img src="../_images/abjadbook/lilypond-93ffa240c3eeeb710e929d9d3ccb00128218440e-thumbnail.png" alt=""/>
             </a>
@@ -212,7 +212,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(Staff("c'4 d'4 e'4 f'4"))
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -225,7 +225,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <a href="../_images/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.ly" title="" class="abjadbook">
                 <img src="../_images/abjadbook/lilypond-eabd6888954618b38ced28351cc4a53e950f5a08.png" alt=""/>
             </a>
@@ -255,7 +255,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(staff)
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -267,7 +267,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly" title="" class="abjadbook">
                 <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page1.png" alt=""/>
             </a>
@@ -310,7 +310,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(staff)
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -322,7 +322,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly" title="" class="abjadbook">
                 <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt=""/>
             </a>
@@ -360,7 +360,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(staff)
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -372,7 +372,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <div class="table-row">
                 <a href="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7.ly" title="" class="table-cell">
                     <img src="../_images/abjadbook/lilypond-f75159c51f466ac3f0427cda3f86fba7bb709ae7-page2.png" alt=""/>
@@ -415,7 +415,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(staff)
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -427,7 +427,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <div class="table-row">
                 <a href="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a.ly" title="" class="table-cell">
                     <img src="../_images/abjadbook/lilypond-1113b742beda3b13163bb7fe4bbdd6787edc3c1a-page2.png" alt=""/>
@@ -469,7 +469,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(staff)
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -481,7 +481,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png" title="" data-title="" class="abjadbook thumbnail">
                 <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1-thumbnail.png" alt=""/>
             </a>
@@ -531,7 +531,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
 
             show(staff)
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         handler = abjadbooktools.SphinxDocumentHandler()
         document = handler.parse_rst(source)
         handler.on_doctree_read(self.app, document)
@@ -543,7 +543,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
             pass
         handler.on_build_finished(self.app, None)
         actual = '\n'.join(self.app.body)
-        expected = systemtools.TestManager.clean_string(r'''
+        expected = stringtools.normalize(r'''
             <div class="table-row">
                 <a data-lightbox="group-lilypond-224663e00b24b652df759bda64c86bca48933457.ly" href="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1.png" title="" data-title="" class="table-cell thumbnail">
                     <img src="../_images/abjadbook/lilypond-224663e00b24b652df759bda64c86bca48933457-page1-thumbnail.png" alt=""/>

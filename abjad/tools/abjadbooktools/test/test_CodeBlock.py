@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import abjadbooktools
-from abjad.tools import systemtools
 import sys
 import unittest
+from abjad.tools import abjadbooktools
+from abjad.tools import stringtools
 
 
 class CodeBlockTests(unittest.TestCase):
@@ -11,12 +11,12 @@ class CodeBlockTests(unittest.TestCase):
         source = '''
         ..  import:: abjad.tools.abjadbooktools:example_function
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
         if sys.version_info[0] == 2:
-            assert format(result) == systemtools.TestManager.clean_string(r"""
+            assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         u'def example_function(expr):',
@@ -40,7 +40,7 @@ class CodeBlockTests(unittest.TestCase):
                     )
                 """)
         else:            
-            assert format(result) == systemtools.TestManager.clean_string(r"""
+            assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         'def example_function(expr):',
@@ -69,12 +69,12 @@ class CodeBlockTests(unittest.TestCase):
         ..  import:: abjad.tools.abjadbooktools:example_function
             :hide:
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_import_block(block)
         if sys.version_info[0] == 2:
-            assert format(result) == systemtools.TestManager.clean_string(r"""
+            assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         u'def example_function(expr):',
@@ -101,7 +101,7 @@ class CodeBlockTests(unittest.TestCase):
                     )
                 """)
         else:
-            assert format(result) == systemtools.TestManager.clean_string(r"""
+            assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         'def example_function(expr):',
@@ -136,12 +136,12 @@ class CodeBlockTests(unittest.TestCase):
             if True:
                 note.written_pitch = "ds,"
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
         if sys.version_info[0] == 2:
-            assert format(result) == systemtools.TestManager.clean_string(r"""
+            assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         u'note = Note("c\'4")',
@@ -152,7 +152,7 @@ class CodeBlockTests(unittest.TestCase):
                     )
                 """)
         else:
-            assert format(result) == systemtools.TestManager.clean_string(r"""
+            assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         'note = Note("c\'4")',
@@ -172,12 +172,12 @@ class CodeBlockTests(unittest.TestCase):
             if True:
                 note.written_pitch = "ds,"
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_abjad_input_block(block)
         if sys.version_info[0] == 2:
-            assert format(result) == systemtools.TestManager.clean_string(r"""
+            assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         u'note = Note("c\'4")',
@@ -191,7 +191,7 @@ class CodeBlockTests(unittest.TestCase):
                     )
                 """)
         else:
-            assert format(result) == systemtools.TestManager.clean_string(r"""
+            assert format(result) == stringtools.normalize(r"""
                 abjadbooktools.CodeBlock(
                     (
                         'note = Note("c\'4")',
@@ -212,7 +212,7 @@ class CodeBlockTests(unittest.TestCase):
             >>> print('Hello, world!')
             Hello, world!
         '''
-        source = systemtools.TestManager.clean_string(source)
+        source = stringtools.normalize(source)
         document = abjadbooktools.SphinxDocumentHandler.parse_rst(source)
         block = document[0]
         result = abjadbooktools.CodeBlock.from_docutils_literal_block(block)
@@ -243,8 +243,8 @@ class CodeBlockTests(unittest.TestCase):
         result = code_block.as_docutils()
         self.assertEqual(len(result), 2)
         self.assertEqual(
-            systemtools.TestManager.clean_string(result[0].pformat()),
-            systemtools.TestManager.clean_string(
+            stringtools.normalize(result[0].pformat()),
+            stringtools.normalize(
                 r'''
                 <literal_block xml:space="preserve">
                     >>> for i in range(4):
@@ -256,8 +256,8 @@ class CodeBlockTests(unittest.TestCase):
                 '''),
             )
         self.assertEqual(
-            systemtools.TestManager.clean_string(result[1].pformat()),
-            systemtools.TestManager.clean_string(
+            stringtools.normalize(result[1].pformat()),
+            stringtools.normalize(
                 r'''
                 <literal_block xml:space="preserve">
                     >>> 1 + 1

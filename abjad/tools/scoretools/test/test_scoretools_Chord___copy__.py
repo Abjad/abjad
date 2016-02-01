@@ -51,7 +51,7 @@ def test_scoretools_Chord___copy___04():
     chord_1.note_heads[0].tweak.color = 'red'
     chord_2 = copy.copy(chord_1)
 
-    assert format(chord_1) == systemtools.TestManager.clean_string(
+    assert format(chord_1) == stringtools.normalize(
         r'''
         <
             \tweak #'color #red
@@ -62,7 +62,7 @@ def test_scoretools_Chord___copy___04():
         '''
         )
 
-    assert format(chord_2) == systemtools.TestManager.clean_string(
+    assert format(chord_2) == stringtools.normalize(
         r'''
         <
             \tweak #'color #red
