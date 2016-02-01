@@ -20,7 +20,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
         >>> proxy = abjadbooktools.LilyPondOutputProxy(staff)
         >>> print(format(proxy))
         abjadbooktools.LilyPondOutputProxy(
-            lilypondfiletools.LilyPondFile()
+            lilypondfiletools.LilyPondFile(
+                global_staff_size=12,
+                )
             )
 
     ::

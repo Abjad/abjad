@@ -30,8 +30,11 @@ class LilyPondFile(AbjadObject):
             >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
             >>> lilypond_file.layout_block.indent = 0
             >>> lilypond_file.layout_block.left_margin = 15
+
+        ::
+
             >>> lilypond_file
-            <LilyPondFile(4)>
+            <LilyPondFile(4, default_paper_size=('a5', 'portrait'), global_staff_size=16)>
 
         ::
 
@@ -91,7 +94,12 @@ class LilyPondFile(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self):
+    def __init__(
+        self,
+        default_paper_size=None,
+        global_staff_size=None,
+        use_relative_includes=None,
+        ):
         from abjad.tools import lilypondfiletools
         self._items = []
         self._file_initial_system_comments = []
@@ -104,9 +112,9 @@ class LilyPondFile(AbjadObject):
         token = lilypondfiletools.LilyPondLanguageToken()
         self._file_initial_system_includes.append(token)
         self._file_initial_user_includes = []
-        self._default_paper_size = None
-        self._global_staff_size = None
-        self._use_relative_includes = False
+        self._default_paper_size = default_paper_size
+        self._global_staff_size = global_staff_size
+        self._use_relative_includes = use_relative_includes
 
     ### SPECIAL METHODS ###
 
@@ -671,8 +679,8 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file.use_relative_includes
-                False
+                >>> lilypond_file.use_relative_includes is None
+                True
 
         Set to true, false or none.
 
