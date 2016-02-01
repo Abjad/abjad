@@ -12,7 +12,11 @@ class LilyPondFile(AbjadObject):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+            >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+            ...     music=staff,
+            ...     default_paper_size=('a5', 'portrait'),
+            ...     global_staff_size=16,
+            ...     )
 
         ::
 
@@ -24,8 +28,6 @@ class LilyPondFile(AbjadObject):
             >>> lilypond_file.file_initial_user_includes.append(file_name)
             >>> file_name = 'external-settings-file-2.ly'
             >>> lilypond_file.file_initial_user_includes.append(file_name)
-            >>> lilypond_file.default_paper_size = 'a5', 'portrait'
-            >>> lilypond_file.global_staff_size = 16
             >>> lilypond_file.header_block.composer = Markup('Josquin')
             >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
             >>> lilypond_file.layout_block.indent = 0

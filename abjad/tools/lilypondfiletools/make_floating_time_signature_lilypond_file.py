@@ -157,10 +157,11 @@ def make_floating_time_signature_lilypond_file(music=None):
     '''
     from abjad.tools import lilypondfiletools
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(music=music)
-
-    lilypond_file.default_paper_size = 'letter', 'portrait'
-    lilypond_file.global_staff_size = 12
+    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+        music=music,
+        default_paper_size=('letter', 'portrait'),
+        global_staff_size=12,
+        )
 
     lilypond_file.paper_block.left_margin = 20
     vector = schemetools.make_spacing_vector(0, 0, 12, 0)
