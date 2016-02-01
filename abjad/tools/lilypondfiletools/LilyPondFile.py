@@ -316,6 +316,30 @@ class LilyPondFile(AbjadObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def date_time_token(self):
+        r'''Gets date-time token.
+
+        ..  container:: example
+
+            **Example 1.** Gets date-time token:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.date_time_token
+                DateTimeToken()
+
+        Returns date-time token or none.
+        '''
+        from abjad.tools import lilypondfiletools
+        for item in self.file_initial_system_comments:
+            if isinstance(item, lilypondfiletools.DateTimeToken):
+                return item
+
+    @property
     def default_paper_size(self):
         r'''Gets default paper size of LilyPond file.
 
@@ -534,6 +558,54 @@ class LilyPondFile(AbjadObject):
             if isinstance(item, lilypondfiletools.Block):
                 if item.name == 'layout':
                     return item
+
+    @property
+    def lilypond_language_token(self):
+        r'''Gets LilyPond language token.
+
+        ..  container:: example
+
+            **Example 1.** Gets LilyPond language token:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.lilypond_language_token
+                LilyPondLanguageToken()
+
+        Returns LilyPond language token or none.
+        '''
+        from abjad.tools import lilypondfiletools
+        for item in self.file_initial_system_includes:
+            if isinstance(item, lilypondfiletools.LilyPondLanguageToken):
+                return item
+
+    @property
+    def lilypond_version_token(self):
+        r'''Gets LilyPond version token.
+
+        ..  container:: example
+
+            **Example 1.** Gets LilyPond version token:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.lilypond_version_token # doctest: +SKIP
+                LilyPondVersionToken('2.19.35')
+
+        Returns LilyPond version token or none.
+        '''
+        from abjad.tools import lilypondfiletools
+        for item in self.file_initial_system_includes:
+            if isinstance(item, lilypondfiletools.LilyPondVersionToken):
+                return item
 
     @property
     def paper_block(self):
