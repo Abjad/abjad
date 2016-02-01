@@ -71,6 +71,21 @@ class LilyPondFile(AbjadObject):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    __slots__ = (
+        '_default_paper_size',
+        '_file_initial_system_comments',
+        '_file_initial_system_includes',
+        '_file_initial_user_comments',
+        '_file_initial_user_includes',
+        '_global_staff_size',
+        '_items',
+        '_use_relative_includes',
+        )
+
+    ### INITIALIZER ###
+
     def __init__(self):
         from abjad.tools import lilypondfiletools
         self._items = []
@@ -84,9 +99,9 @@ class LilyPondFile(AbjadObject):
         token = lilypondfiletools.LilyPondLanguageToken()
         self._file_initial_system_includes.append(token)
         self._file_initial_user_includes = []
-        self.default_paper_size = None
-        self.global_staff_size = None
-        self.use_relative_includes = False
+        self._default_paper_size = None
+        self._global_staff_size = None
+        self._use_relative_includes = False
 
     ### SPECIAL METHODS ###
 
@@ -379,6 +394,18 @@ class LilyPondFile(AbjadObject):
         self._global_staff_size = arg
 
     @property
+    def header_block(self):
+        r'''Gets header block.
+
+        Returns block or none.
+        '''
+        from abjad.tools import lilypondfiletools
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.Block):
+                if item.name == 'header':
+                    return item
+
+    @property
     def items(self):
         r'''Gets items in LilyPond file.
 
@@ -397,6 +424,42 @@ class LilyPondFile(AbjadObject):
         Returns list.
         '''
         return self._items
+
+    @property
+    def layout_block(self):
+        r'''Gets layout block.
+
+        Returns block or none.
+        '''
+        from abjad.tools import lilypondfiletools
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.Block):
+                if item.name == 'layout':
+                    return item
+
+    @property
+    def paper_block(self):
+        r'''Gets paper block.
+
+        Returns block or none.
+        '''
+        from abjad.tools import lilypondfiletools
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.Block):
+                if item.name == 'paper':
+                    return item
+
+    @property
+    def score_block(self):
+        r'''Gets score block.
+
+        Returns block or none.
+        '''
+        from abjad.tools import lilypondfiletools
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.Block):
+                if item.name == 'score':
+                    return item
 
     @property
     def use_relative_includes(self):
