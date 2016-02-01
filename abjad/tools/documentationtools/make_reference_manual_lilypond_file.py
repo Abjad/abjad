@@ -87,7 +87,8 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
     if layout_block is None:
         layout_block = lilypondfiletools.Block(name='layout')
         lilypond_file.items.insert(0, layout_block)
-    lilypond_file.line_width = lilypondfiletools.LilyPondDimension(6, 'in')
+    # TODO: following line does nothing; must assign to paper_block instead
+    #lilypond_file.line_width = lilypondfiletools.LilyPondDimension(6, 'in')
     layout_block.indent = 0
     layout_block.ragged_right = True
 
