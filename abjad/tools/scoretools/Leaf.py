@@ -424,10 +424,11 @@ class Leaf(Component):
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
             if not parentage._get_spanners(spannertools.Tie):
-                tie = spannertools.Tie(
-                    use_messiaen_style_ties=use_messiaen_style_ties,
-                    )
-                attach(tie, all_leaves)
+                if spannertools.Tie._attachment_test(self):
+                    tie = spannertools.Tie(
+                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        )
+                    attach(tie, all_leaves)
             return all_leaves
         else:
             assert isinstance(components[0], scoretools.Tuplet)
@@ -440,10 +441,11 @@ class Leaf(Component):
                 x.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             if not self._get_spanners(spannertools.Tie):
-                tie = spannertools.Tie(
-                    use_messiaen_style_ties=use_messiaen_style_ties,
-                    )
-                attach(tie, all_leaves)
+                if spannertools.Tie._attachment_test(self):
+                    tie = spannertools.Tie(
+                        use_messiaen_style_ties=use_messiaen_style_ties,
+                        )
+                    attach(tie, all_leaves)
             tuplet_multiplier = tuplet.multiplier
             scoretools.Tuplet(tuplet_multiplier, all_leaves)
             return [tuplet]

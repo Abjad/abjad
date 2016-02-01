@@ -182,7 +182,7 @@ class Spanner(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _append(self, component):
-        assert self._attachment_test(component), repr(component)
+        assert self._attachment_test(component), (repr(component), repr(self))
         if self._contiguity_constraint == 'logical voice':
             components = self[-1:] + [component]
             assert Selection._all_are_contiguous_components_in_same_logical_voice(
