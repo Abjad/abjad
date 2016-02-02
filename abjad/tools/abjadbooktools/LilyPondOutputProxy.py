@@ -70,7 +70,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
         lilypond_file = payload
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
         lilypond_file.header_block.tagline = markuptools.Markup('""')
-        lilypond_file.file_initial_system_comments[:] = []
+        lilypond_file._date_time_token = None
         token = lilypondfiletools.LilyPondVersionToken(
             "2.19.0",
             )

@@ -119,7 +119,7 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
     header_block.tagline = markuptools.Markup('""')
 
     # etc
-    lilypond_file.file_initial_system_comments[:] = []
+    lilypond_file._date_time_token = None
     lilypond_file.global_staff_size = 12
 
     return lilypond_file

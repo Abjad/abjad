@@ -41,11 +41,11 @@ def test_lilypondfiletools_LilyPondFile___format___02():
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
     lilypond_file = lilypondfiletools.LilyPondFile(
+        date_time_token=False,
         default_paper_size=('11x17', 'landscape'),
         global_staff_size=14,
         )
     lilypond_file.items.append(score)
-    lilypond_file.file_initial_system_comments[:] = []
     lilypond_file.file_initial_system_includes[:] = []
 
     assert systemtools.TestManager.compare(

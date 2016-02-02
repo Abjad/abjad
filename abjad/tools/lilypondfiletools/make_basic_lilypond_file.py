@@ -4,6 +4,7 @@ from abjad.tools import scoretools
 
 def make_basic_lilypond_file(
     music=None,
+    date_time_token=None,
     default_paper_size=None,
     global_staff_size=None,
     use_relative_includes=None,
@@ -66,6 +67,7 @@ def make_basic_lilypond_file(
     if isinstance(music, lilypondfiletools.LilyPondFile):
         return music
     lilypond_file = lilypondfiletools.LilyPondFile(
+        date_time_token=date_time_token,
         default_paper_size=default_paper_size,
         global_staff_size=global_staff_size,
         use_relative_includes=use_relative_includes,
