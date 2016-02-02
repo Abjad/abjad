@@ -7,6 +7,8 @@ def make_basic_lilypond_file(
     date_time_token=None,
     default_paper_size=None,
     global_staff_size=None,
+    lilypond_language_token=None,
+    lilypond_version_token=None,
     use_relative_includes=None,
     ):
     r'''Makes basic LilyPond file.
@@ -70,6 +72,8 @@ def make_basic_lilypond_file(
         date_time_token=date_time_token,
         default_paper_size=default_paper_size,
         global_staff_size=global_staff_size,
+        lilypond_language_token=lilypond_language_token,
+        lilypond_version_token=lilypond_version_token,
         use_relative_includes=use_relative_includes,
         )
     header_block = lilypondfiletools.Block(name='header')

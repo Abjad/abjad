@@ -22,6 +22,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
         abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile(
                 global_staff_size=12,
+                lilypond_language_token=lilypondfiletools.LilyPondLanguageToken(),
+                lilypond_version_token=lilypondfiletools.LilyPondVersionToken(
+                    version_string='2.19.0',
+                    ),
                 )
             )
 
@@ -74,7 +78,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
         token = lilypondfiletools.LilyPondVersionToken(
             "2.19.0",
             )
-        lilypond_file.file_initial_system_includes[0] = token
+        lilypond_file._lilypond_version_token = token
         if (
             image_render_specifier.stylesheet and
             not image_render_specifier.no_stylesheet

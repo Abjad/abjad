@@ -8,12 +8,13 @@ def test_lilypondfiletools_make_basic_lily_file_01():
     lilypond_file = lilypondfiletools.make_basic_lilypond_file(
         music=score,
         date_time_token=False,
+        lilypond_language_token=False,
+        lilypond_version_token=False,
         )
     lilypond_file.header_block.composer = Markup('Josquin')
     lilypond_file.layout_block.indent = 0
     lilypond_file.paper_block.top_margin = 15
     lilypond_file.paper_block.left_margin = 15
-    lilypond_file.file_initial_system_includes[:] = []
 
     assert lilypond_file.score_block.items[0] is score
 

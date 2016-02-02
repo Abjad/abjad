@@ -44,9 +44,10 @@ def test_lilypondfiletools_LilyPondFile___format___02():
         date_time_token=False,
         default_paper_size=('11x17', 'landscape'),
         global_staff_size=14,
+        lilypond_language_token=False,
+        lilypond_version_token=False,
         )
     lilypond_file.items.append(score)
-    lilypond_file.file_initial_system_includes[:] = []
 
     assert systemtools.TestManager.compare(
         lilypond_file,
