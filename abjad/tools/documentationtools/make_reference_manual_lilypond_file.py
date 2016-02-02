@@ -120,6 +120,6 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
 
     # etc
     lilypond_file._date_time_token = None
-    lilypond_file.global_staff_size = 12
+    lilypond_file._global_staff_size = 12
 
     return lilypond_file

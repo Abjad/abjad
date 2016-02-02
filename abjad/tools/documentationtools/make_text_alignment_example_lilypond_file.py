@@ -60,9 +60,10 @@ def make_text_alignment_example_lilypond_file(music=None):
     from abjad.tools import lilypondfiletools
     from abjad.tools import schemetools
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(music=music)
-
-    lilypond_file.global_staff_size = 18
+    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+        music=music,
+        global_staff_size=18,
+        )
 
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True

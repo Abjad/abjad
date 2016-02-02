@@ -367,11 +367,6 @@ class LilyPondFile(AbjadObject):
         '''
         return self._default_paper_size
 
-    @default_paper_size.setter
-    def default_paper_size(self, args):
-        assert args is None or len(args) == 2
-        self._default_paper_size = args
-
     @property
     def file_initial_user_comments(self):
         r'''Gets file-initial user comments of Lilypond file.
@@ -438,11 +433,6 @@ class LilyPondFile(AbjadObject):
         Returns number or none.
         '''
         return self._global_staff_size
-
-    @global_staff_size.setter
-    def global_staff_size(self, arg):
-        assert isinstance(arg, (int, float, int, type(None)))
-        self._global_staff_size = arg
 
     @property
     def header_block(self):

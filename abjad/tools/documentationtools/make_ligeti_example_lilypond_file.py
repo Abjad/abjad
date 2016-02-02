@@ -11,10 +11,11 @@ def make_ligeti_example_lilypond_file(music=None):
     Returns LilyPond file.
     '''
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(music=music)
-
-    lilypond_file.default_paper_size = 'a4', 'letter'
-    lilypond_file.global_staff_size = 14
+    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+        music=music,
+        default_paper_size=('a4', 'letter'),
+        global_staff_size=14,
+        )
 
     lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True

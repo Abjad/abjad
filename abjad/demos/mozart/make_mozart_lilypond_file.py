@@ -8,10 +8,12 @@ def make_mozart_lilypond_file():
     '''
 
     score = make_mozart_score()
-    lily = lilypondfiletools.make_basic_lilypond_file(score)
+    lily = lilypondfiletools.make_basic_lilypond_file(
+        music=score,
+        global_staff_size=12,
+        )
     title = markuptools.Markup(r'\bold \sans "Ein Musikalisches Wuerfelspiel"')
     composer = schemetools.Scheme("W. A. Mozart (maybe?)")
-    lily.global_staff_size = 12
     lily.header_block.title = title
     lily.header_block.composer = composer
     lily.layout_block.ragged_right = True
