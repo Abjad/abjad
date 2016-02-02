@@ -38,7 +38,16 @@ class LilyPondFile(AbjadObject):
         ::
 
             >>> lilypond_file
-            LilyPondFile(comments=('File construct as an example.', 'Parts shown here for positioning.'), date_time_token=DateTimeToken(date_string='...'), default_paper_size=('a5', 'portrait'), global_staff_size=16, includes=('external-settings-file-1.ly', 'external-settings-file-2.ly'), items=[<Block(name='header')>, <Block(name='layout')>, <Block(name='paper')>, <Block(name='score')>], lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))
+            LilyPondFile(comments=('File construct as an example.', 'Parts
+            shown here for positioning.'),
+            date_time_token=DateTimeToken(date_string='...'),
+            default_paper_size=('a5', 'portrait'), global_staff_size=16,
+            includes=('external-settings-file-1.ly',
+            'external-settings-file-2.ly'), items=[<Block(name='header')>,
+            <Block(name='layout')>, <Block(name='paper')>,
+            <Block(name='score')>],
+            lilypond_language_token=LilyPondLanguageToken(),
+            lilypond_version_token=LilyPondVersionToken(version_string='...'))
 
         ::
 
@@ -208,7 +217,12 @@ class LilyPondFile(AbjadObject):
             ::
 
                 >>> lilypond_file
-                LilyPondFile(comments=(), date_time_token=DateTimeToken(date_string='...'), includes=(), items=[<Block(name='header')>, <Block(name='layout')>, <Block(name='paper')>, <Block(name='score')>], lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))
+                LilyPondFile(comments=(),
+                date_time_token=DateTimeToken(date_string='...'), includes=(),
+                items=[<Block(name='header')>, <Block(name='layout')>,
+                <Block(name='paper')>, <Block(name='score')>],
+                lilypond_language_token=LilyPondLanguageToken(),
+                lilypond_version_token=LilyPondVersionToken(version_string='...'))
 
         Returns string.
         '''
