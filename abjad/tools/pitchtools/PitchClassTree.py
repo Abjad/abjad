@@ -107,7 +107,7 @@ class PitchClassTree(PayloadTree):
             )
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(
             music=score,
-            file_initial_user_includes=[stylesheet],
+            includes=[stylesheet],
             )
         voice.consists_commands.append('Horizontal_bracket_engraver')
         leaf_list_stack = []

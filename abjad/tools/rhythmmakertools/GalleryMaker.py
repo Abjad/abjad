@@ -49,7 +49,7 @@ class GalleryMaker(AbjadValueObject):
                 lilypond_file.items.append(string)
         assert lilypond_file.items[-1] == string
         lilypond_file.items.pop(-1)
-        lilypond_file.file_initial_user_includes.append('stylesheet.ily')
+        lilypond_file.includes.append('stylesheet.ily')
         return lilypond_file
 
     ### PRIVATE METHODS ###

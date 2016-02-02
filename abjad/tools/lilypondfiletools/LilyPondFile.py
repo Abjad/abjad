@@ -23,8 +23,8 @@ class LilyPondFile(AbjadObject):
             >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
             ...     music=staff,
             ...     default_paper_size=('a5', 'portrait'),
-            ...     file_initial_user_comments=comments,
-            ...     file_initial_user_includes=includes,
+            ...     comments=comments,
+            ...     includes=includes,
             ...     global_staff_size=16,
             ...     )
 
@@ -38,7 +38,8 @@ class LilyPondFile(AbjadObject):
         ::
 
             >>> lilypond_file
-            <LilyPondFile(4, date_time_token=DateTimeToken(date_string='...'), default_paper_size=('a5', 'portrait'), file_initial_user_comments=('File construct as an example.', 'Parts shown here for positioning.'), file_initial_user_includes=('external-settings-file-1.ly', 'external-settings-file-2.ly'), global_staff_size=16, lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))>
+            <LilyPondFile(4, comments=('File construct as an example.', 'Parts
+            shown here for positioning.'), date_time_token=DateTimeToken(date_string='...'), default_paper_size=('a5', 'portrait'), global_staff_size=16, includes=('external-settings-file-1.ly', 'external-settings-file-2.ly'), lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))>
 
         ::
 
@@ -86,11 +87,11 @@ class LilyPondFile(AbjadObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_comments',
         '_date_time_token',
         '_default_paper_size',
-        '_file_initial_user_comments',
-        '_file_initial_user_includes',
         '_global_staff_size',
+        '_includes',
         '_items',
         '_lilypond_language_token',
         '_lilypond_version_token',
@@ -101,11 +102,11 @@ class LilyPondFile(AbjadObject):
 
     def __init__(
         self,
+        comments=None,
         date_time_token=None,
         default_paper_size=None,
-        file_initial_user_comments=None,
-        file_initial_user_includes=None,
         global_staff_size=None,
+        includes=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
         use_relative_includes=None,
@@ -115,9 +116,9 @@ class LilyPondFile(AbjadObject):
         self._date_time_token = None
         if not date_time_token == False:
             self._date_time_token = lilypondfiletools.DateTimeToken()
-        file_initial_user_comments = file_initial_user_comments or ()
-        file_initial_user_comments = tuple(file_initial_user_comments)
-        self._file_initial_user_comments = file_initial_user_comments
+        comments = comments or ()
+        comments = tuple(comments)
+        self._comments = comments
         self._lilypond_language_token = None
         if not lilypond_language_token == False:
             token = lilypondfiletools.LilyPondLanguageToken()
@@ -126,9 +127,9 @@ class LilyPondFile(AbjadObject):
         if not lilypond_version_token == False:
             token = lilypondfiletools.LilyPondVersionToken()
             self._lilypond_version_token = token
-        file_initial_user_includes = file_initial_user_includes or ()
-        file_initial_user_includes = tuple(file_initial_user_includes)
-        self._file_initial_user_includes = file_initial_user_includes
+        includes = includes or ()
+        includes = tuple(includes)
+        self._includes = includes
         self._default_paper_size = default_paper_size
         self._global_staff_size = global_staff_size
         self._use_relative_includes = use_relative_includes
@@ -207,7 +208,7 @@ class LilyPondFile(AbjadObject):
             ::
 
                 >>> lilypond_file
-                <LilyPondFile(4, date_time_token=DateTimeToken(date_string='...'))>
+                <LilyPondFile(4, comments=(), date_time_token=DateTimeToken(date_string='...'), includes=(), lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))>
 
         Returns string.
         '''
@@ -222,7 +223,7 @@ class LilyPondFile(AbjadObject):
         if self.date_time_token is not None:
             string = '% {}'.format(self.date_time_token)
             result.append(string)
-        result.extend(self._formatted_file_initial_user_comments)
+        result.extend(self._formatted_comments)
         includes = []
         if self.lilypond_version_token is not None:
             string = '{}'.format(self.lilypond_version_token)
@@ -236,8 +237,8 @@ class LilyPondFile(AbjadObject):
         if self.use_relative_includes:
             string = "#(ly:set-option 'relative-includes #t)"
             result.append(string)
-        result.extend(self._formatted_file_initial_user_includes)
-        result.extend(self._formatted_file_initial_scheme_settings)
+        result.extend(self._formatted_includes)
+        result.extend(self._formatted_scheme_settings)
         result.extend(self._formatted_blocks)
         return result
 
@@ -254,7 +255,7 @@ class LilyPondFile(AbjadObject):
         return result
 
     @property
-    def _formatted_file_initial_scheme_settings(self):
+    def _formatted_scheme_settings(self):
         result = []
         default_paper_size = self.default_paper_size
         if default_paper_size is not None:
@@ -272,9 +273,9 @@ class LilyPondFile(AbjadObject):
         return result
 
     @property
-    def _formatted_file_initial_user_comments(self):
+    def _formatted_comments(self):
         result = []
-        for comment in self.file_initial_user_comments:
+        for comment in self.comments:
             if '_lilypond_format' in dir(comment) and \
                 not isinstance(comment, str):
                 lilypond_format = format(comment)
@@ -289,14 +290,14 @@ class LilyPondFile(AbjadObject):
         return result
 
     @property
-    def _formatted_file_initial_user_includes(self):
+    def _formatted_includes(self):
         result = []
-        for file_initial_include in self.file_initial_user_includes:
-            if isinstance(file_initial_include, str):
-                string = r'\include "{}"'.format(file_initial_include)
+        for include in self.includes:
+            if isinstance(include, str):
+                string = r'\include "{}"'.format(include)
                 result.append(string)
             else:
-                result.append(format(file_initial_include))
+                result.append(format(include))
         if result:
             result = ['\n'.join(result)]
         return result
@@ -320,6 +321,27 @@ class LilyPondFile(AbjadObject):
             )
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def comments(self):
+        r'''Gets comments of Lilypond file.
+
+        ..  container:: example
+
+            **Example 1.** Gets comments:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.comments
+                ()
+
+        Returns list.
+        '''
+        return self._comments
 
     @property
     def date_time_token(self):
@@ -366,48 +388,6 @@ class LilyPondFile(AbjadObject):
         Returns pair or none.
         '''
         return self._default_paper_size
-
-    @property
-    def file_initial_user_comments(self):
-        r'''Gets file-initial user comments of Lilypond file.
-
-        ..  container:: example
-
-            **Example 1.** Gets file-initial user comments:
-
-            ::
-
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-
-            ::
-
-                >>> lilypond_file.file_initial_user_comments
-                ()
-
-        Returns list.
-        '''
-        return self._file_initial_user_comments
-
-    @property
-    def file_initial_user_includes(self):
-        r'''Gets file-initial user include commands of LilyPond file.
-
-        ..  container:: example 
-
-            **Example 1.** Gets file-initial user includes:
-
-            ::
-
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-
-            ::
-
-                >>> lilypond_file.file_initial_user_includes
-                ()
-
-        Returns list.
-        '''
-        return self._file_initial_user_includes
 
     @property
     def global_staff_size(self):
@@ -458,6 +438,27 @@ class LilyPondFile(AbjadObject):
             if isinstance(item, lilypondfiletools.Block):
                 if item.name == 'header':
                     return item
+
+    @property
+    def includes(self):
+        r'''Gets includes of LilyPond file.
+
+        ..  container:: example 
+
+            **Example 1.** Gets includes:
+
+            ::
+
+                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+
+            ::
+
+                >>> lilypond_file.includes
+                ()
+
+        Returns list.
+        '''
+        return self._includes
 
     @property
     def items(self):
