@@ -212,8 +212,8 @@ class LilyPondFile(AbjadObject):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
+        superclass = super(LilyPondFile, self)
+        return superclass.__repr__()
 
     ### PRIVATE PROPERTIES ###
 
