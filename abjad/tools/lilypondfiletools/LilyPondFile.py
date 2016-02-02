@@ -651,7 +651,3 @@ class LilyPondFile(AbjadObject):
         Returns true, false or none.
         '''
         return self._use_relative_includes
-
-    @use_relative_includes.setter
-    def use_relative_includes(self, arg):
-        self._use_relative_includes = bool(arg)

@@ -79,8 +79,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
             image_render_specifier.stylesheet and
             not image_render_specifier.no_stylesheet
             ):
-            lilypond_file.use_relative_includes = True
-            lilypond_file.file_initial_user_includes[:] = [image_render_specifier.stylesheet]
+            lilypond_file._use_relative_includes = True
+            lilypond_file.file_initial_user_includes[:] = [
+                image_render_specifier.stylesheet]
         self._payload = lilypond_file
 
     ### PRIVATE METHODS ###
