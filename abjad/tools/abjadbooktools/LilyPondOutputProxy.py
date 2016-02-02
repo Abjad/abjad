@@ -51,6 +51,8 @@ class LilyPondOutputProxy(ImageOutputProxy):
         image_render_specifier=None,
         ):
         from abjad.tools import abjadbooktools
+        from abjad.tools import lilypondfiletools
+        from abjad.tools import markuptools
         ImageOutputProxy.__init__(
             self,
             image_layout_specifier=image_layout_specifier,
@@ -65,8 +67,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
             ):
             payload = documentationtools.make_reference_manual_lilypond_file(
                 payload)
-        manager = systemtools.IOManager
-        lilypond_file = manager._insert_expr_into_lilypond_file(payload)
+        lilypond_file = payload
+        assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
+        lilypond_file.header_block.tagline = markuptools.Markup('""')
         lilypond_file.file_initial_system_comments[:] = []
         token = lilypondfiletools.LilyPondVersionToken(
             "2.19.0",

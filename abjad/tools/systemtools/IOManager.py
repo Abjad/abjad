@@ -39,30 +39,6 @@ class IOManager(AbjadObject):
             os.makedirs(directory)
 
     @staticmethod
-    def _insert_expr_into_lilypond_file(expr, tagline=False):
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        if isinstance(expr, lilypondfiletools.LilyPondFile):
-            lilypond_file = expr
-        elif isinstance(expr, scoretools.Context):
-            lilypond_file = lilypondfiletools.make_basic_lilypond_file(expr)
-            lilypond_file._is_temporary = True
-        else:
-            lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-            score_block = lilypondfiletools.Block(name='score')
-            score_block.items.append(expr)
-            lilypond_file.items.append(score_block)
-            lilypond_file.score_block = score_block
-            lilypond_file._is_temporary = True
-        if not tagline:
-            try:
-                lilypond_file.header_block.tagline = markuptools.Markup('""')
-            except:
-                pass
-        return lilypond_file
-
-    @staticmethod
     def _make_score_package(
         score_package_path,
         score_title,
