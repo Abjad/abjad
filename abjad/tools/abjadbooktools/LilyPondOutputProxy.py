@@ -22,8 +22,22 @@ class LilyPondOutputProxy(ImageOutputProxy):
         abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile(
                 comments=(),
-                includes=(),
                 global_staff_size=12,
+                includes=(),
+                items=[
+                    lilypondfiletools.Block(
+                        name='header',
+                        ),
+                    lilypondfiletools.Block(
+                        name='layout',
+                        ),
+                    lilypondfiletools.Block(
+                        name='paper',
+                        ),
+                    lilypondfiletools.Block(
+                        name='score',
+                        ),
+                    ],
                 lilypond_language_token=lilypondfiletools.LilyPondLanguageToken(),
                 lilypond_version_token=lilypondfiletools.LilyPondVersionToken(
                     version_string='2.19.0',

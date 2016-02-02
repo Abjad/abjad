@@ -38,8 +38,7 @@ class LilyPondFile(AbjadObject):
         ::
 
             >>> lilypond_file
-            <LilyPondFile(4, comments=('File construct as an example.', 'Parts
-            shown here for positioning.'), date_time_token=DateTimeToken(date_string='...'), default_paper_size=('a5', 'portrait'), global_staff_size=16, includes=('external-settings-file-1.ly', 'external-settings-file-2.ly'), lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))>
+            LilyPondFile(comments=('File construct as an example.', 'Parts shown here for positioning.'), date_time_token=DateTimeToken(date_string='...'), default_paper_size=('a5', 'portrait'), global_staff_size=16, includes=('external-settings-file-1.ly', 'external-settings-file-2.ly'), items=[<Block(name='header')>, <Block(name='layout')>, <Block(name='paper')>, <Block(name='score')>], lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))
 
         ::
 
@@ -107,18 +106,24 @@ class LilyPondFile(AbjadObject):
         default_paper_size=None,
         global_staff_size=None,
         includes=None,
+        items=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
         use_relative_includes=None,
         ):
         from abjad.tools import lilypondfiletools
-        self._items = []
-        self._date_time_token = None
-        if not date_time_token == False:
-            self._date_time_token = lilypondfiletools.DateTimeToken()
         comments = comments or ()
         comments = tuple(comments)
         self._comments = comments
+        self._date_time_token = None
+        if not date_time_token == False:
+            self._date_time_token = lilypondfiletools.DateTimeToken()
+        self._default_paper_size = default_paper_size
+        self._global_staff_size = global_staff_size
+        includes = includes or ()
+        includes = tuple(includes)
+        self._includes = includes
+        self._items = items or []
         self._lilypond_language_token = None
         if not lilypond_language_token == False:
             token = lilypondfiletools.LilyPondLanguageToken()
@@ -127,11 +132,6 @@ class LilyPondFile(AbjadObject):
         if not lilypond_version_token == False:
             token = lilypondfiletools.LilyPondVersionToken()
             self._lilypond_version_token = token
-        includes = includes or ()
-        includes = tuple(includes)
-        self._includes = includes
-        self._default_paper_size = default_paper_size
-        self._global_staff_size = global_staff_size
         self._use_relative_includes = use_relative_includes
 
     ### SPECIAL METHODS ###
@@ -208,7 +208,7 @@ class LilyPondFile(AbjadObject):
             ::
 
                 >>> lilypond_file
-                <LilyPondFile(4, comments=(), date_time_token=DateTimeToken(date_string='...'), includes=(), lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))>
+                LilyPondFile(comments=(), date_time_token=DateTimeToken(date_string='...'), includes=(), items=[<Block(name='header')>, <Block(name='layout')>, <Block(name='paper')>, <Block(name='score')>], lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))
 
         Returns string.
         '''
@@ -305,20 +305,6 @@ class LilyPondFile(AbjadObject):
     @property
     def _lilypond_format(self):
         return '\n\n'.join(self._format_pieces)
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = []
-        if self.items:
-            positional_argument_values.append(len(self.items))
-        positional_argument_values = tuple(positional_argument_values)
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_bracketed=True,
-            is_indented=False,
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PUBLIC PROPERTIES ###
 

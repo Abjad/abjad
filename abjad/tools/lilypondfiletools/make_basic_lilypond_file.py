@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import scoretools
 
 
 def make_basic_lilypond_file(
@@ -17,6 +16,7 @@ def make_basic_lilypond_file(
 
     ..  container:: example
 
+        **Example 1.** Makes basic LilyPond file:
 
         ::
 
@@ -75,21 +75,17 @@ def make_basic_lilypond_file(
         default_paper_size=default_paper_size,
         comments=comments,
         includes=includes,
+        items=[
+            lilypondfiletools.Block(name='header'),
+            lilypondfiletools.Block(name='layout'),
+            lilypondfiletools.Block(name='paper'),
+            lilypondfiletools.Block(name='score'),
+            ],
         global_staff_size=global_staff_size,
         lilypond_language_token=lilypond_language_token,
         lilypond_version_token=lilypond_version_token,
         use_relative_includes=use_relative_includes,
         )
-    header_block = lilypondfiletools.Block(name='header')
-    layout_block = lilypondfiletools.Block(name='layout')
-    paper_block = lilypondfiletools.Block(name='paper')
-    score_block = lilypondfiletools.Block(name='score')
-    lilypond_file.items.extend([
-        header_block,
-        layout_block,
-        paper_block,
-        score_block,
-        ])
     if music is not None:
-        score_block.items.append(music)
+        lilypond_file.score_block.items.append(music)
     return lilypond_file
