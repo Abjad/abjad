@@ -6,6 +6,8 @@ def make_basic_lilypond_file(
     music=None,
     date_time_token=None,
     default_paper_size=None,
+    file_initial_user_comments=None,
+    file_initial_user_includes=None,
     global_staff_size=None,
     lilypond_language_token=None,
     lilypond_version_token=None,
@@ -71,6 +73,8 @@ def make_basic_lilypond_file(
     lilypond_file = lilypondfiletools.LilyPondFile(
         date_time_token=date_time_token,
         default_paper_size=default_paper_size,
+        file_initial_user_comments=file_initial_user_comments,
+        file_initial_user_includes=file_initial_user_includes,
         global_staff_size=global_staff_size,
         lilypond_language_token=lilypond_language_token,
         lilypond_version_token=lilypond_version_token,

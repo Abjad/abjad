@@ -21,6 +21,8 @@ class LilyPondOutputProxy(ImageOutputProxy):
         >>> print(format(proxy))
         abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile(
+                file_initial_user_comments=(),
+                file_initial_user_includes=(),
                 global_staff_size=12,
                 lilypond_language_token=lilypondfiletools.LilyPondLanguageToken(),
                 lilypond_version_token=lilypondfiletools.LilyPondVersionToken(
@@ -84,8 +86,8 @@ class LilyPondOutputProxy(ImageOutputProxy):
             not image_render_specifier.no_stylesheet
             ):
             lilypond_file._use_relative_includes = True
-            lilypond_file.file_initial_user_includes[:] = [
-                image_render_specifier.stylesheet]
+            includes = [image_render_specifier.stylesheet]
+            lilypond_file._file_initial_user_includes = tuple(includes)
         self._payload = lilypond_file
 
     ### PRIVATE METHODS ###

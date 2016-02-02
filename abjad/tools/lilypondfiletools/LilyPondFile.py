@@ -12,22 +12,24 @@ class LilyPondFile(AbjadObject):
         ::
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> comments = [
+            ...     'File construct as an example.',
+            ...     'Parts shown here for positioning.',
+            ...     ]
+            >>> includes = [
+            ...     'external-settings-file-1.ly',
+            ...     'external-settings-file-2.ly',
+            ...     ]
             >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
             ...     music=staff,
             ...     default_paper_size=('a5', 'portrait'),
+            ...     file_initial_user_comments=comments,
+            ...     file_initial_user_includes=includes,
             ...     global_staff_size=16,
             ...     )
 
         ::
 
-            >>> comment = 'File construct as an example.'
-            >>> lilypond_file.file_initial_user_comments.append(comment)
-            >>> comment = 'Parts shown here for positioning.'
-            >>> lilypond_file.file_initial_user_comments.append(comment)
-            >>> file_name = 'external-settings-file-1.ly'
-            >>> lilypond_file.file_initial_user_includes.append(file_name)
-            >>> file_name = 'external-settings-file-2.ly'
-            >>> lilypond_file.file_initial_user_includes.append(file_name)
             >>> lilypond_file.header_block.composer = Markup('Josquin')
             >>> lilypond_file.header_block.title = Markup('Missa sexti tonus')
             >>> lilypond_file.layout_block.indent = 0
@@ -36,7 +38,7 @@ class LilyPondFile(AbjadObject):
         ::
 
             >>> lilypond_file
-            <LilyPondFile(4, date_time_token=DateTimeToken(date_string='...'), default_paper_size=('a5', 'portrait'), global_staff_size=16, lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))>
+            <LilyPondFile(4, date_time_token=DateTimeToken(date_string='...'), default_paper_size=('a5', 'portrait'), file_initial_user_comments=('File construct as an example.', 'Parts shown here for positioning.'), file_initial_user_includes=('external-settings-file-1.ly', 'external-settings-file-2.ly'), global_staff_size=16, lilypond_language_token=LilyPondLanguageToken(), lilypond_version_token=LilyPondVersionToken(version_string='2.19.36'))>
 
         ::
 
@@ -101,6 +103,8 @@ class LilyPondFile(AbjadObject):
         self,
         date_time_token=None,
         default_paper_size=None,
+        file_initial_user_comments=None,
+        file_initial_user_includes=None,
         global_staff_size=None,
         lilypond_language_token=None,
         lilypond_version_token=None,
@@ -111,7 +115,9 @@ class LilyPondFile(AbjadObject):
         self._date_time_token = None
         if not date_time_token == False:
             self._date_time_token = lilypondfiletools.DateTimeToken()
-        self._file_initial_user_comments = []
+        file_initial_user_comments = file_initial_user_comments or ()
+        file_initial_user_comments = tuple(file_initial_user_comments)
+        self._file_initial_user_comments = file_initial_user_comments
         self._lilypond_language_token = None
         if not lilypond_language_token == False:
             token = lilypondfiletools.LilyPondLanguageToken()
@@ -120,7 +126,9 @@ class LilyPondFile(AbjadObject):
         if not lilypond_version_token == False:
             token = lilypondfiletools.LilyPondVersionToken()
             self._lilypond_version_token = token
-        self._file_initial_user_includes = []
+        file_initial_user_includes = file_initial_user_includes or ()
+        file_initial_user_includes = tuple(file_initial_user_includes)
+        self._file_initial_user_includes = file_initial_user_includes
         self._default_paper_size = default_paper_size
         self._global_staff_size = global_staff_size
         self._use_relative_includes = use_relative_includes
@@ -379,7 +387,7 @@ class LilyPondFile(AbjadObject):
             ::
 
                 >>> lilypond_file.file_initial_user_comments
-                []
+                ()
 
         Returns list.
         '''
@@ -400,7 +408,7 @@ class LilyPondFile(AbjadObject):
             ::
 
                 >>> lilypond_file.file_initial_user_includes
-                []
+                ()
 
         Returns list.
         '''

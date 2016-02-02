@@ -100,13 +100,15 @@ class PitchClassTree(PayloadTree):
         voice = scoretools.Voice()
         staff = scoretools.Staff([voice])
         score = scoretools.Score([staff])
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
         stylesheet = os.path.join(
             abjad_configuration.abjad_directory,
             'stylesheets',
             'rhythm-letter-16.ily',
             )
-        lilypond_file.file_initial_user_includes.append(stylesheet)
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+            music=score,
+            file_initial_user_includes=[stylesheet],
+            )
         voice.consists_commands.append('Horizontal_bracket_engraver')
         leaf_list_stack = []
         self._bracket_inner_nodes(leaf_list_stack, self, voice)
