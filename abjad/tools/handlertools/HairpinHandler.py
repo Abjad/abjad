@@ -46,12 +46,31 @@ class HairpinHandler(Handler):
                 r4
             }
 
+    ..  container:: example
+
+        **Example 2.** Gets storage format of handler:
+
+        ::
+
+            >>> print(format(handler))
+            handlertools.HairpinHandler(
+                attach_start_dynamic_to_lone_notes=True,
+                hairpin_tokens=datastructuretools.CyclicTuple(
+                    [
+                        ('f', '>', 'niente'),
+                        ('niente', '<', 'f'),
+                        ]
+                    ),
+                span='nontrivial ties',
+                )
+
     '''
 
     ### CLASS ATTRIBUTES ###
 
     __slots__ = (
         '_attach_start_dynamic_to_lone_notes',
+        '_enchain_hairpins',
         '_hairpin_tokens',
         '_minimum_duration',
         '_patterns',
@@ -63,6 +82,7 @@ class HairpinHandler(Handler):
     def __init__(
         self,
         attach_start_dynamic_to_lone_notes=True,
+        enchain_hairpins=None,
         hairpin_tokens=None,
         minimum_duration=None,
         patterns=None,
@@ -70,6 +90,9 @@ class HairpinHandler(Handler):
         ):
         self._attach_start_dynamic_to_lone_notes = bool(
             attach_start_dynamic_to_lone_notes)
+        if enchain_hairpins is not None:
+            enchain_hairpins = bool(enchain_hairpins)
+        self._enchain_hairpins = enchain_hairpins
         hairpin_tokens = hairpin_tokens or []
         assert isinstance(hairpin_tokens, list), repr(hairpin_tokens)
         tokens = []
@@ -113,18 +136,10 @@ class HairpinHandler(Handler):
         else:
             raise ValueError(self.span)
         if isinstance(self.span, (tuple, list)):
-            new_groups = []
-            for group in groups:
-                leaves = iterate(group).by_class(scoretools.Leaf)
-                leaves = list(leaves)
-                shards = sequencetools.partition_sequence_by_counts(
-                    leaves,
-                    counts=self.span,
-                    cyclic=True,
-                    )
-                new_groups.extend(shards)
-            groups = new_groups
-            groups = [[_] for _ in groups]
+            if not self.enchain_hairpins:
+                groups = self._partition_groups(groups)
+            else:
+                groups = self._partition_enchained_groups(groups)
         for group_index, group in enumerate(groups):
             notes = []
             for logical_tie in group:
@@ -181,6 +196,53 @@ class HairpinHandler(Handler):
             if pattern.matches_index(index, total):
                 return True
         return False
+
+    def _partition_by_enchained_counts(self, leaves, counts):
+        assert isinstance(leaves, list), repr(leaves)
+        counts = datastructuretools.CyclicTuple(counts)
+        shards = []
+        shard_index = 0
+        leaf_start_index = 0
+        total_leaves = len(leaves)
+        while True:
+            current_count = counts[shard_index]
+            leaf_stop_index = leaf_start_index + current_count
+            shard = leaves[leaf_start_index:leaf_stop_index]
+            shards.append(shard)
+            shard_index += 1
+            leaf_start_index = leaf_stop_index - 1
+            if total_leaves <= leaf_start_index:
+                break
+        return shards
+
+    def _partition_enchained_groups(self, groups):
+        new_groups = []
+        for group in groups:
+            leaves = iterate(group).by_class(scoretools.Leaf)
+            leaves = list(leaves)
+            shards = self._partition_by_enchained_counts(
+                leaves,
+                counts=self.span,
+                )
+            new_groups.extend(shards)
+        groups = new_groups
+        groups = [[_] for _ in groups]
+        return groups
+
+    def _partition_groups(self, groups):
+        new_groups = []
+        for group in groups:
+            leaves = iterate(group).by_class(scoretools.Leaf)
+            leaves = list(leaves)
+            shards = sequencetools.partition_sequence_by_counts(
+                leaves,
+                counts=self.span,
+                cyclic=True,
+                )
+            new_groups.extend(shards)
+        groups = new_groups
+        groups = [[_] for _ in groups]
+        return groups
 
     ### PUBLIC PROPERTIES ###
 
@@ -261,6 +323,81 @@ class HairpinHandler(Handler):
         Returns true or false
         '''
         return self._attach_start_dynamic_to_lone_notes
+
+    @property
+    def enchain_hairpins(self):
+        r'''Is true when hairpins should enchain. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Spans groups of notes and chords:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     hairpin_tokens=['p < f', 'f > p'],
+                ...     span=[3, 2],
+                ...     )
+                >>> string = "c'8 ~ c' ~ c' ~ c' ~ c' ~ c' ~ c' ~ c'"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8 ~ \< \p
+                    c'8 ~
+                    c'8 ~ \f
+                    c'8 ~ \> \f
+                    c'8 ~ \p
+                    c'8 ~ \< \p
+                    c'8 ~
+                    c'8 \f
+                }
+
+        ..  container:: example
+
+            **Example 2.** Spans enchained groups of notes and chords:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     enchain_hairpins=True,
+                ...     hairpin_tokens=['p < f', 'f > p'],
+                ...     span=[3, 2],
+                ...     )
+                >>> string = "c'8 ~ c' ~ c' ~ c' ~ c' ~ c' ~ c' ~ c'"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8 ~ \< \p
+                    c'8 ~
+                    c'8 ~ \f \> \f
+                    c'8 ~ \p \< \p
+                    c'8 ~
+                    c'8 ~ \f \> \f
+                    c'8 ~ \p \< \p
+                    c'8 \f
+                }
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._enchain_hairpins
 
     @property
     def hairpin_tokens(self):
