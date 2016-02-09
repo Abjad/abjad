@@ -5,10 +5,10 @@ from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
-from abjad.tools.handlertools.DynamicHandler import DynamicHandler
+from abjad.tools.handlertools.Handler import Handler
 
 
-class TerracedDynamicsHandler(DynamicHandler):
+class TerracedDynamicsHandler(Handler):
     r'''Terraced dynamics handler.
     '''
 
@@ -28,7 +28,6 @@ class TerracedDynamicsHandler(DynamicHandler):
         dynamics=None, 
         minimum_duration=None,
         ):
-        DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         assert isinstance(always_first_note, bool), repr(always_first_note)
         self._always_first_note = always_first_note
         if dynamics is not None:
@@ -38,6 +37,9 @@ class TerracedDynamicsHandler(DynamicHandler):
                     message = message.format(dynamic)
                     raise TypeError(message)
         self._dynamics = dynamics
+        if minimum_duration is not None:
+            minimum_duration = durationtools.Duration(minimum_duration)
+        self._minimum_duration = minimum_duration
 
     ### SPECIAL METHODS ###
 
@@ -79,3 +81,11 @@ class TerracedDynamicsHandler(DynamicHandler):
         Set to strings or none.
         '''
         return self._dynamics
+
+    @property
+    def minimum_duration(self):
+        r'''Gets minimum duration of handler.
+
+        Returns duration or none.
+        '''
+        return self._minimum_duration

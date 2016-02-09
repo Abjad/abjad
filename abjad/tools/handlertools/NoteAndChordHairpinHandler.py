@@ -1,15 +1,16 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
+from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
-from abjad.tools.handlertools.DynamicHandler import DynamicHandler
+from abjad.tools.handlertools.Handler import Handler
 
 
-class NoteAndChordHairpinHandler(DynamicHandler):
+class NoteAndChordHairpinHandler(Handler):
     r'''Note and chord hairpin handler.
 
     ..  container:: example
@@ -234,6 +235,7 @@ class NoteAndChordHairpinHandler(DynamicHandler):
     __slots__ = (
         '_attach_start_dynamic_to_lone_notes',
         '_hairpin_token',
+        '_minimum_duration',
         '_patterns',
         '_span',
         )
@@ -248,7 +250,6 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         patterns=None,
         span='contiguous notes and chords',
         ):
-        DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         self._attach_start_dynamic_to_lone_notes = bool(
             attach_start_dynamic_to_lone_notes)
         if hairpin_token is None:
@@ -276,6 +277,9 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         else:
             raise TypeError(hairpin_token)
         self._hairpin_token = hairpin_token
+        if minimum_duration is not None:
+            minimum_duration = durationtools.Duration(minimum_duration)
+        self._minimum_duration = minimum_duration
         if patterns is not None:
             assert isinstance(patterns, (list, tuple)), repr(patterns)
         self._patterns = patterns
@@ -348,6 +352,21 @@ class NoteAndChordHairpinHandler(DynamicHandler):
             attach(hairpin, notes_to_span)
 
     ### PRIVATE METHODS ###
+
+    def _group_contiguous_logical_ties(self, logical_ties):
+        result = []
+        current_group = [logical_ties[0]]
+        for logical_tie in logical_ties[1:]:
+            last_timespan = current_group[-1].get_timespan()
+            current_timespan = logical_tie.get_timespan()
+            if last_timespan.stops_when_timespan_starts(current_timespan):
+                current_group.append(logical_tie)
+            else:
+                result.append(current_group)
+                current_group = [logical_tie]
+        if current_group:
+            result.append(current_group)
+        return result
 
     def _index_matches_patterns(self, index, total):
         if not self.patterns:
@@ -449,6 +468,14 @@ class NoteAndChordHairpinHandler(DynamicHandler):
         Returns cyclic tuple.
         '''
         return self._hairpin_token
+
+    @property
+    def minimum_duration(self):
+        r'''Gets minimum duration of handler.
+
+        Returns duration or none.
+        '''
+        return self._minimum_duration
 
     @property
     def patterns(self):

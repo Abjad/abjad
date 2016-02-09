@@ -5,10 +5,10 @@ from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
-from abjad.tools.handlertools.DynamicHandler import DynamicHandler
+from abjad.tools.handlertools.Handler import Handler
 
 
-class ReiteratedDynamicHandler(DynamicHandler):
+class ReiteratedDynamicHandler(Handler):
     r'''Reiterated dynamic handler.
 
     ..  container:: example
@@ -68,12 +68,12 @@ class ReiteratedDynamicHandler(DynamicHandler):
     __slots__ = (
         '_dynamic_name',
         '_dynamic_names',
+        '_minimum_duration',
         )
 
     ### INITIALIZER ###
 
     def __init__(self, dynamic_name=None, minimum_duration=None):
-        DynamicHandler.__init__(self, minimum_duration=minimum_duration)
         self._dynamic_name = dynamic_name
         dynamic_names = ()
         if dynamic_name is not None:
@@ -83,6 +83,9 @@ class ReiteratedDynamicHandler(DynamicHandler):
             assert indicatortools.Dynamic.is_dynamic_name(dynamic_name)
         dynamic_names = datastructuretools.CyclicTuple(dynamic_names)
         self._dynamic_names = dynamic_names
+        if minimum_duration is not None:
+            minimum_duration = durationtools.Duration(minimum_duration)
+        self._minimum_duration = minimum_duration
 
     ### SPECIAL METHODS ###
 
@@ -115,3 +118,11 @@ class ReiteratedDynamicHandler(DynamicHandler):
         Returns string or none.
         '''
         return self._dynamic_name
+
+    @property
+    def minimum_duration(self):
+        r'''Gets minimum duration of duration handler.
+
+        Returns duration or none.
+        '''
+        return self._minimum_duration
