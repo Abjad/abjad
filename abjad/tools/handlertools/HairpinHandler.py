@@ -97,7 +97,8 @@ class HairpinHandler(Handler):
             enchain_hairpins = bool(enchain_hairpins)
         self._enchain_hairpins = enchain_hairpins
         hairpin_tokens = hairpin_tokens or []
-        assert isinstance(hairpin_tokens, list), repr(hairpin_tokens)
+        prototype = (list, datastructuretools.CyclicTuple)
+        assert isinstance(hairpin_tokens, prototype), repr(hairpin_tokens)
         tokens = []
         for element in hairpin_tokens:
             if isinstance(element, str):
