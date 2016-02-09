@@ -6,6 +6,7 @@ from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.handlertools.Handler import Handler
 
@@ -72,6 +73,7 @@ class HairpinHandler(Handler):
         '_attach_start_dynamic_to_lone_notes',
         '_enchain_hairpins',
         '_hairpin_tokens',
+        '_include_following_rests',
         '_minimum_duration',
         '_patterns',
         '_span',
@@ -84,6 +86,7 @@ class HairpinHandler(Handler):
         attach_start_dynamic_to_lone_notes=True,
         enchain_hairpins=None,
         hairpin_tokens=None,
+        include_following_rests=None,
         minimum_duration=None,
         patterns=None,
         span='contiguous notes and chords',
@@ -107,6 +110,9 @@ class HairpinHandler(Handler):
         hairpin_tokens = tokens
         hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
         self._hairpin_tokens = hairpin_tokens
+        if include_following_rests is not None:
+            include_following_rests = bool(include_following_rests)
+        self._include_following_rests = include_following_rests
         if minimum_duration is not None:
             minimum_duration = durationtools.Duration(minimum_duration)
         self._minimum_duration = minimum_duration
@@ -154,6 +160,11 @@ class HairpinHandler(Handler):
                     notes_to_span.append(note)
             if not notes_to_span:
                 continue
+            if self.include_following_rests:
+                last_note = notes_to_span[-1]
+                next_leaf = inspect_(last_note).get_leaf(1)
+                if isinstance(next_leaf, scoretools.Rest):
+                    notes_to_span.append(next_leaf)
             if (len(notes_to_span) == 1 and
                 not self.attach_start_dynamic_to_lone_notes):
                 continue
@@ -166,9 +177,10 @@ class HairpinHandler(Handler):
                 continue
             hairpin_token = self.hairpin_tokens[group_index]
             descriptor = ' '.join([_ for _ in hairpin_token if _])
+            include_rests = bool(self.include_following_rests)
             hairpin = spannertools.Hairpin(
                 descriptor=descriptor,
-                include_rests=False,
+                include_rests=include_rests,
                 )
             attach(hairpin, notes_to_span)
 
@@ -410,6 +422,78 @@ class HairpinHandler(Handler):
         Returns cyclic tuple.
         '''
         return self._hairpin_tokens
+
+    @property
+    def include_following_rests(self):
+        r'''Is true if every hairpin should extend to include rests
+        following the last note or chord in each hairpin. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Does not include following rests:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     enchain_hairpins=True,
+                ...     hairpin_tokens=['p < f', 'f > niente'],
+                ...     span=[2, 3],
+                ...     )
+                >>> string = "c'4 ~ c' ~ c' r"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \p
+                    \once \override Hairpin #'circled-tip = ##t
+                    c'4 ~ \f \> \f
+                    c'4 \!
+                    r4
+                }
+
+        ..  container:: example
+
+            **Example 2.** Includes following rests:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     enchain_hairpins=True,
+                ...     hairpin_tokens=['p < f', 'f > niente'],
+                ...     include_following_rests=True,
+                ...     span=[2, 3],
+                ...     )
+                >>> string = "c'4 ~ c' ~ c' r"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \p
+                    \once \override Hairpin #'circled-tip = ##t
+                    c'4 ~ \f \> \f
+                    c'4
+                    r4 \!
+                }
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._include_following_rests
 
     @property
     def minimum_duration(self):
