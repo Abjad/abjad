@@ -20,7 +20,7 @@ class HairpinHandler(Handler):
         ::
 
             >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_token='ppp < p',
+            ...     hairpin_tokens='ppp < p',
             ...     span='contiguous notes and chords',
             ...     )
             >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
@@ -52,7 +52,7 @@ class HairpinHandler(Handler):
 
             >>> handler = handlertools.HairpinHandler(
             ...     attach_start_dynamic_to_lone_notes=False,
-            ...     hairpin_token='ppp < p',
+            ...     hairpin_tokens='ppp < p',
             ...     span='nontrivial ties',
             ...     )
             >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
@@ -84,7 +84,7 @@ class HairpinHandler(Handler):
         ::
 
             >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_token='p < f',
+            ...     hairpin_tokens='p < f',
             ...     span=[3, 4],
             ...     )
             >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
@@ -122,7 +122,7 @@ class HairpinHandler(Handler):
         ::
 
             >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_token=['p < f', 'f > p'],
+            ...     hairpin_tokens=['p < f', 'f > p'],
             ...     span=[3, 4],
             ...     )
             >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
@@ -160,7 +160,7 @@ class HairpinHandler(Handler):
         ::
 
             >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_token=['niente < f', 'f > niente'],
+            ...     hairpin_tokens=['niente < f', 'f > niente'],
             ...     span=[3, 4],
             ...     )
             >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
@@ -202,7 +202,7 @@ class HairpinHandler(Handler):
         ::
 
             >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_token=['f > niente', 'niente < f'],
+            ...     hairpin_tokens=['f > niente', 'niente < f'],
             ...     span='nontrivial ties',
             ...     )
             >>> string = "c'4 ~ c' ~ c' r4 d'4 ~ d' ~ d' r4"
@@ -245,21 +245,21 @@ class HairpinHandler(Handler):
     def __init__(
         self,
         attach_start_dynamic_to_lone_notes=True,
-        hairpin_token=None,
+        hairpin_tokens=None,
         minimum_duration=None,
         patterns=None,
         span='contiguous notes and chords',
         ):
         self._attach_start_dynamic_to_lone_notes = bool(
             attach_start_dynamic_to_lone_notes)
-        if hairpin_token is None:
-            hairpin_token = []
-        elif isinstance(hairpin_token, str):
-            hairpin_token = tuple(hairpin_token.split())
-            assert spannertools.Hairpin._is_hairpin_token(hairpin_token)
-        elif isinstance(hairpin_token, list):
+        if hairpin_tokens is None:
+            hairpin_tokens = []
+        elif isinstance(hairpin_tokens, str):
+            hairpin_tokens = tuple(hairpin_tokens.split())
+            assert spannertools.Hairpin._is_hairpin_token(hairpin_tokens)
+        elif isinstance(hairpin_tokens, list):
             tokens = []
-            for element in hairpin_token:
+            for element in hairpin_tokens:
                 if isinstance(element, str):
                     element = tuple(element.split())
                     if not spannertools.Hairpin._is_hairpin_token(element):
@@ -267,16 +267,16 @@ class HairpinHandler(Handler):
                         message = message.format(element)
                         raise Exception(message)
                 tokens.append(element)
-            hairpin_token = tokens
-        if isinstance(hairpin_token, datastructuretools.CyclicTuple):
+            hairpin_tokens = tokens
+        if isinstance(hairpin_tokens, datastructuretools.CyclicTuple):
             pass
-        elif isinstance(hairpin_token, list):
-            hairpin_token = datastructuretools.CyclicTuple(hairpin_token)
-        elif isinstance(hairpin_token, tuple):
-            hairpin_token = datastructuretools.CyclicTuple([hairpin_token])
+        elif isinstance(hairpin_tokens, list):
+            hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
+        elif isinstance(hairpin_tokens, tuple):
+            hairpin_tokens = datastructuretools.CyclicTuple([hairpin_tokens])
         else:
-            raise TypeError(hairpin_token)
-        self._hairpin_token = hairpin_token
+            raise TypeError(hairpin_tokens)
+        self._hairpin_token = hairpin_tokens
         if minimum_duration is not None:
             minimum_duration = durationtools.Duration(minimum_duration)
         self._minimum_duration = minimum_duration
@@ -338,12 +338,12 @@ class HairpinHandler(Handler):
                 continue
             if (len(notes_to_span) == 1 and
                 self.attach_start_dynamic_to_lone_notes):
-                hairpin_token = self.hairpin_token[group_index]
+                hairpin_token = self.hairpin_tokens[group_index]
                 start_dynamic = hairpin_token[0]
                 dynamic = indicatortools.Dynamic(start_dynamic)
                 attach(dynamic, notes[0])
                 continue
-            hairpin_token = self.hairpin_token[group_index]
+            hairpin_token = self.hairpin_tokens[group_index]
             descriptor = ' '.join([_ for _ in hairpin_token if _])
             hairpin = spannertools.Hairpin(
                 descriptor=descriptor,
@@ -392,7 +392,7 @@ class HairpinHandler(Handler):
 
                 >>> handler = handlertools.HairpinHandler(
                 ...     attach_start_dynamic_to_lone_notes=False,
-                ...     hairpin_token='ppp < p',
+                ...     hairpin_tokens='ppp < p',
                 ...     span='nontrivial ties',
                 ...     )
                 >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
@@ -425,7 +425,7 @@ class HairpinHandler(Handler):
 
                 >>> handler = handlertools.HairpinHandler(
                 ...     attach_start_dynamic_to_lone_notes=True,
-                ...     hairpin_token='ppp < p',
+                ...     hairpin_tokens='ppp < p',
                 ...     span='nontrivial ties',
                 ...     )
                 >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
@@ -458,8 +458,8 @@ class HairpinHandler(Handler):
         return self._attach_start_dynamic_to_lone_notes
 
     @property
-    def hairpin_token(self):
-        r'''Gets hairpin token of handler.
+    def hairpin_tokens(self):
+        r'''Gets hairpin tokens of handler.
 
         Like ``('f', '>', 'p')``.
 
