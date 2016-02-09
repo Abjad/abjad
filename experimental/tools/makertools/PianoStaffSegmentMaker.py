@@ -103,17 +103,19 @@ class PianoStaffSegmentMaker(SegmentMaker):
         self._populate_rhythms(lh_voice, self.lh_rhythm_maker)
         self._populate_pitches(rh_voice, self.rh_pitch_range)
         self._populate_pitches(lh_voice, self.lh_pitch_range)
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-            music=score,
-            use_relative_includes=True,
-            )
         stylesheet_path = os.path.join(
             '..',
             '..',
             'stylesheets',
             'stylesheet.ily',
             )
-        lilypond_file.file_initial_user_includes.append(stylesheet_path)
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+            music=score,
+            includes=(
+                stylesheet_path,
+                ),
+            use_relative_includes=True,
+            )
         return lilypond_file
 
     def _populate_pitches(self, voice, pitch_range):
