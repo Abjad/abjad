@@ -67,6 +67,7 @@ class NoteRhythmMaker(RhythmMaker):
         burnish_specifier=None,
         division_masks=None,
         duration_spelling_specifier=None,
+        logical_tie_masks=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
         ):
@@ -76,6 +77,7 @@ class NoteRhythmMaker(RhythmMaker):
             beam_specifier=beam_specifier,
             duration_spelling_specifier=duration_spelling_specifier,
             division_masks=division_masks,
+            logical_tie_masks=logical_tie_masks,
             tie_specifier=tie_specifier,
             tuplet_spelling_specifier=tuplet_spelling_specifier,
             )
@@ -873,7 +875,7 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-        Set to division masks or none.
+        Set to masks or none.
         '''
         superclass = super(NoteRhythmMaker, self)
         return superclass.division_masks
@@ -1142,6 +1144,142 @@ class NoteRhythmMaker(RhythmMaker):
         '''
         return RhythmMaker.duration_spelling_specifier.fget(self)
 
+    @property
+    def logical_tie_masks(self):
+        r'''Gets logical tie masks of note rhythm-maker.
+
+        ..  container:: example
+
+            **Example 1.** No logical tie masks:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker()
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        c'2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Silences every other logical tie:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     logical_tie_masks=rhythmmakertools.silence_every([0], period=2)
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        c'4.
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 3.** Silences all logical ties:
+
+            ::
+
+                >>> maker = rhythmmakertools.NoteRhythmMaker(
+                ...     logical_tie_masks=rhythmmakertools.silence_all(),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                    {
+                        \time 4/8
+                        r2
+                    }
+                    {
+                        \time 3/8
+                        r4.
+                    }
+                }
+
+        Set to masks or none.
+        '''
+        superclass = super(NoteRhythmMaker, self)
+        return superclass.logical_tie_masks
+    
     @property
     def tie_specifier(self):
         r'''Gets tie specifier of note rhythm-maker.
