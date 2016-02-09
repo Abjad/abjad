@@ -15,189 +15,7 @@ class HairpinHandler(Handler):
 
     ..  container:: example
 
-        **Example 1.** Spans contiguous notes and chords:
-
-        ::
-
-            >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_tokens=['ppp < p'],
-            ...     span='contiguous notes and chords',
-            ...     )
-            >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
-            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-            >>> logical_ties = list(logical_ties)
-            >>> handler(logical_ties)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(staff))
-            \new Staff {
-                c'4 ~ \< \ppp
-                c'8
-                d'8 ~
-                d'4 \p
-                r4
-                e'4 \< \ppp
-                g'4
-                fs'4 ~
-                fs'4 \p
-            }
-
-    ..  container:: example
-
-        **Example 2.** Spans nontrivial ties:
-
-        ::
-
-            >>> handler = handlertools.HairpinHandler(
-            ...     attach_start_dynamic_to_lone_notes=False,
-            ...     hairpin_tokens=['ppp < p'],
-            ...     span='nontrivial ties',
-            ...     )
-            >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
-            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-            >>> logical_ties = list(logical_ties)
-            >>> handler(logical_ties)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(staff))
-            \new Staff {
-                c'4 ~ \< \ppp
-                c'8 \p
-                d'8 ~ \< \ppp
-                d'4 \p
-                r4
-                e'4
-                g'4
-                fs'4 ~ \< \ppp
-                fs'4 \p
-            }
-
-    ..  container:: example
-
-        **Example 3.** Spans individual notes and chords grouped in repeating
-        patterns of 3 and 4:
-
-        ::
-
-            >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_tokens=['p < f'],
-            ...     span=[3, 4],
-            ...     )
-            >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
-            >>> staff = Staff(string)
-            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-            >>> logical_ties = list(logical_ties)
-            >>> handler(logical_ties)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(staff))
-            \new Staff {
-                c'16 \< \p
-                d'16 ~
-                d'16 \f
-                e'16 \< \p
-                c'16
-                d'16 ~
-                d'16 \f
-                e'16 \< \p
-                c'16
-                d'16 ~ \f
-                d'16 \< \p
-                e'16
-                c'8
-                e'8 \f
-            }
-
-    ..  container:: example
-
-        **Example 4.** Spans individual notes and chords grouped in repeating
-        patterns of 3 and 4 with alternating crescendi and decrescendi:
-
-        ::
-
-            >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_tokens=['p < f', 'f > p'],
-            ...     span=[3, 4],
-            ...     )
-            >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
-            >>> staff = Staff(string)
-            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-            >>> logical_ties = list(logical_ties)
-            >>> handler(logical_ties)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(staff))
-            \new Staff {
-                c'16 \< \p
-                d'16 ~
-                d'16 \f
-                e'16 \> \f
-                c'16
-                d'16 ~
-                d'16 \p
-                e'16 \< \p
-                c'16
-                d'16 ~ \f
-                d'16 \> \f
-                e'16
-                c'8
-                e'8 \p
-            }
-
-    ..  container:: example
-
-        **Example 5.** Allows for crescendi dal niente and decrescendi al
-        niente:
-
-        ::
-
-            >>> handler = handlertools.HairpinHandler(
-            ...     hairpin_tokens=['niente < f', 'f > niente'],
-            ...     span=[3, 4],
-            ...     )
-            >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
-            >>> staff = Staff(string)
-            >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-            >>> logical_ties = list(logical_ties)
-            >>> handler(logical_ties)
-            >>> show(staff) # doctest: +SKIP
-
-        ..  doctest::
-
-            >>> print(format(staff))
-            \new Staff {
-                \once \override Hairpin #'circled-tip = ##t
-                c'16 \<
-                d'16 ~
-                d'16 \f
-                \once \override Hairpin #'circled-tip = ##t
-                e'16 \> \f
-                c'16
-                d'16 ~
-                d'16 \!
-                \once \override Hairpin #'circled-tip = ##t
-                e'16 \<
-                c'16
-                d'16 ~ \f
-                \once \override Hairpin #'circled-tip = ##t
-                d'16 \> \f
-                e'16
-                c'8
-                e'8 \!
-            }
-
-    ..  container:: example
-
-        **Example 6.** Allows for crescendi dal niente and decrescendi al
-        niente with intervening rests:
+        **Example 1.** Attaches hairpins to nontrivial ties:
 
         ::
 
@@ -234,7 +52,7 @@ class HairpinHandler(Handler):
 
     __slots__ = (
         '_attach_start_dynamic_to_lone_notes',
-        '_hairpin_token',
+        '_hairpin_tokens',
         '_minimum_duration',
         '_patterns',
         '_span',
@@ -265,7 +83,7 @@ class HairpinHandler(Handler):
             tokens.append(element)
         hairpin_tokens = tokens
         hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
-        self._hairpin_token = hairpin_tokens
+        self._hairpin_tokens = hairpin_tokens
         if minimum_duration is not None:
             minimum_duration = durationtools.Duration(minimum_duration)
         self._minimum_duration = minimum_duration
@@ -369,12 +187,147 @@ class HairpinHandler(Handler):
     @property
     def attach_start_dynamic_to_lone_notes(self):
         r'''Is true when start dynamic of hairpin should be attached to lone
-        notes. Otherwise nothing is attached to lone notes.
+        notes. Otherwise false.
 
         ..  container:: example
 
-            **Example 1.** Spans nontrivial ties and leaves lone notes
-            unmarked:
+            **Example 1.** Attaches start dynamic to lone notes:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     attach_start_dynamic_to_lone_notes=True,
+                ...     hairpin_tokens=['ppp < p'],
+                ...     span='nontrivial ties',
+                ...     )
+                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \ppp
+                    c'8 \p
+                    d'8 ~ \< \ppp
+                    d'4 \p
+                    r4
+                    e'4 \ppp
+                    g'4 \ppp
+                    fs'4 ~ \< \ppp
+                    fs'4 \p
+                }
+
+        ..  container:: example
+
+            **Example 2.** Does not attach start dynamic to lone notes:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     attach_start_dynamic_to_lone_notes=False,
+                ...     hairpin_tokens=['ppp < p'],
+                ...     span='nontrivial ties',
+                ...     )
+                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \ppp
+                    c'8 \p
+                    d'8 ~ \< \ppp
+                    d'4 \p
+                    r4
+                    e'4
+                    g'4
+                    fs'4 ~ \< \ppp
+                    fs'4 \p
+                }
+
+
+        Defaults to true.
+
+        Set to true or false.
+
+        Returns true or false
+        '''
+        return self._attach_start_dynamic_to_lone_notes
+
+    @property
+    def hairpin_tokens(self):
+        r'''Gets hairpin tokens of handler.
+
+        Tuple like ``('f', '>', 'p')`` or string like ``'f > p'``.
+
+        Set to triple, string, list of triples, list of strings or none.
+
+        Returns cyclic tuple.
+        '''
+        return self._hairpin_tokens
+
+    @property
+    def minimum_duration(self):
+        r'''Gets minimum duration of handler.
+
+        Returns duration or none.
+        '''
+        return self._minimum_duration
+
+    @property
+    def patterns(self):
+        r'''Gets patterns of handler.
+
+        Set to patterns or none.
+        '''
+        return self._patterns
+
+    @property
+    def span(self):
+        r'''Gets span of handler.
+        
+        ..  container:: example
+
+            **Example 1.** Spans contiguous notes and chords:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     hairpin_tokens=['ppp < p'],
+                ...     span='contiguous notes and chords',
+                ...     )
+                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \ppp
+                    c'8
+                    d'8 ~
+                    d'4 \p
+                    r4
+                    e'4 \< \ppp
+                    g'4
+                    fs'4 ~
+                    fs'4 \p
+                }
+
+        ..  container:: example
+
+            **Example 2.** Spans nontrivial ties:
 
             ::
 
@@ -406,17 +359,17 @@ class HairpinHandler(Handler):
 
         ..  container:: example
 
-            **Example 2.** Spans nontrivial ties but applies dynamic to single
-            notes:
+            **Example 3.** Spans notes and chords grouped in repeating patterns
+            of 3 and 4:
 
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     attach_start_dynamic_to_lone_notes=True,
-                ...     hairpin_tokens=['ppp < p'],
-                ...     span='nontrivial ties',
+                ...     hairpin_tokens=['p < f'],
+                ...     span=[3, 4],
                 ...     )
-                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+                >>> string = "c'16 d' ~ d' e' c' d' ~ d' e' c' d' ~ d' e' c'8 e'8"
+                >>> staff = Staff(string)
                 >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
                 >>> logical_ties = list(logical_ties)
                 >>> handler(logical_ties)
@@ -426,64 +379,28 @@ class HairpinHandler(Handler):
 
                 >>> print(format(staff))
                 \new Staff {
-                    c'4 ~ \< \ppp
-                    c'8 \p
-                    d'8 ~ \< \ppp
-                    d'4 \p
-                    r4
-                    e'4 \ppp
-                    g'4 \ppp
-                    fs'4 ~ \< \ppp
-                    fs'4 \p
+                    c'16 \< \p
+                    d'16 ~
+                    d'16 \f
+                    e'16 \< \p
+                    c'16
+                    d'16 ~
+                    d'16 \f
+                    e'16 \< \p
+                    c'16
+                    d'16 ~ \f
+                    d'16 \< \p
+                    e'16
+                    c'8
+                    e'8 \f
                 }
-
-        Defaults to true.
-
-        Set to true or false.
-
-        Returns true or false
-        '''
-        return self._attach_start_dynamic_to_lone_notes
-
-    @property
-    def hairpin_tokens(self):
-        r'''Gets hairpin tokens of handler.
-
-        Tuple like ``('f', '>', 'p')`` or string like ``'f > p'``.
-
-        Set to triple, string, list of triples, list of strings or none.
-
-        Returns cyclic tuple.
-        '''
-        return self._hairpin_token
-
-    @property
-    def minimum_duration(self):
-        r'''Gets minimum duration of handler.
-
-        Returns duration or none.
-        '''
-        return self._minimum_duration
-
-    @property
-    def patterns(self):
-        r'''Gets patterns of handler.
-
-        Set to patterns or none.
-        '''
-        return self._patterns
-
-    @property
-    def span(self):
-        r'''Gets span of handler.
-        
-        Controls what is spanned.
 
         Defaults to ``'contiguous notes and chords'``.
 
-        Set to ``'contiguous notes and chords'`` or ``'nontrivial ties'`` or to
+        Set to ``'contiguous notes and chords'``, ``'nontrivial ties'`` or
         an iterable of positive integers.
 
-        Returns one of the values listed above.
+        Returns ``'contiguous notes and chords'``, ``'nontrivial ties'`` or
+        an iterable of positive integers.
         '''
         return self._span
