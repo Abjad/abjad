@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_ReiteratedArticulationHandler___eq___01():
+def test_handlertools_ReiteratedArticulationHandler___eq___01():
 
     handler_1 = handlertools.ReiteratedArticulationHandler(
         articulation_list=['.', '^'],

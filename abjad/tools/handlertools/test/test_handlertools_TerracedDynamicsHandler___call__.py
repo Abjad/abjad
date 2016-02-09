@@ -4,7 +4,7 @@ pytest.skip()
 from abjad import *
 
 
-def test_TerracedDynamicsHandler___call___01():
+def test_handlertools_TerracedDynamicsHandler___call___01():
 
     handler = handlertools.TerracedDynamicsHandler(
         ['f', 'mp', 'mf', 'mp', 'ff'],

@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_DiatonicClusterHandler___call___01():
+def test_handlertools_DiatonicClusterHandler___call___01():
 
     diatonic_cluster_handler = handlertools.DiatonicClusterHandler([4, 6])
 

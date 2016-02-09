@@ -1,32 +1,30 @@
 # -*- coding: utf-8 -*-
-import pytest
-pytest.skip()
 from abjad import *
 
 
-def test_TerracedDynamicsHandler_new_01():
+def test_handlertools_ReiteratedDynamicHandler___call___01():
 
-    handler = handlertools.TerracedDynamicsHandler()
+    handler = handlertools.ReiteratedDynamicHandler('f')
     staff = Staff("c'8 d'8 r8 e'8 f'8 r8 g'8 r8 a'32 b'32 r8. c''8 d''8" )
-    new(handler, dynamics=['p', 'f'])(staff)
+    handler(staff)
 
     assert systemtools.TestManager.compare(
         staff,
         r'''
         \new Staff {
-            c'8 \p
+            c'8 \f
             d'8 \f
             r8
-            e'8 \p
+            e'8 \f
             f'8 \f
             r8
-            g'8 \p
+            g'8 \f
             r8
             a'32 \f
-            b'32 \p
+            b'32 \f
             r8.
             c''8 \f
-            d''8 \p
+            d''8 \f
         }
         '''
         )
