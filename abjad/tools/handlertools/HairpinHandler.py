@@ -55,7 +55,6 @@ class HairpinHandler(Handler):
 
             >>> print(format(handler))
             handlertools.HairpinHandler(
-                attach_start_dynamic_to_lone_notes=True,
                 hairpin_tokens=datastructuretools.CyclicTuple(
                     [
                         ('f', '>', 'niente'),
@@ -70,11 +69,11 @@ class HairpinHandler(Handler):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = (
-        '_attach_start_dynamic_to_lone_notes',
         '_enchain_hairpins',
         '_hairpin_tokens',
         '_include_following_rests',
         '_minimum_duration',
+        '_omit_lone_note_dynamic',
         '_patterns',
         '_span',
         )
@@ -83,16 +82,14 @@ class HairpinHandler(Handler):
 
     def __init__(
         self,
-        attach_start_dynamic_to_lone_notes=True,
         enchain_hairpins=None,
         hairpin_tokens=None,
         include_following_rests=None,
         minimum_duration=None,
+        omit_lone_note_dynamic=None,
         patterns=None,
         span='contiguous notes and chords',
         ):
-        self._attach_start_dynamic_to_lone_notes = bool(
-            attach_start_dynamic_to_lone_notes)
         if enchain_hairpins is not None:
             enchain_hairpins = bool(enchain_hairpins)
         self._enchain_hairpins = enchain_hairpins
@@ -117,6 +114,9 @@ class HairpinHandler(Handler):
         if minimum_duration is not None:
             minimum_duration = durationtools.Duration(minimum_duration)
         self._minimum_duration = minimum_duration
+        if omit_lone_note_dynamic is not None:
+            omit_lone_note_dynamic = bool(omit_lone_note_dynamic)
+        self._omit_lone_note_dynamic = omit_lone_note_dynamic
         if patterns is not None:
             assert isinstance(patterns, (list, tuple)), repr(patterns)
         self._patterns = patterns
@@ -166,11 +166,9 @@ class HairpinHandler(Handler):
                 next_leaf = inspect_(last_note).get_leaf(1)
                 if isinstance(next_leaf, scoretools.Rest):
                     notes_to_span.append(next_leaf)
-            if (len(notes_to_span) == 1 and
-                not self.attach_start_dynamic_to_lone_notes):
+            if len(notes_to_span) == 1 and self.omit_lone_note_dynamic:
                 continue
-            if (len(notes_to_span) == 1 and
-                self.attach_start_dynamic_to_lone_notes):
+            if len(notes_to_span) == 1 and not self.omit_lone_note_dynamic:
                 hairpin_token = self.hairpin_tokens[group_index]
                 start_dynamic = hairpin_token[0]
                 dynamic = indicatortools.Dynamic(start_dynamic)
@@ -260,18 +258,17 @@ class HairpinHandler(Handler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def attach_start_dynamic_to_lone_notes(self):
-        r'''Is true when start dynamic of hairpin should be attached to lone
-        notes. Otherwise false.
+    def omit_lone_note_dynamic(self):
+        r'''Is true when start dynamic of hairpin should not be attached to
+        lone notes. Otherwise false.
 
         ..  container:: example
 
-            **Example 1.** Attaches start dynamic to lone notes:
+            **Example 1.** Does not omit lone note dynamic:
 
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     attach_start_dynamic_to_lone_notes=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     span='nontrivial ties',
                 ...     )
@@ -298,13 +295,13 @@ class HairpinHandler(Handler):
 
         ..  container:: example
 
-            **Example 2.** Does not attach start dynamic to lone notes:
+            **Example 2.** Omits lone note dynamic:
 
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     attach_start_dynamic_to_lone_notes=False,
                 ...     hairpin_tokens=['ppp < p'],
+                ...     omit_lone_note_dynamic=True,
                 ...     span='nontrivial ties',
                 ...     )
                 >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
@@ -328,14 +325,13 @@ class HairpinHandler(Handler):
                     fs'4 \p
                 }
 
+        Set to true, false or none.
 
-        Defaults to true.
+        Defaults to none.
 
-        Set to true or false.
-
-        Returns true or false
+        Returns true, false or none.
         '''
-        return self._attach_start_dynamic_to_lone_notes
+        return self._omit_lone_note_dynamic
 
     @property
     def enchain_hairpins(self):
@@ -554,8 +550,8 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     attach_start_dynamic_to_lone_notes=False,
                 ...     hairpin_tokens=['ppp < p'],
+                ...     omit_lone_note_dynamic=True,
                 ...     span='nontrivial ties',
                 ...     )
                 >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
