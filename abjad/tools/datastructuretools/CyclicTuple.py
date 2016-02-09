@@ -59,7 +59,13 @@ class CyclicTuple(AbjadObject, tuple):
         Returns item.
         '''
         if isinstance(i, slice):
-            return self.__getslice__(i.start, i.stop)
+            if (
+                (i.stop is not None and i.stop < 0) or
+                (i.start is not None and i.start < 0)
+                ):
+                return tuple.__getitem__(self, i)
+            else:
+                return self.__getslice__(i.start, i.stop)
         if not self:
             message = 'cyclic tuple is empty: {!r}.'
             message = message.format(self)
