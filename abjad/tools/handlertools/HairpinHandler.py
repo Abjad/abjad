@@ -10,7 +10,7 @@ from abjad.tools.topleveltools import iterate
 from abjad.tools.handlertools.Handler import Handler
 
 
-class NoteAndChordHairpinHandler(Handler):
+class HairpinHandler(Handler):
     r'''Note and chord hairpin handler.
 
     ..  container:: example
@@ -19,7 +19,7 @@ class NoteAndChordHairpinHandler(Handler):
 
         ::
 
-            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            >>> handler = handlertools.HairpinHandler(
             ...     hairpin_token='ppp < p',
             ...     span='contiguous notes and chords',
             ...     )
@@ -50,7 +50,7 @@ class NoteAndChordHairpinHandler(Handler):
 
         ::
 
-            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            >>> handler = handlertools.HairpinHandler(
             ...     attach_start_dynamic_to_lone_notes=False,
             ...     hairpin_token='ppp < p',
             ...     span='nontrivial ties',
@@ -83,7 +83,7 @@ class NoteAndChordHairpinHandler(Handler):
 
         ::
 
-            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            >>> handler = handlertools.HairpinHandler(
             ...     hairpin_token='p < f',
             ...     span=[3, 4],
             ...     )
@@ -121,7 +121,7 @@ class NoteAndChordHairpinHandler(Handler):
 
         ::
 
-            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            >>> handler = handlertools.HairpinHandler(
             ...     hairpin_token=['p < f', 'f > p'],
             ...     span=[3, 4],
             ...     )
@@ -159,7 +159,7 @@ class NoteAndChordHairpinHandler(Handler):
 
         ::
 
-            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            >>> handler = handlertools.HairpinHandler(
             ...     hairpin_token=['niente < f', 'f > niente'],
             ...     span=[3, 4],
             ...     )
@@ -201,7 +201,7 @@ class NoteAndChordHairpinHandler(Handler):
 
         ::
 
-            >>> handler = handlertools.NoteAndChordHairpinHandler(
+            >>> handler = handlertools.HairpinHandler(
             ...     hairpin_token=['f > niente', 'niente < f'],
             ...     span='nontrivial ties',
             ...     )
@@ -390,7 +390,7 @@ class NoteAndChordHairpinHandler(Handler):
 
             ::
 
-                >>> handler = handlertools.NoteAndChordHairpinHandler(
+                >>> handler = handlertools.HairpinHandler(
                 ...     attach_start_dynamic_to_lone_notes=False,
                 ...     hairpin_token='ppp < p',
                 ...     span='nontrivial ties',
@@ -423,7 +423,7 @@ class NoteAndChordHairpinHandler(Handler):
 
             ::
 
-                >>> handler = handlertools.NoteAndChordHairpinHandler(
+                >>> handler = handlertools.HairpinHandler(
                 ...     attach_start_dynamic_to_lone_notes=True,
                 ...     hairpin_token='ppp < p',
                 ...     span='nontrivial ties',

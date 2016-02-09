@@ -2,7 +2,7 @@
 from abjad import *
 
 
-def test_datastructuretools_CyclicTuplet___getslice___01():
+def test_datastructuretools_CyclicTuple___getslice___01():
 
     cyclic_tuple = datastructuretools.CyclicTuple(range(3))
 
