@@ -92,16 +92,6 @@ class PianoStaffSegmentMaker(SegmentMaker):
         time_signature_context.extend(measures)
         score.insert(0, time_signature_context)
 
-    def _configure_lilypond_file(self, lilypond_file):
-        lilypond_file.use_relative_includes = True
-        stylesheet_path = os.path.join(
-            '..',
-            '..',
-            'stylesheets',
-            'stylesheet.ily',
-            )
-        lilypond_file.file_initial_user_includes.append(stylesheet_path)
-
     def _make_lilypond_file(self):
         template = templatetools.TwoStaffPianoScoreTemplate()
         score = template()
@@ -113,8 +103,17 @@ class PianoStaffSegmentMaker(SegmentMaker):
         self._populate_rhythms(lh_voice, self.lh_rhythm_maker)
         self._populate_pitches(rh_voice, self.rh_pitch_range)
         self._populate_pitches(lh_voice, self.lh_pitch_range)
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-        self._configure_lilypond_file(lilypond_file)
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+            music=score,
+            use_relative_includes=True,
+            )
+        stylesheet_path = os.path.join(
+            '..',
+            '..',
+            'stylesheets',
+            'stylesheet.ily',
+            )
+        lilypond_file.file_initial_user_includes.append(stylesheet_path)
         return lilypond_file
 
     def _populate_pitches(self, voice, pitch_range):
