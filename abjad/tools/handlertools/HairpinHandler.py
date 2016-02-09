@@ -222,7 +222,8 @@ class HairpinHandler(Handler):
             shards.append(shard)
             shard_index += 1
             leaf_start_index = leaf_stop_index - 1
-            if total_leaves <= leaf_start_index:
+            #if total_leaves <= leaf_start_index:
+            if total_leaves <= leaf_stop_index:
                 break
         return shards
 
@@ -436,7 +437,7 @@ class HairpinHandler(Handler):
                 ...     hairpin_tokens=['p < f', 'f > niente'],
                 ...     span=[2, 3],
                 ...     )
-                >>> string = "c'4 ~ c' ~ c' r"
+                >>> string = "c'8 ~ c' ~ c' r c' ~ c' ~ c' r"
                 >>> staff = Staff(string)
                 >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
                 >>> logical_ties = list(logical_ties)
@@ -447,11 +448,16 @@ class HairpinHandler(Handler):
 
                 >>> print(format(staff))
                 \new Staff {
-                    c'4 ~ \< \p
+                    c'8 ~ \< \p
                     \once \override Hairpin #'circled-tip = ##t
-                    c'4 ~ \f \> \f
-                    c'4 \!
-                    r4
+                    c'8 ~ \f \> \f
+                    c'8 \!
+                    r8
+                    c'8 ~ \< \p
+                    \once \override Hairpin #'circled-tip = ##t
+                    c'8 ~ \f \> \f
+                    c'8 \!
+                    r8
                 }
 
         ..  container:: example
@@ -466,7 +472,7 @@ class HairpinHandler(Handler):
                 ...     include_following_rests=True,
                 ...     span=[2, 3],
                 ...     )
-                >>> string = "c'4 ~ c' ~ c' r"
+                >>> string = "c'8 ~ c' ~ c' r c' ~ c' ~ c' r"
                 >>> staff = Staff(string)
                 >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
                 >>> logical_ties = list(logical_ties)
@@ -477,11 +483,16 @@ class HairpinHandler(Handler):
 
                 >>> print(format(staff))
                 \new Staff {
-                    c'4 ~ \< \p
+                    c'8 ~ \< \p
                     \once \override Hairpin #'circled-tip = ##t
-                    c'4 ~ \f \> \f
-                    c'4
-                    r4 \!
+                    c'8 ~ \f \> \f
+                    c'8
+                    r8 \!
+                    c'8 ~ \< \p
+                    \once \override Hairpin #'circled-tip = ##t
+                    c'8 ~ \f \> \f
+                    c'8
+                    r8 \!
                 }
 
         Set to true, false or none.
