@@ -345,11 +345,11 @@ class WellformednessManager(AbjadObject):
             if not hairpins_are_enchained:
                 continue
             if hairpins[0]._is_my_first_leaf(leaf):
-                first_hairpin = hairpins[0]
-                second_hairpin = hairpins[-1]
-            else:
                 first_hairpin = hairpins[-1]
                 second_hairpin = hairpins[0]
+            else:
+                first_hairpin = hairpins[0]
+                second_hairpin = hairpins[-1]
             if first_hairpin.stop_dynamic == second_hairpin.start_dynamic:
                 continue
             else:
