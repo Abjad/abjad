@@ -876,6 +876,7 @@ class InspectionAgent(abctools.AbjadObject):
                 0 / 0 nested measures
                 0 / 1 overlapping beams
                 0 / 0 overlapping glissandi
+                0 / 0 overlapping hairpins
                 0 / 0 overlapping octavation spanners
                 0 / 0 short hairpins
                 0 / 0 tied rests

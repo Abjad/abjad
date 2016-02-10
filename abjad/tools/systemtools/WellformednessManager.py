@@ -419,6 +419,73 @@ class WellformednessManager(AbjadObject):
         total = len(total)
         return violators, total
 
+    def check_overlapping_hairpins(self):
+        r'''Checks to make sure there are no overlapping hairpins in score.
+
+        ..  container:: example
+
+            **Example 1.** Checks overlapping hairpins:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> attach(Crescendo(), staff[:])
+                >>> attach(Decrescendo(), staff[:])
+
+            ::
+
+                >>> print(inspect_(staff).tabulate_well_formedness_violations())
+                0 /	4 beamed quarter notes
+                0 /	1 conflicting clefs
+                0 /	2 discontiguous spanners
+                0 /	5 duplicate ids
+                0 /	2 intermarked hairpins
+                0 /	0 misdurated measures
+                0 /	0 misfilled measures
+                0 /	4 mispitched ties
+                0 /	4 misrepresented flags
+                0 /	5 missing parents
+                0 /	0 nested measures
+                0 /	0 overlapping beams
+                0 /	0 overlapping glissandi
+                2 /	2 overlapping hairpins
+                0 /	0 overlapping octavation spanners
+                0 /	2 short hairpins
+                0 /	0 tied rests
+
+        Enchained hairpins are fine so long as hairpin ends match.
+
+        Returns violators and total.
+        '''
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import iterate
+        violators = []
+        prototype = spannertools.Hairpin
+        for leaf in iterate(self.expr).by_leaf():
+            hairpins = leaf._get_spanners(prototype)
+            hairpins = list(hairpins)
+            if 1 < len(hairpins):
+                if len(hairpins) == 2:
+                    common_leaves = set(hairpins[0]._get_leaves())
+                    common_leaves &= set(hairpins[1]._get_leaves())
+                    if len(common_leaves) == 1:
+                        x = list(common_leaves)[0]
+                        if (
+                            (hairpins[0]._is_my_first_leaf(x) and
+                            hairpins[1]._is_my_last_leaf(x))
+                            or
+                            (hairpins[1]._is_my_first_leaf(x) and
+                            hairpins[0]._is_my_last_leaf(x))
+                            ):
+                            break
+                for hairpin in hairpins:
+                    if hairpin not in violators:
+                        violators.append(hairpin)
+        total = self.expr._get_descendants()._get_spanners(prototype)
+        total = len(total)
+        return violators, total
+
     def check_overlapping_octavation_spanners(self):
         r'''Checks to make sure there are no overlapping octavation spanners in
         score.
