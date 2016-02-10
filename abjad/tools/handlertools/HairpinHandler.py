@@ -164,7 +164,8 @@ class HairpinHandler(Handler):
             if self.include_following_rests:
                 last_note = notes_to_span[-1]
                 next_leaf = inspect_(last_note).get_leaf(1)
-                if isinstance(next_leaf, scoretools.Rest):
+                prototype = (scoretools.Rest, scoretools.MultimeasureRest)
+                if isinstance(next_leaf, prototype):
                     notes_to_span.append(next_leaf)
             if len(notes_to_span) == 1 and self.omit_lone_note_dynamic:
                 continue
@@ -493,6 +494,42 @@ class HairpinHandler(Handler):
                     c'8 ~ \f \> \f
                     c'8
                     r8 \!
+                }
+
+        ..  container:: example
+
+            **Example 3.** Includes following multimeasure rests:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     enchain_hairpins=True,
+                ...     hairpin_tokens=['p < f', 'f > niente'],
+                ...     include_following_rests=True,
+                ...     span=[2, 3],
+                ...     )
+                >>> string = "c'8 ~ c' ~ c' r c' ~ c' ~ c' ~ c' R1"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'8 ~ \< \p
+                    \once \override Hairpin #'circled-tip = ##t
+                    c'8 ~ \f \> \f
+                    c'8
+                    r8 \!
+                    c'8 ~ \< \p
+                    \once \override Hairpin #'circled-tip = ##t
+                    c'8 ~ \f \> \f
+                    c'8 ~
+                    c'8
+                    R1 \!
                 }
 
         Set to true, false or none.
