@@ -281,6 +281,83 @@ class WellformednessManager(AbjadObject):
             total += 1
         return violators, total
 
+    def check_mismatched_enchained_hairpins(self):
+        r'''Checks mismatched enchained hairpins.
+
+        ..  container:: example
+
+            **Example 1.** Checks mismatched enchained hairpins:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> attach(Hairpin('p < f'), staff[:2])
+                >>> attach(Hairpin('p > pp'), staff[1:])
+
+            ::
+
+                >>> print(inspect_(staff).tabulate_well_formedness_violations())
+                0 /	4 beamed quarter notes
+                0 /	1 conflicting clefs
+                0 /	2 discontiguous spanners
+                0 /	5 duplicate ids
+                0 /	2 intermarked hairpins
+                0 /	0 misdurated measures
+                0 /	0 misfilled measures
+                2 /	2 mismatched enchained hairpins
+                0 /	4 mispitched ties
+                0 /	4 misrepresented flags
+                0 /	5 missing parents
+                0 /	0 nested measures
+                0 /	0 overlapping beams
+                0 /	0 overlapping glissandi
+                0 /	2 overlapping hairpins
+                0 /	0 overlapping octavation spanners
+                0 /	2 short hairpins
+                0 /	0 tied rests
+
+        Enchained hairpins are fine so long as hairpin ends match.
+
+        Returns violators and total.
+        '''
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import iterate
+        violators = []
+        all_hairpins = set()
+        prototype = spannertools.Hairpin
+        for leaf in iterate(self.expr).by_leaf():
+            hairpins = leaf._get_spanners(prototype)
+            hairpins = list(hairpins)
+            all_hairpins.update(hairpins)
+            if len(hairpins) <= 1:
+                continue
+            if 2 < len(hairpins):
+                raise Exception('too many hairpins')
+            assert len(hairpins) == 2
+            hairpins_are_enchained = False
+            if (hairpins[0]._is_my_last_leaf(leaf) and 
+                hairpins[-1]._is_my_first_leaf(leaf)):
+                hairpins_are_enchained = True
+            if (hairpins[-1]._is_my_last_leaf(leaf) and 
+                hairpins[0]._is_my_first_leaf(leaf)):
+                hairpins_are_enchained = True
+            if not hairpins_are_enchained:
+                continue
+            if hairpins[0]._is_my_first_leaf(leaf):
+                first_hairpin = hairpins[0]
+                second_hairpin = hairpins[-1]
+            else:
+                first_hairpin = hairpins[-1]
+                second_hairpin = hairpins[0]
+            if first_hairpin.stop_dynamic == second_hairpin.start_dynamic:
+                continue
+            else:
+                violators.append(first_hairpin)
+                violators.append(second_hairpin)
+        total = len(all_hairpins)
+        return violators, total
+
     def check_mispitched_ties(self):
         r'''Checks for mispitched notes. Does not check tied rests or skips.
 
@@ -442,6 +519,7 @@ class WellformednessManager(AbjadObject):
                 0 /	2 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
+                0 /	2 mismatched enchained hairpins
                 0 /	4 mispitched ties
                 0 /	4 misrepresented flags
                 0 /	5 missing parents
