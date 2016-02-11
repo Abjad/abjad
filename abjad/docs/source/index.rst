@@ -201,7 +201,7 @@ Abjad lets you:
 
 -   Create musical notation in an object-oriented way.
 -   Model compositional thinking computationally.
--   Generate and transform complex rhythmic through rhythm-makers,
+-   Generate and transform complex rhythms through rhythm-makers,
     meter-rewriting and quantization.
 -   Construct powerful component selectors for locating musical objects in a
     score.
