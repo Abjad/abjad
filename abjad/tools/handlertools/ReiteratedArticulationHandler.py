@@ -2,6 +2,7 @@
 import copy
 from abjad.tools import datastructuretools
 from abjad.tools import indicatortools
+from abjad.tools import patterntools
 from abjad.tools import scoretools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import inspect_
@@ -19,6 +20,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
 
     __slots__ = (
         '_articulation_list',
+        '_pattern',
         '_skip_ties',
         )
 
@@ -31,6 +33,7 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         maximum_duration=None,
         minimum_written_pitch=None,
         maximum_written_pitch=None,
+        pattern=None,
         skip_ties=False,
         ):
         ArticulationHandler.__init__(
@@ -48,6 +51,10 @@ class ReiteratedArticulationHandler(ArticulationHandler):
                 message = 'not articulation: {!r}'.format(articulation)
                 raise TypeError(message)
         self._articulation_list = articulation_list
+        if pattern is not None:
+            prototype = (patterntools.Pattern, patterntools.CompoundPattern)
+            assert isinstance(pattern, prototype), repr(pattern)
+        self._pattern = pattern
         self._skip_ties = skip_ties
 
     ### SPECIAL METHODS ###
@@ -62,7 +69,11 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         notes_and_chords = notes_and_chords[skip_first:]
         if skip_last:
             notes_and_chords = notes_and_chords[:-skip_last]
+        total_length = len(notes_and_chords)
         for i, note_or_chord in enumerate(notes_and_chords):
+            if self.pattern is not None:
+                if not self.pattern.matches_index(i, total_length):
+                    continue
             logical_tie = inspect_(note_or_chord).get_logical_tie()
             if self.skip_ties and not logical_tie.is_trivial:
                 continue
@@ -107,6 +118,18 @@ class ReiteratedArticulationHandler(ArticulationHandler):
         Returns list, tuple or none.
         '''
         return self._articulation_list
+
+    @property
+    def pattern(self):
+        r'''Gets pattern of handler.
+
+        Set to pattern or none.
+
+        Defaults to none.
+
+        Returns pattern or none.
+        '''
+        return self._pattern
 
     @property
     def skip_ties(self):
