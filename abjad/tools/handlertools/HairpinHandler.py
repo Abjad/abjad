@@ -625,7 +625,7 @@ class HairpinHandler(Handler):
 
         ..  container:: example
 
-            **Example 3.** Spans notes and chords grouped in repeating patterns
+            **Example 3.** Spans notes and chords grouped in repeating groups
             of 3 and 4:
 
             ::
