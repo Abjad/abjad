@@ -55,11 +55,9 @@ class HairpinHandler(Handler):
 
             >>> print(format(handler))
             handlertools.HairpinHandler(
-                hairpin_tokens=datastructuretools.CyclicTuple(
-                    [
-                        ('f', '>', 'niente'),
-                        ('niente', '<', 'f'),
-                        ]
+                hairpin_tokens=(
+                    ('f', '>', 'niente'),
+                    ('niente', '<', 'f'),
                     ),
                 span='nontrivial ties',
                 )
@@ -69,6 +67,7 @@ class HairpinHandler(Handler):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = (
+        '_cyclic',
         '_enchain_hairpins',
         '_hairpin_tokens',
         '_include_following_rests',
@@ -82,6 +81,7 @@ class HairpinHandler(Handler):
 
     def __init__(
         self,
+        cyclic=None,
         enchain_hairpins=None,
         hairpin_tokens=None,
         include_following_rests=None,
@@ -90,11 +90,14 @@ class HairpinHandler(Handler):
         patterns=None,
         span='contiguous notes and chords',
         ):
+        if cyclic is not None:
+            cyclic = bool(cyclic)
+        self._cyclic = cyclic
         if enchain_hairpins is not None:
             enchain_hairpins = bool(enchain_hairpins)
         self._enchain_hairpins = enchain_hairpins
         hairpin_tokens = hairpin_tokens or []
-        prototype = (list, datastructuretools.CyclicTuple)
+        prototype = (list, tuple)
         assert isinstance(hairpin_tokens, prototype), repr(hairpin_tokens)
         tokens = []
         for element in hairpin_tokens:
@@ -106,7 +109,8 @@ class HairpinHandler(Handler):
                     raise Exception(message)
             tokens.append(element)
         hairpin_tokens = tokens
-        hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
+        #hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
+        hairpin_tokens = tuple(hairpin_tokens)
         self._hairpin_tokens = hairpin_tokens
         if include_following_rests is not None:
             include_following_rests = bool(include_following_rests)
@@ -147,6 +151,9 @@ class HairpinHandler(Handler):
                 groups = self._partition_groups(groups)
             else:
                 groups = self._partition_enchained_groups(groups)
+        hairpin_tokens = self.hairpin_tokens
+        if self.cyclic:
+            hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
         for group_index, group in enumerate(groups):
             notes = []
             for logical_tie in group:
@@ -170,12 +177,12 @@ class HairpinHandler(Handler):
             if len(notes_to_span) == 1 and self.omit_lone_note_dynamic:
                 continue
             if len(notes_to_span) == 1 and not self.omit_lone_note_dynamic:
-                hairpin_token = self.hairpin_tokens[group_index]
+                hairpin_token = hairpin_tokens[group_index]
                 start_dynamic = hairpin_token[0]
                 dynamic = indicatortools.Dynamic(start_dynamic)
                 attach(dynamic, notes[0])
                 continue
-            hairpin_token = self.hairpin_tokens[group_index]
+            hairpin_token = hairpin_tokens[group_index]
             if hairpin_token is None:
                 continue
             descriptor = ' '.join([_ for _ in hairpin_token if _])
@@ -225,7 +232,6 @@ class HairpinHandler(Handler):
             shards.append(shard)
             shard_index += 1
             leaf_start_index = leaf_stop_index - 1
-            #if total_leaves <= leaf_start_index:
             if total_leaves <= leaf_stop_index:
                 break
         return shards
@@ -240,9 +246,8 @@ class HairpinHandler(Handler):
                 counts=self.span,
                 )
             new_groups.extend(shards)
-        groups = new_groups
-        groups = [[_] for _ in groups]
-        return groups
+        new_groups = [[_] for _ in new_groups]
+        return new_groups
 
     def _partition_groups(self, groups):
         new_groups = []
@@ -262,6 +267,18 @@ class HairpinHandler(Handler):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def cyclic(self):
+        r'''Is true when hairpins should apply cyclically. Otherwise false.
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._cyclic
+
+    @property
     def omit_lone_note_dynamic(self):
         r'''Is true when start dynamic of hairpin should not be attached to
         lone notes. Otherwise false.
@@ -273,6 +290,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     span='nontrivial ties',
                 ...     )
@@ -304,6 +322,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     omit_lone_note_dynamic=True,
                 ...     span='nontrivial ties',
@@ -348,6 +367,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     hairpin_tokens=['p < f', 'f > p'],
                 ...     span=[3, 2],
                 ...     )
@@ -379,6 +399,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     enchain_hairpins=True,
                 ...     hairpin_tokens=['p < f', 'f > p'],
                 ...     span=[3, 2],
@@ -423,6 +444,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     hairpin_tokens=['p < f'],
                 ...     span=[4],
                 ...     )
@@ -462,6 +484,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     hairpin_tokens=[None, 'p < f'],
                 ...     span=[4],
                 ...     )
@@ -515,6 +538,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     enchain_hairpins=True,
                 ...     hairpin_tokens=['p < f', 'f > niente'],
                 ...     span=[2, 3],
@@ -549,6 +573,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     enchain_hairpins=True,
                 ...     hairpin_tokens=['p < f', 'f > niente'],
                 ...     include_following_rests=True,
@@ -584,6 +609,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     enchain_hairpins=True,
                 ...     hairpin_tokens=['p < f', 'f > niente'],
                 ...     include_following_rests=True,
@@ -648,6 +674,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     span='contiguous notes and chords',
                 ...     )
@@ -679,6 +706,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     omit_lone_note_dynamic=True,
                 ...     span='nontrivial ties',
@@ -712,6 +740,7 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
                 ...     hairpin_tokens=['p < f'],
                 ...     span=[3, 4],
                 ...     )
