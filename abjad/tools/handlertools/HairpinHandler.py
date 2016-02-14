@@ -55,9 +55,11 @@ class HairpinHandler(Handler):
 
             >>> print(format(handler))
             handlertools.HairpinHandler(
-                hairpin_tokens=(
-                    ('f', '>', 'niente'),
-                    ('niente', '<', 'f'),
+                hairpin_tokens=datastructuretools.CyclicTuple(
+                    [
+                        ('f', '>', 'niente'),
+                        ('niente', '<', 'f'),
+                        ]
                     ),
                 span='nontrivial ties',
                 )
@@ -67,14 +69,12 @@ class HairpinHandler(Handler):
     ### CLASS ATTRIBUTES ###
 
     __slots__ = (
-        '_cyclic',
         '_enchain_hairpins',
         '_hairpin_tokens',
         '_include_following_rests',
         '_minimum_duration',
         '_omit_lone_note_dynamic',
         '_patterns',
-        '_reverse',
         '_span',
         )
 
@@ -82,19 +82,14 @@ class HairpinHandler(Handler):
 
     def __init__(
         self,
-        cyclic=None,
         enchain_hairpins=None,
         hairpin_tokens=None,
         include_following_rests=None,
         minimum_duration=None,
         omit_lone_note_dynamic=None,
         patterns=None,
-        reverse=None,
         span='contiguous notes and chords',
         ):
-        if cyclic is not None:
-            cyclic = bool(cyclic)
-        self._cyclic = cyclic
         if enchain_hairpins is not None:
             enchain_hairpins = bool(enchain_hairpins)
         self._enchain_hairpins = enchain_hairpins
@@ -111,8 +106,7 @@ class HairpinHandler(Handler):
                     raise Exception(message)
             tokens.append(element)
         hairpin_tokens = tokens
-        #hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
-        hairpin_tokens = tuple(hairpin_tokens)
+        hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
         self._hairpin_tokens = hairpin_tokens
         if include_following_rests is not None:
             include_following_rests = bool(include_following_rests)
@@ -126,9 +120,6 @@ class HairpinHandler(Handler):
         if patterns is not None:
             assert isinstance(patterns, (list, tuple)), repr(patterns)
         self._patterns = patterns
-        if reverse is not None:
-            reverse = bool(reverse)
-        self._reverse = reverse
         strings = (
             'contiguous notes and chords',
             'nontrivial ties',
@@ -157,10 +148,6 @@ class HairpinHandler(Handler):
             else:
                 groups = self._partition_enchained_groups(groups)
         hairpin_tokens = self.hairpin_tokens
-        if self.cyclic:
-            hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
-        if self.reverse:
-            groups = reversed(groups)
         for group_index, group in enumerate(groups):
             notes = []
             for logical_tie in group:
@@ -189,11 +176,7 @@ class HairpinHandler(Handler):
                 dynamic = indicatortools.Dynamic(start_dynamic)
                 attach(dynamic, notes[0])
                 continue
-            try:
-                hairpin_token = hairpin_tokens[group_index]
-            except IndexError:
-                if not self.cyclic:
-                    continue
+            hairpin_token = hairpin_tokens[group_index]
             if hairpin_token is None:
                 continue
             descriptor = ' '.join([_ for _ in hairpin_token if _])
@@ -278,101 +261,6 @@ class HairpinHandler(Handler):
     ### PUBLIC PROPERTIES ###
 
     @property
-    def cyclic(self):
-        r'''Is true when hairpins should apply cyclically. Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Spans just the first group of 4:
-
-            ::
-
-                >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=False,
-                ...     hairpin_tokens=['p < f'],
-                ...     span=[4],
-                ...     )
-                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
-                >>> staff = Staff(string)
-                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-                >>> logical_ties = list(logical_ties)
-                >>> handler(logical_ties)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    c'16 \< \p
-                    d'16
-                    e'16
-                    f'16 ~ \f
-                    f'16
-                    e'16
-                    d'16
-                    c'16 ~
-                    c'16
-                    d'16
-                    e'16
-                    f'16 ~
-                    f'16
-                    e'16
-                    d'16
-                    c'16
-                }
-
-        ..  container:: example
-
-            **Example 2.** Spans every group of 4:
-
-            ::
-
-                >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
-                ...     hairpin_tokens=['p < f'],
-                ...     span=[4],
-                ...     )
-                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
-                >>> staff = Staff(string)
-                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-                >>> logical_ties = list(logical_ties)
-                >>> handler(logical_ties)
-                >>> override(staff).dynamic_line_spanner.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #4
-                } {
-                    c'16 \< \p
-                    d'16
-                    e'16
-                    f'16 ~ \f
-                    f'16 \< \p
-                    e'16
-                    d'16
-                    c'16 ~ \f
-                    c'16 \< \p
-                    d'16
-                    e'16
-                    f'16 ~ \f
-                    f'16 \< \p
-                    e'16
-                    d'16
-                    c'16 \f
-                }
-
-        Set to true, false or none.
-
-        Defaults to none.
-
-        Returns true, false or none.
-        '''
-        return self._cyclic
-
-    @property
     def enchain_hairpins(self):
         r'''Is true when hairpins should enchain. Otherwise false.
 
@@ -383,7 +271,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     hairpin_tokens=['p < f', 'f > p'],
                 ...     span=[3, 2],
                 ...     )
@@ -415,7 +302,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     enchain_hairpins=True,
                 ...     hairpin_tokens=['p < f', 'f > p'],
                 ...     span=[3, 2],
@@ -460,7 +346,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     hairpin_tokens=['p < f'],
                 ...     span=[4],
                 ...     )
@@ -500,7 +385,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     hairpin_tokens=[None, 'p < f'],
                 ...     span=[4],
                 ...     )
@@ -554,7 +438,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     enchain_hairpins=True,
                 ...     hairpin_tokens=['p < f', 'f > niente'],
                 ...     span=[2, 3],
@@ -589,7 +472,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     enchain_hairpins=True,
                 ...     hairpin_tokens=['p < f', 'f > niente'],
                 ...     include_following_rests=True,
@@ -625,7 +507,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     enchain_hairpins=True,
                 ...     hairpin_tokens=['p < f', 'f > niente'],
                 ...     include_following_rests=True,
@@ -683,7 +564,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     span='nontrivial ties',
                 ...     )
@@ -715,7 +595,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     omit_lone_note_dynamic=True,
                 ...     span='nontrivial ties',
@@ -758,103 +637,6 @@ class HairpinHandler(Handler):
         return self._patterns
 
     @property
-    def reverse(self):
-        r'''Is true when handler should apply in reverse. Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Spans just the last group of 4:
-
-            ::
-
-                >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=False,
-                ...     hairpin_tokens=['p < f'],
-                ...     reverse=True,
-                ...     span=[4],
-                ...     )
-                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
-                >>> staff = Staff(string)
-                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-                >>> logical_ties = list(logical_ties)
-                >>> handler(logical_ties)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    c'16
-                    d'16
-                    e'16
-                    f'16 ~
-                    f'16
-                    e'16
-                    d'16
-                    c'16 ~
-                    c'16
-                    d'16
-                    e'16
-                    f'16 ~
-                    f'16 \< \p
-                    e'16
-                    d'16
-                    c'16 \f
-                }
-
-        ..  container:: example
-
-            **Example 2.** Spans every group of 4:
-
-            ::
-
-                >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
-                ...     hairpin_tokens=['p < f'],
-                ...     reverse=True,
-                ...     span=[4],
-                ...     )
-                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
-                >>> staff = Staff(string)
-                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-                >>> logical_ties = list(logical_ties)
-                >>> handler(logical_ties)
-                >>> override(staff).dynamic_line_spanner.staff_padding = 4
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #4
-                } {
-                    c'16 \< \p
-                    d'16
-                    e'16
-                    f'16 ~ \f
-                    f'16 \< \p
-                    e'16
-                    d'16
-                    c'16 ~ \f
-                    c'16 \< \p
-                    d'16
-                    e'16
-                    f'16 ~ \f
-                    f'16 \< \p
-                    e'16
-                    d'16
-                    c'16 \f
-                }
-
-        Set to true, false or none.
-
-        Defaults to none.
-
-        Returns true, false or none.
-        '''
-        return self._reverse
-
-    @property
     def span(self):
         r'''Gets span of handler.
         
@@ -865,7 +647,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     span='contiguous notes and chords',
                 ...     )
@@ -897,7 +678,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     hairpin_tokens=['ppp < p'],
                 ...     omit_lone_note_dynamic=True,
                 ...     span='nontrivial ties',
@@ -931,7 +711,6 @@ class HairpinHandler(Handler):
             ::
 
                 >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
                 ...     hairpin_tokens=['p < f'],
                 ...     span=[3, 4],
                 ...     )
