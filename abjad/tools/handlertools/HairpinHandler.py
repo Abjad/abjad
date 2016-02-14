@@ -257,7 +257,7 @@ class HairpinHandler(Handler):
             shards = sequencetools.partition_sequence_by_counts(
                 leaves,
                 counts=self.span,
-                cyclic=True,
+                cyclic=self.cyclic,
                 )
             new_groups.extend(shards)
         groups = new_groups
@@ -270,6 +270,89 @@ class HairpinHandler(Handler):
     def cyclic(self):
         r'''Is true when hairpins should apply cyclically. Otherwise false.
 
+        ..  container:: example
+
+            **Example 1.** Spans just the first group of 4:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=False,
+                ...     hairpin_tokens=['p < f'],
+                ...     span=[4],
+                ...     )
+                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'16 \< \p
+                    d'16
+                    e'16
+                    f'16 ~ \f
+                    f'16
+                    e'16
+                    d'16
+                    c'16 ~
+                    c'16
+                    d'16
+                    e'16
+                    f'16 ~
+                    f'16
+                    e'16
+                    d'16
+                    c'16
+                }
+
+        ..  container:: example
+
+            **Example 2.** Spans every group of 4:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
+                ...     hairpin_tokens=['p < f'],
+                ...     span=[4],
+                ...     )
+                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> override(staff).dynamic_line_spanner.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #4
+                } {
+                    c'16 \< \p
+                    d'16
+                    e'16
+                    f'16 ~ \f
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 ~ \f
+                    c'16 \< \p
+                    d'16
+                    e'16
+                    f'16 ~ \f
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 \f
+                }
+
         Set to true, false or none.
 
         Defaults to none.
@@ -277,84 +360,6 @@ class HairpinHandler(Handler):
         Returns true, false or none.
         '''
         return self._cyclic
-
-    @property
-    def omit_lone_note_dynamic(self):
-        r'''Is true when start dynamic of hairpin should not be attached to
-        lone notes. Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Does not omit lone note dynamic:
-
-            ::
-
-                >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
-                ...     hairpin_tokens=['ppp < p'],
-                ...     span='nontrivial ties',
-                ...     )
-                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
-                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-                >>> logical_ties = list(logical_ties)
-                >>> handler(logical_ties)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    c'4 ~ \< \ppp
-                    c'8 \p
-                    d'8 ~ \< \ppp
-                    d'4 \p
-                    r4
-                    e'4 \ppp
-                    g'4 \ppp
-                    fs'4 ~ \< \ppp
-                    fs'4 \p
-                }
-
-        ..  container:: example
-
-            **Example 2.** Omits lone note dynamic:
-
-            ::
-
-                >>> handler = handlertools.HairpinHandler(
-                ...     cyclic=True,
-                ...     hairpin_tokens=['ppp < p'],
-                ...     omit_lone_note_dynamic=True,
-                ...     span='nontrivial ties',
-                ...     )
-                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
-                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
-                >>> logical_ties = list(logical_ties)
-                >>> handler(logical_ties)
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    c'4 ~ \< \ppp
-                    c'8 \p
-                    d'8 ~ \< \ppp
-                    d'4 \p
-                    r4
-                    e'4
-                    g'4
-                    fs'4 ~ \< \ppp
-                    fs'4 \p
-                }
-
-        Set to true, false or none.
-
-        Defaults to none.
-
-        Returns true, false or none.
-        '''
-        return self._omit_lone_note_dynamic
 
     @property
     def enchain_hairpins(self):
@@ -654,6 +659,84 @@ class HairpinHandler(Handler):
         Returns duration or none.
         '''
         return self._minimum_duration
+
+    @property
+    def omit_lone_note_dynamic(self):
+        r'''Is true when start dynamic of hairpin should not be attached to
+        lone notes. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Does not omit lone note dynamic:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
+                ...     hairpin_tokens=['ppp < p'],
+                ...     span='nontrivial ties',
+                ...     )
+                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \ppp
+                    c'8 \p
+                    d'8 ~ \< \ppp
+                    d'4 \p
+                    r4
+                    e'4 \ppp
+                    g'4 \ppp
+                    fs'4 ~ \< \ppp
+                    fs'4 \p
+                }
+
+        ..  container:: example
+
+            **Example 2.** Omits lone note dynamic:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
+                ...     hairpin_tokens=['ppp < p'],
+                ...     omit_lone_note_dynamic=True,
+                ...     span='nontrivial ties',
+                ...     )
+                >>> staff = Staff("c'4 ~ c'8 d'8 ~ d'4 r4 e'4 g'4 fs'4 ~ fs'4")
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \< \ppp
+                    c'8 \p
+                    d'8 ~ \< \ppp
+                    d'4 \p
+                    r4
+                    e'4
+                    g'4
+                    fs'4 ~ \< \ppp
+                    fs'4 \p
+                }
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._omit_lone_note_dynamic
 
     @property
     def patterns(self):
