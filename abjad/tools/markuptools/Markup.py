@@ -1034,33 +1034,55 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def fraction(*args):
+    def fraction(numerator, denominator):
         r'''LilyPond ``\fraction`` markup command.
 
         ..  container:: example
 
-            ::
-
-                >>> markup = Markup.fraction(3, 5)
+            **Example 1.** Fraction with integer numerator and denominator:
 
             ::
 
-                >>> print(format(markup))
-                \markup {
-                    \fraction
-                        3
-                        5
-                    }
+                >>> markup = Markup.fraction(1, 4)
 
             ::
 
                 >>> show(markup) # doctest: +SKIP
 
+            ..  doctest::
+
+                >>> print(format(markup))
+                \markup {
+                    \fraction
+                        1
+                        4
+                    }
+
+        ..  container:: example
+
+            **Example 2.** Fraction with string numerator and integer
+            denominator:
+
+            ::
+
+                >>> markup = Markup.fraction('π', 4)
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(markup))
+                \markup {
+                    \fraction
+                        π
+                        4
+                    }
+
         Returns new markup
         '''
         from abjad.tools import markuptools
-        fraction = mathtools.NonreducedFraction(*args)
-        numerator, denominator = fraction.numerator, fraction.denominator
         command = markuptools.MarkupCommand(
             'fraction',
             str(numerator),
