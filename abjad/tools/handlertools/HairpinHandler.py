@@ -176,6 +176,8 @@ class HairpinHandler(Handler):
                 attach(dynamic, notes[0])
                 continue
             hairpin_token = self.hairpin_tokens[group_index]
+            if hairpin_token is None:
+                continue
             descriptor = ' '.join([_ for _ in hairpin_token if _])
             include_rests = bool(self.include_following_rests)
             hairpin = spannertools.Hairpin(
@@ -414,9 +416,88 @@ class HairpinHandler(Handler):
     def hairpin_tokens(self):
         r'''Gets hairpin tokens of handler.
 
-        Tuple like ``('f', '>', 'p')`` or string like ``'f > p'``.
+        ..  container:: example
 
-        Set to triple, string, list of triples, list of strings or none.
+            **Example 1.** Spans notes and chords in repeating groups of 4:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     hairpin_tokens=['p < f'],
+                ...     span=[4],
+                ...     )
+                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'16 \< \p
+                    d'16
+                    e'16
+                    f'16 ~ \f
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 ~ \f
+                    c'16 \< \p
+                    d'16
+                    e'16
+                    f'16 ~ \f
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 \f
+                }
+
+        ..  container:: example
+
+            **Example 2.** Omits every other group:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     hairpin_tokens=[None, 'p < f'],
+                ...     span=[4],
+                ...     )
+                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'16
+                    d'16
+                    e'16
+                    f'16 ~
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 ~ \f
+                    c'16
+                    d'16
+                    e'16
+                    f'16 ~
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 \f
+                }
+
+        Hairpin token defined equal to triple like ``('f', '>', 'p')``,
+        string like ``'f > p'`` or none.
+
+        Set to haipin token, list of hairpin tokens or none.
 
         Returns cyclic tuple.
         '''
