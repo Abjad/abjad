@@ -74,6 +74,7 @@ class HairpinHandler(Handler):
         '_minimum_duration',
         '_omit_lone_note_dynamic',
         '_patterns',
+        '_reverse',
         '_span',
         )
 
@@ -88,6 +89,7 @@ class HairpinHandler(Handler):
         minimum_duration=None,
         omit_lone_note_dynamic=None,
         patterns=None,
+        reverse=None,
         span='contiguous notes and chords',
         ):
         if cyclic is not None:
@@ -124,6 +126,9 @@ class HairpinHandler(Handler):
         if patterns is not None:
             assert isinstance(patterns, (list, tuple)), repr(patterns)
         self._patterns = patterns
+        if reverse is not None:
+            reverse = bool(reverse)
+        self._reverse = reverse
         strings = (
             'contiguous notes and chords',
             'nontrivial ties',
@@ -154,6 +159,8 @@ class HairpinHandler(Handler):
         hairpin_tokens = self.hairpin_tokens
         if self.cyclic:
             hairpin_tokens = datastructuretools.CyclicTuple(hairpin_tokens)
+        if self.reverse:
+            groups = reversed(groups)
         for group_index, group in enumerate(groups):
             notes = []
             for logical_tie in group:
@@ -182,7 +189,11 @@ class HairpinHandler(Handler):
                 dynamic = indicatortools.Dynamic(start_dynamic)
                 attach(dynamic, notes[0])
                 continue
-            hairpin_token = hairpin_tokens[group_index]
+            try:
+                hairpin_token = hairpin_tokens[group_index]
+            except IndexError:
+                if not self.cyclic:
+                    continue
             if hairpin_token is None:
                 continue
             descriptor = ' '.join([_ for _ in hairpin_token if _])
@@ -257,7 +268,7 @@ class HairpinHandler(Handler):
             shards = sequencetools.partition_sequence_by_counts(
                 leaves,
                 counts=self.span,
-                cyclic=self.cyclic,
+                cyclic=True,
                 )
             new_groups.extend(shards)
         groups = new_groups
@@ -745,6 +756,103 @@ class HairpinHandler(Handler):
         Set to patterns or none.
         '''
         return self._patterns
+
+    @property
+    def reverse(self):
+        r'''Is true when handler should apply in reverse. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Spans just the last group of 4:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=False,
+                ...     hairpin_tokens=['p < f'],
+                ...     reverse=True,
+                ...     span=[4],
+                ...     )
+                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'16
+                    d'16
+                    e'16
+                    f'16 ~
+                    f'16
+                    e'16
+                    d'16
+                    c'16 ~
+                    c'16
+                    d'16
+                    e'16
+                    f'16 ~
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 \f
+                }
+
+        ..  container:: example
+
+            **Example 2.** Spans every group of 4:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     cyclic=True,
+                ...     hairpin_tokens=['p < f'],
+                ...     reverse=True,
+                ...     span=[4],
+                ...     )
+                >>> string = "c'16 d' e' f' ~ f' e' d' c' ~ c' d' e' f' ~ f' e' d' c'"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> override(staff).dynamic_line_spanner.staff_padding = 4
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff \with {
+                    \override DynamicLineSpanner #'staff-padding = #4
+                } {
+                    c'16 \< \p
+                    d'16
+                    e'16
+                    f'16 ~ \f
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 ~ \f
+                    c'16 \< \p
+                    d'16
+                    e'16
+                    f'16 ~ \f
+                    f'16 \< \p
+                    e'16
+                    d'16
+                    c'16 \f
+                }
+
+        Set to true, false or none.
+
+        Defaults to none.
+
+        Returns true, false or none.
+        '''
+        return self._reverse
 
     @property
     def span(self):
