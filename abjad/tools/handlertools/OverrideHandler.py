@@ -40,8 +40,6 @@ class OverrideHandler(Handler):
         if attribute_name is not None:
             assert isinstance(attribute_name, str), repr(attribute_name)
         self._attribute_name = attribute_name
-        if attribute_value is not None:
-            assert isinstance(attribute_value, str), repr(attribute_value)
         self._attribute_value = attribute_value
         if maximum_written_duration is not None:
             maximum_written_duration = durationtools.Duration(
