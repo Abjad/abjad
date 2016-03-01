@@ -176,6 +176,9 @@ class AbjDevScript(DeveloperScript):
             elif len(unknown_args) == 1 and \
                 unknown_args[0] in program_names:
                 developer_script_class = program_names[unknown_args[0]]
+            elif not len(unknown_args):
+                self(['--help'])
+                return
 
             if developer_script_class:
                 instance = developer_script_class()
@@ -199,14 +202,16 @@ class AbjDevScript(DeveloperScript):
             print()
             print('\n\n'.join(entries))
             print()
-
         else:
             if hasattr(args, 'subsubparser_name'):
                 developer_script_class = self.developer_script_aliases[
                     args.subparser_name][args.subsubparser_name]
-            else:
+            elif getattr(args, 'subparser_name'):
                 developer_script_class = \
                     self.developer_script_aliases[args.subparser_name]
+            elif getattr(args, 'subparser_name') is None:
+                self(['--help'])
+                return
             instance = developer_script_class()
             instance(unknown_args)
 
