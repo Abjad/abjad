@@ -68,6 +68,7 @@ extras_require = {
     'development': [
         'pytest',
         'sphinx>=1.3.1',
+        'sphinx-rtd-theme',
         'PyPDF2',
         ],
     'ipython': [

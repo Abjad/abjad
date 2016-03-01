@@ -45,7 +45,8 @@ Abjad also works with `CPython`_ versions 2.7 and 3.3+, as well as `PyPy`_.
 Install Abjad
 -------------
 
-To install Abjad from `PyPI`_, the Python Package Index, via `pip`_::
+To install the most recent official release of Abjad from `PyPI`_, the Python
+Package Index, via `pip`_::
 
     ~$ sudo pip install abjad
 
@@ -108,10 +109,9 @@ To install `Graphviz`_ on Debian and Ubuntu::
 
     ~$ sudo apt-get install graphviz
 
-To install `Graphviz`_ on OSX via `Homebrew`_ or `MacPorts`_::
+To install `Graphviz`_ on OSX via `Homebrew`_::
 
     ~$ brew install graphviz
-    ~$ sudo port install graphviz
 
 Once you have install `Graphviz`_, test if `Graphviz`_ is callable from your
 command-line by running the following command:
@@ -130,7 +130,7 @@ documentation locally, clone Abjad from the Github repository and install it in
 
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
-    abjad$ sudo pip install -e ".[development]"
+    abjad$ sudo pip install -e .[development]
 
 Installing Abjad in development mode will install the following `Python`_
 package dependencies.
@@ -156,8 +156,8 @@ To install C compilation tools on Debian and Ubuntu::
     ~$ sudo apt-get install build-essential
 
 To install C compilation tools on OSX, we recommend simply installing XCode
-from the Apple App Store. Alternatively, you can install via `Homebrew`_ or
-`MacPorts`_, although this may take a significant amount of time.
+from the Apple App Store. Alternatively, you can install via `Homebrew`_
+although this may take a significant amount of time.
 
 Additionally, a few non-`Python`_ tools need to be installed in order to
 develop Abjad or build its documentation: `TeXLive`_, `ImageMagick`_, and
@@ -187,11 +187,19 @@ To install `ImageMagick`_ on Debian and Ubuntu::
 
     ~$ sudo apt-get install imagemagick
 
-To install `ImageMagick`_ on OSX, we recommend installing via `Homebrew`_ or
-`MacPorts`_::
+To install `ImageMagick`_ on OSX, we recommend installing via `Homebrew`_::
 
     ~$ brew install imagemagick
-    ~$ sudo port install imagemagick
+
+Once you have install `ImageMagick`_, test if `ImageMagick`_ is callable from
+your command-line by running the following command:
+
+    ~$ convert --version
+    Version: ImageMagick 6.9.1-6 Q16 x86_64 2015-06-22 http://www.imagemagick.org
+    Copyright: Copyright (C) 1999-2015 ImageMagick Studio LLC
+    License: http://www.imagemagick.org/script/license.php
+    Features: Cipher DPC Modules 
+    Delegates (built-in): bzlib freetype jng jpeg ltdl lzma png tiff xml zlib
 
 Abjad and IPython
 -----------------
@@ -200,7 +208,7 @@ Abjad can be used with `IPython`_ to embed notation, graphs and audio into an
 `IPython notebook`_. To work with Abjad in `IPython`_, install Abjad with both
 its **development** and **ipython** extra dependencies::
 
-    ~$ sudo pip install abjad [development, ipython]
+    ~$ sudo pip install abjad[development,ipython]  # NOTE: no spaces in the string after "install"
 
 Capturing MIDI files into an `IPython notebook`_ requires the `fluidsynth`_
 package.
@@ -209,16 +217,18 @@ To install `fluidsynth`_ on Debian or Ubuntu::
 
     ~$ apt-get install fluidsynth
 
-To install `fluidsynth`_ on OSX via `Homebrew`_ or `MacPorts`_::
+To install `fluidsynth`_ on OSX via `Homebrew`_::
 
     ~$ brew install fluidsynth --with-libsndfile
-    ~$ sudo port install fluidsynth
 
 Once all dependencies have been installed, create a new `IPython notebook`_ and
-run the following magic command in a cell to load Abjad's `IPython`_
+run the following "magic" command in a cell to load Abjad's `IPython`_
 extension::
 
     %load_ext abjad.ext.ipython
+
+Once loaded, notation and MIDI files can be embedded in your notebook whenever
+you use `show(...)` and `play(...)` on valid Abjad objects.
 
 Virtual environments
 --------------------
@@ -231,23 +241,47 @@ packages. They also allow you to install Python packages without ``sudo``. The
 and the `virtualenvwrapper`_ package provides additional tools which make
 working with virtual environments incredibly easy::
 
-    ~$ pip install virtualenv virtualenvwrapper
+    ~$ pip install virtualenvwrapper
     ...
-    ~$ export WORKON_HOME=~/Envs
+    ~$ export WORKON_HOME=~/.virtualenvs
     ~$ mkdir -p $WORKON_HOME
-    ~$ source /usr/local/bin/virtualenvwrapper.sh
+    ~$ source `which virtualenvwrapper.sh`
     ~$ mkvirtualenv abjad
     ...
     ~(abjad)$ pip install abjad
 
-If you have `virtualenvwrapper`_ installed, create a virtual environment and
-install Abjad into that instead::
+..  note::
+
+    The location your virtual environment files are stored in could be
+    anywhere. Because you are unlikely to need to access them directly, we
+    suggest the `.`-prepended path `.virtualenvs`.
+
+..  note::
+
+    On OSX 10.11 (El Capitan) it may be necessary to install
+    `virtualenvwrapper` via alternate instructions::
+
+        ~$ pip install virtualenvwrapper --ignore-installed six
+
+    See
+    [here](http://stackoverflow.com/questions/32086631/cant-install-virtualenvwrapper-on-osx-10-11-el-capitan)
+    for details.
+
+Once you have `virtualenvwrapper`_ installed, create a virtual environment and
+install Abjad into the newly create virtual environment.
 
     ~$ mkvirtualenv abjad
     ...
     ~(abjad)$ git clone https://github.com/Abjad/abjad.git
     ~(abjad)$ cd abjad
-    abjad(abjad)$ pip install -e ".[development]"
+    abjad(abjad)$ pip install -e .[development]  # NOTE: no spaces between "." and "[development]"
+
+To make the virtual environment configuration sticky from terminal session to
+terminal session, add the following lines to your `~/.profile`,
+`~/.bash_profile` or similar shell configuration file::
+
+    export WORKON_HOME=$HOME/.virtualenvs
+    source `which virtualenvwrapper.sh`
 
 Configuring Abjad
 -----------------
@@ -308,7 +342,6 @@ you might want to set your ``pdf_viewer`` to ``evince`` and your
 ..  _ImageMagick: http://www.imagemagick.org/script/index.php
 ..  _LaTeX: https://tug.org/
 ..  _LilyPond: http://lilypond.org/
-..  _MacPorts: https://www.macports.org/
 ..  _MacTeX: https://tug.org/mactex/
 ..  _PyPDF2: http://pythonhosted.org/PyPDF2/
 ..  _PyPI: https://pypi.python.org/pypi/Abjad
