@@ -26,6 +26,7 @@ from sphinx import addnodes
 from sphinx.util import FilenameUniqDict
 from sphinx.util.console import bold, red, brown
 from sphinx.util.osutil import copyfile, ensuredir
+from xml.dom import minidom
 
 
 class SphinxDocumentHandler(abctools.AbjadObject):
@@ -38,7 +39,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         '_errored',
         )
 
-    _topleveltools_pattern = re.compile(r'''
+    _topleveltools_pattern = re.compile(
+        r'''
         \b(
             graph |
             show |
@@ -160,6 +162,37 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             SphinxDocumentHandler.render_thumbnails(app)
         except:
             traceback.print_exc()
+        try:
+            SphinxDocumentHandler.clean_up_graphviz_svg(app)
+        except:
+            traceback.print_exc()
+
+    @staticmethod
+    def clean_up_graphviz_svg(app):
+        # Strip out height="..." and width="..." from root SVG element.
+        # These can interfere with HTML formatting.
+        image_directory = os.path.join(
+            app.builder.outdir,
+            app.builder.imagedir,
+            )
+        with systemtools.TemporaryDirectoryChange(image_directory):
+            svg_paths = glob.glob('graphviz*.svg')
+            for filename in app.builder.status_iterator(
+                svg_paths,
+                'cleaning-up svg files...',
+                brown,
+                len(svg_paths),
+                ):
+                with open(filename, 'r') as file_pointer:
+                    contents = file_pointer.read()
+                document = minidom.parseString(contents)
+                svg_element = document.getElementsByTagName('svg')[0]
+                if 'width' in svg_element.attributes:
+                    del(svg_element.attributes['width'])
+                if 'height' in svg_element.attributes:
+                    del(svg_element.attributes['height'])
+                with open(filename, 'w') as file_pointer:
+                    document.writexml(file_pointer)
 
     @staticmethod
     def render_thumbnails(app):
@@ -278,7 +311,8 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     code_block_specifier = code_block.code_block_specifier
                     if code_block_specifier is None:
                         code_block_specifier = abjadbooktools.CodeBlockSpecifier()
-                    code_block_specifier = new(code_block_specifier,
+                    code_block_specifier = new(
+                        code_block_specifier,
                         hide=False,
                         )
                     code_block = new(
