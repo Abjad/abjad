@@ -14,9 +14,9 @@ class PackageGitCommitToken(AbjadValueObject):
 
         ::
 
-            >>> token = lilypondfiletools.PackageGitCommitToken()
+            >>> token = lilypondfiletools.PackageGitCommitToken('abjad')
             >>> token
-            PackageGitCommitToken('abjad')
+            PackageGitCommitToken(package_name='abjad')
 
         ::
 
