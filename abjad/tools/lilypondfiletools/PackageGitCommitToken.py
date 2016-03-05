@@ -14,8 +14,14 @@ class PackageGitCommitToken(AbjadValueObject):
 
         ::
 
-            >>> lilypondfiletools.PackageGitCommitToken() # doctest: +SKIP
+            >>> token = lilypondfiletools.PackageGitCommitToken()
+            >>> token
             PackageGitCommitToken('abjad')
+
+        ::
+
+            >>> print(format(token))  # doctest: +SKIP
+            package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
     '''
 
@@ -39,7 +45,7 @@ class PackageGitCommitToken(AbjadValueObject):
 
             >>> token = lilypondfiletools.PackageGitCommitToken('abjad')
             >>> print(format(token)) # doctest: +SKIP
-            "abjad" revision: 47d96e12550ade33a38036f05430372d2521b8b9
+            package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
         Return string.
         '''
@@ -77,6 +83,7 @@ class PackageGitCommitToken(AbjadValueObject):
             command,
             shell=True,
             stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
             )
         process.wait()
         if process.returncode:
@@ -95,7 +102,7 @@ class PackageGitCommitToken(AbjadValueObject):
             git_branch = self._get_git_branch()
             git_hash = self._get_git_hash()
             timestamp = self._get_commit_timestamp(git_hash)
-            print(git_branch, git_hash, timestamp)
+            #print(git_branch, git_hash, timestamp)
         date, time, _ = timestamp.split()
         return 'package "{}" @ {} [{}] ({} {})'.format(
             self._package_name,
