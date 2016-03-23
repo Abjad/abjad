@@ -85,6 +85,7 @@ a.thumbnail {
     }
 
 a.abjadbook {
-    padding: 0px;
+    display: block;
     margin: 1px 0 24px 0;
+    padding: 0px;
     }
