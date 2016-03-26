@@ -165,13 +165,30 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             traceback.print_exc()
         try:
             SphinxDocumentHandler.clean_up_graphviz_svg(app)
+            pass
         except:
             traceback.print_exc()
 
     @staticmethod
     def clean_up_graphviz_svg(app):
-        # Strip out height="..." and width="..." from root SVG element.
-        # These can interfere with HTML formatting.
+        def process_svg(filename, delete_attributes):
+            with open(filename, 'r') as file_pointer:
+                contents = file_pointer.read()
+            document = minidom.parseString(contents)
+            svg_element = document.getElementsByTagName('svg')[0]
+            view_box = svg_element.getAttribute('viewBox')
+            view_box = [float(_) for _ in view_box.split()]
+            if delete_attributes:
+                del(svg_element.attributes['height'])
+                del(svg_element.attributes['width'])
+            else:
+                height = '{}pt'.format(int(view_box[-1] * 0.6))
+                width = '{}pt'.format(int(view_box[-2] * 0.6))
+                svg_element.setAttribute('height', height)
+                svg_element.setAttribute('width', width)
+            svg_element.setAttribute('preserveAspectRatio', 'xMinYMin')
+            with open(filename, 'w') as file_pointer:
+                document.writexml(file_pointer)
         image_directory = os.path.join(
             app.builder.outdir,
             app.builder.imagedir,
@@ -180,20 +197,21 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             svg_paths = glob.glob('graphviz*.svg')
             for filename in app.builder.status_iterator(
                 svg_paths,
-                'cleaning-up svg files...',
+                'cleaning-up svg files (A)...',
                 brown,
                 len(svg_paths),
                 ):
-                with open(filename, 'r') as file_pointer:
-                    contents = file_pointer.read()
-                document = minidom.parseString(contents)
-                svg_element = document.getElementsByTagName('svg')[0]
-                if 'width' in svg_element.attributes:
-                    del(svg_element.attributes['width'])
-                if 'height' in svg_element.attributes:
-                    del(svg_element.attributes['height'])
-                with open(filename, 'w') as file_pointer:
-                    document.writexml(file_pointer)
+                process_svg(filename, delete_attributes=True)
+        image_directory = os.path.join(image_directory, 'abjadbook')
+        with systemtools.TemporaryDirectoryChange(image_directory):
+            svg_paths = glob.glob('graphviz*.svg')
+            for filename in app.builder.status_iterator(
+                svg_paths,
+                'cleaning-up svg files (B)...',
+                brown,
+                len(svg_paths),
+                ):
+                process_svg(filename, delete_attributes=False)
 
     @staticmethod
     def render_thumbnails(app):
@@ -773,7 +791,12 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         SphinxDocumentHandler.write_image_source(
             self, node, absolute_source_file_path)
         return_code = SphinxDocumentHandler.interpret_image_source(
-            self, node, absolute_source_file_path, absolute_target_file_path)
+            self,
+            node,
+            absolute_source_file_path,
+            absolute_target_file_path,
+            file_format='png'
+            )
         if return_code:
             return (relative_directory_path, [])
 
@@ -794,6 +817,68 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 no_resize=image_render_specifier.no_resize,
                 no_trim=image_render_specifier.no_trim,
                 )
+
+        # Target(s) must exist, so simply return.
+        return (relative_source_file_path, target_file_paths)
+
+    @staticmethod
+    def render_svg_image(self, node):
+        from abjad.tools import abjadbooktools
+        # Get all file and path parts.
+        image_layout_specifier = node.get('image_layout_specifier', None)
+        if image_layout_specifier is None:
+            image_layout_specifier = abjadbooktools.ImageLayoutSpecifier()
+        image_render_specifier = node.get('image_render_specifier', None)
+        if image_render_specifier is None:
+            image_render_specifier = abjadbooktools.ImageRenderSpecifier()
+        pages = image_layout_specifier.pages
+
+        target_extension = '.svg'
+        file_base_name = SphinxDocumentHandler.get_file_base_name(
+            node, image_render_specifier)
+        source_extension = SphinxDocumentHandler.get_source_extension(node)
+        file_name_pattern = '{}*{}'.format(file_base_name, target_extension)
+        absolute_directory_path, relative_directory_path = \
+            SphinxDocumentHandler.get_image_directory_paths(self)
+        relative_source_file_path = posixpath.join(
+            relative_directory_path,
+            file_base_name + source_extension,
+            )
+
+        # Check for pre-existing target(s).
+        target_file_paths, found_all_pages = \
+            SphinxDocumentHandler.find_target_file_paths(
+                absolute_directory_path, relative_directory_path,
+                file_name_pattern, pages)
+        if found_all_pages:
+            return (relative_source_file_path, target_file_paths)
+
+        # Write and render source to target(s).
+        source_file_name = file_base_name + source_extension
+        absolute_source_file_path = os.path.join(
+            absolute_directory_path, source_file_name)
+        target_file_name = file_base_name + target_extension
+        absolute_target_file_path = os.path.join(
+            absolute_directory_path, target_file_name)
+        SphinxDocumentHandler.write_image_source(
+            self, node, absolute_source_file_path)
+        return_code = SphinxDocumentHandler.interpret_image_source(
+            self,
+            node,
+            absolute_source_file_path,
+            absolute_target_file_path,
+            file_format='svg'
+            )
+        if return_code:
+            return (relative_directory_path, [])
+
+        # Check for target(s).
+        target_file_paths, found_all_pages = \
+            SphinxDocumentHandler.find_target_file_paths(
+                absolute_directory_path, relative_directory_path,
+                file_name_pattern, pages)
+        if not found_all_pages:
+            return (relative_source_file_path, target_file_paths)
 
         # Target(s) must exist, so simply return.
         return (relative_source_file_path, target_file_paths)
@@ -839,8 +924,12 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         if not os.path.exists(absolute_image_directory_path):
             os.makedirs(absolute_image_directory_path)
         try:
-            relative_source_file_path, relative_target_file_paths = \
-                SphinxDocumentHandler.render_png_image(self, node)
+            if node['renderer'] == 'graphviz':
+                relative_source_file_path, relative_target_file_paths = \
+                    SphinxDocumentHandler.render_svg_image(self, node)
+            else:
+                relative_source_file_path, relative_target_file_paths = \
+                    SphinxDocumentHandler.render_png_image(self, node)
             if image_layout_specifier.with_thumbnail:
                 for relative_target_file_path in relative_target_file_paths:
                     self.builder.thumbnails.add_file('', relative_target_file_path)
