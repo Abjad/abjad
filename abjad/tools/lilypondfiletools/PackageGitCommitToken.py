@@ -14,8 +14,14 @@ class PackageGitCommitToken(AbjadValueObject):
 
         ::
 
-            >>> lilypondfiletools.PackageGitCommitToken() # doctest: +SKIP
-            PackageGitCommitToken('abjad')
+            >>> token = lilypondfiletools.PackageGitCommitToken('abjad')
+            >>> token
+            PackageGitCommitToken(package_name='abjad')
+
+        ::
+
+            >>> print(format(token))  # doctest: +SKIP
+            package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
     '''
 
@@ -39,7 +45,7 @@ class PackageGitCommitToken(AbjadValueObject):
 
             >>> token = lilypondfiletools.PackageGitCommitToken('abjad')
             >>> print(format(token)) # doctest: +SKIP
-            "abjad" revision: 47d96e12550ade33a38036f05430372d2521b8b9
+            package "abjad" @ b6a48a7 [implement-lpf-git-token] (2016-02-02 13:36:25)
 
         Return string.
         '''
@@ -52,34 +58,58 @@ class PackageGitCommitToken(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_git_hash(self):
+    def _get_package_path(self):
         module = importlib.import_module(self._package_name)
         path = module.__path__[0]
         if not os.path.isdir(path):
             path = os.path.dirname(path)
         path = os.path.abspath(path)
-        with systemtools.TemporaryDirectoryChange(path):
-            command = 'git rev-parse HEAD'
-            process = subprocess.Popen(
-                command,
-                shell=True,
-                stdout=subprocess.PIPE,
-                )
-            process.wait()
+        return path
+
+    def _get_commit_timestamp(self, commit_hash):
+        command = 'git show -s --format=%ci {}'.format(commit_hash)
+        return self._run_command(command)
+
+    def _get_git_branch(self):
+        command = 'git rev-parse --abbrev-ref HEAD'
+        return self._run_command(command)
+
+    def _get_git_hash(self):
+        command = 'git rev-parse HEAD'
+        return self._run_command(command)
+
+    def _run_command(self, command):
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            )
+        process.wait()
         if process.returncode:
             return None
-        git_hash = process.stdout.read().split()[0]
+        result = process.stdout.read().splitlines()[0]
         if sys.version_info[0] == 3:
-            git_hash = git_hash.decode('utf-8')
-        return git_hash
+            result = result.decode('utf-8')
+        return result
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _lilypond_format(self):
-        return '"{}" revision: {}'.format(
+        path = self._get_package_path()
+        with systemtools.TemporaryDirectoryChange(path):
+            git_branch = self._get_git_branch()
+            git_hash = self._get_git_hash()
+            timestamp = self._get_commit_timestamp(git_hash)
+            #print(git_branch, git_hash, timestamp)
+        date, time, _ = timestamp.split()
+        return 'package "{}" @ {} [{}] ({} {})'.format(
             self._package_name,
-            self._get_git_hash(),
+            git_hash[:7],
+            git_branch,
+            date,
+            time,
             )
 
     ### PUBLIC PROPERTIES ###
