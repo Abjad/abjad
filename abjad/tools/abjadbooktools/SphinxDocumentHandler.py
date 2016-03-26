@@ -365,7 +365,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             abjad_blocks = handler.collect_abjad_input_blocks(document)
             namespace = {}
             namespace.update(abjad.__dict__)
-            for module_name in app.config.abjadbook_console_module_names:
+            for module_name in getattr(app.config, 'abjadbook_console_module_names', ()):
                 module = importlib.import_module(module_name)
                 namespace.update(module.__dict__)
             abjad_console = abjadbooktools.AbjadBookConsole(
