@@ -473,7 +473,8 @@ class DocumentationManager(abctools.AbjadObject):
             lineage_addresses=[tools_package.__name__]
             )
         lineage_graph = inheritance_graph.__graph__()
-        lineage_graph.attributes['background'] = 'transparent'
+        lineage_graph.attributes['bgcolor'] = 'transparent'
+        lineage_graph.attributes['dpi'] = 72
         lineage_graph.attributes['rankdir'] = 'LR'
         return lineage_graph
 
