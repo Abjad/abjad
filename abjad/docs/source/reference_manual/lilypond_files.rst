@@ -46,12 +46,28 @@ Basic LilyPond files also come equipped with header, layout and paper blocks:
 Setting global staff size and default paper size
 ------------------------------------------------
 
-Set default LilyPond global staff size and paper size like this:
+A LilyPondFile's global staff size and default paper size are immutable.
+Set them during instantiation, or by templating a new LilyPondFile via `new()`:
+
+Via templating:
 
 ..  abjad::
 
-    lilypond_file.global_staff_size = 14
-    lilypond_file.default_paper_size = 'A7', 'portrait'
+    lilypond_file = new(
+        lilypond_file,
+        global_staff_size=14,
+        default_paper_size=('A7', 'portrait'),
+        )
+
+When instantiating:
+
+..  abjad::
+
+    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+        staff,
+        global_staff_size=14,
+        default_paper_size=('A7', 'portrait'),
+        )
 
 ..  abjad::
 

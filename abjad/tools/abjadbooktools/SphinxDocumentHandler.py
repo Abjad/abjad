@@ -179,8 +179,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             view_box = svg_element.getAttribute('viewBox')
             view_box = [float(_) for _ in view_box.split()]
             if delete_attributes:
-                del(svg_element.attributes['height'])
-                del(svg_element.attributes['width'])
+                if 'height' in svg_element.attributes:
+                    del(svg_element.attributes['height'])
+                if 'width' in svg_element.attributes:
+                    del(svg_element.attributes['width'])
             else:
                 height = '{}pt'.format(int(view_box[-1] * 0.6))
                 width = '{}pt'.format(int(view_box[-2] * 0.6))
@@ -227,6 +229,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
             len(thumbnail_paths),
             ):
             image_name = os.path.basename(path)
+            _, suffix = os.path.splitext(image_name)
+            if suffix == '.svg':
+                continue
             if 'abjadbook' in path:
                 image_name = os.path.join('abjadbook', image_name)
             prefix, suffix = os.path.splitext(image_name)
@@ -947,7 +952,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     paths = relative_target_file_paths[i:i + step]
                     for relative_target_file_path in paths:
                         prefix, suffix = os.path.splitext(relative_target_file_path)
-                        thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
+                        if suffix == '.svg':
+                            thumbnail_path = relative_target_file_path
+                        else:
+                            thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
                         result = template.format(
                             alt='',
                             cls=' '.join(sorted(css_classes)),
@@ -966,7 +974,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 css_classes.add('abjadbook')
                 for relative_target_file_path in relative_target_file_paths:
                     prefix, suffix = os.path.splitext(relative_target_file_path)
-                    thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
+                    if suffix == '.svg':
+                        thumbnail_path = relative_target_file_path
+                    else:
+                        thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
                     result = template.format(
                         alt='',
                         cls=' '.join(sorted(css_classes)),
@@ -1013,7 +1024,10 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                     )
             target_path = node['uri']
             prefix, suffix = os.path.splitext(target_path)
-            thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
+            if suffix == '.svg':
+                thumbnail_path = target_path
+            else:
+                thumbnail_path = '{}-thumbnail{}'.format(prefix, suffix)
             output = SphinxDocumentHandler._thumbnail_template.format(
                 alt=title,
                 group=group,
