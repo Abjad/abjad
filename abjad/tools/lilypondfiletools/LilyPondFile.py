@@ -125,7 +125,7 @@ class LilyPondFile(AbjadObject):
         comments = tuple(comments)
         self._comments = comments
         self._date_time_token = None
-        if not date_time_token == False:
+        if date_time_token is not False:
             self._date_time_token = lilypondfiletools.DateTimeToken()
         self._default_paper_size = default_paper_size
         self._global_staff_size = global_staff_size
