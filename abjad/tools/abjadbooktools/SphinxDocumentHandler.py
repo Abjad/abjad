@@ -82,6 +82,7 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     def setup_sphinx_extension(app):
         from abjad.tools import abjadbooktools
         app.add_config_value('abjadbook_ignored_documents', (), 'env')
+        app.add_config_value('abjadbook_console_module_names', (), 'env')
         app.add_directive('abjad', abjadbooktools.AbjadDirective)
         app.add_directive('doctest', abjadbooktools.DoctestDirective)
         app.add_directive('import', abjadbooktools.ImportDirective)
@@ -362,14 +363,19 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         try:
             handler = SphinxDocumentHandler()
             abjad_blocks = handler.collect_abjad_input_blocks(document)
+            namespace = {}
+            namespace.update(abjad.__dict__)
+            for module_name in getattr(app.config, 'abjadbook_console_module_names', ()):
+                module = importlib.import_module(module_name)
+                namespace.update(module.__dict__)
             abjad_console = abjadbooktools.AbjadBookConsole(
                 document_handler=handler,
-                locals=abjad.__dict__.copy(),
+                locals=namespace.copy(),
                 )
             literal_blocks = handler.collect_python_literal_blocks(document)
             literal_console = abjadbooktools.AbjadBookConsole(
                 document_handler=handler,
-                locals=abjad.__dict__.copy(),
+                locals=namespace.copy(),
                 )
             if abjad_blocks or literal_blocks:
                 print()
@@ -645,16 +651,19 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         node,
         absolute_source_file_path,
         absolute_target_file_path,
+        file_format='png',
         ):
         if node['renderer'] == 'graphviz':
             layout = node.get('layout', 'dot')
-            render_command = '{} -Tpng {} -o {}'.format(
+            render_command = '{} -T{} {} -o {}'.format(
                 layout,
+                file_format,
                 absolute_source_file_path,
                 absolute_target_file_path,
                 )
         elif node['renderer'] == 'lilypond':
-            render_command = 'lilypond --png -dpixmap-format=pngalpha -dresolution=300 -dno-point-and-click -o {} {}'.format(
+            render_command = 'lilypond --{} -dpixmap-format=pngalpha -dresolution=300 -dno-point-and-click -o {} {}'.format(
+                file_format,
                 os.path.splitext(absolute_target_file_path)[0],
                 absolute_source_file_path,
                 )
