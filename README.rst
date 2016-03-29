@@ -50,12 +50,26 @@ Package Index, via `pip`_::
 
     ~$ sudo pip install abjad
 
+..  note::
+
+    Abjad supports Python 2.7 and above. Python 2.7.9 and above provide `pip`_
+    out-of-the-box. For earlier versions of Python 2.7, you may need to install
+    `pip`_ yourself. While you can use the old ``easy_install`` tool (``sudo
+    easy_install pip``), we strongly recommend the `pip`_-installation
+    instructions found here: https://pip.pypa.io/en/stable/installing/.
+
 To install the cutting-edge version Abjad from its `GitHub`_ repository, via
 `git <https://git-scm.com/>`_ and `pip`_::
 
     ~$ git clone https://github.com/Abjad/abjad.git 
     ~$ cd abjad
     abjad$ sudo pip install .
+
+..  caution::
+
+    We strongly encourage you to *not* install Abjad globally via ``sudo pip
+    install``, but to use a :ref:`virtual environment <virtual-environments>`
+    instead.
 
 Install LilyPond
 ````````````````
@@ -121,6 +135,10 @@ command-line by running the following command:
     ~$ dot -V
     dot - graphviz version 2.38.0 (20140413.2041)
 
+All of the graph images in Abjad's API documentation were created via
+`graphviz`_. See :py:func:`~abjad.tools.topleveltools.graph` for more
+details.
+
 Development installation
 ------------------------
 
@@ -130,17 +148,14 @@ documentation locally, clone Abjad from the Github repository and install it in
 
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
-    abjad$ sudo pip install -e .[development]
+    abjad$ sudo pip install -e .[development]  # NOTE: no spaces in the string after "install"
 
 Installing Abjad in development mode will install the following `Python`_
-package dependencies.
+package dependencies (along with their own dependencies):
 
 -   `pytest`_, for running Abjad's test suite
 
 -   `Sphinx`_, for building Abjad's documentation
-
--   `sphinx_rtd_theme <https://pypi.python.org/pypi/sphinx_rtd_theme>`_, for
-    theming Abjad's HTML documentation
 
 -   `PyPDF2`_, for performing preprocessing on `LaTeX`_ source with Abjad's
     ``ajv book`` tool
@@ -230,6 +245,8 @@ extension::
 Once loaded, notation and MIDI files can be embedded in your notebook whenever
 you use `show(...)` and `play(...)` on valid Abjad objects.
 
+..  _virtual-environments:
+
 Virtual environments
 --------------------
 
@@ -239,27 +256,17 @@ you to isolate `Python`_ packages from your systems global collection of
 packages. They also allow you to install Python packages without ``sudo``. The
 `virtualenv`_ package provides tools for creating Python virtual environments,
 and the `virtualenvwrapper`_ package provides additional tools which make
-working with virtual environments incredibly easy::
+working with virtual environments incredibly easy.
 
-    ~$ pip install virtualenvwrapper
+Let's install `virtualenvwrapper`_::
+
+    ~$ sudo pip install virtualenvwrapper
     ...
-    ~$ export WORKON_HOME=~/.virtualenvs
-    ~$ mkdir -p $WORKON_HOME
-    ~$ source `which virtualenvwrapper.sh`
-    ~$ mkvirtualenv abjad
-    ...
-    ~(abjad)$ pip install abjad
-
-..  note::
-
-    The location your virtual environment files are stored in could be
-    anywhere. Because you are unlikely to need to access them directly, we
-    suggest the `.`-prepended path `.virtualenvs`.
 
 ..  note::
 
     On OSX 10.11 (El Capitan) it may be necessary to install
-    `virtualenvwrapper` via alternate instructions::
+    `virtualenvwrapper`_ via alternate instructions::
 
         ~$ pip install virtualenvwrapper --ignore-installed six
 
@@ -267,21 +274,69 @@ working with virtual environments incredibly easy::
     [here](http://stackoverflow.com/questions/32086631/cant-install-virtualenvwrapper-on-osx-10-11-el-capitan)
     for details.
 
-Once you have `virtualenvwrapper`_ installed, create a virtual environment and
-install Abjad into the newly create virtual environment.
+Next, set an environment variable in your shell naming the directory you want
+the virtual environment files to be stored in, then create that directory if it
+doesn't already exist::
+
+    ~$ export WORKON_HOME=~/.virtualenvs
+    ~$ mkdir -p $WORKON_HOME
+
+..  note::
+
+    The location your virtual environment files are stored in could be
+    anywhere. Because you are unlikely to need to access them directly, we
+    suggest the `.`-prepended path ``.virtualenvs``.
+
+With the virtual environment directory created, "source" `virtualenvwrapper`_'s
+script. This script teaches your shell about how to create, activate and delete
+virtual environments::
+
+    ~$ source `which virtualenvwrapper.sh`
+
+Finally, you can create a virtual environment via the ``mkvirtualenv`` command.
+This will both create the fresh environment and "activate" it. Once activated,
+you can install Python packages within that environment, safe in the knowledge
+that they won't interfere with Python packages installed anywhere else on your
+system::
+
+    ~$ mkvirtualenv abjad
+    ...
+    ~(abjad)$ pip install abjad  # "(abjad)" indicates the name of the virtualenv
+    ...
+
+You can also deactivate the current virtual environment via the ``deactivate``
+command, or switch to a different environment via the ``workon <virtualenv
+name>`` command::
+
+    ~(abjad)$ deactivate
+    ~$ workon my-new-score
+    ~(my-new-score)$
+
+To make the virtual environment configuration sticky from terminal session to
+terminal session, add the following lines to your ``~/.profile``,
+``~/.bash_profile`` or similar shell configuration file::
+
+    export WORKON_HOME=$HOME/.virtualenvs
+    source `which virtualenvwrapper.sh`
+
+Development installation within a virtualenv
+````````````````````````````````````````````
+
+To recap, a complete development installation of Abjad within a virtual
+environment requires the following steps:
+
+- Create and activate a new virtual environment
+- Clone Abjad somewhere and ``cd`` into the root of the cloned repository
+- Install Abjad and its development / IPython dependencies
+
+::
 
     ~$ mkvirtualenv abjad
     ...
     ~(abjad)$ git clone https://github.com/Abjad/abjad.git
     ~(abjad)$ cd abjad
-    abjad(abjad)$ pip install -e .[development]  # NOTE: no spaces between "." and "[development]"
-
-To make the virtual environment configuration sticky from terminal session to
-terminal session, add the following lines to your `~/.profile`,
-`~/.bash_profile` or similar shell configuration file::
-
-    export WORKON_HOME=$HOME/.virtualenvs
-    source `which virtualenvwrapper.sh`
+    abjad(abjad)$ pip install -e .[development,ipython]  # NOTE: no spaces between "." and "[development,ipython]"
+    ...
 
 Configuring Abjad
 -----------------
