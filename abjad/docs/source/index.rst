@@ -189,9 +189,9 @@ details of musical typography programmatically.
 
 For information on the Women in
 Computer Music Scholarship for the Formalized Score Control workshop, please
-visit this page.
+visit `this page`_.
 
-Taught by Jeff Treviño, Trevor Bača, and Josiah Wolf 
+Taught by Jeff Treviño, Trevor Bača, and Josiah Wolf
 Oberholtzer.
 
 
@@ -282,3 +282,4 @@ Miscellaneous information
 ..  _Trevor Bača: http://www.trevorbaca.com/
 ..  _pip: https://pip.pypa.io/en/stable/
 ..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/abjad
+..  _this page: http://ccrma.stanford.edu/workshops/women-in-computer-music-abjad-scholarship
