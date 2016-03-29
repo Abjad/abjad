@@ -35,6 +35,18 @@ To install the cutting-edge version Abjad from its `GitHub`_ repository, via
     ~$ cd abjad
     abjad$ sudo pip install .
 
+Once you have Abjad installed, fire up Python and import it::
+
+    $ python
+    Python 2.7.9 (default, Nov  9 2015, 10:50:36) 
+    [GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.1.76)] on darwin
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import abjad
+    >>> abjad.__version__
+    '2.16'
+
+Congratulations!
+
 Install LilyPond
 ````````````````
 
