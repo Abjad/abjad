@@ -13,6 +13,13 @@ Package Index, via `pip`_::
 
     ~$ sudo pip install abjad
 
+..  caution::
+
+    We strongly encourage you to *not* install Abjad globally via ``sudo pip
+    install``, but to use a :ref:`virtual environment <virtual-environments>`
+    instead. If you're already working in a virtual environment, simply omit
+    the ``sudo``.
+
 ..  note::
 
     Abjad supports Python 2.7 and above. Python 2.7.9 and above provide `pip`_
@@ -27,12 +34,6 @@ To install the cutting-edge version Abjad from its `GitHub`_ repository, via
     ~$ git clone https://github.com/Abjad/abjad.git 
     ~$ cd abjad
     abjad$ sudo pip install .
-
-..  caution::
-
-    We strongly encourage you to *not* install Abjad globally via ``sudo pip
-    install``, but to use a :ref:`virtual environment <virtual-environments>`
-    instead.
 
 Install LilyPond
 ````````````````
