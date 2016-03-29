@@ -59,13 +59,13 @@ First make eight 1/4 notes, rising by half-step from C to G:
     chords and rests are spaced proportionally. There are no bar numbers. The
     glissandi are a little bit thicker than normal. Tuplet brackets show the
     tuplet ratio rather than a single number.
-    
+
     How does this happen? Our notation examples are generated as part of
     Abjad's doc-building process via a custom `Sphinx`_ extension housed in
     Abjad's :py:mod:`abjadbooktools <abjad.tools.abjadbooktools>` subpackage.
     To get the look-and-feel we want for our examples, we include a default
     :download:`stylesheet <_stylesheets/default.ly>` in each generated file.
-    
+
     Not all examples are styled the same. When demonstrating `LilyPond`_
     overrides or page layout options we may replace Abjad's default
     documentation stylesheet with another stylesheet or disable documentation
@@ -132,7 +132,7 @@ Traiettorie inargentate *(2013)*
         :group: gallery
         :title: Page 6 of Traiettorie inargentate,
                 by Trevor Bača.
-        
+
     ..  thumbnail:: gallery/baca-traiettorie-page7.png
         :class: table-cell thumbnail
         :group: gallery
@@ -167,6 +167,34 @@ Visit our score gallery for many more examples:
 
     gallery
 
+
+Upcoming Events
+---------------
+
+July 7-15, 2016 | `CCRMA Summer Workshop`_ | Palo Alto, CA
+
+Introduction to the production of professionally engraved musical scores using
+the Python programming language and the Abjad API for Formalized Score Control
+as part of compositional practice. The course introduces Abjad's object-oriented
+approach to music notation and algorithmic composition through real-world examples
+and hands-on coding activities. No previous programming experience is required:
+Python basics will be taught from the ground up during the course with musical
+examples designed to make sense to composers. Topics covered include system
+installation and configuration; defining your own functions, classes and
+modules; generating structured tableaux of rhythms, pitch collections and other
+materials during precomposition; managing polyphony with operations on voices,
+staves and other musical containers; working with parametric score layout;
+understanding the document structure of complex scores; and controlling the
+details of musical typography programmatically.
+
+For information on the Women in
+Computer Music Scholarship for the Formalized Score Control workshop, please
+visit this page.
+
+Taught by Jeff Treviño, Trevor Bača, and Josiah Wolf 
+Oberholtzer.
+
+
 Texts on Abjad
 --------------
 
@@ -176,15 +204,15 @@ A number of papers and dissertations discuss Abjad.
     `"Abjad: An Open-Software System For Formalized Score Control."
     <https://github.com/Abjad/tenor2015/blob/master/abjad.pdf>`_
     Proceedings of the First International Conference on Technologies for Music
-    Notation and Representation. 2015. 
+    Notation and Representation. 2015.
 
 -   Oberholtzer, Josiah Wolf.
     `A Computational Model of Music Composition.
     <http://dash.harvard.edu/handle/1/17463123>`_
-    Doctoral dissertation, 
-    Harvard University, 
+    Doctoral dissertation,
+    Harvard University,
     Graduate School of Arts & Sciences.
-    2015. 
+    2015.
 
 -   Trevino, Jeffrey Robert.
     `Compositional and analytic applications of automated music notation via
@@ -192,7 +220,7 @@ A number of papers and dissertations discuss Abjad.
     <https://escholarship.org/uc/item/3kk9b4rv.pdf>`_
     Doctoral dissertation,
     University of California, San Diego.
-    2013. 
+    2013.
 
 Features
 --------
@@ -224,7 +252,7 @@ examples to see these features in action:
 
 Abjad's codebase in detail
 --------------------------
-    
+
 ..  toctree::
     :maxdepth: 2
 
@@ -253,3 +281,4 @@ Miscellaneous information
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _Trevor Bača: http://www.trevorbaca.com/
 ..  _pip: https://pip.pypa.io/en/stable/
+..  _CCRMA Summer Workshop: https://ccrma.stanford.edu/workshops/abjad
