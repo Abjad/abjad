@@ -164,33 +164,38 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         except:
             traceback.print_exc()
         try:
-            SphinxDocumentHandler.clean_up_graphviz_svg(app)
+            SphinxDocumentHandler.cleanup_graphviz_svg(app)
             pass
         except:
             traceback.print_exc()
 
     @staticmethod
-    def clean_up_graphviz_svg(app):
+    def cleanup_graphviz_svg(app):
         def process_svg(filename, delete_attributes):
-            with open(filename, 'r') as file_pointer:
-                contents = file_pointer.read()
-            document = minidom.parseString(contents)
-            svg_element = document.getElementsByTagName('svg')[0]
-            view_box = svg_element.getAttribute('viewBox')
-            view_box = [float(_) for _ in view_box.split()]
-            if delete_attributes:
-                if 'height' in svg_element.attributes:
-                    del(svg_element.attributes['height'])
-                if 'width' in svg_element.attributes:
-                    del(svg_element.attributes['width'])
-            else:
-                height = '{}pt'.format(int(view_box[-1] * 0.6))
-                width = '{}pt'.format(int(view_box[-2] * 0.6))
-                svg_element.setAttribute('height', height)
-                svg_element.setAttribute('width', width)
-            svg_element.setAttribute('preserveAspectRatio', 'xMinYMin')
-            with open(filename, 'w') as file_pointer:
-                document.writexml(file_pointer)
+            try:
+                with open(filename, 'r') as file_pointer:
+                    contents = file_pointer.read()
+                document = minidom.parseString(contents)
+                svg_element = document.getElementsByTagName('svg')[0]
+                view_box = svg_element.getAttribute('viewBox')
+                view_box = [float(_) for _ in view_box.split()]
+                if delete_attributes:
+                    if len(svg_element.attributes) and \
+                        'height' in svg_element.attributes:
+                        del(svg_element.attributes['height'])
+                    if len(svg_element.attributes) and \
+                        'width' in svg_element.attributes:
+                        del(svg_element.attributes['width'])
+                else:
+                    height = '{}pt'.format(int(view_box[-1] * 0.6))
+                    width = '{}pt'.format(int(view_box[-2] * 0.6))
+                    svg_element.setAttribute('height', height)
+                    svg_element.setAttribute('width', width)
+                svg_element.setAttribute('preserveAspectRatio', 'xMinYMin')
+                with open(filename, 'w') as file_pointer:
+                    document.writexml(file_pointer)
+            except KeyError:
+                traceback.print_exc()
         image_directory = os.path.join(
             app.builder.outdir,
             app.builder.imagedir,
