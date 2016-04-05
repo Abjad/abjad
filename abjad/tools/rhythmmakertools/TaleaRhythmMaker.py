@@ -749,21 +749,31 @@ class TaleaRhythmMaker(RhythmMaker):
         for i, division in enumerate(divisions):
             if not extra_counts_per_division:
                 prolated_divisions.append(division)
+                continue
+            prolation_addendum = extra_counts_per_division[i]
+            if hasattr(division, 'numerator'):
+                numerator = division.numerator
             else:
-                prolation_addendum = extra_counts_per_division[i]
-                if hasattr(division, 'numerator'):
-                    prolation_addendum %= division.numerator
+                numerator = division[0]
+            if 0 <= prolation_addendum:
+                prolation_addendum %= numerator
+            else:
+                # NOTE: do not remove the following (nonfunctional) if-else;
+                #       preserved for backwards compatability.
+                use_old_extra_counts_logic = False
+                if use_old_extra_counts_logic:
+                    prolation_addendum %= numerator
                 else:
-                    prolation_addendum %= division[0]
-                if isinstance(division, tuple):
-                    numerator, denominator = division
-                else:
-                    numerator, denominator = division.pair
-                prolated_division = (
-                    numerator + prolation_addendum,
-                    denominator,
-                    )
-                prolated_divisions.append(prolated_division)
+                    prolation_addendum %= -numerator
+            if isinstance(division, tuple):
+                numerator, denominator = division
+            else:
+                numerator, denominator = division.pair
+            prolated_division = (
+                numerator + prolation_addendum,
+                denominator,
+                )
+            prolated_divisions.append(prolated_division)
         return prolated_divisions
 
     def _prepare_input(self):
@@ -2439,33 +2449,28 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 4/8
-                        \times 8/15 {
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 8/7 {
                             c'4
                             c'16 [
-                            c'8
-                            c'8. ]
-                            c'4
-                            c'16
+                            c'8 ]
                         }
                     }
                     {
                         \time 3/8
                         {
-                            c'8 [
-                            c'8.
-                            c'16 ~ ]
+                            c'8. [
+                            c'8. ~ ]
                         }
                     }
                     {
                         \time 4/8
-                        \times 8/15 {
-                            c'8. [
+                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \times 8/7 {
+                            c'16 [
                             c'16
                             c'8
                             c'8. ]
-                            c'4
-                            c'16 [
-                            c'16 ]
                         }
                     }
                 }
