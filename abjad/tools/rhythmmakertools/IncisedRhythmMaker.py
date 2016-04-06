@@ -8,6 +8,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import new
 
 
@@ -74,6 +75,7 @@ class IncisedRhythmMaker(RhythmMaker):
         '_extra_counts_per_division',
         '_helper_functions',
         '_incise_specifier',
+        '_replace_rests_with_skips',
         '_split_divisions_by_counts',
         )
 
@@ -87,6 +89,7 @@ class IncisedRhythmMaker(RhythmMaker):
         extra_counts_per_division=None,
         incise_specifier=None,
         logical_tie_masks=None,
+        replace_rests_with_skips=None,
         split_divisions_by_counts=None,
         tie_specifier=None,
         tuplet_spelling_specifier=None,
@@ -116,6 +119,7 @@ class IncisedRhythmMaker(RhythmMaker):
             mathtools.all_are_nonnegative_integer_equivalent_numbers(
             split_divisions_by_counts), split_divisions_by_counts
         self._extra_counts_per_division = extra_counts_per_division
+        self._replace_rests_with_skips = replace_rests_with_skips
         self._split_divisions_by_counts = split_divisions_by_counts
         if helper_functions is not None:
             assert isinstance(helper_functions, dict)
@@ -407,6 +411,16 @@ class IncisedRhythmMaker(RhythmMaker):
                 spell_metrically=specifier.spell_metrically,
                 use_messiaen_style_ties=tie_specifier.use_messiaen_style_ties,
                 )
+            if self.replace_rests_with_skips:
+                new_components = []
+                for component in selection:
+                    if isinstance(component, scoretools.Rest):
+                        duration = inspect_(component).get_duration()
+                        skip = scoretools.Skip(duration)
+                        new_components.append(skip)
+                    else:
+                        new_components.append(component)
+                selection = selectiontools.Selection(new_components)
             selections.append(selection)
         return selections
 
@@ -1148,6 +1162,130 @@ class IncisedRhythmMaker(RhythmMaker):
         '''
         superclass = super(IncisedRhythmMaker, self)
         return superclass.logical_tie_masks
+
+    @property
+    def replace_rests_with_skips(self):
+        r'''Is true when rhythm-maker should replace rests with skips.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Does not replace rests with skips:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=rhythmmakertools.InciseSpecifier(
+                ...         fill_with_notes=False,
+                ...         prefix_talea=[1],
+                ...         prefix_counts=[1],
+                ...         talea_denominator=16,
+                ...         ),
+                ...     replace_rests_with_skips=False,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'16
+                        r4..
+                    }
+                    {
+                        \time 3/8
+                        c'16
+                        r4
+                        r16
+                    }
+                    {
+                        \time 4/8
+                        c'16
+                        r4..
+                    }
+                    {
+                        \time 3/8
+                        c'16
+                        r4
+                        r16
+                    }
+                }
+
+        ..  container:: example
+
+            **Example 2.** Does replace rests with skips:
+
+            ::
+
+                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                ...     incise_specifier=rhythmmakertools.InciseSpecifier(
+                ...         fill_with_notes=False,
+                ...         prefix_talea=[1],
+                ...         prefix_counts=[1],
+                ...         talea_denominator=16,
+                ...         ),
+                ...     replace_rests_with_skips=True,
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'16
+                        s4..
+                    }
+                    {
+                        \time 3/8
+                        c'16
+                        s4
+                        s16
+                    }
+                    {
+                        \time 4/8
+                        c'16
+                        s4..
+                    }
+                    {
+                        \time 3/8
+                        c'16
+                        s4
+                        s16
+                    }
+                }
+
+            Use in keyboard and other polyphonic music where other voices
+            provide rhythmic alignment.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        '''
+        return self._replace_rests_with_skips
 
     @property
     def split_divisions_by_counts(self):
