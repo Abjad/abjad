@@ -2,12 +2,14 @@
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
+from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import override
 from abjad.tools.handlertools.Handler import Handler
 
 
@@ -70,6 +72,7 @@ class HairpinHandler(Handler):
 
     __slots__ = (
         '_enchain_hairpins',
+        '_flare',
         '_hairpin_tokens',
         '_include_following_rests',
         '_minimum_duration',
@@ -83,6 +86,7 @@ class HairpinHandler(Handler):
     def __init__(
         self,
         enchain_hairpins=None,
+        flare=None,
         hairpin_tokens=None,
         include_following_rests=None,
         minimum_duration=None,
@@ -93,6 +97,7 @@ class HairpinHandler(Handler):
         if enchain_hairpins is not None:
             enchain_hairpins = bool(enchain_hairpins)
         self._enchain_hairpins = enchain_hairpins
+        self._flare = flare
         hairpin_tokens = hairpin_tokens or []
         prototype = (list, tuple)
         assert isinstance(hairpin_tokens, prototype), repr(hairpin_tokens)
@@ -186,6 +191,12 @@ class HairpinHandler(Handler):
                 include_rests=include_rests,
                 )
             attach(hairpin, notes_to_span)
+            if self.flare:
+                first_note = notes_to_span[0]
+                prototype = scoretools.Note
+                assert isinstance(first_note, prototype), repr(first_note)
+                stencil = schemetools.Scheme('flared-hairpin')
+                override(first_note).hairpin.stencil = stencil
 
     ### PRIVATE METHODS ###
 
@@ -334,6 +345,84 @@ class HairpinHandler(Handler):
         Returns true, false or none.
         '''
         return self._enchain_hairpins
+
+    @property
+    def flare(self):
+        r'''Is true when hairpins are flared. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Does not flare hairpins:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     hairpin_tokens=['f > p', 'p < f'],
+                ...     span='nontrivial ties',
+                ...     )
+                >>> string = "c'4 ~ c' ~ c' r4 d'4 ~ d' ~ d' r4"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    c'4 ~ \> \f
+                    c'4 ~
+                    c'4 \p
+                    r4
+                    d'4 ~ \< \p
+                    d'4 ~
+                    d'4 \f
+                    r4
+                }
+                
+        ..  container:: example
+
+            **Example 2.** Does flare hairpins:
+
+            ::
+
+                >>> handler = handlertools.HairpinHandler(
+                ...     flare=True,
+                ...     hairpin_tokens=['f > p', 'p < f'],
+                ...     span='nontrivial ties',
+                ...     )
+                >>> string = "c'4 ~ c' ~ c' r4 d'4 ~ d' ~ d' r4"
+                >>> staff = Staff(string)
+                >>> logical_ties = iterate(staff).by_logical_tie(pitched=True)
+                >>> logical_ties = list(logical_ties)
+                >>> handler(logical_ties)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \once \override Hairpin #'stencil = #flared-hairpin
+                    c'4 ~ \> \f
+                    c'4 ~
+                    c'4 \p
+                    r4
+                    \once \override Hairpin #'stencil = #flared-hairpin
+                    d'4 ~ \< \p
+                    d'4 ~
+                    d'4 \f
+                    r4
+                }
+
+            Note that a LilyPond bug currently prevents flared hairpins from
+            working correctly with circled-tip hairpins.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        '''
+        return self._flare
 
     @property
     def hairpin_tokens(self):
