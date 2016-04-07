@@ -4,6 +4,7 @@ from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
+from abjad.tools import selectiontools
 from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
@@ -140,6 +141,9 @@ class HairpinHandler(Handler):
 
         Returns none.
         '''
+        if not isinstance(logical_ties[0], selectiontools.LogicalTie):
+            assert isinstance(logical_ties[0], scoretools.Leaf)
+            logical_ties = [selectiontools.LogicalTie(_) for _ in logical_ties]
         if (self.span == 'contiguous notes and chords'
             or isinstance(self.span, (tuple, list))):
             groups = self._group_contiguous_logical_ties(logical_ties)
