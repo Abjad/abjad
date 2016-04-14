@@ -711,7 +711,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3a.** Spells all divisions metrically when
+            **Example 3.** Spells all divisions metrically when
             `spell_metrically` is true:
 
             ::
@@ -764,7 +764,9 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 3b.** Spells only unassignable durations metrically when
+        ..  container:: example
+
+            **Example 4.** Spells only unassignable durations metrically when
             `spell_metrically` is ``'unassignable'``:
 
             ::
@@ -815,7 +817,9 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 3c.** Rewrites meter:
+        ..  container:: example
+
+            **Example 5.** Rewrites meter:
 
             ::
 

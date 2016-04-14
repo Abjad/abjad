@@ -960,7 +960,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3a.** Spells all divisions metrically when
+            **Example 3.** Spells all divisions metrically when
             `spell_metrically` is true:
 
             ::
@@ -1005,7 +1005,9 @@ class NoteRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 3b.** Spells only unassignable durations metrically when
+        ..  container:: example
+
+            **Example 4.** Spells only unassignable durations metrically when
             `spell_metrically` is ``'unassignable'``:
 
             ::
@@ -1051,7 +1053,9 @@ class NoteRhythmMaker(RhythmMaker):
             The other durations are spelled with the fewest number of symbols
             possible.
 
-            **Example 3c.** Spells durations with custom partition table:
+        ..  container:: example
+
+            **Example 5.** Spells durations with custom partition table:
 
             ::
 

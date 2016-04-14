@@ -913,7 +913,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3a.** The preferred denominator of each tuplet is set in
+            **Example 3.** The preferred denominator of each tuplet is set in
             terms of a unit duration when `preferred_denominator` is set to a
             duration. The setting does not affect the first tuplet:
 
@@ -973,7 +973,9 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 3b.** Sets the preferred denominator of each tuplet in 
+        ..  container:: example
+
+            **Example 4.** Sets the preferred denominator of each tuplet in 
             terms 32nd notes. The setting affects all tuplets:
 
             ::
@@ -1032,7 +1034,9 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 3c.** Sets the preferred denominator each tuplet in terms
+        ..  container:: example
+
+            **Example 5.** Sets the preferred denominator each tuplet in terms
             64th notes. The setting affects all tuplets:
 
             ::
@@ -1093,7 +1097,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4a.** The preferred denominator of each tuplet is set
+            **Example 6.** The preferred denominator of each tuplet is set
             directly when `preferred_denominator` is set to a positive integer.
             This example sets the preferred denominator of each tuplet to
             ``8``. Setting does not affect the third tuplet:
@@ -1154,7 +1158,9 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 4b.** Sets the preferred denominator of each tuplet to
+        ..  container:: example
+
+            **Example 7.** Sets the preferred denominator of each tuplet to
             ``12``. Setting affects all tuplets:
 
             ::
@@ -1213,7 +1219,9 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 4c.** Sets the preferred denominator of each tuplet to
+        ..  container:: example
+
+            **Example 8.** Sets the preferred denominator of each tuplet to
             ``13``. Setting does not affect any tuplet:
 
             ::
@@ -1587,7 +1595,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 1a.** Makes diminished tuplets and does not avoid dots:
+            **Example 1.** Makes diminished tuplets and does not avoid dots:
 
             ::
 
@@ -1639,7 +1647,9 @@ class TupletRhythmMaker(RhythmMaker):
 
             This is default behavior.
 
-            **Example 1b.** Makes diminished tuplets and avoids dots:
+        ..  container:: example
+
+            **Example 2.** Makes diminished tuplets and avoids dots:
 
             ::
 
@@ -1693,7 +1703,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 2a.** Makes augmented tuplets and does not avoid dots:
+            **Example 3.** Makes augmented tuplets and does not avoid dots:
 
             ::
 
@@ -1743,7 +1753,9 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 2b.** Makes augmented tuplets and avoids dots:
+        ..  container:: example
+
+            **Example 4.** Makes augmented tuplets and avoids dots:
 
             ::
 
@@ -1797,7 +1809,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 3a.** Does not simplify tuplets:
+            **Example 5.** Does not simplify tuplets:
 
             ::
 
@@ -1854,7 +1866,9 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                 }
 
-            **Example 3b.** Simplifies tuplets:
+        ..  container:: example
+
+            **Example 6.** Simplifies tuplets:
 
             ::
 
@@ -1911,7 +1925,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  container:: example
 
-            **Example 4a.** Leaves trivial tuplets enclosed in curly braces in
+            **Example 7.** Leaves trivial tuplets enclosed in curly braces in
             LilyPond output:
 
             ::
@@ -1977,7 +1991,9 @@ class TupletRhythmMaker(RhythmMaker):
             (representing trivial tuplets) and a second set of curly braces
             (representing measures). This is default behavior.
 
-            **Example 4b.** Flattens trivial tuplets:
+        ..  container:: example
+
+            **Example 8.** Flattens trivial tuplets:
 
             ::
 
