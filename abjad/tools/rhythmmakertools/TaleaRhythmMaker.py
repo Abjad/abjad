@@ -3395,6 +3395,61 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                 }
 
+        ..  container:: example
+
+            **Example 5.** Ties consecutive notes:
+
+            ::
+
+                >>> maker = rhythmmakertools.TaleaRhythmMaker(
+                ...     talea=rhythmmakertools.Talea(
+                ...         counts=[5, -3, 3, 3],
+                ...         denominator=16,
+                ...         ),
+                ...     tie_specifier=rhythmmakertools.TieSpecifier(
+                ...         tie_consecutive_notes=True,
+                ...         ),
+                ...     )
+
+            ::
+
+                >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
+                >>> music = maker(divisions)
+                >>> lilypond_file = rhythmmakertools.make_lilypond_file(
+                ...     music,
+                ...     divisions,
+                ...     )
+                >>> show(lilypond_file) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> f(staff)
+                \new RhythmicStaff {
+                    {
+                        \time 4/8
+                        c'4 ~ ~
+                        c'16
+                        r8.
+                    }
+                    {
+                        \time 3/8
+                        c'8. ~ [
+                        c'8. ~ ]
+                    }
+                    {
+                        \time 4/8
+                        c'4 ~ ~
+                        c'16
+                        r8.
+                    }
+                    {
+                        \time 3/8
+                        c'8. ~ [
+                        c'8. ]
+                    }
+                }
+
         Set to tie specifier or none.
 
         Returns tie specifier.
