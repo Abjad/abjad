@@ -54,4 +54,6 @@ def expr_to_tridirectional_ordinal_constant(expr):
         return None
     elif expr in lookup:
         return lookup[expr]
-    raise ValueError(expr)
+    message = 'unrecognized expression: {!r}.'
+    message = message.format(expr)
+    raise ValueError(message)

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import collections
+import itertools
 from abjad.tools import patterntools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
@@ -23,6 +24,7 @@ class TieSpecifier(AbjadValueObject):
     __slots__ = (
         '_strip_ties',
         '_tie_across_divisions',
+        '_tie_consecutive_notes',
         '_use_messiaen_style_ties',
         )
 
@@ -32,6 +34,7 @@ class TieSpecifier(AbjadValueObject):
         self,
         strip_ties=None,
         tie_across_divisions=None,
+        tie_consecutive_notes=None,
         use_messiaen_style_ties=None,
         ):
         if strip_ties is not None:
@@ -46,6 +49,12 @@ class TieSpecifier(AbjadValueObject):
             )
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions
+        if tie_consecutive_notes is not None:
+            tie_consecutive_notes = bool(tie_consecutive_notes)
+        self._tie_consecutive_notes = tie_consecutive_notes
+        if self.tie_consecutive_notes and self.strip_ties:
+            message = 'can not tie leaves and strip ties at same time.'
+            raise Exception(message)
         if use_messiaen_style_ties is not None:
             use_messiaen_style_ties = bool(use_messiaen_style_ties)
         self._use_messiaen_style_ties = use_messiaen_style_ties
@@ -53,19 +62,20 @@ class TieSpecifier(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, divisions):
-        r'''Processes `divisions`.
+        r'''Calls tie specifier on `divisions`.
 
         Returns none.
         '''
-        if not self.strip_ties:
-            self._make_ties_across_divisions(divisions)
-        self._strip_ties_from_divisions(divisions)
-        if self.use_messiaen_style_ties:
-            self._configure_messiaen_style_tie_spanners(divisions)
+        self._do_tie_across_divisions(divisions)
+        self._do_tie_consecutive_notes(divisions)
+        self._do_strip_ties(divisions)
+        self._configure_messiaen_style_ties(divisions)
 
     ### PRIVATE METHODS ###
 
-    def _configure_messiaen_style_tie_spanners(self, divisions):
+    def _configure_messiaen_style_ties(self, divisions):
+        if not self.use_messiaen_style_ties:
+            return
         tie_spanners = set()
         prototype = spannertools.Tie
         for leaf in iterate(divisions).by_class(scoretools.Leaf):
@@ -77,9 +87,20 @@ class TieSpecifier(AbjadValueObject):
         for tie_spanner in tie_spanners:
             tie_spanner._use_messiaen_style_ties = True
 
-    def _make_ties_across_divisions(self, divisions):
+    def _do_strip_ties(self, divisions):
+        if not self.strip_ties:
+            return
+        for division in divisions:
+            for leaf in iterate(division).by_class(scoretools.Leaf):
+                detach(spannertools.Tie, leaf)
+
+    def _do_tie_across_divisions(self, divisions):
         from abjad.tools import rhythmmakertools
         if not self.tie_across_divisions:
+            return
+        if self.strip_ties:
+            return
+        if self.tie_consecutive_notes:
             return
         length = len(divisions)
         tie_across_divisions = self.tie_across_divisions
@@ -123,12 +144,17 @@ class TieSpecifier(AbjadValueObject):
             attach(tie_spanner, combined_logical_tie)
             tie_spanner._constrain_contiguity()
 
-    def _strip_ties_from_divisions(self, divisions):
-        if not self.strip_ties:
+    def _do_tie_consecutive_notes(self, divisions):
+        if not self.tie_consecutive_notes:
             return
-        for division in divisions:
-            for leaf in iterate(division).by_class(scoretools.Leaf):
-                detach(spannertools.Tie, leaf)
+        self._do_strip_ties(divisions)
+        leaves = iterate(divisions).by_leaf()
+        pairs = itertools.groupby(leaves, lambda _: _.__class__)
+        for class_, group in pairs:
+            group = list(group)
+            if isinstance(group[0], scoretools.Note):
+                if 1 < len(group):
+                    attach(spannertools.Tie(), group)
 
     ### PUBLIC PROPERTIES ###
 
@@ -149,6 +175,17 @@ class TieSpecifier(AbjadValueObject):
         Set to true, false or to a boolean vector.
         '''
         return self._tie_across_divisions
+
+    @property
+    def tie_consecutive_notes(self):
+        r'''Is true when rhythm-maker should tie consecutive notes.
+        Otherwise false.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        '''
+        return self._tie_consecutive_notes
 
     @property
     def use_messiaen_style_ties(self):
