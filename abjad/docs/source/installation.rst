@@ -13,6 +13,13 @@ Package Index, via `pip`_::
 
     ~$ sudo pip install abjad
 
+..  caution::
+
+    We strongly encourage you to *not* install Abjad globally via ``sudo pip
+    install``, but to use a :ref:`virtual environment <virtual-environments>`
+    instead. If you're already working in a virtual environment, simply omit
+    the ``sudo``.
+
 ..  note::
 
     Abjad supports Python 2.7 and above. Python 2.7.9 and above provide `pip`_
@@ -28,11 +35,17 @@ To install the cutting-edge version Abjad from its `GitHub`_ repository, via
     ~$ cd abjad
     abjad$ sudo pip install .
 
-..  caution::
+Once you have Abjad installed, fire up Python and import it::
 
-    We strongly encourage you to *not* install Abjad globally via ``sudo pip
-    install``, but to use a :ref:`virtual environment <virtual-environments>`
-    instead.
+    $ python
+    Python 2.7.9 (default, Nov  9 2015, 10:50:36) 
+    [GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.1.76)] on darwin
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import abjad
+    >>> abjad.__version__
+    '2.16'
+
+Congratulations!
 
 Install LilyPond
 ````````````````
@@ -64,9 +77,15 @@ command-line by running the following command:
     under certain conditions.  Invoke as `lilypond --warranty` for more
     information.
 
-If LilyPond is not callable from your command-line, you should add the
-location of the LilyPond executable to your ``PATH`` environment variable.
-The `LilyPond`_ documentation provides instructions for making the
+If LilyPond is not callable from your command-line, you should add the location
+of the LilyPond executable to your ``PATH`` environment variable. If you are
+using OSX, simply run the following line in your terminal::
+
+    export PATH="$PATH:/Applications/LilyPond.app/Contents/Resources/bin/"
+
+You can add the above line to your ``~/.profile`` to make the change permanent.
+
+The `LilyPond`_ documentation also provides instructions for making the
 ``lilypond`` command available on the command-line under OSX at
 http://www.lilypond.org/macos-x.html.
 
@@ -170,7 +189,7 @@ To install `ImageMagick`_ on OSX, we recommend installing via `Homebrew`_::
     ~$ brew install imagemagick
 
 Once you have install `ImageMagick`_, test if `ImageMagick`_ is callable from
-your command-line by running the following command:
+your command-line by running the following command::
 
     ~$ convert --version
     Version: ImageMagick 6.9.1-6 Q16 x86_64 2015-06-22 http://www.imagemagick.org
