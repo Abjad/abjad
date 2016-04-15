@@ -343,8 +343,9 @@ class Leaf(Component):
                     music=tie_spanner._get_leaves()
                     )
             elif 1 < len(tie_spanners):
-                message = 'multiple tie spanners found.'
-                raise ExtraSpannerError(message)
+                message = 'parentage of {!r} contains {} tie spanners.'
+                message = message.format(self, len(tie_spanners))
+                raise Exception(message)
         else:
             return selectiontools.LogicalTie(music=self)
 
