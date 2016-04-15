@@ -147,8 +147,9 @@ class TieSpecifier(AbjadValueObject):
     def _do_tie_consecutive_notes(self, divisions):
         if not self.tie_consecutive_notes:
             return
-        self._do_strip_ties(divisions)
-        leaves = iterate(divisions).by_leaf()
+        leaves = list(iterate(divisions).by_leaf())
+        for leaf in leaves:
+            detach(spannertools.Tie, leaf)
         pairs = itertools.groupby(leaves, lambda _: _.__class__)
         for class_, group in pairs:
             group = list(group)

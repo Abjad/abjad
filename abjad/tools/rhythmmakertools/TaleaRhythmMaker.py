@@ -3428,7 +3428,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 4/8
-                        c'4 ~ ~
+                        c'4 ~
                         c'16
                         r8.
                     }
@@ -3439,7 +3439,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 4/8
-                        c'4 ~ ~
+                        c'4 ~
                         c'16
                         r8.
                     }

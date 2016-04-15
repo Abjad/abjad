@@ -313,6 +313,7 @@ class WellformednessManager(AbjadObject):
                 0 /	0 overlapping glissandi
                 0 /	2 overlapping hairpins
                 0 /	0 overlapping octavation spanners
+                0 /	0 overlapping ties
                 0 /	2 short hairpins
                 0 /	0 tied rests
 
@@ -528,6 +529,7 @@ class WellformednessManager(AbjadObject):
                 0 /	0 overlapping glissandi
                 2 /	2 overlapping hairpins
                 0 /	0 overlapping octavation spanners
+                0 /	0 overlapping ties
                 0 /	2 short hairpins
                 0 /	0 tied rests
 
@@ -582,6 +584,56 @@ class WellformednessManager(AbjadObject):
                     if spanner not in violators:
                         violators.append(spanner)
         total = self.expr._get_descendants()._get_spanners(prototype)
+        return violators, len(total)
+
+    def check_overlapping_ties(self):
+        r'''Checks to make sure there are no overlapping ties in score.
+
+        ..  container:: example
+
+            **Example 1.** Checks overlapping ties:
+
+            ::
+
+                >>> staff = Staff("c'4 c' c' c''")
+                >>> attach(Tie(), staff[:2])
+                >>> attach(Tie(), staff[1:3])
+
+            ::
+
+                >>> print(inspect_(staff).tabulate_well_formedness_violations())
+                0 /	4 beamed quarter notes
+                0 /	1 conflicting clefs
+                0 /	2 discontiguous spanners
+                0 /	5 duplicate ids
+                0 /	0 intermarked hairpins
+                0 /	0 misdurated measures
+                0 /	0 misfilled measures
+                0 /	0 mismatched enchained hairpins
+                0 /	4 mispitched ties
+                0 /	4 misrepresented flags
+                0 /	5 missing parents
+                0 /	0 nested measures
+                0 /	0 overlapping beams
+                0 /	0 overlapping glissandi
+                0 /	0 overlapping hairpins
+                0 /	0 overlapping octavation spanners
+                2 /	2 overlapping ties
+                0 /	0 short hairpins
+                0 /	0 tied rests
+
+        Returns violators and count of total ties.
+        '''
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import iterate
+        total = set()
+        violators = set()
+        for leaf in iterate(self.expr).by_leaf():
+            spanners = leaf._get_spanners(spannertools.Tie)
+            total.update(spanners)
+            if 1 < len(spanners):
+                violators.update(spanners)
         return violators, len(total)
 
     def check_short_hairpins(self):
