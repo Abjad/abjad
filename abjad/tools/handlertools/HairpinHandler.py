@@ -188,13 +188,17 @@ class HairpinHandler(Handler):
             hairpin_token = hairpin_tokens[group_index]
             if hairpin_token is None:
                 continue
-            descriptor = ' '.join([_ for _ in hairpin_token if _])
-            include_rests = bool(self.include_following_rests)
-            hairpin = spannertools.Hairpin(
-                descriptor=descriptor,
-                include_rests=include_rests,
-                )
-            attach(hairpin, notes_to_span)
+            if isinstance(hairpin_token, tuple):
+                descriptor = ' '.join([_ for _ in hairpin_token if _])
+                include_rests = bool(self.include_following_rests)
+                hairpin = spannertools.Hairpin(
+                    descriptor=descriptor,
+                    include_rests=include_rests,
+                    )
+                attach(hairpin, notes_to_span)
+            # hook to allow callable custom classes like SwellSpecifier
+            else:
+                hairpin_token(notes_to_span)
             if self.flare:
                 first_note = notes_to_span[0]
                 prototype = scoretools.Note
