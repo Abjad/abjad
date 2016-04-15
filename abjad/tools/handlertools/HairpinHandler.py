@@ -139,8 +139,12 @@ class HairpinHandler(Handler):
     def __call__(self, logical_ties):
         r'''Calls hairpin handler on `logical_ties`.
 
+        Passes silently when `logical_ties` is empty.
+
         Returns none.
         '''
+        if not logical_ties:
+            return
         if not isinstance(logical_ties[0], selectiontools.LogicalTie):
             assert isinstance(logical_ties[0], scoretools.Leaf)
             logical_ties = [selectiontools.LogicalTie(_) for _ in logical_ties]
