@@ -186,6 +186,9 @@ class HairpinHandler(Handler):
             if len(notes_to_span) == 1 and not self.omit_lone_note_dynamic:
                 hairpin_token = hairpin_tokens[group_index]
                 start_dynamic = hairpin_token[0]
+                if start_dynamic == 'niente':
+                    message = 'can not attach niente dynamics to components.'
+                    raise Exception(message)
                 dynamic = indicatortools.Dynamic(start_dynamic)
                 attach(dynamic, notes[0])
                 continue
