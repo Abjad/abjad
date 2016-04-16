@@ -223,6 +223,10 @@ class Spanner(AbjadObject):
     def _attachment_test(component):
         return True
 
+    @staticmethod
+    def _attachment_test_all(component_expression):
+        return True
+
     def _block_all_components(self):
         r'''Not composer-safe.
         '''
