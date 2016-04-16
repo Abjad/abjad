@@ -157,6 +157,12 @@ class Hairpin(Spanner):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
+    def _attachment_test_all(component_expression):
+        if isinstance(component_expression, scoretools.Leaf):
+            return False
+        return 1 < len(component_expression)
+
     def _copy_keyword_args(self, new):
         Spanner._copy_keyword_args(self, new)
         new._direction = self.direction
@@ -165,8 +171,15 @@ class Hairpin(Spanner):
         new._start_dynamic = self.start_dynamic
         new._stop_dynamic = self.stop_dynamic
 
+    def _format_time_test(self, leaf):
+        if not 1 < len(self._get_leaves()):
+            message = '{} fails format-time test.'
+            message = message.format(self)
+            raise Exception(message)
+
     def _get_lilypond_format_bundle(self, leaf):
         from abjad.tools import systemtools
+        self._format_time_test(leaf)
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         if self._is_my_first_leaf(leaf):
             contributions = override(self)._list_format_contributions(

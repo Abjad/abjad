@@ -20,6 +20,12 @@ def attach(
     from abjad.tools import scoretools
     from abjad.tools import spannertools
 
+    if hasattr(indicator, '_attachment_test_all'):
+        if not indicator._attachment_test_all(component_expression):
+            message = '{!r} attachment test fails for {!r}.'
+            message = message.format(indicator, component_expression)
+            raise Exception(message)
+
     if hasattr(indicator, '_attach'):
         prototype = (spannertools.Spanner, scoretools.GraceContainer)
         assert isinstance(indicator, prototype), repr(indicator)

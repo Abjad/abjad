@@ -31,33 +31,6 @@ def test_spannertools_Hairpin_01():
 
 
 def test_spannertools_Hairpin_02():
-    r'''Hairpins spanning a single leaf are allowed but not well-formed.
-    '''
-
-    staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    crescendo = Crescendo()
-    attach(crescendo, staff[0:1])
-
-    assert systemtools.TestManager.compare(
-        staff,
-        r'''
-        \new Staff {
-            c'8 \< \!
-            cs'8
-            d'8
-            ef'8
-            e'8
-            f'8
-            fs'8
-            g'8
-        }
-        '''
-        )
-
-    assert not inspect_(staff).is_well_formed()
-
-
-def test_spannertools_Hairpin_03():
     r'''Hairpins and dynamics apply separately.
     '''
 
@@ -88,7 +61,7 @@ def test_spannertools_Hairpin_03():
     assert inspect_(staff).is_well_formed()
 
 
-def test_spannertools_Hairpin_04():
+def test_spannertools_Hairpin_03():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
     crescendo = Crescendo()
@@ -99,7 +72,7 @@ def test_spannertools_Hairpin_04():
     assert not inspect_(staff).is_well_formed()
 
 
-def test_spannertools_Hairpin_05():
+def test_spannertools_Hairpin_04():
     r'''Apply back-to-back hairpins separately.
     '''
 
@@ -138,7 +111,7 @@ def test_spannertools_Hairpin_05():
     assert inspect_(staff).is_well_formed()
 
 
-def test_spannertools_Hairpin_06():
+def test_spannertools_Hairpin_05():
     r'''Hairpins format rests.
     '''
 
@@ -165,7 +138,7 @@ def test_spannertools_Hairpin_06():
     assert inspect_(staff).is_well_formed()
 
 
-def test_spannertools_Hairpin_07():
+def test_spannertools_Hairpin_06():
     r'''Trimmed hairpins with dynamics behave as expected.
     '''
 
@@ -203,7 +176,7 @@ def test_spannertools_Hairpin_07():
     assert inspect_(staff).is_well_formed()
 
 
-def test_spannertools_Hairpin_08():
+def test_spannertools_Hairpin_07():
     
     staff = Staff("c'4 d'4 e'4 f'4")
     attach(Dynamic('p'), staff[0])
