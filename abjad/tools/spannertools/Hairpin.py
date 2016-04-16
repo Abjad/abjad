@@ -11,7 +11,7 @@ class Hairpin(Spanner):
 
     ..  container:: example
 
-        **Example 1a.** Crescendo:
+        **Example 1.** Crescendo:
 
         ::
 
@@ -35,7 +35,7 @@ class Hairpin(Spanner):
                 r4
             }
 
-        **Example 1b.** Decrescendo:
+        **Example 2.** Decrescendo:
 
         ::
 
@@ -61,7 +61,7 @@ class Hairpin(Spanner):
 
     ..  container:: example
 
-        **Example 2a.** Crescendo dal niente:
+        **Example 3.** Crescendo dal niente:
 
         ::
 
@@ -84,7 +84,7 @@ class Hairpin(Spanner):
                 f'4 \f
             }
 
-        **Example 2b.** Decrescendo al niente:
+        **Example 4.** Decrescendo al niente:
 
         ::
 
@@ -143,6 +143,7 @@ class Hairpin(Spanner):
             direction)
         self._direction = direction
         self._include_rests = include_rests
+        assert self._is_valid_descriptor(descriptor), repr(descriptor)
         start_dynamic, shape_string, stop_dynamic = \
             self._parse_descriptor(descriptor)
         self._descriptor = descriptor
@@ -155,13 +156,33 @@ class Hairpin(Spanner):
             stop_dynamic = indicatortools.Dynamic(stop_dynamic)
         self._stop_dynamic = stop_dynamic
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        if self._compact_summary == '':
+            positional_argument_values = None
+        else:
+            positional_argument_values = (self._compact_summary, )
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=False,
+            keyword_argument_names=('descriptor',),
+            positional_argument_values=positional_argument_values,
+            )
+
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _attachment_test_all(component_expression):
+    def _attachment_test_all(self, component_expression):
         if isinstance(component_expression, scoretools.Leaf):
             return False
-        return 1 < len(component_expression)
+        formattable_components = []
+        for component in component_expression:
+            if (self.include_rests or 
+                isinstance(component, (scoretools.Note, scoretools.Chord))):
+                formattable_components.append(component)
+        return 1 < len(formattable_components)
 
     def _copy_keyword_args(self, new):
         Spanner._copy_keyword_args(self, new)
@@ -326,6 +347,27 @@ class Hairpin(Spanner):
                 return True
         else:
             return False
+
+    def _is_valid_descriptor(self, descriptor):
+        start, shape, stop = self._parse_descriptor(descriptor)
+        if shape not in self._hairpin_shape_strings:
+            return False
+        if (start is not None and
+            start not in indicatortools.Dynamic._dynamic_names):
+            return False
+        if (stop is not None and
+            stop not in indicatortools.Dynamic._dynamic_names):
+            return False
+        if start is not None and stop is not None:
+            start_ordinal = \
+                indicatortools.Dynamic.dynamic_name_to_dynamic_ordinal(start)
+            stop_ordinal = \
+                indicatortools.Dynamic.dynamic_name_to_dynamic_ordinal(stop)
+            if shape == '<' and not start_ordinal < stop_ordinal:
+                return False
+            if shape == '>' and not start_ordinal > stop_ordinal:
+                return False
+        return True
 
     def _parse_descriptor(self, descriptor):
         r'''Example descriptors:

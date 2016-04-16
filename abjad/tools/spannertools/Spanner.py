@@ -151,13 +151,15 @@ class Spanner(AbjadObject):
     @property
     def _repr_specification(self):
         from abjad.tools import systemtools
+        if self._compact_summary == '':
+            positional_argument_values = None
+        else:
+            positional_argument_values = (self._compact_summary, )
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
             keyword_argument_names=(),
-            positional_argument_values=(
-                self._compact_summary,
-                )
+            positional_argument_values=positional_argument_values,
             )
 
     @property
@@ -219,12 +221,10 @@ class Spanner(AbjadObject):
         else:
             raise TypeError(components)
 
-    @staticmethod
-    def _attachment_test(component):
+    def _attachment_test(self, component):
         return True
 
-    @staticmethod
-    def _attachment_test_all(component_expression):
+    def _attachment_test_all(self, component_expression):
         return True
 
     def _block_all_components(self):
