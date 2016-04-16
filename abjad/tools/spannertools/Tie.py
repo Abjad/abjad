@@ -55,8 +55,7 @@ class Tie(Spanner):
 
     ### PRIVATE METHODS ###
 
-    @staticmethod
-    def _attachment_test(component):
+    def _attachment_test(self, component):
         from abjad.tools import scoretools
         pitched_prototype = (scoretools.Note, scoretools.Chord)
         return isinstance(component, pitched_prototype)

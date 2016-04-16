@@ -425,7 +425,9 @@ class Leaf(Component):
             self._splice(tied_leaves, grow_spanners=True)
             parentage = self._get_parentage()
             if not parentage._get_spanners(spannertools.Tie):
-                if spannertools.Tie._attachment_test(self):
+                #if spannertools.Tie._attachment_test(self):
+                tie = spannertools.Tie()
+                if tie._attachment_test(self):
                     tie = spannertools.Tie(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )
@@ -442,7 +444,9 @@ class Leaf(Component):
                 x.written_duration = component.written_duration
             self._splice(tied_leaves, grow_spanners=True)
             if not self._get_spanners(spannertools.Tie):
-                if spannertools.Tie._attachment_test(self):
+                #if spannertools.Tie._attachment_test(self):
+                tie = spannertools.Tie()
+                if tie._attachment_test(self):
                     tie = spannertools.Tie(
                         use_messiaen_style_ties=use_messiaen_style_ties,
                         )

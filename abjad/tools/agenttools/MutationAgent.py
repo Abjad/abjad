@@ -413,7 +413,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> hairpin = spannertools.Hairpin('p < f')
-                >>> attach(hairpin, staff[:])
+                >>> attach(hairpin, staff.select_leaves())
                 >>> slur = spannertools.Slur()
                 >>> attach(slur, staff.select_leaves())
                 >>> show(staff) # doctest: +SKIP
