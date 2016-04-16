@@ -127,12 +127,17 @@ class Dynamic(AbjadValueObject):
         6: 'fffff',
         }
 
+    _lilypond_dynamic_commands = [
+        _ for _ in _dynamic_names if not _ == 'niente'
+        ]
+
     ### INITIALIZER ###
 
     def __init__(self, name='f'):
         from abjad.tools import scoretools
         if isinstance(name, type(self)):
             name = name.name
+        assert name in self._dynamic_names
         self._name = name
         self._default_scope = scoretools.Staff
 
@@ -168,6 +173,10 @@ class Dynamic(AbjadValueObject):
 
         Returns string.
         '''
+        if not self.name in self._lilypond_dynamic_commands:
+            message = 'dynamic name {!r} is not a LilyPond dynamic command.'
+            message = message.format(self.name)
+            raise Exception(message)
         if format_specification == 'lilypond':
             return self._lilypond_format
         superclass = super(Dynamic, self)
@@ -182,6 +191,16 @@ class Dynamic(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return r'\{}'.format(self.name)
+
+    ### PRIVATE METHODS ###
+
+    def _attachment_test_all(self, component_expression):
+        from abjad.tools import scoretools
+        if not isinstance(component_expression, scoretools.Leaf):
+            return False
+        if not self.name in self._lilypond_dynamic_commands:
+            return False
+        return True
 
     ### PUBLIC PROPERTIES ###
 
