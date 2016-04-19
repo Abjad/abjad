@@ -642,24 +642,25 @@ class DocumentationManager(abctools.AbjadObject):
         document.append(automodule_directive)
         ignored_classes = self._get_ignored_classes()
         classes = [_ for _ in classes if _ not in ignored_classes]
-        if classes:
-            rule = documentationtools.ReSTHorizontalRule()
-            document.append(rule)
-            lineage_heading = documentationtools.ReSTHeading(
-                level=3,
-                text='Lineage',
-                )
-            document.append(lineage_heading)
-            lineage_graph = self._get_tools_package_graph(tools_package)
-            graphviz_directive = documentationtools.ReSTGraphvizDirective(
-                graph=lineage_graph,
-                )
-            graphviz_container = documentationtools.ReSTDirective(
-                directive='container',
-                argument='graphviz',
-                )
-            graphviz_container.append(graphviz_directive)
-            document.append(graphviz_container)
+        if not self.__class__.__name__.startswith('ScoreLibrary'):
+            if classes:
+                rule = documentationtools.ReSTHorizontalRule()
+                document.append(rule)
+                lineage_heading = documentationtools.ReSTHeading(
+                    level=3,
+                    text='Lineage',
+                    )
+                document.append(lineage_heading)
+                lineage_graph = self._get_tools_package_graph(tools_package)
+                graphviz_directive = documentationtools.ReSTGraphvizDirective(
+                    graph=lineage_graph,
+                    )
+                graphviz_container = documentationtools.ReSTDirective(
+                    directive='container',
+                    argument='graphviz',
+                    )
+                graphviz_container.append(graphviz_directive)
+                document.append(graphviz_container)
         if classes:
             sections = {}
             for cls in classes:
