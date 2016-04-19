@@ -85,7 +85,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Abjad Experimental Packages'
-copyright = u'2008-2015, Trevor Bača & Josiah Wolf Oberholtzer'
+copyright = u'2008-2016, Trevor Bača & Josiah Wolf Oberholtzer'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
