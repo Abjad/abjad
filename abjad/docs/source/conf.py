@@ -14,7 +14,7 @@ PygmentsBridge.latex_formatter = CustomLatexFormatter
 
 ### CORE ###
 add_function_parentheses = True
-copyright = u'2008-2015, Trevor Bača & Josiah Wolf Oberholtzer'
+copyright = u'2008-2016, Trevor Bača & Josiah Wolf Oberholtzer'
 exclude_patterns = []
 extensions = [
     'sphinx.ext.autodoc',
@@ -83,7 +83,7 @@ man_pages = [
         'index',
         'abjad',
         u'Abjad Documentation',
-        [u'2008-2015, Trevor Bača & Josiah Wolf Oberholtzer'],
+        [u'2008-2016, Trevor Bača & Josiah Wolf Oberholtzer'],
         1,
         )
     ]
@@ -93,7 +93,7 @@ texinfo_documents = [
         'index',
         'Abjad',
         u'Abjad Documentation',
-        u'2008-2015, Trevor Bača & Josiah Wolf Oberholtzer',
+        u'2008-2016, Trevor Bača & Josiah Wolf Oberholtzer',
         'Abjad',
         'One line description of project.',
         'Miscellaneous',
