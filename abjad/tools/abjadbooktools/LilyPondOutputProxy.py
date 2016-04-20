@@ -99,9 +99,10 @@ class LilyPondOutputProxy(ImageOutputProxy):
             image_render_specifier.stylesheet and
             not image_render_specifier.no_stylesheet
             ):
-            lilypond_file._use_relative_includes = True
-            includes = [image_render_specifier.stylesheet]
-            lilypond_file._includes = tuple(includes)
+            if not lilypond_file.includes:
+                lilypond_file._use_relative_includes = True
+                includes = [image_render_specifier.stylesheet]
+                lilypond_file._includes = tuple(includes)
         self._payload = lilypond_file
 
     ### PRIVATE METHODS ###
