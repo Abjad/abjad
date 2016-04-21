@@ -1,7 +1,8 @@
 PyPDF2
+docutils
 ipython
 ply
 pytest
 six
 sphinx
-docutils
+sphinx-rtd-theme
