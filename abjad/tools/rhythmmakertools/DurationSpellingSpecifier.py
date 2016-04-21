@@ -120,7 +120,10 @@ class DurationSpellingSpecifier(AbjadValueObject):
                 )
         selections = []
         for measure in staff:
-            selections.append(measure[:])
+            contents = measure[:]
+            for component in contents:
+                component._parent = None
+            selections.append(contents)
         return selections
 
     @staticmethod
