@@ -495,9 +495,9 @@ class NamedPitch(Pitch):
         self, pitch_number, diatonic_pitch_class_name):
         from abjad.tools import pitchtools
         accidental, octave_number = self._spell_pitch_number(
-                pitch_number,
-                diatonic_pitch_class_name,
-                )
+            pitch_number,
+            diatonic_pitch_class_name,
+            )
         pitch_class_name = diatonic_pitch_class_name + \
             accidental.abbreviation
         named_pitch_class = pitchtools.NamedPitchClass(pitch_class_name)

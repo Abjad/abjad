@@ -290,9 +290,15 @@ class NumberedPitchClass(PitchClass):
         self._pitch_class_number = expr.pitch_class_number
 
     def _initialize_by_number(self, expr):
+        expr = round((float(expr) % 12) * 4) / 4
+        div, mod = divmod(expr, 1)
+        if mod == 0.75:
+            div += 1
+        elif mod == 0.5:
+            div += 0.5
+        div %= 12
         self._pitch_class_number = \
-            mathtools.integer_equivalent_number_to_integer(
-                round((float(expr) % 12) * 2) / 2)
+            mathtools.integer_equivalent_number_to_integer(div)
 
     def _initialize_by_pitch_carrier(self, expr):
         from abjad.tools import pitchtools

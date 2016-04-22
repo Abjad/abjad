@@ -171,12 +171,15 @@ class Pitch(AbjadObject):
             >>> pitchtools.NumberedPitch.from_hertz(440)
             NumberedPitch(9)
 
+        ::
+
+            >>> pitchtools.NamedPitch.from_hertz(519)
+            NamedPitch("c'")
+
         Returns new pitch.
         '''
         hertz = float(hertz)
-        midi = 69. + 12. * math.log(hertz / 440., 2)
-        midi -= 60
-        midi = round(midi * 4.) / 4.
+        midi = 9. + (12. * math.log(hertz / 440., 2))
         pitch = cls(midi)
         return pitch
 
