@@ -47,11 +47,20 @@ class TieSpecifier(AbjadValueObject):
             patterntools.Pattern,
             patterntools.PatternInventory,
             )
+
         assert isinstance(tie_across_divisions, prototype)
         self._tie_across_divisions = tie_across_divisions
         if tie_consecutive_notes is not None:
-            tie_consecutive_notes = bool(tie_consecutive_notes)
+            if isinstance(tie_consecutive_notes, bool):
+                tie_consecutive_notes = \
+                    patterntools.select_all()
+            elif isinstance(tie_consecutive_notes, patterntools.Pattern):
+                tie_consecutive_notes = tie_consecutive_notes
+            else:
+                message = 'tie_consecutive_notes must be boolean or pattern'
+                raise Exception(message)
         self._tie_consecutive_notes = tie_consecutive_notes
+
         if self.tie_consecutive_notes and self.strip_ties:
             message = 'can not tie leaves and strip ties at same time.'
             raise Exception(message)
@@ -147,6 +156,7 @@ class TieSpecifier(AbjadValueObject):
     def _do_tie_consecutive_notes(self, divisions):
         if not self.tie_consecutive_notes:
             return
+
         leaves = list(iterate(divisions).by_leaf())
         for leaf in leaves:
             detach(spannertools.Tie, leaf)
@@ -155,7 +165,32 @@ class TieSpecifier(AbjadValueObject):
             group = list(group)
             if isinstance(group[0], scoretools.Note):
                 if 1 < len(group):
-                    attach(spannertools.Tie(), group)
+                    subgroups = self._split_at_indices(group)
+                    for subgroup in subgroups:
+                        if 1 < len(subgroup):
+                            attach(spannertools.Tie(), subgroup)
+
+    def _split_at_indices(self, group):
+        length = len(group)
+        inverse_vector = \
+            (~self.tie_consecutive_notes).get_boolean_vector(length)
+        inverse = patterntools.Pattern.from_vector(inverse_vector)
+        indices = inverse.indices
+
+        counts = []
+        last = 0
+        for index in indices:
+            count = index - last
+            if count > 0:
+                counts.append(count)
+            last = index
+        counts.append(length - last)
+
+        subgroups = sequencetools.partition_sequence_by_counts(
+            sequence=group,
+            counts=counts
+            )
+        return subgroups
 
     ### PUBLIC PROPERTIES ###
 
