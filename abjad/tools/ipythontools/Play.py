@@ -8,90 +8,37 @@ class Play(object):
     r'''IPython replacement callable for `topleveltools.show()`.
 
     Integrates audio rendering of Abjad MIDI files into IPython notebooks
-    using `fluidsynth`.
+    using `timidity`.
     '''
-
-    ### CLASS VARIABLES ###
-
-    __slots__ = (
-        '_midi_bank',
-        '_sound_font',
-        )
-
-    ### INITIALIZER ###
-
-    def __init__(self):
-        from abjad.tools import ipythontools
-        configuration = ipythontools.IPythonConfiguration()
-        self._midi_bank = configuration['midi_bank'] or 'gs'
-        sound_font = configuration['sound_font']
-        if sound_font:
-            sound_font = os.path.expanduser(sound_font)
-            if not os.path.isabs(sound_font):
-                sound_font = os.path.join(
-                    configuration.configuration_directory,
-                    sound_font,
-                    )
-        self._sound_font = sound_font
 
     ### SPECIAL METHODS ###
 
     def __call__(self, expr):
         '''Render `expr` as Vorbis audio and display it in the IPython notebook
         as an <audio> tag.
-
-        This function requires `fluidsynth` and `ffmpeg` to convert MIDI into
-        an audio recording.
         '''
         from abjad.tools import systemtools
         from abjad.tools import topleveltools
-        if not systemtools.IOManager.find_executable('fluidsynth'):
-            message = 'WARNING: fluidsynth is not available; '
-            message += 'cannot render MIDI file to MP3.'
-            print(message)
-            return
-        if not systemtools.IOManager.find_executable('ffmpeg'):
-            message = 'WARNING: ffmpeg is not available; '
-            message += 'cannot render MIDI file to MP3.'
-            print(message)
-            return
         assert hasattr(expr, '__illustrate__')
-        sound_font = self.sound_font
-        if not sound_font:
-            message = 'sound_font is not specified, please call '
-            message += "'load_sound_font(sound_font, midi_bank)' "
-            message += 'to select a sound font.'
+        if not systemtools.IOManager.find_executable('timidity'):
+            message = 'WARNING: timidity is not available; '
+            message += 'cannot render MIDI file to OGG.'
             print(message)
-        sound_font = sound_font or ''
+            return
         temp_directory = tempfile.mkdtemp()
         midi_file_path = os.path.join(temp_directory, 'out.mid')
         result = topleveltools.persist(expr).as_midi(midi_file_path)
         midi_file_path, format_time, render_time = result
         ogg_file_path = os.path.join(temp_directory, 'out.ogg')
-        mp3_file_path = os.path.join(temp_directory, 'out.mp3')
         encoded_audio = self._get_ogg_as_base64(
-            self.midi_bank,
             midi_file_path,
             ogg_file_path,
-            sound_font,
             )
         if encoded_audio is not None:
-            encoded_audio = self._get_mp3_as_base64(
-                mp3_file_path,
-                ogg_file_path,
-                )
-            if encoded_audio is not None:
-                self._display_mp3_audio_tag(encoded_audio)
+            self._display_ogg_audio_tag(encoded_audio)
         shutil.rmtree(temp_directory)
 
     ### PRIVATE METHODS ###
-
-    def _display_mp3_audio_tag(self, encoded_audio):
-        from IPython.core.display import display_html
-        audio_tag = '<audio controls type="audio/mpeg" '
-        audio_tag += 'src="data:audio/mpeg;base64,{}">'
-        audio_tag = audio_tag.format(encoded_audio)
-        display_html(audio_tag, raw=True)
 
     def _display_ogg_audio_tag(self, encoded_audio):
         from IPython.core.display import display_html
@@ -108,51 +55,23 @@ class Play(object):
             data = file_pointer.read()
             return base64.b64encode(data).decode('utf-8')
 
-    def _get_mp3_as_base64(
-        self,
-        mp3_file_path,
-        ogg_file_path,
-        ):
-        from abjad.tools import systemtools
-        ffmpeg_command = 'ffmpeg -i {} {}'.format(ogg_file_path, mp3_file_path)
-        # print(ffmpeg_command)
-        result = systemtools.IOManager.spawn_subprocess(ffmpeg_command)
-        if result == 0:
-            encoded_audio = self._get_base64_from_file(mp3_file_path)
-            return encoded_audio
-        message = 'ffmpeg failed to render OGG as MP3, result: {}'
-        message = message.format(result)
-        print(message)
-        return None
-
     def _get_ogg_as_base64(
         self,
-        midi_bank,
         midi_file_path,
         ogg_file_path,
-        sound_font,
         ):
         from abjad.tools import systemtools
-        fluidsynth_command = (
-            'fluidsynth',
-            '-T oga',
-            '-nli',
-            '-r 44100',
-            '-o synth.midi-bank-select={}'.format(midi_bank),
-            '-F',
-            ogg_file_path,
-            sound_font,
-            midi_file_path,
+        command = 'timidity {midi_file_path} -Ov -o {ogg_file_path}'.format(
+            midi_file_path=midi_file_path,
+            ogg_file_path=ogg_file_path,
             )
-        fluidsynth_command = ' '.join(fluidsynth_command)
-        # print(fluidsynth_command)
-        result = systemtools.IOManager.spawn_subprocess(fluidsynth_command)
+        result = systemtools.IOManager.spawn_subprocess(command)
         if result == 0:
             encoded_audio = self._get_base64_from_file(ogg_file_path)
             return encoded_audio
-        message = 'fluidsynth failed to render MIDI as OGG, result: {}'
+        message = 'timidity failed to render MIDI as OGG, result: {}'
         message = message.format(result)
-        # print(message)
+        print(message)
         return None
 
     ### PUBLIC METHODS ###

@@ -1,5 +1,7 @@
 language: python
 
+cache: pip
+
 sudo: false
 
 python:
@@ -26,6 +28,7 @@ addons:
             - texlive-latex-recommended
 
 before_install:
+    - echo TRAVIS_PYTHON_VERSION $TRAVIS_PYTHON_VERSION
     - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.28-1.linux-64.sh
     - sh lilypond-2.19.28-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
@@ -39,22 +42,21 @@ install:
     - pip install -e .
     # prime parser tables (should fail if normal install doesn't work).
     - abjad/scr/devel/prime-parser-tables
-    # then install development dependencies.
-    - pip install -e .[development]
+    # then install development and ipython dependencies.
+    - pip install -e .[development,ipython]
     # echo the configuration file path to debug read-only-filesystem handling
     - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
 
 script:
     - abjad/scr/ajv doctest --diff experimental
     - py.test -rf experimental
-
-    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv doctest --diff abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a `which py.test` -rf abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coverage run -a abjad/scr/ajv api -R; fi
-
-    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv doctest --diff abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then `which py.test` -rf abjad; fi
-    - if [[ $TRAVIS_PYTHON_VERSION == 'pypy'* ]]; then abjad/scr/ajv api -R; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == 3* ]]; then coverage run -a `which jupyter` nbconvert --to=html --ExecutePreprocessor.enabled=True abjad/ext/abjad-ipython-notebook-test-no-audio.ipynb; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != pypy ]]; then coverage run -a abjad/scr/ajv doctest --diff abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != pypy ]]; then coverage run -a `which py.test` -rf abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != pypy ]]; then coverage run -a abjad/scr/ajv api -R; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then abjad/scr/ajv doctest --diff abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then `which py.test` -rf abjad; fi
+    - if [[ $TRAVIS_PYTHON_VERSION == pypy ]]; then abjad/scr/ajv api -R; fi
 
 after_success:
-    - if [[ $TRAVIS_PYTHON_VERSION != 'pypy'* ]]; then coveralls; fi
+    - if [[ $TRAVIS_PYTHON_VERSION != pypy ]]; then coveralls; fi
