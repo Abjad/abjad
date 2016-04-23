@@ -297,16 +297,34 @@ class Scheme(AbjadValueObject):
                 >>> schemetools.Scheme.format_scheme_value(string, verbatim=True)
                 '(lambda (grob) (grob-interpret-markup grob #{ \\markup \\musicglyph #"noteheads.s0harmonic" #}))'
 
+        ..  container:: example
+
+            **Example 4.** Hash symbols in strings will result in quoted output
+            unless `verbatim` is True, in order to prevent LilyPond parsing
+            errors:
+
+            ::
+
+                >>> string = '#1-finger'
+                >>> schemetools.Scheme.format_scheme_value(string)
+                '"#1-finger"'
+
+            ::
+
+                >>> schemetools.Scheme.format_scheme_value(string, verbatim=True)
+                '#1-finger'
+
         Returns string.
         '''
         from abjad.tools import schemetools
-        if isinstance(value, str) and not verbatim:
-            value = value.replace('"', r'\"')
-            if -1 == value.find(' ') and not force_quotes:
+        if isinstance(value, str):
+            if not verbatim:
+                value = value.replace('"', r'\"')
+                if force_quotes or ' ' in value or '#' in value:
+                    return '"{}"'.format(value)
                 return value
-            return '"{}"'.format(value)
-        elif isinstance(value, str) and verbatim:
-            return value
+            else:
+                return value
         elif isinstance(value, bool):
             if value:
                 return '#t'

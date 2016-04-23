@@ -303,8 +303,7 @@ class Markup(AbjadValueObject):
         # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
-            if '"' in content:
-                content = schemetools.Scheme.format_scheme_value(content)
+            content = schemetools.Scheme.format_scheme_value(content)
             if content:
                 content = '{{ {} }}'.format(content)
             else:

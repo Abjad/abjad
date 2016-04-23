@@ -19,8 +19,8 @@ class ContrabassFlute(Instrument):
 
         >>> print(format(staff))
         \new Staff {
-            \set Staff.instrumentName = \markup { Contrabass flute }
-            \set Staff.shortInstrumentName = \markup { Cbass. fl. }
+            \set Staff.instrumentName = \markup { "Contrabass flute" }
+            \set Staff.shortInstrumentName = \markup { "Cbass. fl." }
             c'4
             d'4
             e'4
