@@ -52,8 +52,9 @@ class TieSpecifier(AbjadValueObject):
         self._tie_across_divisions = tie_across_divisions
         if tie_consecutive_notes is not None:
             if isinstance(tie_consecutive_notes, bool):
+                inverted = not tie_consecutive_notes
                 tie_consecutive_notes = \
-                    patterntools.select_all()
+                    patterntools.select_all(inverted)
             elif isinstance(tie_consecutive_notes, patterntools.Pattern):
                 tie_consecutive_notes = tie_consecutive_notes
             else:
