@@ -35,7 +35,7 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
         slot 3:
         slot 4:
             leaf body:
-                c'4 -\staccato -\tenuto _ \markup { some markup }
+                c'4 -\staccato -\tenuto _ \markup { "some markup" }
         slot 5:
         slot 7:
             comments:

@@ -19,8 +19,8 @@ class BaritoneSaxophone(Instrument):
 
         >>> print(format(staff))
         \new Staff {
-            \set Staff.instrumentName = \markup { Baritone saxophone }
-            \set Staff.shortInstrumentName = \markup { Bar. sax. }
+            \set Staff.instrumentName = \markup { "Baritone saxophone" }
+            \set Staff.shortInstrumentName = \markup { "Bar. sax." }
             c'4
             d'4
             e'4

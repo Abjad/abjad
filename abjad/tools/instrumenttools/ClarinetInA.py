@@ -19,8 +19,12 @@ class ClarinetInA(Instrument):
 
         >>> print(format(staff))
         \new Staff {
-            \set Staff.instrumentName = \markup { Clarinet in A }
-            \set Staff.shortInstrumentName = \markup { Cl. A \natural }
+            \set Staff.instrumentName = \markup { "Clarinet in A" }
+            \set Staff.shortInstrumentName = \markup {
+                Cl.
+                A
+                \natural
+            }
             c'4
             d'4
             e'4

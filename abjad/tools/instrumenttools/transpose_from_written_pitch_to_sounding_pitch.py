@@ -21,8 +21,8 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
 
         >>> print(format(staff))
         \new Staff {
-            \set Staff.instrumentName = \markup { Clarinet in B-flat }
-            \set Staff.shortInstrumentName = \markup { Cl. in B-flat }
+            \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
+            \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
             <c' e' g'>4
             d'4
             r4
@@ -38,8 +38,8 @@ def transpose_from_written_pitch_to_sounding_pitch(expr):
 
         >>> print(format(staff))
         \new Staff {
-            \set Staff.instrumentName = \markup { Clarinet in B-flat }
-            \set Staff.shortInstrumentName = \markup { Cl. in B-flat }
+            \set Staff.instrumentName = \markup { "Clarinet in B-flat" }
+            \set Staff.shortInstrumentName = \markup { "Cl. in B-flat" }
             <bf d' f'>4
             c'4
             r4

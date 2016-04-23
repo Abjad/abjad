@@ -19,8 +19,8 @@ class EnglishHorn(Instrument):
 
         >>> print(format(staff))
         \new Staff {
-            \set Staff.instrumentName = \markup { English horn }
-            \set Staff.shortInstrumentName = \markup { Eng. hn. }
+            \set Staff.instrumentName = \markup { "English horn" }
+            \set Staff.shortInstrumentName = \markup { "Eng. hn." }
             c'4
             d'4
             e'4
