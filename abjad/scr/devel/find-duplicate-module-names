@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 import os
 from abjad.tools import systemtools
 
@@ -13,49 +14,54 @@ def find_all_duplicate_module_names():
     expected_duplicate_file_names = (
         'conf.py',
         'illustration_builder.py',
-        'make_illustration_from_output_material.py', 
+        'make_illustration_from_output_material.py',
         'material_definition.py',
         'output_material.py',
         'segment_01.py',
         'segment_02.py',
         'select.py',
-        'tags.py', 
+        'tags.py',
         'Voice.py',
+        '__views__.py',
+        '__metadata__.py',
         )
 
     for directory, subdirectory_names, file_names in os.walk('.'):
         for file_name in file_names:
-            if file_name.endswith('.py'):
-                if not file_name.startswith('test_') and \
-                    'demos' not in directory and \
-                    file_name not in expected_duplicate_file_names:
-                    if not file_name == '__init__.py':
-                        all_file_names.append(file_name)
-                        all_directorys.append(directory)
-                        if file_name not in unique_file_names:
-                            unique_file_names.append(file_name)
-                        else:
-                            second_full_path = os.path.join(
-                                directory, 
-                                file_name,
-                                )
-                            index = all_file_names.index(file_name)
-                            duplicate_directory = \
-                                all_directorys[index]
-                            first_full_path = os.path.join(
-                                duplicate_directory, 
-                                file_name,
-                                )
-                            duplicate_file_names.append(first_full_path)
-                            duplicate_file_names.append(second_full_path)
+            if not file_name.endswith('.py') or file_name.startswith('test'):
+                continue
+            elif 'demos' in directory:
+                continue
+            elif file_name in expected_duplicate_file_names:
+                continue
+            elif file_name == '__init__.py':
+                continue
+            all_file_names.append(file_name)
+            all_directorys.append(directory)
+            if file_name not in unique_file_names:
+                unique_file_names.append(file_name)
+            else:
+                second_full_path = os.path.join(
+                    directory,
+                    file_name,
+                    )
+                index = all_file_names.index(file_name)
+                duplicate_directory = \
+                    all_directorys[index]
+                first_full_path = os.path.join(
+                    duplicate_directory,
+                    file_name,
+                    )
+                duplicate_file_names.append(first_full_path)
+                duplicate_file_names.append(second_full_path)
 
-    print 'Total nontest modules:     {}'.format(len(all_file_names))
-    print 'Unique nontest modules:    {}'.format(len(unique_file_names))
-    print
-    print 'Duplicate nontest module:  {}'.format(len(duplicate_file_names))
+    print('Total nontest modules:     {}'.format(len(all_file_names)))
+    print('Unique nontest modules:    {}'.format(len(unique_file_names)))
+    print()
+    print('Duplicate nontest module:  {}'.format(len(duplicate_file_names)))
     for duplicate_file_name in duplicate_file_names:
-        print duplicate_file_name
-    print
+        print(duplicate_file_name)
+    print()
 
 
 if __name__ == '__main__':

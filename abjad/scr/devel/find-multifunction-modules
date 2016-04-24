@@ -1,8 +1,7 @@
 #! /usr/bin/env python
+from __future__ import print_function
 import os
-import pprint
 import re
-from abjad import abjad_configuration
 from abjad.tools import systemtools
 
 
@@ -17,8 +16,9 @@ file_name_blacklist = (
     'setup.py',
     )
 
-class_definition_pattern = re.compile(r'\s*class\s+(\w+)')
-function_definition_pattern = re.compile(r'\s*def\s+(\w+)')
+class_definition_pattern = re.compile(r'^class\s+(\w+)')
+function_definition_pattern = re.compile(r'^def\s+(\w+)')
+
 
 def find_multifunction_modules():
 
@@ -45,30 +45,31 @@ def find_multifunction_modules():
 
     total = len(multifunction_modules)
     if total:
-        print 'Printing modles with multiple public functions ...'
-        print
+        print('Printing modles with multiple public functions ...')
+        print()
         for module_name, function_names in multifunction_modules:
-            print module_name
+            print(module_name)
             for function_name in function_names:
-                print '\t' + function_name
-            print
+                print('\t' + function_name)
+            print()
 
-    print 'Total modules with multiple public functions: {}'.format(total)
-    print
+    print('Total modules with multiple public functions: {}'.format(total))
+    print()
 
 
 def has_multiple_public_function_definitions(path, file_name):
     function_names = []
     full_name = os.path.join(path, file_name)
-    for line in file(full_name, 'r').readlines():
-        match = class_definition_pattern.match(line)
-        if match is not None:
-            return False
-        match = function_definition_pattern.match(line)
-        if match is not None:
-            function_name = match.groups()[0]
-            if not function_name.startswith('_'):
-                function_names.append(function_name)
+    with open(full_name, 'r') as file_pointer:
+        for line in file_pointer:
+            match = class_definition_pattern.match(line)
+            if match is not None:
+                return False
+            match = function_definition_pattern.match(line)
+            if match is not None:
+                function_name = match.groups()[0]
+                if not function_name.startswith('_'):
+                    function_names.append(function_name)
     if 1 < len(function_names):
         return function_names
     else:

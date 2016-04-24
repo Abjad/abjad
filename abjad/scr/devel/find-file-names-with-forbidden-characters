@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 import os
 
 
@@ -13,21 +14,18 @@ def find_file_names_with_forbidden_characters():
                 total_files += 1
                 for forbidden_character in forbidden_characters:
                     if forbidden_character in file_name:
-                        full_file_name = os.path.join(
-                            directory, 
-                            file_name,
-                            )
+                        full_file_name = os.path.join(directory, file_name)
                         bad_file_names.append(full_file_name)
                         break
 
-    print 'Total file names:    {}'.format(total_files)
-    print 'Bad file names:      {}'.format(total_bad_files)
-    print
+    print('Total file names:    {}'.format(total_files))
+    print('Bad file names:      {}'.format(total_bad_files))
+    print()
     if bad_file_names:
-        print 'Printing bad file names ...'
+        print('Printing bad file names ...')
         for bad_file_name in bad_file_names:
-            print bad_file_name
-        print
+            print(bad_file_name)
+        print()
 
 
 if __name__ == '__main__':
