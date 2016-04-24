@@ -77,9 +77,9 @@ def get_git_version():
 
 def get_python_version():
     command = 'python --version'
-    pipe = subprocess.Popen(command, shell=True, stderr=subprocess.PIPE)
-    _, stderr = pipe.communicate()
-    return stderr.decode('utf-8').splitlines()[0]
+    pipe = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    stdout, stderr = pipe.communicate()
+    return stdout.decode('utf-8').splitlines()[0]
 
 
 def get_pip_version():
