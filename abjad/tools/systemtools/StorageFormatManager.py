@@ -310,20 +310,6 @@ class StorageFormatManager(AbjadObject):
                 ...     )
                 ('from abjad.tools import scoretools',)
 
-        ..  container:: example
-
-            **Example 2.** Gets import statements for object in Abjad
-            experimental branch:
-
-            ::
-
-                >>> from experimental import makertools
-                >>> division_maker = makertools.DivisionMaker()
-                >>> systemtools.StorageFormatManager.get_import_statements(
-                ...     division_maker
-                ...     )
-                ('from experimental.tools import makertools',)
-
         Returns tuple of strings.
         '''
         manager = StorageFormatManager
