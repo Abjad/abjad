@@ -73,10 +73,14 @@ class DocumentationManager(abctools.AbjadObject):
                 ))
             for attr in attrs:
                 options = {
-                    'noindex': True,
+                    #'noindex': True,
                     }
                 autodoc = documentationtools.ReSTAutodocDirective(
-                    argument='{}.{}'.format(cls.__name__, attr.name),
+                    argument='{}.{}.{}'.format(
+                        cls.__module__,
+                        cls.__name__,
+                        attr.name,
+                        ),
                     directive=directive,
                     options=options,
                     )
