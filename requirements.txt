@@ -1,6 +1,7 @@
 PyPDF2
 docutils
 ipython
+jupyter
 ply
 pytest
 six

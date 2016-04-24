@@ -73,6 +73,7 @@ extras_require = {
         ],
     'ipython': [
         'ipython',
+        'jupyter',
         ],
     }
 
