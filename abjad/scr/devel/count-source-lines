@@ -10,7 +10,7 @@ def count_source_lines():
     source_module_names = 0
     test_lines = 0
     test_module_names = 0
-    for directory, directory_names, file_names  in os.walk('.'):
+    for directory, directory_names, file_names in os.walk('.'):
         if '.svn' in directory_names:
             directory_names.remove('.svn')
         module_names = [x for x in file_names if x.endswith('.py')]

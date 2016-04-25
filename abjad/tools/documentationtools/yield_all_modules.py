@@ -12,6 +12,9 @@ def yield_all_modules(
         'test',
         'docs',
         ),
+    ignored_file_names=(
+        '__init__.py',
+        ),
     root_package_name=None,
     visit_private_modules=False,
     ):
@@ -49,17 +52,19 @@ def yield_all_modules(
                 directories.remove(directory)
         directories.sort()
         # filter files
-        for file in files[:]:
-            if file.startswith('__'):
-                files.remove(file)
-            elif not file.endswith('.py'):
-                files.remove(file)
+        for file_name in files[:]:
+            if file_name in ignored_file_names:
+                files.remove(file_name)
+            elif not file_name.endswith('.py'):
+                files.remove(file_name)
         files.sort()
         # process files
-        for file in files:
-            path = os.path.join(current_root, file).replace('.py', '')
+        for file_name in files:
+            if file_name == '__init__.py':
+                path = current_root
+            else:
+                path = os.path.join(current_root, file_name).replace('.py', '')
             parts = path.split(os.path.sep)
-            #object_name = parts[-1]
             module_name = []
             for part in reversed(parts):
                 module_name.append(part)
