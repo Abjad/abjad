@@ -224,6 +224,19 @@ class LilyPondGrob(abctools.AbjadValueObject):
             )
 
     @property
+    def name(self):
+        r'''Gets name of LilyPond grob.
+
+        ::
+
+            >>> grob.name
+            'Beam'
+
+        Returns string.
+        '''
+        return self._name
+
+    @property
     def property_names(self):
         r'''Gets property names of LilyPond grob.
 
@@ -301,16 +314,3 @@ class LilyPondGrob(abctools.AbjadValueObject):
         for interface in self.interfaces:
             property_names.update(interface.property_names)
         return tuple(sorted(property_names))
-
-    @property
-    def name(self):
-        r'''Gets name of LilyPond grob.
-
-        ::
-
-            >>> grob.name
-            'Beam'
-
-        Returns string.
-        '''
-        return self._name

@@ -7,6 +7,47 @@ from abjad.tools import stringtools
 
 class CodeBlockTests(unittest.TestCase):
 
+    def test_as_docutils_01(self):
+        code_block = abjadbooktools.CodeBlock(())
+        code_block.output_proxies.append(
+            abjadbooktools.CodeOutputProxy(
+                (
+                    '>>> for i in range(4):',
+                    '...     print(i)',
+                    '0',
+                    '1',
+                    '2',
+                    '3',
+                    '>>> 1 + 1',
+                    '2',
+                    ),
+                ),
+            )
+        result = code_block.as_docutils()
+        self.assertEqual(len(result), 2)
+        self.assertEqual(
+            stringtools.normalize(result[0].pformat()),
+            stringtools.normalize(
+                r'''
+                <literal_block xml:space="preserve">
+                    >>> for i in range(4):
+                    ...     print(i)
+                    0
+                    1
+                    2
+                    3
+                '''),
+            )
+        self.assertEqual(
+            stringtools.normalize(result[1].pformat()),
+            stringtools.normalize(
+                r'''
+                <literal_block xml:space="preserve">
+                    >>> 1 + 1
+                    2
+                '''),
+            )
+
     def test_from_docutils_abjad_import_block_01(self):
         source = '''
         ..  import:: abjad.tools.abjadbooktools:example_function
@@ -222,45 +263,4 @@ class CodeBlockTests(unittest.TestCase):
                 allow_exceptions=True,
                 ),
             starting_line_number=3,
-            )
-
-    def test_as_docutils_01(self):
-        code_block = abjadbooktools.CodeBlock(())
-        code_block.output_proxies.append(
-            abjadbooktools.CodeOutputProxy(
-                (
-                    '>>> for i in range(4):',
-                    '...     print(i)',
-                    '0',
-                    '1',
-                    '2',
-                    '3',
-                    '>>> 1 + 1',
-                    '2',
-                    ),
-                ),
-            )
-        result = code_block.as_docutils()
-        self.assertEqual(len(result), 2)
-        self.assertEqual(
-            stringtools.normalize(result[0].pformat()),
-            stringtools.normalize(
-                r'''
-                <literal_block xml:space="preserve">
-                    >>> for i in range(4):
-                    ...     print(i)
-                    0
-                    1
-                    2
-                    3
-                '''),
-            )
-        self.assertEqual(
-            stringtools.normalize(result[1].pformat()),
-            stringtools.normalize(
-                r'''
-                <literal_block xml:space="preserve">
-                    >>> 1 + 1
-                    2
-                '''),
             )

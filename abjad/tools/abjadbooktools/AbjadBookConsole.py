@@ -36,6 +36,23 @@ class AbjadBookConsole(code.InteractiveConsole):
 
     ### PUBLIC METHODS ###
 
+    def restore_topleveltools_dict(self):
+        r'''Restores the topleveltols module dictionary.
+        '''
+        topleveltools = self.locals['topleveltools']
+        topleveltools.__dict__.update(self.cached_topleveltools_dict)
+
+    def save_topleveltools_dict(self):
+        r'''Caches the dictionary of the topleveltools module.
+
+        Because CodeBlock replaces various topleveltools function references
+        with its own proxies, the originals must be cached so they can later be
+        restored. Otherwise Sphinx's autodoc extension will discover the
+        abjad-book function proxies and not the originals.
+        '''
+        topleveltools = self.locals['topleveltools']
+        self.cached_topleveltools_dict = topleveltools.__dict__.copy()
+
     def showsyntaxerror(self, filename=None):
         r'''Proxies Python's InteractiveConsole.showsyntaxerror().
         '''
@@ -56,23 +73,6 @@ class AbjadBookConsole(code.InteractiveConsole):
         '''
         if self.document_handler:
             self.document_handler.unregister_error()
-
-    def save_topleveltools_dict(self):
-        r'''Caches the dictionary of the topleveltools module.
-
-        Because CodeBlock replaces various topleveltools function references
-        with its own proxies, the originals must be cached so they can later be
-        restored. Otherwise Sphinx's autodoc extension will discover the
-        abjad-book function proxies and not the originals.
-        '''
-        topleveltools = self.locals['topleveltools']
-        self.cached_topleveltools_dict = topleveltools.__dict__.copy()
-
-    def restore_topleveltools_dict(self):
-        r'''Restores the topleveltols module dictionary.
-        '''
-        topleveltools = self.locals['topleveltools']
-        topleveltools.__dict__.update(self.cached_topleveltools_dict)
 
     ### PUBLIC PROPERTIES ###
 

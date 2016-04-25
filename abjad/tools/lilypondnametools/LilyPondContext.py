@@ -725,20 +725,6 @@ class LilyPondContext(abctools.AbjadValueObject):
         return tuple(sorted(grobs, key=lambda x: x.name))
 
     @property
-    def is_custom(self):
-        r'''Is true if LilyPond context is user-created. Otherwise false.
-
-        ::
-
-            >>> context.is_custom
-            False
-
-        Returns true or false.
-        '''
-        from abjad.ly import contexts
-        return bool(contexts[self.name].get('is_custom', False))
-
-    @property
     def is_bottom_context(self):
         r'''Is true if LilyPond context is a bottom context. Otherwise false.
 
@@ -786,6 +772,20 @@ class LilyPondContext(abctools.AbjadValueObject):
         if not self.accepts:
             return True
         return False
+
+    @property
+    def is_custom(self):
+        r'''Is true if LilyPond context is user-created. Otherwise false.
+
+        ::
+
+            >>> context.is_custom
+            False
+
+        Returns true or false.
+        '''
+        from abjad.ly import contexts
+        return bool(contexts[self.name].get('is_custom', False))
 
     @property
     def is_global_context(self):

@@ -79,19 +79,6 @@ class TupletSpellingSpecifier(AbjadValueObject):
         return self._flatten_trivial_tuplets
 
     @property
-    def rewrite_rest_filled_tuplets(self):
-        r'''Is true when tuplet spelling should flatten rest-filled tuplets.
-        Otherwise false.
-
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
-        '''
-        return self._rewrite_rest_filled_tuplets
-
-    @property
     def is_diminution(self):
         r'''Is true when tuplet should be spelled as diminution. Otherwise
         false.
@@ -103,6 +90,19 @@ class TupletSpellingSpecifier(AbjadValueObject):
         Returns true or false.
         '''
         return self._is_diminution
+
+    @property
+    def rewrite_rest_filled_tuplets(self):
+        r'''Is true when tuplet spelling should flatten rest-filled tuplets.
+        Otherwise false.
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._rewrite_rest_filled_tuplets
 
     @property
     def simplify_redundant_tuplets(self):

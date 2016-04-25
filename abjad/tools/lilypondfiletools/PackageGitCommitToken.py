@@ -58,14 +58,6 @@ class PackageGitCommitToken(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _get_package_path(self):
-        module = importlib.import_module(self._package_name)
-        path = module.__path__[0]
-        if not os.path.isdir(path):
-            path = os.path.dirname(path)
-        path = os.path.abspath(path)
-        return path
-
     def _get_commit_timestamp(self, commit_hash):
         command = 'git show -s --format=%ci {}'.format(commit_hash)
         return self._run_command(command)
@@ -77,6 +69,14 @@ class PackageGitCommitToken(AbjadValueObject):
     def _get_git_hash(self):
         command = 'git rev-parse HEAD'
         return self._run_command(command)
+
+    def _get_package_path(self):
+        module = importlib.import_module(self._package_name)
+        path = module.__path__[0]
+        if not os.path.isdir(path):
+            path = os.path.dirname(path)
+        path = os.path.abspath(path)
+        return path
 
     def _run_command(self, command):
         process = subprocess.Popen(

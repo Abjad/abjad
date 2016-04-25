@@ -160,42 +160,6 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
                 asset_output_proxies.append(output_proxy)
         return asset_output_proxies
 
-    def collect_output_blocks(self, input_file_contents, configuration=None):
-        configuration = configuration or {}
-        latex_configuration = configuration.get('latex', {})
-        output_start_delimiter = latex_configuration.get(
-            'output-start-delimiter',
-            ('%%% ABJADBOOK START %%%',),
-            )
-        output_start_delimiter = output_start_delimiter[0]
-        output_stop_delimiter = latex_configuration.get(
-            'output-stop-delimiter',
-            ('%%% ABJADBOOK END %%%',),
-            )
-        output_stop_delimiter = output_stop_delimiter[0]
-        output_blocks = []
-        in_output_block = False
-        starting_line_number = None
-        for i, line in enumerate(input_file_contents):
-            if line.startswith(output_start_delimiter):
-                if in_output_block:
-                    message = 'Extra opening tag at line {}'.format(i + 1)
-                    raise ValueError(message)
-                in_output_block = True
-                starting_line_number = i
-            elif line.startswith(output_stop_delimiter):
-                if not in_output_block:
-                    message = 'Extra closing tag at line {}'.format(i + 1)
-                    raise ValueError(message)
-                in_output_block = False
-                stopping_line_number = i
-                source_line_range = (
-                    starting_line_number,
-                    stopping_line_number,
-                    )
-                output_blocks.append(source_line_range)
-        return output_blocks
-
     def collect_input_blocks(self, input_file_contents, stylesheet=None):
         r"""Collects input blocks.
 
@@ -284,6 +248,42 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         if in_input_block:
             raise ValueError('Unterminated tag at EOF.')
         return input_blocks
+
+    def collect_output_blocks(self, input_file_contents, configuration=None):
+        configuration = configuration or {}
+        latex_configuration = configuration.get('latex', {})
+        output_start_delimiter = latex_configuration.get(
+            'output-start-delimiter',
+            ('%%% ABJADBOOK START %%%',),
+            )
+        output_start_delimiter = output_start_delimiter[0]
+        output_stop_delimiter = latex_configuration.get(
+            'output-stop-delimiter',
+            ('%%% ABJADBOOK END %%%',),
+            )
+        output_stop_delimiter = output_stop_delimiter[0]
+        output_blocks = []
+        in_output_block = False
+        starting_line_number = None
+        for i, line in enumerate(input_file_contents):
+            if line.startswith(output_start_delimiter):
+                if in_output_block:
+                    message = 'Extra opening tag at line {}'.format(i + 1)
+                    raise ValueError(message)
+                in_output_block = True
+                starting_line_number = i
+            elif line.startswith(output_stop_delimiter):
+                if not in_output_block:
+                    message = 'Extra closing tag at line {}'.format(i + 1)
+                    raise ValueError(message)
+                in_output_block = False
+                stopping_line_number = i
+                source_line_range = (
+                    starting_line_number,
+                    stopping_line_number,
+                    )
+                output_blocks.append(source_line_range)
+        return output_blocks
 
     @staticmethod
     def extract_code_block_options(source_line):
@@ -424,8 +424,26 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
     def register_error(self):
         self._errored = True
 
-    def unregister_error(self):
-        self._errored = False
+    def render_asset_output_proxies(
+        self,
+        input_blocks,
+        ):
+        asset_output_proxies = self.collect_asset_output_proxies(input_blocks)
+        if not asset_output_proxies:
+            return
+        if not os.path.exists(self.assets_directory):
+            os.makedirs(self.assets_directory)
+
+        progress_indicator = systemtools.ProgressIndicator(
+            message='    Writing assets',
+            total=len(asset_output_proxies),
+            )
+        with progress_indicator:
+            for asset_output_proxy in asset_output_proxies:
+                asset_output_proxy.render_for_latex(
+                    self.assets_directory,
+                    )
+                progress_indicator.advance()
 
     def report(
         self,
@@ -451,26 +469,8 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         else:
             print('Processing {}'.format(self.input_file_path))
 
-    def render_asset_output_proxies(
-        self,
-        input_blocks,
-        ):
-        asset_output_proxies = self.collect_asset_output_proxies(input_blocks)
-        if not asset_output_proxies:
-            return
-        if not os.path.exists(self.assets_directory):
-            os.makedirs(self.assets_directory)
-
-        progress_indicator = systemtools.ProgressIndicator(
-            message='    Writing assets',
-            total=len(asset_output_proxies),
-            )
-        with progress_indicator:
-            for asset_output_proxy in asset_output_proxies:
-                asset_output_proxy.render_for_latex(
-                    self.assets_directory,
-                    )
-                progress_indicator.advance()
+    def unregister_error(self):
+        self._errored = False
 
     def write_rebuilt_source(
         self,
@@ -506,16 +506,12 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         return os.path.dirname(self.input_file_path)
 
     @property
-    def input_file_path(self):
-        return self._input_file_path
-
-    @property
     def input_file_contents(self):
         return self._input_file_contents
 
     @property
-    def latex_root_directory(self):
-        return self._latex_root_directory
+    def input_file_path(self):
+        return self._input_file_path
 
     @property
     def latex_assets_prefix(self):
@@ -531,3 +527,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
             assets_directory,
             self.input_directory,
             )
+    @property
+    def latex_root_directory(self):
+        return self._latex_root_directory
+

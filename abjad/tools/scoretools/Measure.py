@@ -810,6 +810,25 @@ class Measure(FixedDurationContainer):
 
     ### PUBLIC METHODS ###
 
+    @classmethod
+    def from_selections(cls, selections, time_signatures=None):
+        r'''Makes a selection of measures from `selections`.
+
+        Returns selections.
+        '''
+        from abjad.tools import scoretools
+        assert len(selections)
+        if not time_signatures:
+            time_signatures = [_.get_duration() for _ in selections]
+        assert len(selections) == len(time_signatures)
+        assert [_.get_duration() for _ in selections] == \
+            [durationtools.Duration(_) for _ in time_signatures]
+        measures = scoretools.make_spacer_skip_measures(time_signatures)
+        temporary_voice = scoretools.Voice(measures)
+        mutate(temporary_voice).replace_measure_contents(selections)
+        temporary_voice[:] = []
+        return measures
+
     # TODO: see if self._scale can be combined with
     #       with self.scale_and_adjust_time_signature()
     def scale_and_adjust_time_signature(self, multiplier=None):
@@ -919,22 +938,3 @@ class Measure(FixedDurationContainer):
                 multiplier / new_time_signature.implied_prolation
             if remaining_multiplier != durationtools.Multiplier(1):
                 self._scale_contents(remaining_multiplier)
-
-    @classmethod
-    def from_selections(cls, selections, time_signatures=None):
-        r'''Makes a selection of measures from `selections`.
-
-        Returns selections.
-        '''
-        from abjad.tools import scoretools
-        assert len(selections)
-        if not time_signatures:
-            time_signatures = [_.get_duration() for _ in selections]
-        assert len(selections) == len(time_signatures)
-        assert [_.get_duration() for _ in selections] == \
-            [durationtools.Duration(_) for _ in time_signatures]
-        measures = scoretools.make_spacer_skip_measures(time_signatures)
-        temporary_voice = scoretools.Voice(measures)
-        mutate(temporary_voice).replace_measure_contents(selections)
-        temporary_voice[:] = []
-        return measures
