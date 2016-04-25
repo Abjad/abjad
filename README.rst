@@ -1,5 +1,5 @@
 ##########
-Abjad 2.17
+Abjad 2.18
 ##########
 
 Abjad helps composers build up complex pieces of music notation in an iterative
