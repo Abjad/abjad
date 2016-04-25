@@ -32,6 +32,39 @@ class ImageOutputProxy(abctools.AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _include_graphics(
+        self,
+        latex_configuration,
+        options,
+        page_number,
+        relative_file_path,
+        ):
+        result = []
+        if page_number:
+            page_number = 'page={}'.format(page_number)
+            if not options:
+                options = page_number
+            else:
+                options = options.strip()
+                if not options.endswith(','):
+                    options += ', '
+                options += page_number
+        if options:
+            string = '\\noindent\\includegraphics[{}]{{{}}}'.format(
+                options,
+                relative_file_path,
+                )
+        else:
+            string = '\\noindent\\includegraphics{{{}}}'.format(
+                relative_file_path,
+                )
+        before = latex_configuration.get('before-includegraphics', ())
+        after = latex_configuration.get('after-includegraphics', ())
+        result.extend(before)
+        result.append(string)
+        result.extend(after)
+        return result
+
     def _render_pdf_source(
         self,
         temporary_directory_path,
@@ -94,39 +127,6 @@ class ImageOutputProxy(abctools.AbjadValueObject):
                     page_number,
                     relative_file_path,
                     ))
-        return result
-
-    def _include_graphics(
-        self,
-        latex_configuration,
-        options,
-        page_number,
-        relative_file_path,
-        ):
-        result = []
-        if page_number:
-            page_number = 'page={}'.format(page_number)
-            if not options:
-                options = page_number
-            else:
-                options = options.strip()
-                if not options.endswith(','):
-                    options += ', '
-                options += page_number
-        if options:
-            string = '\\noindent\\includegraphics[{}]{{{}}}'.format(
-                options,
-                relative_file_path,
-                )
-        else:
-            string = '\\noindent\\includegraphics{{{}}}'.format(
-                relative_file_path,
-                )
-        before = latex_configuration.get('before-includegraphics', ())
-        after = latex_configuration.get('after-includegraphics', ())
-        result.extend(before)
-        result.append(string)
-        result.extend(after)
         return result
 
     def render_for_latex(

@@ -469,25 +469,6 @@ class DocumentationManager(abctools.AbjadObject):
             ])
         return ignored_classes
 
-    def _get_tools_package_graph(self, tools_package):
-        from abjad.tools import documentationtools
-        lineage_graph_addresses = self._get_lineage_graph_addresses()
-        inheritance_graph = documentationtools.InheritanceGraph(
-            addresses=lineage_graph_addresses,
-            lineage_addresses=[tools_package.__name__]
-            )
-        lineage_graph = inheritance_graph.__graph__()
-        lineage_graph.attributes['bgcolor'] = 'transparent'
-        lineage_graph.attributes['dpi'] = 72
-        lineage_graph.attributes['rankdir'] = 'LR'
-        return lineage_graph
-
-    def _get_lineage_graph_addresses(self):
-        lineage_graph_addresses = set(self.lineage_graph_addresses)
-        lineage_graph_addresses.add(self.root_package_name)
-        lineage_graph_addresses = sorted(lineage_graph_addresses)
-        return lineage_graph_addresses
-
     def _get_lineage_graph(self, cls):
         def get_node_name(original_name):
             parts = original_name.split('.')
@@ -537,6 +518,16 @@ class DocumentationManager(abctools.AbjadObject):
             '<<B>{}</B>>'.format(graph_node.attributes['label'])
         return graph
 
+    def _get_lineage_graph_addresses(self):
+        lineage_graph_addresses = set(self.lineage_graph_addresses)
+        lineage_graph_addresses.add(self.root_package_name)
+        lineage_graph_addresses = sorted(lineage_graph_addresses)
+        return lineage_graph_addresses
+
+    def _get_root_module(self):
+        root_module = importlib.import_module(self.root_package_name)
+        return root_module
+
     def _get_source_directory(self):
         if hasattr(self, 'docs_directory'):
             source_directory = os.path.join(self.docs_directory, 'source')
@@ -547,56 +538,6 @@ class DocumentationManager(abctools.AbjadObject):
         path_parts.extend(self.source_directory_path_parts)
         source_directory = os.path.join(*path_parts)
         return source_directory
-
-    def _get_tools_packages(self):
-        if hasattr(self, 'packages_to_document'):
-            packages_to_document = []
-            package_paths = self.packages_to_document.split(',')
-            for package_path in package_paths:
-                package = importlib.import_module(package_path)
-                packages_to_document.append(package)
-            return packages_to_document
-        root_module = self._get_root_module()
-        if os.path.pathsep in self.tools_packages_package_path:
-            tools_packages = []
-            parts = self.tools_packages_package_path.split(os.path.pathsep)
-            for part in parts:
-                tools_packages_module = self._get_tools_packages_module(part)
-                if getattr(tools_packages_module, '_is_tools_package', None):
-                    tools_packages.append(tools_packages_module)
-                else:
-                    message = 'when passing in a list of paths all should'
-                    message += ' be set with _is_tools_package=True.'
-                    raise Exception(message)
-            return tools_packages
-        tools_packages_module = self._get_tools_packages_module()
-        if getattr(tools_packages_module, '_is_tools_package', None):
-            tools_packages = [tools_packages_module]
-            return tools_packages
-        tools_packages = []
-        for name in dir(tools_packages_module):
-            if name.startswith('_'):
-                continue
-            module = getattr(tools_packages_module, name)
-            if not isinstance(module, types.ModuleType):
-                continue
-            if not module.__name__.startswith(root_module.__name__):
-                continue
-            tools_packages.append(module)
-        tools_packages.sort(key=lambda x: x.__name__)
-        tools_packages = tuple(tools_packages)
-        return tools_packages
-
-    def _get_root_module(self):
-        root_module = importlib.import_module(self.root_package_name)
-        return root_module
-
-    def _get_tools_packages_module(self, tools_packages_package_path=None):
-        if tools_packages_package_path is None:
-            tools_packages_package_path = self.tools_packages_package_path
-        tools_packages_module = importlib.import_module(
-            tools_packages_package_path)
-        return tools_packages_module
 
     def _get_tools_package_contents(self, tools_package):
         classes = []
@@ -621,6 +562,19 @@ class DocumentationManager(abctools.AbjadObject):
         functions.sort(key=lambda x: x.__name__)
         functions = tuple(functions)
         return classes, functions
+
+    def _get_tools_package_graph(self, tools_package):
+        from abjad.tools import documentationtools
+        lineage_graph_addresses = self._get_lineage_graph_addresses()
+        inheritance_graph = documentationtools.InheritanceGraph(
+            addresses=lineage_graph_addresses,
+            lineage_addresses=[tools_package.__name__]
+            )
+        lineage_graph = inheritance_graph.__graph__()
+        lineage_graph.attributes['bgcolor'] = 'transparent'
+        lineage_graph.attributes['dpi'] = 72
+        lineage_graph.attributes['rankdir'] = 'LR'
+        return lineage_graph
 
     def _get_tools_package_rst(self, tools_package):
         from abjad.tools import documentationtools
@@ -760,6 +714,52 @@ class DocumentationManager(abctools.AbjadObject):
             document.append(autosummary)
         return document
 
+    def _get_tools_packages(self):
+        if hasattr(self, 'packages_to_document'):
+            packages_to_document = []
+            package_paths = self.packages_to_document.split(',')
+            for package_path in package_paths:
+                package = importlib.import_module(package_path)
+                packages_to_document.append(package)
+            return packages_to_document
+        root_module = self._get_root_module()
+        if os.path.pathsep in self.tools_packages_package_path:
+            tools_packages = []
+            parts = self.tools_packages_package_path.split(os.path.pathsep)
+            for part in parts:
+                tools_packages_module = self._get_tools_packages_module(part)
+                if getattr(tools_packages_module, '_is_tools_package', None):
+                    tools_packages.append(tools_packages_module)
+                else:
+                    message = 'when passing in a list of paths all should'
+                    message += ' be set with _is_tools_package=True.'
+                    raise Exception(message)
+            return tools_packages
+        tools_packages_module = self._get_tools_packages_module()
+        if getattr(tools_packages_module, '_is_tools_package', None):
+            tools_packages = [tools_packages_module]
+            return tools_packages
+        tools_packages = []
+        for name in dir(tools_packages_module):
+            if name.startswith('_'):
+                continue
+            module = getattr(tools_packages_module, name)
+            if not isinstance(module, types.ModuleType):
+                continue
+            if not module.__name__.startswith(root_module.__name__):
+                continue
+            tools_packages.append(module)
+        tools_packages.sort(key=lambda x: x.__name__)
+        tools_packages = tuple(tools_packages)
+        return tools_packages
+
+    def _get_tools_packages_module(self, tools_packages_package_path=None):
+        if tools_packages_package_path is None:
+            tools_packages_package_path = self.tools_packages_package_path
+        tools_packages_module = importlib.import_module(
+            tools_packages_package_path)
+        return tools_packages_module
+
     def _module_path_to_file_path(self, module_path, source_directory):
         parts = module_path.split('.')
         if not self.__class__.__name__.startswith('ScoreLibrary'):
@@ -788,6 +788,8 @@ class DocumentationManager(abctools.AbjadObject):
             shutil.rmtree(path)
 
     def _write(self, file_path, string, rewritten_files):
+        if not string.endswith('\n'):
+            string = '{}\n'.format(string)
         should_write = True
         if os.path.exists(file_path):
             with open(file_path, 'r') as file_pointer:

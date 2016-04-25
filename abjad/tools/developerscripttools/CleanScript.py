@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-import argparse
 import os
 import shutil
 from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
@@ -28,7 +27,7 @@ class CleanScript(DirectoryScript):
 
     @property
     def long_description(self):
-        r'''Long description of scrip.
+        r'''Long description of script.
 
         Returns string or none.
         '''
@@ -36,7 +35,7 @@ class CleanScript(DirectoryScript):
 
     @property
     def scripting_group(self):
-        r'''Scripting groupt of script.
+        r'''Scripting group of script.
 
         Returns none.
         '''

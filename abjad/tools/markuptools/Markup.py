@@ -1593,6 +1593,67 @@ class Markup(AbjadValueObject):
         return Markup(contents)
 
     @staticmethod
+    def make_improper_fraction_markup(rational):
+        r'''Makes improper fraction markup.
+
+        ..  container:: example
+
+            **Example 1.** With integer-equivalent number:
+
+            ::
+
+                >>> markup = Markup.make_improper_fraction_markup(Fraction(6, 3))
+
+            ::
+
+                >>> print(format(markup))
+                \markup { 2 }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** With non-integer-equivalent number:
+
+            ::
+
+                >>> markup = Markup.make_improper_fraction_markup(Fraction(7, 3))
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    2
+                    \tiny
+                        \fraction
+                            1
+                            3
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        '''
+        from abjad.tools import mathtools
+        if mathtools.is_integer_equivalent_number(rational):
+            number = int(rational)
+            markup = Markup(number)
+            return markup
+        assert isinstance(rational, fractions.Fraction), repr(rational)
+        integer_part = int(rational)
+        fraction_part = rational - integer_part
+        integer_markup = Markup(integer_part)
+        numerator = fraction_part.numerator
+        denominator = fraction_part.denominator
+        fraction_markup = Markup.fraction(numerator, denominator)
+        fraction_markup = fraction_markup.tiny()
+        markup = integer_markup + fraction_markup
+        return markup
+
+    @staticmethod
     def make_vertically_adjusted_composer_markup(
         composer,
         font_name='Times New Roman',
@@ -1655,67 +1716,6 @@ class Markup(AbjadValueObject):
             space_right,
             )
         return Markup(contents)
-
-    @staticmethod
-    def make_improper_fraction_markup(rational):
-        r'''Makes improper fraction markup.
-
-        ..  container:: example
-
-            **Example 1.** With integer-equivalent number:
-
-            ::
-
-                >>> markup = Markup.make_improper_fraction_markup(Fraction(6, 3))
-
-            ::
-
-                >>> print(format(markup))
-                \markup { 2 }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
-
-        ..  container:: example
-
-            **Example 2.** With non-integer-equivalent number:
-
-            ::
-
-                >>> markup = Markup.make_improper_fraction_markup(Fraction(7, 3))
-
-            ::
-
-                >>> print(format(markup))
-                \markup {
-                    2
-                    \tiny
-                        \fraction
-                            1
-                            3
-                    }
-
-            ::
-
-                >>> show(markup) # doctest: +SKIP
-
-        '''
-        from abjad.tools import mathtools
-        if mathtools.is_integer_equivalent_number(rational):
-            number = int(rational)
-            markup = Markup(number)
-            return markup
-        assert isinstance(rational, fractions.Fraction), repr(rational)
-        integer_part = int(rational)
-        fraction_part = rational - integer_part
-        integer_markup = Markup(integer_part)
-        numerator = fraction_part.numerator
-        denominator = fraction_part.denominator
-        fraction_markup = Markup.fraction(numerator, denominator)
-        fraction_markup = fraction_markup.tiny()
-        markup = integer_markup + fraction_markup
-        return markup
 
     @staticmethod
     def musicglyph(glyph_name=None, direction=Up):

@@ -1,5 +1,5 @@
 ##########
-Abjad 2.16
+Abjad 2.17
 ##########
 
 Abjad helps composers build up complex pieces of music notation in an iterative
@@ -46,11 +46,19 @@ Install Abjad
 -------------
 
 To install the most recent official release of Abjad from `PyPI`_, the Python
-Package Index, via `pip`_::
+Package Index, via `pip`_:
+
+..  code-block:: bash
 
     ~$ sudo pip install abjad
 
-..  note::
+**Caution**:
+
+    We strongly encourage you to *not* install Abjad globally via ``sudo pip
+    install``, but to use a virtual environment instead. If you're already
+    working in a virtual environment, simply omit the ``sudo``.
+
+**Note**:
 
     Abjad supports Python 2.7 and above. Python 2.7.9 and above provide `pip`_
     out-of-the-box. For earlier versions of Python 2.7, you may need to install
@@ -59,17 +67,27 @@ Package Index, via `pip`_::
     instructions found here: https://pip.pypa.io/en/stable/installing/.
 
 To install the cutting-edge version Abjad from its `GitHub`_ repository, via
-`git <https://git-scm.com/>`_ and `pip`_::
+`git <https://git-scm.com/>`_ and `pip`_:
+
+..  code-block:: bash
 
     ~$ git clone https://github.com/Abjad/abjad.git 
     ~$ cd abjad
     abjad$ sudo pip install .
 
-..  caution::
+Once you have Abjad installed, fire up Python and import it:
 
-    We strongly encourage you to *not* install Abjad globally via ``sudo pip
-    install``, but to use a :ref:`virtual environment <virtual-environments>`
-    instead.
+..  code-block:: bash
+
+    $ python
+    Python 2.7.9 (default, Nov  9 2015, 10:50:36) 
+    [GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.1.76)] on darwin
+    Type "help", "copyright", "credits" or "license" for more information.
+    >>> import abjad
+    >>> abjad.__version__
+    '2.16'
+
+Congratulations!
 
 Install LilyPond
 ````````````````
@@ -101,9 +119,17 @@ command-line by running the following command:
     under certain conditions.  Invoke as `lilypond --warranty` for more
     information.
 
-If LilyPond is not callable from your command-line, you should add the
-location of the LilyPond executable to your ``PATH`` environment variable.
-The `LilyPond`_ documentation provides instructions for making the
+If LilyPond is not callable from your command-line, you should add the location
+of the LilyPond executable to your ``PATH`` environment variable. If you are
+using OSX, simply run the following line in your terminal:
+
+..  code-block:: bash
+
+    export PATH="$PATH:/Applications/LilyPond.app/Contents/Resources/bin/"
+
+You can add the above line to your ``~/.profile`` to make the change permanent.
+
+The `LilyPond`_ documentation also provides instructions for making the
 ``lilypond`` command available on the command-line under OSX at
 http://www.lilypond.org/macos-x.html.
 
@@ -119,11 +145,15 @@ graphs of rhythm-trees and other tree structures, and to create visualizations
 of class hierarchies for its documentation. Graphviz is not necessary for
 creating notation with Abjad.
 
-To install `Graphviz`_ on Debian and Ubuntu::
+To install `Graphviz`_ on Debian and Ubuntu:
+
+..  code-block:: bash
 
     ~$ sudo apt-get install graphviz
 
-To install `Graphviz`_ on OSX via `Homebrew`_::
+To install `Graphviz`_ on OSX via `Homebrew`_:
+
+..  code-block:: bash
 
     ~$ brew install graphviz
 
@@ -136,15 +166,16 @@ command-line by running the following command:
     dot - graphviz version 2.38.0 (20140413.2041)
 
 All of the graph images in Abjad's API documentation were created via
-`graphviz`_. See :py:func:`~abjad.tools.topleveltools.graph` for more
-details.
+`graphviz`_. See the API entry for `topleveltools.graph()` for more details.
 
 Development installation
 ------------------------
 
 To perform development on Abjad, run the test suite, or build Abjad's
 documentation locally, clone Abjad from the Github repository and install it in
-**edit mode** with its **development extras**::
+**edit mode** with its **development extras**:
+
+..  code-block:: bash
 
     ~$ git clone https://github.com/Abjad/abjad.git
     ~$ cd abjad
@@ -166,7 +197,9 @@ does not have a C compiler available, you may see error message while the ``pip
 install -e ".[development]"`` command runs. These warnings are harmless and will
 not prevent the dependencies from being installed.
 
-To install C compilation tools on Debian and Ubuntu::
+To install C compilation tools on Debian and Ubuntu:
+
+..  code-block:: bash
 
     ~$ sudo apt-get install build-essential
 
@@ -186,7 +219,9 @@ Building the `LaTeX`_ documentation, running the test suite, and using Abjad's
 Abjad makes use of both ``pdftex`` for producing PDFs, and the ``pdfcrop`` tool
 distributed with `TeXLive`_.
 
-To install `TeXLive`_ on Debian and Ubuntu::
+To install `TeXLive`_ on Debian and Ubuntu:
+
+..  code-block:: bash
 
     ~$ sudo apt-get install texlive-full
 
@@ -198,16 +233,22 @@ Install ImageMagick
 Building Abjad's documentation requires `ImageMagick`_, a collection of raster
 image processing tools.
 
-To install `ImageMagick`_ on Debian and Ubuntu:: 
+To install `ImageMagick`_ on Debian and Ubuntu:
+
+..  code-block:: bash
 
     ~$ sudo apt-get install imagemagick
 
-To install `ImageMagick`_ on OSX, we recommend installing via `Homebrew`_::
+To install `ImageMagick`_ on OSX, we recommend installing via `Homebrew`_:
+
+..  code-block:: bash
 
     ~$ brew install imagemagick
 
 Once you have install `ImageMagick`_, test if `ImageMagick`_ is callable from
 your command-line by running the following command:
+
+..  code-block:: bash
 
     ~$ convert --version
     Version: ImageMagick 6.9.1-6 Q16 x86_64 2015-06-22 http://www.imagemagick.org
@@ -221,20 +262,26 @@ Abjad and IPython
 
 Abjad can be used with `IPython`_ to embed notation, graphs and audio into an
 `IPython notebook`_. To work with Abjad in `IPython`_, install Abjad with both
-its **development** and **ipython** extra dependencies::
+its **development** and **ipython** extra dependencies:
+
+..  code-block:: bash
 
     ~$ sudo pip install abjad[development,ipython]  # NOTE: no spaces in the string after "install"
 
-Capturing MIDI files into an `IPython notebook`_ requires the `fluidsynth`_
+Capturing MIDI files into an `IPython notebook`_ requires the `timidity`_
 package.
 
-To install `fluidsynth`_ on Debian or Ubuntu::
+To install `timidity`_ on Debian or Ubuntu:
 
-    ~$ apt-get install fluidsynth
+..  code-block:: bash
 
-To install `fluidsynth`_ on OSX via `Homebrew`_::
+    ~$ apt-get install timidity
 
-    ~$ brew install fluidsynth --with-libsndfile
+To install `timidity`_ on OSX via `Homebrew`_:
+
+..  code-block:: bash
+
+    ~$ brew install timidity
 
 Once all dependencies have been installed, create a new `IPython notebook`_ and
 run the following "magic" command in a cell to load Abjad's `IPython`_
@@ -258,30 +305,36 @@ packages. They also allow you to install Python packages without ``sudo``. The
 and the `virtualenvwrapper`_ package provides additional tools which make
 working with virtual environments incredibly easy.
 
-Let's install `virtualenvwrapper`_::
+Let's install `virtualenvwrapper`_:
+
+..  code-block:: bash
 
     ~$ sudo pip install virtualenvwrapper
     ...
 
-..  note::
+**Note**:
 
     On OSX 10.11 (El Capitan) it may be necessary to install
-    `virtualenvwrapper`_ via alternate instructions::
+    `virtualenvwrapper`_ via alternate instructions:
+
+    ..  code-block:: bash
 
         ~$ pip install virtualenvwrapper --ignore-installed six
 
     See
-    [here](http://stackoverflow.com/questions/32086631/cant-install-virtualenvwrapper-on-osx-10-11-el-capitan)
+    `here <http://stackoverflow.com/questions/32086631/cant-install-virtualenvwrapper-on-osx-10-11-el-capitan>`_
     for details.
 
 Next, set an environment variable in your shell naming the directory you want
 the virtual environment files to be stored in, then create that directory if it
-doesn't already exist::
+doesn't already exist:
+
+..  code-block:: bash
 
     ~$ export WORKON_HOME=~/.virtualenvs
     ~$ mkdir -p $WORKON_HOME
 
-..  note::
+**Note**:
 
     The location your virtual environment files are stored in could be
     anywhere. Because you are unlikely to need to access them directly, we
@@ -289,7 +342,9 @@ doesn't already exist::
 
 With the virtual environment directory created, "source" `virtualenvwrapper`_'s
 script. This script teaches your shell about how to create, activate and delete
-virtual environments::
+virtual environments:
+
+..  code-block:: bash
 
     ~$ source `which virtualenvwrapper.sh`
 
@@ -297,7 +352,9 @@ Finally, you can create a virtual environment via the ``mkvirtualenv`` command.
 This will both create the fresh environment and "activate" it. Once activated,
 you can install Python packages within that environment, safe in the knowledge
 that they won't interfere with Python packages installed anywhere else on your
-system::
+system:
+
+..  code-block:: bash
 
     ~$ mkvirtualenv abjad
     ...
@@ -306,7 +363,9 @@ system::
 
 You can also deactivate the current virtual environment via the ``deactivate``
 command, or switch to a different environment via the ``workon <virtualenv
-name>`` command::
+name>`` command:
+
+..  code-block:: bash
 
     ~(abjad)$ deactivate
     ~$ workon my-new-score
@@ -314,7 +373,9 @@ name>`` command::
 
 To make the virtual environment configuration sticky from terminal session to
 terminal session, add the following lines to your ``~/.profile``,
-``~/.bash_profile`` or similar shell configuration file::
+``~/.bash_profile`` or similar shell configuration file:
+
+..  code-block:: bash
 
     export WORKON_HOME=$HOME/.virtualenvs
     source `which virtualenvwrapper.sh`
@@ -329,7 +390,7 @@ environment requires the following steps:
 - Clone Abjad somewhere and ``cd`` into the root of the cloned repository
 - Install Abjad and its development / IPython dependencies
 
-::
+..  code-block:: bash
 
     ~$ mkvirtualenv abjad
     ...
@@ -404,7 +465,7 @@ you might want to set your ``pdf_viewer`` to ``evince`` and your
 ..  _Python: https://www.python.org/
 ..  _Sphinx: http://sphinx-doc.org/
 ..  _TeXLive: https://www.tug.org/texlive/
-..  _fluidsynth: http://www.fluidsynth.org/
+..  _timidity: http://timidity.sourceforge.net/
 ..  _pip: https://pip.pypa.io/en/stable/
 ..  _pytest: http://pytest.org/latest/
 ..  _virtualenv: https://readthedocs.org/projects/virtualenv/

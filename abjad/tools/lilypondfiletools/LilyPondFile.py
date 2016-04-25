@@ -269,24 +269,6 @@ class LilyPondFile(AbjadObject):
         return result
 
     @property
-    def _formatted_scheme_settings(self):
-        result = []
-        default_paper_size = self.default_paper_size
-        if default_paper_size is not None:
-            dimension, orientation = default_paper_size
-            string = "#(set-default-paper-size \"{}\" '{})"
-            string = string.format(dimension, orientation)
-            result.append(string)
-        global_staff_size = self.global_staff_size
-        if global_staff_size is not None:
-            string = '#(set-global-staff-size {})'
-            string = string.format(global_staff_size)
-            result.append(string)
-        if result:
-            result = ['\n'.join(result)]
-        return result
-
-    @property
     def _formatted_comments(self):
         result = []
         for comment in self.comments:
@@ -312,6 +294,24 @@ class LilyPondFile(AbjadObject):
                 result.append(string)
             else:
                 result.append(format(include))
+        if result:
+            result = ['\n'.join(result)]
+        return result
+
+    @property
+    def _formatted_scheme_settings(self):
+        result = []
+        default_paper_size = self.default_paper_size
+        if default_paper_size is not None:
+            dimension, orientation = default_paper_size
+            string = "#(set-default-paper-size \"{}\" '{})"
+            string = string.format(dimension, orientation)
+            result.append(string)
+        global_staff_size = self.global_staff_size
+        if global_staff_size is not None:
+            string = '#(set-global-staff-size {})'
+            string = string.format(global_staff_size)
+            result.append(string)
         if result:
             result = ['\n'.join(result)]
         return result

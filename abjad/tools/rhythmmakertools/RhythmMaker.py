@@ -171,49 +171,6 @@ class RhythmMaker(AbjadValueObject):
         else:
             return False
 
-    def _apply_logical_tie_masks(self, selections):
-        from abjad.tools import rhythmmakertools
-        if self.logical_tie_masks is None:
-            return selections
-        # wrap every selection in a temporary container;
-        # this allows the call to mutate().replace() to work
-        containers = []
-        for selection in selections:
-            container = scoretools.Container(selection)
-            attach('temporary container', container)
-            containers.append(container)
-        logical_ties = iterate(selections).by_logical_tie()
-        logical_ties = list(logical_ties)
-        total_logical_ties = len(logical_ties)
-        for index, logical_tie in enumerate(logical_ties[:]):
-            matching_mask = self.logical_tie_masks.get_matching_pattern(
-                index,
-                total_logical_ties,
-                )
-            if not isinstance(matching_mask, rhythmmakertools.SilenceMask):
-                continue
-            if isinstance(logical_tie.head, scoretools.Rest):
-                continue
-            for leaf in logical_tie:
-                rest = scoretools.Rest(leaf.written_duration)
-                inspector = inspect_(leaf)
-                if inspector.has_indicator(durationtools.Multiplier):
-                    multiplier = inspector.get_indicator(
-                        durationtools.Multiplier,
-                        )
-                    multiplier = durationtools.Multiplier(multiplier)
-                    attach(multiplier, rest)
-                mutate(leaf).replace([rest])
-                detach(spannertools.Tie, rest)
-        # remove every temporary container and recreate selections
-        new_selections = []
-        for container in containers:
-            inspector = inspect_(container)
-            assert inspector.get_indicator(str) == 'temporary container'
-            new_selection = mutate(container).eject_contents()
-            new_selections.append(new_selection)
-        return new_selections
-
     def _apply_division_masks(self, selections, rotation):
         from abjad.tools import rhythmmakertools
         if not self.division_masks:
@@ -266,6 +223,49 @@ class RhythmMaker(AbjadValueObject):
                     )
             for component in iterate(selection).by_class():
                 detach(spannertools.Tie, component)
+            new_selections.append(new_selection)
+        return new_selections
+
+    def _apply_logical_tie_masks(self, selections):
+        from abjad.tools import rhythmmakertools
+        if self.logical_tie_masks is None:
+            return selections
+        # wrap every selection in a temporary container;
+        # this allows the call to mutate().replace() to work
+        containers = []
+        for selection in selections:
+            container = scoretools.Container(selection)
+            attach('temporary container', container)
+            containers.append(container)
+        logical_ties = iterate(selections).by_logical_tie()
+        logical_ties = list(logical_ties)
+        total_logical_ties = len(logical_ties)
+        for index, logical_tie in enumerate(logical_ties[:]):
+            matching_mask = self.logical_tie_masks.get_matching_pattern(
+                index,
+                total_logical_ties,
+                )
+            if not isinstance(matching_mask, rhythmmakertools.SilenceMask):
+                continue
+            if isinstance(logical_tie.head, scoretools.Rest):
+                continue
+            for leaf in logical_tie:
+                rest = scoretools.Rest(leaf.written_duration)
+                inspector = inspect_(leaf)
+                if inspector.has_indicator(durationtools.Multiplier):
+                    multiplier = inspector.get_indicator(
+                        durationtools.Multiplier,
+                        )
+                    multiplier = durationtools.Multiplier(multiplier)
+                    attach(multiplier, rest)
+                mutate(leaf).replace([rest])
+                detach(spannertools.Tie, rest)
+        # remove every temporary container and recreate selections
+        new_selections = []
+        for container in containers:
+            inspector = inspect_(container)
+            assert inspector.get_indicator(str) == 'temporary container'
+            new_selection = mutate(container).eject_contents()
             new_selections.append(new_selection)
         return new_selections
 
@@ -510,18 +510,6 @@ class RhythmMaker(AbjadValueObject):
         return self._beam_specifier
 
     @property
-    def logical_tie_masks(self):
-        r'''Gets count masks of rhythm-maker.
-
-        Set to patterns or none.
-
-        Defaults to none.
-
-        Returns patterns or none.
-        '''
-        return self._logical_tie_masks
-
-    @property
     def division_masks(self):
         r'''Gets division masks of rhythm-maker.
 
@@ -536,6 +524,18 @@ class RhythmMaker(AbjadValueObject):
         Set to duration spelling specifier or none.
         '''
         return self._duration_spelling_specifier
+
+    @property
+    def logical_tie_masks(self):
+        r'''Gets count masks of rhythm-maker.
+
+        Set to patterns or none.
+
+        Defaults to none.
+
+        Returns patterns or none.
+        '''
+        return self._logical_tie_masks
 
     @property
     def tie_specifier(self):

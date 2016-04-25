@@ -48,6 +48,14 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         if os.path.exists(self.target_path):
             os.remove(self.target_path)
 
+    def tearDown(self):
+        if os.path.exists(self.assets_directory):
+            shutil.rmtree(self.assets_directory)
+        if os.path.exists(self.target_path):
+            os.remove(self.target_path)
+        with open(self.source_path, 'w') as file_pointer:
+            file_pointer.write(self.source_contents)
+
     def test_latex_root_directory_1(self):
         input_file_contents = [
             '\\begin{comment}',
@@ -102,11 +110,3 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         assert target_contents == self.expected_contents
         assert tuple(sorted(os.listdir(self.assets_directory))) == \
             self.expected_asset_names
-
-    def tearDown(self):
-        if os.path.exists(self.assets_directory):
-            shutil.rmtree(self.assets_directory)
-        if os.path.exists(self.target_path):
-            os.remove(self.target_path)
-        with open(self.source_path, 'w') as file_pointer:
-            file_pointer.write(self.source_contents)

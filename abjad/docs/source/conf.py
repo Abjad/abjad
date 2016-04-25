@@ -100,9 +100,9 @@ texinfo_documents = [
         ),
     ]
 ### EXTENSIONS ###
-abjadbook_ignored_documents = ('version_history',)
+abjadbook_ignored_documents = ()
 autodoc_member_order = 'groupwise'
 graphviz_dot_args = ['-s32']
 graphviz_output_format = 'svg'
-intersphinx_mapping = {'python': ('http://docs.python.org/2.7', None)}
+intersphinx_mapping = {'python': ('http://docs.python.org/3.4', None)}
 todo_include_todos = True

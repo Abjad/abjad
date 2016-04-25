@@ -137,69 +137,6 @@ class CodeBlock(abctools.AbjadValueObject):
         pass
 
     @staticmethod
-    def from_latex_abjadextract_block(
-        source_line,
-        starting_line_number=None,
-        **options
-        ):
-        from abjad.tools import abjadbooktools
-        code_address = source_line.partition('<abjadextract ')[-1].split()[0]
-        module_name, sep, attr_name = code_address.rpartition(':')
-        module = importlib.import_module(module_name)
-        attr = getattr(module, attr_name)
-        input_file_contents = inspect.getsource(attr).splitlines()
-        executed_lines = 'from {} import {}'.format(
-            module_name,
-            attr_name,
-            )
-        executed_lines = (executed_lines,)
-        cleaned_options = {}
-        for key, value in options.items():
-            key = key.replace('-', '_')
-            cleaned_options[key] = value
-        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
-            **cleaned_options)
-        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
-            **cleaned_options)
-        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
-            **cleaned_options)
-        code_block = abjadbooktools.CodeBlock(
-            code_block_specifier=code_block_specifier,
-            executed_lines=executed_lines,
-            image_layout_specifier=image_layout_specifier,
-            image_render_specifier=image_render_specifier,
-            input_file_contents=input_file_contents,
-            starting_line_number=starting_line_number,
-            )
-        return code_block
-
-    @staticmethod
-    def from_latex_abjad_block(
-        input_file_contents,
-        starting_line_number=None,
-        **options
-        ):
-        from abjad.tools import abjadbooktools
-        cleaned_options = {}
-        for key, value in options.items():
-            key = key.replace('-', '_')
-            cleaned_options[key] = value
-        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
-            **cleaned_options)
-        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
-            **cleaned_options)
-        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
-            **cleaned_options)
-        code_block = abjadbooktools.CodeBlock(
-            code_block_specifier=code_block_specifier,
-            image_layout_specifier=image_layout_specifier,
-            image_render_specifier=image_render_specifier,
-            input_file_contents=input_file_contents,
-            starting_line_number=starting_line_number,
-            )
-        return code_block
-
-    @staticmethod
     def from_docutils_abjad_import_block(block):
         from abjad.tools import abjadbooktools
         code_address = block['path']
@@ -283,6 +220,69 @@ class CodeBlock(abctools.AbjadValueObject):
             )
         return code_block
 
+    @staticmethod
+    def from_latex_abjad_block(
+        input_file_contents,
+        starting_line_number=None,
+        **options
+        ):
+        from abjad.tools import abjadbooktools
+        cleaned_options = {}
+        for key, value in options.items():
+            key = key.replace('-', '_')
+            cleaned_options[key] = value
+        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
+            **cleaned_options)
+        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
+            **cleaned_options)
+        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
+            **cleaned_options)
+        code_block = abjadbooktools.CodeBlock(
+            code_block_specifier=code_block_specifier,
+            image_layout_specifier=image_layout_specifier,
+            image_render_specifier=image_render_specifier,
+            input_file_contents=input_file_contents,
+            starting_line_number=starting_line_number,
+            )
+        return code_block
+
+    @staticmethod
+    def from_latex_abjadextract_block(
+        source_line,
+        starting_line_number=None,
+        **options
+        ):
+        from abjad.tools import abjadbooktools
+        code_address = source_line.partition('<abjadextract ')[-1].split()[0]
+        module_name, sep, attr_name = code_address.rpartition(':')
+        module = importlib.import_module(module_name)
+        attr = getattr(module, attr_name)
+        input_file_contents = inspect.getsource(attr).splitlines()
+        executed_lines = 'from {} import {}'.format(
+            module_name,
+            attr_name,
+            )
+        executed_lines = (executed_lines,)
+        cleaned_options = {}
+        for key, value in options.items():
+            key = key.replace('-', '_')
+            cleaned_options[key] = value
+        code_block_specifier = abjadbooktools.CodeBlockSpecifier.from_options(
+            **cleaned_options)
+        image_layout_specifier = abjadbooktools.ImageLayoutSpecifier.from_options(
+            **cleaned_options)
+        image_render_specifier = abjadbooktools.ImageRenderSpecifier.from_options(
+            **cleaned_options)
+        code_block = abjadbooktools.CodeBlock(
+            code_block_specifier=code_block_specifier,
+            executed_lines=executed_lines,
+            image_layout_specifier=image_layout_specifier,
+            image_render_specifier=image_render_specifier,
+            input_file_contents=input_file_contents,
+            starting_line_number=starting_line_number,
+            )
+        return code_block
+
     def interpret(self, console):
         from abjad.tools import abjadbooktools
         code_block_specifier = self.code_block_specifier
@@ -329,31 +329,6 @@ class CodeBlock(abctools.AbjadValueObject):
                 ]
         self._console = None
 
-    def push_line_to_console(self, line, console, line_number):
-        from abjad.tools import abjadbooktools
-        allow_exceptions = None
-        if self.code_block_specifier is not None:
-            allow_exceptions = self.code_block_specifier.allow_exceptions
-        with systemtools.RedirectedStreams(self, self):
-            is_incomplete_statement = console.push(line)
-        if console.errored:
-            if allow_exceptions:
-                console.unregister_error()
-            else:
-                message = 'Abjad-book error on '
-                if self.document_source:
-                    message += str(self.document_source)
-                    message += ':{}'
-                else:
-                    message += 'line number {}'
-                line_number += self.starting_line_number
-                message = message.format(line_number)
-                message = bold(red(message))
-                message += '\n    '
-                message = message + '\n    '.join(self.current_lines)
-                raise abjadbooktools.AbjadBookError(message)
-        return is_incomplete_statement
-
     def push_asset_output_proxy(self, asset_output_proxy):
         self.push_code_output_proxy()
         self.output_proxies.append(asset_output_proxy)
@@ -378,6 +353,31 @@ class CodeBlock(abctools.AbjadValueObject):
             )
         self.output_proxies.append(code_output_proxy)
         self.current_lines[:] = []
+
+    def push_line_to_console(self, line, console, line_number):
+        from abjad.tools import abjadbooktools
+        allow_exceptions = None
+        if self.code_block_specifier is not None:
+            allow_exceptions = self.code_block_specifier.allow_exceptions
+        with systemtools.RedirectedStreams(self, self):
+            is_incomplete_statement = console.push(line)
+        if console.errored:
+            if allow_exceptions:
+                console.unregister_error()
+            else:
+                message = 'Abjad-book error on '
+                if self.document_source:
+                    message += str(self.document_source)
+                    message += ':{}'
+                else:
+                    message += 'line number {}'
+                line_number += self.starting_line_number
+                message = message.format(line_number)
+                message = bold(red(message))
+                message += '\n    '
+                message = message + '\n    '.join(self.current_lines)
+                raise abjadbooktools.AbjadBookError(message)
+        return is_incomplete_statement
 
     def setup_capture_hooks(self, console):
         prototype = (types.MethodType, types.FunctionType)
@@ -493,6 +493,10 @@ class CodeBlock(abctools.AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def code_block_specifier(self):
+        return self._code_block_specifier
+
+    @property
     def current_lines(self):
         return self._current_lines
 
@@ -505,18 +509,6 @@ class CodeBlock(abctools.AbjadValueObject):
         return self._executed_lines
 
     @property
-    def output_proxies(self):
-        return self._output_proxies
-
-    @property
-    def input_file_contents(self):
-        return self._source_lines
-
-    @property
-    def starting_line_number(self):
-        return self._starting_line_number
-
-    @property
     def image_layout_specifier(self):
         return self._image_layout_specifier
 
@@ -525,5 +517,13 @@ class CodeBlock(abctools.AbjadValueObject):
         return self._image_render_specifier
 
     @property
-    def code_block_specifier(self):
-        return self._code_block_specifier
+    def input_file_contents(self):
+        return self._source_lines
+
+    @property
+    def output_proxies(self):
+        return self._output_proxies
+
+    @property
+    def starting_line_number(self):
+        return self._starting_line_number

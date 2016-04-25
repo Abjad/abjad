@@ -164,6 +164,22 @@ class AbjadBookScript(developerscripttools.DeveloperScript):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def alias(self):
+        r'''Alias of Abjad book script.
+
+        Returns ``'book'``.
+        '''
+        return 'book'
+
+    @property
+    def long_description(self):
+        r'''Long description of Abjad book script.
+
+        Returns string.
+        '''
+        return r'''TBD.'''
+
+    @property
     def short_description(self):
         r'''Short description of Abjad book script.
 
@@ -179,18 +195,3 @@ class AbjadBookScript(developerscripttools.DeveloperScript):
         '''
         return 3.0
 
-    @property
-    def alias(self):
-        r'''Alias of Abjad book script.
-
-        Returns ``'book'``.
-        '''
-        return 'book'
-
-    @property
-    def long_description(self):
-        r'''Long description of Abjad book script.
-
-        Returns string.
-        '''
-        return r'''TBD.'''

@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 import os
 import re
 from abjad.tools import systemtools
@@ -13,28 +14,28 @@ def find_lower_camel_case_definitions():
             found_lower_camel_case_definition = False
             if file_name.endswith('.py') and not file_name == 'GuileProxy.py':
                 full_file_name = os.path.join(directory, file_name)
-                fp = file(full_file_name, 'r')
-                for line in fp:
-                    if pattern.match(line):
-                        lower_camel_case_definitions.append(line)
-                        if not found_lower_camel_case_definition:
-                            print full_file_name
-                            found_lower_camel_case_definition = True
-                            total_modules_with_lower_camel_case_definitions \
-                                += 1
-                        print line.strip()
+                with open(full_file_name, 'r') as file_pointer:
+                    for line in file_pointer:
+                        if pattern.match(line):
+                            lower_camel_case_definitions.append(line)
+                            if not found_lower_camel_case_definition:
+                                print(full_file_name)
+                                found_lower_camel_case_definition = True
+                                total_modules_with_lower_camel_case_definitions \
+                                    += 1
+                            print(line.strip())
             if found_lower_camel_case_definition:
-                print
-    
+                print()
+
     total = total_modules_with_lower_camel_case_definitions
-    print 'Total modules with lower camel case definitions: {}'.format(total)
+    print('Total modules with lower camel case definitions: {}'.format(total))
 
     total = len(lower_camel_case_definitions)
-    print 'Total lower camel case definitions:              {}'.format(total)
+    print('Total lower camel case definitions:              {}'.format(total))
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    print 'Finding lower camel case definitions ...\n'
+    print('Finding lower camel case definitions ...\n')
     find_lower_camel_case_definitions()
-    print
+    print()

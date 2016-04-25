@@ -1,7 +1,6 @@
 #! /usr/bin/env python
+from __future__ import print_function
 import os
-import pprint
-from abjad import abjad_configuration
 from abjad.tools import systemtools
 
 
@@ -17,8 +16,8 @@ def find_local_import_statements():
                     total_local_import_statements += result
 
     total = total_local_import_statements
-    print 'Total local import statements: {}'.format(total)
-    print
+    print('Total local import statements: {}'.format(total))
+    print()
 
 
 def find_local_import_statements_in_file(full_file_name):
@@ -27,24 +26,23 @@ def find_local_import_statements_in_file(full_file_name):
     module = file_parts[-2]
     function = file_parts[-1]
     shorter_module_name = '{}{}{}'.format(module, os.path.sep, function)
-    fp = file(full_file_name, 'r')
-    for line in fp.readlines():
-        if line.startswith('from') and \
-            not line.startswith('from experimental import *') and \
-            not line.startswith(
-                'from make_illustration_from_output_material') and \
-            not line.startswith('from _'):
-            line_parts = line.split()
-            module_name = line_parts[1]
-            if not module_name in ('abjad', '__future__'):
-                if '.' not in module_name:
-                    if total_local_import_statements == 0:
-                        print shorter_module_name
-                        total_local_import_statements += 1
-                    print line.strip()
-    fp.close()
+    with open(full_file_name, 'r') as file_pointer:
+        for line in file_pointer:
+            if line.startswith('from') and \
+                not line.startswith('from experimental import *') and \
+                not line.startswith(
+                    'from make_illustration_from_output_material') and \
+                not line.startswith('from _'):
+                line_parts = line.split()
+                module_name = line_parts[1]
+                if module_name not in ('abjad', '__future__'):
+                    if '.' not in module_name:
+                        if total_local_import_statements == 0:
+                            print(shorter_module_name)
+                            total_local_import_statements += 1
+                        print(line.strip())
     if 0 < total_local_import_statements:
-        print
+        print()
     return total_local_import_statements
 
 

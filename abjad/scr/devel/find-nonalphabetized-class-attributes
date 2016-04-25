@@ -1,4 +1,5 @@
 #! /usr/bin/env python
+from __future__ import print_function
 from abjad.tools import systemtools
 import os
 
@@ -14,24 +15,28 @@ file_name_blacklist = (
     'SchemeParser.py',
     )
 
-def main():
-    total_modules_examined = 0
-    nonalphabetized_module_names = []
 
+def iterate_modules():
     for parent_directory, subdirectory_names, file_names in os.walk('.'):
-
         subdirectory_names_to_remove = []
         for subdirectory_name in subdirectory_names:
             if subdirectory_name in directory_name_blacklist:
                 subdirectory_names_to_remove.append(subdirectory_name)
         for subdirectory_name in subdirectory_names_to_remove:
             subdirectory_names.remove(subdirectory_name)
-
         py_file_names = (x for x in file_names if x.endswith('.py'))
         for file_name in py_file_names:
-            total_modules_examined += 1
             full_file_name = os.path.join(parent_directory, file_name)
-            file_pointer = file(full_file_name, 'r')
+            yield full_file_name
+
+
+def main():
+    total_modules_examined = 0
+    nonalphabetized_module_names = []
+
+    for file_path in iterate_modules():
+        total_modules_examined += 1
+        with open(file_path, 'r') as file_pointer:
             found_class_keyword, found_def_keyword = False, False
             attribute_definition_lines = []
             for line in file_pointer.readlines():
@@ -45,13 +50,13 @@ def main():
                         list(sorted(attribute_definition_lines))
                     if not attribute_definition_lines == \
                         sorted_attribute_definition_lines:
-                        nonalphabetized_module_names.append(full_file_name)
+                        nonalphabetized_module_names.append(file_path)
                         for a, b in zip(
-                            attribute_definition_lines, 
+                            attribute_definition_lines,
                             sorted_attribute_definition_lines):
                             if a != b:
-                                print full_file_name
-                                print a, b
+                                print(file_path)
+                                print(a, b)
                                 break
                         attribute_definition_lines = []
                         break
@@ -63,23 +68,23 @@ def main():
                     list(sorted(attribute_definition_lines))
                 if not attribute_definition_lines == \
                     list(sorted(attribute_definition_lines)):
-                    nonalphabetized_module_names.append(full_file_name)
+                    nonalphabetized_module_names.append(file_path)
                     for a, b in zip(
-                        attribute_definition_lines, 
+                        attribute_definition_lines,
                         sorted_attribute_definition_lines):
                         if a != b:
-                            print full_file_name
-                            print a, b
+                            print(file_path)
+                            print(a, b)
                             break
-            file_pointer.close()
-    print 'Total modules with nonalphabetized attributes: {}'.format(
-        len(nonalphabetized_module_names))
-    print 'Total modules examined: {}'.format(total_modules_examined)
-    print
+
+    print('Total modules with nonalphabetized attributes: {}'.format(
+        len(nonalphabetized_module_names)))
+    print('Total modules examined: {}'.format(total_modules_examined))
+    print()
 
 
 if __name__ == '__main__':
     systemtools.IOManager.clear_terminal()
-    print 'Finding classes with nonalphabetized attributes ...'
-    print
+    print('Finding classes with nonalphabetized attributes ...')
+    print()
     main()

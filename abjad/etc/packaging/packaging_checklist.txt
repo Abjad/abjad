@@ -1,43 +1,36 @@
 Abjad packaging checklist:
 
- 1. Open abjad/etc/packaging_transcript.txt and create a new entry.
-    Record the date of packaging in the packaging transcript.
-    Record the revision of repository in the packaging transcript.
+ 1. Open abjad/etc/packaging_transcript.txt.
 
  2.  Document the packaging environment in the packaging transcript.
+
     (a) Apply any OS updates to the machine on which you will produce 
         the package.
-        Record workstation description in the packaging transcript.
-        Record the output of "uname -v" in the packaging transcript.
 
     (b) Decide whether to upgrade git.
-        Record the output of "git --version" in the packaging transcript.
 
     (c) If necessary, upgrade Python on the packaging machine.
         Python upgrade procedures are OS-dependent.
-        Record the output of "python --version" in the packaging transcript.
 
     (d) Update pip with "sudo pip install --upgrade pip".
-        Record the output of "pip --version" in the packaging transcript.
 
     (e) Update py.test with "sudo pip install --upgrade pytest".
-        Record the output "py.test --version" in the packaging transcript.
 
     (f) Update Sphinx with "sudo pip install --upgrade Sphinx".
-        Record the output of "sphinx-build --version" 
-        in the packaging transcript.
 
     (g) Visit www.lilypond.org.
         Decide whether to update LilyPond.
-        Record the output of "lilypond --version" in the packaging transcript.
 
     (h) Visit http://www.imagemagick.org/script/binary-releases.php.
         Decide whether to update ImageMagick.
-        Record the output of "convert --version" in the packaging transcript.
     
     (i) Visit www.graphviz.org.
         Decide whether to update Graphviz.
-        Record the output of "dot -V" in the packaging transcript.
+
+    (j) Run scr/devel/make-packaging-transcript.py
+        Copy the results into abjad/etc/packaging_transcript.txt
+        Update "workstation description" manually.
+        The other packaging environment entries should already be present.
 
  3. Run the following codebase maintenance scripts:
         find-duplicate-module-names (mainline only)
@@ -55,7 +48,7 @@ Abjad packaging checklist:
     Also run these:
         fix-block-comments (both)
         fix-tests (both)
-        remove-source-file-terminal-blank-lines (both)
+        ensure-source-file-terminal-blank-lines (both)
     This script should eventually be ported forward:
         find-nonalphabetized-module-headers
     Test and commit. Alternately you may want to test after each script runs.
@@ -66,6 +59,7 @@ Abjad packaging checklist:
     version of LilyPond in use in the packaging environment.
     If any part of the scrape fails to compile, fix, commit and repeat this
     step.
+
     Note: updating the LilyPond scrape may need to be delayed until Abjad's
     LilyPond parser can be brought in-line with many of LilyPond's internal
     changes since 2.16.

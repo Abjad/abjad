@@ -158,18 +158,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
     ### ON BUILD FINISHED ###
 
     @staticmethod
-    def on_build_finished(app, exc):
-        try:
-            SphinxDocumentHandler.render_thumbnails(app)
-        except:
-            traceback.print_exc()
-        try:
-            SphinxDocumentHandler.cleanup_graphviz_svg(app)
-            pass
-        except:
-            traceback.print_exc()
-
-    @staticmethod
     def cleanup_graphviz_svg(app):
         def process_svg(filename, delete_attributes):
             try:
@@ -219,6 +207,18 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 len(svg_paths),
                 ):
                 process_svg(filename, delete_attributes=False)
+
+    @staticmethod
+    def on_build_finished(app, exc):
+        try:
+            SphinxDocumentHandler.render_thumbnails(app)
+        except:
+            traceback.print_exc()
+        try:
+            SphinxDocumentHandler.cleanup_graphviz_svg(app)
+            pass
+        except:
+            traceback.print_exc()
 
     @staticmethod
     def render_thumbnails(app):
@@ -479,6 +479,20 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         self._errored = True
 
     @staticmethod
+    def should_ignore_document(app, document):
+        if not app.config.abjadbook_ignored_documents:
+            return False
+        source = document['source']
+        for pattern in app.config.abjadbook_ignored_documents:
+            if isinstance(pattern, str):
+                if pattern in source:
+                    return True
+            else:
+                if pattern.match(source) is not None:
+                    return True
+        return False
+
+    @staticmethod
     def style_document(app, document):
         def get_unique_parts(parts):
             unique_parts = [parts[0]]
@@ -585,20 +599,6 @@ class SphinxDocumentHandler(abctools.AbjadObject):
 
     def unregister_error(self):
         self._errored = False
-
-    @staticmethod
-    def should_ignore_document(app, document):
-        if not app.config.abjadbook_ignored_documents:
-            return False
-        source = document['source']
-        for pattern in app.config.abjadbook_ignored_documents:
-            if isinstance(pattern, str):
-                if pattern in source:
-                    return True
-            else:
-                if pattern.match(source) is not None:
-                    return True
-        return False
 
     ### ON WRITE ###
 

@@ -329,16 +329,6 @@ class SequenceExpression(Expression):
                 map_next = False
         return result
 
-    def __getitem__(self, i):
-        r'''Makes get-item callback.
-
-        Returns callback.
-        '''
-        arguments={
-            'i': i,
-            }
-        return self._make_callback('Sequence.__getitem__', arguments)
-
     def __format__(self, format_specification=''):
         r'''Formats sequence expression.
 
@@ -394,6 +384,16 @@ class SequenceExpression(Expression):
         return superclass.__format__(
             format_specification=format_specification,
             )
+
+    def __getitem__(self, i):
+        r'''Makes get-item callback.
+
+        Returns callback.
+        '''
+        arguments={
+            'i': i,
+            }
+        return self._make_callback('Sequence.__getitem__', arguments)
 
     def __radd__(self, expr):
         r'''Makes right-add callback.

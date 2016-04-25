@@ -70,6 +70,14 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         if os.path.exists(self.target_valid_path):
             os.remove(self.target_valid_path)
 
+    def tearDown(self):
+        if os.path.exists(self.assets_directory):
+            shutil.rmtree(self.assets_directory)
+        if os.path.exists(self.target_valid_path):
+            os.remove(self.target_valid_path)
+        with open(self.source_valid_path, 'w') as file_pointer:
+            file_pointer.write(self.source_valid_contents)
+
     def test_clean(self):
         document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
@@ -192,11 +200,3 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         assert target_valid_contents == self.expected_styled_contents
         assert tuple(sorted(os.listdir(self.assets_directory))) == \
             self.styled_asset_names
-
-    def tearDown(self):
-        if os.path.exists(self.assets_directory):
-            shutil.rmtree(self.assets_directory)
-        if os.path.exists(self.target_valid_path):
-            os.remove(self.target_valid_path)
-        with open(self.source_valid_path, 'w') as file_pointer:
-            file_pointer.write(self.source_valid_contents)

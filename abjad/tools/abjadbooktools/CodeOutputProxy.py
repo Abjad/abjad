@@ -135,15 +135,15 @@ class CodeOutputProxy(abctools.AbjadValueObject):
     ### PUBLIC PROPERTIES ###
 
     @property
+    def code_block_specifier(self):
+        r'''Gets code block specifier.
+        '''
+        return self._code_block_specifier
+
+    @property
     def payload(self):
         r'''Gets code output proxy payload.
 
         Returns tuple of strings.
         '''
         return self._payload
-
-    @property
-    def code_block_specifier(self):
-        r'''Gets code block specifier.
-        '''
-        return self._code_block_specifier
