@@ -788,6 +788,8 @@ class DocumentationManager(abctools.AbjadObject):
             shutil.rmtree(path)
 
     def _write(self, file_path, string, rewritten_files):
+        if not string.endswith('\n'):
+            string = '{}\n'.format(string)
         should_write = True
         if os.path.exists(file_path):
             with open(file_path, 'r') as file_pointer:

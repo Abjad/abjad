@@ -48,7 +48,7 @@ Abjad packaging checklist:
     Also run these:
         fix-block-comments (both)
         fix-tests (both)
-        remove-source-file-terminal-blank-lines (both)
+        ensure-source-file-terminal-blank-lines (both)
     This script should eventually be ported forward:
         find-nonalphabetized-module-headers
     Test and commit. Alternately you may want to test after each script runs.
