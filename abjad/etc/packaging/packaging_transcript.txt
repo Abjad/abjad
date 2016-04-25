@@ -1,7 +1,7 @@
 Abjad 2.17
     Build start date: 2016-04-24
-    Build complete date:
-    MD5 hash of Abjad Github repository: cafac940a4a87bee622dfacd27afb3f4fed7e4c5 
+    Build complete date: 2016-04-25
+    MD5 hash of Abjad Github repository: 12cdaeb
 
     Packaging environment:
         0. workstation description: 2.3 GHz Intel Core i7 MacBook Pro / OSX 10.11
