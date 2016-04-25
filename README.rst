@@ -52,14 +52,13 @@ Package Index, via `pip`_:
 
     ~$ sudo pip install abjad
 
-..  caution::
+**Caution**:
 
     We strongly encourage you to *not* install Abjad globally via ``sudo pip
-    install``, but to use a :ref:`virtual environment <virtual-environments>`
-    instead. If you're already working in a virtual environment, simply omit
-    the ``sudo``.
+    install``, but to use a virtual environment instead. If you're already
+    working in a virtual environment, simply omit the ``sudo``.
 
-..  note::
+**Note**:
 
     Abjad supports Python 2.7 and above. Python 2.7.9 and above provide `pip`_
     out-of-the-box. For earlier versions of Python 2.7, you may need to install
@@ -167,8 +166,7 @@ command-line by running the following command:
     dot - graphviz version 2.38.0 (20140413.2041)
 
 All of the graph images in Abjad's API documentation were created via
-`graphviz`_. See :py:func:`~abjad.tools.topleveltools.graph` for more
-details.
+`graphviz`_. See the API entry for `topleveltools.graph()` for more details.
 
 Development installation
 ------------------------
@@ -314,7 +312,7 @@ Let's install `virtualenvwrapper`_:
     ~$ sudo pip install virtualenvwrapper
     ...
 
-..  note::
+**Note**:
 
     On OSX 10.11 (El Capitan) it may be necessary to install
     `virtualenvwrapper`_ via alternate instructions:
@@ -336,7 +334,7 @@ doesn't already exist:
     ~$ export WORKON_HOME=~/.virtualenvs
     ~$ mkdir -p $WORKON_HOME
 
-..  note::
+**Note**:
 
     The location your virtual environment files are stored in could be
     anywhere. Because you are unlikely to need to access them directly, we
