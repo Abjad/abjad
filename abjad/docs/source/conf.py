@@ -100,7 +100,7 @@ texinfo_documents = [
         ),
     ]
 ### EXTENSIONS ###
-abjadbook_ignored_documents = ('version_history',)
+abjadbook_ignored_documents = ()
 autodoc_member_order = 'groupwise'
 graphviz_dot_args = ['-s32']
 graphviz_output_format = 'svg'
