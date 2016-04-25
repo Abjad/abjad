@@ -142,7 +142,7 @@ class AbjadConfiguration(Configuration):
             ::
 
                 >>> abjad_configuration.get_abjad_startup_string()
-                'Abjad 2.17 (development)'
+                'Abjad 2.18 (development)'
 
         Returns string.
         '''
@@ -162,7 +162,7 @@ class AbjadConfiguration(Configuration):
             ::
 
                 >>> abjad_configuration.get_abjad_version_string()
-                '2.17'
+                '2.18'
 
         Returns string.
         '''
