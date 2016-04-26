@@ -68,6 +68,7 @@ class Dynamic(AbjadValueObject):
         'spp': 'pp',
         'sfz': 'f',
         'sfp': 'p',
+        'sffp': 'p',
         'rfz': 'f',
     }
 
@@ -106,7 +107,9 @@ class Dynamic(AbjadValueObject):
         'sp',
         'spp',
         'sfz',
+        'sffz',
         'sfp',
+        'sffp',
         'rfz',
         'niente',
         )
@@ -255,6 +258,24 @@ class Dynamic(AbjadValueObject):
 
                 >>> Dynamic('p').name
                 'p'
+
+        ..  container:: example
+
+            **Example 3.** Double sforzando:
+
+            ::
+
+                >>> Dynamic('sffz').name
+                'sffz'
+
+        ..  container:: example
+
+            **Example 4.** Double sforzando-piano:
+
+            ::
+
+                >>> Dynamic('sffp').name
+                'sffp'
 
         Returns string.
         '''
