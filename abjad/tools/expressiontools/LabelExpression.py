@@ -181,7 +181,58 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 5.** Makes expression to label consecutive notes with named
+        **Example 5.** Makes expression to label leaves with indices:
+
+        ::
+
+            >>> expression = label()
+            >>> expression = expression.with_indices(prototype=scoretools.Leaf)
+
+        ::
+
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> expression(staff)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                <c' bf'>8
+                    ^ \markup {
+                        \small
+                            0
+                        }
+                <g' a'>4
+                    ^ \markup {
+                        \small
+                            1
+                        }
+                af'8 ~
+                    ^ \markup {
+                        \small
+                            2
+                        }
+                af'8
+                    ^ \markup {
+                        \small
+                            3
+                        }
+                gf'8 ~
+                    ^ \markup {
+                        \small
+                            4
+                        }
+                gf'4
+                    ^ \markup {
+                        \small
+                            5
+                        }
+            }
+
+    ..  container:: example
+
+        **Example 6.** Makes expression to label consecutive notes with named
         intervals:
 
         ::
@@ -209,7 +260,7 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 6.** Makes expression to label logical ties with start
+        **Example 7.** Makes expression to label logical ties with start
         offsets:
 
         ::
@@ -237,7 +288,7 @@ class LabelExpression(Expression):
 
     ..  container:: example
 
-        **Example 7.** Makes expression to label logical ties with pitch names:
+        **Example 8.** Makes expression to label logical ties with pitch names:
 
         ::
 

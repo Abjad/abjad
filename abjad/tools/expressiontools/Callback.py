@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import functools
+import inspect
 from abjad.tools.abctools import AbjadObject
 
 
@@ -118,9 +119,20 @@ class Callback(AbjadObject):
         '''
         import abjad
         import experimental
+        globals_ = {}
+        globals_.update(abjad.__dict__.copy())
+        globals_.update(experimental.__dict__.copy())
+        globals_['functools'] = functools
+        module_names = self.module_names or ()
+        for module_name in module_names:
+            module = __import__(module_name)
+            globals_[module_name] = module
         arguments = []
         if self.arguments:
             for key, value in self.arguments:
+                if (inspect.isclass(value) and
+                    not value.__name__ in globals_):
+                    globals_[value.__name__] = value
                 if '<' in repr(value) and '>' in repr(value):
                     value = value.__name__
                 else:
@@ -131,14 +143,6 @@ class Callback(AbjadObject):
         arguments = ', '.join(arguments)
         string = 'functools.partial({}, {})'
         string = string.format(self.name, arguments)
-        globals_ = {}
-        globals_.update(abjad.__dict__.copy())
-        globals_.update(experimental.__dict__.copy())
-        globals_['functools'] = functools
-        module_names = self.module_names or ()
-        for module_name in module_names:
-            module = __import__(module_name)
-            globals_[module_name] = module
         partial = eval(string, globals_)
         result = partial(*args, **kwargs)
         return result
