@@ -2,15 +2,17 @@
 from __future__ import print_function
 import abc
 import argparse
+import inspect
 import os
 from abjad.tools import abctools
+from abjad.tools import documentationtools
 from abjad.tools import stringtools
 
 
-class DeveloperScript(abctools.AbjadObject):
+class CommandlineScript(abctools.AbjadObject):
     r'''Object-oriented model of a developer script.
 
-    `DeveloperScript` is the abstract parent from which concrete developer
+    `CommandlineScript` is the abstract parent from which concrete developer
     scripts inherit.
 
     Developer scripts can be called from the command line, generally via the
@@ -26,17 +28,28 @@ class DeveloperScript(abctools.AbjadObject):
         '_argument_parser',
         )
 
+    _colors = {
+        'BLUE': '\033[94m',
+        'RED': '\033[91m',
+        'GREEN': '\033[92m',
+        'END': '\033[0m',
+        }
+
     ### INITIALIZER ###
 
     def __init__(self):
+        short_description = getattr(self, 'short_description', None)
+        long_description = getattr(self, 'long_description', None)
+        if long_description:
+            long_description = stringtools.normalize(long_description)
         parser = self._argument_parser = argparse.ArgumentParser(
-            description=self.short_description,
-            epilog=self.long_description,
+            description=short_description,
+            epilog=long_description,
             formatter_class=argparse.RawDescriptionHelpFormatter,
             prog=self.program_name,
             )
         version = '%(prog)s {}'
-        version = version.format(self.version)
+        version = version.format(getattr(self, 'version', 1.0))
         parser.add_argument('--version', action='version', version=version)
         self._argument_parser = parser
         self.setup_argument_parser(parser)
@@ -63,33 +76,30 @@ class DeveloperScript(abctools.AbjadObject):
         '''
         return {}
 
-    ### PUBLIC PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def alias(self):
-        r'''The alias to use for the script, useful only if the script defines
-        an abj-dev scripting group as well.
-        '''
-        return None
+    def _is_valid_path(self, path):
+        if os.path.exists(path):
+            if os.path.isdir(path):
+                return True
+        return False
+
+    def _validate_path(self, path):
+        message = '{!r} is not a valid directory.'
+        message = message.format(path)
+        error = argparse.ArgumentTypeError(message)
+        path = os.path.abspath(path)
+        if not self._is_valid_path(path):
+            raise error
+        return os.path.relpath(path)
+
+    ### PUBLIC PROPERTIES ###
 
     @property
     def argument_parser(self):
         r'''The script's instance of argparse.ArgumentParser.
         '''
         return self._argument_parser
-
-    @property
-    def colors(self):
-        r'''Colors.
-
-        Returns dictionary.
-        '''
-        return {
-            'BLUE': '\033[94m',
-            'RED': '\033[91m',
-            'GREEN': '\033[92m',
-            'END': '\033[0m',
-            }
 
     @property
     def formatted_help(self):
@@ -109,12 +119,6 @@ class DeveloperScript(abctools.AbjadObject):
         '''
         return self._argument_parser.format_version()
 
-    @abc.abstractproperty
-    def long_description(self):
-        r'''The long description, printed after arguments explanations.
-        '''
-        raise NotImplementedError
-
     @property
     def program_name(self):
         r'''The name of the script, callable from the command line.
@@ -122,28 +126,29 @@ class DeveloperScript(abctools.AbjadObject):
         name = type(self).__name__[:type(self).__name__.rfind('Script')]
         return stringtools.to_space_delimited_lowercase(name).replace(' ', '-')
 
-    @property
-    def scripting_group(self):
-        r'''Scripting subcommand group of script.
-        '''
-        return None
-
-    @abc.abstractproperty
-    def short_description(self):
-        r'''Short description of the script, printed before arguments
-        explanations.
-
-        Also used as a summary in other contexts.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def version(self):
-        r'''Version number of developer script.
-        '''
-        raise NotImplementedError
-
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_commandline_script_classes():
+        r'''Returns a list of all developer script classes.
+        '''
+        from abjad.tools import abjadbooktools
+        from abjad.tools import commandlinetools
+        tools_package_paths = []
+        tools_package_paths.extend(abjadbooktools.__path__)
+        tools_package_paths.extend(commandlinetools.__path__)
+        script_classes = []
+        for tools_package_path in tools_package_paths:
+            generator = documentationtools.yield_all_classes(
+                code_root=tools_package_path,
+                root_package_name='abjad',
+                )
+            for commandline_script_class in generator:
+                if commandlinetools.CommandlineScript in \
+                    inspect.getmro(commandline_script_class) and \
+                    not inspect.isabstract(commandline_script_class):
+                    script_classes.append(commandline_script_class)
+        return list(sorted(script_classes, key=lambda x: x.__name__))
 
     @abc.abstractmethod
     def process_args(self, args):

@@ -4,10 +4,10 @@ import inspect
 import os
 import types
 from abjad.tools import stringtools
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
+from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 
 
-class StatsScript(DirectoryScript):
+class StatsScript(CommandlineScript):
     r'''Builds statistics about a codebase.
 
     ..  shell::
@@ -16,47 +16,10 @@ class StatsScript(DirectoryScript):
 
     '''
 
-    ### PUBLIC PROPERTIES ###
+    ### CLASS VARIABLES ###
 
-    @property
-    def alias(self):
-        r'''Alias of script.
-
-        Returns ``'stats'``.
-        '''
-        return 'stats'
-
-    @property
-    def long_description(self):
-        r'''Long description of script.
-
-        Returns string or none.
-        '''
-        return None
-
-    @property
-    def scripting_group(self):
-        r'''Scripting group of script.
-
-        Returns none.
-        '''
-        return None
-
-    @property
-    def short_description(self):
-        r'''Short description of script.
-
-        Returns string.
-        '''
-        return 'Build statistics about Python modules in PATH.'
-
-    @property
-    def version(self):
-        r'''Version of script.
-
-        Returns float.
-        '''
-        return 1.0
+    alias = 'stats'
+    short_description = 'Build statistics about Python modules in PATH.'
 
     ### PRIVATE METHODS ###
 

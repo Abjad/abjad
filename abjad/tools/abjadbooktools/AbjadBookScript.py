@@ -3,10 +3,10 @@ try:
     import ConfigParser as configparser
 except ImportError:
     import configparser
-from abjad.tools import developerscripttools
+from abjad.tools import commandlinetools
 
 
-class AbjadBookScript(developerscripttools.DeveloperScript):
+class AbjadBookScript(commandlinetools.CommandlineScript):
     r'''Entry point script for abjad-book.
 
     ::
@@ -41,14 +41,16 @@ class AbjadBookScript(developerscripttools.DeveloperScript):
           -g CONFIG, --config CONFIG
                                 path to config file
         <BLANKLINE>
-        TBD.
-        <BLANKLINE>
 
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Entry Points'
+
+    alias = 'book'
+    short_description = 'Preprocess LaTeX files with Abjad.'
+    version = 3.0
 
     ### PRIVATE METHODS ###
 
@@ -160,38 +162,3 @@ class AbjadBookScript(developerscripttools.DeveloperScript):
             '-g', '--config',
             help='path to config file',
             )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def alias(self):
-        r'''Alias of Abjad book script.
-
-        Returns ``'book'``.
-        '''
-        return 'book'
-
-    @property
-    def long_description(self):
-        r'''Long description of Abjad book script.
-
-        Returns string.
-        '''
-        return r'''TBD.'''
-
-    @property
-    def short_description(self):
-        r'''Short description of Abjad book script.
-
-        Returns string.
-        '''
-        return 'Preprocess LaTeX files with Abjad.'
-
-    @property
-    def version(self):
-        r'''Version of Abjad book script.
-
-        Returns float.
-        '''
-        return 3.0
-

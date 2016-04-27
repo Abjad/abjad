@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import os
-import traceback
 import webbrowser
 from abjad.tools import systemtools
 from abjad.tools.documentationtools import DocumentationManager
-from abjad.tools.developerscripttools.DeveloperScript import DeveloperScript
+from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 
 
-class BuildAPIScript(DeveloperScript):
+class BuildApiScript(CommandlineScript):
     r'''Builds the Abjad APIs.
 
     ..  shell::
@@ -54,47 +53,8 @@ class BuildAPIScript(DeveloperScript):
             self.docs_directory = docs_directory
             self.packages_to_document = packages_to_document
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def alias(self):
-        r'''Alias of script.
-
-        Returns ``'api'``.
-        '''
-        return 'api'
-
-    @property
-    def long_description(self):
-        r'''Long description of script.
-
-        Returns string or none.
-        '''
-        return None
-
-    @property
-    def scripting_group(self):
-        r'''Scripting group of script.
-
-        Returns none.
-        '''
-        return None
-
-    @property
-    def short_description(self):
-        r'''Short description of script.
-
-        Returns string.
-        '''
-        return 'Build the Abjad APIs.'
-
-    @property
-    def version(self):
-        r'''Version of script.
-
-        Returns float.
-        '''
-        return 1.0
+    alias = 'api'
+    short_description = 'Build the Abjad APIs.'
 
     ### PRIVATE METHODS ###
 

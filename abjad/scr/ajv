@@ -2,6 +2,6 @@
 
 
 if __name__ == '__main__':
-    from abjad.tools import developerscripttools
+    from abjad.tools import commandlinetools
 
-    developerscripttools.run_ajv()
+    commandlinetools.run_ajv()
