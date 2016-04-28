@@ -148,6 +148,7 @@ class UpdateManager(AbjadObject):
         offsets_in_seconds=False,
         indicators=False,
         ):
+        assert offsets or offsets_in_seconds or indicators
         if component._is_forbidden_to_update:
             return
         parentage = component._get_parentage()
