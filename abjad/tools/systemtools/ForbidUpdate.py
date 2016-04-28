@@ -9,11 +9,34 @@ class ForbidUpdate(ContextManager):
 
         ::
 
-            >>> staff = Staff("c'32 d'2.. ~ d'16 e'32")
+            >>> staff = Staff("c'8 d'8 ~ d'2 e'4")
             >>> with systemtools.ForbidUpdate(component=staff):
-            ...     for x in staff[:]:
-            ...         mutate(x).replace(Chord(x))
+            ...     for note in staff[:]:
+            ...         pitch_1 = note.written_pitch
+            ...         pitch_2 = pitch_1 + pitchtools.NamedInterval('M3')
+            ...         pitches = [pitch_1, pitch_2]
+            ...         chord = Chord(pitches, note.written_duration)
+            ...         mutate(note).replace(chord)
             ...
+
+        ::
+
+            >>> inspect_(staff).is_well_formed()
+            True
+
+        ::
+
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                <c' e'>8
+                <d' fs'>8 ~
+                <d' fs'>2
+                <e' gs'>4
+            }
 
     '''
 
@@ -59,7 +82,7 @@ class ForbidUpdate(ContextManager):
         return self
 
     def __exit__(self, exc_type, exc_value, traceback):
-        r'''Exist context manager.
+        r'''Exits context manager.
 
         Returns none.
         '''
@@ -72,24 +95,30 @@ class ForbidUpdate(ContextManager):
 
     @property
     def component(self):
-        r'''Component of context manager.
+        r'''Gets component.
 
-        Return component.
+        Set to component or none.
+
+        Returns component or none.
         '''
         return self._component
 
     @property
     def update_on_enter(self):
-        r'''True if context manager updates offsets on enter.
+        r'''Is true when context manager should update offsets on enter.
 
-        Returns boolean or none.
+        Set to true, false or none.
+
+        Returns true, false or none.
         '''
         return self._update_on_enter
 
     @property
     def update_on_exit(self):
-        r'''True if context manager updates offsets on exit.
+        r'''Is true when context manager should update offsets on exit.
 
-        Returns boolean or none.
+        Set to true, false or none.
+
+        Returns true, false or none.
         '''
         return self._update_on_exit
