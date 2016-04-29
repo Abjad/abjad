@@ -5,10 +5,136 @@ from abjad.tools.durationtools.Duration import Duration
 class Multiplier(Duration):
     '''A multiplier.
 
-    ::
+    ..  container:: example
 
-        >>> Multiplier(2, 3)
-        Multiplier(2, 3)
+        **Example 1.** Initializes from integer numerator:
+
+        ::
+
+            >>> Multiplier(3)
+            Multiplier(3, 1)
+
+    ..  container:: example
+
+        **Example 2.** Initializes from integer numerator and denominator:
+
+        ::
+
+            >>> Multiplier(3, 16)
+            Multiplier(3, 16)
+
+    ..  container:: example
+
+        **Example 3.** Initializes from integer-equivalent numeric numerator:
+
+        ::
+
+            >>> Multiplier(3.0)
+            Multiplier(3, 1)
+
+    ..  container:: example
+
+        **Example 4.** Initializes from integer-equivalent numeric numerator
+        and denominator:
+
+        ::
+
+            >>> Multiplier(3.0, 16)
+            Multiplier(3, 16)
+
+    ..  container:: example
+
+        **Example 5.** Initializes from integer-equivalent singleton:
+
+        ::
+
+            >>> Multiplier((3,))
+            Multiplier(3, 1)
+
+    ..  container:: example
+
+        **Example 6.** Initializes from integer-equivalent pair:
+
+        ::
+
+            >>> Multiplier((3, 16))
+            Multiplier(3, 16)
+
+    ..  container:: example
+
+        **Example 7.** Initializes from other duration:
+
+        ::
+
+            >>> Multiplier(Duration(3, 16))
+            Multiplier(3, 16)
+
+    ..  container:: example
+
+        **Example 8.** Intializes from fraction:
+
+        ::
+
+            >>> Multiplier(Fraction(3, 16))
+            Multiplier(3, 16)
+
+    ..  container:: example
+
+        **Example 9.** Initializes from solidus string:
+
+        ::
+
+            >>> Multiplier('3/16')
+            Multiplier(3, 16)
+
+    ..  container:: example
+
+        **Example 10.** Initializes from nonreduced fraction:
+
+        ::
+
+            >>> Multiplier(mathtools.NonreducedFraction(6, 32))
+            Multiplier(3, 16)
+
+    ..  container:: example
+
+        **Example 11.** Multipliers inherit from built-in fraction:
+
+        ::
+
+            >>> isinstance(Multiplier(3, 16), Fraction)
+            True
+
+    ..  container:: example
+
+        **Example 12.** Multipliers are numeric:
+
+        ::
+
+            >>> import numbers
+
+        ::
+
+            >>> isinstance(Multiplier(3, 16), numbers.Number)
+            True
+
+    ..  container:: example
+
+        **Example 13.** Attaching a multiplier to a score component multiplies
+        that component's duration:
+
+        ::
+
+            >>> note = Note("c'1")
+            >>> print(format(note))
+            c'1
+
+        ::
+
+            >>> multiplier = Multiplier(3, 8)
+            >>> attach(multiplier, note)
+            >>> print(format(note))
+            c'1 * 3/8
 
     '''
 

@@ -362,7 +362,7 @@ class Component(AbjadObject):
         self._update_now(indicators=True)
         # gather candidate expressions
         candidate_expressions = datastructuretools.SortedCollection(
-            key=lambda x: x.component._get_timespan().start_offset
+            key=lambda x: x.component._get_timespan()._start_offset
             )
         for parent in self._get_parentage(include_self=True):
             expressions = parent._dependent_expressions[:]
@@ -376,7 +376,7 @@ class Component(AbjadObject):
         # elect most recent candidate expression
         if not candidate_expressions:
             return
-        start_offset = self._get_timespan().start_offset
+        start_offset = self._get_timespan()._start_offset
         index = bisect.bisect_right(candidate_expressions._keys, start_offset)
         index = (index - 1) + int(n)
         if index < 0:
@@ -642,7 +642,7 @@ class Component(AbjadObject):
             return self._timespan
 
     def _get_vertical_moment(self, governor=None):
-        offset = self._get_timespan().start_offset
+        offset = self._get_timespan()._start_offset
         if governor is None:
             governor = self._get_parentage().root
         return selectiontools.VerticalMoment(governor, offset)
@@ -790,12 +790,12 @@ class Component(AbjadObject):
         selection = selectiontools.Selection(self)
         if direction == Right:
             if grow_spanners:
-                insert_offset = self._get_timespan().stop_offset
+                insert_offset = self._get_timespan()._stop_offset
                 receipt = selection._get_dominant_spanners()
                 for spanner, index in receipt:
                     insert_component = None
                     for component in spanner:
-                        start_offset = component._get_timespan().start_offset
+                        start_offset = component._get_timespan()._start_offset
                         if start_offset == insert_offset:
                             insert_component = component
                             break
@@ -820,11 +820,11 @@ class Component(AbjadObject):
             return [self] + components
         else:
             if grow_spanners:
-                offset = self._get_timespan().start_offset
+                offset = self._get_timespan()._start_offset
                 receipt = selection._get_dominant_spanners()
                 for spanner, x in receipt:
                     for component in spanner:
-                        if component._get_timespan().start_offset == offset:
+                        if component._get_timespan()._start_offset == offset:
                             index = spanner._index(component)
                             break
                     else:

@@ -14,6 +14,9 @@ class StorageFormatManager(AbjadObject):
 
     __documentation_section__ = 'Storage formatting'
 
+    unindented_whitespace = '', '', ', '
+    indented_whitespace = '    ', '\n', ',\n'
+
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -35,11 +38,15 @@ class StorageFormatManager(AbjadObject):
         '''
         if not isinstance(object_two, type(object_one)):
             return False
-        if (StorageFormatManager.get_positional_argument_values(object_one) !=
-            StorageFormatManager.get_positional_argument_values(object_two)):
+        if (
+            StorageFormatManager.get_positional_argument_values(object_one) !=
+            StorageFormatManager.get_positional_argument_values(object_two)
+            ):
             return False
-        if (StorageFormatManager.get_keyword_argument_values(object_one) !=
-            StorageFormatManager.get_keyword_argument_values(object_two)):
+        if (
+            StorageFormatManager.get_keyword_argument_values(object_one) !=
+            StorageFormatManager.get_keyword_argument_values(object_two)
+            ):
             return False
         return True
 
@@ -55,10 +62,15 @@ class StorageFormatManager(AbjadObject):
         '''
         from abjad.tools import datastructuretools
         result = []
-        prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
-            is_indented)
+
+        if is_indented:
+            prefix, infix, suffix = StorageFormatManager.indented_whitespace
+        else:
+            prefix, infix, suffix = StorageFormatManager.unindented_whitespace
+
         if isinstance(value, types.MethodType):
             return result
+
         if isinstance(value, type):
             if as_storage_format:
                 value = '{}.{}'.format(
@@ -68,6 +80,7 @@ class StorageFormatManager(AbjadObject):
             else:
                 value = value.__name__
             result.append(value)
+
         elif as_storage_format and hasattr(
             value, '_storage_format_specification'):
             specification = value._storage_format_specification
@@ -76,6 +89,7 @@ class StorageFormatManager(AbjadObject):
                 as_storage_format=True,
                 )
             result.extend(pieces)
+
         elif not as_storage_format and hasattr(
             value, '_repr_specification'):
             specification = value._repr_specification
@@ -84,6 +98,7 @@ class StorageFormatManager(AbjadObject):
                 as_storage_format=False,
                 )
             result.extend(pieces)
+
         elif isinstance(value, (list, tuple)):
             # just return the repr, if all contents are builtin types
             prototype = (bool, int, float, str, type(None))
@@ -111,6 +126,7 @@ class StorageFormatManager(AbjadObject):
                 else:
                     result[-1] = result[-1].rstrip()
             result.append('{}{}'.format(prefix, braces[1]))
+
         elif isinstance(value, (
             collections.OrderedDict,
             datastructuretools.TypedOrderedDict,
@@ -132,6 +148,7 @@ class StorageFormatManager(AbjadObject):
             if not is_indented:
                 result[-1] = result[-1].rstrip(suffix) + infix
             result.append('{}]'.format(prefix))
+
         elif isinstance(value, dict):
             result.append('{{{}'.format(infix))
             items = list(value.items())
@@ -166,8 +183,10 @@ class StorageFormatManager(AbjadObject):
             if not is_indented:
                 result[-1] = result[-1].rstrip(suffix) + infix
             result.append('{}}}'.format(prefix))
+
         else:
             result.append(repr(value))
+
         return result
 
     @staticmethod
@@ -181,8 +200,11 @@ class StorageFormatManager(AbjadObject):
             return specification.storage_format_pieces
 
         result = []
-        prefix, infix, suffix = StorageFormatManager.get_indentation_strings(
-            specification.is_indented)
+
+        if specification.is_indented:
+            prefix, infix, suffix = StorageFormatManager.indented_whitespace
+        else:
+            prefix, infix, suffix = StorageFormatManager.unindented_whitespace
 
         class_name = type(specification.instance).__name__
         if as_storage_format:
@@ -237,6 +259,7 @@ class StorageFormatManager(AbjadObject):
                 class_name_prefix,
                 specification.body_text,
                 ))
+
         else:
             if not positional_argument_pieces and not keyword_argument_pieces:
                 result.append('{}()'.format(class_name_prefix))
@@ -262,6 +285,7 @@ class StorageFormatManager(AbjadObject):
 
         if not specification.is_indented:
             return (''.join(result),)
+
         return tuple(result)
 
     @staticmethod

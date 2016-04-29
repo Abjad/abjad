@@ -8,8 +8,7 @@ def test_timespantools_OffsetTimespanTimeRelation___init___01():
 
     time_relation = timespantools.OffsetTimespanTimeRelation()
 
-    assert systemtools.TestManager.compare(
-        format(time_relation, 'storage'),
+    assert format(time_relation, 'storage') == stringtools.normalize(
         r'''
         timespantools.OffsetTimespanTimeRelation(
             inequality=timespantools.CompoundInequality(

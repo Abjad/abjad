@@ -41,7 +41,7 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ..  container:: example
 
-        **Example 4.** Initializes from integer-equivalent numeric numerator 
+        **Example 4.** Initializes from integer-equivalent numeric numerator
         and denominator:
 
         ::
@@ -135,43 +135,41 @@ class Duration(AbjadObject, fractions.Fraction):
     ### CONSTRUCTOR ###
 
     def __new__(cls, *args):
-        if (len(args) == 1 and
-            isinstance(args[0], mathtools.NonreducedFraction)):
-            return fractions.Fraction.__new__(cls, *args[0].pair)
-        elif len(args) == 1 and hasattr(args[0], 'duration'):
-            args = args[0].numerator, args[0].denominator
-        try:
-            return fractions.Fraction.__new__(cls, *args)
-        except TypeError:
-            pass
-        try:
-            return fractions.Fraction.__new__(cls, *args[0])
-        except (AttributeError, TypeError):
-            pass
-        try:
-            return fractions.Fraction.__new__(
-                cls, args[0].numerator, args[0].denominator)
-        except AttributeError:
-            pass
-        if (len(args) == 1 and
-            mathtools.is_integer_equivalent_singleton(args[0])):
-            self = fractions.Fraction.__new__(cls, int(args[0][0]))
-        elif (len(args) == 1 and
-            mathtools.is_fraction_equivalent_pair(args[0])):
-            self = fractions.Fraction.__new__(
-                cls, int(args[0][0]), int(args[0][1]))
-        elif (len(args) == 1 and
-            isinstance(args[0], str) and not '/' in args[0]):
-            result = Duration._initialize_from_lilypond_duration_string(
-                args[0])
-            self = fractions.Fraction.__new__(cls, result)
-        elif mathtools.all_are_integer_equivalent_numbers(args):
-            self = fractions.Fraction.__new__(cls, *[int(x) for x in args])
+        if len(args) == 1:
+            arg = args[0]
+            if type(arg) is cls:
+                return arg
+            if isinstance(arg, mathtools.NonreducedFraction):
+                return fractions.Fraction.__new__(cls, *arg.pair)
+            try:
+                return fractions.Fraction.__new__(cls, *arg)
+            except (AttributeError, TypeError):
+                pass
+            try:
+                return fractions.Fraction.__new__(cls, arg)
+            except (AttributeError, TypeError):
+                pass
+            if mathtools.is_fraction_equivalent_pair(arg):
+                return fractions.Fraction.__new__(
+                    cls, int(arg[0]), int(arg[1]))
+            if hasattr(arg, 'duration'):
+                return fractions.Fraction.__new__(cls, arg.duration)
+            if isinstance(arg, str) and '/' not in arg:
+                result = Duration._initialize_from_lilypond_duration_string(
+                    arg)
+                return fractions.Fraction.__new__(cls, result)
+            if mathtools.is_integer_equivalent_singleton(arg):
+                return fractions.Fraction.__new__(cls, int(arg[0]))
         else:
-            message = 'can not construct duration: {!r}.'
-            message = message.format(args)
-            raise ValueError(message)
-        return self
+            try:
+                return fractions.Fraction.__new__(cls, *args)
+            except TypeError:
+                pass
+            if mathtools.all_are_integer_equivalent_numbers(args):
+                return fractions.Fraction.__new__(cls, *[int(x) for x in args])
+        message = 'can not construct duration: {!r}.'
+        message = message.format(args)
+        raise ValueError(message)
 
     ### SPECIAL METHODS ###
 
@@ -205,8 +203,10 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns duration.
         '''
-        if (len(args) == 1 and
-            isinstance(args[0], mathtools.NonreducedFraction)):
+        if (
+            len(args) == 1 and
+            isinstance(args[0], mathtools.NonreducedFraction)
+            ):
             result = args[0].__radd__(self)
         else:
             result = type(self)(fractions.Fraction.__add__(self, *args))
@@ -223,7 +223,7 @@ class Duration(AbjadObject, fractions.Fraction):
             result = durationtools.Multiplier(fraction)
         elif len(args) == 1 and isinstance(
             args[0], mathtools.NonreducedFraction):
-            result =  args[0].__rdiv__(self)
+            result = args[0].__rdiv__(self)
         else:
             result = type(self)(fractions.Fraction.__truediv__(self, *args))
         return result
@@ -330,8 +330,10 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns duration or nonreduced fraction.
         '''
-        if (len(args) == 1 and
-            isinstance(args[0], mathtools.NonreducedFraction)):
+        if (
+            len(args) == 1 and
+            isinstance(args[0], mathtools.NonreducedFraction)
+            ):
             result = args[0].__rmul__(self)
         else:
             result = type(self)(fractions.Fraction.__mul__(self, *args))
@@ -433,8 +435,10 @@ class Duration(AbjadObject, fractions.Fraction):
 
         Returns new duration.
         '''
-        if (len(args) == 1 and
-            isinstance(args[0], mathtools.NonreducedFraction)):
+        if (
+            len(args) == 1 and
+            isinstance(args[0], mathtools.NonreducedFraction)
+            ):
             return args[0].__rsub__(self)
         else:
             return type(self)(fractions.Fraction.__sub__(self, *args))
