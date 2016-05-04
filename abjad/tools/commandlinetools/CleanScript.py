@@ -2,10 +2,10 @@
 from __future__ import print_function
 import os
 import shutil
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
+from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 
 
-class CleanScript(DirectoryScript):
+class CleanScript(CommandlineScript):
     r'''Removes *.pyc, *.swp files and __pycache__ and tmp* directories
     recursively in a path.
 
@@ -15,48 +15,13 @@ class CleanScript(DirectoryScript):
 
     '''
 
-    ### PUBLIC PROPERTIES ###
+    ### CLASS VARIABLES ###
 
-    @property
-    def alias(self):
-        r'''Alias of script.
-
-        Returns ``'clean'``.
-        '''
-        return 'clean'
-
-    @property
-    def long_description(self):
-        r'''Long description of script.
-
-        Returns string or none.
-        '''
-        return None
-
-    @property
-    def scripting_group(self):
-        r'''Scripting group of script.
-
-        Returns none.
-        '''
-        return None
-
-    @property
-    def short_description(self):
-        r'''Short description of script.
-
-        Returns string.
-        '''
-        return 'Clean *.pyc, *.swp, __pycache__ and tmp* files' + \
-            ' and folders from PATH.'
-
-    @property
-    def version(self):
-        r'''Version of script.
-
-        Returns float.
-        '''
-        return 1.0
+    alias = 'clean'
+    short_description = (
+        'Clean *.pyc, *.swp, __pycache__ and tmp* '
+        'files and folders from PATH.'
+        )
 
     ### PUBLIC METHODS ###
 

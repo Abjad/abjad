@@ -6,14 +6,14 @@ import os
 import sys
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
+from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
 
 
-class RunDoctestsScript(DirectoryScript):
+class DoctestScript(CommandlineScript):
     r'''Runs doctests on all Python files in current directory recursively.
 
     ..  shell::
@@ -22,47 +22,10 @@ class RunDoctestsScript(DirectoryScript):
 
     '''
 
-    ### PUBLIC PROPERTIES ###
+    ### CLASS VARIABLES ###
 
-    @property
-    def alias(self):
-        r'''Alias of script.
-
-        Returns ``'doctest'``.
-        '''
-        return 'doctest'
-
-    @property
-    def long_description(self):
-        r'''Long description of  script.
-
-        Returns string or none.
-        '''
-        return None
-
-    @property
-    def scripting_group(self):
-        r'''Scripting group of script.
-
-        Returns none.
-        '''
-        return None
-
-    @property
-    def short_description(self):
-        r'''Short description of script.
-
-        Returns string.
-        '''
-        return 'Run doctests on all modules in current path.'
-
-    @property
-    def version(self):
-        r'''Version of script.
-
-        Returns float.
-        '''
-        return 1.0
+    alias = 'doctest'
+    short_description = 'Run doctests on all modules in current path.'
 
     ### PUBLIC PROPERTIES ###
 
@@ -140,9 +103,9 @@ class RunDoctestsScript(DirectoryScript):
                 error_messages.append(string_buffer.getvalue())
                 if print_to_terminal:
                     result_code = ''.join((
-                        self.colors['RED'],
+                        self._colors['RED'],
                         'FAILED',
-                        self.colors['END'],
+                        self._colors['END'],
                         ))
                     print(relative_path, result_code)
                 else:
@@ -154,9 +117,9 @@ class RunDoctestsScript(DirectoryScript):
             else:
                 if print_to_terminal:
                     result_code = ''.join((
-                        self.colors['BLUE'],
+                        self._colors['BLUE'],
                         'OK',
-                        self.colors['END'],
+                        self._colors['END'],
                         ))
                     print(relative_path, result_code)
                 else:

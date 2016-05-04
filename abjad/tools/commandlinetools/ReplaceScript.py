@@ -4,10 +4,14 @@ import fnmatch
 import os
 import re
 from abjad.tools import stringtools
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
+from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
+try:
+    input = raw_input
+except NameError:
+    pass
 
 
-class ReplaceInFilesScript(DirectoryScript):
+class ReplaceScript(CommandlineScript):
     r'''Replaces text in files recursively.
 
     ..  shell::
@@ -23,39 +27,12 @@ class ReplaceInFilesScript(DirectoryScript):
 
     '''
 
+    ### CLASS VARIABLES ###
+
+    alias = 'replace'
+    short_description = 'Replace text.'
+
     ### PUBLIC PROPERTIES ###
-
-    @property
-    def alias(self):
-        r'''Alias of script.
-
-        Returns ``'replace'``.
-        '''
-        return 'replace'
-
-    @property
-    def long_description(self):
-        r'''Long description of script.
-
-        Returns string or none.
-        '''
-        return None
-
-    @property
-    def scripting_group(self):
-        r'''Scripting group of script.
-
-        Returns none.
-        '''
-        return None
-
-    @property
-    def short_description(self):
-        r'''Short description.
-
-        Returns string.
-        '''
-        return 'Replace text.'
 
     @property
     def skipped_directories(self):
@@ -67,7 +44,7 @@ class ReplaceInFilesScript(DirectoryScript):
             '.svn',
             '.git',
             'build'
-        ]
+            ]
 
     @property
     def skipped_files(self):
@@ -95,29 +72,27 @@ class ReplaceInFilesScript(DirectoryScript):
             '.DS_Store',
             ]
 
-    @property
-    def version(self):
-        r'''Version of script.
-
-        Returns float.
-        '''
-        return 1.0
-
     ### PRIVATE METHODS ###
 
     def _get_naive_search_callable(self, args):
+
         class NaiveSearch(object):
+
             def __init__(self, pattern):
                 self.pattern = pattern
+
             def __call__(self, line, pos):
                 index = line.find(self.pattern, pos)
                 if 0 <= index:
                     return index, len(self.pattern)
                 return -1, 0
+
         return NaiveSearch(args.old)
 
     def _get_regex_search_callable(self, args):
+
         class RegexSearch(object):
+
             def __init__(self, pattern, escaped=False, whole_words_only=False):
                 try:
                     if escaped:
@@ -135,7 +110,7 @@ class ReplaceInFilesScript(DirectoryScript):
                 start, length = self._search(line, pos)
                 if self.whole_words_only and 0 < start:
                     while start != -1 and (
-                        line[start-1].isalnum() or line[start-1] == '_'):
+                        line[start - 1].isalnum() or line[start - 1] == '_'):
                         start, length = self._search(line, start + length)
                 return start, length
 
@@ -190,7 +165,7 @@ class ReplaceInFilesScript(DirectoryScript):
 
             should_replace = False
 
-            replaced_line = line[:index] + replacement + line[index+length:]
+            replaced_line = line[:index] + replacement + line[index + length:]
             carats = (' ' * index) + ('^' * length)
 
             if force:
@@ -208,9 +183,9 @@ class ReplaceInFilesScript(DirectoryScript):
                 print('{}'.format(line))
                 print('{}'.format(carats))
                 print()
-                result = raw_input('Replace? [Y/n] > ').lower()
+                result = input('Replace? [Y/n] > ').lower()
                 while result not in ('', 'y', 'yes', 'n', 'no'):
-                    result = raw_input('Replace? [Y/n] > ').lower()
+                    result = input('Replace? [Y/n] > ').lower()
                 if result in ('', 'y', 'yes'):
                     should_replace = True
 
@@ -276,13 +251,13 @@ class ReplaceInFilesScript(DirectoryScript):
         file_identifier = stringtools.pluralize('file', changed_file_count)
         message = '\tReplaced {} {} over {} {} in {} {}.'
         message = message.format(
-                changed_item_count, 
-                item_identifier,
-                changed_line_count, 
-                line_identifier,
-                changed_file_count,
-                file_identifier,
-                )
+            changed_item_count,
+            item_identifier,
+            changed_line_count,
+            line_identifier,
+            changed_file_count,
+            file_identifier,
+            )
         print(message)
 
     def setup_argument_parser(self, parser):
@@ -290,41 +265,50 @@ class ReplaceInFilesScript(DirectoryScript):
 
         Returns none.
         '''
-        parser.add_argument('path',
+        parser.add_argument(
+            'path',
             default=os.getcwd(),
             help='directory tree to be recursed over',
             nargs='?',
             type=self._validate_path,
             )
-        parser.add_argument('old',
+        parser.add_argument(
+            'old',
             help='old text',
             )
-        parser.add_argument('new',
+        parser.add_argument(
+            'new',
             help='new text',
             )
-        parser.add_argument('--verbose',
+        parser.add_argument(
+            '--verbose',
             action='store_true',
             help='print replacement info even when --force flag is set.',
             )
-        parser.add_argument('-Y', '--force',
+        parser.add_argument(
+            '-Y', '--force',
             action='store_true',
             help='force "yes" to every replacement'
             )
-        parser.add_argument('-R', '--regex',
+        parser.add_argument(
+            '-R', '--regex',
             action='store_true',
             help='treat "old" as a regular expression',
             )
-        parser.add_argument('-W', '--whole-words-only',
+        parser.add_argument(
+            '-W', '--whole-words-only',
             action='store_true',
             help='''match only whole words, similar to grep's "-w" flag''',
             )
-        parser.add_argument('-F', '--without-files',
+        parser.add_argument(
+            '-F', '--without-files',
             action='append',
             default=[],
             help='Exclude files matching pattern(s)',
             metavar='PATTERN',
             )
-        parser.add_argument('-D', '--without-dirs',
+        parser.add_argument(
+            '-D', '--without-dirs',
             action='append',
             default=[],
             help='Exclude folders matching pattern(s)',

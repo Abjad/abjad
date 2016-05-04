@@ -5,50 +5,18 @@ import os
 import sys
 from abjad.tools import stringtools
 from abjad.tools import systemtools
-from abjad.tools.developerscripttools.DirectoryScript import DirectoryScript
+from abjad.tools.commandlinetools.CommandlineScript import CommandlineScript
 
 
-class NewScoreScript(DirectoryScript):
+class NewScoreScript(CommandlineScript):
     r'''Makes a new score package in the current directory.
     '''
 
-    ### PUBLIC PROPERTIES ###
+    ### CLASS VARIABLES ###
 
-    @property
-    def alias(self):
-        r'''Alias of script.
-        '''
-        return 'new'
-
-    @property
-    def long_description(self):
-        r'''Long description of script.
-
-        Returns string or none.
-        '''
-        return None
-
-    @property
-    def scripting_group(self):
-        r'''Scripting group of script.
-        '''
-        return None
-
-    @property
-    def short_description(self):
-        r'''Short description of script.
-
-        Returns string.
-        '''
-        return 'Make score package.'
-
-    @property
-    def version(self):
-        r'''Version of script.
-
-        Returns float.
-        '''
-        return 1.0
+    alias = 'score'
+    scripting_group = 'new'
+    short_description = 'Make score package.'
 
     ### PUBLIC METHODS ###
 
