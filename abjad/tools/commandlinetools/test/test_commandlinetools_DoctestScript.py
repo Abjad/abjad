@@ -9,7 +9,7 @@ from abjad.tools import systemtools
 try:
     import pathlib
 except ImportError:
-    from pathlib2 import pathlib
+    import pathlib2 as pathlib
 try:
     from StringIO import StringIO
 except ImportError:
@@ -20,7 +20,8 @@ class TestCase(unittest.TestCase):
 
     ansi_escape = re.compile(r'\x1b[^m]*m')
 
-    doctest_path = pathlib.Path(__file__).parent.joinpath('doctest_test')
+    test_path = pathlib.Path(__file__).parent
+    doctest_path = test_path.joinpath('doctest_test')
 
     failing_module_path = doctest_path.joinpath('doctest_fail.py')
     failing_module_contents = stringtools.normalize(r'''
@@ -64,9 +65,10 @@ class TestCase(unittest.TestCase):
     def test_fail(self):
         script = commandlinetools.DoctestScript()
         command = [str(self.failing_module_path)]
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with self.assertRaises(SystemExit) as context_manager:
-                script(command)
+        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
+            with systemtools.RedirectedStreams(stdout=self.string_io):
+                with self.assertRaises(SystemExit) as context_manager:
+                    script(command)
         assert context_manager.exception.code == 1
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
         script_output = stringtools.normalize(script_output)
@@ -98,9 +100,10 @@ class TestCase(unittest.TestCase):
     def test_diff(self):
         script = commandlinetools.DoctestScript()
         command = ['--diff', str(self.failing_module_path)]
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with self.assertRaises(SystemExit) as context_manager:
-                script(command)
+        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
+            with systemtools.RedirectedStreams(stdout=self.string_io):
+                with self.assertRaises(SystemExit) as context_manager:
+                    script(command)
         assert context_manager.exception.code == 1
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
         script_output = stringtools.normalize(script_output)
@@ -131,9 +134,10 @@ class TestCase(unittest.TestCase):
     def test_pass(self):
         script = commandlinetools.DoctestScript()
         command = [str(self.passing_module_path)]
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with self.assertRaises(SystemExit) as context_manager:
-                script(command)
+        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
+            with systemtools.RedirectedStreams(stdout=self.string_io):
+                with self.assertRaises(SystemExit) as context_manager:
+                    script(command)
         assert context_manager.exception.code == 0
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
         script_output = stringtools.normalize(script_output)
@@ -150,9 +154,10 @@ class TestCase(unittest.TestCase):
     def test_both(self):
         script = commandlinetools.DoctestScript()
         command = [str(self.doctest_path)]
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with self.assertRaises(SystemExit) as context_manager:
-                script(command)
+        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
+            with systemtools.RedirectedStreams(stdout=self.string_io):
+                with self.assertRaises(SystemExit) as context_manager:
+                    script(command)
         assert context_manager.exception.code == 1
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
         script_output = stringtools.normalize(script_output)
