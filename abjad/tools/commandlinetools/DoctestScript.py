@@ -203,10 +203,10 @@ class DoctestScript(CommandlineScript):
             )
         if print_to_terminal:
             print(string)
-            if total_successes == total_tests:
-                sys.exit(0)
-            else:
+            if failed_file_paths:
                 sys.exit(1)
+            else:
+                sys.exit(0)
         else:
             result.append(string)
             return result
