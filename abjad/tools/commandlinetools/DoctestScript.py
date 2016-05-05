@@ -27,6 +27,61 @@ class DoctestScript(CommandlineScript):
     alias = 'doctest'
     short_description = 'Run doctests on all modules in current path.'
 
+    _module_names_for_globs = (
+        'abjad',
+        'experimental',
+        'ide',
+        )
+
+    ### PRIVATE METHODS ###
+
+    def _get_namespace(self):
+        globs = {}
+        for module_name in self._module_names_for_globs:
+            try:
+                module = importlib.import_module(module_name)
+                globs.update(module.__dict__)
+            except:
+                pass
+        globs['print_function'] = print_function
+        return globs
+
+    def _get_file_paths(self, path):
+        if os.path.isfile(path):
+            return [path]
+        ignored_directory_names = (
+            '__pycache__',
+            '.git',
+            '.svn',
+            'test',
+            'docs',
+            )
+        file_paths = []
+        for current_root, directories, files in os.walk(path):
+            for directory in directories[:]:
+                if directory in ignored_directory_names:
+                    directories.remove(directory)
+                elif not os.path.exists(os.path.join(
+                    current_root, directory, '__init__.py')):
+                    directories.remove(directory)
+            for file_name in files[:]:
+                if not file_name.endswith('.py'):
+                    continue
+                file_path = os.path.join(current_root, file_name)
+                file_paths.append(file_path)
+        return file_paths
+
+    def _get_optionflags(self, args):
+        optionflags = (
+            doctest.NORMALIZE_WHITESPACE |
+            doctest.ELLIPSIS
+            )
+        if args and args.diff:
+            optionflags = optionflags | doctest.REPORT_NDIFF
+        if args and args.x:
+            optionflags = optionflags | doctest.REPORT_ONLY_FIRST_FAILURE
+        return optionflags
+
     ### PUBLIC PROPERTIES ###
 
     def process_args(
@@ -45,48 +100,14 @@ class DoctestScript(CommandlineScript):
         '''
         assert not (args and file_paths)
         result = []
-        globs = importlib.import_module('abjad').__dict__.copy()
-        try:
-            experimental_module = importlib.import_module('experimental')
-            experimental_demos_module = importlib.import_module('experimental')
-            globs.update(experimental_module.__dict__)
-            globs.update(experimental_demos_module.__dict__)
-        except:
-            pass
-        try:
-            ide_module = importlib.import_module('ide')
-            globs['ide'] = ide_module
-        except:
-            pass
-        globs['print_function'] = print_function
-        optionflags = (
-            doctest.NORMALIZE_WHITESPACE |
-            doctest.ELLIPSIS
-            )
-        if args and args.diff:
-            optionflags = optionflags | doctest.REPORT_NDIFF
-        if args and args.x:
-            optionflags = optionflags | doctest.REPORT_ONLY_FIRST_FAILURE
+        globs = self._get_namespace()
+        optionflags = self._get_optionflags(args)
         total_failures = 0
         total_modules = 0
         total_tests = 0
         failed_file_paths = []
         error_messages = []
-        if not file_paths:
-            file_paths = []
-            if os.path.isdir(args.path):
-                for dir_path, dir_names, file_names in os.walk(args.path):
-                    dir_names[:] = [x for x in dir_names
-                        if not x.startswith(('.', 'mothballed'))]
-                    for file_name in sorted(file_names):
-                        if (file_name.endswith('.py') and
-                            not file_name.startswith('test_') and
-                            not file_name == '__init__.py'):
-                            file_path = os.path.abspath(
-                                os.path.join(dir_path, file_name))
-                            file_paths.append(file_path)
-            elif os.path.isfile(args.path):
-                file_paths.append(args.path)
+        file_paths = file_paths or self._get_file_paths(args.path)
         for file_path in sorted(file_paths):
             total_modules += 1
             relative_path = os.path.relpath(file_path)
@@ -98,9 +119,10 @@ class DoctestScript(CommandlineScript):
                     globs=globs,
                     optionflags=optionflags,
                     )
+            doctest_output = string_buffer.getvalue()
             if failure_count:
                 failed_file_paths.append(os.path.relpath(file_path))
-                error_messages.append(string_buffer.getvalue())
+                error_messages.append(doctest_output)
                 if print_to_terminal:
                     result_code = ''.join((
                         self._colors['RED'],
@@ -128,6 +150,26 @@ class DoctestScript(CommandlineScript):
                     result.append(string)
             total_failures += failure_count
             total_tests += test_count
+        self._report(
+            error_messages=error_messages,
+            failed_file_paths=failed_file_paths,
+            print_to_terminal=print_to_terminal,
+            result=result,
+            total_tests=total_tests,
+            total_failures=total_failures,
+            total_modules=total_modules,
+            )
+
+    def _report(
+        self,
+        error_messages=None,
+        failed_file_paths=None,
+        print_to_terminal=False,
+        result=None,
+        total_tests=None,
+        total_failures=None,
+        total_modules=None,
+        ):
         if failed_file_paths:
             if print_to_terminal:
                 print()
@@ -161,14 +203,13 @@ class DoctestScript(CommandlineScript):
             )
         if print_to_terminal:
             print(string)
-            if total_successes == total_tests:
-                sys.exit(0)
-            else:
+            if failed_file_paths:
                 sys.exit(1)
+            else:
+                sys.exit(0)
         else:
             result.append(string)
             return result
-
 
     def setup_argument_parser(self, parser):
         r'''Sets up argument `parser`.
