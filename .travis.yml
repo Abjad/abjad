@@ -1,8 +1,10 @@
 language: python
 
-cache: pip
-
 sudo: false
+
+env:
+    global:
+        - LILYPOND_VERSION=2.19.28
 
 python:
     - 2.7
@@ -10,11 +12,6 @@ python:
     - 3.4
     - 3.5
     - pypy
-
-matrix:
-    include:
-        - python: 3.4
-          env: TRAVIS_READ_ONLY=true
 
 addons:
     apt:
@@ -29,23 +26,23 @@ addons:
 
 before_install:
     - echo TRAVIS_PYTHON_VERSION $TRAVIS_PYTHON_VERSION
-    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-2.19.28-1.linux-64.sh
-    - sh lilypond-2.19.28-1.linux-64.sh --batch
+    - wget -q http://download.linuxaudio.org/lilypond/binaries/linux-64/lilypond-$LILYPOND_VERSION-1.linux-64.sh
+    - sh lilypond-$LILYPOND_VERSION-1.linux-64.sh --batch
     - export PATH=/home/travis/bin:$PATH
     - pip install coveralls
     - pip install coverage
-    # Make a non-accessible ~/.abjad/ when testing for read-only filesystems.
-    - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
 
 install:
     # install without development dependencies.
     - pip install -e .
-    # prime parser tables (should fail if normal install doesn't work).
+    # make a non-accessible ~/.abjad/ when testing for read-only filesystems.
+    - if [[ $TRAVIS_READ_ONLY == 'true' ]]; then mkdir ~/.abjad; chmod 000 ~/.abjad; fi
+    # echo the configuration file path to debug read-only-filesystem handling
+    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
+    # remove the read-only .abjad folder, prime the parser
     - abjad/scr/devel/prime-parser-tables
     # then install development and ipython dependencies.
     - pip install -e .[development,ipython]
-    # echo the configuration file path to debug read-only-filesystem handling
-    - python -c "import abjad; print(abjad.abjad_configuration.configuration_file_path)"
 
 script:
     - abjad/scr/ajv doctest --diff experimental
