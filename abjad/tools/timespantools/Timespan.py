@@ -38,10 +38,12 @@ class Timespan(BoundedObject):
 
     def __init__(self, start_offset=NegativeInfinity, stop_offset=Infinity):
         BoundedObject.__init__(self)
+        if start_offset is None:
+            start_offset = NegativeInfinity
+        if stop_offset is None:
+            stop_offset = Infinity
         start_offset = self._initialize_offset(start_offset)
         stop_offset = self._initialize_offset(stop_offset)
-        assert start_offset is not None
-        assert stop_offset is not None
         assert start_offset <= stop_offset, repr((start_offset, stop_offset))
         self._start_offset = start_offset
         self._stop_offset = stop_offset
@@ -93,8 +95,8 @@ class Timespan(BoundedObject):
         expr = self._get_timespan(expr)
         if not self.intersects_timespan(expr):
             return timespantools.TimespanInventory()
-        new_start_offset = max(self.start_offset, expr.start_offset)
-        new_stop_offset = min(self.stop_offset, expr.stop_offset)
+        new_start_offset = max(self._start_offset, expr.start_offset)
+        new_stop_offset = min(self._stop_offset, expr.stop_offset)
         timespan = new(
             self,
             start_offset=new_start_offset,
@@ -160,15 +162,16 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        assert hasattr(expr, 'start_offset'), repr(expr)
-        if hasattr(expr, 'stop_offset'):
-            if self.start_offset >= expr.start_offset:
+        expr_start_offset, expr_stop_offset = \
+            self._get_start_offset_and_maybe_stop_offset(expr)
+        if expr_stop_offset is not None:
+            if self._start_offset >= expr_start_offset:
                 return True
-            elif self.start_offset == expr.start_offset and \
-                self.stop_offset >= expr.stop_offset:
+            elif self._start_offset == expr_start_offset and \
+                self._stop_offset >= expr_stop_offset:
                 return True
             return False
-        return self.start_offset >= expr.start_offset
+        return self._start_offset >= expr_start_offset
 
     def __gt__(self, expr):
         r'''Is true when `expr` start offset is greater than
@@ -188,15 +191,16 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        assert hasattr(expr, 'start_offset'), repr(expr)
-        if hasattr(expr, 'stop_offset'):
-            if self.start_offset > expr.start_offset:
+        expr_start_offset, expr_stop_offset = \
+            self._get_start_offset_and_maybe_stop_offset(expr)
+        if expr_stop_offset is not None:
+            if self._start_offset > expr_start_offset:
                 return True
-            elif self.start_offset == expr.start_offset and \
-                self.stop_offset > expr.stop_offset:
+            elif self._start_offset == expr_start_offset and \
+                self._stop_offset > expr_stop_offset:
                 return True
             return False
-        return self.start_offset > expr.start_offset
+        return self._start_offset > expr_start_offset
 
     def __hash__(self):
         r'''Hashes timespan.
@@ -236,15 +240,16 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        assert hasattr(expr, 'start_offset'), repr(expr)
-        if hasattr(expr, 'stop_offset'):
-            if self.start_offset <= expr.start_offset:
+        expr_start_offset, expr_stop_offset = \
+            self._get_start_offset_and_maybe_stop_offset(expr)
+        if expr_stop_offset is not None:
+            if self._start_offset <= expr_start_offset:
                 return True
-            elif self.start_offset == expr.start_offset and \
-                self.stop_offset <= expr.stop_offset:
+            elif self._start_offset == expr_start_offset and \
+                self._stop_offset <= expr_stop_offset:
                 return True
             return False
-        return self.start_offset <= expr.start_offset
+        return self._start_offset <= expr_start_offset
 
     def __len__(self):
         r'''Defined equal to ``1`` for all timespans.
@@ -275,15 +280,16 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        assert hasattr(expr, 'start_offset'), repr(expr)
-        if hasattr(expr, 'stop_offset'):
-            if self.start_offset < expr.start_offset:
+        expr_start_offset, expr_stop_offset = \
+            self._get_start_offset_and_maybe_stop_offset(expr)
+        if expr_stop_offset is not None:
+            if self._start_offset < expr_start_offset:
                 return True
-            elif self.start_offset == expr.start_offset and \
-                self.stop_offset < expr.stop_offset:
+            elif self._start_offset == expr_start_offset and \
+                self._stop_offset < expr_stop_offset:
                 return True
             return False
-        return self.start_offset < expr.start_offset
+        return self._start_offset < expr_start_offset
 
     def __ne__(self, timespan):
         r'''Is true when `timespan` is not a timespan with equivalent offsets.
@@ -409,9 +415,10 @@ class Timespan(BoundedObject):
             result = timespantools.TimespanInventory([self, expr])
             result.sort()
             return result
-        new_start_offset = min(self.start_offset, expr.start_offset)
-        new_stop_offset = max(self.stop_offset, expr.stop_offset)
-        timespan = new(self,
+        new_start_offset = min(self._start_offset, expr.start_offset)
+        new_stop_offset = max(self._stop_offset, expr.stop_offset)
+        timespan = new(
+            self,
             start_offset=new_start_offset,
             stop_offset=new_stop_offset,
             )
@@ -515,16 +522,18 @@ class Timespan(BoundedObject):
         if not self.intersects_timespan(expr):
             inventory.append(copy.deepcopy(self))
         elif expr.trisects_timespan(self):
-            new_start_offset = self.start_offset
+            new_start_offset = self._start_offset
             new_stop_offset = expr.start_offset
-            timespan = new(self,
+            timespan = new(
+                self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
             inventory.append(timespan)
             new_start_offset = expr.stop_offset
-            new_stop_offset = self.stop_offset
-            timespan = new(self,
+            new_stop_offset = self._stop_offset
+            timespan = new(
+                self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
@@ -533,16 +542,18 @@ class Timespan(BoundedObject):
             pass
         elif expr.overlaps_only_start_of_timespan(self):
             new_start_offset = expr.stop_offset
-            new_stop_offset = self.stop_offset
-            timespan = new(self,
+            new_stop_offset = self._stop_offset
+            timespan = new(
+                self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
             inventory.append(timespan)
         elif expr.overlaps_only_stop_of_timespan(self):
-            new_start_offset = self.start_offset
+            new_start_offset = self._start_offset
             new_stop_offset = expr.start_offset
-            timespan = new(self,
+            timespan = new(
+                self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
@@ -550,17 +561,19 @@ class Timespan(BoundedObject):
         elif expr.starts_when_timespan_starts(self) and \
             expr.stops_before_timespan_stops(self):
             new_start_offset = expr.stop_offset
-            new_stop_offset = self.stop_offset
-            timespan = new(self,
+            new_stop_offset = self._stop_offset
+            timespan = new(
+                self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
             inventory.append(timespan)
         elif expr.stops_when_timespan_stops(self) and \
             expr.starts_after_timespan_starts(self):
-            new_start_offset = self.start_offset
+            new_start_offset = self._start_offset
             new_stop_offset = expr.start_offset
-            timespan = new(self,
+            timespan = new(
+                self,
                 start_offset=new_start_offset,
                 stop_offset=new_stop_offset,
                 )
@@ -691,15 +704,17 @@ class Timespan(BoundedObject):
             result.sort()
             return result
         result = timespantools.TimespanInventory()
-        start_offsets = [self.start_offset, expr.start_offset]
-        stop_offsets = [self.stop_offset, expr.stop_offset]
+        start_offsets = [self._start_offset, expr.start_offset]
+        stop_offsets = [self._stop_offset, expr.stop_offset]
         start_offsets.sort()
         stop_offsets.sort()
-        timespan_1 = new(self,
+        timespan_1 = new(
+            self,
             start_offset=start_offsets[0],
             stop_offset=start_offsets[1],
             )
-        timespan_2 = new(self,
+        timespan_2 = new(
+            self,
             start_offset=stop_offsets[0],
             stop_offset=stop_offsets[1],
             )
@@ -718,9 +733,9 @@ class Timespan(BoundedObject):
         postscript_y_offset,
         postscript_scale,
         ):
-        start = (float(self.start_offset) * postscript_scale)
+        start = (float(self._start_offset) * postscript_scale)
         start -= postscript_x_offset
-        stop = (float(self.stop_offset) * postscript_scale)
+        stop = (float(self._stop_offset) * postscript_scale)
         stop -= postscript_x_offset
         ps = markuptools.Postscript()
         ps = ps.moveto(start, postscript_y_offset)
@@ -740,6 +755,32 @@ class Timespan(BoundedObject):
                 self.stops_when_timespan_starts(expr)
         return False
 
+    @staticmethod
+    def _get_offsets(expr):
+        if isinstance(expr, Timespan):
+            pass
+        elif hasattr(expr, 'timespan'):
+            expr = expr.timespan
+        elif hasattr(expr, '_get_timespan'):
+            expr = expr._get_timespan()
+        else:
+            raise ValueError(expr)
+        return expr._start_offset, expr._stop_offset
+
+    @staticmethod
+    def _get_start_offset_and_maybe_stop_offset(expr):
+        if isinstance(expr, Timespan):
+            pass
+        elif hasattr(expr, 'timespan'):
+            expr = expr.timespan
+        elif hasattr(expr, '_get_timespan'):
+            expr = expr._get_timespan()
+        start_offset = getattr(expr, 'start_offset', None)
+        if start_offset is None:
+            raise ValueError(expr)
+        stop_offset = getattr(expr, 'stop_offset', None)
+        return start_offset, stop_offset
+
     def _get_timespan(self, expr):
         if isinstance(expr, Timespan):
             start_offset, stop_offset = expr.offsets
@@ -752,7 +793,8 @@ class Timespan(BoundedObject):
         #    start_offset, stop_offset = expr.get_timespan().offsets
         else:
             raise ValueError(expr)
-        return new(self,
+        return new(
+            self,
             start_offset=start_offset,
             stop_offset=stop_offset,
             )
@@ -773,8 +815,7 @@ class Timespan(BoundedObject):
     def _initialize_offset(self, offset):
         if offset in (NegativeInfinity, Infinity):
             return offset
-        else:
-            return durationtools.Offset(offset)
+        return durationtools.Offset(offset)
 
     ### PUBLIC PROPERTIES ###
 
@@ -789,7 +830,7 @@ class Timespan(BoundedObject):
 
         Returns offset.
         '''
-        return (self.start_offset + self.stop_offset) / 2
+        return (self._start_offset + self._stop_offset) / 2
 
     @property
     def duration(self):
@@ -802,7 +843,7 @@ class Timespan(BoundedObject):
 
         Returns duration.
         '''
-        return self.stop_offset - self.start_offset
+        return self._stop_offset - self._start_offset
 
     @property
     def is_closed(self):
@@ -920,7 +961,7 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        return self.start_offset < self.stop_offset
+        return self._start_offset < self._stop_offset
 
     @property
     def offsets(self):
@@ -933,7 +974,7 @@ class Timespan(BoundedObject):
 
         Returns offset pair.
         '''
-        return self.start_offset, self.stop_offset
+        return self._start_offset, self._stop_offset
 
     @property
     def start_offset(self):
@@ -985,10 +1026,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_contains_timespan_1_improperly(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            self_start_offset <= expr_start_offset and
+            expr_stop_offset <= self_stop_offset
+            )
 
     def curtails_timespan(self, timespan):
         r'''Is true when timespan curtails `timespan`. Otherwise false:
@@ -1011,10 +1054,13 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_curtails_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            expr_start_offset < self_start_offset and
+            self_start_offset <= expr_stop_offset and
+            expr_stop_offset <= self_stop_offset
+            )
 
     def delays_timespan(self, timespan):
         r'''Is true when timespan delays `timespan`. Otherwise false:
@@ -1034,10 +1080,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_delays_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            self_start_offset <= expr_start_offset and
+            expr_start_offset < self_stop_offset
+            )
 
     def divide_by_ratio(self, ratio):
         r'''Divides timespan by `ratio`.
@@ -1064,7 +1112,7 @@ class Timespan(BoundedObject):
             numerator * unit_duration for numerator in ratio.numbers
             ]
         start_offsets = mathtools.cumulative_sums(
-            [self.start_offset] + part_durations,
+            [self._start_offset] + part_durations,
             start=None,
             )
         offset_pairs = sequencetools.iterate_sequence_nwise(
@@ -1162,10 +1210,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_happens_during_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            expr_start_offset <= self_start_offset and
+            self_stop_offset <= expr_stop_offset
+            )
 
     def intersects_timespan(self, timespan):
         r'''Is true when timespan intersects `timespan`. Otherwise false:
@@ -1187,10 +1237,17 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_intersects_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            (
+                expr_start_offset <= self_start_offset and
+                self_start_offset < expr_stop_offset
+            ) or (
+                self_start_offset <= expr_start_offset and
+                expr_start_offset < self_stop_offset
+                )
+            )
 
     def is_congruent_to_timespan(self, timespan):
         r'''Is true when timespan is congruent to `timespan`. Otherwise false:
@@ -1213,10 +1270,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_is_congruent_to_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            expr_start_offset == self_start_offset and
+            expr_stop_offset == self_stop_offset
+            )
 
     def is_tangent_to_timespan(self, timespan):
         r'''Is true when timespan is tangent to `timespan`. Otherwise false:
@@ -1239,13 +1298,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        if hasattr(timespan, 'start_offset'):
-            if self.stop_offset == timespan.start_offset:
-                return True
-        if hasattr(timespan, 'stop_offset'):
-            if timespan.stop_offset == self.start_offset:
-                return True
-        return False
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            self_stop_offset == expr_start_offset or
+            expr_stop_offset == self_start_offset
+            )
 
     def overlaps_all_of_timespan(self, timespan):
         r'''Is true when timespan overlaps all of `timespan`. Otherwise false:
@@ -1267,10 +1325,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_overlaps_all_of_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            self_start_offset < expr_start_offset and
+            expr_stop_offset < self_stop_offset
+            )
 
     def overlaps_only_start_of_timespan(self, timespan):
         r'''Is true when timespan overlaps only start of `timespan`.
@@ -1296,10 +1356,13 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_overlaps_only_start_of_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            self_start_offset < expr_start_offset and
+            expr_start_offset < self_stop_offset and
+            self_stop_offset <= expr_stop_offset
+            )
 
     def overlaps_only_stop_of_timespan(self, timespan):
         r'''Is true when timespan overlaps only stop of `timespan`.
@@ -1325,10 +1388,13 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_overlaps_only_stop_of_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            expr_start_offset <= self_start_offset and
+            self_start_offset < expr_stop_offset and
+            expr_stop_offset < self_stop_offset
+            )
 
     def overlaps_start_of_timespan(self, timespan):
         r'''Is true when timespan overlaps start of `timespan`.
@@ -1354,10 +1420,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_overlaps_start_of_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            self_start_offset < expr_start_offset and
+            expr_start_offset < self_stop_offset
+            )
 
     def overlaps_stop_of_timespan(self, timespan):
         r'''Is true when timespan overlaps start of `timespan`.
@@ -1383,10 +1451,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_overlaps_stop_of_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            self_start_offset < expr_stop_offset and
+            expr_stop_offset < self_stop_offset
+            )
 
     def reflect(self, axis=None):
         r'''Reflects timespan about `axis`.
@@ -1413,8 +1483,8 @@ class Timespan(BoundedObject):
         '''
         if axis is None:
             axis = self.axis
-        start_distance = self.start_offset - axis
-        stop_distance = self.stop_offset - axis
+        start_distance = self._start_offset - axis
+        stop_distance = self._stop_offset - axis
         new_start_offset = axis - stop_distance
         new_stop_offset = axis - start_distance
         return self.set_offsets(new_start_offset, new_stop_offset)
@@ -1459,9 +1529,9 @@ class Timespan(BoundedObject):
         multiplier = abs(durationtools.Multiplier(multiplier))
         assert 0 < multiplier
         new_start_offset = durationtools.Offset(
-            int(round(self.start_offset / multiplier)) * multiplier)
+            int(round(self._start_offset / multiplier)) * multiplier)
         new_stop_offset = durationtools.Offset(
-            int(round(self.stop_offset / multiplier)) * multiplier)
+            int(round(self._stop_offset / multiplier)) * multiplier)
         if (new_start_offset == new_stop_offset) and must_be_well_formed:
             if anchor == Left:
                 new_stop_offset = new_stop_offset + multiplier
@@ -1504,11 +1574,11 @@ class Timespan(BoundedObject):
         assert 0 < multiplier
         new_duration = multiplier * self.duration
         if anchor == Left:
-            new_start_offset = self.start_offset
-            new_stop_offset = self.start_offset + new_duration
+            new_start_offset = self._start_offset
+            new_stop_offset = self._start_offset + new_duration
         elif anchor == Right:
-            new_stop_offset = self.stop_offset
-            new_start_offset = self.stop_offset - new_duration
+            new_stop_offset = self._stop_offset
+            new_start_offset = self._stop_offset - new_duration
         else:
             raise ValueError
         result = new(
@@ -1534,7 +1604,7 @@ class Timespan(BoundedObject):
         '''
         from abjad.tools.topleveltools import new
         duration = durationtools.Duration(duration)
-        new_stop_offset = self.start_offset + duration
+        new_stop_offset = self._start_offset + duration
         result = new(
             self,
             stop_offset=new_stop_offset,
@@ -1575,16 +1645,16 @@ class Timespan(BoundedObject):
             new_start_offset = start_offset
         elif start_offset is not None and start_offset < 0:
             new_start_offset = \
-                self.stop_offset + durationtools.Offset(start_offset)
+                self._stop_offset + durationtools.Offset(start_offset)
         else:
-            new_start_offset = self.start_offset
+            new_start_offset = self._start_offset
         if stop_offset is not None and 0 <= stop_offset:
             new_stop_offset = stop_offset
         elif stop_offset is not None and stop_offset < 0:
             new_stop_offset = \
-                self.stop_offset + durationtools.Offset(stop_offset)
+                self._stop_offset + durationtools.Offset(stop_offset)
         else:
-            new_stop_offset = self.stop_offset
+            new_stop_offset = self._stop_offset
         result = new(
             self,
             start_offset=new_start_offset,
@@ -1626,14 +1696,16 @@ class Timespan(BoundedObject):
         from abjad.tools import timespantools
         offset = durationtools.Offset(offset)
         result = timespantools.TimespanInventory()
-        if self.start_offset < offset < self.stop_offset:
-            left = new(self,
-                start_offset=self.start_offset,
+        if self._start_offset < offset < self._stop_offset:
+            left = new(
+                self,
+                start_offset=self._start_offset,
                 stop_offset=offset,
                 )
-            right = new(self,
+            right = new(
+                self,
                 start_offset=offset,
-                stop_offset=self.stop_offset,
+                stop_offset=self._stop_offset,
                 )
             result.append(left)
             result.append(right)
@@ -1694,7 +1766,7 @@ class Timespan(BoundedObject):
         from abjad.tools import timespantools
         offsets = [durationtools.Offset(offset) for offset in offsets]
         offsets = [offset for offset in offsets
-            if self.start_offset < offset < self.stop_offset]
+            if self._start_offset < offset < self._stop_offset]
         offsets = sorted(set(offsets))
         result = timespantools.TimespanInventory()
         right = new(self)
@@ -1723,7 +1795,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return offset < self.start_offset
+        return offset < self._start_offset
 
     def starts_after_timespan_starts(self, timespan):
         r'''Is true when timespan starts after `timespan` starts. Otherwise false:
@@ -1746,10 +1818,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_starts_after_timespan_1_starts(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return expr_start_offset < self_start_offset
 
     def starts_after_timespan_stops(self, timespan):
         r'''Is true when timespan starts after `timespan` stops. Otherwise false:
@@ -1774,10 +1845,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_starts_after_timespan_1_stops(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return expr_stop_offset <= self_start_offset
 
     def starts_at_offset(self, offset):
         r'''Is true when timespan starts at `offset`. Otherwise false:
@@ -1798,7 +1868,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return self.start_offset == offset
+        return self._start_offset == offset
 
     def starts_at_or_after_offset(self, offset):
         r'''Is true when timespan starts at or after `offset`. Otherwise false:
@@ -1819,7 +1889,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return offset <= self.start_offset
+        return offset <= self._start_offset
 
     def starts_before_offset(self, offset):
         r'''Is true when timespan starts before `offset`. Otherwise false:
@@ -1840,7 +1910,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return self.start_offset < offset
+        return self._start_offset < offset
 
     def starts_before_or_at_offset(self, offset):
         r'''Is true when timespan starts before or at `offset`.
@@ -1862,7 +1932,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return self.start_offset <= offset
+        return self._start_offset <= offset
 
     def starts_before_timespan_starts(self, timespan):
         r'''Is true when timespan starts before `timespan` starts.
@@ -1886,10 +1956,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_starts_before_timespan_1_starts(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return self_start_offset < expr_start_offset
 
     def starts_before_timespan_stops(self, timespan):
         r'''Is true when timespan starts before `timespan` stops. Otherwise false:
@@ -1912,10 +1981,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_starts_before_timespan_1_stops(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return self_start_offset < expr_stop_offset
 
     def starts_during_timespan(self, timespan):
         r'''Is true when timespan starts during `timespan`. Otherwise false:
@@ -1938,10 +2006,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_starts_during_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            expr_start_offset <= self_start_offset and
+            self_start_offset < expr_stop_offset
+            )
 
     def starts_when_timespan_starts(self, timespan):
         r'''Is true when timespan starts when `timespan` starts. Otherwise false:
@@ -1964,10 +2034,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_starts_when_timespan_1_starts(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return expr_start_offset == self_start_offset
 
     def starts_when_timespan_stops(self, timespan):
         r'''Is true when timespan starts when `timespan` stops. Otherwise false:
@@ -1990,10 +2059,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_starts_when_timespan_1_stops(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return self_start_offset == expr_stop_offset
 
     def stops_after_offset(self, offset):
         r'''Is true when timespan stops after `offset`. Otherwise false:
@@ -2014,7 +2082,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return offset < self.stop_offset
+        return offset < self._stop_offset
 
     def stops_after_timespan_starts(self, timespan):
         r'''Is true when timespan stops when `timespan` starts. Otherwise false:
@@ -2037,10 +2105,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_stops_after_timespan_1_starts(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return expr_start_offset < self_stop_offset
 
     def stops_after_timespan_stops(self, timespan):
         r'''Is true when timespan stops when `timespan` stops. Otherwise false:
@@ -2063,10 +2130,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_stops_after_timespan_1_stops(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return expr_stop_offset < self_stop_offset
 
     def stops_at_offset(self, offset):
         r'''Is true when timespan stops at `offset`. Otherwise false:
@@ -2087,7 +2153,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return self.stop_offset == offset
+        return self._stop_offset == offset
 
     def stops_at_or_after_offset(self, offset):
         r'''Is true when timespan stops at or after `offset`. Otherwise false:
@@ -2108,7 +2174,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return offset <= self.stop_offset
+        return offset <= self._stop_offset
 
     def stops_before_offset(self, offset):
         r'''Is true when timespan stops before `offset`. Otherwise false:
@@ -2129,7 +2195,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return self.stop_offset < offset
+        return self._stop_offset < offset
 
     def stops_before_or_at_offset(self, offset):
         r'''Is true when timespan stops before or at `offset`. Otherwise false:
@@ -2150,7 +2216,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         offset = durationtools.Offset(offset)
-        return self.stop_offset <= offset
+        return self._stop_offset <= offset
 
     def stops_before_timespan_starts(self, timespan):
         r'''Is true when timespan stops before `timespan` starts.
@@ -2174,10 +2240,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_stops_before_timespan_1_starts(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return self_stop_offset < expr_start_offset
 
     def stops_before_timespan_stops(self, timespan):
         r'''Is true when timespan stops before `timespan` stops. Otherwise false:
@@ -2200,10 +2265,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_stops_before_timespan_1_stops(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return self_stop_offset < expr_stop_offset
 
     def stops_during_timespan(self, timespan):
         r'''Is true when timespan stops during `timespan`. Otherwise false:
@@ -2226,10 +2290,12 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_stops_during_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            expr_start_offset < self_stop_offset and
+            self_stop_offset <= expr_stop_offset
+            )
 
     def stops_when_timespan_starts(self, timespan):
         r'''Is true when timespan stops when `timespan` starts. Otherwise false:
@@ -2252,10 +2318,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_stops_when_timespan_1_starts(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return self_stop_offset == expr_start_offset
 
     def stops_when_timespan_stops(self, timespan):
         r'''Is true when timespan stops when `timespan` stops. Otherwise false:
@@ -2278,10 +2343,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_stops_when_timespan_1_stops(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return self_stop_offset == expr_stop_offset
 
     def stretch(self, multiplier, anchor=None):
         r'''Stretches timespan by `multiplier` relative to `anchor`.
@@ -2337,9 +2401,9 @@ class Timespan(BoundedObject):
         multiplier = durationtools.Multiplier(multiplier)
         assert 0 < multiplier
         if anchor is None:
-            anchor = self.start_offset
-        new_start_offset = (multiplier * (self.start_offset - anchor)) + anchor
-        new_stop_offset =  (multiplier * (self.stop_offset - anchor)) + anchor
+            anchor = self._start_offset
+        new_start_offset = (multiplier * (self._start_offset - anchor)) + anchor
+        new_stop_offset = (multiplier * (self._stop_offset - anchor)) + anchor
         result = new(
             self,
             start_offset=new_start_offset,
@@ -2387,8 +2451,8 @@ class Timespan(BoundedObject):
             durationtools.Duration(start_offset_translation)
         stop_offset_translation = \
             durationtools.Duration(stop_offset_translation)
-        new_start_offset = self.start_offset + start_offset_translation
-        new_stop_offset = self.stop_offset + stop_offset_translation
+        new_start_offset = self._start_offset + start_offset_translation
+        new_stop_offset = self._stop_offset + stop_offset_translation
         result = new(
             self,
             start_offset=new_start_offset,
@@ -2417,7 +2481,9 @@ class Timespan(BoundedObject):
 
         Returns true or false.
         '''
-        from abjad.tools import timespantools
-        if self._implements_timespan_interface(timespan):
-            return timespantools.timespan_2_trisects_timespan_1(
-                timespan, self)
+        self_start_offset, self_stop_offset = self.offsets
+        expr_start_offset, expr_stop_offset = self._get_offsets(timespan)
+        return (
+            expr_start_offset < self_start_offset and
+            self_stop_offset < expr_stop_offset
+            )

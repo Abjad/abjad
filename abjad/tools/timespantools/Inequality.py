@@ -143,6 +143,10 @@ class Inequality(AbjadObject):
             return i
         raise ValueError
 
+    @staticmethod
+    def _make_repr(offset):
+        return 'Offset({}, {})'.format(*offset.pair)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -169,15 +173,16 @@ class Inequality(AbjadObject):
 
         Returns true or false.
         '''
+        make_repr = self._make_repr
         template = self.template
         template = template.replace(
-            'timespan_1.start_offset', repr(timespan_1_start_offset))
+            'timespan_1.start_offset', make_repr(timespan_1_start_offset))
         template = template.replace(
-            'timespan_1.stop_offset', repr(timespan_1_stop_offset))
+            'timespan_1.stop_offset', make_repr(timespan_1_stop_offset))
         template = template.replace(
-            'timespan_2.start_offset', repr(timespan_2_start_offset))
+            'timespan_2.start_offset', make_repr(timespan_2_start_offset))
         template = template.replace(
-            'timespan_2.stop_offset', repr(timespan_2_stop_offset))
+            'timespan_2.stop_offset', make_repr(timespan_2_stop_offset))
         truth_value = eval(template, {'Offset': durationtools.Offset})
         return truth_value
 
@@ -191,10 +196,15 @@ class Inequality(AbjadObject):
 
         Returns true or false.
         '''
+        make_repr = self._make_repr
         template = self.template
-        template = template.replace('timespan.start', repr(timespan_start))
-        template = template.replace('timespan.stop', repr(timespan_stop))
-        template = template.replace('offset', repr(offset))
+        template = self.template
+        template = template.replace(
+            'timespan.start', make_repr(timespan_start))
+        template = template.replace(
+            'timespan.stop', make_repr(timespan_stop))
+        template = template.replace(
+            'offset', make_repr(offset))
         truth_value = eval(template, {'Offset': durationtools.Offset})
         return truth_value
 

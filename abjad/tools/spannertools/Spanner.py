@@ -444,16 +444,16 @@ class Spanner(AbjadObject):
         from abjad.tools import durationtools
         if len(self):
             start_offset = \
-                self[0]._get_timespan(in_seconds=in_seconds).start_offset
+                self[0]._get_timespan(in_seconds=in_seconds)._start_offset
+            stop_offset = \
+                self[-1]._get_timespan(in_seconds=in_seconds)._stop_offset
         else:
             start_offset = durationtools.Duration(0)
-        if len(self):
-            stop_offset = \
-                self[-1]._get_timespan(in_seconds=in_seconds).stop_offset
-        else:
             stop_offset = durationtools.Duration(0)
         return timespantools.Timespan(
-            start_offset=start_offset, stop_offset=stop_offset)
+            start_offset=start_offset,
+            stop_offset=stop_offset,
+            )
 
     def _index(self, component):
         return self._components.index(component)

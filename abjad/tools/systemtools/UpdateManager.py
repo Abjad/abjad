@@ -15,11 +15,10 @@ class UpdateManager(AbjadObject):
     ### PRIVATE METHODS ###
 
     @staticmethod
-    def _get_score_tree_state_flags(component):
+    def _get_score_tree_state_flags(parentage):
         offsets_are_current = True
         indicators_are_current = True
         offsets_in_seconds_are_current = True
-        parentage = component._get_parentage()
         for component in parentage:
             if offsets_are_current:
                 if not component._offsets_are_current:
@@ -37,10 +36,9 @@ class UpdateManager(AbjadObject):
             )
 
     @staticmethod
-    def _iterate_entire_score(component):
+    def _iterate_entire_score(score_root):
         from abjad.tools.topleveltools import iterate
-        parentage = component._get_parentage(include_self=True)
-        components = iterate(parentage.root).depth_first(
+        components = iterate(score_root).depth_first(
             capped=True,
             unique=True,
             forbid=None,
@@ -48,15 +46,14 @@ class UpdateManager(AbjadObject):
             )
         return components
 
-    def _update_all_indicators(self, component):
+    def _update_all_indicators(self, score_root):
         r'''Updating indicators does not update offsets.
         On the other hand, getting an effective indicator does update
         offsets when at least one indicator of the appropriate type
         attaches to score.
         '''
-        components = self._iterate_entire_score(component)
+        components = self._iterate_entire_score(score_root)
         for component in components:
-            indicators = component._get_indicators(unwrap=False)
             for indicator in component._get_indicators(unwrap=False):
                 if indicator.scope is not None:
                     assert hasattr(indicator, '_update_effective_context')
@@ -64,14 +61,12 @@ class UpdateManager(AbjadObject):
             component._indicators_are_current = True
 
     @staticmethod
-    def _update_all_leaf_indices_and_measure_numbers(component):
+    def _update_all_leaf_indices_and_measure_numbers(score_root):
         r'''Call only when updating offsets.
         No separate state flags exist for leaf indices or measure numbers.
         '''
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
-        parentage = component._get_parentage()
-        score_root = parentage.root
         if isinstance(score_root, scoretools.Context):
             contexts = iterate(score_root).by_class(scoretools.Context)
             for context in contexts:
@@ -91,18 +86,16 @@ class UpdateManager(AbjadObject):
                 measure_number = measure_index + 1
                 measure._measure_number = measure_number
 
-    def _update_all_offsets(self, component):
+    def _update_all_offsets(self, score_root):
         r'''Updating offsets does not update indicators.
         Updating offsets does not update offsets in seconds.
         '''
-        components = self._iterate_entire_score(component)
-        for component in components:
+        for component in self._iterate_entire_score(score_root):
             self._update_component_offsets(component)
             component._offsets_are_current = True
 
-    def _update_all_offsets_in_seconds(self, component):
-        components = self._iterate_entire_score(component)
-        for component in components:
+    def _update_all_offsets_in_seconds(self, score_root):
+        for component in self._iterate_entire_score(score_root):
             self._update_component_offsets_in_seconds(component)
             component._offsets_in_seconds_are_current = True
 
@@ -129,7 +122,7 @@ class UpdateManager(AbjadObject):
             previous = component._get_nth_component_in_time_order_from(-1)
             if previous is not None:
                 component._start_offset_in_seconds = \
-                    previous._get_timespan(in_seconds=True).stop_offset
+                    previous._get_timespan(in_seconds=True)._stop_offset
             else:
                 component._start_offset_in_seconds = durationtools.Offset(0)
             # this one case is possible for containers only
@@ -151,22 +144,24 @@ class UpdateManager(AbjadObject):
         assert offsets or offsets_in_seconds or indicators
         if component._is_forbidden_to_update:
             return
-        parentage = component._get_parentage()
+        parentage = component._get_parentage(include_self=True)
         for parent in parentage:
             if parent._is_forbidden_to_update:
                 return
-        state_flags = self._get_score_tree_state_flags(component)
-        offsets_are_current = state_flags[0]
-        indicators_are_current = state_flags[1]
-        offsets_in_seconds_are_current = state_flags[2]
+        (
+            offsets_are_current,
+            indicators_are_current,
+            offsets_in_seconds_are_current,
+            ) = self._get_score_tree_state_flags(parentage)
+        score_root = parentage.root
         if offsets and not offsets_are_current:
-            self._update_all_offsets(component)
-            self._update_all_leaf_indices_and_measure_numbers(component)
+            self._update_all_offsets(score_root)
+            self._update_all_leaf_indices_and_measure_numbers(score_root)
         if offsets_in_seconds and not offsets_in_seconds_are_current:
-            self._update_all_offsets_in_seconds(component)
+            self._update_all_offsets_in_seconds(score_root)
         if indicators and not indicators_are_current:
-            self._update_all_indicators(component)
-            self._update_all_offsets_in_seconds(component)
+            self._update_all_indicators(score_root)
+            self._update_all_offsets_in_seconds(score_root)
 
     ### EXPERIMENTAL ###
 
@@ -177,8 +172,8 @@ class UpdateManager(AbjadObject):
         from abjad.tools.topleveltools import inspect_
         expressions = []
         prototype = indicatortools.TimeSignature
-        components = self._iterate_entire_score(component)
-        for component in components:
+        score_root = component._get_parentage(include_self=True).root
+        for component in self._iterate_entire_score(score_root):
             expressions_ = component._get_indicators(
                 prototype,
                 unwrap=False,
@@ -187,7 +182,7 @@ class UpdateManager(AbjadObject):
         pairs = []
         for expression in expressions:
             inspector = inspect_(expression.component)
-            start_offset = inspector.get_timespan().start_offset
+            start_offset = inspector.get_timespan()._start_offset
             time_signature = expression.indicator
             pair = start_offset, time_signature
             pairs.append(pair)
@@ -202,7 +197,7 @@ class UpdateManager(AbjadObject):
         parentage = component._get_parentage()
         score_root = parentage.root
         inspector = inspect_(score_root)
-        score_stop_offset = inspector.get_timespan().stop_offset
+        score_stop_offset = inspector.get_timespan()._stop_offset
         dummy_last_pair = (score_stop_offset, None)
         pairs.append(dummy_last_pair)
         measure_start_offsets = []
@@ -226,7 +221,7 @@ class UpdateManager(AbjadObject):
         from abjad.tools import sequencetools
         from abjad.tools.topleveltools import inspect_
         inspector = inspect_(component)
-        component_start_offset = inspector.get_timespan().start_offset
+        component_start_offset = inspector.get_timespan()._start_offset
         logical_measure_number_start_offsets = \
             logical_measure_number_start_offsets[:]
         logical_measure_number_start_offsets.append(mathtools.Infinity())
@@ -250,8 +245,8 @@ class UpdateManager(AbjadObject):
             self._get_logical_measure_start_offsets(component)
         assert logical_measure_start_offsets, repr(
             logical_measure_start_offsets)
-        components = self._iterate_entire_score(component)
-        for component in components:
+        score_root = component._get_parentage(include_self=True).root
+        for component in self._iterate_entire_score(score_root):
             logical_measure_number = self._to_logical_measure_number(
                 component,
                 logical_measure_start_offsets,
