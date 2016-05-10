@@ -40,7 +40,7 @@ class AbjDevScript(CommandlineScript):
                 message = message.format(args)
                 raise ValueError(message)
             args = self.argument_parser.parse_known_args(args)
-        self.process_args(args)
+        self._process_args(args)
 
     ### PUBLIC PROPERTIES ###
 
@@ -52,9 +52,7 @@ class AbjDevScript(CommandlineScript):
         aliases = {}
         for commandline_script_class in self.commandline_script_classes:
             instance = commandline_script_class()
-
-            if instance.alias is not None:
-
+            if getattr(instance, 'alias', None):
                 scripting_group = getattr(instance, 'scripting_group', None)
                 if scripting_group:
                     scripting_groups.append(scripting_group)
@@ -75,7 +73,6 @@ class AbjDevScript(CommandlineScript):
                             )
                         raise Exception(message)
                     aliases[entry] = commandline_script_class
-
                 else:
                     entry = (instance.alias,)
                     if entry in scripting_groups:
@@ -94,7 +91,6 @@ class AbjDevScript(CommandlineScript):
                             )
                         raise Exception(message)
                     aliases[(instance.alias,)] = commandline_script_class
-
             else:
                 if instance.program_name in scripting_groups:
                     message = 'Alias conflict between {}'
@@ -105,9 +101,7 @@ class AbjDevScript(CommandlineScript):
                         )
                     raise Exception(message)
                 aliases[(instance.program_name,)] = commandline_script_class
-
         alias_map = {}
-
         for key, value in aliases.items():
             if len(key) == 1:
                 alias_map[key[0]] = value
@@ -115,7 +109,6 @@ class AbjDevScript(CommandlineScript):
                 if key[0] not in alias_map:
                     alias_map[key[0]] = {}
                 alias_map[key[0]][key[1]] = value
-
         return alias_map
 
     @property
@@ -136,74 +129,66 @@ class AbjDevScript(CommandlineScript):
             program_names[instance.program_name] = commandline_script_class
         return program_names
 
-    @property
-    def long_description(self):
-        r'''Long description.
-        '''
-        return None
+    ### PRIVATE METHODS ###
 
-    @property
-    def short_description(self):
-        r'''Short description.
-        '''
-        return 'Entry-point to Abjad developer scripts catalog.'
+    def _handle_help_command(self, unknown_args):
+        aliases = self.commandline_script_aliases
+        program_names = self.commandline_script_program_names
+        commandline_script_class = None
+        if len(unknown_args) == 2 and \
+            unknown_args[0] in aliases and \
+            unknown_args[1] in aliases[unknown_args[0]]:
+            commandline_script_class = \
+                aliases[unknown_args[0]][unknown_args[1]]
+        elif len(unknown_args) == 1 and \
+            unknown_args[0] in aliases and \
+            not isinstance(aliases[unknown_args[0]], dict):
+            commandline_script_class = aliases[unknown_args[0]]
+        elif len(unknown_args) == 1 and \
+            unknown_args[0] in program_names:
+            commandline_script_class = program_names[unknown_args[0]]
+        elif not len(unknown_args):
+            self(['--help'])
+            return
+        if commandline_script_class:
+            instance = commandline_script_class()
+            print(instance.formatted_help)
+        else:
+            print('Cannot resolve {} to subcommand.'.format(unknown_args))
 
-    @property
-    def version(self):
-        r'''Version.
-        '''
-        return 1.0
+    def _handle_list_command(self):
+        by_scripting_group = {}
+        for commandline_script_class in self.commandline_script_classes:
+            instance = commandline_script_class()
+            scripting_group = getattr(instance, 'scripting_group', None)
+            group = by_scripting_group.setdefault(scripting_group, [])
+            group.append(instance)
+        print()
+        if None in by_scripting_group:
+            group = by_scripting_group.pop(None)
+            for instance in sorted(group, key=lambda x: x.alias):
+                message = '{}: {}'.format(
+                    instance.alias,
+                    instance.short_description,
+                    )
+                print(message)
+            print()
+        for group, instances in sorted(by_scripting_group.items()):
+            print('[{}]'.format(group))
+            for instance in sorted(instances, key=lambda x: x.alias):
+                message = '    {}: {}'.format(
+                    instance.alias,
+                    instance.short_description,
+                    )
+                print(message)
+            print()
 
-    ### PUBLIC METHODS ###
-
-    def process_args(self, args):
-        r'''Processes `args`.
-        '''
+    def _process_args(self, args):
         args, unknown_args = args
-
         if args.subparser_name == 'help':
-            aliases = self.commandline_script_aliases
-            program_names = self.commandline_script_program_names
-            commandline_script_class = None
-            if len(unknown_args) == 2 and \
-                unknown_args[0] in aliases and \
-                unknown_args[1] in aliases[unknown_args[0]]:
-                commandline_script_class = \
-                    aliases[unknown_args[0]][unknown_args[1]]
-            elif len(unknown_args) == 1 and \
-                unknown_args[0] in aliases and \
-                not isinstance(aliases[unknown_args[0]], dict):
-                commandline_script_class = aliases[unknown_args[0]]
-            elif len(unknown_args) == 1 and \
-                unknown_args[0] in program_names:
-                commandline_script_class = program_names[unknown_args[0]]
-            elif not len(unknown_args):
-                self(['--help'])
-                return
-
-            if commandline_script_class:
-                instance = commandline_script_class()
-                print(instance.formatted_help)
-            else:
-                print('Cannot resolve {} to subcommand.'.format(unknown_args))
-
+            self._handle_help_command(unknown_args)
         elif args.subparser_name == 'list':
-            entries = []
-            for commandline_script_class in self.commandline_script_classes:
-                instance = commandline_script_class()
-                alias = ''
-                if instance.alias is not None:
-                    scripting_group = getattr(instance, 'scripting_group', None)
-                    if scripting_group is not None:
-                        alias = '\n[{} {}]'.format(
-                            scripting_group, instance.alias)
-                    else:
-                        alias = '\n[{}]'.format(instance.alias)
-                entries.append('{}{}\n\t{}'.format(
-                    instance.program_name, alias, instance.short_description))
-            print()
-            print('\n\n'.join(entries))
-            print()
+            self._handle_list_command()
         else:
             if hasattr(args, 'subsubparser_name'):
                 commandline_script_class = self.commandline_script_aliases[
@@ -217,27 +202,21 @@ class AbjDevScript(CommandlineScript):
             instance = commandline_script_class()
             instance(unknown_args)
 
-    def setup_argument_parser(self, parser):
-        r'''Sets up argument `parser`.
-        '''
-
+    def _setup_argument_parser(self, parser):
         subparsers = parser.add_subparsers(
             dest='subparser_name',
             title='subcommands',
             )
-
         subparsers.add_parser(
             'help',
             add_help=False,
             help='print subcommand help'
             )
-
         subparsers.add_parser(
             'list',
             add_help=False,
             help='list subcommands',
             )
-
         alias_map = self.commandline_script_aliases
         for key in sorted(alias_map):
             if not isinstance(alias_map[key], dict):
@@ -249,15 +228,16 @@ class AbjDevScript(CommandlineScript):
                     help=instance.short_description,
                     )
             else:
+                subkeys = sorted(alias_map[key])
                 group_subparser = subparsers.add_parser(
                     key,
-                    help='"{}"-related subcommands'.format(key),
+                    help='{{{}}} subcommand(s)'.format(', '.join(subkeys)),
                     )
                 group_subparsers = group_subparser.add_subparsers(
                     dest='subsubparser_name'.format(key),
                     title='{} subcommands'.format(key),
                     )
-                for subkey in sorted(alias_map[key]):
+                for subkey in subkeys:
                     commandline_script_class = alias_map[key][subkey]
                     instance = commandline_script_class()
                     group_subparsers.add_parser(

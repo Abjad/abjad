@@ -52,7 +52,7 @@ class CommandlineScript(abctools.AbjadObject):
         version = version.format(getattr(self, 'version', 1.0))
         parser.add_argument('--version', action='version', version=version)
         self._argument_parser = parser
-        self.setup_argument_parser(parser)
+        self._setup_argument_parser(parser)
 
     ### SPECIAL METHODS ###
 
@@ -69,29 +69,12 @@ class CommandlineScript(abctools.AbjadObject):
             elif not isinstance(args, (list, tuple)):
                 raise ValueError
             args = self.argument_parser.parse_args(args)
-        self.process_args(args)
+        self._process_args(args)
 
     def __getstate__(self):
         r'''Gets object state.
         '''
         return {}
-
-    ### PRIVATE METHODS ###
-
-    def _is_valid_path(self, path):
-        if os.path.exists(path):
-            if os.path.isdir(path):
-                return True
-        return False
-
-    def _validate_path(self, path):
-        message = '{!r} is not a valid directory.'
-        message = message.format(path)
-        error = argparse.ArgumentTypeError(message)
-        path = os.path.abspath(path)
-        if not self._is_valid_path(path):
-            raise error
-        return os.path.relpath(path)
 
     ### PUBLIC PROPERTIES ###
 
@@ -126,6 +109,31 @@ class CommandlineScript(abctools.AbjadObject):
         name = type(self).__name__[:type(self).__name__.rfind('Script')]
         return stringtools.to_space_delimited_lowercase(name).replace(' ', '-')
 
+    ### PRIVATE METHODS ###
+
+    def _is_valid_path(self, path):
+        if os.path.exists(path):
+            if os.path.isdir(path):
+                return True
+        return False
+
+    @abc.abstractmethod
+    def _process_args(self, args):
+        raise NotImplementedError
+
+    @abc.abstractmethod
+    def _setup_argument_parser(self, parser):
+        raise NotImplementedError
+
+    def _validate_path(self, path):
+        message = '{!r} is not a valid directory.'
+        message = message.format(path)
+        error = argparse.ArgumentTypeError(message)
+        path = os.path.abspath(path)
+        if not self._is_valid_path(path):
+            raise error
+        return os.path.relpath(path)
+
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -138,26 +146,17 @@ class CommandlineScript(abctools.AbjadObject):
         tools_package_paths.extend(abjadbooktools.__path__)
         tools_package_paths.extend(commandlinetools.__path__)
         script_classes = []
+        base_class = commandlinetools.CommandlineScript
         for tools_package_path in tools_package_paths:
             generator = documentationtools.yield_all_classes(
                 code_root=tools_package_path,
                 root_package_name='abjad',
                 )
-            for commandline_script_class in generator:
-                if commandlinetools.CommandlineScript in \
-                    inspect.getmro(commandline_script_class) and \
-                    not inspect.isabstract(commandline_script_class):
-                    script_classes.append(commandline_script_class)
+            for class_ in generator:
+                if (
+                    issubclass(class_, base_class) and
+                    class_ is not base_class and
+                    not inspect.isabstract(class_)
+                    ):
+                    script_classes.append(class_)
         return list(sorted(script_classes, key=lambda x: x.__name__))
-
-    @abc.abstractmethod
-    def process_args(self, args):
-        r'''Processes `args`.
-        '''
-        pass
-
-    @abc.abstractmethod
-    def setup_argument_parser(self):
-        r'''Sets up argument parser.
-        '''
-        pass

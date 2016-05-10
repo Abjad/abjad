@@ -23,13 +23,9 @@ class CleanScript(CommandlineScript):
         'files and folders from PATH.'
         )
 
-    ### PUBLIC METHODS ###
+    ### PRIVATE METHODS ###
 
-    def process_args(self, args):
-        r'''Processes `args`.
-
-        Returns none.
-        '''
+    def _process_args(self, args):
         if not args.pyc and not args.pycache and \
             not args.swp and not args.tmp:
             args.pyc, args.pycache, args.swp, args.tmp = True, True, True, True
@@ -80,30 +76,31 @@ class CleanScript(CommandlineScript):
             for directory_name in directories_to_remove:
                 directory_names.remove(directory_name)
 
-    def setup_argument_parser(self, parser):
-        r'''Sets up argument `parser`.
-
-        Returns none.
-        '''
-        parser.add_argument('path',
+    def _setup_argument_parser(self, parser):
+        parser.add_argument(
+            'path',
             default=os.getcwd(),
             help='directory tree to be recursed over',
             nargs='?',
             type=self._validate_path,
             )
-        parser.add_argument('--pyc',
+        parser.add_argument(
+            '--pyc',
             action='store_true',
             help='delete *.pyc files',
             )
-        parser.add_argument('--pycache',
+        parser.add_argument(
+            '--pycache',
             action='store_true',
             help='delete __pycache__ folders',
             )
-        parser.add_argument('--swp',
+        parser.add_argument(
+            '--swp',
             action='store_true',
             help='delete Vim *.swp file',
             )
-        parser.add_argument('--tmp',
+        parser.add_argument(
+            '--tmp',
             action='store_true',
             help='delete tmp* folders',
             )
