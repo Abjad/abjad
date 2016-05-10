@@ -68,13 +68,7 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
                 configuration[section][key] = value
         return configuration
 
-    ### PUBLIC METHODS ###
-
-    def process_args(self, args):
-        r'''Processes `args`.
-
-        Returns none.
-        '''
+    def _process_args(self, args):
         from abjad.tools import abjadbooktools
         assets_directory = args.assets_directory
         clean = args.clean
@@ -117,11 +111,7 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
                 verbose=verbose,
                 )
 
-    def setup_argument_parser(self, parser):
-        r'''Sets up argument `parser`.
-
-        Returns none.
-        '''
+    def _setup_argument_parser(self, parser):
         parser.add_argument(
             'input_file_path',
             nargs='+',

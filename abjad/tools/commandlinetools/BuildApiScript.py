@@ -43,6 +43,7 @@ class BuildApiScript(CommandlineScript):
         root_package_name = None
         source_directory_path_parts = None
         tools_packages_package_path = None
+
         def __init__(
             self,
             api_title,
@@ -95,7 +96,7 @@ class BuildApiScript(CommandlineScript):
         rst_only=False,
         ):
         from abjad import abjad_configuration
-        api_generator = BuildAPIScript.ExperimentalDocumentationManager()
+        api_generator = BuildApiScript.ExperimentalDocumentationManager()
         api_title = 'experimental'
         docs_directory = os.path.join(
             abjad_configuration.abjad_root_directory,
@@ -127,7 +128,7 @@ class BuildApiScript(CommandlineScript):
         rst_only=False,
         ):
         import ide
-        api_generator = BuildAPIScript.IDEDocumentationManager()
+        api_generator = BuildApiScript.IDEDocumentationManager()
         api_title = 'Abjad IDE'
         docs_directory = os.path.join(
             ide.__path__[0],
@@ -191,7 +192,7 @@ class BuildApiScript(CommandlineScript):
         clean=False,
         rst_only=False,
         ):
-        api_generator = BuildAPIScript.ScoreLibraryDocumentationManager(
+        api_generator = BuildApiScript.ScoreLibraryDocumentationManager(
             api_title,
             docs_directory,
             packages_to_document,
@@ -212,21 +213,15 @@ class BuildApiScript(CommandlineScript):
             )
         return path
 
-    ### PUBLIC METHODS ###
-
-    def process_args(self, args):
-        r'''Processes `args`.
-
-        Returns none.
-        '''
+    def _process_args(self, args):
         api_format = args.format
         clean = args.clean
         rst_only = args.rst_only
         paths = []
         prototype = (
-            args.experimental, 
-            args.ide, 
-            args.mainline, 
+            args.experimental,
+            args.ide,
+            args.mainline,
             args.score_library,
             )
         if not any(prototype):
@@ -282,11 +277,7 @@ class BuildApiScript(CommandlineScript):
                     path = 'file://' + path
                 webbrowser.open(path)
 
-    def setup_argument_parser(self, parser):
-        r'''Sets up argument `parser`.
-
-        Returns none.
-        '''
+    def _setup_argument_parser(self, parser):
         parser.add_argument(
             '-C',
             '--clean',

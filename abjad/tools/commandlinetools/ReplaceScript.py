@@ -200,13 +200,7 @@ class ReplaceScript(CommandlineScript):
 
         return line, changes
 
-    ### PUBLIC METHODS ###
-
-    def process_args(self, args):
-        r'''Processes `args`.
-
-        Returns none.
-        '''
+    def _process_args(self, args):
         print('Replacing {!r} with {!r} ...'.format(args.old, args.new))
         skipped_dirs_patterns = self.skipped_directories + args.without_dirs
         skipped_files_patterns = self.skipped_files + args.without_files
@@ -260,11 +254,7 @@ class ReplaceScript(CommandlineScript):
             )
         print(message)
 
-    def setup_argument_parser(self, parser):
-        r'''Sets up argument `parser`.
-
-        Returns none.
-        '''
+    def _setup_argument_parser(self, parser):
         parser.add_argument(
             'path',
             default=os.getcwd(),

@@ -84,20 +84,12 @@ class DoctestScript(CommandlineScript):
 
     ### PUBLIC PROPERTIES ###
 
-    def process_args(
+    def _process_args(
         self,
         args=None,
         file_paths=None,
         print_to_terminal=True,
         ):
-        r'''Processes `args`.
-
-        Returns none when `print_to_terminal` is false.
-
-        Returns string(s) when `print_to_terminal` is true.
-
-        Returns none.
-        '''
         assert not (args and file_paths)
         result = []
         globs = self._get_namespace()
@@ -211,11 +203,7 @@ class DoctestScript(CommandlineScript):
             result.append(string)
             return result
 
-    def setup_argument_parser(self, parser):
-        r'''Sets up argument `parser`.
-
-        Returns none.
-        '''
+    def _setup_argument_parser(self, parser):
         parser.add_argument(
             'path',
             default=os.getcwd(),

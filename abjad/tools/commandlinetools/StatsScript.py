@@ -73,13 +73,7 @@ class StatsScript(CommandlineScript):
             }
         return counts
 
-    ### PUBLIC METHODS ###
-
-    def process_args(self, args):
-        r'''Processes `args`.
-
-        Returns none.
-        '''
+    def _process_args(self, args):
         from abjad.tools import documentationtools
         path = args.path
         if not os.path.isdir(path):
@@ -119,11 +113,7 @@ class StatsScript(CommandlineScript):
 
         self._print_results(counts)
 
-    def setup_argument_parser(self, parser):
-        r'''Sets up argument `parser`.
-
-        Returns none.
-        '''
+    def _setup_argument_parser(self, parser):
         parser.add_argument(
             'path',
             default=os.getcwd(),
