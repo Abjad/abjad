@@ -1,1 +1,1 @@
-# {score_title} {(year)}
+# {score_title} ({year})

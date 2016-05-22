@@ -1,17 +1,16 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import abctools
-from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
 from abjad.tools import scoretools
-from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import new
 
 
 class LabelAgent(abctools.AbjadObject):
@@ -60,9 +59,9 @@ class LabelAgent(abctools.AbjadObject):
         from abjad.tools import selectiontools
         from abjad.tools import spannertools
         prototype = (
-            scoretools.Component, 
+            scoretools.Component,
             selectiontools.Selection,
-            spannertools.Spanner, 
+            spannertools.Spanner,
             type(None),
             )
         assert isinstance(client, prototype), repr(client)
@@ -90,7 +89,7 @@ class LabelAgent(abctools.AbjadObject):
         if len(interval_class_vector) == 13:
             quartertones = []
             for i in range(6):
-                quartertones.append(interval_class_vector[i+0.5])
+                quartertones.append(interval_class_vector[i + 0.5])
             quartertones = ''.join([str(x) for x in quartertones])
             return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
         else:
@@ -853,7 +852,7 @@ class LabelAgent(abctools.AbjadObject):
         Returns none.
         '''
         prototype = prototype or int
-        vertical_moments =  iterate(self.client).by_vertical_moment()
+        vertical_moments = iterate(self.client).by_vertical_moment()
         for index, vertical_moment in enumerate(vertical_moments):
             label = None
             if prototype is int:
@@ -883,7 +882,7 @@ class LabelAgent(abctools.AbjadObject):
                 pitch_classes.reverse()
                 numbers = [str(_) for _ in pitch_classes]
                 markup = [markuptools.Markup(_) for _ in numbers]
-                label = markuptools.Markup.column(markup)
+                label = markuptools.Markup.column(markup, direction)
             elif prototype is pitchtools.NumberedInterval:
                 leaves = vertical_moment.leaves
                 notes = [_ for _ in leaves if isinstance(_, scoretools.Note)]
@@ -926,8 +925,8 @@ class LabelAgent(abctools.AbjadObject):
                     continue
                 interval_class_vector = pitchtools.IntervalClassVector(
                     pitches,
-                    item_class=\
-                        pitchtools.NumberedInversionEquivalentIntervalClass,
+                    item_class=pitchtools
+                        .NumberedInversionEquivalentIntervalClass,
                     )
                 formatted = self._format_interval_class_vector(
                     interval_class_vector)
@@ -1038,7 +1037,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
                 >>> label(staff).with_indices()
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
@@ -1079,7 +1078,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
                 >>> label(staff).with_indices(prototype=Note)
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
@@ -1120,7 +1119,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
                 >>> label(staff).with_indices(prototype=Chord)
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
@@ -1153,7 +1152,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ::
 
-                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+                >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
                 >>> label(staff).with_indices(prototype=scoretools.Leaf)
                 >>> override(staff).text_script.staff_padding = 2
                 >>> show(staff) # doctest: +SKIP
@@ -1420,7 +1419,7 @@ class LabelAgent(abctools.AbjadObject):
                     a'4 ^ \markup { 1 }
                     bf'4
                 }
-                
+
         Returns none.
         """
         prototype = prototype or pitchtools.NamedInterval
@@ -1430,7 +1429,7 @@ class LabelAgent(abctools.AbjadObject):
             next_leaf = inspect_(note).get_leaf(1)
             if isinstance(next_leaf, scoretools.Note):
                 interval = pitchtools.NamedInterval.from_pitch_carriers(
-                    note, 
+                    note,
                     next_leaf,
                     )
                 if prototype is pitchtools.NamedInterval:
@@ -1624,11 +1623,12 @@ class LabelAgent(abctools.AbjadObject):
                     label = markuptools.Markup.column(pitches)
                     label = label.small()
             if label is not None:
+                label = new(label, direction=direction)
                 attach(label, leaf)
 
     def with_start_offsets(
-        self, 
-        clock_time=False, 
+        self,
+        clock_time=False,
         direction=Up,
         font_size=None,
         ):
@@ -1703,7 +1703,7 @@ class LabelAgent(abctools.AbjadObject):
                 >>> score = Score([staff])
                 >>> attach(Tempo(Duration(1, 4), 60), staff[0])
                 >>> label(staff).with_start_offsets(
-                ...     clock_time=True, 
+                ...     clock_time=True,
                 ...     font_size=-3,
                 ...     )
                 >>> override(staff).text_script.staff_padding = 4

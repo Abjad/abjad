@@ -142,7 +142,7 @@ class Selection(object):
             staff.context_name = 'RhythmicStaff'
         score = scoretools.Score([staff])
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __len__(self):

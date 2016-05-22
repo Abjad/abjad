@@ -177,14 +177,13 @@ class Articulation(AbjadValueObject):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         from abjad.tools import scoretools
         from abjad.tools import topleveltools
         note = scoretools.Note("c'4")
         articulation = copy.copy(self)
         topleveltools.attach(articulation, note)
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(note)
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __str__(self):

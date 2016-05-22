@@ -1,0 +1,45 @@
+\documentclass[11pt]{{report}}
+
+\usepackage[utf8]{{inputenc}}
+\usepackage{{eurosym}}
+\usepackage[papersize={{{width}{unit}, {height}{unit}}}]{{geometry}}
+\usepackage{{tikz}}
+\usepackage{{xltxtra,fontspec,xunicode}}
+\usetikzlibrary{{calc}}
+
+%\defaultfontfeatures{{Scale=MatchLowercase}}
+%\setromanfont[Numbers=Uppercase]{{Didot}}
+
+\begin{{document}}
+    \begin{{titlepage}}
+
+        \begin{{tikzpicture}}[remember picture, overlay]
+            \draw[line width = 1.6pt]
+                ($(current page.north west) + (1in,-1in)$)
+                rectangle
+                ($(current page.south east) + (-1in,1in)$);
+            \draw[line width = 0.4pt]
+                ($(current page.north west) + (1in,-1in) + (2.8pt,-2.8pt)$)
+                rectangle
+                ($(current page.south east) + (-1in,1in) + (-2.8pt,2.8pt)$);
+        \end{{tikzpicture}}
+
+        \vfill
+
+        \begin{{center}}
+
+        \vspace{{1em}}
+        {{
+            \itshape
+            Scores available from the composer at\\
+        }}
+        {{
+            {composer_website}\\
+        }}
+        \vspace{{1em}}
+        \euro 750 / \$1000
+
+        \end{{center}}
+
+    \end{{titlepage}}
+\end{{document}}

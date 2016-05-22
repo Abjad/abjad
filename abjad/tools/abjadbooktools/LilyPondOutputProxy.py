@@ -48,7 +48,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
     ::
 
         >>> proxy.as_latex(relative_output_directory='assets')
-        ['\\noindent\\includegraphics{assets/lilypond-627153107d80c2ead680f5295be4d2db.pdf}']
+        ['\\noindent\\includegraphics{assets/lilypond-1b096a6d9cb9b88d4b5b3218adde56fb.pdf}']
 
     '''
 
@@ -71,8 +71,6 @@ class LilyPondOutputProxy(ImageOutputProxy):
         image_render_specifier=None,
         ):
         from abjad.tools import abjadbooktools
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         ImageOutputProxy.__init__(
             self,
             image_layout_specifier=image_layout_specifier,
@@ -89,7 +87,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
                 payload)
         lilypond_file = payload
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         lilypond_file._date_time_token = None
         token = lilypondfiletools.LilyPondVersionToken(
             "2.19.0",
@@ -169,7 +167,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
                 #(set-global-staff-size 12)
             <BLANKLINE>
                 \header {
-                    tagline = \markup {}
+                    tagline = ##f
                 }
             <BLANKLINE>
                 \layout {

@@ -70,7 +70,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
                     "Foo von Bar"
                 }
             composername = #"Foo von Bar"
-            tagline = \markup {}
+            tagline = ##f
             title = \markup {
                 The
                 ballad

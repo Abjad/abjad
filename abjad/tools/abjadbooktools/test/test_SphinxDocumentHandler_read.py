@@ -140,7 +140,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     \include "default.ly"
 
                     \header {
-                        tagline = \markup {}
+                        tagline = ##f
                     }
 
                     \layout {}
@@ -161,7 +161,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     \include "default.ly"
 
                     \header {
-                        tagline = \markup {}
+                        tagline = ##f
                     }
 
                     \layout {}
@@ -208,7 +208,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     \language "english"
 
                     \header {
-                        tagline = \markup {}
+                        tagline = ##f
                     }
 
                     \layout {}
@@ -225,7 +225,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     \language "english"
 
                     \header {
-                        tagline = \markup {}
+                        tagline = ##f
                     }
 
                     \layout {}
@@ -555,7 +555,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                         \include "default.ly"
 
                         \header {
-                            tagline = \markup {}
+                            tagline = ##f
                         }
 
                         \layout {}

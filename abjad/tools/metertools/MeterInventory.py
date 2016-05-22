@@ -66,7 +66,7 @@ class MeterInventory(TypedList):
                 \language "english"
                 <BLANKLINE>
                 \header {
-                    tagline = \markup {}
+                    tagline = ##f
                 }
                 <BLANKLINE>
                 \layout {}

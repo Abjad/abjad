@@ -16,7 +16,7 @@ class LabelExpression(Expression):
 
         ::
 
-            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
             >>> expression(staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -73,7 +73,7 @@ class LabelExpression(Expression):
 
         ::
 
-            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
             >>> expression(staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -104,7 +104,7 @@ class LabelExpression(Expression):
 
         ::
 
-            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
             >>> expression(staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -120,7 +120,7 @@ class LabelExpression(Expression):
                 <g' a'>4
                     ^ \markup {
                         \small
-                            2/8 
+                            2/8
                         }
                 af'8 ~
                     ^ \markup {
@@ -147,7 +147,7 @@ class LabelExpression(Expression):
 
         ::
 
-            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
             >>> expression(staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -190,7 +190,7 @@ class LabelExpression(Expression):
 
         ::
 
-            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
             >>> expression(staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -242,7 +242,7 @@ class LabelExpression(Expression):
 
         ::
 
-            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
             >>> expression(staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -270,7 +270,7 @@ class LabelExpression(Expression):
 
         ::
 
-            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
             >>> expression(staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -297,7 +297,7 @@ class LabelExpression(Expression):
 
         ::
 
-            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4") 
+            >>> staff = Staff("<c' bf'>8 <g' a'>4 af'8 ~ af'8 gf'8 ~ gf'4")
             >>> expression(staff)
             >>> show(staff) # doctest: +SKIP
 
@@ -384,7 +384,7 @@ class LabelExpression(Expression):
             'color': color,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.color_container', 
+            'agenttools.LabelAgent.color_container',
             arguments,
             )
 
@@ -397,7 +397,7 @@ class LabelExpression(Expression):
             'color': color,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.color_leaves', 
+            'agenttools.LabelAgent.color_leaves',
             arguments,
             )
 
@@ -410,7 +410,7 @@ class LabelExpression(Expression):
             'color_map': color_map,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.color_note_heads', 
+            'agenttools.LabelAgent.color_note_heads',
             arguments,
             )
 
@@ -431,7 +431,7 @@ class LabelExpression(Expression):
             'prototype': prototype,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.vertical_moments', 
+            'agenttools.LabelAgent.vertical_moments',
             arguments,
             )
 
@@ -445,7 +445,7 @@ class LabelExpression(Expression):
             'preferred_denominator': preferred_denominator,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.with_durations', 
+            'agenttools.LabelAgent.with_durations',
             arguments,
             )
 
@@ -459,7 +459,7 @@ class LabelExpression(Expression):
             'prototype': prototype,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.with_indices', 
+            'agenttools.LabelAgent.with_indices',
             arguments,
             )
 
@@ -473,7 +473,7 @@ class LabelExpression(Expression):
             'prototype': prototype,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.with_intervals', 
+            'agenttools.LabelAgent.with_intervals',
             arguments,
             )
 
@@ -487,14 +487,14 @@ class LabelExpression(Expression):
             'prototype': prototype,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.with_pitches', 
+            'agenttools.LabelAgent.with_pitches',
             arguments,
             )
 
     def with_start_offsets(
-        self, 
-        clock_time=False, 
-        direction=Up, 
+        self,
+        clock_time=False,
+        direction=Up,
         font_size=None,
         ):
         r'''Makes with-start-offsets callback.
@@ -507,6 +507,6 @@ class LabelExpression(Expression):
             'font_size': font_size,
             }
         return self._make_callback(
-            'agenttools.LabelAgent.with_start_offsets', 
+            'agenttools.LabelAgent.with_start_offsets',
             arguments,
             )

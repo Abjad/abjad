@@ -18,11 +18,15 @@ addons:
         packages:
             - graphviz
             - imagemagick
+            - lmodern
+            - pgf
             - texlive
             - texlive-extra-utils
             - texlive-fonts-recommended
             - texlive-latex-extra
             - texlive-latex-recommended
+            - texlive-pictures
+            - texlive-xetex
 
 before_install:
     - echo TRAVIS_PYTHON_VERSION $TRAVIS_PYTHON_VERSION

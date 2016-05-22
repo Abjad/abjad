@@ -168,6 +168,13 @@ class Configuration(AbjadObject):
                 configuration[key] = None
         return configuration
 
+    ### PUBLIC METHODS ###
+
+    def get(self, *args, **kwargs):
+        r'''Get a key.
+        '''
+        return self._settings.get(*args, **kwargs)
+
     ### PRIVATE PROPERTIES ###
 
     @property

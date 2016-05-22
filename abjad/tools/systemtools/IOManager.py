@@ -77,9 +77,10 @@ class IOManager(AbjadObject):
             score_package_name,
             )
         shutil.move(old_inner_score_directory, new_inner_score_directory)
+        suffixes = ('.py', '.tex', '.md', '.rst', '.ly', '.ily')
         for root, directory_name, file_names in os.walk(target_path):
             for file_name in file_names:
-                if file_name.endswith('.pyc'):
+                if not file_name.endswith(suffixes):
                     continue
                 file_ = os.path.join(root, file_name)
                 with open(file_, 'r') as file_pointer:
@@ -382,7 +383,7 @@ class IOManager(AbjadObject):
         from abjad import abjad_configuration
         text_editor = abjad_configuration.get_text_editor()
         command = '{} {}'.format(
-            text_editor, 
+            text_editor,
             abjad_configuration.lilypond_log_file_path,
             )
         IOManager.spawn_subprocess(command)
@@ -596,8 +597,6 @@ class IOManager(AbjadObject):
         Returns none.
         '''
         from abjad import abjad_configuration
-        from abjad.tools import stringtools
-        from abjad.tools import systemtools
         if not lilypond_path:
             lilypond_path = abjad_configuration['lilypond_path']
             if not lilypond_path:
@@ -624,16 +623,15 @@ class IOManager(AbjadObject):
                 ly_path,
                 abjad_configuration.lilypond_log_file_path,
                 )
-        if not os.path.exists(pdf_path):
-            exit_code = IOManager.spawn_subprocess(command)
-            postscript_path = ly_path.replace('.ly', '.ps')
-            try:
-                os.remove(postscript_path)
-            except OSError:
-                pass
-            if exit_code:
-                return False
-            return True
+        exit_code = IOManager.spawn_subprocess(command)
+        postscript_path = ly_path.replace('.ly', '.ps')
+        try:
+            os.remove(postscript_path)
+        except OSError:
+            pass
+        if exit_code:
+            return False
+        return True
 
     @staticmethod
     def save_last_ly_as(file_path):
