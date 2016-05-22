@@ -25,6 +25,7 @@ class StringQuartetScoreTemplate(AbjadObject):
         >>> print(format(score))
         \context Score = "String Quartet Score" <<
             \context StaffGroup = "String Quartet Staff Group" <<
+                \tag #'first-violin
                 \context Staff = "First Violin Staff" {
                     \clef "treble"
                     \set Staff.instrumentName = \markup { Violin }
@@ -32,6 +33,7 @@ class StringQuartetScoreTemplate(AbjadObject):
                     \context Voice = "First Violin Voice" {
                     }
                 }
+                \tag #'second-violin
                 \context Staff = "Second Violin Staff" {
                     \clef "treble"
                     \set Staff.instrumentName = \markup { Violin }
@@ -39,6 +41,7 @@ class StringQuartetScoreTemplate(AbjadObject):
                     \context Voice = "Second Violin Voice" {
                     }
                 }
+                \tag #'viola
                 \context Staff = "Viola Staff" {
                     \clef "alto"
                     \set Staff.instrumentName = \markup { Viola }
@@ -46,6 +49,7 @@ class StringQuartetScoreTemplate(AbjadObject):
                     \context Voice = "Viola Voice" {
                     }
                 }
+                \tag #'cello
                 \context Staff = "Cello Staff" {
                     \clef "bass"
                     \set Staff.instrumentName = \markup { Cello }
@@ -89,6 +93,8 @@ class StringQuartetScoreTemplate(AbjadObject):
         attach(clef, first_violin_staff)
         violin = instrumenttools.Violin()
         attach(violin, first_violin_staff)
+        tag = indicatortools.LilyPondCommand("tag #'first-violin", 'before')
+        attach(tag, first_violin_staff)
 
         # make second violin voice and staff
         second_violin_voice = scoretools.Voice(name='Second Violin Voice')
@@ -98,6 +104,8 @@ class StringQuartetScoreTemplate(AbjadObject):
         attach(clef, second_violin_staff)
         violin = instrumenttools.Violin()
         attach(violin, second_violin_staff)
+        tag = indicatortools.LilyPondCommand("tag #'second-violin", 'before')
+        attach(tag, second_violin_staff)
 
         # make viola voice and staff
         viola_voice = scoretools.Voice(name='Viola Voice')
@@ -107,6 +115,8 @@ class StringQuartetScoreTemplate(AbjadObject):
         attach(clef, viola_staff)
         viola = instrumenttools.Viola()
         attach(viola, viola_staff)
+        tag = indicatortools.LilyPondCommand("tag #'viola", 'before')
+        attach(tag, viola_staff)
 
         # make cello voice and staff
         cello_voice = scoretools.Voice(name='Cello Voice')
@@ -116,6 +126,8 @@ class StringQuartetScoreTemplate(AbjadObject):
         attach(clef, cello_staff)
         cello = instrumenttools.Cello()
         attach(cello, cello_staff)
+        tag = indicatortools.LilyPondCommand("tag #'cello", 'before')
+        attach(tag, cello_staff)
 
         # make string quartet staff group
         string_quartet_staff_group = scoretools.StaffGroup([
