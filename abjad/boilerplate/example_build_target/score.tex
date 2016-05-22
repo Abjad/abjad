@@ -1,0 +1,11 @@
+\documentclass{{article}}
+\usepackage[papersize={{{width}{unit}, {height}{unit}}}]{{geometry}}
+\usepackage{{pdfpages}}
+\begin{{document}}
+
+\includepdf[pages=-]{{front-cover.pdf}}
+\includepdf[pages=-]{{preface.pdf}}
+\includepdf[angle={rotation},pages=-]{{music.pdf}}
+\includepdf[pages=-]{{back-cover.pdf}}
+
+\end{{document}}

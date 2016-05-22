@@ -1,0 +1,32 @@
+\documentclass[10pt]{{article}}
+
+\usepackage[T1]{{fontenc}}
+\usepackage[utf8]{{inputenc}}
+\usepackage{{enumitem}}
+\usepackage{{import}}
+\usepackage{{xltxtra,fontspec,xunicode}}
+\usepackage[absolute]{{textpos}}
+\usepackage[papersize={{{width}{unit}, {height}{unit}}}]{{geometry}}
+\usepackage{{nopageno}}
+
+\TPGrid[0.5in, 0.25in]{{23}}{{24}}
+\parindent=0pt
+\parskip=12pt
+%\setromanfont[Numbers=Uppercase]{{Didot}}
+%\defaultfontfeatures{{Scale=MatchLowercase}}
+
+\begin{{document}}
+
+\begin{{textblock}}{{23}} (0, 1)
+\center\huge PREFACE
+\end{{textblock}}
+
+\begin{{textblock}}{{9}} (2, 3)
+    \subimport{{../assets/performance-notes}}{{}}   
+\end{{textblock}}
+
+\begin{{textblock}}{{9}} (12, 3)
+    \subimport{{../assets/instrumentation}}{{}}
+\end{{textblock}}
+
+\end{{document}}
