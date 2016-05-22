@@ -39,12 +39,11 @@ class MarkupInventory(TypedList):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         for name in ('layout', 'paper', 'score'):
             block = lilypond_file[name]
             lilypond_file.items.remove(block)
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         for item in self:
             lilypond_file.items.append(item)
         return lilypond_file

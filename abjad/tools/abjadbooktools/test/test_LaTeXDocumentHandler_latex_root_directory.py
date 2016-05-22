@@ -38,8 +38,8 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     with open(expected_path, 'r') as file_pointer:
         expected_contents = file_pointer.read()
     expected_asset_names = (
-        'lilypond-65d03e56d1fdd997411f2f04c401fe16.ly',
-        'lilypond-65d03e56d1fdd997411f2f04c401fe16.pdf',
+        'lilypond-906b8a91ca49cb9688b4b0c3130a6af8.ly',
+        'lilypond-906b8a91ca49cb9688b4b0c3130a6af8.pdf',
         )
 
     def setUp(self):
@@ -89,7 +89,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             >>> note = Note(0, (1, 4))
             >>> show(note)
             \\end{lstlisting}
-            \\noindent\\includegraphics{assets/lilypond-65d03e56d1fdd997411f2f04c401fe16.pdf}
+            \\noindent\\includegraphics{assets/lilypond-906b8a91ca49cb9688b4b0c3130a6af8.pdf}
             %%% ABJADBOOK END %%%
             ''',
             )

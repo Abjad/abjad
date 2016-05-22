@@ -9,7 +9,7 @@ class PitchSegment(Segment):
     r'''Pitch segment.
 
     ..  container:: example
-    
+
         **Example 1.** Numbered pitch segment:
 
         ::
@@ -82,7 +82,6 @@ class PitchSegment(Segment):
         '''
         from abjad.tools import durationtools
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import attach
@@ -96,7 +95,7 @@ class PitchSegment(Segment):
             attach(durationtools.Multiplier(1, 8), leaf)
         override(score).rest.transparent = True
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     ### PRIVATE PROPERTIES ###
@@ -142,7 +141,6 @@ class PitchSegment(Segment):
 
         Returns pitch segment.
         '''
-        from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         if not isinstance(selection, selectiontools.Selection):

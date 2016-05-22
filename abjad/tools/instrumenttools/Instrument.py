@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 import copy
-import inspect
 from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
+from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -86,8 +86,8 @@ class Instrument(AbjadObject):
             short_instrument_name_markup=self.short_instrument_name_markup,
             allowable_clefs=self.allowable_clefs,
             pitch_range=self.pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                self.sounding_pitch_of_written_middle_c,
+            sounding_pitch_of_written_middle_c=self
+                .sounding_pitch_of_written_middle_c,
             )
 
     def __eq__(self, arg):
@@ -151,16 +151,28 @@ class Instrument(AbjadObject):
         result = []
         if self._do_not_format:
             return result
+        instrument_name_markup = self.instrument_name_markup
+        if instrument_name_markup.direction is not None:
+            instrument_name_markup = new(
+                instrument_name_markup,
+                direction=None,
+                )
         line = r'\set {!s}.instrumentName = {!s}'
         line = line.format(
             self._scope_name,
-            self.instrument_name_markup,
+            instrument_name_markup,
             )
         result.append(line)
         line = r'\set {!s}.shortInstrumentName = {!s}'
+        short_instrument_name_markup = self.short_instrument_name_markup
+        if short_instrument_name_markup.direction is not None:
+            short_instrument_name_markup = new(
+                short_instrument_name_markup,
+                direction=None,
+                )
         line = line.format(
             self._scope_name,
-            self.short_instrument_name_markup,
+            short_instrument_name_markup,
             )
         result.append(line)
         return result
@@ -264,7 +276,7 @@ class Instrument(AbjadObject):
         for value in instrumenttools.__dict__.values():
             try:
                 if issubclass(value, classes):
-                    if not value is instrumenttools.Instrument:
+                    if value is not instrumenttools.Instrument:
                         instruments.append(value)
             except TypeError:
                 pass

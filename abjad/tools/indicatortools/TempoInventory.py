@@ -41,17 +41,11 @@ class TempoInventory(TypedList):
 
         Returns LilyPond file.
         '''
-        from abjad.tools import durationtools
         from abjad.tools import lilypondfiletools
         from abjad.tools import indicatortools
-        from abjad.tools import markuptools
-        from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        from abjad.tools import spannertools
         from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import iterate
         from abjad.tools.topleveltools import override
-        from abjad.tools.topleveltools import new
         staff = scoretools.Staff()
         score = scoretools.Score([staff])
         time_signature = indicatortools.TimeSignature((2, 4))
@@ -80,14 +74,13 @@ class TempoInventory(TypedList):
         lilypond_file.layout_block.indent = 0
         lilypond_file.layout_block.ragged_right = True
         lilypond_file.items.remove(lilypond_file['paper'])
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _item_coercer(self):
-        from abjad.tools import indicatortools
         def coerce_(expr):
             if expr is None:
                 tempo = indicatortools.Tempo()
@@ -98,4 +91,5 @@ class TempoInventory(TypedList):
             else:
                 raise TypeError(repr(expr))
             return tempo
+        from abjad.tools import indicatortools
         return coerce_

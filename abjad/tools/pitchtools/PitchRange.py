@@ -52,11 +52,11 @@ class PitchRange(AbjadObject):
         ({}|{}|-?\d+)   # pitch
         ([\])])         # close bracket or close parenthesis
         '''.format(
-            Pitch._pitch_class_octave_number_regex_body,
-            Pitch._pitch_name_regex_body,
-            Pitch._pitch_class_octave_number_regex_body,
-            Pitch._pitch_name_regex_body,
-            )
+        Pitch._pitch_class_octave_number_regex_body,
+        Pitch._pitch_name_regex_body,
+        Pitch._pitch_class_octave_number_regex_body,
+        Pitch._pitch_name_regex_body,
+        )
 
     _range_string_regex = re.compile(
         '^{}$'.format(_range_string_regex_body),
@@ -84,8 +84,10 @@ class PitchRange(AbjadObject):
         '''
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        if (hasattr(arg, '_has_effective_indicator') and
-            arg._has_effective_indicator(indicatortools.IsUnpitched)):
+        if (
+            hasattr(arg, '_has_effective_indicator') and
+            arg._has_effective_indicator(indicatortools.IsUnpitched)
+            ):
             return True
         elif isinstance(arg, (int, float)):
             pitch = pitchtools.NamedPitch(arg)
@@ -193,7 +195,6 @@ class PitchRange(AbjadObject):
         from abjad.tools import durationtools
         from abjad.tools import lilypondfiletools
         from abjad.tools import indicatortools
-        from abjad.tools import markuptools
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools.topleveltools import attach
@@ -231,7 +232,7 @@ class PitchRange(AbjadObject):
         override(score).glissando.thickness = 2
         override(score).time_signature.stencil = False
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     def __le__(self, arg):

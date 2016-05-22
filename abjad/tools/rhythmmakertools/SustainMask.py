@@ -40,7 +40,6 @@ class SustainMask(AbjadValueObject):
         self,
         pattern=None,
         ):
-        from abjad.tools import rhythmmakertools
         prototype = (
             patterntools.Pattern,
             patterntools.CompoundPattern,

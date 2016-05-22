@@ -20,7 +20,7 @@ def make_reference_manual_lilypond_file(music=None, **kwargs):
         #(set-global-staff-size 12)
         <BLANKLINE>
         \header {
-            tagline = \markup {}
+            tagline = ##f
         }
         <BLANKLINE>
         \layout {

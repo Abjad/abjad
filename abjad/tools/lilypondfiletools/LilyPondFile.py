@@ -134,11 +134,11 @@ class LilyPondFile(AbjadObject):
         self._includes = includes
         self._items = items or []
         self._lilypond_language_token = None
-        if not lilypond_language_token == False:
+        if lilypond_language_token is not False:
             token = lilypondfiletools.LilyPondLanguageToken()
             self._lilypond_language_token = token
         self._lilypond_version_token = None
-        if not lilypond_version_token == False:
+        if lilypond_version_token is not False:
             token = lilypondfiletools.LilyPondVersionToken()
             self._lilypond_version_token = token
         self._use_relative_includes = use_relative_includes
@@ -228,6 +228,40 @@ class LilyPondFile(AbjadObject):
         '''
         superclass = super(LilyPondFile, self)
         return superclass.__repr__()
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def new(
+        cls,
+        music=None,
+        date_time_token=None,
+        default_paper_size=None,
+        comments=None,
+        includes=None,
+        global_staff_size=None,
+        lilypond_language_token=None,
+        lilypond_version_token=None,
+        use_relative_includes=None,
+        ):
+        r'''Makes basic LilyPond file.
+
+        Return LilyPond file.
+        '''
+        from abjad.tools import lilypondfiletools
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+            music=music,
+            date_time_token=date_time_token,
+            default_paper_size=default_paper_size,
+            comments=comments,
+            includes=includes,
+            global_staff_size=global_staff_size,
+            lilypond_language_token=lilypond_language_token,
+            lilypond_version_token=lilypond_version_token,
+            use_relative_includes=use_relative_includes,
+            )
+        lilypond_file.header_block.tagline = False
+        return lilypond_file
 
     ### PRIVATE PROPERTIES ###
 
@@ -443,7 +477,7 @@ class LilyPondFile(AbjadObject):
     def includes(self):
         r'''Gets includes of LilyPond file.
 
-        ..  container:: example 
+        ..  container:: example
 
             **Example 1.** Gets includes:
 

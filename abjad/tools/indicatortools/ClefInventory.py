@@ -56,7 +56,6 @@ class ClefInventory(TypedList):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         from abjad.tools import scoretools
         staff = scoretools.Staff()
         for clef in self:
@@ -68,7 +67,7 @@ class ClefInventory(TypedList):
         override(staff).rest.transparent = True
         override(staff).time_signature.stencil = False
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     ### PRIVATE PROPERTIES ###

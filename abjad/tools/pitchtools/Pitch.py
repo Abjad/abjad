@@ -105,7 +105,6 @@ class Pitch(AbjadObject):
         from abjad.tools import durationtools
         from abjad.tools import indicatortools
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import attach
@@ -119,7 +118,7 @@ class Pitch(AbjadObject):
         staff.append(note)
         override(staff).time_signature.stencil = False
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         return lilypond_file
 
     @abc.abstractmethod

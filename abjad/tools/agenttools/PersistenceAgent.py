@@ -49,9 +49,9 @@ class PersistenceAgent(abctools.AbjadObject):
     ### PUBLIC METHODS ###
 
     def as_ly(
-        self, 
-        ly_file_path=None, 
-        illustrate_function=None, 
+        self,
+        ly_file_path=None,
+        illustrate_function=None,
         **kwargs
         ):
         r'''Persists client as LilyPond file.
@@ -91,11 +91,10 @@ class PersistenceAgent(abctools.AbjadObject):
         abjad_formatting_time = timer.elapsed_time
         directory = os.path.dirname(ly_file_path)
         systemtools.IOManager._ensure_directory_existence(directory)
-        if not os.path.exists(ly_file_path):
-            with open(ly_file_path, 'w') as file_pointer:
-                file_pointer.write(lilypond_format)
+        with open(ly_file_path, 'w') as file_pointer:
+            file_pointer.write(lilypond_format)
         return ly_file_path, abjad_formatting_time
-        
+
     def as_midi(self, midi_file_path=None, remove_ly=False, **kwargs):
         r'''Persists client as MIDI file.
 
