@@ -36,6 +36,7 @@ version = abjad_configuration.get_abjad_version_string()
 html_domain_indices = False
 html_favicon = '_static/favicon.ico'
 html_last_updated_fmt = '%b %d, %Y'
+html_logo = 'abjad-logo.png'
 html_show_sourcelink = True
 html_static_path = ['_static']
 html_theme = "sphinx_rtd_theme"
