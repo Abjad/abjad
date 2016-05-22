@@ -83,124 +83,15 @@ class OffsetCounter(TypedCounter):
             ..  doctest::
 
                 >>> illustration = offset_counter.__illustrate__()
-                >>> print(format(illustration))
-                % ...
-                <BLANKLINE>
-                \version "..."
-                \language "english"
-                <BLANKLINE>
-                \header {
-                    tagline = \markup {}
-                }
-                <BLANKLINE>
-                \layout {}
-                <BLANKLINE>
-                \paper {}
-                <BLANKLINE>
-                \markup {
-                    \combine
-                        \combine
-                            \combine
-                                \combine
-                                    \combine
-                                        \combine
-                                            \combine
-                                                \postscript
-                                                    #"
-                                                    0.2 setlinewidth
-                                                    [ 2 1 ] 0 setdash
-                                                    1 -1 moveto
-                                                    0 -2 rlineto
-                                                    stroke
-                                                    14.888... -1 moveto
-                                                    0 -2 rlineto
-                                                    stroke
-                                                    49.6111... -1 moveto
-                                                    0 -2 rlineto
-                                                    stroke
-                                                    56.555... -1 moveto
-                                                    0 -8 rlineto
-                                                    stroke
-                                                    84.333... -1 moveto
-                                                    0 -5 rlineto
-                                                    stroke
-                                                    98.222... -1 moveto
-                                                    0 -2 rlineto
-                                                    stroke
-                                                    126 -1 moveto
-                                                    0 -2 rlineto
-                                                    stroke
-                                                    "
-                                                \translate
-                                                    #'(1.0 . 1)
-                                                    \sans
-                                                        \fontsize
-                                                            #-3
-                                                            \center-align
-                                                                \fraction
-                                                                    -2
-                                                                    1
-                                            \translate
-                                                #'(14.888... . 1)
-                                                \sans
-                                                    \fontsize
-                                                        #-3
-                                                        \center-align
-                                                            \fraction
-                                                                0
-                                                                1
-                                        \translate
-                                            #'(49.6111... . 1)
-                                            \sans
-                                                \fontsize
-                                                    #-3
-                                                    \center-align
-                                                        \fraction
-                                                            5
-                                                            1
-                                    \translate
-                                        #'(56.555... . 1)
-                                        \sans
-                                            \fontsize
-                                                #-3
-                                                \center-align
-                                                    \fraction
-                                                        6
-                                                        1
-                                \translate
-                                    #'(84.333... . 1)
-                                    \sans
-                                        \fontsize
-                                            #-3
-                                            \center-align
-                                                \fraction
-                                                    10
-                                                    1
-                            \translate
-                                #'(98.222... . 1)
-                                \sans
-                                    \fontsize
-                                        #-3
-                                        \center-align
-                                            \fraction
-                                                12
-                                                1
-                        \translate
-                            #'(126.0 . 1)
-                            \sans
-                                \fontsize
-                                    #-3
-                                    \center-align
-                                        \fraction
-                                            16
-                                            1
-                    }
 
         Returns LilyPond file.
         '''
+        from abjad.tools import timespantools
         if not self:
             return markuptools.Markup.null().__illustrate__()
-        if range_ is not None:
+        if isinstance(range_, timespantools.Timespan):
+            minimum, maximum = range_.start_offset, range_.stop_offset
+        elif range_ is not None:
             minimum, maximum = range_
         else:
             minimum, maximum = min(self), max(self)
@@ -209,7 +100,7 @@ class OffsetCounter(TypedCounter):
         if scale is None:
             scale = 1.
         assert 0 < scale
-        postscript_scale = 125. / (maximum - minimum)
+        postscript_scale = 150. / (maximum - minimum)
         postscript_scale *= float(scale)
         postscript_x_offset = (minimum * postscript_scale) - 1
         ps = markuptools.Postscript()
@@ -222,6 +113,7 @@ class OffsetCounter(TypedCounter):
             ps = ps.rlineto(0, (float(count) * -3) + 1)
             ps = ps.stroke()
         markup = markuptools.Markup.postscript(ps)
+        pieces = [markup]
         for offset in sorted(self):
             offset = durationtools.Multiplier(offset)
             numerator, denominator = offset.numerator, offset.denominator
@@ -230,7 +122,8 @@ class OffsetCounter(TypedCounter):
             x_translation = (float(offset) * postscript_scale)
             x_translation -= postscript_x_offset
             fraction = fraction.translate((x_translation, 1))
-            markup = markuptools.Markup.combine(markup, fraction)
+            pieces.append(fraction)
+        markup = markuptools.Markup.overlay(pieces)
         return markup.__illustrate__()
 
     ### PRIVATE PROPERTIES ###

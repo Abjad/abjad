@@ -233,9 +233,8 @@ class Markup(AbjadValueObject):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
-        lilypond_file.header_block.tagline = markuptools.Markup('""')
+        lilypond_file.header_block.tagline = False
         markup = new(self, direction=None)
         lilypond_file.items.append(markup)
         return lilypond_file
@@ -554,6 +553,38 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    def bracket(self):
+        r'''LilyPond ``\bracket`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup('Allegro assai')
+                >>> markup = markup.bracket()
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \bracket
+                        "Allegro assai"
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'bracket',
+            contents,
+            )
+        return new(self, contents=command)
+
     def caps(self):
         r'''LilyPond ``\caps`` markup command.
 
@@ -601,7 +632,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \column
                         {
                             one
@@ -626,7 +657,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def center_column(markups, direction=Up):
+    def center_column(markups, direction=None):
         r'''LilyPond ``\center-column`` markup command.
 
         ..  container:: example
@@ -640,7 +671,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \center-column
                         {
                             "Los Angeles"
@@ -665,7 +696,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \center-column
                         {
                             "Los Angeles"
@@ -723,7 +754,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def column(markups, direction=Up):
+    def column(markups, direction=None):
         r'''LilyPond ``\column`` markup command.
 
         ..  container:: example
@@ -737,7 +768,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \column
                         {
                             "Los Angeles"
@@ -936,7 +967,6 @@ class Markup(AbjadValueObject):
             blot,
             )
         return Markup(command)
-
 
     def finger(self):
         r'''LilyPond ``\finger`` markup command.
@@ -1360,7 +1390,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def left_column(markups, direction=Up):
+    def left_column(markups, direction=None):
         r'''LilyPond ``\left-column`` markup command.
 
         ..  container:: example
@@ -1374,7 +1404,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \left-column
                         {
                             "Los Angeles"
@@ -1718,7 +1748,7 @@ class Markup(AbjadValueObject):
         return Markup(contents)
 
     @staticmethod
-    def musicglyph(glyph_name=None, direction=Up):
+    def musicglyph(glyph_name=None, direction=None):
         r'''LilyPond ``\musicglyph`` markup command.
 
         ..  container:: example
@@ -1730,7 +1760,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \musicglyph
                         #"accidentals.sharp"
                     }
@@ -1781,7 +1811,7 @@ class Markup(AbjadValueObject):
         return Markup(contents=command)
 
     @staticmethod
-    def note_by_number(log, dot_count, stem_direction, direction=Up):
+    def note_by_number(log, dot_count, stem_direction, direction=None):
         r'''LilyPond ``\note-by-number`` markup command.
 
         ..  container:: example
@@ -1793,7 +1823,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \note-by-number
                         #3
                         #2
@@ -1816,7 +1846,7 @@ class Markup(AbjadValueObject):
         return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def null(direction=Up):
+    def null(direction=None):
         r'''LilyPond ``\null`` markup command.
 
         ..  container:: example
@@ -1828,7 +1858,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \null
                     }
 
@@ -1841,6 +1871,45 @@ class Markup(AbjadValueObject):
         from abjad.tools import markuptools
         command = markuptools.MarkupCommand(
             'null',
+            )
+        return Markup(contents=command, direction=direction)
+
+    @staticmethod
+    def overlay(markups, direction=None):
+        r'''LilyPond ``\overlay`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> city = Markup('Los Angeles')
+                >>> date = Markup('May - August 2014')
+                >>> markup = Markup.overlay([city, date])
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \overlay
+                        {
+                            "Los Angeles"
+                            "May - August 2014"
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = []
+        for markup in markups:
+            contents.append(Markup._parse_markup_command_argument(markup))
+        command = markuptools.MarkupCommand(
+            'overlay',
+            contents,
             )
         return Markup(contents=command, direction=direction)
 
@@ -2192,7 +2261,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def right_column(markups, direction=Up):
+    def right_column(markups, direction=None):
         r'''LilyPond ``\right-column`` markup command.
 
         ..  container:: example
@@ -2206,7 +2275,7 @@ class Markup(AbjadValueObject):
             ::
 
                 >>> print(format(markup))
-                ^ \markup {
+                \markup {
                     \right-column
                         {
                             "Los Angeles"
