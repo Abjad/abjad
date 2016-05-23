@@ -15,6 +15,7 @@ class Test(ScorePackageScriptTestCase):
         'test_score/setup.cfg',
         'test_score/setup.py',
         'test_score/test_score/__init__.py',
+        'test_score/test_score/__metadata__.py',
         'test_score/test_score/build/.gitignore',
         'test_score/test_score/build/assets/.gitignore',
         'test_score/test_score/build/assets/instrumentation.tex',
