@@ -30,7 +30,6 @@ class DoctestScript(CommandlineScript):
     _module_names_for_globs = (
         'abjad',
         'experimental',
-        'ide',
         )
 
     ### PRIVATE METHODS ###
@@ -43,6 +42,11 @@ class DoctestScript(CommandlineScript):
                 globs.update(module.__dict__)
             except:
                 pass
+        try:
+            ide_module = importlib.import_module('ide')
+            globs['ide'] = ide_module
+        except ImportError:
+            pass
         globs['print_function'] = print_function
         return globs
 
