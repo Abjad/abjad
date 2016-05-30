@@ -5,6 +5,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools.scoretools.Container import Container
 from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
 
@@ -354,11 +355,24 @@ class Tuplet(Container):
         from abjad.tools import scoretools
         if not self.is_redundant:
             return
-        leaves = self[:]
-        leaf_durations = [inspect_(_).get_duration() for _ in leaves]
-        tuplet_duration = sum(leaf_durations)
-        for leaf_duration, leaf in zip(leaf_durations, leaves):
-            leaf.written_duration = leaf_duration
+        leaves = []
+        logical_ties = list(iterate(self).by_logical_tie(parentage_mask=self))
+        durations = [_.get_duration() for _ in logical_ties]
+        tuplet_duration = sum(durations)
+        for i, logical_tie in enumerate(logical_ties):
+            duration = durations[i]
+            if i == len(logical_ties) - 1:
+                leaf = logical_tie[-1]
+            else:
+                leaf = logical_tie[0]
+            leaf.written_duration = duration
+            leaves.append(leaf)
+        self[:] = leaves
+        #leaves = self[:]
+        #leaf_durations = [inspect_(_).get_duration() for _ in leaves]
+        #tuplet_duration = sum(leaf_durations)
+        #for leaf_duration, leaf in zip(leaf_durations, leaves):
+        #    leaf.written_duration = leaf_duration
         if isinstance(self, scoretools.FixedDurationTuplet):
             self.target_duration = tuplet_duration
         else:
@@ -914,11 +928,8 @@ class Tuplet(Container):
 
         Returns true or false.
         '''
-        from abjad.tools import scoretools
-        if not all(isinstance(_, scoretools.Leaf) for _ in self):
-            return False
-        leaf_durations = [inspect_(_).get_duration() for _ in self]
-        return all(_.is_assignable for _ in leaf_durations)
+        logical_ties = iterate(self).by_logical_tie(parentage_mask=self)
+        return all(_.get_duration().is_assignable for _ in logical_ties)
 
     @property
     def is_trivial(self):
