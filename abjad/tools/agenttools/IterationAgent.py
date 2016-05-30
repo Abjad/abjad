@@ -384,7 +384,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Iterates leaves: 
+            **Example 1.** Iterates leaves:
 
             ::
 
@@ -634,17 +634,33 @@ class IterationAgent(abctools.AbjadObject):
             prototype = (scoretools.Chord, scoretools.Note)
         if not reverse:
             for leaf in self.by_class(prototype):
+                yielded = False
                 tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not tie_spanners or \
                     tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
                     logical_tie = leaf._get_logical_tie()
                     if not nontrivial or not logical_tie.is_trivial:
+                        yielded = True
+                        yield logical_tie
+            if not yielded:
+                if tie_spanners and \
+                    tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
+                    logical_tie = leaf._get_logical_tie()
+                    if not nontrivial or not logical_tie.is_trivial:
                         yield logical_tie
         else:
             for leaf in self.by_class(prototype, reverse=True):
+                yielded = False
                 tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not(tie_spanners) or \
                     tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
+                    logical_tie = leaf._get_logical_tie()
+                    if not nontrivial or not logical_tie.is_trivial:
+                        yielded = True
+                        yield logical_tie
+            if not yielded:
+                if tie_spanners and \
+                    tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
                     logical_tie = leaf._get_logical_tie()
                     if not nontrivial or not logical_tie.is_trivial:
                         yield logical_tie
