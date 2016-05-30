@@ -127,3 +127,18 @@ def test_agenttools_IterationAgent_by_logical_tie_09():
     assert logical_ties[0][1] is staff[1][0]
     assert logical_ties[1][0] is staff[1][1]
     assert logical_ties[1][1] is staff[2][0]
+
+
+def test_agenttools_IterationAgent_by_logical_tie_10():
+
+    staff = Staff("{ c'4 d'4 ~ } { d'4 e'4 ~ } { e'4 f'4 }")
+
+    logical_ties = list(iterate(staff[1])
+        .by_logical_tie(parentage_mask=staff[1])
+        )
+
+    assert len(logical_ties) == 2
+    assert len(logical_ties[0]) == 1
+    assert len(logical_ties[1]) == 1
+    assert logical_ties[0][0] is staff[1][0]
+    assert logical_ties[1][0] is staff[1][1]
