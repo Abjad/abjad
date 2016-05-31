@@ -664,6 +664,7 @@ class IterationAgent(abctools.AbjadObject):
         prototype = scoretools.Leaf
         if pitched:
             prototype = (scoretools.Chord, scoretools.Note)
+        leaf, yielded = None, False
         if not reverse:
             for leaf in self.by_class(prototype):
                 yielded = False
@@ -681,7 +682,7 @@ class IterationAgent(abctools.AbjadObject):
                     if not nontrivial or not logical_tie.is_trivial:
                         yielded = True
                         yield logical_tie
-            if not yielded:
+            if leaf is not None and not yielded:
                 if tie_spanners and \
                     tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
                     logical_tie = leaf._get_logical_tie()
@@ -711,7 +712,7 @@ class IterationAgent(abctools.AbjadObject):
                     if not nontrivial or not logical_tie.is_trivial:
                         yielded = True
                         yield logical_tie
-            if not yielded:
+            if leaf is not None and not yielded:
                 if tie_spanners and \
                     tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
                     logical_tie = leaf._get_logical_tie()

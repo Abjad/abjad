@@ -142,3 +142,10 @@ def test_agenttools_IterationAgent_by_logical_tie_10():
     assert len(logical_ties[1]) == 1
     assert logical_ties[0][0] is staff[1][0]
     assert logical_ties[1][0] is staff[1][1]
+
+
+def test_agenttools_IterationAgent_by_logical_tie_11():
+    r'''No logical ties, but no errors either.'''
+    staff = Staff()
+    logical_ties = list(iterate(staff).by_logical_tie())
+    assert len(logical_ties) == 0
