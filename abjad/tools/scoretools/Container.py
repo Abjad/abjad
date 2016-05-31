@@ -402,7 +402,7 @@ class Container(Component):
         from abjad.tools import systemtools
         positional_argument_values = ()
         if len(self):
-            positional_argument_values=(
+            positional_argument_values = (
                 self._contents_summary,
                 )
         keyword_argument_names = ()
@@ -652,7 +652,7 @@ class Container(Component):
         Note that setting
         withdraw_components_in_expr_from_crossing_spanners=False constitutes a
         composer-unsafe use of this method.
-        
+
         Only private methods should set this keyword.
         '''
         from abjad.tools import scoretools
@@ -695,10 +695,12 @@ class Container(Component):
             raise Exception(message)
         if self._check_for_cycles(expr):
             raise ParentageError('Attempted to induce cycles.')
-        if (i.start == i.stop and 
+        if (
+            i.start == i.stop and
             i.start is not None and
             i.stop is not None and
-            i.start <= -len(self)):
+            i.start <= -len(self)
+            ):
             start, stop = 0, 0
         else:
             start, stop, stride = i.indices(len(self))
@@ -823,10 +825,9 @@ class Container(Component):
             return
         assert isinstance(expr, bool), repr(expr)
         prototype = scoretools.Context
-        if expr == True:
-            if not all(isinstance(x, prototype) for x in self):
-                message = 'simultaneous containers must contain only contexts.'
-                raise ValueError(message)
+        if expr and not all(isinstance(x, prototype) for x in self):
+            message = 'simultaneous containers must contain only contexts.'
+            raise ValueError(message)
         self._is_simultaneous = expr
         self._update_later(offsets=True)
 
@@ -869,7 +870,7 @@ class Container(Component):
 
             ::
 
-                >>> container.name 
+                >>> container.name
                 'Special'
 
             Container name does not appear in LilyPond output:
@@ -935,7 +936,7 @@ class Container(Component):
             self.is_simultaneous = parsed.is_simultaneous
             if (parsed.is_simultaneous or
                 not Selection._all_are_contiguous_components_in_same_logical_voice(
-                parsed[:])):
+                    parsed[:])):
                 while len(parsed):
                     self.append(parsed.pop(0))
             else:
@@ -964,6 +965,7 @@ class Container(Component):
         from abjad.tools import lilypondfiletools
         from abjad.tools import lilypondparsertools
         from abjad.tools import rhythmtreetools
+        from abjad.tools.topleveltools import parse
         user_input = string.strip()
         if user_input.startswith('abj:'):
             parser = lilypondparsertools.ReducedLyParser()
@@ -973,10 +975,12 @@ class Container(Component):
         elif user_input.startswith('rtm:'):
             parsed = rhythmtreetools.parse_rtm_syntax(user_input[4:])
         else:
-            if (not user_input.startswith('<<') or
-                not user_input.endswith('>>')):
+            if (
+                not user_input.startswith('<<') or
+                not user_input.endswith('>>')
+                ):
                 user_input = '{{ {} }}'.format(user_input)
-            parsed = lilypondparsertools.LilyPondParser()(user_input)
+            parsed = parse(user_input)
             if isinstance(parsed, lilypondfiletools.LilyPondFile):
                 parsed = Container(parsed.items[:])
             assert isinstance(parsed, Container)
@@ -985,11 +989,7 @@ class Container(Component):
     def _scale(self, multiplier):
         self._scale_contents(multiplier)
 
-    def _split_at_index(
-        self, 
-        i, 
-        fracture_spanners=False,
-        ):
+    def _split_at_index(self, i, fracture_spanners=False):
         r'''Splits container to the left of index `i`.
 
         Preserves tuplet multiplier when container is a tuplet.
@@ -1003,7 +1003,6 @@ class Container(Component):
         from abjad.tools import indicatortools
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        from abjad.tools import spannertools
         # partition my music
         left_music = self[:i]
         right_music = self[i:]
@@ -1203,10 +1202,14 @@ class Container(Component):
         right_logical_tie._fuse_leaves_by_immediate_parent()
         # reapply tie here if crawl above killed tie applied to leaves
         if did_split_leaf:
-            if (tie_split_notes and
-                isinstance(leaf_left_of_split, scoretools.Note)):
-                if (leaf_left_of_split._get_parentage().root is
-                    leaf_right_of_split._get_parentage().root):
+            if (
+                tie_split_notes and
+                isinstance(leaf_left_of_split, scoretools.Note)
+                ):
+                if (
+                    leaf_left_of_split._get_parentage().root is
+                    leaf_right_of_split._get_parentage().root
+                    ):
                     leaves_around_split = \
                         (leaf_left_of_split, leaf_right_of_split)
                     selection = selectiontools.Selection(
@@ -1613,8 +1616,6 @@ class Container(Component):
 
         Returns none.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
         self._music.reverse()
         self._update_later(offsets=True)
         spanners = self._get_descendants()._get_spanners()

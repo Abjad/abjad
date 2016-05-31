@@ -98,13 +98,13 @@ class Markup(AbjadValueObject):
         direction=None,
         stack_priority=0,
         ):
-        from abjad.tools import lilypondparsertools
         from abjad.tools import markuptools
+        from abjad.tools.topleveltools import parse
         if contents is None:
             new_contents = ('',)
         elif isinstance(contents, str):
             to_parse = r'\markup {{ {} }}'.format(contents)
-            parsed = lilypondparsertools.LilyPondParser()(to_parse)
+            parsed = parse(to_parse)
             if all(isinstance(x, str) for x in parsed.contents):
                 new_contents = (' '.join(parsed.contents),)
             else:

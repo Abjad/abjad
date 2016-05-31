@@ -35,11 +35,11 @@ class Rest(Leaf):
     ### INITIALIZER ###
 
     def __init__(self, written_duration=None):
-        from abjad.tools import lilypondparsertools
+        from abjad.tools.topleveltools import parse
         original_input = written_duration
         if isinstance(written_duration, str):
             string = '{{ {} }}'.format(written_duration)
-            parsed = lilypondparsertools.LilyPondParser()(string)
+            parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             written_duration = parsed[0]
         if isinstance(written_duration, Leaf):
