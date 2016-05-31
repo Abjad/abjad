@@ -34,7 +34,7 @@ class Test(ScorePackageScriptTestCase):
         Re-rendering candidates: 'test_material' ...
         Re-rendering test_score/materials/test_material/
             Writing test_score/materials/test_material/illustration.pdf ... OK!
-                LilyPond runtime: 0 seconds
+                LilyPond runtime: ... second...
             Re-rendered test_score/materials/test_material/
         ''')
         self.compare_path_contents(self.materials_path, self.expected_files)
