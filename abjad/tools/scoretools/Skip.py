@@ -30,12 +30,12 @@ class Skip(Leaf):
     ### INITIALIZER ###
 
     def __init__(self, *args):
-        from abjad.tools import lilypondparsertools
+        from abjad.tools.topleveltools import parse
         input_leaf = None
         written_duration = None
         if len(args) == 1 and isinstance(args[0], str):
             string = '{{ {} }}'.format(args[0])
-            parsed = lilypondparsertools.LilyPondParser()(string)
+            parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             input_leaf = parsed[0]
             written_duration = input_leaf.written_duration

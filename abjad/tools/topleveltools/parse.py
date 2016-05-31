@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 
 
+_lilypond_parsers_by_language = {}
+
+
 def parse(arg, language='english'):
     r'''Parses `arg` as LilyPond string.
 
@@ -34,9 +37,11 @@ def parse(arg, language='english'):
     '''
     from abjad.tools import rhythmtreetools
     from abjad.tools import lilypondparsertools
-
     if arg.startswith('abj:'):
         return lilypondparsertools.parse_reduced_ly_syntax(arg[4:])
     elif arg.startswith('rtm:'):
         return rhythmtreetools.parse_rtm_syntax(arg[4:])
-    return lilypondparsertools.LilyPondParser(default_language=language)(arg)
+    if language not in _lilypond_parsers_by_language:
+        parser = lilypondparsertools.LilyPondParser(default_language=language)
+        _lilypond_parsers_by_language[language] = parser
+    return _lilypond_parsers_by_language[language](arg)

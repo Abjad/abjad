@@ -38,15 +38,15 @@ class Chord(Leaf):
 
     def __init__(self, *args):
         from abjad.ly import drums
-        from abjad.tools import lilypondparsertools
         from abjad.tools import scoretools
+        from abjad.tools.topleveltools import parse
         assert len(args) in (0, 1, 2)
         self._note_heads = scoretools.NoteHeadInventory(
             client=self,
             )
         if len(args) == 1 and isinstance(args[0], str):
             string = '{{ {} }}'.format(args[0])
-            parsed = lilypondparsertools.LilyPondParser()(string)
+            parsed = parse(string)
             assert len(parsed) == 1 and isinstance(parsed[0], Leaf)
             args = [parsed[0]]
         are_cautionary = []
@@ -132,7 +132,7 @@ class Chord(Leaf):
     @property
     def _compact_representation_with_tie(self):
         logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and not self is logical_tie[-1]:
+        if 1 < len(logical_tie) and self is not logical_tie[-1]:
             return '{} ~'.format(self._body[0])
         else:
             return self._body[0]
@@ -300,8 +300,9 @@ class Chord(Leaf):
                 sounding_pitch = pitchtools.NamedPitch('C4')
             interval = pitchtools.NamedPitch('C4') - sounding_pitch
             sounding_pitches = [
-                pitchtools.transpose_pitch_carrier_by_interval(
-                pitch, interval) for pitch in self.written_pitches]
+                pitchtools.transpose_pitch_carrier_by_interval(pitch, interval)
+                for pitch in self.written_pitches
+                ]
             return tuple(sounding_pitches)
 
     def _get_tremolo_reattack_duration(self):
