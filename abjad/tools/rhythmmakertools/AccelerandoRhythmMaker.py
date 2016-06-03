@@ -500,8 +500,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     ### PRIVATE METHODS ###
 
+    @staticmethod
     def _fix_rounding_error(
-        self, 
         selection, 
         total_duration,
         interpolation_specifier,
@@ -699,36 +699,49 @@ class AccelerandoRhythmMaker(RhythmMaker):
         result = (y1 * (1 - mu ** exponent) + y2 * mu ** exponent)
         return result
 
-    def _is_accelerando(self, selection):
+    @staticmethod
+    def _is_accelerando(selection):
         first_duration = inspect_(selection[0]).get_duration()
         last_duration = inspect_(selection[-1]).get_duration()
         if last_duration < first_duration:
             return True
         return False
 
-    def _is_ritardando(self, selection):
+    @staticmethod
+    def _is_ritardando(selection):
         first_duration = inspect_(selection[0]).get_duration()
         last_duration = inspect_(selection[-1]).get_duration()
         if first_duration < last_duration:
             return True
         return False
 
-    def _make_accelerando(self, total_duration, index):
-        r'''Makes notes with LilyPond multipliers.
+    @classmethod
+    def _make_accelerando(
+        class_,
+        total_duration,
+        interpolation_specifiers,
+        index,
+        beam_specifier,
+        tuplet_spelling_specifier,
+        ):
+        r'''Makes notes with LilyPond multipliers equal to `total_duration`.
 
-        Returns as many interpolation values as necessary to fill `total`
-        duration requested.
+        Total number of notes not specified: total duration is specified
+        instead.
 
-        Computes duration multipliers interpolated from `start` to `stop`.
+        Selects interpolation specifier at `index` in
+        `interpolation_specifiers`.
 
-        Sets note durations to `written_duration` multiplied by interpolation
+        Computes duration multipliers interpolated from interpolation specifier
+        start to stop.
+
+        Sets note written durations according to interpolation specifier.
         multipliers.
 
         Returns selection of notes.
         '''
         from abjad.tools import rhythmmakertools
         total_duration = durationtools.Duration(total_duration)
-        interpolation_specifiers = self._get_interpolation_specifiers()
         interpolation_specifier = interpolation_specifiers[index]
         durations = AccelerandoRhythmMaker._interpolate_divide(
             total_duration=total_duration,
@@ -753,22 +766,20 @@ class AccelerandoRhythmMaker(RhythmMaker):
             attach(multiplier, note)
             notes.append(note)
         selection = selectiontools.Selection(notes)
-        self._fix_rounding_error(
+        class_._fix_rounding_error(
             selection, 
             total_duration,
             interpolation_specifier,
             )
         pair = (selection.get_duration(), total_duration)
         assert pair[0] == pair[1], repr(pair)
-        beam_specifier = self._get_beam_specifier()
         if not beam_specifier.use_feather_beams:
             pass
-        elif self._is_accelerando(selection):
+        elif class_._is_accelerando(selection):
             override(selection[0]).beam.grow_direction = Right
-        elif self._is_ritardando(selection):
+        elif class_._is_ritardando(selection):
             override(selection[0]).beam.grow_direction = Left
         tuplet = scoretools.Tuplet((1, 1), selection)
-        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         if tuplet_spelling_specifier.use_note_duration_bracket:
             tuplet.force_times_command = True
             duration = inspect_(tuplet).get_duration()
@@ -781,8 +792,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
     def _make_music(self, divisions, rotation):
         from abjad.tools import rhythmmakertools
         selections = []
+        interpolation_specifiers = self._get_interpolation_specifiers()
+        beam_specifier = self._get_beam_specifier()
+        tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         for index, division in enumerate(divisions):
-            accelerando = self._make_accelerando(division, index)
+            accelerando = self._make_accelerando(
+                division,
+                interpolation_specifiers,
+                index,
+                beam_specifier,
+                tuplet_spelling_specifier,
+                )
             selections.append(accelerando)
         beam_specifier = self._get_beam_specifier()
         beam_specifier._apply(selections)
