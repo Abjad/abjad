@@ -482,10 +482,10 @@ class RhythmMaker(AbjadValueObject):
         result = '[${}$]'.format(result)
         return result
 
-    def _trivial_helper(self, talea, rotation):
-        if isinstance(rotation, int) and len(talea):
-            return sequencetools.rotate_sequence(talea, rotation)
-        return talea
+    def _trivial_helper(self, sequence_, rotation):
+        if isinstance(rotation, int) and len(sequence_):
+            return sequencetools.rotate_sequence(sequence_, rotation)
+        return sequence_
 
     def _validate_selections(self, selections):
         assert isinstance(selections, list), repr(selections)

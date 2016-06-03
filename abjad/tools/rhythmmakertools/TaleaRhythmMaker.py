@@ -190,7 +190,7 @@ class TaleaRhythmMaker(RhythmMaker):
         self._tie_split_notes = tie_split_notes
         helper_functions = helper_functions or {}
         talea_helper = helper_functions.get('talea')
-        prolation_addenda_helper = helper_functions.get(
+        extra_counts_per_division_helper = helper_functions.get(
             'extra_counts_per_division')
         lefts_helper = helper_functions.get('left_classes')
         middles_helper = helper_functions.get('middle_classes')
@@ -207,8 +207,8 @@ class TaleaRhythmMaker(RhythmMaker):
         if split_divisions_by_counts is not None:
             split_divisions_by_counts = tuple(split_divisions_by_counts)
         talea_helper = self._none_to_trivial_helper(talea_helper)
-        prolation_addenda_helper = self._none_to_trivial_helper(
-            prolation_addenda_helper)
+        extra_counts_per_division_helper = self._none_to_trivial_helper(
+            extra_counts_per_division_helper)
         lefts_helper = self._none_to_trivial_helper(lefts_helper)
         middles_helper = self._none_to_trivial_helper(middles_helper)
         rights_helper = self._none_to_trivial_helper(rights_helper)
@@ -225,7 +225,7 @@ class TaleaRhythmMaker(RhythmMaker):
             mathtools.all_are_nonnegative_integer_equivalent_numbers(
                 split_divisions_by_counts)
         assert callable(talea_helper)
-        assert callable(prolation_addenda_helper)
+        assert callable(extra_counts_per_division_helper)
         assert callable(lefts_helper)
         assert callable(middles_helper)
         assert callable(rights_helper)
@@ -419,10 +419,12 @@ class TaleaRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _apply_burnish_specifier(self, divisions):
-        if self.burnish_specifier.outer_divisions_only:
-            return self._burnish_outer_divisions(divisions)
-        else:
-            return self._burnish_each_division(divisions)
+        burnish_specifier = self._get_burnish_specifier()
+        return burnish_specifier(
+            divisions,
+            helper_functions=self.helper_functions,
+            rotation=self._rotation,
+            )
 
     def _apply_ties_to_split_notes(self, result, unscaled_talea):
         from abjad.tools import rhythmmakertools
@@ -465,160 +467,11 @@ class TaleaRhythmMaker(RhythmMaker):
             tie_spanner._extend(part)
             tie_spanner._constrain_contiguity()
 
-    def _burnish_division_part(self, division_part, token):
-        assert len(division_part) == len(token)
-        new_division_part = []
-        for number, i in zip(division_part, token):
-            if i in (-1, scoretools.Rest):
-                new_division_part.append(-abs(number))
-            elif i == 0:
-                new_division_part.append(number)
-            elif i in (1, scoretools.Note):
-                new_division_part.append(abs(number))
-            else:
-                raise ValueError
-        new_division_part = type(division_part)(new_division_part)
-        return new_division_part
-
-    def _burnish_each_division(self, divisions):
-        octuplet = self._prepare_input()
-        burnish_settings = octuplet[2:7]
-        left_classes = burnish_settings[0]
-        middle_classes = burnish_settings[1]
-        right_classes = burnish_settings[2]
-        left_counts = burnish_settings[3]
-        right_counts = burnish_settings[4]
-        lefts_index, rights_index = 0, 0
-        burnished_divisions = []
-        for division_index, division in enumerate(divisions):
-            left_length = left_counts[division_index]
-            left = left_classes[lefts_index:lefts_index + left_length]
-            lefts_index += left_length
-            right_length = right_counts[division_index]
-            right = right_classes[rights_index:rights_index + right_length]
-            rights_index += right_length
-            available_left_length = len(division)
-            left_length = min([left_length, available_left_length])
-            available_right_length = len(division) - left_length
-            right_length = min([right_length, available_right_length])
-            middle_length = len(division) - left_length - right_length
-            left = left[:left_length]
-            middle = middle_length * [middle_classes[division_index]]
-            right = right[:right_length]
-            left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    division,
-                    [left_length, middle_length, right_length],
-                    cyclic=False,
-                    overhang=False,
-                    )
-            left_part = self._burnish_division_part(left_part, left)
-            middle_part = self._burnish_division_part(middle_part, middle)
-            right_part = self._burnish_division_part(right_part, right)
-            burnished_division = left_part + middle_part + right_part
-            burnished_divisions.append(burnished_division)
-        unburnished_weights = [mathtools.weight(x) for x in divisions]
-        burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
-        assert burnished_weights == unburnished_weights
-        return burnished_divisions
-
-    def _burnish_outer_divisions(self, divisions):
-        for list_ in divisions:
-            assert all(isinstance(_, int) for _ in list_), repr(list_)
-        octuplet = self._prepare_input()
-        burnish_settings = octuplet[2:7]
-        left_classes = burnish_settings[0]
-        middle_classes = burnish_settings[1]
-        right_classes = burnish_settings[2]
-        left_counts = burnish_settings[3]
-        right_counts = burnish_settings[4]
-        burnished_divisions = []
-        left_length = 0
-        if left_counts:
-            left_length = left_counts[0]
-        left = left_classes[:left_length]
-        right_length = 0
-        if right_counts:
-            right_length = right_counts[0]
-        right = right_classes[:right_length]
-        if len(divisions) == 1:
-            available_left_length = len(divisions[0])
-            left_length = min([left_length, available_left_length])
-            available_right_length = len(divisions[0]) - left_length
-            right_length = min([right_length, available_right_length])
-            middle_length = len(divisions[0]) - left_length - right_length
-            left = left[:left_length]
-            if not middle_classes:
-                middle_classes = [1]
-            middle = [middle_classes[0]]
-            middle = middle_length * middle
-            right = right[:right_length]
-            left_part, middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[0],
-                    [left_length, middle_length, right_length],
-                    cyclic=False,
-                    overhang=Exact,
-                    )
-            left_part = self._burnish_division_part(left_part, left)
-            middle_part = self._burnish_division_part(middle_part, middle)
-            right_part = self._burnish_division_part(right_part, right)
-            burnished_division = left_part + middle_part + right_part
-            burnished_divisions.append(burnished_division)
-        else:
-            # first division
-            available_left_length = len(divisions[0])
-            left_length = min([left_length, available_left_length])
-            middle_length = len(divisions[0]) - left_length
-            left = left[:left_length]
-            if not middle_classes:
-                middle_classes = [1]
-            middle = [middle_classes[0]]
-            middle = middle_length * middle
-            left_part, middle_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[0],
-                    [left_length, middle_length],
-                    cyclic=False,
-                    overhang=Exact,
-                    )
-            left_part = self._burnish_division_part(left_part, left)
-            middle_part = self._burnish_division_part(middle_part, middle)
-            burnished_division = left_part + middle_part
-            burnished_divisions.append(burnished_division)
-
-            # middle divisions
-            for division in divisions[1:-1]:
-                middle_part = division
-                middle = len(division) * [middle_classes[0]]
-                middle_part = self._burnish_division_part(middle_part, middle)
-                burnished_division = middle_part
-                burnished_divisions.append(burnished_division)
-
-            # last division:
-            available_right_length = len(divisions[-1])
-            right_length = min([right_length, available_right_length])
-            middle_length = len(divisions[-1]) - right_length
-            right = right[:right_length]
-            middle = middle_length * [middle_classes[0]]
-            middle_part, right_part = \
-                sequencetools.partition_sequence_by_counts(
-                    divisions[-1],
-                    [middle_length, right_length],
-                    cyclic=False,
-                    overhang=Exact,
-                    )
-            middle_part = self._burnish_division_part(middle_part, middle)
-            right_part = self._burnish_division_part(right_part, right)
-            burnished_division = middle_part + right_part
-            burnished_divisions.append(burnished_division)
-
-        unburnished_weights = [mathtools.weight(x) for x in divisions]
-        burnished_weights = [mathtools.weight(x) for x in burnished_divisions]
-        #assert burnished_weights == unburnished_weights
-        # TODO: make the following work on Python 3:
-        #assert tuple(burnished_weights) == tuple(unburnished_weights)
-        return burnished_divisions
+    def _get_burnish_specifier(self):
+        from abjad.tools import rhythmmakertools
+        if self.burnish_specifier is not None:
+            return self.burnish_specifier
+        return rhythmmakertools.BurnishSpecifier()
 
     def _get_talea(self):
         from abjad.tools import rhythmmakertools
@@ -669,11 +522,14 @@ class TaleaRhythmMaker(RhythmMaker):
 
     def _make_music(self, divisions, rotation):
         input_divisions = divisions[:]
-        octuplet = self._prepare_input()
-        talea = octuplet[0]
-        extra_counts_per_division = octuplet[1]
+        input_ = self._rotate_input(
+            helper_functions=self.helper_functions,
+            rotation=self._rotation,
+            )
+        talea = input_['talea']
+        extra_counts_per_division = input_['extra_counts_per_division']
         unscaled_talea = tuple(talea)
-        split_divisions_by_counts = octuplet[-1]
+        split_divisions_by_counts = input_['split_divisions_by_counts']
         taleas = (talea, extra_counts_per_division, split_divisions_by_counts)
         if self.talea is not None:
             talea_denominator = self.talea.denominator
@@ -776,89 +632,39 @@ class TaleaRhythmMaker(RhythmMaker):
             prolated_divisions.append(prolated_division)
         return prolated_divisions
 
-    def _prepare_input(self):
-        rotation = self._rotation
-        helper_functions = self.helper_functions or {}
+    def _rotate_input(self, helper_functions=None, rotation=None):
+        helper_functions = helper_functions or {}
         if self.talea is not None:
             talea = self.talea.counts or ()
         else:
             talea = ()
-        talea_helper = self._none_to_trivial_helper(
-            helper_functions.get('talea'))
-        talea = talea_helper(talea, rotation)
+        helper_function = helper_functions.get('talea')
+        helper_function = self._none_to_trivial_helper(helper_function)
+        talea = helper_function(talea, rotation)
         talea = datastructuretools.CyclicTuple(talea)
-
         extra_counts_per_division = self.extra_counts_per_division or ()
-        prolation_addenda_helper = self._none_to_trivial_helper(
-            helper_functions.get('extra_counts_per_division'))
-        extra_counts_per_division = prolation_addenda_helper(
-            extra_counts_per_division, rotation)
+        helper_function = helper_functions.get('extra_counts_per_division')
+        helper_function = self._none_to_trivial_helper(helper_function)
+        extra_counts_per_division = helper_function(
+            extra_counts_per_division,
+            rotation,
+            )
         extra_counts_per_division = datastructuretools.CyclicTuple(
             extra_counts_per_division)
-
-        burnish_specifier = self.burnish_specifier
-        if burnish_specifier is None:
-            left_classes = ()
-            middle_classes = ()
-            right_classes = ()
-            left_counts = ()
-            right_counts = ()
-        else:
-            left_classes = burnish_specifier.left_classes
-            middle_classes = burnish_specifier.middle_classes
-            right_classes = burnish_specifier.right_classes
-            left_counts = burnish_specifier.left_counts
-            right_counts = burnish_specifier.right_counts
-
-        left_classes = left_classes or ()
-        lefts_helper = self._none_to_trivial_helper(
-            helper_functions.get('left_classes'))
-        left_classes = lefts_helper(left_classes, rotation)
-        left_classes = datastructuretools.CyclicTuple(left_classes)
-
-        if middle_classes == () or middle_classes is None:
-            middle_classes = (0,)
-        middles_helper = self._none_to_trivial_helper(
-            helper_functions.get('middle_classes'))
-        middle_classes = middles_helper(middle_classes, rotation)
-        middle_classes = datastructuretools.CyclicTuple(middle_classes)
-
-        right_classes = right_classes or ()
-        rights_helper = self._none_to_trivial_helper(
-            helper_functions.get('right_classes'))
-        right_classes = rights_helper(right_classes, rotation)
-        right_classes = datastructuretools.CyclicTuple(right_classes)
-
-        left_counts = left_counts or (0,)
-        left_lengths_helper = self._none_to_trivial_helper(
-            helper_functions.get('left_counts'))
-        left_counts = left_lengths_helper(left_counts, rotation)
-        left_counts = datastructuretools.CyclicTuple(left_counts)
-
-        right_counts = right_counts or (0,)
-        right_lengths_helper = self._none_to_trivial_helper(
-            helper_functions.get('right_counts'))
-        right_counts = right_lengths_helper(right_counts, rotation)
-        right_counts = datastructuretools.CyclicTuple(right_counts)
-
         split_divisions_by_counts = self.split_divisions_by_counts or ()
-        secondary_divisions_helper = self._none_to_trivial_helper(
-            helper_functions.get('split_divisions_by_counts'))
-        split_divisions_by_counts = secondary_divisions_helper(
-            split_divisions_by_counts, rotation)
+        helper_function = helper_functions.get('split_divisions_by_counts')
+        helper_function = self._none_to_trivial_helper(helper_function)
+        split_divisions_by_counts = helper_function(
+            split_divisions_by_counts,
+            rotation,
+            )
         split_divisions_by_counts = datastructuretools.CyclicTuple(
             split_divisions_by_counts)
-
-        return (
-            talea,
-            extra_counts_per_division,
-            left_classes,
-            middle_classes,
-            right_classes,
-            left_counts,
-            right_counts,
-            split_divisions_by_counts,
-            )
+        return {
+            'extra_counts_per_division': extra_counts_per_division,
+            'split_divisions_by_counts': split_divisions_by_counts,
+            'talea': talea,
+            }
 
     def _split_sequence_extended_to_weights(self, sequence, weights):
         assert mathtools.all_are_positive_integers(weights), repr(weights)
