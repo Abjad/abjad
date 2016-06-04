@@ -236,10 +236,6 @@ class MarkupCommand(AbjadValueObject):
         return string
 
     def _get_format_pieces(self):
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import scoretools
-        from abjad.tools import systemtools
-        indent = systemtools.LilyPondFormatManager.indent
         def recurse(iterable):
             result = []
             for x in iterable:
@@ -247,14 +243,10 @@ class MarkupCommand(AbjadValueObject):
                     result.append('{')
                     result.extend(recurse(x))
                     result.append('}')
-                elif isinstance(x, type(self)):
-                    result.extend(x._get_format_pieces())
                 elif isinstance(x, schemetools.Scheme):
                     result.append(format(x))
-                elif isinstance(x, scoretools.Component):
-                    result.extend(x._format_pieces)
-                elif isinstance(x, lilypondfiletools.Block):
-                    result.extend(x._format_pieces)
+                elif hasattr(x, '_get_format_pieces'):
+                    result.extend(x._get_format_pieces())
                 elif isinstance(x, str) and '\n' in x:
                     result.append('#"')
                     result.extend(x.splitlines())
@@ -269,6 +261,8 @@ class MarkupCommand(AbjadValueObject):
                     else:
                         result.append('#{}'.format(formatted))
             return ['{}{}'.format(indent, x) for x in result]
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent
         parts = [r'\{}'.format(self.command)]
         parts.extend(recurse(self.args))
         return parts

@@ -73,10 +73,6 @@ class Leaf(Component):
         raise MissingTempoError
 
     @property
-    def _format_pieces(self):
-        return self._lilypond_format.split('\n')
-
-    @property
     def _formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = None
@@ -281,6 +277,9 @@ class Leaf(Component):
         result.append(self._format_after_grace_opening())
         result.append(('spanners', bundle.opening.spanners))
         return result
+
+    def _get_format_pieces(self):
+        return self._lilypond_format.split('\n')
 
     def _get_leaf(self, n=0):
         from abjad.tools import scoretools

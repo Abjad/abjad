@@ -266,10 +266,6 @@ class Markup(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_pieces(self):
-        return self._get_format_pieces()
-
-    @property
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
 

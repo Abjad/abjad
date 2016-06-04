@@ -265,8 +265,7 @@ class LilyPondFile(AbjadObject):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _format_pieces(self):
+    def _get_format_pieces(self):
         result = []
         if self.date_time_token is not None:
             string = '% {}'.format(self.date_time_token)
@@ -289,6 +288,8 @@ class LilyPondFile(AbjadObject):
         result.extend(self._formatted_scheme_settings)
         result.extend(self._formatted_blocks)
         return result
+
+    ### PRIVATE PROPERTIES ###
 
     @property
     def _formatted_blocks(self):
@@ -352,7 +353,7 @@ class LilyPondFile(AbjadObject):
 
     @property
     def _lilypond_format(self):
-        return '\n\n'.join(self._format_pieces)
+        return '\n\n'.join(self._get_format_pieces())
 
     ### PUBLIC PROPERTIES ###
 

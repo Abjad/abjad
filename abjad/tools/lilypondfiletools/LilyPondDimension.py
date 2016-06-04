@@ -53,15 +53,16 @@ class LilyPondDimension(abctools.AbjadObject):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_pieces(self):
+        return [r'{}\{}'.format(self.value, self.unit)]
+
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_pieces(self):
-        return [r'{}\{}'.format(self.value, self.unit)]
-
-    @property
     def _lilypond_format(self):
-        return '\n'.join(self._format_pieces)
+        return '\n'.join(self._get_format_pieces())
 
     ### PUBLIC PROPERTIES ###
 
