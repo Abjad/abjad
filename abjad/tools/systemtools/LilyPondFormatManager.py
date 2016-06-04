@@ -277,9 +277,8 @@ class LilyPondFormatManager(AbjadObject):
         Returns string.
         '''
         assert isinstance(attribute, str), repr(attribute)
-        attribute = attribute.replace('__', " #'")
+        attribute = attribute.replace('__', ".")
         result = attribute.replace('_', '-')
-        result = "#'{}".format(result)
         return result
 
     @staticmethod
@@ -391,7 +390,7 @@ class LilyPondFormatManager(AbjadObject):
         else:
             once_prefix = ''
         # return override string
-        result = r'{}\override {}{} {} = {}'
+        result = r'{}\override {}{}.{} = {}'
         result = result.format(
             once_prefix,
             context_prefix,
