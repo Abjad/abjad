@@ -68,36 +68,12 @@ class RhythmMaker(AbjadValueObject):
     def __call__(self, divisions, rotation=None):
         r'''Calls rhythm-maker.
 
-        Makes music as a list of selections.
-
-        Applies cross-division ties (when specified by tie specifier).
-        Other types of ties specified by tie specifier must be
-        applied by child classes.
-
-        Validates output type.
-
-        Returns list of selections.
+        Returns selections.
         '''
-        divisions_ = []
-        for division in divisions:
-            if isinstance(division, mathtools.NonreducedFraction):
-                divisions_.append(division)
-            elif isinstance(division, durationtools.Division):
-                division = mathtools.NonreducedFraction(division.duration)
-                divisions_.append(division)
-            else:
-                division = mathtools.NonreducedFraction(division)
-                divisions_.append(division)
-        divisions = divisions_
-        prototype = mathtools.NonreducedFraction
-        assert all( isinstance(_, prototype) for _ in divisions)
         self._rotation = rotation
+        divisions = self._coerce_divisions(divisions)
         selections = self._make_music(divisions, rotation)
-        selections = self._apply_tuplet_spelling_specifier(selections)
-        self._apply_tie_specifier(selections)
-        selections = self._apply_logical_tie_masks(selections)
-        self._validate_selections(selections)
-        self._validate_tuplets(selections)
+        selections = self._apply_specifiers(selections)
         self._check_well_formedness(selections)
         return selections
 
@@ -269,6 +245,14 @@ class RhythmMaker(AbjadValueObject):
             new_selections.append(new_selection)
         return new_selections
 
+    def _apply_specifiers(self, selections):
+        selections = self._apply_tuplet_spelling_specifier(selections)
+        self._apply_tie_specifier(selections)
+        selections = self._apply_logical_tie_masks(selections)
+        self._validate_selections(selections)
+        self._validate_tuplets(selections)
+        return selections
+
     def _apply_tie_specifier(self, selections):
         tie_specifier = self._get_tie_specifier()
         tie_specifier(selections)
@@ -287,6 +271,23 @@ class RhythmMaker(AbjadValueObject):
                 report = inspector.tabulate_well_formedness_violations()
                 report = repr(component) + '\n' + report
                 raise Exception(report)
+
+    @staticmethod
+    def _coerce_divisions(divisions):
+        divisions_ = []
+        for division in divisions:
+            if isinstance(division, mathtools.NonreducedFraction):
+                divisions_.append(division)
+            elif isinstance(division, durationtools.Division):
+                division = mathtools.NonreducedFraction(division.duration)
+                divisions_.append(division)
+            else:
+                division = mathtools.NonreducedFraction(division)
+                divisions_.append(division)
+        divisions = divisions_
+        prototype = mathtools.NonreducedFraction
+        assert all( isinstance(_, prototype) for _ in divisions)
+        return divisions
 
     def _flatten_trivial_tuplets(self, selections):
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()

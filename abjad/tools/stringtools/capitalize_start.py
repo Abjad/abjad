@@ -35,7 +35,7 @@ def capitalize_start(string):
     Returns newly constructed string.
     '''
     if not isinstance(string, six.string_types):
-        raise ValueError(string)
+        raise ValueError(repr(string))
     if not string:
         return string
     else:
