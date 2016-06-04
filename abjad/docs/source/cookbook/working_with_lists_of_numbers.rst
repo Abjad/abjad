@@ -4,7 +4,6 @@ Working with lists of numbers
 Python provides a built-in ``list`` type that you can use to carry around
 almost anything.
 
-
 Creating lists
 --------------
 
