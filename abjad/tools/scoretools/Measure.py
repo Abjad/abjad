@@ -358,20 +358,23 @@ class Measure(FixedDurationContainer):
             return indicatortools.TimeSignature(duration)
 
     def _format_content_pieces(self):
+        from abjad.tools import systemtools
         result = []
         if self.has_non_power_of_two_denominator and \
             type(self) is Measure and \
             self.implicit_scaling:
-            string = "\t\\scaleDurations #'({} . {}) {{"
+            indent = systemtools.LilyPondFormatManager.indent
+            string = "{}\\scaleDurations #'({} . {}) {{"
             string = string.format(
+                indent,
                 self.implied_prolation.numerator,
                 self.implied_prolation.denominator,
                 )
             result.append(string)
             pieces = FixedDurationContainer._format_content_pieces(self)
-            pieces = ['\t' + x for x in pieces]
+            pieces = [indent + x for x in pieces]
             result.extend(pieces)
-            result.append('\t}')
+            result.append(indent + '}')
         else:
             result.extend(FixedDurationContainer._format_content_pieces(self))
         return result
