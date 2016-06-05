@@ -217,7 +217,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
     def __hash__(self):
         r'''Hashes nonreduced fraction.
 
-        Required to be explicitly re-defined on Python 3 if __eq__ changes.
+        Required to be explicitly redefined on Python 3 if __eq__ changes.
 
         Returns integer.
         '''

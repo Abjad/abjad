@@ -67,7 +67,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         return False
 
     def __hash__(self):
-        r'''Required to be explicitly re-defined on Python 3 if
+        r'''Required to be explicitly redefined on Python 3 if
         __eq__ changes
 
         Returns integer.
