@@ -10,6 +10,8 @@ class Talea(AbjadValueObject):
 
     ..  container:: example
 
+        **Example.**
+
         ::
 
             >>> talea = rhythmmakertools.Talea(
@@ -17,35 +19,8 @@ class Talea(AbjadValueObject):
             ...    denominator=16,
             ...    )
 
-    ..  container:: example
-
-        ::
-
-            >>> talea[2]
-            NonreducedFraction(3, 16)
-
-    ..  container:: example
-
-        ::
-
-            >>> for nonreduced_fraction in talea[3:9]:
-            ...     nonreduced_fraction
-            ...
-            NonreducedFraction(2, 16)
-            NonreducedFraction(4, 16)
-            NonreducedFraction(1, 16)
-            NonreducedFraction(1, 16)
-            NonreducedFraction(2, 16)
-            NonreducedFraction(1, 16)
-
-    ..  container:: example
-
-        Taleas can be instantiated without keyword arguments.
-
-        ::
-
-            >>> talea = rhythmmakertools.Talea([1, 2, 3], 8)
-
+    The medieval plural of 'talea' is 'talee'. Abjad documentation
+    uses 'taleas' instead.
     '''
 
     ### CLASS VARIABLES ###
@@ -77,15 +52,87 @@ class Talea(AbjadValueObject):
         r'''Is true when `expr` is a talea with `counts` and `denominator`
         equal to those of this talea. Otherwise false.
 
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> talea_1 = rhythmmakertools.Talea(
+                ...    counts=(1, 2),
+                ...    denominator=16,
+                ...    )
+                >>> talea_2 = rhythmmakertools.Talea(
+                ...    counts=(1, 2),
+                ...    denominator=16,
+                ...    )
+                >>> talea_3 = rhythmmakertools.Talea(
+                ...    counts=(1, 2),
+                ...    denominator=8,
+                ...    )
+
+            ::
+
+                >>> talea_1 == talea_1
+                True
+                >>> talea_1 == talea_2
+                True
+                >>> talea_1 == talea_3
+                False
+                >>> talea_2 == talea_1
+                True
+                >>> talea_2 == talea_2
+                True
+                >>> talea_2 == talea_3
+                False
+                >>> talea_3 == talea_1
+                False
+                >>> talea_3 == talea_2
+                False
+                >>> talea_3 == talea_3
+                True
+
         Returns true or false.
         '''
         from abjad.tools import systemtools
         return systemtools.StorageFormatManager.compare(self, expr)
 
     def __getitem__(self, item):
-        r'''Gets non-reduced fraction at `item` cyclically.
+        r'''Gets nonreduced fraction at `item` cyclically.
 
-        Returns non-reduced fraction or non-reduced fractions.
+        ..  container:: example
+
+            **Example 1.** Gets item at index:
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    denominator=16,
+                ...    )
+
+            ::
+
+                >>> talea[2]
+                NonreducedFraction(3, 16)
+
+        ..  container:: example
+
+            **Example 2.** Gets items in slice:
+
+            ::
+
+                >>> for nonreduced_fraction in talea[3:9]:
+                ...     nonreduced_fraction
+                ...
+                NonreducedFraction(2, 16)
+                NonreducedFraction(4, 16)
+                NonreducedFraction(1, 16)
+                NonreducedFraction(1, 16)
+                NonreducedFraction(2, 16)
+                NonreducedFraction(1, 16)
+
+        Returns nonreduced fraction or nonreduced fractions.
         '''
         counts = datastructuretools.CyclicTuple(self.counts)
         if isinstance(item, int):
@@ -112,12 +159,17 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
+            **Example.**
+
             ::
 
                 >>> talea = rhythmmakertools.Talea(
                 ...    counts=(2, 1, 3, 2, 4, 1, 1),
                 ...    denominator=16,
                 ...    )
+
+            ::
+
                 >>> for duration in talea:
                 ...     duration
                 ...
@@ -138,7 +190,25 @@ class Talea(AbjadValueObject):
     def __len__(self):
         r'''Gets length of talea.
 
-        Returns integer.
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    denominator=16,
+                ...    )
+
+            ::
+
+                >>> len(talea)
+                7
+
+        Defined equal to length of counts.
+
+        Returns nonnegative integer.
         '''
         return len(self.counts)
 
@@ -148,7 +218,25 @@ class Talea(AbjadValueObject):
     def counts(self):
         r'''Gets counts of talea.
 
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    denominator=16,
+                ...    )
+
+            ::
+
+                >>> talea.counts
+                (2, 1, 3, 2, 4, 1, 1)
+
         Set to integers.
+
+        Defaults to `(1,)`.
 
         Returns tuple.
         '''
@@ -158,7 +246,25 @@ class Talea(AbjadValueObject):
     def denominator(self):
         r'''Gets denominator of talea.
 
+        ..  container:: example
+
+            **Example.**
+
+            ::
+
+                >>> talea = rhythmmakertools.Talea(
+                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    denominator=16,
+                ...    )
+
+            ::
+
+                >>> talea.denominator
+                16
+
         Set to nonnegative integer power of two.
+
+        Defaults to 16.
 
         Returns nonnegative integer power of two.
         '''

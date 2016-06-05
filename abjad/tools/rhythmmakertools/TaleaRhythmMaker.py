@@ -147,7 +147,6 @@ class TaleaRhythmMaker(RhythmMaker):
         '_rest_tied_notes',
         '_split_divisions_by_counts',
         '_talea',
-        '_talea_denominator',
         '_tie_split_notes',
         )
 
