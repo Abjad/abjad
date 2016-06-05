@@ -8,18 +8,18 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
         counts=(-1, 4, -2, 3),
         denominator=16,
         )
-    maker = rhythmmakertools.TaleaRhythmMaker(
+    rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
         extra_counts_per_division=(3, 4),
         )
 
     divisions = [(2, 8), (5, 8)]
-    music = maker(divisions)
+    selections = rhythm_maker(divisions)
 
-    music = sequencetools.flatten_sequence(music)
+    selections = sequencetools.flatten_sequence(selections)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    mutate(staff).replace_measure_contents(music)
+    mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -55,19 +55,19 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
         counts=(-1, 4, -2, 3),
         denominator=16,
         )
-    maker = rhythmmakertools.TaleaRhythmMaker(
+    rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
         extra_counts_per_division=(3, 4),
         split_divisions_by_counts=(6,),
         )
 
     divisions = [(2, 8), (5, 8)]
-    music = maker(divisions)
+    selections = rhythm_maker(divisions)
 
-    music = sequencetools.flatten_sequence(music)
+    selections = sequencetools.flatten_sequence(selections)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    mutate(staff).replace_measure_contents(music)
+    mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == stringtools.normalize(
         r'''

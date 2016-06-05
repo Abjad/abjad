@@ -35,7 +35,7 @@ def select_every(indices, period=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = maker._get_staff(lilypond_file)
             >>> print(format(staff))
             \new RhythmicStaff {
                 {
@@ -87,7 +87,7 @@ def select_every(indices, period=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = maker._get_staff(lilypond_file)
             >>> print(format(staff))
             \new RhythmicStaff {
                 {

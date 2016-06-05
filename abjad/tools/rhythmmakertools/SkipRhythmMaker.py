@@ -14,21 +14,21 @@ class SkipRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.SkipRhythmMaker()
+            >>> rhythm_maker = rhythmmakertools.SkipRhythmMaker()
 
         ::
 
             >>> divisions = [(1, 4), (3, 16), (5, 8)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
@@ -78,7 +78,7 @@ class SkipRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print(format(maker))
+                >>> print(format(rhythm_maker))
                 rhythmmakertools.SkipRhythmMaker()
 
         Returns string.

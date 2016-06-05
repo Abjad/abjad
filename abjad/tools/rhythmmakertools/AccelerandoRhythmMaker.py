@@ -22,7 +22,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
             ...     beam_specifier=rhythmmakertools.BeamSpecifier(
             ...         use_feather_beams=True,
             ...         ),
@@ -39,16 +39,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> print(format(staff))
             \new RhythmicStaff {
                 {
@@ -235,7 +235,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
             ...     beam_specifier=rhythmmakertools.BeamSpecifier(
             ...         use_feather_beams=True,
             ...         ),
@@ -252,16 +252,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> print(format(staff))
             \new RhythmicStaff {
                 {
@@ -821,7 +821,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         use_feather_beams=True,
@@ -839,16 +839,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1035,7 +1035,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=True,
                 ...         use_feather_beams=False,
@@ -1053,16 +1053,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1300,7 +1300,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=False,
                 ...         beam_each_division=False,
@@ -1318,16 +1318,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1519,7 +1519,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -1537,16 +1537,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1733,7 +1733,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -1755,16 +1755,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1883,7 +1883,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -1900,16 +1900,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -2097,7 +2097,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -2121,16 +2121,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -2320,7 +2320,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -2337,16 +2337,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (1, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -2463,7 +2463,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         beam_rests=True,
@@ -2494,16 +2494,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -2699,7 +2699,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
                 ...         beam_rests=True,
@@ -2729,16 +2729,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -2946,7 +2946,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -2966,16 +2966,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -3162,7 +3162,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -3182,16 +3182,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -3382,7 +3382,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 ...      indices=[0],
                 ...      period=2,
                 ...  )
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -3402,16 +3402,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -3607,7 +3607,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -3627,16 +3627,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -3823,7 +3823,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.AccelerandoRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.AccelerandoRhythmMaker(
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         use_feather_beams=True,
                 ...         ),
@@ -3843,16 +3843,16 @@ class AccelerandoRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (5, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {

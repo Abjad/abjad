@@ -24,21 +24,21 @@ def sustain_first(n=1, inverted=None):
 
         ::
 
-            >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
             ...     denominators=[16],
             ...     division_masks=[mask],
             ...     )
             >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
@@ -100,21 +100,21 @@ def sustain_first(n=1, inverted=None):
 
         ::
 
-            >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
             ...     denominators=[16],
             ...     division_masks=[mask],
             ...     )
             >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {

@@ -242,23 +242,23 @@ class InciseSpecifier(AbjadValueObject):
                 ...     talea_denominator=16,
                 ...     body_ratio=mathtools.Ratio((1, 1)),
                 ...     )
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
                 ...     )
 
             ::
 
                 >>> divisions = 4 * [(5, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {

@@ -25,20 +25,20 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
 
         ::
 
-            >>> maker = rhythmmakertools.NoteRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
             ...     division_masks=[mask],
             ...     )
             >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
@@ -68,23 +68,23 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
             >>> mask = rhythmmakertools.silence_all(
             ...     use_multimeasure_rests=True,
             ...     )
-            >>> maker = rhythmmakertools.NoteRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker(
             ...     division_masks=[mask],
             ...     )
 
         ::
 
             >>> divisions = [(7, 16), (3, 8), (7, 16), (3, 8)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {

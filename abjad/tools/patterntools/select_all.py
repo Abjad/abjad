@@ -38,7 +38,7 @@ def select_all(inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
