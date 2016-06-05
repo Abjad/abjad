@@ -18,8 +18,7 @@ def test_scoretools_make_leaves_from_talea_01():
     }
     '''
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'4.

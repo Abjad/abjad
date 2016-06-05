@@ -12,8 +12,7 @@ def test_pitchtools_iterate_named_pitch_pairs_in_expr_01():
     clef = Clef('bass')
     attach(clef, score[1])
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

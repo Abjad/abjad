@@ -14,8 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_01():
     trill = spannertools.TrillSpanner()
     attach(trill, target[:3])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             c'4 \startTrillSpan
@@ -41,8 +40,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Trill_02():
     trill = spannertools.TrillSpanner()
     attach(trill, target[:3])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             c'4 \startTrillSpan

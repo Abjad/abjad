@@ -15,8 +15,7 @@ def test_agenttools_MutationAgent_splice_01():
 
     assert inspect_(voice).is_well_formed()
     assert result == voice[-4:]
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -42,8 +41,7 @@ def test_agenttools_MutationAgent_splice_02():
         grow_spanners=True,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -72,8 +70,7 @@ def test_agenttools_MutationAgent_splice_03():
         grow_spanners=True,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -106,8 +103,7 @@ def test_agenttools_MutationAgent_splice_04():
         grow_spanners=True,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -140,8 +136,7 @@ def test_agenttools_MutationAgent_splice_05():
         grow_spanners=False,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -171,8 +166,7 @@ def test_agenttools_MutationAgent_splice_06():
         grow_spanners=False,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -201,8 +195,7 @@ def test_agenttools_MutationAgent_splice_07():
         grow_spanners=True,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'16 [
@@ -232,8 +225,7 @@ def test_agenttools_MutationAgent_splice_08():
         grow_spanners=True,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -263,8 +255,7 @@ def test_agenttools_MutationAgent_splice_09():
         grow_spanners=True,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -298,8 +289,7 @@ def test_agenttools_MutationAgent_splice_10():
         grow_spanners=True,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -333,8 +323,7 @@ def test_agenttools_MutationAgent_splice_11():
         grow_spanners=False,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'16
@@ -364,8 +353,7 @@ def test_agenttools_MutationAgent_splice_12():
         grow_spanners=False,
         )
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [

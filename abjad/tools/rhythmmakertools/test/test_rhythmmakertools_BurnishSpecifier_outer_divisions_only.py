@@ -34,8 +34,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(music)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -97,8 +96,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(music)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -154,8 +152,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(music)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -215,8 +212,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(music)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

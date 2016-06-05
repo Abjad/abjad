@@ -12,8 +12,7 @@ def test_scoretools_Measure___delitem___01():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/8
@@ -37,8 +36,7 @@ def test_scoretools_Measure___delitem___02():
     measure.automatically_adjust_time_signature = True
     del(measure[-1:])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/8
@@ -62,8 +60,7 @@ def test_scoretools_Measure___delitem___03():
     measure.automatically_adjust_time_signature = True
     del(measure[:2])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 2/8
@@ -86,8 +83,7 @@ def test_scoretools_Measure___delitem___04():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 7/16
@@ -113,8 +109,7 @@ def test_scoretools_Measure___delitem___05():
     measure.automatically_adjust_time_signature = True
     del(measure[:1])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/9
@@ -157,8 +152,7 @@ def test_scoretools_Measure___delitem___06():
 
     del(measure[:1])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/18

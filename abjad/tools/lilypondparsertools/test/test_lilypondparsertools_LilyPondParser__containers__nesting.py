@@ -12,8 +12,7 @@ def test_lilypondparsertools_LilyPondParser__containers__nesting_01():
         ])
     ])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             {

@@ -89,8 +89,7 @@ def test_agenttools_InspectionAgent_get_effective_06():
     clef = Clef('treble')
     attach(clef, staff[4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \clef "treble"
@@ -120,8 +119,7 @@ def test_agenttools_InspectionAgent_get_effective_07():
     clef = Clef('treble')
     attach(clef, staff[4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \clef "treble_8"
@@ -162,8 +160,7 @@ def test_agenttools_InspectionAgent_get_effective_09():
     dynamic = Dynamic('f')
     attach(dynamic, staff[2])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8
@@ -187,8 +184,7 @@ def test_agenttools_InspectionAgent_get_effective_10():
     flute = instrumenttools.Flute()
     attach(flute, staff)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Flute }
@@ -220,8 +216,7 @@ def test_agenttools_InspectionAgent_get_effective_11():
     key_signature = inspect_(staff).get_effective(KeySignature)
     assert key_signature == KeySignature('c', 'major')
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \key c \major
@@ -255,8 +250,7 @@ def test_agenttools_InspectionAgent_get_effective_13():
     tempo_2 = Tempo(Duration(1, 8), 42)
     attach(tempo_2, staff[2], scope=Staff)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \tempo 8=38
@@ -285,8 +279,7 @@ def test_agenttools_InspectionAgent_get_effective_14():
     tempo = Tempo(Duration(1, 8), 38)
     attach(tempo, staff[0], scope=Staff)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \tempo 8=38
@@ -302,8 +295,7 @@ def test_agenttools_InspectionAgent_get_effective_15():
     tempo = Tempo(Duration(1, 8), 38)
     attach(tempo, staff[0], scope=Staff)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \tempo 8=38
@@ -322,8 +314,7 @@ def test_agenttools_InspectionAgent_get_effective_16():
     attach(tempo, staff[0], scope=Staff)
     detach(tempo, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'4
@@ -351,8 +342,7 @@ def test_agenttools_InspectionAgent_get_effective_18():
     time_signature = TimeSignature((2, 8))
     attach(time_signature, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \time 2/8
@@ -378,8 +368,7 @@ def test_agenttools_InspectionAgent_get_effective_19():
     attach(time_signature, staff[0])
     detach(time_signature, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8

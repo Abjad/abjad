@@ -11,8 +11,7 @@ def test_rhythmtreetools_RhythmTreeContainer___call___01():
     assert isinstance(result, (list, selectiontools.Selection))
     assert len(result) == 1
 
-    assert systemtools.TestManager.compare(
-        result[0],
+    assert format(result[0]) == stringtools.normalize(
         r'''
         \times 4/5 {
             c'16

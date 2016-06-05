@@ -14,8 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__HorizontalBracket_01():
     bracket = spannertools.HorizontalBracketSpanner()
     attach(bracket, target[2:])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             c'4 \startGroup \startGroup

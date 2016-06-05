@@ -7,8 +7,7 @@ def test_indicatortools_Tempo__to_markup_01():
     tempo = Tempo(Duration(1, 4), 60)
     markup = tempo._to_markup()
 
-    assert systemtools.TestManager.compare(
-        markup,
+    assert format(markup) == stringtools.normalize(
         r'''
         \markup {
             \fontsize
@@ -35,8 +34,7 @@ def test_indicatortools_Tempo__to_markup_02():
     tempo = Tempo(Duration(3, 8), 60)
     markup = tempo._to_markup()
 
-    assert systemtools.TestManager.compare(
-        markup,
+    assert format(markup) == stringtools.normalize(
         r'''
         \markup {
             \fontsize

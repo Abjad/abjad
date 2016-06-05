@@ -8,8 +8,7 @@ def test_scoretools_make_multiplied_quarter_notes_01():
     notes = scoretools.make_multiplied_quarter_notes([0], multipliers)
     staff = Staff(notes)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'4 * 1

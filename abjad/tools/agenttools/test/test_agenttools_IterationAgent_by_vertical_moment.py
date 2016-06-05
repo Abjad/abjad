@@ -13,8 +13,7 @@ def test_agenttools_IterationAgent_by_vertical_moment_01():
     attach(clef, staff_group[1])
     score.append(staff_group)
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -77,8 +76,7 @@ def test_agenttools_IterationAgent_by_vertical_moment_02():
     attach(clef, staff_group[1])
     score.append(staff_group)
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -138,8 +136,7 @@ def test_agenttools_IterationAgent_by_vertical_moment_03():
     attach(clef, staff_group[1])
     score.append(staff_group)
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -202,8 +199,7 @@ def test_agenttools_IterationAgent_by_vertical_moment_04():
     attach(clef, staff_group[1])
     score.append(staff_group)
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

@@ -16,8 +16,7 @@ def test_spannertools_PhrasingSlur___init___02():
     phrasing_slur = spannertools.PhrasingSlur()
     attach(phrasing_slur, staff.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \(

@@ -12,8 +12,7 @@ def test_spannertools_Spanner_extend_01():
 
     beam._extend(voice[2][:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -44,8 +43,7 @@ def test_spannertools_Spanner_extend_02():
     attach(beam, voice[1])
     beam._extend(voice[2:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {

@@ -81,8 +81,7 @@ def test_scoretools_Chord_note_heads_07():
     chord.note_heads[1].tweak.color = 'green'
     chord.note_heads[2].tweak.color = 'blue'
 
-    assert systemtools.TestManager.compare(
-        chord,
+    assert format(chord) == stringtools.normalize(
         r'''
         <
             \tweak #'color #red

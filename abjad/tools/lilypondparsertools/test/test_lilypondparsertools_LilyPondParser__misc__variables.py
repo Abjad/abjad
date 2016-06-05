@@ -22,8 +22,7 @@ def test_lilypondparsertools_LilyPondParser__misc__variables_01():
         Note(12, 1)
     ])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Staff {
             {

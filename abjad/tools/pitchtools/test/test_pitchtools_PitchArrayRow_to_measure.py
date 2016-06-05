@@ -26,8 +26,7 @@ def test_pitchtools_PitchArrayRow_to_measure_01():
     '''
 
     assert inspect_(measure).is_well_formed()
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 4/8

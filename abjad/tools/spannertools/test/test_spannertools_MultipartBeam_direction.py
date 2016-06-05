@@ -8,8 +8,7 @@ def test_spannertools_MultipartBeam_direction_01():
     beam = spannertools.MultipartBeam(direction=Up)
     attach(beam, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8 ^ [
@@ -26,8 +25,7 @@ def test_spannertools_MultipartBeam_direction_01():
     beam = spannertools.MultipartBeam(direction=Down)
     attach(beam, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8 _ [

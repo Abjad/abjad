@@ -8,8 +8,7 @@ def test_spannertools_Hairpin_shape_string_01():
     hairpin = Hairpin(descriptor='<')
     attach(hairpin, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \<
@@ -29,8 +28,7 @@ def test_spannertools_Hairpin_shape_string_02():
     hairpin = Hairpin(descriptor='>')
     attach(hairpin, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \>

@@ -17,8 +17,7 @@ def test_indicatortools_LilyPondComment_before_01():
     comment = indicatortools.LilyPondComment(string, 'before')
     attach(comment, voice)
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         % Voice before comments here.
         % More voice before comments.
@@ -49,8 +48,7 @@ def test_indicatortools_LilyPondComment_before_02():
     comment = indicatortools.LilyPondComment(string, 'before')
     attach(comment, note)
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         % Leaf comments before here.
         % More comments before.

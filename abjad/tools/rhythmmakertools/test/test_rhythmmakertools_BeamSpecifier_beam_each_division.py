@@ -26,8 +26,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
     score = Score([staff])
     set_(score).autoBeaming = False
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

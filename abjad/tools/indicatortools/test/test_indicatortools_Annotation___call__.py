@@ -8,8 +8,7 @@ def test_indicatortools_Annotation___call___01():
     annotation = indicatortools.Annotation('foo')
     attach(annotation, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8

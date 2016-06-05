@@ -12,8 +12,7 @@ def test_agenttools_IterationAgent_by_leaf_pair_01():
     clef = Clef('bass')
     attach(clef, score[1])
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

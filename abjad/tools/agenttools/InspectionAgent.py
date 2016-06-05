@@ -824,7 +824,7 @@ class InspectionAgent(abctools.AbjadObject):
             'open brackets', bundle))
         result.extend(client._get_format_contributions_for_slot(
             'opening', bundle))
-        result.append('\t%%%%%% %s components omitted %%%%%%' % len(client))
+        result.append('    %%%%%% %s components omitted %%%%%%' % len(client))
         result.extend(client._get_format_contributions_for_slot(
             'closing', bundle))
         result.extend(client._get_format_contributions_for_slot(

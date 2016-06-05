@@ -26,8 +26,7 @@ def test_pitchtools_set_written_pitch_of_pitched_components_in_expr_01():
     }
     '''
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'4

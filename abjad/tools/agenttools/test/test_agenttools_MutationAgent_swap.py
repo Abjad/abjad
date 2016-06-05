@@ -12,8 +12,7 @@ def test_agenttools_MutationAgent_swap_01():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -35,8 +34,7 @@ def test_agenttools_MutationAgent_swap_01():
     tuplet = scoretools.FixedDurationTuplet(Duration(3, 8), [])
     mutate(voice[:2]).swap(tuplet)
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             \tweak #'text #tuplet-number::calc-fraction-text
@@ -68,8 +66,7 @@ def test_agenttools_MutationAgent_swap_02():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \context Voice = "foo" {
             {
@@ -92,8 +89,7 @@ def test_agenttools_MutationAgent_swap_02():
     new_voice.name = 'foo'
     mutate(voice[1:2]).swap(new_voice)
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \context Voice = "foo" {
             {
@@ -125,8 +121,7 @@ def test_agenttools_MutationAgent_swap_03():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -149,8 +144,7 @@ def test_agenttools_MutationAgent_swap_03():
     mutate(voice[1:2]).swap(tuplet)
 
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -208,8 +202,7 @@ def test_agenttools_MutationAgent_swap_06():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -239,8 +232,7 @@ def test_agenttools_MutationAgent_swap_07():
 
     measure = Measure((4, 8), "c'8 d'8 e'8 f'8")
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 4/8
@@ -255,8 +247,7 @@ def test_agenttools_MutationAgent_swap_07():
     new_measure = Measure((4, 8), [])
     mutate(measure).swap(new_measure)
 
-    assert systemtools.TestManager.compare(
-        new_measure,
+    assert format(new_measure) == stringtools.normalize(
         r'''
         {
             \time 4/8

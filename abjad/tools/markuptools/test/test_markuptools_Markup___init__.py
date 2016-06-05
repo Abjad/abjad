@@ -36,8 +36,7 @@ def test_markuptools_Markup___init___04():
 
     command = markuptools.MarkupCommand('flat')
     markup = markuptools.Markup(command)
-    assert systemtools.TestManager.compare(
-        str(markup),
+    assert format(str(markup)) == stringtools.normalize(
         r'''
         \markup {
             \flat
@@ -53,8 +52,7 @@ def test_markuptools_Markup___init___05():
     command_1 = markuptools.MarkupCommand('flat')
     command_2 = markuptools.MarkupCommand('sharp')
     markup = markuptools.Markup(['X', command_1, 'Y', command_2, 'Z'])
-    assert systemtools.TestManager.compare(
-        str(markup),
+    assert format(str(markup)) == stringtools.normalize(
         r'''
         \markup {
             X

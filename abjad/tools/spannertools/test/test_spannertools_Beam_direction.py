@@ -8,8 +8,7 @@ def test_spannertools_Beam_direction_01():
     beam = Beam(direction=Up)
     attach(beam, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 ^ [
@@ -28,8 +27,7 @@ def test_spannertools_Beam_direction_02():
     beam = Beam(direction=Down)
     attach(beam, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 _ [
@@ -48,8 +46,7 @@ def test_spannertools_Beam_direction_03():
     beam = Beam(direction=Center)
     attach(beam, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 - [

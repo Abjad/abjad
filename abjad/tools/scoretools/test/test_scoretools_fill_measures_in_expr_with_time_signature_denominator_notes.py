@@ -11,8 +11,7 @@ def test_scoretools_fill_measures_in_expr_with_time_signature_denominator_notes_
     measure.implicit_scaling = True
     scoretools.fill_measures_in_expr_with_time_signature_denominator_notes(measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/18

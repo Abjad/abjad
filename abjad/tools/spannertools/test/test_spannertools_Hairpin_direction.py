@@ -8,8 +8,7 @@ def test_spannertools_Hairpin_direction_01():
     hairpin = Hairpin(descriptor='p < f', direction=Down)
     attach(hairpin, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 _ \< _ \p

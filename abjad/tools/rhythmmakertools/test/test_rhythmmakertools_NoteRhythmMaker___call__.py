@@ -14,8 +14,7 @@ def test_rhythmmakertools_NoteRhythmMaker___call___01():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -49,8 +48,7 @@ def test_rhythmmakertools_NoteRhythmMaker___call___02():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

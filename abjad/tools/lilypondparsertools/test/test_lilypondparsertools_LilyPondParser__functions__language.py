@@ -11,8 +11,7 @@ def test_lilypondparsertools_LilyPondParser__functions__language_01():
         Note("ff'8")
     ])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             cs'8

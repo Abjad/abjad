@@ -10,8 +10,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__BarLine_01():
     bar_line = indicatortools.BarLine('|.')
     attach(bar_line, target[-1])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Staff {
             e'4

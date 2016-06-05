@@ -18,8 +18,7 @@ def test_lilypondparsertools_LilyPondParser__functions__grace_01():
 
     attach(grace, target[2])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             c'4

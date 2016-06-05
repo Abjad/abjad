@@ -9,8 +9,7 @@ def test_spannertools_PianoPedalSpanner_01():
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -35,8 +34,7 @@ def test_spannertools_PianoPedalSpanner_02():
     piano_pedal_spanner = spannertools.PianoPedalSpanner(kind='sostenuto')
     attach(piano_pedal_spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -59,8 +57,7 @@ def test_spannertools_PianoPedalSpanner_03():
     piano_pedal_spanner = spannertools.PianoPedalSpanner(kind='corda')
     attach(piano_pedal_spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed
@@ -86,8 +83,7 @@ def test_spannertools_PianoPedalSpanner_04():
         )
     attach(piano_pedal_spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'text
@@ -113,8 +109,7 @@ def test_spannertools_PianoPedalSpanner_05():
         )
     attach(piano_pedal_spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'bracket
@@ -139,8 +134,7 @@ def test_spannertools_PianoPedalSpanner_06():
     piano_pedal_spanner = spannertools.PianoPedalSpanner()
     attach(piano_pedal_spanner, staff[3:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.pedalSustainStyle = #'mixed

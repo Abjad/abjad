@@ -12,8 +12,7 @@ def test_scoretools_Container_extend_01():
     attach(beam, voice[:])
     voice.extend([Note("c'8"), Note("d'8")])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -40,8 +39,7 @@ def test_scoretools_Container_extend_02():
     attach(beam, voice_2[:])
     voice_1.extend(voice_2)
 
-    assert systemtools.TestManager.compare(
-        voice_1,
+    assert format(voice_1) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -64,8 +62,7 @@ def test_scoretools_Container_extend_03():
     attach(beam, voice[:])
     voice.extend([])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -87,8 +84,7 @@ def test_scoretools_Container_extend_04():
     attach(beam, voice[:])
     voice.extend(Voice([]))
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -141,8 +137,7 @@ def test_scoretools_Container_extend_07():
 
     voice_1.extend(voice_2[-2:])
 
-    assert systemtools.TestManager.compare(
-        voice_1,
+    assert format(voice_1) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -155,8 +150,7 @@ def test_scoretools_Container_extend_07():
 
     assert inspect_(voice_1).is_well_formed()
 
-    assert systemtools.TestManager.compare(
-        voice_2,
+    assert format(voice_2) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -183,8 +177,7 @@ def test_scoretools_Container_extend_08():
     slur = Slur()
     attach(slur, voice_2[-2:])
 
-    assert systemtools.TestManager.compare(
-        voice_2,
+    assert format(voice_2) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -197,8 +190,7 @@ def test_scoretools_Container_extend_08():
 
     voice_1.extend(voice_2[-2:])
 
-    assert systemtools.TestManager.compare(
-        voice_1,
+    assert format(voice_1) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -211,8 +203,7 @@ def test_scoretools_Container_extend_08():
 
     assert inspect_(voice_1).is_well_formed()
 
-    assert systemtools.TestManager.compare(
-        voice_2,
+    assert format(voice_2) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -231,8 +222,7 @@ def test_scoretools_Container_extend_09():
     container = Container([])
     container.extend("c'4 ( d'4 e'4 f'4 )")
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'4 (
@@ -258,8 +248,7 @@ def test_scoretools_Container_extend_10():
     container = Container()
     container.extend(selections)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'4

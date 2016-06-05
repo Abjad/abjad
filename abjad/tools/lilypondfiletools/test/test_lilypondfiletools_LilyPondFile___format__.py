@@ -15,8 +15,7 @@ def test_lilypondfiletools_LilyPondFile___format___01():
     score_block.items.append(layout_block)
     score_block.items.append(midi_block)
 
-    assert systemtools.TestManager.compare(
-        score_block,
+    assert format(score_block) == stringtools.normalize(
         r'''
         \score {
             \new Score <<
@@ -49,8 +48,7 @@ def test_lilypondfiletools_LilyPondFile___format___02():
         )
     lilypond_file.items.append(score)
 
-    assert systemtools.TestManager.compare(
-        lilypond_file,
+    assert format(lilypond_file) == stringtools.normalize(
         r'''
         #(set-default-paper-size "11x17" 'landscape)
         #(set-global-staff-size 14)

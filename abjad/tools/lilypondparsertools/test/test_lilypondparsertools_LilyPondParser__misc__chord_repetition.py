@@ -13,8 +13,7 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_01():
         Chord([0, 4, 7], (1, 4)),
     ])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             <c' e' g'>4
@@ -51,8 +50,7 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_02():
     articulation = Articulation('staccatissimo')
     attach(articulation, target[-1])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Staff {
             <c' e' g'>8 \p
@@ -82,8 +80,7 @@ def test_lilypondparsertools_LilyPondParser__misc__chord_repetition_03():
         Chord([0, 4, 7], (1, 4)),
     ])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             <c' e' g'>8

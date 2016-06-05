@@ -6,8 +6,7 @@ def test_markuptools_MarkupInventory___format___01():
 
     inventory = markuptools.MarkupInventory(['foo', 'bar'])
 
-    assert systemtools.TestManager.compare(
-        format(inventory),
+    assert format(inventory) == stringtools.normalize(
         r'''
         markuptools.MarkupInventory(
             [

@@ -7,8 +7,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__Voice_01():
 
     target = Voice([])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Voice {
         }

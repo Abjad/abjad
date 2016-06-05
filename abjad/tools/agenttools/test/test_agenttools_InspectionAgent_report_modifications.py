@@ -15,8 +15,7 @@ def test_agenttools_InspectionAgent_report_modifications_01():
     attach(beam, voice[:])
     override(beam).beam.thickness = 3
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         % Example voice
         \new Voice \with {
@@ -35,8 +34,7 @@ def test_agenttools_InspectionAgent_report_modifications_01():
 
     result = inspect_(voice).report_modifications()
 
-    assert systemtools.TestManager.compare(
-        result,
+    assert format(result) == stringtools.normalize(
         r'''
         % Example voice
         \new Voice \with {
@@ -61,8 +59,7 @@ def test_agenttools_InspectionAgent_report_modifications_02():
     attach(beam, tuplet[:])
     override(beam).beam.thickness = 3
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         % Example tuplet
         \override NoteHead #'color = #red
@@ -80,8 +77,7 @@ def test_agenttools_InspectionAgent_report_modifications_02():
 
     result = inspect_(tuplet).report_modifications()
 
-    assert systemtools.TestManager.compare(
-        result,
+    assert format(result) == stringtools.normalize(
         r'''
         % Example tuplet
         \override NoteHead #'color = #red

@@ -10,8 +10,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_01():
     voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(
         0, Duration(1, 16), Duration(1, 4)))
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'16
@@ -32,8 +31,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_02():
     voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(
         0, Duration(1, 16), Duration(9, 32)))
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'16
@@ -55,8 +53,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_03():
     voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(
         0, Duration(1, 16), Duration(1, 128)))
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'128
@@ -74,8 +71,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_04():
     voice = Voice(scoretools.make_repeated_notes_with_shorter_notes_at_end(
         0, Duration(1, 16), Duration(4, 10)))
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'16
@@ -109,8 +105,7 @@ def test_scoretools_make_repeated_notes_with_shorter_notes_at_end_05():
         implicit_scaling=True,
         )
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/18

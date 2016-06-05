@@ -12,8 +12,7 @@ def test_markuptools_MarkupCommand___str___01():
     f = markuptools.MarkupCommand('triangle', False)
     g = markuptools.MarkupCommand('concat', [e, f])
 
-    assert systemtools.TestManager.compare(
-        str(g),
+    assert format(str(g)) == stringtools.normalize(
         r'''
         \concat
             {

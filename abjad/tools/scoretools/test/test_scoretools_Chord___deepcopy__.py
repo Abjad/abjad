@@ -11,8 +11,7 @@ def test_scoretools_Chord___deepcopy___01():
     chord_1.note_heads[0].tweak.color = 'red'
     chord_2 = copy.deepcopy(chord_1)
 
-    assert systemtools.TestManager.compare(
-        chord_1,
+    assert format(chord_1) == stringtools.normalize(
         r'''
         <
             \tweak #'color #red
@@ -23,8 +22,7 @@ def test_scoretools_Chord___deepcopy___01():
         '''
         )
 
-    assert systemtools.TestManager.compare(
-        chord_2,
+    assert format(chord_2) == stringtools.normalize(
         r'''
         <
             \tweak #'color #red

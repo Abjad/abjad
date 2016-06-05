@@ -19,8 +19,7 @@ def test_indicatortools_LilyPondComment_right_01():
     attach(comment, voice)
 
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             \override Beam #'thickness = #3
@@ -49,8 +48,7 @@ def test_indicatortools_LilyPondComment_right_02():
     comment = indicatortools.LilyPondComment(string, 'right')
     attach(comment, note)
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         \once \override Beam #'thickness = #3
         c'8 % Leaf comments right here. % More comments right.

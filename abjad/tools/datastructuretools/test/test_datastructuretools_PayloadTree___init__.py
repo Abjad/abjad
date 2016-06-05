@@ -20,8 +20,7 @@ def test_datastructuretools_PayloadTree___init___02():
     items = [['some', 'text'], ['more', 'text']]
     tree = datastructuretools.PayloadTree(items)
 
-    assert systemtools.TestManager.compare(
-        tree,
+    assert format(tree) == stringtools.normalize(
         r'''
         datastructuretools.PayloadTree(
             [

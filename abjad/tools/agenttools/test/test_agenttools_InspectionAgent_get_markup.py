@@ -12,8 +12,7 @@ def test_agenttools_InspectionAgent_get_markup_01():
     markup_2 = markuptools.Markup('bar')
     attach(markup_2, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 (

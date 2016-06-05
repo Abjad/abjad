@@ -16,8 +16,7 @@ def test_scoretools_append_spacer_skip_to_underfull_measure_01():
 
     scoretools.append_spacer_skip_to_underfull_measure(measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/12
@@ -47,8 +46,7 @@ def test_scoretools_append_spacer_skip_to_underfull_measure_02():
 
     scoretools.append_spacer_skip_to_underfull_measure(measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/8

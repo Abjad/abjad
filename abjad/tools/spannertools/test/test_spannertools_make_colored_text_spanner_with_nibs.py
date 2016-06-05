@@ -11,8 +11,7 @@ def test_spannertools_make_colored_text_spanner_with_nibs_01():
     spanner = spannertools.make_colored_text_spanner_with_nibs()
     attach(spanner, staff[1])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

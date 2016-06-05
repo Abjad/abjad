@@ -8,8 +8,7 @@ def test_spannertools_make_dynamic_spanner_below_with_nib_at_right_01():
     spanner = spannertools.make_dynamic_spanner_below_with_nib_at_right('mp')
     attach(spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \override TextSpanner #'bound-details #'left #'text = \markup {

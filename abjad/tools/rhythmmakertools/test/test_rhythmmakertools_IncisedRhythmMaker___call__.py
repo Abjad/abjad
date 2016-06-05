@@ -23,8 +23,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___01():
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -76,8 +75,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___02():
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -129,8 +127,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___03():
     staff = Staff(scoretools.make_spacer_skip_measures(divisions))
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -173,8 +170,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___04():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -218,8 +214,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___05():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -272,8 +267,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -335,8 +329,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___07():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -390,8 +383,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___08():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -445,8 +437,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___09():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -491,8 +482,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___10():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -537,8 +527,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___11():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -594,8 +583,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -659,8 +647,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___13():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -710,8 +697,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___14():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -754,8 +740,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___15():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -802,8 +787,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___16():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -856,8 +840,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -917,8 +900,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___18():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -969,8 +951,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___19():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -1014,8 +995,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___20():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -1063,8 +1043,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___21():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -1118,8 +1097,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

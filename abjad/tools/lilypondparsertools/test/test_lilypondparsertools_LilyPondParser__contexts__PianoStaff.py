@@ -11,8 +11,7 @@ def test_lilypondparsertools_LilyPondParser__contexts__PianoStaff_01():
     ])
     target.context_name = 'PianoStaff'
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new PianoStaff <<
             \new Staff {

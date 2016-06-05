@@ -16,8 +16,7 @@ def test_spannertools_Spanner_format_01():
     spanner = MockSpanner()
     attach(spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8

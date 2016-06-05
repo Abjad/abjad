@@ -29,8 +29,7 @@ def test_spannertools_Spanner__apply_overrides_01():
     staff = Staff("c'4 d'4 e'4 f'4")
     attach(white_flautando_spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \override TextSpanner #'bound-details #'left #'padding = #'-1

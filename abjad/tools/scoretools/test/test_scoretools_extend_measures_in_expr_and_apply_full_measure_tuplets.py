@@ -48,8 +48,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_01():
     '''
 
     assert inspect_(staff).is_well_formed()
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

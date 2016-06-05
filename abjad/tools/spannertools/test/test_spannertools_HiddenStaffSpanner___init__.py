@@ -16,8 +16,7 @@ def test_spannertools_HiddenStaffSpanner___init___02():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -40,8 +39,7 @@ def test_spannertools_HiddenStaffSpanner___init___02():
     spanner = spannertools.HiddenStaffSpanner()
     attach(spanner, staff[1])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -74,8 +72,7 @@ def test_spannertools_HiddenStaffSpanner___init___03():
     spanner = spannertools.HiddenStaffSpanner()
     attach(spanner, note)
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         \stopStaff
         c'8

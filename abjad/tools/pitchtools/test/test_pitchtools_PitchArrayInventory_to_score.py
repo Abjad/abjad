@@ -53,8 +53,7 @@ def test_pitchtools_PitchArrayInventory_to_score_01():
     '''
 
     assert inspect_(score).is_well_formed()
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new StaffGroup <<
