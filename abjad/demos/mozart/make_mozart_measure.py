@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools.topleveltools import parse
 
 
 def make_mozart_measure(measure_dict):

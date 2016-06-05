@@ -1,5 +1,11 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import durationtools
+from abjad.tools import indicatortools
+from abjad.tools import scoretools
+from abjad.tools import spannertools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import select
 
 
 def edit_second_violin_voice(score, durated_reservoir):

@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import indicatortools
+from abjad.tools import lilypondfiletools
+from abjad.tools import markuptools
+from abjad.tools.topleveltools import override
 
 
 def configure_lilypond_file(lilypond_file):

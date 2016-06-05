@@ -1,13 +1,15 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.demos.mozart.make_mozart_score import make_mozart_score
+import abjad
+from abjad.tools import lilypondfiletools
+from abjad.tools import markuptools
+from abjad.tools import schemetools
 
 
 def make_mozart_lilypond_file():
     r'''Makes Mozart LilyPond file.
     '''
 
-    score = make_mozart_score()
+    score = abjad.demos.mozart.make_mozart_score()
     lily = lilypondfiletools.make_basic_lilypond_file(
         music=score,
         global_staff_size=12,

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import indicatortools
+from abjad.tools.topleveltools import attach
 
 
 def apply_rehearsal_marks(score):

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import scoretools
+from abjad.tools.topleveltools import inspect_
 
 
 def make_nested_tuplet(
@@ -10,7 +11,7 @@ def make_nested_tuplet(
     r'''Makes nested tuplet.
     '''
 
-    outer_tuplet = Tuplet.from_duration_and_ratio(
+    outer_tuplet = scoretools.Tuplet.from_duration_and_ratio(
         tuplet_duration, outer_tuplet_proportions)
     inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
     last_leaf = outer_tuplet.select_leaves()[-1]

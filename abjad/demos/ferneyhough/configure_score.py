@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import schemetools
+from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import set_
 
 
 def configure_score(score):
