@@ -325,7 +325,7 @@ class RhythmMaker(AbjadValueObject):
         return rhythmmakertools.DurationSpellingSpecifier()
 
     @staticmethod
-    def _get_rhythmic_staff(lilypond_file):
+    def _get_staff(lilypond_file):
         score_block = lilypond_file.items[-1]
         score = score_block.items[0]
         rhythmic_staff = score[-1]

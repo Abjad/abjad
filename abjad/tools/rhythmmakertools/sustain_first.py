@@ -38,7 +38,7 @@ def sustain_first(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
@@ -114,7 +114,7 @@ def sustain_first(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {

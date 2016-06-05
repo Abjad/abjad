@@ -11,7 +11,8 @@ from abjad.tools.topleveltools import mutate
 def make_lilypond_file(
     selections, 
     divisions, 
-    implicit_scaling=False,
+    implicit_scaling=None,
+    pitched_staff=None,
     time_signatures=None,
     ):
     r'''Makes LilyPond file.
@@ -54,12 +55,18 @@ def make_lilypond_file(
         time_signatures,
         implicit_scaling=implicit_scaling,
         )
-    staff = scoretools.Staff(measures, context_name='RhythmicStaff')
+    if pitched_staff:
+        staff = scoretools.Staff(measures)
+    else:
+        staff = scoretools.Staff(measures, context_name='RhythmicStaff')
     selections = sequencetools.flatten_sequence(selections)
     selections_ = copy.deepcopy(selections)
     try:
         measures = mutate(staff).replace_measure_contents(selections)
     except StopIteration:
-        staff = scoretools.Staff(selections_, context_name='RhythmicStaff')
+        if pitched_staff:
+            staff = scoretools.Staff(selections_)
+        else:
+            staff = scoretools.Staff(selections_, context_name='RhythmicStaff')
     score.append(staff)
     return lilypond_file

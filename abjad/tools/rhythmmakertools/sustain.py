@@ -41,7 +41,7 @@ def sustain(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> print(format(staff))
             \new RhythmicStaff {
                 {
@@ -97,7 +97,7 @@ def sustain(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> print(format(staff))
             \new RhythmicStaff {
                 {
@@ -169,7 +169,7 @@ def sustain(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> print(format(staff))
             \new RhythmicStaff {
                 {
@@ -242,7 +242,7 @@ def sustain(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> print(format(staff))
             \new RhythmicStaff {
                 {

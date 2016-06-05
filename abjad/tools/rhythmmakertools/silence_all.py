@@ -38,7 +38,7 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
@@ -84,7 +84,7 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {

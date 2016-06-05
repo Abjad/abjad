@@ -58,7 +58,7 @@ class Measure(FixedDurationContainer):
         # set time signature adjustment before contents initialization
         self._automatically_adjust_time_signature = False
         time_signature = time_signature or (4, 4)
-        self.implicit_scaling = implicit_scaling
+        self.implicit_scaling = bool(implicit_scaling)
         FixedDurationContainer.__init__(self, time_signature, music)
         self._always_format_time_signature = False
         self._measure_number = None
