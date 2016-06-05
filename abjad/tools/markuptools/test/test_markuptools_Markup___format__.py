@@ -6,7 +6,7 @@ def test_markuptools_Markup___format___01():
 
     markup = markuptools.Markup(r'\bold { foo }')
 
-    assert format(format(markup, 'storage')) == stringtools.normalize(
+    assert format(markup, 'storage') == stringtools.normalize(
         r'''
         markuptools.Markup(
             contents=(
@@ -26,7 +26,7 @@ def test_markuptools_Markup___format___02():
         r'\bold { allegro ma non troppo }',
         )
 
-    assert format(format(markup, 'storage')) == stringtools.normalize(
+    assert format(markup, 'storage') == stringtools.normalize(
         r'''
         markuptools.Markup(
             contents=(

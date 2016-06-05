@@ -8,7 +8,7 @@ def test_indicatortools_TempoInventory___format___01():
         ((1, 4), 84, 'Allegro'),
         ])
 
-    assert format(format(tempo_inventory)) == stringtools.normalize(
+    assert format(tempo_inventory) == stringtools.normalize(
         r'''
         indicatortools.TempoInventory(
             [

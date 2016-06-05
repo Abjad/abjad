@@ -102,7 +102,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Markup_05():
     command = r'\markup { \char ##x03EE }'
     parser = LilyPondParser()
     result = parser(command)
-    assert format(format(result, 'lilypond')) == stringtools.normalize(
+    assert format(result, 'lilypond') == stringtools.normalize(
         r'''
         \markup {
             \char

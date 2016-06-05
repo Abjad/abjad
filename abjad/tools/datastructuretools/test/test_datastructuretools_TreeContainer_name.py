@@ -15,7 +15,7 @@ def test_datastructuretools_TreeContainer_name_01():
     bar.extend([baz, quux])
     baz.append(quux2)
 
-    assert format(format(foo, 'lilypond')) == stringtools.normalize(
+    assert format(foo, 'lilypond') == stringtools.normalize(
         r'''
         TreeContainer(
             children=(

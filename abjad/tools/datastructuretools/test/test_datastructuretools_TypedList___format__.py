@@ -11,7 +11,7 @@ def test_datastructuretools_TypedList___format___01():
     assert format(repr(inventory)) == stringtools.normalize(
         'TypedList([])',
         )
-    assert format(format(inventory)) == stringtools.normalize(
+    assert format(inventory) == stringtools.normalize(
         '''
         datastructuretools.TypedList(
             []
@@ -32,7 +32,7 @@ def test_datastructuretools_TypedList___format___02():
         'blah',
         ])
 
-    assert format(format(inventory)) == stringtools.normalize(
+    assert format(inventory) == stringtools.normalize(
         r'''
         datastructuretools.TypedList(
             [
@@ -81,7 +81,7 @@ def test_datastructuretools_TypedList___format___03():
         'blah'],
         )
 
-    assert format(format(inventory)) == stringtools.normalize(
+    assert format(inventory) == stringtools.normalize(
         r'''
         datastructuretools.TypedList(
             [

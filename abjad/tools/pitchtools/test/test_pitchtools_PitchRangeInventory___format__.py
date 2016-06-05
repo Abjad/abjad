@@ -6,7 +6,7 @@ def test_pitchtools_PitchRangeInventory___format___01():
 
     inventory = pitchtools.PitchRangeInventory(['[A0, C8]', '[C4, D5]'])
 
-    assert format(format(inventory)) == stringtools.normalize(
+    assert format(inventory) == stringtools.normalize(
         r'''
         pitchtools.PitchRangeInventory(
             [

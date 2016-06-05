@@ -63,7 +63,7 @@ def test_datastructuretools_TypedOrderedDict_04():
     dictionary_1['tenor'] = 'tenor'
     dictionary_1['bass'] = 'bass'
 
-    assert format(format(dictionary_1)) == stringtools.normalize(
+    assert format(dictionary_1) == stringtools.normalize(
         r'''
         datastructuretools.TypedOrderedDict(
             [

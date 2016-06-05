@@ -6,7 +6,7 @@ def test_markuptools_MarkupInventory___format___01():
 
     inventory = markuptools.MarkupInventory(['foo', 'bar'])
 
-    assert format(format(inventory)) == stringtools.normalize(
+    assert format(inventory) == stringtools.normalize(
         r'''
         markuptools.MarkupInventory(
             [
