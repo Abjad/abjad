@@ -47,7 +47,7 @@ class Instrument(AbjadObject):
         self._do_not_format = False
         if instrument_name is not None:
             assert isinstance(instrument_name, str), repr(instrument_name)
-            self._instrument_name = instrument_name
+        self._instrument_name = instrument_name
         prototype = markuptools.Markup
         if instrument_name_markup is not None:
             assert isinstance(instrument_name_markup, prototype)

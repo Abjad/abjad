@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import abctools
+from abjad.tools import indicatortools
+from abjad.tools import instrumenttools
+from abjad.tools import markuptools
+from abjad.tools import scoretools
+from abjad.tools.topleveltools import attach
 
 
 class PartCantusScoreTemplate(abctools.AbjadObject):
@@ -39,8 +44,8 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         clef = indicatortools.Clef('treble')
         attach(clef, first_violin_staff)
         violin = instrumenttools.Violin(
-            instrument_name_markup='Violin I',
-            short_instrument_name_markup='Vl. I'
+            instrument_name_markup=markuptools.Markup('Violin I'),
+            short_instrument_name_markup=markuptools.Markup('Vl. I'),
             )
         attach(violin, first_violin_staff)
 
@@ -53,8 +58,8 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         clef = indicatortools.Clef('treble')
         attach(clef, second_violin_staff)
         violin = instrumenttools.Violin(
-            instrument_name_markup='Violin II',
-            short_instrument_name_markup='Vl. II'
+            instrument_name_markup=markuptools.Markup('Violin II'),
+            short_instrument_name_markup=markuptools.Markup('Vl. II'),
             )
         attach(violin, second_violin_staff)
 
@@ -80,7 +85,7 @@ class PartCantusScoreTemplate(abctools.AbjadObject):
         clef = indicatortools.Clef('bass')
         attach(clef, bass_staff)
         contrabass = instrumenttools.Contrabass(
-            short_instrument_name_markup='Cb.'
+            short_instrument_name_markup=markuptools.Markup('Cb.'),
             )
         attach(contrabass, bass_staff)
 
