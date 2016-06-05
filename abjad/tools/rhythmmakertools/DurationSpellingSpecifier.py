@@ -140,18 +140,18 @@ class DurationSpellingSpecifier(AbjadValueObject):
         from abjad.tools.topleveltools import select
         meters = [metertools.Meter(_) for _ in meters]
         durations = [durationtools.Duration(_) for _ in meters]
-        music = sequencetools.flatten_sequence(selections)
-        assert isinstance(music, list), repr(music)
+        selections = sequencetools.flatten_sequence(selections)
+        assert isinstance(selections, list), repr(selections)
         meter_duration = sum(durations)
-        music_duration = sum(inspect_(_).get_duration() for _ in music)
+        music_duration = sum(inspect_(_).get_duration() for _ in selections)
         if not meter_duration == music_duration:
             message = 'Duration of meters is {!s}'
-            message += ' but duration of music is {!s}:'
+            message += ' but duration of selections is {!s}:'
             message = message.format(meter_duration, music_duration)
             message += '\nmeters: {}.'.format(meters)
-            message += '\nmusic: {}.'.format(music)
+            message += '\nmusic: {}.'.format(selections)
             raise Exception(message)
-        voice = scoretools.Voice(music)
+        voice = scoretools.Voice(selections)
         mutate(voice[:]).split(
             durations=durations,
             tie_split_notes=True,

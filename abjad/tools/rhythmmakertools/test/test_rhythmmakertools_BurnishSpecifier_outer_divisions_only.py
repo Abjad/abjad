@@ -20,19 +20,19 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
         denominator=16,
         )
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
+    rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
         burnish_specifier=burnish_specifier,
         extra_counts_per_division=(2,),
         )
 
     divisions = [(3, 16), (3, 8)]
-    music = maker(divisions)
+    selections = rhythm_maker(divisions)
 
-    music = sequencetools.flatten_sequence(music)
+    selections = sequencetools.flatten_sequence(selections)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    mutate(staff).replace_measure_contents(music)
+    mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -82,19 +82,19 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
         denominator=4,
         )
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
+    rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
         burnish_specifier=burnish_specifier,
         extra_counts_per_division=(2,),
         )
 
     divisions = [(3, 16), (3, 8)]
-    music = maker(divisions)
+    selections = rhythm_maker(divisions)
 
-    music = sequencetools.flatten_sequence(music)
+    selections = sequencetools.flatten_sequence(selections)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    mutate(staff).replace_measure_contents(music)
+    mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -137,7 +137,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
         denominator=16,
         )
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
+    rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
         burnish_specifier=burnish_specifier,
         extra_counts_per_division=(0, 2),
@@ -145,12 +145,12 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
         )
 
     divisions = [(3, 8), (4, 8)]
-    music = maker(divisions)
+    selections = rhythm_maker(divisions)
 
-    music = sequencetools.flatten_sequence(music)
+    selections = sequencetools.flatten_sequence(selections)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    mutate(staff).replace_measure_contents(music)
+    mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -198,19 +198,19 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_04():
         denominator=8,
         )
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
+    rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
         burnish_specifier=burnish_specifier,
         extra_counts_per_division=(),
         )
 
     divisions = [(8, 8)]
-    music = maker(divisions)
+    selections = rhythm_maker(divisions)
 
-    music = sequencetools.flatten_sequence(music)
+    selections = sequencetools.flatten_sequence(selections)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    mutate(staff).replace_measure_contents(music)
+    mutate(staff).replace_measure_contents(selections)
 
     assert format(staff) == stringtools.normalize(
         r'''

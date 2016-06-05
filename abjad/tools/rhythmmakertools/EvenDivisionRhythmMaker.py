@@ -85,14 +85,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[8, 16],
                 ...     )
 
             ::
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -101,7 +101,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -156,7 +156,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[0, 1, 2],
                 ...     )
@@ -164,7 +164,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -173,7 +173,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -502,7 +502,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[Rest],
                 ...         left_counts=[1],
@@ -515,16 +515,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -568,16 +568,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(7, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -601,7 +601,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     burnish_specifier=rhythmmakertools.BurnishSpecifier(
                 ...         left_classes=[Rest],
                 ...         left_counts=[1],
@@ -611,16 +611,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -674,14 +674,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     )
 
             ::
 
                 >>> divisions = [(3, 16), (3, 8), (3, 4)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -690,7 +690,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -738,14 +738,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[8],
                 ...     )
 
             ::
 
                 >>> divisions = [(3, 16), (3, 8), (3, 4)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -754,7 +754,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -794,14 +794,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[4],
                 ...     )
 
             ::
 
                 >>> divisions = [(3, 16), (3, 8), (3, 4)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -810,7 +810,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -845,14 +845,14 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[2],
                 ...     )
 
             ::
 
                 >>> divisions = [(3, 16), (3, 8), (3, 4)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -861,7 +861,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -901,21 +901,21 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker()
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker()
 
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -960,7 +960,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     division_masks=[
                 ...         rhythmmakertools.silence_every([0], period=2),
                 ...         ],
@@ -969,16 +969,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1013,7 +1013,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     division_masks=[
                 ...         rhythmmakertools.sustain_every([0], period=2),
                 ...         ],
@@ -1022,16 +1022,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1066,23 +1066,23 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     division_masks=rhythmmakertools.silence_all(),
                 ...     )
 
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1146,7 +1146,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[-4],
                 ...     )
@@ -1154,7 +1154,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1163,7 +1163,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1215,7 +1215,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[-3],
                 ...     )
@@ -1223,7 +1223,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1232,7 +1232,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1284,7 +1284,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[-2],
                 ...     )
@@ -1292,7 +1292,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1301,7 +1301,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1352,7 +1352,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[-1],
                 ...     )
@@ -1360,7 +1360,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1369,7 +1369,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1421,7 +1421,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=None,
                 ...     )
@@ -1429,7 +1429,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1438,7 +1438,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1490,7 +1490,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[1],
                 ...     )
@@ -1498,7 +1498,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1507,7 +1507,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1565,7 +1565,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[2],
                 ...     )
@@ -1573,7 +1573,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1582,7 +1582,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1642,7 +1642,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[3],
                 ...     )
@@ -1650,7 +1650,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1659,7 +1659,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1720,7 +1720,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     denominators=[16],
                 ...     extra_counts_per_division=[4],
                 ...     )
@@ -1728,7 +1728,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 16), (2, 16), (3, 16), (4, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1737,7 +1737,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1803,21 +1803,21 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker()
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker()
 
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> print(format(staff))
                 \new RhythmicStaff {
                     {
@@ -1862,7 +1862,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     logical_tie_masks=[
                 ...         rhythmmakertools.silence_every([0], period=3),
                 ...         ],
@@ -1871,16 +1871,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1931,23 +1931,23 @@ class EvenDivisionRhythmMaker(RhythmMaker):
                 >>> pattern_3 = patterntools.select_last(2)
                 >>> pattern = pattern_1 ^ pattern_2 ^ pattern_3
                 >>> mask = rhythmmakertools.silence(pattern)
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     logical_tie_masks=mask,
                 ...     )
 
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1992,7 +1992,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         ),
@@ -2001,16 +2001,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -2053,7 +2053,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.EvenDivisionRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.EvenDivisionRhythmMaker(
                 ...     logical_tie_masks=rhythmmakertools.silence_every(
                 ...         indices=[3],
                 ...         period=4,
@@ -2066,16 +2066,16 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -2141,9 +2141,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = rhythm_maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
@@ -2239,9 +2239,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = rhythm_maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
@@ -2332,9 +2332,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = rhythm_maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
@@ -2425,9 +2425,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = rhythm_maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
@@ -2521,9 +2521,9 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = rhythm_maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP

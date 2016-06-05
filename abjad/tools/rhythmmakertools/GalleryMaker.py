@@ -155,7 +155,7 @@ class GalleryMaker(AbjadValueObject):
         score_number_markup,
         ):
         lists = rhythm_maker(division_list)
-        music = sequencetools.flatten_sequence(lists)
+        selections = sequencetools.flatten_sequence(lists)
         measures = scoretools.make_spacer_skip_measures(division_list)
         time_signature_context = scoretools.Context(
             measures,
@@ -167,7 +167,7 @@ class GalleryMaker(AbjadValueObject):
         set_(staff).instrument_name = score_number_markup
         staff.context_name = 'RhythmicStaff'
         staff.name = 'Note-entry staff'
-        measures = mutate(staff).replace_measure_contents(music)
+        measures = mutate(staff).replace_measure_contents(selections)
         score = scoretools.Score()
         score.append(time_signature_context)
         score.append(staff)

@@ -19,7 +19,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.IncisedRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
             ...     incise_specifier=rhythmmakertools.InciseSpecifier(
             ...         prefix_talea=[-1],
             ...         prefix_counts=[0, 1],
@@ -32,16 +32,16 @@ class IncisedRhythmMaker(RhythmMaker):
         ::
 
             >>> divisions = 4 * [(5, 16)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
@@ -490,7 +490,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -501,16 +501,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -543,7 +543,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -560,16 +560,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -609,7 +609,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -623,16 +623,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -659,7 +659,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -676,16 +676,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -716,7 +716,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -733,16 +733,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -771,7 +771,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -788,16 +788,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -823,7 +823,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -840,16 +840,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -900,21 +900,21 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker()
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker()
 
             ::
 
                 >>> divisions = [(5, 8), (5, 8), (5, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -947,23 +947,23 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     talea_denominator=32,
                 ...     outer_divisions_only=True,
                 ...     )
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
                 ...     )
 
             ::
 
                 >>> divisions = [(5, 8), (5, 8), (5, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1002,23 +1002,23 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     fill_with_notes=False,
                 ...     outer_divisions_only=True,
                 ...     )
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=incise_specifier,
                 ...     )
 
             ::
 
                 >>> divisions = [(5, 8), (5, 8), (5, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1055,7 +1055,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         outer_divisions_only=True,
                 ...         prefix_talea=[-1],
@@ -1069,16 +1069,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1108,7 +1108,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         outer_divisions_only=True,
                 ...         prefix_talea=[-1],
@@ -1125,16 +1125,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1178,7 +1178,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         fill_with_notes=False,
                 ...         prefix_talea=[1],
@@ -1191,16 +1191,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1233,7 +1233,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         fill_with_notes=False,
                 ...         prefix_talea=[1],
@@ -1246,16 +1246,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(4, 8), (3, 8), (4, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1282,7 +1282,7 @@ class IncisedRhythmMaker(RhythmMaker):
                     }
                 }
 
-            Use in keyboard and other polyphonic music where other voices
+            Use in keyboard and other polyphonic selections where other voices
             provide rhythmic alignment.
 
         Set to true, false or none.
@@ -1309,7 +1309,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -1323,16 +1323,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1360,7 +1360,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -1377,16 +1377,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1416,7 +1416,7 @@ class IncisedRhythmMaker(RhythmMaker):
                 ...     indices=[0],
                 ...     period=2,
                 ...     )
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -1433,16 +1433,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1468,7 +1468,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -1486,16 +1486,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1521,7 +1521,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     incise_specifier=rhythmmakertools.InciseSpecifier(
                 ...         prefix_talea=[-1],
                 ...         prefix_counts=[1],
@@ -1538,16 +1538,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1574,7 +1574,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.IncisedRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.IncisedRhythmMaker(
                 ...     duration_spelling_specifier=rhythmmakertools.DurationSpellingSpecifier(
                 ...         spell_metrically=True,
                 ...         ),
@@ -1594,16 +1594,16 @@ class IncisedRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(8, 8), (4, 8), (6, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {

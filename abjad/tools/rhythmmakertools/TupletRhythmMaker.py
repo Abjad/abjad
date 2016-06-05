@@ -18,23 +18,23 @@ class TupletRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.TupletRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(3, 2)],
             ...     )
 
         ::
 
             >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-            >>> music = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-            ...     music,
+            ...     selections,
             ...     divisions,
             ...     )
             >>> show(lilypond_file) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
@@ -74,14 +74,14 @@ class TupletRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> maker = rhythmmakertools.TupletRhythmMaker(
+            >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
             ...     tuplet_ratios=[(1, -1), (3, 1)],
             ...     )
 
         ::
 
             >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-            >>> selections = maker(divisions)
+            >>> selections = rhythm_maker(divisions)
             >>> lilypond_file = rhythmmakertools.make_lilypond_file(
             ...     selections,
             ...     divisions,
@@ -90,7 +90,7 @@ class TupletRhythmMaker(RhythmMaker):
 
         ..  doctest::
 
-            >>> staff = maker._get_rhythmic_staff(lilypond_file)
+            >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
             >>> f(staff)
             \new RhythmicStaff {
                 {
@@ -184,23 +184,23 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, 2)],
                 ...     )
 
             ::
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -239,14 +239,14 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, -1), (3, 1)],
                 ...     )
 
             ::
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -255,7 +255,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -308,13 +308,13 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, 2)],
                 ...     )
 
             ::
 
-                >>> print(format(maker))
+                >>> print(format(rhythm_maker))
                 rhythmmakertools.TupletRhythmMaker(
                     tuplet_ratios=(
                         mathtools.Ratio((3, 2)),
@@ -327,13 +327,13 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, -1), (3, 1)],
                 ...     )
 
             ::
 
-                >>> print(format(maker))
+                >>> print(format(rhythm_maker))
                 rhythmmakertools.TupletRhythmMaker(
                     tuplet_ratios=(
                         mathtools.Ratio((1, -1)),
@@ -419,7 +419,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_each_division=True,
@@ -429,7 +429,7 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -438,7 +438,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -487,7 +487,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=True,
@@ -497,7 +497,7 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -506,7 +506,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -579,7 +579,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1, 2, 1, 1), (3, 1, 1)],
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=False,
@@ -590,7 +590,7 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(5, 8), (3, 8), (6, 8), (4, 8)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -599,7 +599,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -661,7 +661,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(4, 1)],
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=False,
@@ -672,16 +672,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -720,7 +720,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(4, 1)],
                 ...     beam_specifier=rhythmmakertools.BeamSpecifier(
                 ...         beam_divisions_together=False,
@@ -734,16 +734,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (4, 8), (3, 8), (4, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -790,7 +790,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -801,16 +801,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -857,7 +857,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -868,16 +868,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -919,7 +919,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -930,16 +930,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -980,7 +980,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -991,16 +991,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1041,7 +1041,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -1052,16 +1052,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1104,7 +1104,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -1115,16 +1115,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1165,7 +1165,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -1176,16 +1176,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1226,7 +1226,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -1237,16 +1237,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 16), (4, 16), (6, 16), (8, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1296,7 +1296,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=False,
@@ -1306,16 +1306,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1350,7 +1350,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
@@ -1360,16 +1360,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1406,7 +1406,7 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     indices=[0],
                 ...     period=2,
                 ...     )
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(2, 3), (1, -2, 1)],
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=pattern,
@@ -1416,16 +1416,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1476,23 +1476,23 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, 2)],
                 ...     )
 
             ::
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1532,14 +1532,14 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, -1), (3, 1)],
                 ...     )
 
             ::
 
                 >>> divisions = [(1, 2), (3, 8), (5, 16), (5, 16)]
-                >>> selections = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
                 ...     selections,
                 ...     divisions,
@@ -1548,7 +1548,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1599,7 +1599,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=False,
@@ -1610,16 +1610,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 8), (3, 8), (7, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1653,7 +1653,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -1664,16 +1664,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 8), (3, 8), (7, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1707,7 +1707,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=False,
@@ -1718,16 +1718,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 8), (3, 8), (7, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1759,7 +1759,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -1770,16 +1770,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(2, 8), (3, 8), (7, 16)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1813,7 +1813,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -1824,16 +1824,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1872,7 +1872,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tuplet_ratios=[(3, -2), (1,), (-2, 3), (1, 1)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
@@ -1883,16 +1883,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (3, 8), (3, 8), (3, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1930,7 +1930,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         ),
@@ -1943,16 +1943,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {
@@ -1997,7 +1997,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> maker = rhythmmakertools.TupletRhythmMaker(
+                >>> rhythm_maker = rhythmmakertools.TupletRhythmMaker(
                 ...     tie_specifier=rhythmmakertools.TieSpecifier(
                 ...         tie_across_divisions=True,
                 ...         ),
@@ -2010,16 +2010,16 @@ class TupletRhythmMaker(RhythmMaker):
             ::
 
                 >>> divisions = [(3, 8), (2, 8), (3, 8), (2, 8)]
-                >>> music = maker(divisions)
+                >>> selections = rhythm_maker(divisions)
                 >>> lilypond_file = rhythmmakertools.make_lilypond_file(
-                ...     music,
+                ...     selections,
                 ...     divisions,
                 ...     )
                 >>> show(lilypond_file) # doctest: +SKIP
 
             ::
 
-                >>> staff = maker._get_rhythmic_staff(lilypond_file)
+                >>> staff = rhythm_maker._get_rhythmic_staff(lilypond_file)
                 >>> f(staff)
                 \new RhythmicStaff {
                     {

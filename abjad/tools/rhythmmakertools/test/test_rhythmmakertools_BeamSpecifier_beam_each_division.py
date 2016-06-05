@@ -11,18 +11,18 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
         denominator=32,
         )
 
-    maker = rhythmmakertools.TaleaRhythmMaker(
+    rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
         talea=talea,
         extra_counts_per_division=(3, 4),
         )
 
     divisions = [(2, 16), (5, 16)]
-    music = maker(divisions)
+    selections = rhythm_maker(divisions)
 
-    music = sequencetools.flatten_sequence(music)
+    selections = sequencetools.flatten_sequence(selections)
     measures = scoretools.make_spacer_skip_measures(divisions)
     staff = Staff(measures)
-    mutate(staff).replace_measure_contents(music)
+    mutate(staff).replace_measure_contents(selections)
     score = Score([staff])
     set_(score).autoBeaming = False
 
