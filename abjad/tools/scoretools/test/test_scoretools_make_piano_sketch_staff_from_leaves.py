@@ -45,8 +45,7 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
     >>
     '''
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score \with {
             \override BarLine #'stencil = ##f

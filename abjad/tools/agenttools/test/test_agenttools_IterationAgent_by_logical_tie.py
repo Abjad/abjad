@@ -12,8 +12,7 @@ def test_agenttools_IterationAgent_by_logical_tie_01():
     tie = Tie()
     attach(tie, staff[2:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 ~

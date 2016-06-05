@@ -8,8 +8,7 @@ def test_spannertools_Hairpin_stop_dynamic_01():
     hairpin = Hairpin(descriptor='p < f')
     attach(hairpin, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \< \p
@@ -29,8 +28,7 @@ def test_spannertools_Hairpin_stop_dynamic_02():
     hairpin = Hairpin(descriptor='p < mf')
     attach(hairpin, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \< \p

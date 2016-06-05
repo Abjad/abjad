@@ -8,8 +8,7 @@ def test_scoretools_make_notes_with_multiplied_durations_01():
         0, Duration(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)])
     staff = Staff(notes)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'4 * 2

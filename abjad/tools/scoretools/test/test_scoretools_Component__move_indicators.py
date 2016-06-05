@@ -6,8 +6,7 @@ def test_scoretools_Component__move_indicators_01():
 
     staff = Staff(r'\clef "bass" c \staccato d e f')
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \clef "bass"
@@ -26,8 +25,7 @@ def test_scoretools_Component__move_indicators_01():
 
     staff[0]._move_indicators(staff[2])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c4

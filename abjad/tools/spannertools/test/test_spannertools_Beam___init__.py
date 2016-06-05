@@ -17,8 +17,7 @@ def test_spannertools_Beam___init___02():
     beam = Beam()
     attach(beam, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -41,8 +40,7 @@ def test_spannertools_Beam___init___03():
     beam = Beam()
     attach(beam, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
         }
@@ -61,8 +59,7 @@ def test_spannertools_Beam___init___04():
     beam = Beam()
     attach(beam, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8 [
@@ -89,8 +86,7 @@ def test_spannertools_Beam___init___05():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -122,8 +118,7 @@ def test_spannertools_Beam___init___06():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -152,8 +147,7 @@ def test_spannertools_Beam___init___07():
     beam = Beam()
     attach(beam, staff.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -180,8 +174,7 @@ def test_spannertools_Beam___init___08():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -207,8 +200,7 @@ def test_spannertools_Beam___init___09():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -238,8 +230,7 @@ def test_spannertools_Beam___init___10():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -288,8 +279,6 @@ def test_spannertools_Beam___init___11():
     beam = Beam()
     attach(beam, voice[:])
 
-    # note that calling systemtools.TestManager.compare() here breaks Python's assertions
-
     beam = Beam()
     attach(beam, [voice[0], voice[1]])
     assert len(beam) == 2
@@ -314,8 +303,7 @@ def test_spannertools_Beam___init___12():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -342,8 +330,7 @@ def test_spannertools_Beam___init___13():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -371,8 +358,7 @@ def test_spannertools_Beam___init___14():
 
     tuplet = Tuplet((2, 3), r"c'4 \times 2/3 { c'8 c'8 c'8 } c'4")
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \times 2/3 {
             c'4
@@ -406,8 +392,7 @@ def test_spannertools_Beam___init___15():
         Voice("e'8 f' fs' g'")]
         )
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -444,8 +429,7 @@ def test_spannertools_Beam___init___16():
     beam = Beam()
     attach(beam, staff[0][:] + staff[1][:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -505,8 +489,7 @@ def test_spannertools_Beam___init___17():
     beam = Beam()
     attach(beam, container[0][0][:] + container[1][1][:])
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             <<
@@ -577,8 +560,7 @@ def test_spannertools_Beam___init___18():
     beam = Beam()
     attach(beam, container[0][0][:] + container[1][0][:])
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             <<
@@ -621,8 +603,7 @@ def test_spannertools_Beam___init___19():
 
     assert len(beam) == 1
     assert beam.components[0] is container
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         <<
         >>
@@ -656,8 +637,7 @@ def test_spannertools_Beam___init___20():
     beam = Beam()
     attach(beam, container[0][:])
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         <<
             \new Voice {
@@ -706,8 +686,7 @@ def test_spannertools_Beam___init___21():
         b'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8
@@ -775,8 +754,7 @@ def test_spannertools_Beam___init___22():
     beam = Beam()
     attach(beam, leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -820,8 +798,7 @@ def test_spannertools_Beam___init___23():
     staff[0].name = 'foo'
     staff[1].name = 'bar'
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {

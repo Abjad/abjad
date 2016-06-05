@@ -13,8 +13,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_01():
     notes = [Note("c'16"), Note("d'16"), Note("e'16"), Note("f'16")]
     mutate(staff).replace_measure_contents(notes)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -46,8 +45,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_02():
     notes = [Note("c'8"), Note("d'8")]
     mutate(staff).replace_measure_contents(notes)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -112,8 +110,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_05():
     except StopIteration:
         pass
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -144,8 +141,7 @@ def test_agenttools_MutationAgent_replace_measure_contents_06():
     staff = Staff(measures)
     measures = mutate(staff).replace_measure_contents(leaves)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

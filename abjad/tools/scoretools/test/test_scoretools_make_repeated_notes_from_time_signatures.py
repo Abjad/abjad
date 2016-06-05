@@ -12,8 +12,7 @@ def test_scoretools_make_repeated_notes_from_time_signatures_01():
     notes = sequencetools.flatten_sequence(notes)
     staff = Staff(notes)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             d''8

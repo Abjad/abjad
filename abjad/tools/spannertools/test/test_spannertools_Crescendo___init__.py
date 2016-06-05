@@ -16,8 +16,7 @@ def test_spannertools_Crescendo___init___02():
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \<

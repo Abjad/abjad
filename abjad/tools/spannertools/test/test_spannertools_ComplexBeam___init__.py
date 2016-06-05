@@ -16,8 +16,7 @@ def test_spannertools_ComplexBeam___init___02():
     beam = spannertools.ComplexBeam()
     attach(beam, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set stemLeftBeamCount = #0

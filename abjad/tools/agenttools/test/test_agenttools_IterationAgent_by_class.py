@@ -28,8 +28,7 @@ def test_agenttools_IterationAgent_by_class_03():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -100,8 +99,7 @@ def test_agenttools_IterationAgent_by_class_07():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -167,8 +165,7 @@ def test_agenttools_IterationAgent_by_class_09():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -232,8 +229,7 @@ def test_agenttools_IterationAgent_by_class_11():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -285,8 +281,7 @@ def test_agenttools_IterationAgent_by_class_13():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -365,8 +360,7 @@ def test_agenttools_IterationAgent_by_class_17():
     staff.append(Measure((2, 8), "e'8 f'8"))
     staff.append(Measure((2, 8), "g'8 a'8"))
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -406,8 +400,7 @@ def test_agenttools_IterationAgent_by_class_18():
     staff.append(Measure((2, 8), "e'8 f'8"))
     staff.append(Measure((2, 8), "g'8 a'8"))
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -458,8 +451,7 @@ def test_agenttools_IterationAgent_by_class_19():
     staff.append(Measure((2, 8), "e'8 f'8"))
     staff.append(Measure((2, 8), "g'8 a'8"))
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -499,8 +491,7 @@ def test_agenttools_IterationAgent_by_class_20():
     staff.append(Measure((2, 8), "e'8 f'8"))
     staff.append(Measure((2, 8), "g'8 a'8"))
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import pytest
 from abjad import *
 Component = scoretools.Component
 Selection = selectiontools.Selection
@@ -111,8 +110,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_06()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -152,8 +150,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_07()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             \times 2/3 {
@@ -193,8 +190,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_08()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \new Voice {
@@ -242,8 +238,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_09()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -281,8 +276,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_10()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \context Voice = "foo" {
@@ -321,8 +315,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_11()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \new Staff {
@@ -373,8 +366,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_12()
         >>
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \new Staff <<
@@ -421,8 +413,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_13()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -461,8 +452,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_14()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \context Staff = "foo" {
@@ -506,8 +496,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_15()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             {
@@ -553,8 +542,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_16()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \new Voice {
@@ -644,8 +632,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_18()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \context Voice = "foo" {
@@ -691,8 +678,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_19()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             {
@@ -738,8 +724,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_20()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \new Staff {
@@ -783,8 +768,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_21()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -826,8 +810,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_22()
         g'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \new Voice {
@@ -869,8 +852,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_23()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -915,8 +897,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_24()
         g'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \context Voice = "foo" {
@@ -958,8 +939,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_25()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -1001,8 +981,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_26()
         c''8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \new Staff {
@@ -1036,8 +1015,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_27()
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
     container = Container([container] + notes)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             {
@@ -1110,8 +1088,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_29()
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
     container = Container([voice_2] + notes)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \context Voice = "bar" {
@@ -1147,8 +1124,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_30()
     notes = [Note(n, (1, 8)) for n in range(4, 8)]
     container = Container([voice_2] + notes)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \new Voice {
@@ -1186,8 +1162,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_31()
     container.is_simultaneous = True
     container = Container(notes + [container])
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -1243,8 +1218,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_32()
         b'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             <<
@@ -1303,8 +1277,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_33()
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -1368,8 +1341,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_34()
     middle = (2, 3, 8, 9)
     inner = (4, 5, 6, 7)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8
@@ -1428,8 +1400,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_35()
         b'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -1471,8 +1442,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_36()
     b.target_duration = Duration(6, 8)
     t.target_duration = Duration(9, 8)
 
-    assert systemtools.TestManager.compare(
-        t,
+    assert format(t) == stringtools.normalize(
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 9/10 {
@@ -1523,8 +1493,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_37()
         g'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -1579,8 +1548,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_38()
         g'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             {
@@ -1633,8 +1601,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_39()
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -1700,8 +1667,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_40()
         ''')
     voice.name = 'foo'
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \context Voice = "foo" {
             c'8
@@ -1766,8 +1732,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_41()
         b'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \new Voice {
@@ -1829,8 +1794,7 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_42()
         b'8
         ''')
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8

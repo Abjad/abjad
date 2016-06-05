@@ -52,8 +52,7 @@ def test_spannertools_Slur___init___02():
     slur = Slur()
     attach(slur, leaves)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \context Staff = "foo" <<
@@ -120,8 +119,7 @@ def test_spannertools_Slur___init___03():
     slur = Slur()
     attach(slur, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \context Staff = "foo" {

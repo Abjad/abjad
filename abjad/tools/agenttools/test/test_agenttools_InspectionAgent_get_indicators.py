@@ -12,8 +12,7 @@ def test_agenttools_InspectionAgent_get_indicators_01():
     command_2 = indicatortools.LilyPondCommand('slurUp')
     attach(command_2, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \slurDotted
@@ -43,8 +42,7 @@ def test_agenttools_InspectionAgent_get_indicators_02():
     command = indicatortools.LilyPondCommand('slurDotted')
     attach(command, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             % beginning of note content
@@ -71,8 +69,7 @@ def test_agenttools_InspectionAgent_get_indicators_03():
     dynamic = Dynamic('p')
     attach(dynamic, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \clef "treble"
@@ -97,8 +94,7 @@ def test_agenttools_InspectionAgent_get_indicators_04():
     dynamic = Dynamic('p')
     attach(dynamic, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \clef "treble"
@@ -123,8 +119,7 @@ def test_agenttools_InspectionAgent_get_indicators_05():
     annotation_2 = indicatortools.Annotation('annotation 2')
     attach(annotation_2, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8
@@ -147,8 +142,7 @@ def test_agenttools_InspectionAgent_get_indicators_06():
     comment_2 = indicatortools.LilyPondComment('comment 2')
     attach(comment_2, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             % comment 1

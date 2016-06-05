@@ -13,8 +13,7 @@ def test_indicatortools_LilyPondCommand___init___01():
     command = indicatortools.LilyPondCommand(r'slurDotted')
     attach(command, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \slurDotted
@@ -39,8 +38,7 @@ def test_indicatortools_LilyPondCommand___init___02():
     command = indicatortools.LilyPondCommand(r'slurUp')
     attach(command, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \slurUp

@@ -18,8 +18,7 @@ def test_scoretools_make_skips_01():
     '''
 
     assert inspect_(staff).is_well_formed()
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             s4 * 2

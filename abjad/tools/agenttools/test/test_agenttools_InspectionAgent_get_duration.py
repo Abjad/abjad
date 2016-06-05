@@ -21,8 +21,7 @@ def test_agenttools_InspectionAgent_get_duration_01():
     decrescendo = Decrescendo()
     attach(decrescendo, voice[1][:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             \tempo 8=42
@@ -61,8 +60,7 @@ def test_agenttools_InspectionAgent_get_duration_02():
     decrescendo = Decrescendo()
     attach(decrescendo, voice[1][:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -98,8 +96,7 @@ def test_agenttools_InspectionAgent_get_duration_03():
     attach(tempo, staff[2])
     score = Score([staff])
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -138,8 +135,7 @@ def test_agenttools_InspectionAgent_get_duration_05():
     attach(tempo, staff[2])
     Score([staff])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \tempo 4=38

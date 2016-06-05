@@ -6,8 +6,7 @@ def test_markuptools_Markup___format___01():
 
     markup = markuptools.Markup(r'\bold { foo }')
 
-    assert systemtools.TestManager.compare(
-        format(markup, 'storage'),
+    assert format(format(markup, 'storage')) == stringtools.normalize(
         r'''
         markuptools.Markup(
             contents=(
@@ -27,8 +26,7 @@ def test_markuptools_Markup___format___02():
         r'\bold { allegro ma non troppo }',
         )
 
-    assert systemtools.TestManager.compare(
-        format(markup, 'storage'),
+    assert format(format(markup, 'storage')) == stringtools.normalize(
         r'''
         markuptools.Markup(
             contents=(

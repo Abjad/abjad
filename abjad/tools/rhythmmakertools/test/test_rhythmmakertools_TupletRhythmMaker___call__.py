@@ -16,8 +16,7 @@ def test_rhythmmakertools_TupletRhythmMaker___call___01():
     tuplets = sequencetools.flatten_sequence(tuplet_lists)
     staff = Staff(tuplets)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \tweak #'edge-height #'(0.7 . 0)

@@ -8,8 +8,7 @@ def test_spannertools_TextSpanner_position_01():
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \startTextSpan
@@ -29,8 +28,7 @@ def test_spannertools_TextSpanner_position_02():
     command = indicatortools.LilyPondCommand('textSpannerNeutral')
     attach(command, text_spanner[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \textSpannerNeutral
@@ -51,8 +49,7 @@ def test_spannertools_TextSpanner_position_03():
     command = indicatortools.LilyPondCommand('textSpannerUp')
     attach(command, text_spanner[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \textSpannerUp
@@ -73,8 +70,7 @@ def test_spannertools_TextSpanner_position_04():
     command = indicatortools.LilyPondCommand('textSpannerDown')
     attach(command, text_spanner[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \textSpannerDown
@@ -95,8 +91,7 @@ def test_spannertools_TextSpanner_position_05():
     text_spanner = spannertools.TextSpanner()
     attach(text_spanner, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8 \startTextSpan

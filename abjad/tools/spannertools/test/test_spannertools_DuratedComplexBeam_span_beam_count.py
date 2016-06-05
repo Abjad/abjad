@@ -13,8 +13,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_01():
         )
     attach(beam, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \set stemLeftBeamCount = #0
@@ -47,8 +46,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_02():
         )
     attach(beam, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \set stemLeftBeamCount = #0

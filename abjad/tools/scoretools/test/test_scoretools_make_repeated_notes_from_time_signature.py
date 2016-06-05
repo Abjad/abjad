@@ -10,8 +10,7 @@ def test_scoretools_make_repeated_notes_from_time_signature_01():
     staff = Staff(notes)
 
     assert inspect_(staff).is_well_formed()
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             d''32
@@ -33,8 +32,7 @@ def test_scoretools_make_repeated_notes_from_time_signature_02():
     staff = Staff(notes)
 
     assert inspect_(staff).is_well_formed()
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             d''32

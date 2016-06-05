@@ -170,8 +170,7 @@ def test_pitchtools_PitchRange___contains___14():
     attach(glockenspiel, staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Glockenspiel }
@@ -202,8 +201,7 @@ def test_pitchtools_PitchRange___contains___15():
     override(staff[2]).note_head.style = 'cross'
     override(staff[3]).note_head.style = 'cross'
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Flute }

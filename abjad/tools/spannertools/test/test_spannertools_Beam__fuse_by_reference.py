@@ -13,8 +13,7 @@ def test_spannertools_Beam__fuse_by_reference_01():
     attach(right_beam, staff[2:4])
     left_beam._fuse_by_reference(right_beam)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 [

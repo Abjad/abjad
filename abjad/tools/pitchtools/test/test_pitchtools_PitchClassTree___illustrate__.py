@@ -12,8 +12,7 @@ def test_pitchtools_PitchClassTree___illustrate___01():
     lilypond_file = tree.__illustrate__()
     score = lilypond_file.score_block.items[0]
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score \with {
             \override BarLine #'stencil = ##f

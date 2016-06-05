@@ -13,8 +13,7 @@ def test_spannertools_OctavationSpanner_01():
     assert spanner.start == 1
     assert spanner.stop == 0
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \ottava #1
@@ -36,8 +35,7 @@ def test_spannertools_OctavationSpanner_02():
     spanner = spannertools.OctavationSpanner(start=1)
     attach(spanner, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \ottava #1
@@ -63,8 +61,7 @@ def test_spannertools_OctavationSpanner_03():
     spanner = spannertools.OctavationSpanner(start=1, stop=2)
     attach(spanner, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \ottava #1
@@ -92,8 +89,7 @@ def test_spannertools_OctavationSpanner_04():
     spanner = spannertools.OctavationSpanner(start=1)
     attach(spanner, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \ottava #1
@@ -125,8 +121,7 @@ def test_spannertools_OctavationSpanner_05():
     spanner = spannertools.OctavationSpanner(start=2)
     attach(spanner, staff[1])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \ottava #1
@@ -158,8 +153,7 @@ def test_spannertools_OctavationSpanner_06():
     spanner = spannertools.OctavationSpanner(start=2)
     attach(spanner, staff[2:6])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \ottava #1

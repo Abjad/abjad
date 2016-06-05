@@ -19,8 +19,7 @@ def test_tonalanalysistools_Scale_make_notes_01():
     }
     '''
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'4 ~

@@ -10,8 +10,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_01():
     tempo = Tempo(textual_indication="As fast as possible")
     attach(tempo, target.select_leaves()[0], scope=Staff)
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -36,8 +35,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_02():
     tempo = Tempo((1, 4), 60)
     attach(tempo, target.select_leaves()[0], scope=Staff)
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -62,8 +60,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_03():
     tempo = Tempo((1, 4), (59, 63))
     attach(tempo, target.select_leaves()[0], scope=Staff)
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -92,8 +89,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_04():
         )
     attach(tempo, target.select_leaves()[0], scope=Staff)
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -122,8 +118,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_05():
         )
     attach(tempo, target.select_leaves()[0], scope=Staff)
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

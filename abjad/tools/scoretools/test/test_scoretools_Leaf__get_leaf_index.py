@@ -69,8 +69,7 @@ def test_scoretools_Leaf__get_leaf_index_05():
     '''
 
     assert inspect_(staff).is_well_formed()
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             e'8

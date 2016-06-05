@@ -11,8 +11,7 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
     beam = Beam()
     attach(beam, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

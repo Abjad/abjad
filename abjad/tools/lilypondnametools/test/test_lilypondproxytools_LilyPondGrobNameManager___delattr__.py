@@ -9,8 +9,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___delattr___01():
     override(note).beam.positions = (-6, -6)
     override(note).dots.thicknes = 2
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         \once \override Accidental #'color = #red
         \once \override Beam #'positions = #'(-6 . -6)
@@ -22,8 +21,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___delattr___01():
     del(override(note).accidental)
     del(override(note).beam)
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         \once \override Dots #'thicknes = #2
         c'4
@@ -39,8 +37,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___delattr___02():
     override(staff).rest.transparent = True
     del(override(staff).rest)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8

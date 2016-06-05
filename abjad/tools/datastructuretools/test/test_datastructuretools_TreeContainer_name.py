@@ -15,8 +15,7 @@ def test_datastructuretools_TreeContainer_name_01():
     bar.extend([baz, quux])
     baz.append(quux2)
 
-    assert systemtools.TestManager.compare(
-        format(foo, 'lilypond'),
+    assert format(format(foo, 'lilypond')) == stringtools.normalize(
         r'''
         TreeContainer(
             children=(

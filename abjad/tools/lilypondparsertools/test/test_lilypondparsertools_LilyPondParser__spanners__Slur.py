@@ -14,8 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_01():
     slur = Slur()
     attach(slur, target[:3])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             c'4 (
@@ -41,8 +40,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_02():
     slur = Slur()
     attach(slur, target[:3])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             c'4 (
@@ -102,8 +100,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Slur_07():
     slur = Slur(direction=Up)
     attach(slur, target[2:])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             c'4 _ (

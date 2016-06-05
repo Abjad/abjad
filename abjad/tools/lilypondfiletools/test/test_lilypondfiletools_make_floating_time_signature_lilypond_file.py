@@ -9,8 +9,7 @@ def test_lilypondfiletools_make_floating_time_signature_lilypond_file_01():
         lilypondfiletools.make_floating_time_signature_lilypond_file(staff)
     context_block = lilypond_file.layout_block.items[1]
 
-    assert systemtools.TestManager.compare(
-        context_block,
+    assert format(context_block) == stringtools.normalize(
         r'''
         \context {
             \name TimeSignatureContext

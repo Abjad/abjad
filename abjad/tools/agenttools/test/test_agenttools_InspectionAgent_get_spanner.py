@@ -13,8 +13,7 @@ def test_agenttools_InspectionAgent_get_spanner_01():
     trill = spannertools.TrillSpanner()
     attach(trill, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8 [ ( \startTrillSpan

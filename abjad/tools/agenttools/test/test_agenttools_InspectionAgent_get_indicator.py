@@ -122,8 +122,7 @@ def test_agenttools_InspectionAgent_get_indicator_12():
     command_2 = indicatortools.LilyPondCommand('slurUp')
     attach(command_2, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \slurDotted

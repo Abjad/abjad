@@ -14,8 +14,7 @@ def test_agenttools_IterationAgent_by_semantic_voice_01():
     staff = Staff([time_signature_voice, music_voice])
     staff.is_simultaneous = True
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff <<
             \context Voice = "TimeSignatureVoice" {
@@ -61,8 +60,7 @@ def test_agenttools_IterationAgent_by_semantic_voice_02():
     staff = Staff([time_signature_voice, music_voice])
     staff.is_simultaneous = True
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff <<
             \context Voice = "TimeSignatureVoice" {

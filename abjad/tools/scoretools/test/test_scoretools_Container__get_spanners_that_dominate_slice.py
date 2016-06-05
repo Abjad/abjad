@@ -12,8 +12,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_01():
     glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -40,8 +39,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_02():
     glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -69,8 +67,7 @@ def test_scoretools_Container__get_spanners_that_dominate_slice_03():
     glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando

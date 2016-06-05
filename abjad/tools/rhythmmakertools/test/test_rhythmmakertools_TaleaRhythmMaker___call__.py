@@ -21,8 +21,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(music)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -70,8 +69,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___02():
     staff = Staff(measures)
     mutate(staff).replace_measure_contents(music)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

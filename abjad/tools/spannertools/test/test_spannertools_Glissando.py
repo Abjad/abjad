@@ -8,8 +8,7 @@ def test_spannertools_Glissando_01():
     glissando = spannertools.Glissando()
     attach(glissando, staff.select_leaves()[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \glissando

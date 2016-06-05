@@ -14,8 +14,7 @@ def test_spannertools_DuratedComplexBeam_direction_01():
 
     attach(beam, container)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             \set stemLeftBeamCount = #0

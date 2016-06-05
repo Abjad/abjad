@@ -10,8 +10,7 @@ def test_scoretools_fill_measures_in_expr_with_repeated_notes_01():
     measure.implicit_scaling = True
     scoretools.fill_measures_in_expr_with_repeated_notes(measure, Duration(1, 16))
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/18

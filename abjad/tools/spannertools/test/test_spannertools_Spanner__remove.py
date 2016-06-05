@@ -15,8 +15,7 @@ def test_spannertools_Spanner__remove_01():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -31,8 +30,7 @@ def test_spannertools_Spanner__remove_01():
 
     "Spanner is now discontiguous: c'8, e'8, f'8 but no d'8."
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -58,8 +56,7 @@ def test_spannertools_Spanner__remove_02():
     beam = Beam()
     attach(beam, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -80,8 +77,7 @@ def test_spannertools_Spanner__remove_02():
 
     result = beam._remove(beam.components[2])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {

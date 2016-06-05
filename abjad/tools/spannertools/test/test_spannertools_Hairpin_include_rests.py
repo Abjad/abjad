@@ -10,8 +10,7 @@ def test_spannertools_Hairpin_include_rests_01():
     crescendo = Crescendo(include_rests=False)
     attach(crescendo, staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             r8
@@ -38,8 +37,7 @@ def test_spannertools_Hairpin_include_rests_02():
     attach(crescendo, staff[:])
 
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \<

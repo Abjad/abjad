@@ -10,8 +10,7 @@ def test_scoretools_Container___delitem___01():
     voice = Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
     attach(Beam(), voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -30,8 +29,7 @@ def test_scoretools_Container___delitem___01():
     del(voice[0])
 
     # container no longer appears in score
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -45,8 +43,7 @@ def test_scoretools_Container___delitem___01():
     assert inspect_(voice).is_well_formed()
 
     # container leaves are still slurred
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8 (
@@ -65,8 +62,7 @@ def test_scoretools_Container___delitem___02():
     voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[1])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -86,8 +82,7 @@ def test_scoretools_Container___delitem___03():
     voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[1:3])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -106,8 +101,7 @@ def test_scoretools_Container___delitem___04():
     voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[:2])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             e'8 [
@@ -126,8 +120,7 @@ def test_scoretools_Container___delitem___05():
     voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[2:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [
@@ -146,8 +139,7 @@ def test_scoretools_Container___delitem___06():
     voice = Voice("c'8 [ d'8 e'8 f'8 ]")
     del(voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
         }
@@ -164,8 +156,7 @@ def test_scoretools_Container___delitem___07():
     tuplet = Tuplet(Multiplier((2, 3)), "c'8 [ d'8 e'8 ]")
     del(tuplet[1])
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \tweak #'edge-height #'(0.7 . 0)
         \times 2/3 {
@@ -186,8 +177,7 @@ def test_scoretools_Container___delitem___08():
     leaves = iterate(voice).by_class(scoretools.Leaf)
     attach(Glissando(), list(leaves))
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -203,8 +193,7 @@ def test_scoretools_Container___delitem___08():
     leaf = voice.select_leaves()[1]
     del(voice[1][0])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando

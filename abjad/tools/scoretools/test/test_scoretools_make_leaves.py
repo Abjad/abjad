@@ -97,8 +97,7 @@ def test_scoretools_make_leaves_07():
     }
     '''
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             <cs'' df''>4
@@ -122,8 +121,7 @@ def test_scoretools_make_leaves_08():
     }
     '''
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             cs''4
@@ -149,8 +147,7 @@ def test_scoretools_make_leaves_09():
     }
     '''
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             cs''4

@@ -10,8 +10,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_co
     scoretools.extend_measures_in_expr_and_apply_full_measure_tuplets(
         measure, scoretools.make_repeated_notes(1))
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 4/8
@@ -37,8 +36,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_to_co
     scoretools.extend_measures_in_expr_and_apply_full_measure_tuplets(
         measure, [Rest((1, 4))])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 4/8

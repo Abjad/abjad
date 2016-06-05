@@ -8,8 +8,7 @@ def test_spannertools_ComplexBeam_direction_01():
     beam = spannertools.ComplexBeam(direction=Up)
     attach(beam, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set stemLeftBeamCount = #0
@@ -34,8 +33,7 @@ def test_spannertools_ComplexBeam_direction_02():
     beam = spannertools.ComplexBeam(direction=Down)
     attach(beam, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set stemLeftBeamCount = #0

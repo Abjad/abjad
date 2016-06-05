@@ -26,8 +26,7 @@ def test_templatetools_TwoStaffPianoScoreTemplate___call___01():
     >>
     '''
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \context Score = "Two-Staff Piano Score" <<
             \context PianoStaff = "Piano Staff" <<

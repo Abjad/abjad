@@ -174,8 +174,7 @@ def test_scoretools_Leaf__set_duration_05():
 
     voice[1]._set_duration(Duration(1, 12))
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [

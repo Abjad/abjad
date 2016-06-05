@@ -12,8 +12,7 @@ def test_agenttools_MutationAgent_extract_01():
     glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -27,8 +26,7 @@ def test_agenttools_MutationAgent_extract_01():
     note = voice[1]
     mutate(note).extract()
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -52,8 +50,7 @@ def test_agenttools_MutationAgent_extract_02():
     glissando = spannertools.Glissando()
     attach(glissando, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -68,8 +65,7 @@ def test_agenttools_MutationAgent_extract_02():
     for note in notes:
         mutate(note).extract()
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             e'8 [ \glissando
@@ -94,8 +90,7 @@ def test_agenttools_MutationAgent_extract_03():
     beam = Beam()
     attach(beam, staff.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -113,8 +108,7 @@ def test_agenttools_MutationAgent_extract_03():
     container = staff[0]
     mutate(container).extract()
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 [
@@ -144,8 +138,7 @@ def test_agenttools_MutationAgent_extract_04():
     glissando = spannertools.Glissando()
     attach(glissando, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -168,8 +161,7 @@ def test_agenttools_MutationAgent_extract_04():
     for container in containers:
         mutate(container).extract()
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando

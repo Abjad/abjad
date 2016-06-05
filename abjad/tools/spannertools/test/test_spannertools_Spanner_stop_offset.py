@@ -12,8 +12,7 @@ def test_spannertools_Spanner_stop_offset_01():
     glissando = spannertools.Glissando()
     attach(glissando, [container])
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8 \glissando

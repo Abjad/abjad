@@ -10,8 +10,7 @@ def test_spannertools_OctavationSpanner_adjust_automatically_01():
     attach(octavation_spanner, container[:])
     octavation_spanner.adjust_automatically(ottava_breakpoint=14)
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r"""
         {
             \ottava #1
@@ -39,8 +38,7 @@ def test_spannertools_OctavationSpanner_adjust_automatically_02():
         quindecisima_breakpoint=19,
         )
 
-    assert systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r"""
         {
             \ottava #1

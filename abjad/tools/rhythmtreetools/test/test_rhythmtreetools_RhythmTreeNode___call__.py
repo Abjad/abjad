@@ -24,8 +24,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___02():
     assert isinstance(result, (list, selectiontools.Selection))
     assert len(result) == 1
     assert isinstance(result[0], scoretools.FixedDurationTuplet)
-    assert systemtools.TestManager.compare(
-        result[0],
+    assert format(result[0]) == stringtools.normalize(
         r'''
         \times 4/5 {
             c'16
@@ -46,8 +45,7 @@ def test_rhythmtreetools_RhythmTreeNode___call___03():
     tree = rhythmtreetools.RhythmTreeParser()(rtm)[0]
     result = tree((1, 4))
 
-    assert systemtools.TestManager.compare(
-        result[0],
+    assert format(result[0]) == stringtools.normalize(
         r'''
         \times 4/5 {
             c'16

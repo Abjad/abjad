@@ -20,8 +20,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     result = parse(string)
     assert isinstance(result, lilypondfiletools.LilyPondFile)
     assert len(result.items) == 2
-    assert systemtools.TestManager.compare(
-        result.items[0],
+    assert format(result.items[0]) == stringtools.normalize(
         r'''
         \header {
             globalvariable = #"This overrides the global variable"
@@ -34,8 +33,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
         }
         '''
         )
-    assert systemtools.TestManager.compare(
-        result.items[1],
+    assert format(result.items[1]) == stringtools.normalize(
         r'''
         \score {
             \new Staff {

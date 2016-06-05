@@ -14,8 +14,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_01():
     dynamic = Dynamic('ppp')
     attach(dynamic, target[-1])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Staff {
             c'4 \<
@@ -42,8 +41,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_02():
     hairpin = Hairpin(descriptor='<')
     attach(hairpin, target[2:])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         {
             c'4 \<
@@ -74,8 +72,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_03():
     dynamic = Dynamic('f')
     attach(dynamic, target[-1])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Staff {
             c'4 \<
@@ -127,8 +124,7 @@ def test_lilypondparsertools_LilyPondParser__spanners__Hairpin_07():
     dynamic = Dynamic('ppp')
     attach(dynamic, target[-1])
 
-    assert systemtools.TestManager.compare(
-        target,
+    assert format(target) == stringtools.normalize(
         r'''
         \new Staff {
             c'4 ^ \<

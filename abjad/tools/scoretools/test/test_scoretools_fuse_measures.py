@@ -17,8 +17,7 @@ def test_scoretools_fuse_measures_01():
     attach(slur, measure_2[:])
     staff = Staff([measure_1, measure_2])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -37,8 +36,7 @@ def test_scoretools_fuse_measures_01():
 
     new = scoretools.fuse_measures(staff[:])
 
-    assert systemtools.TestManager.compare(
-        new,
+    assert format(new) == stringtools.normalize(
         r'''
         {
             \time 2/8
@@ -66,8 +64,7 @@ def test_scoretools_fuse_measures_02():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -86,8 +83,7 @@ def test_scoretools_fuse_measures_02():
 
     scoretools.fuse_measures(voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -114,8 +110,7 @@ def test_scoretools_fuse_measures_03():
     beam = Beam()
     attach(beam, voice[0])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -134,8 +129,7 @@ def test_scoretools_fuse_measures_03():
 
     scoretools.fuse_measures(voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -165,8 +159,7 @@ def test_scoretools_fuse_measures_04():
     beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -185,8 +178,7 @@ def test_scoretools_fuse_measures_04():
 
     scoretools.fuse_measures(voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -231,8 +223,7 @@ def test_scoretools_fuse_measures_07():
     beam = beam = Beam()
     attach(beam, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -254,8 +245,7 @@ def test_scoretools_fuse_measures_07():
 
     scoretools.fuse_measures(voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -282,8 +272,7 @@ def test_scoretools_fuse_measures_08():
     container_2 = Container("abj: | 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     voice = Voice([container_1, container_2])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -330,8 +319,7 @@ def test_scoretools_fuse_measures_09():
     staff.append(Measure((9, 80), "c'64 c' c' c' c' c' c' c' c'"))
     staff.append(Measure((2, 16), "c'16 c'"))
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -359,8 +347,7 @@ def test_scoretools_fuse_measures_09():
 
     new = scoretools.fuse_measures(staff[:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

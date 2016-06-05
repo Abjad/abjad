@@ -10,8 +10,7 @@ def test_scoretools_GraceContainer_01():
     gracecontainer = scoretools.GraceContainer(
         [Note(0, (1, 16)), Note(2, (1, 16)), Note(4, (1, 16))])
 
-    assert systemtools.TestManager.compare(
-        gracecontainer,
+    assert format(gracecontainer) == stringtools.normalize(
         r'''
         \grace {
             c'16
@@ -50,8 +49,7 @@ def test_scoretools_GraceContainer_03():
 
     gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
     gracecontainer.kind = 'grace'
-    assert systemtools.TestManager.compare(
-        gracecontainer,
+    assert format(gracecontainer) == stringtools.normalize(
         r'''
         \grace {
             c'8
@@ -68,8 +66,7 @@ def test_scoretools_GraceContainer_04():
 
     gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
     gracecontainer.kind = 'acciaccatura'
-    assert systemtools.TestManager.compare(
-        gracecontainer,
+    assert format(gracecontainer) == stringtools.normalize(
         r'''
         \acciaccatura {
             c'8
@@ -86,8 +83,7 @@ def test_scoretools_GraceContainer_05():
 
     gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
     gracecontainer.kind = 'appoggiatura'
-    assert systemtools.TestManager.compare(
-        gracecontainer,
+    assert format(gracecontainer) == stringtools.normalize(
         r'''
         \appoggiatura {
             c'8
@@ -104,8 +100,7 @@ def test_scoretools_GraceContainer_06():
 
     gracecontainer = scoretools.GraceContainer("c'8 c'8 c'8")
     gracecontainer.kind = 'after'
-    assert systemtools.TestManager.compare(
-        gracecontainer,
+    assert format(gracecontainer) == stringtools.normalize(
         r'''
         {
             c'8

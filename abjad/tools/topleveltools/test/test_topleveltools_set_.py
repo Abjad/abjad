@@ -10,8 +10,7 @@ def test_topleveltools_set__01():
     score = Score([staff])
     set_(score).tempo_wholes_per_minute = schemetools.SchemeMoment(24)
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score \with {
             tempoWholesPerMinute = #(ly:make-moment 24 1)
@@ -36,8 +35,7 @@ def test_topleveltools_set__02():
     moment = schemetools.SchemeMoment(24)
     set_(score.select_leaves()[1]).score.tempo_wholes_per_minute = moment
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

@@ -16,8 +16,7 @@ def test_agenttools_InspectionAgent__select_vertical_moment_at_01():
     attach(clef, staff_group[1])
     score.append(staff_group)
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -78,8 +77,7 @@ def test_agenttools_InspectionAgent__select_vertical_moment_at_02():
     attach(clef, staff_group[1])
     score.append(staff_group)
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

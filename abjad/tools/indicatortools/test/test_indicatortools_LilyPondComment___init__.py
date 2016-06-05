@@ -12,8 +12,7 @@ def test_indicatortools_LilyPondComment___init___01():
     comment = indicatortools.LilyPondComment('beginning of note content')
     attach(comment, staff[0])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             % beginning of note content
