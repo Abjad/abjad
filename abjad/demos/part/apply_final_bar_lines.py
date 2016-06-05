@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import indicatortools
+from abjad.tools import scoretools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 
 
 def apply_final_bar_lines(score):

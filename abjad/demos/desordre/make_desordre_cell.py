@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
 import math
-from abjad import *
+from abjad.tools import indicatortools
+from abjad.tools import scoretools
+from abjad.tools import spannertools
+from abjad.tools.topleveltools import attach
 
 
 def make_desordre_cell(pitches):

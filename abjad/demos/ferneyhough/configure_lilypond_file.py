@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import schemetools
 
 
 def configure_lilypond_file(lilypond_file):

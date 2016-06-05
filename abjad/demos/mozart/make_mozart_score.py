@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.demos.mozart.choose_mozart_measures import choose_mozart_measures
-from abjad.demos.mozart.make_mozart_measure import make_mozart_measure
+import abjad
+from abjad.tools import indicatortools
+from abjad.tools import instrumenttools
+from abjad.tools import scoretools
+from abjad.tools import templatetools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 
 
 def make_mozart_score():
@@ -12,13 +16,13 @@ def make_mozart_score():
     score = score_template()
 
     # select the measures to use
-    choices = choose_mozart_measures()
+    choices = abjad.demos.mozart.choose_mozart_measures()
 
     # create and populate the volta containers
-    treble_volta = Container()
-    bass_volta = Container()
+    treble_volta = scoretools.Container()
+    bass_volta = scoretools.Container()
     for choice in choices[:7]:
-        treble, bass = make_mozart_measure(choice)
+        treble, bass = abjad.demos.mozart.make_mozart_measure(choice)
         treble_volta.append(treble)
         bass_volta.append(bass)
 
@@ -37,10 +41,10 @@ def make_mozart_score():
     score['LH Voice'].append(bass_volta)
 
     # create and populate the alternative ending containers
-    treble_alternative = Container()
-    bass_alternative = Container()
+    treble_alternative = scoretools.Container()
+    bass_alternative = scoretools.Container()
     for choice in choices[7:9]:
-        treble, bass = make_mozart_measure(choice)
+        treble, bass = abjad.demos.mozart.make_mozart_measure(choice)
         treble_alternative.append(treble)
         bass_alternative.append(bass)
 
@@ -60,7 +64,7 @@ def make_mozart_score():
 
     # create the remaining measures
     for choice in choices[9:]:
-        treble, bass = make_mozart_measure(choice)
+        treble, bass = abjad.demos.mozart.make_mozart_measure(choice)
         score['RH Voice'].append(treble)
         score['LH Voice'].append(bass)
 

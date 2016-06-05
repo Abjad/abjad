@@ -1,5 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import durationtools
+from abjad.tools import markuptools
+from abjad.tools import scoretools
+from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import mutate
 
 
 def apply_expressive_marks(score):
@@ -50,7 +55,9 @@ def apply_expressive_marks(score):
     attach(markup, voice[14][0])
     markup = markuptools.Markup(r'\italic { espr. }', Down)
     attach(markup, voice[86][0])
-    mutate(voice[88][:]).split([Duration(1, 1), Duration(1, 2)])
+    mutate(voice[88][:]).split(
+        [durationtools.Duration(1, 1), durationtools.Duration(1, 2)]
+        )
     markup = markuptools.Markup(r'\italic { molto espr. }', Down)
     attach(markup, voice[88][1])
     markup = markuptools.Markup('uniti', Up)

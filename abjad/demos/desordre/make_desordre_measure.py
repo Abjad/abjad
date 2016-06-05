@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
-from abjad import *
-from abjad.demos.desordre.make_desordre_cell import make_desordre_cell
+import abjad
+from abjad.tools import mathtools
+from abjad.tools import scoretools
+from abjad.tools.topleveltools import inspect_
 
 
 def make_desordre_measure(pitches):
@@ -12,7 +14,7 @@ def make_desordre_measure(pitches):
     '''
 
     for sequence in pitches:
-        container = make_desordre_cell(sequence)
+        container = abjad.demos.desordre.make_desordre_cell(sequence)
         time_signature = inspect_(container).get_duration()
         time_signature = mathtools.NonreducedFraction(time_signature)
         time_signature = time_signature.with_denominator(8)
