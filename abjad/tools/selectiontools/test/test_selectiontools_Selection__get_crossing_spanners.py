@@ -15,8 +15,7 @@ def test_selectiontools_Selection__get_crossing_spanners_01():
     trill = spannertools.TrillSpanner()
     attach(trill, voice.select_leaves())
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -55,8 +54,7 @@ def test_selectiontools_Selection__get_crossing_spanners_02():
     beam = Beam()
     attach(beam, voice[1:2] + voice[2][0:1])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {

@@ -18,8 +18,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     '''
 
     assert inspect_(staff).is_well_formed()
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 ~ [
@@ -44,8 +43,7 @@ def test_selectiontools_LogicalTie__add_or_remove_notes_to_achieve_written_durat
     '''
 
     assert inspect_(staff).is_well_formed()
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 [ ]

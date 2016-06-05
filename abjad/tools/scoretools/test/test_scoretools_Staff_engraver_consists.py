@@ -21,8 +21,7 @@ def test_scoretools_Staff_engraver_consists_01():
     '''
 
     assert inspect_(staff).is_well_formed()
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff \with {
             \consists Horizontal_bracket_engraver

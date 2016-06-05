@@ -63,8 +63,7 @@ def test_selectiontools_VerticalMoment___eq___02():
     staff_group.context_name = 'PianoStaff'
     score.append(staff_group)
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

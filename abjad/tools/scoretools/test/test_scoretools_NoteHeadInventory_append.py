@@ -11,8 +11,7 @@ def test_scoretools_NoteHeadInventory_append_01():
     note_head.tweak.style = 'harmonic'
     chord.note_heads.append(note_head)
 
-    assert systemtools.TestManager.compare(
-        chord,
+    assert format(chord) == stringtools.normalize(
         r'''
         <
             c'

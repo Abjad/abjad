@@ -135,8 +135,7 @@ def test_scoretools_Measure___delitem___06():
     measure.implicit_scaling = True
     measure.automatically_adjust_time_signature = True
 
-    systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/9

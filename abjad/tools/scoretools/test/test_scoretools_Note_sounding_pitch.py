@@ -10,8 +10,7 @@ def test_scoretools_Note_sounding_pitch_01():
     attach(piccolo, staff)
     instrumenttools.transpose_from_sounding_pitch_to_written_pitch(staff)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \set Staff.instrumentName = \markup { Piccolo }

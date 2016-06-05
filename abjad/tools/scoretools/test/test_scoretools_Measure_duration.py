@@ -9,8 +9,7 @@ def test_scoretools_Measure_duration_01():
 
     measure = Measure((3, 8), "c'8 d'8 e'8")
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/8
@@ -33,8 +32,7 @@ def test_scoretools_Measure_duration_02():
     measure = Measure((3, 10), "c'8 d'8 e'8")
     measure.implicit_scaling = True
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/10

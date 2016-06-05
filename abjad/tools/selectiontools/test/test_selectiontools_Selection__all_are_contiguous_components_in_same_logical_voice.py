@@ -97,8 +97,7 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_logical
     beam = Beam()
     attach(beam, voice[:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [

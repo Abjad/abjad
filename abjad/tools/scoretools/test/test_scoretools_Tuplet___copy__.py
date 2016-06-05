@@ -8,8 +8,7 @@ def test_scoretools_Tuplet___copy___01():
     tuplet_1 = Tuplet((2, 3), "c'8 d'8 e'8")
     override(tuplet_1).note_head.color = 'red'
 
-    assert systemtools.TestManager.compare(
-        tuplet_1,
+    assert format(tuplet_1) == stringtools.normalize(
         r'''
         \override NoteHead #'color = #red
         \times 2/3 {
@@ -23,9 +22,7 @@ def test_scoretools_Tuplet___copy___01():
 
     tuplet_2 = copy.copy(tuplet_1)
 
-
-    assert systemtools.TestManager.compare(
-        tuplet_2,
+    assert format(tuplet_2) == stringtools.normalize(
         r'''
         \override NoteHead #'color = #red
         \times 2/3 {

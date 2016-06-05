@@ -31,8 +31,7 @@ def test_scoretools_NoteHeadInventory___setitem___03():
     note_head.tweak.color = 'red'
     chord.note_heads[0] = note_head
 
-    assert systemtools.TestManager.compare(
-        chord,
+    assert format(chord) == stringtools.normalize(
         r'''
         <
             \tweak #'color #red

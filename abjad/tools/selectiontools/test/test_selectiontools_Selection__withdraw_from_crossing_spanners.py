@@ -19,8 +19,7 @@ def test_selectiontools_Selection__withdraw_from_crossing_spanners_01():
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -38,8 +37,7 @@ def test_selectiontools_Selection__withdraw_from_crossing_spanners_01():
     voice_selection = selectiontools.Selection([voice])
     voice_selection._withdraw_from_crossing_spanners()
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -72,8 +70,7 @@ def test_selectiontools_Selection__withdraw_from_crossing_spanners_02():
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -90,8 +87,7 @@ def test_selectiontools_Selection__withdraw_from_crossing_spanners_02():
 
     voice[:1]._withdraw_from_crossing_spanners()
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -126,8 +122,7 @@ def test_selectiontools_Selection__withdraw_from_crossing_spanners_03():
         }
         ''')
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {

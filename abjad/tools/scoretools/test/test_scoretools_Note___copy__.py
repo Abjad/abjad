@@ -54,8 +54,7 @@ def test_scoretools_Note___copy___04():
     grace_container_1 = scoretools.GraceContainer([Note("d'32")], kind='after')
     attach(grace_container_1, note_1)
 
-    assert systemtools.TestManager.compare(
-        note_1,
+    assert format(note_1) == stringtools.normalize(
         r'''
         \afterGrace
         c'4
@@ -68,8 +67,7 @@ def test_scoretools_Note___copy___04():
     note_2 = copy.copy(note_1)
     grace_container_2 = inspect_(note_2).get_grace_container()
 
-    assert systemtools.TestManager.compare(
-        note_2,
+    assert format(note_2) == stringtools.normalize(
         r'''
         \afterGrace
         c'4
@@ -96,8 +94,7 @@ def test_scoretools_Note___copy___05():
     attach(grace, note)
     override(note).note_head.color = 'red'
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         \grace {
             d'16
@@ -125,8 +122,7 @@ def test_scoretools_Note___copy___06():
     attach(grace, note)
     override(note).note_head.color = 'red'
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             \grace {
@@ -160,8 +156,7 @@ def test_scoretools_Note___copy___07():
     crescendo = Crescendo()
     attach(crescendo, staff[:4])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \<
@@ -179,8 +174,7 @@ def test_scoretools_Note___copy___07():
     new_note = copy.copy(staff[0])
     staff.append(new_note)
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             c'8 \<

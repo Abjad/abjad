@@ -23,8 +23,7 @@ def test_scoretools_Measure_extend_02():
     measure.extend("f' g'")
 
     assert not measure.is_misfilled
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/4

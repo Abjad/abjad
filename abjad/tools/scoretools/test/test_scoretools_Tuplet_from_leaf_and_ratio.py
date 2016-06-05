@@ -9,8 +9,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1], is_diminution=False)
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'8.
@@ -20,8 +19,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=False)
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'16
@@ -36,8 +34,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         is_diminution=False,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 3/2 {
@@ -55,8 +52,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         is_diminution=False,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 12/11 {
@@ -75,8 +71,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
         is_diminution=False,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 8/5 {
@@ -97,8 +92,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1], is_diminution=True)
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'8.
@@ -108,8 +102,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2], is_diminution=True)
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'16
@@ -120,8 +113,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     tuplet = Tuplet.from_leaf_and_ratio(note, [1, 2, 2, 3], is_diminution=True)
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 3/4 {
@@ -139,8 +131,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         is_diminution=True,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 6/11 {
@@ -159,8 +150,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
         is_diminution=True,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \times 4/5 {
             c'64
@@ -186,8 +176,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'8.
@@ -201,8 +190,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'16.
@@ -217,8 +205,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'16
@@ -234,8 +221,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'32.
@@ -252,8 +238,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
         is_diminution=False,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         \tweak #'text #tuplet-number::calc-fraction-text
         \times 8/5 {
@@ -279,8 +264,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         is_diminution=True,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'8.
@@ -294,8 +278,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         is_diminution=True,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'16.
@@ -310,8 +293,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         is_diminution=True,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'16
@@ -327,8 +309,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_04():
         is_diminution=True,
         )
 
-    assert systemtools.TestManager.compare(
-        tuplet,
+    assert format(tuplet) == stringtools.normalize(
         r'''
         {
             c'32.
