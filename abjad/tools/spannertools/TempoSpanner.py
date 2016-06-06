@@ -47,7 +47,7 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
+                \override TextScript.staff-padding = #2.25
             } <<
                 \new Staff {
                     \time 3/8
@@ -163,8 +163,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -304,8 +304,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -447,8 +447,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -610,8 +610,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -738,8 +738,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -869,8 +869,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -1017,8 +1017,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -1162,8 +1162,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -1274,8 +1274,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -1384,8 +1384,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -1437,19 +1437,19 @@ class TempoSpanner(Spanner):
                                                 \score
                                                     {
                                                         \new Score \with {
-                                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                                            \override SpacingSpanner.spacing-increment = #0.5
                                                             proportionalNotationDuration = ##f
                                                         } <<
                                                             \new RhythmicStaff \with {
                                                                 \remove Time_signature_engraver
                                                                 \remove Staff_symbol_engraver
-                                                                \override Stem #'direction = #up
-                                                                \override Stem #'length = #5
-                                                                \override TupletBracket #'bracket-visibility = ##t
-                                                                \override TupletBracket #'direction = #up
-                                                                \override TupletBracket #'padding = #1.25
-                                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                                \override Stem.direction = #up
+                                                                \override Stem.length = #5
+                                                                \override TupletBracket.bracket-visibility = ##t
+                                                                \override TupletBracket.direction = #up
+                                                                \override TupletBracket.padding = #1.25
+                                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                                 tupletFullLength = ##t
                                                             } {
                                                                 c4.
@@ -1468,19 +1468,19 @@ class TempoSpanner(Spanner):
                                                 \score
                                                     {
                                                         \new Score \with {
-                                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                                            \override SpacingSpanner.spacing-increment = #0.5
                                                             proportionalNotationDuration = ##f
                                                         } <<
                                                             \new RhythmicStaff \with {
                                                                 \remove Time_signature_engraver
                                                                 \remove Staff_symbol_engraver
-                                                                \override Stem #'direction = #up
-                                                                \override Stem #'length = #5
-                                                                \override TupletBracket #'bracket-visibility = ##t
-                                                                \override TupletBracket #'direction = #up
-                                                                \override TupletBracket #'padding = #1.25
-                                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                                \override Stem.direction = #up
+                                                                \override Stem.length = #5
+                                                                \override TupletBracket.bracket-visibility = ##t
+                                                                \override TupletBracket.direction = #up
+                                                                \override TupletBracket.padding = #1.25
+                                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                                 tupletFullLength = ##t
                                                             } {
                                                                 c4
@@ -1540,8 +1540,8 @@ class TempoSpanner(Spanner):
 
             >>> print(format(score))
             \new Score \with {
-                \override TextScript #'staff-padding = #2.25
-                \override TextSpanner #'staff-padding = #3
+                \override TextScript.staff-padding = #2.25
+                \override TextSpanner.staff-padding = #3
             } <<
                 \new Staff {
                     \time 3/8
@@ -1606,19 +1606,19 @@ class TempoSpanner(Spanner):
                                                 \score
                                                     {
                                                         \new Score \with {
-                                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                                            \override SpacingSpanner.spacing-increment = #0.5
                                                             proportionalNotationDuration = ##f
                                                         } <<
                                                             \new RhythmicStaff \with {
                                                                 \remove Time_signature_engraver
                                                                 \remove Staff_symbol_engraver
-                                                                \override Stem #'direction = #up
-                                                                \override Stem #'length = #5
-                                                                \override TupletBracket #'bracket-visibility = ##t
-                                                                \override TupletBracket #'direction = #up
-                                                                \override TupletBracket #'padding = #1.25
-                                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                                \override Stem.direction = #up
+                                                                \override Stem.length = #5
+                                                                \override TupletBracket.bracket-visibility = ##t
+                                                                \override TupletBracket.direction = #up
+                                                                \override TupletBracket.padding = #1.25
+                                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                                 tupletFullLength = ##t
                                                             } {
                                                                 c4.
@@ -1637,19 +1637,19 @@ class TempoSpanner(Spanner):
                                                 \score
                                                     {
                                                         \new Score \with {
-                                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                                            \override SpacingSpanner.spacing-increment = #0.5
                                                             proportionalNotationDuration = ##f
                                                         } <<
                                                             \new RhythmicStaff \with {
                                                                 \remove Time_signature_engraver
                                                                 \remove Staff_symbol_engraver
-                                                                \override Stem #'direction = #up
-                                                                \override Stem #'length = #5
-                                                                \override TupletBracket #'bracket-visibility = ##t
-                                                                \override TupletBracket #'direction = #up
-                                                                \override TupletBracket #'padding = #1.25
-                                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                                \override Stem.direction = #up
+                                                                \override Stem.length = #5
+                                                                \override TupletBracket.bracket-visibility = ##t
+                                                                \override TupletBracket.direction = #up
+                                                                \override TupletBracket.padding = #1.25
+                                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                                 tupletFullLength = ##t
                                                             } {
                                                                 c4
@@ -2098,8 +2098,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #2.25
-                    \override TextSpanner #'staff-padding = #3
+                    \override TextScript.staff-padding = #2.25
+                    \override TextSpanner.staff-padding = #3
                 } <<
                     \new Staff {
                         \time 3/8
@@ -2215,8 +2215,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #2.25
-                    \override TextSpanner #'staff-padding = #3
+                    \override TextScript.staff-padding = #2.25
+                    \override TextSpanner.staff-padding = #3
                 } <<
                     \new Staff {
                         \time 3/8
@@ -2335,8 +2335,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #2.25
-                    \override TextSpanner #'staff-padding = #3
+                    \override TextScript.staff-padding = #2.25
+                    \override TextSpanner.staff-padding = #3
                 } <<
                     \new Staff {
                         \time 3/8
@@ -2454,8 +2454,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #2.25
-                    \override TextSpanner #'staff-padding = #3
+                    \override TextScript.staff-padding = #2.25
+                    \override TextSpanner.staff-padding = #3
                 } <<
                     \new Staff {
                         \time 3/8
@@ -2572,8 +2572,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #2.25
-                    \override TextSpanner #'staff-padding = #3
+                    \override TextScript.staff-padding = #2.25
+                    \override TextSpanner.staff-padding = #3
                 } <<
                     \new Staff {
                         \time 3/8
@@ -2703,8 +2703,8 @@ class TempoSpanner(Spanner):
 
                 >>> print(format(score))
                 \new Score \with {
-                    \override TextScript #'staff-padding = #2.25
-                    \override TextSpanner #'staff-padding = #3
+                    \override TextScript.staff-padding = #2.25
+                    \override TextSpanner.staff-padding = #3
                 } <<
                     \new Staff {
                         \time 3/8

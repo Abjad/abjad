@@ -22,7 +22,7 @@ def test_scoretools_Voice___copy___01():
         \context Voice = "SopranoVoice" \with {
             \remove Forbid_line_break_engraver
             \consists Time_signature_engraver
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
             tupletFullLength = ##t
         } {
         }

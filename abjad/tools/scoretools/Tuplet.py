@@ -39,7 +39,7 @@ class Tuplet(Container):
         ..  doctest::
 
             >>> print(format(tuplet))
-    		\tweak #'edge-height #'(0.7 . 0)
+    		\tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8
                 \times 4/7 {
@@ -63,10 +63,10 @@ class Tuplet(Container):
         ..  doctest::
 
             >>> print(format(tuplet))
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8
-                \tweak #'edge-height #'(0.7 . 0)
+                \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
                     g'4. (
                     \times 4/5 {
@@ -281,7 +281,7 @@ class Tuplet(Container):
         if (self.is_augmentation or
             not self._has_power_of_two_denominator or
             self.force_fraction):
-            return r"\tweak #'text #tuplet-number::calc-fraction-text"
+            return r"\tweak text #tuplet-number::calc-fraction-text"
         return ''
 
     def _format_open_brackets_slot(self, bundle):
@@ -327,7 +327,7 @@ class Tuplet(Container):
         duration = self._preprolated_duration
         denominator = duration.denominator
         if not mathtools.is_nonnegative_integer_power_of_two(denominator):
-            return r"\tweak #'edge-height #'(0.7 . 0)"
+            return r"\tweak edge-height #'(0.7 . 0)"
 
     def _get_scale_durations_command_string(self):
         multiplier = self.multiplier
@@ -406,7 +406,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 2/3 {
                     c'8
                     d'8
@@ -431,23 +431,23 @@ class Tuplet(Container):
 
                 >>> print(format(staff))
                 \new Staff {
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \score
                             {
                                 \new Score \with {
-                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #5
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        \override Stem.direction = #up
+                                        \override Stem.length = #5
+                                        \override TupletBracket.bracket-visibility = ##t
+                                        \override TupletBracket.direction = #up
+                                        \override TupletBracket.padding = #1.25
+                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     } {
                                         c'4
@@ -464,7 +464,7 @@ class Tuplet(Container):
                         d'8
                         e'8
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
 
         Returns boolean or none.
@@ -556,25 +556,25 @@ class Tuplet(Container):
 
                 >>> f(staff)
                 \new Staff {
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'2.
@@ -591,7 +591,7 @@ class Tuplet(Container):
                         d'4
                         e'4
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
 
         Defaults to false.
@@ -854,7 +854,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/8
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/4 {
                         c'4
                         c'4
@@ -895,7 +895,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/4
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
                         c'4
                         c'4
@@ -993,7 +993,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
                     d'8
@@ -1128,7 +1128,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/5 {
                         c'32
                         c'32
@@ -1159,7 +1159,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 12/11 {
                         c'64
                         r32
@@ -1191,7 +1191,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 12/11 {
                         c'64 ~
                         c'16
@@ -1224,7 +1224,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 8/5 {
                         c'64.
                         c'64.
@@ -1256,7 +1256,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 16/11 {
                         c'32...
                         r128.
@@ -1290,7 +1290,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
                         c'16
                         c'16
@@ -1321,7 +1321,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/11 {
                         c'32
                         r16
@@ -1353,7 +1353,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 3/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/11 {
                         c'32 ~
                         c'8
@@ -1554,7 +1554,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 8/5 {
                     c'64.
                     c'32.
@@ -1580,7 +1580,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/2 {
                     c'64
                     c'32
@@ -1607,7 +1607,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 12/11 {
                     c'64
                     c'32
@@ -1635,7 +1635,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 8/5 {
                     c'128
                     c'64
@@ -1736,7 +1736,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     c'32
                     c'16
@@ -1763,7 +1763,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 6/11 {
                     c'32
                     c'16
@@ -1860,7 +1860,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 7/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 7/6 {
                         c'8
                         c'4
@@ -1906,7 +1906,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 7/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 7/8 {
                         c'16
                         c'8
@@ -1931,7 +1931,7 @@ class Tuplet(Container):
                 >>> print(format(measure))
                 {
                     \time 7/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 7/10 {
                         c'16
                         c'8
@@ -2033,7 +2033,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'4
                     d'8
@@ -2050,7 +2050,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 6/10 {
                     c'4
                     d'8
@@ -2125,7 +2125,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
                     d'8
@@ -2175,7 +2175,7 @@ class Tuplet(Container):
             ..  doctest::
 
                 >>> print(format(tuplet))
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     c'8
                     d'8

@@ -70,7 +70,7 @@ def test_selectiontools_Parentage_logical_voice_04():
     assert format(voice) == stringtools.normalize(
         r'''
         \new Voice \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
         } {
             c'8
             d'8
@@ -132,7 +132,7 @@ def test_selectiontools_Parentage_logical_voice_05():
     assert format(voice) == stringtools.normalize(
         r'''
         \context Voice = "foo" \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
         } {
             c'8
             d'8
@@ -262,7 +262,7 @@ def test_selectiontools_Parentage_logical_voice_07():
                     d'8
                 }
                 \context Voice = "soprano" \with {
-                    \override NoteHead #'color = #red
+                    \override NoteHead.color = #red
                 } {
                     e'8
                 }
@@ -272,7 +272,7 @@ def test_selectiontools_Parentage_logical_voice_07():
                     f'8
                 }
                 \context Voice = "soprano" \with {
-                    \override NoteHead #'color = #red
+                    \override NoteHead.color = #red
                 } {
                     g'8
                 }

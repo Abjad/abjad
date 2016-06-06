@@ -44,7 +44,7 @@ def test_scoretools_Tuplet__fix_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 8/3 {
             c'32
             d'32
@@ -57,7 +57,7 @@ def test_scoretools_Tuplet__fix_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 4/3 {
             c'16
             d'16
@@ -79,7 +79,7 @@ def test_scoretools_Tuplet__fix_03():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 5/12 {
             c'4
             d'4
@@ -92,7 +92,7 @@ def test_scoretools_Tuplet__fix_03():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 5/6 {
             c'8
             d'8

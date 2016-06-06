@@ -1552,7 +1552,7 @@ class Selector(AbjadValueObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #2
+                    \override TextScript.staff-padding = #2
                 } {
                     c'4
                         ^ \markup {
@@ -1631,7 +1631,7 @@ class Selector(AbjadValueObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #2
+                    \override TextScript.staff-padding = #2
                 } {
                     c'4
                         ^ \markup {
@@ -1710,7 +1710,7 @@ class Selector(AbjadValueObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #2
+                    \override TextScript.staff-padding = #2
                 } {
                     c'4
                         ^ \markup {

@@ -13,6 +13,8 @@ from abjad.tools import stringtools
     )
 class TestLaTeXDocumentHandler(unittest.TestCase):
 
+    maxDiff = None
+
     test_directory = os.path.dirname(__file__)
     assets_directory = os.path.join(test_directory, 'assets')
     source_path = os.path.join(
@@ -38,8 +40,8 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     with open(expected_path, 'r') as file_pointer:
         expected_contents = file_pointer.read()
     expected_asset_names = (
-        'lilypond-906b8a91ca49cb9688b4b0c3130a6af8.ly',
-        'lilypond-906b8a91ca49cb9688b4b0c3130a6af8.pdf',
+        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.ly',
+        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf',
         )
 
     def setUp(self):
@@ -89,7 +91,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             >>> note = Note(0, (1, 4))
             >>> show(note)
             \\end{lstlisting}
-            \\noindent\\includegraphics{assets/lilypond-906b8a91ca49cb9688b4b0c3130a6af8.pdf}
+            \\noindent\\includegraphics{assets/lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf}
             %%% ABJADBOOK END %%%
             ''',
             )

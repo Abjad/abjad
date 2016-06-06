@@ -16,7 +16,7 @@ def test_scoretools_NoteHeadInventory_append_01():
         <
             c'
             d'
-            \tweak #'style #'harmonic
+            \tweak style #'harmonic
             b'
         >4
         '''

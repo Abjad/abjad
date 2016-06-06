@@ -46,7 +46,7 @@ class TupletRhythmMaker(RhythmMaker):
                 }
                 {
                     \time 3/8
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
                         c'4.
                         c'4
@@ -102,7 +102,7 @@ class TupletRhythmMaker(RhythmMaker):
                 }
                 {
                     \time 3/8
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/4 {
                         c'4.
                         c'8
@@ -110,14 +110,14 @@ class TupletRhythmMaker(RhythmMaker):
                 }
                 {
                     \time 5/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 5/6 {
                         c'8.
                         r8.
                     }
                 }
                 {
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 5/8 {
                         c'4.
                         c'8
@@ -212,7 +212,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
                             c'4
@@ -267,7 +267,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
                             c'4.
                             c'8
@@ -275,14 +275,14 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 5/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/6 {
                             c'8.
                             r8.
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/8 {
                             c'4.
                             c'8
@@ -443,7 +443,7 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/9 {
                             c'8. [
                             c'8. ]
@@ -454,7 +454,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
                             c'8 [
@@ -511,7 +511,7 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/9 {
                             \set stemLeftBeamCount = #0
                             \set stemRightBeamCount = #1
@@ -530,7 +530,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
                             \set stemLeftBeamCount = #0
@@ -604,7 +604,7 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/9 {
                             c'8.
                             c'8.
@@ -615,7 +615,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
                             c'8
@@ -829,7 +829,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 6/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'8
                             c'2
@@ -896,7 +896,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 6/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 6/10 {
                             c'8
                             c'2
@@ -958,7 +958,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 6/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 6/10 {
                             c'8
                             c'2
@@ -1019,7 +1019,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 6/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 12/20 {
                             c'8
                             c'2
@@ -1080,7 +1080,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 6/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 24/40 {
                             c'8
                             c'2
@@ -1143,7 +1143,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 6/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'8
                             c'2
@@ -1204,7 +1204,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 6/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 12/20 {
                             c'8
                             c'2
@@ -1265,7 +1265,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 6/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'8
                             c'2
@@ -1451,7 +1451,7 @@ class TupletRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/6 {
                             c'16.
                             r8.
@@ -1504,7 +1504,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
                             c'4
@@ -1560,7 +1560,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
                             c'4.
                             c'8
@@ -1568,14 +1568,14 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 5/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/6 {
                             c'8.
                             r8.
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/8 {
                             c'4.
                             c'8
@@ -1685,7 +1685,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
                             c'4
                             c'4
@@ -1693,7 +1693,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 7/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 7/8 {
                             c'4
                             c'4
@@ -1791,7 +1791,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/2 {
                             c'8 [
                             c'8 ]
@@ -1799,7 +1799,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 7/16
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 7/4 {
                             c'8 [
                             c'8 ]
@@ -1838,27 +1838,27 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
                             r4
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
                             c'2
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             r4
                             c'4.
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/4 {
                             c'4
                             c'4
@@ -1897,7 +1897,7 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4.
                             r4
@@ -1909,7 +1909,7 @@ class TupletRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             r4
                             c'4.
@@ -1957,7 +1957,7 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4
                             c'4. ~
@@ -1972,7 +1972,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4
                             c'4. ~
@@ -2024,7 +2024,7 @@ class TupletRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4
                             c'4. ~
@@ -2037,7 +2037,7 @@ class TupletRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             c'4
                             c'4. ~

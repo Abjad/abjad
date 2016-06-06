@@ -89,7 +89,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
         r'''
         {
             \time 5/8
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 5/6 {
                 c'8
                 d'8

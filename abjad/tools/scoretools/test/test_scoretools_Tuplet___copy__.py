@@ -10,13 +10,13 @@ def test_scoretools_Tuplet___copy___01():
 
     assert format(tuplet_1) == stringtools.normalize(
         r'''
-        \override NoteHead #'color = #red
+        \override NoteHead.color = #red
         \times 2/3 {
             c'8
             d'8
             e'8
         }
-        \revert NoteHead #'color
+        \revert NoteHead.color
         '''
         )
 
@@ -24,10 +24,10 @@ def test_scoretools_Tuplet___copy___01():
 
     assert format(tuplet_2) == stringtools.normalize(
         r'''
-        \override NoteHead #'color = #red
+        \override NoteHead.color = #red
         \times 2/3 {
         }
-        \revert NoteHead #'color
+        \revert NoteHead.color
         '''
         )
 

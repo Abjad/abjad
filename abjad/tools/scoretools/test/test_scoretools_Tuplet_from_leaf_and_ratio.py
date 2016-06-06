@@ -36,7 +36,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
             c'64
             c'32
@@ -54,7 +54,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
             c'64
             c'32
@@ -73,7 +73,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
             c'128
             c'64
@@ -115,7 +115,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'32
             c'16
@@ -133,7 +133,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
             c'32
             c'16
@@ -240,7 +240,7 @@ def test_scoretools_Tuplet_from_leaf_and_ratio_03():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
             c'64.
             c'64.

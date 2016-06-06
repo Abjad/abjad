@@ -159,12 +159,12 @@ class MutationAgent(abctools.AbjadObject):
                 >>> print(format(staff))
                 \new Staff {
                     \time 3/4
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         c'4 \< \p
                         e'4
                     }
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         d'4
                         f'4 \f
@@ -208,12 +208,12 @@ class MutationAgent(abctools.AbjadObject):
                 >>> print(format(staff))
                 \new Staff {
                     \time 3/4
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         c'4 \< \p
                         e'4
                     }
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/2 {
                         d'4
                         f'4 \f
@@ -1376,7 +1376,7 @@ class MutationAgent(abctools.AbjadObject):
                     d'8. ~
                     \times 2/3 {
                         d'8. ~
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             d'16
                             e'8.
@@ -1412,7 +1412,7 @@ class MutationAgent(abctools.AbjadObject):
                     \times 2/3 {
                         d'8 ~
                         d'16 ~
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 3/5 {
                             d'16
                             e'8 ~
@@ -1560,12 +1560,12 @@ class MutationAgent(abctools.AbjadObject):
                     c'8 ~
                     c'8 ~
                     c'8
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         c'4.
                         r16
                     }
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         r16
                         c'4.
@@ -1590,14 +1590,14 @@ class MutationAgent(abctools.AbjadObject):
                 {
                     \time 6/4
                     c'4.
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         c'8. ~
                         c'8 ~
                         c'16
                         r16
                     }
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         r16
                         c'8 ~
@@ -1632,12 +1632,12 @@ class MutationAgent(abctools.AbjadObject):
                     c'8 ~
                     c'8 ~
                     c'8
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         c'4.
                         r16
                     }
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         r16
                         c'4.
@@ -1663,12 +1663,12 @@ class MutationAgent(abctools.AbjadObject):
                 {
                     \time 6/4
                     c'4.
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         c'4.
                         r16
                     }
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/7 {
                         r16
                         c'4.
@@ -1914,7 +1914,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> print(format(staff))
                 \new Staff {
                     c'8 (
-                    \tweak #'edge-height #'(0.7 . 0)
+                    \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         d'8
                     }
@@ -1949,7 +1949,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff {
-                    \tweak #'edge-height #'(0.7 . 0)
+                    \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         c'4 -\accent
                     }
@@ -1983,19 +1983,19 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(container))
                 {
-                    \tweak #'edge-height #'(0.7 . 0)
+                    \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         c'4 (
                     }
-                    \tweak #'edge-height #'(0.7 . 0)
+                    \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         d'4
                     }
-                    \tweak #'edge-height #'(0.7 . 0)
+                    \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         e'4
                     }
-                    \tweak #'edge-height #'(0.7 . 0)
+                    \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         f'4 )
                     }
@@ -2021,7 +2021,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> print(format(staff))
                 \new Staff {
                     c'8 (
-                    \tweak #'edge-height #'(0.7 . 0)
+                    \tweak edge-height #'(0.7 . 0)
                     \times 2/3 {
                         d'8 ~
                         d'32
@@ -2209,7 +2209,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'8 \< \p
                     e'8
@@ -2234,7 +2234,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'8 \< \p
                     e'16
@@ -2265,7 +2265,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'8 \< \p
                     e'8
@@ -2291,7 +2291,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'8 \< \p
                     e'16 \f
@@ -2322,7 +2322,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'8 \< \p
                     e'8
@@ -2348,7 +2348,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'8 \< \p
                     e'16
@@ -2381,7 +2381,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'8 \< \p
                     e'8
@@ -2408,7 +2408,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'8 \< \p
                     e'16 \f
@@ -2498,7 +2498,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'1 \< \p
                     d'1 \f
@@ -2519,7 +2519,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'2. ~ \< \p
                     c'4
@@ -2552,7 +2552,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     c'2. \< \p
                     c'4 \repeatTie

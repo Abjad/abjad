@@ -11,9 +11,9 @@ def test_lilypondproxytools_LilyPondGrobNameManager___delattr___01():
 
     assert format(note) == stringtools.normalize(
         r'''
-        \once \override Accidental #'color = #red
-        \once \override Beam #'positions = #'(-6 . -6)
-        \once \override Dots #'thicknes = #2
+        \once \override Accidental.color = #red
+        \once \override Beam.positions = #'(-6 . -6)
+        \once \override Dots.thicknes = #2
         c'4
         '''
         )
@@ -23,7 +23,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___delattr___01():
 
     assert format(note) == stringtools.normalize(
         r'''
-        \once \override Dots #'thicknes = #2
+        \once \override Dots.thicknes = #2
         c'4
         '''
         )

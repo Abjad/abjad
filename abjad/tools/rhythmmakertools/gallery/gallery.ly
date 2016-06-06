@@ -77,7 +77,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -88,7 +88,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -102,7 +102,7 @@
 				c'4 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -164,7 +164,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -187,7 +187,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -196,7 +196,7 @@
 				\time 3/8
 				c'4.
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -276,13 +276,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -293,14 +293,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16
@@ -313,13 +313,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -330,13 +330,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
@@ -347,13 +347,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -362,7 +362,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -415,7 +415,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -427,7 +427,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -441,7 +441,7 @@
 				c'2 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -526,7 +526,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -537,7 +537,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -551,7 +551,7 @@
 				c'4 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -604,7 +604,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -627,7 +627,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -636,7 +636,7 @@
 				\time 3/8
 				c'4.
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -716,13 +716,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -733,14 +733,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16 ~
@@ -753,13 +753,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -770,13 +770,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
@@ -787,13 +787,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
@@ -802,7 +802,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -855,7 +855,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -867,7 +867,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -881,7 +881,7 @@
 				c'2 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -966,7 +966,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -977,7 +977,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -991,7 +991,7 @@
 				c'4 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1044,7 +1044,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -1067,7 +1067,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -1076,7 +1076,7 @@
 				\time 3/8
 				c'4.
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1156,13 +1156,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -1173,14 +1173,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16
@@ -1193,13 +1193,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -1210,13 +1210,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. [
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
@@ -1227,13 +1227,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -1242,7 +1242,7 @@
 				\time 1/8
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1295,7 +1295,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -1307,7 +1307,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -1321,7 +1321,7 @@
 				c'2 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1405,7 +1405,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -1416,7 +1416,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -1430,7 +1430,7 @@
 				c'16 ~
 				c'4
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1483,7 +1483,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -1506,7 +1506,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -1515,7 +1515,7 @@
 				\time 3/8
 				c'4.
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1595,13 +1595,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -1612,14 +1612,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4
@@ -1632,13 +1632,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -1649,13 +1649,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
@@ -1666,13 +1666,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -1681,7 +1681,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1734,7 +1734,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -1746,7 +1746,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -1760,7 +1760,7 @@
 				c'16 ~
 				c'2
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1848,7 +1848,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -1859,7 +1859,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -1873,7 +1873,7 @@
 				c'16 ~
 				c'4
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -1926,7 +1926,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -1949,7 +1949,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -1958,7 +1958,7 @@
 				\time 3/8
 				c'4.
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2038,13 +2038,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -2055,14 +2055,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4 ~
@@ -2075,13 +2075,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -2092,13 +2092,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
@@ -2109,13 +2109,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
@@ -2124,7 +2124,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2177,7 +2177,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -2189,7 +2189,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -2203,7 +2203,7 @@
 				c'16 ~
 				c'2
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2291,7 +2291,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -2302,7 +2302,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -2316,7 +2316,7 @@
 				c'16 ~
 				c'4
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2369,7 +2369,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -2392,7 +2392,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -2401,7 +2401,7 @@
 				\time 3/8
 				c'4.
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2481,13 +2481,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -2498,14 +2498,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ] ~
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4
@@ -2518,13 +2518,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -2535,13 +2535,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. [
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
@@ -2552,13 +2552,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -2567,7 +2567,7 @@
 				\time 1/8
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2620,7 +2620,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -2632,7 +2632,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -2646,7 +2646,7 @@
 				c'16 ~
 				c'2
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2736,7 +2736,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -2750,7 +2750,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -2766,7 +2766,7 @@
 				c'8 ~
 				c'16 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2819,7 +2819,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -2852,7 +2852,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -2863,7 +2863,7 @@
 				c'8 ~
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -2943,13 +2943,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -2960,14 +2960,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16
@@ -2981,13 +2981,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -2999,13 +2999,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
@@ -3016,13 +3016,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -3031,7 +3031,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -3087,7 +3087,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -3102,7 +3102,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -3122,7 +3122,7 @@
 				c'8 ~
 				c'16 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -3216,7 +3216,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -3230,7 +3230,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -3246,7 +3246,7 @@
 				c'8 ~
 				c'16 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -3299,7 +3299,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -3332,7 +3332,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -3343,7 +3343,7 @@
 				c'8 ~
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -3423,13 +3423,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -3440,14 +3440,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16 ~
@@ -3461,13 +3461,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -3479,13 +3479,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
@@ -3496,13 +3496,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
@@ -3511,7 +3511,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -3567,7 +3567,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -3582,7 +3582,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -3602,7 +3602,7 @@
 				c'8 ~
 				c'16 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -3692,7 +3692,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -3706,7 +3706,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -3722,7 +3722,7 @@
 				c'8 ~
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -3775,7 +3775,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -3808,7 +3808,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -3819,7 +3819,7 @@
 				c'8 ~
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -3899,13 +3899,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -3916,14 +3916,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4
@@ -3937,13 +3937,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -3955,13 +3955,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
@@ -3972,13 +3972,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -3987,7 +3987,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -4043,7 +4043,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -4058,7 +4058,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -4078,7 +4078,7 @@
 				c'8 ~
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -4172,7 +4172,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -4186,7 +4186,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -4202,7 +4202,7 @@
 				c'8 ~
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -4255,7 +4255,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -4288,7 +4288,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -4299,7 +4299,7 @@
 				c'8 ~
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -4379,13 +4379,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -4396,14 +4396,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4 ~
@@ -4417,13 +4417,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -4435,13 +4435,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
@@ -4452,13 +4452,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
@@ -4467,7 +4467,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -4523,7 +4523,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -4538,7 +4538,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -4558,7 +4558,7 @@
 				c'8 ~
 				c'8 ]
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -4652,7 +4652,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -4666,7 +4666,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -4682,7 +4682,7 @@
 				c'8 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -4735,7 +4735,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -4768,7 +4768,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -4779,7 +4779,7 @@
 				c'8 ~
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -4859,13 +4859,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -4876,14 +4876,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16
@@ -4897,13 +4897,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -4915,13 +4915,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
@@ -4932,13 +4932,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -4947,7 +4947,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5003,7 +5003,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -5018,7 +5018,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -5038,7 +5038,7 @@
 				c'8 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5136,7 +5136,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -5150,7 +5150,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -5166,7 +5166,7 @@
 				c'8 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5219,7 +5219,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -5252,7 +5252,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -5263,7 +5263,7 @@
 				c'8 ~
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5343,13 +5343,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -5360,14 +5360,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 					c'16 ~
@@ -5381,13 +5381,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -5399,13 +5399,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
@@ -5416,13 +5416,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
@@ -5431,7 +5431,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5487,7 +5487,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -5502,7 +5502,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -5522,7 +5522,7 @@
 				c'8 ~
 				c'16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5616,7 +5616,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -5630,7 +5630,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -5646,7 +5646,7 @@
 				c'8 ~
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5699,7 +5699,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -5732,7 +5732,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -5743,7 +5743,7 @@
 				c'8 ~
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5823,13 +5823,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -5840,14 +5840,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4
@@ -5861,13 +5861,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4
 				}
@@ -5879,13 +5879,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8.
 				}
@@ -5896,13 +5896,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -5911,7 +5911,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -5967,7 +5967,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -5982,7 +5982,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -6002,7 +6002,7 @@
 				c'8 ~
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -6100,7 +6100,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -6114,7 +6114,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -6130,7 +6130,7 @@
 				c'8 ~
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -6183,7 +6183,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -6216,7 +6216,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -6227,7 +6227,7 @@
 				c'8 ~
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -6307,13 +6307,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -6324,14 +6324,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 ~
 					c'4 ~
@@ -6345,13 +6345,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'4 ~
 				}
@@ -6363,13 +6363,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'8. ~
 				}
@@ -6380,13 +6380,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
@@ -6395,7 +6395,7 @@
 				\time 1/8
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -6451,7 +6451,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -6466,7 +6466,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -6486,7 +6486,7 @@
 				c'8 ~
 				c'8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -6566,7 +6566,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -6577,7 +6577,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -6591,7 +6591,7 @@
 				r4
 				r16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -6653,7 +6653,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					r8
 				}
@@ -6676,7 +6676,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					r8
 				}
@@ -6685,7 +6685,7 @@
 				\time 3/8
 				r4.
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -6765,13 +6765,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -6782,14 +6782,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 					r16
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 					r16
@@ -6802,13 +6802,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -6819,13 +6819,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					r8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					r8.
 				}
@@ -6836,13 +6836,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					r8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					r8
 				}
@@ -6851,7 +6851,7 @@
 				\time 1/8
 				r8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -6904,7 +6904,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -6916,7 +6916,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -6930,7 +6930,7 @@
 				r2
 				r16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7014,7 +7014,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -7025,7 +7025,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -7039,7 +7039,7 @@
 				r16
 				r4
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7092,7 +7092,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					r8
 				}
@@ -7115,7 +7115,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					r8
 				}
@@ -7124,7 +7124,7 @@
 				\time 3/8
 				r4.
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7204,13 +7204,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -7221,14 +7221,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r16
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r16
 					r4
@@ -7241,13 +7241,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -7258,13 +7258,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					r8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					r8.
 				}
@@ -7275,13 +7275,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					r8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					r8
 				}
@@ -7290,7 +7290,7 @@
 				\time 1/8
 				r8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7343,7 +7343,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -7355,7 +7355,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -7369,7 +7369,7 @@
 				r16
 				r2
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7459,7 +7459,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -7473,7 +7473,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -7489,7 +7489,7 @@
 				r8
 				r16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7542,7 +7542,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					r8
 				}
@@ -7575,7 +7575,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					r8
 				}
@@ -7586,7 +7586,7 @@
 				r8
 				r8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7666,13 +7666,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -7683,14 +7683,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 					r16
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 					r16
@@ -7704,13 +7704,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -7722,13 +7722,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					r8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					r8.
 				}
@@ -7739,13 +7739,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					r8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					r8
 				}
@@ -7754,7 +7754,7 @@
 				\time 1/8
 				r8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7810,7 +7810,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -7825,7 +7825,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -7845,7 +7845,7 @@
 				r8
 				r16
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -7935,7 +7935,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -7949,7 +7949,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -7965,7 +7965,7 @@
 				r8
 				r8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -8018,7 +8018,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					r8
 				}
@@ -8051,7 +8051,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					r8
 				}
@@ -8062,7 +8062,7 @@
 				r8
 				r8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -8142,13 +8142,13 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -8159,14 +8159,14 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r16
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r16
 					r4
@@ -8180,13 +8180,13 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					r4
 				}
@@ -8198,13 +8198,13 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					r8.
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					r8.
 				}
@@ -8215,13 +8215,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					r8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					r8
 				}
@@ -8230,7 +8230,7 @@
 				\time 1/8
 				r8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -8286,7 +8286,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -8301,7 +8301,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					r4
 				}
@@ -8321,7 +8321,7 @@
 				r8
 				r8
 				\bar "|."
-				\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+				\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 			}
 		}
 	>>
@@ -8413,7 +8413,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ]
@@ -8427,7 +8427,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ]
@@ -8451,7 +8451,7 @@
 					c'16
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -8514,7 +8514,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -8557,7 +8557,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -8569,7 +8569,7 @@
 					c'8
 					c'8 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -8650,7 +8650,7 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'8 [
 					c'8
@@ -8658,7 +8658,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'8 [
 					c'8
@@ -8675,7 +8675,7 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -8685,7 +8685,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -8706,14 +8706,14 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ]
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ]
@@ -8728,7 +8728,7 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'16 [
 					c'16
@@ -8736,7 +8736,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'16 [
 					c'16
@@ -8753,13 +8753,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -8769,7 +8769,7 @@
 				{
 					c'8
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -8832,7 +8832,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -8853,7 +8853,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -8884,7 +8884,7 @@
 					c'16
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -9000,7 +9000,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					\set stemLeftBeamCount = #0
 					\set stemRightBeamCount = #1
@@ -9018,7 +9018,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					\set stemLeftBeamCount = #0
 					\set stemRightBeamCount = #1
@@ -9064,7 +9064,7 @@
 					\set stemRightBeamCount = #0
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -9118,7 +9118,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					\set stemLeftBeamCount = #0
 					\set stemRightBeamCount = #1
@@ -9193,7 +9193,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #1
@@ -9213,7 +9213,7 @@
 					\set stemRightBeamCount = #0
 					c'8 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -9294,7 +9294,7 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					\set stemLeftBeamCount = #0
 					\set stemRightBeamCount = #1
@@ -9308,7 +9308,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #1
@@ -9337,7 +9337,7 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #2
@@ -9357,7 +9357,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #2
@@ -9398,7 +9398,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #1
@@ -9409,7 +9409,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #1
@@ -9432,7 +9432,7 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #2
@@ -9446,7 +9446,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #2
@@ -9475,7 +9475,7 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #1
@@ -9483,7 +9483,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					\set stemLeftBeamCount = #1
 					\set stemRightBeamCount = #1
@@ -9497,7 +9497,7 @@
 					\set stemRightBeamCount = #0
 					c'8 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -9578,7 +9578,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -9617,7 +9617,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -9684,7 +9684,7 @@
 					\set stemRightBeamCount = #0
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -9782,7 +9782,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8
 					c'8
@@ -9796,7 +9796,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8
 					c'8
@@ -9820,7 +9820,7 @@
 					c'16
 					c'16
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -9874,7 +9874,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -9917,7 +9917,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -9929,7 +9929,7 @@
 					c'8
 					c'8
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -10010,7 +10010,7 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'8
 					c'8
@@ -10018,7 +10018,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'8
 					c'8
@@ -10035,7 +10035,7 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16
 					c'16
@@ -10045,7 +10045,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16
 					c'16
@@ -10066,14 +10066,14 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8
 					c'8
@@ -10088,7 +10088,7 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'16
 					c'16
@@ -10096,7 +10096,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'16
 					c'16
@@ -10113,13 +10113,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -10129,7 +10129,7 @@
 				{
 					c'8
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -10192,7 +10192,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -10213,7 +10213,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4
 				}
@@ -10244,7 +10244,7 @@
 					c'16
 					c'16
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -10342,7 +10342,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ] ~
@@ -10356,7 +10356,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ] ~
@@ -10380,7 +10380,7 @@
 					c'16
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -10434,7 +10434,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -10477,7 +10477,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8 ~
 				}
@@ -10489,7 +10489,7 @@
 					c'8
 					c'8 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -10570,7 +10570,7 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'8 [
 					c'8
@@ -10578,7 +10578,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'8 [
 					c'8
@@ -10595,7 +10595,7 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -10605,7 +10605,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -10626,14 +10626,14 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ] ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ] ~
@@ -10648,7 +10648,7 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'16 [
 					c'16
@@ -10656,7 +10656,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'16 [
 					c'16
@@ -10673,13 +10673,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8 ~
 				}
@@ -10689,7 +10689,7 @@
 				{
 					c'8
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -10752,7 +10752,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -10773,7 +10773,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'4 ~
 				}
@@ -10804,7 +10804,7 @@
 					c'16
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -10905,7 +10905,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ]
@@ -10922,7 +10922,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ]
@@ -10946,7 +10946,7 @@
 					c'16
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -11000,7 +11000,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -11043,7 +11043,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'8
 				}
@@ -11055,7 +11055,7 @@
 					c'8
 					c'8 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -11136,7 +11136,7 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'8 [
 					c'8
@@ -11144,7 +11144,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'8 [
 					c'8
@@ -11161,7 +11161,7 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -11171,7 +11171,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -11192,14 +11192,14 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ]
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'8 [
 					c'8 ]
@@ -11214,7 +11214,7 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'16 [
 					c'16
@@ -11222,7 +11222,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'16 [
 					c'16
@@ -11239,13 +11239,13 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'8
 				}
@@ -11255,7 +11255,7 @@
 				{
 					c'8
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -11318,7 +11318,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'8 [
 					c'8 ]
@@ -11340,7 +11340,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'8 [
 					c'8 ]
@@ -11372,7 +11372,7 @@
 					c'16
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -11477,7 +11477,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -11494,7 +11494,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -11529,7 +11529,7 @@
 					c'32
 					c'32 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -11583,7 +11583,7 @@
 		} {
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'16 [
 					c'16 ]
@@ -11642,7 +11642,7 @@
 			}
 			{
 				\time 1/11
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/11 {
 					c'16 [
 					c'16 ]
@@ -11658,7 +11658,7 @@
 					c'16
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -11739,7 +11739,7 @@
 		} {
 			{
 				\time 3/15
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'16 [
 					c'16
@@ -11750,7 +11750,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/15 {
 					c'16 [
 					c'16
@@ -11773,7 +11773,7 @@
 			}
 			{
 				\time 5/24
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'32 [
 					c'32
@@ -11788,7 +11788,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'32 [
 					c'32
@@ -11819,7 +11819,7 @@
 			}
 			{
 				\time 2/12
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -11828,7 +11828,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 2/3 {
 					c'16 [
 					c'16
@@ -11847,7 +11847,7 @@
 			}
 			{
 				\time 3/28
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'32 [
 					c'32
@@ -11858,7 +11858,7 @@
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/7 {
 					c'32 [
 					c'32
@@ -11881,14 +11881,14 @@
 			}
 			{
 				\time 1/9
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'16 [
 					c'16 ]
 				}
 			}
 			{
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 8/9 {
 					c'16 [
 					c'16 ]
@@ -11900,7 +11900,7 @@
 					c'16 [
 					c'16 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}
@@ -11972,7 +11972,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'8 [
 					c'8 ]
@@ -12003,7 +12003,7 @@
 			}
 			{
 				\time 1/5
-				\tweak #'edge-height #'(0.7 . 0)
+				\tweak edge-height #'(0.7 . 0)
 				\times 4/5 {
 					c'8 [
 					c'8 ]
@@ -12053,7 +12053,7 @@
 					c'32
 					c'32 ]
 					\bar "|."
-					\override Staff.BarLine #'extra-offset = #'(1.6 . 0)
+					\override Staff.BarLine.extra-offset = #'(1.6 . 0)
 				}
 			}
 		}

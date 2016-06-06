@@ -319,7 +319,7 @@ def make_leaves(
             >>> print(format(staff))
             \new Staff {
                 \time 5/14
-                \tweak #'edge-height #'(0.7 . 0)
+                \tweak edge-height #'(0.7 . 0)
                 \times 4/7 {
                     f'2 ~
                     f'8
@@ -352,8 +352,8 @@ def make_leaves(
             >>> print(format(staff))
             \new Staff {
                 \time 5/14
-                \tweak #'text #tuplet-number::calc-fraction-text
-                \tweak #'edge-height #'(0.7 . 0)
+                \tweak text #tuplet-number::calc-fraction-text
+                \tweak edge-height #'(0.7 . 0)
                 \times 8/7 {
                     f'4 ~
                     f'16

@@ -76,7 +76,7 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         self._errored = False
         input_file_contents = input_file_contents or ()
         if isinstance(input_file_contents, str):
-            input_file_contents = input_file_contents.splitlines()
+            input_file_contents = input_file_contents.rstrip().splitlines()
         self._input_file_contents = tuple(input_file_contents)
         self._input_file_path = input_file_path
         self._latex_root_directory = latex_root_directory
@@ -344,7 +344,8 @@ class LaTeXDocumentHandler(abctools.AbjadObject):
         return options
 
     @classmethod
-    def from_path(cls,
+    def from_path(
+        cls,
         input_file_path=None,
         assets_directory=None,
         latex_root_directory=None,

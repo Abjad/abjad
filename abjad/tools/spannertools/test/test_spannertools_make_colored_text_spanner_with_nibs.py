@@ -20,27 +20,27 @@ def test_spannertools_make_colored_text_spanner_with_nibs_01():
                 d'8
             }
             {
-                \override TextSpanner #'bound-details #'left #'text = \markup {
+                \override TextSpanner.bound-details.left-broken.text = ##f
+                \override TextSpanner.bound-details.left.text = \markup {
                     \draw-line
                         #'(0 . -1)
                     }
-                \override TextSpanner #'bound-details #'left-broken #'text = ##f
-                \override TextSpanner #'bound-details #'right #'text = \markup {
+                \override TextSpanner.bound-details.right-broken.text = ##f
+                \override TextSpanner.bound-details.right.text = \markup {
                     \draw-line
                         #'(0 . -1)
                     }
-                \override TextSpanner #'bound-details #'right-broken #'text = ##f
-                \override TextSpanner #'color = #red
-                \override TextSpanner #'dash-fraction = #1
-                \override TextSpanner #'staff-padding = #2
-                \override TextSpanner #'thickness = #1.5
+                \override TextSpanner.color = #red
+                \override TextSpanner.dash-fraction = #1
+                \override TextSpanner.staff-padding = #2
+                \override TextSpanner.thickness = #1.5
                 e'8 \startTextSpan
                 f'8 \stopTextSpan
-                \revert TextSpanner #'bound-details
-                \revert TextSpanner #'color
-                \revert TextSpanner #'dash-fraction
-                \revert TextSpanner #'staff-padding
-                \revert TextSpanner #'thickness
+                \revert TextSpanner.bound-details
+                \revert TextSpanner.color
+                \revert TextSpanner.dash-fraction
+                \revert TextSpanner.staff-padding
+                \revert TextSpanner.thickness
             }
             {
                 g'8

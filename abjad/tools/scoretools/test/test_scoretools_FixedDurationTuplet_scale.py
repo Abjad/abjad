@@ -111,7 +111,7 @@ def test_scoretools_FixedDurationTuplet_scale_06():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 8/9 {
             c'16
             d'16
@@ -132,7 +132,7 @@ def test_scoretools_FixedDurationTuplet_scale_07():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
             c'16
             d'16
@@ -204,7 +204,7 @@ def test_scoretools_FixedDurationTuplet_scale_10():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 8/15 {
             c'4
             c'4.

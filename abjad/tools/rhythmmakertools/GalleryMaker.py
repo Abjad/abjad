@@ -65,7 +65,7 @@ class GalleryMaker(AbjadValueObject):
         score.add_final_bar_line()
         selection = score.select_leaves(start=-1)
         last_leaf = selection[0]
-        string = "override Staff.BarLine #'extra-offset = #'(1.6 . 0)"
+        string = "override Staff.BarLine.extra-offset = #'(1.6 . 0)"
         command = indicatortools.LilyPondCommand(
             string,
             'after',

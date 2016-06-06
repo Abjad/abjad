@@ -18,7 +18,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_01():
         r'''
         \new Score <<
             \new Staff {
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     d''8
                     c''8
@@ -74,7 +74,7 @@ def test_agenttools_InspectionAgent_select_vertical_moment_02():
         r'''
         \new Score <<
             \new Staff {
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     d''8
                     c''8

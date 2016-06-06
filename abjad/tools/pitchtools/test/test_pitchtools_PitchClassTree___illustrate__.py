@@ -15,11 +15,11 @@ def test_pitchtools_PitchClassTree___illustrate___01():
     assert format(score) == stringtools.normalize(
         r'''
         \new Score \with {
-            \override BarLine #'stencil = ##f
-            \override Flag #'stencil = ##f
-            \override Stem #'stencil = ##f
-            \override TextScript #'staff-padding = #3
-            \override TimeSignature #'stencil = ##f
+            \override BarLine.stencil = ##f
+            \override Flag.stencil = ##f
+            \override Stem.stencil = ##f
+            \override TextScript.staff-padding = #3
+            \override TimeSignature.stencil = ##f
         } <<
             \new Staff {
                 \new Voice \with {

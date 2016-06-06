@@ -30,7 +30,7 @@ def test_rhythmmakertools_TieSpecifier_01():
                 c'8 [
                 c'8. ~ ]
             }
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 5/6 {
                 c'16 [
                 c'8

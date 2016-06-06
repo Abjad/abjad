@@ -22,12 +22,12 @@ def test_indicatortools_LilyPondComment_before_01():
         % Voice before comments here.
         % More voice before comments.
         \new Voice {
-            \override Beam #'thickness = #3
+            \override Beam.thickness = #3
             c'8 [
             d'8
             e'8
             f'8 ]
-            \revert Beam #'thickness
+            \revert Beam.thickness
         }
         '''
         )
@@ -52,7 +52,7 @@ def test_indicatortools_LilyPondComment_before_02():
         r'''
         % Leaf comments before here.
         % More comments before.
-        \once \override Beam #'thickness = #3
+        \once \override Beam.thickness = #3
         c'8
         '''
         )

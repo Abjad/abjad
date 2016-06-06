@@ -127,7 +127,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
         {
             \time 5/6
             \scaleDurations #'(2 . 3) {
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'4
                     d'4
@@ -156,14 +156,14 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
         {
             \time 11/15
             \scaleDurations #'(8 . 15) {
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     d'4
                     e'4
                     f'4
                     g'4
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 5/7 {
                     a'8
                     b'8
@@ -198,7 +198,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
         {
             \time 5/6
             \scaleDurations #'(2 . 3) {
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'4
                     cs'4
@@ -227,7 +227,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
         {
             \time 11/14
             \scaleDurations #'(4 . 7) {
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 7/10 {
                     c'4
                     cs'4
@@ -299,15 +299,15 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
                     f'8
                     fs'8
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 7/6 {
                     g'4
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 7/6 {
                     af'4
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 7/6 {
                     a'4
                 }
@@ -412,7 +412,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_07():
         {
             \time 8/9
             \scaleDurations #'(8 . 9) {
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     c'2
                     cs'2
@@ -654,7 +654,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_14():
     assert format(container) == stringtools.normalize(
         r'''
         {
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
                 c'4
@@ -701,7 +701,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_15():
     assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
                 c'4
@@ -748,7 +748,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_16():
     assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
                 c'4
@@ -790,7 +790,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_17():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
             c'4
@@ -830,7 +830,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_18():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
             d'4
@@ -871,7 +871,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_19():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
             d'4
@@ -910,7 +910,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_20():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
             d'8
             e'8
@@ -945,7 +945,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_21():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 4/5 {
             d'8
             e'8
@@ -984,11 +984,11 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             c'2
             cs'2
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'4
                 ef'4
@@ -1025,11 +1025,11 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_23():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             c'2
             cs'2
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'4
                 ef'4

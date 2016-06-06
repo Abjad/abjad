@@ -11,6 +11,8 @@ from abjad.tools import stringtools
     )
 class TestLaTeXDocumentHandler(unittest.TestCase):
 
+    maxDiff = None
+
     def test_abjadextract_1(self):
         input_file_contents = [
             '',

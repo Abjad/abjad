@@ -27,11 +27,11 @@ def make_text_alignment_example_lilypond_file(music=None):
                 \Score
                 \remove Bar_number_engraver
                 \remove Default_bar_line_engraver
-                \override Clef #'transparent = ##t
-                \override SpacingSpanner #'strict-grace-spacing = ##t
-                \override SpacingSpanner #'strict-note-spacing = ##t
-                \override SpacingSpanner #'uniform-stretching = ##t
-                \override TextScript #'staff-padding = #4
+                \override Clef.transparent = ##t
+                \override SpacingSpanner.strict-grace-spacing = ##t
+                \override SpacingSpanner.strict-note-spacing = ##t
+                \override SpacingSpanner.uniform-stretching = ##t
+                \override TextScript.staff-padding = #4
                 proportionalNotationDuration = #(ly:make-moment 1 32)
             }
         }

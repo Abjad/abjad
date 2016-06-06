@@ -42,7 +42,7 @@ def test_rhythmmakertools_BeamSpecifier_beam_each_division_01():
             }
             {
                 \time 5/16
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 5/7 {
                     c'32 [
                     c'32

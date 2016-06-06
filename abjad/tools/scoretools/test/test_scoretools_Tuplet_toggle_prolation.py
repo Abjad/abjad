@@ -9,7 +9,7 @@ def test_scoretools_Tuplet_toggle_prolation_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 4/3 {
             c'8
             d'8
@@ -53,7 +53,7 @@ def test_scoretools_Tuplet_toggle_prolation_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 4/3 {
             c'16
             d'16

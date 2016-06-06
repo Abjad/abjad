@@ -9,10 +9,10 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
 
     r'''
     \new Score \with {
-        \override BarLine #'stencil = ##f
-        \override BarNumber #'transparent = ##t
-        \override SpanBar #'stencil = ##f
-        \override TimeSignature #'stencil = ##f
+        \override BarLine.stencil = ##f
+        \override BarNumber.transparent = ##t
+        \override SpanBar.stencil = ##f
+        \override TimeSignature.stencil = ##f
     } <<
         \new PianoStaff <<
             \context Staff = "treble" {
@@ -48,10 +48,10 @@ def test_scoretools_make_piano_sketch_staff_from_leaves_01():
     assert format(score) == stringtools.normalize(
         r'''
         \new Score \with {
-            \override BarLine #'stencil = ##f
-            \override BarNumber #'transparent = ##t
-            \override SpanBar #'stencil = ##f
-            \override TimeSignature #'stencil = ##f
+            \override BarLine.stencil = ##f
+            \override BarNumber.transparent = ##t
+            \override SpanBar.stencil = ##f
+            \override TimeSignature.stencil = ##f
         } <<
             \new PianoStaff <<
                 \context Staff = "treble" {

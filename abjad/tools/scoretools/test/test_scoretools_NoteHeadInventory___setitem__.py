@@ -34,7 +34,7 @@ def test_scoretools_NoteHeadInventory___setitem___03():
     assert format(chord) == stringtools.normalize(
         r'''
         <
-            \tweak #'color #red
+            \tweak color #red
             ef'
             cs''
             f''

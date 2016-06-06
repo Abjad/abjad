@@ -18,7 +18,7 @@ def test_scoretools_Staff___copy___01():
     assert format(staff_2) == stringtools.normalize(
         r'''
         \new Staff \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
             tupletFullLength = ##t
         } {
         }

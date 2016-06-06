@@ -41,8 +41,8 @@ class ContextBlock(Block):
                 \consists Horizontal_bracket_engraver
                 \accepts FluteUpperVoice
                 \accepts FluteLowerVoice
-                \override Beam #'positions = #'(-4 . -4)
-                \override Stem #'stem-end-position = #-6
+                \override Beam.positions = #'(-4 . -4)
+                \override Stem.stem-end-position = #-6
                 autoBeaming = ##f
                 tupletFullLength = ##t
                 \accidentalStyle dodecaphonic

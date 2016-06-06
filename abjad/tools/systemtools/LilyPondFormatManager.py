@@ -416,13 +416,13 @@ class LilyPondFormatManager(AbjadObject):
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
             grob_attribute)
         # change #'bound-details #'left #'text to #'bound-details
-        grob_attribute = grob_attribute.split(' ')[0]
+        grob_attribute = grob_attribute.split('.')[0]
         context_prefix = ''
         if context_name is not None:
             context_prefix = stringtools.to_upper_camel_case(context_name)
             context_prefix += '.'
         # format revert string
-        result = r'\revert {}{} {}'
+        result = r'\revert {}{}.{}'
         result = result.format(context_prefix, grob_name, grob_attribute)
         # return revert string
         return result
@@ -440,7 +440,7 @@ class LilyPondFormatManager(AbjadObject):
             >>> print(manager.report_component_format_contributions(staff[0]))
             slot 1:
                 grob overrides:
-                    \once \override NoteHead #'color = #red
+                    \once \override NoteHead.color = #red
             slot 3:
             slot 4:
                 leaf body:

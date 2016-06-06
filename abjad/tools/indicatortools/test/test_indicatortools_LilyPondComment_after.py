@@ -20,12 +20,12 @@ def test_indicatortools_LilyPondComment_after_01():
     assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
-            \override Beam #'thickness = #3
+            \override Beam.thickness = #3
             c'8 [
             d'8
             e'8
             f'8 ]
-            \revert Beam #'thickness
+            \revert Beam.thickness
         }
         % Voice after comments here.
         % More voice after comments.
@@ -50,7 +50,7 @@ def test_indicatortools_LilyPondComment_after_02():
 
     assert format(note) == stringtools.normalize(
         r'''
-        \once \override Beam #'thickness = #3
+        \once \override Beam.thickness = #3
         c'8
         % Leaf comments after here.
         % More comments after.

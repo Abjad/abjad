@@ -67,7 +67,7 @@ def test_selectiontools_VerticalMoment___eq___02():
         r'''
         \new Score <<
             \new Staff {
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 4/3 {
                     d''8
                     c''8

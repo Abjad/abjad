@@ -1592,7 +1592,7 @@ class IterationAgent(abctools.AbjadObject):
                 >>> print(format(score))
                 \new Score <<
                     \new Staff {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 4/3 {
                             d''8
                             c''8

@@ -58,19 +58,19 @@ def test_agenttools_MutationAgent_scale_03():
     assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'4
             }
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'4
             }
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 e'4
             }
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 f'4
             }
@@ -91,22 +91,22 @@ def test_agenttools_MutationAgent_scale_04():
     assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8 ~
                 c'32
             }
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'8 ~
                 d'32
             }
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 e'8 ~
                 e'32
             }
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 f'8 ~
                 f'32
@@ -130,7 +130,7 @@ def test_agenttools_MutationAgent_scale_05():
         r'''
         \new Voice {
             c'8.
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 3/4 {
                 d'8
                 e'8

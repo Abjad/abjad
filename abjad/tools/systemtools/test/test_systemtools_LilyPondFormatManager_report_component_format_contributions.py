@@ -29,9 +29,9 @@ def test_systemtools_LilyPondFormatManager_report_component_format_contributions
             comments:
                 % textual information before
             grob overrides:
-                \once \override NoteHead #'color = #red
-                \once \override NoteHead #'style = #'cross
-                \once \override Stem #'color = #red
+                \once \override NoteHead.color = #red
+                \once \override NoteHead.style = #'cross
+                \once \override Stem.color = #red
         slot 3:
         slot 4:
             leaf body:

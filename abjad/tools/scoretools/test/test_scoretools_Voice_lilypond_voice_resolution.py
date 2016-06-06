@@ -23,7 +23,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
     assert format(voice) == stringtools.normalize(
         r'''
         \new Voice \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
         } {
             c'8
             d'8
@@ -62,7 +62,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_02():
     assert format(voice) == stringtools.normalize(
         r'''
         \context Voice = "foo" \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
         } {
             c'8
             d'8
@@ -156,7 +156,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
                     e'8
                 }
                 \context Voice = "soprano" \with {
-                    \override NoteHead #'color = #red
+                    \override NoteHead.color = #red
                 } {
                     f'8
                     g'8
@@ -168,7 +168,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
                     b'8
                 }
                 \context Voice = "soprano" \with {
-                    \override NoteHead #'color = #red
+                    \override NoteHead.color = #red
                 } {
                     c''8
                     d''8

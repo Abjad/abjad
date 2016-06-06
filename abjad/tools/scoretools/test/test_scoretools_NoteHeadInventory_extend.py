@@ -20,9 +20,9 @@ def test_scoretools_NoteHeadInventory_extend_01():
         r'''
         <
             ef'
-            \tweak #'color #blue
+            \tweak color #blue
             cs''
-            \tweak #'color #green
+            \tweak color #green
             f''
         >4
         '''

@@ -54,18 +54,18 @@ class BowContactSpanner(Spanner):
 
             >>> print(format(staff))
             \new Staff \with {
-                \override BarLine #'transparent = ##t
-                \override Dots #'staff-position = #-8
-                \override Flag #'Y-offset = #-8.5
-                \override Glissando #'bound-details #'left #'padding = #1.5
-                \override Glissando #'bound-details #'right #'padding = #1.5
-                \override Glissando #'thickness = #2
-                \override Script #'staff-padding = #3
-                \override StaffSymbol #'transparent = ##t
-                \override Stem #'direction = #down
-                \override Stem #'length = #8
-                \override Stem #'stem-begin-position = #-9
-                \override TimeSignature #'stencil = ##f
+                \override BarLine.transparent = ##t
+                \override Dots.staff-position = #-8
+                \override Flag.Y-offset = #-8.5
+                \override Glissando.bound-details.left.padding = #1.5
+                \override Glissando.bound-details.right.padding = #1.5
+                \override Glissando.thickness = #2
+                \override Script.staff-padding = #3
+                \override StaffSymbol.transparent = ##t
+                \override Stem.direction = #down
+                \override Stem.length = #8
+                \override Stem.stem-begin-position = #-9
+                \override TimeSignature.stencil = ##f
             } {
                 \clef "percussion"
                 \once \override Glissando.style = #'dotted-line
@@ -167,18 +167,18 @@ class BowContactSpanner(Spanner):
 
             >>> print(format(staff))
             \new Staff \with {
-                \override BarLine #'transparent = ##t
-                \override Dots #'staff-position = #-8
-                \override Flag #'Y-offset = #-8.5
-                \override Glissando #'bound-details #'left #'padding = #1.5
-                \override Glissando #'bound-details #'right #'padding = #1.5
-                \override Glissando #'thickness = #2
-                \override Script #'staff-padding = #3
-                \override StaffSymbol #'transparent = ##t
-                \override Stem #'direction = #down
-                \override Stem #'length = #8
-                \override Stem #'stem-begin-position = #-9
-                \override TimeSignature #'stencil = ##f
+                \override BarLine.transparent = ##t
+                \override Dots.staff-position = #-8
+                \override Flag.Y-offset = #-8.5
+                \override Glissando.bound-details.left.padding = #1.5
+                \override Glissando.bound-details.right.padding = #1.5
+                \override Glissando.thickness = #2
+                \override Script.staff-padding = #3
+                \override StaffSymbol.transparent = ##t
+                \override Stem.direction = #down
+                \override Stem.length = #8
+                \override Stem.stem-begin-position = #-9
+                \override TimeSignature.stencil = ##f
             } {
                 \clef "percussion"
                 \once \override NoteHead.style = #'cross

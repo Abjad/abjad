@@ -121,7 +121,7 @@ class NoteHeadInventory(TypedList):
 
                 >>> print(format(chord))
                 <
-                    \tweak #'color #red
+                    \tweak color #red
                     e'
                     cs''
                     f''
@@ -146,7 +146,7 @@ class NoteHeadInventory(TypedList):
 
                 >>> print(format(chord))
                 <
-                    \tweak #'color #red
+                    \tweak color #red
                     e'
                     cs''
                     f''

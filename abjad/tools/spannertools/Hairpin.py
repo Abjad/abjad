@@ -77,7 +77,7 @@ class Hairpin(Spanner):
 
             >>> print(format(staff))
             \new Staff {
-                \once \override Hairpin #'circled-tip = ##t
+                \once \override Hairpin.circled-tip = ##t
                 c'4 \<
                 d'4
                 e'4
@@ -100,7 +100,7 @@ class Hairpin(Spanner):
 
             >>> print(format(staff))
             \new Staff {
-                \once \override Hairpin #'circled-tip = ##t
+                \once \override Hairpin.circled-tip = ##t
                 c'4 \> \f
                 d'4
                 e'4

@@ -180,7 +180,7 @@ class FixedDurationTuplet(Tuplet):
 
             >>> tuplet.target_duration = Duration(5, 8)
             >>> print(format(tuplet))
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 5/3 {
                 c'8
                 d'8

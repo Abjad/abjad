@@ -53,25 +53,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 {
                     \time 5/8
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'2 ~
@@ -85,7 +85,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                 }
                         }
                     \times 1/1 {
-                        \once \override Beam #'grow-direction = #right
+                        \once \override Beam.grow-direction = #right
                         c'16 * 61/32 [
                         c'16 * 115/64
                         c'16 * 49/32
@@ -95,29 +95,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 13/16
                         c'16 * 25/32 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
                 {
                     \time 3/8
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'4.
@@ -130,36 +130,36 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                 }
                         }
                     \times 1/1 {
-                        \once \override Beam #'grow-direction = #right
+                        \once \override Beam.grow-direction = #right
                         c'16 * 117/64 [
                         c'16 * 99/64
                         c'16 * 69/64
                         c'16 * 13/16
                         c'16 * 47/64 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
                 {
                     \time 5/8
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'2 ~
@@ -173,7 +173,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                 }
                         }
                     \times 1/1 {
-                        \once \override Beam #'grow-direction = #right
+                        \once \override Beam.grow-direction = #right
                         c'16 * 61/32 [
                         c'16 * 115/64
                         c'16 * 49/32
@@ -183,29 +183,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 13/16
                         c'16 * 25/32 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
                 {
                     \time 3/8
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'4.
@@ -218,14 +218,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                 }
                         }
                     \times 1/1 {
-                        \once \override Beam #'grow-direction = #right
+                        \once \override Beam.grow-direction = #right
                         c'16 * 117/64 [
                         c'16 * 99/64
                         c'16 * 69/64
                         c'16 * 13/16
                         c'16 * 47/64 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
             }
 
@@ -266,25 +266,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
             \new RhythmicStaff {
                 {
                     \time 5/8
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'2 ~
@@ -298,7 +298,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                 }
                         }
                     \times 1/1 {
-                        \once \override Beam #'grow-direction = #left
+                        \once \override Beam.grow-direction = #left
                         c'16 * 45/64 [
                         c'16 * 23/32
                         c'16 * 25/32
@@ -309,29 +309,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 103/64
                         c'16 * 113/64 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
                 {
                     \time 3/8
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'4.
@@ -344,7 +344,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                 }
                         }
                     \times 1/1 {
-                        \once \override Beam #'grow-direction = #left
+                        \once \override Beam.grow-direction = #left
                         c'16 * 5/8 [
                         c'16 * 43/64
                         c'16 * 51/64
@@ -352,29 +352,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 85/64
                         c'16 * 25/16 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
                 {
                     \time 5/8
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'2 ~
@@ -388,7 +388,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                 }
                         }
                     \times 1/1 {
-                        \once \override Beam #'grow-direction = #left
+                        \once \override Beam.grow-direction = #left
                         c'16 * 45/64 [
                         c'16 * 23/32
                         c'16 * 25/32
@@ -399,29 +399,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 103/64
                         c'16 * 113/64 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
                 {
                     \time 3/8
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'4.
@@ -434,7 +434,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                 }
                         }
                     \times 1/1 {
-                        \once \override Beam #'grow-direction = #left
+                        \once \override Beam.grow-direction = #left
                         c'16 * 5/8 [
                         c'16 * 43/64
                         c'16 * 51/64
@@ -442,7 +442,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                         c'16 * 85/64
                         c'16 * 25/16 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
             }
 
@@ -853,25 +853,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -885,7 +885,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -895,29 +895,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -930,36 +930,36 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -973,7 +973,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -983,29 +983,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -1018,14 +1018,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -1067,25 +1067,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1124,29 +1124,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             \set stemRightBeamCount = #1
                             c'16 * 25/32
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -1175,29 +1175,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             \set stemRightBeamCount = #1
                             c'16 * 47/64
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1236,29 +1236,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             \set stemRightBeamCount = #1
                             c'16 * 25/32
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -1287,7 +1287,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             \set stemRightBeamCount = #0
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -1332,25 +1332,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1373,29 +1373,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -1414,29 +1414,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 47/64
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1459,29 +1459,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -1500,7 +1500,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 47/64
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -1551,25 +1551,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1583,7 +1583,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -1593,29 +1593,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -1628,36 +1628,36 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1671,7 +1671,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -1681,29 +1681,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -1716,14 +1716,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -1769,25 +1769,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1801,7 +1801,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -1811,7 +1811,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
@@ -1819,25 +1819,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1851,7 +1851,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -1861,7 +1861,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
@@ -1914,25 +1914,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -1946,7 +1946,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -1956,29 +1956,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -1991,36 +1991,36 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -2034,7 +2034,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -2044,29 +2044,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -2079,14 +2079,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -2135,25 +2135,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -2167,7 +2167,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -2177,29 +2177,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -2212,7 +2212,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #left
+                            \once \override Beam.grow-direction = #left
                             c'16 * 5/8 [
                             c'16 * 43/64
                             c'16 * 51/64
@@ -2220,29 +2220,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 85/64
                             c'16 * 25/16 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -2256,7 +2256,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -2266,29 +2266,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -2301,7 +2301,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #left
+                            \once \override Beam.grow-direction = #left
                             c'16 * 5/8 [
                             c'16 * 43/64
                             c'16 * 51/64
@@ -2309,7 +2309,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 85/64
                             c'16 * 25/16 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -2351,25 +2351,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -2383,7 +2383,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -2393,29 +2393,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -2428,14 +2428,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 1/8
@@ -2508,25 +2508,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -2540,7 +2540,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \override Staff.Stem #'stemlet-length = #0.75
+                            \override Staff.Stem.stemlet-length = #0.75
                             r16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -2549,31 +2549,31 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 57/64
                             c'16 * 13/16
                             c'16 * 25/32 ]
-                            \revert Staff.Stem #'stemlet-length
+                            \revert Staff.Stem.stemlet-length
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -2586,39 +2586,39 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #left
-                            \override Staff.Stem #'stemlet-length = #0.75
+                            \once \override Beam.grow-direction = #left
+                            \override Staff.Stem.stemlet-length = #0.75
                             c'16 * 5/8 [
                             c'16 * 43/64
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
                             c'16 * 25/16 ]
-                            \revert Staff.Stem #'stemlet-length
+                            \revert Staff.Stem.stemlet-length
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -2632,8 +2632,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
-                            \override Staff.Stem #'stemlet-length = #0.75
+                            \once \override Beam.grow-direction = #right
+                            \override Staff.Stem.stemlet-length = #0.75
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -2642,31 +2642,31 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 57/64
                             c'16 * 13/16
                             c'16 * 25/32 ]
-                            \revert Staff.Stem #'stemlet-length
+                            \revert Staff.Stem.stemlet-length
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -2679,17 +2679,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #left
-                            \override Staff.Stem #'stemlet-length = #0.75
+                            \once \override Beam.grow-direction = #left
+                            \override Staff.Stem.stemlet-length = #0.75
                             c'16 * 5/8 [
                             c'16 * 43/64
                             c'16 * 51/64
                             c'16 * 65/64
                             c'16 * 85/64
                             r16 * 25/16 ]
-                            \revert Staff.Stem #'stemlet-length
+                            \revert Staff.Stem.stemlet-length
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -2743,25 +2743,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -2775,8 +2775,8 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
-                            \override Staff.Stem #'stemlet-length = #0.75
+                            \once \override Beam.grow-direction = #right
+                            \override Staff.Stem.stemlet-length = #0.75
                             c'16 * 61/32 [
                             c'16 * 115/64
                             r16 * 49/32
@@ -2785,31 +2785,31 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             r16 * 57/64
                             c'16 * 13/16
                             c'16 * 25/32 ]
-                            \revert Staff.Stem #'stemlet-length
+                            \revert Staff.Stem.stemlet-length
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -2822,38 +2822,38 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \override Staff.Stem #'stemlet-length = #0.75
+                            \override Staff.Stem.stemlet-length = #0.75
                             r16 * 5/8 [
                             c'16 * 43/64
                             c'16 * 51/64
                             r16 * 65/64
                             c'16 * 85/64
                             c'16 * 25/16 ]
-                            \revert Staff.Stem #'stemlet-length
+                            \revert Staff.Stem.stemlet-length
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -2867,7 +2867,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \override Staff.Stem #'stemlet-length = #0.75
+                            \override Staff.Stem.stemlet-length = #0.75
                             r16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -2876,31 +2876,31 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 57/64
                             r16 * 13/16
                             c'16 * 25/32 ]
-                            \revert Staff.Stem #'stemlet-length
+                            \revert Staff.Stem.stemlet-length
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -2913,17 +2913,17 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #left
-                            \override Staff.Stem #'stemlet-length = #0.75
+                            \once \override Beam.grow-direction = #left
+                            \override Staff.Stem.stemlet-length = #0.75
                             c'16 * 5/8 [
                             r16 * 43/64
                             c'16 * 51/64
                             c'16 * 65/64
                             r16 * 85/64
                             c'16 * 25/16 ]
-                            \revert Staff.Stem #'stemlet-length
+                            \revert Staff.Stem.stemlet-length
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -2980,25 +2980,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -3012,7 +3012,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3022,29 +3022,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -3057,36 +3057,36 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -3100,7 +3100,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3110,29 +3110,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -3145,14 +3145,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -3196,25 +3196,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -3228,7 +3228,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3238,29 +3238,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ~ ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -3273,36 +3273,36 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ~ ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -3316,7 +3316,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3326,29 +3326,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ~ ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -3361,14 +3361,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -3416,25 +3416,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -3448,7 +3448,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3458,29 +3458,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ~ ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -3493,36 +3493,36 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -3536,7 +3536,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3546,29 +3546,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ~ ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -3581,14 +3581,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -3641,25 +3641,25 @@ class AccelerandoRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -3673,7 +3673,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3683,29 +3683,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -3718,36 +3718,36 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 5/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'2 ~
@@ -3761,7 +3761,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3771,29 +3771,29 @@ class AccelerandoRhythmMaker(RhythmMaker):
                             c'16 * 13/16
                             c'16 * 25/32 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                     {
                         \time 3/8
-                        \override TupletNumber #'text = \markup {
+                        \override TupletNumber.text = \markup {
                             \scale
                                 #'(0.75 . 0.75)
                                 \score
                                     {
                                         \new Score \with {
-                                            \override SpacingSpanner #'spacing-increment = #0.5
+                                            \override SpacingSpanner.spacing-increment = #0.5
                                             proportionalNotationDuration = ##f
                                         } <<
                                             \new RhythmicStaff \with {
                                                 \remove Time_signature_engraver
                                                 \remove Staff_symbol_engraver
-                                                \override Stem #'direction = #up
-                                                \override Stem #'length = #5
-                                                \override TupletBracket #'bracket-visibility = ##t
-                                                \override TupletBracket #'direction = #up
-                                                \override TupletBracket #'padding = #1.25
-                                                \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                \override Stem.direction = #up
+                                                \override Stem.length = #5
+                                                \override TupletBracket.bracket-visibility = ##t
+                                                \override TupletBracket.direction = #up
+                                                \override TupletBracket.padding = #1.25
+                                                \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                 tupletFullLength = ##t
                                             } {
                                                 c'4.
@@ -3806,14 +3806,14 @@ class AccelerandoRhythmMaker(RhythmMaker):
                                     }
                             }
                         \times 1/1 {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
                             c'16 * 13/16
                             c'16 * 47/64 ]
                         }
-                        \revert TupletNumber #'text
+                        \revert TupletNumber.text
                     }
                 }
 
@@ -3858,7 +3858,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     {
                         \time 5/8
                         {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3872,7 +3872,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     {
                         \time 3/8
                         {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64
@@ -3883,7 +3883,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     {
                         \time 5/8
                         {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 61/32 [
                             c'16 * 115/64
                             c'16 * 49/32
@@ -3897,7 +3897,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
                     {
                         \time 3/8
                         {
-                            \once \override Beam #'grow-direction = #right
+                            \once \override Beam.grow-direction = #right
                             c'16 * 117/64 [
                             c'16 * 99/64
                             c'16 * 69/64

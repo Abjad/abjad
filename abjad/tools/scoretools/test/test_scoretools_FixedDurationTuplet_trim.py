@@ -10,8 +10,8 @@ def test_scoretools_FixedDurationTuplet_trim_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak text #tuplet-number::calc-fraction-text
+        \tweak edge-height #'(0.7 . 0)
         \times 4/3 {
             d'8
             e'8
@@ -29,8 +29,8 @@ def test_scoretools_FixedDurationTuplet_trim_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak text #tuplet-number::calc-fraction-text
+        \tweak edge-height #'(0.7 . 0)
         \times 4/3 {
             c'8
             e'8
@@ -54,7 +54,7 @@ def test_scoretools_FixedDurationTuplet_trim_04():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 4/3 {
             c'8
             d'8
@@ -73,8 +73,8 @@ def test_scoretools_FixedDurationTuplet_trim_05():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak text #tuplet-number::calc-fraction-text
+        \tweak edge-height #'(0.7 . 0)
         \times 4/3 {
             d'8
             e'8
@@ -92,8 +92,8 @@ def test_scoretools_FixedDurationTuplet_trim_06():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak text #tuplet-number::calc-fraction-text
+        \tweak edge-height #'(0.7 . 0)
         \times 4/3 {
             c'8
             e'8

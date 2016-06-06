@@ -32,10 +32,10 @@ class PitchRangeInventory(TypedList):
             >>> f(lilypond_file.score_block)
             \score {
                 \new Score \with {
-                    \override BarLine #'stencil = ##f
-                    \override Glissando #'thickness = #2
-                    \override SpanBar #'stencil = ##f
-                    \override TimeSignature #'stencil = ##f
+                    \override BarLine.stencil = ##f
+                    \override Glissando.thickness = #2
+                    \override SpanBar.stencil = ##f
+                    \override TimeSignature.stencil = ##f
                 } <<
                     \new PianoStaff <<
                         \context Staff = "treble" {

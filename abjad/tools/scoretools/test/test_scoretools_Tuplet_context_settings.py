@@ -12,7 +12,7 @@ def test_scoretools_Tuplet_context_settings_01():
     assert format(tuplet) == stringtools.normalize(
         r'''
         \set Score.beamExceptions = #'()
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             c'8
             d'8

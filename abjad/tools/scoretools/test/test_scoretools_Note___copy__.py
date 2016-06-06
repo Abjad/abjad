@@ -99,7 +99,7 @@ def test_scoretools_Note___copy___05():
         \grace {
             d'16
         }
-        \once \override NoteHead #'color = #red
+        \once \override NoteHead.color = #red
         c'4 -\staccato
         '''
         )
@@ -128,7 +128,7 @@ def test_scoretools_Note___copy___06():
             \grace {
                 d'16
             }
-            \once \override NoteHead #'color = #red
+            \once \override NoteHead.color = #red
             c'8 -\staccato [
             c'8
             e'8

@@ -12,7 +12,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/7 {
             c'16
             c'8
@@ -31,7 +31,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'16
             c'16
@@ -51,7 +51,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_03():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 7/12 {
             r8
             c'8.
@@ -88,7 +88,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_05():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'8
             c'4
@@ -107,7 +107,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_06():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'8
             c'4
@@ -126,7 +126,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_07():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
             c'4
             c'2
@@ -145,7 +145,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_08():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
             c'4
             c'2
@@ -164,7 +164,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_09():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
             c'16
             c'8
@@ -183,7 +183,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_10():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
             c'8
             c'4
@@ -202,7 +202,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_11():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'8
             c'4
@@ -221,7 +221,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_12():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'4
             c'2
@@ -240,7 +240,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_13():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'2
             c'1
@@ -259,7 +259,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_14():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'4
             c'2
@@ -278,7 +278,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_15():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'8
             c'4
@@ -297,7 +297,7 @@ def test_scoretools_Tuplet_from_nonreduced_ratio_and_nonreduced_fraction_16():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'16
             c'8
