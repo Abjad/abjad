@@ -167,7 +167,7 @@ def make_floating_time_signature_lilypond_file(music=None):
     vector = schemetools.make_spacing_vector(0, 0, 12, 0)
     lilypond_file.paper_block.system_system_spacing = vector
 
-    #lilypond_file.layout_block.indent = 0
+    lilypond_file.layout_block.indent = 0
     lilypond_file.layout_block.ragged_right = True
     command = indicatortools.LilyPondCommand('accidentalStyle forget')
     lilypond_file.layout_block.items.append(command)
