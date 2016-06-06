@@ -168,11 +168,9 @@ class SphinxDocumentHandler(abctools.AbjadObject):
                 view_box = svg_element.getAttribute('viewBox')
                 view_box = [float(_) for _ in view_box.split()]
                 if delete_attributes:
-                    if len(svg_element.attributes) and \
-                        'height' in svg_element.attributes:
+                    if svg_element.attributes.get('height', None):
                         del(svg_element.attributes['height'])
-                    if len(svg_element.attributes) and \
-                        'width' in svg_element.attributes:
+                    if svg_element.attributes.get('width', None):
                         del(svg_element.attributes['width'])
                 else:
                     height = '{}pt'.format(int(view_box[-1] * 0.6))
