@@ -147,7 +147,7 @@ class RhythmMaker(AbjadValueObject):
         else:
             return False
 
-    def _apply_division_masks(self, selections, rotation):
+    def _apply_division_masks(self, selections, rotation=None):
         from abjad.tools import rhythmmakertools
         if not self.division_masks:
             return selections
