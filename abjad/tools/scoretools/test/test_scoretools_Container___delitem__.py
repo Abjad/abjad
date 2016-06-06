@@ -158,7 +158,7 @@ def test_scoretools_Container___delitem___07():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             c'8 [
             e'8 ]

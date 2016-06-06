@@ -10,8 +10,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_01():
     tie = spannertools.Tie()
     attach(tie, voice[:2])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 ~
@@ -24,8 +23,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_01():
 
     voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 ~
@@ -49,8 +47,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_02():
     tie = spannertools.Tie()
     attach(tie, voice[2:])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 ~
@@ -63,8 +60,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_02():
 
     voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 ~
@@ -86,8 +82,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_03():
 
     voice.select_leaves()[1:3]._attach_tie_spanner_to_leaf_pair()
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8

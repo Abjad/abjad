@@ -84,11 +84,11 @@ def test_scoretools_Chord_note_heads_07():
     assert format(chord) == stringtools.normalize(
         r'''
         <
-            \tweak #'color #red
+            \tweak color #red
             ef'
-            \tweak #'color #green
+            \tweak color #green
             cs''
-            \tweak #'color #blue
+            \tweak color #blue
             f''
         >4
         '''

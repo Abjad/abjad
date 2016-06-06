@@ -116,8 +116,8 @@ def test_custom_score_template_class_02():
                 \name CustomVoice
                 \type Engraver_group
                 \alias Voice
-                \override NoteHead #'color = #green
-                \override Stem #'color = #green
+                \override NoteHead.color = #green
+                \override Stem.color = #green
             }
             \context {
                 \Staff
@@ -125,7 +125,7 @@ def test_custom_score_template_class_02():
                 \type Engraver_group
                 \alias Staff
                 \accepts CustomVoice
-                \override StaffSymbol #'color = #red
+                \override StaffSymbol.color = #red
             }
             \context {
                 \Score

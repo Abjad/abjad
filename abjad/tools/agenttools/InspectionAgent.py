@@ -785,14 +785,14 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> print(format(container))
                 {
-                    \override NoteHead #'color = #red
-                    \override NoteHead #'style = #'harmonic
+                    \override NoteHead.color = #red
+                    \override NoteHead.style = #'harmonic
                     c'8
                     d'8
                     e'8
                     f'8
-                    \revert NoteHead #'color
-                    \revert NoteHead #'style
+                    \revert NoteHead.color
+                    \revert NoteHead.style
                 }
 
             ::
@@ -803,11 +803,11 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> print(report)
                 {
-                    \override NoteHead #'color = #red
-                    \override NoteHead #'style = #'harmonic
+                    \override NoteHead.color = #red
+                    \override NoteHead.style = #'harmonic
                     %%% 4 components omitted %%%
-                    \revert NoteHead #'color
-                    \revert NoteHead #'style
+                    \revert NoteHead.color
+                    \revert NoteHead.style
                 }
 
         Returns string.

@@ -20,8 +20,7 @@ def test_scoretools_Score_add_final_bar_line_01():
     >>
     '''
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

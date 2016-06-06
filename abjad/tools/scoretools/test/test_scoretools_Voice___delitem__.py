@@ -14,8 +14,7 @@ def test_scoretools_Voice___delitem___01():
         f'8 ]
         ''')
 
-    systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando
@@ -31,8 +30,7 @@ def test_scoretools_Voice___delitem___01():
     container = voice[1]
     del(voice[1:2])
 
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             c'8 [ \glissando

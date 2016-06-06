@@ -54,7 +54,7 @@ def test_scoretools_Chord___copy___04():
     assert format(chord_1) == stringtools.normalize(
         r'''
         <
-            \tweak #'color #red
+            \tweak color #red
             c'
             e'
             g'
@@ -65,7 +65,7 @@ def test_scoretools_Chord___copy___04():
     assert format(chord_2) == stringtools.normalize(
         r'''
         <
-            \tweak #'color #red
+            \tweak color #red
             c'
             e'
             g'

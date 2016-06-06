@@ -17,13 +17,12 @@ def test_scoretools_Voice___copy___01():
     set_(voice_1).tuplet_full_length = True
     voice_2 = copy.copy(voice_1)
 
-    assert systemtools.TestManager.compare(
-        voice_2,
+    assert format(voice_2) == stringtools.normalize(
         r'''
         \context Voice = "SopranoVoice" \with {
             \remove Forbid_line_break_engraver
             \consists Time_signature_engraver
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
             tupletFullLength = ##t
         } {
         }
@@ -39,8 +38,7 @@ def test_scoretools_Voice___copy___02():
     voice_1.name = 'SkipVoice'
     voice_1.is_nonsemantic = True
 
-    assert systemtools.TestManager.compare(
-        voice_1,
+    assert format(voice_1) == stringtools.normalize(
         r'''
         \context Voice = "SkipVoice" {
             s8
@@ -53,8 +51,7 @@ def test_scoretools_Voice___copy___02():
 
     voice_2 = copy.copy(voice_1)
 
-    assert systemtools.TestManager.compare(
-        voice_2,
+    assert format(voice_2) == stringtools.normalize(
         r'''
         \context Voice = "SkipVoice" {
         }

@@ -10,6 +10,8 @@ from abjad.tools import abjadbooktools
     )
 class TestLaTeXDocumentHandler_invalid(unittest.TestCase):
 
+    maxDiff = None
+
     def test_invalid_source_1(self):
         input_file_contents = [
             '<abjad>',

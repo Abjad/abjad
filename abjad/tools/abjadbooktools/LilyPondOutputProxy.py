@@ -48,7 +48,7 @@ class LilyPondOutputProxy(ImageOutputProxy):
     ::
 
         >>> proxy.as_latex(relative_output_directory='assets')
-        ['\\noindent\\includegraphics{assets/lilypond-1b096a6d9cb9b88d4b5b3218adde56fb.pdf}']
+        ['\\noindent\\includegraphics{assets/lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.pdf}']
 
     '''
 
@@ -176,14 +176,14 @@ class LilyPondOutputProxy(ImageOutputProxy):
                     \context {
                         \Score
                         \remove Bar_number_engraver
-                        \override SpacingSpanner #'strict-grace-spacing = ##t
-                        \override SpacingSpanner #'strict-note-spacing = ##t
-                        \override SpacingSpanner #'uniform-stretching = ##t
-                        \override TupletBracket #'bracket-visibility = ##t
-                        \override TupletBracket #'minimum-length = #3
-                        \override TupletBracket #'padding = #2
-                        \override TupletBracket #'springs-and-rods = #ly:spanner::set-spacing-rods
-                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                        \override SpacingSpanner.strict-grace-spacing = ##t
+                        \override SpacingSpanner.strict-note-spacing = ##t
+                        \override SpacingSpanner.uniform-stretching = ##t
+                        \override TupletBracket.bracket-visibility = ##t
+                        \override TupletBracket.minimum-length = #3
+                        \override TupletBracket.padding = #2
+                        \override TupletBracket.springs-and-rods = #ly:spanner::set-spacing-rods
+                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
                         proportionalNotationDuration = #(ly:make-moment 1 24)
                         tupletFullLength = ##t
                     }

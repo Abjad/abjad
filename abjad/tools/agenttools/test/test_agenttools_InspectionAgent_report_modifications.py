@@ -19,15 +19,15 @@ def test_agenttools_InspectionAgent_report_modifications_01():
         r'''
         % Example voice
         \new Voice \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
         } {
             #(set-accidental-style 'forget)
-            \override Beam #'thickness = #3
+            \override Beam.thickness = #3
             c'8 [
             d'8
             e'8
             f'8 ]
-            \revert Beam #'thickness
+            \revert Beam.thickness
         }
         '''
         )
@@ -38,7 +38,7 @@ def test_agenttools_InspectionAgent_report_modifications_01():
         r'''
         % Example voice
         \new Voice \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
         } {
             #(set-accidental-style 'forget)
             %%% 4 components omitted %%%
@@ -62,16 +62,16 @@ def test_agenttools_InspectionAgent_report_modifications_02():
     assert format(tuplet) == stringtools.normalize(
         r'''
         % Example tuplet
-        \override NoteHead #'color = #red
+        \override NoteHead.color = #red
         \times 2/3 {
             #(set-accidental-style 'forget)
-            \override Beam #'thickness = #3
+            \override Beam.thickness = #3
             c'8 [
             d'8
             e'8 ]
-            \revert Beam #'thickness
+            \revert Beam.thickness
         }
-        \revert NoteHead #'color
+        \revert NoteHead.color
         '''
         )
 
@@ -80,11 +80,11 @@ def test_agenttools_InspectionAgent_report_modifications_02():
     assert format(result) == stringtools.normalize(
         r'''
         % Example tuplet
-        \override NoteHead #'color = #red
+        \override NoteHead.color = #red
         \times 2/3 {
             #(set-accidental-style 'forget)
             %%% 3 components omitted %%%
         }
-        \revert NoteHead #'color
+        \revert NoteHead.color
         '''
         )

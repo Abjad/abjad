@@ -23,8 +23,7 @@ def test_scoretools_Measure_append_02():
     measure.append('r')
 
     assert not measure.is_misfilled
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 4/4

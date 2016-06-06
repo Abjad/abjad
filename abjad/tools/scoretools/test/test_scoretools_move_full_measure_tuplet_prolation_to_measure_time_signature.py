@@ -11,8 +11,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/12
@@ -39,8 +38,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 15/80
@@ -68,8 +66,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 21/28
@@ -99,8 +96,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 15/24
@@ -132,8 +128,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     measure = Measure((2, 8), [])
     measure.append(r"\times 2/3 { \times 2/3 { c'16 d'16 e'16 } f'8 g'8 }")
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 2/8
@@ -153,8 +148,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/12
@@ -184,7 +178,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     r'''
     {
         \time 5/16
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 5/6 {
             c'8
             d'8
@@ -210,8 +204,7 @@ def test_scoretools_move_full_measure_tuplet_prolation_to_measure_time_signature
     '''
 
     assert inspect_(measure).is_well_formed()
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 15/48

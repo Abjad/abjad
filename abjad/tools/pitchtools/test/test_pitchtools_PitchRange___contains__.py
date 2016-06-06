@@ -208,9 +208,9 @@ def test_pitchtools_PitchRange___contains___15():
             \set Staff.shortInstrumentName = \markup { Fl. }
             c'4
             d'4
-            \once \override NoteHead #'style = #'cross
+            \once \override NoteHead.style = #'cross
             c4
-            \once \override NoteHead #'style = #'cross
+            \once \override NoteHead.style = #'cross
             d4
         }
         '''

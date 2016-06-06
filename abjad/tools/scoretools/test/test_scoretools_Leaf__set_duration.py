@@ -138,7 +138,7 @@ def test_scoretools_Leaf__set_duration_04():
         r'''
         \new Voice {
             c'8 [
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'8 ~
                 d'32 ]
@@ -178,7 +178,7 @@ def test_scoretools_Leaf__set_duration_05():
         r'''
         \new Voice {
             c'8 [
-            \tweak #'edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 d'8 ]
             }

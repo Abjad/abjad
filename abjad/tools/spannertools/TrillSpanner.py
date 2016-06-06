@@ -210,7 +210,7 @@ class TrillSpanner(Spanner):
 
                 >>> print(format(staff))
                 \new Staff {
-                    \once \override TrillPitchHead #'stencil = #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
+                    \once \override TrillPitchHead.stencil = #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
                     \pitchedTrill
                     c'8 \startTrillSpan d'
                     d'8

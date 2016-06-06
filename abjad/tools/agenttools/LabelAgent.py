@@ -124,25 +124,25 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> print(format(measure))
                 {
-                    \override Accidental #'color = #red
-                    \override Beam #'color = #red
-                    \override Dots #'color = #red
-                    \override NoteHead #'color = #red
-                    \override Rest #'color = #red
-                    \override Stem #'color = #red
-                    \override TupletBracket #'color = #red
-                    \override TupletNumber #'color = #red
+                    \override Accidental.color = #red
+                    \override Beam.color = #red
+                    \override Dots.color = #red
+                    \override NoteHead.color = #red
+                    \override Rest.color = #red
+                    \override Stem.color = #red
+                    \override TupletBracket.color = #red
+                    \override TupletNumber.color = #red
                     \time 2/8
                     c'8
                     d'8
-                    \revert Accidental #'color
-                    \revert Beam #'color
-                    \revert Dots #'color
-                    \revert NoteHead #'color
-                    \revert Rest #'color
-                    \revert Stem #'color
-                    \revert TupletBracket #'color
-                    \revert TupletNumber #'color
+                    \revert Accidental.color
+                    \revert Beam.color
+                    \revert Dots.color
+                    \revert NoteHead.color
+                    \revert Rest.color
+                    \revert Stem.color
+                    \revert TupletBracket.color
+                    \revert TupletNumber.color
                 }
 
         Returns none.
@@ -187,21 +187,21 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff {
-                    \once \override Accidental #'color = #red
-                    \once \override Beam #'color = #red
-                    \once \override Dots #'color = #red
-                    \once \override NoteHead #'color = #red
-                    \once \override Stem #'color = #red
+                    \once \override Accidental.color = #red
+                    \once \override Beam.color = #red
+                    \once \override Dots.color = #red
+                    \once \override NoteHead.color = #red
+                    \once \override Stem.color = #red
                     cs'8. [
-                    \once \override Dots #'color = #red
-                    \once \override Rest #'color = #red
+                    \once \override Dots.color = #red
+                    \once \override Rest.color = #red
                     r8.
                     s8.
-                    \once \override Accidental #'color = #red
-                    \once \override Beam #'color = #red
-                    \once \override Dots #'color = #red
-                    \once \override NoteHead #'color = #red
-                    \once \override Stem #'color = #red
+                    \once \override Accidental.color = #red
+                    \once \override Beam.color = #red
+                    \once \override Dots.color = #red
+                    \once \override NoteHead.color = #red
+                    \once \override Stem.color = #red
                     <c' cs' a'>8. ]
                 }
 
@@ -230,15 +230,15 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> print(format(chord))
                 <
-                    \tweak #'color #red
+                    \tweak color #red
                     c''
-                    \tweak #'color #red
+                    \tweak color #red
                     d''
-                    \tweak #'color #green
+                    \tweak color #green
                     fs''
-                    \tweak #'color #green
+                    \tweak color #green
                     a''
-                    \tweak #'color #blue
+                    \tweak color #blue
                     b''
                 >4
 
@@ -255,7 +255,7 @@ class LabelAgent(abctools.AbjadObject):
             ..  doctest::
 
                 >>> print(format(note))
-                \once \override NoteHead #'color = #red
+                \once \override NoteHead.color = #red
                 c'4
 
         ..  container:: example
@@ -281,31 +281,31 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff {
-                    \once \override NoteHead #'color = #(x11-color 'red)
+                    \once \override NoteHead.color = #(x11-color 'red)
                     c'8
-                    \once \override NoteHead #'color = #(x11-color 'MediumBlue)
+                    \once \override NoteHead.color = #(x11-color 'MediumBlue)
                     cs'8
-                    \once \override NoteHead #'color = #(x11-color 'orange)
+                    \once \override NoteHead.color = #(x11-color 'orange)
                     d'8
-                    \once \override NoteHead #'color = #(x11-color 'LightSlateBlue)
+                    \once \override NoteHead.color = #(x11-color 'LightSlateBlue)
                     ds'8
-                    \once \override NoteHead #'color = #(x11-color 'ForestGreen)
+                    \once \override NoteHead.color = #(x11-color 'ForestGreen)
                     e'8
-                    \once \override NoteHead #'color = #(x11-color 'MediumOrchid)
+                    \once \override NoteHead.color = #(x11-color 'MediumOrchid)
                     f'8
-                    \once \override NoteHead #'color = #(x11-color 'firebrick)
+                    \once \override NoteHead.color = #(x11-color 'firebrick)
                     fs'8
-                    \once \override NoteHead #'color = #(x11-color 'DeepPink)
+                    \once \override NoteHead.color = #(x11-color 'DeepPink)
                     g'8
-                    \once \override NoteHead #'color = #(x11-color 'DarkOrange)
+                    \once \override NoteHead.color = #(x11-color 'DarkOrange)
                     gs'8
-                    \once \override NoteHead #'color = #(x11-color 'IndianRed)
+                    \once \override NoteHead.color = #(x11-color 'IndianRed)
                     a'8
-                    \once \override NoteHead #'color = #(x11-color 'CadetBlue)
+                    \once \override NoteHead.color = #(x11-color 'CadetBlue)
                     as'8
-                    \once \override NoteHead #'color = #(x11-color 'SeaGreen)
+                    \once \override NoteHead.color = #(x11-color 'SeaGreen)
                     b'8
-                    \once \override NoteHead #'color = #(x11-color 'red)
+                    \once \override NoteHead.color = #(x11-color 'red)
                     c''8
                 }
 
@@ -1046,7 +1046,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #2
+                    \override TextScript.staff-padding = #2
                 } {
                     <c' bf'>8
                         ^ \markup {
@@ -1087,7 +1087,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #2
+                    \override TextScript.staff-padding = #2
                 } {
                     <c' bf'>8
                     <g' a'>4
@@ -1128,7 +1128,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #2
+                    \override TextScript.staff-padding = #2
                 } {
                     <c' bf'>8
                         ^ \markup {
@@ -1161,7 +1161,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #2
+                    \override TextScript.staff-padding = #2
                 } {
                     <c' bf'>8
                         ^ \markup {
@@ -1210,7 +1210,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #2
+                    \override TextScript.staff-padding = #2
                 } {
                     \times 2/3 {
                         c'8
@@ -1286,7 +1286,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript.staff-padding = #4
                 } {
                     c'4 ^ \markup { +aug15 }
                     cs'''4 ^ \markup { -M9 }
@@ -1316,7 +1316,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript.staff-padding = #4
                 } {
                     c'4 ^ \markup { +aug8 }
                     cs'''4 ^ \markup { -M2 }
@@ -1346,7 +1346,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript.staff-padding = #4
                 } {
                     c'4 ^ \markup { +25 }
                     cs'''4 ^ \markup { -14 }
@@ -1377,7 +1377,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript.staff-padding = #4
                 } {
                     c'4 ^ \markup { +1 }
                     cs'''4 ^ \markup { -2 }
@@ -1408,7 +1408,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript.staff-padding = #4
                 } {
                     c'4 ^ \markup { 1 }
                     cs'''4 ^ \markup { 2 }
@@ -1467,7 +1467,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript.staff-padding = #4
                 } {
                     <a d' fs'>4
                         ^ \markup {
@@ -1509,7 +1509,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript.staff-padding = #4
                 } {
                     <a d' fs'>4
                         ^ \markup {
@@ -1551,7 +1551,7 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
+                    \override TextScript.staff-padding = #4
                 } {
                     <a d' fs'>4
                         ^ \markup {
@@ -1650,8 +1650,8 @@ class LabelAgent(abctools.AbjadObject):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #4
-                    \override TupletBracket #'staff-padding = #0
+                    \override TextScript.staff-padding = #4
+                    \override TupletBracket.staff-padding = #0
                 } {
                     \times 2/3 {
                         c'4 ^ \markup { 0 }
@@ -1681,8 +1681,8 @@ class LabelAgent(abctools.AbjadObject):
                 >>> print(format(score))
                 \new Score <<
                     \new Staff \with {
-                        \override TextScript #'staff-padding = #4
-                        \override TupletBracket #'staff-padding = #0
+                        \override TextScript.staff-padding = #4
+                        \override TupletBracket.staff-padding = #0
                     } {
                         \tempo 4=60
                         c'2 ^ \markup { 0'00'' }
@@ -1715,8 +1715,8 @@ class LabelAgent(abctools.AbjadObject):
                 >>> print(format(score))
                 \new Score <<
                     \new Staff \with {
-                        \override TextScript #'staff-padding = #4
-                        \override TupletBracket #'staff-padding = #0
+                        \override TextScript.staff-padding = #4
+                        \override TupletBracket.staff-padding = #0
                     } {
                         \tempo 4=60
                         c'2

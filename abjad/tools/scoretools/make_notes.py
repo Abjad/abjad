@@ -91,7 +91,7 @@ def make_notes(
             >>> print(format(staff))
             \new Staff {
                 c'16
-                \tweak #'edge-height #'(0.7 . 0)
+                \tweak edge-height #'(0.7 . 0)
                 \times 2/3 {
                     c'8
                 }

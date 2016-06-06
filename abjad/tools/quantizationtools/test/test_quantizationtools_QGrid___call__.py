@@ -103,7 +103,7 @@ def test_quantizationtools_QGrid___call___03():
     assert isinstance(result, list) and len(result) == 1
     assert format(result[0]) == stringtools.normalize(
         r'''
-        \tweak #'edge-height #'(0.7 . 0)
+        \tweak edge-height #'(0.7 . 0)
         \times 2/3 {
             c'4
             c'4

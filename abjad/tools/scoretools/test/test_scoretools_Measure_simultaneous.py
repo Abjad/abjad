@@ -16,8 +16,7 @@ def test_scoretools_Measure_simultaneous_01():
     attach(command, measure[1])
     staff = Staff([measure])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             <<

@@ -39,7 +39,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
         \new Staff {
             {
                 \time 3/16
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'16
                     r16
@@ -50,7 +50,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_01():
             }
             {
                 \time 3/8
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     r16
                     r16
@@ -101,7 +101,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
         \new Staff {
             {
                 \time 3/16
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     r4
                     c'16 ~
@@ -109,7 +109,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_02():
             }
             {
                 \time 3/8
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     c'8.
                     c'4
@@ -165,7 +165,7 @@ def test_rhythmmakertools_BurnishSpecifier_outer_divisions_only_03():
             }
             {
                 \time 4/8
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'16 [
                     c'8

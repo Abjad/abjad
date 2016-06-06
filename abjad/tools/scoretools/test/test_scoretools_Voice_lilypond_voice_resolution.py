@@ -20,11 +20,10 @@ def test_scoretools_Voice_lilypond_voice_resolution_01():
     voice[2].is_simultaneous = True
     override(voice).note_head.color = 'red'
 
-    systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
         } {
             c'8
             d'8
@@ -60,11 +59,10 @@ def test_scoretools_Voice_lilypond_voice_resolution_02():
     voice[2][0].name = 'foo'
     override(voice).note_head.color = 'red'
 
-    systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \context Voice = "foo" \with {
-            \override NoteHead #'color = #red
+            \override NoteHead.color = #red
         } {
             c'8
             d'8
@@ -148,8 +146,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
     override(container[1][1]).note_head.color = 'red'
     override(container[2][1]).note_head.color = 'red'
 
-    systemtools.TestManager.compare(
-        container,
+    assert format(container) == stringtools.normalize(
         r'''
         {
             c'8
@@ -159,7 +156,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
                     e'8
                 }
                 \context Voice = "soprano" \with {
-                    \override NoteHead #'color = #red
+                    \override NoteHead.color = #red
                 } {
                     f'8
                     g'8
@@ -171,7 +168,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_04():
                     b'8
                 }
                 \context Voice = "soprano" \with {
-                    \override NoteHead #'color = #red
+                    \override NoteHead.color = #red
                 } {
                     c''8
                     d''8

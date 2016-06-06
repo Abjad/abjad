@@ -154,7 +154,7 @@ class Score(Context):
                         c'4
                         d'4
                         e'4
-                        \once \override TextScript #'extra-offset = #'(0.5 . -2)
+                        \once \override TextScript.extra-offset = #'(0.5 . -2)
                         f'4 _ \markup {
                             \italic
                                 \right-column
@@ -194,7 +194,7 @@ class Score(Context):
                         d'4
                         e'4
                         f'4
-                        \once \override MultiMeasureRestText #'extra-offset = #'(14.5 . -2)
+                        \once \override MultiMeasureRestText.extra-offset = #'(14.5 . -2)
                         R1
                             _ \markup {
                                 \italic

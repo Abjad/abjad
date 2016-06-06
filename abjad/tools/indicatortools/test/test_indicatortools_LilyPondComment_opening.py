@@ -47,7 +47,7 @@ def test_indicatortools_LilyPondComment_opening_02():
 
     assert format(note) == stringtools.normalize(
         r'''
-        \once \override Beam #'thickness = #3
+        \once \override Beam.thickness = #3
         % Leaf opening comments here.
         % More leaf opening comments.
         c'8

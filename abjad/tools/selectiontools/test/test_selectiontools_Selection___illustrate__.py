@@ -9,8 +9,7 @@ def test_selectiontools_Selection___illustrate___01():
     lilypond_file = selection.__illustrate__()
     score = lilypond_file.score_block.items[0]
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
@@ -32,8 +31,7 @@ def test_selectiontools_Selection___illustrate___02():
     lilypond_file = selection.__illustrate__()
     score = lilypond_file.score_block.items[0]
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {

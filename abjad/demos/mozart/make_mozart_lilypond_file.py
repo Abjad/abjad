@@ -19,6 +19,8 @@ def make_mozart_lilypond_file():
     lily.header_block.title = title
     lily.header_block.composer = composer
     lily.layout_block.ragged_right = True
-    lily.paper_block.markup_system_spacing__basic_distance = 8
+    lily.paper_block.markup_system_spacing = schemetools.SchemeAssociativeList(
+        ('basic_distance', 8),
+        )
     lily.paper_block.paper_width = 180
     return lily

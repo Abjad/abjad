@@ -65,19 +65,19 @@ class Tempo(AbjadValueObject):
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'4
@@ -125,19 +125,19 @@ class Tempo(AbjadValueObject):
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'4
@@ -737,19 +737,19 @@ class Tempo(AbjadValueObject):
                                     \score
                                         {
                                             \new Score \with {
-                                                \override SpacingSpanner #'spacing-increment = #0.5
+                                                \override SpacingSpanner.spacing-increment = #0.5
                                                 proportionalNotationDuration = ##f
                                             } <<
                                                 \new RhythmicStaff \with {
                                                     \remove Time_signature_engraver
                                                     \remove Staff_symbol_engraver
-                                                    \override Stem #'direction = #up
-                                                    \override Stem #'length = #5
-                                                    \override TupletBracket #'bracket-visibility = ##t
-                                                    \override TupletBracket #'direction = #up
-                                                    \override TupletBracket #'padding = #1.25
-                                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                                    \override Stem.direction = #up
+                                                    \override Stem.length = #5
+                                                    \override TupletBracket.bracket-visibility = ##t
+                                                    \override TupletBracket.direction = #up
+                                                    \override TupletBracket.padding = #1.25
+                                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                                     tupletFullLength = ##t
                                                 } {
                                                     c'4
@@ -1160,19 +1160,19 @@ class Tempo(AbjadValueObject):
                         \score
                             {
                                 \new Score \with {
-                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #5
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        \override Stem.direction = #up
+                                        \override Stem.length = #5
+                                        \override TupletBracket.bracket-visibility = ##t
+                                        \override TupletBracket.direction = #up
+                                        \override TupletBracket.padding = #1.25
+                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     } {
                                         c'4
@@ -1208,19 +1208,19 @@ class Tempo(AbjadValueObject):
                         \score
                             {
                                 \new Score \with {
-                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #5
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        \override Stem.direction = #up
+                                        \override Stem.length = #5
+                                        \override TupletBracket.bracket-visibility = ##t
+                                        \override TupletBracket.direction = #up
+                                        \override TupletBracket.padding = #1.25
+                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     } {
                                         c'4
@@ -1259,19 +1259,19 @@ class Tempo(AbjadValueObject):
                         \score
                             {
                                 \new Score \with {
-                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #5
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        \override Stem.direction = #up
+                                        \override Stem.length = #5
+                                        \override TupletBracket.bracket-visibility = ##t
+                                        \override TupletBracket.direction = #up
+                                        \override TupletBracket.padding = #1.25
+                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     } {
                                         c'4
@@ -1312,19 +1312,19 @@ class Tempo(AbjadValueObject):
                         \score
                             {
                                 \new Score \with {
-                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #5
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        \override Stem.direction = #up
+                                        \override Stem.length = #5
+                                        \override TupletBracket.bracket-visibility = ##t
+                                        \override TupletBracket.direction = #up
+                                        \override TupletBracket.padding = #1.25
+                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     } {
                                         c'4 ~
@@ -1361,22 +1361,22 @@ class Tempo(AbjadValueObject):
                         \score
                             {
                                 \new Score \with {
-                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #5
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        \override Stem.direction = #up
+                                        \override Stem.length = #5
+                                        \override TupletBracket.bracket-visibility = ##t
+                                        \override TupletBracket.direction = #up
+                                        \override TupletBracket.padding = #1.25
+                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     } {
-                                        \tweak #'edge-height #'(0.7 . 0)
+                                        \tweak edge-height #'(0.7 . 0)
                                         \times 2/3 {
                                             c'4
                                         }
@@ -1416,19 +1416,19 @@ class Tempo(AbjadValueObject):
                         \score
                             {
                                 \new Score \with {
-                                    \override SpacingSpanner #'spacing-increment = #0.5
+                                    \override SpacingSpanner.spacing-increment = #0.5
                                     proportionalNotationDuration = ##f
                                 } <<
                                     \new RhythmicStaff \with {
                                         \remove Time_signature_engraver
                                         \remove Staff_symbol_engraver
-                                        \override Stem #'direction = #up
-                                        \override Stem #'length = #5
-                                        \override TupletBracket #'bracket-visibility = ##t
-                                        \override TupletBracket #'direction = #up
-                                        \override TupletBracket #'padding = #1.25
-                                        \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                        \override Stem.direction = #up
+                                        \override Stem.length = #5
+                                        \override TupletBracket.bracket-visibility = ##t
+                                        \override TupletBracket.direction = #up
+                                        \override TupletBracket.padding = #1.25
+                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                         tupletFullLength = ##t
                                     } {
                                         c'16 ~ [

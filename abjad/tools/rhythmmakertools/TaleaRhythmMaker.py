@@ -1151,18 +1151,18 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        \override Staff.Stem #'stemlet-length = #0.75
+                        \override Staff.Stem.stemlet-length = #0.75
                         c'16 [
                         c'16
                         c'16
                         r16
                         c'16
                         c'16 ]
-                        \revert Staff.Stem #'stemlet-length
+                        \revert Staff.Stem.stemlet-length
                     }
                     {
                         \time 4/8
-                        \override Staff.Stem #'stemlet-length = #0.75
+                        \override Staff.Stem.stemlet-length = #0.75
                         c'16 [
                         r16
                         c'16
@@ -1171,22 +1171,22 @@ class TaleaRhythmMaker(RhythmMaker):
                         r16
                         c'16
                         c'16 ]
-                        \revert Staff.Stem #'stemlet-length
+                        \revert Staff.Stem.stemlet-length
                     }
                     {
                         \time 3/8
-                        \override Staff.Stem #'stemlet-length = #0.75
+                        \override Staff.Stem.stemlet-length = #0.75
                         c'16 [
                         r16
                         c'16
                         c'16
                         c'16
                         r16 ]
-                        \revert Staff.Stem #'stemlet-length
+                        \revert Staff.Stem.stemlet-length
                     }
                     {
                         \time 4/8
-                        \override Staff.Stem #'stemlet-length = #0.75
+                        \override Staff.Stem.stemlet-length = #0.75
                         c'16 [
                         c'16
                         c'16
@@ -1195,7 +1195,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         c'16
                         c'16
                         r16 ]
-                        \revert Staff.Stem #'stemlet-length
+                        \revert Staff.Stem.stemlet-length
                     }
                 }
 
@@ -2254,7 +2254,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 4/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 8/7 {
                             c'4
                             c'16 [
@@ -2270,7 +2270,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 4/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 8/7 {
                             c'16 [
                             c'16
@@ -2824,7 +2824,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 5/6 {
                             c'16 [
                             c'16
@@ -2838,7 +2838,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 10/11 {
                             c'32 [
                             c'16
@@ -2852,7 +2852,7 @@ class TaleaRhythmMaker(RhythmMaker):
                         }
                     }
                     {
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 12/13 {
                             c'16 [
                             c'16
@@ -3432,7 +3432,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
                             c'8. [
                             c'8. ]
@@ -3449,7 +3449,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
                             r8.
                             c'8. [
@@ -3499,7 +3499,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 \new RhythmicStaff {
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
                             c'8. [
                             c'8. ]
@@ -3514,7 +3514,7 @@ class TaleaRhythmMaker(RhythmMaker):
                     }
                     {
                         \time 3/8
-                        \tweak #'text #tuplet-number::calc-fraction-text
+                        \tweak text #tuplet-number::calc-fraction-text
                         \times 6/7 {
                             r8.
                             c'8. [

@@ -48,8 +48,8 @@ class Arrow(LineSegment):
 
             >>> f(staff)
             \new Staff \with {
-                \override TextScript #'staff-padding = #1.25
-                \override TextSpanner #'staff-padding = #2
+                \override TextScript.staff-padding = #1.25
+                \override TextSpanner.staff-padding = #2
             } {
                 \once \override TextSpanner.arrow-width = 0.25
                 \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -163,8 +163,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -224,8 +224,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.5
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -283,8 +283,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 1
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -354,8 +354,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -414,8 +414,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -472,8 +472,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -542,8 +542,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -607,8 +607,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -671,8 +671,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -780,8 +780,8 @@ class Arrow(LineSegment):
 
                     >>> f(staff)
                     \new Staff \with {
-                        \override TextScript #'staff-padding = #1.25
-                        \override TextSpanner #'staff-padding = #2
+                        \override TextScript.staff-padding = #1.25
+                        \override TextSpanner.staff-padding = #2
                     } {
                         \time 3/8
                         c'4.
@@ -880,8 +880,8 @@ class Arrow(LineSegment):
 
                     >>> f(staff)
                     \new Staff \with {
-                        \override TextScript #'staff-padding = #1.25
-                        \override TextSpanner #'staff-padding = #2
+                        \override TextScript.staff-padding = #1.25
+                        \override TextSpanner.staff-padding = #2
                     } {
                         \time 3/8
                         c'4.
@@ -979,8 +979,8 @@ class Arrow(LineSegment):
 
                     >>> f(staff)
                     \new Staff \with {
-                        \override TextScript #'staff-padding = #1.25
-                        \override TextSpanner #'staff-padding = #2
+                        \override TextScript.staff-padding = #1.25
+                        \override TextSpanner.staff-padding = #2
                     } {
                         \time 3/8
                         c'4.
@@ -1072,8 +1072,8 @@ class Arrow(LineSegment):
 
                     >>> f(staff)
                     \new Staff \with {
-                        \override TextScript #'staff-padding = #1.25
-                        \override TextSpanner #'staff-padding = #2
+                        \override TextScript.staff-padding = #1.25
+                        \override TextSpanner.staff-padding = #2
                     } {
                         \time 3/8
                         c'4.
@@ -1144,8 +1144,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -1205,8 +1205,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -1263,8 +1263,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f
@@ -1321,8 +1321,8 @@ class Arrow(LineSegment):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #1.25
-                    \override TextSpanner #'staff-padding = #2
+                    \override TextScript.staff-padding = #1.25
+                    \override TextSpanner.staff-padding = #2
                 } {
                     \once \override TextSpanner.arrow-width = 0.25
                     \once \override TextSpanner.bound-details.left-broken.text = ##f

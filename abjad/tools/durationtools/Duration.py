@@ -1119,19 +1119,19 @@ class Duration(AbjadObject, fractions.Fraction):
                     \score
                         {
                             \new Score \with {
-                                \override SpacingSpanner #'spacing-increment = #0.5
+                                \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
-                                    \override Stem #'direction = #up
-                                    \override Stem #'length = #5
-                                    \override TupletBracket #'bracket-visibility = ##t
-                                    \override TupletBracket #'direction = #up
-                                    \override TupletBracket #'padding = #1.25
-                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    \override Stem.direction = #up
+                                    \override Stem.length = #5
+                                    \override TupletBracket.bracket-visibility = ##t
+                                    \override TupletBracket.direction = #up
+                                    \override TupletBracket.padding = #1.25
+                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
                                 } {
                                     c'8.
@@ -1160,19 +1160,19 @@ class Duration(AbjadObject, fractions.Fraction):
                     \score
                         {
                             \new Score \with {
-                                \override SpacingSpanner #'spacing-increment = #0.5
+                                \override SpacingSpanner.spacing-increment = #0.5
                                 proportionalNotationDuration = ##f
                             } <<
                                 \new RhythmicStaff \with {
                                     \remove Time_signature_engraver
                                     \remove Staff_symbol_engraver
-                                    \override Stem #'direction = #up
-                                    \override Stem #'length = #5
-                                    \override TupletBracket #'bracket-visibility = ##t
-                                    \override TupletBracket #'direction = #up
-                                    \override TupletBracket #'padding = #1.25
-                                    \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                    \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                    \override Stem.direction = #up
+                                    \override Stem.length = #5
+                                    \override TupletBracket.bracket-visibility = ##t
+                                    \override TupletBracket.direction = #up
+                                    \override TupletBracket.padding = #1.25
+                                    \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                    \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                     tupletFullLength = ##t
                                 } {
                                     c'4 ~
@@ -1205,25 +1205,25 @@ class Duration(AbjadObject, fractions.Fraction):
 
                 >>> f(staff)
                 \new RhythmicStaff {
-                    \override TupletNumber #'text = \markup {
+                    \override TupletNumber.text = \markup {
                         \scale
                             #'(0.75 . 0.75)
                             \score
                                 {
                                     \new Score \with {
-                                        \override SpacingSpanner #'spacing-increment = #0.5
+                                        \override SpacingSpanner.spacing-increment = #0.5
                                         proportionalNotationDuration = ##f
                                     } <<
                                         \new RhythmicStaff \with {
                                             \remove Time_signature_engraver
                                             \remove Staff_symbol_engraver
-                                            \override Stem #'direction = #up
-                                            \override Stem #'length = #5
-                                            \override TupletBracket #'bracket-visibility = ##t
-                                            \override TupletBracket #'direction = #up
-                                            \override TupletBracket #'padding = #1.25
-                                            \override TupletBracket #'shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber #'text = #tuplet-number::calc-fraction-text
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
                                             tupletFullLength = ##t
                                         } {
                                             c'4 ~
@@ -1245,7 +1245,7 @@ class Duration(AbjadObject, fractions.Fraction):
                         c'16
                         c'16 ]
                     }
-                    \revert TupletNumber #'text
+                    \revert TupletNumber.text
                 }
 
         Returns markup.

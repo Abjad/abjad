@@ -34,7 +34,7 @@ def test_rhythmmakertools_TaleaRhythmMaker___call___01():
             }
             {
                 \time 5/8
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 5/7 {
                     c'8.
                     r16

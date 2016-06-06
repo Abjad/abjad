@@ -15,7 +15,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
             c'8
         }
@@ -31,7 +31,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
             c'16
             c'16
@@ -65,7 +65,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
             c'32
             c'32
@@ -84,7 +84,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_01():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'32
             c'32
@@ -109,7 +109,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
             c'8
         }
@@ -141,7 +141,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/5 {
             c'32
             c'16
@@ -159,7 +159,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
             c'64
             c'32
@@ -178,7 +178,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_02():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
             c'64
             c'32
@@ -205,7 +205,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_03():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
             c'64
             r32
@@ -334,7 +334,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_05():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
             c'64.
             c'64.
@@ -390,7 +390,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 8/5 {
             c'64.
             c'32.
@@ -408,7 +408,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/2 {
             c'64
             c'32
@@ -427,7 +427,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_06():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 12/11 {
             c'64
             c'32
@@ -489,7 +489,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'4
         }
@@ -505,7 +505,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'8
             c'8
@@ -539,7 +539,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'16
             c'16
@@ -558,7 +558,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_08():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
             c'16
             c'16
@@ -583,7 +583,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'4
         }
@@ -615,7 +615,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/5 {
             c'16
             c'8
@@ -633,7 +633,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'32
             c'16
@@ -652,7 +652,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_09():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
             c'32
             c'16
@@ -679,7 +679,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_10():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
             c'32
             r16
@@ -875,7 +875,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 3/4 {
             c'32
             c'16
@@ -894,7 +894,7 @@ def test_scoretools_Tuplet_from_duration_and_ratio_13():
 
     assert format(tuplet) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 6/11 {
             c'32
             c'16

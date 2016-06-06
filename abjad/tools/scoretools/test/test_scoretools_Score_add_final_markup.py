@@ -17,7 +17,7 @@ def test_scoretools_Score_add_final_markup_01():
             c'4
             d'4
             e'4
-            \once \override TextScript #'extra-offset = #'(4 . -2)
+            \once \override TextScript.extra-offset = #'(4 . -2)
             f'4
                 _ \markup {
                     \italic
@@ -31,15 +31,14 @@ def test_scoretools_Score_add_final_markup_01():
     >>
     '''
 
-    assert systemtools.TestManager.compare(
-        score,
+    assert format(score) == stringtools.normalize(
         r'''
         \new Score <<
             \new Staff {
                 c'4
                 d'4
                 e'4
-                \once \override TextScript #'extra-offset = #'(4 . -2)
+                \once \override TextScript.extra-offset = #'(4 . -2)
                 f'4
                     _ \markup {
                         \italic

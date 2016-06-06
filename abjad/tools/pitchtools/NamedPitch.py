@@ -760,7 +760,7 @@ class NamedPitch(Pitch):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #5
+                    \override TextScript.staff-padding = #5
                 } {
                     g16 - \markup { -3 }
                     a16 - \markup { -2 }
@@ -802,7 +802,7 @@ class NamedPitch(Pitch):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #5
+                    \override TextScript.staff-padding = #5
                 } {
                     g16 - \markup { -9 }
                     a16 - \markup { -8 }
@@ -845,7 +845,7 @@ class NamedPitch(Pitch):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #5
+                    \override TextScript.staff-padding = #5
                 } {
                     \clef "bass"
                     g,16 - \markup { -4 }
@@ -991,7 +991,7 @@ class NamedPitch(Pitch):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #5
+                    \override TextScript.staff-padding = #5
                 } {
                     g16 - \markup { g }
                     a16 - \markup { a }
@@ -1050,7 +1050,7 @@ class NamedPitch(Pitch):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #5
+                    \override TextScript.staff-padding = #5
                 } {
                     g16 - \markup { 4 }
                     a16 - \markup { 5 }
@@ -1106,7 +1106,7 @@ class NamedPitch(Pitch):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #5
+                    \override TextScript.staff-padding = #5
                 } {
                     g16 - \markup { g }
                     a16 - \markup { a }
@@ -1165,7 +1165,7 @@ class NamedPitch(Pitch):
 
                 >>> f(staff)
                 \new Staff \with {
-                    \override TextScript #'staff-padding = #5
+                    \override TextScript.staff-padding = #5
                 } {
                     g16 - \markup { -3 }
                     a16 - \markup { -2 }

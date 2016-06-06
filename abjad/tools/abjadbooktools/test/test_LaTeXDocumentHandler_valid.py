@@ -12,38 +12,38 @@ from abjad.tools import abjadbooktools
     )
 class TestLaTeXDocumentHandler(unittest.TestCase):
 
+    maxDiff = None
+
     test_directory = os.path.dirname(__file__)
     assets_directory = os.path.join(test_directory, 'assets')
     source_valid_path = os.path.join(test_directory, 'source_valid.tex')
     with open(source_valid_path, 'r') as file_pointer:
-        source_valid_contents = file_pointer.read()
+        source_valid_contents = file_pointer.read().rstrip()
     target_valid_path = os.path.join(test_directory, 'target_valid.tex')
 
     expected_valid_path = os.path.join(test_directory, 'expected_valid.tex')
     with open(expected_valid_path, 'r') as file_pointer:
-        expected_valid_contents = file_pointer.read()
+        expected_valid_contents = file_pointer.read().rstrip()
     expected_asset_names = (
         'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
-        'lilypond-1b096a6d9cb9b88d4b5b3218adde56fb.ly',
-        'lilypond-1b096a6d9cb9b88d4b5b3218adde56fb.pdf',
-        'lilypond-1ed6ab0c1e7b7628704dd0a1a5e5fc3c.ly',
-        'lilypond-1ed6ab0c1e7b7628704dd0a1a5e5fc3c.pdf',
-        'lilypond-77c0ad74436edb553b402e5b0b8a169c.ly',
-        'lilypond-77c0ad74436edb553b402e5b0b8a169c.pdf',
-        'lilypond-8305d0b5b224439d7e29f93b7dd8e2a5.ly',
-        'lilypond-8305d0b5b224439d7e29f93b7dd8e2a5.pdf',
-        'lilypond-906b8a91ca49cb9688b4b0c3130a6af8.ly',
-        'lilypond-906b8a91ca49cb9688b4b0c3130a6af8.pdf',
+        'lilypond-159af81bc32aca4b263146c9052b99ec.ly',
+        'lilypond-159af81bc32aca4b263146c9052b99ec.pdf',
+        'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.ly',
+        'lilypond-71f63c1f11f143bb0f7a2f7ddbc77d75.pdf',
+        'lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.ly',
+        'lilypond-9a3d90e80bc733e46a43d1ee30b68fa9.pdf',
+        'lilypond-9e8d4612a88db8a2f31e974c78fc915d.ly',
+        'lilypond-9e8d4612a88db8a2f31e974c78fc915d.pdf',
+        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.ly',
+        'lilypond-fe5d1d78512d19b7f51b96c2ce9180f9.pdf',
         )
 
     stylesheet_path = os.path.join(test_directory, 'stylesheet.ily')
     expected_styled_path = os.path.join(test_directory, 'expected_styled.tex')
     with open(expected_styled_path, 'r') as file_pointer:
-        expected_styled_contents = file_pointer.read()
+        expected_styled_contents = file_pointer.read().rstrip()
     styled_asset_names = (
-        #'graphviz-12601707db5ddc467e3296e8c680ba43.dot',
-        #'graphviz-12601707db5ddc467e3296e8c680ba43.pdf',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.dot',
         'graphviz-31410f5aefd17473e91ebc219ddff36e.pdf',
         'lilypond-181e079044c9ede879fdab4c6210e307.ly',
@@ -62,7 +62,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
     expected_configured_path = os.path.join(
         test_directory, 'expected_configured.tex')
     with open(expected_configured_path, 'r') as file_pointer:
-        expected_configured_contents = file_pointer.read()
+        expected_configured_contents = file_pointer.read().rstrip()
 
     def setUp(self):
         if os.path.exists(self.assets_directory):
@@ -84,7 +84,7 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
         document_handler()
         with open(self.source_valid_path, 'r') as file_pointer:
             target_valid_contents = file_pointer.read()
-        assert target_valid_contents == self.expected_valid_contents
+        assert str(target_valid_contents) == str(self.expected_valid_contents)
         document_handler = abjadbooktools.LaTeXDocumentHandler.from_path(
             input_file_path=self.source_valid_path)
         document_handler(clean=True)

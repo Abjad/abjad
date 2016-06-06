@@ -53,8 +53,7 @@ def test_scoretools_Note___init___06():
     chord = Chord([2, 3, 4], (1, 4))
     note = Note(chord)
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         d'4
         '''
@@ -71,8 +70,7 @@ def test_scoretools_Note___init___07():
     tuplet = Tuplet((2, 3), 3 * chord)
     note = Note(tuplet[0])
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         d'4
         '''
@@ -91,8 +89,7 @@ def test_scoretools_Note___init___08():
     attach(beam, staff[:])
     note = Note(staff[0])
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         d'4
         '''
@@ -108,8 +105,7 @@ def test_scoretools_Note___init___09():
     rest = Rest('r8')
     note = Note(rest)
 
-    assert systemtools.TestManager.compare(
-        note,
+    assert format(note) == stringtools.normalize(
         r'''
         8
         '''

@@ -150,7 +150,7 @@ def test_rhythmmakertools_BurnishSpecifier_03():
         \new Staff {
             {
                 \time 5/16
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 10/13 {
                     c'32 [
                     c'32 ]

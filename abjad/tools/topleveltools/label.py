@@ -20,8 +20,8 @@ def label(expr=None):
 
             >>> print(format(staff))
             \new Staff \with {
-                \override TextScript #'staff-padding = #4
-                \override TupletBracket #'staff-padding = #0
+                \override TextScript.staff-padding = #4
+                \override TupletBracket.staff-padding = #0
             } {
                 \times 2/3 {
                     c'4 ^ \markup { 0 }
@@ -53,8 +53,8 @@ def label(expr=None):
 
             >>> print(format(staff))
             \new Staff \with {
-                \override TextScript #'staff-padding = #4
-                \override TupletBracket #'staff-padding = #0
+                \override TextScript.staff-padding = #4
+                \override TupletBracket.staff-padding = #0
             } {
                 \times 2/3 {
                     c'4 ^ \markup { 0 }

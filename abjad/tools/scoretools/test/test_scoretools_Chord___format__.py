@@ -37,7 +37,7 @@ def test_scoretools_Chord___format___03():
     assert format(chord) == stringtools.normalize(
         r'''
         <
-            \tweak #'color #red
+            \tweak color #red
             d'
             ef'
             e'
@@ -58,7 +58,7 @@ def test_scoretools_Chord___format___04():
     assert format(chord) == stringtools.normalize(
         r'''
         <
-            \tweak #'transparent ##t
+            \tweak transparent ##t
             d'
             ef'
             e'
@@ -77,7 +77,7 @@ def test_scoretools_Chord___format___05():
     assert format(chord) == stringtools.normalize(
         r'''
         <
-            \tweak #'style #'harmonic
+            \tweak style #'harmonic
             d'
             ef'
             e'

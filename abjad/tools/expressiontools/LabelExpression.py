@@ -24,41 +24,41 @@ class LabelExpression(Expression):
 
             >>> f(staff)
             \new Staff {
-                \once \override Accidental #'color = #red
-                \once \override Beam #'color = #red
-                \once \override Dots #'color = #red
-                \once \override NoteHead #'color = #red
-                \once \override Stem #'color = #red
+                \once \override Accidental.color = #red
+                \once \override Beam.color = #red
+                \once \override Dots.color = #red
+                \once \override NoteHead.color = #red
+                \once \override Stem.color = #red
                 <c' bf'>8
-                \once \override Accidental #'color = #red
-                \once \override Beam #'color = #red
-                \once \override Dots #'color = #red
-                \once \override NoteHead #'color = #red
-                \once \override Stem #'color = #red
+                \once \override Accidental.color = #red
+                \once \override Beam.color = #red
+                \once \override Dots.color = #red
+                \once \override NoteHead.color = #red
+                \once \override Stem.color = #red
                 <g' a'>4
-                \once \override Accidental #'color = #red
-                \once \override Beam #'color = #red
-                \once \override Dots #'color = #red
-                \once \override NoteHead #'color = #red
-                \once \override Stem #'color = #red
+                \once \override Accidental.color = #red
+                \once \override Beam.color = #red
+                \once \override Dots.color = #red
+                \once \override NoteHead.color = #red
+                \once \override Stem.color = #red
                 af'8 ~
-                \once \override Accidental #'color = #red
-                \once \override Beam #'color = #red
-                \once \override Dots #'color = #red
-                \once \override NoteHead #'color = #red
-                \once \override Stem #'color = #red
+                \once \override Accidental.color = #red
+                \once \override Beam.color = #red
+                \once \override Dots.color = #red
+                \once \override NoteHead.color = #red
+                \once \override Stem.color = #red
                 af'8
-                \once \override Accidental #'color = #red
-                \once \override Beam #'color = #red
-                \once \override Dots #'color = #red
-                \once \override NoteHead #'color = #red
-                \once \override Stem #'color = #red
+                \once \override Accidental.color = #red
+                \once \override Beam.color = #red
+                \once \override Dots.color = #red
+                \once \override NoteHead.color = #red
+                \once \override Stem.color = #red
                 gf'8 ~
-                \once \override Accidental #'color = #red
-                \once \override Beam #'color = #red
-                \once \override Dots #'color = #red
-                \once \override NoteHead #'color = #red
-                \once \override Stem #'color = #red
+                \once \override Accidental.color = #red
+                \once \override Beam.color = #red
+                \once \override Dots.color = #red
+                \once \override NoteHead.color = #red
+                \once \override Stem.color = #red
                 gf'4
             }
 
@@ -83,13 +83,13 @@ class LabelExpression(Expression):
             \new Staff {
                 <c' bf'>8
                 <g' a'>4
-                \once \override NoteHead #'color = #(x11-color 'DarkOrange)
+                \once \override NoteHead.color = #(x11-color 'DarkOrange)
                 af'8 ~
-                \once \override NoteHead #'color = #(x11-color 'DarkOrange)
+                \once \override NoteHead.color = #(x11-color 'DarkOrange)
                 af'8
-                \once \override NoteHead #'color = #(x11-color 'firebrick)
+                \once \override NoteHead.color = #(x11-color 'firebrick)
                 gf'8 ~
-                \once \override NoteHead #'color = #(x11-color 'firebrick)
+                \once \override NoteHead.color = #(x11-color 'firebrick)
                 gf'4
             }
 

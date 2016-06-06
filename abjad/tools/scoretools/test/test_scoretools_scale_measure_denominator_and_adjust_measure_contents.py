@@ -12,8 +12,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_01():
     beam = Beam()
     attach(beam, measure[:])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 2/8
@@ -26,8 +25,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_01():
     scoretools.scale_measure_denominator_and_adjust_measure_contents(
         measure, 3)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/12
@@ -52,8 +50,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_02():
     beam = Beam()
     attach(beam, measure[:])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 2/8
@@ -66,8 +63,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_02():
     scoretools.scale_measure_denominator_and_adjust_measure_contents(
         measure, 5)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/20
@@ -94,8 +90,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_03():
     beam = Beam()
     attach(beam, measure[:])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 2/8
@@ -108,8 +103,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_03():
     scoretools.scale_measure_denominator_and_adjust_measure_contents(
         measure, 7)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 7/28
@@ -134,8 +128,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_04():
     beam = Beam()
     attach(beam, measure[:])
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 2/8
@@ -148,8 +141,7 @@ def test_scoretools_scale_measure_denominator_and_adjust_measure_contents_04():
     scoretools.scale_measure_denominator_and_adjust_measure_contents(
         measure, 9)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 9/36

@@ -551,12 +551,12 @@ class Selection(object):
                 >>> print(format(new_staff))
                 \new Staff {
                     \new Voice {
-                        \tweak #'edge-height #'(0.7 . 0)
+                        \tweak edge-height #'(0.7 . 0)
                         \times 2/3 {
                             d'4
                             e'4
                         }
-                        \tweak #'edge-height #'(0.7 . 0)
+                        \tweak edge-height #'(0.7 . 0)
                         \times 2/3 {
                             f'4
                             e'4

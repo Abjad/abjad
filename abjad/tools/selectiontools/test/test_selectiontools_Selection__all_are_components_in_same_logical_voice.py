@@ -1444,15 +1444,15 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_36()
 
     assert format(t) == stringtools.normalize(
         r'''
-        \tweak #'text #tuplet-number::calc-fraction-text
+        \tweak text #tuplet-number::calc-fraction-text
         \times 9/10 {
             c'8
             cs'8
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 6/7 {
                 d'8
                 ef'8
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     e'8
                     f'8

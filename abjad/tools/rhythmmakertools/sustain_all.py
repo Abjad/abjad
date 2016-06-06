@@ -30,7 +30,7 @@ def sustain_all(inverted=None):
             \new RhythmicStaff {
                 {
                     \time 7/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 7/8 {
                         c'4.
                         c'8
@@ -38,7 +38,7 @@ def sustain_all(inverted=None):
                 }
                 {
                     \time 3/8
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/4 {
                         c'4.
                         c'8
@@ -46,7 +46,7 @@ def sustain_all(inverted=None):
                 }
                 {
                     \time 7/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 7/8 {
                         c'4.
                         c'8
@@ -54,7 +54,7 @@ def sustain_all(inverted=None):
                 }
                 {
                     \time 3/8
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/4 {
                         c'4.
                         c'8

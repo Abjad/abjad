@@ -32,36 +32,36 @@ def test_spannertools_Spanner__apply_overrides_01():
     assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
-            \override TextSpanner #'bound-details #'left #'padding = #'-1
-            \override TextSpanner #'bound-details #'left #'stencil-align-dir-y = #'0
-            \override TextSpanner #'bound-details #'left #'text = \markup {
-                \italic
-                    "“white” flautando"
-                \hspace
-                    #1
-                }
-            \override TextSpanner #'bound-details #'left-broken #'text = \markup {
+            \override TextSpanner.bound-details.left-broken.text = \markup {
                 \italic
                     (fl.)
                 \hspace
                     #1
                 }
-            \override TextSpanner #'bound-details #'right #'padding = #'1
-            \override TextSpanner #'bound-details #'right #'text = \markup {
+            \override TextSpanner.bound-details.left.padding = #'-1
+            \override TextSpanner.bound-details.left.stencil-align-dir-y = #'0
+            \override TextSpanner.bound-details.left.text = \markup {
+                \italic
+                    "“white” flautando"
+                \hspace
+                    #1
+                }
+            \override TextSpanner.bound-details.right-broken.padding = #'0
+            \override TextSpanner.bound-details.right-broken.text = #'None
+            \override TextSpanner.bound-details.right.padding = #'1
+            \override TextSpanner.bound-details.right.text = \markup {
                 \draw-line
                     #'(0 . -1)
                 }
-            \override TextSpanner #'bound-details #'right-broken #'padding = #'0
-            \override TextSpanner #'bound-details #'right-broken #'text = #'None
-            \override TextSpanner #'dash-fraction = #'0.25
-            \override TextSpanner #'dash-period = #'1.5
+            \override TextSpanner.dash-fraction = #'0.25
+            \override TextSpanner.dash-period = #'1.5
             c'4 \startTextSpan
             d'4
             e'4
             f'4 \stopTextSpan
-            \revert TextSpanner #'bound-details
-            \revert TextSpanner #'dash-fraction
-            \revert TextSpanner #'dash-period
+            \revert TextSpanner.bound-details
+            \revert TextSpanner.dash-fraction
+            \revert TextSpanner.dash-period
         }
         '''
         ), format(staff)

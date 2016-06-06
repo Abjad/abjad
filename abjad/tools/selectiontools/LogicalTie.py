@@ -227,7 +227,7 @@ class LogicalTie(Selection):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     \time 7/16
                     c'8 ~ \< \p
@@ -249,10 +249,10 @@ class LogicalTie(Selection):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     \time 7/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 3/5 {
                         c'8 \< \p
                         c'16
@@ -283,7 +283,7 @@ class LogicalTie(Selection):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     \time 7/16
                     c'8 ~ \< \p
@@ -305,10 +305,10 @@ class LogicalTie(Selection):
 
                 >>> print(format(staff))
                 \new Staff \with {
-                    \override DynamicLineSpanner #'staff-padding = #3
+                    \override DynamicLineSpanner.staff-padding = #3
                 } {
                     \time 7/16
-                    \tweak #'text #tuplet-number::calc-fraction-text
+                    \tweak text #tuplet-number::calc-fraction-text
                     \times 6/5 {
                         c'16 \< \p
                         c'32

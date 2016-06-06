@@ -11,24 +11,7 @@ def test_scoretools_Measure_in_place_apply_01():
     Measure((4, 8), voice[0:4])
     leaves_after = voice.select_leaves()
 
-    r'''
-    \new Voice {
-        {
-            \time 4/8
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
-    assert systemtools.TestManager.compare(
-        voice,
+    assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
             {
@@ -54,24 +37,7 @@ def test_scoretools_Measure_in_place_apply_02():
     Measure((4, 8), staff[0:4])
     leaves_after = staff.select_leaves()
 
-    r'''
-    \new Staff {
-        {
-            \time 4/8
-            c'8
-            cs'8
-            d'8
-            ef'8
-        }
-        e'8
-        f'8
-        fs'8
-        g'8
-    }
-    '''
-
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -97,20 +63,7 @@ def test_scoretools_Measure_in_place_apply_03():
     Measure((1, 1), staff[0:1])
     leaves_after = staff.select_leaves()
 
-    r'''
-    \new Staff {
-        {
-            \time 1/1
-            c'1
-        }
-        cs'1
-        d'1
-        ef'1
-    }
-    '''
-
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
@@ -133,8 +86,7 @@ def test_scoretools_Measure_in_place_apply_04():
     Measure((1, 1), staff[2:3])
     Measure((1, 1), staff[3:])
 
-    assert systemtools.TestManager.compare(
-        staff,
+    assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {

@@ -11,8 +11,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_01():
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 3/12
@@ -31,8 +30,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_01():
 
     scoretools.move_measure_prolation_to_full_measure_tuplet(measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 2/8
@@ -63,8 +61,7 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
     scoretools.move_full_measure_tuplet_prolation_to_measure_time_signature(
         measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 15/24
@@ -88,12 +85,11 @@ def test_scoretools_move_measure_prolation_to_full_measure_tuplet_02():
 
     scoretools.move_measure_prolation_to_full_measure_tuplet(measure)
 
-    assert systemtools.TestManager.compare(
-        measure,
+    assert format(measure) == stringtools.normalize(
         r'''
         {
             \time 5/8
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 5/6 {
                 c'8
                 d'8

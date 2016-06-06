@@ -36,7 +36,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_01():
         }
         {
             \time 3/8
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 6/7 {
                 e'8
                 f'8
@@ -61,7 +61,7 @@ def test_scoretools_extend_measures_in_expr_and_apply_full_measure_tuplets_01():
             }
             {
                 \time 3/8
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 6/7 {
                     e'8
                     f'8

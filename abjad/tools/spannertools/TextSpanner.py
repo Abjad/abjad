@@ -52,8 +52,8 @@ class TextSpanner(Spanner):
 
             >>> print(format(staff))
             \new Staff {
-                \override TextSpanner #'bound-details #'left #'stencil-align-dir-y = #0
-                \override TextSpanner #'bound-details #'left #'text = \markup {
+                \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
+                \override TextSpanner.bound-details.left.text = \markup {
                     \bold
                         \italic
                             foo
@@ -62,7 +62,7 @@ class TextSpanner(Spanner):
                 d'4
                 e'4
                 f'4 \stopTextSpan
-                \revert TextSpanner #'bound-details
+                \revert TextSpanner.bound-details
             }
 
     ..  container:: example

@@ -37,7 +37,7 @@ def test_agenttools_MutationAgent_swap_01():
     assert format(voice) == stringtools.normalize(
         r'''
         \new Voice {
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 3/4 {
                 c'8 [
                 d'8
@@ -151,7 +151,7 @@ def test_agenttools_MutationAgent_swap_03():
                 c'8 [ \glissando
                 d'8 \glissando
             }
-            \tweak #'text #tuplet-number::calc-fraction-text
+            \tweak text #tuplet-number::calc-fraction-text
             \times 3/4 {
                 e'8 \glissando
                 f'8 \glissando

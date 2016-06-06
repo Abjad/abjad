@@ -283,7 +283,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___06():
                     r32
                     c'16.
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 6/7 {
                     r32
                     c'4. ~
@@ -599,7 +599,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___12():
                     c'32
                     r16.
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 6/7 {
                     c'32
                     r4.
@@ -845,7 +845,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
         \new Staff {
             {
                 \time 4/8
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     r8
                     c'4.
@@ -863,7 +863,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___17():
                 {
                     c'8
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     c'2
                     r8
@@ -1102,7 +1102,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
         \new Staff {
             {
                 \time 4/8
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/4 {
                     c'8
                     r4.
@@ -1120,7 +1120,7 @@ def test_rhythmmakertools_IncisedRhythmMaker___call___22():
                 {
                     r8
                 }
-                \tweak #'text #tuplet-number::calc-fraction-text
+                \tweak text #tuplet-number::calc-fraction-text
                 \times 3/5 {
                     r2
                     c'8

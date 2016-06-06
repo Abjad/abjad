@@ -11,6 +11,8 @@ from abjad.tools import stringtools
     )
 class TestLaTeXDocumentHandler_syntax_error(unittest.TestCase):
 
+    maxDiff = None
+
     def test_syntax_error_1(self):
         input_file_contents = [
             '<abjad>',
