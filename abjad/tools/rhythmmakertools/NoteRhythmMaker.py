@@ -173,7 +173,7 @@ class NoteRhythmMaker(RhythmMaker):
         return super(NoteRhythmMaker, self).__hash__()
 
     def __repr__(self):
-        r'''Gets interpreter representation of note rhythm-maker.
+        r'''Gets interpreter representation.
 
         ..  container:: example
 
@@ -308,7 +308,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     @property
     def beam_specifier(self):
-        r'''Gets beam specifier of note rhythm-maker.
+        r'''Gets beam specifier.
 
         ..  container:: example
 
@@ -442,7 +442,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     @property
     def burnish_specifier(self):
-        r'''Gets burnish specifier of note rhythm-maker.
+        r'''Gets burnish specifier.
 
         ..  container:: example
 
@@ -640,7 +640,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     @property
     def division_masks(self):
-        r'''Gets division masks of note rhythm-maker.
+        r'''Gets division masks.
 
         ..  container:: example
 
@@ -882,7 +882,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     @property
     def duration_spelling_specifier(self):
-        r'''Gets duration spelling specifier of note rhythm-maker.
+        r'''Gets duration spelling specifier.
 
         ..  container:: example
 
@@ -1150,7 +1150,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     @property
     def logical_tie_masks(self):
-        r'''Gets logical tie masks of note rhythm-maker.
+        r'''Gets logical tie masks.
 
         ..  container:: example
 
@@ -1286,7 +1286,7 @@ class NoteRhythmMaker(RhythmMaker):
     
     @property
     def tie_specifier(self):
-        r'''Gets tie specifier of note rhythm-maker.
+        r'''Gets tie specifier.
 
         ..  container:: example
 
@@ -1574,7 +1574,7 @@ class NoteRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of note rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
         ..  container:: example
 

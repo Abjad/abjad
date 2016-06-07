@@ -188,7 +188,7 @@ class Talea(AbjadValueObject):
             yield duration
 
     def __len__(self):
-        r'''Gets length of talea.
+        r'''Gets length.
 
         ..  container:: example
 
@@ -216,7 +216,7 @@ class Talea(AbjadValueObject):
 
     @property
     def counts(self):
-        r'''Gets counts of talea.
+        r'''Gets counts.
 
         ..  container:: example
 
@@ -244,7 +244,7 @@ class Talea(AbjadValueObject):
 
     @property
     def denominator(self):
-        r'''Gets denominator of talea.
+        r'''Gets denominator.
 
         ..  container:: example
 

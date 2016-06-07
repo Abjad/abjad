@@ -211,7 +211,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def duration_spelling_specifier(self):
-        r'''Gets duration spelling specifier of even-run rhythm-maker.
+        r'''Gets duration spelling specifier.
 
         ..  container:: example
 
@@ -276,7 +276,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def exponent(self):
-        r'''Gets exponent of even-run rhythm-maker.
+        r'''Gets exponent.
 
         ..  container:: example
 
@@ -497,7 +497,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def tie_specifier(self):
-        r'''Gets tie specifier of rhythm-maker.
+        r'''Gets tie specifier.
 
         ..  container:: example
 
@@ -698,7 +698,7 @@ class EvenRunRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of even run rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
         ..  note:: not yet implemented.
 

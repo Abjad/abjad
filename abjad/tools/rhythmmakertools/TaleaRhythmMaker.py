@@ -381,7 +381,7 @@ class TaleaRhythmMaker(RhythmMaker):
         return RhythmMaker.__illustrate__(self, divisions=divisions)
 
     def __repr__(self):
-        r'''Gets interpreter representation of talea rhythm-maker.
+        r'''Gets interpreter representation.
 
         ..  container:: example
 

@@ -226,7 +226,7 @@ class InciseSpecifier(AbjadValueObject):
 
     @property
     def body_ratio(self):
-        r'''Gets body ratio of incise specifier.
+        r'''Gets body ratio.
 
         ..  container:: example
 
@@ -324,7 +324,7 @@ class InciseSpecifier(AbjadValueObject):
 
     @property
     def prefix_counts(self):
-        r'''Gets prefix lengths of incision specifier.
+        r'''Gets prefix counts.
 
         ..  todo:: Add examples.
 
@@ -334,7 +334,7 @@ class InciseSpecifier(AbjadValueObject):
 
     @property
     def prefix_talea(self):
-        r'''Gets prefix talea of incision specifier.
+        r'''Gets prefix talea.
 
         ..  todo:: Add examples.
 
@@ -344,7 +344,7 @@ class InciseSpecifier(AbjadValueObject):
 
     @property
     def suffix_counts(self):
-        r'''Gets suffix lengths of incision specifier.
+        r'''Gets suffix counts.
 
         ..  todo:: Add examples.
 
@@ -354,7 +354,7 @@ class InciseSpecifier(AbjadValueObject):
 
     @property
     def suffix_talea(self):
-        r'''Gets suffix talea of incision specifier.
+        r'''Gets suffix talea. 
 
         ..  todo:: Add examples.
 
@@ -364,7 +364,7 @@ class InciseSpecifier(AbjadValueObject):
 
     @property
     def talea_denominator(self):
-        r'''Gets talea denominator of incision specifier.
+        r'''Gets talea denominator.
 
         ..  todo:: Add examples.
 

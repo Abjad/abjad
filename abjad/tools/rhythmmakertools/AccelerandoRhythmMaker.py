@@ -813,7 +813,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @property
     def beam_specifier(self):
-        r'''Gets beam specifier of accelerando rhythm-maker.
+        r'''Gets beam specifier.
 
         ..  container:: example
 
@@ -1511,7 +1511,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @property
     def division_masks(self):
-        r'''Gets division masks of accelerando rhythm-maker.
+        r'''Gets division masks.
 
         ..  container:: example
 
@@ -1875,7 +1875,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @property
     def interpolation_specifiers(self):
-        r'''Gets interpolation specifier of accelerando rhythm-maker.
+        r'''Gets interpolation specifier.
 
         ..  container:: example
 
@@ -2455,7 +2455,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @property
     def logical_tie_masks(self):
-        r'''Gets logical tie masks of accelerando rhythm-maker.
+        r'''Gets logical tie masks.
 
         ..  container:: example
 
@@ -2938,7 +2938,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @property
     def tie_specifier(self):
-        r'''Gets tie specifier of rhythm-maker.
+        r'''Gets tie specifier.
 
         ..  container:: example
 
@@ -3599,7 +3599,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of accelerando rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
         ..  container:: example
 

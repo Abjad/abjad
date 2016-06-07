@@ -482,7 +482,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def division_masks(self):
-        r'''Gets division masks of incised rhythm-maker.
+        r'''Gets division masks.
 
         ..  container:: example
 
@@ -601,7 +601,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def duration_spelling_specifier(self):
-        r'''Gets duration spelling specifier of incised rhythm-maker.
+        r'''Gets duration spelling specifier.
 
         ..  container:: example
 
@@ -876,7 +876,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def extra_counts_per_division(self):
-        r'''Gets prolation addenda of incised rhythm-maker.
+        r'''Gets extra counts per division.
 
         Returns tuple or none.
         '''
@@ -884,7 +884,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def helper_functions(self):
-        r'''Gets helper functions of incised rhythm-maker.
+        r'''Gets helper functions.
 
         Returns dictionary or none.
         '''
@@ -892,7 +892,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def incise_specifier(self):
-        r'''Gets incise specifier of incised rhythm-maker.
+        r'''Gets incise specifier.
 
         ..  container:: example
 
@@ -1047,7 +1047,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def logical_tie_masks(self):
-        r'''Gets logical tie masks of incised rhythm-maker.
+        r'''Gets logical tie masks. 
 
         ..  container:: example
 
@@ -1293,7 +1293,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def split_divisions_by_counts(self):
-        r'''Gets secondary divisions of incised rhythm-maker.
+        r'''Gets secondary divisions.
 
         Returns tuple or none.
         '''
@@ -1301,7 +1301,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def tie_specifier(self):
-        r'''Gets tie specifier of incised rhythm-maker.
+        r'''Gets tie specifier.
 
         ..  container:: example
 
@@ -1636,7 +1636,7 @@ class IncisedRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of incised rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
         ..  note:: not yet implemented.
 

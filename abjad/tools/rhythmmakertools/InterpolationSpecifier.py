@@ -33,7 +33,7 @@ class InterpolationSpecifier(AbjadValueObject):
 
     @property
     def start_duration(self):
-        r'''Gets start duration of interpolation specifier.
+        r'''Gets start duration.
 
         Defaults to ``1/8``.
 
@@ -45,7 +45,7 @@ class InterpolationSpecifier(AbjadValueObject):
 
     @property
     def stop_duration(self):
-        r'''Gets stop duration of interpolation specifier.
+        r'''Gets stop duration.
 
         Defaults to ``1/16``.
 
@@ -57,7 +57,7 @@ class InterpolationSpecifier(AbjadValueObject):
 
     @property
     def written_duration(self):
-        r'''Gets written duration of interpolation specifier.
+        r'''Gets written duration.
 
         Defaults to ``1/16``.
 
