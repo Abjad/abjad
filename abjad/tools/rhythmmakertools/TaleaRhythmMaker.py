@@ -689,8 +689,6 @@ class TaleaRhythmMaker(RhythmMaker):
     def beam_specifier(self):
         r'''Gets beam specifier.
 
-        Three beam specifier configurations are available.
-
         ..  container:: example
 
             **Example 1.** Beams each division:
