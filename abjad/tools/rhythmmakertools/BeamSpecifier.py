@@ -150,7 +150,7 @@ class BeamSpecifier(AbjadValueObject):
         return super(BeamSpecifier, self).__hash__()
 
     def __repr__(self):
-        r'''Gets interpreter representation of beam specifier.
+        r'''Gets interpreter representation.
 
         ..  container:: example
 

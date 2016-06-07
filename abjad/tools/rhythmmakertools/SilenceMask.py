@@ -58,7 +58,7 @@ class SilenceMask(AbjadValueObject):
 
     @property
     def pattern(self):
-        r'''Gets pattern of silence mask.
+        r'''Gets pattern.
 
         Returns pattern.
         '''

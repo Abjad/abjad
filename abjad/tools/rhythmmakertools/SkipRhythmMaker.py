@@ -104,7 +104,7 @@ class SkipRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of skip rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
         ..  note:: not yet implemented.
 

@@ -102,7 +102,7 @@ class RhythmMaker(AbjadValueObject):
         return str(self)
 
     def __getstate__(self):
-        r'''Gets state of rhythm-maker.
+        r'''Gets state.
 
         Returns dictionary.
         '''
@@ -504,7 +504,7 @@ class RhythmMaker(AbjadValueObject):
 
     @property
     def beam_specifier(self):
-        r'''Gets beam specifier of rhythm-maker.
+        r'''Gets beam specifier.
 
         Set to beam specifier or none.
         '''
@@ -512,7 +512,7 @@ class RhythmMaker(AbjadValueObject):
 
     @property
     def division_masks(self):
-        r'''Gets division masks of rhythm-maker.
+        r'''Gets division masks.
 
         Set to division masks or none.
         '''
@@ -520,7 +520,7 @@ class RhythmMaker(AbjadValueObject):
 
     @property
     def duration_spelling_specifier(self):
-        r'''Gets duration spelling specifier of rhythm-maker.
+        r'''Gets duration spelling specifier.
 
         Set to duration spelling specifier or none.
         '''
@@ -528,7 +528,7 @@ class RhythmMaker(AbjadValueObject):
 
     @property
     def logical_tie_masks(self):
-        r'''Gets count masks of rhythm-maker.
+        r'''Gets logical tie masks.
 
         Set to patterns or none.
 
@@ -540,7 +540,7 @@ class RhythmMaker(AbjadValueObject):
 
     @property
     def tie_specifier(self):
-        r'''Gets tie specifier of rhythm-maker.
+        r'''Gets tie specifier.
 
         Set to tie specifier or none.
         '''
@@ -548,7 +548,7 @@ class RhythmMaker(AbjadValueObject):
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
         Set to tuplet spelling specifier or none.
         '''

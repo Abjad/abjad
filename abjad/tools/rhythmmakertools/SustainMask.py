@@ -53,7 +53,7 @@ class SustainMask(AbjadValueObject):
 
     @property
     def pattern(self):
-        r'''Gets pattern of sustain mask.
+        r'''Gets pattern.
 
         Returns pattern.
         '''

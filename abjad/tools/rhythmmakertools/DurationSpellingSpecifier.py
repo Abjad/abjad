@@ -71,7 +71,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
             )
 
     def __repr__(self):
-        r'''Gets interpreter representation of duration spelling specifier.
+        r'''Gets interpreter representation.
 
         ..  container:: example
 

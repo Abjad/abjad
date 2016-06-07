@@ -411,7 +411,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     @property
     def beam_specifier(self):
-        r'''Gets beam specifier of tuplet rhythm-maker.
+        r'''Gets beam specifier.
 
         ..  container:: example
 
@@ -653,7 +653,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     @property
     def division_masks(self):
-        r'''Gets division masks of tuplet rhythm-maker.
+        r'''Gets division masks.
 
         ..  container:: example
 
@@ -779,7 +779,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     @property
     def preferred_denominator(self):
-        r'''Gets preferred denominator of tuplet rhythm-maker.
+        r'''Gets preferred denominator.
 
         ..  container:: example
 
@@ -1288,7 +1288,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     @property
     def tie_specifier(self):
-        r'''Gets tie specifier of tuplet rhythm-maker.
+        r'''Gets tie specifier.
 
         ..  container:: example
 
@@ -1468,7 +1468,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_ratios(self):
-        r'''Gets tuplet ratios of tuplet rhythm-maker.
+        r'''Gets tuplet ratios.
 
         ..  container:: example
 
@@ -1591,7 +1591,7 @@ class TupletRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of tuplet rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
         ..  container:: example
 

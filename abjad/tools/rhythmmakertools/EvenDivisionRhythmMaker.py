@@ -493,7 +493,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     @property
     def burnish_specifier(self):
-        r'''Gets burnish specifier of rhythm-maker.
+        r'''Gets burnish specifier.
 
         ..  container:: example
 
@@ -665,7 +665,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     @property
     def denominators(self):
-        r'''Gets denominators of rhythm-maker.
+        r'''Gets denominators.
 
         ..  container:: example
 
@@ -893,7 +893,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     @property
     def division_masks(self):
-        r'''Gets division masks of even division rhythm-maker.
+        r'''Gets division masks.
 
         ..  container:: example
 
@@ -1110,7 +1110,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     @property
     def extra_counts_per_division(self):
-        r'''Gets extra counts per division of rhythm-maker.
+        r'''Gets extra counts per division.
 
         Treats overly large and overly small values of
         `extra_counts_per_division` modularly. Denote by
@@ -1795,7 +1795,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     @property
     def logical_tie_masks(self):
-        r'''Gets logical tie masks of even division rhythm-maker.
+        r'''Gets logical tie masks.
 
         ..  container:: example
 
@@ -2124,7 +2124,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     @property
     def preferred_denominator(self):
-        r'''Gets preferred denominator of even division rhythm-maker.
+        r'''Gets preferred denominator.
 
         ..  container:: example
 
@@ -2614,7 +2614,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
     @property
     def tuplet_spelling_specifier(self):
-        r'''Gets tuplet spelling specifier of even division rhythm-maker.
+        r'''Gets tuplet spelling specifier.
 
         ..  note:: not yet implemented.
 

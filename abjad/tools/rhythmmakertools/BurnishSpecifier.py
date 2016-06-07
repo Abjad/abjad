@@ -292,7 +292,7 @@ class BurnishSpecifier(AbjadValueObject):
         return AbjadValueObject.__ne__(self, expr)
 
     def __repr__(self):
-        r'''Gets interpreter representation of burnish specifier.
+        r'''Gets interpreter representation.
 
         ..  container:: example
 
@@ -555,7 +555,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     @property
     def left_classes(self):
-        r'''Gets left_classes of burnish specifier.
+        r'''Gets left classes.
 
         ..  container:: example
 
@@ -579,7 +579,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     @property
     def left_counts(self):
-        r'''Gets left counts of burnish specifier.
+        r'''Gets left counts.
 
         ..  container:: example
 
@@ -603,7 +603,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     @property
     def middle_classes(self):
-        r'''Gets middle_classes of burnish specifier.
+        r'''Gets middle_classes.
 
         ..  container:: example
 
@@ -640,7 +640,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     @property
     def right_classes(self):
-        r'''Gets right_classes of burnish specifier.
+        r'''Gets right classes.
 
         ..  container:: example
 
@@ -664,7 +664,7 @@ class BurnishSpecifier(AbjadValueObject):
 
     @property
     def right_counts(self):
-        r'''Gets right counts of burnish specifier.
+        r'''Gets right counts.
 
         ..  container:: example
 

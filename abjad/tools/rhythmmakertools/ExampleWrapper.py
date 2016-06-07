@@ -42,7 +42,7 @@ class ExampleWrapper(AbjadValueObject):
 
     @property
     def arguments(self):
-        r'''Gets arguments of example wrapper.
+        r'''Gets arguments.
 
         Returns dictionary.
         '''
@@ -50,7 +50,7 @@ class ExampleWrapper(AbjadValueObject):
 
     @property
     def division_lists(self):
-        r'''Gets division lists of example wrapper.
+        r'''Gets division lists.
 
         Returns tuple.
         '''
