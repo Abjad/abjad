@@ -152,11 +152,25 @@ class TieSpecifier(AbjadValueObject):
         for leaf in leaves:
             detach(spannertools.Tie, leaf)
         pairs = itertools.groupby(leaves, lambda _: _.__class__)
+        def _get_pitches(component):
+            if isinstance(component, scoretools.Note):
+                return component.written_pitch
+            elif isinstance(component, scoretools.Chord):
+                return component.written_pitches
+            else:
+                raise TypeError(component)
         for class_, group in pairs:
             group = list(group)
-            if isinstance(group[0], scoretools.Note):
-                if 1 < len(group):
-                    attach(spannertools.Tie(), group)
+            if not isinstance(group[0], (scoretools.Note, scoretools.Chord)):
+                continue
+            subpairs = itertools.groupby(group, lambda _: _get_pitches(_))
+            for pitches, subgroup in subpairs:
+                subgroup = list(subgroup)
+                if len(subgroup) == 1:
+                    continue
+                tie = spannertools.Tie()
+                assert tie._attachment_test_all(subgroup)
+                attach(tie, subgroup)
 
     ### PUBLIC PROPERTIES ###
 
