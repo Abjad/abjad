@@ -1,13 +1,16 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import mathtools
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import iterate
 
 
 class Tie(Spanner):
-    r'''A collection of consecutive ties.
+    r'''Tie.
 
     ..  container:: example
+
+        **Example 1.** Ties four notes:
 
         ::
 
@@ -18,13 +21,26 @@ class Tie(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 ~
                 c'8 ~
                 c'8 ~
                 c'8
             }
+
+    ..  container:: example
+
+        **Example 2.** Fails attachment test when pitches differ:
+
+        ::
+
+            >>> staff = Staff("c'8 d'8")
+            >>> tie = Tie()
+            >>> attach(tie, staff[:])
+            Traceback (most recent call last):
+            ...
+            Exception: Tie() attachment test fails for Selection(Note("c'8"), Note("d'8")).
 
     Formats LilyPond ``~`` command on nonlast leaves in spanner.
     '''
@@ -54,6 +70,22 @@ class Tie(Spanner):
         self._use_messiaen_style_ties = use_messiaen_style_ties
 
     ### PRIVATE METHODS ###
+
+    def _attachment_test_all(self, component_expression):
+        from abjad.tools import scoretools
+        written_pitches = []
+        if isinstance(component_expression, scoretools.Component):
+            component_expression = [component_expression]
+        for component in component_expression:
+            if isinstance(component, scoretools.Note):
+                written_pitches.append(component.written_pitch)
+            elif isinstance(component, scoretools.Chord):
+                written_pitches.append(component.written_pitches)
+            else:
+                return False
+        if not mathtools.all_are_equal(written_pitches):
+            return False
+        return True
 
     def _attachment_test(self, component):
         from abjad.tools import scoretools

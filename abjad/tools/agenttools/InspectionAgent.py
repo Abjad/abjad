@@ -871,7 +871,7 @@ class InspectionAgent(abctools.AbjadObject):
                 0 / 0 misdurated measures
                 0 / 0 misfilled measures
                 0 / 0 mismatched enchained hairpins
-                0 / 4 mispitched ties
+                0 / 0 mispitched ties
                 0 / 4 misrepresented flags
                 0 / 5 missing parents
                 0 / 0 nested measures

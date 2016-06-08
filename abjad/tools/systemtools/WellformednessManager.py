@@ -305,7 +305,7 @@ class WellformednessManager(AbjadObject):
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
                 2 /	2 mismatched enchained hairpins
-                0 /	4 mispitched ties
+                0 /	0 mispitched ties
                 0 /	4 misrepresented flags
                 0 /	5 missing parents
                 0 /	0 nested measures
@@ -360,26 +360,103 @@ class WellformednessManager(AbjadObject):
         return violators, total
 
     def check_mispitched_ties(self):
-        r'''Checks for mispitched notes. Does not check tied rests or skips.
+        r'''Checks for mispitched notes.
 
-        Returns violators and total.
+        ..  container:: example
+
+            **Example 1.** Checks for mispitched ties attached to notes:
+
+            ::
+
+                >>> staff = Staff("c'4 ~ c'")
+                >>> staff[1].written_pitch = NamedPitch("d'")
+
+            ::
+
+                >>> inspector = inspect_(staff)
+                >>> print(inspector.tabulate_well_formedness_violations())
+                0 /	2 beamed quarter notes
+                0 /	1 conflicting clefs
+                0 /	1 discontiguous spanners
+                0 /	3 duplicate ids
+                0 /	0 intermarked hairpins
+                0 /	0 misdurated measures
+                0 /	0 misfilled measures
+                0 /	0 mismatched enchained hairpins
+                1 /	1 mispitched ties
+                0 /	2 misrepresented flags
+                0 /	3 missing parents
+                0 /	0 nested measures
+                0 /	0 overlapping beams
+                0 /	0 overlapping glissandi
+                0 /	0 overlapping hairpins
+                0 /	0 overlapping octavation spanners
+                0 /	1 overlapping ties
+                0 /	0 short hairpins
+                0 /	0 tied rests
+
+        ..  container:: example
+
+            **Example 2.** Checks for mispitched ties attached to chords:
+
+            ::
+
+                >>> staff = Staff("<c' d' bf'>4 ~ <c' d' bf'>")
+                >>> staff[1].written_pitches = [6, 9, 10]
+
+            ::
+
+                >>> inspector = inspect_(staff)
+                >>> print(inspector.tabulate_well_formedness_violations())
+                0 /	2 beamed quarter notes
+                0 /	1 conflicting clefs
+                0 /	1 discontiguous spanners
+                0 /	3 duplicate ids
+                0 /	0 intermarked hairpins
+                0 /	0 misdurated measures
+                0 /	0 misfilled measures
+                0 /	0 mismatched enchained hairpins
+                1 /	1 mispitched ties
+                0 /	2 misrepresented flags
+                0 /	3 missing parents
+                0 /	0 nested measures
+                0 /	0 overlapping beams
+                0 /	0 overlapping glissandi
+                0 /	0 overlapping hairpins
+                0 /	0 overlapping octavation spanners
+                0 /	1 overlapping ties
+                0 /	0 short hairpins
+                0 /	0 tied rests
+        
+        Does not check tied rests, chords or skips.
+
+        Returns violator ties together with total number of ties.
         '''
+        from abjad.tools import mathtools
         from abjad.tools import scoretools
         from abjad.tools import spannertools
         from abjad.tools.topleveltools import iterate
-        violators = []
-        total = 0
-        prototype = (spannertools.Tie,)
-        for leaf in iterate(self.expr).by_class(scoretools.Note):
-            total += 1
-            spanners = leaf._get_spanners(prototype)
-            if spanners:
-                spanner = spanners.pop()
-                if not spanner._is_my_last_leaf(leaf):
-                    next_leaf = leaf._get_leaf(1)
-                    if next_leaf:
-                        if leaf.written_pitch != next_leaf.written_pitch:
-                            violators.append(leaf)
+        violators = set()
+        all_spanners = set()
+        pitched_prototype = (scoretools.Note, scoretools.Chord)
+        for leaf in iterate(self.expr).by_class(pitched_prototype):
+            spanners = leaf._get_spanners(spannertools.Tie)
+            if not spanners:
+                continue
+            all_spanners.update(spanners)
+            spanner = spanners.pop()
+            written_pitches = []
+            for leaf in spanner:
+                if isinstance(leaf, scoretools.Note):
+                    written_pitches.append(leaf.written_pitch)
+                elif isinstance(leaf, scoretools.Chord):
+                    written_pitches.append(leaf.written_pitches)
+                else:
+                    raise TypeError(leaf)
+            if not mathtools.all_are_equal(written_pitches):
+                violators.add(spanner)
+        violators = list(violators)
+        total = len(all_spanners)
         return violators, total
 
     def check_misrepresented_flags(self):
@@ -521,7 +598,7 @@ class WellformednessManager(AbjadObject):
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
                 0 /	2 mismatched enchained hairpins
-                0 /	4 mispitched ties
+                0 /	0 mispitched ties
                 0 /	4 misrepresented flags
                 0 /	5 missing parents
                 0 /	0 nested measures
@@ -610,7 +687,7 @@ class WellformednessManager(AbjadObject):
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
                 0 /	0 mismatched enchained hairpins
-                0 /	4 mispitched ties
+                0 /	2 mispitched ties
                 0 /	4 misrepresented flags
                 0 /	5 missing parents
                 0 /	0 nested measures
