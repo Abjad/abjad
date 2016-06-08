@@ -530,7 +530,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _interpolate_cosine(y1, y2, mu):
-        r'''Perorms cosine interpolation of `y1` and `y2` with `mu` ``[0, 1]``
+        r'''Performs cosine interpolation of `y1` and `y2` with `mu` ``[0, 1]``
         normalized:
 
         ::
@@ -678,24 +678,52 @@ class AccelerandoRhythmMaker(RhythmMaker):
 
     @staticmethod
     def _interpolate_exponential(y1, y2, mu, exponent=1):
-        r'''Performs exponential interpolation from `y1` to `y2` with `mu`
-        ``[0, 1]`` normalized:
+        r'''Interpolates between `y1` and `y2` at position `mu`.
+        
+        Exponents equal to 1 leave durations unscaled:
 
         ::
 
-            >>> rhythmmakertools.AccelerandoRhythmMaker._interpolate_exponential(
-            ...     y1=0,
-            ...     y2=1,
-            ...     mu=0.5,
-            ...     exponent=4,
-            ...     )
-            0.0625
+            >>> class_ = rhythmmakertools.AccelerandoRhythmMaker
+            >>> for mu in (0, 0.25, 0.5, 0.75, 1):
+            ...     class_._interpolate_exponential(100, 200, mu, exponent=1)
+            ...
+            100
+            125.0
+            150.0
+            175.0
+            200
 
-        Set `exponent` equal to the exponent of interpolation.
+        Exponents greater than 1 generate ritardandi:
+
+        ::
+
+            >>> class_ = rhythmmakertools.AccelerandoRhythmMaker
+            >>> for mu in (0, 0.25, 0.5, 0.75, 1):
+            ...     class_._interpolate_exponential(100, 200, mu, exponent=2)
+            ...
+            100
+            106.25
+            125.0
+            156.25
+            200
+
+        Exponents less than 1 generate accelerandi:
+
+        ::
+
+            >>> class_ = rhythmmakertools.AccelerandoRhythmMaker
+            >>> for mu in (0, 0.25, 0.5, 0.75, 1):
+            ...     class_._interpolate_exponential(100, 200, mu, exponent=0.5)
+            ...
+            100.0
+            150.0
+            170.71067811865476
+            186.60254037844388
+            200.0
 
         Returns float.
         '''
-
         result = (y1 * (1 - mu ** exponent) + y2 * mu ** exponent)
         return result
 
