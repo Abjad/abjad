@@ -2359,10 +2359,6 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> silence_mask = rhythmmakertools.silence_every(
-                ...     indices=[2],
-                ...     period=3,
-                ...     )
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
                 ...     logical_tie_masks=[
                 ...         rhythmmakertools.silence_first(),

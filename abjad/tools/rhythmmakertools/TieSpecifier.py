@@ -141,7 +141,8 @@ class TieSpecifier(AbjadValueObject):
                 use_messiaen_style_ties=self.use_messiaen_style_ties,
                 )
             tie_spanner._unconstrain_contiguity()
-            attach(tie_spanner, combined_logical_tie)
+            if tie_spanner._attachment_test_all(combined_logical_tie):
+                attach(tie_spanner, combined_logical_tie)
             tie_spanner._constrain_contiguity()
 
     def _do_tie_consecutive_notes(self, divisions):
