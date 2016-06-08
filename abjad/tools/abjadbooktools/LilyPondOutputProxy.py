@@ -87,6 +87,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
                 payload)
         lilypond_file = payload
         assert isinstance(lilypond_file, lilypondfiletools.LilyPondFile)
+        if lilypond_file.header_block is None:
+            header_block = lilypondfiletools.Block(name='header')
+            lilypond_file.items.insert(0, header_block)
         lilypond_file.header_block.tagline = False
         lilypond_file._date_time_token = None
         token = lilypondfiletools.LilyPondVersionToken(

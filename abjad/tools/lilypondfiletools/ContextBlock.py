@@ -70,8 +70,7 @@ class ContextBlock(Block):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _format_pieces(self):
+    def _get_format_pieces(self):
         from abjad.tools import systemtools
         indent = systemtools.LilyPondFormatManager.indent
         result = []
@@ -121,10 +120,6 @@ class ContextBlock(Block):
                 result.append(string)
             elif '_get_format_pieces' in dir(item):
                 pieces = item._get_format_pieces()
-                pieces = [indent + item for item in pieces]
-                result.extend(pieces)
-            elif '_format_pieces' in dir(item):
-                pieces = item._format_pieces
                 pieces = [indent + item for item in pieces]
                 result.extend(pieces)
             else:

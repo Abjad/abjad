@@ -46,6 +46,36 @@ class GraphvizNode(GraphvizMixin, TreeContainer):
         result = '\n'.join(result)
         return result
 
+    ### PUBLIC METHODS ###
+
+    def attach(self, other):
+        r'''Attaches node to attachable Graphviz object.
+
+        ::
+
+            >>> my_graph = documentationtools.GraphvizGraph()
+            >>> node_one = documentationtools.GraphvizNode(attributes={'label': 'One'})
+            >>> node_two = documentationtools.GraphvizNode(attributes={'label': 'Two'})
+            >>> my_graph.extend([node_one, node_two])
+            >>> edge = node_one.attach(node_two)
+            >>> graph(my_graph)  # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> print(str(my_graph))
+            digraph G {
+                node_0 [label=One];
+                node_1 [label=Two];
+                node_0 -> node_1;
+            }
+
+        Returns GraphvizEdge.
+        '''
+        from abjad.tools import documentationtools
+        edge = documentationtools.GraphvizEdge()
+        edge.attach(self, other)
+        return edge
+
     ### PRIVATE PROPERTIES ###
 
     @property

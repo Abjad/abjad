@@ -27,7 +27,6 @@ Key points:
             attributes=dict(
                 bgcolor='transparent',
                 color='lightslategrey',
-                fontname='Arial',
                 output_order='edgesfirst',
                 overlap='prism',
                 penwidth=2,
@@ -94,6 +93,63 @@ Key points:
 
     context_graph = create_context_graph()
     graph(context_graph)
+
+Graph basics
+------------
+
+..  abjad::
+
+    my_graph = documentationtools.GraphvizGraph()
+
+..  abjad::
+
+    node_a = documentationtools.GraphvizNode(name='A', attributes={'label': 'A'})
+    node_b = documentationtools.GraphvizNode(name='B', attributes={'label': 'B'})
+    node_c = documentationtools.GraphvizNode(name='C', attributes={'label': 'C'})
+    node_d = documentationtools.GraphvizNode(name='D', attributes={'label': 'D'})
+
+..  abjad::
+
+    my_graph.extend([node_a, node_b, node_c, node_d])
+    graph(my_graph)
+
+..  abjad::
+
+    my_graph['B'].attributes['shape'] = 'diamond'
+    graph(my_graph)
+
+..  abjad::
+
+    ab_edge = my_graph['A'].attach(my_graph['B'])
+    bc_edge = my_graph['B'].attach(my_graph['C'])
+    bd_edge = my_graph['B'].attach(my_graph['D'])
+    graph(my_graph)
+
+..  abjad::
+
+    bc_edge.attributes['style'] = 'dotted'
+    bd_edge.attributes['style'] = 'dashed'
+    my_graph.attributes['bgcolor'] = 'transparent'
+    my_graph.node_attributes.update(
+        fontname='Arial',
+        penwidth=2,
+        )
+    my_graph.edge_attributes.update(
+        color='grey',
+        penwidth=2,
+        )
+    graph(my_graph)
+    print(format(my_graph, 'graphviz'))
+
+Collecting data for the graph
+-----------------------------
+
+..  abjad::
+
+    for context in lilypondnametools.LilyPondContext.list_all_contexts():
+        print(context.name)
+        for child_context in context.accepts:
+            print('\t' + child_context.name)
 
 Populating the graph
 --------------------
@@ -202,7 +258,6 @@ Configuring the graph's attributes
     context_graph.attributes.update(
         bgcolor='transparent',
         color='lightslategrey',
-        fontname='Arial',
         penwidth=2,
         style=('dotted', 'rounded'),
         truecolor=True,

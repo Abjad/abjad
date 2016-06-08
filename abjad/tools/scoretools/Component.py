@@ -150,10 +150,6 @@ class Component(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_pieces(self):
-        return self._format_component(pieces=True)
-
-    @property
     def _lilypond_format(self):
         self._update_now(indicators=True)
         return self._format_component()
@@ -431,6 +427,9 @@ class Component(AbjadObject):
         for source, contributions in method(bundle):
             result.extend(contributions)
         return result
+
+    def _get_format_pieces(self):
+        return self._format_component(pieces=True)
 
     def _get_grace_containers(self, kind=None):
         from abjad.tools import scoretools

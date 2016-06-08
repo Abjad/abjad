@@ -109,10 +109,6 @@ class Context(Container):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_pieces(self):
-        return self._format_component(pieces=True)
-
-    @property
     def _lilypond_format(self):
         self._update_now(indicators=True)
         return self._format_component()
@@ -209,6 +205,9 @@ class Context(Container):
             string = r'\remove {}'.format(engraver)
             result.append(string)
         return result
+
+    def _get_format_pieces(self):
+        return self._format_component(pieces=True)
 
     ### PUBLIC PROPERTIES ###
 

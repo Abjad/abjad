@@ -92,10 +92,27 @@ class Block(AbjadObject):
                 return item
         raise KeyError
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _format_pieces(self):
+    def _format_item(self, item, depth=1):
+        from abjad.tools import systemtools
+        indent = systemtools.LilyPondFormatManager.indent * depth
+        result = []
+        if isinstance(item, (list, tuple)):
+            result.append(indent + '{')
+            for x in item:
+                result.extend(self._format_item(x, depth + 1))
+            result.append(indent + '}')
+        elif isinstance(item, str):
+            string = indent + item
+            result.append(string)
+        elif '_get_format_pieces' in dir(item):
+            pieces = item._get_format_pieces()
+            pieces = (indent + item for item in pieces)
+            result.extend(pieces)
+        return result
+
+    def _get_format_pieces(self):
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
@@ -114,31 +131,12 @@ class Block(AbjadObject):
         string = '{} {{'.format(self._escaped_name)
         result.append(string)
         prototype = (scoretools.Leaf, markuptools.Markup)
-        if len(self.items) == 1 and isinstance(self.items[0], prototype) and \
-            self.name == 'score':
-            result.append(indent + '{')
-            pieces = self.items[0]._format_pieces
-            pieces = [indent + indent + item for item in pieces]
-            result.extend(pieces)
-            result.append(indent + '}')
-            result.append('}')
-            return result
         for item in self.items:
             if isinstance(item, lilypondfiletools.ContextBlock):
-                pass
-            elif isinstance(item, str):
-                string = indent + '{}'.format(item)
-                result.append(string)
-            elif '_get_format_pieces' in dir(item):
-                pieces = item._get_format_pieces()
-                pieces = [indent + item for item in pieces]
-                result.extend(pieces)
-            elif '_format_pieces' in dir(item):
-                pieces = item._format_pieces
-                pieces = [indent + item for item in pieces]
-                result.extend(pieces)
-            else:
-                pass
+                continue
+            if isinstance(item, prototype):
+                item = [item]
+            result.extend(self._format_item(item))
         formatted_attributes = self._get_formatted_user_attributes()
         formatted_attributes = [indent + x for x in formatted_attributes]
         result.extend(formatted_attributes)
@@ -149,6 +147,8 @@ class Block(AbjadObject):
         result.append('}')
         return result
 
+    ### PRIVATE PROPERTIES ###
+
     @property
     def _formatted_context_blocks(self):
         from abjad.tools import lilypondfiletools
@@ -158,12 +158,12 @@ class Block(AbjadObject):
             if isinstance(item, lilypondfiletools.ContextBlock):
                 context_blocks.append(item)
         for context_block in context_blocks:
-            result.extend(context_block._format_pieces)
+            result.extend(context_block._get_format_pieces())
         return result
 
     @property
     def _lilypond_format(self):
-        return '\n'.join(self._format_pieces)
+        return '\n'.join(self._get_format_pieces())
 
     @property
     def _repr_specification(self):

@@ -1,4 +1,4 @@
-Mapping patterns to notation
+Outputting High-quality MIDI
 ============================
 
 ..  note::

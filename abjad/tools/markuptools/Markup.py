@@ -266,10 +266,6 @@ class Markup(AbjadValueObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _format_pieces(self):
-        return self._get_format_pieces()
-
-    @property
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
 
@@ -870,6 +866,41 @@ class Markup(AbjadValueObject):
         return Markup(contents=command)
 
     @staticmethod
+    def draw_circle(radius, thickness, filled=False):
+        r'''LilyPond ``\draw-circle`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup = Markup.draw_circle(10, 1.5)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \draw-circle
+                        #10
+                        #1.5
+                        ##f
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup
+        '''
+        from abjad.tools import markuptools
+        command = markuptools.MarkupCommand(
+            'draw-circle',
+            radius,
+            thickness,
+            filled,
+            )
+        return Markup(contents=command)
+
+    @staticmethod
     def draw_line(x, y):
         r'''LilyPond ``\draw-line`` markup command.
 
@@ -934,7 +965,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def filled_box(x_extent, y_extent, blot):
+    def filled_box(x_extent, y_extent, blot=0):
         r'''LilyPond ``filled-box`` markup command.
 
         ..  container:: example
