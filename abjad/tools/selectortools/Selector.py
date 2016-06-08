@@ -837,12 +837,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
-                >>> selector = selector.by_duration(
-                ...     selectortools.DurationInequality(
-                ...          duration=Duration(3, 8),
-                ...          operator_string='<',
-                ...          ),
-                ...     )
+                >>> selector = selector.by_duration('<', Duration(3, 8))
 
             ::
 
@@ -883,12 +878,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
-                >>> selector = selector.by_duration(
-                ...     selectortools.DurationInequality(
-                ...          duration=Duration(1, 4),
-                ...          operator_string='>=',
-                ...          ),
-                ...     )
+                >>> selector = selector.by_duration('>=', Duration(1, 4))
 
             ::
 
@@ -919,8 +909,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie()
                 >>> selector = selector.by_duration(
-                ...     '==',
-                ...     (1, 8),
+                ...     '==', Duration(1, 8),
                 ...     preprolated=True,
                 ...     )
 
@@ -1258,8 +1247,7 @@ class Selector(AbjadValueObject):
             )
         return self._append_callback(callback)
 
-    # TODO: change *args to explicit signature
-    def by_length(self, *args):
+    def by_length(self, inequality=None, length=None):
         r'''Configures selector by length.
 
         ..  container:: example
@@ -1272,12 +1260,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
-                >>> selector = selector.by_length(
-                ...     selectortools.LengthInequality(
-                ...          length=1,
-                ...          operator_string='>',
-                ...          ),
-                ...     )
+                >>> selector = selector.by_length('>', 1)
 
             ::
 
@@ -1297,12 +1280,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
-                >>> selector = selector.by_length(
-                ...     selectortools.LengthInequality(
-                ...          length=3,
-                ...          operator_string='<',
-                ...          ),
-                ...     )
+                >>> selector = selector.by_length('<', 3)
 
             ::
 
@@ -1315,19 +1293,31 @@ class Selector(AbjadValueObject):
         Returns new selector.
         '''
         from abjad.tools import selectortools
-        if len(args) == 1:
-            length = args[0]
-            if not isinstance(length, selectortools.LengthInequality):
-                length = int(length)
-        elif len(args) == 2:
-            length = selectortools.LengthInequality(
-                length=args[1],
-                operator_string=args[0],
+        length_expr = None
+        if isinstance(inequality, (
+            int,
+            float,
+            selectortools.LengthInequality,
+            )):
+            length_expr = inequality
+        elif isinstance(inequality, str) and length is not None:
+            length_expr = selectortools.LengthInequality(
+                length=int(length),
+                operator_string=inequality,
                 )
-        else:
-            raise ValueError(args)
+        elif inequality is None and length is not None:
+            length_expr = selectortools.LengthInequality(
+                length=int(length),
+                operator_string='==',
+                )
+        if not isinstance(length_expr, (
+            int,
+            float,
+            selectortools.LengthInequality,
+            )):
+            raise ValueError(inequality, length)
         callback = selectortools.LengthSelectorCallback(
-            length=length,
+            length=length_expr,
             )
         return self._append_callback(callback)
 
