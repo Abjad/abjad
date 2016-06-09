@@ -76,7 +76,11 @@ class Leaf(Component):
     def _formatted_duration(self):
         duration_string = self.written_duration.lilypond_duration_string
         multiplier = None
-        multipliers = self._get_indicators(durationtools.Multiplier)
+        multiplier_prototype = (
+            durationtools.Multiplier,
+            mathtools.NonreducedFraction,
+            )
+        multipliers = self._get_indicators(multiplier_prototype)
         if not multipliers:
             pass
         elif len(multipliers) == 1:
@@ -93,11 +97,15 @@ class Leaf(Component):
     @property
     def _multiplied_duration(self):
         if self.written_duration:
-            if self._get_indicators(durationtools.Multiplier):
-                multipliers = self._get_indicators(
-                    durationtools.Multiplier)
+            multiplier_prototype = (
+                durationtools.Multiplier,
+                mathtools.NonreducedFraction,
+                )
+            if self._get_indicators(multiplier_prototype):
+                multipliers = self._get_indicators(multiplier_prototype)
                 if 1 == len(multipliers):
                     multiplier = multipliers[0]
+                    multiplier = durationtools.Duration(multiplier)
                 elif 1 < len(multipliers):
                     message = 'more than one duration multiplier.'
                     raise ValueError(message)
