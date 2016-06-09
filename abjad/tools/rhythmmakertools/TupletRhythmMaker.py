@@ -369,22 +369,24 @@ class TupletRhythmMaker(RhythmMaker):
                 avoid_dots=tuplet_spelling_specifier.avoid_dots,
                 is_diminution=tuplet_spelling_specifier.is_diminution,
                 )
-            if self.preferred_denominator is None:
+            preferred_denominator = \
+                tuplet_spelling_specifier.preferred_denominator
+            if preferred_denominator is None:
                 pass
-            elif self.preferred_denominator == 'divisions':
+            elif preferred_denominator == 'divisions':
                 tuplet.preferred_denominator = division.numerator
             elif isinstance(
-                self.preferred_denominator, durationtools.Duration):
-                unit_duration = self.preferred_denominator
+                preferred_denominator, durationtools.Duration):
+                unit_duration = preferred_denominator
                 assert unit_duration.numerator == 1
                 duration = inspect_(tuplet).get_duration()
                 denominator = unit_duration.denominator
                 nonreduced_fraction = duration.with_denominator(denominator)
                 tuplet.preferred_denominator = nonreduced_fraction.numerator
-            elif mathtools.is_positive_integer(self.preferred_denominator):
-                tuplet.preferred_denominator = self.preferred_denominator
+            elif mathtools.is_positive_integer(preferred_denominator):
+                tuplet.preferred_denominator = preferred_denominator
             else:
-                raise ValueError(self.preferred_denominator)
+                raise ValueError(preferred_denominator)
             tuplets.append(tuplet)
         selections = [selectiontools.Selection(x) for x in tuplets]
         beam_specifier = self._get_beam_specifier()
@@ -785,8 +787,8 @@ class TupletRhythmMaker(RhythmMaker):
 
             **Example 1.** Tuplet numerators and denominators are reduced to
             numbers that are relatively prime when `preferred_denominator` is
-            set to none. This means that ratios like ``6:4`` and ``10:8`` are
-            not possible:
+            set to none. This means that ratios like ``6:4`` and ``10:8`` do
+            not arise:
 
             ::
 
@@ -794,8 +796,8 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
+                ...         preferred_denominator=None,
                 ...         ),
-                ...     preferred_denominator=None,
                 ...     )
 
             ::
@@ -853,7 +855,7 @@ class TupletRhythmMaker(RhythmMaker):
             `preferred_denominator` is set to the string ``'divisions'``. This
             means that the tuplet numerator and denominator are not necessarily
             relatively prime. This also means that ratios like ``6:4`` and
-            ``10:8`` are possible:
+            ``10:8`` may arise:
 
             ::
 
@@ -861,8 +863,8 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
+                ...         preferred_denominator='divisions',
                 ...         ),
-                ...     preferred_denominator='divisions',
                 ...     )
 
             ::
@@ -923,8 +925,8 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
+                ...         preferred_denominator=Duration(1, 16),
                 ...         ),
-                ...     preferred_denominator=Duration(1, 16),
                 ...     )
 
             ::
@@ -984,8 +986,8 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
+                ...         preferred_denominator=Duration(1, 32),
                 ...         ),
-                ...     preferred_denominator=Duration(1, 32),
                 ...     )
 
             ::
@@ -1045,8 +1047,8 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
+                ...         preferred_denominator=Duration(1, 64),
                 ...         ),
-                ...     preferred_denominator=Duration(1, 64),
                 ...     )
 
             ::
@@ -1108,8 +1110,8 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
+                ...         preferred_denominator=8,
                 ...         ),
-                ...     preferred_denominator=8,
                 ...     )
 
             ::
@@ -1169,8 +1171,8 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
+                ...         preferred_denominator=12,
                 ...         ),
-                ...     preferred_denominator=12,
                 ...     )
 
             ::
@@ -1230,8 +1232,8 @@ class TupletRhythmMaker(RhythmMaker):
                 ...     tuplet_ratios=[(1, 4)],
                 ...     tuplet_spelling_specifier=rhythmmakertools.TupletSpellingSpecifier(
                 ...         avoid_dots=True,
+                ...         preferred_denominator=13,
                 ...         ),
-                ...     preferred_denominator=13,
                 ...     )
 
             ::
