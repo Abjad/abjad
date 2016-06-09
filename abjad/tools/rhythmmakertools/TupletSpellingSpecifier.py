@@ -1,5 +1,8 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import durationtools
+from abjad.tools import mathtools
 from abjad.tools.abctools import AbjadValueObject
+from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 
 
@@ -45,6 +48,34 @@ class TupletSpellingSpecifier(AbjadValueObject):
         self._use_note_duration_bracket = bool(use_note_duration_bracket)
 
     ### PRIVATE METHODS ###
+
+    def _apply_preferred_denominator(self, selections, divisions):
+        from abjad.tools import scoretools
+        if not self.preferred_denominator:
+            return
+        tuplets = iterate(selections).by_class(scoretools.Tuplet)
+        tuplets = list(tuplets)
+        if divisions is None:
+            divisions = len(tuplets) * [None]
+        assert len(selections) == len(divisions)
+        assert len(tuplets) == len(divisions)
+        for tuplet, division in zip(tuplets, divisions):
+            if self.preferred_denominator == 'divisions':
+                tuplet.preferred_denominator = division.numerator
+            elif isinstance(
+                self.preferred_denominator, durationtools.Duration):
+                unit_duration = self.preferred_denominator
+                assert unit_duration.numerator == 1
+                duration = inspect_(tuplet).get_duration()
+                denominator = unit_duration.denominator
+                nonreduced_fraction = duration.with_denominator(denominator)
+                tuplet.preferred_denominator = nonreduced_fraction.numerator
+            elif mathtools.is_positive_integer(self.preferred_denominator):
+                tuplet.preferred_denominator = self.preferred_denominator
+            else:
+                message = 'invalid value for preferred denominator: {!r}.'
+                message = message.format(self.preferred_denominator)
+                raise Exception(message)
 
     def _do_simplify_redundant_tuplets(self, selections):
         from abjad.tools import scoretools
