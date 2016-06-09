@@ -753,10 +753,7 @@ class AccelerandoRhythmMaker(RhythmMaker):
             tuplet = scoretools.Tuplet((1, 1), notes)
             selection = selectiontools.Selection([tuplet])
             return selection
-        durations = [
-            durationtools.Duration(int(round(_ * 2**10)), 2**10)
-            for _ in durations
-            ]
+        durations = class_._round_durations(durations, 2**10)
         notes = []
         for i, duration in enumerate(durations):
             written_duration = interpolation_specifier.written_duration
@@ -808,6 +805,15 @@ class AccelerandoRhythmMaker(RhythmMaker):
         beam_specifier(selections)
         selections = self._apply_division_masks(selections, rotation)
         return selections
+
+    @staticmethod
+    def _round_durations(durations, denominator):
+        durations_ = []
+        for duration in durations:
+            numerator = int(round(duration * denominator))
+            duration_ = durationtools.Duration(numerator, denominator)
+            durations_.append(duration_)
+        return durations_
 
     ### PUBLIC PROPERTIES ###
 
