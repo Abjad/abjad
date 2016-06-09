@@ -48,6 +48,7 @@ class Selector(AbjadValueObject):
 
         ::
 
+            >>> selector = selectortools.Selector()
             >>> selector = selector.by_leaves()
             >>> selector(staff)
             Selection(Selection(Note("c'4"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4")),)
@@ -58,6 +59,8 @@ class Selector(AbjadValueObject):
 
         ::
 
+            >>> selector = selectortools.Selector()
+            >>> selector = selector.by_leaves()
             >>> selector = selector.by_run(Note)
             >>> selector(staff)
             Selection(Selection(Note("c'4"), Note("d'8")), Selection(Note("e'8"),), Selection(Note("f'16"), Note("g'8"), Note("a'4")))
@@ -68,6 +71,9 @@ class Selector(AbjadValueObject):
 
         ::
 
+            >>> selector = selectortools.Selector()
+            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_run(Note)
             >>> selector = selector.get_item(0, apply_to_each=True)
             >>> selector(staff)
             Selection(Note("c'4"), Note("e'8"), Note("f'16"))
