@@ -82,6 +82,39 @@ class BeamSpecifier(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
+    def __call__(self, selections):
+        if self.beam_divisions_together:
+            durations = []
+            for selection in selections:
+                if isinstance(selection, selectiontools.Selection):
+                    duration = selection.get_duration()
+                else:
+                    duration = selection._get_duration()
+                durations.append(duration)
+            beam = spannertools.DuratedComplexBeam(
+                durations=durations,
+                span_beam_count=1,
+                )
+            components = []
+            for selection in selections:
+                if isinstance(selection, selectiontools.Selection):
+                    components.extend(selection)
+                elif isinstance(selection, scoretools.Tuplet):
+                    components.append(selection)
+                else:
+                    raise TypeError(selection)
+            if self.stemlet_length is not None:
+                grob_proxy = override(beam).staff.stem
+                grob_proxy.stemlet_length = self.stemlet_length
+            attach(beam, components)
+        elif self.beam_each_division:
+            for selection in selections:
+                beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
+                if self.stemlet_length is not None:
+                    grob_proxy = override(beam).staff.stem
+                    grob_proxy.stemlet_length = self.stemlet_length
+                attach(beam, selection)
+
     def __eq__(self, arg):
         r'''Is true when `arg` is a beam specifier with `beam_each_division`
         and `beam_divisions_together` equal to those of this beam specifier.
@@ -164,39 +197,6 @@ class BeamSpecifier(AbjadValueObject):
         return AbjadValueObject.__repr__(self)
 
     ### PRIVATE METHODS ###
-
-    def _apply(self, selections):
-        if self.beam_divisions_together:
-            durations = []
-            for selection in selections:
-                if isinstance(selection, selectiontools.Selection):
-                    duration = selection.get_duration()
-                else:
-                    duration = selection._get_duration()
-                durations.append(duration)
-            beam = spannertools.DuratedComplexBeam(
-                durations=durations,
-                span_beam_count=1,
-                )
-            components = []
-            for selection in selections:
-                if isinstance(selection, selectiontools.Selection):
-                    components.extend(selection)
-                elif isinstance(selection, scoretools.Tuplet):
-                    components.append(selection)
-                else:
-                    raise TypeError(selection)
-            if self.stemlet_length is not None:
-                grob_proxy = override(beam).staff.stem
-                grob_proxy.stemlet_length = self.stemlet_length
-            attach(beam, components)
-        elif self.beam_each_division:
-            for selection in selections:
-                beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
-                if self.stemlet_length is not None:
-                    grob_proxy = override(beam).staff.stem
-                    grob_proxy.stemlet_length = self.stemlet_length
-                attach(beam, selection)
 
     ### PUBLIC PROPERTIES ###
 

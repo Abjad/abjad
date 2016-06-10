@@ -563,7 +563,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 selection = scoretools.make_leaves([0], [division])
                 selections.append(selection)
         beam_specifier = self._get_beam_specifier()
-        beam_specifier._apply(selections)
+        beam_specifier(selections)
         if talea:
             self._apply_ties_to_split_notes(selections, unscaled_talea)
         selections = self._handle_rest_tied_notes(selections)
