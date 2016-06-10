@@ -485,7 +485,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
             selections.append(selection)
         selections = self._apply_burnish_specifier(selections, rotation)
         beam_specifier = self._get_beam_specifier()
-        beam_specifier._apply(selections)
+        beam_specifier(selections)
         selections = self._apply_division_masks(selections, rotation)
         return selections
 
