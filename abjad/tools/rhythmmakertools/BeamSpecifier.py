@@ -3,7 +3,9 @@ from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 
 
@@ -197,6 +199,10 @@ class BeamSpecifier(AbjadValueObject):
         return AbjadValueObject.__repr__(self)
 
     ### PRIVATE METHODS ###
+
+    def _detach_all_beams(self, divisions):
+        for component in iterate(divisions).by_class():
+            detach(spannertools.Beam, component)
 
     ### PUBLIC PROPERTIES ###
 
