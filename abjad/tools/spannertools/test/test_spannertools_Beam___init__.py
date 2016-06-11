@@ -731,7 +731,8 @@ def test_spannertools_Beam___init___19():
         '''
         )
 
-    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
+    selector = select().by_leaves(flatten=True)
+    leaves = selector(staff)
     beam = Beam()
     statement = 'attach(beam, leaves)'
     assert pytest.raises(Exception, statement)

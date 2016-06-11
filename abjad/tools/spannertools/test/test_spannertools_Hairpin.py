@@ -147,7 +147,7 @@ def test_spannertools_Hairpin_06():
         descriptor='p < f',
         include_rests=False,
         )
-    attach(hairpin, staff.select_leaves())
+    attach(hairpin, staff[:])
 
     prototype = Hairpin
     spanner = inspect_(staff[0]).get_spanner(prototype=prototype)

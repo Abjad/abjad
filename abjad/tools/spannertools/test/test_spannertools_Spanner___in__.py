@@ -62,4 +62,6 @@ def test_spannertools_Spanner___in___02():
         )
 
     assert all(x in beam for x in (voice[0], voice[1], voice[2]))
-    assert not any(x in beam for x in voice.select_leaves())
+    selector = select().by_leaves(flatten=True)
+    leaves = selector(voice)
+    assert not any(x in beam for x in leaves)

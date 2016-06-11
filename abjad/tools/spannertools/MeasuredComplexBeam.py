@@ -20,7 +20,9 @@ class MeasuredComplexBeam(ComplexBeam):
         ::
 
             >>> beam = spannertools.MeasuredComplexBeam()
-            >>> attach(beam, staff.select_leaves())
+            >>> selector = select().by_leaves(flatten=True)
+            >>> leaves = selector(staff)
+            >>> attach(beam, leaves)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -131,8 +133,10 @@ class MeasuredComplexBeam(ComplexBeam):
                 >>> staff = Staff()
                 >>> staff.append(Measure((2, 32), "c'32 d'32"))
                 >>> staff.append(Measure((2, 32), "e'32 f'32"))
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
                 >>> beam = spannertools.MeasuredComplexBeam(span_beam_count=1)
-                >>> attach(beam, staff.select_leaves())
+                >>> attach(beam, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ::
@@ -150,7 +154,9 @@ class MeasuredComplexBeam(ComplexBeam):
                 >>> staff.append(Measure((2, 32), "c'32 d'32"))
                 >>> staff.append(Measure((2, 32), "e'32 f'32"))
                 >>> beam = spannertools.MeasuredComplexBeam(span_beam_count=2)
-                >>> attach(beam, staff.select_leaves())
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
+                >>> attach(beam, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ::

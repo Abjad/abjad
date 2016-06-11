@@ -27,13 +27,14 @@ def test_topleveltools_set__01():
 
 
 def test_topleveltools_set__02():
-    r'''Works with leaf tempo interface.
-    Includes LilyPond \set command.'''
+    r'''Works with leaf tempo interface. Includes LilyPond \set command.
+    '''
 
     staff = Staff("c'8 d'8 e'8 f'8")
     score = Score([staff])
     moment = schemetools.SchemeMoment(24)
-    set_(score.select_leaves()[1]).score.tempo_wholes_per_minute = moment
+    leaves = select().by_leaves(flatten=True)(score)
+    set_(leaves[1]).score.tempo_wholes_per_minute = moment
 
     assert format(score) == stringtools.normalize(
         r'''

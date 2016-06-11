@@ -32,7 +32,7 @@ class ComplexTrillSpanner(Spanner):
             >>> complex_trill = spannertools.ComplexTrillSpanner(
             ...     interval='P4',
             ...     )
-            >>> attach(complex_trill, staff.select_leaves())
+            >>> attach(complex_trill, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
