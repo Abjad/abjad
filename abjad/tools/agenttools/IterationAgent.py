@@ -702,7 +702,9 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
+                >>> leaf = leaves[0]
                 >>> signature = inspect_(leaf).get_parentage().logical_voice
                 >>> for note in iterate(staff).by_logical_voice(Note, signature):
                 ...     note
@@ -803,7 +805,9 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
+                >>> leaf = leaves[0]
                 >>> for x in iterate(leaf).by_logical_voice_from_component(Note):
                 ...     x
                 ...
@@ -818,7 +822,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[1]
+                >>> leaf = leaves[1]
                 >>> for x in iterate(leaf).by_logical_voice_from_component(Note):
                 ...     x
                 ...
@@ -832,7 +836,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+                >>> leaf = leaves[0]
                 >>> for x in iterate(leaf).by_logical_voice_from_component():
                 ...     x
                 ...
@@ -849,7 +853,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
+                >>> leaf = leaves[-1]
                 >>> for x in iterate(leaf).by_logical_voice_from_component(
                 ...     Note,
                 ...     reverse=True,
@@ -862,7 +866,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
+                >>> leaf = leaves[-1]
                 >>> for x in iterate(leaf).by_logical_voice_from_component(
                 ...     reverse=True,
                 ...     ):

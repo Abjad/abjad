@@ -19,7 +19,8 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> leaves = staff.select_leaves()
+            >>> selector = select().by_leaves(flatten=True)
+            >>> leaves = selector(staff)
             >>> attach(indicatortools.BowMotionTechnique('jete'), leaves[0])
             >>> attach(indicatortools.BowContactPoint((1, 4)), leaves[0])
             >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
@@ -136,7 +137,7 @@ class BowContactSpanner(Spanner):
 
         ::
 
-            >>> leaves = staff.select_leaves()
+            >>> leaves = staff[:]
             >>> attach(indicatortools.BowContactPoint(None), leaves[0])
             >>> attach(indicatortools.BowContactPoint((3, 4)), leaves[1])
             >>> attach(indicatortools.BowContactPoint((1, 2)), leaves[2])

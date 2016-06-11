@@ -166,8 +166,8 @@ class MetricAccentKernel(AbjadValueObject):
             ::
 
                 >>> MetricAccentKernel = metertools.MetricAccentKernel
-                >>> leaves = score.select_leaves(
-                ...     allow_discontiguous_leaves=True)
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(score)
                 >>> counter = MetricAccentKernel.count_offsets_in_expr(leaves)
                 >>> for offset, count in sorted(counter.items()):
                 ...     offset, count

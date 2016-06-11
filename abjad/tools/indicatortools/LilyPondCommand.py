@@ -13,7 +13,7 @@ class LilyPondCommand(AbjadValueObject):
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> slur = spannertools.Slur()
-            >>> attach(slur, staff.select_leaves())
+            >>> attach(slur, staff[:])
             >>> command = indicatortools.LilyPondCommand('slurDotted')
             >>> attach(command, staff[0])
             >>> show(staff) # doctest: +SKIP

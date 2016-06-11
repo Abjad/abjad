@@ -63,7 +63,7 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(
 
     ::
 
-        >>> notes = staff.select_leaves()
+        >>> notes = staff[:]
         >>> notes = list(reversed(notes))
 
     ::

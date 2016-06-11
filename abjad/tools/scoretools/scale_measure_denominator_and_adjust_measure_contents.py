@@ -16,7 +16,7 @@ def scale_measure_denominator_and_adjust_measure_contents(measure, factor):
             >>> measure = Measure((2, 8), "c'8 d'8")
             >>> measure.implicit_scaling = True
             >>> beam = spannertools.Beam()
-            >>> attach(beam, measure.select_leaves())
+            >>> attach(beam, measure[:])
             >>> show(measure) # doctest: +SKIP
 
         ..  doctest::
