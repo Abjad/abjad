@@ -19,6 +19,7 @@ def attach(
     from abjad.tools import indicatortools
     from abjad.tools import scoretools
     from abjad.tools import spannertools
+    from abjad.tools.topleveltools import iterate
 
     if hasattr(indicator, '_attachment_test_all'):
         if not indicator._attachment_test_all(component_expression):
@@ -30,10 +31,21 @@ def attach(
         prototype = (spannertools.Spanner, scoretools.GraceContainer)
         assert isinstance(indicator, prototype), repr(indicator)
         assert scope is None
-        indicator._attach(component_expression)
         if isinstance(indicator, spannertools.Spanner):
             name = name or indicator.name
             indicator._name = name
+            leaves = []
+            try:
+                for x in component_expression:
+                    if isinstance(x, scoretools.Leaf):
+                        leaves.append(x)
+                    else:
+                        leaves.extend(iterate(x).by_leaf())
+            except TypeError:
+                leaves.append(component_expression)
+            indicator._attach(leaves)
+        else:
+            indicator._attach(component_expression)
         return
 
     component = component_expression
