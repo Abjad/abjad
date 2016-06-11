@@ -85,6 +85,10 @@ class BeamSpecifier(AbjadValueObject):
     ### SPECIAL METHODS ###
 
     def __call__(self, selections):
+        r'''Calls beam specifier on `selections`.
+
+        Returns none.
+        '''
         if self.beam_divisions_together:
             durations = []
             for selection in selections:
