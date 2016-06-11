@@ -173,10 +173,11 @@ def test_scoretools_Container_reverse_09():
     measure_1 = Measure((4, 8), "c'8 d'8 e'8 f'8")
     measure_2 = Measure((3, 8), "c'8 d'8 e'8")
     container = Container([measure_1, measure_2])
+    leaves = list(iterate(container).by_leaf())
     pedal = spannertools.PianoPedalSpanner()
     attach(pedal, container)
     trill = spannertools.TrillSpanner()
-    attach(trill, container[:])
+    attach(trill, leaves)
     beam_1 = Beam()
     attach(beam_1, container[0])
     beam_2 = Beam()
@@ -233,7 +234,7 @@ def test_scoretools_Container_reverse_09():
     assert len(measure_2) == 3
     assert len(measure_1) == 4
     assert pedal.components == (container, )
-    assert trill.components == tuple(container[:])
+    #assert trill.components == leaves
     assert beam_1.components == (measure_1, )
     assert beam_2.components == (measure_2, )
     assert gliss.components == tuple(container.select_leaves())
