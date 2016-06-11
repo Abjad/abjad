@@ -10,21 +10,17 @@ def test_agenttools_InspectionAgent_get_spanner_01():
     attach(beam, container.select_leaves()[:-1])
     slur = Slur()
     attach(slur, container.select_leaves()[:-1])
-    trill = spannertools.TrillSpanner()
-    attach(trill, container)
 
     assert format(container) == stringtools.normalize(
         r'''
         {
-            c'8 [ ( \startTrillSpan
+            c'8 [ (
             d'8
             e'8 ] )
-            f'8 \stopTrillSpan
+            f'8
         }
         '''
         )
-
-    assert inspect_(container).get_spanner() == trill
 
     string = 'inspect_(container[0]).get_spanner()'
     assert pytest.raises(Exception, string)
