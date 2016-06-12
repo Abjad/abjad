@@ -2,6 +2,7 @@
 from abjad import *
 Component = scoretools.Component
 Selection = selectiontools.Selection
+selector = select().by_leaves(flatten=True)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_01():
@@ -209,14 +210,11 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_08()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        staff.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        staff.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        staff.select_leaves(allow_discontiguous_leaves=True))
-    assert not Selection._all_are_components_in_same_logical_voice(
-        staff[:])
+    leaves = selector(staff)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
+    assert not Selection._all_are_components_in_same_logical_voice(staff[:])
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_09():
@@ -257,8 +255,8 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_09()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        staff.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(staff)
+    assert Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_10():
@@ -291,8 +289,8 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_10()
         '''
         )
 
-    assert not Selection._all_are_components_in_same_logical_voice(
-        staff.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(staff)
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_11():
@@ -334,8 +332,8 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_11()
         '''
         )
 
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_12():
@@ -393,8 +391,8 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_12()
         '''
         )
 
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
+    leaves = selector(container)
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[:4])
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_13():
@@ -428,8 +426,8 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_13()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        voice.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(voice)
+    assert Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_14():
@@ -471,10 +469,9 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_14()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_15():
@@ -515,12 +512,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_15()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_16():
@@ -561,12 +556,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_16()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_17():
@@ -605,12 +598,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_17()
     }
     '''
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_18():
@@ -651,12 +642,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_18()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_19():
@@ -697,12 +686,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_19()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_20():
@@ -743,12 +730,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_20()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_21():
@@ -785,12 +770,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_21()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_22():
@@ -827,12 +810,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_22()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_23():
@@ -869,12 +850,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_23()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_24():
@@ -914,12 +893,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_24()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_25():
@@ -956,12 +933,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_25()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_26():
@@ -998,12 +973,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_26()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_27():
@@ -1034,12 +1007,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_27()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_28():
@@ -1069,12 +1040,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_28()
     }
     '''
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_29():
@@ -1107,12 +1076,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_29()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_30():
@@ -1143,12 +1110,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_30()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_31():
@@ -1187,10 +1152,9 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_31()
         '''
         )
 
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:8])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
+    leaves = selector(container)
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[:8])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[4:])
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_32():
@@ -1243,10 +1207,9 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_32()
         '''
         )
 
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:8])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
+    leaves = selector(container)
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[:8])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[4:])
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_33():
@@ -1300,17 +1263,14 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_33()
         '''
         )
 
+    leaves = selector(container)
     assert Selection._all_are_components_in_same_logical_voice(
-        [container.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in outer])
+        [leaves[i] for i in outer])
     assert Selection._all_are_components_in_same_logical_voice(
-        [container.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in middle])
+        [leaves[i] for i in middle])
     assert Selection._all_are_components_in_same_logical_voice(
-        [container.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in inner])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
+        [leaves[i] for i in inner])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[:4])
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_34():
@@ -1364,17 +1324,14 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_34()
         '''
         )
 
+    leaves = selector(staff)
     assert Selection._all_are_components_in_same_logical_voice(
-        [staff.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in outer])
+        [leaves[i] for i in outer])
     assert Selection._all_are_components_in_same_logical_voice(
-        [staff.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in middle])
+        [leaves[i] for i in middle])
     assert Selection._all_are_components_in_same_logical_voice(
-        [staff.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in inner])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        staff.select_leaves(allow_discontiguous_leaves=True)[:4])
+        [leaves[i] for i in inner])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[:4])
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_35():
@@ -1517,14 +1474,12 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_37()
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
+    leaves = selector(container)
     assert Selection._all_are_components_in_same_logical_voice(
-        [container.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in outer])
+        [leaves[i] for i in outer])
     assert Selection._all_are_components_in_same_logical_voice(
-        [container.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in inner])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+        [leaves[i] for i in inner])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_38():
@@ -1569,12 +1524,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_38()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_39():
@@ -1627,14 +1580,12 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_39()
     outer = (0, 1, 6, 7)
     inner = (2, 3, 4, 5)
 
+    leaves = selector(container)
     assert Selection._all_are_components_in_same_logical_voice(
-        [container.select_leaves( allow_discontiguous_leaves=True)[i]
-        for i in outer])
+        [leaves[i] for i in outer])
     assert Selection._all_are_components_in_same_logical_voice(
-        [container.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in inner])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+        [leaves[i] for i in inner])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_40():
@@ -1699,14 +1650,12 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_40()
     outer = (0, 1, 2, 3, 4, 5, 10, 11, 12, 13, 14, 15)
     inner = (6, 7, 8, 9)
 
+    leaves = selector(voice)
     assert Selection._all_are_components_in_same_logical_voice(
-        [voice.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in outer])
+        [leaves[i] for i in outer])
     assert Selection._all_are_components_in_same_logical_voice(
-        [voice.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in inner])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        voice.select_leaves(allow_discontiguous_leaves=True))
+        [leaves[i] for i in inner])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_41():
@@ -1755,18 +1704,13 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_41()
         '''
         )
 
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:4])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:8])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[8:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:8])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[4:])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+    leaves = selector(container)
+    assert Selection._all_are_components_in_same_logical_voice(leaves[:4])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[4:8])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[8:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[:8])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[4:])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_42():
@@ -1821,14 +1765,10 @@ def test_selectiontools_Selection__all_are_components_in_same_logical_voice_42()
 
     outer = (0, 1, 10, 11)
 
+    leaves = selector(container)
     assert Selection._all_are_components_in_same_logical_voice(
-        [container.select_leaves(allow_discontiguous_leaves=True)[i]
-        for i in outer])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[2:6])
-    assert Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[6:10])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True)[:6])
-    assert not Selection._all_are_components_in_same_logical_voice(
-        container.select_leaves(allow_discontiguous_leaves=True))
+        [leaves[i] for i in outer])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[2:6])
+    assert Selection._all_are_components_in_same_logical_voice(leaves[6:10])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves[:6])
+    assert not Selection._all_are_components_in_same_logical_voice(leaves)
