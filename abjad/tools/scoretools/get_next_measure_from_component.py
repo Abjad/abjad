@@ -43,7 +43,9 @@ def get_next_measure_from_component(component):
     ::
 
         >>> staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-        >>> scoretools.get_previous_measure_from_component(staff.select_leaves()[0])
+        >>> selector = select().by_leaves(flatten=True)
+        >>> leaves = selector(staff)
+        >>> scoretools.get_previous_measure_from_component(leaves[0])
         Measure((2, 8), "c'8 d'8")
 
     When `component` is a leaf and there is no measure in the parentage

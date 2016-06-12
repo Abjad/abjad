@@ -1644,7 +1644,8 @@ class Container(Component):
 
             ::
 
-                >>> container.select_leaves()
+                >>> selector = select().by_leaves(flatten=True)
+                >>> selector(container)
                 Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
 
         Returns contiguous leaf selection or free leaf selection.

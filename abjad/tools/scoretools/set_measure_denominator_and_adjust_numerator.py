@@ -14,7 +14,7 @@ def set_measure_denominator_and_adjust_numerator(measure, denominator):
 
         >>> measure = Measure((3, 8), "c'8 d'8 e'8")
         >>> beam = spannertools.Beam()
-        >>> attach(beam, measure.select_leaves())
+        >>> attach(beam, measure[:])
 
     ..  doctest::
 
