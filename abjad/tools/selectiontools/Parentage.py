@@ -169,7 +169,7 @@ class Parentage(Selection):
 
         ::
 
-            >>> leaf = score.select_leaves()[0]
+            >>> leaf = voice[0]
             >>> parentage = inspect_(leaf).get_parentage()
             >>> logical_voice = parentage.logical_voice
 
@@ -271,7 +271,8 @@ class Parentage(Selection):
 
         ::
 
-            >>> leaves = score.select_leaves(allow_discontiguous_leaves=True)
+            >>> selector = select().by_leaves(flatten=True)
+            >>> leaves = selector(score)
             >>> for leaf in leaves:
             ...     parentage = inspect_(leaf).get_parentage()
             ...     leaf, parentage.score_index
@@ -301,7 +302,7 @@ class Parentage(Selection):
 
             >>> tuplet = Tuplet(Multiplier(2, 3), "c'2 d'2 e'2")
             >>> staff = Staff([tuplet])
-            >>> note = staff.select_leaves()[0]
+            >>> note = tuplet[0]
             >>> show(staff) # doctest: +SKIP
 
         ::
