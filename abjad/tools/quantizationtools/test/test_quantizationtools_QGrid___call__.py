@@ -60,16 +60,17 @@ def test_quantizationtools_QGrid___call___02():
         '''
         )
 
-    leaf = result[0].select_leaves()[0]
+    leaves = list(iterate(result[0]).by_leaf())
+    leaf = leaves[0]
     annotation = inspect_(leaf).get_indicators(indicatortools.Annotation)[0]
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 2
     assert annotation.value[0].attachments == ('A',)
     assert annotation.value[1].attachments == ('B',)
 
-    leaf = result[0].select_leaves()[1]
+    leaf = leaves[1]
     assert not inspect_(leaf).get_indicators(indicatortools.Annotation)
 
-    leaf = result[0].select_leaves()[2]
+    leaf = leaves[2]
     annotation = inspect_(leaf).get_indicator(indicatortools.Annotation)
 
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 3
@@ -77,7 +78,7 @@ def test_quantizationtools_QGrid___call___02():
     assert annotation.value[1].attachments == ('D',)
     assert annotation.value[2].attachments == ('E',)
 
-    for leaf in result[0].select_leaves()[3:6]:
+    for leaf in leaves[3:6]:
         assert not inspect_(leaf).get_indicators(indicatortools.Annotation)
 
 

@@ -20,7 +20,7 @@ class MeasurewiseAttackPointOptimizer(AttackPointOptimizer):
 
         >>> source_tempo = Tempo((1, 4), 60)
         >>> q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
-        ...     staff.select_leaves(),
+        ...     staff[:],
         ...     tempo=source_tempo,
         ...     )
         >>> target_tempo = Tempo((1, 4), 54)

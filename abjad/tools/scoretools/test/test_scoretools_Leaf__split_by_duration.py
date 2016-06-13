@@ -20,7 +20,7 @@ def test_scoretools_Leaf__split_by_duration_01():
         '''
         )
 
-    halves = staff.select_leaves()[1]._split_by_duration(
+    halves = staff[1]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=False,
         tie_split_notes=False,
@@ -57,7 +57,7 @@ def test_scoretools_Leaf__split_by_duration_02():
         '''
         )
 
-    halves = staff.select_leaves()[1]._split_by_duration(
+    halves = staff[1]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=True,
         tie_split_notes=False,
@@ -94,7 +94,7 @@ def test_scoretools_Leaf__split_by_duration_03():
         '''
         )
 
-    halves = staff.select_leaves()[1]._split_by_duration(
+    halves = staff[1]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=False,
         tie_split_notes=True,
@@ -121,7 +121,7 @@ def test_scoretools_Leaf__split_by_duration_04():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    halves = staff.select_leaves()[1]._split_by_duration(
+    halves = staff[1]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=True,
         tie_split_notes=True,
@@ -148,7 +148,7 @@ def test_scoretools_Leaf__split_by_duration_05():
 
     staff = Staff("c'8 [ d'8 e'8 ]")
 
-    halves = staff.select_leaves()[1]._split_by_duration(
+    halves = staff[1]._split_by_duration(
         Duration(1, 24),
         tie_split_notes=False,
         )
@@ -179,8 +179,9 @@ def test_scoretools_Leaf__split_by_duration_06():
     '''
 
     voice = Voice(r"c'8 \times 2/3 { d'8 e'8 f'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -195,7 +196,7 @@ def test_scoretools_Leaf__split_by_duration_06():
         '''
         )
 
-    halves = voice.select_leaves()[1]._split_by_duration(
+    halves = leaves[1]._split_by_duration(
         Duration(1, 24),
         tie_split_notes=False,
         )
@@ -326,11 +327,11 @@ def test_scoretools_Leaf__split_by_duration_12():
 
     staff = Staff([Note("c'4")])
     tie = spannertools.Tie()
-    attach(tie, staff.select_leaves())
+    attach(tie, staff[:])
     halves = staff[0]._split_by_duration(Duration(1, 8))
 
     assert len(staff) == 2
-    for leaf in staff.select_leaves():
+    for leaf in staff[:]:
         assert inspect_(leaf).get_spanners() == set([tie])
         prototype = (spannertools.Tie,)
         assert inspect_(leaf).get_spanner(prototype) is tie
@@ -344,7 +345,7 @@ def test_scoretools_Leaf__split_by_duration_13():
 
     staff = Staff("c'8 c'8 c'8 c'8")
     beam = Beam()
-    attach(beam, staff.select_leaves())
+    attach(beam, staff[:])
 
     halves = staff[0]._split_by_duration(
         Duration(1, 16),
@@ -352,7 +353,7 @@ def test_scoretools_Leaf__split_by_duration_13():
         )
 
     assert len(staff) == 5
-    for l in staff.select_leaves():
+    for l in staff:
         assert inspect_(l).get_spanners() == set([beam])
         assert l._get_spanner(Beam) is beam
 
@@ -366,13 +367,13 @@ def test_scoretools_Leaf__split_by_duration_14():
 
     staff = Staff([Note("c'4")])
     tie = spannertools.Tie()
-    attach(tie, staff.select_leaves())
+    attach(tie, staff[:])
     halves = staff[0]._split_by_duration(Duration(5, 32))
 
     assert len(halves) == 2
     assert len(halves[0]) == 2
     assert len(halves[1]) == 1
-    for l in staff.select_leaves():
+    for l in staff:
         assert inspect_(l).get_spanners() == set([tie])
         assert inspect_(l).get_spanner(spannertools.Tie) is tie
 

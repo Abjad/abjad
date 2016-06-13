@@ -35,6 +35,7 @@ def test_scoretools_get_previous_measure_from_component_01():
         '''
         )
 
+    leaves = list(iterate(staff).by_leaf())
     assert scoretools.get_previous_measure_from_component(staff) is staff[-1]
     assert scoretools.get_previous_measure_from_component(staff[0]) is staff[0][1]
     assert scoretools.get_previous_measure_from_component(staff[0][0]) is None
@@ -42,21 +43,21 @@ def test_scoretools_get_previous_measure_from_component_01():
     assert scoretools.get_previous_measure_from_component(staff[1]) is staff[0][1]
     assert scoretools.get_previous_measure_from_component(staff[2]) is staff[1]
     assert scoretools.get_previous_measure_from_component(
-        staff.select_leaves()[0]) is staff[0][0]
+        leaves[0]) is staff[0][0]
     assert scoretools.get_previous_measure_from_component(
-        staff.select_leaves()[1]) is staff[0][0]
+        leaves[1]) is staff[0][0]
     assert scoretools.get_previous_measure_from_component(
-        staff.select_leaves()[2]) is staff[0][1]
+        leaves[2]) is staff[0][1]
     assert scoretools.get_previous_measure_from_component(
-        staff.select_leaves()[3]) is staff[0][1]
+        leaves[3]) is staff[0][1]
     assert scoretools.get_previous_measure_from_component(
-        staff.select_leaves()[4]) is staff[1]
+        leaves[4]) is staff[1]
     assert scoretools.get_previous_measure_from_component(
-        staff.select_leaves()[5]) is staff[1]
+        leaves[5]) is staff[1]
     assert scoretools.get_previous_measure_from_component(
-        staff.select_leaves()[6]) is staff[2]
+        leaves[6]) is staff[2]
     assert scoretools.get_previous_measure_from_component(
-        staff.select_leaves()[7]) is staff[2]
+        leaves[7]) is staff[2]
 
 
 def test_scoretools_get_previous_measure_from_component_02():

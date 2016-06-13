@@ -7,9 +7,9 @@ from abjad import *
 def test_scoretools_Measure_in_place_apply_01():
 
     voice = Voice([Note(n, (1, 8)) for n in range(8)])
-    leaves_before = voice.select_leaves()
+    leaves_before = voice[:]
     Measure((4, 8), voice[0:4])
-    leaves_after = voice.select_leaves()
+    leaves_after = voice[:]
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -33,9 +33,9 @@ def test_scoretools_Measure_in_place_apply_01():
 def test_scoretools_Measure_in_place_apply_02():
 
     staff = Staff([Note(n, (1, 8)) for n in range(8)])
-    leaves_before = staff.select_leaves()
+    leaves_before = staff[:]
     Measure((4, 8), staff[0:4])
-    leaves_after = staff.select_leaves()
+    leaves_after = staff[:]
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -59,9 +59,9 @@ def test_scoretools_Measure_in_place_apply_02():
 def test_scoretools_Measure_in_place_apply_03():
 
     staff = Staff([Note(n, (1, 1)) for n in range(4)])
-    leaves_before = staff.select_leaves()
+    leaves_before = staff[:]
     Measure((1, 1), staff[0:1])
-    leaves_after = staff.select_leaves()
+    leaves_after = staff[:]
 
     assert format(staff) == stringtools.normalize(
         r'''
