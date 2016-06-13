@@ -53,9 +53,9 @@ def test_agenttools_IterationAgent_by_vertical_moment_01():
     (Note(d'', 8), Note(a', 4), Note(f', 8))
     '''
 
-    tuplet = score[0][0].select_leaves()
-    treble = staff_group[0].select_leaves()
-    bass = staff_group[1].select_leaves()
+    tuplet = list(iterate(score[0][0]).by_leaf())
+    treble = list(iterate(staff_group[0]).by_leaf())
+    bass = list(iterate(staff_group[1]).by_leaf())
 
     assert moments[0].leaves == (tuplet[2], treble[1], bass[3])
     assert moments[1].leaves == (tuplet[2], treble[1], bass[2])
@@ -116,8 +116,8 @@ def test_agenttools_IterationAgent_by_vertical_moment_02():
     (Note(a', 4), Note(f', 8))
     '''
 
-    treble = staff_group[0].select_leaves()
-    bass = staff_group[1].select_leaves()
+    treble = list(iterate(staff_group[0]).by_leaf())
+    bass = list(iterate(staff_group[1]).by_leaf())
 
     assert moments[0].leaves == (treble[1], bass[3])
     assert moments[1].leaves == (treble[1], bass[2])
@@ -176,9 +176,9 @@ def test_agenttools_IterationAgent_by_vertical_moment_03():
     (Note(b', 8), Note(g', 4), Note(c', 8))
     '''
 
-    tuplet = score[0][0].select_leaves()
-    treble = staff_group[0].select_leaves()
-    bass = staff_group[1].select_leaves()
+    tuplet = list(iterate(score[0][0]).by_leaf())
+    treble = list(iterate(staff_group[0]).by_leaf())
+    bass = list(iterate(staff_group[1]).by_leaf())
 
     assert set(moments[0].leaves) == set((tuplet[0], treble[0], bass[0]))
     assert set(moments[1].leaves) == set((tuplet[0], treble[0], bass[1]))
@@ -237,8 +237,8 @@ def test_agenttools_IterationAgent_by_vertical_moment_04():
     (Note(g', 4), Note(c', 8))
     '''
 
-    treble = staff_group[0].select_leaves()
-    bass = staff_group[1].select_leaves()
+    treble = list(iterate(staff_group[0]).by_leaf())
+    bass = list(iterate(staff_group[1]).by_leaf())
 
     assert set(moments[0].leaves) == set((treble[0], bass[0]))
     assert set(moments[1].leaves) == set((treble[0], bass[1]))

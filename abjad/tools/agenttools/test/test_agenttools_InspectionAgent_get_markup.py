@@ -6,7 +6,7 @@ def test_agenttools_InspectionAgent_get_markup_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, staff[:])
     markup_1 = markuptools.Markup('foo')
     attach(markup_1, staff[0])
     markup_2 = markuptools.Markup('bar')

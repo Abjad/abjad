@@ -4,6 +4,7 @@ from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 
 
 def make_desordre_cell(pitches):
@@ -42,7 +43,8 @@ def make_desordre_cell(pitches):
     container.is_simultaneous = True
 
     # make all 1/8 beats breakable
-    for leaf in lower_voice.select_leaves()[:-1]:
+    leaves = list(iterate(lower_voice).by_leaf())
+    for leaf in leaves[:-1]:
         bar_line = indicatortools.BarLine('')
         attach(bar_line, leaf)
 

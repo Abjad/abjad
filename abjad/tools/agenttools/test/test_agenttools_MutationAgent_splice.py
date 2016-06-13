@@ -96,8 +96,9 @@ def test_agenttools_MutationAgent_splice_04():
     '''
 
     voice = Voice(Container("c'8 c'8") * 2)
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
     result = mutate(voice[0]).splice(
         [Note("dqs'8")],
         grow_spanners=True,
@@ -281,8 +282,9 @@ def test_agenttools_MutationAgent_splice_10():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
     result = mutate(voice[1]).splice(
         [Note("dqs'8")],
         direction=Left,
