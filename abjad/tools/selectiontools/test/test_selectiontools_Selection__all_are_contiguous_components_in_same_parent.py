@@ -10,25 +10,24 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_
 
     voice = Voice("c'8 d'8 e'8 f'8")
 
-    assert Selection._all_are_contiguous_components_in_same_parent(
-        voice.select_leaves())
+    assert Selection._all_are_contiguous_components_in_same_parent(voice[:])
 
     assert not Selection._all_are_contiguous_components_in_same_parent(
-        list(reversed(voice.select_leaves())))
+        list(reversed(voice[:])))
 
     components = []
-    components.extend(voice.select_leaves()[2:])
-    components.extend(voice.select_leaves()[:2])
+    components.extend(voice[2:])
+    components.extend(voice[:2])
     assert not Selection._all_are_contiguous_components_in_same_parent(
         components)
 
     components = []
-    components.extend(voice.select_leaves()[3:4])
-    components.extend(voice.select_leaves()[0:1])
+    components.extend(voice[3:4])
+    components.extend(voice[:1])
     assert not Selection._all_are_contiguous_components_in_same_parent(
         components)
     components = [voice]
-    components.extend(voice.select_leaves())
+    components.extend(voice[:])
     assert not Selection._all_are_contiguous_components_in_same_parent(
         components)
 
@@ -73,8 +72,8 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_
     assert Selection._all_are_contiguous_components_in_same_parent(voice[0][:])
     assert Selection._all_are_contiguous_components_in_same_parent(voice[1][:])
 
-    assert not Selection._all_are_contiguous_components_in_same_parent(
-        voice.select_leaves())
+    leaves = list(iterate(voice).by_leaf())
+    assert not Selection._all_are_contiguous_components_in_same_parent(leaves)
 
 
 def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_03():

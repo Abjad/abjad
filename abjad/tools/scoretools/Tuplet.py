@@ -2203,10 +2203,10 @@ class Tuplet(Container):
         if self.is_diminution:
             while self.is_diminution:
                 self.multiplier *= 2
-                for leaf in self.select_leaves():
+                for leaf in iterate(self).by_leaf():
                     leaf.written_duration /= 2
         elif not self.is_diminution:
             while not self.is_diminution:
                 self.multiplier /= 2
-                for leaf in self.select_leaves():
+                for leaf in iterate(self).by_leaf():
                     leaf.written_duration *= 2
