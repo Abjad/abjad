@@ -46,7 +46,7 @@ def test_agenttools_IterationAgent_by_class_03():
 
     components = iterate(beam).by_class(reverse=True)
     components = list(components)
-    leaves = staff.select_leaves()
+    leaves = list(iterate(staff).by_leaf())
 
     assert components[0] is staff[-1]
     assert components[1] is leaves[-1]

@@ -7,9 +7,9 @@ def test_agenttools_InspectionAgent_get_spanner_01():
 
     container = Container("c'8 d'8 e'8 f'8")
     beam = Beam()
-    attach(beam, container.select_leaves()[:-1])
+    attach(beam, container[:-1])
     slur = Slur()
-    attach(slur, container.select_leaves()[:-1])
+    attach(slur, container[:-1])
 
     assert format(container) == stringtools.normalize(
         r'''

@@ -75,22 +75,24 @@ def test_agenttools_IterationAgent_by_logical_tie_04():
 def test_agenttools_IterationAgent_by_logical_tie_05():
 
     staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+    leaves = list(iterate(staff).by_leaf())
 
     logical_ties = iterate(staff).by_logical_tie(nontrivial=True, reverse=True)
     logical_ties = list(logical_ties)
 
-    assert logical_ties[0].leaves == staff.select_leaves()[-2:]
-    assert logical_ties[1].leaves == staff.select_leaves()[:2]
+    assert logical_ties[0].leaves == tuple(leaves[-2:])
+    assert logical_ties[1].leaves == tuple(leaves[:2])
 
 
 def test_agenttools_IterationAgent_by_logical_tie_06():
 
     staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+    leaves = list(iterate(staff).by_leaf())
 
     logical_ties = list(iterate(staff).by_logical_tie(nontrivial=True))
 
-    assert logical_ties[0].leaves == staff.select_leaves()[:2]
-    assert logical_ties[1].leaves == staff.select_leaves()[-2:]
+    assert logical_ties[0].leaves == tuple(leaves[:2])
+    assert logical_ties[1].leaves == tuple(leaves[-2:])
 
 
 def test_agenttools_IterationAgent_by_logical_tie_07():
