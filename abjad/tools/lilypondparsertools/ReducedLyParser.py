@@ -11,6 +11,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import iterate
 
 
 class ReducedLyParser(abctools.Parser):
@@ -616,7 +617,7 @@ class ReducedLyParser(abctools.Parser):
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = parsed.select_leaves(allow_discontiguous_leaves=True)
+        leaves = list(iterate(parsed).by_leaf())
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:

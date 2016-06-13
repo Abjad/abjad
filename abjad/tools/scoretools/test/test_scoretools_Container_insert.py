@@ -227,7 +227,7 @@ def test_scoretools_Container_insert_08():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = Beam()
-    attach(beam, staff.select_leaves())
+    attach(beam, staff[:])
     staff.insert(1, Note("cs'8"), fracture_spanners=False)
 
     r'''

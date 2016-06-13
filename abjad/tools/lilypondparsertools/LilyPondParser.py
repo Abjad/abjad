@@ -14,6 +14,7 @@ from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
+from abjad.tools.topleveltools import iterate
 
 
 # apply monkey patch
@@ -351,7 +352,7 @@ class LilyPondParser(abctools.Parser):
         all_spanners = {}
 
         # traverse all leaves
-        leaves = music.select_leaves(allow_discontiguous_leaves=True)
+        leaves = list(iterate(music).by_leaf())
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]

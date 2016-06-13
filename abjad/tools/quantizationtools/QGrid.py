@@ -6,6 +6,7 @@ from abjad.tools import indicatortools
 from abjad.tools import scoretools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import iterate
 
 
 class QGrid(AbjadObject):
@@ -115,7 +116,8 @@ class QGrid(AbjadObject):
         result_leaves = []
         for x in result:
             if isinstance(x, scoretools.Container):
-                result_leaves.extend(x.select_leaves())
+                leaves = list(iterate(x).by_leaf())
+                result_leaves.extend(leaves)
             else:
                 result_leaves.append(x)
         for result_leaf, q_grid_leaf in zip(result_leaves, self.leaves[:-1]):

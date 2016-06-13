@@ -61,8 +61,9 @@ def test_scoretools_fuse_measures_02():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -156,8 +157,9 @@ def test_scoretools_fuse_measures_04():
     measure_1 = Measure((1, 8), "c'8")
     measure_2 = Measure((1, 12), "d'8")
     voice = Voice([measure_1, measure_2])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -220,8 +222,9 @@ def test_scoretools_fuse_measures_07():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
+    leaves = list(iterate(voice).by_leaf())
     beam = beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''

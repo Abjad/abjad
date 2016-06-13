@@ -8,10 +8,10 @@ def test_scoretools_Container_reverse_01():
     '''
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    leaves_rev = reversed(staff.select_leaves())
+    leaves_rev = reversed(staff[:])
     staff.reverse()
 
-    assert list(leaves_rev) == list(staff.select_leaves())
+    assert list(leaves_rev) == list(staff[:])
     assert inspect_(staff).is_well_formed()
 
 
@@ -23,10 +23,10 @@ def test_scoretools_Container_reverse_02():
     container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     beam = Beam()
     attach(beam, container)
-    leaves_rev = reversed(container.select_leaves())
+    leaves_rev = reversed(container[:])
     container.reverse()
 
-    assert list(leaves_rev) == list(container.select_leaves())
+    assert list(leaves_rev) == list(container[:])
     assert beam.components == (container, )
     assert inspect_(container).is_well_formed()
 
@@ -38,12 +38,12 @@ def test_scoretools_Container_reverse_03():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     beam = Beam()
-    attach(beam, staff.select_leaves())
-    leaves_rev = reversed(staff.select_leaves())
+    attach(beam, staff[:])
+    leaves_rev = reversed(staff[:])
     staff.reverse()
 
-    assert list(leaves_rev) == list(staff.select_leaves())
-    assert beam.components == tuple(staff.select_leaves())
+    assert list(leaves_rev) == list(staff[:])
+    assert beam.components == tuple(staff[:])
     assert inspect_(staff).is_well_formed()
 
 
@@ -52,12 +52,14 @@ def test_scoretools_Container_reverse_04():
     attached to itself and with a parent.
     '''
 
-    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + scoretools.make_repeated_notes(2))
+    staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + \
+        scoretools.make_repeated_notes(2))
+    measure = staff[0]
     beam = Beam()
     attach(beam, staff[0])
-    leaves_rev = reversed(staff[0].select_leaves())
+    leaves_rev = reversed(measure[:])
     staff[0].reverse()
-    assert list(leaves_rev) == list(staff[0].select_leaves())
+    assert list(leaves_rev) == list(measure[:])
     assert beam.components == (staff[0], )
     assert inspect_(staff).is_well_formed()
 
@@ -69,12 +71,13 @@ def test_scoretools_Container_reverse_05():
 
     staff = Staff([Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] +
         scoretools.make_repeated_notes(2))
+    measure = staff[0]
     beam = Beam()
-    attach(beam, staff[0].select_leaves())
-    leaves_rev = reversed(staff[0].select_leaves())
+    attach(beam, measure[:])
+    leaves_rev = reversed(measure[:])
     staff[0].reverse()
-    assert list(leaves_rev) == list(staff[0].select_leaves())
-    assert beam.components == tuple(staff[0].select_leaves())
+    assert list(leaves_rev) == list(measure[:])
+    assert beam.components == tuple(measure[:])
     assert inspect_(staff).is_well_formed()
 
 
@@ -86,11 +89,12 @@ def test_scoretools_Container_reverse_06():
     notes = [Note("c'8"), Note("d'8")]
     container = Container(
         [Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")] + notes)
+    measure = container[0]
     beam = Beam()
     attach(beam, container)
-    leaves_rev = reversed(container[0].select_leaves())
+    leaves_rev = reversed(measure[:])
     container[0].reverse()
-    assert list(leaves_rev) == list(container[0].select_leaves())
+    assert list(leaves_rev) == list(measure[:])
     assert beam.components == tuple([container])
     assert inspect_(container).is_well_formed()
 
@@ -105,9 +109,9 @@ def test_scoretools_Container_reverse_07():
     staff = Staff([measure] + notes)
     beam = Beam()
     attach(beam, staff[:])
-    leaves_rev = reversed(staff[0].select_leaves())
+    leaves_rev = reversed(measure[:])
     staff[0].reverse()
-    assert list(leaves_rev) == list(staff[0].select_leaves())
+    assert list(leaves_rev) == list(measure[:])
     assert beam.components == tuple([measure] + notes)
     assert inspect_(staff).is_well_formed()
 
@@ -183,7 +187,7 @@ def test_scoretools_Container_reverse_09():
     beam_2 = Beam()
     attach(beam_2, container[1])
     gliss = spannertools.Glissando()
-    attach(gliss, container.select_leaves())
+    attach(gliss, leaves)
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -237,5 +241,6 @@ def test_scoretools_Container_reverse_09():
     #assert trill.components == leaves
     assert beam_1.components == (measure_1, )
     assert beam_2.components == (measure_2, )
-    assert gliss.components == tuple(container.select_leaves())
+    leaves = tuple(iterate(container).by_leaf())
+    assert gliss.components == leaves
     assert inspect_(container).is_well_formed()

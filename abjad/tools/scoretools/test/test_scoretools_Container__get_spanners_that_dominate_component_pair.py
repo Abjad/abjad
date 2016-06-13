@@ -9,12 +9,13 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
     attach(beam, voice[:2])
     glissando = spannertools.Glissando()
     attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
-    attach(trill, voice.select_leaves())
+    attach(trill, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -46,12 +47,13 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
     attach(beam, voice[:2])
     glissando = spannertools.Glissando()
     attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
-    attach(trill, voice.select_leaves())
+    attach(trill, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -85,12 +87,13 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_03():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
     attach(beam, voice[:2])
     glissando = spannertools.Glissando()
     attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
-    attach(trill, voice.select_leaves())
+    attach(trill, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -124,12 +127,13 @@ def test_scoretools_Container__get_spanners_that_dominate_component_pair_04():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
     attach(beam, voice[:2])
     glissando = spannertools.Glissando()
     attach(glissando, voice[1:])
     trill = spannertools.TrillSpanner()
-    attach(trill, voice.select_leaves())
+    attach(trill, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''

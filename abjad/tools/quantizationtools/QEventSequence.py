@@ -568,7 +568,7 @@ class QEventSequence(AbjadObject):
 
             >>> sequence = \
             ...     quantizationtools.QEventSequence.from_tempo_scaled_leaves(
-            ...     staff.select_leaves(), tempo=tempo)
+            ...     staff[:], tempo=tempo)
 
         ::
 
