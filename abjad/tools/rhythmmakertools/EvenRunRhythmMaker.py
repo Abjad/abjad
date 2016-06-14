@@ -200,11 +200,15 @@ class EvenRunRhythmMaker(RhythmMaker):
             components = []
             for selection in selections:
                 components.extend(selection)
-            attach(beam, components)
+            leaves = list(iterate(components).by_leaf())
+            #attach(beam, components)
+            attach(beam, leaves)
         elif beam_specifier.beam_each_division:
             for selection in selections:
                 beam = spannertools.MultipartBeam()
-                attach(beam, selection)
+                leaves = list(iterate(selection).by_leaf())
+                #attach(beam, selection)
+                attach(beam, leaves)
         return selections
 
     ### PUBLIC PROPERTIES ###

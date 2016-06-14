@@ -112,14 +112,17 @@ class BeamSpecifier(AbjadValueObject):
             if self.stemlet_length is not None:
                 grob_proxy = override(beam).staff.stem
                 grob_proxy.stemlet_length = self.stemlet_length
-            attach(beam, components)
+            leaves = list(iterate(components).by_leaf())
+            #attach(beam, components)
+            attach(beam, leaves)
         elif self.beam_each_division:
             for selection in selections:
                 beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
                 if self.stemlet_length is not None:
                     grob_proxy = override(beam).staff.stem
                     grob_proxy.stemlet_length = self.stemlet_length
-                attach(beam, selection)
+                leaves = list(iterate(selection).by_leaf())
+                attach(beam, leaves)
 
     def __eq__(self, arg):
         r'''Is true when `arg` is a beam specifier with `beam_each_division`
