@@ -7,8 +7,9 @@ def test_spannertools_Spanner___getitem___01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -29,7 +30,7 @@ def test_spannertools_Spanner___getitem___01():
         '''
         )
 
-    assert beam[0] is voice[0]
+    assert beam[0] is leaves[0]
 
 
 def test_spannertools_Spanner___getitem___02():
@@ -37,8 +38,9 @@ def test_spannertools_Spanner___getitem___02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -59,7 +61,7 @@ def test_spannertools_Spanner___getitem___02():
         '''
         )
 
-    assert beam[-1] is voice[-1]
+    assert beam[-1] is leaves[-1]
 
 
 def test_spannertools_Spanner___getitem___03():
@@ -67,8 +69,9 @@ def test_spannertools_Spanner___getitem___03():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -89,7 +92,7 @@ def test_spannertools_Spanner___getitem___03():
         '''
         )
 
-    assert beam[-2:] == voice[-2:]
+    assert beam[-2:] == leaves[-2:]
 
 
 def test_spannertools_Spanner___getitem___04():
@@ -97,8 +100,9 @@ def test_spannertools_Spanner___getitem___04():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -119,4 +123,4 @@ def test_spannertools_Spanner___getitem___04():
         '''
         )
 
-    assert beam[:] == voice[:]
+    assert beam[:] == leaves[:]
