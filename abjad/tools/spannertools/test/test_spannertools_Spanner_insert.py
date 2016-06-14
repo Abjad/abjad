@@ -38,7 +38,7 @@ def test_spannertools_Spanner_insert_02():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = Beam()
-    attach(beam, voice[1])
+    attach(beam, voice[1][:])
 
     assert format(voice) == stringtools.normalize(
         r'''
