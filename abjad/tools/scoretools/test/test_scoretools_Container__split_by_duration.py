@@ -9,9 +9,9 @@ def test_scoretools_Container__split_by_duration_01():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -64,9 +64,9 @@ def test_scoretools_Container__split_by_duration_02():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -125,9 +125,9 @@ def test_scoretools_Container__split_by_duration_03():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -195,9 +195,9 @@ def test_scoretools_Container__split_by_duration_04():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -253,9 +253,9 @@ def test_scoretools_Container__split_by_duration_05():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -316,9 +316,9 @@ def test_scoretools_Container__split_by_duration_06():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -386,9 +386,9 @@ def test_scoretools_Container__split_by_duration_07():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -452,9 +452,9 @@ def test_scoretools_Container__split_by_duration_08():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -485,8 +485,8 @@ def test_scoretools_Container__split_by_duration_08():
         \new Staff {
             {
                 \time 2/8
-                c'32 [
-                c'16. (
+                c'32 [ ]
+                c'16. [ (
                 d'8 ]
             }
             {
@@ -509,9 +509,9 @@ def test_scoretools_Container__split_by_duration_09():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -570,9 +570,9 @@ def test_scoretools_Container__split_by_duration_10():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -638,9 +638,9 @@ def test_scoretools_Container__split_by_duration_11():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -672,8 +672,8 @@ def test_scoretools_Container__split_by_duration_11():
             {
                 \time 2/8
                 c'8 [ (
-                d'32 )
-                d'16. ] (
+                d'32 ] )
+                d'16. [ ] (
             }
             {
                 e'8 [
@@ -697,9 +697,9 @@ def test_scoretools_Container__split_by_duration_12():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -758,9 +758,9 @@ def test_scoretools_Container__split_by_duration_13():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -839,9 +839,9 @@ def test_scoretools_Container__split_by_duration_15():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -872,8 +872,8 @@ def test_scoretools_Container__split_by_duration_15():
         \new Staff {
             {
                 \time 2/8
-                c'32 ~ [
-                c'16. (
+                c'32 ~ [ ]
+                c'16. [ (
                 d'8 ]
             }
             {
@@ -897,9 +897,9 @@ def test_scoretools_Container__split_by_duration_16():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -960,9 +960,9 @@ def test_scoretools_Container__split_by_duration_17():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -1028,9 +1028,9 @@ def test_scoretools_Container__split_by_duration_18():
     staff.append(Measure((2, 8), "e'8 f'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -1098,9 +1098,9 @@ def test_scoretools_Container__split_by_duration_19():
     staff.append(Measure((3, 8), "c'8 d'8 e'8"))
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:3])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-3:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -1222,9 +1222,9 @@ def test_scoretools_Container__split_by_duration_22():
     for leaf in leaves:
         attach(Multiplier(1, 2), leaf)
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -1285,9 +1285,9 @@ def test_scoretools_Container__split_by_duration_23():
     for leaf in leaves:
         attach(Multiplier(1, 2), leaf)
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -1352,9 +1352,9 @@ def test_scoretools_Container__split_by_duration_24():
     for leaf in leaves:
         attach(Multiplier(1, 2), leaf)
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
     attach(slur, leaves)
 
@@ -1468,7 +1468,7 @@ def test_scoretools_Container__split_by_duration_26():
     staff = Staff([measure])
     leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves)
     slur = Slur()
     attach(slur, leaves)
 

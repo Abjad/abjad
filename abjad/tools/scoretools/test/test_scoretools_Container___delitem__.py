@@ -8,7 +8,8 @@ def test_scoretools_Container___delitem___01():
     '''
 
     voice = Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
-    attach(Beam(), voice[:])
+    leaves = list(iterate(voice).by_leaf())
+    attach(Beam(), leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
