@@ -3,75 +3,74 @@ from abjad.tools.scoretools.Container import Container
 
 
 class GraceContainer(Container):
-    r'''A container of grace music.
+    r'''A grace container.
 
-    ::
+    .. container:: example
 
-        >>> voice = Voice("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.Beam()
-        >>> attach(beam, voice[:])
-        >>> show(voice) # doctest: +SKIP
+        **Example 1.** Grace notes:
 
-    ..  doctest::
+        ::
 
-        >>> print(format(voice))
-        \new Voice {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-        }
+            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> beam = spannertools.Beam()
+            >>> attach(beam, voice[:])
+            >>> grace_notes = [Note("c'16"), Note("d'16")]
+            >>> grace_container = scoretools.GraceContainer(
+            ...     grace_notes,
+            ...     kind='grace',
+            ...     )
+            >>> attach(grace_container, voice[1])
+            >>> show(voice) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> grace_notes = [Note("c'16"), Note("d'16")]
-        >>> grace_container = scoretools.GraceContainer(grace_notes, kind='grace')
-        >>> attach(grace_container, voice[1])
-        >>> show(voice) # doctest: +SKIP
-
-    ..  doctest::
-
-        >>> print(format(voice))
-        \new Voice {
-            c'8 [
-            \grace {
-                c'16
-                d'16
+            >>> f(voice)
+            \new Voice {
+                c'4 [
+                \grace {
+                    c'16
+                    d'16
+                }
+                d'4
+                e'4
+                f'4 ]
             }
-            d'8
-            e'8
-            f'8 ]
-        }
 
-    ::
+    ..  container:: example
 
-        >>> notes = [Note("e'16"), Note("f'16")]
-        >>> after_grace = scoretools.GraceContainer(notes, kind='after')
-        >>> attach(after_grace, voice[1])
-        >>> show(voice) # doctest: +SKIP
+        **Example 2.** After-grace notes:
 
-    ..  doctest::
+        ::
 
-        >>> print(format(voice))
-        \new Voice {
-            c'8 [
-            \grace {
-                c'16
-                d'16
+            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> beam = spannertools.Beam()
+            >>> attach(beam, voice[:])
+            >>> grace_notes = [Note("c'16"), Note("d'16")]
+            >>> grace_container = scoretools.GraceContainer(
+            ...     grace_notes,
+            ...     kind='after',
+            ...     )
+            >>> attach(grace_container, voice[1])
+            >>> show(voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'4 [
+                \afterGrace
+                d'4
+                {
+                    c'16
+                    d'16
+                }
+                e'4
+                f'4 ]
             }
-            \afterGrace
-            d'8
-            {
-                e'16
-                f'16
-            }
-            e'8
-            f'8 ]
-        }
 
     Fill grace containers with notes, rests or chords.
 
-    Attach grace containers to nongrace notes, rests or chords.
+    Attach grace containers to notes, rests or chords.
     '''
 
     ### CLASS VARIABLES ###
@@ -90,15 +89,6 @@ class GraceContainer(Container):
         self._carrier = None
         Container.__init__(self, music)
         self.kind = kind
-
-#    ### SPECIAL METHODS ###
-#
-#    def __repr__(self):
-#        r'''Gets interpreter representation of grace container.
-#
-#        Returns string.
-#        '''
-#        return '{}({})'.format(type(self).__name__, self._summary)
 
     ### PRIVATE PROPERTIES ###
 
@@ -155,33 +145,140 @@ class GraceContainer(Container):
 
     @property
     def kind(self):
-        r'''Gets `kind` of grace container.
+        r'''Gets and sets `kind`.
 
-        ::
+        .. container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> note = Note("cs'16")
-            >>> grace = scoretools.GraceContainer([note], kind='grace')
-            >>> attach(grace, staff[1])
-            >>> grace.kind
-            'grace'
+            **Example 1.** Grace notes:
 
-        Sets `kind` of grace container:
+            ::
 
-        ::
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> beam = spannertools.Beam()
+                >>> attach(beam, voice[:])
+                >>> grace_notes = [Note("bf16"), Note("c'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> note = Note("cs'16")
-            >>> grace = scoretools.GraceContainer([note], kind='grace')
-            >>> attach(grace, staff[1])
-            >>> grace.kind = 'acciaccatura'
-            >>> grace.kind
-            'acciaccatura'
+            ..  doctest::
 
-        Valid options include ``'after'``, ``'grace'``,
-        ``'acciaccatura'``, ``'appoggiatura'``.
+                >>> f(voice)
+                \new Voice {
+                    c'4 [
+                    \grace {
+                        bf16
+                        c'16
+                    }
+                    d'4
+                    e'4
+                    f'4 ]
+                }
 
-        Returns string.
+        .. container:: example
+
+            **Example 2.** After-grace notes:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> beam = spannertools.Beam()
+                >>> attach(beam, voice[:])
+                >>> grace_notes = [Note("cs'16"), Note("d'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='after',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4 [
+                    \afterGrace
+                    d'4
+                    {
+                        cs'16
+                        d'16
+                    }
+                    e'4
+                    f'4 ]
+                }
+
+        .. container:: example
+
+            **Example 3.** Acciaccatura:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> beam = spannertools.Beam()
+                >>> attach(beam, voice[:])
+                >>> grace_notes = [Note("bf16"), Note("c'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='acciaccatura',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4 [
+                    \acciaccatura {
+                        bf16
+                        c'16
+                    }
+                    d'4
+                    e'4
+                    f'4 ]
+                }
+
+        .. container:: example
+
+            **Example 4.** Appoggiatura:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> beam = spannertools.Beam()
+                >>> attach(beam, voice[:])
+                >>> grace_notes = [Note("bf16"), Note("c'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='appoggiatura',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4 [
+                    \appoggiatura {
+                        bf16
+                        c'16
+                    }
+                    d'4
+                    e'4
+                    f'4 ]
+                }
+
+        Defaults to ``'grace'``.
+
+        Set to ``'grace'``, ``'after'``, ``'acciaccatura'`` or
+        ``'appoggiatura'``.
+
+        Returns ``'grace'``, ``'after'``, ``'acciaccatura'`` or
+        ``'appoggiatura'``.
         '''
         return self._kind
 
