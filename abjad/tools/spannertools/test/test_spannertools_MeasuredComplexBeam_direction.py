@@ -27,8 +27,9 @@ def test_spannertools_MeasuredComplexBeam_direction_01():
         '''
         )
 
+    leaves = list(iterate(staff).by_leaf())
     beam = spannertools.MeasuredComplexBeam(direction=Down)
-    attach(beam, staff[:])
+    attach(beam, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
