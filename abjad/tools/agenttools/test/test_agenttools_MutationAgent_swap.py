@@ -176,8 +176,9 @@ def test_agenttools_MutationAgent_swap_04():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     note = Note("c'4")
     assert pytest.raises(Exception, 'mutate(voice[1:2]).swap(note)')
@@ -189,8 +190,9 @@ def test_agenttools_MutationAgent_swap_05():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     assert pytest.raises(Exception, 'mutate(voice[1:2]).swap(tuplet)')
