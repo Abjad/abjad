@@ -10,7 +10,7 @@ def test_spannertools_Spanner_stop_offset_01():
     beam = Beam()
     attach(beam, container[1:3])
     glissando = spannertools.Glissando()
-    attach(glissando, [container])
+    attach(glissando, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''

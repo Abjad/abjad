@@ -8,8 +8,9 @@ def test_spannertools_make_colored_text_spanner_with_nibs_01():
     '''
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
+    leaves = list(iterate(staff).by_leaf())
     spanner = spannertools.make_colored_text_spanner_with_nibs()
-    attach(spanner, staff[1])
+    attach(spanner, leaves[2:4])
 
     assert format(staff) == stringtools.normalize(
         r'''

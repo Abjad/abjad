@@ -14,7 +14,7 @@ def test_spannertools_Spanner__is_my_first_leaf_01():
 
     container = Container("c'8 cs'8 d'8 ef'8")
     spanner = MockSpanner()
-    attach(spanner, container)
+    attach(spanner, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -59,8 +59,9 @@ def test_spannertools_Spanner__is_my_first_leaf_02():
         '''
         )
 
+    leaves = list(iterate(container).by_leaf())
     spanner = MockSpanner()
-    attach(spanner, container[:3])
+    attach(spanner, leaves[:4])
 
     assert format(container) == stringtools.normalize(
         r'''
