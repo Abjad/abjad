@@ -16,7 +16,7 @@ def test_agenttools_MutationAgent_copy_01():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
     beam = Beam()
-    attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -45,8 +45,8 @@ def test_agenttools_MutationAgent_copy_01():
     assert format(new) == stringtools.normalize(
         r'''
         \new Voice {
-            e'8 ( \startTrillSpan
-            f'8 ) \stopTrillSpan
+            e'8 [ ( \startTrillSpan
+            f'8 ] ) \stopTrillSpan
         }
         '''
         )
@@ -65,7 +65,7 @@ def test_agenttools_MutationAgent_copy_02():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
     beam = Beam()
-    attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -116,7 +116,7 @@ def test_agenttools_MutationAgent_copy_03():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
     beam = Beam()
-    attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -145,8 +145,8 @@ def test_agenttools_MutationAgent_copy_03():
     assert format(new) == stringtools.normalize(
         r'''
         \new Voice {
-            f'8 ( \startTrillSpan
-            g'8 [
+            f'8 [ ( \startTrillSpan
+            g'8
             a'8 ] ) \stopTrillSpan
         }
         '''
@@ -166,7 +166,7 @@ def test_agenttools_MutationAgent_copy_04():
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
     beam = Beam()
-    attach(beam, voice[0][:] + voice[1:2] + voice[2][:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -219,7 +219,7 @@ def test_agenttools_MutationAgent_copy_05():
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2] + voice[2][:] + voice[3][:])
+    attach(beam, leaves)
     slur = Slur()
     attach(slur, leaves)
 
@@ -285,7 +285,7 @@ def test_agenttools_MutationAgent_copy_06():
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2] + voice[2][:] + voice[3][:])
+    attach(beam, leaves)
     slur = Slur()
     attach(slur, leaves)
 
@@ -347,7 +347,7 @@ def test_agenttools_MutationAgent_copy_07():
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2] + voice[2][:] + voice[3][:])
+    attach(beam, leaves)
     slur = Slur()
     attach(slur, leaves)
 
@@ -403,7 +403,7 @@ def test_agenttools_MutationAgent_copy_08():
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2] + voice[2][:] + voice[3][:])
+    attach(beam, leaves)
     slur = Slur()
     attach(slur, leaves)
 
@@ -462,7 +462,7 @@ def test_agenttools_MutationAgent_copy_09():
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2] + voice[2][:] + voice[3][:])
+    attach(beam, leaves)
     slur = Slur()
     attach(slur, leaves)
 

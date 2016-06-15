@@ -419,8 +419,9 @@ def test_agenttools_MutationAgent_fuse_14():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves[:2])
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -446,8 +447,8 @@ def test_agenttools_MutationAgent_fuse_14():
         \new Voice {
             {
                 \time 2/8
-                c'16
-                d'16
+                c'16 [
+                d'16 ]
                 e'16
                 f'16
             }

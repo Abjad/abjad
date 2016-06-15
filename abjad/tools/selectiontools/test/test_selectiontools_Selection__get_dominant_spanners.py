@@ -15,9 +15,9 @@ def test_selectiontools_Selection__get_dominant_spanners_01():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
@@ -48,22 +48,22 @@ def test_selectiontools_Selection__get_dominant_spanners_01():
 
 
 def test_selectiontools_Selection__get_dominant_spanners_02():
-    r'''Beam, glissando and trill all dominante second container.
+    r'''Beam, glissando and trill all dominate second container.
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
     receipt = voice[1:2]._get_dominant_spanners()
 
     assert len(receipt) == 3
-    assert (beam, 1) in receipt
+    assert (beam, 2) in receipt
     assert (glissando, 0) in receipt
     assert (trill, 2) in receipt
 
@@ -75,16 +75,16 @@ def test_selectiontools_Selection__get_dominant_spanners_03():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
     receipt = voice[-1:]._get_dominant_spanners()
 
     assert len(receipt) == 2
-    assert (glissando, 1) in receipt
+    assert (glissando, 2) in receipt
     assert (trill, 4) in receipt
 
 
@@ -95,9 +95,9 @@ def test_selectiontools_Selection__get_dominant_spanners_04():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
@@ -115,9 +115,9 @@ def test_selectiontools_Selection__get_dominant_spanners_05():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
@@ -135,9 +135,9 @@ def test_selectiontools_Selection__get_dominant_spanners_06():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
@@ -154,9 +154,9 @@ def test_selectiontools_Selection__get_dominant_spanners_07():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
@@ -175,15 +175,16 @@ def test_selectiontools_Selection__get_dominant_spanners_08():
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
     receipt = select(leaves[:2])._get_dominant_spanners()
 
-    assert len(receipt) == 1
+    assert len(receipt) == 2
+    assert (beam, 0) in receipt
     assert (trill, 0) in receipt
 
 
@@ -196,9 +197,9 @@ def test_selectiontools_Selection__get_dominant_spanners_09():
     voice = Voice(Container([]) * 3)
     leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:2])
+    attach(beam, leaves[:4])
     glissando = spannertools.Glissando()
-    attach(glissando, voice[1:])
+    attach(glissando, leaves[-4:])
     trill = spannertools.TrillSpanner()
     attach(trill, leaves)
 
@@ -217,5 +218,4 @@ def test_selectiontools_Selection__get_dominant_spanners_09():
 
     receipt = voice[:1]._get_dominant_spanners()
 
-    assert len(receipt) == 1
-    assert (beam, 0) in receipt
+    assert len(receipt) == 0

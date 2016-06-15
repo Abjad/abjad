@@ -805,8 +805,9 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___36():
     '''
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[:])
+    attach(beam, leaves)
     override(beam).score.spacing_spanner.strict_grace_spacing = True
     override(beam).score.spacing_spanner.strict_note_spacing = True
     override(beam).score.spacing_spanner.uniform_stretching = True
