@@ -74,9 +74,9 @@ class Beam(Spanner):
 
     ### PRIVATE METHODS ###
 
-#    def _attachment_test(self, component):
-#        from abjad.tools import scoretools
-#        return isinstance(component, scoretools.Leaf)
+    def _attachment_test(self, component):
+        from abjad.tools import scoretools
+        return isinstance(component, scoretools.Leaf)
 
     def _copy_keyword_args(self, new):
         Spanner._copy_keyword_args(self, new)
