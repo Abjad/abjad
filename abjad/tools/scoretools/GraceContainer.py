@@ -12,8 +12,6 @@ class GraceContainer(Container):
         ::
 
             >>> voice = Voice("c'4 d'4 e'4 f'4")
-            >>> beam = spannertools.Beam()
-            >>> attach(beam, voice[:])
             >>> grace_notes = [Note("c'16"), Note("d'16")]
             >>> grace_container = scoretools.GraceContainer(
             ...     grace_notes,
@@ -26,14 +24,14 @@ class GraceContainer(Container):
 
             >>> f(voice)
             \new Voice {
-                c'4 [
+                c'4
                 \grace {
                     c'16
                     d'16
                 }
                 d'4
                 e'4
-                f'4 ]
+                f'4
             }
 
     ..  container:: example
@@ -43,8 +41,6 @@ class GraceContainer(Container):
         ::
 
             >>> voice = Voice("c'4 d'4 e'4 f'4")
-            >>> beam = spannertools.Beam()
-            >>> attach(beam, voice[:])
             >>> grace_notes = [Note("c'16"), Note("d'16")]
             >>> grace_container = scoretools.GraceContainer(
             ...     grace_notes,
@@ -57,7 +53,7 @@ class GraceContainer(Container):
 
             >>> f(voice)
             \new Voice {
-                c'4 [
+                c'4
                 \afterGrace
                 d'4
                 {
@@ -65,7 +61,7 @@ class GraceContainer(Container):
                     d'16
                 }
                 e'4
-                f'4 ]
+                f'4
             }
 
     Fill grace containers with notes, rests or chords.
@@ -80,6 +76,13 @@ class GraceContainer(Container):
     __slots__ = (
         '_carrier',
         '_kind',
+        )
+
+    _allowable_kinds = (
+        'after',
+        'grace',
+        'acciaccatura',
+        'appoggiatura',
         )
 
     ### INITIALIZER ###
@@ -154,11 +157,8 @@ class GraceContainer(Container):
             ::
 
                 >>> voice = Voice("c'4 d'4 e'4 f'4")
-                >>> beam = spannertools.Beam()
-                >>> attach(beam, voice[:])
-                >>> grace_notes = [Note("bf16"), Note("c'16")]
                 >>> grace_container = scoretools.GraceContainer(
-                ...     grace_notes,
+                ...     [Note("e'16")],
                 ...     kind='grace',
                 ...     )
                 >>> attach(grace_container, voice[1])
@@ -168,60 +168,28 @@ class GraceContainer(Container):
 
                 >>> f(voice)
                 \new Voice {
-                    c'4 [
+                    c'4
                     \grace {
-                        bf16
-                        c'16
+                        e'16
                     }
                     d'4
                     e'4
-                    f'4 ]
+                    f'4
                 }
+
+            LilyPond positions grace notes immediately before main notes.
+
+            LilyPond formats grace notes with neither a slashed nor a slur.
 
         .. container:: example
 
-            **Example 2.** After-grace notes:
+            **Example 2.** Acciaccatura:
 
             ::
 
                 >>> voice = Voice("c'4 d'4 e'4 f'4")
-                >>> beam = spannertools.Beam()
-                >>> attach(beam, voice[:])
-                >>> grace_notes = [Note("cs'16"), Note("d'16")]
                 >>> grace_container = scoretools.GraceContainer(
-                ...     grace_notes,
-                ...     kind='after',
-                ...     )
-                >>> attach(grace_container, voice[1])
-                >>> show(voice) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(voice)
-                \new Voice {
-                    c'4 [
-                    \afterGrace
-                    d'4
-                    {
-                        cs'16
-                        d'16
-                    }
-                    e'4
-                    f'4 ]
-                }
-
-        .. container:: example
-
-            **Example 3.** Acciaccatura:
-
-            ::
-
-                >>> voice = Voice("c'4 d'4 e'4 f'4")
-                >>> beam = spannertools.Beam()
-                >>> attach(beam, voice[:])
-                >>> grace_notes = [Note("bf16"), Note("c'16")]
-                >>> grace_container = scoretools.GraceContainer(
-                ...     grace_notes,
+                ...     [Note("e'16")],
                 ...     kind='acciaccatura',
                 ...     )
                 >>> attach(grace_container, voice[1])
@@ -231,28 +199,35 @@ class GraceContainer(Container):
 
                 >>> f(voice)
                 \new Voice {
-                    c'4 [
+                    c'4
                     \acciaccatura {
-                        bf16
-                        c'16
+                        e'16
                     }
                     d'4
                     e'4
-                    f'4 ]
+                    f'4
                 }
+
+            Acciaccaturas are played before the beat.
+
+            LilyPond positions acciaccaturas immediately before main notes.
+
+            LilyPond formats one-note acciaccaturas with a slashed stem and a
+            slur.
+
+            ..  note:: LilyPond fails to format multinote acciaccaturas
+                with a slashed stem. This means that multinote
+                acciaccaturas look exactly like appoggiaturas.
 
         .. container:: example
 
-            **Example 4.** Appoggiatura:
+            **Example 3.** Appoggiatura:
 
             ::
 
                 >>> voice = Voice("c'4 d'4 e'4 f'4")
-                >>> beam = spannertools.Beam()
-                >>> attach(beam, voice[:])
-                >>> grace_notes = [Note("bf16"), Note("c'16")]
                 >>> grace_container = scoretools.GraceContainer(
-                ...     grace_notes,
+                ...     [Note("e'16")],
                 ...     kind='appoggiatura',
                 ...     )
                 >>> attach(grace_container, voice[1])
@@ -262,32 +237,80 @@ class GraceContainer(Container):
 
                 >>> f(voice)
                 \new Voice {
-                    c'4 [
+                    c'4
                     \appoggiatura {
-                        bf16
-                        c'16
+                        e'16
                     }
                     d'4
                     e'4
-                    f'4 ]
+                    f'4
                 }
+
+            Appoggiaturas are played on the beat.
+
+            LilyPond positions appoggiaturas immediately before main notes.
+
+            LilyPond formats appoggiaturas with a slur but without a slashed
+            stem.
+
+        .. container:: example
+
+            **Example 4.** After-grace notes:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> string = '#(define afterGraceFraction (cons 15 16))'
+                >>> command = indicatortools.LilyPondCommand(string)
+                >>> attach(command, voice[0])
+                >>> grace_container = scoretools.GraceContainer(
+                ...     [Note("g'16")],
+                ...     kind='after',
+                ...     )
+                >>> attach(grace_container, voice[-1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    #(define afterGraceFraction (cons 15 16))
+                    c'4
+                    d'4
+                    e'4
+                    \afterGrace
+                    f'4
+                    {
+                        g'16
+                    }
+                }
+
+            After-grace notes are played at the very end of the note they
+            follow.
+
+            Use after-grace notes when you need to end a piece of music with
+            grace notes.
+
+            LilyPond positions after-grace notes at a point 3/4 of the way
+            after the note they follow. The resulting spacing is usually too
+            loose.
+
+            Customize aftterGraceFraction as shown above.
 
         Defaults to ``'grace'``.
 
-        Set to ``'grace'``, ``'after'``, ``'acciaccatura'`` or
-        ``'appoggiatura'``.
+        Set to ``'grace'``, ``'acciaccatura'``, ``'appoggiatura'`` or
+        ``'after'``.
 
-        Returns ``'grace'``, ``'after'``, ``'acciaccatura'`` or
-        ``'appoggiatura'``.
+        Returns ``'grace'``, ``'acciaccatura'``, ``'appoggiatura'`` or
+        ``'after'``.
         '''
         return self._kind
 
     @kind.setter
     def kind(self, arg):
-        assert arg in (
-            'after',
-            'grace',
-            'acciaccatura',
-            'appoggiatura',
-            )
+        if arg not in self._allowable_kinds:
+            message = 'unknown grace container kind: {!r}.'
+            message = message.format(kind)
+            raise Exception(message)
         self._kind = arg
