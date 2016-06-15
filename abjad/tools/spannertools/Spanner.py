@@ -223,6 +223,8 @@ class Spanner(AbjadObject):
 
     def _attachment_test(self, component):
         return True
+        #from abjad.tools import scoretools
+        #return isinstance(component, scoretools.Leaf)
 
     def _attachment_test_all(self, component_expression):
         return True
