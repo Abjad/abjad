@@ -12,7 +12,7 @@ def test_spannertools_DuratedComplexBeam_direction_01():
         direction=Up,
         )
 
-    attach(beam, container)
+    attach(beam, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''
