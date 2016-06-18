@@ -145,7 +145,7 @@ class TimeSignature(AbjadValueObject):
         self._multiplier = self.implied_prolation
         self._has_non_power_of_two_denominator = \
             not mathtools.is_nonnegative_integer_power_of_two(
-            self.denominator)
+                self.denominator)
 
     ### SPECIAL METHODS ###
 
@@ -201,8 +201,8 @@ class TimeSignature(AbjadValueObject):
             )
 
     def __eq__(self, arg):
-        r'''Is true when `arg` is a time signature with numerator and 
-        denominator equal to this time signature. Also true when `arg` is a 
+        r'''Is true when `arg` is a time signature with numerator and
+        denominator equal to this time signature. Also true when `arg` is a
         tuple with first and second elements equal to numerator and denominator
         of this time signature. Otherwise false.
 
@@ -680,11 +680,11 @@ class TimeSignature(AbjadValueObject):
         if contents_multiplier == durationtools.Multiplier(1):
             power_of_two_denominator = \
                 mathtools.greatest_power_of_two_less_equal(
-                non_power_of_two_denominator)
+                    non_power_of_two_denominator)
         else:
             power_of_two_denominator = \
                 mathtools.greatest_power_of_two_less_equal(
-                non_power_of_two_denominator, 1)
+                    non_power_of_two_denominator, 1)
 
         # find power_of_two pair
         non_power_of_two_pair = mathtools.NonreducedFraction(self.pair)
