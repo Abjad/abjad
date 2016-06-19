@@ -39,11 +39,13 @@ class Talea(AbjadValueObject):
         counts=(1,),
         denominator=16,
         ):
-        from abjad.tools import rhythmmakertools
         counts = tuple(counts)
         assert all(isinstance(x, int) for x in counts)
         self._counts = counts
-        assert mathtools.is_nonnegative_integer_power_of_two(denominator)
+        if not mathtools.is_nonnegative_integer_power_of_two(denominator):
+            message = 'denominator must be integer power of 2: {!r}.'
+            message = message.format(denominator)
+            raise Exception(message)
         self._denominator = denominator
 
     ### SPECIAL METHODS ###
