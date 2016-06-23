@@ -84,8 +84,8 @@ class Segment(TypedTuple):
         override(score).flag.stencil = False
         override(score).stem.stencil = False
         override(score).time_signature.stencil = False
-        string = 'override Score.BarLine.transparent = False'
-        command = indicatortools.LilyPondCommand(string)
+        string = 'override Score.BarLine.transparent = ##f'
+        command = indicatortools.LilyPondCommand(string, format_slot='after')
         last_leaf = select().by_leaf()(score)[-1][-1]
         attach(command, last_leaf)
         moment = schemetools.SchemeMoment((1, 12))
