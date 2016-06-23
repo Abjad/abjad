@@ -2,7 +2,7 @@
 from abjad import *
 Component = scoretools.Component
 Selection = selectiontools.Selection
-selector = select().by_leaves(flatten=True)
+selector = select().by_leaf(flatten=True)
 
 
 def test_selectiontools_Selection__all_are_components_in_same_logical_voice_01():

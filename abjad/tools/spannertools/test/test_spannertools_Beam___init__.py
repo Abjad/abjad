@@ -731,7 +731,7 @@ def test_spannertools_Beam___init___19():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     beam = Beam()
     statement = 'attach(beam, leaves)'

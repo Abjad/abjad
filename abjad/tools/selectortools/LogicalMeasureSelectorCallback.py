@@ -26,7 +26,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_leaf()
             >>> selector = selector.by_logical_measure()
             >>> for x in selector(staff):
             ...     x
@@ -43,7 +43,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_leaf()
             >>> selector = selector.by_logical_measure()
             >>> selector = selector[0]
             >>> selector(staff)
@@ -56,7 +56,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_leaf()
             >>> selector = selector.by_logical_measure()
             >>> selector = selector[-1]
             >>> selector(staff)
@@ -77,7 +77,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_leaf()
             >>> selector = selector.by_logical_measure()
             >>> for x in selector(score):
             ...     x

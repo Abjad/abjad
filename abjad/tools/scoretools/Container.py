@@ -1644,7 +1644,7 @@ class Container(Component):
 #
 #            ::
 #
-#                >>> selector = select().by_leaves(flatten=True)
+#                >>> selector = select().by_leaf(flatten=True)
 #                >>> selector(container)
 #                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
 #

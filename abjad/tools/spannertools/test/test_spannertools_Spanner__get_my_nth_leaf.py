@@ -28,7 +28,7 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
 
     assert beam._get_my_nth_leaf(0) is leaves[0]
