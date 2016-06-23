@@ -311,6 +311,6 @@ class GraceContainer(Container):
     def kind(self, arg):
         if arg not in self._allowable_kinds:
             message = 'unknown grace container kind: {!r}.'
-            message = message.format(kind)
+            message = message.format(arg)
             raise Exception(message)
         self._kind = arg
