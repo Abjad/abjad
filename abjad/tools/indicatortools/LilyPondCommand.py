@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import stringtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -37,6 +38,7 @@ class LilyPondCommand(AbjadValueObject):
         '_default_scope',
         '_format_slot',
         '_name',
+        '_prefix',
         )
 
     _format_leaf_children = False
@@ -51,7 +53,7 @@ class LilyPondCommand(AbjadValueObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, name=None, format_slot=None):
+    def __init__(self, name=None, format_slot=None, prefix='\\'):
         self._default_scope = None
         name = name or 'slurDotted'
         format_slot = format_slot or 'opening'
@@ -59,6 +61,8 @@ class LilyPondCommand(AbjadValueObject):
         assert isinstance(name, str), repr(name)
         self._name = name
         self._format_slot = format_slot
+        assert isinstance(prefix, str), repr(prefix)
+        self._prefix = prefix
 
     ### SPECIAL METHODS ###
 
@@ -94,14 +98,13 @@ class LilyPondCommand(AbjadValueObject):
 
     @property
     def _lilypond_format(self):
-        from abjad.tools import stringtools
         command = self._name
         if command.startswith('#'):
             return command
         elif ' ' not in command:
-            return '\\' + stringtools.to_lower_camel_case(command)
+            return self.prefix + stringtools.to_lower_camel_case(command)
         else:
-            return '\\' + command
+            return self.prefix + command
 
     @property
     def _storage_format_specification(self):
@@ -160,7 +163,6 @@ class LilyPondCommand(AbjadValueObject):
         '''
         return self._format_slot
 
-
     @property
     def name(self):
         r'''Gets name of LilyPond command.
@@ -178,6 +180,18 @@ class LilyPondCommand(AbjadValueObject):
         Returns string.
         '''
         return self._name
+
+    @property
+    def prefix(self):
+        r'''Gets prefix.
+
+        Defaults to `'\\'`.
+
+        Set to string.
+
+        Returns string.
+        '''
+        return self._prefix
 
     ### PUBLIC METHODS ###
 
