@@ -31,9 +31,9 @@ class PitchClassSegment(Segment):
                 fs'8
                 g'8
                 bqf'8
-                \override Score.BarLine.transparent = False
                 g'8
                 \bar "|."
+                \override Score.BarLine.transparent = ##f
             }
 
     ..  container:: example
@@ -57,9 +57,9 @@ class PitchClassSegment(Segment):
                 c'8
                 ef'8
                 bqs'8
-                \override Score.BarLine.transparent = False
                 d'8
                 \bar "|."
+                \override Score.BarLine.transparent = ##f
             }
 
     '''
@@ -112,9 +112,9 @@ class PitchClassSegment(Segment):
                     fs'8
                     g'8
                     bqf'8
-                    \override Score.BarLine.transparent = False
                     g'8
                     \bar "|."
+                    \override Score.BarLine.transparent = ##f
                 }
 
         Returns LilyPond file.

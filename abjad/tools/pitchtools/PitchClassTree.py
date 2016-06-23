@@ -128,9 +128,9 @@ class PitchClassTree(PayloadTree):
                                 a'8 \startGroup ^ \markup { 1 }
                                 d'8
                                 ef'8
-                                \override Score.BarLine.transparent = False
                                 b'8 \stopGroup
                                 \bar "|."
+                                \override Score.BarLine.transparent = ##f
                             }
                         }
                     >>
@@ -163,8 +163,8 @@ class PitchClassTree(PayloadTree):
         override(score).stem.stencil = False
         override(score).text_script.staff_padding = 2
         override(score).time_signature.stencil = False
-        string = 'override Score.BarLine.transparent = False'
-        command = indicatortools.LilyPondCommand(string)
+        string = 'override Score.BarLine.transparent = ##f'
+        command = indicatortools.LilyPondCommand(string, format_slot='after')
         last_leaf = select().by_leaf()(score)[-1][-1]
         attach(command, last_leaf)
         moment = schemetools.SchemeMoment((1, 12))
