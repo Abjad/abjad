@@ -40,7 +40,7 @@ def test_scoretools_GraceContainer_02():
     assert gracecontainer.kind == 'after'
     gracecontainer.kind = 'appoggiatura'
     assert gracecontainer.kind == 'appoggiatura'
-    assert pytest.raises(AssertionError, 'gracecontainer.kind = "blah"')
+    assert pytest.raises(Exception, 'gracecontainer.kind = "blah"')
 
 
 def test_scoretools_GraceContainer_03():
