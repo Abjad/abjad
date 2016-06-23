@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
 from abjad.tools.datastructuretools.PayloadTree import PayloadTree
 
 
@@ -89,43 +88,111 @@ class PitchClassTree(PayloadTree):
     def __illustrate__(self, **kwargs):
         r'''Illustrates pitch-class tree.
 
+        ..  container:: example
+
+            **Example.** Illustrates pitch-class tree:
+
+            ::
+
+                >>> tree = pitchtools.PitchClassTree(
+                ...     items=[[0, 4, 7, 8], [9, 2, 3, 11]],
+                ...     item_class=pitchtools.NumberedPitchClass,
+                ...     )
+                >>> show(tree) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = tree.__illustrate__()
+                >>> score_block = lilypond_file.score_block
+                >>> f(score_block)
+                \score {
+                    \new Score \with {
+                        \override BarLine.transparent = ##t
+                        \override BarNumber.stencil = ##f
+                        \override Beam.stencil = ##f
+                        \override Flag.stencil = ##f
+                        \override HorizontalBracket.staff-padding = #4
+                        \override Stem.stencil = ##f
+                        \override TextScript.staff-padding = #2
+                        \override TimeSignature.stencil = ##f
+                        proportionalNotationDuration = #(ly:make-moment 1 12)
+                    } <<
+                        \new Staff {
+                            \new Voice \with {
+                                \consists Horizontal_bracket_engraver
+                            } {
+                                c'8 \startGroup ^ \markup { 0 }
+                                e'8
+                                g'8
+                                af'8 \stopGroup
+                                a'8 \startGroup ^ \markup { 1 }
+                                d'8
+                                ef'8
+                                \override Score.BarLine.transparent = False
+                                b'8 \stopGroup
+                                \bar "|."
+                            }
+                        }
+                    >>
+                }
+
         Returns LilyPond file.
         '''
-        from abjad import abjad_configuration
+        from abjad.tools import durationtools
         from abjad.tools import indicatortools
         from abjad.tools import lilypondfiletools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
+        from abjad.tools import schemetools
+        from abjad.tools.topleveltools import attach
         from abjad.tools.topleveltools import override
+        from abjad.tools.topleveltools import select
+        from abjad.tools.topleveltools import set_
         voice = scoretools.Voice()
+        voice.consists_commands.append('Horizontal_bracket_engraver')
         staff = scoretools.Staff([voice])
         score = scoretools.Score([staff])
-        stylesheet = os.path.join(
-            abjad_configuration.abjad_directory,
-            'stylesheets',
-            'rhythm-letter-16.ily',
-            )
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-            music=score,
-            includes=[stylesheet],
-            )
-        voice.consists_commands.append('Horizontal_bracket_engraver')
         leaf_list_stack = []
         self._bracket_inner_nodes(leaf_list_stack, self, voice)
         score.add_final_bar_line()
-        override(score).bar_line.stencil = False
+        override(score).bar_line.transparent = True
+        override(score).bar_number.stencil = False
+        override(score).beam.stencil = False
         override(score).flag.stencil = False
+        override(score).horizontal_bracket.staff_padding = 4
         override(score).stem.stencil = False
-        override(score).text_script.staff_padding = 3
+        override(score).text_script.staff_padding = 2
         override(score).time_signature.stencil = False
+        string = 'override Score.BarLine.transparent = False'
+        command = indicatortools.LilyPondCommand(string)
+        last_leaf = select().by_leaf()(score)[-1][-1]
+        attach(command, last_leaf)
+        moment = schemetools.SchemeMoment((1, 12))
+        set_(score).proportional_notation_duration = moment
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+            global_staff_size=12,
+            music=score,
+            )
         if 'title' in kwargs:
-            markup = markuptools.Markup(kwargs.get('title'))
-            lilypond_file.header_block.title = markup
+            title = kwargs.get('title') 
+            if not isinstance(title, markuptools.Markup):
+                title = markuptools.Markup(title)
+            lilypond_file.header_block.title = title
         if 'subtitle' in kwargs:
             markup = markuptools.Markup(kwargs.get('subtitle'))
             lilypond_file.header_block.subtitle = markup
         command = indicatortools.LilyPondCommand('accidentalStyle forget')
         lilypond_file.layout_block.items.append(command)
+        lilypond_file.layout_block.indent = 0
+        string = 'markup-system-spacing.padding = 8'
+        command = indicatortools.LilyPondCommand(string, prefix='')
+        lilypond_file.paper_block.items.append(command)
+        string = 'system-system-spacing.padding = 10'
+        command = indicatortools.LilyPondCommand(string, prefix='')
+        lilypond_file.paper_block.items.append(command)
+        string = 'top-markup-spacing.padding = 4'
+        command = indicatortools.LilyPondCommand(string, prefix='')
+        lilypond_file.paper_block.items.append(command)
         return lilypond_file
 
     ### PRIVATE METHODS ###
@@ -151,8 +218,7 @@ class PitchClassTree(PayloadTree):
                 if node.level == 1:
                     node_index = node.parent.index(node)
                     level_one_first_leaf = leaf_list_stack[-1][0]
-                    string = r'\bold {{ {} }}'.format(node_index)
-                    markup = markuptools.Markup(string, Up)
+                    markup = markuptools.Markup(node_index, direction=Up)
                     attach(markup, level_one_first_leaf)
                 leaf_list_stack.pop()
         elif node.payload:
