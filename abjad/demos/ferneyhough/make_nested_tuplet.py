@@ -15,7 +15,7 @@ def make_nested_tuplet(
     outer_tuplet = scoretools.Tuplet.from_duration_and_ratio(
         tuplet_duration, outer_tuplet_proportions)
     inner_tuplet_proportions = inner_tuplet_subdivision_count * [1]
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     last_leaf = selector(outer_tuplet)[-1]
     right_logical_tie = inspect_(last_leaf).get_logical_tie()
     right_logical_tie.to_tuplet(inner_tuplet_proportions)

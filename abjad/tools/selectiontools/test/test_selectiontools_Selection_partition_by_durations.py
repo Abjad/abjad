@@ -35,7 +35,7 @@ def test_selectiontools_Selection_partition_by_durations_01():
         )
 
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [1.5],
@@ -53,7 +53,7 @@ def test_selectiontools_Selection_partition_by_durations_01():
     '''
 
     assert len(parts) == 2
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:3])
     assert parts[1] == list(leaves[3:6])
@@ -91,7 +91,7 @@ def test_selectiontools_Selection_partition_by_durations_02():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [1.5],
@@ -110,7 +110,7 @@ def test_selectiontools_Selection_partition_by_durations_02():
     '''
 
     assert len(parts) == 3
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:3])
     assert parts[1] == list(leaves[3:6])
@@ -146,7 +146,7 @@ def test_selectiontools_Selection_partition_by_durations_03():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [Duration(3, 8)],
@@ -165,7 +165,7 @@ def test_selectiontools_Selection_partition_by_durations_03():
     '''
 
     assert len(parts) == 3
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:3])
     assert parts[1] == list(leaves[3:6])
@@ -204,7 +204,7 @@ def test_selectiontools_Selection_partition_by_durations_04():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [1.5],
@@ -217,7 +217,7 @@ def test_selectiontools_Selection_partition_by_durations_04():
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)]]"
 
     assert len(parts) == 1
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:3])
 
@@ -251,7 +251,7 @@ def test_selectiontools_Selection_partition_by_durations_05():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [Duration(3, 8)],
@@ -264,7 +264,7 @@ def test_selectiontools_Selection_partition_by_durations_05():
     "[[Note(c'', 8), Note(b', 8), Note(a', 8)]]"
 
     assert len(parts) == 1
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:3])
 
@@ -299,7 +299,7 @@ def test_selectiontools_Selection_partition_by_durations_06():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [Duration(3, 16), Duration(1, 16)],
@@ -318,7 +318,7 @@ def test_selectiontools_Selection_partition_by_durations_06():
     '''
 
     assert len(parts) == 5
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:2])
     assert parts[1] == list(leaves[2:3])
@@ -359,7 +359,7 @@ def test_selectiontools_Selection_partition_by_durations_07():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [0.75],
@@ -382,7 +382,7 @@ def test_selectiontools_Selection_partition_by_durations_07():
     '''
 
     assert len(parts) == 7
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:1])
     assert parts[1] == list(leaves[1:2])
@@ -422,7 +422,7 @@ def test_selectiontools_Selection_partition_by_durations_08():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [Duration(3, 16)],
@@ -445,7 +445,7 @@ def test_selectiontools_Selection_partition_by_durations_08():
     '''
 
     assert len(parts) == 7
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:1])
     assert parts[1] == list(leaves[1:2])
@@ -463,7 +463,7 @@ def test_selectiontools_Selection_partition_by_durations_09():
     tempo = Tempo(Duration(1, 4), 60)
     attach(tempo, staff, scope=Staff)
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [0.75],
@@ -476,7 +476,7 @@ def test_selectiontools_Selection_partition_by_durations_09():
     "[[Note(c', 8)]]"
 
     assert len(parts) == 1
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:1])
 
@@ -485,7 +485,7 @@ def test_selectiontools_Selection_partition_by_durations_10():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     parts = leaves.partition_by_durations(
         [Duration(3, 16)],
@@ -498,6 +498,6 @@ def test_selectiontools_Selection_partition_by_durations_10():
     "[[Note(c', 8)]]"
 
     assert len(parts) == 1
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(staff)
     assert parts[0] == list(leaves[:1])

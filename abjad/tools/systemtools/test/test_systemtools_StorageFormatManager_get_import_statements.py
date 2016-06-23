@@ -12,7 +12,7 @@ def test_systemtools_StorageFormatManager_get_import_statements_01():
 
 
 def test_systemtools_StorageFormatManager_get_import_statements_02():
-    subject = selectortools.Selector().by_leaves()
+    subject = selectortools.Selector().by_leaf()
     assert manager.get_import_statements(subject) == (
         'from abjad.tools import scoretools',
         'from abjad.tools import selectortools',

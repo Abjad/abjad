@@ -282,7 +282,7 @@ class BenchmarkScoreMaker(AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import topleveltools
         staff = scoretools.Staff(200 * scoretools.Note("c'16"))
-        selector = topleveltools.select().by_leaves(flatten=True)
+        selector = topleveltools.select().by_leaf(flatten=True)
         for note in selector(staff):
             dynamic = indicatortools.Dynamic('f')
             topleveltools.attach(dynamic, note)

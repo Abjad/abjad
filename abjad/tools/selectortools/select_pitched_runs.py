@@ -53,7 +53,7 @@ def select_pitched_runs(expr=None):
     from abjad.tools import scoretools
     from abjad.tools import selectortools
     selector = selectortools.Selector()
-    selector = selector.by_leaves()
+    selector = selector.by_leaf()
     selector = selector.by_run((scoretools.Note, scoretools.Chord))
     if expr is None:
         return selector

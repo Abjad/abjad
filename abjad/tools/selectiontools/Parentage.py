@@ -271,7 +271,7 @@ class Parentage(Selection):
 
         ::
 
-            >>> selector = select().by_leaves(flatten=True)
+            >>> selector = select().by_leaf(flatten=True)
             >>> leaves = selector(score)
             >>> for leaf in leaves:
             ...     parentage = inspect_(leaf).get_parentage()

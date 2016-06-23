@@ -63,7 +63,7 @@ class GalleryMaker(AbjadValueObject):
     @staticmethod
     def _add_final_bar_line(score):
         score.add_final_bar_line()
-        selector = select().by_leaves(flatten=True)
+        selector = select().by_leaf(flatten=True)
         leaves = selector(score)
         leaves = leaves[-1:]
         last_leaf = leaves[0]

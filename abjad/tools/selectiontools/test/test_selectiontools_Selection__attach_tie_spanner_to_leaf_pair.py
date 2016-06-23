@@ -21,7 +21,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_01():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(voice)
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 
@@ -60,7 +60,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_02():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(voice)
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 
@@ -83,7 +83,7 @@ def test_selectiontools_Selection__attach_tie_spanner_to_leaf_pair_03():
     '''
 
     voice = Voice("c'8 c'8 c'8 c'8")
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(voice)
     leaves[1:3]._attach_tie_spanner_to_leaf_pair()
 

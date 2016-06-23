@@ -27,7 +27,7 @@ def test_selectiontools_VerticalMoment_previous_vertical_moment_01():
         >>
         ''')
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(score)
     last_leaf = leaves[-1]
     vertical_moment = inspect_(last_leaf).get_vertical_moment()

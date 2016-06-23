@@ -72,7 +72,7 @@ def make_bartok_score():
     dynamic = Dynamic('mp')
     attach(dynamic, lower_measures[1][3])
     score.add_final_bar_line()
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     upper_leaves = selector(upper_staff)
     lower_leaves = selector(lower_staff)
     beam = Beam()

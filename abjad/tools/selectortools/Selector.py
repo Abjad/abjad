@@ -49,7 +49,7 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_leaf()
             >>> selector(staff)
             Selection(Selection(Note("c'4"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4")),)
 
@@ -60,7 +60,7 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_leaf()
             >>> selector = selector.by_run(Note)
             >>> selector(staff)
             Selection(Selection(Note("c'4"), Note("d'8")), Selection(Note("e'8"),), Selection(Note("f'16"), Note("g'8"), Note("a'4")))
@@ -72,7 +72,7 @@ class Selector(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_leaf()
             >>> selector = selector.by_run(Note)
             >>> selector = selector.get_item(0, apply_to_each=True)
             >>> selector(staff)
@@ -199,7 +199,7 @@ class Selector(AbjadValueObject):
 
                 >>> staff = Staff("<g' d'>4 <c' e' g'>4 r4 <e' g' c''>2 fs,4")
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.append_callback(CMajorSelectorCallback())
 
             ::
@@ -359,7 +359,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.flatten()
                 >>> selector = selector.by_duration('==', (1, 16))
                 >>> selector = selector.by_contiguity()
@@ -429,7 +429,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> for x in selector(staff):
                 ...     x
                 ...
@@ -502,7 +502,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [3],
                 ...     cyclic=False,
@@ -544,7 +544,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [3],
                 ...     cyclic=True,
@@ -588,7 +588,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [3],
                 ...     cyclic=True,
@@ -633,7 +633,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [3],
                 ...     cyclic=True,
@@ -680,7 +680,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [1, 2, 3],
                 ...     cyclic=True,
@@ -731,7 +731,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_counts(
                 ...     [1, 2, 3],
                 ...     cyclic=True,
@@ -795,7 +795,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.by_duration(Duration(2, 8))
 
@@ -835,7 +835,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.by_duration(
                 ...     selectortools.DurationInequality(
@@ -881,7 +881,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.by_duration(
                 ...     selectortools.DurationInequality(
@@ -973,7 +973,7 @@ class Selector(AbjadValueObject):
             )
         return self._append_callback(callback)
 
-    def by_leaves(self, flatten=None):
+    def by_leaf(self, flatten=None):
         r'''Configures selector by leaves.
 
         ..  container:: example
@@ -1002,7 +1002,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
 
             ::
 
@@ -1040,7 +1040,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_leaf(flatten=True)
 
             ::
 
@@ -1099,7 +1099,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selections = selector(staff)
                 >>> for selection in selections:
                 ...     selection
@@ -1149,7 +1149,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selections = selector(staff)
                 >>> for selection in selections:
                 ...     selection
@@ -1200,7 +1200,7 @@ class Selector(AbjadValueObject):
 
             ::
 
-                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_leaf(flatten=True)
                 >>> selection = selector(staff)
                 >>> for leaf in selection:
                 ...     leaf
@@ -1239,7 +1239,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_leaf(flatten=True)
                 >>> selection = selector(staff)
 
             ::
@@ -1270,7 +1270,7 @@ class Selector(AbjadValueObject):
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.by_length(
                 ...     selectortools.LengthInequality(
@@ -1295,7 +1295,7 @@ class Selector(AbjadValueObject):
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.by_length(
                 ...     selectortools.LengthInequality(
@@ -1605,7 +1605,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_leaf(flatten=True)
                 >>> pattern = patterntools.select_every([0], period=2)
                 >>> selector = selector.by_pattern(pattern=pattern)
 
@@ -1684,7 +1684,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_leaf(flatten=True)
                 >>> pattern = patterntools.select_every([0], period=2)
                 >>> selector = selector.by_pattern(pattern=pattern)
 
@@ -1806,7 +1806,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'4 d'4 ~ d'4 e'4")
                 >>> staff.extend("r4 <c' e' g'>4 ~ <c' e' g'>2")
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.by_pitch(pitches="c'")
 
             ::
@@ -1827,7 +1827,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff("c'4 d'4 ~ d'4 e'4")
                 >>> staff.extend("r4 <c' e' g'>4 ~ <c' e' g'>2")
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves(flatten=True)
+                >>> selector = selector.by_leaf(flatten=True)
                 >>> selector = selector.by_pitch(pitches="c' e'")
 
             ::
@@ -1882,7 +1882,7 @@ class Selector(AbjadValueObject):
                 >>> staff = Staff(r"c'8 d' r \times 2/3 { e' r f' } g' a' r")
                 >>> selector = selectortools.Selector()
                 >>> prototype = (Note, Chord)
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(prototype)
 
             ::
@@ -2020,7 +2020,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector(staff)
                 Selection(Selection(Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4")),)
 
@@ -2075,7 +2075,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.flatten()
                 >>> selector = selector.get_item(1)
                 >>> selector(staff)
@@ -2283,7 +2283,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.flatten()
                 >>> selector = selector.get_slice(
                 ...     start=-3,
@@ -2427,7 +2427,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> result = selector(staff)
                 >>> for selection in result:
                 ...     selection
@@ -2484,7 +2484,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> result = selector(staff)
                 >>> for selection in result:
                 ...     selection
@@ -2687,7 +2687,7 @@ class Selector(AbjadValueObject):
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.with_next_leaf()
 
@@ -2712,7 +2712,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(-1, apply_to_each=True)
                 >>> selector(staff)
@@ -2749,7 +2749,7 @@ class Selector(AbjadValueObject):
 
                 >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8")
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_run(Note)
                 >>> selector = selector.with_previous_leaf()
 
@@ -2774,7 +2774,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selector = selectortools.Selector()
-                >>> selector = selector.by_leaves()
+                >>> selector = selector.by_leaf()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(0, apply_to_each=True)
                 >>> selector(staff)

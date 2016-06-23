@@ -33,7 +33,7 @@ def test_topleveltools_set__02():
     staff = Staff("c'8 d'8 e'8 f'8")
     score = Score([staff])
     moment = schemetools.SchemeMoment(24)
-    leaves = select().by_leaves(flatten=True)(score)
+    leaves = select().by_leaf(flatten=True)(score)
     set_(leaves[1]).score.tempo_wholes_per_minute = moment
 
     assert format(score) == stringtools.normalize(
