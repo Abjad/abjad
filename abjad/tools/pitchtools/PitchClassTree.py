@@ -115,7 +115,7 @@ class PitchClassTree(PayloadTree):
                         \override Stem.stencil = ##f
                         \override TextScript.staff-padding = #2
                         \override TimeSignature.stencil = ##f
-                        proportionalNotationDuration = #(ly:make-moment 1 12)
+                        proportionalNotationDuration = #(ly:make-moment 1 14)
                     } <<
                         \new Staff {
                             \new Voice \with {
@@ -167,7 +167,7 @@ class PitchClassTree(PayloadTree):
         command = indicatortools.LilyPondCommand(string, format_slot='after')
         last_leaf = select().by_leaf()(score)[-1][-1]
         attach(command, last_leaf)
-        moment = schemetools.SchemeMoment((1, 12))
+        moment = schemetools.SchemeMoment((1, 14))
         set_(score).proportional_notation_duration = moment
         lilypond_file = lilypondfiletools.make_basic_lilypond_file(
             global_staff_size=12,
