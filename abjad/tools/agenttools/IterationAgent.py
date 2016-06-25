@@ -743,10 +743,12 @@ class IterationAgent(abctools.AbjadObject):
                 >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
                 >>> container_1.is_simultaneous = True
                 >>> container_1[0].name = 'voice 1'
+                >>> override(container_1[0]).stem.direction = Down
                 >>> container_1[1].name = 'voice 2'
                 >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
                 >>> container_2.is_simultaneous = True
                 >>> container_2[0].name = 'voice 1'
+                >>> override(container_2[0]).stem.direction = Down
                 >>> container_2[1].name = 'voice 2'
                 >>> staff = Staff([container_1, container_2])
                 >>> show(staff) # doctest: +SKIP
@@ -756,7 +758,9 @@ class IterationAgent(abctools.AbjadObject):
                 >>> print(format(staff))
                 \new Staff {
                     <<
-                        \context Voice = "voice 1" {
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
                             c'8
                             d'8
                         }
@@ -766,7 +770,9 @@ class IterationAgent(abctools.AbjadObject):
                         }
                     >>
                     <<
-                        \context Voice = "voice 1" {
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
                             g'8
                             a'8
                         }
@@ -846,10 +852,12 @@ class IterationAgent(abctools.AbjadObject):
                 >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
                 >>> container_1.is_simultaneous = True
                 >>> container_1[0].name = 'voice 1'
+                >>> override(container_1[0]).stem.direction = Down
                 >>> container_1[1].name = 'voice 2'
                 >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
                 >>> container_2.is_simultaneous = True
                 >>> container_2[0].name = 'voice 1'
+                >>> override(container_2[0]).stem.direction = Down
                 >>> container_2[1].name = 'voice 2'
                 >>> staff = Staff([container_1, container_2])
                 >>> show(staff) # doctest: +SKIP
@@ -859,7 +867,9 @@ class IterationAgent(abctools.AbjadObject):
                 >>> print(format(staff))
                 \new Staff {
                     <<
-                        \context Voice = "voice 1" {
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
                             c'8
                             d'8
                         }
@@ -869,7 +879,9 @@ class IterationAgent(abctools.AbjadObject):
                         }
                     >>
                     <<
-                        \context Voice = "voice 1" {
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
                             g'8
                             a'8
                         }
