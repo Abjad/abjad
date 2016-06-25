@@ -7,6 +7,7 @@ def attach(
     scope=None,
     is_annotation=None,
     name=None,
+    synthetic_offset=None,
     ):
     r'''Attaches `indicator` to `component_expression`.
 
@@ -45,6 +46,7 @@ def attach(
         is_annotation = is_annotation or indicator.is_annotation
         name = name or indicator.name
         scope = scope or indicator.scope
+        synthetic_offset = synthetic_offset or indicator.synthetic_offset
         indicator._detach()
         indicator = indicator.indicator
 
@@ -57,5 +59,6 @@ def attach(
         is_annotation=is_annotation,
         name=name,
         scope=scope,
+        synthetic_offset=synthetic_offset,
         )
     expression._bind_to_component(component)

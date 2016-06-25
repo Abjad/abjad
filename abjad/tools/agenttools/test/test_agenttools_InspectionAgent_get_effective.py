@@ -423,3 +423,11 @@ def test_agenttools_InspectionAgent_get_effective_21():
     assert inspect_(staff[4]).get_effective(str, n=-1) == 'blue'
     assert inspect_(staff[4]).get_effective(str, n=0) == 'yellow'
     assert inspect_(staff[4]).get_effective(str, n=1) is None
+
+
+def test_agenttools_InspectionAgent_get_effective_22():
+    staff = Staff("c'8 d'8 e'8 f'8")
+    attach('red', staff[-1], scope=Staff, synthetic_offset=-1)
+    attach('blue', staff[0], scope=Staff)
+    assert inspect_(staff).get_effective(str) == 'blue'
+    assert inspect_(staff).get_effective(str, n=-1) == 'red'

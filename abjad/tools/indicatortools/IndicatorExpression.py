@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
+from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -16,6 +17,7 @@ class IndicatorExpression(AbjadValueObject):
         '_is_annotation',
         '_name',
         '_scope',
+        '_synthetic_offset',
         )
 
     ### INITIALIZER ###
@@ -27,6 +29,7 @@ class IndicatorExpression(AbjadValueObject):
         is_annotation=None,
         name=None,
         scope=None,
+        synthetic_offset=None,
         ):
         from abjad.tools import scoretools
         from abjad.tools import spannertools
@@ -50,6 +53,9 @@ class IndicatorExpression(AbjadValueObject):
         self._name = name
         self._scope = scope
         self._effective_context = None
+        if synthetic_offset is not None:
+            synthetic_offset = durationtools.Offset(synthetic_offset)
+        self._synthetic_offset = synthetic_offset
 
     ### SPECIAL METHODS ###
 
@@ -68,6 +74,7 @@ class IndicatorExpression(AbjadValueObject):
             is_annotation=self.is_annotation,
             name=self.name,
             scope=self.scope,
+            synthetic_offset=self.synthetic_offset,
             )
         return new
 
@@ -222,12 +229,12 @@ class IndicatorExpression(AbjadValueObject):
             return
         prototype = type(self.indicator)
         effective = component._get_effective(prototype, unwrap=False)
-        if (effective is not None and
+        if (
+            effective is not None and
             effective.scope is not None and
-            effective.indicator != self.indicator):
-            indicator_start = effective.component._get_timespan().start_offset
-            component_start = component._get_timespan().start_offset
-            if indicator_start == component_start:
+            effective.indicator != self.indicator
+            ):
+            if effective.start_offset == self.start_offset:
                 message = 'effective indicator already attached: {!r}.'
                 message = message.format(effective)
                 raise ValueError(message)
@@ -279,3 +286,24 @@ class IndicatorExpression(AbjadValueObject):
         Returns context.
         '''
         return self._scope
+
+    @property
+    def start_offset(self):
+        r'''Start offset of indicator expression.
+
+        This is either the expression's synthetic offset or the start offset of
+        the expression's component.
+
+        Returns offset.
+        '''
+        if self._synthetic_offset is not None:
+            return self._synthetic_offset
+        return self._component._get_timespan().start_offset
+
+    @property
+    def synthetic_offset(self):
+        r'''Optional synthetic offset.
+
+        Returns offset or None.
+        '''
+        return self._synthetic_offset

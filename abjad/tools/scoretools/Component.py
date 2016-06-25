@@ -341,7 +341,6 @@ class Component(AbjadObject):
 
     def _get_effective(self, prototype=None, unwrap=True, n=0):
         from abjad.tools import indicatortools
-        from abjad.tools import datastructuretools
         from abjad.tools import scoretools
         # return time signature attached to measure regardless of scope
         if (
@@ -358,29 +357,32 @@ class Component(AbjadObject):
         # update indicators of entire score tree if necessary
         self._update_now(indicators=True)
         # gather candidate expressions
-        candidate_expressions = datastructuretools.SortedCollection(
-            key=lambda x: x.component._get_timespan()._start_offset
-            )
+
+        candidate_expressions = {}
         for parent in self._get_parentage(include_self=True):
-            expressions = parent._dependent_expressions[:]
-            for expression in parent._indicator_expressions:
-                if expression.scope is None:
-                    expressions.append(expression)
-            for expression in expressions:
-                if isinstance(expression.indicator, prototype):
-                    candidate_expressions.insert(expression)
-        #print candidate_expressions, 'CW'
-        # elect most recent candidate expression
+            for indicator_expression in parent._dependent_expressions:
+                if isinstance(indicator_expression.indicator, prototype):
+                    offset = indicator_expression.start_offset
+                    candidate_expressions.setdefault(offset, []).append(
+                        indicator_expression)
+            for indicator_expression in parent._indicator_expressions:
+                if indicator_expression.scope is not None:
+                    continue
+                if isinstance(indicator_expression.indicator, prototype):
+                    offset = indicator_expression.start_offset
+                    candidate_expressions.setdefault(offset, []).append(
+                        indicator_expression)
         if not candidate_expressions:
             return
+        # elect most recent candidate expression
+        all_offsets = sorted(candidate_expressions)
         start_offset = self._get_timespan()._start_offset
-        index = bisect.bisect_right(candidate_expressions._keys, start_offset)
-        index = (index - 1) + int(n)
+        index = bisect.bisect(all_offsets, start_offset) - 1 + int(n)
         if index < 0:
             return
         elif len(candidate_expressions) <= index:
             return
-        expression = candidate_expressions._items[index]
+        expression = candidate_expressions[all_offsets[index]][0]
         if unwrap:
             expression = expression.indicator
         return expression
@@ -656,7 +658,7 @@ class Component(AbjadObject):
 
     def _has_effective_indicator(self, prototype=None):
         indicator = self._get_effective(prototype=prototype)
-        return bool(indicator)
+        return indicator is not None
 
     def _has_indicator(self, prototype=None):
         indicators = self._get_indicators(prototype=prototype)
