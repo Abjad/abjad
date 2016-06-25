@@ -19,7 +19,6 @@ def test_scoretools_make_empty_piano_score_01():
     >>
     '''
 
-    assert inspect_(score).is_well_formed()
     assert format(score) == stringtools.normalize(
         r'''
         \new Score <<

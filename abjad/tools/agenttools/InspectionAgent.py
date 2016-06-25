@@ -964,7 +964,7 @@ class InspectionAgent(abctools.AbjadObject):
 
     def is_well_formed(
         self,
-        allow_empty_containers=True,
+        #allow_empty_containers=True,
         ):
         r'''Is true when client is well-formed.
         Otherwise false.
@@ -974,7 +974,7 @@ class InspectionAgent(abctools.AbjadObject):
         from abjad.tools import systemtools
         manager = systemtools.WellformednessManager(
             self._client,
-            allow_empty_containers=allow_empty_containers,
+            #allow_empty_containers=allow_empty_containers,
             )
         for violators, total, check_name in manager():
             if violators:
@@ -1081,6 +1081,7 @@ class InspectionAgent(abctools.AbjadObject):
                 0 / 1 conflicting clefs
                 0 / 1 discontiguous spanners
                 0 / 5 duplicate ids
+                0 / 1 empty containers
                 0 / 0 intermarked hairpins
                 0 / 0 misdurated measures
                 0 / 0 misfilled measures
