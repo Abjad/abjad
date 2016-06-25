@@ -10,7 +10,6 @@ def test_selectiontools_Selection__set_component_parents_01():
     selection = u[:]
     selection._set_parents(voice)
 
-    assert inspect_(u).is_well_formed()
     assert len(u) == 0
 
     "Container voice now assigned to selection."

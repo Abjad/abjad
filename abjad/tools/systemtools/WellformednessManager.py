@@ -4,6 +4,16 @@ from abjad.tools.abctools import AbjadObject
 
 class WellformednessManager(AbjadObject):
     r'''Wellformedness manager.
+
+    ..  container:: example
+
+        **Example.**
+
+        ::
+
+            >>> systemtools.WellformednessManager()
+            WellformednessManager()
+
     '''
 
     ### CLASS VARIABLES ###
@@ -12,25 +22,21 @@ class WellformednessManager(AbjadObject):
 
     ### INITIALIZER ###
 
-    def __init__(self, expr=None, allow_empty_containers=True):
+    def __init__(self, expr=None):
         self.expr = expr
-        self.allow_empty_containers = allow_empty_containers
 
     ### SPECIAL METHODS ###
 
     def __call__(self):
         r'''Calls all wellformedness checks on `expr`.
 
-        Returns something.
+        Returns triples.
         '''
         if self.expr is None:
             return
         check_names = [x for x in dir(self) if x.startswith('check_')]
         triples = []
         for current_check_name in sorted(check_names):
-            if self.allow_empty_containers:
-                if current_check_name == 'check_empty_containers':
-                    continue
             current_check = getattr(self, current_check_name)
             current_violators, current_total = current_check()
             triple = (current_violators, current_total, current_check_name)
@@ -301,6 +307,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
                 0 /	5 duplicate ids
+                0 /     1 empty containers
                 0 /	2 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -379,6 +386,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	1 discontiguous spanners
                 0 /	3 duplicate ids
+                0 /     1 empty containers
                 0 /	0 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -412,6 +420,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	1 discontiguous spanners
                 0 /	3 duplicate ids
+                0 /     1 empty containers
                 0 /	0 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -594,6 +603,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
                 0 /	5 duplicate ids
+                0 /     1 empty containers
                 0 /	2 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -683,6 +693,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
                 0 /	5 duplicate ids
+                0 /     1 empty containers
                 0 /	0 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
