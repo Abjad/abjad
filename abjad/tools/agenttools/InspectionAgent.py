@@ -106,9 +106,9 @@ class InspectionAgent(abctools.AbjadObject):
         Returns list.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.WellformednessManager(self._client)
+        manager = systemtools.WellformednessManager()
         violators = []
-        for current_violators, total, check_name in manager():
+        for current_violators, total, check_name in manager(self._client):
             violators.extend(current_violators)
         return violators
 
@@ -962,21 +962,15 @@ class InspectionAgent(abctools.AbjadObject):
             return True
         return False
 
-    def is_well_formed(
-        self,
-        #allow_empty_containers=True,
-        ):
+    def is_well_formed(self):
         r'''Is true when client is well-formed.
         Otherwise false.
 
         Returns false.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.WellformednessManager(
-            self._client,
-            #allow_empty_containers=allow_empty_containers,
-            )
-        for violators, total, check_name in manager():
+        manager = systemtools.WellformednessManager()
+        for violators, total, check_name in manager(self._client):
             if violators:
                 return False
         return True
@@ -1103,8 +1097,8 @@ class InspectionAgent(abctools.AbjadObject):
         Returns string.
         '''
         from abjad.tools import systemtools
-        manager = systemtools.WellformednessManager(self._client)
-        triples = manager()
+        manager = systemtools.WellformednessManager()
+        triples = manager(self._client)
         strings = []
         for violators, total, check_name in triples:
             violator_count = len(violators)
