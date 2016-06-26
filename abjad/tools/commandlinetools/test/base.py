@@ -126,7 +126,6 @@ class ScorePackageScriptTestCase(unittest.TestCase):
         self.directory_items = set(self.test_path.iterdir())
         sys.path.insert(0, str(self.score_path))
         self.string_io = StringIO()
-        commandlinetools.ScorePackageScript._in_test = True
 
     def tearDown(self):
         self.string_io.close()

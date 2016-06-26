@@ -8,7 +8,6 @@ from abjad.tools import durationtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
-from abjad.tools.topleveltools import iterate
 
 
 class Selection(object):
@@ -127,7 +126,6 @@ class Selection(object):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import mutate
@@ -367,7 +365,7 @@ class Selection(object):
                 return False
             if not current._get_parentage().is_orphan:
                 orphan_components = False
-            if not current._parent is first_parent:
+            if current._parent is not first_parent:
                 same_parent = False
             if not previous._is_immediate_temporal_successor_of(current):
                 strictly_contiguous = False
@@ -566,8 +564,6 @@ class Selection(object):
 
         Returns contiguous selection.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import spannertools
         # check input
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         # return empty list when nothing to copy
@@ -684,7 +680,7 @@ class Selection(object):
         from abjad.tools import scoretools
         from abjad.tools import selectiontools
         # check input
-        prototype=(scoretools.Measure,)
+        prototype = (scoretools.Measure,)
         assert self._all_are_contiguous_components_in_same_parent(
             self, prototype)
         # return none on empty measures
@@ -707,9 +703,9 @@ class Selection(object):
             new_duration += effective_time_signature.duration
         new_time_signature = \
             measure._duration_and_possible_denominators_to_time_signature(
-            new_duration,
-            old_denominators,
-            )
+                new_duration,
+                old_denominators,
+                )
         music = []
         for measure in self:
             # scale before reassignment to prevent logical tie scale drama
@@ -822,9 +818,6 @@ class Selection(object):
         score tree before reattaching spanners.
         score components.
         '''
-        from abjad.tools import selectiontools
-        from abjad.tools import spannertools
-        Selection = selectiontools.Selection
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         receipt = set([])
         if len(self) == 0:
@@ -1119,7 +1112,7 @@ class Selection(object):
                         message = 'target duration {}'
                         message += ' is less than cumulative duration {}.'
                         message = message.format(
-                            target_duration, 
+                            target_duration,
                             cumulative_duration,
                             )
                         raise Exception(message)

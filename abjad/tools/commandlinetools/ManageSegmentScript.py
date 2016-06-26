@@ -40,8 +40,9 @@ class ManageSegmentScript(ScorePackageScript):
                     path in unstaged_matching_paths
                     ):
                     continue
-                if include_unstaged and path.name not in staged_names:
-                    unstaged_matching_paths.append(path)
+                if path.name not in staged_names:
+                    if include_unstaged:
+                        unstaged_matching_paths.append(path)
                 else:
                     staged_matching_paths.append(path)
         matching_paths = []
@@ -129,6 +130,7 @@ class ManageSegmentScript(ScorePackageScript):
 
     def _handle_edit(self, segment_name):
         from abjad import abjad_configuration
+        segment_name = segment_name or '*'
         globbable_names = self._collect_globbable_names(segment_name)
         print('Edit candidates: {!r} ...'.format(
             ' '.join(globbable_names)))
@@ -162,28 +164,31 @@ class ManageSegmentScript(ScorePackageScript):
             self._illustrate_one_segment(segment_directory_path=path)
             print('    Illustrated {!s}/'.format(
                 path.relative_to(self._score_package_path.parent)))
-        if not self._in_test:
-            for path in matching_paths:
-                pdf_path = path.joinpath('illustration.pdf')
-                systemtools.IOManager.open_file(str(pdf_path))
+        for path in matching_paths:
+            pdf_path = path.joinpath('illustration.pdf')
+            systemtools.IOManager.open_file(str(pdf_path))
 
     def _handle_list(self):
         print('Available segments:')
-        staged_names = self._read_segments_list_json()
         valid_paths = self._list_segment_subpackages(self._score_package_path)
-        if valid_paths:
-            for path in valid_paths:
-                message = '    {!s}'.format(path.relative_to(self._segments_path))
-                if path.name in staged_names:
-                    message += ' [{}]'.format(staged_names.index(path.name) + 1)
-                print(message)
-        else:
+        valid_names = [_.name for _ in valid_paths]
+        staged_names = [_ for _ in self._read_segments_list_json()
+            if _ in valid_names]
+        unstaged_names = [_ for _ in valid_names if _ not in staged_names]
+        if staged_names:
+            max_length = max(len(_) for _ in staged_names)
+            for i, name in enumerate(staged_names, 1):
+                spacing = ' ' * (max_length - len(name))
+                print('    {}{} [{}]'.format(name, spacing, i))
+        for name in unstaged_names:
+            print('    {}'.format(name))
+        if not staged_names and not unstaged_names:
             print('    No segments available.')
         sys.exit(2)
 
-    def _handle_re_render(self, segment_name, unstaged=False):
+    def _handle_render(self, segment_name, unstaged=False):
         globbable_names = self._collect_globbable_names(segment_name)
-        print('Re-rendering candidates: {!r} ...'.format(
+        print('Rendering candidates: {!r} ...'.format(
             ' '.join(globbable_names)))
         matching_paths = self._collect_matching_paths(
             globbable_names,
@@ -193,13 +198,12 @@ class ManageSegmentScript(ScorePackageScript):
             print('    No matching segments.')
             self._handle_list()
         for path in matching_paths:
-            self._re_render_one_segment(segment_directory_path=path)
-            print('    Re-rendered {!s}/'.format(
+            self._render_one_segment(segment_directory_path=path)
+            print('    Rendered {!s}/'.format(
                 path.relative_to(self._score_package_path.parent)))
-        if not self._in_test:
-            for path in matching_paths:
-                pdf_path = path.joinpath('illustration.pdf')
-                systemtools.IOManager.open_file(str(pdf_path))
+        for path in matching_paths:
+            pdf_path = path.joinpath('illustration.pdf')
+            systemtools.IOManager.open_file(str(pdf_path))
 
     def _handle_stage(self):
         from abjad import abjad_configuration
@@ -219,7 +223,7 @@ class ManageSegmentScript(ScorePackageScript):
                     abjad_configuration.get_text_editor(),
                     file_path,
                     )
-                self._call_subprocess(command, shell=True)
+                self._call_subprocess(command)
                 with open(file_path, 'r') as file_pointer:
                     contents = file_pointer.read()
         lines = (line.strip() for line in contents.splitlines())
@@ -305,9 +309,9 @@ class ManageSegmentScript(ScorePackageScript):
             self._handle_list()
         if args.new:
             self._handle_create(force=args.force, segment_name=args.new)
-        if args.re_render is not None:
-            self._handle_re_render(
-                segment_name=args.re_render,
+        if args.render is not None:
+            self._handle_render(
+                segment_name=args.render,
                 unstaged=args.unstaged,
                 )
         if args.stage:
@@ -326,8 +330,8 @@ class ManageSegmentScript(ScorePackageScript):
         contents = '\n'.join(contents)
         return contents
 
-    def _re_render_one_segment(self, segment_directory_path):
-        print('Re-rendering {!s}/'.format(
+    def _render_one_segment(self, segment_directory_path):
+        print('Rendering {!s}/'.format(
             segment_directory_path.relative_to(self._score_package_path.parent)))
         ly_path = segment_directory_path.joinpath('illustration.ly')
         if not ly_path.is_file():
@@ -342,43 +346,60 @@ class ManageSegmentScript(ScorePackageScript):
         action_group = parser.add_argument_group('actions')
         action_group = action_group.add_mutually_exclusive_group(required=True)
         action_group.add_argument(
-            '--new',
+            '--new', '-N',
             help='create a new segment',
             metavar='NAME',
             )
         action_group.add_argument(
-            '--edit',
+            '--edit', '-E',
             help='edit segments',
             metavar='PATTERN',
-            nargs='+',
+            nargs='*',
             )
         action_group.add_argument(
-            '--illustrate',
+            '--illustrate', '-I',
             help='illustrate segments',
             metavar='PATTERN',
             nargs='+',
             )
         action_group.add_argument(
-            '--re-render',
-            help='re-render segment illustrations',
+            '--render', '-R',
+            help='render segment illustrations',
             metavar='PATTERN',
             nargs='+',
             )
         action_group.add_argument(
-            '--collect',
+            '--collect', '-C',
             help='collect segment illustrations',
             action='store_true',
             )
         action_group.add_argument(
-            '--stage',
+            '--stage', '-T',
             help='stage segments for illustration',
             action='store_true',
             )
         action_group.add_argument(
-            '--list',
+            '--list', '-L',
             dest='list_',
             help='list segments',
             action='store_true',
+            )
+        action_group.add_argument(
+            '--copy', '-Y',
+            help='copy segment',
+            metavar=('SOURCE', 'TARGET'),
+            nargs=2,
+            )
+        action_group.add_argument(
+            '--rename', '-M',
+            help='rename segment',
+            metavar=('SOURCE', 'TARGET'),
+            nargs=2,
+            )
+        action_group.add_argument(
+            '--delete', '-D',
+            help='delete segment',
+            metavar='NAME',
             )
         common_group = parser.add_argument_group('common options')
         common_group.add_argument(

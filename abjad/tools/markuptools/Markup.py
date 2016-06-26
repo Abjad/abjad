@@ -1452,7 +1452,7 @@ class Markup(AbjadValueObject):
         from abjad.tools import markuptools
         contents = []
         for markup in markups:
-            contents.extend(markup.contents)
+            contents.append(Markup._parse_markup_command_argument(markup))
         command = markuptools.MarkupCommand(
             'left-column',
             contents,

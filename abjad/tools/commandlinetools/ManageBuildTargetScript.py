@@ -3,8 +3,10 @@ from __future__ import print_function
 import collections
 import os
 import shutil
+import subprocess
 import sys
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.commandlinetools.ScorePackageScript import ScorePackageScript
 
 
@@ -255,6 +257,8 @@ class ManageBuildTargetScript(ScorePackageScript):
         if not build_target_path.exists():
             print('No build target found: {!r}.'.format(target_name))
             sys.exit(1)
+        paths_to_open = []
+        open_score_only = False
         if not any([
             render_back_cover,
             render_front_cover,
@@ -269,18 +273,25 @@ class ManageBuildTargetScript(ScorePackageScript):
             render_parts = True
             render_preface = True
             render_score = True
+            open_score_only = True
         if render_music:
-            self._render_music(build_target_path)
+            path = self._render_music(build_target_path)
+            paths_to_open.append(path)
         if render_parts:
-            self._render_parts(build_target_path)
+            path = self._render_parts(build_target_path)
+            paths_to_open.append(path)
         if render_preface:
-            self._render_preface(build_target_path)
+            path = self._render_preface(build_target_path)
+            paths_to_open.append(path)
         if render_front_cover:
-            self._render_front_cover(build_target_path)
+            path = self._render_front_cover(build_target_path)
+            paths_to_open.append(path)
         if render_back_cover:
-            self._render_back_cover(build_target_path)
+            path = self._render_back_cover(build_target_path)
+            paths_to_open.append(path)
         if render_score:
-            self._render_score(build_target_path)
+            path = self._render_score(build_target_path)
+            paths_to_open.append(path)
         if any([
             render_preface,
             render_score,
@@ -288,6 +299,10 @@ class ManageBuildTargetScript(ScorePackageScript):
             render_back_cover,
             ]):
             self._cleanup_latex_ephemera(build_target_path)
+        if open_score_only:
+            paths_to_open = [build_target_path.joinpath('score.pdf')]
+        for path in paths_to_open:
+            systemtools.IOManager.open_file(str(path))
 
     def _process_args(self, args):
         self._setup_paths(args.score_path)
@@ -319,7 +334,7 @@ class ManageBuildTargetScript(ScorePackageScript):
         if not path.is_file():
             print('    Missing: {!s}'.format(path.relative_to(self._score_package_path)))
             sys.exit(1)
-        self._run_latex(path)
+        return self._run_latex(path)
 
     def _render_front_cover(self, build_target_path):
         path = build_target_path.joinpath('front-cover.tex')
@@ -327,7 +342,7 @@ class ManageBuildTargetScript(ScorePackageScript):
         if not path.is_file():
             print('    Missing: {!s}'.format(path.relative_to(self._score_package_path)))
             sys.exit(1)
-        self._run_latex(path)
+        return self._run_latex(path)
 
     def _render_music(self, build_target_path):
         path = build_target_path.joinpath('music.ly')
@@ -335,7 +350,7 @@ class ManageBuildTargetScript(ScorePackageScript):
         if not path.is_file():
             print('    Missing: {!s}'.format(path.relative_to(self._score_package_path)))
             sys.exit(1)
-        self._run_lilypond(path)
+        return self._run_lilypond(path)
 
     def _render_parts(self, build_target_path):
         path = build_target_path.joinpath('parts.ly')
@@ -343,7 +358,7 @@ class ManageBuildTargetScript(ScorePackageScript):
         if not path.is_file():
             print('    Missing: {!s}'.format(path.relative_to(self._score_package_path)))
             sys.exit(1)
-        self._run_lilypond(path)
+        return self._run_lilypond(path)
 
     def _render_preface(self, build_target_path):
         path = build_target_path.joinpath('preface.tex')
@@ -351,7 +366,7 @@ class ManageBuildTargetScript(ScorePackageScript):
         if not path.is_file():
             print('    Missing: {!s}'.format(path.relative_to(self._score_package_path)))
             sys.exit(1)
-        self._run_latex(path)
+        return self._run_latex(path)
 
     def _render_score(self, build_target_path):
         path = build_target_path.joinpath('score.tex')
@@ -359,13 +374,44 @@ class ManageBuildTargetScript(ScorePackageScript):
         if not path.is_file():
             print('    Missing: {!s}'.format(path.relative_to(self._score_package_path)))
             sys.exit(1)
-        self._run_latex(path)
+        return self._run_latex(path)
+
+    def _run_latex(self, latex_path):
+        latex_path = latex_path.absolute()
+        relative_path = latex_path.relative_to(self._score_package_path)
+        command = 'xelatex {!s}'.format(latex_path)
+        with systemtools.TemporaryDirectoryChange(str(latex_path.parent)):
+            for _ in range(2):
+                try:
+                    exit_code = subprocess.call(command, shell=True)
+                except:
+                    print('    Failed to render: {!s}'.format(relative_path))
+                    sys.exit(1)
+                if exit_code:
+                    print('    Failed to render: {!s}'.format(relative_path))
+                    sys.exit(1)
+        return latex_path.with_suffix('.pdf')
+
+    def _run_lilypond(self, lilypond_path):
+        from abjad import abjad_configuration
+        command = '{} -dno-point-and-click -o {} {}'.format(
+            abjad_configuration.get('lilypond_path', 'lilypond'),
+            str(lilypond_path).replace('.ly', ''),
+            str(lilypond_path),
+            )
+        with systemtools.TemporaryDirectoryChange(str(lilypond_path.parent)):
+            exit_code = subprocess.call(command, shell=True)
+        if exit_code:
+            print('    Failed to render: {!s}'.format(
+                lilypond_path.relative_to(self._score_package_path)))
+            sys.exit(1)
+        return lilypond_path.with_suffix('.pdf')
 
     def _setup_argument_parser(self, parser):
         action_group = parser.add_argument_group('actions')
         action_group = action_group.add_mutually_exclusive_group(required=True)
         action_group.add_argument(
-            '--new',
+            '--new', '-N',
             help='create a new build target',
             metavar='NAME',
             nargs='?',
@@ -373,20 +419,37 @@ class ManageBuildTargetScript(ScorePackageScript):
             default=None,
             )
         action_group.add_argument(
-            '--render',
+            '--render', '-R',
             help='render sources',
             metavar='NAME',
             )
         action_group.add_argument(
-            '--distribute',
+            '--distribute', '-U',
             help='stage build artifacts for distribution',
             metavar='NAME',
             )
         action_group.add_argument(
-            '--list',
+            '--list', '-L',
             dest='list_',
             help='list build targets',
             action='store_true',
+            )
+        action_group.add_argument(
+            '--copy', '-Y',
+            help='copy build target',
+            metavar=('SOURCE', 'TARGET'),
+            nargs=2,
+            )
+        action_group.add_argument(
+            '--rename', '-M',
+            help='rename build target',
+            metavar=('SOURCE', 'TARGET'),
+            nargs=2,
+            )
+        action_group.add_argument(
+            '--delete', '-D',
+            help='delete build target',
+            metavar='NAME',
             )
         render_group = parser.add_argument_group(
             '--render flags',
@@ -409,7 +472,7 @@ class ManageBuildTargetScript(ScorePackageScript):
             )
         render_group.add_argument(
             '--score',
-            help='render the score LaTeX source',
+            help='render the aggregate score LaTeX source',
             action='store_true',
             )
         render_group.add_argument(
@@ -422,7 +485,7 @@ class ManageBuildTargetScript(ScorePackageScript):
             help='render the parts LilyPond source',
             action='store_true',
             )
-        create_group = parser.add_argument_group('creation options')
+        create_group = parser.add_argument_group('--new options')
         create_group.add_argument(
             '--paper-size',
             metavar='PAPER_SIZE',
