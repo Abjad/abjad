@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import abjad
 from abjad import *
 
 
@@ -65,7 +66,7 @@ def test_datastructuretools_TypedOrderedDict_04():
 
     assert format(dictionary_1) == stringtools.normalize(
         r'''
-        datastructuretools.TypedOrderedDict(
+        abjad.datastructuretools.TypedOrderedDict(
             [
                 (
                     'soprano',

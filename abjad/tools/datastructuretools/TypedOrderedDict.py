@@ -20,7 +20,7 @@ class TypedOrderedDict(TypedCollection):
         ::
 
             >>> print(format(dictionary))
-            datastructuretools.TypedOrderedDict(
+            abjad.datastructuretools.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
@@ -54,7 +54,7 @@ class TypedOrderedDict(TypedCollection):
         ::
 
             >>> print(format(dictionary))
-            datastructuretools.TypedOrderedDict(
+            abjad.datastructuretools.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
@@ -88,7 +88,7 @@ class TypedOrderedDict(TypedCollection):
         ::
 
             >>> print(format(dictionary_2))
-            datastructuretools.TypedOrderedDict(
+            abjad.datastructuretools.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
@@ -240,6 +240,7 @@ class TypedOrderedDict(TypedCollection):
             )
         return systemtools.StorageFormatSpecification(
             self,
+            include_abjad_namespace=True,
             keyword_argument_names=keyword_argument_names,
             positional_argument_values=positional_argument_values,
             )
