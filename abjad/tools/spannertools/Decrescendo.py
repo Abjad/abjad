@@ -75,7 +75,7 @@ class Decrescendo(Hairpin):
 
     @property
     def direction(self):
-        r'''Gets direction of decrescendo.
+        r'''Gets direction.
 
         ..  container:: example
 
@@ -104,6 +104,10 @@ class Decrescendo(Hairpin):
 
                 >>> decrescendo.direction
                 '^'
+
+        Defaults to none.
+
+        Set to up, down or none.
 
         Returns up, down or none.
         '''

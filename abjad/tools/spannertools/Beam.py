@@ -196,8 +196,12 @@ class Beam(Spanner):
 
     @property
     def direction(self):
-        r'''Gets direction of beam.
+        r'''Gets direction.
 
-        Returns up or down.
+        Defaults to none.
+
+        Set to up, down or none.
+
+        Returns up, down or none.
         '''
         return self._direction

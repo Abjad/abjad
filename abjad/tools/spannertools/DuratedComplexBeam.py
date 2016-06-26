@@ -6,19 +6,17 @@ from abjad.tools.topleveltools import inspect_
 
 
 class DuratedComplexBeam(ComplexBeam):
-    r'''A durated complex beam.
+    r'''Durated complex beam.
 
     ..  container:: example
 
+        **Example 1.** Two groups:
+
         ::
 
-            >>> staff = Staff("c'16 d'16 e'16 f'16")
+            >>> staff = Staff("c'16 d'16 e'16 f'16 g'16")
             >>> set_(staff).auto_beaming = False
-            >>> show(staff) # doctest: +SKIP
-
-        ::
-
-            >>> durations = [Duration(1, 8), Duration(1, 8)]
+            >>> durations = [Duration(2, 16), Duration(3, 16)]
             >>> beam = spannertools.DuratedComplexBeam(
             ...     durations=durations,
             ...     span_beam_count=1,
@@ -28,7 +26,7 @@ class DuratedComplexBeam(ComplexBeam):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -42,15 +40,55 @@ class DuratedComplexBeam(ComplexBeam):
                 \set stemRightBeamCount = #2
                 e'16
                 \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #2
+                f'16
+                \set stemLeftBeamCount = #2
                 \set stemRightBeamCount = #0
-                f'16 ]
+                g'16 ]
             }
 
-    Beams all beamable leaves in spanner explicitly.
+    ..  container:: example
+
+        **Example 2.** Two different groups:
+
+        ::
+
+            >>> staff = Staff("c'16 d'16 e'16 f'16 g'16")
+            >>> set_(staff).auto_beaming = False
+            >>> durations = [Duration(3, 16), Duration(2, 16)]
+            >>> beam = spannertools.DuratedComplexBeam(
+            ...     durations=durations,
+            ...     span_beam_count=1,
+            ...     )
+            >>> attach(beam, staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff \with {
+                autoBeaming = ##f
+            } {
+                \set stemLeftBeamCount = #0
+                \set stemRightBeamCount = #2
+                c'16 [
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #2
+                d'16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #1
+                e'16
+                \set stemLeftBeamCount = #1
+                \set stemRightBeamCount = #2
+                f'16
+                \set stemLeftBeamCount = #2
+                \set stemRightBeamCount = #0
+                g'16 ]
+            }
 
     Groups leaves in spanner according to `durations`.
 
-    Spans leaves between duration groups according to `span_beam_count`.
+    Spans leaves between groups according to `span_beam_count`.
     '''
 
     ### CLASS VARIABLES ###
@@ -110,6 +148,7 @@ class DuratedComplexBeam(ComplexBeam):
         if not isinstance(leaf, scoretools.Leaf):
             return []
         result = []
+        #if self._is_beamable_component(leaf, beam_rests=self.beam_rests):
         if self._is_beamable_component(leaf):
             if self._is_exterior_leaf(leaf):
                 left, right = self._get_left_right_for_exterior_leaf(leaf)
@@ -119,7 +158,10 @@ class DuratedComplexBeam(ComplexBeam):
                     right = self.span_beam_count
                 else:
                     next_leaf = inspect_(leaf).get_leaf(1)
-                    if self._is_beamable_component(next_leaf):
+                    if self._is_beamable_component(
+                        next_leaf,
+                        beam_rests=self.beam_rests,
+                        ):
                         right = self.span_beam_count
                     else:
                         right = 0
@@ -128,7 +170,10 @@ class DuratedComplexBeam(ComplexBeam):
                     left = self.span_beam_count
                 else:
                     previous_leaf = inspect_(leaf).get_leaf(-1)
-                    if self._is_beamable_component(previous_leaf):
+                    if self._is_beamable_component(
+                        previous_leaf,
+                        beam_rests=self.beam_rests,
+                        ):
                         left = self.span_beam_count
                     else:
                         left = 0
@@ -195,8 +240,10 @@ class DuratedComplexBeam(ComplexBeam):
         local_start_offset = self._start_offset_in_me(leaf)
         local_stop_offset = self._stop_offset_in_me(leaf)
         span_beam_offsets = self._get_span_beam_offsets()
+        #print(leaf, local_start_offset, local_stop_offset, span_beam_offsets)
         if local_stop_offset in span_beam_offsets:
-            if local_start_offset not in span_beam_offsets:
+            #if local_start_offset not in span_beam_offsets:
+            if True:
                 return True
         return False
 
@@ -205,7 +252,8 @@ class DuratedComplexBeam(ComplexBeam):
         local_stop_offset = self._stop_offset_in_me(leaf)
         span_beam_offsets = self._get_span_beam_offsets()
         if local_start_offset in span_beam_offsets:
-            if local_stop_offset not in span_beam_offsets:
+            #if local_stop_offset not in span_beam_offsets:
+            if True:
                 return True
         return False
 
@@ -219,9 +267,11 @@ class DuratedComplexBeam(ComplexBeam):
 
     @property
     def durations(self):
-        r'''Gets durations of leaf groups in spanner.
+        r'''Gets durations.
 
         ..  container:: example
+
+            **Example 1.** Two groups:
 
             ::
 
@@ -256,6 +306,52 @@ class DuratedComplexBeam(ComplexBeam):
                 >>> beam.durations
                 (Duration(1, 8), Duration(1, 8))
 
+        ..  container:: example
+
+            **Example 2.** Three groups:
+
+            ::
+
+                >>> staff = Staff("c'16 d'16 e'8 f'16 c'16")
+                >>> set_(staff).auto_beaming = False
+                >>> durations = [Duration(1, 8), Duration(1, 8), Duration(1, 8)]
+                >>> beam = spannertools.DuratedComplexBeam(
+                ...     durations=durations,
+                ...     span_beam_count=1,
+                ...     )
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff \with {
+                    autoBeaming = ##f
+                } {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #2
+                    c'16 [
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    d'16
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    e'8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    f'16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #0
+                    c'16 ]
+                }
+
+            Test ensures that leaf groups format correctly when they contain
+            only one leaf.
+
+        Defaults to none.
+
+        Set to durations or none.
+
         Returns tuple of durations or none.
         '''
         return self._durations
@@ -263,11 +359,12 @@ class DuratedComplexBeam(ComplexBeam):
     @property
     def nibs_towards_nonbeamable_components(self):
         r'''Is true when when spanner should render nibs pointing towards
-        nonbeamable components included in spanner. Otherwise false.
+        nonbeamable components included in spanner.
+        Otherwise false.
 
         ..  container:: example
 
-            Does not draw nibs towards nonbeamable components:
+            **Example 1.** Does not draw nibs towards nonbeamable components:
 
             ::
 
@@ -301,7 +398,7 @@ class DuratedComplexBeam(ComplexBeam):
 
         ..  container:: example
 
-            Do draw nibs towards nonbeamable components:
+            **Example 2.** Does draw nibs towards nonbeamable components:
 
             ::
 
@@ -335,17 +432,20 @@ class DuratedComplexBeam(ComplexBeam):
 
         Defaults to true.
 
+        Set to true or false.
+
         Returns true or false.
         '''
         return self._nibs_towards_nonbeamable_components
 
     @property
     def span_beam_count(self):
-        r'''Gets span beam count of spanner.
+        r'''Gets span beam count.
 
         ..  container:: example
 
-            Creates a single span beam between adjacent groups in spanner:
+            **Example 1.** Creates a single span beam between adjacent groups
+            in spanner:
 
             ::
 
@@ -383,7 +483,8 @@ class DuratedComplexBeam(ComplexBeam):
 
         ..  container:: example
 
-            Creates a double span beam between adjacent groups in spanner:
+            **Example 2.** Creates a double span beam between adjacent groups
+            in spanner:
 
             ::
 
@@ -421,7 +522,8 @@ class DuratedComplexBeam(ComplexBeam):
 
         ..  container:: example
 
-            Creates no span beam between adjacent groups in spanner:
+            **Example 3.** Creates no span beam between adjacent groups in
+            spanner:
 
             ::
 
@@ -458,6 +560,8 @@ class DuratedComplexBeam(ComplexBeam):
                 0
 
         Defaults to ``1``.
+
+        Set to nonnegative integer.
 
         Returns nonnegative integer.
         '''

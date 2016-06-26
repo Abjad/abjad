@@ -300,7 +300,7 @@ class ComplexBeam(Beam):
 
         ..  container:: example
 
-            **Example 3.** Does not beam skip:
+            **Example 3.** Does not beam skips:
 
             ::
 
@@ -322,6 +322,8 @@ class ComplexBeam(Beam):
                     \set stemRightBeamCount = #0
                     d'8 [ ]
                 }
+
+            This is default behavior.
 
         ..  container:: example
 
