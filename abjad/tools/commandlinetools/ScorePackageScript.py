@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import abc
+import collections
 import importlib
 import json
 import os
@@ -24,8 +25,6 @@ class ScorePackageScript(CommandlineScript):
     '''
 
     ### CLASS VARIABLES ###
-
-    _in_test = False
 
     _name_re = re.compile('^[a-z][a-z0-9_]*$')
 
@@ -129,8 +128,34 @@ class ScorePackageScript(CommandlineScript):
     def _get_current_working_directory(self):
         return pathlib.Path('.').absolute()
 
-    def _import_path(self, path, score_root_path):
-        print('    Importing {!s}'.format(path))
+    def _import_all_materials(self, verbose=True):
+        materials = collections.OrderedDict()
+        for path in self._list_material_subpackages():
+            name = path.name
+            material = self._import_material(path, verbose=verbose)
+            materials[name] = material
+        return materials
+
+    def _import_material(self, material_directory_path, verbose=True):
+        material_import_path = self._path_to_packagesystem_path(
+            material_directory_path)
+        material_name = material_directory_path.name
+        definition_import_path = material_import_path + '.definition'
+        try:
+            module = self._import_path(
+                definition_import_path,
+                self._score_repository_path,
+                verbose=verbose,
+                )
+            material = getattr(module, material_name)
+        except (ImportError, AttributeError):
+            traceback.print_exc()
+            sys.exit(1)
+        return material
+
+    def _import_path(self, path, score_root_path, verbose=True):
+        if verbose:
+            print('    Importing {!s}'.format(path))
         with systemtools.TemporaryDirectoryChange(str(score_root_path)):
             try:
                 importlib.invalidate_caches()
@@ -138,7 +163,10 @@ class ScorePackageScript(CommandlineScript):
                 pass
             try:
                 return importlib.import_module(path)
-            except BaseException:
+            except ImportError:
+                traceback.print_exc()
+                raise SystemExit(1)
+            except Exception:
                 traceback.print_exc()
                 raise SystemExit(1)
 
@@ -200,13 +228,13 @@ class ScorePackageScript(CommandlineScript):
                         path = path._path
                     if not isinstance(path, str):  # If it's a package...
                         path = path[0]  # Get the first path in the list.
-                except (ImportError, AttributeError):
-                    pass
+                except:
+                    traceback.print_exc()
             # Make sure to expand any home variables.
             path = pathlib.Path(os.path.expanduser(path))
         path = path.absolute()
         if not path.exists():
-            print('No score matching {!r} exists.'.format(path))
+            print("Couldn locate or import score matching {!r}.".format(path))
             sys.exit(1)
         # Convert to directory.
         if path.is_file():
@@ -268,19 +296,20 @@ class ScorePackageScript(CommandlineScript):
         ly_path,
         output_directory_path,
         ):
+        from abjad import abjad_configuration
         pdf_path = output_directory_path.joinpath('illustration.pdf')
         message = '    Writing {!s} ... '
         message = message.format(pdf_path.relative_to(self._score_repository_path))
         print(message, end='')
+        command = '{} -dno-point-and-click -o {} {}'.format(
+            abjad_configuration.get('lilypond_path', 'lilypond'),
+            str(ly_path).replace('.ly', ''),
+            str(ly_path),
+            )
         with systemtools.Timer() as timer:
-            try:
-                success = True
-                self._run_lilypond(ly_path)
-            except:
-                print('Failed!')
-                traceback.print_exc()
-                sys.exit(1)
-        if not success:
+            with systemtools.TemporaryDirectoryChange(str(ly_path.parent)):
+                exit_code = subprocess.call(command, shell=True)
+        if exit_code:
             print('Failed!')
             sys.exit(1)
         print('OK!')
@@ -343,35 +372,6 @@ class ScorePackageScript(CommandlineScript):
         identifier = stringtools.pluralize('second', total_time)
         message = message.format(prefix, total_time, identifier)
         print(message)
-
-    def _run_latex(self, latex_path):
-        latex_path = latex_path.absolute()
-        relative_path = latex_path.relative_to(self._score_package_path)
-        command = 'xelatex {!s}'.format(latex_path)
-        with systemtools.TemporaryDirectoryChange(str(latex_path.parent)):
-            for _ in range(2):
-                try:
-                    exit_code = subprocess.call(command, shell=True)
-                except:
-                    print('    Failed to render: {!s}'.format(relative_path))
-                    sys.exit(1)
-                if exit_code:
-                    print('    Failed to render: {!s}'.format(relative_path))
-                    sys.exit(1)
-
-    def _run_lilypond(self, lilypond_path):
-        from abjad import abjad_configuration
-        command = '{} -dno-point-and-click -o {} {}'.format(
-            abjad_configuration.get('lilypond_path', 'lilypond'),
-            str(lilypond_path).replace('.ly', ''),
-            str(lilypond_path),
-            )
-        with systemtools.TemporaryDirectoryChange(str(lilypond_path.parent)):
-            exit_code = subprocess.call(command, shell=True)
-        if exit_code:
-            print('    Failed to render: {!s}'.format(
-                lilypond_path.relative_to(self._score_package_path)))
-            sys.exit(1)
 
     @abc.abstractmethod
     def _setup_argument_parser(self, parser):

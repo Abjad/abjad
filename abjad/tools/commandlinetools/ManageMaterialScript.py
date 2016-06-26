@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
+import inspect
 import os
 import sys
 import traceback
@@ -86,56 +87,64 @@ class ManageMaterialScript(ScorePackageScript):
                 )
             print('    Illustrated {!s}/'.format(
                 path.relative_to(self._score_package_path.parent)))
-        if not self._in_test:
-            for path in matching_paths:
-                pdf_path = path.joinpath('illustration.pdf')
-                systemtools.IOManager.open_file(str(pdf_path))
+        for path in matching_paths:
+            pdf_path = path.joinpath('illustration.pdf')
+            systemtools.IOManager.open_file(str(pdf_path))
 
     def _handle_list(self):
+        from abjad.tools import abctools
+        basic_bases = (
+            abctools.AbjadObject,
+            abctools.AbjadValueObject,
+            object,
+            )
         print('Available materials:')
-        valid_paths = self._list_material_subpackages(self._score_package_path)
-        if valid_paths:
-            for path in valid_paths:
-                print('    {!s}'.format(path.name))
-        else:
+        all_materials = self._import_all_materials(verbose=False)
+        if not all_materials:
             print('    No materials available.')
+            sys.exit(2)
+        materials = {}
+        for material_name, material in all_materials.items():
+            class_ = type(material)
+            base = class_.__bases__[0]
+            attrs = {attr.name: attr for attr in
+                inspect.classify_class_attrs(class_)}
+            if any(_ in class_.__bases__ for _ in basic_bases):
+                base = class_
+            elif getattr(class_, '__is_terminal_ajv_list_item__', False) and \
+                attrs['__is_terminal_ajv_list_item__'].defining_class is class_:
+                base = class_
+            materials.setdefault(base, []).append((material_name, class_))
+        #valid_paths = self._list_material_subpackages(self._score_package_path)
+        materials = sorted(materials.items(), key=lambda pair: pair[0].__name__)
+        for base, material_names in materials:
+            print('    {}:'.format(base.__name__))
+            for material_name, class_ in material_names:
+                print('        {} [{}]'.format(material_name, class_.__name__))
         sys.exit(2)
 
-    def _handle_re_render(self, material_name):
+    def _handle_render(self, material_name):
         globbable_names = self._collect_globbable_names(material_name)
-        print('Re-rendering candidates: {!r} ...'.format(
+        print('Rendering candidates: {!r} ...'.format(
             ' '.join(globbable_names)))
         matching_paths = self._collect_matching_paths(globbable_names)
         if not matching_paths:
             print('    No matching materials.')
             self._handle_list()
         for path in matching_paths:
-            self._re_render_one_material(
+            self._render_one_material(
                 material_directory_path=path
                 )
-            print('    Re-rendered {!s}/'.format(
+            print('    Rendered {!s}/'.format(
                 path.relative_to(self._score_package_path.parent)))
-        if not self._in_test:
-            for path in matching_paths:
-                pdf_path = path.joinpath('illustration.pdf')
-                systemtools.IOManager.open_file(str(pdf_path))
+        for path in matching_paths:
+            pdf_path = path.joinpath('illustration.pdf')
+            systemtools.IOManager.open_file(str(pdf_path))
 
     def _illustrate_one_material(self, material_directory_path):
         print('Illustrating {!s}/'.format(
             material_directory_path.relative_to(self._score_package_path.parent)))
-        material_import_path = self._path_to_packagesystem_path(
-            material_directory_path)
-        material_name = material_directory_path.name
-        definition_import_path = material_import_path + '.definition'
-        try:
-            module = self._import_path(
-                definition_import_path,
-                self._score_repository_path,
-                )
-            material = getattr(module, material_name)
-        except (ImportError, AttributeError):
-            traceback.print_exc()
-            sys.exit(1)
+        material = self._import_material(material_directory_path)
         if not hasattr(material, '__illustrate__'):
             template = '    Cannot illustrate material of type {}.'
             message = template.format(type(material).__name__)
@@ -157,8 +166,8 @@ class ManageMaterialScript(ScorePackageScript):
             output_directory_path=material_directory_path,
             )
 
-    def _re_render_one_material(self, material_directory_path):
-        print('Re-rendering {!s}/'.format(
+    def _render_one_material(self, material_directory_path):
+        print('Rendering {!s}/'.format(
             material_directory_path.relative_to(self._score_package_path.parent)))
         ly_path = material_directory_path.joinpath('illustration.ly')
         if not ly_path.is_file():
@@ -179,40 +188,57 @@ class ManageMaterialScript(ScorePackageScript):
             self._handle_list()
         if args.new:
             self._handle_create(force=args.force, material_name=args.new)
-        if args.re_render is not None:
-            self._handle_re_render(material_name=args.re_render)
+        if args.render is not None:
+            self._handle_render(material_name=args.render)
 
     def _setup_argument_parser(self, parser):
         action_group = parser.add_argument_group('actions')
         action_group = action_group.add_mutually_exclusive_group(required=True)
         action_group.add_argument(
-            '--new',
+            '--new', '-N',
             help='create a new material',
             metavar='NAME',
             )
         action_group.add_argument(
-            '--edit',
+            '--edit', '-E',
             help='edit materials',
             metavar='PATTERN',
             nargs='+',
             )
         action_group.add_argument(
-            '--illustrate',
+            '--illustrate', '-I',
             help='illustrate materials',
             metavar='PATTERN',
             nargs='+',
             )
         action_group.add_argument(
-            '--re-render',
-            help='re-render material illustrations',
+            '--render', '-R',
+            help='render material illustrations',
             metavar='PATTERN',
             nargs='+',
             )
         action_group.add_argument(
-            '--list',
+            '--list', '-L',
             dest='list_',
             help='list materials',
             action='store_true',
+            )
+        action_group.add_argument(
+            '--copy', '-Y',
+            help='copy material',
+            metavar=('SOURCE', 'TARGET'),
+            nargs=2,
+            )
+        action_group.add_argument(
+            '--rename', '-M',
+            help='rename material',
+            metavar=('SOURCE', 'TARGET'),
+            nargs=2,
+            )
+        action_group.add_argument(
+            '--delete', '-D',
+            help='delete material',
+            metavar='NAME',
             )
         common_group = parser.add_argument_group('common options')
         common_group.add_argument(

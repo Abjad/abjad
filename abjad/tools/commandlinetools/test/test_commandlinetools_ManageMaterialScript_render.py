@@ -2,6 +2,10 @@
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -15,7 +19,8 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/materials/test_material/illustration.pdf',
         ]
 
-    def test_success_one_material(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_one_material(self, open_file_mock):
         self.create_score()
         material_path = self.create_material('test_material')
         self.illustrate_material('test_material')
@@ -23,7 +28,7 @@ class Test(ScorePackageScriptTestCase):
         assert pdf_path.exists()
         pdf_path.unlink()
         script = commandlinetools.ManageMaterialScript()
-        command = ['--re-render', 'test_material']
+        command = ['--render', 'test_material']
         with systemtools.RedirectedStreams(stdout=self.string_io):
             with systemtools.TemporaryDirectoryChange(str(self.score_path)):
                 try:
@@ -31,10 +36,10 @@ class Test(ScorePackageScriptTestCase):
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
         self.compare_captured_output(r'''
-        Re-rendering candidates: 'test_material' ...
-        Re-rendering test_score/materials/test_material/
+        Rendering candidates: 'test_material' ...
+        Rendering test_score/materials/test_material/
             Writing test_score/materials/test_material/illustration.pdf ... OK!
                 LilyPond runtime: ... second...
-            Re-rendered test_score/materials/test_material/
+            Rendered test_score/materials/test_material/
         ''')
         self.compare_path_contents(self.materials_path, self.expected_files)

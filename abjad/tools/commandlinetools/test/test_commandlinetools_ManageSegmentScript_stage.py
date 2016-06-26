@@ -44,7 +44,7 @@ class Test(ScorePackageScriptTestCase):
             segment_b
             segment_c
         ''')
-        call_subprocess_mock.assert_called_with('vim segments.txt', shell=True)
+        call_subprocess_mock.assert_called_with('vim segments.txt')
         call_subprocess_mock.side_effect = self.side_effect
         self.reset_string_io()
         with systemtools.RedirectedStreams(stdout=self.string_io):
@@ -62,4 +62,4 @@ class Test(ScorePackageScriptTestCase):
             segment_b
             segment_a
         ''')
-        call_subprocess_mock.assert_called_with('vim segments.txt', shell=True)
+        call_subprocess_mock.assert_called_with('vim segments.txt')

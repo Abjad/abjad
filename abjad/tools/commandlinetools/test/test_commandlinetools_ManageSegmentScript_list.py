@@ -21,9 +21,9 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... OK!
-                segment_one [1]
+                segment_one   [1]
+                segment_two   [2]
                 segment_three [3]
-                segment_two [2]
         ''')
 
     def test_list_segments_no_segments(self):
@@ -66,7 +66,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
             Available segments:
                 Reading test_score/segments/metadata.json ... OK!
-                segment_one [1]
+                segment_one   [1]
                 segment_three [2]
                 segment_two
         ''')

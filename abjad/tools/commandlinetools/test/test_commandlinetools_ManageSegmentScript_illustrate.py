@@ -3,6 +3,10 @@ from abjad.tools import commandlinetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -44,7 +48,8 @@ class Test(ScorePackageScriptTestCase):
         }
         ''')
 
-    def test_success_one_segment(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_one_segment(self, open_file_mock):
         self.create_score()
         self.create_segment('test_segment')
         script = commandlinetools.ManageSegmentScript()
@@ -77,7 +82,8 @@ class Test(ScorePackageScriptTestCase):
             self.expected_illustration_contents,
             )
 
-    def test_success_all_segments(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_all_segments(self, open_file_mock):
         self.create_score()
         self.create_segment('segment_one')
         self.create_segment('segment_two')
@@ -139,7 +145,8 @@ class Test(ScorePackageScriptTestCase):
             'illustration.pdf',
             ).exists()
 
-    def test_success_filtered_segments(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_filtered_segments(self, open_file_mock):
         self.create_score()
         self.create_segment('segment_one')
         self.create_segment('segment_two')

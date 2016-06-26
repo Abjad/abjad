@@ -21,10 +21,11 @@ class Test(ScorePackageScriptTestCase):
                 assert context_manager.exception.code == 2
         self.compare_captured_output(r'''
         Available materials:
-            bar
-            baz
-            foo
-            quux
+            Markup:
+                bar [Markup]
+                baz [Markup]
+                foo [Markup]
+                quux [Markup]
         ''')
 
     def test_list_materials_no_materials(self):

@@ -2,6 +2,10 @@
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -19,7 +23,8 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/build/segments/segment-two.ily',
         ]
 
-    def test_success(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success(self, open_file_mock):
         self.create_score()
         self.create_segment('segment_one')
         self.create_segment('segment_two')

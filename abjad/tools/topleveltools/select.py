@@ -32,8 +32,7 @@ def select(expr=None):
     from abjad.tools import spannertools
     if expr is None:
         return selectortools.Selector()
-    Selection = selectiontools.Selection
-    if isinstance(expr, scoretools.Component):
+    elif isinstance(expr, scoretools.Component):
         return selectiontools.Selection(expr)
     elif hasattr(expr, '_music'):
         music = expr._music
@@ -41,7 +40,4 @@ def select(expr=None):
     elif isinstance(expr, spannertools.Spanner):
         music = expr._components
         return selectiontools.Selection(music)
-    elif expr is None:
-        return selectiontools.Selection()
-    else:
-        return selectiontools.Selection(expr)
+    return selectiontools.Selection(expr)

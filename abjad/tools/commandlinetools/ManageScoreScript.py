@@ -106,7 +106,7 @@ class ManageScoreScript(ScorePackageScript):
         action_group = parser.add_argument_group('actions')
         action_group = action_group.add_mutually_exclusive_group(required=True)
         action_group.add_argument(
-            '--new',
+            '--new', '-N',
             help='create a new score',
             metavar='TITLE',
             )

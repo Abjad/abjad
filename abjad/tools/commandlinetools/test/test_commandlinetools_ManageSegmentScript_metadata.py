@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 import json
-from abjad.tools import commandlinetools
-from abjad.tools import stringtools
-from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 class Test(ScorePackageScriptTestCase):
 
-    def test_1(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_1(self, open_file_mock):
         self.create_score()
         self.install_fancy_segment_maker()
         path_1 = self.create_segment('segment_one')
@@ -40,7 +42,8 @@ class Test(ScorePackageScriptTestCase):
             'segment_number': 3,
             }
 
-    def test_2(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_2(self, open_file_mock):
         self.create_score()
         self.install_fancy_segment_maker()
         segment_path = self.create_segment('test_segment')

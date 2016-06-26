@@ -1,13 +1,17 @@
 # -*- coding: utf-8 -*-
-from __future__ import print_function
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 class Test(ScorePackageScriptTestCase):
 
-    def test_success_all(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_all(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/.gitignore',
             'test_score/test_score/build/assets/.gitignore',
@@ -43,8 +47,10 @@ class Test(ScorePackageScriptTestCase):
             except SystemExit:
                 raise RuntimeError('SystemExit')
         self.compare_path_contents(self.build_path, expected_files)
+        assert open_file_mock.called
 
-    def test_success_back_cover(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_back_cover(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.pdf',
             'test_score/test_score/build/letter-portrait/back-cover.tex',
@@ -71,8 +77,10 @@ class Test(ScorePackageScriptTestCase):
             except SystemExit:
                 raise RuntimeError('SystemExit')
         self.compare_path_contents(target_path, expected_files)
+        assert open_file_mock.called
 
-    def test_success_front_cover(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_front_cover(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
             'test_score/test_score/build/letter-portrait/front-cover.pdf',
@@ -99,8 +107,10 @@ class Test(ScorePackageScriptTestCase):
             except SystemExit:
                 raise RuntimeError('SystemExit')
         self.compare_path_contents(target_path, expected_files)
+        assert open_file_mock.called
 
-    def test_success_preface(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_preface(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
             'test_score/test_score/build/letter-portrait/front-cover.tex',
@@ -127,8 +137,10 @@ class Test(ScorePackageScriptTestCase):
             except SystemExit:
                 raise RuntimeError('SystemExit')
         self.compare_path_contents(target_path, expected_files)
+        assert open_file_mock.called
 
-    def test_success_music(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_music(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
             'test_score/test_score/build/letter-portrait/front-cover.tex',
@@ -155,8 +167,10 @@ class Test(ScorePackageScriptTestCase):
             except SystemExit:
                 raise RuntimeError('SystemExit')
         self.compare_path_contents(target_path, expected_files)
+        assert open_file_mock.called
 
-    def test_success_parts(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_parts(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
             'test_score/test_score/build/letter-portrait/front-cover.tex',
@@ -187,3 +201,4 @@ class Test(ScorePackageScriptTestCase):
             except SystemExit:
                 raise RuntimeError('SystemExit')
         self.compare_path_contents(target_path, expected_files)
+        assert open_file_mock.called

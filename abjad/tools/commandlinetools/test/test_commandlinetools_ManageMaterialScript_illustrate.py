@@ -3,6 +3,10 @@ from abjad.tools import commandlinetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -32,7 +36,8 @@ class Test(ScorePackageScriptTestCase):
         '''
         )
 
-    def test_success_one_material(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_one_material(self, open_file_mock):
         self.create_score()
         self.create_material('test_material')
         script = commandlinetools.ManageMaterialScript()
@@ -61,7 +66,8 @@ class Test(ScorePackageScriptTestCase):
             self.expected_illustration_contents,
             )
 
-    def test_success_all_materials(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_all_materials(self, open_file_mock):
         self.create_score()
         self.create_material('material_one')
         self.create_material('material_two')
@@ -111,7 +117,8 @@ class Test(ScorePackageScriptTestCase):
             'illustration.pdf',
             ).exists()
 
-    def test_success_filtered_materials(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_filtered_materials(self, open_file_mock):
         self.create_score()
         self.create_material('material_one')
         self.create_material('material_two')

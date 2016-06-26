@@ -2,6 +2,10 @@
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
+try:
+    from unittest import mock
+except ImportError:
+    import mock
 
 
 class Test(ScorePackageScriptTestCase):
@@ -17,7 +21,8 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/segments/test_segment/metadata.json',
         ]
 
-    def test_success_one_segment(self):
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_one_segment(self, open_file_mock):
         self.create_score()
         segment_path = self.create_segment('test_segment')
         self.illustrate_segment('test_segment')
@@ -25,7 +30,7 @@ class Test(ScorePackageScriptTestCase):
         assert pdf_path.exists()
         pdf_path.unlink()
         script = commandlinetools.ManageSegmentScript()
-        command = ['--re-render', 'test_segment']
+        command = ['--render', 'test_segment']
         with systemtools.RedirectedStreams(stdout=self.string_io):
             with systemtools.TemporaryDirectoryChange(str(self.score_path)):
                 try:
@@ -33,11 +38,11 @@ class Test(ScorePackageScriptTestCase):
                 except SystemExit as e:
                     raise RuntimeError('SystemExit: {}'.format(e.code))
         self.compare_captured_output(r'''
-        Re-rendering candidates: 'test_segment' ...
+        Rendering candidates: 'test_segment' ...
             Reading test_score/segments/metadata.json ... OK!
-        Re-rendering test_score/segments/test_segment/
+        Rendering test_score/segments/test_segment/
             Writing test_score/segments/test_segment/illustration.pdf ... OK!
                 LilyPond runtime: ... second...
-            Re-rendered test_score/segments/test_segment/
+            Rendered test_score/segments/test_segment/
         ''')
         self.compare_path_contents(self.segments_path, self.expected_files)
