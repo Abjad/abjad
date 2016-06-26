@@ -75,7 +75,7 @@ class Crescendo(Hairpin):
 
     @property
     def direction(self):
-        r'''Gets direction of crescendo.
+        r'''Gets direction.
 
         ..  container:: example
 
@@ -104,6 +104,10 @@ class Crescendo(Hairpin):
 
                 >>> crescendo.direction
                 '^'
+
+        Defaults to none.
+
+        Set to up, down or none.
 
         Returns up, down or none.
         '''

@@ -76,7 +76,7 @@ class PhrasingSlur(Spanner):
 
     @property
     def direction(self):
-        r'''Gets direction of phrasing slur.
+        r'''Gets direction.
 
         ..  container:: example
 
@@ -140,6 +140,10 @@ class PhrasingSlur(Spanner):
                     e'8
                     f'8 \)
                 }
+
+        Defaults to none.
+
+        Set to up, down or none.
 
         Returns up, down or none.
         '''

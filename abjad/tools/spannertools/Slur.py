@@ -80,7 +80,7 @@ class Slur(Spanner):
 
     @property
     def direction(self):
-        r'''Gets direction of slur.
+        r'''Gets direction.
 
         ..  container:: example
 
@@ -144,6 +144,10 @@ class Slur(Spanner):
                     e'8
                     f'8 )
                 }
+
+        Defaults to none.
+
+        Set to up, down or none.
 
         Returns up, down or none.
         '''
