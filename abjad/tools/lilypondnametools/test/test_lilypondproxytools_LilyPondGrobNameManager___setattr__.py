@@ -857,7 +857,7 @@ def test_lilypondproxytools_LilyPondGrobNameManager___setattr___37():
         '''
         )
 
-    assert inspect_(score).is_well_formed()
+    assert not len(score)
 
 
 def test_lilypondproxytools_LilyPondGrobNameManager___setattr___38():
