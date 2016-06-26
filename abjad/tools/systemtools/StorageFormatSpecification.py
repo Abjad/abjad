@@ -12,6 +12,7 @@ class StorageFormatSpecification(AbjadObject):
 
     __slots__ = (
         '_body_text',
+        '_include_abjad_namespace',
         '_instance',
         '_is_bracketed',
         '_is_indented',
@@ -29,6 +30,7 @@ class StorageFormatSpecification(AbjadObject):
         self,
         instance=None,
         body_text=None,
+        include_abjad_namespace=None,
         is_bracketed=False,
         is_indented=True,
         keyword_argument_callables=None,
@@ -44,6 +46,7 @@ class StorageFormatSpecification(AbjadObject):
             body_text = str(body_text)
         self._body_text = body_text
 
+        self._include_abjad_namespace = bool(include_abjad_namespace)
         self._is_bracketed = bool(is_bracketed)
         self._is_indented = bool(is_indented)
 
@@ -89,6 +92,14 @@ class StorageFormatSpecification(AbjadObject):
         Returns string.
         '''
         return self._instance
+
+    @property
+    def include_abjad_namespace(self):
+        r'''Is true when storage specification includes Abjad namespace.
+
+        Returns true or false.
+        '''
+        return self._include_abjad_namespace
 
     @property
     def is_bracketed(self):
@@ -172,8 +183,13 @@ class StorageFormatSpecification(AbjadObject):
         Returns string.
         '''
         from abjad.tools import systemtools
+        tools_package_name = None
         if self._tools_package_name is not None:
-            return self._tools_package_name
+            tools_package_name = self._tools_package_name
         if self.instance is not None:
-            return systemtools.StorageFormatManager.get_tools_package_name(
+            tools_package_name = \
+                systemtools.StorageFormatManager.get_tools_package_name(
                 self.instance)
+        if tools_package_name and self.include_abjad_namespace:
+            tools_package_name = 'abjad.' + tools_package_name
+        return tools_package_name

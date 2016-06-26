@@ -61,6 +61,7 @@ def test_abjad___format___02(class_):
     environment.update(abjad.demos.__dict__)
     environment['abjadbooktools'] = importlib.import_module(
         'abjad.tools.abjadbooktools')
+    environment['abjad'] = abjad
     instance_one = class_()
     instance_one_format = format(instance_one, 'storage')
     assert isinstance(instance_one_format, str)

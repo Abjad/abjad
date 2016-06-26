@@ -209,7 +209,9 @@ class StorageFormatManager(AbjadObject):
         class_name = type(specification.instance).__name__
         if as_storage_format:
             tools_package_name = specification.tools_package_name
-            class_name_prefix = '{}.{}'.format(tools_package_name, class_name)
+            class_name_prefix = '{}.{}'
+            class_name_prefix = class_name_prefix.format(
+                tools_package_name, class_name)
         else:
             class_name_prefix = class_name
 
@@ -550,8 +552,8 @@ class StorageFormatManager(AbjadObject):
         return '.'.join(parts)
 
     @staticmethod
-    def get_tools_package_qualified_class_name(subject):
-        r'''Gets tools-package qualified class name of `subject`.
+    def get_tools_package_qualified_class_name(object_):
+        r'''Gets tools-package qualified class name of `object_`.
 
         ::
 
@@ -562,11 +564,11 @@ class StorageFormatManager(AbjadObject):
         Returns string.
         '''
         tools_package_name = StorageFormatManager.get_tools_package_name(
-            subject)
-        if StorageFormatManager.is_instance(subject):
-            class_name = type(subject).__name__
+            object_)
+        if StorageFormatManager.is_instance(object_):
+            class_name = type(object_).__name__
         else:
-            class_name = subject.__name__
+            class_name = object_.__name__
         return '{}.{}'.format(tools_package_name, class_name)
 
     @staticmethod
