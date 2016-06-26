@@ -156,20 +156,35 @@ class Beam(Spanner):
                 ...         )
                 ...     print('{:<8}\t{}'.format(leaf, result))
                 ... 
-                r32	    True
+                r32	True
                 a'32	True
                 gs'32	True
                 fs''32	True
                 f''8	True
-                r8	    True
+                r8	True
                 e''8	True
                 ef'2	False
+
+        ..  container:: example
+
+            **Example 3.** True for skips of any duration when `beam_rests` is
+            true:
+
+            ::
+
+                >>> Beam._is_beamable_component(Skip((1, 32)), beam_rests=True)
+                True
+                >>> Beam._is_beamable_component(Skip((1)), beam_rests=True)
+                True
 
         Returns true or false.
         '''
         from abjad.tools import scoretools
+        if beam_rests and isinstance(expr, scoretools.Skip):
+            return True
         prototype = [scoretools.Note, scoretools.Chord]
         if beam_rests:
+            prototype.append(scoretools.MultimeasureRest)
             prototype.append(scoretools.Rest)
         prototype = tuple(prototype)
         if isinstance(expr, prototype):

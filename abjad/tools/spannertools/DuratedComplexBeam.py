@@ -66,6 +66,7 @@ class DuratedComplexBeam(ComplexBeam):
 
     def __init__(
         self,
+        beam_rests=None,
         direction=None,
         durations=None,
         isolated_nib_direction=False,
@@ -75,6 +76,7 @@ class DuratedComplexBeam(ComplexBeam):
         ):
         ComplexBeam.__init__(
             self,
+            beam_rests=beam_rests,
             direction=direction,
             isolated_nib_direction=isolated_nib_direction,
             overrides=overrides,

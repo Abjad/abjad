@@ -57,6 +57,7 @@ class ComplexBeam(Beam):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_beam_rests',
         '_isolated_nib_direction',
         )
 
@@ -64,8 +65,9 @@ class ComplexBeam(Beam):
 
     def __init__(
         self,
+        beam_rests=None,
         direction=None,
-        isolated_nib_direction=False,
+        isolated_nib_direction=None,
         overrides=None,
         ):
         Beam.__init__(
@@ -73,20 +75,22 @@ class ComplexBeam(Beam):
             direction=direction,
             overrides=overrides,
             )
-        assert isolated_nib_direction in (Left, Right, True, False)
+        if beam_rests is not None:
+            beam_rests = bool(beam_rests)
+        self._beam_rests = beam_rests
+        assert isolated_nib_direction in (Left, Right, True, False, None)
         self._isolated_nib_direction = isolated_nib_direction
 
     ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         Beam._copy_keyword_args(self, new)
+        self._beam_rests = self.beam_rests
         new._isolated_nib_direction = self.isolated_nib_direction
 
     def _format_before_leaf(self, leaf):
         result = []
-        #superclass_contributions = Beam._format_before_leaf(self, leaf)
-        #result.extend(superclass_contributions)
-        if self._is_beamable_component(leaf):
+        if self._is_beamable_component(leaf, beam_rests=self.beam_rests):
             if self._is_my_only_leaf(leaf):
                 left, right = self._get_left_right_for_lone_leaf(leaf)
             elif self._is_exterior_leaf(leaf):
@@ -103,7 +107,7 @@ class ComplexBeam(Beam):
 
     def _format_right_of_leaf(self, leaf):
         result = []
-        if self._is_beamable_component(leaf):
+        if self._is_beamable_component(leaf, beam_rests=self.beam_rests):
             previous_leaf = leaf._get_leaf(-1)
             next_leaf = leaf._get_leaf(1)
             # isolated_nib_direction
@@ -116,7 +120,10 @@ class ComplexBeam(Beam):
                         result.append('[')
             # otherwise
             elif self._is_my_first_leaf(leaf) or not previous_leaf or \
-                not self._is_beamable_component(previous_leaf):
+                not self._is_beamable_component(
+                    previous_leaf,
+                    beam_rests=self.beam_rests,
+                    ):
                 if self.direction is not None:
                     string = '{} ['.format(self.direction)
                     result.append(string)
@@ -128,7 +135,8 @@ class ComplexBeam(Beam):
                     result.append(']')
             # otherwise
             elif self._is_my_last_leaf(leaf) or not next_leaf or \
-                not self._is_beamable_component(next_leaf):
+                not self._is_beamable_component(
+                next_leaf, beam_rests=self.beam_rests):
                 result.append(']')
         return result
 
@@ -166,18 +174,24 @@ class ComplexBeam(Beam):
         current_flag_count = current_written.flag_count
         next_flag_count = next_written.flag_count
         # [unbeamable leaf beamable]
-        if not self._is_beamable_component(previous_leaf) and \
-            self._is_beamable_component(next_leaf):
+        if not self._is_beamable_component(
+            previous_leaf, beam_rests=self.beam_rests) and \
+            self._is_beamable_component(
+            next_leaf, beam_rests=self.beam_rests):
             left = current_flag_count
             right = min(current_flag_count, next_flag_count)
         # [beamable leaf unbeamable]
-        if self._is_beamable_component(previous_leaf) and \
-            not self._is_beamable_component(next_leaf):
+        if self._is_beamable_component(
+            previous_leaf, beam_rests=self.beam_rests) and \
+            not self._is_beamable_component(
+            next_leaf, beam_rests=self.beam_rests):
             left = min(current_flag_count, previous_flag_count)
             right = current_flag_count
         # [unbeamable leaf unbeamable]
-        elif not self._is_beamable_component(previous_leaf) and \
-            not self._is_beamable_component(next_leaf):
+        elif not self._is_beamable_component(
+            previous_leaf, beam_rests=self.beam_rests) and \
+            not self._is_beamable_component(
+            next_leaf, beam_rests=self.beam_rests):
             left = current_flag_count
             right = current_flag_count
         # [beamable leaf beamable]
@@ -222,6 +236,129 @@ class ComplexBeam(Beam):
         return lilypond_format_bundle
 
     ### PUBLIC PROPERTIES ###
+
+    @property
+    def beam_rests(self):
+        r'''Is true when beam should include rests and skips.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Does not beam rests:
+
+            ::
+
+                >>> staff = Staff("c'8 r r d'")
+                >>> beam = spannertools.ComplexBeam(beam_rests=False)
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #1
+                    c'8 [ ]
+                    r8
+                    r8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #0
+                    d'8 [ ]
+                }
+
+            This is default behavior.
+
+        ..  container:: example
+
+            **Example 2.** Does beam rests:
+
+            ::
+
+                >>> staff = Staff("c'8 r r d'")
+                >>> beam = spannertools.ComplexBeam(beam_rests=True)
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #1
+                    c'8 [
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    r8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    r8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #0
+                    d'8 ]
+                }
+
+        ..  container:: example
+
+            **Example 3.** Does not beam skip:
+
+            ::
+
+                >>> staff = Staff("c'8 s s d'")
+                >>> beam = spannertools.ComplexBeam(beam_rests=False)
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #1
+                    c'8 [ ]
+                    s8
+                    s8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #0
+                    d'8 [ ]
+                }
+
+        ..  container:: example
+
+            **Example 4.** Does beam skips:
+
+            ::
+
+                >>> staff = Staff("c'8 s s d'")
+                >>> beam = spannertools.ComplexBeam(beam_rests=True)
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #1
+                    c'8 [
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    s8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    s8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #0
+                    d'8 ]
+                }
+
+        Defaults to none.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        '''
+        return self._beam_rests
 
     @property
     def isolated_nib_direction(self):
