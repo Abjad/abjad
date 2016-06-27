@@ -66,20 +66,29 @@ class BeamSpecifier(AbjadValueObject):
     def __init__(
         self,
         beam_each_division=True,
-        beam_divisions_together=False,
-        beam_rests=False,
+        beam_divisions_together=None,
+        beam_rests=None,
         stemlet_length=None,
-        use_feather_beams=False,
+        use_feather_beams=None,
         ):
-        assert isinstance(beam_each_division, bool)
-        assert isinstance(beam_divisions_together, bool)
-        assert isinstance(beam_rests, bool)
-        assert isinstance(stemlet_length, (type(None), int, float))
-        assert isinstance(use_feather_beams, bool)
+#        assert isinstance(beam_each_division, bool)
+#        assert isinstance(beam_divisions_together, bool)
+#        assert isinstance(beam_rests, bool)
+#        assert isinstance(use_feather_beams, bool)
+        if beam_each_division is None:
+            beam_each_division = bool(beam_each_division)
         self._beam_each_division = beam_each_division
+        if beam_divisions_together is not None:
+            beam_divisions_together = bool(beam_divisions_together)
         self._beam_divisions_together = beam_divisions_together
+        if beam_rests is not None:
+            beam_rests = bool(beam_rests)
         self._beam_rests = beam_rests
+        if stemlet_length is not None:
+            assert isinstance(stemlet_length, (int, float))
         self._stemlet_length = stemlet_length
+        if use_feather_beams is not None:
+            use_feather_beams = bool(use_feather_beams)
         self._use_feather_beams = use_feather_beams
 
     ### SPECIAL METHODS ###
@@ -170,9 +179,6 @@ class BeamSpecifier(AbjadValueObject):
                 >>> print(format(specifier))
                 rhythmmakertools.BeamSpecifier(
                     beam_each_division=True,
-                    beam_divisions_together=False,
-                    beam_rests=False,
-                    use_feather_beams=False,
                     )
 
         Returns string.
@@ -199,7 +205,7 @@ class BeamSpecifier(AbjadValueObject):
             ::
 
                 >>> rhythmmakertools.BeamSpecifier()
-                BeamSpecifier(beam_each_division=True, beam_divisions_together=False, beam_rests=False, use_feather_beams=False)
+                BeamSpecifier(beam_each_division=True)
 
         Returns string.
         '''
@@ -222,17 +228,16 @@ class BeamSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
-                >>> specifier.beam_divisions_together
-                False
+                >>> specifier.beam_divisions_together is None
+                True
 
-        Defaults to false.
+        Defaults to none.
 
-        Set to true or false.
+        Set to true, false or none.
 
-        Returns true or false.
+        Returns true, false or none.
         '''
         return self._beam_divisions_together
-
 
     @property
     def beam_each_division(self):
@@ -263,14 +268,14 @@ class BeamSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
-                >>> specifier.beam_rests
-                False
+                >>> specifier.beam_rests is None
+                True
 
-        Defaults to false.
+        Defaults to none.
 
-        Set to true or false.
+        Set to true, false or none.
 
-        Returns true or false.
+        Returns true, false or none.
         '''
         return self._beam_rests
 
@@ -305,13 +310,13 @@ class BeamSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
-                >>> specifier.use_feather_beams
-                False
+                >>> specifier.use_feather_beams is None
+                True
 
-        Defaults to false.
+        Defaults to none.
 
-        Set to true or false.
+        Set to true, false or none.
 
-        Returns true or false.
+        Returns true, false or none.
         '''
         return self._use_feather_beams
