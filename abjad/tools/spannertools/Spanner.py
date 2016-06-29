@@ -211,6 +211,14 @@ class Spanner(AbjadObject):
                     value = eval(value, namespace, namespace)
             setattr(grob_manager, attribute, value)
 
+    def _at_least_two_leaves(self, component_expression):
+        leaves = list(iterate(component_expression).by_leaf())
+        if len(leaves) <= 1:
+            message = 'must attach to two or more leaves: {!r}.'
+            message = message.format(component_expression)
+            raise Exception(message)
+        return True
+        
     def _attach(self, components):
         from abjad.tools import selectiontools
         assert not self, repr(self)
