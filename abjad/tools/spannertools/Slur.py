@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import iterate
 
 
 class Slur(Spanner):
-    r'''A slur.
+    r'''Slur.
 
     ..  container:: example
 
@@ -14,7 +14,7 @@ class Slur(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f'")
+            >>> staff = Staff("c'4 d' e' f'")
             >>> attach(Slur(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
@@ -22,24 +22,23 @@ class Slur(Spanner):
 
             >>> f(staff)
             \new Staff {
-                c'8 (
-                d'8
-                e'8
-                f'8 )
+                c'4 (
+                d'4
+                e'4
+                f'4 )
             }
 
     ..  container:: example
 
-        **Example 2.** Fails attachment test when attempting to attach to fewer
-        that two leaves:
+        **Example 2.** Requires at least two leaves:
 
         ::
 
-            >>> staff = Staff("c'8 d' e' f'")
+            >>> staff = Staff("c'4 d' e' f'")
             >>> attach(Slur(), staff[:1])
             Traceback (most recent call last):
             ...
-            Exception: must attach to two or more leaves: Selection(Note("c'8"),).
+            Exception: must attach to two or more leaves: Selection(Note("c'4"),).
 
     Formats LilyPond ``(`` command on first leaf in spanner.
 

@@ -83,6 +83,9 @@ class Glissando(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _attachment_test_all(self, expr):
+        return self._at_least_two_leaves(expr)
+
     def _copy_keyword_args(self, new):
         Spanner._copy_keyword_args(self, new)
         new._allow_repeated_pitches = self.allow_repeated_pitches

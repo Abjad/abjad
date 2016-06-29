@@ -186,36 +186,3 @@ def test_selectiontools_Selection__get_dominant_spanners_08():
     assert len(receipt) == 2
     assert (beam, 0) in receipt
     assert (trill, 0) in receipt
-
-
-def test_selectiontools_Selection__get_dominant_spanners_09():
-    r'''Works on empty containers.
-    Implementation does not depend on component duration.
-    Only beam dominates first container.
-    '''
-
-    voice = Voice(Container([]) * 3)
-    leaves = list(iterate(voice).by_leaf())
-    beam = Beam()
-    attach(beam, leaves[:4])
-    glissando = spannertools.Glissando()
-    attach(glissando, leaves[-4:])
-    trill = spannertools.TrillSpanner()
-    attach(trill, leaves)
-
-    assert format(voice) == stringtools.normalize(
-        r'''
-        \new Voice {
-            {
-            }
-            {
-            }
-            {
-            }
-        }
-        '''
-        )
-
-    receipt = voice[:1]._get_dominant_spanners()
-
-    assert len(receipt) == 0
