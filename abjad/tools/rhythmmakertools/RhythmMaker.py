@@ -74,6 +74,7 @@ class RhythmMaker(AbjadValueObject):
         divisions = self._coerce_divisions(divisions)
         selections = self._make_music(divisions, rotation)
         selections = self._apply_specifiers(selections, divisions)
+        self._annotate_unpitched_notes(selections)
         self._check_well_formedness(selections)
         return selections
 
@@ -146,6 +147,16 @@ class RhythmMaker(AbjadValueObject):
             return True
         else:
             return False
+
+    @staticmethod
+    def _annotate_unpitched_notes(expr):
+        for leaf in iterate(expr).by_leaf():
+            if isinstance(leaf, scoretools.Chord):
+                message = 'rhythm-makers produce only notes and rests: {!r}.'
+                message = message.format(leaf)
+                raise Exception(message)
+            elif isinstance(leaf, scoretools.Note):
+                attach('not yet pitched', leaf)
 
     def _apply_division_masks(self, selections, rotation=None):
         from abjad.tools import rhythmmakertools
