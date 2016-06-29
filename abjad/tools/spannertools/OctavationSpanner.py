@@ -4,33 +4,55 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class OctavationSpanner(Spanner):
-    r'''An octavation spanner.
+    r'''Octavation spanner.
 
     ..  container:: example
 
-        ::
-
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> show(staff) # doctest: +SKIP
-
+        **Example 1.** Spans four notes:
 
         ::
 
+            >>> staff = Staff("c'4 d' e' f'")
             >>> spanner = spannertools.OctavationSpanner(start=1)
             >>> attach(spanner, staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \ottava #1
-                c'8
-                d'8
-                e'8
-                f'8
+                c'4
+                d'4
+                e'4
+                f'4
                 \ottava #0
             }
+
+    ..  container:: example
+
+        **Example 2.** Spans one note:
+
+        ::
+        
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> octavation_spanner = spannertools.OctavationSpanner(start=1)
+            >>> attach(octavation_spanner, staff[0])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                \ottava #1
+                c'4
+                \ottava #0
+                d'4
+                e'4
+                f'4
+            }
+
+        One-note octavation changes are allowed.
 
     '''
 

@@ -14,19 +14,18 @@ class Tie(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 c'8 c'8 c'8")
-            >>> tie = Tie()
-            >>> attach(tie, staff[:])
+            >>> staff = Staff("c'4 c' c' c'")
+            >>> attach(Tie(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
             >>> f(staff)
             \new Staff {
-                c'8 ~
-                c'8 ~
-                c'8 ~
-                c'8
+                c'4 ~
+                c'4 ~
+                c'4 ~
+                c'4
             }
 
     ..  container:: example
@@ -35,12 +34,11 @@ class Tie(Spanner):
 
         ::
 
-            >>> staff = Staff("c'8 d'8")
-            >>> tie = Tie()
-            >>> attach(tie, staff[:])
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> attach(Tie(), staff[:])
             Traceback (most recent call last):
             ...
-            Exception: Tie() attachment test fails for Selection(Note("c'8"), Note("d'8")).
+            Exception: Tie() attachment test fails for Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")).
 
     Formats LilyPond ``~`` command on nonlast leaves in spanner.
     '''
@@ -73,6 +71,8 @@ class Tie(Spanner):
 
     def _attachment_test_all(self, component_expression):
         from abjad.tools import scoretools
+        #if not self._at_least_two_leaves(component_expression):
+        #    return False
         written_pitches = []
         if isinstance(component_expression, scoretools.Component):
             component_expression = [component_expression]

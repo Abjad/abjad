@@ -177,6 +177,8 @@ class Hairpin(Spanner):
     def _attachment_test_all(self, component_expression):
         if isinstance(component_expression, scoretools.Leaf):
             return False
+        if not self._at_least_two_leaves(component_expression):
+            return False
         formattable_components = []
         for component in component_expression:
             if (self.include_rests or 
