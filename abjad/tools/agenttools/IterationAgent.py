@@ -88,7 +88,7 @@ class IterationAgent(abctools.AbjadObject):
 
     def _by_components_and_grace_containers(self, prototype=None):
         prototype = prototype or scoretools.Leaf
-        if self._client._grace is not None:
+        if getattr(self._client, '_grace', None) is not None:
             for component in self._client._grace:
                 for x in iterate(component)._by_components_and_grace_containers(
                     prototype,
@@ -96,7 +96,7 @@ class IterationAgent(abctools.AbjadObject):
                     yield x
             if isinstance(self._client, prototype):
                 yield self._client
-        if self._client._after_grace is not None:
+        if getattr(self._client, '_after_grace', None) is not None:
             for component in self._client._after_grace:
                 for x in iterate(component)._by_components_and_grace_containers(
                     prototype,
@@ -713,6 +713,7 @@ class IterationAgent(abctools.AbjadObject):
         pitched=False,
         reverse=False,
         parentage_mask=None,
+        with_grace_notes=False,
         ):
         r'''Iterates client by logical tie.
 
@@ -876,6 +877,61 @@ class IterationAgent(abctools.AbjadObject):
                 LogicalTie(Note("c'2"),)
                 LogicalTie(Note("d'2"),)
 
+        ..  container:: example
+
+            **Example 6.** Iterates logical ties with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        e'16
+                        f'16
+                    }
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for leaf in iterate(voice).by_logical_tie(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     leaf
+                ...
+                LogicalTie(Note("c'8"),)
+                LogicalTie(Note("c'16"),)
+                LogicalTie(Note("d'16"),)
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("e'16"),)
+                LogicalTie(Note("f'16"),)
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'8"),)
+
         Returns generator.
         '''
         from abjad.tools import selectiontools
@@ -885,7 +941,10 @@ class IterationAgent(abctools.AbjadObject):
             prototype = (scoretools.Chord, scoretools.Note)
         leaf, yielded = None, False
         if not reverse:
-            for leaf in self.by_class(prototype):
+            for leaf in self.by_class(
+                prototype=prototype,
+                with_grace_notes=with_grace_notes,
+                ):
                 yielded = False
                 tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not tie_spanners or \
@@ -915,7 +974,11 @@ class IterationAgent(abctools.AbjadObject):
                     if not nontrivial or not logical_tie.is_trivial:
                         yield logical_tie
         else:
-            for leaf in self.by_class(prototype, reverse=True):
+            for leaf in self.by_class(
+                prototype,
+                reverse=True,
+                with_grace_notes=with_grace_notes,
+                ):
                 yielded = False
                 tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not(tie_spanners) or \
