@@ -15,7 +15,7 @@ class IterationAgent(abctools.AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** Iterates components:
+        **Example.** Iterates components:
 
         ::
 
@@ -147,7 +147,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 2/8
@@ -182,6 +182,33 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "c'8 d'8"))
+                >>> staff.append(Measure((2, 8), "e'8 f'8"))
+                >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                }
+
+            ::
+
                 >>> for note in iterate(staff).by_class(
                 ...     prototype=Note,
                 ...     start=0,
@@ -208,6 +235,33 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 3.** Reverses direction of iteration:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "c'8 d'8"))
+                >>> staff.append(Measure((2, 8), "e'8 f'8"))
+                >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                }
 
             ::
 
@@ -288,22 +342,16 @@ class IterationAgent(abctools.AbjadObject):
                 ...     kind='grace',
                 ...     )
                 >>> attach(grace, voice[1])
-
-            ::
-
                 >>> after_grace_notes = [Note("e'16"), Note("f'16")]
                 >>> after_grace = scoretools.GraceContainer(
                 ...     after_grace_notes,
                 ...     kind='after')
                 >>> attach(after_grace, voice[1])
-
-            ::
-
                 >>> show(voice) # doctest: +SKIP
 
             ..  doctest::
 
-                >>> print(format(voice))
+                >>> f(voice)
                 \new Voice {
                     c'8 [
                     \grace {
@@ -396,7 +444,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     {
                         \time 2/8
@@ -431,6 +479,33 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
                 >>> for leaf in iterate(staff).by_leaf(start=0, stop=3):
                 ...     leaf
                 ...
@@ -449,6 +524,33 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 3.** Reverses direction of iteration:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
 
             ::
 
@@ -489,7 +591,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c'8
@@ -565,7 +667,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'4 ~
                     \times 2/3 {
@@ -593,6 +695,25 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4 ~
+                    \times 2/3 {
+                        c'16
+                        d'8
+                    }
+                    e'8
+                    f'4 ~
+                    f'16
+                }
+
+            ::
+
                 >>> for logical_tie in iterate(staff).by_logical_tie(reverse=True):
                 ...     logical_tie
                 ...
@@ -607,6 +728,25 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4 ~
+                    \times 2/3 {
+                        c'16
+                        d'8
+                    }
+                    e'8
+                    f'4 ~
+                    f'16
+                }
+
+            ::
+
                 >>> for logical_tie in iterate(staff).by_logical_tie(pitched=True):
                 ...     logical_tie
                 ...
@@ -618,6 +758,25 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 4.** Iterates nontrivial logical ties:
+
+            ::
+
+                >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4 ~
+                    \times 2/3 {
+                        c'16
+                        d'8
+                    }
+                    e'8
+                    f'4 ~
+                    f'16
+                }
 
             ::
 
@@ -755,7 +914,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     <<
                         \context Voice = "voice 1" \with {
@@ -864,7 +1023,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     <<
                         \context Voice = "voice 1" \with {
@@ -911,6 +1070,51 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                >>> container_1.is_simultaneous = True
+                >>> container_1[0].name = 'voice 1'
+                >>> override(container_1[0]).stem.direction = Down
+                >>> container_1[1].name = 'voice 2'
+                >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                >>> container_2.is_simultaneous = True
+                >>> container_2[0].name = 'voice 1'
+                >>> override(container_2[0]).stem.direction = Down
+                >>> container_2[1].name = 'voice 2'
+                >>> staff = Staff([container_1, container_2])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    <<
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
+                            c'8
+                            d'8
+                        }
+                        \context Voice = "voice 2" {
+                            e'8
+                            f'8
+                        }
+                    >>
+                    <<
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
+                            g'8
+                            a'8
+                        }
+                        \context Voice = "voice 2" {
+                            b'8
+                            c''8
+                        }
+                    >>
+                }
+
+            ::
+
                 >>> leaf = leaves[1]
                 >>> for x in iterate(leaf).by_logical_voice_from_component(Note):
                 ...     x
@@ -922,6 +1126,51 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 3.** Iterates all components in logical voice:
+
+            ::
+
+                >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                >>> container_1.is_simultaneous = True
+                >>> container_1[0].name = 'voice 1'
+                >>> override(container_1[0]).stem.direction = Down
+                >>> container_1[1].name = 'voice 2'
+                >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                >>> container_2.is_simultaneous = True
+                >>> container_2[0].name = 'voice 1'
+                >>> override(container_2[0]).stem.direction = Down
+                >>> container_2[1].name = 'voice 2'
+                >>> staff = Staff([container_1, container_2])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    <<
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
+                            c'8
+                            d'8
+                        }
+                        \context Voice = "voice 2" {
+                            e'8
+                            f'8
+                        }
+                    >>
+                    <<
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
+                            g'8
+                            a'8
+                        }
+                        \context Voice = "voice 2" {
+                            b'8
+                            c''8
+                        }
+                    >>
+                }
 
             ::
 
@@ -939,6 +1188,51 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 4.** Reverses direction of iteration:
+
+            ::
+
+                >>> container_1 = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
+                >>> container_1.is_simultaneous = True
+                >>> container_1[0].name = 'voice 1'
+                >>> override(container_1[0]).stem.direction = Down
+                >>> container_1[1].name = 'voice 2'
+                >>> container_2 = Container([Voice("g'8 a'8"), Voice("b'8 c''8")])
+                >>> container_2.is_simultaneous = True
+                >>> container_2[0].name = 'voice 1'
+                >>> override(container_2[0]).stem.direction = Down
+                >>> container_2[1].name = 'voice 2'
+                >>> staff = Staff([container_1, container_2])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    <<
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
+                            c'8
+                            d'8
+                        }
+                        \context Voice = "voice 2" {
+                            e'8
+                            f'8
+                        }
+                    >>
+                    <<
+                        \context Voice = "voice 1" \with {
+                            \override Stem.direction = #down
+                        } {
+                            g'8
+                            a'8
+                        }
+                        \context Voice = "voice 2" {
+                            b'8
+                            c''8
+                        }
+                    >>
+                }
 
             ::
 
@@ -1005,7 +1299,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \times 2/3 {
                         c'8
@@ -1037,6 +1331,35 @@ class IterationAgent(abctools.AbjadObject):
 
             **Example 2.** Iterates runs of notes and chords at all levels of
             score:
+
+            ::
+
+                >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
+                >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
+                >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        r8
+                    }
+                    \times 2/3 {
+                        r8
+                        <e' g'>8
+                        <f' a'>8
+                    }
+                    g'8
+                    a'8
+                    r8
+                    r8
+                    <b' d''>8
+                    <c'' e''>8
+                }
 
             ::
 
@@ -1097,7 +1420,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff <<
                     \context Voice = "TimeSignatuerVoice" {
                         {
@@ -1129,6 +1452,45 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 2.** Reverses direction of iteration:
+
+            ::
+
+                >>> pairs = [(3, 8), (5, 16), (5, 16)]
+                >>> measures = scoretools.make_spacer_skip_measures(pairs)
+                >>> time_signature_voice = Voice(measures)
+                >>> time_signature_voice.name = 'TimeSignatuerVoice'
+                >>> time_signature_voice.is_nonsemantic = True
+                >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
+                >>> music_voice.name = 'MusicVoice'
+                >>> staff = Staff([time_signature_voice, music_voice])
+                >>> staff.is_simultaneous = True
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff <<
+                    \context Voice = "TimeSignatuerVoice" {
+                        {
+                            \time 3/8
+                            s1 * 3/8
+                        }
+                        {
+                            \time 5/16
+                            s1 * 5/16
+                        }
+                        {
+                            s1 * 5/16
+                        }
+                    }
+                    \context Voice = "MusicVoice" {
+                        c'4.
+                        d'4
+                        e'16
+                        f'4
+                        g'16
+                    }
+                >>
 
             ::
 
@@ -1197,6 +1559,29 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> staff = Staff("c'8 d'8 e'8 f'8 g'8 a'8 f'8 b'8 c''8")
+                >>> attach(Slur(), staff[:4])
+                >>> attach(Slur(), staff[4:])
+                >>> attach(Beam(), staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'8 [ (
+                    d'8
+                    e'8
+                    f'8 )
+                    g'8 (
+                    a'8
+                    f'8
+                    b'8
+                    c''8 ] )
+                }
+
+            ::
+
                 >>> for spanner in iterate(staff).by_spanner(reverse=True):
                 ...     spanner
                 ...
@@ -1243,7 +1628,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c'4
@@ -1276,6 +1661,31 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 2.** Reverses direction of iteration:
+
+            ::
+
+                >>> score = Score([])
+                >>> score.append(Staff("c'4 d'4 e'4 f'4"))
+                >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                    \new Staff {
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                >>
 
             ::
 
@@ -1392,7 +1802,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c''4 ~
@@ -1516,7 +1926,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c'4
@@ -1594,7 +2004,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 ~
                     c'32
@@ -1682,7 +2092,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         \tweak text #tuplet-number::calc-fraction-text
@@ -1855,7 +2265,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c''4 ~
