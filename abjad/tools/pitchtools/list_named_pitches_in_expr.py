@@ -3,7 +3,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def list_named_pitches_in_expr(expr):
-    '''List named pitches in `expr`:
+    '''Lists named pitches in `expr`.
 
     ::
 

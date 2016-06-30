@@ -3,7 +3,7 @@ from abjad.tools import mathtools
 
 
 def yield_all_pitch_class_sets():
-    '''Yields all pitch-class sets:
+    '''Yields all pitch-class sets.
 
     ..  container:: example
 

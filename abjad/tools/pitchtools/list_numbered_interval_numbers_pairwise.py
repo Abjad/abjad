@@ -3,7 +3,7 @@ from abjad.tools import sequencetools
 
 
 def list_numbered_interval_numbers_pairwise(pitch_carriers, wrap=False):
-    r'''List numbered interval numbers pairwise between `pitch_carriers`:
+    r'''Lists numbered interval numbers pairwise between `pitch_carriers`.
 
     ::
 
@@ -11,7 +11,7 @@ def list_numbered_interval_numbers_pairwise(pitch_carriers, wrap=False):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             c'8
             d'8
