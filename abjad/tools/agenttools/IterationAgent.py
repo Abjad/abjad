@@ -130,6 +130,7 @@ class IterationAgent(abctools.AbjadObject):
         reverse=False,
         start=0,
         stop=None,
+        with_grace_notes=False,
         ):
         r'''Iterates client by class.
 
@@ -278,9 +279,75 @@ class IterationAgent(abctools.AbjadObject):
                 Note("d'8")
                 Note("c'8")
 
+        ..  container:: example
+
+            **Example 4.** Iterates with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        e'16
+                        f'16
+                    }
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for leaf in iterate(voice).by_class(with_grace_notes=True):
+                ...     leaf
+                ...
+                Voice("c'8 d'8 e'8 f'8")
+                Note("c'8")
+                Note("c'16")
+                Note("d'16")
+                Note("d'8")
+                Note("e'16")
+                Note("f'16")
+                Note("e'8")
+                Note("f'8")
+
         Returns generator.
         '''
         prototype = prototype or scoretools.Component
+
+        if with_grace_notes:
+            if reverse:
+                message = 'reverse grace iteration not yet implemented.'
+                raise NotImplementedError(message)
+            if not start == 0 or stop is not None:
+                message = 'indexed grace iteration not yet implemented.'
+                raise NotImplementedError(message)
+            return self.by_components_and_grace_containers(
+                prototype=prototype
+                )
+
         def component_iterator(expr, component_class, reverse=False):
             if isinstance(expr, component_class):
                 yield expr
@@ -427,6 +494,7 @@ class IterationAgent(abctools.AbjadObject):
         reverse=False,
         start=0,
         stop=None,
+        with_grace_notes=False,
         ):
         r'''Iterates client by leaf.
 
@@ -564,6 +632,59 @@ class IterationAgent(abctools.AbjadObject):
                 Chord("<g' a'>8")
                 Chord("<c' bf'>8")
 
+        ..  container:: example
+
+            **Example 4.** Iterates with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        e'16
+                        f'16
+                    }
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
+                ...     leaf
+                ...
+                Note("c'8")
+                Note("c'16")
+                Note("d'16")
+                Note("d'8")
+                Note("e'16")
+                Note("f'16")
+                Note("e'8")
+                Note("f'8")
+
         Returns generator.
         '''
         prototype = prototype or scoretools.Leaf
@@ -572,6 +693,7 @@ class IterationAgent(abctools.AbjadObject):
             reverse=reverse,
             start=start,
             stop=stop,
+            with_grace_notes=with_grace_notes,
             )
 
     def by_leaf_pair(self):
