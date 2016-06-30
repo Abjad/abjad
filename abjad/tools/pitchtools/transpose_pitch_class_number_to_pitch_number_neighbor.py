@@ -3,8 +3,8 @@
 
 def transpose_pitch_class_number_to_pitch_number_neighbor(
     pitch_number, pitch_class_number):
-    '''Transpose `pitch_class_number` by octaves to nearest neighbor
-    of `pitch_number`:
+    '''Transposes `pitch_class_number` by octaves to nearest neighbor
+    of `pitch_number`.
 
     ::
 

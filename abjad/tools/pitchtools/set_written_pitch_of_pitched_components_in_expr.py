@@ -3,7 +3,7 @@ from abjad.tools.topleveltools import iterate
 
 
 def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
-    r'''Set written pitch of pitched components in `expr` to `written_pitch`:
+    r'''Sets written pitch of pitched components in `expr` to `written_pitch`.
 
     ::
 
@@ -11,7 +11,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             c'4
             d'4
@@ -25,7 +25,7 @@ def set_written_pitch_of_pitched_components_in_expr(expr, written_pitch=0):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             c'4
             c'4

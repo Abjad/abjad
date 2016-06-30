@@ -2,7 +2,7 @@
 
 
 def transpose_pitch_expr_into_pitch_range(pitch_expr, pitch_range):
-    '''Transposes `pitch_expr` into `pitch_range`:
+    '''Transposes `pitch_expr` into `pitch_range`.
 
     ::
 

@@ -7,7 +7,7 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(
     wrap=False,
     ):
     r'''Lists numbered inversion-equivalent interval-classes pairwise between
-    `pitch_carriers`:
+    `pitch_carriers`.
 
     ::
 
@@ -15,7 +15,7 @@ def list_numbered_inversion_equivalent_interval_classes_pairwise(
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             c'8
             d'8

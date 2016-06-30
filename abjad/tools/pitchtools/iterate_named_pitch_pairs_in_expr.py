@@ -19,7 +19,7 @@ def iterate_named_pitch_pairs_in_expr(expr):
 
     ..  doctest::
 
-        >>> print(format(score))
+        >>> f(score)
         \new Score <<
             \new Staff {
                 c'8
@@ -65,7 +65,7 @@ def iterate_named_pitch_pairs_in_expr(expr):
 
     ..  doctest::
 
-        >>> print(format(staff))
+        >>> f(staff)
         \new Staff {
             <c' d' e'>4
             <f'' g''>4
