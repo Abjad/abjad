@@ -40,18 +40,6 @@ class Tie(Spanner):
             ...
             Exception: Tie() attachment test fails for Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")).
 
-    ..  container:: example
-
-        **Example 3.** Requires at least two leaves:
-
-        ::
-
-            >>> staff = Staff("c'4 c' d' d'")
-            >>> attach(Tie(), staff[:1])
-            Traceback (most recent call last):
-            ...
-            Exception: must attach to two or more leaves: Selection(Note("c'4"),).
-
     Formats LilyPond ``~`` command on nonlast leaves in spanner.
     '''
 
