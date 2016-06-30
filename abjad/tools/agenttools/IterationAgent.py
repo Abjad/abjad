@@ -70,7 +70,6 @@ class IterationAgent(abctools.AbjadObject):
             Note("d'4")
             Note("f'4")
 
-    Iterates client.
     '''
 
     ### CLASS VARIABLES ###

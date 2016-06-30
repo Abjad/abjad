@@ -5,7 +5,7 @@ from abjad.tools.topleveltools.iterate import iterate
 
 
 class InspectionAgent(abctools.AbjadObject):
-    r'''A wrapper around the Abjad inspection methods.
+    r'''Inspection agent.
 
     ..  container:: example
 
