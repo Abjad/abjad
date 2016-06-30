@@ -673,7 +673,13 @@ class Sequence(AbjadObject):
         except TypeError:
             return False
 
-    def partition_by_counts(self, counts, cyclic=False, overhang=False):
+    def partition_by_counts(
+        self,
+        counts,
+        cyclic=False,
+        overhang=False,
+        reversed_=False,
+        ):
         r'''Partitions sequence by `counts`.
 
         ..  container:: example
@@ -682,28 +688,32 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence_ = Sequence(range(10))
-                >>> sequence_.partition_by_counts(
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
                 ...     [3],
                 ...     cyclic=False,
                 ...     overhang=False,
                 ...     )
-                Sequence((Sequence((0, 1, 2)),))
+                >>> for part in parts:
+                ...     part
+                Sequence((0, 1, 2))
 
         ..  container:: example
 
-            **Example 2.** Partitions sequence once by counts without
-            overhang:
+            **Example 2.** Partitions sequence once by counts without overhang:
 
             ::
 
                 >>> sequence_ = Sequence(range(16))
-                >>> sequence_.partition_by_counts(
+                >>> parts = sequence_.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=False,
                 ...     overhang=False,
                 ...     )
-                Sequence((Sequence((0, 1, 2, 3)), Sequence((4, 5, 6))))
+                >>> for part in parts:
+                ...     part
+                Sequence((0, 1, 2, 3))
+                Sequence((4, 5, 6))
 
         ..  container:: example
 
@@ -712,13 +722,19 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence_ = Sequence(range(10))
-                >>> sequence_.partition_by_counts(
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
                 ...     [3],
                 ...     cyclic=True,
                 ...     overhang=False,
                 ...     )
-                Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5)), Sequence((6, 7, 8))))
+                >>> for part in parts:
+                ...     part
+                Sequence((0, 1, 2))
+                Sequence((3, 4, 5))
+                Sequence((6, 7, 8))
+                Sequence((9, 10, 11))
+                Sequence((12, 13, 14))
 
         ..  container:: example
 
@@ -728,12 +744,12 @@ class Sequence(AbjadObject):
             ::
 
                 >>> sequence_ = Sequence(range(16))
-                >>> result = sequence_.partition_by_counts(
+                >>> parts = sequence_.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=True,
                 ...     overhang=False,
                 ...     )
-                >>> for part in result:
+                >>> for part in parts:
                 ...     part
                 Sequence((0, 1, 2, 3))
                 Sequence((4, 5, 6))
@@ -747,13 +763,16 @@ class Sequence(AbjadObject):
             ::
 
                 
-                >>> sequence_ = Sequence(range(10))
-                >>> sequence_.partition_by_counts(
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
                 ...     [3],
                 ...     cyclic=False,
                 ...     overhang=True,
                 ...     )
-                Sequence((Sequence((0, 1, 2)), Sequence((3, 4, 5, 6, 7, 8, 9))))
+                >>> for part in parts:
+                ...     part
+                Sequence((0, 1, 2))
+                Sequence((3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15))
 
         ..  container:: example
 
@@ -762,12 +781,12 @@ class Sequence(AbjadObject):
             ::
 
                 >>> sequence_ = Sequence(range(16))
-                >>> result = sequence_.partition_by_counts(
+                >>> parts = sequence_.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=False,
                 ...     overhang=True,
                 ...     )
-                >>> for part in result:
+                >>> for part in parts:
                 ...     part
                 Sequence((0, 1, 2, 3))
                 Sequence((4, 5, 6))
@@ -780,18 +799,20 @@ class Sequence(AbjadObject):
 
             ::
 
-                >>> sequence_ = Sequence(range(10))
-                >>> result = sequence_.partition_by_counts(
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
                 ...     [3],
                 ...     cyclic=True,
                 ...     overhang=True,
                 ...     )
-                >>> for part in result:
+                >>> for part in parts:
                 ...     part
                 Sequence((0, 1, 2))
                 Sequence((3, 4, 5))
                 Sequence((6, 7, 8))
-                Sequence((9,))
+                Sequence((9, 10, 11))
+                Sequence((12, 13, 14))
+                Sequence((15,))
 
         ..  container:: example
 
@@ -801,12 +822,12 @@ class Sequence(AbjadObject):
             ::
 
                 >>> sequence_ = Sequence(range(16))
-                >>> result = sequence_.partition_by_counts(
+                >>> parts = sequence_.partition_by_counts(
                 ...     [4, 3],
                 ...     cyclic=True,
                 ...     overhang=True,
                 ...     )
-                >>> for part in result:
+                >>> for part in parts:
                 ...     part
                 Sequence((0, 1, 2, 3))
                 Sequence((4, 5, 6))
@@ -814,35 +835,209 @@ class Sequence(AbjadObject):
                 Sequence((11, 12, 13))
                 Sequence((14, 15))
 
+
+
+
+
+
         ..  container:: example
 
-            **Example 9.** Partitions sequence once by counts and asserts
-            that sequence partitions exactly (with no overhang):
+            **Example 9.** Reversed-partitions sequence once by counts without
+            overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     reversed_=True,
+                ...     )
+                >>> for part in parts:
+                ...     part
+                Sequence((13, 14, 15))
+
+        ..  container:: example
+
+            **Example 10.** Reverse-partitions sequence once by counts without
+            overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
+                ...     [4, 3],
+                ...     cyclic=False,
+                ...     overhang=False,
+                ...     reversed_=True,
+                ...     )
+                >>> for part in parts:
+                ...     part
+                Sequence((9, 10, 11))
+                Sequence((12, 13, 14, 15))
+
+        ..  container:: example
+
+            **Example 11.** Reverse-partitions sequence cyclically by counts
+            without overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=True,
+                ...     overhang=False,
+                ...     reversed_=True,
+                ...     )
+                >>> for part in parts:
+                ...     part
+                Sequence((1, 2, 3))
+                Sequence((4, 5, 6))
+                Sequence((7, 8, 9))
+                Sequence((10, 11, 12))
+                Sequence((13, 14, 15))
+
+        ..  container:: example
+
+            **Example 12.** Reverse-partitions sequence cyclically by counts
+            without overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
+                ...     [4, 3],
+                ...     cyclic=True,
+                ...     overhang=False,
+                ...     reversed_=True,
+                ...     )
+                >>> for part in parts:
+                ...     part
+                Sequence((2, 3, 4))
+                Sequence((5, 6, 7, 8))
+                Sequence((9, 10, 11))
+                Sequence((12, 13, 14, 15))
+
+        ..  container:: example
+
+            **Example 13.** Reverse-partitions sequence once by counts with
+            overhang:
+
+            ::
+
+                
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     reversed_=True,
+                ...     )
+                >>> for part in parts:
+                ...     part
+                Sequence((0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12))
+                Sequence((13, 14, 15))
+
+        ..  container:: example
+
+            **Example 14.** Reverse-partitions sequence once by counts with
+            overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
+                ...     [4, 3],
+                ...     cyclic=False,
+                ...     overhang=True,
+                ...     reversed_=True,
+                ...     )
+                >>> for part in parts:
+                ...     part
+                Sequence((0, 1, 2, 3, 4, 5, 6, 7, 8))
+                Sequence((9, 10, 11))
+                Sequence((12, 13, 14, 15))
+
+        ..  container:: example
+
+            **Example 15.** Reverse-partitions sequence cyclically by counts
+            with overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
+                ...     [3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     reversed_=True,
+                ...     )
+                >>> for part in parts:
+                ...     part
+                Sequence((0,))
+                Sequence((1, 2, 3))
+                Sequence((4, 5, 6))
+                Sequence((7, 8, 9))
+                Sequence((10, 11, 12))
+                Sequence((13, 14, 15))
+
+        ..  container:: example
+
+            **Example 16.** Reverse-partitions sequence cyclically by counts
+            with overhang:
+
+            ::
+
+                >>> sequence_ = Sequence(range(16))
+                >>> parts = sequence_.partition_by_counts(
+                ...     [4, 3],
+                ...     cyclic=True,
+                ...     overhang=True,
+                ...     reversed_=True,
+                ...     )
+                >>> for part in parts:
+                ...     part
+                Sequence((0, 1))
+                Sequence((2, 3, 4))
+                Sequence((5, 6, 7, 8))
+                Sequence((9, 10, 11))
+                Sequence((12, 13, 14, 15))
+
+        ..  container:: example
+
+            **Example 17.** Partitions sequence once by counts and asserts that
+            sequence partitions exactly (with no overhang):
 
             ::
 
                 >>> sequence_ = Sequence(range(10))
-                >>> sequence_.partition_by_counts(
+                >>> parts = sequence_.partition_by_counts(
                 ...     [2, 3, 5],
                 ...     cyclic=False,
                 ...     overhang=Exact,
                 ...     )
-                Sequence((Sequence((0, 1)), Sequence((2, 3, 4)), Sequence((5, 6, 7, 8, 9))))
+                >>> for part in parts:
+                ...     part
+                Sequence((0, 1))
+                Sequence((2, 3, 4))
+                Sequence((5, 6, 7, 8, 9))
 
         ..  container:: example
 
-            **Example 10.** Partitions sequence cyclically by counts and
+            **Example 18.** Partitions sequence cyclically by counts and
             asserts that sequence partitions exactly:
 
             ::
 
                 >>> sequence_ = Sequence(range(10))
-                >>> result = sequence_.partition_by_counts(
+                >>> parts = sequence_.partition_by_counts(
                 ...     [2],
                 ...     cyclic=True,
                 ...     overhang=Exact,
                 ...     )
-                >>> for part in result:
+                >>> for part in parts:
                 ...     part
                 Sequence((0, 1))
                 Sequence((2, 3))
@@ -854,17 +1049,20 @@ class Sequence(AbjadObject):
 
         ..  container:: example
 
-            **Example 11.** Partitions string:
+            **Example 19.** Partitions string:
 
             ::
 
                 >>> sequence_ = Sequence('some text')
-                >>> sequence_.partition_by_counts(
+                >>> parts = sequence_.partition_by_counts(
                 ...     [3],
                 ...     cyclic=False,
                 ...     overhang=True,
                 ...     )
-                Sequence((Sequence(('s', 'o', 'm')), Sequence(('e', ' ', 't', 'e', 'x', 't'))))
+                >>> for part in parts:
+                ...     part
+                Sequence(('s', 'o', 'm'))
+                Sequence(('e', ' ', 't', 'e', 'x', 't'))
 
         Returns nested sequence.
         '''
@@ -876,6 +1074,7 @@ class Sequence(AbjadObject):
             counts,
             cyclic=cyclic,
             overhang=overhang,
+            reversed_=reversed_,
             )
         parts = [type(self)(_) for _ in parts]
         sequence = type(self)(parts)

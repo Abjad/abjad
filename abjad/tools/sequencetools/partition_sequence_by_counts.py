@@ -9,12 +9,13 @@ def partition_sequence_by_counts(
     counts,
     cyclic=False,
     overhang=False,
+    reversed_=False,
     ):
     r'''Partitions `sequence` by `counts`.
 
     ..  container:: example
 
-        **Example 1a.** Partitions sequence once by counts without overhang:
+        **Example 1.** Partitions sequence once by counts without overhang:
 
         ::
 
@@ -26,7 +27,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2]]
 
-        **Example 1b.** Partitions sequence once by counts without overhang:
+        **Example 2.** Partitions sequence once by counts without overhang:
 
         ::
 
@@ -40,7 +41,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 2a.** Partitions sequence cyclically by counts without
+        **Example 3.** Partitions sequence cyclically by counts without
         overhang:
 
         ::
@@ -53,7 +54,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
 
-        **Example 2b.** Partitions sequence cyclically by counts without
+        **Example 4.** Partitions sequence cyclically by counts without
         overhang:
 
         ::
@@ -68,7 +69,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 3a.** Partitions sequence once by counts with overhang:
+        **Example 5.** Partitions sequence once by counts with overhang:
 
         ::
 
@@ -80,7 +81,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
 
-        **Example 3b.** Partitions sequence once by counts with overhang:
+        **Example 6.** Partitions sequence once by counts with overhang:
 
         ::
 
@@ -94,7 +95,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 4a.** Partitions sequence cyclically by counts with overhang:
+        **Example 7.** Partitions sequence cyclically by counts with overhang:
 
         ::
 
@@ -106,7 +107,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5], [6, 7, 8], [9]]
 
-        **Example 4b.** Partitions sequence cyclically by counts with overhang:
+        **Example 8.** Partitions sequence cyclically by counts with overhang:
 
         ::
 
@@ -120,7 +121,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 5a.** Partitions sequence once by counts and asserts
+        **Example 9.** Partitions sequence once by counts and asserts
         that sequence partitions exactly (with no overhang):
 
         ::
@@ -133,7 +134,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1], [2, 3, 4], [5, 6, 7, 8, 9]]
 
-        **Example 5b.** Partitions sequence cyclically by counts and asserts
+        **Example 10.** Partitions sequence cyclically by counts and asserts
         that sequence partitions exactly (with no overhang):
 
         ::
@@ -148,7 +149,7 @@ def partition_sequence_by_counts(
 
     ..  container:: example
 
-        **Example 6a.** Partitions list:
+        **Example 11.** Partitions list:
 
         ::
 
@@ -160,7 +161,7 @@ def partition_sequence_by_counts(
             ...     )
             [[0, 1, 2], [3, 4, 5, 6, 7, 8, 9]]
 
-        **Example 6b.** Partitions tuple:
+        **Example 12.** Partitions tuple:
 
         ::
 
@@ -172,7 +173,7 @@ def partition_sequence_by_counts(
             ...     )
             [(0, 1, 2), (3, 4, 5, 6, 7, 8, 9)]
 
-        **Example 6c.** Partitions string:
+        **Example 13.** Partitions string:
 
         ::
 
@@ -183,6 +184,60 @@ def partition_sequence_by_counts(
             ...     overhang=True,
             ...     )
             ['som', 'e text']
+
+    ..  container:: example
+
+        **Example 14.** Reverses cyclic partition with overhang:
+
+        ::
+
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            ...     [3],
+            ...     cyclic=True,
+            ...     overhang=True,
+            ...     reversed_=True,
+            ...     )
+            [[0], [1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+        **Example 15.** Reverses cyclic partition without overhang:
+
+        ::
+
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            ...     [3],
+            ...     cyclic=True,
+            ...     overhang=False,
+            ...     reversed_=True,
+            ...     )
+            [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
+
+        **Example 16.** Reverses acyclic partition with overhang:
+
+        ::
+
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            ...     [3],
+            ...     cyclic=False,
+            ...     overhang=True,
+            ...     reversed_=True,
+            ...     )
+            [[0, 1, 2, 3, 4, 5, 6], [7, 8, 9]]
+
+        **Example 17.** Reverses acyclic partition without overhang:
+
+        ::
+
+            >>> sequencetools.partition_sequence_by_counts(
+            ...     [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
+            ...     [3],
+            ...     cyclic=False,
+            ...     overhang=False,
+            ...     reversed_=True,
+            ...     )
+            [[7, 8, 9]]
 
     Returns list of objects with type equal to that of `sequence`.
     '''
@@ -196,6 +251,11 @@ def partition_sequence_by_counts(
         message = 'must be iterable: {!r}.'
         message = message.format(counts)
         raise TypeError(message)
+
+    sequence_type = type(sequence)
+    if reversed_:
+        sequence = reversed(sequence)    
+        sequence = sequence_type(sequence)
 
     if overhang == Exact:
         result_with_overhang = partition_sequence_by_counts(
@@ -216,7 +276,6 @@ def partition_sequence_by_counts(
             message = 'sequence does not partition exactly.'
             raise Exception(message)
 
-    #sequence_type = type(sequence)
     result = []
     if cyclic:
         if overhang:
@@ -239,5 +298,14 @@ def partition_sequence_by_counts(
     for start, stop in mathtools.cumulative_sums_pairwise(counts):
         part = sequence[start:stop]
         result.append(part)
+
+    if reversed_:
+        result_ = []
+        for part in reversed(result):
+            part_type = type(part)
+            part = reversed(part)
+            part = part_type(part)
+            result_.append(part)
+        result = result_
 
     return result
