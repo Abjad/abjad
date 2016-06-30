@@ -84,6 +84,39 @@ class IterationAgent(abctools.AbjadObject):
     def __init__(self, client=None):
         self._client = client
 
+    ### PRIVATE METHODS ###
+
+    def _by_components_and_grace_containers(self, prototype=None):
+        prototype = prototype or scoretools.Leaf
+        if self._client._grace is not None:
+            for component in self._client._grace:
+                for x in iterate(component)._by_components_and_grace_containers(
+                    prototype,
+                    ):
+                    yield x
+            if isinstance(self._client, prototype):
+                yield self._client
+        if self._client._after_grace is not None:
+            for component in self._client._after_grace:
+                for x in iterate(component)._by_components_and_grace_containers(
+                    prototype,
+                    ):
+                    yield x
+        elif isinstance(self._client, prototype):
+            yield self._client
+        if isinstance(self._client, (list, tuple)):
+            for component in self._client:
+                for x in iterate(component)._by_components_and_grace_containers(
+                    prototype,
+                    ):
+                    yield x
+        if hasattr(self._client, '_music'):
+            for component in self._client._music:
+                for x in iterate(component)._by_components_and_grace_containers(
+                    prototype,
+                    ):
+                    yield x
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -344,7 +377,7 @@ class IterationAgent(abctools.AbjadObject):
             if not start == 0 or stop is not None:
                 message = 'indexed grace iteration not yet implemented.'
                 raise NotImplementedError(message)
-            return self.by_components_and_grace_containers(
+            return self._by_components_and_grace_containers(
                 prototype=prototype
                 )
 
@@ -392,101 +425,6 @@ class IterationAgent(abctools.AbjadObject):
             start,
             stop,
             )
-
-    def by_components_and_grace_containers(self, prototype=None):
-        r'''Iterates client by components and grace containers.
-
-        ..  container:: example
-
-            **Example 1.** Iterates notes and grace notes:
-
-            ::
-
-                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
-                >>> grace = scoretools.GraceContainer(
-                ...     grace_notes,
-                ...     kind='grace',
-                ...     )
-                >>> attach(grace, voice[1])
-                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
-                >>> after_grace = scoretools.GraceContainer(
-                ...     after_grace_notes,
-                ...     kind='after')
-                >>> attach(after_grace, voice[1])
-                >>> show(voice) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(voice)
-                \new Voice {
-                    c'8 [
-                    \grace {
-                        c'16
-                        d'16
-                    }
-                    \afterGrace
-                    d'8
-                    {
-                        e'16
-                        f'16
-                    }
-                    e'8
-                    f'8 ]
-                }
-
-            ::
-
-                >>> generator = iterate(voice).by_components_and_grace_containers(
-                ...     prototype=Note,
-                ...     )
-                >>> for note in generator:
-                ...     note
-                ...
-                Note("c'8")
-                Note("c'16")
-                Note("d'16")
-                Note("d'8")
-                Note("e'16")
-                Note("f'16")
-                Note("e'8")
-                Note("f'8")
-
-        Includes grace leaves before main leaves.
-
-        Includes grace leaves after main leaves.
-
-        Returns generator.
-        '''
-        prototype = prototype or scoretools.Leaf
-        if self._client._grace is not None:
-            for component in self._client._grace:
-                for x in iterate(component).by_components_and_grace_containers(
-                    prototype,
-                    ):
-                    yield x
-            if isinstance(self._client, prototype):
-                yield self._client
-        if self._client._after_grace is not None:
-            for component in self._client._after_grace:
-                for x in iterate(component).by_components_and_grace_containers(
-                    prototype,
-                    ):
-                    yield x
-        elif isinstance(self._client, prototype):
-            yield self._client
-        if isinstance(self._client, (list, tuple)):
-            for component in self._client:
-                for x in iterate(component).by_components_and_grace_containers(
-                    prototype,
-                    ):
-                    yield x
-        if hasattr(self._client, '_music'):
-            for component in self._client._music:
-                for x in iterate(component).by_components_and_grace_containers(
-                    prototype,
-                    ):
-                    yield x
 
     def by_leaf(
         self,
