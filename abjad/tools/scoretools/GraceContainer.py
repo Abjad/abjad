@@ -102,18 +102,17 @@ class GraceContainer(Container):
 
     ### PRIVATE METHODS ###
 
-    def _attach(self, arg):
+    def _attach(self, leaf):
         from abjad.tools import scoretools
-        if not isinstance(arg, scoretools.Leaf):
-            message = 'object to which grace container attaches'
-            message += ' must be leaf: {!r}.'
-            message = message.format(arg)
+        if not isinstance(leaf, scoretools.Leaf):
+            message = 'must attach to leaf: {!r}.'
+            message = message.format(leaf)
             raise TypeError(message)
         if self.kind == 'after':
-            arg._after_grace = self
+            leaf._after_grace = self
         else:
-            arg._grace = self
-        self._carrier = arg
+            leaf._grace = self
+        self._carrier = leaf
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
         new = Container._copy_with_indicators_but_without_children_or_spanners(
