@@ -6,7 +6,7 @@ from abjad.tools.topleveltools.set_ import set_
 
 
 class Division(NonreducedFraction):
-    r'''A division.
+    r'''Division.
 
     ..  container:: example
 

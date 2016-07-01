@@ -25,12 +25,12 @@ class LilyPondGrobInterface(abctools.AbjadValueObject):
 
     ### CONSTRUCTOR ###
 
-    def __new__(cls, name='grob-interface'):
-        if name in cls._identity_map:
-            obj = cls._identity_map[name]
+    def __new__(class_, name='grob-interface'):
+        if name in class_._identity_map:
+            obj = class_._identity_map[name]
         else:
-            obj = object.__new__(cls)
-            cls._identity_map[name] = obj
+            obj = object.__new__(class_)
+            class_._identity_map[name] = obj
         return obj
 
     ### INITIALIZER ###

@@ -143,7 +143,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         '''Makes named inversion-equivalent interval-class from
         `pitch_carrier_1` and `pitch_carrier_2`.
 
@@ -160,4 +160,4 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
         from abjad.tools import pitchtools
         named_interval = pitchtools.NamedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
-        return cls(named_interval)
+        return class_(named_interval)

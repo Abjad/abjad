@@ -62,7 +62,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
     ### CONSTRUCTOR ###
 
-    def __new__(cls, *args):
+    def __new__(class_, *args):
         from abjad.tools import mathtools
         if len(args) == 1 and hasattr(args[0], 'numerator') and \
             hasattr(args[0], 'denominator'):
@@ -77,7 +77,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         elif len(args) == 1 and mathtools.is_integer_pair(args[0]):
             numerator, denominator = args[0]
         elif len(args) == 1 and isinstance(args[0], str):
-            numerator, denominator = cls._parse_input_string(args[0])
+            numerator, denominator = class_._parse_input_string(args[0])
         elif mathtools.is_integer_pair(args):
             numerator = args[0]
             denominator = args[1]
@@ -86,11 +86,11 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             denominator = 1
         else:
             message = 'can not initialize {}: {!r}.'
-            message = message.format(cls.__name__, args)
+            message = message.format(class_.__name__, args)
             raise ValueError(message)
         numerator *= mathtools.sign(denominator)
         denominator = abs(denominator)
-        self = fractions.Fraction.__new__(cls, numerator, denominator)
+        self = fractions.Fraction.__new__(class_, numerator, denominator)
         self._numerator = numerator
         self._denominator = denominator
         return self

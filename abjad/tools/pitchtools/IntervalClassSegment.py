@@ -55,7 +55,7 @@ class IntervalClassSegment(Segment):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None):
         r'''Initialize interval-class segment from component selection:
 
         ::
@@ -71,7 +71,7 @@ class IntervalClassSegment(Segment):
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
         intervals = mathtools.difference_series(pitch_segment)
-        return cls(
+        return class_(
             items=intervals,
             item_class=item_class,
             )

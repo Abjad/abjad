@@ -53,7 +53,7 @@ class IntervalClassSet(Set):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None):
         r'''Initialize interval set from component selection:
 
         ::
@@ -88,7 +88,7 @@ class IntervalClassSet(Set):
         '''
         from abjad.tools import pitchtools
         interval_set = pitchtools.IntervalSet.from_selection(selection)
-        return cls(
+        return class_(
             items=interval_set,
             item_class=item_class,
             )

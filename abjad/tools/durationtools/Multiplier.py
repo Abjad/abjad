@@ -3,7 +3,7 @@ from abjad.tools.durationtools.Duration import Duration
 
 
 class Multiplier(Duration):
-    '''A multiplier.
+    '''Multiplier.
 
     ..  container:: example
 

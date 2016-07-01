@@ -400,7 +400,7 @@ class PitchRange(AbjadObject):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def is_range_string(cls, expr):
+    def is_range_string(class_, expr):
         '''Is true when `expr` is a symbolic pitch range string.
         Otherwise false:
 
@@ -417,7 +417,7 @@ class PitchRange(AbjadObject):
         '''
         if not isinstance(expr, str):
             return False
-        return bool(cls._range_string_regex.match(expr))
+        return bool(class_._range_string_regex.match(expr))
 
     def list_octave_transpositions(self, pitch_carrier):
         r"""Lists octave transpositions of `pitch_carrier` in pitch range.

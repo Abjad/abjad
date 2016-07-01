@@ -128,7 +128,7 @@ class IntervalVector(Vector):
 
     @classmethod
     def from_selection(
-        cls,
+        class_,
         selection,
         item_class=None,
         ):
@@ -138,7 +138,7 @@ class IntervalVector(Vector):
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        return cls(
+        return class_(
             pitch_segment,
             item_class=item_class,
             )

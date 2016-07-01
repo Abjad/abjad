@@ -814,7 +814,7 @@ class Measure(FixedDurationContainer):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selections(cls, selections, time_signatures=None):
+    def from_selections(class_, selections, time_signatures=None):
         r'''Makes a selection of measures from `selections`.
 
         Returns selections.

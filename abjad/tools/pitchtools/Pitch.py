@@ -157,7 +157,7 @@ class Pitch(AbjadObject):
         raise NotImplementedError
 
     @classmethod
-    def from_hertz(cls, hertz):
+    def from_hertz(class_, hertz):
         r'''Creates pitch from `hertz`.
 
         ::
@@ -179,7 +179,7 @@ class Pitch(AbjadObject):
         '''
         hertz = float(hertz)
         midi = 9. + (12. * math.log(hertz / 440., 2))
-        pitch = cls(midi)
+        pitch = class_(midi)
         return pitch
 
     @abc.abstractmethod

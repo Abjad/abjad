@@ -212,7 +212,7 @@ class Scale(PitchClassSegment):
             )
 
     @classmethod
-    def from_selection(cls, selection, item_class=None, name=None):
+    def from_selection(class_, selection, item_class=None, name=None):
         r'''Make scale from `selection`.
 
         Returns new scale.

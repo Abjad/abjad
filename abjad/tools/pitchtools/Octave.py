@@ -296,7 +296,7 @@ class Octave(AbjadObject):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_pitch_name(cls, pitch_name):
+    def from_pitch_name(class_, pitch_name):
         '''Makes octave from `pitch_name`.
 
         ..  container:: example
@@ -318,10 +318,10 @@ class Octave(AbjadObject):
             message = 'incorrect pitch string format.'
             raise TypeError(message)
         name, tick_string = match.groups()
-        return cls(tick_string)
+        return class_(tick_string)
 
     @classmethod
-    def from_pitch_number(cls, pitch_number):
+    def from_pitch_number(class_, pitch_number):
         r'''Makes octave from `pitch_number`.
 
         ..  container:: example
@@ -334,10 +334,10 @@ class Octave(AbjadObject):
         Returns octave.
         '''
         octave_number = int(math.floor(pitch_number / 12)) + 4
-        return cls(octave_number)
+        return class_(octave_number)
 
     @classmethod
-    def is_octave_tick_string(cls, expr):
+    def is_octave_tick_string(class_, expr):
         '''Is true when `expr` is an octave tick string. Otherwise false.
 
         ..  container:: example
@@ -353,4 +353,4 @@ class Octave(AbjadObject):
         '''
         if not isinstance(expr, str):
             return False
-        return bool(cls._octave_tick_regex.match(expr))
+        return bool(class_._octave_tick_regex.match(expr))

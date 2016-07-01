@@ -134,7 +134,7 @@ class AbjadConfiguration(Configuration):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def get_abjad_startup_string(cls):
+    def get_abjad_startup_string(class_):
         r'''Gets Abjad startup string.
 
         ..  container:: example
@@ -148,7 +148,7 @@ class AbjadConfiguration(Configuration):
         '''
         result = 'Abjad {} ({})'
         result = result.format(
-            cls.get_abjad_version_string(),
+            class_.get_abjad_version_string(),
             'development',
             )
         return result
@@ -170,7 +170,7 @@ class AbjadConfiguration(Configuration):
         return abjad.__version__
 
     @classmethod
-    def get_lilypond_minimum_version_string(cls):
+    def get_lilypond_minimum_version_string(class_):
         r'''Gets LilyPond minimum version string.
 
         ..  container:: example
@@ -182,7 +182,7 @@ class AbjadConfiguration(Configuration):
 
         Returns string.
         '''
-        version = cls.get_lilypond_version_string()
+        version = class_.get_lilypond_version_string()
         parts = version.split('.')[0:2]
         parts.append('0')
         return '.'.join(parts)
