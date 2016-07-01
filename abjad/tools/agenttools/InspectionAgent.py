@@ -701,10 +701,112 @@ class InspectionAgent(abctools.AbjadObject):
             in_parentage=in_parentage,
             )
 
-    def get_timespan(self,
-        in_seconds=False,
-        ):
+    def get_timespan(self, in_seconds=False):
         r'''Gets timespan of client.
+
+        ..  container:: example
+
+            **Example.** Gets timespan of grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        e'16
+                        f'16
+                    }
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
+                ...     timespan = inspect_(leaf).get_timespan()
+                ...     print(str(leaf) + ':')
+                ...     print(format(timespan, 'storage'))
+                c'8:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(1, 8),
+                    )
+                c'16:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 8),
+                        ),
+                    stop_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 16),
+                        ),
+                    )
+                d'16:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 16),
+                        ),
+                    stop_offset=durationtools.Offset(1, 8),
+                    )
+                d'8:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(1, 8),
+                    stop_offset=durationtools.Offset(1, 4),
+                    )
+                e'16:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 8),
+                        ),
+                    stop_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 16),
+                        ),
+                    )
+                f'16:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 16),
+                        ),
+                    stop_offset=durationtools.Offset(1, 8),
+                    )
+                e'8:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(1, 4),
+                    stop_offset=durationtools.Offset(3, 8),
+                    )
+                f'8:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 8),
+                    stop_offset=durationtools.Offset(1, 2),
+                    )
 
         Returns timespan.
         '''
