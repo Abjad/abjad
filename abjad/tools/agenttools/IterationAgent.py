@@ -65,16 +65,14 @@ class IterationAgent(abctools.AbjadObject):
                     prototype,
                     ):
                     yield x
-            if isinstance(self._client, prototype):
-                yield self._client
+        if isinstance(self._client, prototype):
+            yield self._client
         if getattr(self._client, '_after_grace', None) is not None:
             for component in self._client._after_grace:
                 for x in iterate(component)._by_components_and_grace_containers(
                     prototype,
                     ):
                     yield x
-        elif isinstance(self._client, prototype):
-            yield self._client
         if isinstance(self._client, (list, tuple)):
             for component in self._client:
                 for x in iterate(component)._by_components_and_grace_containers(
@@ -285,7 +283,51 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Iterates with grace notes:
+            **Example 5.** Iterates with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    d'8
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for component in iterate(voice).by_class(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     component
+                Voice("c'8 d'8 e'8 f'8")
+                Note("c'8")
+                Note("cf''16")
+                Note("bf'16")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
+        ..  container:: example
+
+            **Example 5.** Iterates with both grace notes and after grace
+            notes:
 
             ::
 
@@ -818,7 +860,92 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Iterates logical ties with grace notes:
+            **Example 5.** Iterates logical ties with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    d'8
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for logical_tie in iterate(voice).by_logical_tie(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     logical_tie
+                LogicalTie(Note("c'8"),)
+                LogicalTie(Note("cf''16"),)
+                LogicalTie(Note("bf'16"),)
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'8"),)
+
+        ..  container:: example
+
+            **Example 6.** Iterates logical ties with after grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \afterGrace
+                    d'8
+                    {
+                        af'16
+                        gf'16
+                    }
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for logical_tie in iterate(voice).by_logical_tie(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     logical_tie
+                LogicalTie(Note("c'8"),)
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("af'16"),)
+                LogicalTie(Note("gf'16"),)
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'8"),)
+
+        ..  container:: example
+
+            **Example 7.** Iterates logical ties with both grace notes and
+            after grace notes:
 
             ::
 

@@ -212,7 +212,6 @@ class InspectionAgent(abctools.AbjadObject):
                 e'4 Clef(name='alto')
                 fs'16 Clef(name='alto')
                 f'4 Clef(name='alto')
-                f'4 Clef(name='alto')
 
         Returns indicator or none.
         '''
