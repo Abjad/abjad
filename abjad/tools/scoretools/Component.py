@@ -357,9 +357,13 @@ class Component(AbjadObject):
                     return
         # update indicators of entire score tree if necessary
         self._update_now(indicators=True)
-        # gather candidate expressions
+        # collect candidate expressions
         candidate_expressions = datastructuretools.SortedCollection(
             key=lambda x: x.component._get_timespan()._start_offset
+            )
+        parentage = self._get_parentage(
+            include_self=True,
+            with_grace_notes=True,
             )
         for parent in self._get_parentage(include_self=True):
             expressions = parent._dependent_expressions[:]
@@ -369,7 +373,7 @@ class Component(AbjadObject):
             for expression in expressions:
                 if isinstance(expression.indicator, prototype):
                     candidate_expressions.insert(expression)
-        #print candidate_expressions, 'CW'
+        #print(candidate_expressions, 'candidate expressions')
         # elect most recent candidate expression
         if not candidate_expressions:
             return
@@ -554,8 +558,12 @@ class Component(AbjadObject):
                 result = previous(result)
         return result
 
-    def _get_parentage(self, include_self=True):
-        return selectiontools.Parentage(self, include_self=include_self)
+    def _get_parentage(self, include_self=True, with_grace_notes=False):
+        return selectiontools.Parentage(
+            self,
+            include_self=include_self,
+            with_grace_notes=with_grace_notes,
+            )
 
     def _get_sibling(self, n):
         if n == 0:

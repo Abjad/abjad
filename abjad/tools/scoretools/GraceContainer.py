@@ -116,7 +116,8 @@ class GraceContainer(Container):
         self._carrier = arg
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
-        new = Container._copy_with_indicators_but_without_children_or_spanners(self)
+        new = Container._copy_with_indicators_but_without_children_or_spanners(
+            self)
         new.kind = self.kind
         return new
 
@@ -124,10 +125,8 @@ class GraceContainer(Container):
         if self._carrier is not None:
             carrier = self._carrier
             if self.kind == 'after':
-                #delattr(carrier, '_after_grace')
                 carrier._after_grace = None
             else:
-                #delattr(carrier, '_grace')
                 carrier._grace = None
             self._carrier = None
             self[:] = []
