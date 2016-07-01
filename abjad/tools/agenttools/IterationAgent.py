@@ -369,7 +369,6 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         prototype = prototype or scoretools.Component
-
         if with_grace_notes:
             if reverse:
                 message = 'reverse grace iteration not yet implemented.'
@@ -380,7 +379,6 @@ class IterationAgent(abctools.AbjadObject):
             return self._by_components_and_grace_containers(
                 prototype=prototype
                 )
-
         def component_iterator(expr, component_class, reverse=False):
             if isinstance(expr, component_class):
                 yield expr
@@ -1533,7 +1531,7 @@ class IterationAgent(abctools.AbjadObject):
                 >>> pairs = [(3, 8), (5, 16), (5, 16)]
                 >>> measures = scoretools.make_spacer_skip_measures(pairs)
                 >>> time_signature_voice = Voice(measures)
-                >>> time_signature_voice.name = 'TimeSignatuerVoice'
+                >>> time_signature_voice.name = 'TimeSignatureVoice'
                 >>> time_signature_voice.is_nonsemantic = True
                 >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
                 >>> music_voice.name = 'MusicVoice'
@@ -1545,7 +1543,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff <<
-                    \context Voice = "TimeSignatuerVoice" {
+                    \context Voice = "TimeSignatureVoice" {
                         {
                             \time 3/8
                             s1 * 3/8
@@ -1581,7 +1579,7 @@ class IterationAgent(abctools.AbjadObject):
                 >>> pairs = [(3, 8), (5, 16), (5, 16)]
                 >>> measures = scoretools.make_spacer_skip_measures(pairs)
                 >>> time_signature_voice = Voice(measures)
-                >>> time_signature_voice.name = 'TimeSignatuerVoice'
+                >>> time_signature_voice.name = 'TimeSignatureVoice'
                 >>> time_signature_voice.is_nonsemantic = True
                 >>> music_voice = Voice("c'4. d'4 e'16 f'4 g'16")
                 >>> music_voice.name = 'MusicVoice'
@@ -1593,7 +1591,7 @@ class IterationAgent(abctools.AbjadObject):
 
                 >>> f(staff)
                 \new Staff <<
-                    \context Voice = "TimeSignatuerVoice" {
+                    \context Voice = "TimeSignatureVoice" {
                         {
                             \time 3/8
                             s1 * 3/8
@@ -1964,6 +1962,34 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> score = Score([])
+                >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        c''4 ~
+                        c''8
+                        d''8
+                        r4
+                        ef''4
+                    }
+                    \new Staff {
+                        r8
+                        g'4. ~
+                        g'8
+                        r16
+                        f'8. ~
+                        f'8
+                    }
+                >>
+
+            ::
+
                 >>> for logical_tie in iterate(score).by_timeline_and_logical_tie(
                 ...     reverse=True,
                 ...     ):
@@ -2078,6 +2104,31 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 2.** Reverses direction of iteration:
+
+            ::
+
+                >>> score = Score([])
+                >>> score.append(Staff("c'4 d'4 e'4 f'4"))
+                >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                    \new Staff {
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                >>
 
             ::
 
@@ -2200,17 +2251,11 @@ class IterationAgent(abctools.AbjadObject):
                 >>> score = Score([])
                 >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
                 >>> score.append(staff)
-
-            ::
-
                 >>> staff_group = StaffGroup([])
                 >>> staff_group.context_name = 'PianoStaff'
                 >>> staff_group.append(Staff("a'4 g'4"))
                 >>> staff_group.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
                 >>> score.append(staff_group)
-
-            ::
-
                 >>> show(score) # doctest: +SKIP
 
             ..  doctest::
@@ -2265,6 +2310,45 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 2.** Reverses direction of iteration:
+
+            ::
+
+                >>> score = Score([])
+                >>> staff = Staff(r"\times 4/3 { d''8 c''8 b'8 }")
+                >>> score.append(staff)
+                >>> staff_group = StaffGroup([])
+                >>> staff_group.context_name = 'PianoStaff'
+                >>> staff_group.append(Staff("a'4 g'4"))
+                >>> staff_group.append(Staff(r"""\clef "bass" f'8 e'8 d'8 c'8"""))
+                >>> score.append(staff_group)
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        \tweak text #tuplet-number::calc-fraction-text
+                        \times 4/3 {
+                            d''8
+                            c''8
+                            b'8
+                        }
+                    }
+                    \new PianoStaff <<
+                        \new Staff {
+                            a'4
+                            g'4
+                        }
+                        \new Staff {
+                            \clef "bass"
+                            f'8
+                            e'8
+                            d'8
+                            c'8
+                        }
+                    >>
+                >>
 
             ::
 
@@ -2433,6 +2517,34 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
+                >>> score = Score([])
+                >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        c''4 ~
+                        c''8
+                        d''8
+                        r4
+                        ef''4
+                    }
+                    \new Staff {
+                        r8
+                        g'4. ~
+                        g'8
+                        r16
+                        f'8. ~
+                        f'8
+                    }
+                >>
+
+            ::
+
                 >>> for component in iterate(score).depth_first(direction=Right):
                 ...     component
                 ...
@@ -2498,8 +2610,17 @@ class IterationAgent(abctools.AbjadObject):
                 Voice("c'8 d'8 e'8 f'8")
                 Note("c'8")
                 Note("d'8")
+                GraceContainer("c'16 d'16")
+                Note("c'16")
+                Note("d'16")
+                GraceContainer("e'16 f'16")
+                Note("e'16")
+                Note("f'16")
                 Note("e'8")
                 Note("f'8")
+
+        ..  note:: Reverse-iteration does not yet support grace notes.
+            (Relatively straightforward to implement when the need arises.)
 
         Returns generator.
         '''
@@ -2512,17 +2633,42 @@ class IterationAgent(abctools.AbjadObject):
 
             If client has no univisited music and no parent, return none.
             '''
-            client = component
-            if (hasattr(client, '_music') and
-                0 < len(client) and
-                total < len(client)):
-                return client[total], 0
-            else:
-                parent = client._parent
-                if parent is not None:
-                    return parent, parent.index(client) + 1
-                else:
+            # if component is a container with not-yet-returned children
+            if (hasattr(component, '_music') and
+                0 < len(component) and
+                total < len(component)):
+                # return next not-yet-returned child
+                return component[total], 0
+            # if component is a leaf with grace container attached
+            elif getattr(component, '_grace', None) is not None:
+                # return grace container
+                return component._grace, 0
+            # if component is a leaf with after grace container attached
+            elif getattr(component, '_after_grace', None) is not None:
+                # return after grace container
+                return component._after_grace, 0
+            # if component is grace container with all children returned
+            elif hasattr(component, '_carrier'):
+                carrier = component._carrier
+                # if grace container has no carrier
+                if carrier is None:
                     return None, None
+                # if there's also an after grace container
+                if (not component.kind == 'after' and
+                    carrier._after_grace is not None):
+                    return carrier._after_grace, 0
+                carrier_parent = carrier._parent
+                # if carrier has no parent
+                if carrier_parent is None:
+                    return None, None
+                # advance to next node in carrier parent
+                return carrier_parent, carrier_parent.index(carrier) + 1
+            else:
+                parent = component._parent
+                if parent is None:
+                    return None, None
+                return parent, parent.index(component) + 1
+
         def _previous_node_depth_first(component, total=0):
             r'''If client has unvisited music, return previous unvisited node
             in client's music.
@@ -2532,15 +2678,14 @@ class IterationAgent(abctools.AbjadObject):
 
             If client has no univisited music and no parent, return none.
             '''
-            client = component
-            if (hasattr(client, '_music') and
-                0 < len(client) and
-                total < len(client)):
-                return client[len(client)-1-total], 0
+            if (hasattr(component, '_music') and
+                0 < len(component) and
+                total < len(component)):
+                return component[len(component)-1-total], 0
             else:
-                parent = client._parent
+                parent = component._parent
                 if parent is not None:
-                    return parent, len(parent) - parent.index(client)
+                    return parent, len(parent) - parent.index(component)
                 else:
                     return None, None
         def _handle_forbidden_node(node, queue):
