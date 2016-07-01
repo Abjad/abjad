@@ -188,7 +188,6 @@ class Parentage(Selection):
                 c'16 True
                 d'16 True
                 d'4 False
-                d'4 False
                 e'4 False
                 f'4 False
 

@@ -94,16 +94,14 @@ class IterationAgent(abctools.AbjadObject):
                     prototype,
                     ):
                     yield x
-            if isinstance(self._client, prototype):
-                yield self._client
+        if isinstance(self._client, prototype):
+            yield self._client
         if getattr(self._client, '_after_grace', None) is not None:
             for component in self._client._after_grace:
                 for x in iterate(component)._by_components_and_grace_containers(
                     prototype,
                     ):
                     yield x
-        elif isinstance(self._client, prototype):
-            yield self._client
         if isinstance(self._client, (list, tuple)):
             for component in self._client:
                 for x in iterate(component)._by_components_and_grace_containers(
@@ -314,7 +312,51 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Iterates with grace notes:
+            **Example 5.** Iterates with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    d'8
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for component in iterate(voice).by_class(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     component
+                Voice("c'8 d'8 e'8 f'8")
+                Note("c'8")
+                Note("cf''16")
+                Note("bf'16")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
+        ..  container:: example
+
+            **Example 5.** Iterates with both grace notes and after grace
+            notes:
 
             ::
 
@@ -379,6 +421,7 @@ class IterationAgent(abctools.AbjadObject):
             return self._by_components_and_grace_containers(
                 prototype=prototype
                 )
+
         def component_iterator(expr, component_class, reverse=False):
             if isinstance(expr, component_class):
                 yield expr
@@ -392,6 +435,7 @@ class IterationAgent(abctools.AbjadObject):
                     for x in component_iterator(
                         component, component_class, reverse=reverse):
                         yield x
+
         def subrange(iter, start=0, stop=None):
             # if start<0, then 'stop-start' gives a funny result
             # don not have to check stop>=start
@@ -879,6 +923,91 @@ class IterationAgent(abctools.AbjadObject):
         ..  container:: example
 
             **Example 6.** Iterates logical ties with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    d'8
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for logical_tie in iterate(voice).by_logical_tie(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     logical_tie
+                LogicalTie(Note("c'8"),)
+                LogicalTie(Note("cf''16"),)
+                LogicalTie(Note("bf'16"),)
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'8"),)
+
+        ..  container:: example
+
+            **Example 7.** Iterates logical ties with after grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \afterGrace
+                    d'8
+                    {
+                        af'16
+                        gf'16
+                    }
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for logical_tie in iterate(voice).by_logical_tie(
+                ...     with_grace_notes=True,
+                ...     ):
+                ...     logical_tie
+                LogicalTie(Note("c'8"),)
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("af'16"),)
+                LogicalTie(Note("gf'16"),)
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'8"),)
+
+        ..  container:: example
+
+            **Example 8.** Iterates logical ties with both grace notes and
+            after grace notes:
 
             ::
 
@@ -1504,8 +1633,8 @@ class IterationAgent(abctools.AbjadObject):
         sequence = selectiontools.Selection(self._client)
         current_group = ()
         for group in sequence.group_by(type):
-            if any(isinstance(group[0], class_) for class_ in classes):
             #if type(group[0]) in classes:
+            if any(isinstance(group[0], class_) for class_ in classes):
                 current_group = current_group + group
             elif current_group:
                 yield current_group
@@ -1727,7 +1856,6 @@ class IterationAgent(abctools.AbjadObject):
                     continue
                 visited_spanners.add(spanner)
                 yield spanner
-
 
     # TODO: optimize to avoid behind-the-scenes full-score traversal.
     def by_timeline(
@@ -2054,7 +2182,6 @@ class IterationAgent(abctools.AbjadObject):
             visited_logical_ties.add(logical_tie)
             yield logical_tie
 
-
     # TODO: optimize to avoid behind-the-scenes full-score traversal
     def by_timeline_from_component(
         self,
@@ -2376,6 +2503,7 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         from abjad.tools import selectiontools
+
         def _buffer_components_starting_with(component, buffer, stop_offsets):
             #if not isinstance(component, scoretools.Component):
             #    raise TypeError
@@ -2390,6 +2518,7 @@ class IterationAgent(abctools.AbjadObject):
                     if component:
                         _buffer_components_starting_with(
                             component[0], buffer, stop_offsets)
+
         def _iterate_vertical_moments_forward_in_expr(expr):
             #if not isinstance(expr, scoretools.Component):
             #    raise TypeError
@@ -2408,6 +2537,7 @@ class IterationAgent(abctools.AbjadObject):
                 yield vertical_moment
                 current_offset, stop_offsets = min(stop_offsets), []
                 _update_buffer(current_offset, buffer, stop_offsets)
+
         def _next_in_parent(component):
             from abjad.tools import selectiontools
             if not isinstance(component, scoretools.Component):
@@ -2425,6 +2555,7 @@ class IterationAgent(abctools.AbjadObject):
                 return parent[start + 1]
             except IndexError:
                 raise StopIteration
+
         def _update_buffer(current_offset, buffer, stop_offsets):
             #print 'At %s with %s ...' % (current_offset, buffer)
             for component in buffer[:]:
@@ -2438,6 +2569,7 @@ class IterationAgent(abctools.AbjadObject):
                         pass
                 else:
                     stop_offsets.append(component._get_timespan().stop_offset)
+
         if not reverse:
             for x in _iterate_vertical_moments_forward_in_expr(self._client):
                 yield x
@@ -2635,9 +2767,11 @@ class IterationAgent(abctools.AbjadObject):
             If client has no univisited music and no parent, return none.
             '''
             # if component is a container with not-yet-returned children
-            if (hasattr(component, '_music') and
+            if (
+                hasattr(component, '_music') and
                 0 < len(component) and
-                total < len(component)):
+                total < len(component)
+                ):
                 # return next not-yet-returned child
                 return component[total], 0
             # if component is a leaf with grace container attached
@@ -2655,8 +2789,10 @@ class IterationAgent(abctools.AbjadObject):
                 if carrier is None:
                     return None, None
                 # if there's also an after grace container
-                if (not component.kind == 'after' and
-                    carrier._after_grace is not None):
+                if (
+                    not component.kind == 'after' and
+                    carrier._after_grace is not None
+                    ):
                     return carrier._after_grace, 0
                 carrier_parent = carrier._parent
                 # if carrier has no parent
@@ -2679,16 +2815,19 @@ class IterationAgent(abctools.AbjadObject):
 
             If client has no univisited music and no parent, return none.
             '''
-            if (hasattr(component, '_music') and
+            if (
+                hasattr(component, '_music') and
                 0 < len(component) and
-                total < len(component)):
-                return component[len(component)-1-total], 0
+                total < len(component)
+                ):
+                return component[len(component) - 1 - total], 0
             else:
                 parent = component._parent
                 if parent is not None:
                     return parent, len(parent) - parent.index(component)
                 else:
                     return None, None
+
         def _handle_forbidden_node(node, queue):
             node_parent = node._parent
             if node_parent is not None:
@@ -2698,12 +2837,14 @@ class IterationAgent(abctools.AbjadObject):
                 node, rank = None, None
             queue.pop()
             return node, rank
+
         def _advance_node_depth_first(node, rank, direction):
             if direction is Left:
                 node, rank = _next_node_depth_first(node, rank)
             else:
                 node, rank = _previous_node_depth_first(node, rank)
             return node, rank
+
         def _is_node_forbidden(node, forbid):
             if forbid is None:
                 return False
@@ -2711,6 +2852,7 @@ class IterationAgent(abctools.AbjadObject):
                 return getattr(node, 'is_simultaneous', False)
             else:
                 return isinstance(node, forbid)
+
         def _find_yield(node, rank, queue, unique):
             if hasattr(node, '_music'):
                 try:
