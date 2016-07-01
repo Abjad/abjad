@@ -88,7 +88,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 [
                     d'4
@@ -239,7 +239,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8
                     \grace {
@@ -343,7 +343,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \new Voice {
                         c'8
@@ -515,13 +515,84 @@ class InspectionAgent(abctools.AbjadObject):
     def get_parentage(
         self,
         include_self=True,
+        with_grace_notes=False,
         ):
         r'''Gets parentage of client.
+
+        .. container:: example
+
+            **Example 1.** Gets parentage without grace notes:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+            
+            ::
+
+                >>> inspect_(grace_notes[0]).get_parentage()
+                Parentage(Note("c'16"), GraceContainer("c'16 d'16"))
+
+        .. container:: example
+
+            **Example 2.** Gets parentage with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+            
+            ::
+
+                >>> inspector = inspect_(grace_notes[0])
+                >>> inspector.get_parentage(with_grace_notes=True)
+                Parentage(Note("c'16"), GraceContainer("c'16 d'16"), Note("d'4"), Voice("c'4 d'4 e'4 f'4"))
 
         Returns parentage.
         '''
         return self._client._get_parentage(
             include_self=include_self,
+            with_grace_notes=with_grace_notes,
             )
 
     def get_sounding_pitch(self):
@@ -540,7 +611,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \set Staff.instrumentName = \markup { Piccolo }
                     \set Staff.shortInstrumentName = \markup { Picc. }
@@ -572,7 +643,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \set Staff.instrumentName = \markup { Glockenspiel }
                     \set Staff.shortInstrumentName = \markup { Gkspl. }
@@ -711,7 +782,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 3/8
                     c'4
@@ -783,7 +854,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(container))
+                >>> f(container)
                 {
                     \override NoteHead.color = #red
                     \override NoteHead.style = #'harmonic
@@ -848,7 +919,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 [
                     d'4
