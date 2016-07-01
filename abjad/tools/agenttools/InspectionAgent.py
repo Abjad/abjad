@@ -172,6 +172,48 @@ class InspectionAgent(abctools.AbjadObject):
         r'''Gets effective indicator that matches `prototype`
         and governs client.
 
+        ..  container:: example
+
+            **Example.** Gets components' effective clef:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> attach(Clef('alto'), staff)
+                >>> grace_container = scoretools.GraceContainer(
+                ...    [Note("fs'16")],
+                ...     kind='acciaccatura',
+                ...     )
+                >>> attach(grace_container, staff[-1])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \clef "alto"
+                    c'4
+                    d'4
+                    e'4
+                    \acciaccatura {
+                        fs'16
+                    }
+                    f'4
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_class(with_grace_notes=True):
+                ...     clef = inspect_(leaf).get_effective(Clef)
+                ...     print(leaf, clef)
+                Staff("c'4 d'4 e'4 f'4") Clef(name='alto')
+                c'4 Clef(name='alto')
+                d'4 Clef(name='alto')
+                e'4 Clef(name='alto')
+                fs'16 Clef(name='alto')
+                f'4 Clef(name='alto')
+                f'4 Clef(name='alto')
+
         Returns indicator or none.
         '''
         return self._client._get_effective(

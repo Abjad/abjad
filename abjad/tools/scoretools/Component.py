@@ -365,7 +365,10 @@ class Component(AbjadObject):
             include_self=True,
             with_grace_notes=True,
             )
-        for parent in self._get_parentage(include_self=True):
+        for parent in self._get_parentage(
+            include_self=True,
+            with_grace_notes=True,
+            ):
             expressions = parent._dependent_expressions[:]
             for expression in parent._indicator_expressions:
                 if expression.scope is None:
