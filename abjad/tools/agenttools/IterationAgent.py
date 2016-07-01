@@ -136,7 +136,7 @@ class IterationAgent(abctools.AbjadObject):
         stop=None,
         with_grace_notes=False,
         ):
-        r'''Iterates client by class.
+        r'''Iterates by class.
 
         ..  container:: example
 
@@ -405,7 +405,7 @@ class IterationAgent(abctools.AbjadObject):
         stop=None,
         with_grace_notes=False,
         ):
-        r'''Iterates client by leaf.
+        r'''Iterates by leaf.
 
         ..  container:: example
 
@@ -606,7 +606,7 @@ class IterationAgent(abctools.AbjadObject):
             )
 
     def by_leaf_pair(self):
-        r'''Iterates client by leaf pair.
+        r'''Iterates by leaf pair.
 
         ..  container:: example
 
@@ -685,7 +685,7 @@ class IterationAgent(abctools.AbjadObject):
         reverse=False,
         with_grace_notes=False,
         ):
-        r'''Iterates client by logical tie.
+        r'''Iterates by logical tie.
 
         ..  container:: example
 
@@ -904,7 +904,7 @@ class IterationAgent(abctools.AbjadObject):
         logical_voice,
         reverse=False,
         ):
-        r'''Iterates client by logical voice.
+        r'''Iterates by logical voice.
 
         ..  container:: example
 
@@ -1296,7 +1296,7 @@ class IterationAgent(abctools.AbjadObject):
                         yield x
 
     def by_run(self, classes):
-        r'''Iterates client by run.
+        r'''Iterates by run.
 
         ..  container:: example
 
@@ -1410,7 +1410,7 @@ class IterationAgent(abctools.AbjadObject):
         start=0,
         stop=None,
         ):
-        r'''Iterates client by semantic voice.
+        r'''Iterates by semantic voice.
 
         ..  todo:: Deprecated. Use ``IterationAgent.by_class(Voice)`` instead.
 
@@ -1528,7 +1528,7 @@ class IterationAgent(abctools.AbjadObject):
         prototype=None,
         reverse=False,
         ):
-        r'''Iterates client by spanner.
+        r'''Iterates by spanner.
 
         ..  container:: example
 
@@ -1626,7 +1626,7 @@ class IterationAgent(abctools.AbjadObject):
         component_class=None,
         reverse=False,
         ):
-        r'''Iterates client by timeline.
+        r'''Iterates by timeline.
 
         ..  container:: example
 
@@ -1802,7 +1802,7 @@ class IterationAgent(abctools.AbjadObject):
         pitched=False,
         reverse=False,
         ):
-        r'''Iterates client by timeline and logical tie.
+        r'''Iterates by timeline and logical tie.
 
         ..  container:: example
 
@@ -2002,7 +2002,7 @@ class IterationAgent(abctools.AbjadObject):
                 yielded_expr = True
 
     def by_topmost_logical_ties_and_components(self):
-        r'''Iterates client by topmost logical ties and components.
+        r'''Iterates by topmost logical ties and components.
 
         ..  container:: example
 
@@ -2079,7 +2079,7 @@ class IterationAgent(abctools.AbjadObject):
         self,
         reverse=False,
         ):
-        r'''Iterates client by vertical moment.
+        r'''Iterates by vertical moment.
 
         ..  container:: example
 
@@ -2263,7 +2263,7 @@ class IterationAgent(abctools.AbjadObject):
         forbid=None,
         unique=True,
         ):
-        r'''Iterates client depth first.
+        r'''Iterates depth first.
 
         ..  container:: example
 
@@ -2341,6 +2341,56 @@ class IterationAgent(abctools.AbjadObject):
                 Note("c''8")
                 Note("c''4")
 
+        ..  container:: example
+
+            **Example 3.** Iterates with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        e'16
+                        f'16
+                    }
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for component in iterate(voice).depth_first():
+                ...     component
+                ...
+                Voice("c'8 d'8 e'8 f'8")
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
         Returns generator.
         '''
         def _next_node_depth_first(component, total):
@@ -2353,9 +2403,9 @@ class IterationAgent(abctools.AbjadObject):
             If client has no univisited music and no parent, return none.
             '''
             client = component
-            if hasattr(client, '_music') and \
-                0 < len(client) and \
-                total < len(client):
+            if (hasattr(client, '_music') and
+                0 < len(client) and
+                total < len(client)):
                 return client[total], 0
             else:
                 parent = client._parent
@@ -2373,10 +2423,10 @@ class IterationAgent(abctools.AbjadObject):
             If client has no univisited music and no parent, return none.
             '''
             client = component
-            if hasattr(client, '_music') and \
-                0 < len(client) and \
-                total < len(client):
-                return client[len(client) - 1 - total], 0
+            if (hasattr(client, '_music') and
+                0 < len(client) and
+                total < len(client)):
+                return client[len(client)-1-total], 0
             else:
                 parent = client._parent
                 if parent is not None:
@@ -2393,8 +2443,7 @@ class IterationAgent(abctools.AbjadObject):
             queue.pop()
             return node, rank
         def _advance_node_depth_first(node, rank, direction):
-            # TODO: remove 'left'
-            if direction in ('left', Left):
+            if direction is Left:
                 node, rank = _next_node_depth_first(node, rank)
             else:
                 node, rank = _previous_node_depth_first(node, rank)
