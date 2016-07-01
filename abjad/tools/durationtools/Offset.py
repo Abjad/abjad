@@ -148,7 +148,6 @@ class Offset(Duration):
     ### CONSTRUCTOR ###
 
     def __new__(class_, *args, **kwargs):
-        self = Duration.__new__(class_, *args)
         grace_displacement = None
         for arg in args:
             if hasattr(arg, 'grace_displacement'):
@@ -158,6 +157,10 @@ class Offset(Duration):
             'grace_displacement')
         if grace_displacement is not None:
             grace_displacement = Duration(grace_displacement)
+        grace_displacement = grace_displacement or None
+        if len(args) == 1 and isinstance(args[0], Duration):
+            args = args[0].pair
+        self = Duration.__new__(class_, *args)
         self._grace_displacement = grace_displacement
         return self
 
@@ -214,6 +217,11 @@ class Offset(Duration):
                 >>> offset_1 == offset_2
                 True
 
+            ::
+
+                >>> offset_1 is offset_2
+                False
+
         Returns new offset.
         '''
         arguments = self.__getnewargs__()
@@ -252,6 +260,11 @@ class Offset(Duration):
 
                 >>> offset_1 == offset_2
                 True
+
+            ::
+
+                >>> offset_1 is offset_2
+                False
 
         Returns new offset.
         '''
@@ -348,6 +361,21 @@ class Offset(Duration):
                 >>> offset = Offset(1, 4, grace_displacement=(-1, 16))
                 >>> offset.grace_displacement
                 Duration(-1, 16)
+
+        ..  container:: example
+
+            **Example 3.** Stores zero-valued grace displacement as none:
+
+            ::
+
+                >>> offset = Offset(1, 4, grace_displacement=0)
+                >>> offset.grace_displacement is None
+                True
+
+            ::
+
+                >>> offset
+                Offset(1, 4)
 
         Defaults to none.
 
