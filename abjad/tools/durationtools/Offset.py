@@ -285,12 +285,377 @@ class Offset(Duration):
         '''
         return self.__copy__(*args)
 
+    def __eq__(self, arg):
+        r'''Is true when offset equals `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 == offset_1
+                True
+                >>> offset_1 == offset_2
+                True
+                >>> offset_2 == offset_1
+                True
+                >>> offset_2 == offset_2
+                True
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 == offset_1
+                True
+                >>> offset_1 == offset_2
+                False
+                >>> offset_2 == offset_1
+                False
+                >>> offset_2 == offset_2
+                True
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 == offset_1
+                True
+                >>> offset_1 == offset_2
+                False
+                >>> offset_2 == offset_1
+                False
+                >>> offset_2 == offset_2
+                True
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return self.grace_displacement == arg.grace_displacement
+        return Duration.__eq__(self, arg)
+
+    def __ge__(self, arg):
+        r'''Is true when offset is greater than or equal to `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 >= offset_1
+                True
+                >>> offset_1 >= offset_2
+                True
+                >>> offset_2 >= offset_1
+                True
+                >>> offset_2 >= offset_2
+                True
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 >= offset_1
+                True
+                >>> offset_1 >= offset_2
+                False
+                >>> offset_2 >= offset_1
+                True
+                >>> offset_2 >= offset_2
+                True
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 >= offset_1
+                True
+                >>> offset_1 >= offset_2
+                False
+                >>> offset_2 >= offset_1
+                True
+                >>> offset_2 >= offset_2
+                True
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return self.grace_displacement >= arg.grace_displacement
+        return Duration.__ge__(self, arg)
+
     def __getnewargs__(self):
         r'''Gets new arguments.
 
         Returns tuple.
         '''
         return self.pair
+
+    def __gt__(self, arg):
+        r'''Is true when offset is greater than `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 > offset_1
+                False
+                >>> offset_1 > offset_2
+                False
+                >>> offset_2 > offset_1
+                False
+                >>> offset_2 > offset_2
+                False
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 > offset_1
+                False
+                >>> offset_1 > offset_2
+                False
+                >>> offset_2 > offset_1
+                True
+                >>> offset_2 > offset_2
+                False
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 > offset_1
+                False
+                >>> offset_1 > offset_2
+                False
+                >>> offset_2 > offset_1
+                True
+                >>> offset_2 > offset_2
+                False
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return self.grace_displacement > arg.grace_displacement
+        return Duration.__gt__(self, arg)
+
+    def __le__(self, arg):
+        r'''Is true when offset is less than or equal to `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 <= offset_1
+                True
+                >>> offset_1 <= offset_2
+                True
+                >>> offset_2 <= offset_1
+                True
+                >>> offset_2 <= offset_2
+                True
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 <= offset_1
+                True
+                >>> offset_1 <= offset_2
+                True
+                >>> offset_2 <= offset_1
+                False
+                >>> offset_2 <= offset_2
+                True
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 <= offset_1
+                True
+                >>> offset_1 <= offset_2
+                True
+                >>> offset_2 <= offset_1
+                False
+                >>> offset_2 <= offset_2
+                True
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return self.grace_displacement <= arg.grace_displacement
+        return Duration.__le__(self, arg)
+
+    def __lt__(self, arg):
+        r'''Is true when offset is less than `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 < offset_1
+                False
+                >>> offset_1 < offset_2
+                False
+                >>> offset_2 < offset_1
+                False
+                >>> offset_2 < offset_2
+                False
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 < offset_1
+                False
+                >>> offset_1 < offset_2
+                True
+                >>> offset_2 < offset_1
+                False
+                >>> offset_2 < offset_2
+                False
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 < offset_1
+                False
+                >>> offset_1 < offset_2
+                True
+                >>> offset_2 < offset_1
+                False
+                >>> offset_2 < offset_2
+                False
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return self.grace_displacement < arg.grace_displacement
+        return Duration.__lt__(self, arg)
 
     def __repr__(self):
         r'''Gets interpreter representation of offset.
