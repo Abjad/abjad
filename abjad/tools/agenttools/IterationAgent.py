@@ -290,13 +290,13 @@ class IterationAgent(abctools.AbjadObject):
             ::
 
                 >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
                 >>> grace = scoretools.GraceContainer(
                 ...     grace_notes,
                 ...     kind='grace',
                 ...     )
                 >>> attach(grace, voice[1])
-                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
                 >>> after_grace = scoretools.GraceContainer(
                 ...     after_grace_notes,
                 ...     kind='after')
@@ -309,14 +309,14 @@ class IterationAgent(abctools.AbjadObject):
                 \new Voice {
                     c'8 [
                     \grace {
-                        c'16
-                        d'16
+                        cf''16
+                        bf'16
                     }
                     \afterGrace
                     d'8
                     {
-                        e'16
-                        f'16
+                        af'16
+                        gf'16
                     }
                     e'8
                     f'8 ]
@@ -329,11 +329,11 @@ class IterationAgent(abctools.AbjadObject):
                 ...
                 Voice("c'8 d'8 e'8 f'8")
                 Note("c'8")
-                Note("c'16")
-                Note("d'16")
+                Note("cf''16")
+                Note("bf'16")
                 Note("d'8")
-                Note("e'16")
-                Note("f'16")
+                Note("af'16")
+                Note("gf'16")
                 Note("e'8")
                 Note("f'8")
 
@@ -546,13 +546,13 @@ class IterationAgent(abctools.AbjadObject):
             ::
 
                 >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
                 >>> grace = scoretools.GraceContainer(
                 ...     grace_notes,
                 ...     kind='grace',
                 ...     )
                 >>> attach(grace, voice[1])
-                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
                 >>> after_grace = scoretools.GraceContainer(
                 ...     after_grace_notes,
                 ...     kind='after')
@@ -565,14 +565,14 @@ class IterationAgent(abctools.AbjadObject):
                 \new Voice {
                     c'8 [
                     \grace {
-                        c'16
-                        d'16
+                        cf''16
+                        bf'16
                     }
                     \afterGrace
                     d'8
                     {
-                        e'16
-                        f'16
+                        af'16
+                        gf'16
                     }
                     e'8
                     f'8 ]
@@ -584,13 +584,14 @@ class IterationAgent(abctools.AbjadObject):
                 ...     leaf
                 ...
                 Note("c'8")
-                Note("c'16")
-                Note("d'16")
+                Note("cf''16")
+                Note("bf'16")
                 Note("d'8")
-                Note("e'16")
-                Note("f'16")
+                Note("af'16")
+                Note("gf'16")
                 Note("e'8")
                 Note("f'8")
+
 
         Returns generator.
         '''
@@ -822,13 +823,13 @@ class IterationAgent(abctools.AbjadObject):
             ::
 
                 >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
                 >>> grace = scoretools.GraceContainer(
                 ...     grace_notes,
                 ...     kind='grace',
                 ...     )
                 >>> attach(grace, voice[1])
-                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
                 >>> after_grace = scoretools.GraceContainer(
                 ...     after_grace_notes,
                 ...     kind='after')
@@ -841,14 +842,14 @@ class IterationAgent(abctools.AbjadObject):
                 \new Voice {
                     c'8 [
                     \grace {
-                        c'16
-                        d'16
+                        cf''16
+                        bf'16
                     }
                     \afterGrace
                     d'8
                     {
-                        e'16
-                        f'16
+                        af'16
+                        gf'16
                     }
                     e'8
                     f'8 ]
@@ -856,17 +857,17 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> for leaf in iterate(voice).by_logical_tie(
+                >>> for logical_tie in iterate(voice).by_logical_tie(
                 ...     with_grace_notes=True,
                 ...     ):
-                ...     leaf
+                ...     logical_tie
                 ...
                 LogicalTie(Note("c'8"),)
-                LogicalTie(Note("c'16"),)
-                LogicalTie(Note("d'16"),)
+                LogicalTie(Note("cf''16"),)
+                LogicalTie(Note("bf'16"),)
                 LogicalTie(Note("d'8"),)
-                LogicalTie(Note("e'16"),)
-                LogicalTie(Note("f'16"),)
+                LogicalTie(Note("af'16"),)
+                LogicalTie(Note("gf'16"),)
                 LogicalTie(Note("e'8"),)
                 LogicalTie(Note("f'8"),)
 
@@ -2460,13 +2461,13 @@ class IterationAgent(abctools.AbjadObject):
             ::
 
                 >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
-                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
                 >>> grace = scoretools.GraceContainer(
                 ...     grace_notes,
                 ...     kind='grace',
                 ...     )
                 >>> attach(grace, voice[1])
-                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace_notes = [Note("af'16"), Note("gf'16")]
                 >>> after_grace = scoretools.GraceContainer(
                 ...     after_grace_notes,
                 ...     kind='after')
@@ -2479,14 +2480,14 @@ class IterationAgent(abctools.AbjadObject):
                 \new Voice {
                     c'8 [
                     \grace {
-                        c'16
-                        d'16
+                        cf''16
+                        bf'16
                     }
                     \afterGrace
                     d'8
                     {
-                        e'16
-                        f'16
+                        af'16
+                        gf'16
                     }
                     e'8
                     f'8 ]
@@ -2500,12 +2501,12 @@ class IterationAgent(abctools.AbjadObject):
                 Voice("c'8 d'8 e'8 f'8")
                 Note("c'8")
                 Note("d'8")
-                GraceContainer("c'16 d'16")
-                Note("c'16")
-                Note("d'16")
-                GraceContainer("e'16 f'16")
-                Note("e'16")
-                Note("f'16")
+                GraceContainer("cf''16 bf'16")
+                Note("cf''16")
+                Note("bf'16")
+                GraceContainer("af'16 gf'16")
+                Note("af'16")
+                Note("gf'16")
                 Note("e'8")
                 Note("f'8")
 
