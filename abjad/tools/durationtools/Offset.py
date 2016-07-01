@@ -86,7 +86,10 @@ class Offset(Duration):
 
             >>> offset = Offset((3, 16), grace_displacement=(-1, 16))
             >>> Offset(offset)
-            Offset((3, 16), grace_displacement=Duration(-1, 16))
+            Offset(
+                (3, 16),
+                grace_displacement=Duration(-1, 16)
+                )
 
     ..  container:: example
 
@@ -179,7 +182,7 @@ class Offset(Duration):
         else:
             return systemtools.StorageFormatSpecification(
                 self,
-                is_indented=False,
+                is_indented=True,
                 positional_argument_values=(self.pair,),
                 keyword_argument_names=('grace_displacement',),
                 )
@@ -205,12 +208,18 @@ class Offset(Duration):
             ::
 
                 >>> offset_1
-                Offset((1, 4), grace_displacement=Duration(-1, 16))
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
 
             ::
 
                 >>> offset_2
-                Offset((1, 4), grace_displacement=Duration(-1, 16))
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
 
             ::
 
@@ -249,12 +258,18 @@ class Offset(Duration):
             ::
 
                 >>> offset_1
-                Offset((1, 4), grace_displacement=Duration(-1, 16))
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
 
             ::
 
                 >>> offset_2
-                Offset((1, 4), grace_displacement=Duration(-1, 16))
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
 
             ::
 
@@ -298,7 +313,10 @@ class Offset(Duration):
             ::
 
                 >>> Offset(1, 4, grace_displacement=(-1, 16))
-                Offset((1, 4), grace_displacement=Duration(-1, 16))
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
 
         '''
         return Duration.__repr__(self)

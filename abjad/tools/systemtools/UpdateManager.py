@@ -42,7 +42,7 @@ class UpdateManager(AbjadObject):
             capped=True,
             unique=True,
             forbid=None,
-            direction='left',
+            direction=Left,
             )
         return components
 
@@ -99,15 +99,20 @@ class UpdateManager(AbjadObject):
             self._update_component_offsets_in_seconds(component)
             component._offsets_in_seconds_are_current = True
 
-    @staticmethod
-    def _update_component_offsets(component):
+    @classmethod
+    def _update_component_offsets(class_, component):
         from abjad.tools import durationtools
-        previous = component._get_nth_component_in_time_order_from(-1)
-        if previous is not None:
-            start_offset = previous._stop_offset
+        from abjad.tools import scoretools
+        if isinstance(component._parent, scoretools.GraceContainer):
+            pair = class_._get_grace_note_offsets(component)
+            start_offset, stop_offset = pair
         else:
-            start_offset = durationtools.Offset(0)
-        stop_offset = start_offset + component._get_duration()
+            previous = component._get_nth_component_in_time_order_from(-1)
+            if previous is not None:
+                start_offset = previous._stop_offset
+            else:
+                start_offset = durationtools.Offset(0)
+            stop_offset = start_offset + component._get_duration()
         component._start_offset = start_offset
         component._stop_offset = stop_offset
         component._timespan._start_offset = start_offset
@@ -144,7 +149,10 @@ class UpdateManager(AbjadObject):
         assert offsets or offsets_in_seconds or indicators
         if component._is_forbidden_to_update:
             return
-        parentage = component._get_parentage(include_self=True)
+        parentage = component._get_parentage(
+            include_self=True,
+            with_grace_notes=True,
+            )
         for parent in parentage:
             if parent._is_forbidden_to_update:
                 return
@@ -164,6 +172,29 @@ class UpdateManager(AbjadObject):
             self._update_all_offsets_in_seconds(score_root)
 
     ### EXPERIMENTAL ###
+
+    @staticmethod
+    def _get_grace_note_offsets(grace_note):
+        from abjad.tools import durationtools
+        grace_container = grace_note._parent
+        carrier_leaf = grace_container._carrier
+        carrier_leaf_start_offset = carrier_leaf._start_offset
+        grace_displacement = -grace_note.written_duration
+        sibling = grace_note._get_sibling(1)
+        while sibling is not None:
+            grace_displacement -= sibling.written_duration
+            sibling = sibling._get_sibling(1)
+        pair = carrier_leaf_start_offset.pair
+        start_offset = durationtools.Offset(
+            carrier_leaf_start_offset,
+            grace_displacement=grace_displacement,
+            )
+        grace_displacement += grace_note.written_duration
+        stop_offset = durationtools.Offset(
+            carrier_leaf_start_offset,
+            grace_displacement=grace_displacement,
+            )
+        return start_offset, stop_offset
 
     def _get_logical_measure_start_offsets(self, component):
         from abjad.tools import durationtools
