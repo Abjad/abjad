@@ -10,7 +10,7 @@ from abjad.tools.topleveltools.set_ import set_
 
 
 class Duration(AbjadObject, fractions.Fraction):
-    r'''A duration.
+    r'''Duration.
 
     ..  container:: example
 
@@ -134,39 +134,42 @@ class Duration(AbjadObject, fractions.Fraction):
 
     ### CONSTRUCTOR ###
 
-    def __new__(cls, *args):
+    def __new__(class_, *args):
         if len(args) == 1:
             arg = args[0]
-            if type(arg) is cls:
+            if type(arg) is class_:
                 return arg
             if isinstance(arg, mathtools.NonreducedFraction):
-                return fractions.Fraction.__new__(cls, *arg.pair)
+                return fractions.Fraction.__new__(class_, *arg.pair)
             try:
-                return fractions.Fraction.__new__(cls, *arg)
+                return fractions.Fraction.__new__(class_, *arg)
             except (AttributeError, TypeError):
                 pass
             try:
-                return fractions.Fraction.__new__(cls, arg)
+                return fractions.Fraction.__new__(class_, arg)
             except (AttributeError, TypeError):
                 pass
             if mathtools.is_fraction_equivalent_pair(arg):
                 return fractions.Fraction.__new__(
-                    cls, int(arg[0]), int(arg[1]))
+                    class_, int(arg[0]), int(arg[1]))
             if hasattr(arg, 'duration'):
-                return fractions.Fraction.__new__(cls, arg.duration)
+                return fractions.Fraction.__new__(class_, arg.duration)
             if isinstance(arg, str) and '/' not in arg:
                 result = Duration._initialize_from_lilypond_duration_string(
                     arg)
-                return fractions.Fraction.__new__(cls, result)
+                return fractions.Fraction.__new__(class_, result)
             if mathtools.is_integer_equivalent_singleton(arg):
-                return fractions.Fraction.__new__(cls, int(arg[0]))
+                return fractions.Fraction.__new__(class_, int(arg[0]))
         else:
             try:
-                return fractions.Fraction.__new__(cls, *args)
+                return fractions.Fraction.__new__(class_, *args)
             except TypeError:
                 pass
             if mathtools.all_are_integer_equivalent_numbers(args):
-                return fractions.Fraction.__new__(cls, *[int(x) for x in args])
+                return fractions.Fraction.__new__(
+                    class_,
+                    *[int(x) for x in args]
+                    )
         message = 'can not construct duration: {!r}.'
         message = message.format(args)
         raise ValueError(message)

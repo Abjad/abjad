@@ -110,7 +110,7 @@ class PitchClassSegment(Segment):
         return new(self, items=numbers)
 
     @classmethod
-    def from_selection(cls, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None):
         r'''Initialize pitch-class segment from component selection:
 
         ::
@@ -125,7 +125,7 @@ class PitchClassSegment(Segment):
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        return cls(
+        return class_(
             items=pitch_segment,
             item_class=item_class,
             )

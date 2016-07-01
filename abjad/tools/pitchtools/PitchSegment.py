@@ -119,7 +119,7 @@ class PitchSegment(Segment):
 
     @classmethod
     def from_selection(
-        cls,
+        class_,
         selection,
         item_class=None,
         ):
@@ -152,7 +152,7 @@ class PitchSegment(Segment):
                 named_pitches.extend(component.written_pitches)
             elif hasattr(component, 'written_pitch'):
                 named_pitches.append(component.written_pitch)
-        return cls(
+        return class_(
             items=named_pitches,
             item_class=item_class,
             )

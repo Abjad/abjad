@@ -91,7 +91,7 @@ class TwelveToneRow(PitchClassSegment):
 
     @classmethod
     def from_selection(
-        cls,
+        class_,
         selection,
         item_class=None,
         ):

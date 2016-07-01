@@ -169,7 +169,7 @@ class NumberedInterval(Interval):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         '''Makes numbered interval from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
@@ -193,7 +193,7 @@ class NumberedInterval(Interval):
         # change 1.0, 2.0, ... into 1, 2, ...
         number = mathtools.integer_equivalent_number_to_integer(number)
         # return numbered interval
-        return cls(number)
+        return class_(number)
 
     ### PUBLIC PROPERTIES ###
 

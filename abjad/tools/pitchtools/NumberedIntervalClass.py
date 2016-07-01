@@ -156,7 +156,7 @@ class NumberedIntervalClass(IntervalClass):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         '''Makes numbered interval-class from `pitch_carrier_1` and
         `pitch_carrier_2`.
 
@@ -175,7 +175,7 @@ class NumberedIntervalClass(IntervalClass):
         interval = pitchtools.NumberedInterval.from_pitch_carriers(
             pitch_carrier_1, pitch_carrier_2)
         # return numbered interval-class
-        return cls(interval)
+        return class_(interval)
 
     ### PUBLIC PROPERTIES ###
 

@@ -107,7 +107,7 @@ class Segment(TypedTuple):
 
     @abc.abstractmethod
     def from_selection(
-        cls,
+        class_,
         selection,
         item_class=None,
         ):

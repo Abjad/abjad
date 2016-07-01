@@ -53,7 +53,7 @@ class IntervalSet(Set):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_selection(cls, selection, item_class=None):
+    def from_selection(class_, selection, item_class=None):
         r'''Initialize interval set from component selection:
 
         ::
@@ -91,7 +91,7 @@ class IntervalSet(Set):
         pairs = sequencetools.yield_all_unordered_pairs_of_sequence(
             pitch_segment)
         intervals = (second - first for first, second in pairs)
-        return cls(
+        return class_(
             items=intervals,
             item_class=item_class,
             )

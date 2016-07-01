@@ -75,14 +75,14 @@ class LilyPondContext(abctools.AbjadValueObject):
 
     ### CONSTRUCTOR ###
 
-    def __new__(cls, name='Voice'):
-        if isinstance(name, cls):
+    def __new__(class_, name='Voice'):
+        if isinstance(name, class_):
             name = name.name
-        if name in cls._identity_map:
-            obj = cls._identity_map[name]
+        if name in class_._identity_map:
+            obj = class_._identity_map[name]
         else:
-            obj = object.__new__(cls)
-            cls._identity_map[name] = obj
+            obj = object.__new__(class_)
+            class_._identity_map[name] = obj
         return obj
 
     ### INITIALIZER ###
@@ -143,7 +143,7 @@ class LilyPondContext(abctools.AbjadValueObject):
 
     @classmethod
     def register(
-        cls,
+        class_,
         accepted_by=None,
         accepts=None,
         alias=None,
@@ -225,23 +225,23 @@ class LilyPondContext(abctools.AbjadValueObject):
             'is_custom': True,
             }
         if alias is not None:
-            if not isinstance(alias, cls):
-                alias = cls(name=alias)
-            assert isinstance(alias, cls)
+            if not isinstance(alias, class_):
+                alias = class_(name=alias)
+            assert isinstance(alias, class_)
             context_entry['accepts'].update(_.name for _ in alias.accepts)
             context_entry['consists'].update(_.name for _ in alias.engravers)
             context_entry['aliases'] = set([alias.name])
         if accepts:
             for x in accepts:
-                if not isinstance(x, cls):
-                    x = cls(name=x)
-                assert isinstance(x, cls)
+                if not isinstance(x, class_):
+                    x = class_(name=x)
+                assert isinstance(x, class_)
                 context_entry['accepts'].add(x.name)
         if denies:
             for x in denies:
-                if not isinstance(x, cls):
-                    x = cls(name=x)
-                assert isinstance(x, cls)
+                if not isinstance(x, class_):
+                    x = class_(name=x)
+                assert isinstance(x, class_)
                 if x.name in context_entry['accepts']:
                     context_entry['accepts'].remove(x.name)
         if consists:
@@ -258,21 +258,21 @@ class LilyPondContext(abctools.AbjadValueObject):
                 if x.name in context_entry['consists']:
                     context_entry['consists'].remove(x.name)
         if default_child is not None:
-            if not isinstance(default_child, cls):
-                default_child = cls(name=default_child)
-            assert isinstance(default_child, cls)
+            if not isinstance(default_child, class_):
+                default_child = class_(name=default_child)
+            assert isinstance(default_child, class_)
             context_entry['default_child'] = default_child.name
         accepting_contexts = set()
         if accepted_by:
             for x in accepted_by:
-                if not isinstance(x, cls):
-                    x = cls(name=x)
-                assert isinstance(x, cls)
+                if not isinstance(x, class_):
+                    x = class_(name=x)
+                assert isinstance(x, class_)
                 accepting_contexts.add(x.name)
         contexts[name] = context_entry
         for accepting_context in accepting_contexts:
             contexts[accepting_context]['accepts'].add(name)
-        custom_context = cls(name=name)
+        custom_context = class_(name=name)
         return custom_context
 
     def unregister(
