@@ -384,7 +384,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Iterates leaves: 
+            **Example 1.** Iterates leaves:
 
             ::
 
@@ -550,6 +550,7 @@ class IterationAgent(abctools.AbjadObject):
         nontrivial=False,
         pitched=False,
         reverse=False,
+        parentage_mask=None,
         ):
         r'''Iterates client by logical tie.
 
@@ -626,26 +627,102 @@ class IterationAgent(abctools.AbjadObject):
                 LogicalTie(Note("c'4"), Note("c'16"))
                 LogicalTie(Note("f'4"), Note("f'16"))
 
+        ..  container:: example
+
+            **Example 5.** Iterates logical ties masked by parentage.
+
+            ..  note::
+
+                When iterating logical ties in a container, the yielded logical
+                ties may contain leaves outside that container's parentage. By
+                specifying a parentage mask, composers can constrain the
+                contents of the yielded logical ties to only those leaves
+                actually within the parentage of the container under iteration.
+
+            ::
+
+                >>> staff = Staff("{ c'1 ~ } { c'2 d'2 ~ } { d'1 }")
+                >>> for logical_tie in iterate(staff[1]).by_logical_tie():
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c'1"), Note("c'2"))
+                LogicalTie(Note("d'2"), Note("d'1"))
+
+            ::
+
+                >>> for logical_tie in iterate(staff[1]).by_logical_tie(
+                ...     parentage_mask=staff[1]):
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c'2"),)
+                LogicalTie(Note("d'2"),)
+
         Returns generator.
         '''
+        from abjad.tools import selectiontools
         nontrivial = bool(nontrivial)
         prototype = scoretools.Leaf
         if pitched:
             prototype = (scoretools.Chord, scoretools.Note)
+        leaf, yielded = None, False
         if not reverse:
             for leaf in self.by_class(prototype):
+                yielded = False
                 tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not tie_spanners or \
                     tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
                     logical_tie = leaf._get_logical_tie()
+                    if parentage_mask:
+                        logical_tie = selectiontools.LogicalTie(
+                            x for x in logical_tie
+                            if parentage_mask in x._get_parentage()
+                            )
+                        if not logical_tie:
+                            continue
+                    if not nontrivial or not logical_tie.is_trivial:
+                        yielded = True
+                        yield logical_tie
+            if leaf is not None and not yielded:
+                if tie_spanners and \
+                    tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
+                    logical_tie = leaf._get_logical_tie()
+                    if parentage_mask:
+                        logical_tie = selectiontools.LogicalTie(
+                            x for x in logical_tie
+                            if parentage_mask in x._get_parentage()
+                            )
+                        if not logical_tie:
+                            return
                     if not nontrivial or not logical_tie.is_trivial:
                         yield logical_tie
         else:
             for leaf in self.by_class(prototype, reverse=True):
+                yielded = False
                 tie_spanners = leaf._get_spanners(spannertools.Tie)
                 if not(tie_spanners) or \
                     tuple(tie_spanners)[0]._is_my_first_leaf(leaf):
                     logical_tie = leaf._get_logical_tie()
+                    if parentage_mask:
+                        logical_tie = selectiontools.LogicalTie(
+                            x for x in logical_tie
+                            if parentage_mask in x._get_parentage()
+                            )
+                        if not logical_tie:
+                            continue
+                    if not nontrivial or not logical_tie.is_trivial:
+                        yielded = True
+                        yield logical_tie
+            if leaf is not None and not yielded:
+                if tie_spanners and \
+                    tuple(tie_spanners)[0]._is_my_last_leaf(leaf):
+                    logical_tie = leaf._get_logical_tie()
+                    if parentage_mask:
+                        logical_tie = selectiontools.LogicalTie(
+                            x for x in logical_tie
+                            if parentage_mask in x._get_parentage()
+                            )
+                        if not logical_tie:
+                            return
                     if not nontrivial or not logical_tie.is_trivial:
                         yield logical_tie
 
