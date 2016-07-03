@@ -156,7 +156,7 @@ class TextSpanner(Spanner):
             >>> attach(text_spanner, staff[:1])
             Traceback (most recent call last):
             ...
-            Exception: must attach to two or more leaves: Selection(Note("c'4"),).
+            Exception: TextSpanner() attachment test fails for Selection(Note("c'4"),).
 
     '''
 
