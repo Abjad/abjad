@@ -53,6 +53,8 @@ class NonreducedRatio(AbjadValueObject):
 
         Returns true or false.
         '''
+        if not isinstance(expr, type(self)):
+            return False
         expr = type(self)(expr)
         return self.numbers == expr.numbers
 

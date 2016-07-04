@@ -17,10 +17,3 @@ def test_mathtools_Ratio___eq___01():
     assert not ratio_3 == ratio_1
     assert not ratio_3 == ratio_2
     assert ratio_3 == ratio_3
-
-
-def test_mathtools_Ratio___eq___02():
-    r'''Comparison works with tuples.
-    '''
-
-    assert mathtools.Ratio((1, 2, 1)) == (1, 2, 1)
