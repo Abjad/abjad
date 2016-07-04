@@ -137,7 +137,7 @@ def test_selectiontools_Selection__withdraw_from_crossing_spanners_03():
         '''
         )
 
-    selector = select().by_leaves(flatten=True)
+    selector = select().by_leaf(flatten=True)
     leaves = selector(voice)
     leaves[2:3]._withdraw_from_crossing_spanners()
     assert not inspect_(voice).is_well_formed()

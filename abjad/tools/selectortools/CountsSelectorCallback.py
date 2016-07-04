@@ -34,7 +34,7 @@ class CountsSelectorCallback(AbjadValueObject):
         ::
 
             >>> selector = selectortools.Selector()
-            >>> selector = selector.by_leaves()
+            >>> selector = selector.by_leaf()
             >>> selector = selector.by_counts([3])
             >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
             >>> selector(staff)

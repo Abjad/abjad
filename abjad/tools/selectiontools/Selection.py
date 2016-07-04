@@ -540,7 +540,7 @@ class Selection(object):
 
             ::
 
-                >>> selector = select().by_leaves(flatten=True)
+                >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
                 >>> leaves = leaves[1:5]
                 >>> new_staff = leaves._copy(include_enclosing_containers=True)

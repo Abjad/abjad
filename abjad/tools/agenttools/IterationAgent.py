@@ -779,7 +779,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> selector = select().by_leaves(flatten=True)
+                >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
                 >>> leaf = leaves[0]
                 >>> signature = inspect_(leaf).get_parentage().logical_voice
@@ -882,7 +882,7 @@ class IterationAgent(abctools.AbjadObject):
 
             ::
 
-                >>> selector = select().by_leaves(flatten=True)
+                >>> selector = select().by_leaf(flatten=True)
                 >>> leaves = selector(staff)
                 >>> leaf = leaves[0]
                 >>> for x in iterate(leaf).by_logical_voice_from_component(Note):
