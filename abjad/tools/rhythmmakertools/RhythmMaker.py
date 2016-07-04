@@ -73,7 +73,7 @@ class RhythmMaker(AbjadValueObject):
         self._rotation = rotation
         divisions = self._coerce_divisions(divisions)
         selections = self._make_music(divisions, rotation)
-        selections = self._apply_specifiers(selections)
+        selections = self._apply_specifiers(selections, divisions)
         self._check_well_formedness(selections)
         return selections
 
@@ -245,8 +245,11 @@ class RhythmMaker(AbjadValueObject):
             new_selections.append(new_selection)
         return new_selections
 
-    def _apply_specifiers(self, selections):
-        selections = self._apply_tuplet_spelling_specifier(selections)
+    def _apply_specifiers(self, selections, divisions=None):
+        selections = self._apply_tuplet_spelling_specifier(
+            selections,
+            divisions,
+            )
         self._apply_tie_specifier(selections)
         selections = self._apply_logical_tie_masks(selections)
         self._validate_selections(selections)
@@ -257,11 +260,17 @@ class RhythmMaker(AbjadValueObject):
         tie_specifier = self._get_tie_specifier()
         tie_specifier(selections)
 
-    def _apply_tuplet_spelling_specifier(self, selections):
+    
+    def _apply_tuplet_spelling_specifier(self, selections, divisions):
+        # TODO: migrate functionality to TupletSpellingSpecifier.__call__()
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
         tuplet_spelling_specifier._do_simplify_redundant_tuplets(selections)
         selections = self._rewrite_rest_filled_tuplets(selections)
         selections = self._flatten_trivial_tuplets(selections)
+        tuplet_spelling_specifier._apply_preferred_denominator(
+            selections,
+            divisions,
+            )
         return selections
 
     def _check_well_formedness(self, selections):

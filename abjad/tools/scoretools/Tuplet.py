@@ -232,11 +232,8 @@ class Tuplet(Container):
             ])
         return node
 
-    # TODO: hoist to Tuplet and make work for all tuplet instances
     def _fix(self):
         from abjad.tools import scoretools
-        if not isinstance(self, scoretools.FixedDurationTuplet):
-            return
         # find tuplet multiplier
         integer_exponent = int(math.log(self.multiplier, 2))
         leaf_multiplier = durationtools.Multiplier(2) ** integer_exponent
@@ -246,6 +243,11 @@ class Tuplet(Container):
                 old_written_duration = component.written_duration
                 new_written_duration = leaf_multiplier * old_written_duration
                 component._set_duration(new_written_duration)
+        # adjust tuplet multiplier (for non-fixed-duration tuplets)
+        if self.__class__ is Tuplet:
+            numerator, denominator = leaf_multiplier.pair
+            multiplier = durationtools.Multiplier(denominator, numerator)
+            self.multiplier *= multiplier
 
     def _format_after_slot(self, bundle):
         result = []
