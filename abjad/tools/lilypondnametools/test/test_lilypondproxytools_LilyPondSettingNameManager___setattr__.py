@@ -311,7 +311,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert not len(staff)
 
     set_(staff).tuplet_full_length = False
 
@@ -324,7 +324,7 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert not len(staff)
 
     del(set_(staff).tuplet_full_length)
 
@@ -335,4 +335,4 @@ def test_lilypondproxytools_LilyPondSettingNameManager___setattr___13():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert not len(staff)

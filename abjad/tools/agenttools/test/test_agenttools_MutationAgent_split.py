@@ -1674,7 +1674,7 @@ def test_agenttools_MutationAgent_split_29():
         fracture_spanners=False,
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert not len(voice)
 
     voice_1 = result[0][0]
     voice_2 = result[1][0]

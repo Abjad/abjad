@@ -147,7 +147,7 @@ def test_scoretools_Container___delitem___06():
         '''
         )
 
-    assert inspect_(voice).is_well_formed()
+    assert not len(voice)
 
 
 def test_scoretools_Container___delitem___07():

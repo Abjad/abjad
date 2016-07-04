@@ -4,42 +4,44 @@ from abjad.tools.abctools import AbjadObject
 
 class WellformednessManager(AbjadObject):
     r'''Wellformedness manager.
+
+    ..  container:: example
+
+        **Example.**
+
+        ::
+
+            >>> systemtools.WellformednessManager()
+            WellformednessManager()
+
     '''
 
     ### CLASS VARIABLES ###
 
     __documentation_section__ = 'Managers'
 
-    ### INITIALIZER ###
-
-    def __init__(self, expr=None, allow_empty_containers=True):
-        self.expr = expr
-        self.allow_empty_containers = allow_empty_containers
-
     ### SPECIAL METHODS ###
 
-    def __call__(self):
+    def __call__(self, expr=None):
         r'''Calls all wellformedness checks on `expr`.
 
-        Returns something.
+        Returns triples.
         '''
-        if self.expr is None:
+        if expr is None:
             return
         check_names = [x for x in dir(self) if x.startswith('check_')]
         triples = []
         for current_check_name in sorted(check_names):
-            if self.allow_empty_containers:
-                if current_check_name == 'check_empty_containers':
-                    continue
             current_check = getattr(self, current_check_name)
-            current_violators, current_total = current_check()
+            current_violators, current_total = current_check(expr=expr)
             triple = (current_violators, current_total, current_check_name)
             triples.append(triple)
         return triples
 
     ### PUBLIC METHODS ###
 
-    def check_beamed_quarter_notes(self):
+    @staticmethod
+    def check_beamed_quarter_notes(expr=None):
         r'''Checks to make sure there are no beamed quarter notes.
 
         Returns violators and total.
@@ -53,7 +55,7 @@ class WellformednessManager(AbjadObject):
             spannertools.DuratedComplexBeam,
             spannertools.MultipartBeam,
             )
-        for leaf in iterate(self.expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             total += 1
             parentage = leaf._get_parentage(include_self=True)
             beams = parentage._get_spanners(spannertools.Beam)
@@ -65,7 +67,8 @@ class WellformednessManager(AbjadObject):
                         break
         return violators, total
 
-    def check_conflicting_clefs(self):
+    @staticmethod
+    def check_conflicting_clefs(expr=None):
         r'''Checks for conflicting clefs.
 
         Conflicting clefs defined equal to the situation in which a first clef
@@ -152,7 +155,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import inspect_
         from abjad.tools.topleveltools import iterate
         violators = []
-        containers = iterate(self.expr).by_class(scoretools.Container)
+        containers = iterate(expr).by_class(scoretools.Container)
         total_containers = 0
         for container in containers:
             total_containers += 1
@@ -168,7 +171,8 @@ class WellformednessManager(AbjadObject):
                 current_component = first_child
         return violators, total_containers
 
-    def check_discontiguous_spanners(self):
+    @staticmethod
+    def check_discontiguous_spanners(expr=None):
         r'''Checks for discontiguous spanners.
 
         There are now two different types of spanner.
@@ -182,7 +186,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.selectiontools import Selection
         violators = []
         total = 0
-        for spanner in self.expr._get_descendants()._get_spanners():
+        for spanner in expr._get_descendants()._get_spanners():
             if spanner._contiguity_constraint == 'logical voice':
                 if not Selection._all_are_contiguous_components_in_same_logical_voice(
                     spanner[:]):
@@ -190,7 +194,8 @@ class WellformednessManager(AbjadObject):
             total += 1
         return violators, total
 
-    def check_duplicate_ids(self):
+    @staticmethod
+    def check_duplicate_ids(expr=None):
         r'''Checks to make sure there are no components with duplicated IDs.
 
         Returns violators and total.
@@ -198,7 +203,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools import sequencetools
         from abjad.tools.topleveltools import iterate
         violators = []
-        components = iterate(self.expr).by_class()
+        components = iterate(expr).by_class()
         total_ids = [id(x) for x in components]
         unique_ids = sequencetools.remove_repeated_elements(total_ids)
         if len(unique_ids) < len(total_ids):
@@ -208,7 +213,8 @@ class WellformednessManager(AbjadObject):
                         if id(x) == current_id])
         return violators, len(total_ids)
 
-    def check_empty_containers(self):
+    @staticmethod
+    def check_empty_containers(expr=None):
         r'''Checks to make sure there are no empty containers in score.
 
         Returns violators and total.
@@ -217,14 +223,15 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         bad, total = 0, 0
-        for component in iterate(self.expr).by_class(scoretools.Container):
+        for component in iterate(expr).by_class(scoretools.Container):
             if len(component) == 0:
                 violators.append(component)
                 bad += 1
             total += 1
         return violators, total
 
-    def check_intermarked_hairpins(self):
+    @staticmethod
+    def check_intermarked_hairpins(expr=None):
         r'''Checks to make sure there are no hairpins in score with intervening
         dynamic marks.
 
@@ -235,7 +242,7 @@ class WellformednessManager(AbjadObject):
         violators = []
         total, bad = 0, 0
         prototype = (spannertools.Hairpin,)
-        hairpins = self.expr._get_descendants()._get_spanners(prototype)
+        hairpins = expr._get_descendants()._get_spanners(prototype)
         for hairpin in hairpins:
             if 2 < len(hairpin._get_leaves()):
                 for leaf in hairpin._get_leaves()[1:-1]:
@@ -246,7 +253,8 @@ class WellformednessManager(AbjadObject):
             total += 1
         return violators, total
 
-    def check_misdurated_measures(self):
+    @staticmethod
+    def check_misdurated_measures(expr=None):
         r'''Checks to make sure there are no misdurated measures in score.
 
         Returns violators and total.
@@ -255,7 +263,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         total, bad = 0, 0
-        for measure in iterate(self.expr).by_class(scoretools.Measure):
+        for measure in iterate(expr).by_class(scoretools.Measure):
             time_signature = measure.time_signature
             if time_signature is not None:
                 if measure._preprolated_duration != time_signature.duration:
@@ -264,7 +272,8 @@ class WellformednessManager(AbjadObject):
             total += 1
         return violators, total
 
-    def check_misfilled_measures(self):
+    @staticmethod
+    def check_misfilled_measures(expr=None):
         r'''Checks that time signature duration equals measure contents
         duration for every measure.
 
@@ -274,14 +283,15 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         total, bad = 0, 0
-        for measure in iterate(self.expr).by_class(scoretools.Measure):
+        for measure in iterate(expr).by_class(scoretools.Measure):
             if measure.is_misfilled:
                 violators.append(measure)
                 bad += 1
             total += 1
         return violators, total
 
-    def check_mismatched_enchained_hairpins(self):
+    @staticmethod
+    def check_mismatched_enchained_hairpins(expr=None):
         r'''Checks mismatched enchained hairpins.
 
         ..  container:: example
@@ -301,6 +311,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
                 0 /	5 duplicate ids
+                0 /     1 empty containers
                 0 /	2 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -327,7 +338,7 @@ class WellformednessManager(AbjadObject):
         violators = []
         all_hairpins = set()
         prototype = spannertools.Hairpin
-        for leaf in iterate(self.expr).by_leaf():
+        for leaf in iterate(expr).by_leaf():
             hairpins = leaf._get_spanners(prototype)
             hairpins = list(hairpins)
             all_hairpins.update(hairpins)
@@ -359,7 +370,8 @@ class WellformednessManager(AbjadObject):
         total = len(all_hairpins)
         return violators, total
 
-    def check_mispitched_ties(self):
+    @staticmethod
+    def check_mispitched_ties(expr=None):
         r'''Checks for mispitched notes.
 
         ..  container:: example
@@ -379,6 +391,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	1 discontiguous spanners
                 0 /	3 duplicate ids
+                0 /     1 empty containers
                 0 /	0 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -412,6 +425,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	1 discontiguous spanners
                 0 /	3 duplicate ids
+                0 /     1 empty containers
                 0 /	0 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -439,7 +453,7 @@ class WellformednessManager(AbjadObject):
         violators = set()
         all_spanners = set()
         pitched_prototype = (scoretools.Note, scoretools.Chord)
-        for leaf in iterate(self.expr).by_class(pitched_prototype):
+        for leaf in iterate(expr).by_class(pitched_prototype):
             spanners = leaf._get_spanners(spannertools.Tie)
             if not spanners:
                 continue
@@ -459,7 +473,8 @@ class WellformednessManager(AbjadObject):
         total = len(all_spanners)
         return violators, total
 
-    def check_misrepresented_flags(self):
+    @staticmethod
+    def check_misrepresented_flags(expr=None):
         r'''Checks to make sure there are no misrepresented flags in score.
 
         Returns violators and total.
@@ -469,7 +484,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import set_
         violators = []
         total = 0
-        for leaf in iterate(self.expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             total += 1
             flags = leaf.written_duration.flag_count
             left = getattr(set_(leaf), 'stem_left_beam_count', None)
@@ -486,7 +501,8 @@ class WellformednessManager(AbjadObject):
                         violators.append(leaf)
         return violators, total
 
-    def check_missing_parents(self):
+    @staticmethod
+    def check_missing_parents(expr=None):
         r'''Checks to make sure there are no components in score with missing
         parent.
 
@@ -495,7 +511,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         total = 0
-        components = iterate(self.expr).by_class()
+        components = iterate(expr).by_class()
         for i, component in enumerate(components):
             if 0 < i:
                 if component._parent is None:
@@ -503,7 +519,8 @@ class WellformednessManager(AbjadObject):
         total = i + 1
         return violators, total
 
-    def check_nested_measures(self):
+    @staticmethod
+    def check_nested_measures(expr=None):
         r'''Checks to make sure there are no nested measures in score.
 
         Returns violators and total.
@@ -512,14 +529,15 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         total = 0
-        for measure in iterate(self.expr).by_class(scoretools.Measure):
+        for measure in iterate(expr).by_class(scoretools.Measure):
             parentage = measure._get_parentage(include_self=False)
             if parentage.get_first(scoretools.Measure):
                 violators.append(measure)
             total += 1
         return violators, total
 
-    def check_overlapping_beams(self):
+    @staticmethod
+    def check_overlapping_beams(expr=None):
         r'''Checks to make sure there are no overlapping beams in score.
 
         Returns violators and total.
@@ -530,7 +548,7 @@ class WellformednessManager(AbjadObject):
         violators = []
         prototype = (spannertools.Beam,)
         all_beams = set()
-        for leaf in iterate(self.expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             beams = leaf._get_spanners(prototype)
             all_beams.update(beams)
             if 1 < len(beams):
@@ -540,7 +558,8 @@ class WellformednessManager(AbjadObject):
         total = len(all_beams)
         return violators, total
 
-    def check_overlapping_glissandi(self):
+    @staticmethod
+    def check_overlapping_glissandi(expr=None):
         r'''Checks to make sure there are no overlapping glissandi in score.
 
         Returns violators and total.
@@ -550,7 +569,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         prototype = (spannertools.Glissando,)
-        for leaf in iterate(self.expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             glissandi = leaf._get_spanners(prototype)
             glissandi = list(glissandi)
             if 1 < len(glissandi):
@@ -570,11 +589,12 @@ class WellformednessManager(AbjadObject):
                 for glissando in glissandi:
                     if glissando not in violators:
                         violators.append(glissando)
-        total = self.expr._get_descendants()._get_spanners(prototype)
+        total = expr._get_descendants()._get_spanners(prototype)
         total = len(total)
         return violators, total
 
-    def check_overlapping_hairpins(self):
+    @staticmethod
+    def check_overlapping_hairpins(expr=None):
         r'''Checks to make sure there are no overlapping hairpins in score.
 
         ..  container:: example
@@ -594,6 +614,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
                 0 /	5 duplicate ids
+                0 /     1 empty containers
                 0 /	2 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -619,7 +640,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         prototype = spannertools.Hairpin
-        for leaf in iterate(self.expr).by_leaf():
+        for leaf in iterate(expr).by_leaf():
             hairpins = leaf._get_spanners(prototype)
             hairpins = list(hairpins)
             if 1 < len(hairpins):
@@ -639,11 +660,12 @@ class WellformednessManager(AbjadObject):
                 for hairpin in hairpins:
                     if hairpin not in violators:
                         violators.append(hairpin)
-        total = self.expr._get_descendants()._get_spanners(prototype)
+        total = expr._get_descendants()._get_spanners(prototype)
         total = len(total)
         return violators, total
 
-    def check_overlapping_octavation_spanners(self):
+    @staticmethod
+    def check_overlapping_octavation_spanners(expr=None):
         r'''Checks to make sure there are no overlapping octavation spanners in
         score.
 
@@ -654,16 +676,17 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         prototype = (spannertools.OctavationSpanner, )
-        for leaf in iterate(self.expr).by_class(scoretools.Leaf):
+        for leaf in iterate(expr).by_class(scoretools.Leaf):
             spanners = leaf._get_descendants()._get_spanners(prototype)
             if 1 < len(spanners):
                 for spanner in spanners:
                     if spanner not in violators:
                         violators.append(spanner)
-        total = self.expr._get_descendants()._get_spanners(prototype)
+        total = expr._get_descendants()._get_spanners(prototype)
         return violators, len(total)
 
-    def check_overlapping_ties(self):
+    @staticmethod
+    def check_overlapping_ties(expr=None):
         r'''Checks to make sure there are no overlapping ties in score.
 
         ..  container:: example
@@ -683,6 +706,7 @@ class WellformednessManager(AbjadObject):
                 0 /	1 conflicting clefs
                 0 /	2 discontiguous spanners
                 0 /	5 duplicate ids
+                0 /     1 empty containers
                 0 /	0 intermarked hairpins
                 0 /	0 misdurated measures
                 0 /	0 misfilled measures
@@ -706,14 +730,15 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         total = set()
         violators = set()
-        for leaf in iterate(self.expr).by_leaf():
+        for leaf in iterate(expr).by_leaf():
             spanners = leaf._get_spanners(spannertools.Tie)
             total.update(spanners)
             if 1 < len(spanners):
                 violators.update(spanners)
         return violators, len(total)
 
-    def check_short_hairpins(self):
+    @staticmethod
+    def check_short_hairpins(expr=None):
         r'''Checks to make sure that hairpins span at least two leaves.
 
         Returns violators and total.
@@ -722,14 +747,15 @@ class WellformednessManager(AbjadObject):
         violators = []
         total = 0
         prototype = (spannertools.Hairpin,)
-        hairpins = self.expr._get_descendants()._get_spanners(prototype)
+        hairpins = expr._get_descendants()._get_spanners(prototype)
         for hairpin in hairpins:
             if len(hairpin._get_leaves()) <= 1:
                 violators.append(hairpin)
             total += 1
         return violators, total
 
-    def check_tied_rests(self):
+    @staticmethod
+    def check_tied_rests(expr=None):
         r'''Checks to make sure there are no tied rests.
 
         Returns violators and total.
@@ -740,7 +766,7 @@ class WellformednessManager(AbjadObject):
         from abjad.tools.topleveltools import iterate
         violators = []
         total = 0
-        for rest in iterate(self.expr).by_class(scoretools.Rest):
+        for rest in iterate(expr).by_class(scoretools.Rest):
             if inspect_(rest).has_spanner(spannertools.Tie):
                 violators.append(rest)
             total += 1

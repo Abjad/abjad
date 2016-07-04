@@ -31,4 +31,4 @@ def test_scoretools_Tuplet___copy___01():
         '''
         )
 
-    assert inspect_(tuplet_2).is_well_formed()
+    assert not len(tuplet_2)
