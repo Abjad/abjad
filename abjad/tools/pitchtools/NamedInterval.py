@@ -417,7 +417,7 @@ class NamedInterval(Interval):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_pitch_carriers(cls, pitch_carrier_1, pitch_carrier_2):
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
         '''Calculate named interval from `pitch_carrier_1` to
         `pitch_carrier_2`:
 
@@ -461,7 +461,7 @@ class NamedInterval(Interval):
             named_interval = -absolute_named_interval
         else:
             named_interval = absolute_named_interval
-        return cls(named_interval)
+        return class_(named_interval)
 
     ### PUBLIC PROPERTIES ###
 

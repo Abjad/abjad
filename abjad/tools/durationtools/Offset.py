@@ -3,7 +3,7 @@ from abjad.tools.durationtools.Duration import Duration
 
 
 class Offset(Duration):
-    '''A musical offset.
+    '''Offset.
 
     ..  container:: example
 
@@ -62,7 +62,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 7.** Initializes from other duration:
+        **Example 7.** Initializes from duration:
 
         ::
 
@@ -71,7 +71,29 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 8.** Intializes from fraction:
+        **Example 8.** Initializes from other offset:
+
+        ::
+
+            >>> Offset(Offset(3, 16))
+            Offset(3, 16)
+
+    ..  container:: example
+
+        **Example 9.** Initializes from other offset with grace displacement:
+
+        ::
+
+            >>> offset = Offset((3, 16), grace_displacement=(-1, 16))
+            >>> Offset(offset)
+            Offset(
+                (3, 16),
+                grace_displacement=Duration(-1, 16)
+                )
+
+    ..  container:: example
+
+        **Example 10.** Intializes from fraction:
 
         ::
 
@@ -80,7 +102,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 9.** Initializes from solidus string:
+        **Example 11.** Initializes from solidus string:
 
         ::
 
@@ -89,7 +111,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 10.** Initializes from nonreduced fraction:
+        **Example 12.** Initializes from nonreduced fraction:
 
         ::
 
@@ -98,7 +120,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 11.** Durations inherit from built-in fraction:
+        **Example 13.** Offsets inherit from built-in fraction:
 
         ::
 
@@ -107,7 +129,7 @@ class Offset(Duration):
 
     ..  container:: example
 
-        **Example 12.** Durations are numeric:
+        **Example 14.** Offsets are numeric:
 
         ::
 
@@ -122,9 +144,566 @@ class Offset(Duration):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_grace_displacement',
+        )
+
+    ### CONSTRUCTOR ###
+
+    def __new__(class_, *args, **kwargs):
+        grace_displacement = None
+        for arg in args:
+            if hasattr(arg, 'grace_displacement'):
+                grace_displacement = getattr(arg, 'grace_displacement')
+                break
+        grace_displacement = grace_displacement or kwargs.get(
+            'grace_displacement')
+        if grace_displacement is not None:
+            grace_displacement = Duration(grace_displacement)
+        grace_displacement = grace_displacement or None
+        if len(args) == 1 and isinstance(args[0], Duration):
+            args = args[0].pair
+        self = Duration.__new__(class_, *args)
+        self._grace_displacement = grace_displacement
+        return self
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        if self.grace_displacement is None:
+            return systemtools.StorageFormatSpecification(
+                self,
+                is_indented=False,
+                positional_argument_values=self.pair,
+                keyword_argument_names=(),
+                )
+        else:
+            return systemtools.StorageFormatSpecification(
+                self,
+                is_indented=True,
+                positional_argument_values=(self.pair,),
+                keyword_argument_names=('grace_displacement',),
+                )
 
     ### SPECIAL METHODS ###
+
+    def __copy__(self, *args):
+        r'''Copies offset.
+
+        ::
+
+            >>> import copy
+
+        ..  container:: example
+
+            **Example 1.** Copies offset with grace displacement:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = copy.copy(offset_1)
+
+            ::
+
+                >>> offset_1
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
+
+            ::
+
+                >>> offset_2
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
+
+            ::
+
+                >>> offset_1 == offset_2
+                True
+
+            ::
+
+                >>> offset_1 is offset_2
+                False
+
+        Returns new offset.
+        '''
+        arguments = self.__getnewargs__()
+        return type(self)(
+            *arguments,
+            grace_displacement=self.grace_displacement
+            )
+
+    def __deepcopy__(self, *args):
+        r'''Deep copies offset.
+
+        ::
+
+            >>> import copy
+
+        ..  container:: example
+
+            **Example 1.** Copies offset with grace displacement:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = copy.deepcopy(offset_1)
+
+            ::
+
+                >>> offset_1
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
+
+            ::
+
+                >>> offset_2
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
+
+            ::
+
+                >>> offset_1 == offset_2
+                True
+
+            ::
+
+                >>> offset_1 is offset_2
+                False
+
+        Returns new offset.
+        '''
+        return self.__copy__(*args)
+
+    def __eq__(self, arg):
+        r'''Is true when offset equals `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 == offset_1
+                True
+                >>> offset_1 == offset_2
+                True
+                >>> offset_2 == offset_1
+                True
+                >>> offset_2 == offset_2
+                True
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 == offset_1
+                True
+                >>> offset_1 == offset_2
+                False
+                >>> offset_2 == offset_1
+                False
+                >>> offset_2 == offset_2
+                True
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 == offset_1
+                True
+                >>> offset_1 == offset_2
+                False
+                >>> offset_2 == offset_1
+                False
+                >>> offset_2 == offset_2
+                True
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return ((self.grace_displacement or 0) ==
+                (arg.grace_displacement or 0))
+        return Duration.__eq__(self, arg)
+
+    def __ge__(self, arg):
+        r'''Is true when offset is greater than or equal to `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 >= offset_1
+                True
+                >>> offset_1 >= offset_2
+                True
+                >>> offset_2 >= offset_1
+                True
+                >>> offset_2 >= offset_2
+                True
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 >= offset_1
+                True
+                >>> offset_1 >= offset_2
+                False
+                >>> offset_2 >= offset_1
+                True
+                >>> offset_2 >= offset_2
+                True
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 >= offset_1
+                True
+                >>> offset_1 >= offset_2
+                False
+                >>> offset_2 >= offset_1
+                True
+                >>> offset_2 >= offset_2
+                True
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return ((self.grace_displacement or 0) >=
+                (arg.grace_displacement or 0))
+        return Duration.__ge__(self, arg)
+
+    def __getnewargs__(self):
+        r'''Gets new arguments.
+
+        Returns tuple.
+        '''
+        return self.pair
+
+    def __gt__(self, arg):
+        r'''Is true when offset is greater than `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 > offset_1
+                False
+                >>> offset_1 > offset_2
+                False
+                >>> offset_2 > offset_1
+                False
+                >>> offset_2 > offset_2
+                False
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 > offset_1
+                False
+                >>> offset_1 > offset_2
+                False
+                >>> offset_2 > offset_1
+                True
+                >>> offset_2 > offset_2
+                False
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 > offset_1
+                False
+                >>> offset_1 > offset_2
+                False
+                >>> offset_2 > offset_1
+                True
+                >>> offset_2 > offset_2
+                False
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return ((self.grace_displacement or 0) >
+                (arg.grace_displacement or 0))
+        return Duration.__gt__(self, arg)
+
+    def __hash__(self):
+        r'''Hashes duration.
+
+        Required to be explicitly redefined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return hash((
+            type(self),
+            self.numerator,
+            self.denominator,
+            self.grace_displacement,
+            ))
+
+    def __le__(self, arg):
+        r'''Is true when offset is less than or equal to `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 <= offset_1
+                True
+                >>> offset_1 <= offset_2
+                True
+                >>> offset_2 <= offset_1
+                True
+                >>> offset_2 <= offset_2
+                True
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 <= offset_1
+                True
+                >>> offset_1 <= offset_2
+                True
+                >>> offset_2 <= offset_1
+                False
+                >>> offset_2 <= offset_2
+                True
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 <= offset_1
+                True
+                >>> offset_1 <= offset_2
+                True
+                >>> offset_2 <= offset_1
+                False
+                >>> offset_2 <= offset_2
+                True
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return ((self.grace_displacement or 0) <=
+                (arg.grace_displacement or 0))
+        return Duration.__le__(self, arg)
+
+    def __lt__(self, arg):
+        r'''Is true when offset is less than `arg`.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** With equal numerators, denominators and grace
+            displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 16))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 < offset_1
+                False
+                >>> offset_1 < offset_2
+                False
+                >>> offset_2 < offset_1
+                False
+                >>> offset_2 < offset_2
+                False
+
+        ..  container:: example
+
+            **Example 2.** With equal numerators and denominators but differing
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4), grace_displacement=(-1, 16))
+
+            ::
+
+                >>> offset_1 < offset_1
+                False
+                >>> offset_1 < offset_2
+                True
+                >>> offset_2 < offset_1
+                False
+                >>> offset_2 < offset_2
+                False
+
+        ..  container:: example
+
+            **Example 3.** With differing numerators and denominators. Ignores
+            grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4))
+                >>> offset_2 = Offset((1, 2), grace_displacement=(-99))
+
+            ::
+
+                >>> offset_1 < offset_1
+                False
+                >>> offset_1 < offset_2
+                True
+                >>> offset_2 < offset_1
+                False
+                >>> offset_2 < offset_2
+                False
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)) and self.pair == arg.pair:
+            return ((self.grace_displacement or 0) <
+                (arg.grace_displacement or 0))
+        return Duration.__lt__(self, arg)
+
+    def __repr__(self):
+        r'''Gets interpreter representation of offset.
+
+        ..  container:: example
+
+            **Example 1.** Gets interpreter representation of offset without
+            grace displacement:
+
+            ::
+
+                >>> Offset(1, 4)
+                Offset(1, 4)
+
+        ..  container:: example
+
+            **Example 2.** Gets interpreter representation of offset with
+            grace displacement:
+
+            ::
+
+                >>> Offset(1, 4, grace_displacement=(-1, 16))
+                Offset(
+                    (1, 4),
+                    grace_displacement=Duration(-1, 16)
+                    )
+
+        '''
+        return Duration.__repr__(self)
 
     def __sub__(self, expr):
         '''Offset taken from offset returns duration:
@@ -157,3 +736,53 @@ class Offset(Duration):
         else:
             expr = type(self)(expr)
             return self - expr
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def grace_displacement(self):
+        r'''Gets grace displacement.
+
+        ..  container:: example
+
+            **Example 1.** Gets grace displacement equal to none:
+
+            ::
+
+                >>> offset = Offset(1, 4)
+                >>> offset.grace_displacement is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Gets grace displacement equal to a negative
+            sixteenth:
+
+            ::
+
+                >>> offset = Offset(1, 4, grace_displacement=(-1, 16))
+                >>> offset.grace_displacement
+                Duration(-1, 16)
+
+        ..  container:: example
+
+            **Example 3.** Stores zero-valued grace displacement as none:
+
+            ::
+
+                >>> offset = Offset(1, 4, grace_displacement=0)
+                >>> offset.grace_displacement is None
+                True
+
+            ::
+
+                >>> offset
+                Offset(1, 4)
+
+        Defaults to none.
+
+        Set to duration or none.
+
+        Returns duration or none.
+        '''
+        return self._grace_displacement

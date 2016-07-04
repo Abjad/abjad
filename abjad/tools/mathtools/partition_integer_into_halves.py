@@ -2,9 +2,8 @@
 import math
 
 
-# TODO: replace string-value bigger='left' and even='allowed' 
-# keywords with constant-valued keywords
-def partition_integer_into_halves(n, bigger='left', even='allowed'):
+# TODO: replace string-valued even='allowed' with constant-valued keyword
+def partition_integer_into_halves(n, bigger=Left, even='allowed'):
     r'''Writes positive integer `n` as the pair ``t = (left, right)``
     such that ``n == left + right``.
 
@@ -13,33 +12,44 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
 
     ::
 
-        >>> mathtools.partition_integer_into_halves(7, bigger='left')
+        >>> mathtools.partition_integer_into_halves(7, bigger=Left)
         (4, 3)
-        >>> mathtools.partition_integer_into_halves(7, bigger='right')
+        >>> mathtools.partition_integer_into_halves(7, bigger=Right)
         (3, 4)
 
     Likewise when `n` is even and ``even = 'disallowed'``:
 
     ::
 
-        >>> mathtools.partition_integer_into_halves(8, bigger='left', even='disallowed')
+        >>> mathtools.partition_integer_into_halves(
+        ...     8,
+        ...     bigger=Left,
+        ...     even='disallowed',
+        ...     )
         (5, 3)
-        >>> mathtools.partition_integer_into_halves(8, bigger='right', even='disallowed')
+
+    ::
+
+        >>> mathtools.partition_integer_into_halves(
+        ...     8,
+        ...     bigger=Right,
+        ...     even='disallowed',
+        ...     )
         (3, 5)
 
-    But when `n` is even and ``even = 'allowed'``
-    then ``left == right`` and `bigger` is ignored:
+    But when `n` is even and ``even = 'allowed'`` then ``left == right`` and
+    `bigger` is ignored:
 
     ::
 
         >>> mathtools.partition_integer_into_halves(8)
         (4, 4)
-        >>> mathtools.partition_integer_into_halves(8, bigger='left')
+        >>> mathtools.partition_integer_into_halves(8, bigger=Left)
         (4, 4)
-        >>> mathtools.partition_integer_into_halves(8, bigger='right')
+        >>> mathtools.partition_integer_into_halves(8, bigger=Right)
         (4, 4)
 
-    When `n` is ``0`` return ``(0, 0)``:
+    When `n` is ``0`` returns ``(0, 0)``:
 
     ::
 
@@ -73,7 +83,7 @@ def partition_integer_into_halves(n, bigger='left', even='allowed'):
         smaller_half -= 1
         bigger_half += 1
 
-    if bigger == 'left':
+    if bigger == Left:
         return (bigger_half, smaller_half)
     else:
         return (smaller_half, bigger_half)

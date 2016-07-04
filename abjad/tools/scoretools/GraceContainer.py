@@ -3,75 +3,70 @@ from abjad.tools.scoretools.Container import Container
 
 
 class GraceContainer(Container):
-    r'''A container of grace music.
+    r'''A grace container.
 
-    ::
+    .. container:: example
 
-        >>> voice = Voice("c'8 d'8 e'8 f'8")
-        >>> beam = spannertools.Beam()
-        >>> attach(beam, voice[:])
-        >>> show(voice) # doctest: +SKIP
+        **Example 1.** Grace notes:
 
-    ..  doctest::
+        ::
 
-        >>> print(format(voice))
-        \new Voice {
-            c'8 [
-            d'8
-            e'8
-            f'8 ]
-        }
+            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> grace_notes = [Note("c'16"), Note("d'16")]
+            >>> grace_container = scoretools.GraceContainer(
+            ...     grace_notes,
+            ...     kind='grace',
+            ...     )
+            >>> attach(grace_container, voice[1])
+            >>> show(voice) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> grace_notes = [Note("c'16"), Note("d'16")]
-        >>> grace_container = scoretools.GraceContainer(grace_notes, kind='grace')
-        >>> attach(grace_container, voice[1])
-        >>> show(voice) # doctest: +SKIP
-
-    ..  doctest::
-
-        >>> print(format(voice))
-        \new Voice {
-            c'8 [
-            \grace {
-                c'16
-                d'16
+            >>> f(voice)
+            \new Voice {
+                c'4
+                \grace {
+                    c'16
+                    d'16
+                }
+                d'4
+                e'4
+                f'4
             }
-            d'8
-            e'8
-            f'8 ]
-        }
 
-    ::
+    ..  container:: example
 
-        >>> notes = [Note("e'16"), Note("f'16")]
-        >>> after_grace = scoretools.GraceContainer(notes, kind='after')
-        >>> attach(after_grace, voice[1])
-        >>> show(voice) # doctest: +SKIP
+        **Example 2.** After-grace notes:
 
-    ..  doctest::
+        ::
 
-        >>> print(format(voice))
-        \new Voice {
-            c'8 [
-            \grace {
-                c'16
-                d'16
+            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> grace_notes = [Note("c'16"), Note("d'16")]
+            >>> grace_container = scoretools.GraceContainer(
+            ...     grace_notes,
+            ...     kind='after',
+            ...     )
+            >>> attach(grace_container, voice[1])
+            >>> show(voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'4
+                \afterGrace
+                d'4
+                {
+                    c'16
+                    d'16
+                }
+                e'4
+                f'4
             }
-            \afterGrace
-            d'8
-            {
-                e'16
-                f'16
-            }
-            e'8
-            f'8 ]
-        }
 
     Fill grace containers with notes, rests or chords.
 
-    Attach grace containers to nongrace notes, rests or chords.
+    Attach grace containers to notes, rests or chords.
     '''
 
     ### CLASS VARIABLES ###
@@ -83,6 +78,13 @@ class GraceContainer(Container):
         '_kind',
         )
 
+    _allowable_kinds = (
+        'after',
+        'grace',
+        'acciaccatura',
+        'appoggiatura',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, music=None, kind='grace'):
@@ -90,15 +92,6 @@ class GraceContainer(Container):
         self._carrier = None
         Container.__init__(self, music)
         self.kind = kind
-
-#    ### SPECIAL METHODS ###
-#
-#    def __repr__(self):
-#        r'''Gets interpreter representation of grace container.
-#
-#        Returns string.
-#        '''
-#        return '{}({})'.format(type(self).__name__, self._summary)
 
     ### PRIVATE PROPERTIES ###
 
@@ -109,21 +102,21 @@ class GraceContainer(Container):
 
     ### PRIVATE METHODS ###
 
-    def _attach(self, arg):
+    def _attach(self, leaf):
         from abjad.tools import scoretools
-        if not isinstance(arg, scoretools.Leaf):
-            message = 'object to which grace container attaches'
-            message += ' must be leaf: {!r}.'
-            message = message.format(arg)
+        if not isinstance(leaf, scoretools.Leaf):
+            message = 'must attach to leaf: {!r}.'
+            message = message.format(leaf)
             raise TypeError(message)
         if self.kind == 'after':
-            arg._after_grace = self
+            leaf._after_grace = self
         else:
-            arg._grace = self
-        self._carrier = arg
+            leaf._grace = self
+        self._carrier = leaf
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
-        new = Container._copy_with_indicators_but_without_children_or_spanners(self)
+        new = Container._copy_with_indicators_but_without_children_or_spanners(
+            self)
         new.kind = self.kind
         return new
 
@@ -131,10 +124,8 @@ class GraceContainer(Container):
         if self._carrier is not None:
             carrier = self._carrier
             if self.kind == 'after':
-                #delattr(carrier, '_after_grace')
                 carrier._after_grace = None
             else:
-                #delattr(carrier, '_grace')
                 carrier._grace = None
             self._carrier = None
             self[:] = []
@@ -155,42 +146,169 @@ class GraceContainer(Container):
 
     @property
     def kind(self):
-        r'''Gets `kind` of grace container.
+        r'''Gets and sets `kind`.
 
-        ::
+        .. container:: example
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> note = Note("cs'16")
-            >>> grace = scoretools.GraceContainer([note], kind='grace')
-            >>> attach(grace, staff[1])
-            >>> grace.kind
-            'grace'
+            **Example 1.** Grace notes:
 
-        Sets `kind` of grace container:
+            ::
 
-        ::
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> grace_container = scoretools.GraceContainer(
+                ...     [Note("e'16")],
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> note = Note("cs'16")
-            >>> grace = scoretools.GraceContainer([note], kind='grace')
-            >>> attach(grace, staff[1])
-            >>> grace.kind = 'acciaccatura'
-            >>> grace.kind
-            'acciaccatura'
+            ..  doctest::
 
-        Valid options include ``'after'``, ``'grace'``,
-        ``'acciaccatura'``, ``'appoggiatura'``.
+                >>> f(voice)
+                \new Voice {
+                    c'4
+                    \grace {
+                        e'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
 
-        Returns string.
+            LilyPond positions grace notes immediately before main notes.
+
+            LilyPond formats grace notes with neither a slashed nor a slur.
+
+        .. container:: example
+
+            **Example 2.** Acciaccatura:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> grace_container = scoretools.GraceContainer(
+                ...     [Note("e'16")],
+                ...     kind='acciaccatura',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4
+                    \acciaccatura {
+                        e'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            Acciaccaturas are played before the beat.
+
+            LilyPond positions acciaccaturas immediately before main notes.
+
+            LilyPond formats one-note acciaccaturas with a slashed stem and a
+            slur.
+
+            ..  note:: LilyPond fails to format multinote acciaccaturas
+                with a slashed stem. This means that multinote
+                acciaccaturas look exactly like appoggiaturas.
+
+        .. container:: example
+
+            **Example 3.** Appoggiatura:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> grace_container = scoretools.GraceContainer(
+                ...     [Note("e'16")],
+                ...     kind='appoggiatura',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4
+                    \appoggiatura {
+                        e'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            Appoggiaturas are played on the beat.
+
+            LilyPond positions appoggiaturas immediately before main notes.
+
+            LilyPond formats appoggiaturas with a slur but without a slashed
+            stem.
+
+        .. container:: example
+
+            **Example 4.** After-grace notes:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> string = '#(define afterGraceFraction (cons 15 16))'
+                >>> command = indicatortools.LilyPondCommand(string)
+                >>> attach(command, voice[0])
+                >>> grace_container = scoretools.GraceContainer(
+                ...     [Note("g'16")],
+                ...     kind='after',
+                ...     )
+                >>> attach(grace_container, voice[-1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    #(define afterGraceFraction (cons 15 16))
+                    c'4
+                    d'4
+                    e'4
+                    \afterGrace
+                    f'4
+                    {
+                        g'16
+                    }
+                }
+
+            After-grace notes are played at the very end of the note they
+            follow.
+
+            Use after-grace notes when you need to end a piece of music with
+            grace notes.
+
+            LilyPond positions after-grace notes at a point 3/4 of the way
+            after the note they follow. The resulting spacing is usually too
+            loose.
+
+            Customize aftterGraceFraction as shown above.
+
+        Defaults to ``'grace'``.
+
+        Set to ``'grace'``, ``'acciaccatura'``, ``'appoggiatura'`` or
+        ``'after'``.
+
+        Returns ``'grace'``, ``'acciaccatura'``, ``'appoggiatura'`` or
+        ``'after'``.
         '''
         return self._kind
 
     @kind.setter
     def kind(self, arg):
-        assert arg in (
-            'after',
-            'grace',
-            'acciaccatura',
-            'appoggiatura',
-            )
+        if arg not in self._allowable_kinds:
+            message = 'unknown grace container kind: {!r}.'
+            message = message.format(arg)
+            raise Exception(message)
         self._kind = arg

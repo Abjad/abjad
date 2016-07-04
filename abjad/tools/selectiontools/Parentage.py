@@ -10,6 +10,8 @@ class Parentage(Selection):
 
     ..  container:: example
 
+        **Example.**
+
         ::
 
             >>> score = Score()
@@ -25,7 +27,7 @@ class Parentage(Selection):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score <<
                 \context Staff = "Treble Staff" {
                     \context Voice = "Treble Voice" {
@@ -48,8 +50,8 @@ class Parentage(Selection):
 
         ::
 
-            >>> for x in parentage: x
-            ...
+            >>> for parent in parentage:
+            ...     parent
             Note('c4')
             Voice('c4')
             <Staff-"Bass Staff"{1}>
@@ -66,7 +68,12 @@ class Parentage(Selection):
 
     ### INITIALIZER ###
 
-    def __init__(self, component=None, include_self=True):
+    def __init__(
+        self,
+        component=None,
+        include_self=True,
+        with_grace_notes=False,
+        ):
         from abjad.tools import scoretools
         assert isinstance(component, (scoretools.Component, type(None)))
         if component is None:
@@ -79,7 +86,13 @@ class Parentage(Selection):
                 parent = component._parent
             while parent is not None:
                 music.append(parent)
-                parent = parent._parent
+                if (
+                    with_grace_notes and
+                    isinstance(parent, scoretools.GraceContainer)
+                    ):
+                    parent = parent._carrier
+                else:
+                    parent = parent._parent
             music = tuple(music)
         Selection.__init__(self, music)
         self._component = component
@@ -98,7 +111,6 @@ class Parentage(Selection):
     ### PRIVATE METHODS ###
 
     def _get_governor(self):
-        from abjad.tools import scoretools
         from abjad.tools import scoretools
         for component in self:
             if isinstance(component, scoretools.Container) and \
@@ -134,6 +146,60 @@ class Parentage(Selection):
         return len(self[1:])
 
     @property
+    def is_grace_note(self):
+        r'''Is true when parentage contains a grace container.
+        Otherwise false.
+
+        .. container:: example
+
+            **Example.** Grace notes:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            ::
+
+                >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
+                ...     parentage = inspect_(leaf).get_parentage()
+                ...     print(leaf, parentage.is_grace_note)
+                c'4 False
+                c'16 True
+                d'16 True
+                d'4 False
+                e'4 False
+                f'4 False
+
+        Returns true or false.
+        '''
+        from abjad.tools import scoretools
+        grace_container = self.get_first(prototype=scoretools.GraceContainer)
+        if grace_container is not None:
+            return True
+        return False
+
+    @property
     def is_orphan(self):
         r'''Is true when component has no parent.
         Otherwise false.
@@ -144,51 +210,51 @@ class Parentage(Selection):
 
     @property
     def logical_voice(self):
-        r'''Logical voice of component.
+        r'''Gets logical voice.
 
-        ::
+        ..  container:: example
 
-            >>> voice = Voice("c'4 d'4 e'4 f'4", name='CustomVoice')
-            >>> staff = Staff([voice], name='CustomStaff')
-            >>> score = Score([staff], name='CustomScore')
-            >>> show(score) # doctest: +SKIP
+            **Example.** Gets logical voice of note:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(score))
-            \context Score = "CustomScore" <<
-                \context Staff = "CustomStaff" {
-                    \context Voice = "CustomVoice" {
-                        c'4
-                        d'4
-                        e'4
-                        f'4
+                >>> voice = Voice("c'4 d'4 e'4 f'4", name='CustomVoice')
+                >>> staff = Staff([voice], name='CustomStaff')
+                >>> score = Score([staff], name='CustomScore')
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \context Score = "CustomScore" <<
+                    \context Staff = "CustomStaff" {
+                        \context Voice = "CustomVoice" {
+                            c'4
+                            d'4
+                            e'4
+                            f'4
+                        }
                     }
-                }
-            >>
+                >>
 
-        ::
+            ::
 
-            >>> leaf = voice[0]
-            >>> parentage = inspect_(leaf).get_parentage()
-            >>> logical_voice = parentage.logical_voice
+                >>> note = voice[0]
+                >>> parentage = inspect_(note).get_parentage()
+                >>> logical_voice = parentage.logical_voice
 
-        ::
+            ::
 
-            >>> for key, value in logical_voice.items():
-            ...     print('%12s: %s' % (key, value))
-            ... 
-                     score: Score-'CustomScore'
-               staff group:
-                     staff: Staff-'CustomStaff'
-                     voice: Voice-'CustomVoice'
+                >>> for key, value in logical_voice.items():
+                ...     print('%12s: %s' % (key, value))
+                ...
+                score: Score-'CustomScore'
+                staff group:
+                staff: Staff-'CustomStaff'
+                voice: Voice-'CustomVoice'
 
         Returns ordered dictionary.
         '''
-        from abjad.tools import scoretools
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        from abjad.tools import scoretools
         from abjad.tools import scoretools
         keys = ('score', 'staff group', 'staff', 'voice')
         logical_voice = collections.OrderedDict.fromkeys(keys, '')
@@ -214,7 +280,7 @@ class Parentage(Selection):
 
     @property
     def parent(self):
-        r'''Parent of component.
+        r'''Gets parent.
 
         Returns none when component has no parent.
 
@@ -225,7 +291,7 @@ class Parentage(Selection):
 
     @property
     def prolation(self):
-        r'''Prolation governing component.
+        r'''Gets prolation.
 
         Returns multiplier.
         '''
@@ -235,7 +301,9 @@ class Parentage(Selection):
 
     @property
     def root(self):
-        r'''Last element in parentage.
+        r'''Gets root.
+
+        Root defined equal to last component in parentage.
 
         Returns component.
         '''
@@ -243,45 +311,49 @@ class Parentage(Selection):
 
     @property
     def score_index(self):
-        r'''Score index of component.
+        r'''Gets score index.
 
-        ::
+        ..  container:: example
 
-            >>> staff_1 = Staff(r"\times 2/3 { c''2 b'2 a'2 }")
-            >>> staff_2 = Staff("c'2 d'2")
-            >>> score = Score([staff_1, staff_2])
-            >>> show(score) # doctest: +SKIP
+            **Example.** Gets note score indices:
 
-        ..  doctest::
+            ::
 
-            >>> print(format(score))
-            \new Score <<
-                \new Staff {
-                    \times 2/3 {
-                        c''2
-                        b'2
-                        a'2
+                >>> staff_1 = Staff(r"\times 2/3 { c''2 b'2 a'2 }")
+                >>> staff_2 = Staff("c'2 d'2")
+                >>> score = Score([staff_1, staff_2])
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        \times 2/3 {
+                            c''2
+                            b'2
+                            a'2
+                        }
                     }
-                }
-                \new Staff {
-                        c'2
-                        d'2
-                }
-            >>
+                    \new Staff {
+                            c'2
+                            d'2
+                    }
+                >>
 
-        ::
+            ::
 
-            >>> selector = select().by_leaf(flatten=True)
-            >>> leaves = selector(score)
-            >>> for leaf in leaves:
-            ...     parentage = inspect_(leaf).get_parentage()
-            ...     leaf, parentage.score_index
-            ...
-            (Note("c''2"), (0, 0, 0))
-            (Note("b'2"), (0, 0, 1))
-            (Note("a'2"), (0, 0, 2))
-            (Note("c'2"), (1, 0))
-            (Note("d'2"), (1, 1))
+                >>> selector = select().by_leaf(flatten=True)
+                >>> leaves = selector(score)
+                >>> for leaf in leaves:
+                ...     parentage = inspect_(leaf).get_parentage()
+                ...     leaf, parentage.score_index
+                ...
+                (Note("c''2"), (0, 0, 0))
+                (Note("b'2"), (0, 0, 1))
+                (Note("a'2"), (0, 0, 2))
+                (Note("c'2"), (1, 0))
+                (Note("d'2"), (1, 1))
 
         Returns tuple of zero or more nonnegative integers.
         '''
@@ -296,33 +368,47 @@ class Parentage(Selection):
 
     @property
     def tuplet_depth(self):
-        r'''Tuplet depth of component.
+        r'''Gets tuplet depth.
 
-        ::
+        ..  container:: example
 
-            >>> tuplet = Tuplet(Multiplier(2, 3), "c'2 d'2 e'2")
-            >>> staff = Staff([tuplet])
-            >>> note = tuplet[0]
-            >>> show(staff) # doctest: +SKIP
+            **Example.** Gets tuplet depth:
 
-        ::
+            ::
 
-            >>> inspect_(note).get_parentage().tuplet_depth
-            1
+                >>> tuplet = Tuplet(Multiplier(2, 3), "c'2 d'2 e'2")
+                >>> staff = Staff([tuplet])
+                >>> note = tuplet[0]
+                >>> show(staff) # doctest: +SKIP
 
-        ::
+            ..  doctest::
 
-            >>> inspect_(tuplet).get_parentage().tuplet_depth
-            0
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'2
+                        d'2
+                        e'2
+                    }
+                }
 
-        ::
+            ::
 
-            >>> inspect_(staff).get_parentage().tuplet_depth
-            0
+                >>> inspect_(note).get_parentage().tuplet_depth
+                1
+
+            ::
+
+                >>> inspect_(tuplet).get_parentage().tuplet_depth
+                0
+
+            ::
+
+                >>> inspect_(staff).get_parentage().tuplet_depth
+                0
 
         Returns nonnegative integer.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import scoretools
         result = 0
         # should probably interate up to only first simultaneous container

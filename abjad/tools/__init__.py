@@ -2,7 +2,7 @@
 import six
 from abjad.tools import systemtools
 from abjad.tools import datastructuretools
-from abjad.tools import mathtools
+#from abjad.tools import mathtools
 
 # load constants into __builtins__ namespace
 if six.PY3:
@@ -17,6 +17,7 @@ builtins.Right = datastructuretools.OrdinalConstant('x', 1, 'Right')
 builtins.Center = datastructuretools.OrdinalConstant('y', 0, 'Center')
 builtins.Up = datastructuretools.OrdinalConstant('y', 1, 'Up')
 builtins.Down = datastructuretools.OrdinalConstant('y', -1, 'Down')
+from abjad.tools import mathtools
 builtins.Infinity = mathtools.Infinity()
 builtins.NegativeInfinity = mathtools.NegativeInfinity()
 del(builtins)

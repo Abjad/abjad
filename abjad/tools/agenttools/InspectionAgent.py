@@ -88,7 +88,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 [
                     d'4
@@ -172,6 +172,47 @@ class InspectionAgent(abctools.AbjadObject):
         r'''Gets effective indicator that matches `prototype`
         and governs client.
 
+        ..  container:: example
+
+            **Example.** Gets components' effective clef:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> attach(Clef('alto'), staff)
+                >>> grace_container = scoretools.GraceContainer(
+                ...    [Note("fs'16")],
+                ...     kind='acciaccatura',
+                ...     )
+                >>> attach(grace_container, staff[-1])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \clef "alto"
+                    c'4
+                    d'4
+                    e'4
+                    \acciaccatura {
+                        fs'16
+                    }
+                    f'4
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_class(with_grace_notes=True):
+                ...     clef = inspect_(leaf).get_effective(Clef)
+                ...     print(leaf, clef)
+                Staff("c'4 d'4 e'4 f'4") Clef(name='alto')
+                c'4 Clef(name='alto')
+                d'4 Clef(name='alto')
+                e'4 Clef(name='alto')
+                fs'16 Clef(name='alto')
+                f'4 Clef(name='alto')
+
         Returns indicator or none.
         '''
         return self._client._get_effective(
@@ -239,7 +280,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8
                     \grace {
@@ -343,7 +384,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \new Voice {
                         c'8
@@ -515,13 +556,84 @@ class InspectionAgent(abctools.AbjadObject):
     def get_parentage(
         self,
         include_self=True,
+        with_grace_notes=False,
         ):
         r'''Gets parentage of client.
+
+        .. container:: example
+
+            **Example 1.** Gets parentage without grace notes:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+            
+            ::
+
+                >>> inspect_(grace_notes[0]).get_parentage()
+                Parentage(Note("c'16"), GraceContainer("c'16 d'16"))
+
+        .. container:: example
+
+            **Example 2.** Gets parentage with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'4 d'4 e'4 f'4")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace_container = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace_container, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'4
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    d'4
+                    e'4
+                    f'4
+                }
+            
+            ::
+
+                >>> inspector = inspect_(grace_notes[0])
+                >>> inspector.get_parentage(with_grace_notes=True)
+                Parentage(Note("c'16"), GraceContainer("c'16 d'16"), Note("d'4"), Voice("c'4 d'4 e'4 f'4"))
 
         Returns parentage.
         '''
         return self._client._get_parentage(
             include_self=include_self,
+            with_grace_notes=with_grace_notes,
             )
 
     def get_sounding_pitch(self):
@@ -540,7 +652,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \set Staff.instrumentName = \markup { Piccolo }
                     \set Staff.shortInstrumentName = \markup { Picc. }
@@ -572,7 +684,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \set Staff.instrumentName = \markup { Glockenspiel }
                     \set Staff.shortInstrumentName = \markup { Gkspl. }
@@ -630,10 +742,112 @@ class InspectionAgent(abctools.AbjadObject):
             in_parentage=in_parentage,
             )
 
-    def get_timespan(self,
-        in_seconds=False,
-        ):
+    def get_timespan(self, in_seconds=False):
         r'''Gets timespan of client.
+
+        ..  container:: example
+
+            **Example.** Gets timespan of grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("c'16"), Note("d'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> after_grace_notes = [Note("e'16"), Note("f'16")]
+                >>> after_grace = scoretools.GraceContainer(
+                ...     after_grace_notes,
+                ...     kind='after')
+                >>> attach(after_grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        c'16
+                        d'16
+                    }
+                    \afterGrace
+                    d'8
+                    {
+                        e'16
+                        f'16
+                    }
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for leaf in iterate(voice).by_leaf(with_grace_notes=True):
+                ...     timespan = inspect_(leaf).get_timespan()
+                ...     print(str(leaf) + ':')
+                ...     print(format(timespan, 'storage'))
+                c'8:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(0, 1),
+                    stop_offset=durationtools.Offset(1, 8),
+                    )
+                c'16:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 8),
+                        ),
+                    stop_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 16),
+                        ),
+                    )
+                d'16:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(
+                        (1, 8),
+                        grace_displacement=durationtools.Duration(-1, 16),
+                        ),
+                    stop_offset=durationtools.Offset(1, 8),
+                    )
+                d'8:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(1, 8),
+                    stop_offset=durationtools.Offset(1, 4),
+                    )
+                e'16:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(
+                        (1, 4),
+                        grace_displacement=durationtools.Duration(-1, 8),
+                        ),
+                    stop_offset=durationtools.Offset(
+                        (1, 4),
+                        grace_displacement=durationtools.Duration(-1, 16),
+                        ),
+                    )
+                f'16:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(
+                        (1, 4),
+                        grace_displacement=durationtools.Duration(-1, 16),
+                        ),
+                    stop_offset=durationtools.Offset(1, 4),
+                    )
+                e'8:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(1, 4),
+                    stop_offset=durationtools.Offset(3, 8),
+                    )
+                f'8:
+                timespantools.Timespan(
+                    start_offset=durationtools.Offset(3, 8),
+                    stop_offset=durationtools.Offset(1, 2),
+                    )
 
         Returns timespan.
         '''
@@ -711,7 +925,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \time 3/8
                     c'4
@@ -783,7 +997,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(container))
+                >>> f(container)
                 {
                     \override NoteHead.color = #red
                     \override NoteHead.style = #'harmonic
@@ -848,7 +1062,7 @@ class InspectionAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 [
                     d'4

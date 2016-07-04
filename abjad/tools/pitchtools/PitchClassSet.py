@@ -108,7 +108,7 @@ class PitchClassSet(Set):
 
     @classmethod
     def from_selection(
-        cls,
+        class_,
         selection,
         item_class=None,
         ):
@@ -126,7 +126,7 @@ class PitchClassSet(Set):
         '''
         from abjad.tools import pitchtools
         pitch_segment = pitchtools.PitchSegment.from_selection(selection)
-        return cls(
+        return class_(
             items=pitch_segment,
             item_class=item_class,
             )
