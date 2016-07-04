@@ -12,10 +12,11 @@ def test_agenttools_InspectionAgent_get_duration_01():
         Measure((2, 12), "c'8 d'8", implicit_scaling=True),
         Measure((2, 8), "c'8 d'8")]
         )
+    leaves = list(iterate(voice).by_leaf())
     tempo = Tempo(Duration(1, 8), 42)
     attach(tempo, voice, scope=Voice)
     beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
     crescendo = Crescendo()
     attach(crescendo, voice[0][:])
     decrescendo = Decrescendo()
@@ -53,8 +54,9 @@ def test_agenttools_InspectionAgent_get_duration_02():
         [Measure((2, 12), "c'8 d'8", implicit_scaling=True),
         Measure((2, 8), "c'8 d'8")]
         )
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
     crescendo = Crescendo()
     attach(crescendo, voice[0][:])
     decrescendo = Decrescendo()

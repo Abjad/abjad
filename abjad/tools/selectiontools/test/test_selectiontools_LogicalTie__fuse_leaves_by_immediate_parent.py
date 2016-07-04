@@ -7,10 +7,11 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_01():
     '''
 
     staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
+    leaves = list(iterate(staff).by_leaf())
     tie = spannertools.Tie()
-    attach(tie, staff.select_leaves())
+    attach(tie, leaves)
 
-    logical_tie = inspect_(staff.select_leaves()[1]).get_logical_tie()
+    logical_tie = inspect_(leaves[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert format(staff) == stringtools.normalize(
@@ -37,7 +38,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
 
     staff = Staff("c'8 c'8 c'8 c'8")
     tie = spannertools.Tie()
-    attach(tie, staff.select_leaves())
+    attach(tie, staff[:])
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -50,7 +51,7 @@ def test_selectiontools_LogicalTie__fuse_leaves_by_immediate_parent_02():
         '''
         )
 
-    logical_tie = inspect_(staff.select_leaves()[1]).get_logical_tie()
+    logical_tie = inspect_(staff[1]).get_logical_tie()
     result = logical_tie._fuse_leaves_by_immediate_parent()
 
     assert format(staff) == stringtools.normalize(

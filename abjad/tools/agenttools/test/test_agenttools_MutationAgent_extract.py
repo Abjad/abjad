@@ -1,5 +1,5 @@
+# -*- coding: utf-8 -*-
 from abjad import *
-
 
 
 def test_agenttools_MutationAgent_extract_01():
@@ -87,8 +87,9 @@ def test_agenttools_MutationAgent_extract_03():
     staff = Staff()
     staff.append(Container("c'8 d'8"))
     staff.append(Container("e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff.select_leaves())
+    attach(beam, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -133,10 +134,11 @@ def test_agenttools_MutationAgent_extract_04():
     voice.append(Container("c'8 d'8"))
     voice.append(Container("e'8 f'8"))
     voice.append(Container("g'8 a'8"))
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice.select_leaves())
+    attach(beam, leaves)
     glissando = spannertools.Glissando()
-    attach(glissando, voice.select_leaves())
+    attach(glissando, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''

@@ -25,8 +25,9 @@ def test_agenttools_IterationAgent_by_class_02():
 def test_agenttools_IterationAgent_by_class_03():
 
     staff = Staff("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[:])
+    attach(beam, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -44,16 +45,13 @@ def test_agenttools_IterationAgent_by_class_03():
         '''
         )
 
-    components = iterate(beam).by_class(reverse=True)
-    components = list(components)
-    leaves = staff.select_leaves()
+    components = list(iterate(beam).by_class(reverse=True))
+    leaves = list(iterate(staff).by_leaf())
 
-    assert components[0] is staff[-1]
-    assert components[1] is leaves[-1]
-    assert components[2] is leaves[-2]
-    assert components[3] is staff[-2]
-    assert components[4] is leaves[-3]
-    assert components[5] is leaves[-4]
+    assert components[0] is leaves[-1]
+    assert components[1] is leaves[-2]
+    assert components[2] is leaves[-3]
+    assert components[3] is leaves[-4]
 
 
 def test_agenttools_IterationAgent_by_class_04():

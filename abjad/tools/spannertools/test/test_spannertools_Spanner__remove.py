@@ -53,8 +53,9 @@ def test_spannertools_Spanner__remove_02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -75,7 +76,8 @@ def test_spannertools_Spanner__remove_02():
         '''
         )
 
-    result = beam._remove(beam.components[2])
+    result = beam._remove(beam.components[-1])
+    result = beam._remove(beam.components[-1])
 
     assert format(voice) == stringtools.normalize(
         r'''

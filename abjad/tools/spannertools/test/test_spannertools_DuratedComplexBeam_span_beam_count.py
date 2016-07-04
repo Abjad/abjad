@@ -11,7 +11,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_01():
         durations=[(1, 8), (1, 8)],
         span_beam_count=1,
         )
-    attach(beam, container)
+    attach(beam, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -44,7 +44,7 @@ def test_spannertools_DuratedComplexBeam_span_beam_count_02():
         durations=[(1, 8), (1, 8)],
         span_beam_count=2,
         )
-    attach(beam, container)
+    attach(beam, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''

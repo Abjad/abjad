@@ -6,7 +6,7 @@ def test_agenttools_InspectionAgent_get_indicators_01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, staff[:])
     command_1 = indicatortools.LilyPondCommand('slurDotted')
     attach(command_1, staff[0])
     command_2 = indicatortools.LilyPondCommand('slurUp')
@@ -36,7 +36,7 @@ def test_agenttools_InspectionAgent_get_indicators_02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, staff[:])
     comment = indicatortools.LilyPondComment('beginning of note content')
     attach(comment, staff[0])
     command = indicatortools.LilyPondCommand('slurDotted')

@@ -123,8 +123,9 @@ def test_scoretools_Container___setitem___04():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    attach(Beam(), voice[:])
-    attach(Glissando(), voice[:])
+    leaves = list(iterate(voice).by_leaf())
+    attach(Beam(), leaves)
+    attach(Glissando(), leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''

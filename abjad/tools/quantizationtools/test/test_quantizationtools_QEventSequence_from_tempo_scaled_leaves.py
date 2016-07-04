@@ -26,8 +26,9 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_01():
 
     tempo = Tempo((1, 4), 55)
 
+    leaves = list(iterate(staff).by_leaf())
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
-        staff.select_leaves(), tempo)
+        leaves, tempo)
 
     assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(
@@ -97,8 +98,9 @@ def test_quantizationtools_QEventSequence_from_tempo_scaled_leaves_02():
     tempo = Tempo((1, 4), 77)
     attach(tempo, staff[9], scope=Staff)
 
+    leaves = list(iterate(staff).by_leaf())
     q_events = quantizationtools.QEventSequence.from_tempo_scaled_leaves(
-        staff.select_leaves())
+        leaves)
 
     assert q_events == quantizationtools.QEventSequence((
         quantizationtools.PitchedQEvent(

@@ -7,6 +7,7 @@ from abjad.tools import indicatortools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitchtools.Pitch import Pitch
 from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import iterate
 
 
 # TODO: make iterable so that for x in PitchRange works
@@ -108,7 +109,7 @@ class PitchRange(AbjadObject):
         elif isinstance(arg, (scoretools.Rest, scoretools.Skip)):
             return True
         elif isinstance(arg, scoretools.Container):
-            return all(x in self for x in arg.select_leaves())
+            return all(x in self for x in iterate(arg).by_leaf())
         else:
             pitches = pitchtools.list_named_pitches_in_expr(arg)
             if pitches:
@@ -210,20 +211,23 @@ class PitchRange(AbjadObject):
                 bass_staff = scoretools.Staff()
                 attach(indicatortools.Clef('bass'), bass_staff)
                 bass_staff.extend([start_note, stop_note])
-                attach(glissando, bass_staff.select_leaves())
+                bass_leaves = list(iterate(bass_staff).by_leaf())
+                attach(glissando, bass_leaves)
                 score = scoretools.Score([bass_staff])
             else:
                 treble_staff = scoretools.Staff()
                 attach(indicatortools.Clef('treble'), treble_staff)
                 treble_staff.extend([start_note, stop_note])
-                attach(glissando, treble_staff.select_leaves())
+                treble_leaves = list(iterate(treble_staff).by_leaf())
+                attach(glissando, treble_leaves)
                 score = scoretools.Score([treble_staff])
         else:
             result = scoretools.make_empty_piano_score()
             score, treble_staff, bass_staff = result
             bass_staff.extend([start_note, stop_note])
             treble_staff.extend(scoretools.Skip(1) * 2)
-            attach(glissando, bass_staff.select_leaves())
+            bass_leaves = list(iterate(bass_staff).by_leaf())
+            attach(glissando, bass_leaves)
             attach(indicatortools.StaffChange(treble_staff), bass_staff[1])
         for leaf in iterate(score).by_class(scoretools.Leaf):
             attach(durationtools.Multiplier(1, 4), leaf)

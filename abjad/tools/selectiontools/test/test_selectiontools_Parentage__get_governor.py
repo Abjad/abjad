@@ -28,10 +28,11 @@ def test_selectiontools_Parentage__get_governor_01( ):
     }
     '''
 
-    assert inspect_(voice.select_leaves(allow_discontiguous_leaves=True)[0]).get_parentage()._get_governor() is voice[0][0]
-    assert inspect_(voice.select_leaves(allow_discontiguous_leaves=True)[1]).get_parentage()._get_governor() is voice[0][0]
-    assert inspect_(voice.select_leaves(allow_discontiguous_leaves=True)[2]).get_parentage()._get_governor() is voice[0][1]
-    assert inspect_(voice.select_leaves(allow_discontiguous_leaves=True)[3]).get_parentage()._get_governor() is voice[0][1]
+    leaves = list(iterate(voice).by_leaf())
+    assert inspect_(leaves[0]).get_parentage()._get_governor() is voice[0][0]
+    assert inspect_(leaves[1]).get_parentage()._get_governor() is voice[0][0]
+    assert inspect_(leaves[2]).get_parentage()._get_governor() is voice[0][1]
+    assert inspect_(leaves[3]).get_parentage()._get_governor() is voice[0][1]
 
 
 def test_selectiontools_Parentage__get_governor_02( ):
@@ -44,8 +45,9 @@ def test_selectiontools_Parentage__get_governor_02( ):
 
 def test_selectiontools_Parentage__get_governor_03( ):
     r'''Returns the last sequential container in the parentage of client
-        such that the next element in the parentage of client is
-        either a simultaneous container or None.'''
+    such that the next element in the parentage of client is
+    either a simultaneous container or None.
+    '''
 
     staff = Staff([Voice([Container("c'8 d'8 e'8 f'8")])])
 
@@ -62,10 +64,11 @@ def test_selectiontools_Parentage__get_governor_03( ):
     }
     '''
 
-    assert inspect_(staff.select_leaves(allow_discontiguous_leaves=True)[0]).get_parentage()._get_governor() is staff
-    assert inspect_(staff.select_leaves(allow_discontiguous_leaves=True)[1]).get_parentage()._get_governor() is staff
-    assert inspect_(staff.select_leaves(allow_discontiguous_leaves=True)[2]).get_parentage()._get_governor() is staff
-    assert inspect_(staff.select_leaves(allow_discontiguous_leaves=True)[3]).get_parentage()._get_governor() is staff
+    leaves = list(iterate(staff).by_leaf())
+    assert inspect_(leaves[0]).get_parentage()._get_governor() is staff
+    assert inspect_(leaves[1]).get_parentage()._get_governor() is staff
+    assert inspect_(leaves[2]).get_parentage()._get_governor() is staff
+    assert inspect_(leaves[3]).get_parentage()._get_governor() is staff
 
 
 def test_selectiontools_Parentage__get_governor_04( ):

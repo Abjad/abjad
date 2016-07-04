@@ -4,14 +4,6 @@ from abjad import *
 
 
 def test_spannertools_Beam___init___01():
-    r'''Initalize empty beam spanner.
-    '''
-
-    beam = Beam()
-    assert isinstance(beam, Beam)
-
-
-def test_spannertools_Beam___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8 g'2")
     beam = Beam()
@@ -29,35 +21,16 @@ def test_spannertools_Beam___init___02():
         '''
         )
 
-    assert inspect_(staff).is_well_formed()
+    assert len(beam) == 4
 
 
-def test_spannertools_Beam___init___03():
-    r'''Empty container.
-    '''
-
-    container = Container([])
-    beam = Beam()
-    attach(beam, container)
-
-    assert format(container) == stringtools.normalize(
-        r'''
-        {
-        }
-        '''
-        )
-
-    assert len(beam) == 1
-    assert isinstance(beam.components[0], Container)
-
-
-def test_spannertools_Beam___init___04():
+def test_spannertools_Beam___init___02():
     r'''Nonempty container.
     '''
 
     container = Container("c'8 c'8 c'8 c'8 c'8 c'8 c'8 c'8")
     beam = Beam()
-    attach(beam, container)
+    attach(beam, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -74,17 +47,17 @@ def test_spannertools_Beam___init___04():
         '''
         )
 
-    assert len(beam) == 1
-    assert isinstance(beam.components[0], Container)
+    assert len(beam) == 8
 
 
-def test_spannertools_Beam___init___05():
+def test_spannertools_Beam___init___03():
     r'''Nested nonempty containers.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[:])
+    attach(beam, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -105,47 +78,17 @@ def test_spannertools_Beam___init___05():
         '''
         )
 
-    assert len(beam) == 2
-    assert type(beam.components[0]) is Container
-    assert type(beam.components[1]) is Container
+    assert len(beam) == 8
 
 
-def test_spannertools_Beam___init___06():
+def test_spannertools_Beam___init___04():
     r'''Beamed container and top-level leaves housed in staff.
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[:])
-
-    assert format(staff) == stringtools.normalize(
-        r'''
-        \new Staff {
-            {
-                c'8 [
-                c'8
-                c'8
-                c'8
-            }
-            c'8
-            c'8 ]
-        }
-        '''
-        )
-
-    assert len(beam) == 3
-    assert type(beam.components[0]) is Container
-    assert type(beam.components[1]) is Note
-    assert type(staff[2]) is Note
-
-
-def test_spannertools_Beam___init___07():
-    r'''Beamed leaves housed in staff and container.
-    '''
-
-    staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    beam = Beam()
-    attach(beam, staff.select_leaves())
+    attach(beam, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -163,42 +106,44 @@ def test_spannertools_Beam___init___07():
         )
 
     assert len(beam) == 6
-    assert all(type(x) is Note for x in beam.components)
 
 
-def test_spannertools_Beam___init___08():
-    r'''Staff with empty containers.
+def test_spannertools_Beam___init___05():
+    r'''Beamed leaves housed in staff and container.
     '''
 
-    staff = Staff("{} {} {}")
+    staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[:])
+    attach(beam, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
         \new Staff {
             {
+                c'8 [
+                c'8
+                c'8
+                c'8
             }
-            {
-            }
-            {
-            }
+            c'8
+            c'8 ]
         }
         '''
         )
 
-    assert len(beam) == 3
-    assert all(type(x) is Container for x in beam.components)
+    assert len(beam) == 6
 
 
-def test_spannertools_Beam___init___09():
+def test_spannertools_Beam___init___06():
     r'''Staff with empty containers at the edges.
     '''
 
     staff = Staff(Container([]) * 2)
     staff.insert(1, Container(Note(0, (1, 8)) * 4))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[:])
+    attach(beam, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -217,18 +162,17 @@ def test_spannertools_Beam___init___09():
         '''
         )
 
-    assert len(beam) == 3
-    for x in beam.components:
-        assert isinstance(x, Container)
+    assert len(beam) == 4
 
 
-def test_spannertools_Beam___init___10():
+def test_spannertools_Beam___init___07():
     r'''Deeply nested containers of equal depth.
     '''
 
     voice = Voice("{ { c'8 cs'8 d'8 ef'8 } } { { e'8 f'8 fs'8 g'8 } }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -253,55 +197,52 @@ def test_spannertools_Beam___init___10():
         '''
         )
 
-    assert len(beam) == 2
-
-    detach(beam, voice)
-    beam = Beam()
-    attach(beam, [voice[0], voice[1]])
-    assert len(beam) == 2
-
-    detach(beam, voice)
-    beam = Beam()
-    attach(beam, [voice[0][0], voice[1][0]])
-    assert len(beam) == 2
-
-    detach(beam, voice)
-    beam = Beam()
-    attach(beam, [voice[0], voice[1][0]])
-    assert len(beam) == 2
+    assert len(beam) == 8
 
 
-def test_spannertools_Beam___init___11():
+def test_spannertools_Beam___init___08():
     r'''Deeply nested containers of unequal depth.
     '''
 
     voice = Voice("{ { { c'8 cs'8 d'8 ef'8 } } } { e'8 f'8 fs'8 g'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
-    beam = Beam()
-    attach(beam, [voice[0], voice[1]])
-    assert len(beam) == 2
-    detach(beam, voice[0])
+    assert format(voice) == stringtools.normalize(
+        r'''
+        \new Voice {
+            {
+                {
+                    {
+                        c'8 [
+                        cs'8
+                        d'8
+                        ef'8
+                    }
+                }
+            }
+            {
+                e'8
+                f'8
+                fs'8
+                g'8 ]
+            }
+        }
+        '''
+        ), repr(f(voice))
 
-    beam = Beam()
-    attach(beam, [voice[0][0], voice[1]])
-    assert len(beam) == 2
-    detach(beam, voice[0][0])
-
-    beam = Beam()
-    attach(beam, [voice[0][0][0], voice[1]])
-    assert len(beam) == 2
-    detach(beam, voice[0][0][0])
+    assert len(beam) == 8
 
 
-def test_spannertools_Beam___init___12():
+def test_spannertools_Beam___init___09():
     r'''Voice with containers and top-level leaves.
     '''
 
     voice = Voice("{ c'8 cs'8 } d'8 { ef'8 e'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -319,16 +260,16 @@ def test_spannertools_Beam___init___12():
         '''
         )
 
-    assert len(beam) == 3
-    detach(beam, voice[0])
+    assert len(beam) == 5
 
-def test_spannertools_Beam___init___13():
+def test_spannertools_Beam___init___10():
     r'''Voice with tuplets and top-level leaves.
     '''
 
     voice = Voice(r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -348,41 +289,35 @@ def test_spannertools_Beam___init___13():
         '''
         )
 
-    assert len(beam) == 3
-    detach(beam, voice[0])
+    assert len(beam) == 7
 
 
-def test_spannertools_Beam___init___14():
+def test_spannertools_Beam___init___11():
     r'''Nested tuplets.
     '''
 
     tuplet = Tuplet((2, 3), r"c'4 \times 2/3 { c'8 c'8 c'8 } c'4")
+    beam = Beam()
+    attach(beam, tuplet[1][:])
 
     assert format(tuplet) == stringtools.normalize(
         r'''
         \times 2/3 {
             c'4
             \times 2/3 {
+                c'8 [
                 c'8
-                c'8
-                c'8
+                c'8 ]
             }
             c'4
         }
         '''
         )
 
-    beam = Beam()
-    attach(beam, tuplet)
-    assert len(beam) == 1
-    detach(beam, tuplet)
-
-    beam = Beam()
-    attach(beam, tuplet[:])
     assert len(beam) == 3
 
 
-def test_spannertools_Beam___init___15():
+def test_spannertools_Beam___init___12():
     r'''Beams can not cross voice boundaries.
     '''
 
@@ -412,14 +347,12 @@ def test_spannertools_Beam___init___15():
         )
 
     beam = Beam()
-    statement = 'attach(beam, [staff[0], staff[1]])'
+    leaves = list(iterate(staff).by_leaf())
+    statement = 'attach(beam, leavs)'
     assert pytest.raises(Exception, statement)
 
-    statement = 'attach(beam, [staff[1], staff[2]])'
-    assert pytest.raises(Exception, statement)
 
-
-def test_spannertools_Beam___init___16():
+def test_spannertools_Beam___init___13():
     r'''You can span the counttime components of like-named voices.
     '''
 
@@ -451,7 +384,7 @@ def test_spannertools_Beam___init___16():
     assert len(beam) == 8
 
 
-def test_spannertools_Beam___init___17():
+def test_spannertools_Beam___init___14():
     '''Like-named containers need not be lexically contiguous.
     '''
 
@@ -527,7 +460,7 @@ def test_spannertools_Beam___init___17():
     assert len(beam) == 8
 
 
-def test_spannertools_Beam___init___18():
+def test_spannertools_Beam___init___15():
     '''Asymmetric structures are no problem.
     '''
 
@@ -592,26 +525,7 @@ def test_spannertools_Beam___init___18():
     assert len(beam) == 8
 
 
-def test_spannertools_Beam___init___19():
-    r'''Spanners will not inspect the contents of simultaneous containers.
-    '''
-
-    container = Container([])
-    container.is_simultaneous = True
-    beam = Beam()
-    attach(beam, container)
-
-    assert len(beam) == 1
-    assert beam.components[0] is container
-    assert format(container) == stringtools.normalize(
-        r'''
-        <<
-        >>
-        '''
-        )
-
-
-def test_spannertools_Beam___init___20():
+def test_spannertools_Beam___init___16():
     r'''Notes in voice accept spanner even lodged within
     simultaneous parent container.
     '''
@@ -659,7 +573,7 @@ def test_spannertools_Beam___init___20():
     assert len(beam) == 4
 
 
-def test_spannertools_Beam___init___21():
+def test_spannertools_Beam___init___17():
     r'''You can not yet span noncontiguous counttime components
     in the same logical voice. Lilypond is happy with this situation, though.
     '''
@@ -717,7 +631,7 @@ def test_spannertools_Beam___init___21():
     assert pytest.raises(Exception, statement)
 
 
-def test_spannertools_Beam___init___22():
+def test_spannertools_Beam___init___18():
     r'''You can span counttime components in three chunks.
     '''
 
@@ -790,7 +704,7 @@ def test_spannertools_Beam___init___22():
     assert len(beam) == 12
 
 
-def test_spannertools_Beam___init___23():
+def test_spannertools_Beam___init___19():
     r'''You can not span across differently named voices.
     '''
 
@@ -817,7 +731,8 @@ def test_spannertools_Beam___init___23():
         '''
         )
 
-    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
+    selector = select().by_leaves(flatten=True)
+    leaves = selector(staff)
     beam = Beam()
     statement = 'attach(beam, leaves)'
     assert pytest.raises(Exception, statement)

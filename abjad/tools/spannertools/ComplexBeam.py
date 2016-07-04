@@ -235,7 +235,7 @@ class ComplexBeam(Beam):
 
                 >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(isolated_nib_direction=Left)
-                >>> attach(beam, measure)
+                >>> attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -256,7 +256,7 @@ class ComplexBeam(Beam):
 
                 >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(isolated_nib_direction=Right)
-                >>> attach(beam, measure)
+                >>> attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -277,7 +277,7 @@ class ComplexBeam(Beam):
 
                 >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(isolated_nib_direction=True)
-                >>> attach(beam, measure)
+                >>> attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::
@@ -298,7 +298,7 @@ class ComplexBeam(Beam):
 
                 >>> measure = Measure((1, 16), "c'16")
                 >>> beam = spannertools.ComplexBeam(isolated_nib_direction=False)
-                >>> attach(beam, measure)
+                >>> attach(beam, measure[:])
                 >>> show(measure) # doctest: +SKIP
 
             ..  doctest::

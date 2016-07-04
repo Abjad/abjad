@@ -8,7 +8,7 @@ def test_spannertools_Spanner___len___01():
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
     beam = Beam()
-    attach(beam, voice[1])
+    attach(beam, voice[1][:])
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -29,8 +29,8 @@ def test_spannertools_Spanner___len___01():
         '''
         )
 
-    assert len(beam) == 1
-    assert len(beam.components) == 1
+    assert len(beam) == 2
+    assert len(beam.components) == 2
 
 
 def test_spannertools_Spanner___len___02():
@@ -38,8 +38,9 @@ def test_spannertools_Spanner___len___02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -60,5 +61,5 @@ def test_spannertools_Spanner___len___02():
         '''
         )
 
-    assert len(beam) == 3
-    assert len(beam.components) == 3
+    assert len(beam) == 6
+    assert len(beam.components) == 6

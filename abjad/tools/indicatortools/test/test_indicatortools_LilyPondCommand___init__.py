@@ -9,7 +9,7 @@ def test_indicatortools_LilyPondCommand___init___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, staff[:])
     command = indicatortools.LilyPondCommand(r'slurDotted')
     attach(command, staff[0])
 
@@ -34,7 +34,7 @@ def test_indicatortools_LilyPondCommand___init___02():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, staff[:])
     command = indicatortools.LilyPondCommand(r'slurUp')
     attach(command, staff[0])
 

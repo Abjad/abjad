@@ -17,6 +17,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_01():
     container_2[1].name = 'voice 2'
 
     staff = Staff([container_1, container_2])
+    leaves = list(iterate(staff).by_leaf())
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -45,7 +46,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_01():
         '''
         )
 
-    component = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
+    component = leaves[-1]
     notes = iterate(component).by_logical_voice_from_component(
         Note, reverse=True)
     notes = list(notes)
@@ -74,6 +75,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_02():
     container_2[1].name = 'voice 2'
 
     staff = Staff([container_1, container_2])
+    leaves = list(iterate(staff).by_leaf())
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -102,7 +104,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_02():
         '''
         )
 
-    leaf = staff.select_leaves(allow_discontiguous_leaves=True)[-1]
+    leaf = leaves[-1]
     components = iterate(leaf).by_logical_voice_from_component(reverse=True)
     components = list(components)
 
@@ -115,7 +117,6 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_02():
     Note(e', 8)
     '''
 
-    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
     assert components[0] is leaves[-1]
     assert components[1] is staff[1][1]
     assert components[2] is leaves[-2]
@@ -137,6 +138,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_03():
     container_2[1].name = 'voice 2'
 
     staff = Staff([container_1, container_2])
+    leaves = list(iterate(staff).by_leaf())
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -165,7 +167,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_03():
         '''
         )
 
-    leaf = staff.select_leaves(allow_discontiguous_leaves=True)[0]
+    leaf = leaves[0]
     notes = iterate(leaf).by_logical_voice_from_component(Note)
     notes = list(notes)
 
@@ -191,6 +193,7 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_04():
     container_2[1].name = 'voice 2'
 
     staff = Staff([container_1, container_2])
+    leaves = list(iterate(staff).by_leaf())
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -219,7 +222,6 @@ def test_agenttools_IterationAgent_by_logical_voice_from_component_04():
         '''
         )
 
-    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
     leaf = leaves[0]
     components = iterate(leaf).by_logical_voice_from_component()
     components = list(components)

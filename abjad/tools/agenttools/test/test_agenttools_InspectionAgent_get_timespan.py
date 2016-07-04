@@ -49,7 +49,8 @@ def test_agenttools_InspectionAgent_get_timespan_06():
     voice_2 = Voice("c'8 d'8 e'8 f'8")
     voice_1.name = voice_2.name = 'voice'
     container = Container([voice_1, voice_2])
-    for i, x in enumerate(container.select_leaves()):
+    leaves = list(iterate(container).by_leaf())
+    for i, x in enumerate(leaves):
         assert inspect_(x).get_timespan().start_offset == i * Offset(1, 8)
 
 
@@ -66,7 +67,8 @@ def test_agenttools_InspectionAgent_get_timespan_08():
     voice = Voice([Note(0, (1, 8)), tuplet_1, Note(0, (1, 8))])
     offset = 0
     durations = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
-    for leaf, duration in zip(voice.select_leaves(), durations):
+    leaves = list(iterate(voice).by_leaf())
+    for leaf, duration in zip(leaves, durations):
         assert inspect_(leaf).get_timespan().start_offset == offset
         offset += Offset(*duration)
 
@@ -80,7 +82,8 @@ def test_agenttools_InspectionAgent_get_timespan_09():
         Duration(2, 4), [Note("c'4"), tuplet_1, Note("c'4")])
     offset = 0
     durations = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
-    for leaf, duration in zip(tuplet.select_leaves(), durations):
+    leaves = list(iterate(tuplet).by_leaf())
+    for leaf, duration in zip(leaves, durations):
         assert inspect_(leaf).get_timespan().start_offset == offset
         offset += Offset(*duration)
 
@@ -107,11 +110,12 @@ def test_agenttools_InspectionAgent_get_timespan_11():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     staff = Staff([Note(0, (1, 8)), voice, Note(0, (1, 8))])
-    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
+    leaves = list(iterate(staff).by_leaf())
     for i, leaf in enumerate(leaves):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
-    for i, leaf in enumerate(voice.select_leaves()):
+    leaves = list(iterate(voice).by_leaf())
+    for i, leaf in enumerate(leaves):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8) + Offset(1, 8)
 
@@ -123,10 +127,10 @@ def test_agenttools_InspectionAgent_get_timespan_12():
     voice_1 = Voice("c'8 d'8 e'8 f'8")
     voice_2 = Voice("c'8 d'8 e'8 f'8")
     staff = Staff([voice_1, voice_2])
-    for i, leaf in enumerate(voice_1.select_leaves()):
+    for i, leaf in enumerate(voice_1):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
-    for i, leaf in enumerate(voice_2.select_leaves()):
+    for i, leaf in enumerate(voice_2):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8) + Offset(1, 2)
 
@@ -139,10 +143,10 @@ def test_agenttools_InspectionAgent_get_timespan_13():
     voice_2 = Voice("c'8 d'8 e'8 f'8")
     staff = Staff([voice_1, voice_2])
     staff.is_simultaneous = True
-    for i, leaf in enumerate(voice_1.select_leaves()):
+    for i, leaf in enumerate(voice_1):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
-    for i, leaf in enumerate(voice_2.select_leaves()):
+    for i, leaf in enumerate(voice_2):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
 
@@ -156,7 +160,7 @@ def test_agenttools_InspectionAgent_get_timespan_14():
     voice_3 = Voice("c'8 d'8 e'8 f'8")
     staff = Staff([Container([voice_1, voice_2]), voice_3])
     staff[0].is_simultaneous = True
-    for i, leaf in enumerate(voice_3.select_leaves()):
+    for i, leaf in enumerate(voice_3):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8) + Offset(1, 2)
 
@@ -170,10 +174,10 @@ def test_agenttools_InspectionAgent_get_timespan_15():
     voice_3 = Voice("c'8 d'8 e'8 f'8")
     staff = Staff([voice_3, Container([voice_1, voice_2])])
     staff[1].is_simultaneous = True
-    for i, leaf in enumerate(voice_1.select_leaves()):
+    for i, leaf in enumerate(voice_1):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8) + Offset(1, 2)
-    for i, leaf in enumerate(voice_2.select_leaves()):
+    for i, leaf in enumerate(voice_2):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8) + Offset(1, 2)
 

@@ -3,7 +3,9 @@ from abjad.tools import selectiontools
 from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
+from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 
 
@@ -81,6 +83,46 @@ class BeamSpecifier(AbjadValueObject):
         self._use_feather_beams = use_feather_beams
 
     ### SPECIAL METHODS ###
+
+    def __call__(self, selections):
+        r'''Calls beam specifier on `selections`.
+
+        Returns none.
+        '''
+        if self.beam_divisions_together:
+            durations = []
+            for selection in selections:
+                if isinstance(selection, selectiontools.Selection):
+                    duration = selection.get_duration()
+                else:
+                    duration = selection._get_duration()
+                durations.append(duration)
+            beam = spannertools.DuratedComplexBeam(
+                durations=durations,
+                span_beam_count=1,
+                )
+            components = []
+            for selection in selections:
+                if isinstance(selection, selectiontools.Selection):
+                    components.extend(selection)
+                elif isinstance(selection, scoretools.Tuplet):
+                    components.append(selection)
+                else:
+                    raise TypeError(selection)
+            if self.stemlet_length is not None:
+                grob_proxy = override(beam).staff.stem
+                grob_proxy.stemlet_length = self.stemlet_length
+            leaves = list(iterate(components).by_leaf())
+            #attach(beam, components)
+            attach(beam, leaves)
+        elif self.beam_each_division:
+            for selection in selections:
+                beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
+                if self.stemlet_length is not None:
+                    grob_proxy = override(beam).staff.stem
+                    grob_proxy.stemlet_length = self.stemlet_length
+                leaves = list(iterate(selection).by_leaf())
+                attach(beam, leaves)
 
     def __eq__(self, arg):
         r'''Is true when `arg` is a beam specifier with `beam_each_division`
@@ -165,38 +207,9 @@ class BeamSpecifier(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
-    def _apply(self, selections):
-        if self.beam_divisions_together:
-            durations = []
-            for selection in selections:
-                if isinstance(selection, selectiontools.Selection):
-                    duration = selection.get_duration()
-                else:
-                    duration = selection._get_duration()
-                durations.append(duration)
-            beam = spannertools.DuratedComplexBeam(
-                durations=durations,
-                span_beam_count=1,
-                )
-            components = []
-            for selection in selections:
-                if isinstance(selection, selectiontools.Selection):
-                    components.extend(selection)
-                elif isinstance(selection, scoretools.Tuplet):
-                    components.append(selection)
-                else:
-                    raise TypeError(selection)
-            if self.stemlet_length is not None:
-                grob_proxy = override(beam).staff.stem
-                grob_proxy.stemlet_length = self.stemlet_length
-            attach(beam, components)
-        elif self.beam_each_division:
-            for selection in selections:
-                beam = spannertools.MultipartBeam(beam_rests=self.beam_rests)
-                if self.stemlet_length is not None:
-                    grob_proxy = override(beam).staff.stem
-                    grob_proxy.stemlet_length = self.stemlet_length
-                attach(beam, selection)
+    def _detach_all_beams(self, divisions):
+        for component in iterate(divisions).by_class():
+            detach(spannertools.Beam, component)
 
     ### PUBLIC PROPERTIES ###
 

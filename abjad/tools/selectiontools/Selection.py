@@ -466,7 +466,7 @@ class Selection(object):
 
             ::
 
-                >>> selection = staff.select_leaves()[2:4]
+                >>> selection = staff[2:4]
                 >>> result = selection._copy()
                 >>> new_staff = Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
@@ -481,7 +481,7 @@ class Selection(object):
 
             ::
 
-                >>> staff.select_leaves()[2] is new_staff.select_leaves()[0]
+                >>> staff[2] is new_staff[0]
                 False
 
         ..  container:: example
@@ -492,7 +492,7 @@ class Selection(object):
 
             ::
 
-                >>> selection = staff.select_leaves()[2:4]
+                >>> selection = staff[2:4]
                 >>> result = selection._copy(n=4)
                 >>> new_staff = Staff(result)
                 >>> show(new_staff) # doctest: +SKIP
@@ -540,7 +540,9 @@ class Selection(object):
 
             ::
 
-                >>> leaves = staff.select_leaves(1, 5)
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
+                >>> leaves = leaves[1:5]
                 >>> new_staff = leaves._copy(include_enclosing_containers=True)
                 >>> show(new_staff) # doctest: +SKIP
 
@@ -614,7 +616,7 @@ class Selection(object):
         parentage = self[0]._get_parentage(include_self=True)
         governor = parentage._get_governor()
         # find start and stop indices in governor
-        governor_leaves = list(governor.select_leaves())
+        governor_leaves = list(iterate(governor).by_leaf())
         for i, x in enumerate(governor_leaves):
             if x is self[0]:
                 start_index_in_governor = i
@@ -623,7 +625,7 @@ class Selection(object):
                 stop_index_in_governor = i
         # copy governor
         governor_copy = mutate(governor).copy()
-        copied_leaves = governor_copy.select_leaves()
+        copied_leaves = list(iterate(governor_copy).by_leaf())
         # find start and stop leaves in copy of governor
         start_leaf = copied_leaves[start_index_in_governor]
         stop_leaf = copied_leaves[stop_index_in_governor]

@@ -89,7 +89,7 @@ def test_spannertools_TextSpanner_position_05():
 
     container = Container("c'8 c'8 c'8 c'8")
     text_spanner = spannertools.TextSpanner()
-    attach(text_spanner, container)
+    attach(text_spanner, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''

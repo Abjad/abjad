@@ -7,12 +7,13 @@ def test_scoretools_Container__split_by_duration_01():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -30,7 +31,7 @@ def test_scoretools_Container__split_by_duration_01():
         '''
         ), format(staff)
 
-    halves = staff.select_leaves()[0]._split_by_duration(
+    halves = leaves[0]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=False,
         tie_split_notes=False,
@@ -61,12 +62,13 @@ def test_scoretools_Container__split_by_duration_02():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -121,12 +123,13 @@ def test_scoretools_Container__split_by_duration_03():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -190,12 +193,13 @@ def test_scoretools_Container__split_by_duration_04():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -213,7 +217,7 @@ def test_scoretools_Container__split_by_duration_04():
         '''
         ), format(staff)
 
-    halves = staff.select_leaves()[0]._split_by_duration(
+    halves = leaves[0]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=False,
         tie_split_notes=True,
@@ -247,12 +251,13 @@ def test_scoretools_Container__split_by_duration_05():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -309,12 +314,13 @@ def test_scoretools_Container__split_by_duration_06():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -378,12 +384,13 @@ def test_scoretools_Container__split_by_duration_07():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -443,12 +450,13 @@ def test_scoretools_Container__split_by_duration_08():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -466,7 +474,7 @@ def test_scoretools_Container__split_by_duration_08():
         '''
         ), format(staff)
 
-    halves = staff.select_leaves()[0]._split_by_duration(
+    halves = leaves[0]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=True,
         tie_split_notes=False,
@@ -477,8 +485,8 @@ def test_scoretools_Container__split_by_duration_08():
         \new Staff {
             {
                 \time 2/8
-                c'32 [
-                c'16. (
+                c'32 [ ]
+                c'16. [ (
                 d'8 ]
             }
             {
@@ -499,12 +507,13 @@ def test_scoretools_Container__split_by_duration_09():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -559,12 +568,13 @@ def test_scoretools_Container__split_by_duration_10():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -626,12 +636,13 @@ def test_scoretools_Container__split_by_duration_11():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -649,7 +660,7 @@ def test_scoretools_Container__split_by_duration_11():
         '''
         ), format(staff)
 
-    halves = staff.select_leaves()[1]._split_by_duration(
+    halves = leaves[1]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=True,
         tie_split_notes=False,
@@ -661,8 +672,8 @@ def test_scoretools_Container__split_by_duration_11():
             {
                 \time 2/8
                 c'8 [ (
-                d'32 )
-                d'16. ] (
+                d'32 ] )
+                d'16. [ ] (
             }
             {
                 e'8 [
@@ -684,12 +695,13 @@ def test_scoretools_Container__split_by_duration_12():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -744,12 +756,13 @@ def test_scoretools_Container__split_by_duration_13():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -824,12 +837,13 @@ def test_scoretools_Container__split_by_duration_15():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -847,7 +861,7 @@ def test_scoretools_Container__split_by_duration_15():
         '''
         ), format(staff)
 
-    halves = staff.select_leaves()[0]._split_by_duration(
+    halves = leaves[0]._split_by_duration(
         Duration(1, 32),
         fracture_spanners=True,
         tie_split_notes=True,
@@ -858,8 +872,8 @@ def test_scoretools_Container__split_by_duration_15():
         \new Staff {
             {
                 \time 2/8
-                c'32 ~ [
-                c'16. (
+                c'32 ~ [ ]
+                c'16. [ (
                 d'8 ]
             }
             {
@@ -881,12 +895,13 @@ def test_scoretools_Container__split_by_duration_16():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -943,12 +958,13 @@ def test_scoretools_Container__split_by_duration_17():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1010,12 +1026,13 @@ def test_scoretools_Container__split_by_duration_18():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1079,12 +1096,13 @@ def test_scoretools_Container__split_by_duration_19():
     staff = Staff()
     staff.append(Measure((3, 8), "c'8 d'8 e'8"))
     staff.append(Measure((3, 8), "c'8 d'8 e'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:3])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-3:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1200,14 +1218,15 @@ def test_scoretools_Container__split_by_duration_22():
     staff = Staff()
     staff.append(Measure((2, 16), "c'8 d'8"))
     staff.append(Measure((2, 16), "e'8 f'8"))
-    for leaf in staff.select_leaves():
+    leaves = list(iterate(staff).by_leaf())
+    for leaf in leaves:
         attach(Multiplier(1, 2), leaf)
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1262,14 +1281,15 @@ def test_scoretools_Container__split_by_duration_23():
     staff = Staff()
     staff.append(Measure((2, 16), "c'8 d'8"))
     staff.append(Measure((2, 16), "e'8 f'8"))
-    for leaf in staff.select_leaves():
+    leaves = list(iterate(staff).by_leaf())
+    for leaf in leaves:
         attach(Multiplier(1, 2), leaf)
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1328,14 +1348,15 @@ def test_scoretools_Container__split_by_duration_24():
     staff = Staff()
     staff.append(Measure((2, 16), "c'8 d'8"))
     staff.append(Measure((2, 16), "e'8 f'8"))
-    for leaf in staff.select_leaves():
+    leaves = list(iterate(staff).by_leaf())
+    for leaf in leaves:
         attach(Multiplier(1, 2), leaf)
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1445,10 +1466,11 @@ def test_scoretools_Container__split_by_duration_26():
     measure = Measure((15, 80), "c'32 d' e' f' g' a' b' c''64")
     measure.implicit_scaling = True
     staff = Staff([measure])
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''

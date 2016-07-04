@@ -8,8 +8,9 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[:])
+    attach(beam, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -27,7 +28,8 @@ def test_spannertools_Spanner__get_my_nth_leaf_01():
         '''
         )
 
-    leaves = staff.select_leaves()
+    selector = select().by_leaves(flatten=True)
+    leaves = selector(staff)
 
     assert beam._get_my_nth_leaf(0) is leaves[0]
     assert beam._get_my_nth_leaf(1) is leaves[1]

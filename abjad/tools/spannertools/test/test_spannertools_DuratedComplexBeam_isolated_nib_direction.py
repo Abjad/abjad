@@ -3,12 +3,13 @@ from abjad import *
 
 
 def test_spannertools_DuratedComplexBeam_isolated_nib_direction_01():
-    r'''Span isolated_nib_direction note when isolated_nib_direction is set to true.
+    r'''Span isolated_nib_direction note when isolated_nib_direction is set to
+    true.
     '''
 
     container = Container("c'8")
     beam = spannertools.DuratedComplexBeam(isolated_nib_direction=True)
-    attach(beam, container)
+    attach(beam, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -30,7 +31,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_02():
 
     container = Container("c'8")
     beam = spannertools.DuratedComplexBeam(isolated_nib_direction=False)
-    attach(beam, container)
+    attach(beam, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -49,7 +50,7 @@ def test_spannertools_DuratedComplexBeam_isolated_nib_direction_03():
 
     container = Container("c'8 d'8")
     beam = spannertools.DuratedComplexBeam(isolated_nib_direction=False)
-    attach(beam, container)
+    attach(beam, container[:])
 
     assert format(container) == stringtools.normalize(
         r'''

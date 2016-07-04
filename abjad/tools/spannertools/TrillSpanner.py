@@ -6,8 +6,7 @@ from abjad.tools.topleveltools import override
 
 
 class TrillSpanner(Spanner):
-    r'''A trill spanner.
-
+    r'''Trill spanner.
 
     ..  container:: example
 
@@ -22,7 +21,7 @@ class TrillSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 \startTrillSpan
                 d'8
@@ -43,7 +42,7 @@ class TrillSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \pitchedTrill
                 c'8 \startTrillSpan cs'
@@ -51,6 +50,19 @@ class TrillSpanner(Spanner):
                 e'8
                 f'8 \stopTrillSpan
             }
+
+    ..  container:: example
+
+        **Example 3.** Requires at least two leaves:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> trill = spannertools.TrillSpanner()
+            >>> attach(trill, staff[:1])
+            Traceback (most recent call last):
+            ...
+            Exception: TrillSpanner() attachment test fails for Selection(Note("c'4"),).
 
     Formats LilyPond ``\startTrillSpan`` on first leaf in spanner.
 
@@ -85,6 +97,9 @@ class TrillSpanner(Spanner):
         self._pitch = pitch
 
     ### PRIVATE METHODS ###
+
+    def _attachment_test_all(self, expr):
+        return self._at_least_two_leaves(expr)
 
     def _copy_keyword_args(self, new):
         self._is_harmonic = self.is_harmonic
@@ -146,7 +161,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \pitchedTrill
                     c'8 \startTrillSpan df'
@@ -170,7 +185,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \pitchedTrill
                     c'8 \startTrillSpan d'
@@ -208,7 +223,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \once \override TrillPitchHead.stencil = #(lambda (grob) (grob-interpret-markup grob #{ \markup \musicglyph #"noteheads.s0harmonic" #}))
                     \pitchedTrill
@@ -244,7 +259,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \pitchedTrill c'8 \startTrillSpan cs'
                     d'8 \stopTrillSpan
@@ -270,7 +285,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 \startTrillSpan
                     d'8 \stopTrillSpan
@@ -311,7 +326,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \pitchedTrill c'8 \startTrillSpan cs'
                     d'8 \stopTrillSpan
@@ -337,7 +352,7 @@ class TrillSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 \startTrillSpan
                     d'8 \stopTrillSpan

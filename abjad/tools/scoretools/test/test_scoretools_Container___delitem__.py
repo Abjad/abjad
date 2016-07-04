@@ -8,7 +8,8 @@ def test_scoretools_Container___delitem___01():
     '''
 
     voice = Voice("{ c'8 ( d'8 ) } { e'8 ( f'8 ) }")
-    attach(Beam(), voice[:])
+    leaves = list(iterate(voice).by_leaf())
+    attach(Beam(), leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -174,7 +175,7 @@ def test_scoretools_Container___delitem___08():
     '''
 
     voice = Voice("c'8 [ { d'8 e'8 } f'8 ]")
-    leaves = iterate(voice).by_class(scoretools.Leaf)
+    leaves = list(iterate(voice).by_leaf())
     attach(Glissando(), list(leaves))
 
     assert format(voice) == stringtools.normalize(
@@ -190,7 +191,7 @@ def test_scoretools_Container___delitem___08():
         '''
         )
 
-    leaf = voice.select_leaves()[1]
+    leaf = leaves[1]
     del(voice[1][0])
 
     assert format(voice) == stringtools.normalize(

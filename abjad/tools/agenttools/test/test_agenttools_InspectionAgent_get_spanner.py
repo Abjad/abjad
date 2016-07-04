@@ -7,24 +7,20 @@ def test_agenttools_InspectionAgent_get_spanner_01():
 
     container = Container("c'8 d'8 e'8 f'8")
     beam = Beam()
-    attach(beam, container.select_leaves()[:-1])
+    attach(beam, container[:-1])
     slur = Slur()
-    attach(slur, container.select_leaves()[:-1])
-    trill = spannertools.TrillSpanner()
-    attach(trill, container)
+    attach(slur, container[:-1])
 
     assert format(container) == stringtools.normalize(
         r'''
         {
-            c'8 [ ( \startTrillSpan
+            c'8 [ (
             d'8
             e'8 ] )
-            f'8 \stopTrillSpan
+            f'8
         }
         '''
         )
-
-    assert inspect_(container).get_spanner() == trill
 
     string = 'inspect_(container[0]).get_spanner()'
     assert pytest.raises(Exception, string)
@@ -35,7 +31,8 @@ def test_agenttools_InspectionAgent_get_spanner_01():
 def test_agenttools_InspectionAgent_get_spanner_02():
 
     staff = Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
+    leaves = list(iterate(staff).by_leaf())
     slur = Slur()
-    attach(slur, staff[:])
-    for leaf in staff.select_leaves():
+    attach(slur, leaves)
+    for leaf in leaves:
         assert slur == inspect_(leaf).get_spanner(Slur, in_parentage=True)

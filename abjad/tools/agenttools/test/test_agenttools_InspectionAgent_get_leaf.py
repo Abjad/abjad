@@ -25,7 +25,7 @@ def test_agenttools_InspectionAgent_get_leaf_01():
         '''
         )
 
-    leaves = staff.select_leaves(allow_discontiguous_leaves=True)
+    leaves = list(iterate(staff).by_leaf())
     assert inspect_(leaves[0]).get_leaf(0) is leaves[0]
     assert inspect_(leaves[0]).get_leaf(1) is leaves[1]
     assert inspect_(leaves[0]).get_leaf(2) is leaves[2]

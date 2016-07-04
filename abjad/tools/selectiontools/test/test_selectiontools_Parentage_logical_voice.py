@@ -37,7 +37,7 @@ def test_selectiontools_Parentage_logical_voice_03():
     staff[1].name = 'foo'
 
     containment = inspect_(staff[0][0]).get_parentage().logical_voice
-    for leaf in staff.select_leaves():
+    for leaf in iterate(staff).by_leaf():
         assert inspect_(leaf).get_parentage().logical_voice == containment
 
 
@@ -91,7 +91,7 @@ def test_selectiontools_Parentage_logical_voice_04():
         )
 
     signatures = [inspect_(leaf).get_parentage().logical_voice
-        for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
+        for leaf in iterate(voice).by_leaf()]
 
     assert signatures[0] == signatures[1]
     assert signatures[0] != signatures[2]
@@ -152,8 +152,10 @@ def test_selectiontools_Parentage_logical_voice_05():
         '''
         )
 
-    signatures = [inspect_(leaf).get_parentage().logical_voice
-        for leaf in voice.select_leaves(allow_discontiguous_leaves=True)]
+    signatures = [
+        inspect_(leaf).get_parentage().logical_voice
+        for leaf in iterate(voice).by_leaf()
+        ]
 
     signatures[0] == signatures[1]
     signatures[0] == signatures[2]
@@ -185,9 +187,9 @@ def test_selectiontools_Parentage_logical_voice_06():
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
     beam = Beam()
-    statement = 'attach(beam, container.select_leaves())'
-    assert pytest.raises(AssertionError, statement)
-    leaves = container.select_leaves(allow_discontiguous_leaves=True)
+    leaves = list(iterate(container).by_leaf())
+    statement = 'attach(beam, leaves)'
+    assert pytest.raises(Exception, statement)
     beam = Beam()
     attach(beam, leaves[:2])
     beam = Beam()
@@ -282,8 +284,10 @@ def test_selectiontools_Parentage_logical_voice_07():
         '''
         )
 
-    signatures = [inspect_(leaf).get_parentage().logical_voice
-        for leaf in container.select_leaves(allow_discontiguous_leaves=True)]
+    signatures = [
+        inspect_(leaf).get_parentage().logical_voice
+        for leaf in iterate(container).by_leaf()
+        ]
 
     signatures[0] != signatures[1]
     signatures[0] != signatures[2]
@@ -320,17 +324,19 @@ def test_selectiontools_Parentage_logical_voice_09():
     r'''Notes appear in the same logical voice.
     '''
 
-    t1 = Staff([Voice([Note(0, (1, 8))])])
-    t1.name = 'staff'
-    t1[0].name = 'voice'
+    staff_1 = Staff([Voice([Note(0, (1, 8))])])
+    staff_1.name = 'staff'
+    staff_1[0].name = 'voice'
 
-    t2 = Staff([Voice([Note(0, (1, 8))])])
-    t2.name = 'staff'
-    t2[0].name = 'voice'
+    staff_2 = Staff([Voice([Note(0, (1, 8))])])
+    staff_2.name = 'staff'
+    staff_2[0].name = 'voice'
 
-    t1_leaf_signature = inspect_(t1.select_leaves()[0]).get_parentage().logical_voice
-    t2_leaf_signature = inspect_(t2.select_leaves()[0]).get_parentage().logical_voice
-    assert t1_leaf_signature == t2_leaf_signature
+    staff_1_leaf_signature = inspect_(
+        staff_1[0][0]).get_parentage().logical_voice
+    staff_2_leaf_signature = inspect_(
+        staff_2[0][0]).get_parentage().logical_voice
+    assert staff_1_leaf_signature == staff_2_leaf_signature
 
 
 def test_selectiontools_Parentage_logical_voice_10():
@@ -392,7 +398,7 @@ def test_selectiontools_Parentage_logical_voice_11():
         '''
         )
 
-    leaves = container.select_leaves(allow_discontiguous_leaves=True)
+    leaves = list(iterate(container).by_leaf())
     assert inspect_(leaves[0]).get_parentage().logical_voice == \
         inspect_(leaves[1]).get_parentage().logical_voice
     assert inspect_(leaves[0]).get_parentage().logical_voice != \

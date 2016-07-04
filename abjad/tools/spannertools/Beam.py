@@ -122,7 +122,7 @@ class Beam(Spanner):
 
             ::
 
-                >>> for leaf in staff.select_leaves():
+                >>> for leaf in staff:
                 ...     beam = spannertools.Beam
                 ...     result = beam._is_beamable_component(leaf)
                 ...     print('{:<8}\t{}'.format(leaf, result))
@@ -148,7 +148,7 @@ class Beam(Spanner):
 
             ::
 
-                >>> for leaf in staff.select_leaves():
+                >>> for leaf in staff:
                 ...     beam = spannertools.Beam
                 ...     result = beam._is_beamable_component(
                 ...         leaf,

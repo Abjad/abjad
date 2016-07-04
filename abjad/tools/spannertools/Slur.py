@@ -2,29 +2,43 @@
 from abjad.tools import stringtools
 from abjad.tools.spannertools.Spanner import Spanner
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import iterate
 
 
 class Slur(Spanner):
-    r'''A slur.
+    r'''Slur.
 
     ..  container:: example
 
+        **Example 1.** Slurs four notes:
+
         ::
 
-            >>> staff = Staff("c'8 d'8 e'8 f'8")
-            >>> slur = spannertools.Slur()
-            >>> attach(slur, staff[:])
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> attach(Slur(), staff[:])
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
-                c'8 (
-                d'8
-                e'8
-                f'8 )
+                c'4 (
+                d'4
+                e'4
+                f'4 )
             }
+
+    ..  container:: example
+
+        **Example 2.** Requires at least two leaves:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> attach(Slur(), staff[:1])
+            Traceback (most recent call last):
+            ...
+            Exception: Slur() attachment test fails for Selection(Note("c'4"),).
 
     Formats LilyPond ``(`` command on first leaf in spanner.
 
@@ -53,6 +67,9 @@ class Slur(Spanner):
         self._direction = direction
 
     ### PRIVATE METHODS ###
+
+    def _attachment_test_all(self, component_expression):
+        return self._at_least_two_leaves(component_expression)
 
     def _copy_keyword_args(self, new):
         new._direction = self.direction
@@ -91,7 +108,7 @@ class Slur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 ^ (
                     d'8
@@ -112,7 +129,7 @@ class Slur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 _ (
                     d'8
@@ -133,7 +150,7 @@ class Slur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 (
                     d'8

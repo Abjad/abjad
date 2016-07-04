@@ -211,6 +211,10 @@ class Spanner(AbjadObject):
                     value = eval(value, namespace, namespace)
             setattr(grob_manager, attribute, value)
 
+    def _at_least_two_leaves(self, component_expression):
+        leaves = list(iterate(component_expression).by_leaf())
+        return 1 < len(leaves)
+        
     def _attach(self, components):
         from abjad.tools import selectiontools
         assert not self, repr(self)
@@ -222,7 +226,8 @@ class Spanner(AbjadObject):
             raise TypeError(components)
 
     def _attachment_test(self, component):
-        return True
+        from abjad.tools import scoretools
+        return isinstance(component, scoretools.Leaf)
 
     def _attachment_test_all(self, component_expression):
         return True

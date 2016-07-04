@@ -26,11 +26,12 @@ def test_scoretools_Measure_special_prolation_02():
         Note("c'4"),
         ]
     measure = Measure((4, 4), music)
+    leaves = list(iterate(measure).by_leaf())
 
-    assert measure.select_leaves()[0].written_duration == Duration(1, 4)
-    assert inspect_(measure.select_leaves()[0]).get_duration() == Duration(1, 4)
-    assert measure.select_leaves()[1].written_duration == Duration(1, 4)
-    assert inspect_(measure.select_leaves()[1]).get_duration() == Duration(1, 6)
+    assert leaves[0].written_duration == Duration(1, 4)
+    assert inspect_(leaves[0]).get_duration() == Duration(1, 4)
+    assert leaves[1].written_duration == Duration(1, 4)
+    assert inspect_(leaves[1]).get_duration() == Duration(1, 6)
 
 
 def test_scoretools_Measure_special_prolation_03():
@@ -46,11 +47,12 @@ def test_scoretools_Measure_special_prolation_03():
         Note("c'4"),
         ]
     measure = Measure((4, 4), music)
+    leaves = list(iterate(measure).by_leaf())
 
-    assert measure.select_leaves()[0].written_duration == Duration(1, 4)
-    assert inspect_(measure.select_leaves()[0]).get_duration() == Duration(1, 4)
-    assert measure.select_leaves()[1].written_duration == Duration(1, 4)
-    assert inspect_(measure.select_leaves()[1]).get_duration() == Duration(1, 9)
+    assert leaves[0].written_duration == Duration(1, 4)
+    assert inspect_(leaves[0]).get_duration() == Duration(1, 4)
+    assert leaves[1].written_duration == Duration(1, 4)
+    assert inspect_(leaves[1]).get_duration() == Duration(1, 9)
 
 
 def test_scoretools_Measure_special_prolation_04():
@@ -77,11 +79,12 @@ def test_scoretools_Measure_special_prolation_05():
         ]
     measure = Measure((4, 5), music)
     measure.implicit_scaling = True
+    leaves = list(iterate(measure).by_leaf())
 
-    assert measure.select_leaves()[0].written_duration == Duration(1, 4)
-    assert inspect_(measure.select_leaves()[0]).get_duration() == Duration(1, 5)
-    assert measure.select_leaves()[1].written_duration == Duration(1, 4)
-    assert inspect_(measure.select_leaves()[1]).get_duration() == Duration(2, 15)
+    assert leaves[0].written_duration == Duration(1, 4)
+    assert inspect_(leaves[0]).get_duration() == Duration(1, 5)
+    assert leaves[1].written_duration == Duration(1, 4)
+    assert inspect_(leaves[1]).get_duration() == Duration(2, 15)
 
 
 def test_scoretools_Measure_special_prolation_06():
@@ -98,8 +101,9 @@ def test_scoretools_Measure_special_prolation_06():
         ]
     measure = Measure((4, 5), music)
     measure.implicit_scaling = True
+    leaves = list(iterate(measure).by_leaf())
 
-    assert measure.select_leaves()[0].written_duration == Duration(1, 4)
-    assert inspect_(measure.select_leaves()[0]).get_duration() == Duration(1, 5)
-    assert measure.select_leaves()[1].written_duration == Duration(1, 4)
-    assert inspect_(measure.select_leaves()[1]).get_duration() == Duration(4, 45)
+    assert leaves[0].written_duration == Duration(1, 4)
+    assert inspect_(leaves[0]).get_duration() == Duration(1, 5)
+    assert leaves[1].written_duration == Duration(1, 4)
+    assert inspect_(leaves[1]).get_duration() == Duration(4, 45)

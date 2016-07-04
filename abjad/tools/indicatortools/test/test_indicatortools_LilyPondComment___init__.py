@@ -8,7 +8,7 @@ def test_indicatortools_LilyPondComment___init___01():
 
     staff = Staff("c'8 d'8 e'8 f'8")
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, staff[:])
     comment = indicatortools.LilyPondComment('beginning of note content')
     attach(comment, staff[0])
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools.scoretools.Tuplet import Tuplet
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 
 
@@ -254,11 +255,11 @@ class FixedDurationTuplet(Tuplet):
         '''
         if self.is_diminution:
             while self.is_diminution:
-                for leaf in self.select_leaves():
+                for leaf in iterate(self).by_leaf():
                     leaf.written_duration /= 2
         elif not self.is_diminution:
             while not self.is_diminution:
-                for leaf in self.select_leaves():
+                for leaf in iterate(self).by_leaf():
                     leaf.written_duration *= 2
 
     def trim(self, start, stop='unused'):

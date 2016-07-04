@@ -151,7 +151,9 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
                 >>> hairpin = spannertools.Hairpin('p < f')
-                >>> attach(hairpin, staff.select_leaves())
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
+                >>> attach(hairpin, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -200,7 +202,9 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(Tuplet((3, 2), "c'4 e'4"))
                 >>> staff.append(Tuplet((3, 2), "d'4 f'4"))
                 >>> hairpin = spannertools.Hairpin('p < f')
-                >>> attach(hairpin, staff.select_leaves())
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
+                >>> attach(hairpin, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -348,7 +352,8 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(Measure((1, 4), "c'8 d'8"))
                 >>> staff.append(Measure((2, 8), "e'8 f'8"))
                 >>> slur = spannertools.Slur()
-                >>> attach(slur, staff[:])
+                >>> leaves = list(iterate(staff).by_leaf())
+                >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -413,9 +418,11 @@ class MutationAgent(abctools.AbjadObject):
                 >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
                 >>> staff = Staff([tuplet_1, tuplet_2])
                 >>> hairpin = spannertools.Hairpin('p < f')
-                >>> attach(hairpin, staff.select_leaves())
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
+                >>> attach(hairpin, leaves)
                 >>> slur = spannertools.Slur()
-                >>> attach(slur, staff.select_leaves())
+                >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::
@@ -2199,7 +2206,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
-                >>> leaves = staff.select_leaves()
+                >>> leaves = staff[:]
                 >>> hairpin = spannertools.Hairpin(descriptor='p < f')
                 >>> attach(hairpin, leaves)
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
@@ -2255,9 +2262,8 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
-                >>> leaves = staff.select_leaves()
                 >>> hairpin = spannertools.Hairpin(descriptor='p < f')
-                >>> attach(hairpin, leaves)
+                >>> attach(hairpin, staff[:])
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
                 >>> show(staff) # doctest: +SKIP
 
@@ -2280,6 +2286,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> durations = [Duration(3, 16), Duration(7, 32)]
+                >>> leaves = staff[:]
                 >>> result = mutate(leaves).split(
                 ...     durations,
                 ...     fracture_spanners=True,
@@ -2312,7 +2319,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
-                >>> leaves = staff.select_leaves()
+                >>> leaves = staff[:]
                 >>> hairpin = spannertools.Hairpin(descriptor='p < f')
                 >>> attach(hairpin, leaves)
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
@@ -2371,7 +2378,7 @@ class MutationAgent(abctools.AbjadObject):
             ::
 
                 >>> staff = Staff("c'8 e' d' f' c' e' d' f'")
-                >>> leaves = staff.select_leaves()
+                >>> leaves = staff[:]
                 >>> hairpin = spannertools.Hairpin(descriptor='p < f')
                 >>> attach(hairpin, leaves)
                 >>> override(staff).dynamic_line_spanner.staff_padding = 3
@@ -2434,7 +2441,8 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff()
                 >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
                 >>> staff.append(Tuplet((2, 3), "c'4 d' e'"))
-                >>> leaves = staff.select_leaves()
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
                 >>> slur = spannertools.Slur()
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
@@ -2704,12 +2712,13 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff = Staff()
                 >>> staff.append(Measure((3, 4), "c'4 d'4 e'4"))
                 >>> staff.append(Measure((3, 4), "d'4 e'4 f'4"))
-                >>> leaves = staff.select_leaves()
+                >>> selector = select().by_leaves(flatten=True)
+                >>> leaves = selector(staff)
                 >>> hairpin = spannertools.Hairpin('p < f')
                 >>> attach(hairpin, leaves)
                 >>> measures = staff[:]
                 >>> slur = spannertools.Slur()
-                >>> attach(slur, measures)
+                >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 
             ..  doctest::

@@ -71,7 +71,7 @@ Here's notation in a loop:
 
 \begin{comment}
 <abjad>
-for leaf in staff.select_leaves():
+for leaf in iterate(staff).by_leaf():
     duration = inspect_(leaf).get_duration()
     print(duration)
     show(leaf)
@@ -81,7 +81,7 @@ for leaf in staff.select_leaves():
 
 %%% ABJADBOOK START %%%
 \begin{lstlisting}
->>> for leaf in staff.select_leaves():
+>>> for leaf in iterate(staff).by_leaf():
 ...     duration = inspect_(leaf).get_duration()
 ...     print(duration)
 ...     show(leaf)

@@ -5,9 +5,11 @@ from abjad.tools.topleveltools import override
 
 
 class PhrasingSlur(Spanner):
-    r'''A phrasing slur.
+    r'''Phrasing slur.
 
     ..  container:: example
+
+        **Example 1.** Spans four notes:
 
         ::
 
@@ -18,13 +20,26 @@ class PhrasingSlur(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 \(
                 d'8
                 e'8
                 f'8 \)
             }
+
+    ..  container:: example
+
+        **Example 2.** Requires at least two leaves:
+
+        ::
+
+            >>> staff = Staff("c'8 d' e' f'")
+            >>> phrasing_slur = spannertools.PhrasingSlur()
+            >>> attach(phrasing_slur, staff[:1])
+            Traceback (most recent call last):
+            ...
+            Exception: PhrasingSlur() attachment test fails for Selection(Note("c'8"),).
 
     Formats LilyPond ``\(`` command on first leaf in spanner.
 
@@ -53,6 +68,9 @@ class PhrasingSlur(Spanner):
         self._direction = direction
 
     ### PRIVATE METHODS ###
+
+    def _attachment_test_all(self, expr):
+        return self._at_least_two_leaves(expr)
 
     def _copy_keyword_args(self, new):
         new._direction = self.direction

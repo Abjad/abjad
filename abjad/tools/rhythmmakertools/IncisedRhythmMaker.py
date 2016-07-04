@@ -9,6 +9,7 @@ from abjad.tools import spannertools
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import iterate
 
 
 class IncisedRhythmMaker(RhythmMaker):
@@ -291,7 +292,9 @@ class IncisedRhythmMaker(RhythmMaker):
         elif beam_specifier.beam_each_division:
             for x in result:
                 beam = spannertools.MultipartBeam()
-                attach(beam, x)
+                #attach(beam, x)
+                leaves = list(iterate(x).by_leaf())
+                attach(beam, leaves)
         selections = [selectiontools.Selection(x) for x in result]
         selections = self._apply_division_masks(selections, rotation)
         duration_specifier = self._get_duration_spelling_specifier()

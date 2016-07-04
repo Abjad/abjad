@@ -10,12 +10,13 @@ def test_agenttools_MutationAgent_split_01():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -63,16 +64,18 @@ def test_agenttools_MutationAgent_split_01():
 
 
 def test_agenttools_MutationAgent_split_02():
-    r'''Cyclically splits consecutive notes in score. Doesn't fracture spanners.
+    r'''Cyclically splits consecutive notes in score.
+    Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -90,7 +93,6 @@ def test_agenttools_MutationAgent_split_02():
         '''
         ), format(staff)
 
-    leaves = staff.select_leaves()
     result = mutate(leaves).split(
         [Duration(3, 32)],
         cyclic=True,
@@ -126,12 +128,13 @@ def test_agenttools_MutationAgent_split_03():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -191,12 +194,13 @@ def test_agenttools_MutationAgent_split_04():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -265,10 +269,11 @@ def test_agenttools_MutationAgent_split_05():
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
+    leaves = list(iterate(measures).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [measures[0]])
-    attach(beam_2, [measures[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
 
     result = mutate(measures).split(
         [Duration(3, 32)],
@@ -323,12 +328,13 @@ def test_agenttools_MutationAgent_split_06():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -378,16 +384,18 @@ def test_agenttools_MutationAgent_split_06():
 
 
 def test_agenttools_MutationAgent_split_07():
-    r'''Cyclically splits consecutive notes in score. Doesn't fracture spanners.
+    r'''Cyclically splits consecutive notes in score.
+    Doesn't fracture spanners.
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -405,7 +413,6 @@ def test_agenttools_MutationAgent_split_07():
         '''
         ), format(staff)
 
-    leaves = staff.select_leaves()
     result = mutate(leaves).split(
         [Duration(1, 16)],
         cyclic=True,
@@ -442,12 +449,13 @@ def test_agenttools_MutationAgent_split_08():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -508,12 +516,13 @@ def test_agenttools_MutationAgent_split_09():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -582,12 +591,13 @@ def test_agenttools_MutationAgent_split_10():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -618,9 +628,9 @@ def test_agenttools_MutationAgent_split_10():
             {
                 \time 2/8
                 c'8 [ (
-                d'32. ~ )
-                d'32. ~
-                d'32 ] (
+                d'32. ~ ] )
+                d'32. ~ [ ]
+                d'32 [ ] (
             }
             {
                 e'8 [
@@ -639,12 +649,13 @@ def test_agenttools_MutationAgent_split_11():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -662,7 +673,6 @@ def test_agenttools_MutationAgent_split_11():
         '''
         ), format(staff)
 
-    leaves = staff.select_leaves()
     result = mutate(leaves).split(
         [Duration(3, 32)],
         cyclic=True,
@@ -674,16 +684,16 @@ def test_agenttools_MutationAgent_split_11():
         \new Staff {
             {
                 \time 2/8
-                c'16. ~ [
-                c'32 (
-                d'16 ~ )
-                d'16 ] (
+                c'16. ~ [ ]
+                c'32 [ (
+                d'16 ~ ] )
+                d'16 [ ] (
             }
             {
-                e'32 ~ ) [
-                e'16. (
-                f'16. ~ )
-                f'32 ]
+                e'32 ~ ) [ ]
+                e'16. [ (
+                f'16. ~ ] )
+                f'32 [ ]
             }
         }
         '''
@@ -698,12 +708,13 @@ def test_agenttools_MutationAgent_split_12():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -762,12 +773,13 @@ def test_agenttools_MutationAgent_split_13():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -872,8 +884,8 @@ def test_agenttools_MutationAgent_split_15():
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [measures[0]])
-    attach(beam_2, [measures[1]])
+    attach(beam_1, measures[0][:])
+    attach(beam_2, measures[1][:])
 
     result = mutate(measures).split(
         [Duration(3, 32)],
@@ -928,12 +940,13 @@ def test_agenttools_MutationAgent_split_16():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -965,10 +978,10 @@ def test_agenttools_MutationAgent_split_16():
             {
                 \time 2/8
                 c'8 [ (
-                d'32 ~ )
-                d'32 ~
-                d'32 ~
-                d'32 ] (
+                d'32 ~ ] )
+                d'32 ~ [ ]
+                d'32 ~ [ ]
+                d'32 [ ] (
             }
             {
                 e'8 [
@@ -987,12 +1000,13 @@ def test_agenttools_MutationAgent_split_17():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1010,7 +1024,6 @@ def test_agenttools_MutationAgent_split_17():
         '''
         ), format(staff)
 
-    leaves = staff.select_leaves()
     result = mutate(leaves).split(
         [Duration(1, 16)],
         cyclic=True,
@@ -1023,16 +1036,16 @@ def test_agenttools_MutationAgent_split_17():
         \new Staff {
             {
                 \time 2/8
-                c'16 ~ [
-                c'16 (
-                d'16 ~ )
-                d'16 ] (
+                c'16 ~ [ ]
+                c'16 [ (
+                d'16 ~ ] )
+                d'16 [ ] (
             }
             {
-                e'16 ~ ) [
-                e'16 (
-                f'16 ~ )
-                f'16 ]
+                e'16 ~ ) [ ]
+                e'16 [ (
+                f'16 ~ ] )
+                f'16 [ ]
             }
         }
         '''
@@ -1047,12 +1060,13 @@ def test_agenttools_MutationAgent_split_18():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1112,12 +1126,13 @@ def test_agenttools_MutationAgent_split_19():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1186,12 +1201,13 @@ def test_agenttools_MutationAgent_split_20():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1250,12 +1266,13 @@ def test_agenttools_MutationAgent_split_21():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1318,12 +1335,13 @@ def test_agenttools_MutationAgent_split_22():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1382,12 +1400,13 @@ def test_agenttools_MutationAgent_split_23():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
+    leaves = list(iterate(staff).by_leaf())
     beam_1 = Beam()
     beam_2 = Beam()
-    attach(beam_1, [staff[0]])
-    attach(beam_2, [staff[1]])
+    attach(beam_1, leaves[:2])
+    attach(beam_2, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -1518,8 +1537,9 @@ def test_agenttools_MutationAgent_split_26():
     voice = Voice()
     voice.append(Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(Tuplet((2, 3), "f'8 g'8 a'8"))
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     tuplets = voice[1:2]
     result = mutate(tuplets).split(
@@ -1559,8 +1579,9 @@ def test_agenttools_MutationAgent_split_27():
     voice = Voice()
     voice.append(Measure((3, 8), "c'8 d'8 e'8"))
     voice.append(Measure((3, 8), "f'8 g'8 a'8"))
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     measures = voice[1:2]
     result = mutate(measures).split(
@@ -1601,8 +1622,9 @@ def test_agenttools_MutationAgent_split_28():
     voice = Voice()
     voice.append(Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True))
     voice.append(Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True))
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
 
     measures = voice[1:2]
     result = mutate(measures).split(
@@ -1744,8 +1766,9 @@ def test_agenttools_MutationAgent_split_31():
 
     staff = Staff([Container("c'8 d'8 e'8 f'8")])
     voice = staff[0]
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, voice)
+    attach(beam, leaves)
 
     result = mutate([voice]).split(
         [Duration(1, 4)],
@@ -1821,7 +1844,7 @@ def test_agenttools_MutationAgent_split_32():
     voice = Voice([tuplet])
     staff = Staff([voice])
     beam = Beam()
-    attach(beam, tuplet)
+    attach(beam, tuplet[:])
 
     result = mutate([tuplet]).split(
         [Duration(1, 5)],
@@ -1907,8 +1930,9 @@ def test_agenttools_MutationAgent_split_33():
     voice = Voice()
     voice.append(Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(Tuplet((2, 3), "f'8 g'8 a'8"))
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
     tuplet = voice[1]
 
     assert format(voice) == stringtools.normalize(
@@ -1989,8 +2013,9 @@ def test_agenttools_MutationAgent_split_34():
     voice = Voice()
     voice.append(Measure((3, 8), "c'8 d'8 e'8"))
     voice.append(Measure((3, 8), "f'8 g'8 a'8"))
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
     measure = voice[1]
 
     assert format(voice) == stringtools.normalize(
@@ -2075,8 +2100,9 @@ def test_agenttools_MutationAgent_split_35():
     voice.append(measure)
     measure = Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True)
     voice.append(measure)
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[:])
+    attach(beam, leaves)
     measure = voice[1]
 
     assert format(voice) == stringtools.normalize(
@@ -2226,12 +2252,13 @@ def test_agenttools_MutationAgent_split_37():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves[:2])
     beam = Beam()
-    attach(beam, staff[1])
+    attach(beam, leaves[-2:])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -2287,10 +2314,11 @@ def test_agenttools_MutationAgent_split_38():
     '''
 
     staff = Staff([Measure((3, 8), "c'8. d'8.")])
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -2334,10 +2362,11 @@ def test_agenttools_MutationAgent_split_39():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2394,10 +2423,11 @@ def test_agenttools_MutationAgent_split_40():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2448,10 +2478,11 @@ def test_agenttools_MutationAgent_split_41():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2509,10 +2540,11 @@ def test_agenttools_MutationAgent_split_42():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2563,10 +2595,11 @@ def test_agenttools_MutationAgent_split_43():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2613,10 +2646,11 @@ def test_agenttools_MutationAgent_split_44():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2662,10 +2696,11 @@ def test_agenttools_MutationAgent_split_45():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2723,10 +2758,11 @@ def test_agenttools_MutationAgent_split_46():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2783,10 +2819,11 @@ def test_agenttools_MutationAgent_split_47():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
+    leaves = list(iterate(voice).by_leaf())
     beam = Beam()
-    attach(beam, voice[0])
+    attach(beam, leaves)
     slur = Slur()
-    attach(slur, voice[0].select_leaves())
+    attach(slur, leaves)
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -2869,10 +2906,11 @@ def test_agenttools_MutationAgent_split_49():
     pytest.skip('TODO: make this work.')
 
     staff = Staff([Measure((3, 12), "c'8. d'8.")])
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
     attach(beam, staff[0])
     slur = Slur()
-    attach(slur, staff.select_leaves())
+    attach(slur, leaves)
 
     assert format(staff) == stringtools.normalize(
         r'''

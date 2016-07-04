@@ -245,21 +245,14 @@ def test_spannertools_Beam__fracture_09():
         '''
         )
 
+    leaves = list(iterate(staff).by_leaf())
     beam = Beam()
-    attach(beam, staff[:])
-    original, left, right = beam._fracture(1, direction=Right)
+    attach(beam, leaves)
+    original, left, right = beam._fracture(7, direction=Right)
 
-    assert len(original) == 3
-    assert original.components[0] is staff[0]
-    assert original.components[1] is staff[1]
-    assert original.components[2] is staff[2]
-
-    assert len(left) == 2
-    assert left.components[0] is staff[0]
-    assert left.components[1] is staff[1]
-
-    assert len(right) == 1
-    assert right.components[0] is staff[2]
+    assert len(original) == 12
+    assert len(left) == 8
+    assert len(right) == 4
 
     assert format(staff) == stringtools.normalize(
         r'''

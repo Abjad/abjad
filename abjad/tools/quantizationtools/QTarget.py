@@ -9,6 +9,7 @@ from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
+from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 
 
@@ -164,7 +165,7 @@ class QTarget(AbjadObject):
         grace_handler=None,
         voice=None,
         ):
-        for leaf in voice.select_leaves():
+        for leaf in iterate(voice).by_leaf():
             if leaf._has_indicator(indicatortools.Annotation):
                 annotation = leaf._get_indicator(indicatortools.Annotation)
                 pitches, grace_container = grace_handler(annotation.value)

@@ -9,6 +9,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
     measure = Measure((4, 4), [], implicit_scaling=True)
     measure.append(scoretools.FixedDurationTuplet((2, 4), "c'4 d'4 e'4"))
     measure.append(scoretools.FixedDurationTuplet((2, 4), "f'4 g'4 a'4"))
+    leaves = list(iterate(measure).by_leaf())
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -28,7 +29,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_01():
         '''
         )
 
-    measure.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    leaves[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -60,6 +61,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
     tuplet_1 = scoretools.FixedDurationTuplet((2, 4), "c'8 d' e' f' g'")
     tuplet_2 = scoretools.FixedDurationTuplet((2, 4), "a'8 b' c'' d'' e''")
     measure.extend([tuplet_1, tuplet_2])
+    leaves = list(iterate(measure).by_leaf())
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -83,7 +85,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_02():
         '''
         )
 
-    measure.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    leaves[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -121,6 +123,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
     tuplet_2 = scoretools.FixedDurationTuplet(
         (4, 8), "a'8 b' c'' d'' e'' f'' g''")
     measure.extend([tuplet_1, tuplet_2])
+    leaves = list(iterate(measure).by_leaf())
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -149,7 +152,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_03():
         '''
         )
 
-    measure.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    leaves[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -192,6 +195,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
     tuplet_2 = scoretools.FixedDurationTuplet(
         (4, 8), "f'8 fs' g' af' a' bf' b'")
     measure.extend([tuplet_1, tuplet_2])
+    leaves = list(iterate(measure).by_leaf())
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -220,7 +224,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_04():
         '''
         )
 
-    measure.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
+    leaves[-1]._remove_and_shrink_durated_parent_containers()
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -261,6 +265,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
     tuplet.extend("c'8 cs' d' ef' e' f' fs'")
     measure.append(tuplet)
     measure.extend("g'4 af'4 a'4")
+    leaves = list(iterate(measure).by_leaf())
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -284,7 +289,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_05():
         '''
         )
 
-    measure.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    leaves[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -329,6 +334,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_06():
     tuplet.extend("c'8 cs' d' ef' e' f' fs'")
     measure.append(tuplet)
     measure.extend("g'4 af'4 a'4")
+    leaves = list(iterate(measure).by_leaf())
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -352,7 +358,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_06():
         '''
         )
 
-    measure.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
+    leaves[-1]._remove_and_shrink_durated_parent_containers()
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -387,6 +393,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_07():
     outer_tuplet = scoretools.FixedDurationTuplet((2, 2), [])
     outer_tuplet.extend([Note("c'2"), Note("cs'2"), inner_tuplet])
     measure.append(outer_tuplet)
+    leaves = list(iterate(measure).by_leaf())
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -405,7 +412,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_07():
         '''
         )
 
-    measure.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
+    leaves[-1]._remove_and_shrink_durated_parent_containers()
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -435,7 +442,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_08():
 
     container = Container("c'4 c'4 c'4 c'4 c'4 c'4")
 
-    container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    container[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -458,7 +465,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_09():
 
     voice = Voice(6 * Note("c'4"))
 
-    voice.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    voice[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -481,7 +488,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_10():
 
     staff = Staff(Note("c'4") * 6)
 
-    staff.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    staff[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -631,6 +638,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_14():
     tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     container = Container([tuplet_1, tuplet_2])
+    leaves = list(iterate(container).by_leaf())
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -649,7 +657,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_14():
         '''
         )
 
-    container.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    leaves[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(container) == stringtools.normalize(
         r'''
@@ -678,6 +686,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_15():
     tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     voice = Voice([tuplet_1, tuplet_2])
+    leaves = list(iterate(voice).by_leaf())
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -696,7 +705,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_15():
         '''
         )
 
-    voice.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    leaves[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(voice) == stringtools.normalize(
         r'''
@@ -725,6 +734,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_16():
     tuplet_1 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     tuplet_2 = scoretools.FixedDurationTuplet(Duration(2, 4), "c'4 c'4 c'4")
     staff = Staff([tuplet_1, tuplet_2])
+    leaves = list(iterate(staff).by_leaf())
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -743,7 +753,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_16():
         '''
         )
 
-    staff.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    leaves[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -772,6 +782,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_17():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 4), [])
     inner_tuplet = scoretools.FixedDurationTuplet((1, 4), "c'4")
     tuplet.extend([Note("c'4"), Note("c'4"), inner_tuplet])
+    leaves = list(iterate(tuplet).by_leaf())
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -785,8 +796,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_17():
         '''
         )
 
-    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
-
+    leaves[-1]._remove_and_shrink_durated_parent_containers()
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -811,6 +821,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_18():
     inner_tuplet.extend("e'4")
     middle_tuplet.append(inner_tuplet)
     tuplet.extend([Note("c'4"), Note("d'4"), middle_tuplet])
+    leaves = list(iterate(tuplet).by_leaf())
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -826,7 +837,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_18():
         '''
         )
 
-    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
+    leaves[-1]._remove_and_shrink_durated_parent_containers()
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -851,6 +862,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_19():
     inner_tuplet.extend("e'8 f'8")
     middle_tuplet.append(inner_tuplet)
     tuplet.extend([Note("c'4"), Note("d'4"), middle_tuplet])
+    leaves = list(iterate(tuplet).by_leaf())
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -867,7 +879,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_19():
         '''
         )
 
-    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
+    leaves[-1]._remove_and_shrink_durated_parent_containers()
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -906,7 +918,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_20():
         '''
         )
 
-    tuplet.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    tuplet[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -941,7 +953,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_21():
         '''
         )
 
-    tuplet.select_leaves()[0]._remove_and_shrink_durated_parent_containers()
+    tuplet[0]._remove_and_shrink_durated_parent_containers()
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -965,6 +977,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 2), [])
     inner_tuplet = scoretools.FixedDurationTuplet((2, 4), "d'4 ef'4 e'4")
     tuplet.extend([Note("c'2"), Note("cs'2"), inner_tuplet])
+    leaves = list(iterate(tuplet).by_leaf())
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -980,7 +993,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_22():
         '''
         )
 
-    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
+    leaves[-1]._remove_and_shrink_durated_parent_containers()
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -1006,6 +1019,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_23():
 
     tuplet = Tuplet(Multiplier(2, 3), [])
     tuplet.extend(r"c'2 cs'2 \times 2/3 { d'4 ef'4 e'4 }")
+    leaves = list(iterate(tuplet).by_leaf())
 
     assert format(tuplet) == stringtools.normalize(
         r'''
@@ -1021,7 +1035,7 @@ def test_scoretools_Component__remove_and_shrink_durated_parent_containers_23():
         '''
         )
 
-    tuplet.select_leaves()[-1]._remove_and_shrink_durated_parent_containers()
+    leaves[-1]._remove_and_shrink_durated_parent_containers()
 
     assert format(tuplet) == stringtools.normalize(
         r'''

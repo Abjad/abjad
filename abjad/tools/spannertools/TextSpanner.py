@@ -24,7 +24,7 @@ class TextSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4 \startTextSpan
                 d'4
@@ -50,7 +50,7 @@ class TextSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \override TextSpanner.bound-details.left.stencil-align-dir-y = #0
                 \override TextSpanner.bound-details.left.text = \markup {
@@ -81,7 +81,7 @@ class TextSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4 ^ \markup { pont. }
                 d'4
@@ -107,7 +107,7 @@ class TextSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4
                 d'4
@@ -135,7 +135,7 @@ class TextSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'4 ^ \markup { pont. }
                 d'4
@@ -144,6 +144,19 @@ class TextSpanner(Spanner):
             }
 
         Text spanner is suppresssed and only the markup appear.
+        
+    ..  container:: example
+
+        **Example 6.** Requires at least two leaves:
+
+        ::
+
+            >>> staff = Staff("c'4 d' e' f'")
+            >>> text_spanner = spannertools.TextSpanner()
+            >>> attach(text_spanner, staff[:1])
+            Traceback (most recent call last):
+            ...
+            Exception: TextSpanner() attachment test fails for Selection(Note("c'4"),).
 
     '''
 
@@ -158,6 +171,9 @@ class TextSpanner(Spanner):
         Spanner.__init__(self, overrides=overrides)
 
     ### PRIVATE METHODS ###
+
+    def _attachment_test_all(self, expr):
+        return self._at_least_two_leaves(expr)
 
     def _get_annotations(self, leaf):
         inspector = inspect_(leaf)

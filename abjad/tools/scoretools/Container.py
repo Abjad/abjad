@@ -1622,49 +1622,50 @@ class Container(Component):
         for s in spanners:
             s._components.sort(key=lambda x: x._get_timespan().start_offset)
 
-    def select_leaves(
-        self,
-        start=0,
-        stop=None,
-        leaf_classes=None,
-        recurse=True,
-        allow_discontiguous_leaves=False,
-        ):
-        r'''Selects leaves in container.
-
-        ..  todo:: Deprecated. Use ``iterate().by_class()`` instead.
-
-        ..  container:: example
-
-            **Example 1.** Selects leaves from container:
-
-            ::
-
-                >>> container = Container("c'8 d'8 r8 e'8")
-
-            ::
-
-                >>> container.select_leaves()
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
-
-        Returns contiguous leaf selection or free leaf selection.
-        '''
-        from abjad.tools import scoretools
-        from abjad.tools import selectiontools
-        Selection = selectiontools.Selection
-        leaf_classes = leaf_classes or (scoretools.Leaf,)
-        expr = self
-        if recurse:
-            expr = iterate(expr).by_class(scoretools.Leaf)
-        music = [
-            component for component in expr
-            if isinstance(component, leaf_classes)
-            ]
-        music = music[start:stop]
-        if allow_discontiguous_leaves:
-            selection = selectiontools.Selection(music=music)
-        else:
-            assert Selection._all_are_contiguous_components_in_same_logical_voice(
-                music)
-            selection = selectiontools.Selection(music=music)
-        return selection
+#    def select_leaves(
+#        self,
+#        start=0,
+#        stop=None,
+#        leaf_classes=None,
+#        recurse=True,
+#        allow_discontiguous_leaves=False,
+#        ):
+#        r'''Selects leaves in container.
+#
+#        ..  todo:: Deprecated. Use ``iterate().by_class()`` instead.
+#
+#        ..  container:: example
+#
+#            **Example 1.** Selects leaves from container:
+#
+#            ::
+#
+#                >>> container = Container("c'8 d'8 r8 e'8")
+#
+#            ::
+#
+#                >>> selector = select().by_leaves(flatten=True)
+#                >>> selector(container)
+#                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"))
+#
+#        Returns contiguous leaf selection or free leaf selection.
+#        '''
+#        from abjad.tools import scoretools
+#        from abjad.tools import selectiontools
+#        Selection = selectiontools.Selection
+#        leaf_classes = leaf_classes or (scoretools.Leaf,)
+#        expr = self
+#        if recurse:
+#            expr = iterate(expr).by_class(scoretools.Leaf)
+#        music = [
+#            component for component in expr
+#            if isinstance(component, leaf_classes)
+#            ]
+#        music = music[start:stop]
+#        if allow_discontiguous_leaves:
+#            selection = selectiontools.Selection(music=music)
+#        else:
+#            assert Selection._all_are_contiguous_components_in_same_logical_voice(
+#                music)
+#            selection = selectiontools.Selection(music=music)
+#        return selection
