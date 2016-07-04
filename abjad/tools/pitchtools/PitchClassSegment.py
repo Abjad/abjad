@@ -6,7 +6,7 @@ from abjad.tools.topleveltools import new
 
 
 class PitchClassSegment(Segment):
-    '''Pitch-class segment.
+    r'''Pitch-class segment.
 
     ..  container:: example
 
@@ -14,12 +14,27 @@ class PitchClassSegment(Segment):
 
         ::
 
-            >>> numbered_pitch_class_segment = pitchtools.PitchClassSegment(
+            >>> pitch_class_segment = pitchtools.PitchClassSegment(
             ...     items=[-2, -1.5, 6, 7, -1.5, 7],
             ...     item_class=pitchtools.NumberedPitchClass,
             ...     )
-            >>> numbered_pitch_class_segment
-            PitchClassSegment([10, 10.5, 6, 7, 10.5, 7])
+            >>> show(pitch_class_segment) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> lilypond_file = pitch_class_segment.__illustrate__()
+            >>> voice = lilypond_file.score_block.items[0][0][0]
+            >>> f(voice)
+            \new Voice {
+                bf'8
+                bqf'8
+                fs'8
+                g'8
+                bqf'8
+                g'8
+                \bar "|."
+                \override Score.BarLine.transparent = ##f
+            }
 
     ..  container:: example
 
@@ -27,14 +42,26 @@ class PitchClassSegment(Segment):
 
         ::
 
-            >>> named_pitch_class_segment = pitchtools.PitchClassSegment(
+            >>> pitch_class_segment = pitchtools.PitchClassSegment(
             ...     items=['c', 'ef', 'bqs,', 'd'],
             ...     item_class=pitchtools.NamedPitchClass,
             ...     )
-            >>> named_pitch_class_segment
-            PitchClassSegment(['c', 'ef', 'bqs', 'd'])
+            >>> show(pitch_class_segment) # doctest: +SKIP
 
-    Pitch-class segments are immutable.
+        ..  doctest::
+
+            >>> lilypond_file = pitch_class_segment.__illustrate__()
+            >>> voice = lilypond_file.score_block.items[0][0][0]
+            >>> f(voice)
+            \new Voice {
+                c'8
+                ef'8
+                bqs'8
+                d'8
+                \bar "|."
+                \override Score.BarLine.transparent = ##f
+            }
+
     '''
 
     ### CLASS VARIABLES ###
@@ -56,6 +83,43 @@ class PitchClassSegment(Segment):
             items=items,
             item_class=item_class,
             )
+
+    ### SPECIAL METHODS ###
+
+    def __illustrate__(self, **kwargs):
+        r'''Illustrates pitch-class segment.
+
+        ..  container:: example
+
+            **Example 1.** Numbered pitch-class segment:
+
+            ::
+
+                >>> pitch_class_segment = pitchtools.PitchClassSegment(
+                ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+                ...     item_class=pitchtools.NumberedPitchClass,
+                ...     )
+                >>> show(pitch_class_segment) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> lilypond_file = pitch_class_segment.__illustrate__()
+                >>> voice = lilypond_file.score_block.items[0][0][0]
+                >>> f(voice)
+                \new Voice {
+                    bf'8
+                    bqf'8
+                    fs'8
+                    g'8
+                    bqf'8
+                    g'8
+                    \bar "|."
+                    \override Score.BarLine.transparent = ##f
+                }
+
+        Returns LilyPond file.
+        '''
+        return Segment.__illustrate__(self, **kwargs)
 
     ### PRIVATE PROPERTIES ###
 
