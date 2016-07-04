@@ -2522,6 +2522,78 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
+    def sub(self):
+        r'''LilyPond ``\sub`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markups = [Markup('A'), Markup('j').sub()]
+                >>> markup = Markup.concat(markups)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \concat
+                        {
+                            A
+                            \sub
+                                j
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'sub',
+            contents,
+            )
+        return new(self, contents=command)
+
+    def super_(self):
+        r'''LilyPond ``\super`` markup command.
+
+        ..  container:: example
+
+            ::
+
+                >>> markups = [Markup('1'), Markup('st').super_()]
+                >>> markup = Markup.concat(markups)
+
+            ::
+
+                >>> print(format(markup))
+                \markup {
+                    \concat
+                        {
+                            1
+                            \super
+                                st
+                        }
+                    }
+
+            ::
+
+                >>> show(markup) # doctest: +SKIP
+
+        Returns new markup.
+        '''
+        from abjad.tools import markuptools
+        contents = self._parse_markup_command_argument(self)
+        command = markuptools.MarkupCommand(
+            'super',
+            contents,
+            )
+        return new(self, contents=command)
+
     def tiny(self):
         r'''LilyPond ``\tiny`` markup command.
 
