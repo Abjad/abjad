@@ -3,8 +3,8 @@
 
 def transpose_named_pitch_by_numbered_interval_and_respell(
     pitch, staff_spaces, numbered_interval):
-    '''Transpose named pitch by `numbered_interval` and respell `staff_spaces`
-    above or below:
+    '''Transposes named pitch by `numbered_interval` and respells
+    `staff_spaces` above or below.
 
     ::
 

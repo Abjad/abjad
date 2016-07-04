@@ -527,7 +527,7 @@ class PitchArray(AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c'8
@@ -585,7 +585,7 @@ class PitchArray(AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff {
                         c'8

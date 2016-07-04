@@ -7,7 +7,7 @@ from abjad.tools import abctools
 
 
 class PersistenceAgent(abctools.AbjadObject):
-    r'''A wrapper around the Abjad persistence methods.
+    r'''Persistence agent.
 
     ..  container:: example
 

@@ -3,9 +3,8 @@ import copy
 import numbers
 
 
-def transpose_pitch_carrier_by_interval(
-    pitch_carrier, interval):
-    '''Transpose `pitch_carrier` by named `interval`:
+def transpose_pitch_carrier_by_interval(pitch_carrier, interval):
+    '''Transposes `pitch_carrier` by named `interval`.
 
     ::
 

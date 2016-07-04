@@ -14,7 +14,7 @@ from abjad.tools.topleveltools import new
 
 
 class LabelAgent(abctools.AbjadObject):
-    r'''A wrapper around the Abjad label methods.
+    r'''Label agent.
 
     ..  container:: example
 

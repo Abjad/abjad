@@ -10,78 +10,92 @@ def notes_and_chords_are_on_expected_clefs(
     ):
     r'''Is true when notes and chords in `expr` are on expected clefs.
 
-    ::
+    ..  todo:: Move to WellformednessManager.
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = Clef(name='treble')
-        >>> attach(clef, staff)
-        >>> violin = instrumenttools.Violin()
-        >>> attach(violin, staff)
+    ..  container:: example
 
-    ::
+        **Example 1.** Expected clef:
 
-        >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
-        True
+        ::
 
-    Otherwise false:
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> clef = Clef(name='treble')
+            >>> attach(clef, staff)
+            >>> violin = instrumenttools.Violin()
+            >>> attach(violin, staff)
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+        ::
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = Clef(name='alto')
-        >>> attach(clef, staff)
-        >>> violin = instrumenttools.Violin()
-        >>> attach(violin, staff)
+            >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
+            True
 
-    ::
+    ..  container:: example
 
-        >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
-        False
+        **Example 2.** Unexpected clef:
 
-    Allows percussion clef when `percussion_clef_is_allowed` is true:
+        ::
 
-    ::
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> clef = Clef(name='alto')
+            >>> attach(clef, staff)
+            >>> violin = instrumenttools.Violin()
+            >>> attach(violin, staff)
+            >>> show(staff) # doctest: +SKIP
 
-        >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> clef = Clef(name='percussion')
-        >>> attach(clef, staff)
-        >>> violin = instrumenttools.Violin()
-        >>> attach(violin, staff)
+        ::
 
-    ..  doctest::
+            >>> instrumenttools.notes_and_chords_are_on_expected_clefs(staff)
+            False
 
-        >>> print(format(staff))
-        \new Staff {
-            \clef "percussion"
-            \set Staff.instrumentName = \markup { Violin }
-            \set Staff.shortInstrumentName = \markup { Vn. }
-            c'8
-            d'8
-            e'8
-            f'8
-        }
+    ..  container:: example
 
-    ::
+        **Example 3.** Allows percussion clef:
 
-        >>> instrumenttools.notes_and_chords_are_on_expected_clefs(
-        ...     staff, percussion_clef_is_allowed=True)
-        True
+        ::
 
-    Disallows percussion clef when `percussion_clef_is_allowed` is false:
+            >>> staff = Staff("c'8 d'8 e'8 f'8")
+            >>> clef = Clef(name='percussion')
+            >>> attach(clef, staff)
+            >>> violin = instrumenttools.Violin()
+            >>> attach(violin, staff)
+            >>> show(staff) # doctest: +SKIP
 
-    ::
+        ..  doctest::
 
-        >>> instrumenttools.notes_and_chords_are_on_expected_clefs(
-        ...     staff, percussion_clef_is_allowed=False)
-        False
+            >>> print(format(staff))
+            \new Staff {
+                \clef "percussion"
+                \set Staff.instrumentName = \markup { Violin }
+                \set Staff.shortInstrumentName = \markup { Vn. }
+                c'8
+                d'8
+                e'8
+                f'8
+            }
+
+        ::
+
+            >>> instrumenttools.notes_and_chords_are_on_expected_clefs(
+            ...     staff, percussion_clef_is_allowed=True)
+            True
+
+    ..  container:: example
+
+        **Example 4.** Forbids percussion clef:
+
+        ::
+
+            >>> instrumenttools.notes_and_chords_are_on_expected_clefs(
+            ...     staff, percussion_clef_is_allowed=False)
+            False
 
     Returns true or false.
     '''
     from abjad.tools import instrumenttools
-    for note_or_chord in iterate(expr).by_class(
-        (scoretools.Note, scoretools.Chord)):
-        instrument = note_or_chord._get_effective(
-            instrumenttools.Instrument)
+    prototype = (scoretools.Note, scoretools.Chord)
+    for note_or_chord in iterate(expr).by_class(prototype):
+        instrument = note_or_chord._get_effective(instrumenttools.Instrument)
         if not instrument:
             return False
         clef = note_or_chord._get_effective(indicatortools.Clef)

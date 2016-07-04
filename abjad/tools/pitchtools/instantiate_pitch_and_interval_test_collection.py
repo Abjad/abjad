@@ -2,7 +2,7 @@
 
 
 def instantiate_pitch_and_interval_test_collection():
-    r'''Instantiate pitch and interval test collection:
+    r'''Instantiates pitch and interval test collection.
 
     ::
 

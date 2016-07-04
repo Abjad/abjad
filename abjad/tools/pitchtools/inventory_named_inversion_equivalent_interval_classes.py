@@ -2,7 +2,7 @@
 
 
 def inventory_named_inversion_equivalent_interval_classes():
-    '''Inventory named inversion-equivalent interval-classes:
+    '''Inventories named inversion-equivalent interval-classes.
 
     ::
 
