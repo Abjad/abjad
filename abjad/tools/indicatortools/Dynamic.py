@@ -49,6 +49,16 @@ class Dynamic(AbjadValueObject):
             >>> dynamic_2
             Dynamic(name='f')
 
+    ..  container:: example
+
+        **Example 3.** Niente is possible, but provides no formatting.
+
+        ::
+
+            >>> dynamic = Dynamic('niente')
+            >>> format(dynamic, 'lilypond')
+            ''
+
     '''
 
     ### CLASS VARIABLES ###
