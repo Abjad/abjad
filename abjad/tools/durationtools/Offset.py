@@ -355,7 +355,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return self.grace_displacement == arg.grace_displacement
+            return ((self.grace_displacement or 0) ==
+                (arg.grace_displacement or 0))
         return Duration.__eq__(self, arg)
 
     def __ge__(self, arg):
@@ -428,7 +429,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return self.grace_displacement >= arg.grace_displacement
+            return ((self.grace_displacement or 0) >=
+                (arg.grace_displacement or 0))
         return Duration.__ge__(self, arg)
 
     def __getnewargs__(self):
@@ -508,8 +510,23 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return self.grace_displacement > arg.grace_displacement
+            return ((self.grace_displacement or 0) >
+                (arg.grace_displacement or 0))
         return Duration.__gt__(self, arg)
+
+    def __hash__(self):
+        r'''Hashes duration.
+
+        Required to be explicitly redefined on Python 3 if __eq__ changes.
+
+        Returns integer.
+        '''
+        return hash((
+            type(self),
+            self.numerator,
+            self.denominator,
+            self.grace_displacement,
+            ))
 
     def __le__(self, arg):
         r'''Is true when offset is less than or equal to `arg`.
@@ -581,7 +598,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return self.grace_displacement <= arg.grace_displacement
+            return ((self.grace_displacement or 0) <=
+                (arg.grace_displacement or 0))
         return Duration.__le__(self, arg)
 
     def __lt__(self, arg):
@@ -654,7 +672,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return self.grace_displacement < arg.grace_displacement
+            return ((self.grace_displacement or 0) <
+                (arg.grace_displacement or 0))
         return Duration.__lt__(self, arg)
 
     def __repr__(self):
