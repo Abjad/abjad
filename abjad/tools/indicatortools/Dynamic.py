@@ -49,6 +49,16 @@ class Dynamic(AbjadValueObject):
             >>> dynamic_2
             Dynamic(name='f')
 
+    ..  container:: example
+
+        **Example 3.** Niente is possible, but provides no formatting.
+
+        ::
+
+            >>> dynamic = Dynamic('niente')
+            >>> format(dynamic, 'lilypond')
+            ''
+
     '''
 
     ### CLASS VARIABLES ###
@@ -176,11 +186,13 @@ class Dynamic(AbjadValueObject):
 
         Returns string.
         '''
-        if not self.name in self._lilypond_dynamic_commands:
-            message = 'dynamic name {!r} is not a LilyPond dynamic command.'
-            message = message.format(self.name)
-            raise Exception(message)
         if format_specification == 'lilypond':
+            if self.name == 'niente':
+                return ''
+            elif self.name not in self._lilypond_dynamic_commands:
+                message = 'dynamic name {!r} is not a LilyPond dynamic command.'
+                message = message.format(self.name)
+                raise Exception(message)
             return self._lilypond_format
         superclass = super(Dynamic, self)
         return superclass.__format__(format_specification=format_specification)
@@ -201,7 +213,7 @@ class Dynamic(AbjadValueObject):
         from abjad.tools import scoretools
         if not isinstance(component_expression, scoretools.Leaf):
             return False
-        if not self.name in self._lilypond_dynamic_commands:
+        if self.name not in self._lilypond_dynamic_commands:
             return False
         return True
 

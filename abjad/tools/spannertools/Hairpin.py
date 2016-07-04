@@ -249,7 +249,8 @@ class Hairpin(Spanner):
                 else:
                     effective_dynamic = leaf._get_effective(
                         indicatortools.Dynamic)
-                    if effective_dynamic is None:
+                    if effective_dynamic is None or \
+                        effective_dynamic.name == 'niente':
                         string = r'\!'
                         lilypond_format_bundle.right.spanner_stops.append(
                             string)
@@ -290,7 +291,8 @@ class Hairpin(Spanner):
                 else:
                     effective_dynamic = leaf._get_effective(
                         indicatortools.Dynamic)
-                    if effective_dynamic is None:
+                    if effective_dynamic is None or \
+                        effective_dynamic.name == 'niente':
                         string = r'\!'
                         lilypond_format_bundle.right.spanner_stops.append(
                             string)
