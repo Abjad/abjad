@@ -98,6 +98,8 @@ class ImageOutputProxy(abctools.AbjadValueObject):
             relative_output_directory,
             file_name,
             )
+        # Windows hack for test suite.
+        relative_file_path = relative_file_path.replace(os.path.sep, '/')
         page_count = 1
         if os.path.exists(absolute_file_path):
             with open(absolute_file_path, 'rb') as file_pointer:

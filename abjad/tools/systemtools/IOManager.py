@@ -597,33 +597,37 @@ class IOManager(AbjadObject):
         Returns none.
         '''
         from abjad import abjad_configuration
+        from abjad.tools import systemtools
+        lilypond_path = abjad_configuration.get('lilypond_path')
         if not lilypond_path:
-            lilypond_path = abjad_configuration['lilypond_path']
-            if not lilypond_path:
+            lilypond_path = systemtools.IOManager.find_executable('lilypond')
+            if lilypond_path:
+                lilypond_path = lilypond_path[0]
+            else:
                 lilypond_path = 'lilypond'
         lilypond_base, extension = os.path.splitext(ly_path)
-        pdf_path = ly_path.replace('.ly', '.pdf')
-        if flags:
-            command = 'date > {};'
-            command += ' {} {} -dno-point-and-click -o {} {} >> {} 2>&1'
-            command = command.format(
-                abjad_configuration.lilypond_log_file_path,
-                lilypond_path,
-                flags,
-                lilypond_base,
-                ly_path,
-                abjad_configuration.lilypond_log_file_path,
-                )
-        else:
-            command = 'date > {}; {} -dno-point-and-click -o {} {} >> {} 2>&1'
-            command = command.format(
-                abjad_configuration.lilypond_log_file_path,
-                lilypond_path,
-                lilypond_base,
-                ly_path,
-                abjad_configuration.lilypond_log_file_path,
-                )
-        exit_code = IOManager.spawn_subprocess(command)
+        flags = flags or ''
+        date = datetime.datetime.now().strftime('%c')
+        log_file_path = abjad_configuration.lilypond_log_file_path
+        command = '{} {} -dno-point-and-click -o {} {}'.format(
+            lilypond_path,
+            flags,
+            lilypond_base,
+            ly_path,
+            )
+        process = subprocess.Popen(
+            command,
+            shell=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,
+            )
+        subprocess_output, _ = process.communicate()
+        if sys.version_info[0] == 3:
+            subprocess_output = subprocess_output.decode('utf-8')
+        exit_code = process.returncode
+        with open(log_file_path, 'w') as file_pointer:
+            file_pointer.write(date + '\n')
+            file_pointer.write(subprocess_output)
         postscript_path = ly_path.replace('.ly', '.ps')
         try:
             os.remove(postscript_path)

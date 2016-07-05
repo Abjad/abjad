@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import platform
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
@@ -22,6 +24,9 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/build/segments/.gitignore',
         ]
 
+    if platform.system().lower() == 'windows':
+        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
+
     def test_exists(self):
         self.create_score()
         script = commandlinetools.ManageBuildTargetScript()
@@ -38,7 +43,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Path exists: test_score/build/letter-portrait
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_explicit(self):
         self.create_score()
@@ -58,7 +63,7 @@ class Test(ScorePackageScriptTestCase):
         Creating build target 'a3-landscape' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
             Created test_score/build/a3-landscape
-        ''')
+        '''.replace('/', os.path.sep))
         path = self.build_path.joinpath('a3-landscape', 'score.tex')
         self.compare_lilypond_contents(path, r'''
             \documentclass{article}
@@ -92,7 +97,7 @@ class Test(ScorePackageScriptTestCase):
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/build/letter-portrait
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_implicit(self):
         self.create_score()
@@ -108,7 +113,7 @@ class Test(ScorePackageScriptTestCase):
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/build/letter-portrait
-        ''')
+        '''.replace('/', os.path.sep))
         self.compare_path_contents(self.build_path, self.expected_files)
         path = self.build_path.joinpath('letter-portrait', 'music.ly')
         self.compare_lilypond_contents(path, r'''
@@ -290,7 +295,7 @@ class Test(ScorePackageScriptTestCase):
         Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
             Created test_score/build/letter-portrait
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_named(self):
         self.create_score()
@@ -311,4 +316,4 @@ class Test(ScorePackageScriptTestCase):
         Creating build target 'world-premiere-version' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
             Created test_score/build/world-premiere-version
-        ''')
+        '''.replace('/', os.path.sep))

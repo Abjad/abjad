@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import platform
 from abjad.tools import commandlinetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -19,6 +21,9 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/materials/test_material/illustration.ly',
         'test_score/test_score/materials/test_material/illustration.pdf',
         ]
+
+    if platform.system().lower() == 'windows':
+        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
     expected_illustration_contents = stringtools.normalize(
         r'''
@@ -66,7 +71,7 @@ class Test(ScorePackageScriptTestCase):
                     Abjad runtime: ... second...
                 Writing test_score/materials/test_material/illustration.ly ... OK!
                 Writing test_score/materials/test_material/illustration.pdf ... Failed!
-        ''')
+        '''.replace('/', os.path.sep))
         illustration_ly_path = material_path.joinpath('illustration.ly')
         assert illustration_ly_path.exists()
         self.compare_lilypond_contents(
@@ -101,7 +106,7 @@ class Test(ScorePackageScriptTestCase):
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_python_cannot_illustrate(self):
         """
@@ -128,7 +133,7 @@ class Test(ScorePackageScriptTestCase):
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
                 Cannot illustrate material of type NoneType.
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_python_error_on_illustrate(self):
         """
@@ -160,7 +165,7 @@ class Test(ScorePackageScriptTestCase):
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_python_error_on_import(self):
         """
@@ -182,7 +187,7 @@ class Test(ScorePackageScriptTestCase):
             Illustration candidates: 'test_material' ...
             Illustrating test_score/materials/test_material/
                 Importing test_score.materials.test_material.definition
-        ''')
+        '''.replace('/', os.path.sep))
 
     @mock.patch('abjad.systemtools.IOManager.open_file')
     def test_success_all_materials(self, open_file_mock):
@@ -221,7 +226,7 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/materials/material_two/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/materials/material_two/
-        ''')
+        '''.replace('/', os.path.sep))
         assert self.materials_path.joinpath(
             'material_one',
             'illustration.pdf',
@@ -265,7 +270,7 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/materials/material_two/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/materials/material_two/
-        ''')
+        '''.replace('/', os.path.sep))
         assert not self.materials_path.joinpath(
             'material_one',
             'illustration.pdf',
@@ -300,7 +305,7 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/materials/test_material/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/materials/test_material/
-        ''')
+        '''.replace('/', os.path.sep))
         self.compare_path_contents(self.materials_path, self.expected_files)
         illustration_path = self.materials_path.joinpath(
             'test_material', 'illustration.ly')

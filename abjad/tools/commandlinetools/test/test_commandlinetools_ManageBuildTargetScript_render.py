@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import platform
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
@@ -33,6 +35,8 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/build/segments/.gitignore',
             'test_score/test_score/build/segments/test-segment.ily',
             ]
+        if platform.system().lower() == 'windows':
+            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         self.create_score()
         self.create_segment('test_segment')
         self.illustrate_segments()
@@ -60,6 +64,8 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/build/letter-portrait/preface.tex',
             'test_score/test_score/build/letter-portrait/score.tex',
             ]
+        if platform.system().lower() == 'windows':
+            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         self.create_score()
         self.create_segment('test_segment')
         self.illustrate_segments()
@@ -90,6 +96,8 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/build/letter-portrait/preface.tex',
             'test_score/test_score/build/letter-portrait/score.tex',
             ]
+        if platform.system().lower() == 'windows':
+            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         self.create_score()
         self.create_segment('test_segment')
         self.illustrate_segments()
@@ -120,6 +128,8 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/build/letter-portrait/preface.tex',
             'test_score/test_score/build/letter-portrait/score.tex',
             ]
+        if platform.system().lower() == 'windows':
+            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         self.create_score()
         self.create_segment('test_segment')
         self.illustrate_segments()
@@ -153,6 +163,8 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/build/letter-portrait/preface.tex',
             'test_score/test_score/build/letter-portrait/score.tex',
             ]
+        if platform.system().lower() == 'windows':
+            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         self.create_score()
         self.install_fancy_segment_maker()
         self.create_segment('test_segment')
@@ -184,6 +196,8 @@ class Test(ScorePackageScriptTestCase):
             'test_score/test_score/build/letter-portrait/preface.tex',
             'test_score/test_score/build/letter-portrait/score.tex',
             ]
+        if platform.system().lower() == 'windows':
+            expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
         self.create_score()
         self.create_segment('test_segment')
         self.illustrate_segments()

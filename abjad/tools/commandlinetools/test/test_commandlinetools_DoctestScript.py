@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import doctest
+import os
 import re
 import shutil
 import unittest
@@ -96,7 +97,7 @@ class TestCase(unittest.TestCase):
         FAILED: doctest_test/doctest_fail.py
 
         1 of 2 tests passed in 2 modules.
-        ''')
+        '''.replace('/', os.path.sep))
         assert doctest.OutputChecker().check_output(
             expected, script_output,
             doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
@@ -130,7 +131,7 @@ class TestCase(unittest.TestCase):
         FAILED: doctest_test/doctest_fail.py
 
         0 of 1 test passed in 1 module.
-        ''')
+        '''.replace('/', os.path.sep))
         assert doctest.OutputChecker().check_output(
             expected, script_output,
             doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
@@ -165,7 +166,7 @@ class TestCase(unittest.TestCase):
         FAILED: doctest_test/doctest_fail.py
 
         0 of 1 test passed in 1 module.
-        ''')
+        '''.replace('/', os.path.sep))
         assert doctest.OutputChecker().check_output(
             expected, script_output,
             doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
@@ -185,7 +186,7 @@ class TestCase(unittest.TestCase):
         doctest_test/doctest_pass.py OK
 
         1 of 1 test passed in 1 module.
-        ''')
+        '''.replace('/', os.path.sep))
         assert doctest.OutputChecker().check_output(
             expected, script_output,
             doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS

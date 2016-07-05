@@ -184,6 +184,10 @@ class TestLaTeXDocumentHandler(unittest.TestCase):
             target_valid_contents = file_pointer.read()
         assert target_valid_contents == self.expected_valid_contents
 
+    @unittest.skipIf(
+        platform.system() == 'Windows',
+        'Windows path-handling woes.'
+        )
     def test_stylesheet(self):
         assert not os.path.exists(self.target_valid_path)
         assert not os.path.exists(self.assets_directory)

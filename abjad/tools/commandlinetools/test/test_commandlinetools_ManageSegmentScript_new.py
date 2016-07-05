@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import platform
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
@@ -14,6 +16,9 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/segments/test_segment/definition.py',
         ]
 
+    if platform.system().lower() == 'windows':
+        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
+
     def test_exists(self):
         self.create_score()
         self.create_segment('test_segment')
@@ -22,7 +27,7 @@ class Test(ScorePackageScriptTestCase):
         self.compare_captured_output(r'''
             Creating segment subpackage 'test_segment' ...
                 Path exists: test_score/segments/test_segment
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_force_replace(self):
         self.create_score()
@@ -34,7 +39,7 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/metadata.json ... OK!
                 Reading test_score/segments/metadata.json ... OK!
                 Created test_score/segments/test_segment/
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_internal_path(self):
         self.create_score()
@@ -54,7 +59,7 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/metadata.json ... JSON does not exist.
                 Writing test_score/segments/metadata.json
                 Created test_score/segments/test_segment/
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_success(self):
         self.create_score()
@@ -80,7 +85,7 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/metadata.json ... JSON does not exist.
                 Writing test_score/segments/metadata.json
                 Created test_score/segments/test_segment/
-        ''')
+        '''.replace('/', os.path.sep))
         assert self.segments_path.joinpath('test_segment').exists()
         self.compare_path_contents(self.segments_path, self.expected_files)
         try:

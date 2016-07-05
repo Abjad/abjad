@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import platform
 from abjad.tools import commandlinetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -21,6 +23,9 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/segments/test_segment/illustration.pdf',
         'test_score/test_score/segments/test_segment/metadata.json',
         ]
+
+    if platform.system().lower() == 'windows':
+        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
     expected_illustration_contents = stringtools.normalize(
         r'''
@@ -96,7 +101,7 @@ class Test(ScorePackageScriptTestCase):
                     Abjad runtime: ... second...
                 Writing test_score/segments/test_segment/illustration.ly ... OK!
                 Writing test_score/segments/test_segment/illustration.pdf ... Failed!
-        ''')
+        '''.replace('/', os.path.sep))
         illustration_ly_path = segment_path.joinpath('illustration.ly')
         assert illustration_ly_path.exists()
         self.compare_lilypond_contents(
@@ -143,7 +148,7 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/metadata.json ... OK!
                 Reading test_score/segments/test_segment/metadata.json ... JSON does not exist.
                 Importing test_score.segments.test_segment.definition
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_python_error_on_illustrate(self):
         """
@@ -183,7 +188,7 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/metadata.json ... OK!
                 Reading test_score/segments/test_segment/metadata.json ... JSON does not exist.
                 Importing test_score.segments.test_segment.definition
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_python_error_on_import(self):
         """
@@ -208,7 +213,7 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/segments/metadata.json ... OK!
                 Reading test_score/segments/test_segment/metadata.json ... JSON does not exist.
                 Importing test_score.segments.test_segment.definition
-        ''')
+        '''.replace('/', os.path.sep))
 
     @mock.patch('abjad.systemtools.IOManager.open_file')
     def test_success_all_segments(self, open_file_mock):
@@ -259,7 +264,7 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/segments/segment_three/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/segments/segment_three/
-        ''')
+        '''.replace('/', os.path.sep))
         assert self.segments_path.joinpath(
             'segment_one',
             'illustration.pdf',
@@ -312,7 +317,7 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/segments/segment_three/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/segments/segment_three/
-        ''')
+        '''.replace('/', os.path.sep))
         assert not self.segments_path.joinpath(
             'segment_one',
             'illustration.pdf',
@@ -351,7 +356,7 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/segments/test_segment/illustration.pdf ... OK!
                     LilyPond runtime: ... second...
                 Illustrated test_score/segments/test_segment/
-        ''')
+        '''.replace('/', os.path.sep))
         self.compare_path_contents(self.segments_path, self.expected_files)
         illustration_path = self.segments_path.joinpath(
             'test_segment', 'illustration.ly')

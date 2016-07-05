@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import platform
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
@@ -23,6 +25,9 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/build/segments/segment-two.ily',
         ]
 
+    if platform.system().lower() == 'windows':
+        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
+
     @mock.patch('abjad.systemtools.IOManager.open_file')
     def test_success(self, open_file_mock):
         self.create_score()
@@ -43,7 +48,7 @@ class Test(ScorePackageScriptTestCase):
             segments/segment_three/illustration.ly --> build/segments/segment-three.ily
             segments/segment_two/illustration.ly --> build/segments/segment-two.ily
             Reading test_score/segments/metadata.json ... OK!
-        ''')
+        '''.replace('/', os.path.sep))
         self.compare_path_contents(self.build_path, self.expected_files)
         path = self.build_path.joinpath('segments.ily')
         self.compare_lilypond_contents(path, r'''
@@ -52,7 +57,7 @@ class Test(ScorePackageScriptTestCase):
             \include "../segments/segment-two.ily"
             \include "../segments/segment-three.ily"
         }
-        ''')
+        '''.replace('/', os.path.sep))
         path = self.build_path.joinpath('segments', 'segment-one.ily')
         self.compare_lilypond_contents(path, r'''
         \context Score = "Example Score" <<

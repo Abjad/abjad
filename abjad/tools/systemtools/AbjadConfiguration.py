@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import os
-import platform
 import subprocess
 import sys
 import traceback
@@ -201,22 +200,15 @@ class AbjadConfiguration(Configuration):
         Returns string.
         '''
         from abjad import abjad_configuration
+        from abjad.tools import systemtools
         if AbjadConfiguration._lilypond_version_string is not None:
             return AbjadConfiguration._lilypond_version_string
-        if (
-            platform.system() == 'Windows' and
-            'LilyPond' not in os.environ.get('PATH')
-            ):
-            command = r'dir "C:\Program Files\*.exe" /s /b | find "lilypond.exe"'
-            proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
-            lilypond = proc.stdout.readline()
-            lilypond = lilypond.strip('\r').strip('\n').strip()
-            if lilypond == '':
-                message = 'can not find LilyPond under Windows.'
-                raise SystemError(message)
-        else:
-            lilypond = abjad_configuration['lilypond_path']
-            if not lilypond:
+        lilypond = abjad_configuration.get('lilypond_path')
+        if not lilypond:
+            lilypond = systemtools.IOManager.find_executable('lilypond')
+            if lilypond:
+                lilypond = lilypond[0]
+            else:
                 lilypond = 'lilypond'
         command = lilypond + ' --version'
         proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE)
