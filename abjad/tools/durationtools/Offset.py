@@ -167,26 +167,6 @@ class Offset(Duration):
         self._grace_displacement = grace_displacement
         return self
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        if self.grace_displacement is None:
-            return systemtools.StorageFormatSpecification(
-                self,
-                is_indented=False,
-                positional_argument_values=self.pair,
-                keyword_argument_names=(),
-                )
-        else:
-            return systemtools.StorageFormatSpecification(
-                self,
-                is_indented=True,
-                positional_argument_values=(self.pair,),
-                keyword_argument_names=('grace_displacement',),
-                )
-
     ### SPECIAL METHODS ###
 
     def __copy__(self, *args):
@@ -355,8 +335,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return ((self.grace_displacement or 0) ==
-                (arg.grace_displacement or 0))
+            return self._get_grace_displacement() == \
+                arg._get_grace_displacement()
         return Duration.__eq__(self, arg)
 
     def __ge__(self, arg):
@@ -429,8 +409,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return ((self.grace_displacement or 0) >=
-                (arg.grace_displacement or 0))
+            return self._get_grace_displacement() >= \
+                arg._get_grace_displacement()
         return Duration.__ge__(self, arg)
 
     def __getnewargs__(self):
@@ -510,8 +490,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return ((self.grace_displacement or 0) >
-                (arg.grace_displacement or 0))
+            return self._get_grace_displacement() > \
+                arg._get_grace_displacement()
         return Duration.__gt__(self, arg)
 
     def __hash__(self):
@@ -598,8 +578,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return ((self.grace_displacement or 0) <=
-                (arg.grace_displacement or 0))
+            return self._get_grace_displacement() <= \
+                arg._get_grace_displacement()
         return Duration.__le__(self, arg)
 
     def __lt__(self, arg):
@@ -630,7 +610,7 @@ class Offset(Duration):
         ..  container:: example
 
             **Example 2.** With equal numerators and denominators but differing
-            grace displacements:
+            nonzero grace displacements:
 
             ::
 
@@ -650,7 +630,28 @@ class Offset(Duration):
 
         ..  container:: example
 
-            **Example 3.** With differing numerators and denominators. Ignores
+            **Example 3.** With equal numerators and denominators but differing
+            zero-valued grace displacements:
+
+            ::
+
+                >>> offset_1 = Offset((1, 4), grace_displacement=(-1, 8))
+                >>> offset_2 = Offset((1, 4))
+
+            ::
+
+                >>> offset_1 < offset_1
+                False
+                >>> offset_1 < offset_2
+                True
+                >>> offset_2 < offset_1
+                False
+                >>> offset_2 < offset_2
+                False
+
+        ..  container:: example
+
+            **Example 4.** With differing numerators and denominators. Ignores
             grace displacements:
 
             ::
@@ -672,8 +673,8 @@ class Offset(Duration):
         Returns true or false.
         '''
         if isinstance(arg, type(self)) and self.pair == arg.pair:
-            return ((self.grace_displacement or 0) <
-                (arg.grace_displacement or 0))
+            return self._get_grace_displacement() < \
+                arg._get_grace_displacement()
         return Duration.__lt__(self, arg)
 
     def __repr__(self):
@@ -736,6 +737,34 @@ class Offset(Duration):
         else:
             expr = type(self)(expr)
             return self - expr
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        if self.grace_displacement is None:
+            return systemtools.StorageFormatSpecification(
+                self,
+                is_indented=False,
+                positional_argument_values=self.pair,
+                keyword_argument_names=(),
+                )
+        else:
+            return systemtools.StorageFormatSpecification(
+                self,
+                is_indented=True,
+                positional_argument_values=(self.pair,),
+                keyword_argument_names=('grace_displacement',),
+                )
+
+    ### PRIVATE METHODS ###
+
+    def _get_grace_displacement(self):
+        from abjad.tools import durationtools
+        if self.grace_displacement is None:
+            return durationtools.Duration(0)
+        return self.grace_displacement
 
     ### PUBLIC PROPERTIES ###
 
