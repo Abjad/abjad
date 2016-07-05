@@ -463,10 +463,10 @@ class Component(AbjadObject):
                 result.append(self._after_grace)
         return tuple(result)
 
-    def _get_in_my_logical_voice(self, n, component_class=None):
+    def _get_in_my_logical_voice(self, n, prototype=None):
         if 0 <= n:
             generator = iterate(self).by_logical_voice_from_component(
-                component_class=component_class,
+                prototype=prototype,
                 reverse=False,
                 )
             for i, component in enumerate(generator):
@@ -475,7 +475,7 @@ class Component(AbjadObject):
         else:
             n = abs(n)
             generator = iterate(self).by_logical_voice_from_component(
-                component_class=component_class,
+                prototype=prototype,
                 reverse=True,
                 )
             for i, component in enumerate(generator):
