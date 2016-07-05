@@ -231,8 +231,11 @@ class LilyPondFormatManager(AbjadObject):
         ):
         for scoped_expression in scoped_expressions:
             format_pieces = scoped_expression._get_format_pieces()
-            format_slot = scoped_expression.indicator._format_slot
-            bundle.get(format_slot).indicators.extend(format_pieces)
+            if isinstance(format_pieces, type(bundle)):
+                bundle.update(format_pieces)
+            else:
+                format_slot = scoped_expression.indicator._format_slot
+                bundle.get(format_slot).indicators.extend(format_pieces)
 
     @staticmethod
     def _populate_spanner_format_contributions(

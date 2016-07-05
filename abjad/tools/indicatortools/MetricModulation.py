@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
-import copy
 from abjad.tools import durationtools
 from abjad.tools import markuptools
 from abjad.tools import mathtools
-from abjad.tools import schemetools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 from abjad.tools.topleveltools.new import new
-from abjad.tools.topleveltools.override import override
-from abjad.tools.topleveltools.set_ import set_
 
 
-class MetricModulation(AbjadObject):
+class MetricModulation(AbjadValueObject):
     r'''A metric modulation.
 
     ..  container:: example
@@ -550,7 +546,6 @@ class MetricModulation(AbjadObject):
         left_markup=None,
         right_markup=None,
         ):
-        from abjad.tools import indicatortools
         from abjad.tools import markuptools
         from abjad.tools import scoretools
         # TODO: make default scope work
@@ -768,7 +763,6 @@ class MetricModulation(AbjadObject):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
         lilypond_file = lilypondfiletools.make_basic_lilypond_file()
         lilypond_file.header_block.tagline = False
         lilypond_file.items.append(self._get_markup())

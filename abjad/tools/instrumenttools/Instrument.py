@@ -5,10 +5,10 @@ from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
 from abjad.tools.topleveltools import new
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Instrument(AbjadObject):
+class Instrument(AbjadValueObject):
     '''A musical instrument.
     '''
 
@@ -83,34 +83,6 @@ class Instrument(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
-        r'''Copies instrument.
-
-        Returns new instrument.
-        '''
-        return type(self)(
-            instrument_name=self.instrument_name,
-            short_instrument_name=self.short_instrument_name,
-            instrument_name_markup=self.instrument_name_markup,
-            short_instrument_name_markup=self.short_instrument_name_markup,
-            allowable_clefs=self.allowable_clefs,
-            pitch_range=self.pitch_range,
-            sounding_pitch_of_written_middle_c=self
-                .sounding_pitch_of_written_middle_c,
-            )
-
-    def __eq__(self, arg):
-        r'''Is true when `arg` is an instrument with instrument name and short
-        instrument name equal to those of this instrument. Otherwise false.
-
-        Returns true or false.
-        '''
-        if isinstance(arg, type(self)):
-            if self.instrument_name == arg.instrument_name and \
-                self.short_instrument_name == arg.short_instrument_name:
-                return True
-        return False
-
     def __format__(self, format_specification=''):
         r'''Formats instrument.
 
@@ -123,19 +95,6 @@ class Instrument(AbjadObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatManager.get_storage_format(self)
         return str(self)
-
-    def __hash__(self):
-        '''Gets hash value instrument.
-
-        Computed on type, instrument name and short instrument name.
-
-        Returns integer.
-        '''
-        return hash((
-            type(self).__name__,
-            self.instrument_name,
-            self.short_instrument_name,
-            ))
 
     def __repr__(self):
         r'''Gets interpreter representation of instrument.
