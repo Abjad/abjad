@@ -1747,11 +1747,7 @@ class IterationAgent(abctools.AbjadObject):
 
 
     # TODO: optimize to avoid behind-the-scenes full-score traversal.
-    def by_timeline(
-        self,
-        prototype=None,
-        reverse=False,
-        ):
+    def by_timeline(self, prototype=None, reverse=False):
         r'''Iterates by timeline.
 
         ..  container:: example
@@ -1840,26 +1836,61 @@ class IterationAgent(abctools.AbjadObject):
                 Note("a'8")
                 Note("g'8")
 
+        ..  container:: example
+
+            **Example 3.** Iterates with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    d'8
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for component in iterate(voice).by_timeline():
+                ...     component
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
+            ..  todo:: Incorrect because grace notes are not included.
+
         Iterates leaves when `prototype` is none.
         '''
-        if prototype is None:
-            prototype = scoretools.Leaf
+        prototype = prototype or scoretools.Leaf
         if isinstance(self.client, scoretools.Component):
             components = [self.client]
         else:
             components = list(self.client)
         if not reverse:
             while components:
-                #print('STEP:')
-                #for component in components:
-                #    print('   ', component)
-                #print()
                 current_start_offset = min(
                     _._get_timespan().start_offset
                     for _ in components
                     )
                 components.sort(
-                    key=lambda x: x._get_parentage().score_index,
+                    key=lambda x: x._get_parentage(with_grace_notes=True).score_index,
                     reverse=True,
                     )
                 components_to_process = components[:]
@@ -1896,7 +1927,7 @@ class IterationAgent(abctools.AbjadObject):
                     for _ in components
                     )
                 components.sort(
-                    key=lambda x: x._get_parentage().score_index,
+                    key=lambda x: x._get_parentage(with_grace_notes=True).score_index,
                     reverse=True,
                     )
                 components_to_process = components[:]
