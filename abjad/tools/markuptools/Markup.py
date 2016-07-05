@@ -84,6 +84,7 @@ class Markup(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     __slots__ = (
+        '_annotation',
         '_contents',
         '_direction',
         '_format_slot',
@@ -100,6 +101,7 @@ class Markup(AbjadValueObject):
         ):
         from abjad.tools import markuptools
         from abjad.tools.topleveltools import parse
+        self._annotation = None
         if contents is None:
             new_contents = ('',)
         elif isinstance(contents, str):
