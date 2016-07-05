@@ -14,42 +14,6 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/segments/test_segment/definition.py',
         ]
 
-    def test_success(self):
-        self.create_score()
-        script = commandlinetools.ManageSegmentScript()
-        try:
-            names = script._read_segments_list_json(
-                self.score_path,
-                verbose=False,
-                )
-            assert names == []
-        except SystemExit:
-            raise RuntimeError('SystemExit')
-        command = ['--new', 'test_segment']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
-                try:
-                    script(command)
-                except SystemExit:
-                    raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
-            Creating segment subpackage 'test_segment' ...
-                Reading test_score/metadata.json ... OK!
-                Reading test_score/segments/metadata.json ... JSON does not exist.
-                Writing test_score/segments/metadata.json
-                Created test_score/segments/test_segment/
-        ''')
-        assert self.segments_path.joinpath('test_segment').exists()
-        self.compare_path_contents(self.segments_path, self.expected_files)
-        try:
-            names = script._read_segments_list_json(
-                self.score_path,
-                verbose=False,
-                )
-            assert names == ['test_segment']
-        except SystemExit:
-            raise RuntimeError('SystemExit')
-
     def test_exists(self):
         self.create_score()
         self.create_segment('test_segment')
@@ -91,3 +55,39 @@ class Test(ScorePackageScriptTestCase):
                 Writing test_score/segments/metadata.json
                 Created test_score/segments/test_segment/
         ''')
+
+    def test_success(self):
+        self.create_score()
+        script = commandlinetools.ManageSegmentScript()
+        try:
+            names = script._read_segments_list_json(
+                self.score_path,
+                verbose=False,
+                )
+            assert names == []
+        except SystemExit:
+            raise RuntimeError('SystemExit')
+        command = ['--new', 'test_segment']
+        with systemtools.RedirectedStreams(stdout=self.string_io):
+            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+                try:
+                    script(command)
+                except SystemExit:
+                    raise RuntimeError('SystemExit')
+        self.compare_captured_output(r'''
+            Creating segment subpackage 'test_segment' ...
+                Reading test_score/metadata.json ... OK!
+                Reading test_score/segments/metadata.json ... JSON does not exist.
+                Writing test_score/segments/metadata.json
+                Created test_score/segments/test_segment/
+        ''')
+        assert self.segments_path.joinpath('test_segment').exists()
+        self.compare_path_contents(self.segments_path, self.expected_files)
+        try:
+            names = script._read_segments_list_json(
+                self.score_path,
+                verbose=False,
+                )
+            assert names == ['test_segment']
+        except SystemExit:
+            raise RuntimeError('SystemExit')

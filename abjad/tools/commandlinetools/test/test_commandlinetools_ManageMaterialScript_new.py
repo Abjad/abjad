@@ -13,24 +13,6 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/materials/test_material/definition.py',
         ]
 
-    def test_success(self):
-        self.create_score()
-        script = commandlinetools.ManageMaterialScript()
-        command = ['--new', 'test_material']
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
-                try:
-                    script(command)
-                except SystemExit:
-                    raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
-            Creating material subpackage 'test_material' ...
-                Reading test_score/metadata.json ... OK!
-                Created test_score/materials/test_material/
-        ''')
-        assert self.materials_path.joinpath('test_material').exists()
-        self.compare_path_contents(self.materials_path, self.expected_files)
-
     def test_exists(self):
         self.create_score()
         self.create_material('test_material')
@@ -69,3 +51,21 @@ class Test(ScorePackageScriptTestCase):
                 Reading test_score/metadata.json ... OK!
                 Created test_score/materials/test_material/
         ''')
+
+    def test_success(self):
+        self.create_score()
+        script = commandlinetools.ManageMaterialScript()
+        command = ['--new', 'test_material']
+        with systemtools.RedirectedStreams(stdout=self.string_io):
+            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+                try:
+                    script(command)
+                except SystemExit:
+                    raise RuntimeError('SystemExit')
+        self.compare_captured_output(r'''
+            Creating material subpackage 'test_material' ...
+                Reading test_score/metadata.json ... OK!
+                Created test_score/materials/test_material/
+        ''')
+        assert self.materials_path.joinpath('test_material').exists()
+        self.compare_path_contents(self.materials_path, self.expected_files)

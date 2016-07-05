@@ -10,8 +10,8 @@ Abjad 2.18
         3. python --version: Python 3.5.1
         4. pip --version: pip 8.1.2
         5. py.test --version: This is pytest version 2.9.2
-        6. sphinx-build --version: Sphinx (sphinx-build) 1.4.3
-        7. lilypond --version: GNU LilyPond 2.19.41
+        6. sphinx-build --version: Sphinx (sphinx-build) 1.4.4
+        7. lilypond --version: GNU LilyPond 2.19.44
         8. convert --version: ImageMagick 7.0.2-1 Q16 x86_64 2016-06-12 http://www.imagemagick.org
         9. dot -V: graphviz version 2.38.0 (20140413.2041)
 

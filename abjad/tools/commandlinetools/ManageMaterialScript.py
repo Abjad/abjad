@@ -166,18 +166,6 @@ class ManageMaterialScript(ScorePackageScript):
             output_directory_path=material_directory_path,
             )
 
-    def _render_one_material(self, material_directory_path):
-        print('Rendering {!s}/'.format(
-            material_directory_path.relative_to(self._score_package_path.parent)))
-        ly_path = material_directory_path.joinpath('illustration.ly')
-        if not ly_path.is_file():
-            print('    illustration.ly is missing or malformed.')
-            sys.exit(1)
-        self._write_lilypond_pdf(
-            ly_path=ly_path,
-            output_directory_path=material_directory_path,
-            )
-
     def _process_args(self, args):
         self._setup_paths(args.score_path)
         if args.edit is not None:
@@ -190,6 +178,18 @@ class ManageMaterialScript(ScorePackageScript):
             self._handle_create(force=args.force, material_name=args.new)
         if args.render is not None:
             self._handle_render(material_name=args.render)
+
+    def _render_one_material(self, material_directory_path):
+        print('Rendering {!s}/'.format(
+            material_directory_path.relative_to(self._score_package_path.parent)))
+        ly_path = material_directory_path.joinpath('illustration.ly')
+        if not ly_path.is_file():
+            print('    illustration.ly is missing or malformed.')
+            sys.exit(1)
+        self._write_lilypond_pdf(
+            ly_path=ly_path,
+            output_directory_path=material_directory_path,
+            )
 
     def _setup_argument_parser(self, parser):
         action_group = parser.add_argument_group('actions')

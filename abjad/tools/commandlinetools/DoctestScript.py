@@ -34,22 +34,6 @@ class DoctestScript(CommandlineScript):
 
     ### PRIVATE METHODS ###
 
-    def _get_namespace(self):
-        globs = {}
-        for module_name in self._module_names_for_globs:
-            try:
-                module = importlib.import_module(module_name)
-                globs.update(module.__dict__)
-            except:
-                pass
-        try:
-            ide_module = importlib.import_module('ide')
-            globs['ide'] = ide_module
-        except ImportError:
-            pass
-        globs['print_function'] = print_function
-        return globs
-
     def _get_file_paths(self, path):
         if os.path.isfile(path):
             return [path]
@@ -74,6 +58,22 @@ class DoctestScript(CommandlineScript):
                 file_path = os.path.join(current_root, file_name)
                 file_paths.append(file_path)
         return file_paths
+
+    def _get_namespace(self):
+        globs = {}
+        for module_name in self._module_names_for_globs:
+            try:
+                module = importlib.import_module(module_name)
+                globs.update(module.__dict__)
+            except:
+                pass
+        try:
+            ide_module = importlib.import_module('ide')
+            globs['ide'] = ide_module
+        except ImportError:
+            pass
+        globs['print_function'] = print_function
+        return globs
 
     def _get_optionflags(self, args):
         optionflags = (

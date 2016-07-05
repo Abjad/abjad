@@ -62,9 +62,13 @@ class TestCase(unittest.TestCase):
             file_pointer.write(self.passing_module_contents)
         self.string_io = StringIO()
 
-    def test_fail(self):
+    def tearDown(self):
+        shutil.rmtree(str(self.doctest_path))
+        self.string_io.close()
+
+    def test_both(self):
         script = commandlinetools.DoctestScript()
-        command = [str(self.failing_module_path)]
+        command = [str(self.doctest_path)]
         with systemtools.TemporaryDirectoryChange(str(self.test_path)):
             with systemtools.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
@@ -74,6 +78,7 @@ class TestCase(unittest.TestCase):
         script_output = stringtools.normalize(script_output)
         expected = stringtools.normalize('''
         doctest_test/doctest_fail.py FAILED
+        doctest_test/doctest_pass.py OK
 
         **********************************************************************
         File ".../doctest_test/doctest_fail.py", line 7, in doctest_fail.py
@@ -90,7 +95,7 @@ class TestCase(unittest.TestCase):
 
         FAILED: doctest_test/doctest_fail.py
 
-        0 of 1 test passed in 1 module.
+        1 of 2 tests passed in 2 modules.
         ''')
         assert doctest.OutputChecker().check_output(
             expected, script_output,
@@ -131,6 +136,41 @@ class TestCase(unittest.TestCase):
             doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
             )
 
+    def test_fail(self):
+        script = commandlinetools.DoctestScript()
+        command = [str(self.failing_module_path)]
+        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
+            with systemtools.RedirectedStreams(stdout=self.string_io):
+                with self.assertRaises(SystemExit) as context_manager:
+                    script(command)
+        assert context_manager.exception.code == 1
+        script_output = self.ansi_escape.sub('', self.string_io.getvalue())
+        script_output = stringtools.normalize(script_output)
+        expected = stringtools.normalize('''
+        doctest_test/doctest_fail.py FAILED
+
+        **********************************************************************
+        File ".../doctest_test/doctest_fail.py", line 7, in doctest_fail.py
+        Failed example:
+            True is False
+        Expected:
+            True
+        Got:
+            False
+        **********************************************************************
+        1 items had failures:
+            1 of   1 in doctest_fail.py
+        ***Test Failed*** 1 failures.
+
+        FAILED: doctest_test/doctest_fail.py
+
+        0 of 1 test passed in 1 module.
+        ''')
+        assert doctest.OutputChecker().check_output(
+            expected, script_output,
+            doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
+            )
+
     def test_pass(self):
         script = commandlinetools.DoctestScript()
         command = [str(self.passing_module_path)]
@@ -150,43 +190,3 @@ class TestCase(unittest.TestCase):
             expected, script_output,
             doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
             )
-
-    def test_both(self):
-        script = commandlinetools.DoctestScript()
-        command = [str(self.doctest_path)]
-        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
-            with systemtools.RedirectedStreams(stdout=self.string_io):
-                with self.assertRaises(SystemExit) as context_manager:
-                    script(command)
-        assert context_manager.exception.code == 1
-        script_output = self.ansi_escape.sub('', self.string_io.getvalue())
-        script_output = stringtools.normalize(script_output)
-        expected = stringtools.normalize('''
-        doctest_test/doctest_fail.py FAILED
-        doctest_test/doctest_pass.py OK
-
-        **********************************************************************
-        File ".../doctest_test/doctest_fail.py", line 7, in doctest_fail.py
-        Failed example:
-            True is False
-        Expected:
-            True
-        Got:
-            False
-        **********************************************************************
-        1 items had failures:
-            1 of   1 in doctest_fail.py
-        ***Test Failed*** 1 failures.
-
-        FAILED: doctest_test/doctest_fail.py
-
-        1 of 2 tests passed in 2 modules.
-        ''')
-        assert doctest.OutputChecker().check_output(
-            expected, script_output,
-            doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-            )
-
-    def tearDown(self):
-        shutil.rmtree(str(self.doctest_path))
-        self.string_io.close()

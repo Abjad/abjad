@@ -54,20 +54,6 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
 
     ### PRIVATE METHODS ###
 
-    def _read_config(self, config_path):
-        configuration = {}
-        if config_path is None:
-            return configuration
-        parser = configparser.ConfigParser()
-        parser.read(config_path)
-        for section in parser.sections():
-            configuration[section] = {}
-            for key, value in parser.items(section):
-                value = tuple(_.strip() for _ in value.splitlines()
-                    if _.strip())
-                configuration[section][key] = value
-        return configuration
-
     def _process_args(self, args):
         from abjad.tools import abjadbooktools
         assets_directory = args.assets_directory
@@ -110,6 +96,20 @@ class AbjadBookScript(commandlinetools.CommandlineScript):
                 stylesheet=stylesheet,
                 verbose=verbose,
                 )
+
+    def _read_config(self, config_path):
+        configuration = {}
+        if config_path is None:
+            return configuration
+        parser = configparser.ConfigParser()
+        parser.read(config_path)
+        for section in parser.sections():
+            configuration[section] = {}
+            for key, value in parser.items(section):
+                value = tuple(_.strip() for _ in value.splitlines()
+                    if _.strip())
+                configuration[section][key] = value
+        return configuration
 
     def _setup_argument_parser(self, parser):
         parser.add_argument(

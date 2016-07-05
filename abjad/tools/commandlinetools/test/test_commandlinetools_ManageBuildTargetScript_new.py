@@ -22,6 +22,78 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/build/segments/.gitignore',
         ]
 
+    def test_exists(self):
+        self.create_score()
+        script = commandlinetools.ManageBuildTargetScript()
+        command = ['--new']
+        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+            try:
+                script(command)
+            except SystemExit:
+                raise RuntimeError('SystemExit')
+            with systemtools.RedirectedStreams(stdout=self.string_io):
+                with self.assertRaises(SystemExit) as context_manager:
+                    script(command)
+                assert context_manager.exception.code == 1
+        self.compare_captured_output(r'''
+        Creating build target 'letter-portrait' (8.5in x 11.0in)
+            Path exists: test_score/build/letter-portrait
+        ''')
+
+    def test_explicit(self):
+        self.create_score()
+        script = commandlinetools.ManageBuildTargetScript()
+        command = [
+            '--new',
+            '--paper-size', 'a3',
+            '--orientation', 'landscape',
+            ]
+        with systemtools.RedirectedStreams(stdout=self.string_io):
+            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+                try:
+                    script(command)
+                except SystemExit:
+                    raise RuntimeError('SystemExit')
+        self.compare_captured_output(r'''
+        Creating build target 'a3-landscape' (297mm x 420mm)
+            Reading test_score/metadata.json ... OK!
+            Created test_score/build/a3-landscape
+        ''')
+        path = self.build_path.joinpath('a3-landscape', 'score.tex')
+        self.compare_lilypond_contents(path, r'''
+            \documentclass{article}
+            \usepackage[papersize={420mm, 297mm}]{geometry}
+            \usepackage{pdfpages}
+            \begin{document}
+
+            \includepdf[pages=-]{front-cover.pdf}
+            \includepdf[pages=-]{preface.pdf}
+            \includepdf[angle=-90,pages=-]{music.pdf}
+            \includepdf[pages=-]{back-cover.pdf}
+
+            \end{document}
+        ''')
+
+    def test_force_replace(self):
+        self.create_score()
+        script = commandlinetools.ManageBuildTargetScript()
+        command = ['-f', '--new']
+        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+            try:
+                script(command)
+            except SystemExit:
+                raise RuntimeError('SystemExit')
+            with systemtools.RedirectedStreams(stdout=self.string_io):
+                try:
+                    script(command)
+                except SystemExit:
+                    raise RuntimeError('SystemExit')
+        self.compare_captured_output(r'''
+        Creating build target 'letter-portrait' (8.5in x 11.0in)
+            Reading test_score/metadata.json ... OK!
+            Created test_score/build/letter-portrait
+        ''')
+
     def test_implicit(self):
         self.create_score()
         script = commandlinetools.ManageBuildTargetScript()
@@ -202,38 +274,22 @@ class Test(ScorePackageScriptTestCase):
         \end{document}
         ''')
 
-    def test_explicit(self):
+    def test_internal_path(self):
         self.create_score()
         script = commandlinetools.ManageBuildTargetScript()
-        command = [
-            '--new',
-            '--paper-size', 'a3',
-            '--orientation', 'landscape',
-            ]
+        command = ['--new']
+        internal_path = self.score_path.joinpath('test_score', 'build')
+        assert internal_path.exists()
         with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+            with systemtools.TemporaryDirectoryChange(str(internal_path)):
                 try:
                     script(command)
                 except SystemExit:
                     raise RuntimeError('SystemExit')
         self.compare_captured_output(r'''
-        Creating build target 'a3-landscape' (297mm x 420mm)
+        Creating build target 'letter-portrait' (8.5in x 11.0in)
             Reading test_score/metadata.json ... OK!
-            Created test_score/build/a3-landscape
-        ''')
-        path = self.build_path.joinpath('a3-landscape', 'score.tex')
-        self.compare_lilypond_contents(path, r'''
-            \documentclass{article}
-            \usepackage[papersize={420mm, 297mm}]{geometry}
-            \usepackage{pdfpages}
-            \begin{document}
-
-            \includepdf[pages=-]{front-cover.pdf}
-            \includepdf[pages=-]{preface.pdf}
-            \includepdf[angle=-90,pages=-]{music.pdf}
-            \includepdf[pages=-]{back-cover.pdf}
-
-            \end{document}
+            Created test_score/build/letter-portrait
         ''')
 
     def test_named(self):
@@ -255,60 +311,4 @@ class Test(ScorePackageScriptTestCase):
         Creating build target 'world-premiere-version' (297mm x 420mm)
             Reading test_score/metadata.json ... OK!
             Created test_score/build/world-premiere-version
-        ''')
-
-    def test_exists(self):
-        self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
-        command = ['--new']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
-            try:
-                script(command)
-            except SystemExit:
-                raise RuntimeError('SystemExit')
-            with systemtools.RedirectedStreams(stdout=self.string_io):
-                with self.assertRaises(SystemExit) as context_manager:
-                    script(command)
-                assert context_manager.exception.code == 1
-        self.compare_captured_output(r'''
-        Creating build target 'letter-portrait' (8.5in x 11.0in)
-            Path exists: test_score/build/letter-portrait
-        ''')
-
-    def test_force_replace(self):
-        self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
-        command = ['-f', '--new']
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
-            try:
-                script(command)
-            except SystemExit:
-                raise RuntimeError('SystemExit')
-            with systemtools.RedirectedStreams(stdout=self.string_io):
-                try:
-                    script(command)
-                except SystemExit:
-                    raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
-        Creating build target 'letter-portrait' (8.5in x 11.0in)
-            Reading test_score/metadata.json ... OK!
-            Created test_score/build/letter-portrait
-        ''')
-
-    def test_internal_path(self):
-        self.create_score()
-        script = commandlinetools.ManageBuildTargetScript()
-        command = ['--new']
-        internal_path = self.score_path.joinpath('test_score', 'build')
-        assert internal_path.exists()
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            with systemtools.TemporaryDirectoryChange(str(internal_path)):
-                try:
-                    script(command)
-                except SystemExit:
-                    raise RuntimeError('SystemExit')
-        self.compare_captured_output(r'''
-        Creating build target 'letter-portrait' (8.5in x 11.0in)
-            Reading test_score/metadata.json ... OK!
-            Created test_score/build/letter-portrait
         ''')

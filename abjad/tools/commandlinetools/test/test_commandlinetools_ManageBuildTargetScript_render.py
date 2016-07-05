@@ -110,36 +110,6 @@ class Test(ScorePackageScriptTestCase):
         assert open_file_mock.called
 
     @mock.patch('abjad.systemtools.IOManager.open_file')
-    def test_success_preface(self, open_file_mock):
-        expected_files = [
-            'test_score/test_score/build/letter-portrait/back-cover.tex',
-            'test_score/test_score/build/letter-portrait/front-cover.tex',
-            'test_score/test_score/build/letter-portrait/music.ly',
-            'test_score/test_score/build/letter-portrait/parts.ly',
-            'test_score/test_score/build/letter-portrait/preface.pdf',
-            'test_score/test_score/build/letter-portrait/preface.tex',
-            'test_score/test_score/build/letter-portrait/score.tex',
-            ]
-        self.create_score()
-        self.create_segment('test_segment')
-        self.illustrate_segments()
-        self.collect_segments()
-        target_path = self.create_build_target()
-        script = commandlinetools.ManageBuildTargetScript()
-        command = [
-            '--render', 'letter-portrait',
-            '--preface',
-            ]
-        #with systemtools.RedirectedStreams(stdout=self.string_io):
-        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
-            try:
-                script(command)
-            except SystemExit:
-                raise RuntimeError('SystemExit')
-        self.compare_path_contents(target_path, expected_files)
-        assert open_file_mock.called
-
-    @mock.patch('abjad.systemtools.IOManager.open_file')
     def test_success_music(self, open_file_mock):
         expected_files = [
             'test_score/test_score/build/letter-portrait/back-cover.tex',
@@ -193,6 +163,36 @@ class Test(ScorePackageScriptTestCase):
         command = [
             '--render', 'letter-portrait',
             '--parts',
+            ]
+        #with systemtools.RedirectedStreams(stdout=self.string_io):
+        with systemtools.TemporaryDirectoryChange(str(self.score_path)):
+            try:
+                script(command)
+            except SystemExit:
+                raise RuntimeError('SystemExit')
+        self.compare_path_contents(target_path, expected_files)
+        assert open_file_mock.called
+
+    @mock.patch('abjad.systemtools.IOManager.open_file')
+    def test_success_preface(self, open_file_mock):
+        expected_files = [
+            'test_score/test_score/build/letter-portrait/back-cover.tex',
+            'test_score/test_score/build/letter-portrait/front-cover.tex',
+            'test_score/test_score/build/letter-portrait/music.ly',
+            'test_score/test_score/build/letter-portrait/parts.ly',
+            'test_score/test_score/build/letter-portrait/preface.pdf',
+            'test_score/test_score/build/letter-portrait/preface.tex',
+            'test_score/test_score/build/letter-portrait/score.tex',
+            ]
+        self.create_score()
+        self.create_segment('test_segment')
+        self.illustrate_segments()
+        self.collect_segments()
+        target_path = self.create_build_target()
+        script = commandlinetools.ManageBuildTargetScript()
+        command = [
+            '--render', 'letter-portrait',
+            '--preface',
             ]
         #with systemtools.RedirectedStreams(stdout=self.string_io):
         with systemtools.TemporaryDirectoryChange(str(self.score_path)):

@@ -151,6 +151,54 @@ class ScorePackageScriptTestCase(unittest.TestCase):
         with systemtools.TemporaryDirectoryChange(str(self.score_path)):
             script(command)
 
+    def compare_captured_output(self, expected):
+        actual = self.ansi_escape.sub('', self.string_io.getvalue())
+        actual = stringtools.normalize(actual)
+        expected = stringtools.normalize(expected)
+        self.compare_strings(expected, actual)
+
+    def compare_file_contents(self, path, expected_contents):
+        expected_contents = stringtools.normalize(expected_contents)
+        with open(str(path), 'r') as file_pointer:
+            contents = stringtools.normalize(file_pointer.read())
+        self.compare_strings(expected_contents, contents)
+
+    def compare_lilypond_contents(self, ly_path, expected_contents):
+        expected_contents = stringtools.normalize(expected_contents)
+        with open(str(ly_path), 'r') as file_pointer:
+            contents = file_pointer.read()
+        if ly_path.suffix == '.ly':
+            contents = contents.splitlines()
+            while 'version' not in contents[0]:
+                contents.pop(0)
+            contents.pop(0)
+            contents = '\n'.join(contents)
+        contents = stringtools.normalize(contents)
+        self.compare_strings(expected_contents, contents)
+
+    def compare_path_contents(self, path_to_search, expected_files):
+        actual_files = sorted(
+            str(path.relative_to(self.test_path))
+            for path in path_to_search.glob('**/*.*')
+            if '__pycache__' not in path.parts and
+            path.suffix != '.pyc'
+            )
+        assert actual_files == expected_files
+
+    def compare_strings(self, expected, actual):
+        example = argparse.Namespace()
+        example.want = expected
+        output_checker = doctest.OutputChecker()
+        flags = (
+            doctest.NORMALIZE_WHITESPACE |
+            doctest.ELLIPSIS |
+            doctest.REPORT_NDIFF
+            )
+        success = output_checker.check_output(expected, actual, flags)
+        if not success:
+            diff = output_checker.output_difference(example, actual, flags)
+            raise Exception(diff)
+
     def create_build_target(
         self,
         force=False,
@@ -248,54 +296,6 @@ class ScorePackageScriptTestCase(unittest.TestCase):
             'segments',
             segment_name,
             )
-
-    def compare_file_contents(self, path, expected_contents):
-        expected_contents = stringtools.normalize(expected_contents)
-        with open(str(path), 'r') as file_pointer:
-            contents = stringtools.normalize(file_pointer.read())
-        self.compare_strings(expected_contents, contents)
-
-    def compare_lilypond_contents(self, ly_path, expected_contents):
-        expected_contents = stringtools.normalize(expected_contents)
-        with open(str(ly_path), 'r') as file_pointer:
-            contents = file_pointer.read()
-        if ly_path.suffix == '.ly':
-            contents = contents.splitlines()
-            while 'version' not in contents[0]:
-                contents.pop(0)
-            contents.pop(0)
-            contents = '\n'.join(contents)
-        contents = stringtools.normalize(contents)
-        self.compare_strings(expected_contents, contents)
-
-    def compare_strings(self, expected, actual):
-        example = argparse.Namespace()
-        example.want = expected
-        output_checker = doctest.OutputChecker()
-        flags = (
-            doctest.NORMALIZE_WHITESPACE |
-            doctest.ELLIPSIS |
-            doctest.REPORT_NDIFF
-            )
-        success = output_checker.check_output(expected, actual, flags)
-        if not success:
-            diff = output_checker.output_difference(example, actual, flags)
-            raise Exception(diff)
-
-    def compare_captured_output(self, expected):
-        actual = self.ansi_escape.sub('', self.string_io.getvalue())
-        actual = stringtools.normalize(actual)
-        expected = stringtools.normalize(expected)
-        self.compare_strings(expected, actual)
-
-    def compare_path_contents(self, path_to_search, expected_files):
-        actual_files = sorted(
-            str(path.relative_to(self.test_path))
-            for path in path_to_search.glob('**/*.*')
-            if '__pycache__' not in path.parts and
-            path.suffix != '.pyc'
-            )
-        assert actual_files == expected_files
 
     def illustrate_material(self, material_name):
         script = commandlinetools.ManageMaterialScript()

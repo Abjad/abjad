@@ -43,36 +43,6 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/tools/__init__.py',
         ]
 
-
-
-    def test_success(self):
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
-        assert self.score_path.exists()
-        self.compare_path_contents(self.score_path, self.expected_files)
-        score_metadata_path = self.score_path.joinpath(
-            self.score_path.name, 'metadata.json')
-        assert score_metadata_path.exists()
-        with open(str(score_metadata_path), 'r') as file_pointer:
-            metadata = json.loads(file_pointer.read())
-        assert metadata == {
-            'composer_email': 'josiah.oberholtzer@gmail.com',
-            'composer_github': 'josiah-wolf-oberholtzer',
-            'composer_library': 'consort',
-            'composer_name': 'Josiah Wolf Oberholtzer',
-            'composer_website': 'www.josiahwolfoberholtzer.com',
-            'title': 'Test Score',
-            'year': 2016,
-            }
-        shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
-            assert path in self.directory_items
-        self.compare_captured_output(r'''
-            Creating score package 'Test Score'...
-                Writing test_score/metadata.json
-                Created test_score/
-        ''')
-
     def test_exists(self):
         with systemtools.RedirectedStreams(stdout=self.string_io):
             self.create_score()
@@ -105,6 +75,34 @@ class Test(ScorePackageScriptTestCase):
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
+            Creating score package 'Test Score'...
+                Writing test_score/metadata.json
+                Created test_score/
+        ''')
+
+    def test_success(self):
+        with systemtools.RedirectedStreams(stdout=self.string_io):
+            self.create_score()
+        assert self.score_path.exists()
+        self.compare_path_contents(self.score_path, self.expected_files)
+        score_metadata_path = self.score_path.joinpath(
+            self.score_path.name, 'metadata.json')
+        assert score_metadata_path.exists()
+        with open(str(score_metadata_path), 'r') as file_pointer:
+            metadata = json.loads(file_pointer.read())
+        assert metadata == {
+            'composer_email': 'josiah.oberholtzer@gmail.com',
+            'composer_github': 'josiah-wolf-oberholtzer',
+            'composer_library': 'consort',
+            'composer_name': 'Josiah Wolf Oberholtzer',
+            'composer_website': 'www.josiahwolfoberholtzer.com',
+            'title': 'Test Score',
+            'year': 2016,
+            }
+        shutil.rmtree(str(self.score_path))
+        for path in self.test_path.iterdir():
+            assert path in self.directory_items
+        self.compare_captured_output(r'''
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
