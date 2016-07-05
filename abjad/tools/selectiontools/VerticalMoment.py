@@ -292,7 +292,7 @@ class VerticalMoment(Selection):
                 candidate_shortest_leaf._get_timespan().stop_offset:
                 candidate_shortest_leaf = leaf
         next_leaf = candidate_shortest_leaf._get_in_my_logical_voice(
-            1, component_class=scoretools.Leaf)
+            1, prototype=scoretools.Leaf)
         next_vertical_moment = next_leaf._get_vertical_moment()
         return next_vertical_moment
 
@@ -396,7 +396,7 @@ class VerticalMoment(Selection):
                 #print 'found leaf starting on this moment ...'
                 try:
                     previous_leaf = leaf._get_in_my_logical_voice(
-                        -1, component_class=scoretools.Leaf)
+                        -1, prototype=scoretools.Leaf)
                     start = previous_leaf._get_timespan().start_offset
                     #print previous_leaf, start
                     if most_recent_start_offset <= start:

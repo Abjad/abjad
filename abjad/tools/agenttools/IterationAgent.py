@@ -421,8 +421,8 @@ class IterationAgent(abctools.AbjadObject):
                 prototype=prototype
                 )
 
-        def component_iterator(expr, component_class, reverse=False):
-            if isinstance(expr, component_class):
+        def component_iterator(expr, prototype, reverse=False):
+            if isinstance(expr, prototype):
                 yield expr
             if isinstance(expr, (list, tuple, spannertools.Spanner)) or \
                 hasattr(expr, '_music'):
@@ -432,7 +432,7 @@ class IterationAgent(abctools.AbjadObject):
                     expr = reversed(expr)
                 for component in expr:
                     for x in component_iterator(
-                        component, component_class, reverse=reverse):
+                        component, prototype, reverse=reverse):
                         yield x
 
         def subrange(iter, start=0, stop=None):
@@ -1137,7 +1137,7 @@ class IterationAgent(abctools.AbjadObject):
 
     def by_logical_voice(
         self,
-        component_class,
+        prototype,
         logical_voice,
         reverse=False,
         ):
@@ -1208,7 +1208,7 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if isinstance(self._client, component_class) and \
+        if isinstance(self._client, prototype) and \
             self._client._get_parentage().logical_voice == \
                 logical_voice:
             yield self._client
@@ -1216,14 +1216,14 @@ class IterationAgent(abctools.AbjadObject):
             if isinstance(self._client, (list, tuple)):
                 for component in self._client:
                     for x in iterate(component).by_logical_voice(
-                        component_class,
+                        prototype,
                         logical_voice,
                         ):
                         yield x
             if hasattr(self._client, '_music'):
                 for component in self._client._music:
                     for x in iterate(component).by_logical_voice(
-                        component_class,
+                        prototype,
                         logical_voice,
                         ):
                         yield x
@@ -1231,7 +1231,7 @@ class IterationAgent(abctools.AbjadObject):
             if isinstance(self._client, (list, tuple)):
                 for component in reversed(self._client):
                     for x in iterate(component).by_logical_voice(
-                        component_class,
+                        prototype,
                         logical_voice,
                         reverse=True,
                         ):
@@ -1239,7 +1239,7 @@ class IterationAgent(abctools.AbjadObject):
             if hasattr(self._client, '_music'):
                 for component in reversed(self._client._music):
                     for x in iterate(component).by_logical_voice(
-                        component_class,
+                        prototype,
                         logical_voice,
                         reverse=True,
                         ):
@@ -1247,7 +1247,7 @@ class IterationAgent(abctools.AbjadObject):
 
     def by_logical_voice_from_component(
         self,
-        component_class=None,
+        prototype=None,
         reverse=False,
         ):
         r'''Iterates by logical voice from client.
@@ -1514,21 +1514,21 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         # set default class
-        if component_class is None:
-            component_class = scoretools.Component
+        if prototype is None:
+            prototype = scoretools.Component
         # save logical voice signature of input component
         signature = self._client._get_parentage().logical_voice
         # iterate component depth-first allowing to crawl UP into score
         if not reverse:
             for x in iterate(self._client).depth_first(
                 capped=False):
-                if isinstance(x, component_class):
+                if isinstance(x, prototype):
                     if x._get_parentage().logical_voice == signature:
                         yield x
         else:
             for x in iterate(self._client).depth_first(
                 capped=False, direction=Right):
-                if isinstance(x, component_class):
+                if isinstance(x, prototype):
                     if x._get_parentage().logical_voice == signature:
                         yield x
 
@@ -1859,7 +1859,7 @@ class IterationAgent(abctools.AbjadObject):
     # TODO: optimize to avoid behind-the-scenes full-score traversal.
     def by_timeline(
         self,
-        component_class=None,
+        prototype=None,
         reverse=False,
         ):
         r'''Iterates by timeline.
@@ -1950,10 +1950,10 @@ class IterationAgent(abctools.AbjadObject):
                 Note("a'8")
                 Note("g'8")
 
-        Iterates leaves when `component_class` is none.
+        Iterates leaves when `prototype` is none.
         '''
-        if component_class is None:
-            component_class = scoretools.Leaf
+        if prototype is None:
+            prototype = scoretools.Leaf
         if isinstance(self.client, scoretools.Component):
             components = [self.client]
         else:
@@ -1982,7 +1982,7 @@ class IterationAgent(abctools.AbjadObject):
                         components.append(component)
                         #print('        TOO EARLY')
                         continue
-                    if isinstance(component, component_class):
+                    if isinstance(component, prototype):
                         #print('        YIELDING', component)
                         yield component
                     sibling = component._get_sibling(1)
@@ -2018,7 +2018,7 @@ class IterationAgent(abctools.AbjadObject):
                     if stop_offset < current_stop_offset:
                         components.insert(0, component)
                         continue
-                    if isinstance(component, component_class):
+                    if isinstance(component, prototype):
                         yield component
                     sibling = component._get_sibling(-1)
                     if sibling is not None:
@@ -2167,7 +2167,7 @@ class IterationAgent(abctools.AbjadObject):
         '''
         visited_logical_ties = set()
         iterator = self.by_timeline(
-            component_class=scoretools.Leaf,
+            prototype=scoretools.Leaf,
             reverse=reverse,
             )
         for leaf in iterator:
@@ -2184,7 +2184,7 @@ class IterationAgent(abctools.AbjadObject):
     # TODO: optimize to avoid behind-the-scenes full-score traversal
     def by_timeline_from_component(
         self,
-        component_class=None,
+        prototype=None,
         reverse=False,
         ):
         r'''Iterates from client by timeline.
@@ -2271,14 +2271,14 @@ class IterationAgent(abctools.AbjadObject):
         Yields components sorted backward by score offset stop time
         when `reverse` is true.
 
-        Iterates leaves when `component_class` is none.
+        Iterates leaves when `prototype` is none.
         '''
         assert isinstance(self._client, scoretools.Component)
-        if component_class is None:
-            component_class = scoretools.Leaf
+        if prototype is None:
+            prototype = scoretools.Leaf
         root = self._client._get_parentage().root
         component_generator = iterate(root).by_timeline(
-            component_class=component_class,
+            prototype=prototype,
             reverse=reverse,
             )
         yielded_expr = False
