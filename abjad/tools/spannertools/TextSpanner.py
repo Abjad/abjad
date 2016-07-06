@@ -9,7 +9,7 @@ from abjad.tools.topleveltools import override
 
 
 class TextSpanner(Spanner):
-    r'''A text spanner.
+    r'''Text spanner.
 
     ..  container:: example
 

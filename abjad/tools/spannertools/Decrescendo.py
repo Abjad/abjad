@@ -3,7 +3,7 @@ from abjad.tools.spannertools.Hairpin import Hairpin
 
 
 class Decrescendo(Hairpin):
-    r'''A decrescendo.
+    r'''Decrescendo.
 
     ..  container:: example
 

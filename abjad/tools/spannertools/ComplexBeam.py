@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Beam import Beam
 
 
 class ComplexBeam(Beam):
-    r'''A complex beam.
+    r'''Complex beam.
 
     ..  container:: example
 
