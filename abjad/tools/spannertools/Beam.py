@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import override
 
 
 class Beam(Spanner):
-    r'''A beam.
+    r'''Beam.
 
     ..  container:: example
 

@@ -6,7 +6,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class GeneralizedBeam(Spanner):
-    r'''A generalized beam.
+    r'''Generalized beam.
 
     ..  container:: example::
 

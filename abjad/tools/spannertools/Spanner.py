@@ -12,8 +12,10 @@ Selection = selectiontools.Selection
 
 
 class Spanner(AbjadObject):
-    '''Any type of object that stretches horizontally
-    and encompasses some number of score components.
+    '''Spanner.
+    
+    Any type of object that stretches horizontally and encompasses some number
+    of score components.
 
     Examples include beams, slurs, hairpins and trills.
     '''

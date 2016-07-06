@@ -3,7 +3,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class HiddenStaffSpanner(Spanner):
-    r'''A hidden staff spanner.
+    r'''Hidden staff spanner.
 
     ..  container:: example
 

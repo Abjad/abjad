@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Spanner import Spanner
 
 
 class StaffLinesSpanner(Spanner):
-    r'''A staff lines spanner.
+    r'''Staff lines spanner.
 
     ..  container:: example
 

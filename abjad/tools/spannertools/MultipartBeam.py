@@ -4,7 +4,7 @@ from abjad.tools.spannertools.Beam import Beam
 
 
 class MultipartBeam(Beam):
-    r'''A multipart beam.
+    r'''Multipart beam.
 
     ..  container:: example
 

@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import inspect_
 
 
 class StemTremoloSpanner(Spanner):
-    r'''A stem tremolo spanner.
+    r'''Stem tremolo spanner.
 
     ::
 
