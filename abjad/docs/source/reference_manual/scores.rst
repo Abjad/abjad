@@ -83,11 +83,11 @@ Slice a score to select its components:
 Selecting a score's leaves
 --------------------------
 
-Use ``select_leaves()`` to select the leaves in a score:
+Use ``list(iterate(score).by_leaf())`` to select the leaves in a score:
 
 ..  abjad::
 
-    score.select_leaves(allow_discontiguous_leaves=True)
+    list(iterate(score).by_leaf())
 
 
 Getting the length of a score

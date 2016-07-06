@@ -20,7 +20,7 @@ Use the inspector to get the parentage of any component:
 
 ..  abjad::
 
-    note = score.select_leaves()[0]
+    note = next(iterate(score).by_leaf())
     parentage = inspect_(note).get_parentage()
 
 ..  abjad::
