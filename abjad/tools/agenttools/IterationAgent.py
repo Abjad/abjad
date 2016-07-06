@@ -129,6 +129,7 @@ class IterationAgent(abctools.AbjadObject):
     def by_class(
         self,
         prototype=None,
+        pitched=None,
         reverse=False,
         start=0,
         stop=None,
@@ -379,6 +380,90 @@ class IterationAgent(abctools.AbjadObject):
                 Note("e'8")
                 Note("f'8")
 
+        ..  container:: example
+
+            **Example 6.** Iterates pitched components: 
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_class(pitched=True):
+                ...     leaf
+                ...
+                Chord("<c' bf'>8")
+                Chord("<g' a'>8")
+                Note("af'8")
+                Note("gf'8")
+
+        ..  container:: example
+
+            **Example 7.** Iterates nonpitched components: 
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_class(pitched=False):
+                ...     leaf
+                ...
+                <Staff{3}>
+                Measure((2, 8), "<c' bf'>8 <g' a'>8")
+                Measure((2, 8), "af'8 r8")
+                Rest('r8')
+                Measure((2, 8), "r8 gf'8")
+                Rest('r8')
+
         Returns generator.
         '''
         prototype = prototype or scoretools.Component
@@ -392,18 +477,28 @@ class IterationAgent(abctools.AbjadObject):
             return self._by_components_and_grace_containers(
                 prototype=prototype
                 )
+        pitched_prototype = (scoretools.Note, scoretools.Chord)
         def component_iterator(expr, prototype, reverse=False):
             if isinstance(expr, prototype):
-                yield expr
-            if isinstance(expr, (list, tuple, spannertools.Spanner)) or \
-                hasattr(expr, '_music'):
+                if pitched is None:
+                    yield expr
+                elif pitched == True and isinstance(expr, pitched_prototype):
+                    yield expr
+                elif (not pitched == True and not 
+                    isinstance(expr, pitched_prototype)):
+                    yield expr
+            if (isinstance(expr, (list, tuple, spannertools.Spanner)) or
+                hasattr(expr, '_music')):
                 if hasattr(expr, '_music'):
                     expr = expr._music
                 if reverse:
                     expr = reversed(expr)
                 for component in expr:
                     for x in component_iterator(
-                        component, prototype, reverse=reverse):
+                        component,
+                        prototype,
+                        reverse=reverse,
+                        ):
                         yield x
         def subrange(iter, start=0, stop=None):
             # if start<0, then 'stop-start' gives a funny result
@@ -415,7 +510,6 @@ class IterationAgent(abctools.AbjadObject):
                 for i in range(start):
                     # no yield to swallow the results
                     next(iter)
-
                 # now generate (stop-start) elements
                 # (or all elements if stop is none)
                 if stop is None:
@@ -432,7 +526,8 @@ class IterationAgent(abctools.AbjadObject):
             component_iterator(
                 self._client,
                 prototype,
-                reverse=reverse),
+                reverse=reverse
+                ),
             start,
             stop,
             )
@@ -440,6 +535,7 @@ class IterationAgent(abctools.AbjadObject):
     def by_leaf(
         self,
         prototype=None,
+        pitched=None,
         reverse=False,
         start=0,
         stop=None,
@@ -634,12 +730,92 @@ class IterationAgent(abctools.AbjadObject):
                 Note("e'8")
                 Note("f'8")
 
+        ..  container:: example
+
+            **Example 5.** Iterates pitched leaves: 
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_leaf(pitched=True):
+                ...     leaf
+                ...
+                Chord("<c' bf'>8")
+                Chord("<g' a'>8")
+                Note("af'8")
+                Note("gf'8")
+
+        ..  container:: example
+
+            **Example 6.** Iterates nonpitched leaves: 
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_leaf(pitched=False):
+                ...     leaf
+                ...
+                Rest('r8')
+                Rest('r8')
 
         Returns generator.
         '''
         prototype = prototype or scoretools.Leaf
         return self.by_class(
             prototype=prototype,
+            pitched=pitched,
             reverse=reverse,
             start=start,
             stop=stop,
