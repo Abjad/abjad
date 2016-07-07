@@ -313,6 +313,8 @@ class Parentage(Selection):
     def score_index(self):
         r'''Gets score index.
 
+        ..  todo:: Define score index for grace notes.
+
         ..  container:: example
 
             **Example.** Gets note score indices:
@@ -354,6 +356,52 @@ class Parentage(Selection):
                 (Note("a'2"), (0, 0, 2))
                 (Note("c'2"), (1, 0))
                 (Note("d'2"), (1, 1))
+
+        ..  container:: example
+
+            **Example 1.** With grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    d'8
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> leaves = iterate(voice).by_class(with_grace_notes=True)
+                >>> for leaf in leaves:
+                ...     parentage = inspect_(leaf).get_parentage()
+                ...     leaf, parentage.score_index
+                ...
+                (Voice("c'8 d'8 e'8 f'8"), ())
+                (Note("c'8"), (0,))
+                (Note("cf''16"), (0,))
+                (Note("bf'16"), (1,))
+                (Note("d'8"), (1,))
+                (Note("e'8"), (2,))
+                (Note("f'8"), (3,))
+
+            ..  todo:: Incorrect values returned for grace notes.
 
         Returns tuple of zero or more nonnegative integers.
         '''

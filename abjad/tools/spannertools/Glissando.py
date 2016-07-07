@@ -6,7 +6,7 @@ from abjad.tools.topleveltools.inspect_ import inspect_
 
 
 class Glissando(Spanner):
-    r'''A glissando.
+    r'''Glissando.
 
     ..  container:: example
 

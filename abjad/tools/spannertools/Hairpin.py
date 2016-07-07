@@ -7,7 +7,7 @@ from abjad.tools.topleveltools import override
 
 
 class Hairpin(Spanner):
-    r'''A hairpin.
+    r'''Hairpin.
 
     ..  container:: example
 

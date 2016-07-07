@@ -65,15 +65,3 @@ class SegmentMaker(AbjadObject):
         '''
         lilypond_file, metadata = self(**kwargs)
         return lilypond_file
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def lilypond_file(self):
-        r'''Gets segment LilyPond file.
-
-        Created when segment-maker is called.
-
-        Returns LilyPond file.
-        '''
-        return self._lilypond_file

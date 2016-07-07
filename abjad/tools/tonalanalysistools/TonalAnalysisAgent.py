@@ -226,9 +226,9 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             message = message.format(note)
             raise TypeError(message)
         previous_note = note._get_in_my_logical_voice(
-            -1, component_class=scoretools.Note)
+            -1, prototype=scoretools.Note)
         next_note = note._get_in_my_logical_voice(
-            1, component_class=scoretools.Note)
+            1, prototype=scoretools.Note)
         if previous_note is None:
             return False
         if next_note is None:
@@ -255,9 +255,9 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             message = message.format(note)
             raise TypeError(message)
         previous_note = note._get_in_my_logical_voice(
-            -1, component_class=scoretools.Note)
+            -1, prototype=scoretools.Note)
         next_note = note._get_in_my_logical_voice(
-            1, component_class=scoretools.Note)
+            1, prototype=scoretools.Note)
         if previous_note is None or next_note is None:
             return False
         notes = [previous_note, note, next_note]

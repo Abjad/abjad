@@ -157,6 +157,7 @@ class IterationAgent(abctools.AbjadObject):
     def by_class(
         self,
         prototype=None,
+        pitched=None,
         reverse=False,
         start=0,
         stop=None,
@@ -407,6 +408,90 @@ class IterationAgent(abctools.AbjadObject):
                 Note("e'8")
                 Note("f'8")
 
+        ..  container:: example
+
+            **Example 6.** Iterates pitched components:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_class(pitched=True):
+                ...     leaf
+                ...
+                Chord("<c' bf'>8")
+                Chord("<g' a'>8")
+                Note("af'8")
+                Note("gf'8")
+
+        ..  container:: example
+
+            **Example 7.** Iterates nonpitched components:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_class(pitched=False):
+                ...     leaf
+                ...
+                <Staff{3}>
+                Measure((2, 8), "<c' bf'>8 <g' a'>8")
+                Measure((2, 8), "af'8 r8")
+                Rest('r8')
+                Measure((2, 8), "r8 gf'8")
+                Rest('r8')
+
         Returns generator.
         '''
         prototype = prototype or scoretools.Component
@@ -420,19 +505,33 @@ class IterationAgent(abctools.AbjadObject):
             return self._by_components_and_grace_containers(
                 prototype=prototype
                 )
+        pitched_prototype = (scoretools.Note, scoretools.Chord)
 
-        def component_iterator(expr, component_class, reverse=False):
-            if isinstance(expr, component_class):
-                yield expr
-            if isinstance(expr, (list, tuple, spannertools.Spanner)) or \
-                hasattr(expr, '_music'):
+        def component_iterator(expr, prototype, reverse=False):
+            if isinstance(expr, prototype):
+                if pitched is None:
+                    yield expr
+                elif pitched is True and isinstance(expr, pitched_prototype):
+                    yield expr
+                elif (
+                    pitched is not True and not
+                    isinstance(expr, pitched_prototype)
+                    ):
+                    yield expr
+            if (
+                isinstance(expr, (list, tuple, spannertools.Spanner)) or
+                hasattr(expr, '_music')
+                ):
                 if hasattr(expr, '_music'):
                     expr = expr._music
                 if reverse:
                     expr = reversed(expr)
                 for component in expr:
                     for x in component_iterator(
-                        component, component_class, reverse=reverse):
+                        component,
+                        prototype,
+                        reverse=reverse,
+                        ):
                         yield x
 
         def subrange(iter, start=0, stop=None):
@@ -445,7 +544,6 @@ class IterationAgent(abctools.AbjadObject):
                 for i in range(start):
                     # no yield to swallow the results
                     next(iter)
-
                 # now generate (stop-start) elements
                 # (or all elements if stop is none)
                 if stop is None:
@@ -462,7 +560,8 @@ class IterationAgent(abctools.AbjadObject):
             component_iterator(
                 self._client,
                 prototype,
-                reverse=reverse),
+                reverse=reverse
+                ),
             start,
             stop,
             )
@@ -470,6 +569,7 @@ class IterationAgent(abctools.AbjadObject):
     def by_leaf(
         self,
         prototype=None,
+        pitched=None,
         reverse=False,
         start=0,
         stop=None,
@@ -664,12 +764,92 @@ class IterationAgent(abctools.AbjadObject):
                 Note("e'8")
                 Note("f'8")
 
+        ..  container:: example
+
+            **Example 5.** Iterates pitched leaves:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_leaf(pitched=True):
+                ...     leaf
+                ...
+                Chord("<c' bf'>8")
+                Chord("<g' a'>8")
+                Note("af'8")
+                Note("gf'8")
+
+        ..  container:: example
+
+            **Example 6.** Iterates nonpitched leaves:
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in iterate(staff).by_leaf(pitched=False):
+                ...     leaf
+                ...
+                Rest('r8')
+                Rest('r8')
 
         Returns generator.
         '''
         prototype = prototype or scoretools.Leaf
         return self.by_class(
             prototype=prototype,
+            pitched=pitched,
             reverse=reverse,
             start=start,
             stop=stop,
@@ -1137,7 +1317,7 @@ class IterationAgent(abctools.AbjadObject):
 
     def by_logical_voice(
         self,
-        component_class,
+        prototype,
         logical_voice,
         reverse=False,
         ):
@@ -1208,7 +1388,7 @@ class IterationAgent(abctools.AbjadObject):
 
         Returns generator.
         '''
-        if isinstance(self._client, component_class) and \
+        if isinstance(self._client, prototype) and \
             self._client._get_parentage().logical_voice == \
                 logical_voice:
             yield self._client
@@ -1216,14 +1396,14 @@ class IterationAgent(abctools.AbjadObject):
             if isinstance(self._client, (list, tuple)):
                 for component in self._client:
                     for x in iterate(component).by_logical_voice(
-                        component_class,
+                        prototype,
                         logical_voice,
                         ):
                         yield x
             if hasattr(self._client, '_music'):
                 for component in self._client._music:
                     for x in iterate(component).by_logical_voice(
-                        component_class,
+                        prototype,
                         logical_voice,
                         ):
                         yield x
@@ -1231,7 +1411,7 @@ class IterationAgent(abctools.AbjadObject):
             if isinstance(self._client, (list, tuple)):
                 for component in reversed(self._client):
                     for x in iterate(component).by_logical_voice(
-                        component_class,
+                        prototype,
                         logical_voice,
                         reverse=True,
                         ):
@@ -1239,7 +1419,7 @@ class IterationAgent(abctools.AbjadObject):
             if hasattr(self._client, '_music'):
                 for component in reversed(self._client._music):
                     for x in iterate(component).by_logical_voice(
-                        component_class,
+                        prototype,
                         logical_voice,
                         reverse=True,
                         ):
@@ -1247,7 +1427,7 @@ class IterationAgent(abctools.AbjadObject):
 
     def by_logical_voice_from_component(
         self,
-        component_class=None,
+        prototype=None,
         reverse=False,
         ):
         r'''Iterates by logical voice from client.
@@ -1514,21 +1694,21 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         # set default class
-        if component_class is None:
-            component_class = scoretools.Component
+        if prototype is None:
+            prototype = scoretools.Component
         # save logical voice signature of input component
         signature = self._client._get_parentage().logical_voice
         # iterate component depth-first allowing to crawl UP into score
         if not reverse:
             for x in iterate(self._client).depth_first(
                 capped=False):
-                if isinstance(x, component_class):
+                if isinstance(x, prototype):
                     if x._get_parentage().logical_voice == signature:
                         yield x
         else:
             for x in iterate(self._client).depth_first(
                 capped=False, direction=Right):
-                if isinstance(x, component_class):
+                if isinstance(x, prototype):
                     if x._get_parentage().logical_voice == signature:
                         yield x
 
@@ -1857,11 +2037,7 @@ class IterationAgent(abctools.AbjadObject):
                 yield spanner
 
     # TODO: optimize to avoid behind-the-scenes full-score traversal.
-    def by_timeline(
-        self,
-        component_class=None,
-        reverse=False,
-        ):
+    def by_timeline(self, prototype=None, reverse=False):
         r'''Iterates by timeline.
 
         ..  container:: example
@@ -1950,26 +2126,61 @@ class IterationAgent(abctools.AbjadObject):
                 Note("a'8")
                 Note("g'8")
 
-        Iterates leaves when `component_class` is none.
+        ..  container:: example
+
+            **Example 3.** Iterates with grace notes:
+
+            ::
+
+                >>> voice = Voice("c'8 [ d'8 e'8 f'8 ]")
+                >>> grace_notes = [Note("cf''16"), Note("bf'16")]
+                >>> grace = scoretools.GraceContainer(
+                ...     grace_notes,
+                ...     kind='grace',
+                ...     )
+                >>> attach(grace, voice[1])
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice {
+                    c'8 [
+                    \grace {
+                        cf''16
+                        bf'16
+                    }
+                    d'8
+                    e'8
+                    f'8 ]
+                }
+
+            ::
+
+                >>> for component in iterate(voice).by_timeline():
+                ...     component
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+
+            ..  todo:: Incorrect because grace notes are not included.
+
+        Iterates leaves when `prototype` is none.
         '''
-        if component_class is None:
-            component_class = scoretools.Leaf
+        prototype = prototype or scoretools.Leaf
         if isinstance(self.client, scoretools.Component):
             components = [self.client]
         else:
             components = list(self.client)
         if not reverse:
             while components:
-                #print('STEP:')
-                #for component in components:
-                #    print('   ', component)
-                #print()
                 current_start_offset = min(
                     _._get_timespan().start_offset
                     for _ in components
                     )
                 components.sort(
-                    key=lambda x: x._get_parentage().score_index,
+                    key=lambda x: x._get_parentage(with_grace_notes=True).score_index,
                     reverse=True,
                     )
                 components_to_process = components[:]
@@ -1982,7 +2193,7 @@ class IterationAgent(abctools.AbjadObject):
                         components.append(component)
                         #print('        TOO EARLY')
                         continue
-                    if isinstance(component, component_class):
+                    if isinstance(component, prototype):
                         #print('        YIELDING', component)
                         yield component
                     sibling = component._get_sibling(1)
@@ -2006,7 +2217,7 @@ class IterationAgent(abctools.AbjadObject):
                     for _ in components
                     )
                 components.sort(
-                    key=lambda x: x._get_parentage().score_index,
+                    key=lambda x: x._get_parentage(with_grace_notes=True).score_index,
                     reverse=True,
                     )
                 components_to_process = components[:]
@@ -2018,7 +2229,7 @@ class IterationAgent(abctools.AbjadObject):
                     if stop_offset < current_stop_offset:
                         components.insert(0, component)
                         continue
-                    if isinstance(component, component_class):
+                    if isinstance(component, prototype):
                         yield component
                     sibling = component._get_sibling(-1)
                     if sibling is not None:
@@ -2167,7 +2378,7 @@ class IterationAgent(abctools.AbjadObject):
         '''
         visited_logical_ties = set()
         iterator = self.by_timeline(
-            component_class=scoretools.Leaf,
+            prototype=scoretools.Leaf,
             reverse=reverse,
             )
         for leaf in iterator:
@@ -2184,7 +2395,7 @@ class IterationAgent(abctools.AbjadObject):
     # TODO: optimize to avoid behind-the-scenes full-score traversal
     def by_timeline_from_component(
         self,
-        component_class=None,
+        prototype=None,
         reverse=False,
         ):
         r'''Iterates from client by timeline.
@@ -2271,14 +2482,14 @@ class IterationAgent(abctools.AbjadObject):
         Yields components sorted backward by score offset stop time
         when `reverse` is true.
 
-        Iterates leaves when `component_class` is none.
+        Iterates leaves when `prototype` is none.
         '''
         assert isinstance(self._client, scoretools.Component)
-        if component_class is None:
-            component_class = scoretools.Leaf
+        if prototype is None:
+            prototype = scoretools.Leaf
         root = self._client._get_parentage().root
         component_generator = iterate(root).by_timeline(
-            component_class=component_class,
+            prototype=prototype,
             reverse=reverse,
             )
         yielded_expr = False

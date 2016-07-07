@@ -35,7 +35,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 d'4
                 e'4
@@ -57,7 +57,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 <c' d' e'>2
                 <fs'' gs'' as''>2
@@ -78,7 +78,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new RhythmicStaff {
                 r4
                 r4
@@ -100,7 +100,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 <c' d' e'>4
                 r4
@@ -123,7 +123,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c''4.
                 c''8
@@ -146,7 +146,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c''4
                 d''4
@@ -169,7 +169,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \times 2/3 {
                     d''2
@@ -195,7 +195,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 13/16
                 ds''2. ~
@@ -223,7 +223,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 13/16
                 e''16 ~
@@ -251,7 +251,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 5/4
                 f'4 ~
@@ -284,7 +284,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 5/4
                 f'8 ~
@@ -316,7 +316,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 5/14
                 \tweak edge-height #'(0.7 . 0)
@@ -349,7 +349,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 5/14
                 \tweak text #tuplet-number::calc-fraction-text
@@ -388,7 +388,7 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new RhythmicStaff {
                 {
                     \time 3/8
@@ -418,25 +418,44 @@ def make_leaves(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'2.
                 c'16 \repeatTie
             }
 
+    ..  container:: example
+
+        **Example 16.** Works with numbered pitch-class:
+
+        ::
+
+            >>> pitches = [pitchtools.NumberedPitchClass(6)]
+            >>> durations = [Duration(13, 16)]
+            >>> leaves = scoretools.make_leaves(
+            ...     pitches,
+            ...     durations,
+            ...     )
+            >>> staff = Staff(leaves)
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                fs'2. ~
+                fs'16
+            }
+
     Returns selection of leaves.
     '''
     from abjad.tools import scoretools
-
     if isinstance(pitches, str):
         pitches = pitches.split()
-
     if not isinstance(pitches, list):
         pitches = [pitches]
-
     if isinstance(durations, (numbers.Number, tuple)):
         durations = [durations]
-
     nonreduced_fractions = [mathtools.NonreducedFraction(_) for _ in durations]
     size = max(len(nonreduced_fractions), len(pitches))
     nonreduced_fractions = sequencetools.repeat_sequence_to_length(
@@ -448,7 +467,6 @@ def make_leaves(
     duration_groups = \
         Duration._group_nonreduced_fractions_by_implied_prolation(
         nonreduced_fractions)
-
     result = []
     for duration_group in duration_groups:
         # get factors in denominator of duration group other than 1, 2.
@@ -494,7 +512,6 @@ def make_leaves(
             elif not is_diminution and tuplet.is_diminution:
                 tuplet.toggle_prolation()
             result.append(tuplet)
-
     result = selectiontools.Selection(result)
     return result
 
@@ -508,10 +525,15 @@ def _make_leaf_on_pitch(
     use_messiaen_style_ties=False,
     ):
     from abjad.tools import scoretools
-    note_types = (numbers.Number, str, pitchtools.NamedPitch)
-    chord_types = (tuple, list)
-    rest_types = (type(None),)
-    if isinstance(pitch, note_types):
+    note_prototype = (
+        numbers.Number,
+        str,
+        pitchtools.NamedPitch,
+        pitchtools.PitchClass,
+        )
+    chord_prototype = (tuple, list)
+    rest_prototype = (type(None),)
+    if isinstance(pitch, note_prototype):
         leaves = scoretools.make_tied_leaf(
             scoretools.Note,
             duration,
@@ -520,7 +542,7 @@ def _make_leaf_on_pitch(
             pitches=pitch,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-    elif isinstance(pitch, chord_types):
+    elif isinstance(pitch, chord_prototype):
         leaves = scoretools.make_tied_leaf(
             scoretools.Chord,
             duration,
@@ -529,7 +551,7 @@ def _make_leaf_on_pitch(
             pitches=pitch,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-    elif isinstance(pitch, rest_types) and not use_multimeasure_rests:
+    elif isinstance(pitch, rest_prototype) and not use_multimeasure_rests:
         leaves = scoretools.make_tied_leaf(
             scoretools.Rest,
             duration,
@@ -538,7 +560,7 @@ def _make_leaf_on_pitch(
             pitches=None,
             use_messiaen_style_ties=use_messiaen_style_ties,
             )
-    elif isinstance(pitch, rest_types) and use_multimeasure_rests:
+    elif isinstance(pitch, rest_prototype) and use_multimeasure_rests:
         multimeasure_rest = scoretools.MultimeasureRest((1))
         multiplier = durationtools.Multiplier(duration)
         attach(multiplier, multimeasure_rest)
@@ -549,5 +571,4 @@ def _make_leaf_on_pitch(
         message = 'unknown pitch {!r}.'
         message = message.format(pitch)
         raise ValueError(message)
-
     return leaves

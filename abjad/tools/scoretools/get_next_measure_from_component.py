@@ -60,7 +60,7 @@ def get_next_measure_from_component(component):
         raise MissingMeasureError
     elif isinstance(component, scoretools.Measure):
         return component._get_in_my_logical_voice(
-            1, component_class=scoretools.Measure)
+            1, prototype=scoretools.Measure)
     elif isinstance(component, scoretools.Container):
         return scoretools.get_measure_that_starts_with_container(component)
     elif isinstance(component, (list, tuple)):

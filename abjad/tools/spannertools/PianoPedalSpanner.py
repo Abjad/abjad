@@ -4,7 +4,7 @@ from abjad.tools.topleveltools import override
 
 
 class PianoPedalSpanner(Spanner):
-    r'''A piano pedal spanner.
+    r'''Piano pedal spanner.
 
     ..  container:: example
 

@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import inspect_
 
 
 class ComplexTrillSpanner(Spanner):
-    r'''A complex trill spanner.
+    r'''Complex trill spanner.
 
     ..  container:: example
 
