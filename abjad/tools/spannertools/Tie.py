@@ -133,7 +133,7 @@ class Tie(Spanner):
 
     @property
     def direction(self):
-        r'''Gets direction of ties in spanner.
+        r'''Gets direction.
 
         ..  container:: example
 
@@ -212,6 +212,10 @@ class Tie(Spanner):
 
                 >>> tie.direction is None
                 True
+
+        Defaults to none.
+
+        Set to up, down or none.
 
         Returns up, down or none.
         '''

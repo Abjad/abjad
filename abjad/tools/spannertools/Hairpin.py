@@ -434,7 +434,7 @@ class Hairpin(Spanner):
 
     @property
     def direction(self):
-        r'''Gets direction of hairpin.
+        r'''Gets direction.
 
         ..  container:: example
 
@@ -466,6 +466,10 @@ class Hairpin(Spanner):
 
                 >>> hairpin.direction
                 '^'
+
+        Defaults to none.
+
+        Set to up, down or none.
 
         Returns up, down or none.
         '''
