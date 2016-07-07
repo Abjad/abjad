@@ -8,12 +8,13 @@ from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import select
 Selection = selectiontools.Selection
 
 
 class Spanner(AbjadObject):
     '''Spanner.
-    
+
     Any type of object that stretches horizontally and encompasses some number
     of score components.
 
@@ -214,9 +215,9 @@ class Spanner(AbjadObject):
             setattr(grob_manager, attribute, value)
 
     def _at_least_two_leaves(self, component_expression):
-        leaves = list(iterate(component_expression).by_leaf())
+        leaves = select(component_expression).by_leaf()
         return 1 < len(leaves)
-        
+
     def _attach(self, components):
         from abjad.tools import selectiontools
         assert not self, repr(self)
@@ -325,8 +326,8 @@ class Spanner(AbjadObject):
             return self._fracture_right(i)
         elif direction is None:
             left = self._copy(self[:i])
-            right = self._copy(self[i+1:])
-            center = self._copy(self[i:i+1])
+            right = self._copy(self[i + 1:])
+            center = self._copy(self[i:i + 1])
             self._block_all_components()
             return self, left, center, right
         else:

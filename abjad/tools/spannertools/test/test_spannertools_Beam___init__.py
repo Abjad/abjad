@@ -55,7 +55,7 @@ def test_spannertools_Beam___init___03():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } { c'8 c'8 c'8 c'8 }")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -86,7 +86,7 @@ def test_spannertools_Beam___init___04():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -113,7 +113,7 @@ def test_spannertools_Beam___init___05():
     '''
 
     staff = Staff("{ c'8 c'8 c'8 c'8 } c'8 c'8")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -141,7 +141,7 @@ def test_spannertools_Beam___init___06():
 
     staff = Staff(Container([]) * 2)
     staff.insert(1, Container(Note(0, (1, 8)) * 4))
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -170,7 +170,7 @@ def test_spannertools_Beam___init___07():
     '''
 
     voice = Voice("{ { c'8 cs'8 d'8 ef'8 } } { { e'8 f'8 fs'8 g'8 } }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -205,7 +205,7 @@ def test_spannertools_Beam___init___08():
     '''
 
     voice = Voice("{ { { c'8 cs'8 d'8 ef'8 } } } { e'8 f'8 fs'8 g'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -240,7 +240,7 @@ def test_spannertools_Beam___init___09():
     '''
 
     voice = Voice("{ c'8 cs'8 } d'8 { ef'8 e'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -267,7 +267,7 @@ def test_spannertools_Beam___init___10():
     '''
 
     voice = Voice(r"\times 2/3 { c'8 cs' d' } ef'8 \times 2/3 { e'8 f' fs' }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -347,7 +347,7 @@ def test_spannertools_Beam___init___12():
         )
 
     beam = Beam()
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     statement = 'attach(beam, leavs)'
     assert pytest.raises(Exception, statement)
 

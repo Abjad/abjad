@@ -179,7 +179,7 @@ def test_scoretools_Leaf__split_by_duration_06():
     '''
 
     voice = Voice(r"c'8 \times 2/3 { d'8 e'8 f'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 

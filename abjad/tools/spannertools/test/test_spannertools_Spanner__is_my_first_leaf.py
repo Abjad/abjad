@@ -59,7 +59,7 @@ def test_spannertools_Spanner__is_my_first_leaf_02():
         '''
         )
 
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
     spanner = MockSpanner()
     attach(spanner, leaves[:4])
 

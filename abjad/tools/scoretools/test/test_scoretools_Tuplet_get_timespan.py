@@ -5,7 +5,7 @@ from abjad import *
 def test_scoretools_Tuplet_get_timespan_01():
 
     staff = Staff(r"c'4 d'4 \times 2/3 { e'4 f'4 g'4 }")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     score = Score([staff])
     tempo = Tempo((1, 4), 60)
     attach(tempo, leaves[0])

@@ -5,9 +5,9 @@ from abjad.tools import spannertools
 from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import select
 
 
 class BeamSpecifier(AbjadValueObject):
@@ -15,7 +15,7 @@ class BeamSpecifier(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Beams notes in each division together but does not beam 
+        **Example 1.** Beams notes in each division together but does not beam
         between divisions:
 
         ::
@@ -72,10 +72,10 @@ class BeamSpecifier(AbjadValueObject):
         stemlet_length=None,
         use_feather_beams=None,
         ):
-#        assert isinstance(beam_each_division, bool)
-#        assert isinstance(beam_divisions_together, bool)
-#        assert isinstance(beam_rests, bool)
-#        assert isinstance(use_feather_beams, bool)
+        # assert isinstance(beam_each_division, bool)
+        # assert isinstance(beam_divisions_together, bool)
+        # assert isinstance(beam_rests, bool)
+        # assert isinstance(use_feather_beams, bool)
         if beam_each_division is None:
             beam_each_division = bool(beam_each_division)
         self._beam_each_division = beam_each_division
@@ -122,7 +122,7 @@ class BeamSpecifier(AbjadValueObject):
             if self.stemlet_length is not None:
                 grob_proxy = override(beam).staff.stem
                 grob_proxy.stemlet_length = self.stemlet_length
-            leaves = list(iterate(components).by_leaf())
+            leaves = select(components).by_leaf()
             #attach(beam, components)
             attach(beam, leaves)
         elif self.beam_each_division:
@@ -131,7 +131,7 @@ class BeamSpecifier(AbjadValueObject):
                 if self.stemlet_length is not None:
                     grob_proxy = override(beam).staff.stem
                     grob_proxy.stemlet_length = self.stemlet_length
-                leaves = list(iterate(selection).by_leaf())
+                leaves = select(selection).by_leaf()
                 attach(beam, leaves)
 
     def __eq__(self, arg):

@@ -52,7 +52,7 @@ def test_scoretools_Container_pop_02():
     '''
 
     staff = Staff("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 

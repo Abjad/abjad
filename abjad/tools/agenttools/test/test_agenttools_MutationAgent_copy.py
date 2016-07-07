@@ -10,7 +10,7 @@ def test_agenttools_MutationAgent_copy_01():
     '''
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     slur = Slur()
     attach(slur, leaves)
     trill = spannertools.TrillSpanner()
@@ -59,7 +59,7 @@ def test_agenttools_MutationAgent_copy_02():
     '''
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     slur = Slur()
     attach(slur, leaves)
     trill = spannertools.TrillSpanner()
@@ -110,7 +110,7 @@ def test_agenttools_MutationAgent_copy_03():
     '''
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     slur = Slur()
     attach(slur, leaves)
     trill = spannertools.TrillSpanner()
@@ -160,7 +160,7 @@ def test_agenttools_MutationAgent_copy_04():
     '''
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     slur = Slur()
     attach(slur, leaves)
     trill = spannertools.TrillSpanner()
@@ -217,7 +217,7 @@ def test_agenttools_MutationAgent_copy_05():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -283,7 +283,7 @@ def test_agenttools_MutationAgent_copy_06():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -345,7 +345,7 @@ def test_agenttools_MutationAgent_copy_07():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -401,7 +401,7 @@ def test_agenttools_MutationAgent_copy_08():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -460,7 +460,7 @@ def test_agenttools_MutationAgent_copy_09():
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |"
         "| 2/8 g'8 a'8 || 2/8 b'8 c''8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -582,7 +582,7 @@ def test_agenttools_MutationAgent_copy_11():
     '''
 
     staff = Staff(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -632,7 +632,7 @@ def test_agenttools_MutationAgent_copy_12():
 
     voice = Voice(r"\times 2/3 { c'8 d'8 e'8 } \times 2/3 { f'8 g'8 a'8 }")
     staff = Staff([voice])
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -688,7 +688,7 @@ def test_agenttools_MutationAgent_copy_13():
     voice_2 = Voice("g'8 a'8 b'8 c''8")
     staff = Staff([voice_1, voice_2])
     staff.is_simultaneous = True
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
 
     assert format(staff) == stringtools.normalize(
         r'''
@@ -796,7 +796,7 @@ def test_agenttools_MutationAgent_copy_16():
         '''
         )
 
-    leaves = list(iterate(measure).by_leaf())
+    leaves = select(measure).by_leaf()
     leaves = select(leaves[1:4])
     new_measure = mutate(leaves).copy(include_enclosing_containers=True)
 
@@ -848,7 +848,7 @@ def test_agenttools_MutationAgent_copy_17():
         '''
         )
 
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     leaves = select(leaves[1:4])
     new_voice = mutate(leaves).copy(include_enclosing_containers=True)
 
@@ -883,7 +883,7 @@ def test_agenttools_MutationAgent_copy_18():
     tuplet_2 = scoretools.FixedDurationTuplet((2, 8), "f'8 g'8 a'8")
     measure = Measure((4, 8), [tuplet_1, tuplet_2])
     measure.implicit_scaling = True
-    leaves = list(iterate(measure).by_leaf())
+    leaves = select(measure).by_leaf()
 
     assert format(measure) == stringtools.normalize(
         r'''
@@ -937,7 +937,7 @@ def test_agenttools_MutationAgent_copy_19():
     measure_1 = Measure((3, 8), "c'8 d'8 e'8")
     measure_2 = Measure((3, 8), "f'8 g'8 a'8")
     staff = Staff([measure_1, measure_2])
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
 
     assert format(staff) == stringtools.normalize(
         r'''

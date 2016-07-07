@@ -4,16 +4,10 @@ from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
-from abjad.tools import sequencetools
 from abjad.tools import spannertools
-from abjad.tools import systemtools
-from abjad.tools.rhythmmakertools.BeamSpecifier import BeamSpecifier
-from abjad.tools.rhythmmakertools.ExampleWrapper import ExampleWrapper
 from abjad.tools.rhythmmakertools.RhythmMaker import RhythmMaker
-from abjad.tools.rhythmmakertools.TieSpecifier import TieSpecifier
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import iterate
-from abjad.tools.topleveltools import new
+from abjad.tools.topleveltools import select
 
 
 class EvenRunRhythmMaker(RhythmMaker):
@@ -148,7 +142,6 @@ class EvenRunRhythmMaker(RhythmMaker):
     ### PRIVATE METHODS ###
 
     def _make_container(self, division):
-        from abjad.tools import rhythmmakertools
         duration_spelling_specifier = self._get_duration_spelling_specifier()
         forbidden_written_duration = \
             duration_spelling_specifier.forbidden_written_duration
@@ -177,7 +170,6 @@ class EvenRunRhythmMaker(RhythmMaker):
         return result
 
     def _make_music(self, divisions, rotation):
-        from abjad.tools import rhythmmakertools
         selections = []
         for division in divisions:
             prototype = mathtools.NonreducedFraction
@@ -200,13 +192,13 @@ class EvenRunRhythmMaker(RhythmMaker):
             components = []
             for selection in selections:
                 components.extend(selection)
-            leaves = list(iterate(components).by_leaf())
+            leaves = select(components).by_leaf()
             #attach(beam, components)
             attach(beam, leaves)
         elif beam_specifier.beam_each_division:
             for selection in selections:
                 beam = spannertools.MultipartBeam()
-                leaves = list(iterate(selection).by_leaf())
+                leaves = select(selection).by_leaf()
                 #attach(beam, selection)
                 attach(beam, leaves)
         return selections
@@ -335,7 +327,7 @@ class EvenRunRhythmMaker(RhythmMaker):
                 }
 
             (``d`` equals the denominator of each input division.)
-            
+
             Input division denominators ``8``, ``4``, ``4`` result in notes
             with durations ``1/8``, ``1/4``, ``1/4``.
 
@@ -492,7 +484,7 @@ class EvenRunRhythmMaker(RhythmMaker):
             with durations ``1/32``, ``1/16``, ``1/16``.
 
         Defaults to none.
-        
+
         Interprets none equal to ``0``.
 
         Returns nonnegative integer or none.

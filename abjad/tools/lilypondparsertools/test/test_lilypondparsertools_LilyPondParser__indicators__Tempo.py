@@ -24,7 +24,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_01():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    leaves = list(iterate(result).by_leaf())
+    leaves = select(result).by_leaf()
     leaf = leaves[0]
     tempos = inspect_(leaf).get_indicators(Tempo)
     assert len(tempos) == 1
@@ -33,7 +33,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_01():
 def test_lilypondparsertools_LilyPondParser__indicators__Tempo_02():
 
     target = Score([Staff([Note(0, 1)])])
-    leaves = list(iterate(target).by_leaf())
+    leaves = select(target).by_leaf()
     tempo = Tempo((1, 4), 60)
     attach(tempo, leaves[0], scope=Staff)
 
@@ -51,7 +51,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_02():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    leaves = list(iterate(result).by_leaf())
+    leaves = select(result).by_leaf()
     leaf = leaves[0]
     tempos = inspect_(leaf).get_indicators(Tempo)
     assert len(tempos) == 1
@@ -60,7 +60,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_02():
 def test_lilypondparsertools_LilyPondParser__indicators__Tempo_03():
 
     target = Score([Staff([Note(0, 1)])])
-    leaves = list(iterate(target).by_leaf())
+    leaves = select(target).by_leaf()
     tempo = Tempo((1, 4), (59, 63))
     attach(tempo, leaves[0], scope=Staff)
 
@@ -78,7 +78,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_03():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    leaves = list(iterate(result).by_leaf())
+    leaves = select(result).by_leaf()
     leaf = leaves[0]
     tempos = inspect_(leaf).get_indicators(Tempo)
     assert len(tempos) == 1
@@ -92,7 +92,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_04():
         units_per_minute=60,
         textual_indication="Like a majestic swan, alive with youth and vigour!",
         )
-    leaves = list(iterate(target).by_leaf())
+    leaves = select(target).by_leaf()
     attach(tempo, leaves[0], scope=Staff)
 
     assert format(target) == stringtools.normalize(
@@ -109,7 +109,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_04():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    leaves = list(iterate(result).by_leaf())
+    leaves = select(result).by_leaf()
     leaf = leaves[0]
     tempos = inspect_(leaf).get_indicators(Tempo)
     assert len(tempos) == 1
@@ -123,7 +123,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_05():
         units_per_minute=(34, 55),
         textual_indication="Faster than a thousand suns",
         )
-    leaves = list(iterate(target).by_leaf())
+    leaves = select(target).by_leaf()
     attach(tempo, leaves[0], scope=Staff)
 
     assert format(target) == stringtools.normalize(
@@ -140,7 +140,7 @@ def test_lilypondparsertools_LilyPondParser__indicators__Tempo_05():
     parser = LilyPondParser()
     result = parser(format(target))
     assert format(target) == format(result) and target is not result
-    leaves = list(iterate(result).by_leaf())
+    leaves = select(result).by_leaf()
     leaf = leaves[0]
     tempos = inspect_(leaf).get_indicators(Tempo)
     assert len(tempos) == 1

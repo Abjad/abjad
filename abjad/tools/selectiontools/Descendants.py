@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import select
 from abjad.tools.selectiontools.Selection import Selection
 
 
@@ -74,7 +74,7 @@ class Descendants(Selection):
         if component is None:
             music = ()
         else:
-            music = list(iterate(component).by_class())
+            music = list(select(component).by_class())
             if not include_self:
                 music.remove(component)
         result = []

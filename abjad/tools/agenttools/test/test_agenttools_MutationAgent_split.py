@@ -10,7 +10,7 @@ def test_agenttools_MutationAgent_split_01():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -69,7 +69,7 @@ def test_agenttools_MutationAgent_split_02():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -128,7 +128,7 @@ def test_agenttools_MutationAgent_split_03():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -194,7 +194,7 @@ def test_agenttools_MutationAgent_split_04():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -269,7 +269,7 @@ def test_agenttools_MutationAgent_split_05():
     '''
 
     measures = [Measure((2, 8), "c'8 d'8"), Measure((2, 8), "e'8 f'8")]
-    leaves = list(iterate(measures).by_leaf())
+    leaves = select(measures).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -328,7 +328,7 @@ def test_agenttools_MutationAgent_split_06():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -389,7 +389,7 @@ def test_agenttools_MutationAgent_split_07():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -449,7 +449,7 @@ def test_agenttools_MutationAgent_split_08():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -516,7 +516,7 @@ def test_agenttools_MutationAgent_split_09():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -591,7 +591,7 @@ def test_agenttools_MutationAgent_split_10():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -649,7 +649,7 @@ def test_agenttools_MutationAgent_split_11():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -708,7 +708,7 @@ def test_agenttools_MutationAgent_split_12():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -773,7 +773,7 @@ def test_agenttools_MutationAgent_split_13():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -940,7 +940,7 @@ def test_agenttools_MutationAgent_split_16():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -1000,7 +1000,7 @@ def test_agenttools_MutationAgent_split_17():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -1060,7 +1060,7 @@ def test_agenttools_MutationAgent_split_18():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -1126,7 +1126,7 @@ def test_agenttools_MutationAgent_split_19():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -1201,7 +1201,7 @@ def test_agenttools_MutationAgent_split_20():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -1266,7 +1266,7 @@ def test_agenttools_MutationAgent_split_21():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -1335,7 +1335,7 @@ def test_agenttools_MutationAgent_split_22():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -1400,7 +1400,7 @@ def test_agenttools_MutationAgent_split_23():
     '''
 
     staff = Staff(r"abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 |")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam_1 = Beam()
     beam_2 = Beam()
     attach(beam_1, leaves[:2])
@@ -1537,7 +1537,7 @@ def test_agenttools_MutationAgent_split_26():
     voice = Voice()
     voice.append(Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(Tuplet((2, 3), "f'8 g'8 a'8"))
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -1579,7 +1579,7 @@ def test_agenttools_MutationAgent_split_27():
     voice = Voice()
     voice.append(Measure((3, 8), "c'8 d'8 e'8"))
     voice.append(Measure((3, 8), "f'8 g'8 a'8"))
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -1622,7 +1622,7 @@ def test_agenttools_MutationAgent_split_28():
     voice = Voice()
     voice.append(Measure((3, 9), "c'8 d'8 e'8", implicit_scaling=True))
     voice.append(Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True))
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -1766,7 +1766,7 @@ def test_agenttools_MutationAgent_split_31():
 
     staff = Staff([Container("c'8 d'8 e'8 f'8")])
     voice = staff[0]
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -1930,7 +1930,7 @@ def test_agenttools_MutationAgent_split_33():
     voice = Voice()
     voice.append(Tuplet((2, 3), "c'8 d'8 e'8"))
     voice.append(Tuplet((2, 3), "f'8 g'8 a'8"))
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     tuplet = voice[1]
@@ -2013,7 +2013,7 @@ def test_agenttools_MutationAgent_split_34():
     voice = Voice()
     voice.append(Measure((3, 8), "c'8 d'8 e'8"))
     voice.append(Measure((3, 8), "f'8 g'8 a'8"))
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     measure = voice[1]
@@ -2100,7 +2100,7 @@ def test_agenttools_MutationAgent_split_35():
     voice.append(measure)
     measure = Measure((3, 9), "f'8 g'8 a'8", implicit_scaling=True)
     voice.append(measure)
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     measure = voice[1]
@@ -2252,7 +2252,7 @@ def test_agenttools_MutationAgent_split_37():
     staff = Staff()
     staff.append(Measure((2, 8), "c'8 d'8"))
     staff.append(Measure((2, 8), "e'8 f'8"))
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves[:2])
     beam = Beam()
@@ -2314,7 +2314,7 @@ def test_agenttools_MutationAgent_split_38():
     '''
 
     staff = Staff([Measure((3, 8), "c'8. d'8.")])
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2362,7 +2362,7 @@ def test_agenttools_MutationAgent_split_39():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2423,7 +2423,7 @@ def test_agenttools_MutationAgent_split_40():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2478,7 +2478,7 @@ def test_agenttools_MutationAgent_split_41():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2540,7 +2540,7 @@ def test_agenttools_MutationAgent_split_42():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2595,7 +2595,7 @@ def test_agenttools_MutationAgent_split_43():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2646,7 +2646,7 @@ def test_agenttools_MutationAgent_split_44():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2696,7 +2696,7 @@ def test_agenttools_MutationAgent_split_45():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2758,7 +2758,7 @@ def test_agenttools_MutationAgent_split_46():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2819,7 +2819,7 @@ def test_agenttools_MutationAgent_split_47():
     '''
 
     voice = Voice([Container("c'8 d'8 e'8 f'8")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     slur = Slur()
@@ -2906,7 +2906,7 @@ def test_agenttools_MutationAgent_split_49():
     pytest.skip('TODO: make this work.')
 
     staff = Staff([Measure((3, 12), "c'8. d'8.")])
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, staff[0])
     slur = Slur()

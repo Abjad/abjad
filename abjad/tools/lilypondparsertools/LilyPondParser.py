@@ -14,7 +14,7 @@ from abjad.tools.lilypondparsertools._parse import _parse
 from abjad.tools.lilypondparsertools._parse_debug import _parse_debug
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import select
 
 
 # apply monkey patch
@@ -352,7 +352,7 @@ class LilyPondParser(abctools.Parser):
         all_spanners = {}
 
         # traverse all leaves
-        leaves = list(iterate(music).by_leaf())
+        leaves = select(music).by_leaf()
         first_leaf = None
         if leaves:
             first_leaf = leaves[0]
@@ -1424,7 +1424,7 @@ class LilyPondParser(abctools.Parser):
         for name in current_module:
             if not isinstance(current_module[name], dict):
                 continue
-            if not 'type' in current_module[name]:
+            if 'type' not in current_module[name]:
                 continue
             if not current_module[name]['type'] == 'ly:music-function?':
                 continue

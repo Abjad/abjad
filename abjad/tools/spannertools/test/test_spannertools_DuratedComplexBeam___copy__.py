@@ -16,11 +16,11 @@ def test_spannertools_DuratedComplexBeam___copy___01():
         span_beam_count=2,
         direction=Down,
         )
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     attach(beam, leaves)
 
     new_staff = mutate(staff).copy()
-    new_leaves = list(iterate(new_staff).by_leaf())
+    new_leaves = select(new_staff).by_leaf()
     new_beam = inspect_(new_leaves[0]).get_spanner(Beam)
 
     assert format(staff) == format(new_staff)

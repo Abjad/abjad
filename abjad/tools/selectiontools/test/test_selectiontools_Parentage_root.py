@@ -6,7 +6,7 @@ def test_selectiontools_Parentage_root_01():
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
     staff = Staff([tuplet])
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
 
     assert inspect_(staff).get_parentage().root is staff
     assert inspect_(tuplet).get_parentage().root is staff

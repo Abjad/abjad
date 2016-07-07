@@ -21,7 +21,7 @@ def test_scoretools_Container_reverse_02():
     '''
 
     container = Container("c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     reversed_leaves = reversed(leaves)
@@ -105,7 +105,7 @@ def test_scoretools_Container_reverse_07():
     notes = [Note("c'8"), Note("d'8")]
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = Staff([measure] + notes)
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     reversed_leaves = reversed(measure[:])
@@ -119,7 +119,7 @@ def test_scoretools_Container_reverse_08():
     notes = [Note("c'8"), Note("d'8")]
     measure = Measure((4, 4), "c'8 d'8 e'8 f'8 g'8 a'8 b'8 c''8")
     staff = Staff([measure] + notes)
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -176,7 +176,7 @@ def test_scoretools_Container_reverse_09():
     measure_1 = Measure((4, 8), "c'8 d'8 e'8 f'8")
     measure_2 = Measure((3, 8), "c'8 d'8 e'8")
     container = Container([measure_1, measure_2])
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
     pedal = spannertools.PianoPedalSpanner()
     attach(pedal, leaves)
     trill = spannertools.TrillSpanner()

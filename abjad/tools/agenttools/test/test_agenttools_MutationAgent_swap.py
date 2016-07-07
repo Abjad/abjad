@@ -9,7 +9,7 @@ def test_agenttools_MutationAgent_swap_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -61,7 +61,7 @@ def test_agenttools_MutationAgent_swap_02():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     voice.name = 'foo'
     glissando = spannertools.Glissando()
     attach(glissando, leaves)
@@ -118,7 +118,7 @@ def test_agenttools_MutationAgent_swap_03():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     glissando = spannertools.Glissando()
     attach(glissando, leaves)
     beam = Beam()
@@ -176,7 +176,7 @@ def test_agenttools_MutationAgent_swap_04():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -190,7 +190,7 @@ def test_agenttools_MutationAgent_swap_05():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -204,7 +204,7 @@ def test_agenttools_MutationAgent_swap_06():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 } { g'8 a'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 

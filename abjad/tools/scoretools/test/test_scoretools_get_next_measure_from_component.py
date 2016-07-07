@@ -35,7 +35,7 @@ def test_scoretools_get_next_measure_from_component_01():
         '''
         )
 
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     assert scoretools.get_next_measure_from_component(staff) is staff[0][0]
     assert scoretools.get_next_measure_from_component(staff[0]) is staff[0][0]
     assert scoretools.get_next_measure_from_component(staff[0][0]) is staff[0][1]

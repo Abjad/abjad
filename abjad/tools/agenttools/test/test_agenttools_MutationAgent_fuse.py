@@ -276,7 +276,7 @@ def test_agenttools_MutationAgent_fuse_11():
     tuplet_1 = scoretools.FixedDurationTuplet(Duration(1, 12), "c'8")
     tuplet_2 = scoretools.FixedDurationTuplet(Duration(1, 6), "c'4")
     voice = Voice([tuplet_1, tuplet_2, Note("c'4")])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     slur = Slur()
     attach(slur, leaves)
 
@@ -372,7 +372,7 @@ def test_agenttools_MutationAgent_fuse_13():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -419,7 +419,7 @@ def test_agenttools_MutationAgent_fuse_14():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 2/16 e'16 f'16 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves[:2])
 
@@ -471,7 +471,7 @@ def test_agenttools_MutationAgent_fuse_15():
     measure_2 = Measure((1, 12), "d'8")
     measure_2.implicit_scaling = True
     voice = Voice([measure_1, measure_2])
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 
@@ -536,7 +536,7 @@ def test_agenttools_MutationAgent_fuse_18():
     '''
 
     voice = Voice("abj: | 1/8 c'16 d'16 || 1/8 e'16 f'16 || 1/8 g'16 a'16 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves)
 

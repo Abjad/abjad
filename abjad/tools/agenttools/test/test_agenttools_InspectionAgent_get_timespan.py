@@ -49,7 +49,7 @@ def test_agenttools_InspectionAgent_get_timespan_06():
     voice_2 = Voice("c'8 d'8 e'8 f'8")
     voice_1.name = voice_2.name = 'voice'
     container = Container([voice_1, voice_2])
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
     for i, x in enumerate(leaves):
         assert inspect_(x).get_timespan().start_offset == i * Offset(1, 8)
 
@@ -67,7 +67,7 @@ def test_agenttools_InspectionAgent_get_timespan_08():
     voice = Voice([Note(0, (1, 8)), tuplet_1, Note(0, (1, 8))])
     offset = 0
     durations = [(1, 8), (1, 12), (1, 12), (1, 12), (1, 8)]
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     for leaf, duration in zip(leaves, durations):
         assert inspect_(leaf).get_timespan().start_offset == offset
         offset += Offset(*duration)
@@ -82,7 +82,7 @@ def test_agenttools_InspectionAgent_get_timespan_09():
         Duration(2, 4), [Note("c'4"), tuplet_1, Note("c'4")])
     offset = 0
     durations = [(1, 6), (1, 18), (1, 18), (1, 18), (1, 6)]
-    leaves = list(iterate(tuplet).by_leaf())
+    leaves = select(tuplet).by_leaf()
     for leaf, duration in zip(leaves, durations):
         assert inspect_(leaf).get_timespan().start_offset == offset
         offset += Offset(*duration)
@@ -110,11 +110,11 @@ def test_agenttools_InspectionAgent_get_timespan_11():
 
     voice = Voice("c'8 d'8 e'8 f'8")
     staff = Staff([Note(0, (1, 8)), voice, Note(0, (1, 8))])
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     for i, leaf in enumerate(leaves):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8)
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     for i, leaf in enumerate(leaves):
         start_offset = inspect_(leaf).get_timespan().start_offset
         assert start_offset == i * Offset(1, 8) + Offset(1, 8)

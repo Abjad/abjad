@@ -8,6 +8,7 @@ from abjad.tools import durationtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import select
 
 
 class Selection(object):
@@ -616,7 +617,7 @@ class Selection(object):
         parentage = self[0]._get_parentage(include_self=True)
         governor = parentage._get_governor()
         # find start and stop indices in governor
-        governor_leaves = list(iterate(governor).by_leaf())
+        governor_leaves = select(governor).by_leaf()
         for i, x in enumerate(governor_leaves):
             if x is self[0]:
                 start_index_in_governor = i
@@ -625,7 +626,7 @@ class Selection(object):
                 stop_index_in_governor = i
         # copy governor
         governor_copy = mutate(governor).copy()
-        copied_leaves = list(iterate(governor_copy).by_leaf())
+        copied_leaves = select(governor_copy).by_leaf()
         # find start and stop leaves in copy of governor
         start_leaf = copied_leaves[start_index_in_governor]
         stop_leaf = copied_leaves[stop_index_in_governor]
@@ -960,7 +961,7 @@ class Selection(object):
         '''
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         crossing_spanners = self._get_crossing_spanners()
-        components_including_children = list(iterate(self).by_class())
+        components_including_children = select(self).by_class()
         for crossing_spanner in list(crossing_spanners):
             spanner_components = crossing_spanner._components[:]
             for component in components_including_children:

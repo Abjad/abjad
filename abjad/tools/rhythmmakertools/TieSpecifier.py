@@ -11,6 +11,7 @@ from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import select
 
 
 class TieSpecifier(AbjadValueObject):
@@ -77,7 +78,6 @@ class TieSpecifier(AbjadValueObject):
         if not self.use_messiaen_style_ties:
             return
         tie_spanners = set()
-        prototype = spannertools.Tie
         for leaf in iterate(divisions).by_class(scoretools.Leaf):
             tie_spanners_ = inspect_(leaf).get_spanners(
                 prototype=spannertools.Tie,
@@ -95,7 +95,6 @@ class TieSpecifier(AbjadValueObject):
                 detach(spannertools.Tie, leaf)
 
     def _do_tie_across_divisions(self, divisions):
-        from abjad.tools import rhythmmakertools
         if not self.tie_across_divisions:
             return
         if self.strip_ties:
@@ -148,10 +147,11 @@ class TieSpecifier(AbjadValueObject):
     def _do_tie_consecutive_notes(self, divisions):
         if not self.tie_consecutive_notes:
             return
-        leaves = list(iterate(divisions).by_leaf())
+        leaves = select(divisions).by_leaf()
         for leaf in leaves:
             detach(spannertools.Tie, leaf)
         pairs = itertools.groupby(leaves, lambda _: _.__class__)
+
         def _get_pitches(component):
             if isinstance(component, scoretools.Note):
                 return component.written_pitch

@@ -352,7 +352,7 @@ class MutationAgent(abctools.AbjadObject):
                 >>> staff.append(Measure((1, 4), "c'8 d'8"))
                 >>> staff.append(Measure((2, 8), "e'8 f'8"))
                 >>> slur = spannertools.Slur()
-                >>> leaves = list(iterate(staff).by_leaf())
+                >>> leaves = select(staff).by_leaf()
                 >>> attach(slur, leaves)
                 >>> show(staff) # doctest: +SKIP
 

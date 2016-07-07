@@ -187,7 +187,7 @@ def test_selectiontools_Parentage_logical_voice_06():
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
     beam = Beam()
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
     statement = 'attach(beam, leaves)'
     assert pytest.raises(Exception, statement)
     beam = Beam()
@@ -398,7 +398,7 @@ def test_selectiontools_Parentage_logical_voice_11():
         '''
         )
 
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
     assert inspect_(leaves[0]).get_parentage().logical_voice == \
         inspect_(leaves[1]).get_parentage().logical_voice
     assert inspect_(leaves[0]).get_parentage().logical_voice != \

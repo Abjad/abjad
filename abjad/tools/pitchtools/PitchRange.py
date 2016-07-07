@@ -211,14 +211,14 @@ class PitchRange(AbjadObject):
                 bass_staff = scoretools.Staff()
                 attach(indicatortools.Clef('bass'), bass_staff)
                 bass_staff.extend([start_note, stop_note])
-                bass_leaves = list(iterate(bass_staff).by_leaf())
+                bass_leaves = select(bass_staff).by_leaf()
                 attach(glissando, bass_leaves)
                 score = scoretools.Score([bass_staff])
             else:
                 treble_staff = scoretools.Staff()
                 attach(indicatortools.Clef('treble'), treble_staff)
                 treble_staff.extend([start_note, stop_note])
-                treble_leaves = list(iterate(treble_staff).by_leaf())
+                treble_leaves = select(treble_staff).by_leaf()
                 attach(glissando, treble_leaves)
                 score = scoretools.Score([treble_staff])
         else:
@@ -226,7 +226,7 @@ class PitchRange(AbjadObject):
             score, treble_staff, bass_staff = result
             bass_staff.extend([start_note, stop_note])
             treble_staff.extend(scoretools.Skip(1) * 2)
-            bass_leaves = list(iterate(bass_staff).by_leaf())
+            bass_leaves = select(bass_staff).by_leaf()
             attach(glissando, bass_leaves)
             attach(indicatortools.StaffChange(treble_staff), bass_staff[1])
         for leaf in iterate(score).by_class(scoretools.Leaf):

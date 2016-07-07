@@ -18,7 +18,7 @@ def test_scoretools_Leaf__get_leaf_index_02():
     '''
 
     staff = Staff([Measure((3, 8), "c'8 d'8 e'8")])
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     assert leaves[0]._get_leaf_index() == 0
     assert leaves[1]._get_leaf_index() == 1
     assert leaves[2]._get_leaf_index() == 2
@@ -29,7 +29,7 @@ def test_scoretools_Leaf__get_leaf_index_03():
     '''
 
     staff = Staff(Measure((2, 8), "c'8 d'8") * 3)
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     assert leaves[0]._get_leaf_index() == 0
     assert leaves[1]._get_leaf_index() == 1
     assert leaves[2]._get_leaf_index() == 2
