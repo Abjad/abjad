@@ -1712,7 +1712,7 @@ class IterationAgent(abctools.AbjadObject):
                     if x._get_parentage().logical_voice == signature:
                         yield x
 
-    def by_run(self, classes):
+    def by_run(self, prototype=None):
         r'''Iterates by run.
 
         ..  container:: example
@@ -1807,13 +1807,12 @@ class IterationAgent(abctools.AbjadObject):
         Returns generator.
         '''
         from abjad.tools import selectiontools
-        if not isinstance(classes, collections.Sequence):
-            classes = (classes,)
+        if not isinstance(prototype, collections.Sequence):
+            prototype = (prototype,)
         sequence = selectiontools.Selection(self._client)
         current_group = ()
         for group in sequence.group_by(type):
-            #if type(group[0]) in classes:
-            if any(isinstance(group[0], class_) for class_ in classes):
+            if isinstance(group[0], prototype):
                 current_group = current_group + group
             elif current_group:
                 yield current_group
