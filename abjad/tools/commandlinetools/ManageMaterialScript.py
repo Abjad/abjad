@@ -228,23 +228,23 @@ class ManageMaterialScript(ScorePackageScript):
             help='list materials',
             action='store_true',
             )
-        action_group.add_argument(
-            '--copy', '-Y',
-            help='copy material',
-            metavar=('SOURCE', 'TARGET'),
-            nargs=2,
-            )
-        action_group.add_argument(
-            '--rename', '-M',
-            help='rename material',
-            metavar=('SOURCE', 'TARGET'),
-            nargs=2,
-            )
-        action_group.add_argument(
-            '--delete', '-D',
-            help='delete material',
-            metavar='NAME',
-            )
+#        action_group.add_argument(
+#            '--copy', '-Y',
+#            help='copy material',
+#            metavar=('SOURCE', 'TARGET'),
+#            nargs=2,
+#            )
+#        action_group.add_argument(
+#            '--rename', '-M',
+#            help='rename material',
+#            metavar=('SOURCE', 'TARGET'),
+#            nargs=2,
+#            )
+#        action_group.add_argument(
+#            '--delete', '-D',
+#            help='delete material',
+#            metavar='NAME',
+#            )
         common_group = parser.add_argument_group('common options')
         common_group.add_argument(
             '--score-path', '-s',
