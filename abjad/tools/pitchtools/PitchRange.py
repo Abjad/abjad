@@ -39,8 +39,6 @@ class PitchRange(AbjadObject):
     greater-equal against pitches.
 
     Pitch ranges do not sort relative to other pitch ranges.
-
-    Pitch ranges are immutable.
     """
 
     ### CLASS VARIABLES ###

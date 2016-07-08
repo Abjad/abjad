@@ -49,7 +49,7 @@ class Registration(TypedList):
     ### SPECIAL METHODS ###
 
     def __call__(self, pitches):
-        r'''Calls registration on `pitches`.
+        r"""Calls registration on `pitches`.
 
         ..  container:: example
 
@@ -57,8 +57,15 @@ class Registration(TypedList):
 
             ::
 
-                >>> registration([-24, -22, -23, -21])
-                [24, 26, 25, 15]
+                >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
+                >>> registration = pitchtools.Registration(components)
+                >>> pitches = registration([-24, -22, -23, -21])
+                >>> for pitch in pitches:
+                ...     pitch
+                NamedPitch("c'''")
+                NamedPitch("d'''")
+                NamedPitch("cs'''")
+                NamedPitch("ef''")
 
         ..  container:: example
 
@@ -66,11 +73,34 @@ class Registration(TypedList):
 
             ::
 
-                >>> registration([0, 2, 1, 3])
-                [36, 38, 37, 27]
+                >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
+                >>> registration = pitchtools.Registration(components)
+                >>> pitches = registration([0, 2, 1, 3])
+                >>> for pitch in pitches:
+                ...     pitch
+                NamedPitch("c''''")
+                NamedPitch("d''''")
+                NamedPitch("cs''''")
+                NamedPitch("ef'''")
+
+        ..  container:: example
+
+            **Example 3.** Transposes four quartertones:
+
+            ::
+
+                >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
+                >>> registration = pitchtools.Registration(components)
+                >>> pitches = registration([0.5, 2.5, 1.5, 3.5])
+                >>> for pitch in pitches:
+                ...     pitch
+                NamedPitch("cqs''''")
+                NamedPitch("dqs''''")
+                NamedPitch("dqf''''")
+                NamedPitch("eqf'''")
 
         Returns list of new pitches.
-        '''
+        """
         transposed_pitches = [self._transpose_pitch(x) for x in pitches]
         return transposed_pitches
 
@@ -83,6 +113,11 @@ class Registration(TypedList):
         ..  container:: example
 
             Gets storage format of registration:
+
+            ::
+
+                >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
+                >>> registration = pitchtools.Registration(components)
 
             ::
 
@@ -158,14 +193,21 @@ class Registration(TypedList):
     def _transpose_pitch(self, pitch):
         from abjad.tools import pitchtools
         pitch = pitchtools.NamedPitch(pitch)
-        target_pitch_class_number = pitch.pitch_class_number
         for component in self:
             if pitch in component.source_pitch_range:
-                target_octave = range(
-                    component.target_octave_start_pitch.pitch_number,
-                    component.target_octave_start_pitch.pitch_number + 12
-                    )
-                for candidate_pitch in target_octave:
-                    if candidate_pitch % 12 == pitch.pitch_class_number:
-                        return candidate_pitch
-        return pitch
+                start_pitch = component.target_octave_start_pitch
+                stop_pitch = start_pitch + 12
+                if start_pitch <= pitch < stop_pitch:
+                    return pitch
+                elif pitch < start_pitch:
+                    while pitch < start_pitch:
+                        pitch += 12
+                    return pitch
+                elif stop_pitch <= pitch:
+                    while stop_pitch <= pitch:
+                        pitch -= 12
+                    return pitch
+                else:
+                    raise ValueError
+        raise Exception('how did we get here?')
+        #return pitch
