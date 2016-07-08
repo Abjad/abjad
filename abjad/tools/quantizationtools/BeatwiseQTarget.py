@@ -4,7 +4,7 @@ from abjad.tools import scoretools
 from abjad.tools import sequencetools
 from abjad.tools.quantizationtools.QTarget import QTarget
 from abjad.tools.topleveltools import attach
-from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import select
 
 
 class BeatwiseQTarget(QTarget):
@@ -50,7 +50,7 @@ class BeatwiseQTarget(QTarget):
         components = beat.q_grid(beat.beatspan)
         if attach_tempos:
             attachment_target = components[0]
-            leaves = list(iterate(attachment_target).by_leaf())
+            leaves = select(attachment_target).by_leaf()
             if isinstance(attachment_target, scoretools.Container):
                 attachment_target = leaves[0]
             tempo = copy.copy(beat.tempo)
@@ -63,7 +63,7 @@ class BeatwiseQTarget(QTarget):
             components = beat_two.q_grid(beat_two.beatspan)
             if (beat_two.tempo != beat_one.tempo) and attach_tempos:
                 attachment_target = components[0]
-                leaves = list(iterate(attachment_target).by_leaf())
+                leaves = select(attachment_target).by_leaf()
                 if isinstance(attachment_target, scoretools.Container):
                     attachment_target = leaves[0]
                 tempo = copy.copy(beat_two.tempo)

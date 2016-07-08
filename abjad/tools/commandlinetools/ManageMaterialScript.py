@@ -53,8 +53,9 @@ class ManageMaterialScript(ScorePackageScript):
         for path in self._copy_tree(source_path, target_path):
             if path.is_file() and path.suffix in suffixes:
                 self._template_file(path, **metadata)
-        print('    Created {!s}/'.format(
-            target_path.relative_to(self._score_repository_path)))
+        print('    Created {path!s}{sep}'.format(
+            path=target_path.relative_to(self._score_repository_path),
+            sep=os.path.sep))
 
     def _handle_edit(self, material_name):
         from abjad import abjad_configuration
@@ -85,8 +86,9 @@ class ManageMaterialScript(ScorePackageScript):
             self._illustrate_one_material(
                 material_directory_path=path
                 )
-            print('    Illustrated {!s}/'.format(
-                path.relative_to(self._score_package_path.parent)))
+            print('    Illustrated {path!s}{sep}'.format(
+                path=path.relative_to(self._score_package_path.parent),
+                sep=os.path.sep))
         for path in matching_paths:
             pdf_path = path.joinpath('illustration.pdf')
             systemtools.IOManager.open_file(str(pdf_path))
@@ -135,15 +137,17 @@ class ManageMaterialScript(ScorePackageScript):
             self._render_one_material(
                 material_directory_path=path
                 )
-            print('    Rendered {!s}/'.format(
-                path.relative_to(self._score_package_path.parent)))
+            print('    Rendered {path!s}{sep}'.format(
+                path=path.relative_to(self._score_package_path.parent),
+                sep=os.path.sep))
         for path in matching_paths:
             pdf_path = path.joinpath('illustration.pdf')
             systemtools.IOManager.open_file(str(pdf_path))
 
     def _illustrate_one_material(self, material_directory_path):
-        print('Illustrating {!s}/'.format(
-            material_directory_path.relative_to(self._score_package_path.parent)))
+        print('Illustrating {path!s}{sep}'.format(
+            path=material_directory_path.relative_to(self._score_package_path.parent),
+            sep=os.path.sep))
         material = self._import_material(material_directory_path)
         if not hasattr(material, '__illustrate__'):
             template = '    Cannot illustrate material of type {}.'
@@ -166,18 +170,6 @@ class ManageMaterialScript(ScorePackageScript):
             output_directory_path=material_directory_path,
             )
 
-    def _render_one_material(self, material_directory_path):
-        print('Rendering {!s}/'.format(
-            material_directory_path.relative_to(self._score_package_path.parent)))
-        ly_path = material_directory_path.joinpath('illustration.ly')
-        if not ly_path.is_file():
-            print('    illustration.ly is missing or malformed.')
-            sys.exit(1)
-        self._write_lilypond_pdf(
-            ly_path=ly_path,
-            output_directory_path=material_directory_path,
-            )
-
     def _process_args(self, args):
         self._setup_paths(args.score_path)
         if args.edit is not None:
@@ -190,6 +182,19 @@ class ManageMaterialScript(ScorePackageScript):
             self._handle_create(force=args.force, material_name=args.new)
         if args.render is not None:
             self._handle_render(material_name=args.render)
+
+    def _render_one_material(self, material_directory_path):
+        print('Rendering {path!s}{sep}'.format(
+            path=material_directory_path.relative_to(self._score_package_path.parent),
+            sep=os.path.sep))
+        ly_path = material_directory_path.joinpath('illustration.ly')
+        if not ly_path.is_file():
+            print('    illustration.ly is missing or malformed.')
+            sys.exit(1)
+        self._write_lilypond_pdf(
+            ly_path=ly_path,
+            output_directory_path=material_directory_path,
+            )
 
     def _setup_argument_parser(self, parser):
         action_group = parser.add_argument_group('actions')

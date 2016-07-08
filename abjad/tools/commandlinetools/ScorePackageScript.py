@@ -192,12 +192,6 @@ class ScorePackageScript(CommandlineScript):
             ]
         return sorted(paths)
 
-    def _name_to_score_subdirectory_path(self, name, section, score_path):
-        score_path = self._path_to_score_package_path(score_path)
-        name = stringtools.to_accent_free_snake_case(name)
-        path = score_path.joinpath(section, name)
-        return path
-
     @classmethod
     def _name_is_valid_globbable(cls, name):
         if '..' in name:
@@ -207,6 +201,12 @@ class ScorePackageScript(CommandlineScript):
         elif '/' in name:
             return False
         return True
+
+    def _name_to_score_subdirectory_path(self, name, section, score_path):
+        score_path = self._path_to_score_package_path(score_path)
+        name = stringtools.to_accent_free_snake_case(name)
+        path = score_path.joinpath(section, name)
+        return path
 
     def _path_to_packagesystem_path(self, path):
         score_package_path = self._path_to_score_package_path(path)
@@ -270,50 +270,6 @@ class ScorePackageScript(CommandlineScript):
             print('Score directory {!r} is malformed.'.format(path))
             sys.exit(1)
         return path
-
-    def _write_lilypond_ly(
-        self,
-        lilypond_file,
-        output_directory_path,
-        ):
-        ly_path = output_directory_path.joinpath('illustration.ly')
-        message = '    Writing {!s} ... '
-        message = message.format(ly_path.relative_to(self._score_repository_path))
-        print(message, end='')
-        try:
-            lilypond_format = format(lilypond_file)
-        except:
-            print('Failed!')
-            traceback.print_exc()
-            sys.exit(1)
-        with open(str(ly_path), 'w') as file_pointer:
-            file_pointer.write(lilypond_format)
-        print('OK!')
-        return ly_path
-
-    def _write_lilypond_pdf(
-        self,
-        ly_path,
-        output_directory_path,
-        ):
-        from abjad import abjad_configuration
-        pdf_path = output_directory_path.joinpath('illustration.pdf')
-        message = '    Writing {!s} ... '
-        message = message.format(pdf_path.relative_to(self._score_repository_path))
-        print(message, end='')
-        command = '{} -dno-point-and-click -o {} {}'.format(
-            abjad_configuration.get('lilypond_path', 'lilypond'),
-            str(ly_path).replace('.ly', ''),
-            str(ly_path),
-            )
-        with systemtools.Timer() as timer:
-            with systemtools.TemporaryDirectoryChange(str(ly_path.parent)):
-                exit_code = subprocess.call(command, shell=True)
-        if exit_code:
-            print('Failed!')
-            sys.exit(1)
-        print('OK!')
-        self._report_time(timer, prefix='LilyPond runtime')
 
     def _read_json(self, path, strict=False, verbose=True):
         if verbose:
@@ -429,6 +385,50 @@ class ScorePackageScript(CommandlineScript):
         if should_write:
             with open(str(path), 'w') as file_pointer:
                 file_pointer.write(contents)
+
+    def _write_lilypond_ly(
+        self,
+        lilypond_file,
+        output_directory_path,
+        ):
+        ly_path = output_directory_path.joinpath('illustration.ly')
+        message = '    Writing {!s} ... '
+        message = message.format(ly_path.relative_to(self._score_repository_path))
+        print(message, end='')
+        try:
+            lilypond_format = format(lilypond_file)
+        except:
+            print('Failed!')
+            traceback.print_exc()
+            sys.exit(1)
+        with open(str(ly_path), 'w') as file_pointer:
+            file_pointer.write(lilypond_format)
+        print('OK!')
+        return ly_path
+
+    def _write_lilypond_pdf(
+        self,
+        ly_path,
+        output_directory_path,
+        ):
+        from abjad import abjad_configuration
+        pdf_path = output_directory_path.joinpath('illustration.pdf')
+        message = '    Writing {!s} ... '
+        message = message.format(pdf_path.relative_to(self._score_repository_path))
+        print(message, end='')
+        command = '{} -dno-point-and-click -o {} {}'.format(
+            abjad_configuration.get('lilypond_path', 'lilypond'),
+            str(ly_path).replace('.ly', ''),
+            str(ly_path),
+            )
+        with systemtools.Timer() as timer:
+            with systemtools.TemporaryDirectoryChange(str(ly_path.parent)):
+                exit_code = subprocess.call(command, shell=True)
+        if exit_code:
+            print('Failed!')
+            sys.exit(1)
+        print('OK!')
+        self._report_time(timer, prefix='LilyPond runtime')
 
     def _write_score_metadata_json(self, score_path=None, verbose=True, **kwargs):
         if score_path:

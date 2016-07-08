@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import abjadbooktools
+import platform
 import textwrap
 import unittest
+from abjad.tools import abjadbooktools
 from abjad.tools import stringtools
 
 
+@unittest.skipIf(platform.system() == 'Windows', 'No "echo" on Windows')
 class ShellDirectiveTests(unittest.TestCase):
 
     def setUp(self):

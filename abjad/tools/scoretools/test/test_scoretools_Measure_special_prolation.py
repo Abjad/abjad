@@ -26,7 +26,7 @@ def test_scoretools_Measure_special_prolation_02():
         Note("c'4"),
         ]
     measure = Measure((4, 4), music)
-    leaves = list(iterate(measure).by_leaf())
+    leaves = select(measure).by_leaf()
 
     assert leaves[0].written_duration == Duration(1, 4)
     assert inspect_(leaves[0]).get_duration() == Duration(1, 4)
@@ -47,7 +47,7 @@ def test_scoretools_Measure_special_prolation_03():
         Note("c'4"),
         ]
     measure = Measure((4, 4), music)
-    leaves = list(iterate(measure).by_leaf())
+    leaves = select(measure).by_leaf()
 
     assert leaves[0].written_duration == Duration(1, 4)
     assert inspect_(leaves[0]).get_duration() == Duration(1, 4)
@@ -79,7 +79,7 @@ def test_scoretools_Measure_special_prolation_05():
         ]
     measure = Measure((4, 5), music)
     measure.implicit_scaling = True
-    leaves = list(iterate(measure).by_leaf())
+    leaves = select(measure).by_leaf()
 
     assert leaves[0].written_duration == Duration(1, 4)
     assert inspect_(leaves[0]).get_duration() == Duration(1, 5)
@@ -101,7 +101,7 @@ def test_scoretools_Measure_special_prolation_06():
         ]
     measure = Measure((4, 5), music)
     measure.implicit_scaling = True
-    leaves = list(iterate(measure).by_leaf())
+    leaves = select(measure).by_leaf()
 
     assert leaves[0].written_duration == Duration(1, 4)
     assert inspect_(leaves[0]).get_duration() == Duration(1, 5)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import os
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
@@ -24,7 +25,7 @@ class Test(ScorePackageScriptTestCase):
                 segment_one   [1]
                 segment_two   [2]
                 segment_three [3]
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_list_segments_no_segments(self):
         self.create_score()
@@ -39,7 +40,7 @@ class Test(ScorePackageScriptTestCase):
             Available segments:
                 Reading test_score/segments/metadata.json ... JSON does not exist.
                 No segments available.
-        ''')
+        '''.replace('/', os.path.sep))
 
     def test_list_segments_unstaged(self):
         self.create_score()
@@ -69,4 +70,4 @@ class Test(ScorePackageScriptTestCase):
                 segment_one   [1]
                 segment_three [2]
                 segment_two
-        ''')
+        '''.replace('/', os.path.sep))

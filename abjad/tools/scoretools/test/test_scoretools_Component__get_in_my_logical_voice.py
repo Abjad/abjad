@@ -30,7 +30,7 @@ def test_scoretools_Component__get_in_my_logical_voice_03():
     '''
 
     container = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
 
     assert leaves[0]._get_in_my_logical_voice(1, Note) is leaves[1]
     assert leaves[1]._get_in_my_logical_voice(1, Note) is None
@@ -44,7 +44,7 @@ def test_scoretools_Component__get_in_my_logical_voice_04():
 
     container = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
     container[0].name = 'voice'
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
 
     assert container[0]._get_in_my_logical_voice(1, Voice) is None
     assert leaves[0]._get_in_my_logical_voice(1, Note) is leaves[1]
@@ -59,7 +59,7 @@ def test_scoretools_Component__get_in_my_logical_voice_05():
     container = Container([Voice("c'8 d'8"), Voice("e'8 f'8")])
     container[0].name = 'voice'
     container[1].name = 'voice'
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
 
     assert container[0]._get_in_my_logical_voice(1, Voice) is container[1]
     assert container[1]._get_in_my_logical_voice(1, Voice) is None
@@ -74,7 +74,7 @@ def test_scoretools_Component__get_in_my_logical_voice_06():
     container = Container([Voice("c'8 d'8"), Rest('r2'), Voice("e'8 f'8")])
     container[0].name = 'voice'
     container[-1].name = 'voice'
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
 
     assert container[0]._get_in_my_logical_voice(1, Voice) is container[2]
     assert leaves[1]._get_in_my_logical_voice(1, Note) is leaves[3]

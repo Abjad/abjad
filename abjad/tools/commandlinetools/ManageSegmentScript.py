@@ -94,14 +94,16 @@ class ManageSegmentScript(ScorePackageScript):
             print(message)
         staged_names = self._read_segments_list_json(self._score_package_path)
         segments_ily_path = self._build_path.joinpath('segments.ily')
-        include_template = '    \\include "../segments/{}.ily"\n'
+        include_template = '    \\include "..{sep}segments{sep}{name}.ily"\n'
         with open(str(segments_ily_path), 'w') as file_pointer:
             file_pointer.write('{\n')
             for name in staged_names:
                 if name not in collected_names:
                     continue
                 name = stringtools.to_dash_case(name)
-                file_pointer.write(include_template.format(name))
+                file_pointer.write(include_template.format(
+                    name=name,
+                    sep=os.path.sep))
             file_pointer.write('}\n')
 
     def _handle_create(self, segment_name, force):
@@ -125,8 +127,10 @@ class ManageSegmentScript(ScorePackageScript):
         if segment_name not in segment_names:
             segment_names.append(segment_name)
             self._write_segments_list_json(segment_names)
-        print('    Created {!s}/'.format(
-            segment_path.relative_to(self._score_package_path.parent)))
+        print('    Created {path!s}{sep}'.format(
+            path=segment_path.relative_to(self._score_package_path.parent),
+            sep=os.path.sep,
+            ))
 
     def _handle_edit(self, segment_name):
         from abjad import abjad_configuration
@@ -162,8 +166,9 @@ class ManageSegmentScript(ScorePackageScript):
             self._handle_list()
         for path in matching_paths:
             self._illustrate_one_segment(segment_directory_path=path)
-            print('    Illustrated {!s}/'.format(
-                path.relative_to(self._score_package_path.parent)))
+            print('    Illustrated {path!s}{sep}'.format(
+                path=path.relative_to(self._score_package_path.parent),
+                sep=os.path.sep))
         for path in matching_paths:
             pdf_path = path.joinpath('illustration.pdf')
             systemtools.IOManager.open_file(str(pdf_path))
@@ -199,8 +204,9 @@ class ManageSegmentScript(ScorePackageScript):
             self._handle_list()
         for path in matching_paths:
             self._render_one_segment(segment_directory_path=path)
-            print('    Rendered {!s}/'.format(
-                path.relative_to(self._score_package_path.parent)))
+            print('    Rendered {path!s}{sep}'.format(
+                path=path.relative_to(self._score_package_path.parent),
+                sep=os.path.sep))
         for path in matching_paths:
             pdf_path = path.joinpath('illustration.pdf')
             systemtools.IOManager.open_file(str(pdf_path))
@@ -237,8 +243,9 @@ class ManageSegmentScript(ScorePackageScript):
             print('    {}'.format(name))
 
     def _illustrate_one_segment(self, segment_directory_path):
-        print('Illustrating {!s}/'.format(
-            segment_directory_path.relative_to(self._score_package_path.parent)))
+        print('Illustrating {path!s}{sep}'.format(
+            path=segment_directory_path.relative_to(self._score_package_path.parent),
+            sep=os.path.sep))
         segment_name = segment_directory_path.name
         segment_names = self._read_segments_list_json()
         previous_segment_name = None
@@ -331,8 +338,9 @@ class ManageSegmentScript(ScorePackageScript):
         return contents
 
     def _render_one_segment(self, segment_directory_path):
-        print('Rendering {!s}/'.format(
-            segment_directory_path.relative_to(self._score_package_path.parent)))
+        print('Rendering {path!s}{sep}'.format(
+            path=segment_directory_path.relative_to(self._score_package_path.parent),
+            sep=os.path.sep))
         ly_path = segment_directory_path.joinpath('illustration.ly')
         if not ly_path.is_file():
             print('    illustration.ly is missing or malformed.')
@@ -415,6 +423,6 @@ class ManageSegmentScript(ScorePackageScript):
             )
         common_group.add_argument(
             '-u', '--unstaged',
-            help='Include segments not staged in segments/metadata.json',
+            help='Include segments not staged in segments{sep}metadata.json'.format(sep=os.path.sep),
             action='store_true',
             )

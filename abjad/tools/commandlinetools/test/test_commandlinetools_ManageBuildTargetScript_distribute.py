@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import platform
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
@@ -18,6 +20,9 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/distribution/letter-portrait/letter-portrait-parts-violin-ii.pdf',
         'test_score/test_score/distribution/letter-portrait/letter-portrait-score.pdf',
         ]
+
+    if platform.system().lower() == 'windows':
+        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
     @mock.patch('abjad.systemtools.IOManager.open_file')
     def test_success(self, open_file_mock):

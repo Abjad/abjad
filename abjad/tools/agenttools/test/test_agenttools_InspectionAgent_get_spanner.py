@@ -31,7 +31,7 @@ def test_agenttools_InspectionAgent_get_spanner_01():
 def test_agenttools_InspectionAgent_get_spanner_02():
 
     staff = Staff(r"c'4 \times 2/3 { d'8 e'8 f'8 } g'2")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     slur = Slur()
     attach(slur, leaves)
     for leaf in leaves:

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import math
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
@@ -13,6 +12,7 @@ from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import select
 
 
 # TODO: unskip the doctest on line 1373 after making work on Python 3
@@ -430,7 +430,7 @@ class TaleaRhythmMaker(RhythmMaker):
         tie_specifier = self._get_tie_specifier()
         if not self.tie_split_notes:
             return
-        leaves = list(iterate(result).by_class(scoretools.Leaf))
+        leaves = select(result).by_class(scoretools.Leaf)
         written_durations = [leaf.written_duration for leaf in leaves]
         weights = []
         for numerator in unscaled_talea:
@@ -679,7 +679,6 @@ class TaleaRhythmMaker(RhythmMaker):
             sequence,
             total_weight,
             )
-        talea = self._get_talea()
         result = sequencetools.split_sequence(sequence, weights, cyclic=False)
         return result
 

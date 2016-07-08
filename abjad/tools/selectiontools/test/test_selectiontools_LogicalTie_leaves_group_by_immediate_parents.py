@@ -5,7 +5,7 @@ from abjad import *
 def test_selectiontools_LogicalTie_leaves_group_by_immediate_parents_01():
 
     staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     tie = spannertools.Tie()
     attach(tie, leaves)
 

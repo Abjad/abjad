@@ -104,7 +104,7 @@ def test_scoretools_Voice_lilypond_voice_resolution_03():
     container[0][0].name = 'voicefoo'
     container[1][0].name = 'voicefoo'
     beam = Beam()
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
     statement = 'attach(beam, leaves)'
     pytest.raises(Exception, statement)
 

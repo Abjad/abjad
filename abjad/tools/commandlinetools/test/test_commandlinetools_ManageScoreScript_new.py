@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+import platform
 import json
 import shutil
 from abjad.tools import systemtools
@@ -43,7 +45,45 @@ class Test(ScorePackageScriptTestCase):
         'test_score/test_score/tools/__init__.py',
         ]
 
+    if platform.system().lower() == 'windows':
+        expected_files = [_.replace('/', os.path.sep) for _ in expected_files]
 
+    def test_exists(self):
+        with systemtools.RedirectedStreams(stdout=self.string_io):
+            self.create_score()
+        assert self.score_path.exists()
+        with systemtools.RedirectedStreams(stdout=self.string_io):
+            self.create_score(expect_error=True)
+        assert self.score_path.exists()
+        shutil.rmtree(str(self.score_path))
+        for path in self.test_path.iterdir():
+            assert path in self.directory_items
+        self.compare_captured_output(r'''
+            Creating score package 'Test Score'...
+                Writing test_score/metadata.json
+                Created test_score/
+            Creating score package 'Test Score'...
+                Directory test_score already exists.
+        '''.replace('/', os.path.sep))
+
+    def test_force_replace(self):
+        with systemtools.RedirectedStreams(stdout=self.string_io):
+            self.create_score()
+        assert self.score_path.exists()
+        with systemtools.RedirectedStreams(stdout=self.string_io):
+            self.create_score(force=True)
+        assert self.score_path.exists()
+        shutil.rmtree(str(self.score_path))
+        for path in self.test_path.iterdir():
+            assert path in self.directory_items
+        self.compare_captured_output(r'''
+            Creating score package 'Test Score'...
+                Writing test_score/metadata.json
+                Created test_score/
+            Creating score package 'Test Score'...
+                Writing test_score/metadata.json
+                Created test_score/
+        '''.replace('/', os.path.sep))
 
     def test_success(self):
         with systemtools.RedirectedStreams(stdout=self.string_io):
@@ -71,41 +111,4 @@ class Test(ScorePackageScriptTestCase):
             Creating score package 'Test Score'...
                 Writing test_score/metadata.json
                 Created test_score/
-        ''')
-
-    def test_exists(self):
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
-        assert self.score_path.exists()
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            self.create_score(expect_error=True)
-        assert self.score_path.exists()
-        shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
-            assert path in self.directory_items
-        self.compare_captured_output(r'''
-            Creating score package 'Test Score'...
-                Writing test_score/metadata.json
-                Created test_score/
-            Creating score package 'Test Score'...
-                Directory test_score already exists.
-        ''')
-
-    def test_force_replace(self):
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            self.create_score()
-        assert self.score_path.exists()
-        with systemtools.RedirectedStreams(stdout=self.string_io):
-            self.create_score(force=True)
-        assert self.score_path.exists()
-        shutil.rmtree(str(self.score_path))
-        for path in self.test_path.iterdir():
-            assert path in self.directory_items
-        self.compare_captured_output(r'''
-            Creating score package 'Test Score'...
-                Writing test_score/metadata.json
-                Created test_score/
-            Creating score package 'Test Score'...
-                Writing test_score/metadata.json
-                Created test_score/
-        ''')
+        '''.replace('/', os.path.sep))

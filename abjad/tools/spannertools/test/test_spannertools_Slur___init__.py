@@ -117,7 +117,7 @@ def test_spannertools_Slur___init___03():
         )
 
     slur = Slur()
-    leaves = list(iterate(container).by_leaf())
+    leaves = select(container).by_leaf()
     attach(slur, leaves)
 
     assert format(container) == stringtools.normalize(

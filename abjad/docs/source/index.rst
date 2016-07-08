@@ -78,6 +78,7 @@ Now, let's split the notes you just made every 5/16 duration, transpose every
 other split group up by a major-seventh, then slur every split group, and
 finally attach an accent to the first note of each split group:
 
+
 ..  abjad::
 
     shards = mutate(staff[:]).split(
@@ -88,7 +89,8 @@ finally attach an accent to the first note of each split group:
     for index, shard in enumerate(shards):
         if index % 2:
             mutate(shard).transpose('M7')
-        attach(Slur(), shard)
+        if 1 < len(shard):
+            attach(Slur(), shard)
         attach(Articulation('accent'), shard[0])
 
     show(staff)

@@ -8,6 +8,7 @@ from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
 from abjad.tools.topleveltools import override
+from abjad.tools.topleveltools import select
 
 
 class Tuplet(Container):
@@ -40,7 +41,7 @@ class Tuplet(Container):
         ..  doctest::
 
             >>> print(format(tuplet))
-    		\tweak edge-height #'(0.7 . 0)
+            \tweak edge-height #'(0.7 . 0)
             \times 2/3 {
                 c'8
                 \times 4/7 {
@@ -283,7 +284,7 @@ class Tuplet(Container):
             return''
         if (self.is_augmentation or
             not self._has_power_of_two_denominator or
-            self.force_fraction):
+                self.force_fraction):
             return r"\tweak text #tuplet-number::calc-fraction-text"
         return ''
 
@@ -358,7 +359,7 @@ class Tuplet(Container):
         if not self.is_redundant:
             return
         leaves = []
-        logical_ties = list(iterate(self).by_logical_tie(parentage_mask=self))
+        logical_ties = select(self).by_logical_tie(parentage_mask=self)
         durations = [_.get_duration() for _ in logical_ties]
         tuplet_duration = sum(durations)
         for i, logical_tie in enumerate(logical_ties):
@@ -1031,7 +1032,7 @@ class Tuplet(Container):
             self._multiplier = rational
         else:
             message = 'tuplet multiplier must be positive: {!r}.'
-            message = message.format(epxr)
+            message = message.format(expr)
             raise ValueError(message)
 
     @property
@@ -2074,7 +2075,6 @@ class Tuplet(Container):
 
         Returns none.
         '''
-        from abjad.tools import scoretools
         assert mathtools.is_nonnegative_integer_power_of_two(denominator)
         Duration = durationtools.Duration
         self.force_fraction = True

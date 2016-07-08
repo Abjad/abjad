@@ -8,6 +8,7 @@ from abjad.tools import durationtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
+from abjad.tools.topleveltools import select
 
 
 class Selection(object):
@@ -412,14 +413,14 @@ class Selection(object):
     def _coerce_music(music):
         if music is None:
             music = ()
-        elif isinstance(music, (tuple, list)):
-            music = tuple(music)
         elif isinstance(music, Selection):
+            music = tuple(music)
+        elif isinstance(music, collections.Sequence):
             music = tuple(music)
         elif isinstance(music, types.GeneratorType):
             music = tuple(music)
         else:
-            music = (music, )
+            music = (music,)
         return music
 
     def _copy(self, n=1, include_enclosing_containers=False):
@@ -616,7 +617,7 @@ class Selection(object):
         parentage = self[0]._get_parentage(include_self=True)
         governor = parentage._get_governor()
         # find start and stop indices in governor
-        governor_leaves = list(iterate(governor).by_leaf())
+        governor_leaves = select(governor).by_leaf()
         for i, x in enumerate(governor_leaves):
             if x is self[0]:
                 start_index_in_governor = i
@@ -625,7 +626,7 @@ class Selection(object):
                 stop_index_in_governor = i
         # copy governor
         governor_copy = mutate(governor).copy()
-        copied_leaves = list(iterate(governor_copy).by_leaf())
+        copied_leaves = select(governor_copy).by_leaf()
         # find start and stop leaves in copy of governor
         start_leaf = copied_leaves[start_index_in_governor]
         stop_leaf = copied_leaves[stop_index_in_governor]
@@ -960,7 +961,7 @@ class Selection(object):
         '''
         assert self._all_are_contiguous_components_in_same_logical_voice(self)
         crossing_spanners = self._get_crossing_spanners()
-        components_including_children = list(iterate(self).by_class())
+        components_including_children = select(self).by_class()
         for crossing_spanner in list(crossing_spanners):
             spanner_components = crossing_spanner._components[:]
             for component in components_including_children:
@@ -969,6 +970,343 @@ class Selection(object):
                     component._spanners.discard(crossing_spanner)
 
     ### PUBLIC METHODS ###
+
+    def by_class(
+        self,
+        prototype=None,
+        reverse=False,
+        start=0,
+        stop=None,
+        with_grace_notes=False,
+        ):
+        r'''Select components by class.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "c'8 d'8"))
+                >>> staff.append(Measure((2, 8), "e'8 f'8"))
+                >>> staff.append(Measure((2, 8), "g'8 a'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        c'8
+                        d'8
+                    }
+                    {
+                        e'8
+                        f'8
+                    }
+                    {
+                        g'8
+                        a'8
+                    }
+                }
+
+            ::
+
+                >>> for note in select(staff).by_class(prototype=Note):
+                ...     note
+                ...
+                Note("c'8")
+                Note("d'8")
+                Note("e'8")
+                Note("f'8")
+                Note("g'8")
+                Note("a'8")
+
+        Returns new selection.
+        '''
+        iterator = iterate(self).by_class(
+            prototype=prototype,
+            reverse=reverse,
+            start=start,
+            stop=stop,
+            with_grace_notes=with_grace_notes,
+            )
+        return Selection(iterator)
+
+    def by_leaf(
+        self,
+        prototype=None,
+        reverse=False,
+        start=0,
+        stop=None,
+        with_grace_notes=False,
+        ):
+        r'''Select components by leaf.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff()
+                >>> staff.append(Measure((2, 8), "<c' bf'>8 <g' a'>8"))
+                >>> staff.append(Measure((2, 8), "af'8 r8"))
+                >>> staff.append(Measure((2, 8), "r8 gf'8"))
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    {
+                        \time 2/8
+                        <c' bf'>8
+                        <g' a'>8
+                    }
+                    {
+                        af'8
+                        r8
+                    }
+                    {
+                        r8
+                        gf'8
+                    }
+                }
+
+            ::
+
+                >>> for leaf in select(staff).by_leaf():
+                ...     leaf
+                ...
+                Chord("<c' bf'>8")
+                Chord("<g' a'>8")
+                Note("af'8")
+                Rest('r8')
+                Rest('r8')
+                Note("gf'8")
+
+        Returns new selection.
+        '''
+        iterator = iterate(self).by_leaf(
+            prototype=prototype,
+            reverse=reverse,
+            start=start,
+            stop=stop,
+            with_grace_notes=with_grace_notes,
+            )
+        return Selection(iterator)
+
+    def by_logical_tie(
+        self,
+        nontrivial=False,
+        pitched=False,
+        reverse=False,
+        parentage_mask=None,
+        with_grace_notes=False,
+        ):
+        r'''Select components by logical tie.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"c'4 ~ \times 2/3 { c'16 d'8 } e'8 f'4 ~ f'16")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    c'4 ~
+                    \times 2/3 {
+                        c'16
+                        d'8
+                    }
+                    e'8
+                    f'4 ~
+                    f'16
+                }
+
+            ::
+
+                >>> for logical_tie in select(staff).by_logical_tie():
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c'4"), Note("c'16"))
+                LogicalTie(Note("d'8"),)
+                LogicalTie(Note("e'8"),)
+                LogicalTie(Note("f'4"), Note("f'16"))
+
+        Returns new selection.
+        '''
+        iterator = iterate(self).by_logical_tie(
+            nontrivial=nontrivial,
+            pitched=pitched,
+            reverse=reverse,
+            parentage_mask=parentage_mask,
+            with_grace_notes=with_grace_notes,
+            )
+        return Selection(iterator)
+
+    def by_run(self, prototype=None):
+        r'''Select components by run.
+
+        ..  container:: example
+
+            ::
+
+                >>> staff = Staff(r"\times 2/3 { c'8 d'8 r8 }")
+                >>> staff.append(r"\times 2/3 { r8 <e' g'>8 <f' a'>8 }")
+                >>> staff.extend("g'8 a'8 r8 r8 <b' d''>8 <c'' e''>8")
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        r8
+                    }
+                    \times 2/3 {
+                        r8
+                        <e' g'>8
+                        <f' a'>8
+                    }
+                    g'8
+                    a'8
+                    r8
+                    r8
+                    <b' d''>8
+                    <c'' e''>8
+                }
+
+            ::
+
+                >>> for group in select(staff[:]).by_run((Note, Chord)):
+                ...     group
+                ...
+                Selection(Note("g'8"), Note("a'8"))
+                Selection(Chord("<b' d''>8"), Chord("<c'' e''>8"))
+
+        Returns new selection.
+        '''
+        iterator = iterate(self).by_run(prototype=prototype)
+        return Selection(iterator)
+
+    def by_timeline(self, prototype=None, reverse=False):
+        r'''Select components by timeline.
+
+        ..  container:: example
+
+            ::
+
+                >>> score = Score([])
+                >>> score.append(Staff("c'4 d'4 e'4 f'4"))
+                >>> score.append(Staff("g'8 a'8 b'8 c''8"))
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        c'4
+                        d'4
+                        e'4
+                        f'4
+                    }
+                    \new Staff {
+                        g'8
+                        a'8
+                        b'8
+                        c''8
+                    }
+                >>
+
+            ::
+
+                >>> for leaf in select(score).by_timeline():
+                ...     leaf
+                ...
+                Note("c'4")
+                Note("g'8")
+                Note("a'8")
+                Note("d'4")
+                Note("b'8")
+                Note("c''8")
+                Note("e'4")
+                Note("f'4")
+
+
+        Returns new selection.
+        '''
+        iterator = iterate(self).by_timeline(
+            prototype=prototype,
+            reverse=reverse,
+            )
+        return Selection(iterator)
+
+    def by_timeline_and_logical_tie(
+        self,
+        nontrivial=False,
+        pitched=False,
+        reverse=False,
+        ):
+        r'''Select components by timeline and logical tie.
+
+        ..  container:: example
+
+            ::
+
+                >>> score = Score([])
+                >>> score.append(Staff("c''4 ~ c''8 d''8 r4 ef''4"))
+                >>> score.append(Staff("r8 g'4. ~ g'8 r16 f'8. ~ f'8"))
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        c''4 ~
+                        c''8
+                        d''8
+                        r4
+                        ef''4
+                    }
+                    \new Staff {
+                        r8
+                        g'4. ~
+                        g'8
+                        r16
+                        f'8. ~
+                        f'8
+                    }
+                >>
+
+            ::
+
+                >>> for logical_tie in select(score).by_timeline_and_logical_tie():
+                ...     logical_tie
+                ...
+                LogicalTie(Note("c''4"), Note("c''8"))
+                LogicalTie(Rest('r8'),)
+                LogicalTie(Note("g'4."), Note("g'8"))
+                LogicalTie(Note("d''8"),)
+                LogicalTie(Rest('r4'),)
+                LogicalTie(Rest('r16'),)
+                LogicalTie(Note("f'8."), Note("f'8"))
+                LogicalTie(Note("ef''4"),)
+
+        Returns new selection.
+        '''
+        iterator = iterate(self).by_timeline_and_logical_tie(
+            nontrivial=nontrivial,
+            pitched=pitched,
+            reverse=reverse,
+            )
+        return Selection(iterator)
 
     def get_duration(self, in_seconds=False):
         r'''Gets duration of contiguous selection.

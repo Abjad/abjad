@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad import abjad_configuration
 from abjad.tools import commandlinetools
 from abjad.tools import systemtools
 from base import ScorePackageScriptTestCase
@@ -27,5 +28,8 @@ class Test(ScorePackageScriptTestCase):
         Edit candidates: 'test_material' ...
         ''')
         definition_path = material_path.joinpath('definition.py')
-        command = 'vim {!s}'.format(definition_path)
+        command = '{} {!s}'.format(
+            abjad_configuration.get_text_editor(),
+            definition_path,
+            )
         call_subprocess_mock.assert_called_with(command)

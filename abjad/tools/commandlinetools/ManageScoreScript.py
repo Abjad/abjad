@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 import datetime
+import os
 import sys
 from abjad.tools import stringtools
 from abjad.tools.commandlinetools.ScorePackageScript import ScorePackageScript
@@ -87,7 +88,9 @@ class ManageScoreScript(ScorePackageScript):
                 ),
             inner_target_path.joinpath('metadata.json'),
             )
-        print('    Created {!s}/'.format(score_package_name))
+        print('    Created {path!s}{sep}'.format(
+            path=score_package_name,
+            sep=os.path.sep))
 
     def _process_args(self, args):
         if args.new:

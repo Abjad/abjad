@@ -6,8 +6,12 @@ from {score_package_name}.tools import ScoreTemplate
 
 class SegmentMaker(abctools.AbjadObject):
 
+    ### INITIALIZER ###
+
     def __init__(self):
         self.score_template = ScoreTemplate()
+
+    ### SPECIAL METHODS ###
 
     def __call__(
         self,

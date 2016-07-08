@@ -60,7 +60,7 @@ def test_quantizationtools_QGrid___call___02():
         '''
         )
 
-    leaves = list(iterate(result[0]).by_leaf())
+    leaves = select(result[0]).by_leaf()
     leaf = leaves[0]
     annotation = inspect_(leaf).get_indicators(indicatortools.Annotation)[0]
     assert isinstance(annotation.value, tuple) and len(annotation.value) == 2

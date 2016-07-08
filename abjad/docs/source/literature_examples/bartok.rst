@@ -179,8 +179,8 @@ Let's set the beams as Bartók did with some crossing the bar lines:
 
 ..  abjad::
 
-    upper_leaves = upper_staff.select_leaves(allow_discontiguous_leaves=True)
-    lower_leaves = lower_staff.select_leaves(allow_discontiguous_leaves=True)
+    upper_leaves = list(iterate(upper_staff).by_leaf())
+    lower_leaves = list(iterate(lower_staff).by_leaf())
 
 ..  abjad::
 

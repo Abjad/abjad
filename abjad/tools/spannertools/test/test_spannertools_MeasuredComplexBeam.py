@@ -27,7 +27,7 @@ def test_spannertools_MeasuredComplexBeam_01():
         '''
         )
 
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = spannertools.MeasuredComplexBeam()
     attach(beam, leaves)
 

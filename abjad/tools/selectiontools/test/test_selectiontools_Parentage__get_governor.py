@@ -28,7 +28,7 @@ def test_selectiontools_Parentage__get_governor_01( ):
     }
     '''
 
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     assert inspect_(leaves[0]).get_parentage()._get_governor() is voice[0][0]
     assert inspect_(leaves[1]).get_parentage()._get_governor() is voice[0][0]
     assert inspect_(leaves[2]).get_parentage()._get_governor() is voice[0][1]
@@ -64,7 +64,7 @@ def test_selectiontools_Parentage__get_governor_03( ):
     }
     '''
 
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     assert inspect_(leaves[0]).get_parentage()._get_governor() is staff
     assert inspect_(leaves[1]).get_parentage()._get_governor() is staff
     assert inspect_(leaves[2]).get_parentage()._get_governor() is staff

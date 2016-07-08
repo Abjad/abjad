@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import os
+from abjad import abjad_configuration
 from abjad.tools import commandlinetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -43,8 +45,10 @@ class Test(ScorePackageScriptTestCase):
             segment_a
             segment_b
             segment_c
-        ''')
-        call_subprocess_mock.assert_called_with('vim segments.txt')
+        '''.replace('/', os.path.sep))
+        call_subprocess_mock.assert_called_with(
+            '{} segments.txt'.format(abjad_configuration.get_text_editor()),
+            )
         call_subprocess_mock.side_effect = self.side_effect
         self.reset_string_io()
         with systemtools.RedirectedStreams(stdout=self.string_io):
@@ -61,5 +65,7 @@ class Test(ScorePackageScriptTestCase):
             segment_c
             segment_b
             segment_a
-        ''')
-        call_subprocess_mock.assert_called_with('vim segments.txt')
+        '''.replace('/', os.path.sep))
+        call_subprocess_mock.assert_called_with(
+            '{} segments.txt'.format(abjad_configuration.get_text_editor()),
+            )

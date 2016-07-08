@@ -1,6 +1,4 @@
 # -*- coding: utf-8 -*-
-import copy
-import fractions
 from abjad.tools import abctools
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
@@ -11,7 +9,7 @@ from abjad.tools import sequencetools
 from abjad.tools import spannertools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
-from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import select
 
 
 class ReducedLyParser(abctools.Parser):
@@ -617,7 +615,7 @@ class ReducedLyParser(abctools.Parser):
         for x in parsed:
             container.append(x)
         parsed = container
-        leaves = list(iterate(parsed).by_leaf())
+        leaves = select(parsed).by_leaf()
         if leaves:
             self._apply_spanners(leaves)
         for leaf in leaves:

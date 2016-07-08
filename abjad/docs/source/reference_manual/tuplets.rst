@@ -83,11 +83,11 @@ Select the music in a tuplet like this:
 Selecting a tuplet's leaves
 ---------------------------
 
-Use ``select_leaves()`` to get the leaves in a tuplet:
+Use ``select(...).by_leaf()`` to get the leaves in a tuplet:
 
 ..  abjad::
 
-    tuplet.select_leaves()
+    select(tuplet).by_leaf()
 
 
 Getting the length of a tuplet

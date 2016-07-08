@@ -72,7 +72,7 @@ def test_selectiontools_Selection__all_are_contiguous_components_in_same_parent_
     assert Selection._all_are_contiguous_components_in_same_parent(voice[0][:])
     assert Selection._all_are_contiguous_components_in_same_parent(voice[1][:])
 
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     assert not Selection._all_are_contiguous_components_in_same_parent(leaves)
 
 

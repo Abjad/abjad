@@ -22,7 +22,7 @@ class ManageBuildTargetScript(ScorePackageScript):
 
     ### CLASS VARIABLES ###
 
-    alias = 'target'
+    alias = 'build'
     short_description = 'Manage score package build targets.'
 
     paper_sizes = collections.OrderedDict([

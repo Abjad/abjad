@@ -245,7 +245,7 @@ def test_spannertools_Beam__fracture_09():
         '''
         )
 
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     beam = Beam()
     attach(beam, leaves)
     original, left, right = beam._fracture(7, direction=Right)

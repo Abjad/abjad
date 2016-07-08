@@ -126,80 +126,6 @@ class ReplaceScript(CommandlineScript):
             whole_words_only=args.whole_words_only,
             )
 
-    def _process_file(self, args, path):
-        changed_items = 0
-        changed_lines = 0
-        try:
-            with open(path, 'r') as f:
-                lines = f.read().split('\n')
-        except UnicodeDecodeError:
-            print('FAILED READING: {}'.format(path))
-            return changed_lines, changed_items
-        results = []
-        for i, line in enumerate(lines):
-            line, changes = self._process_line(
-                line, i, path, args.old, args.new, args.force, args.verbose)
-            results.append(line)
-            if changes:
-                changed_items += changes
-                changed_lines += 1
-        if results != lines:
-            with open(path, 'w') as f:
-                f.write('\n'.join(results))
-        return changed_lines, changed_items
-
-    def _process_line(
-        self,
-        line,
-        line_number,
-        file_name,
-        search,
-        replacement,
-        force,
-        verbose,
-        ):
-        index, changes = 0, 0
-        index, length = search(line, index)
-
-        while 0 <= index:
-
-            should_replace = False
-
-            replaced_line = line[:index] + replacement + line[index + length:]
-            carats = (' ' * index) + ('^' * length)
-
-            if force:
-                should_replace = True
-                if verbose:
-                    print()
-                    print('{}: {}'.format(file_name, line_number))
-                    print('-{}'.format(line))
-                    print('+{}'.format(replaced_line))
-
-            else:
-                print()
-                print('{}: {}'.format(file_name, line_number))
-                print()
-                print('{}'.format(line))
-                print('{}'.format(carats))
-                print()
-                result = input('Replace? [Y/n] > ').lower()
-                while result not in ('', 'y', 'yes', 'n', 'no'):
-                    result = input('Replace? [Y/n] > ').lower()
-                if result in ('', 'y', 'yes'):
-                    should_replace = True
-
-            if should_replace:
-                index += length - (length - len(replacement))
-                line = replaced_line
-                changes += 1
-            else:
-                index += length
-
-            index, length = search(line, index)
-
-        return line, changes
-
     def _process_args(self, args):
         print('Replacing {!r} with {!r} ...'.format(args.old, args.new))
         skipped_dirs_patterns = self.skipped_directories + args.without_dirs
@@ -253,6 +179,72 @@ class ReplaceScript(CommandlineScript):
             file_identifier,
             )
         print(message)
+
+    def _process_file(self, args, path):
+        changed_items = 0
+        changed_lines = 0
+        try:
+            with open(path, 'r') as f:
+                lines = f.read().split('\n')
+        except UnicodeDecodeError:
+            print('FAILED READING: {}'.format(path))
+            return changed_lines, changed_items
+        results = []
+        for i, line in enumerate(lines):
+            line, changes = self._process_line(
+                line, i, path, args.old, args.new, args.force, args.verbose)
+            results.append(line)
+            if changes:
+                changed_items += changes
+                changed_lines += 1
+        if results != lines:
+            with open(path, 'w') as f:
+                f.write('\n'.join(results))
+        return changed_lines, changed_items
+
+    def _process_line(
+        self,
+        line,
+        line_number,
+        file_name,
+        search,
+        replacement,
+        force,
+        verbose,
+        ):
+        index, changes = 0, 0
+        index, length = search(line, index)
+        while 0 <= index:
+            should_replace = False
+            replaced_line = line[:index] + replacement + line[index + length:]
+            carats = (' ' * index) + ('^' * length)
+            if force:
+                should_replace = True
+                if verbose:
+                    print()
+                    print('{}: {}'.format(file_name, line_number))
+                    print('-{}'.format(line))
+                    print('+{}'.format(replaced_line))
+            else:
+                print()
+                print('{}: {}'.format(file_name, line_number))
+                print()
+                print('{}'.format(line))
+                print('{}'.format(carats))
+                print()
+                result = input('Replace? [Y/n] > ').lower()
+                while result not in ('', 'y', 'yes', 'n', 'no'):
+                    result = input('Replace? [Y/n] > ').lower()
+                if result in ('', 'y', 'yes'):
+                    should_replace = True
+            if should_replace:
+                index += length - (length - len(replacement))
+                line = replaced_line
+                changes += 1
+            else:
+                index += length
+            index, length = search(line, index)
+        return line, changes
 
     def _setup_argument_parser(self, parser):
         parser.add_argument(

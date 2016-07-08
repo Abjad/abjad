@@ -15,7 +15,7 @@ def test_selectiontools_LogicalTie_all_leaves_are_in_same_parent_01():
 def test_selectiontools_LogicalTie_all_leaves_are_in_same_parent_02():
 
     staff = Staff(2 * Measure((2, 8), "c'8 c'8"))
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
     tie = spannertools.Tie()
     attach(tie, leaves[1:3])
 
@@ -44,7 +44,7 @@ def test_selectiontools_LogicalTie_all_leaves_are_in_same_parent_02():
 def test_selectiontools_LogicalTie_all_leaves_are_in_same_parent_03():
 
     staff = Staff(r"\times 2/3 { c'8 c'8 c'8 ~ } \times 2/3 { c'8 c'8 c'8 }")
-    leaves = list(iterate(staff).by_leaf())
+    leaves = select(staff).by_leaf()
 
     assert format(staff) == stringtools.normalize(
         r'''

@@ -59,20 +59,6 @@ class StatsScript(CommandlineScript):
             )
         print(result)
 
-    def _setup_counts(self):
-        counts = {
-            'source_lines': 0,
-            'private_classes': 0,
-            'private_functions': 0,
-            'public_classes': 0,
-            'public_functions': 0,
-            'unique_public_methods': 0,
-            'unique_public_properties': 0,
-            'unique_private_methods': 0,
-            'unique_private_properties': 0,
-            }
-        return counts
-
     def _process_args(self, args):
         from abjad.tools import documentationtools
         path = args.path
@@ -121,3 +107,17 @@ class StatsScript(CommandlineScript):
             nargs='?',
             type=self._validate_path,
             )
+
+    def _setup_counts(self):
+        counts = {
+            'source_lines': 0,
+            'private_classes': 0,
+            'private_functions': 0,
+            'public_classes': 0,
+            'public_functions': 0,
+            'unique_public_methods': 0,
+            'unique_public_properties': 0,
+            'unique_private_methods': 0,
+            'unique_private_properties': 0,
+            }
+        return counts

@@ -10,7 +10,7 @@ def test_selectiontools_Selection__get_crossing_spanners_01():
     '''
 
     voice = Voice("{ c'8 d'8 } { e'8 f'8 }")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     slur = Slur()
     attach(slur, voice[1][:])
     trill = spannertools.TrillSpanner()
@@ -52,7 +52,7 @@ def test_selectiontools_Selection__get_crossing_spanners_02():
     '''
 
     voice = Voice("abj: | 2/8 c'8 d'8 || 2/8 e'8 f'8 || 2/8 g'8 a'8 |")
-    leaves = list(iterate(voice).by_leaf())
+    leaves = select(voice).by_leaf()
     beam = Beam()
     attach(beam, leaves[2:5])
 

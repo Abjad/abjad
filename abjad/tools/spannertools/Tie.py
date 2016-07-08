@@ -69,6 +69,11 @@ class Tie(Spanner):
 
     ### PRIVATE METHODS ###
 
+    def _attachment_test(self, component):
+        from abjad.tools import scoretools
+        pitched_prototype = (scoretools.Note, scoretools.Chord)
+        return isinstance(component, pitched_prototype)
+
     def _attachment_test_all(self, component_expression):
         from abjad.tools import scoretools
         #if not self._at_least_two_leaves(component_expression):
@@ -86,11 +91,6 @@ class Tie(Spanner):
         if not mathtools.all_are_equal(written_pitches):
             return False
         return True
-
-    def _attachment_test(self, component):
-        from abjad.tools import scoretools
-        pitched_prototype = (scoretools.Note, scoretools.Chord)
-        return isinstance(component, pitched_prototype)
 
     def _copy_keyword_args(self, new):
         new._direction = self.direction
