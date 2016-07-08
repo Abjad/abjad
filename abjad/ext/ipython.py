@@ -31,12 +31,16 @@ def load_ipython_extension(ipython):
     from abjad.tools import topleveltools
     play = ipythontools.Play()
     show = ipythontools.Show()
+    graph = ipythontools.Graph()
     abjad.play = play
     abjad.show = show
+    abjad.graph = graph
     topleveltools.play = play
     topleveltools.show = show
+    topleveltools.graph = graph
     names = {
         'play': play,
         'show': show,
+        'graph': graph,
         }
     ipython.push(names)
