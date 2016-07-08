@@ -204,8 +204,8 @@ class Scheme(AbjadValueObject):
     @property
     def _lilypond_format(self):
         if self._quoting is not None:
-            return '#' + self._quoting + self._formatted_value
-        return '#%s' % self._formatted_value
+            return '#{}{}'.format(self._quoting, self._formatted_value)
+        return '#{}'.format(self._formatted_value)
 
     @property
     def _storage_format_specification(self):

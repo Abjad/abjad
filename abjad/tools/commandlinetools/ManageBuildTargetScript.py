@@ -216,7 +216,10 @@ class ManageBuildTargetScript(ScorePackageScript):
         score_path = source_path.joinpath('score.pdf')
         if score_path.exists():
             source_name = 'score.pdf'
-            target_name = '{}-score.pdf'.format(build_target_name)
+            target_name = '{}-{}-score.pdf'.format(
+                self._score_package_path.name,
+                build_target_name,
+                )
             shutil.copyfile(
                 str(source_path.joinpath(source_name)),
                 str(target_path.joinpath(target_name)),
@@ -224,7 +227,11 @@ class ManageBuildTargetScript(ScorePackageScript):
             print('    {} --> {}'.format(source_name, target_name))
         for parts_path in source_path.glob('part*.pdf'):
             source_name = parts_path.name
-            target_name = '{}-{}'.format(build_target_name, source_name)
+            target_name = '{}-{}-{}'.format(
+                self._score_package_path.name,
+                build_target_name,
+                source_name,
+                )
             shutil.copyfile(
                 str(source_path.joinpath(source_name)),
                 str(target_path.joinpath(target_name)),
@@ -451,6 +458,11 @@ class ManageBuildTargetScript(ScorePackageScript):
             help='delete build target',
             metavar='NAME',
             )
+        action_group.add_argument(
+            '--set-default', '-S',
+            help='set built target as default',
+            metavar='NAME',
+            )
         render_group = parser.add_argument_group(
             '--render flags',
             'Use when rendering specific assets only.',
@@ -499,6 +511,11 @@ class ManageBuildTargetScript(ScorePackageScript):
             help='select new build target orientation',
             choices=['landscape', 'portrait'],
             default='portrait',
+            )
+        create_group.add_argument(
+            '--default',
+            help='sets new build target as default',
+            action='store_true',
             )
         common_group = parser.add_argument_group('common options')
         common_group.add_argument(
