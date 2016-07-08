@@ -392,23 +392,23 @@ class ManageSegmentScript(ScorePackageScript):
             help='list segments',
             action='store_true',
             )
-        action_group.add_argument(
-            '--copy', '-Y',
-            help='copy segment',
-            metavar=('SOURCE', 'TARGET'),
-            nargs=2,
-            )
-        action_group.add_argument(
-            '--rename', '-M',
-            help='rename segment',
-            metavar=('SOURCE', 'TARGET'),
-            nargs=2,
-            )
-        action_group.add_argument(
-            '--delete', '-D',
-            help='delete segment',
-            metavar='NAME',
-            )
+#        action_group.add_argument(
+#            '--copy', '-Y',
+#            help='copy segment',
+#            metavar=('SOURCE', 'TARGET'),
+#            nargs=2,
+#            )
+#        action_group.add_argument(
+#            '--rename', '-M',
+#            help='rename segment',
+#            metavar=('SOURCE', 'TARGET'),
+#            nargs=2,
+#            )
+#        action_group.add_argument(
+#            '--delete', '-D',
+#            help='delete segment',
+#            metavar='NAME',
+#            )
         common_group = parser.add_argument_group('common options')
         common_group.add_argument(
             '--score-path', '-s',

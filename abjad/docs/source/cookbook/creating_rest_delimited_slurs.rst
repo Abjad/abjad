@@ -57,8 +57,9 @@ We add slur spanners inside our loop:
 
     leaves = iterate(staff).by_class(scoretools.Leaf)
     for group in iterate(leaves).by_run((Note, Chord)):
-        slur = Slur()
-        attach(slur, group)
+        if 1 < len(group):
+            slur = Slur()
+            attach(slur, group)
 
 Here's the result:
 

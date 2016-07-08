@@ -434,23 +434,23 @@ class ManageBuildTargetScript(ScorePackageScript):
             help='list build targets',
             action='store_true',
             )
-        action_group.add_argument(
-            '--copy', '-Y',
-            help='copy build target',
-            metavar=('SOURCE', 'TARGET'),
-            nargs=2,
-            )
-        action_group.add_argument(
-            '--rename', '-M',
-            help='rename build target',
-            metavar=('SOURCE', 'TARGET'),
-            nargs=2,
-            )
-        action_group.add_argument(
-            '--delete', '-D',
-            help='delete build target',
-            metavar='NAME',
-            )
+#        action_group.add_argument(
+#            '--copy', '-Y',
+#            help='copy build target',
+#            metavar=('SOURCE', 'TARGET'),
+#            nargs=2,
+#            )
+#        action_group.add_argument(
+#            '--rename', '-M',
+#            help='rename build target',
+#            metavar=('SOURCE', 'TARGET'),
+#            nargs=2,
+#            )
+#        action_group.add_argument(
+#            '--delete', '-D',
+#            help='delete build target',
+#            metavar='NAME',
+#            )
         render_group = parser.add_argument_group(
             '--render flags',
             'Use when rendering specific assets only.',

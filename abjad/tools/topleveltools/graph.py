@@ -41,11 +41,11 @@ def graph(
         assert hasattr(expr, '__graph__')
         graphviz_graph = expr.__graph__(**kwargs)
         if graph_attributes:
-            graph.attributes.update(graph_attributes)
+            graphviz_graph.attributes.update(graph_attributes)
         if node_attributes:
-            graph.node_attributes.update(node_attributes)
+            graphviz_graph.node_attributes.update(node_attributes)
         if edge_attributes:
-            graph.edge_attributes.update(edge_attributes)
+            graphviz_graph.edge_attributes.update(edge_attributes)
         graphviz_format = str(graphviz_graph)
 
     assert image_format in ('pdf', 'png')

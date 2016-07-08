@@ -16,29 +16,27 @@ Abjad 2.18
         9. dot -V: graphviz version 2.38.0 (20140413.2041)
 
     Python 3.5.1 (OSX) test results:
-        1. mainline py.test test results:
-        2. mainline doctest test results:
-        3. experimental py.test test results:
-        4. experimental doctest test results:
-        7. sanity check test results:
-        8. experimental HTML build results:
-        9. mainline HTML build results:
+        1. mainline py.test test results: 10130 passed, 12 skipped
+        2. mainline doctest test results: 12111 tests passed in 908 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 tests passed in 43 modules
+        7. sanity check test results: OK
+        8. experimental HTML build results: OK
+        9. mainline HTML build results: OK
 
     Python 3.5.1 (Windows) test results:
-        1. mainline py.test test results:
-        2. mainline doctest test results:
-        3. experimental py.test test results:
-        4. experimental doctest test results:
-        7. sanity check test results:
-        8. experimental HTML build results:
-        9. mainline HTML build results:
+        1. mainline py.test test results: 10128 passed, 15 skipped
+        2. mainline doctest test results: 12111 tests passed in 908 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 tests passed in 43 modules
+        7. sanity check test results: OK
 
     Python 2.7.9 (OSX) test results:
-        1. mainline py.test test results:
-        2. mainline doctest test results:
-        3. experimental py.test test results:
-        4. experimental doctest test results:
-        7. sanity check test results:
+        1. mainline py.test test results: 10121 passed, 10 skipped
+        2. mainline doctest test results: 12111 tests passed in 908 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 tests passed in 43 modules
+        7. sanity check test results: OK
 
 
 Abjad 2.17

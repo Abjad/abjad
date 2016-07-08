@@ -8,6 +8,7 @@ from abjad.tools.abctools import AbjadObject
 from abjad.tools.pitchtools.Pitch import Pitch
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
+from abjad.tools.topleveltools import select
 
 
 # TODO: make iterable so that for x in PitchRange works

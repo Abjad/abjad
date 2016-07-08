@@ -67,11 +67,11 @@ Select the components in a voice like this:
 Selecting a voice's leaves
 --------------------------
 
-Use ``select_leaves()`` to select the leaves in a voice:
+Use ``select(...).by_leaf()`` to select the leaves in a voice:
 
 ..  abjad::
 
-    voice.select_leaves()
+    select(voice).by_leaf()
 
 
 Getting the length of a voice
