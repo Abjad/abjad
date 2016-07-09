@@ -28,7 +28,7 @@ If Abjad is installed on your system then Python will silently load Abjad.
 If Abjad isn't installed on your system then Python will raise
 an import error.
 
-Go to ``www.projectabjad.org`` and follow the instructions there
+Go to http://projectabjad.org/ and follow the instructions there
 to install Abjad if necessary.
 
 
