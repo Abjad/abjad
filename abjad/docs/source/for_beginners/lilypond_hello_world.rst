@@ -27,7 +27,7 @@ If the terminal tells you that LilyPond is not found, then
 either LilyPond isn't installed on your computer or else
 your computer doesn't know where LilyPond is installed.
 
-If you haven't installed LilyPond, go to www.lilypond.org
+If you haven't installed LilyPond, go to http://lilypond.org/
 and download the current version of LilyPond for your operating system.
 
 If your computer doesn't know where LilyPond is installed,
