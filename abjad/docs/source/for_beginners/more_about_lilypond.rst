@@ -19,7 +19,7 @@ creates.  For this reason we recommend new users spend a couple of days
 learning LilyPond first.
 
 Start by reading about `text input <http://lilypond.org/text-input.html>`_ in
-LilyPond.  Then work the `LilyPond tutorial
+LilyPond.  Then work through the `LilyPond tutorial
 <http://www.lilypond.org/doc/v2.19/Documentation/learning/tutorial>`_.  You can
 test your understanding of LilyPond by using the program to engrave the first
 few phrases of a Bach chorale. Once you can engrave a chorale in LilyPond
