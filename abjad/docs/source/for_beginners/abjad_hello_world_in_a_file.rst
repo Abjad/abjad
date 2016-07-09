@@ -49,4 +49,4 @@ Working with files in Abjad means that you do these things::
 These steps make up a type of edit-interpret loop.
 
 This way of working with Abjad remains the same
-no matter how complex the scores you build.
+no matter how complex the scores you build become.
