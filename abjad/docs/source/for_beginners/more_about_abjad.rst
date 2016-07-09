@@ -16,9 +16,9 @@ Use Python's ``dir()`` built-in to get a sense of the answer:
     dir()
 
 Calling ``from abjad import *`` causes Python to load hundreds or thousands of
-lines of Abjad's code into the global namespace for you to use.  Abjad's code
+lines of Abjad's code into the global namespace for you to use. Abjad's code
 is organized into a collection of several dozen different score-related
-packages.  These packages comprise hundreds of classes that model things like
+packages. These packages comprise hundreds of classes that model things like
 notes and rests and more than a thousand functions that let you do things like
 transpose music or change the way beams look in your score.
 
@@ -68,7 +68,7 @@ Notice:
     in the last tutorial.
 
 When you called ``show(note)`` Abjad created the LilyPond input file shown
-above.  Abjad then called LilyPond on that ``.ly`` file to create a PDF.
+above. Abjad then called LilyPond on that ``.ly`` file to create a PDF.
 
 (Quit your text editor in the usual way to return to the Python interpreter.)
 
