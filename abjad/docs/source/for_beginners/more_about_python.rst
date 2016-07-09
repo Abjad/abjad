@@ -11,12 +11,16 @@ Doing many things
 
 You can use the Python interpreter to do many things.
 
-Simple math like addition looks like this::
+Simple math like addition looks like this:
+
+::
 
     >>> 2 + 2
     4
 
-Exponentiation looks like this::
+Exponentiation looks like this:
+
+::
 
     >>> 2 ** 38
     274877906944
@@ -31,7 +35,9 @@ But the Python interpreter's input-output loop makes it easy to see what Python 
 Looking around
 --------------
 
-Use ``dir()`` to see the things the Python interpreter knows about::
+Use ``dir()`` to see the things the Python interpreter knows about:
+
+::
 
     >>> dir()
     ['__builtins__', '__doc__', '__name__', '__package__']
@@ -39,23 +45,31 @@ Use ``dir()`` to see the things the Python interpreter knows about::
 These four things are the only elements that Python loads into the so-called
 global namespace when you start the interpreter.
 
-Now let's define the variable ``x``::
+Now let's define the variable ``x``:
+
+::
 
     >>> x = 10
 
-Which lets us do things with ``x``::
+Which lets us do things with ``x``:
+
+::
 
     >>> x ** 2
     100
 
-When we call ``dir()`` now we see that the global namespace has changed::
+When we call ``dir()`` now we see that the global namespace has changed:
+
+::
 
     >>> dir()
     ['__builtins__', '__doc__', '__name__', '__package__', 'x']
 
 Using ``dir()`` is a good way to check the variables Python knows about when it runs.
 
-Now type ``__builtins__`` at the prompt::
+Now type ``__builtins__`` at the prompt:
+
+::
 
     >>> __builtins__
     <module '__builtin__' (built-in)>
@@ -64,7 +78,9 @@ Python responds and tells us that ``__builtins__`` is the name of a module.
 
 A module is a file full of Python code that somebody has written to provide new functionality.
 
-Use ``dir()`` to inspect the contents of ``__builtins__``::
+Use ``dir()`` to inspect the contents of ``__builtins__``:
+
+::
 
     >>> dir(__builtins__)
     ['ArithmeticError', 'AssertionError', 'AttributeError', 'BaseException', 'BufferError', 'BytesWarning',
@@ -88,7 +104,9 @@ Use ``dir()`` to inspect the contents of ``__builtins__``::
 Python responds with a list of many names.
 
 Use Python's ``len()`` command together with the last-output character ``_``
-to find out how many names ``__builtins__`` contains::
+to find out how many names ``__builtins__`` contains:
+
+::
 
     >>> len(_)
     144
