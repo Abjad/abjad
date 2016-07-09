@@ -55,4 +55,4 @@ Type ``quit()`` or ``ctrl+D`` when you're done.
 
 Working with the interpreter is a good way to test out small bits of code in
 Abjad. As your scores become more complex you will want to organize the code
-your write with Abjad in files. This is the topic of the next tutorial.
+you write with Abjad in files. This is the topic of the next tutorial.
