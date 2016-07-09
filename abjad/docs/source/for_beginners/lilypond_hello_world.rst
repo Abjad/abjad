@@ -21,20 +21,21 @@ Open the terminal and type ``lilypond --version``::
     information.
 
 LilyPond responds with version and copyright information.
-If the terminal tells you that LilyPond is not found then
+If the terminal tells you that LilyPond is not found, then
 either LilyPond isn't installed on your computer or else
 your computer doesn't know where LilyPond is installed.
 
-If you haven't installed LilyPond go to ``www.lilypond.org``
+If you haven't installed LilyPond, go to ``www.lilypond.org``
 and download the current version of LilyPond for your operating system.
 
-If your computer doesn't know where LilyPond is installed
+If your computer doesn't know where LilyPond is installed,
 then you'll have to tell your computer where LilyPond is.
 Doing this depends on your operating system.
-If you're running MacOS X or Linux then you need to make sure that the
+If you're running MacOS X or Linux, then you need to make sure that the
 location of the LilyPond binary is present in your ``PATH``
 environment variable.
-If you don't know how to add things to your path you should Google or ask a friend.
+If you don't know how to add things to your path, you should
+Google or ask a friend.
 
 
 Writing the file
