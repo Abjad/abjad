@@ -61,8 +61,6 @@ Save ``hello_world.ly`` and quit your text editor when you're done.
 
 Note the following:
 
-::
-
     1. You can use either spaces or tabs while you type.
     2. The version string you type must match the LilyPond version you found above.
     3. The English language command tells LilyPond to use English note names.
@@ -117,8 +115,6 @@ Repeating the process
 ---------------------
 
 Working with LilyPond means doing these things:
-
-::
 
     1. edit a LilyPond input file
     2. interpet the input file
