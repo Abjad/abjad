@@ -6,7 +6,7 @@ How it works
 ------------
 
 How does Python suddenly know what musical notes are?
-And how to make musical score?
+And how to make a musical score?
 
 Use Python's ``dir()`` built-in to get a sense of the answer:
 
