@@ -47,8 +47,6 @@ Repeating the process
 
 Working with files in Abjad means that you do these things:
 
-::
-
     1. edit a file
     2. interpret the file
 
