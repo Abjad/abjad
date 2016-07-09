@@ -5,7 +5,9 @@ Working with Abjad means working with LilyPond.
 
 To start we'll need to make sure LilyPond is installed.
 
-Open the terminal and type ``lilypond --version``::
+Open the terminal and type ``lilypond --version``:
+
+::
 
     $ lilypond --version
     GNU LilyPond 2.17.3
@@ -44,7 +46,9 @@ Writing the file
 Change to whatever directory you'd like and then use your text editor
 to create a new file called ``hello_world.ly``.
 
-Type the following lines of LilyPond input into ``hello_world.ly``::
+Type the following lines of LilyPond input into ``hello_world.ly``:
+
+::
 
     \version "2.17.3"
     \language "english"
@@ -55,7 +59,9 @@ Type the following lines of LilyPond input into ``hello_world.ly``::
 
 Save ``hello_world.ly`` and quit your text editor when you're done.
 
-Note the following::
+Note the following:
+
+::
 
     1. You can use either spaces or tabs while you type.
     2. The version string you type must match the LilyPond version you found above.
@@ -68,7 +74,9 @@ Note the following::
 Interpreting the file
 ---------------------
 
-Call LilyPond on ``hello_world.ly``::
+Call LilyPond on ``hello_world.ly``:
+
+::
 
     $ lilypond hello_world.ly
     GNU LilyPond 2.17.3
@@ -90,7 +98,9 @@ Open the ``hello_world.pdf`` file LilyPond creates.
 You can do this by clicking on the file.
 Or you can open the file from the command line.
 
-If you're using MacOS X you can open ``hello_world.pdf`` like this::
+If you're using MacOS X you can open ``hello_world.pdf`` like this:
+
+::
 
     $ open hello_world.pdf
 
@@ -106,7 +116,9 @@ Your operating system shows the score you created.
 Repeating the process
 ---------------------
 
-Working with LilyPond means doing these things::
+Working with LilyPond means doing these things:
+
+::
 
     1. edit a LilyPond input file
     2. interpet the input file
