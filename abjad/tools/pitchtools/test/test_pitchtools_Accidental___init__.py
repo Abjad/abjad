@@ -48,7 +48,8 @@ def test_pitchtools_Accidental___init___06():
     assert pitchtools.Accidental(0) == pitchtools.Accidental()
     assert pitchtools.Accidental(1) == pitchtools.Accidental('sharp')
     assert pitchtools.Accidental(-1) == pitchtools.Accidental('flat')
-    assert pytest.raises(ValueError, "pitchtools.Accidental(99)")
+    assert pitchtools.Accidental(-5.5).semitones == -5.5
+    assert pitchtools.Accidental(10).semitones == 10
 
 
 def test_pitchtools_Accidental___init___07():

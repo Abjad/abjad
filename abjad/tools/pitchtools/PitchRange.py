@@ -45,17 +45,25 @@ class PitchRange(AbjadValueObject):
     ### CLASS VARIABLES ###
 
     _range_string_regex_body = '''
-        ([\[(])         # open bracket or open parenthesis
-        ({}|{}|-?\d+)   # pitch
+        (?P<open_bracket>
+            [\[(]       # open bracket or open parenthesis
+        )
+        (?P<start_pitch>
+            {}|{}|-?\d+ # start pitch
+        )
         ,               # comma
         [ ]*            # any amount of whitespace
-        ({}|{}|-?\d+)   # pitch
-        ([\])])         # close bracket or close parenthesis
+        (?P<stop_pitch>
+            {}|{}|-?\d+ # stop pitch
+        )
+        (?P<close_bracket>
+            [\])]       # close bracket or close parenthesis
+        )
         '''.format(
-        Pitch._pitch_class_octave_number_regex_body,
-        Pitch._pitch_name_regex_body,
-        Pitch._pitch_class_octave_number_regex_body,
-        Pitch._pitch_name_regex_body,
+        Pitch._pitch_class_octave_number_regex_body.replace('<', '<start_'),
+        Pitch._pitch_name_regex_body.replace('<', '<start_'),
+        Pitch._pitch_class_octave_number_regex_body.replace('<', '<stop_'),
+        Pitch._pitch_name_regex_body.replace('<', '<stop_'),
         )
 
     _range_string_regex = re.compile(
@@ -349,11 +357,11 @@ class PitchRange(AbjadValueObject):
             message = 'can not instantiate pitch range: {!r}'
             message = message.format(range_string)
             raise ValueError(message)
-        groups = match.groups()
-        start_punctuation = groups[0]
-        start_pitch_string = groups[1]
-        stop_pitch_string = groups[8]
-        stop_punctuation = groups[-1]
+        group_dict = match.groupdict()
+        start_punctuation = group_dict['open_bracket']
+        start_pitch_string = group_dict['start_pitch']
+        stop_pitch_string = group_dict['stop_pitch']
+        stop_punctuation = group_dict['close_bracket']
         start_inclusivity_string = \
             self._start_punctuation_to_inclusivity_string[start_punctuation]
         stop_inclusivity_string = \
