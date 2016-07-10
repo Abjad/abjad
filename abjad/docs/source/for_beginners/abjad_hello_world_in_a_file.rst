@@ -11,7 +11,9 @@ Use your text editor to create a new file called ``hello_world.py``.
 If you have ``hello_world.py`` left over from earlier you should delete it
 and create a new file.
 
-Type the following lines of code into ``hello_world.py``::
+Type the following lines of code into ``hello_world.py``:
+
+::
 
     from abjad import *
 
@@ -25,7 +27,9 @@ Save ``hello_world.py`` and quit your text editor.
 Interpreting the file
 ---------------------
 
-Call Python on ``hello_world.py``::
+Call Python on ``hello_world.py``:
+
+::
 
     $ python hello_world.py
 
@@ -41,7 +45,7 @@ Python reads ``hello_world.py`` and shows the score you've created.
 Repeating the process
 ---------------------
 
-Working with files in Abjad means that you do these things::
+Working with files in Abjad means that you do these things:
 
     1. edit a file
     2. interpret the file
@@ -49,4 +53,4 @@ Working with files in Abjad means that you do these things::
 These steps make up a type of edit-interpret loop.
 
 This way of working with Abjad remains the same
-no matter how complex the scores you build.
+no matter how complex the scores you build become.

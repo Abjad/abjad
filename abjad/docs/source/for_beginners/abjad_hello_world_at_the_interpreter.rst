@@ -28,7 +28,7 @@ If Abjad is installed on your system then Python will silently load Abjad.
 If Abjad isn't installed on your system then Python will raise
 an import error.
 
-Go to ``www.projectabjad.org`` and follow the instructions there
+Go to http://projectabjad.org/ and follow the instructions there
 to install Abjad if necessary.
 
 
@@ -55,4 +55,4 @@ Type ``quit()`` or ``ctrl+D`` when you're done.
 
 Working with the interpreter is a good way to test out small bits of code in
 Abjad. As your scores become more complex you will want to organize the code
-your write with Abjad in files. This is the topic of the next tutorial.
+you write with Abjad in files. This is the topic of the next tutorial.
