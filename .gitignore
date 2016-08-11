@@ -53,7 +53,9 @@ nosetests.xml
 
 # Virtual Environments
 venv/
+Envs/
 ENV/
+.virtualenvs
 
 # IDE's and Text Editors
 
