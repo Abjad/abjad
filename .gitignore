@@ -50,3 +50,18 @@ nosetests.xml
 
 # IPython
 .ipynb_checkpoints
+
+# Virtual Environments
+venv/
+Envs/
+ENV/
+.virtualenvs
+
+# IDE's and Text Editors
+
+# Pycharm
+.idea/
+
+# Emacs
+*~
+\#*\#
