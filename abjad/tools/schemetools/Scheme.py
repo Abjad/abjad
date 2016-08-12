@@ -52,7 +52,7 @@ class Scheme(AbjadValueObject):
             >>> print(format(scheme))
             #'#(1 2 3)
 
-        Use the `quoting` keyword to prepend Scheme's various quote, unquote, 
+        Use the `quoting` keyword to prepend Scheme's various quote, unquote,
         unquote-splicing characters to formatted output.
 
     ..  container:: example
@@ -120,21 +120,27 @@ class Scheme(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
-        if 1 == len(args):
+        if len(args) == 1:
             if isinstance(args[0], type(self)):
-                args = args[0]._value
+                value = args[0]._value
             else:
-                args = args[0]
+                value = args[0]
+        else:
+            value = args
         quoting = kwargs.get('quoting')
-        force_quotes = bool(kwargs.get('force_quotes'))
+        force_quotes = kwargs.get('force_quotes')
         verbatim = kwargs.get('verbatim')
-        assert isinstance(quoting, (str, type(None)))
         if quoting is not None:
-            assert all(x in ("'", ',', '@', '`', '#') for x in quoting)
-        self._force_quotes = force_quotes
+            assert isinstance(quoting, str)
+            assert all(character in r"',@`#" for character in quoting)
+        if force_quotes is not None:
+            force_quotes = bool(force_quotes)
+        if verbatim is not None:
+            verbatim = bool(verbatim)
+        self._value = value
         self._quoting = quoting
-        self._value = args
-        self._verbatim = bool(verbatim)
+        self._force_quotes = force_quotes
+        self._verbatim = verbatim
 
     ### SPECIAL METHODS ###
 
@@ -194,9 +200,8 @@ class Scheme(AbjadValueObject):
 
     @property
     def _formatted_value(self):
-        from abjad.tools import schemetools
-        return schemetools.Scheme.format_scheme_value(
-            self._value, 
+        return Scheme.format_scheme_value(
+            self._value,
             force_quotes=self.force_quotes,
             verbatim=self.verbatim,
             )
@@ -205,7 +210,7 @@ class Scheme(AbjadValueObject):
     def _lilypond_format(self):
         if self._quoting is not None:
             return '#' + self._quoting + self._formatted_value
-        return '#%s' % self._formatted_value
+        return '#' + self._formatted_value
 
     @property
     def _storage_format_specification(self):
@@ -232,16 +237,17 @@ class Scheme(AbjadValueObject):
         r'''Formats `value` as an embedded Scheme value.
         '''
         from abjad.tools import datastructuretools
-        from abjad.tools import schemetools
-        result = Scheme.format_scheme_value(value, force_quotes=force_quotes)
-        if isinstance(value, bool):
-            result = '#{}'.format(result)
-        elif isinstance(value, datastructuretools.OrdinalConstant):
-            result = '#{}'.format(repr(value).lower())
-        elif isinstance(value, str) and not force_quotes:
-            result = '#{}'.format(result)
-        elif isinstance(value, schemetools.Scheme):
-            result = '#{}'.format(result)
+        if isinstance(value, datastructuretools.OrdinalConstant):
+            result = '#' + repr(value).lower()
+        else:
+            result = Scheme.format_scheme_value(
+                value, force_quotes=force_quotes)
+            if (
+                (isinstance(value, bool)) or
+                (isinstance(value, str) and not force_quotes) or
+                (isinstance(value, Scheme))
+                ):
+                result = '#' + result
         return result
 
     @staticmethod
@@ -316,7 +322,6 @@ class Scheme(AbjadValueObject):
 
         Returns string.
         '''
-        from abjad.tools import schemetools
         if isinstance(value, str):
             if not verbatim:
                 value = value.replace('"', r'\"')
@@ -331,9 +336,9 @@ class Scheme(AbjadValueObject):
             return '#f'
         elif isinstance(value, (list, tuple)):
             return '({})'.format(
-                ' '.join(schemetools.Scheme.format_scheme_value(x)
+                ' '.join(Scheme.format_scheme_value(x)
                     for x in value))
-        elif isinstance(value, schemetools.Scheme):
+        elif isinstance(value, Scheme):
             return str(value)
         elif isinstance(value, type(None)):
             return '#f'
@@ -353,14 +358,14 @@ class Scheme(AbjadValueObject):
     def quoting(self):
         r'''Gets Scheme quoting string.
 
-        Return string.
+        Returns string.
         '''
         return self._quoting
 
     @property
     def verbatim(self):
         r'''Is true when formatting should format value absolutely verbatim.
-        Whitespace, quotes and all other parts of value are left in tact.
+        Whitespace, quotes, and all other parts of value are left intact.
 
         Defaults to false.
 
