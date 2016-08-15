@@ -95,7 +95,7 @@ class NoteHead(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getnewargs__(self):
@@ -179,10 +179,8 @@ class NoteHead(AbjadObject):
     @property
     def _keyword_argument_names(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
+        agent = systemtools.StorageFormatAgent(self)
+        keyword_argument_names = list(agent.signature_keyword_names)
         if 'client' in keyword_argument_names:
             keyword_argument_names.remove('client')
         if 'tweak_pairs' in keyword_argument_names:
@@ -222,10 +220,8 @@ class NoteHead(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
+        agent = systemtools.StorageFormatAgent(self)
+        keyword_argument_names = list(agent.signature_keyword_names)
         if 'client' in keyword_argument_names:
             keyword_argument_names.remove('client')
         if 'tweak_pairs' in keyword_argument_names:

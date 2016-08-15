@@ -107,14 +107,16 @@ class Infinity(AbjadObject):
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            repr_text=type(self).__name__,
+            )
 
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
             self,
-            storage_format_pieces=(
-                type(self).__name__,
-                ),
+            storage_format_text=type(self).__name__,
             )

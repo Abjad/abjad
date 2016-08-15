@@ -133,13 +133,7 @@ class OrdinalConstant(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            if self._representation:
-                return systemtools.StorageFormatManager.get_storage_format(
-                    self)
-            else:
-                result = 'datastructuretools.{}()'
-                result = result.format(type(self).__name__)
-                return result
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getnewargs__(self):
@@ -175,31 +169,31 @@ class OrdinalConstant(AbjadObject):
         self._check_comparator(expr)
         return self._value < expr._value
 
-    def __repr__(self):
-        r'''Gets interpreter representation of ordinal constant.
-
-        Returns string.
-        '''
-        if self._representation:
-            return AbjadObject.__repr__(self)
-        string = 'datastructuretools.{}()'
-        string = string.format(type(self).__name__)
-        return string
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _repr_specification(self):
-        return self._storage_format_specification
+        from abjad.tools import systemtools
+        text = self._representation
+        if not text:
+            text = '{}()'.format(type(self).__name__)
+        return systemtools.StorageFormatSpecification(
+            self,
+            repr_text=text,
+            )
 
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        text = self._representation
+        if not text:
+            parts = systemtools.StorageFormatAgent._get_module_path_parts(
+                self)
+            text = '{}.{}()'.format(*parts[-2:])
         return systemtools.StorageFormatSpecification(
             self,
-            storage_format_pieces=(
-                self._representation,
-                ),
+            storage_format_text=text,
             )
 
     ### PRIVATE METHODS ###

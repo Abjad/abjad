@@ -208,7 +208,7 @@ class BurnishSpecifier(AbjadValueObject):
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
+        return systemtools.TestManager.compare_objects(self, expr)
 
     def __format__(self, format_specification=''):
         r'''Formats burnish specifier.
@@ -317,10 +317,8 @@ class BurnishSpecifier(AbjadValueObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
+        agent = systemtools.StorageFormatAgent(self)
+        keyword_argument_names = list(agent.signature_keyword_names)
         if not self.left_classes:
             keyword_argument_names.remove('left_classes')
         if not self.middle_classes:
@@ -331,7 +329,7 @@ class BurnishSpecifier(AbjadValueObject):
             keyword_argument_names.remove('left_counts')
         if not self.right_counts:
             keyword_argument_names.remove('right_counts')
-        if self.outer_divisions_only == False:
+        if self.outer_divisions_only is False:
             keyword_argument_names.remove('outer_divisions_only')
         return systemtools.StorageFormatSpecification(
             self,

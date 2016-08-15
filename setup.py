@@ -65,6 +65,7 @@ if StrictVersion(version) < StrictVersion('3.4.0'):
     install_requires.append('enum34')
     install_requires.append('pathlib2')
 if StrictVersion(version) < StrictVersion('3.3.0'):
+    install_requires.append('funcsigs')
     install_requires.append('mock')
 
 extras_require = {

@@ -51,7 +51,7 @@ class BeatwiseQSchema(QSchema):
                     },
                 ),
             tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4), 
+                reference_duration=durationtools.Duration(1, 4),
                 units_per_minute=60,
                 ),
             )
@@ -82,8 +82,9 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> index = 0
-        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
-        ... 
+        >>> for key, value in sorted(q_schema[index].items()):
+        ...     print('{}:'.format(key), value)
+        ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
@@ -91,8 +92,9 @@ class BeatwiseQSchema(QSchema):
     ::
 
         >>> index = 1000
-        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
-        ... 
+        >>> for key, value in sorted(q_schema[index].items()):
+        ...     print('{}:'.format(key), value)
+        ...
         beatspan: 5/16
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
@@ -265,6 +267,12 @@ class BeatwiseQSchema(QSchema):
         '_lookups',
         '_search_tree',
         '_tempo',
+        )
+
+    _keyword_argument_names = (
+        'beatspan',
+        'search_tree',
+        'tempo',
         )
 
     ### INITIALIZER ###

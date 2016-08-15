@@ -186,7 +186,7 @@ class PitchClass(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __hash__(self):

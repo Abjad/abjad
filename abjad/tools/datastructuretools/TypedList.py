@@ -215,10 +215,14 @@ class TypedList(TypedCollection):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        agent = systemtools.StorageFormatAgent(self)
         superclass = super(TypedList, self)
         specification = superclass._storage_format_specification
-        keyword_argument_names = list(specification.keyword_argument_names)
-        if (self.keep_sorted == False and
+        keyword_argument_names = specification.keyword_argument_names
+        if keyword_argument_names is None:
+            keyword_argument_names = agent.signature_keyword_names
+        keyword_argument_names = list(keyword_argument_names)
+        if (not self.keep_sorted and
             'keep_sorted' in keyword_argument_names):
             keyword_argument_names.remove('keep_sorted')
         positional_argument_values = specification.positional_argument_values

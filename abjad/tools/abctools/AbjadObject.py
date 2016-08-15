@@ -41,7 +41,7 @@ class AbjadObject(AbstractBase):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getstate__(self):
@@ -84,7 +84,7 @@ class AbjadObject(AbstractBase):
         Returns string.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     def __setstate__(self, state):
         r'''Sets state of Abjad object.
@@ -93,25 +93,6 @@ class AbjadObject(AbstractBase):
         '''
         for key, value in state.items():
             setattr(self, key, value)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _one_line_menu_summary(self):
-        return str(self)
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools.topleveltools import new
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(self)
 
     ### PRIVATE METHODS ###
 
@@ -133,3 +114,26 @@ class AbjadObject(AbstractBase):
             self._debug(repr(values), annotation=annotation)
             if blank:
                 print()
+
+    def _get_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.FormatSpecification(client=self)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _one_line_menu_summary(self):
+        return str(self)
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools.topleveltools import new
+        return new(
+            self._storage_format_specification,
+            is_indented=False,
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(self)

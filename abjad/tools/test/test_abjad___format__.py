@@ -6,6 +6,7 @@ import abjad
 from abjad.tools import abjadbooktools
 from abjad.tools import documentationtools
 from abjad.tools import metertools
+from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
 
 
@@ -14,6 +15,8 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.LilyPondOutputProxy,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(
@@ -42,6 +45,8 @@ ignored_classes = (
     abjadbooktools.LilyPondOutputProxy,
     metertools.Meter,
     tonalanalysistools.RootedChordClass,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(

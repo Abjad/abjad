@@ -57,7 +57,7 @@ class LilyPondContextSetting(AbjadObject):
         keyword values.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
+        return systemtools.TestManager.compare_objects(self, expr)
 
     def __hash__(self):
         r'''Hashes LilyPond context setting.
@@ -65,7 +65,7 @@ class LilyPondContextSetting(AbjadObject):
         Returns integer.
         '''
         from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
     ### PRIVATE METHODS ###

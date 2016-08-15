@@ -125,7 +125,10 @@ class Leaf(Component):
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,
-            body_text=repr(self._compact_representation),
+            repr_text='{}({!r})'.format(
+                type(self).__name__,
+                self._compact_representation,
+                ),
             positional_argument_values=(),
             )
 

@@ -56,7 +56,7 @@ class Enumeration(enum.IntEnum):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __repr__(self):
@@ -65,39 +65,32 @@ class Enumeration(enum.IntEnum):
         Returns string.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 
     @property
     def _repr_specification(self):
         from abjad.tools import systemtools
-        class_name = type(self).__name__
-        name = self.name
-        storage_format_pieces = '{}.{}'.format(
-            class_name,
-            name,
-            )
         return systemtools.StorageFormatSpecification(
             self,
-            storage_format_pieces=(storage_format_pieces,),
+            repr_text='{}.{}'.format(
+                type(self).__name__,
+                self.name,
+                ),
             )
 
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        tools_package_name = manager.get_tools_package_name(self)
-        class_name = type(self).__name__
-        name = self.name
-        storage_format_pieces = '{}.{}.{}'.format(
-            tools_package_name,
-            class_name,
-            name,
-            )
+        agent = systemtools.StorageFormatAgent(self)
         return systemtools.StorageFormatSpecification(
             self,
-            storage_format_pieces=(storage_format_pieces,),
+            storage_format_text='{}.{}.{}'.format(
+                agent.get_tools_package_name(),
+                type(self).__name__,
+                self.name,
+                ),
             )
 
     ### PUBLIC METHODS ###

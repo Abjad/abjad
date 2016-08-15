@@ -97,7 +97,7 @@ class Talea(AbjadValueObject):
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
+        return systemtools.TestManager.compare_objects(self, expr)
 
     def __getitem__(self, item):
         r'''Gets nonreduced fraction at `item` cyclically.
@@ -153,7 +153,7 @@ class Talea(AbjadValueObject):
         Returns integer.
         '''
         from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
     def __iter__(self):

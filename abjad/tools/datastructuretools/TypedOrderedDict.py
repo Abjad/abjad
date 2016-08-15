@@ -229,9 +229,8 @@ class TypedOrderedDict(TypedCollection):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        names = manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(names)
+        agent = systemtools.StorageFormatAgent(self)
+        keyword_argument_names = list(agent.signature_keyword_names)
         if 'items' in keyword_argument_names:
             keyword_argument_names.remove('items')
         keyword_argument_names = tuple(keyword_argument_names)

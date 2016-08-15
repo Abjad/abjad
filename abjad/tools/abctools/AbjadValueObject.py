@@ -18,12 +18,8 @@ class AbjadValueObject(AbjadObject):
 
         Returns new Abjad value object.
         '''
-        specification = self._storage_format_specification
-        positional_arguments = specification.positional_argument_values
-        keyword_arguments = {}
-        for name in specification.keyword_argument_names:
-            keyword_arguments[name] = getattr(self, name)
-        return type(self)(*positional_arguments, **keyword_arguments)
+        from abjad.tools.topleveltools import new
+        return new(self)
 
     def __eq__(self, expr):
         r'''Is true when all initialization values of Abjad value object equal
@@ -32,7 +28,7 @@ class AbjadValueObject(AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
+        return systemtools.TestManager.compare_objects(self, expr)
 
     def __hash__(self):
         r'''Hashes Abjad value object.
@@ -40,7 +36,7 @@ class AbjadValueObject(AbjadObject):
         Returns integer.
         '''
         from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         try:
             result = hash(hash_values)
         except TypeError:

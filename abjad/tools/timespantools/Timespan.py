@@ -122,7 +122,7 @@ class Timespan(BoundedObject):
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, timespan)
+        return systemtools.TestManager.compare_objects(self, timespan)
 
     def __format__(self, format_specification=''):
         r'''Formats timespan.
@@ -141,7 +141,7 @@ class Timespan(BoundedObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __ge__(self, expr):
@@ -210,7 +210,7 @@ class Timespan(BoundedObject):
         Returns integer.
         '''
         from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
     def __illustrate__(self, range_=None):

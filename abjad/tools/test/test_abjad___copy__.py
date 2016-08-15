@@ -5,6 +5,7 @@ import pytest
 from abjad.tools import abjadbooktools
 from abjad.tools import documentationtools
 from abjad.tools import scoretools
+from abjad.tools import systemtools
 
 
 ignored_classes = (
@@ -12,6 +13,8 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.LilyPondOutputProxy,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(

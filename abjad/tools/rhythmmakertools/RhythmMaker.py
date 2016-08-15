@@ -84,7 +84,7 @@ class RhythmMaker(AbjadValueObject):
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
+        return systemtools.TestManager.compare_objects(self, expr)
 
     def __format__(self, format_specification=''):
         r'''Formats rhythm-maker.
@@ -98,7 +98,7 @@ class RhythmMaker(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getstate__(self):

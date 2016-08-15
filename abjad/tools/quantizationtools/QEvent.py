@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import abc
-import inspect
 from abjad.tools import durationtools
 from abjad.tools.abctools import AbjadObject
 from abjad.tools.topleveltools import new
@@ -57,11 +56,14 @@ class QEvent(AbjadObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        signature = systemtools.StorageFormatAgent.inspect_signature(self)
+        _, names, _, _ = signature
+        for name in ('attachments',):
+            if not getattr(self, name, None) and name in names:
+                names.remove(name)
         return systemtools.StorageFormatSpecification(
             self,
-            keywords_ignored_when_false=(
-                'attachments',
-                ),
+            keyword_argument_names=names,
             )
 
     ### PUBLIC PROPERTIES ###

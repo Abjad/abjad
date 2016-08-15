@@ -170,11 +170,9 @@ class InciseSpecifier(AbjadValueObject):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
-        if not self.prefix_talea: 
+        agent = systemtools.StorageFormatAgent(self)
+        keyword_argument_names = list(agent.signature_keyword_names)
+        if not self.prefix_talea:
             keyword_argument_names.remove('prefix_talea')
         if not self.prefix_counts:
             keyword_argument_names.remove('prefix_counts')
@@ -184,9 +182,9 @@ class InciseSpecifier(AbjadValueObject):
             keyword_argument_names.remove('suffix_counts')
         if self.body_ratio is None:
             keyword_argument_names.remove('body_ratio')
-        if self.fill_with_notes == True:
+        if self.fill_with_notes:
             keyword_argument_names.remove('fill_with_notes')
-        if self.outer_divisions_only == False:
+        if self.outer_divisions_only is False:
             keyword_argument_names.remove('outer_divisions_only')
         return systemtools.StorageFormatSpecification(
             self,

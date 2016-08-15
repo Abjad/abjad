@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
-from abjad.tools import durationtools
 from abjad.tools.quantizationtools.QSchema import QSchema
 
 
@@ -50,7 +49,7 @@ class MeasurewiseQSchema(QSchema):
                     },
                 ),
             tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4), 
+                reference_duration=durationtools.Duration(1, 4),
                 units_per_minute=60,
                 ),
             time_signature=indicatortools.TimeSignature((4, 4)),
@@ -98,8 +97,9 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> index = 0
-        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
-        ... 
+        >>> for key, value in sorted(q_schema[index].items()):
+        ...     print('{}:'.format(key), value)
+        ...
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
         time_signature: 3/4
@@ -108,8 +108,9 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> index = 1000
-        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
-        ... 
+        >>> for key, value in sorted(q_schema[index].items()):
+        ...     print('{}:'.format(key), value)
+        ...
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
         time_signature: 3/4
@@ -237,6 +238,13 @@ class MeasurewiseQSchema(QSchema):
         '_tempo',
         '_time_signature',
         '_use_full_measure',
+        )
+
+    _keyword_argument_names = (
+        'search_tree',
+        'tempo',
+        'time_signature',
+        'use_full_measure',
         )
 
     ### INITIALIZER ###

@@ -23,6 +23,8 @@ ignored_classes = (
     quantizationtools.ParallelJobHandlerWorker,
     rhythmtreetools.RhythmTreeParser,
     systemtools.RedirectedStreams,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     tonalanalysistools.RootedChordClass
     )
 

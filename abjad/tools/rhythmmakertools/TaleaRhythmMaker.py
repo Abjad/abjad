@@ -404,11 +404,9 @@ class TaleaRhythmMaker(RhythmMaker):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
-        if self.tie_split_notes == True:
+        agent = systemtools.StorageFormatAgent(self)
+        keyword_argument_names = list(agent.signature_keyword_names)
+        if self.tie_split_notes:
             keyword_argument_names.remove('tie_split_notes')
         return systemtools.StorageFormatSpecification(
             self,

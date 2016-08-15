@@ -85,11 +85,14 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
+        signature = systemtools.StorageFormatAgent.inspect_signature(self)
+        _, names, _, _ = signature
+        for name in ('q_event_proxies',):
+            if not getattr(self, name, None) and name in names:
+                names.remove(name)
         return systemtools.StorageFormatSpecification(
             self,
-            keywords_ignored_when_false=(
-                'q_event_proxies',
-                ),
+            keyword_argument_names=names,
             )
 
     ### PUBLIC PROPERTIES ###

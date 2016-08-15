@@ -30,14 +30,14 @@ class TreeNode(AbjadObject):
         '''
         import copy
         from abjad.tools import systemtools
+        agent = systemtools.StorageFormatAgent(self)
         arguments = []
-        args = systemtools.StorageFormatManager.get_input_argument_values(self)
-        for argument in args:
-            if isinstance(argument, tuple):
-                argument = tuple(copy.copy(_) for _ in argument)
+        for value in agent.get_template_dict().values():
+            if isinstance(value, tuple):
+                value = tuple(copy.copy(_) for _ in value)
             else:
-                argument = copy.copy(argument)
-            arguments.append(argument)
+                value = copy.copy(value)
+            arguments.append(value)
         return type(self)(*arguments)
 
     ### PRIVATE METHODS ###

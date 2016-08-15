@@ -307,6 +307,19 @@ class TestManager(AbjadObject):
             return TestManager._compare_text_files(path_1, path_2)
 
     @staticmethod
+    def compare_objects(object_one, object_two):
+        r'''Compares `object_one` to `object_two`.
+
+        Returns true or false.
+        '''
+        from abjad.tools import systemtools
+        if not isinstance(object_two, type(object_one)):
+            return False
+        agent_one = systemtools.StorageFormatAgent(object_one)
+        agent_two = systemtools.StorageFormatAgent(object_two)
+        return agent_one.get_template_dict() == agent_two.get_template_dict()
+
+    @staticmethod
     def diff(object_a, object_b, title=None):
         r'''Gets diff of `object_a` and `object_b` formats.
 

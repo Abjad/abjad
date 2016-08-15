@@ -442,7 +442,7 @@ class Division(NonreducedFraction):
         Returns string.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     def __str__(self):
         r'''Gets string representation of division.

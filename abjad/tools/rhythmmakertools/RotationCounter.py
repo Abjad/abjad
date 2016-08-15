@@ -68,15 +68,14 @@ class RotationCounter(TypedCounter):
 
     @property
     def _storage_format_specification(self):
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = manager.get_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
         if not self.autoincrement:
-            keyword_argument_names.remove('autoincrement')
-        keyword_argument_names.extend(sorted(self._collection.keys()))
+            names.remove('autoincrement')
+        names.extend(sorted(self._collection.keys()))
         return systemtools.StorageFormatSpecification(
             self,
-            keyword_argument_names=keyword_argument_names
+            keyword_argument_names=names
             )
 
     ### PUBLIC PROPERTIES ###

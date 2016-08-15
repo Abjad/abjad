@@ -2,9 +2,12 @@
 import inspect
 import pytest
 from abjad.tools import documentationtools
+from abjad.tools import systemtools
 
 
 ignored_classes = (
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(

@@ -128,7 +128,7 @@ class Tremolo(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         elif format_specification == 'lilypond':
             message = 'no LilyPond format available.'
             raise Exception(message)
