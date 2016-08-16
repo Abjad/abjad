@@ -1985,19 +1985,23 @@ class Tuplet(Container):
             if 0 < ratio.numbers[0]:
                 try:
                     note = scoretools.Note(0, duration)
-                    return scoretools.Container([note])
+                    #return scoretools.Container([note])
+                    return scoretools.Tuplet((1, 1), [note])
                 except AssignabilityError:
                     notes = scoretools.make_notes(0, duration)
-                    return scoretools.Container(notes)
+                    #return scoretools.Container(notes)
+                    return scoretools.Tuplet((1, 1), notes)
             elif ratio.numbers[0] < 0:
                 try:
                     rest = scoretools.Rest(duration)
-                    return scoretools.Container([rest])
+                    #return scoretools.Container([rest])
+                    return scoretools.Tuplet((1, 1), [rest])
                 except AssignabilityError:
                     rests = scoretools.make_rests(duration)
-                    return scoretools.Container(rests)
+                    #return scoretools.Container(rests)
+                    return scoretools.Tuplet((1, 1), rests)
             else:
-                message = 'no divide zer values.'
+                message = 'no divide zero values.'
                 raise ValueError(message)
         if 1 < len(ratio.numbers):
             exponent = int(

@@ -101,6 +101,11 @@ class IndicatorExpression(AbjadValueObject):
 
     def _bind_to_component(self, component):
         from abjad.tools import indicatortools
+        # TODO: self._warn_duplicate_indicator() can take up to 0.6 seconds.
+        #       not exactly sure what context reproduces the problem.
+        #       compiling čáry reproduces the problem for debugging.
+        #       commenting out self._warn_duplicate_indicator()
+        #       only causes a single test to fail: test_Tempo_attach.py
         self._warn_duplicate_indicator(component)
         self._unbind_component()
         self._component = component
