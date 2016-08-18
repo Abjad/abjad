@@ -74,13 +74,15 @@ class Dynamic(AbjadValueObject):
         'fp': 'p',
         'sf': 'f',
         'sff': 'ff',
+        'sfp': 'p',
+        'sfpp': 'pp',
+        'sffp': 'p',
+        'sffpp': 'pp',
+        'sfz': 'f',
         'sp': 'p',
         'spp': 'pp',
-        'sfz': 'f',
-        'sfp': 'p',
-        'sffp': 'p',
         'rfz': 'f',
-    }
+        }
 
     _dynamic_name_to_dynamic_ordinal = {
         'ppppp': -6,
@@ -118,8 +120,10 @@ class Dynamic(AbjadValueObject):
         'spp',
         'sfz',
         'sffz',
-        'sfp',
         'sffp',
+        'sffpp',
+        'sfp',
+        'sfpp',
         'rfz',
         'niente',
         )
@@ -150,7 +154,7 @@ class Dynamic(AbjadValueObject):
         from abjad.tools import scoretools
         if isinstance(name, type(self)):
             name = name.name
-        assert name in self._dynamic_names
+        assert name in self._dynamic_names, repr(name)
         self._name = name
         self._default_scope = scoretools.Staff
 
@@ -350,7 +354,8 @@ class Dynamic(AbjadValueObject):
 
         Returns string.
         '''
-        return Dynamic._composite_dynamic_name_to_steady_state_dynamic_name[name]
+        return Dynamic._composite_dynamic_name_to_steady_state_dynamic_name[
+            name]
 
     @staticmethod
     def dynamic_name_to_dynamic_ordinal(name):
