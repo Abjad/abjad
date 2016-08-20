@@ -90,6 +90,10 @@ class Inequality(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _repr_specification(self):
+        return self._storage_format_specification
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         positional_argument_values = []

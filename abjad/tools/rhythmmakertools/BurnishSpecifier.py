@@ -289,7 +289,7 @@ class BurnishSpecifier(AbjadValueObject):
 
         Returns true or false.
         '''
-        return AbjadValueObject.__ne__(self, expr)
+        return super(BurnishSpecifier, self).__repr__()
 
     def __repr__(self):
         r'''Gets interpreter representation.
@@ -310,7 +310,7 @@ class BurnishSpecifier(AbjadValueObject):
 
         Returns string.
         '''
-        return AbjadValueObject.__repr__(self)
+        return super(BurnishSpecifier, self).__repr__()
 
     ### PRIVATE PROPERTIES ###
 

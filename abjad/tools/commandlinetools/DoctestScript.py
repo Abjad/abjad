@@ -182,20 +182,24 @@ class DoctestScript(CommandlineScript):
                 print(string)
             else:
                 result.append(string)
-        total_successes = total_tests - total_failures
         if print_to_terminal:
             print()
         else:
             result.append('')
         test_identifier = stringtools.pluralize('test', total_tests)
         module_identifier = stringtools.pluralize('module', total_modules)
-        string = '{} of {} {} passed in {} {}.'
+        string = (
+            '{total_successes} passed, {total_failures} failed out of '
+            '{total_tests} {test_identifier} '
+            'in {total_modules} {module_identifier}.'
+            )
         string = string.format(
-            total_successes,
-            total_tests,
-            test_identifier,
-            total_modules,
-            module_identifier,
+            module_identifier=module_identifier,
+            test_identifier=test_identifier,
+            total_failures=total_failures,
+            total_modules=total_modules,
+            total_successes=total_tests - total_failures,
+            total_tests=total_tests,
             )
         if print_to_terminal:
             print(string)

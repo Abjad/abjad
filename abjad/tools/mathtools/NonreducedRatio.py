@@ -141,6 +141,10 @@ class NonreducedRatio(AbjadValueObject):
         return int
 
     @property
+    def _repr_specification(self):
+        return self._storage_format_specification
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         positional_argument_values = (
@@ -198,9 +202,9 @@ class NonreducedRatio(AbjadValueObject):
         Returns tuple of multipliers.
         '''
         from abjad.tools import durationtools
-        weight = sum(self.numbers) 
+        weight = sum(self.numbers)
         multipliers = [
-            durationtools.Multiplier((_, weight)) 
+            durationtools.Multiplier((_, weight))
             for _ in self.numbers
             ]
         multipliers = tuple(multipliers)

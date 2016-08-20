@@ -11,7 +11,7 @@ class ChordSuspension(AbjadObject):
 
         >>> suspension = tonalanalysistools.ChordSuspension(4, 3)
         >>> suspension
-        ChordSuspension(ScaleDegree('4'), ScaleDegree('3'))
+        ChordSuspension(ScaleDegree(4), ScaleDegree(3))
 
     Value object that can not be changed after instantiation.
     '''
@@ -89,6 +89,14 @@ class ChordSuspension(AbjadObject):
             return ''
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools.topleveltools import new
+        return new(
+            self._storage_format_specification,
+            is_indented=False,
+            )
 
     @property
     def _storage_format_specification(self):

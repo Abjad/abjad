@@ -347,12 +347,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns string.
         '''
-        return '{}({}, {})'.format(
-            type(self).__name__,
-            self.numerator,
-            self.denominator,
-            )
-
+        return systemtools.StorageFormatAgent(self).get_storage_format()
     def __rmul__(self, expr):
         r'''Multiplies `expr` by nonreduced fraction.
 
@@ -418,6 +413,10 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         return self.__div__(expr)
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        return self._storage_format_specification
 
     @property
     def _storage_format_specification(self):

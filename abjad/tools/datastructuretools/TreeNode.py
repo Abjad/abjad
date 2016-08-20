@@ -111,6 +111,14 @@ class TreeNode(AbjadObject):
     def _state_flag_names(self):
         return ()
 
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            is_indented=True,
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property

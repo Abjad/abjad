@@ -82,28 +82,28 @@ class Accidental(AbjadObject):
         )
 
     _name_to_abbreviation = {
-        'double sharp'            : 'ss',
-        'three-quarters sharp'    : 'tqs',
-        'sharp'                   : 's',
-        'quarter sharp'           : 'qs',
-        'natural'                 : '',
-        'forced natural'          : '!',
-        'quarter flat'            : 'qf',
-        'flat'                    : 'f',
-        'three-quarters flat'     : 'tqf',
-        'double flat'             :  'ff',
+        'double sharp': 'ss',
+        'three-quarters sharp': 'tqs',
+        'sharp': 's',
+        'quarter sharp': 'qs',
+        'natural': '',
+        'forced natural': '!',
+        'quarter flat': 'qf',
+        'flat': 'f',
+        'three-quarters flat': 'tqf',
+        'double flat':  'ff',
     }
 
     _semitones_to_abbreviation = {
-        -2   : 'ff',
-        -1.5 : 'tqf',
-        -1   : 'f',
-        -0.5 : 'qf',
-        0    : '',
-        0.5  : 'qs',
-        1    : 's',
-        1.5  : 'tqs',
-        2    : 'ss',
+        -2: 'ff',
+        -1.5: 'tqf',
+        -1: 'f',
+        -0.5: 'qf',
+        0: '',
+        0.5: 'qs',
+        1: 's',
+        1.5: 'tqs',
+        2: 'ss',
     }
 
     _symbolic_string_regex_body = '''
@@ -121,28 +121,28 @@ class Accidental(AbjadObject):
         )
 
     _symbolic_string_to_abbreviation = {
-        'bb' : 'ff',
-        'b~' : 'tqf',
-        'b'  : 'f',
-        '~'  : 'qf',
-        ''   : '',
-        '!'  : '!',
-        '+'  : 'qs',
-        '#'  : 's',
-        '#+' : 'tqs',
-        '##' : 'ss',
+        'bb': 'ff',
+        'b~': 'tqf',
+        'b': 'f',
+        '~': 'qf',
+        '': '',
+        '!': '!',
+        '+': 'qs',
+        '#': 's',
+        '#+': 'tqs',
+        '##': 'ss',
         }
 
     _symbolic_string_to_semitones = {
-        'bb' : -2,
-        'b~' : -1.5,
-        'b'  : -1,
-        '~'  : -0.5,
-        ''   : 0,
-        '+'  : 0.5,
-        '#'  : 1,
-        '#+' : 1.5,
-        '##' : 2,
+        'bb': -2,
+        'b~': -1.5,
+        'b': -1,
+        '~': -0.5,
+        '': 0,
+        '+': 0.5,
+        '#': 1,
+        '#+': 1.5,
+        '##': 2,
         }
 
     __slots__ = (
@@ -156,7 +156,6 @@ class Accidental(AbjadObject):
     ### INITIALIZER ##
 
     def __init__(self, arg=''):
-        from abjad.tools import pitchtools
         # initialize symbolic string from arg
         if self.is_abbreviation(arg):
             _abbreviation = arg
@@ -324,10 +323,15 @@ class Accidental(AbjadObject):
         return self._abbreviation
 
     @property
+    def _repr_specification(self):
+        return self._storage_format_specification
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(
             self,
+            is_indented=False,
             keyword_argument_names=(),
             positional_argument_values=(
                 self.abbreviation,

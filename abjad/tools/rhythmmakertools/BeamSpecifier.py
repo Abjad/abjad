@@ -210,7 +210,7 @@ class BeamSpecifier(AbjadValueObject):
 
         Returns string.
         '''
-        return AbjadValueObject.__repr__(self)
+        return super(BeamSpecifier, self).__repr__()
 
     ### PRIVATE METHODS ###
 

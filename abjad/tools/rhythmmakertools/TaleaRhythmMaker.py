@@ -397,7 +397,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns string.
         '''
-        return RhythmMaker.__repr__(self)
+        return super(TaleaRhythmMaker, self).__repr__()
 
     ### PRIVATE PROPERTIES ###
 

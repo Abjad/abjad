@@ -184,7 +184,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns string.
         '''
-        return RhythmMaker.__repr__(self)
+        return super(NoteRhythmMaker, self).__repr__()
 
     ### PRIVATE METHODS ###
 

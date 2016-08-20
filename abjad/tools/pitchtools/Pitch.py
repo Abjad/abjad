@@ -139,6 +139,10 @@ class Pitch(AbjadObject):
         raise NotImplementedError
 
     @property
+    def _repr_specification(self):
+        return self._storage_format_specification
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         return systemtools.StorageFormatSpecification(

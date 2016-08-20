@@ -82,7 +82,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
         Returns string.
         '''
-        return AbjadValueObject.__repr__(self)
+        return super(DurationSpellingSpecifier, self).__repr__()
 
     ### PRIVATE METHODS ###
 

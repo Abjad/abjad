@@ -272,6 +272,14 @@ class Markup(AbjadValueObject):
         return '\n'.join(self._get_format_pieces())
 
     @property
+    def _repr_specification(self):
+        from abjad.tools.topleveltools import new
+        return new(
+            self._storage_format_specification,
+            is_indented=False,
+            )
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         agent = systemtools.StorageFormatAgent(self)

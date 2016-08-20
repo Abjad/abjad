@@ -148,7 +148,7 @@ class ScaleDegree(AbjadObject):
 
         Returns string.
         '''
-        return '{}({})'.format(type(self).__name__, self._format_string)
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     def __str__(self):
         r'''String representation of scale degree.
@@ -174,17 +174,16 @@ class ScaleDegree(AbjadObject):
             self.accidental.symbolic_string, self.number)
 
     @property
-    def _format_string(self):
-        parts = []
-        if self.accidental.is_adjusted:
-            parts.append(repr(self.accidental.name))
-        parts.append(str(self.number))
-        return ', '.join(parts)
+    def _repr_specification(self):
+        return self._storage_format_specification
 
     @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
-        positional_argument_values = (self._format_string,)
+        positional_argument_values = []
+        if self.accidental.is_adjusted:
+            positional_argument_values.append(self.accidental.name)
+        positional_argument_values.append(self.number)
         return systemtools.StorageFormatSpecification(
             self,
             is_indented=False,

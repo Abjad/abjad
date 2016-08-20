@@ -287,6 +287,10 @@ class TreeContainer(TreeNode):
         return TreeNode
 
     @property
+    def _repr_specification(self):
+        return self._storage_format_specification
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         signature = systemtools.StorageFormatAgent.inspect_signature(self)
@@ -296,6 +300,7 @@ class TreeContainer(TreeNode):
                 names.remove(name)
         return systemtools.StorageFormatSpecification(
             self,
+            is_indented=True,
             keyword_argument_names=names,
             )
 

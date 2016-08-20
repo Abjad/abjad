@@ -154,6 +154,7 @@ class MarkupCommand(AbjadValueObject):
 
     def __init__(self, command=None, *args):
         if command is None:
+            # TODO: Generalize these arbitrary default args away.
             command = 'draw-circle'
             assert len(args) == 0
         assert isinstance(command, str) \
@@ -212,6 +213,14 @@ class MarkupCommand(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools.topleveltools import new
+        return new(
+            self._storage_format_specification,
+            is_indented=False,
+            )
 
     @property
     def _storage_format_specification(self):

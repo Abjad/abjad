@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.tools.topleveltools.override import override
-from abjad.tools.topleveltools.set_ import set_
 
 
 class Division(NonreducedFraction):
@@ -245,7 +243,7 @@ class Division(NonreducedFraction):
 
             >>> parts[-1][0].start_offset
             Offset(15, 16)
-            
+
     '''
 
     ### CLASS VARIABLES ###
@@ -260,7 +258,7 @@ class Division(NonreducedFraction):
     def __new__(
         class_,
         argument=None,
-        payload=None, 
+        payload=None,
         start_offset=None,
         ):
         from abjad.tools import durationtools
@@ -436,14 +434,6 @@ class Division(NonreducedFraction):
         '''
         return (self.pair, self.payload, self.start_offset)
 
-    def __repr__(self):
-        r'''Gets interpreter representation of division.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatAgent(self).get_repr_format()
-
     def __str__(self):
         r'''Gets string representation of division.
 
@@ -587,7 +577,7 @@ class Division(NonreducedFraction):
         if not self_has_start_offset == expr_has_start_offset:
             message = 'both divisions must have (or not have) start offsets.'
             raise Exception(message)
-            
+
         if self.start_offset is expr.start_offset is None:
             superclass = super(Division, self)
             difference = superclass.__sub__(expr)
@@ -620,6 +610,20 @@ class Division(NonreducedFraction):
             raise Exception(message)
 
     ### PRIVATE PROPERTIES ###
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            keyword_argument_names=(
+                'payload',
+                'start_offset',
+                ),
+            positional_argument_values=(
+                self.pair,
+                ),
+            is_indented=False,
+            )
 
     @property
     def _storage_format_specification(self):
@@ -732,8 +736,7 @@ class Division(NonreducedFraction):
 
         Returns object or none.
         '''
-        return self._payload        
-
+        return self._payload
 
     @property
     def start_offset(self):
@@ -774,8 +777,7 @@ class Division(NonreducedFraction):
 
         Returns offset or none.
         '''
-        return self._start_offset        
-
+        return self._start_offset
 
     @property
     def stop_offset(self):

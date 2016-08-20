@@ -81,28 +81,6 @@ class Instrument(AbjadValueObject):
         self._performer_names = ['instrumentalist']
         self._starting_clefs = copy.copy(allowable_clefs)
 
-    ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification=''):
-        r'''Formats instrument.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
-        return str(self)
-
-    def __repr__(self):
-        r'''Gets interpreter representation of instrument.
-
-        Returns string.
-        '''
-        return '{}()'.format(type(self).__name__)
-
     ### PRIVATE PROPERTIES ###
 
     @staticmethod
@@ -148,6 +126,20 @@ class Instrument(AbjadValueObject):
     @property
     def _one_line_menu_summary(self):
         return self.instrument_name
+
+    @property
+    def _repr_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=[],
+            keyword_argument_names=[],
+            )
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(self)
 
     @property
     def _scope_name(self):

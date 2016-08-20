@@ -64,6 +64,10 @@ class ReSTDirective(TreeContainer):
         return result
 
     @property
+    def _repr_specification(self):
+        return self._storage_format_specification
+
+    @property
     def _storage_format_specification(self):
         from abjad.tools import systemtools
         signature = systemtools.StorageFormatAgent.inspect_signature(self)
@@ -71,10 +75,12 @@ class ReSTDirective(TreeContainer):
         for name in ('children', 'name', 'options'):
             if not getattr(self, name, None) and name in names:
                 names.remove(name)
-        return systemtools.StorageFormatSpecification(
+        spec = systemtools.StorageFormatSpecification(
             self,
+            is_indented=True,
             keyword_argument_names=names,
             )
+        return spec
 
     ### PUBLIC PROPERTIES ###
 
