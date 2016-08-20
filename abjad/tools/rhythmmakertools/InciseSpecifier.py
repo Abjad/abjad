@@ -160,38 +160,27 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns string.
         '''
-        return AbjadValueObject.__format__(
-            self,
-            format_specification=format_specification,
-            )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
-        keyword_argument_names = list(agent.signature_keyword_names)
-        if not self.prefix_talea:
-            keyword_argument_names.remove('prefix_talea')
-        if not self.prefix_counts:
-            keyword_argument_names.remove('prefix_counts')
-        if not self.suffix_talea:
-            keyword_argument_names.remove('suffix_talea')
-        if not self.suffix_counts:
-            keyword_argument_names.remove('suffix_counts')
-        if self.body_ratio is None:
-            keyword_argument_names.remove('body_ratio')
-        if self.fill_with_notes:
-            keyword_argument_names.remove('fill_with_notes')
-        if self.outer_divisions_only is False:
-            keyword_argument_names.remove('outer_divisions_only')
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            )
+        superclass = super(InciseSpecifier, self)
+        return superclass.__format__(format_specification=format_specification)
 
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        from abjad.tools import systemtools
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        for name in names[:]:
+            if name == 'talea_denominator':
+                continue
+            if not getattr(self, name):
+                names.remove(name)
+        # TODO: kwargs defaults checking
+        if self.fill_with_notes:
+            names.remove('fill_with_notes')
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_kwargs_names=names,
+            )
 
     @staticmethod
     def _is_integer_tuple(expr):
@@ -315,7 +304,7 @@ class InciseSpecifier(AbjadValueObject):
         Set to true, false or none.
 
         Defaults to none.
-        
+
         Returns true, false or none.
         '''
         return self._outer_divisions_only
@@ -352,7 +341,7 @@ class InciseSpecifier(AbjadValueObject):
 
     @property
     def suffix_talea(self):
-        r'''Gets suffix talea. 
+        r'''Gets suffix talea.
 
         ..  todo:: Add examples.
 

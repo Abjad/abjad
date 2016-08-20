@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
@@ -226,21 +227,17 @@ class TypedOrderedDict(TypedCollection):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
+    def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
-        keyword_argument_names = list(agent.signature_keyword_names)
-        if 'items' in keyword_argument_names:
-            keyword_argument_names.remove('items')
-        keyword_argument_names = tuple(keyword_argument_names)
-        positional_argument_values = (
-            list(self._collection.items()),
-            )
-        return systemtools.StorageFormatSpecification(
+        names = list(agent.signature_keyword_names)
+        if 'items' in names:
+            names.remove('items')
+        values = [list(self._collection.items())]
+        return systemtools.FormatSpecification(
             self,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
+            repr_is_indented=False,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=names,
             )
 
     ### PUBLIC METHODS ###

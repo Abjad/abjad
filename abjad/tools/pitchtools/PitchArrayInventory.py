@@ -8,7 +8,7 @@ class PitchArrayInventory(TypedList):
     ..  container:: example
 
         **Example 1.** A pitch array inventory:
-    
+
         ::
 
             >>> array_1 = pitchtools.PitchArray([

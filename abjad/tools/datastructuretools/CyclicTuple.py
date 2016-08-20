@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools import systemtools
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 # TODO: remove multiple inheritance; hold a private _tuple instead
-class CyclicTuple(AbjadObject, tuple):
+class CyclicTuple(AbjadValueObject, tuple):
     '''A cylic tuple.
 
     ..  container:: example
@@ -135,23 +136,9 @@ class CyclicTuple(AbjadObject, tuple):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                list(self),
-                ),
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                list(self),
-                ),
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[list(self)],
             )

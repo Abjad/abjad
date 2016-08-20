@@ -134,41 +134,6 @@ class BeamSpecifier(AbjadValueObject):
                 leaves = select(selection).by_leaf()
                 attach(beam, leaves)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a beam specifier with `beam_each_division`
-        and `beam_divisions_together` equal to those of this beam specifier.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> specifier_1 = rhythmmakertools.BeamSpecifier(
-                ...     beam_each_division=True,
-                ...     )
-                >>> specifier_2 = rhythmmakertools.BeamSpecifier(
-                ...     beam_each_division=False,
-                ...     )
-
-            ::
-
-                >>> specifier_1 == specifier_1
-                True
-                >>> specifier_1 == specifier_2
-                False
-                >>> specifier_2 == specifier_1
-                False
-                >>> specifier_2 == specifier_2
-                True
-
-        Returns true or false.
-        '''
-        if isinstance(arg, type(self)):
-            if self.beam_each_division == arg.beam_each_division and \
-                self.beam_divisions_together == arg.beam_divisions_together:
-                return True
-        return False
-
     def __format__(self, format_specification=''):
         r'''Formats beam specifier.
 
@@ -188,15 +153,6 @@ class BeamSpecifier(AbjadValueObject):
             self,
             format_specification=format_specification,
             )
-
-    def __hash__(self):
-        r'''Hashes beam specifier.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(BeamSpecifier, self).__hash__()
 
     def __repr__(self):
         r'''Gets interpreter representation.

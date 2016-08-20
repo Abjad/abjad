@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import enum
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 
 
 class Enumeration(enum.IntEnum):
@@ -37,8 +38,7 @@ class Enumeration(enum.IntEnum):
             '__members__',
             '__module__',
             '__repr__',
-            '_repr_specification',
-            '_storage_format_specification',
+            '_get_format_specification',
             'from_expr',
             ]
         names += self._member_names_
@@ -69,28 +69,17 @@ class Enumeration(enum.IntEnum):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            repr_text='{}.{}'.format(
-                type(self).__name__,
-                self.name,
-                ),
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
+    def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
-        return systemtools.StorageFormatSpecification(
-            self,
-            storage_format_text='{}.{}.{}'.format(
-                agent.get_tools_package_name(),
-                type(self).__name__,
-                self.name,
-                ),
+        repr_text = '{}.{}'.format(type(self).__name__, self.name)
+        storage_format_text = '{}.{}'.format(
+            repr_text,
+            agent.get_tools_package_name(),
+            )
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_text=repr_text,
+            storage_format_text=storage_format_text,
             )
 
     ### PUBLIC METHODS ###
@@ -107,7 +96,7 @@ class Enumeration(enum.IntEnum):
             return cls(expr)
         elif isinstance(expr, str):
             expr = expr.strip()
-            expr = stringtools.to_snake_case(expr) 
+            expr = stringtools.to_snake_case(expr)
             expr = expr.upper()
             return cls[expr]
         elif expr is None:

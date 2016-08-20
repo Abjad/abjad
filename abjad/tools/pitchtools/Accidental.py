@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import re
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import systemtools
+from abjad.tools.abctools import AbjadValueObject
 
 
-class Accidental(AbjadObject):
+class Accidental(AbjadValueObject):
     '''Accidental.
 
     ..  container:: example
@@ -206,17 +207,6 @@ class Accidental(AbjadObject):
         semitones = self.semitones + arg.semitones
         return type(self)(semitones)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is an accidental with an abbreviation equal to that
-        of this accidental. Otherwise false.
-
-        Returns true or false.
-        '''
-        if isinstance(arg, type(self)):
-            if self.abbreviation == arg.abbreviation:
-                return True
-        return False
-
     def __ge__(self, arg):
         r'''Is true when `arg` is an accidental with semitones less than or equal
         to those of this accidental. Otherwise false.
@@ -225,13 +215,6 @@ class Accidental(AbjadObject):
         '''
         return self.semitones >= arg.semitones
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self.abbreviation,)
-
     def __gt__(self, arg):
         r'''Is true when `arg` is an accidental with semitones less than
         those of this accidental. Otherwise false.
@@ -239,15 +222,6 @@ class Accidental(AbjadObject):
         Returns true or false.
         '''
         return self.semitones > arg.semitones
-
-    def __hash__(self):
-        r'''Hashes accidental.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Accidental, self).__hash__()
 
     def __le__(self, arg):
         r'''Is true when `arg` is an accidental with semitones greater than or
@@ -322,20 +296,16 @@ class Accidental(AbjadObject):
     def _lilypond_format(self):
         return self._abbreviation
 
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                self.abbreviation,
-                ),
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.abbreviation],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
+            template_names=['abbreviation'],
             )
 
     ### PUBLIC METHODS ###

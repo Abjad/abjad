@@ -2,8 +2,9 @@
 import abc
 import collections
 import types
+from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TypedTuple
-from abjad.tools.topleveltools import new
 
 
 class Segment(TypedTuple):
@@ -95,7 +96,7 @@ class Segment(TypedTuple):
             music=score,
             )
         if 'title' in kwargs:
-            title = kwargs.get('title') 
+            title = kwargs.get('title')
             if not isinstance(title, markuptools.Markup):
                 title = markuptools.Markup(title)
             lilypond_file.header_block.title = title
@@ -142,8 +143,9 @@ class Segment(TypedTuple):
     def _parent_item_class(self):
         raise NotImplementedError
 
-    @property
-    def _repr_specification(self):
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
         items = []
         if self.item_class.__name__.startswith('Named'):
             items = [str(x) for x in self]
@@ -151,17 +153,19 @@ class Segment(TypedTuple):
             items = [x.pitch_number for x in self]
         elif hasattr(self.item_class, 'pitch_class_number'):
             items = [x.pitch_class_number for x in self]
+        elif self.item_class.__name__.startswith('Numbered'):
+            items = [mathtools.integer_equivalent_number_to_integer(float(x))
+                for x in self]
         elif hasattr(self.item_class, '__abs__'):
             items = [abs(x) for x in self]
         else:
             raise ValueError
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                items,
-                ),
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            repr_kwargs_names=[],
+            repr_args_values=[items],
+            storage_format_args_values=[tuple(self._collection)],
             )
 
     ### PUBLIC METHODS ###

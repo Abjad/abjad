@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -140,21 +141,14 @@ class NonreducedRatio(AbjadValueObject):
     def _number_coercer(self):
         return int
 
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self._numbers,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=[self.numbers],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
             )
 
     ### PUBLIC METHODS ###

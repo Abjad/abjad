@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TreeNode import TreeNode
 
 
@@ -286,22 +287,16 @@ class TreeContainer(TreeNode):
     def _node_class(self):
         return TreeNode
 
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        signature = systemtools.StorageFormatAgent.inspect_signature(self)
-        _, names, _, _ = signature
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
         for name in ('children',):
             if not getattr(self, name, None) and name in names:
                 names.remove(name)
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=True,
-            keyword_argument_names=names,
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=True,
+            storage_format_kwargs_names=names,
             )
 
     ### PUBLIC PROPERTIES ###

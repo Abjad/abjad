@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -29,7 +30,6 @@ class TreeNode(AbjadObject):
         r'''Copies tree node.
         '''
         import copy
-        from abjad.tools import systemtools
         agent = systemtools.StorageFormatAgent(self)
         arguments = []
         for value in agent.get_template_dict().values():
@@ -52,6 +52,12 @@ class TreeNode(AbjadObject):
                 name_dictionary[self.name] = set([])
             name_dictionary[self.name].add(self)
         return name_dictionary
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=True,
+            )
 
     def _get_node_state_flags(self):
         state_flags = {}
@@ -104,20 +110,8 @@ class TreeNode(AbjadObject):
     ### PRIVATE PROPERTIES ###
 
     @property
-    def _repr_specification(self):
-        return self._storage_format_specification
-
-    @property
     def _state_flag_names(self):
         return ()
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=True,
-            )
 
     ### PUBLIC PROPERTIES ###
 

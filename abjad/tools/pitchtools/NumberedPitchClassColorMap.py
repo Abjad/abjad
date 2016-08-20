@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 
 
 # TODO: implement __illustrate__
-class NumberedPitchClassColorMap(AbjadObject):
+class NumberedPitchClassColorMap(AbjadValueObject):
     '''Numbered pitch-class color map.
 
     ..  container:: example

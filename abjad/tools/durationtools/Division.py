@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
 
 
@@ -609,40 +610,21 @@ class Division(NonreducedFraction):
             message = 'timespan subtraction creates more than one division.'
             raise Exception(message)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            keyword_argument_names=(
-                'payload',
-                'start_offset',
-                ),
-            positional_argument_values=(
-                self.pair,
-                ),
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(
-                'payload',
-                'start_offset',
-                ),
-            positional_argument_values=(
-                self.pair,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _from_pair(self, pair):
         return type(self)(pair, start_offset=self.start_offset)
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.pair],
+            storage_format_kwargs_names=[
+                'payload',
+                'start_offset',
+                ],
+            )
 
     def _to_timespan(self):
         from abjad.tools import timespantools

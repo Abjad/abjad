@@ -4,6 +4,7 @@ from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -128,20 +129,6 @@ class Instrument(AbjadValueObject):
         return self.instrument_name
 
     @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=[],
-            keyword_argument_names=[],
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(self)
-
-    @property
     def _scope_name(self):
         if isinstance(self._default_scope, type):
             return self._default_scope.__name__
@@ -158,6 +145,14 @@ class Instrument(AbjadValueObject):
             return performer_name
         else:
             return self._performer_names[-1]
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            self,
+            repr_args_values=[],
+            repr_is_indented=False,
+            repr_kwargs_names=[],
+            )
 
     def _get_performer_names(self):
         if self._performer_names is None:

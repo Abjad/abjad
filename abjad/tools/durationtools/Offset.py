@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import systemtools
 from abjad.tools.durationtools.Duration import Duration
 
 
@@ -337,7 +338,7 @@ class Offset(Duration):
         if isinstance(arg, type(self)) and self.pair == arg.pair:
             return self._get_grace_displacement() == \
                 arg._get_grace_displacement()
-        return Duration.__eq__(self, arg)
+        return super(Offset, self).__eq__(arg)
 
     def __ge__(self, arg):
         r'''Is true when offset is greater than or equal to `arg`.
@@ -411,7 +412,7 @@ class Offset(Duration):
         if isinstance(arg, type(self)) and self.pair == arg.pair:
             return self._get_grace_displacement() >= \
                 arg._get_grace_displacement()
-        return Duration.__ge__(self, arg)
+        return super(Offset, self).__ge__(arg)
 
     def __getnewargs__(self):
         r'''Gets new arguments.
@@ -580,7 +581,7 @@ class Offset(Duration):
         if isinstance(arg, type(self)) and self.pair == arg.pair:
             return self._get_grace_displacement() <= \
                 arg._get_grace_displacement()
-        return Duration.__le__(self, arg)
+        return super(Offset, self).__le__(arg)
 
     def __lt__(self, arg):
         r'''Is true when offset is less than `arg`.
@@ -675,7 +676,7 @@ class Offset(Duration):
         if isinstance(arg, type(self)) and self.pair == arg.pair:
             return self._get_grace_displacement() < \
                 arg._get_grace_displacement()
-        return Duration.__lt__(self, arg)
+        return super(Offset, self).__lt__(arg)
 
     def __repr__(self):
         r'''Gets interpreter representation of offset.
@@ -704,7 +705,7 @@ class Offset(Duration):
                     )
 
         '''
-        return Duration.__repr__(self)
+        return super(Offset, self).__repr__()
 
     def __sub__(self, expr):
         '''Offset taken from offset returns duration:
@@ -731,34 +732,30 @@ class Offset(Duration):
         Returns duration or offset.
         '''
         if isinstance(expr, type(self)):
-            return Duration(Duration.__sub__(self, expr))
+            return Duration(super(Offset, self).__sub__(expr))
         elif isinstance(expr, Duration):
-            return Duration.__sub__(self, expr)
+            return super(Offset, self).__sub__(expr)
         else:
             expr = type(self)(expr)
             return self - expr
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        if self.grace_displacement is None:
-            return systemtools.StorageFormatSpecification(
-                self,
-                is_indented=False,
-                positional_argument_values=self.pair,
-                keyword_argument_names=(),
-                )
-        else:
-            return systemtools.StorageFormatSpecification(
-                self,
-                is_indented=True,
-                positional_argument_values=(self.pair,),
-                keyword_argument_names=('grace_displacement',),
-                )
-
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        is_indented = False
+        names = []
+        values = [self.numerator, self.denominator]
+        if self._get_grace_displacement():
+            is_indented = True
+            names = ['grace_displacement']
+            values = [(self.numerator, self.denominator)]
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=is_indented,
+            storage_format_args_values=values,
+            storage_format_is_indented=is_indented,
+            storage_format_kwargs_names=names,
+            )
 
     def _get_grace_displacement(self):
         from abjad.tools import durationtools

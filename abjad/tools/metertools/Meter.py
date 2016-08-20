@@ -6,6 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -755,28 +756,15 @@ class Meter(AbjadObject):
         '''
         return '{}/{}'.format(self.numerator, self.denominator)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools.topleveltools import new
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                self.rtm_format,
-                ),
-            )
-
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.rtm_format],
+            storage_format_kwargs_names=[],
+            )
 
     @staticmethod
     def _make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):

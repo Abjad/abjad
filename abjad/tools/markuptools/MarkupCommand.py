@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import schemetools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -214,24 +215,6 @@ class MarkupCommand(AbjadValueObject):
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools.topleveltools import new
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (self.command,) + self.args
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PRIVATE METHODS ###
 
     def _escape_string(self, string):
@@ -275,6 +258,14 @@ class MarkupCommand(AbjadValueObject):
         parts = [r'\{}'.format(self.command)]
         parts.extend(recurse(self.args))
         return parts
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=(self.command,) + self.args,
+            storage_format_kwargs_names=[],
+            )
 
     ### PUBLIC PROPERTIES ###
 

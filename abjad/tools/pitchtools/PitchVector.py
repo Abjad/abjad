@@ -15,7 +15,7 @@ class PitchVector(Vector):
             ...     )
 
         ::
-            
+
             >>> items = list(vector.items())
             >>> items.sort(key=lambda x: x[0].pitch_number)
             >>> for pitch_class, count in items:
@@ -50,7 +50,7 @@ class PitchVector(Vector):
             ::
 
                 >>> vector
-                PitchVector({'-2': 1, '-3': 2, '0': 1, '1': 1, '14': 1, '15': 1, '16': 2, '6': 1, '7': 1}, item_class=NumberedPitch)
+                PitchVector({-3: 2, -2: 1, 0: 1, 1: 1, 6: 1, 7: 1, 14: 1, 15: 1, 16: 2}, item_class=NumberedPitch)
 
         ..  container:: example
 
@@ -58,7 +58,7 @@ class PitchVector(Vector):
             pitch vector:
 
                 >>> pitchtools.PitchVector(vector)
-                PitchVector({'-2': 1, '-3': 2, '0': 1, '1': 1, '14': 1, '15': 1, '16': 2, '6': 1, '7': 1}, item_class=NumberedPitch)
+                PitchVector({-3: 2, -2: 1, 0: 1, 1: 1, 6: 1, 7: 1, 14: 1, 15: 1, 16: 2}, item_class=NumberedPitch)
 
         Returns string.
         '''

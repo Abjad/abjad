@@ -56,10 +56,9 @@ class LilyPondFormatBundle(AbjadObject):
             self._stem_tremolos = []
             self._trill_pitches = []
 
-        @property
-        def _storage_format_specification(self):
+        def _get_format_specification(self):
             from abjad.tools import systemtools
-            keyword_argument_names = [
+            names = [
                 'articulations',
                 'commands',
                 'comments',
@@ -71,11 +70,10 @@ class LilyPondFormatBundle(AbjadObject):
                 'stem_tremolos',
                 'trill_pitches',
                 ]
-            keyword_argument_names = [x for x in keyword_argument_names
-                if getattr(self, x)]
-            return systemtools.StorageFormatSpecification(
-                self,
-                keyword_argument_names=keyword_argument_names,
+            names = [x for x in names if getattr(self, x)]
+            return systemtools.FormatSpecification(
+                client=self,
+                storage_format_kwargs_names=names,
                 )
 
         @property
@@ -178,10 +176,9 @@ class LilyPondFormatBundle(AbjadObject):
         self._grob_overrides = []
         self._grob_reverts = []
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
+    def _get_format_specification(self):
         from abjad.tools import systemtools
         slot_contribution_names = (
             'before',
@@ -195,13 +192,13 @@ class LilyPondFormatBundle(AbjadObject):
             'grob_overrides',
             'grob_reverts',
             )
-        keyword_argument_names = [x for x in slot_contribution_names
+        names = [x for x in slot_contribution_names
             if getattr(self, x).has_contributions]
-        keyword_argument_names.extend(x for x in grob_contribution_names
+        names.extend(x for x in grob_contribution_names
             if getattr(self, x))
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_kwargs_names=names,
             )
 
     ### PUBLIC PROPERTIES ###

@@ -313,9 +313,17 @@ class TestManager(AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        if not isinstance(object_two, type(object_one)):
-            return False
         agent_one = systemtools.StorageFormatAgent(object_one)
+        if agent_one.format_specification.coerce_for_equality:
+            try:
+                object_two = type(object_one)(object_two)
+            except (
+                TypeError,
+                ValueError,
+                ):
+                return False
+        elif not isinstance(object_two, type(object_one)):
+            return False
         agent_two = systemtools.StorageFormatAgent(object_two)
         return agent_one.get_template_dict() == agent_two.get_template_dict()
 

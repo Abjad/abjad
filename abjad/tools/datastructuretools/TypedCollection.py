@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import abc
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -46,19 +47,6 @@ class TypedCollection(AbjadObject):
         elif isinstance(expr, type(self._collection)):
             return self._collection == expr
         return False
-
-    def __format__(self, format_specification=''):
-        r'''Formats typed collection.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatAgent(self).get_storage_format()
-        return str(self)
 
     def __getnewargs__(self):
         r'''Gets new arguments.
@@ -122,39 +110,16 @@ class TypedCollection(AbjadObject):
             return lambda x: x
         return coerce_
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
+    def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
-        keyword_argument_names = list(agent.signature_keyword_names)
-        if 'items' in keyword_argument_names:
-            keyword_argument_names.remove('items')
-        keyword_argument_names = tuple(keyword_argument_names)
-        positional_argument_values = (
-            self._collection,
-            )
-        return systemtools.StorageFormatSpecification(
+        names = list(agent.signature_keyword_names)
+        if 'items' in names:
+            names.remove('items')
+        return systemtools.FormatSpecification(
             self,
-            is_indented=False,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
-        keyword_argument_names = list(agent.signature_keyword_names)
-        if 'items' in keyword_argument_names:
-            keyword_argument_names.remove('items')
-        keyword_argument_names = tuple(keyword_argument_names)
-        positional_argument_values = (
-            self._collection,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
+            repr_is_indented=False,
+            storage_format_args_values=[self._collection],
+            storage_format_kwargs_names=names,
             )
 
     ### PUBLIC PROPERTIES ###

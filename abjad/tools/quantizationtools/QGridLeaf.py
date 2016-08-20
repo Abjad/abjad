@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import scoretools
-from abjad.tools.rhythmtreetools import RhythmTreeMixin
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TreeNode
+from abjad.tools.rhythmtreetools import RhythmTreeMixin
 
 
 class QGridLeaf(RhythmTreeMixin, TreeNode):
@@ -76,24 +77,24 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
         graph.append(node)
         return graph
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = agent.signature_names
+        if 'q_event_proxies' in names and not self.q_event_proxies:
+            names.remove('q_event_proxies')
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=True,
+            storage_format_kwargs_names=names,
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        signature = systemtools.StorageFormatAgent.inspect_signature(self)
-        _, names, _, _ = signature
-        for name in ('q_event_proxies',):
-            if not getattr(self, name, None) and name in names:
-                names.remove(name)
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=names,
-            )
 
     ### PUBLIC PROPERTIES ###
 

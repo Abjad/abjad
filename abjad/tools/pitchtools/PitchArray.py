@@ -308,7 +308,6 @@ class PitchArray(AbjadObject):
         '''
         from abjad.tools import pitchtools
         columns = []
-        rows = self.rows
         for i, cells in enumerate(
             sequencetools.zip_sequences(self.rows, truncate=False)):
             column = pitchtools.PitchArrayColumn(cells)
@@ -470,7 +469,6 @@ class PitchArray(AbjadObject):
 
         Returns new pitch array.
         '''
-        from abjad.tools import pitchtools
         if not isinstance(upper_left_pair, tuple):
             raise TypeError
         if not isinstance(lower_right_pair, tuple):
@@ -795,7 +793,7 @@ class PitchArray(AbjadObject):
 
     def to_measures(self, cell_duration_denominator=8):
         r'''Changes pitch array  to measures.
-        
+
         Makes time signatures with numerators equal to row width and
         denominators equal to `cell_duration_denominator` for each row in pitch
         array.

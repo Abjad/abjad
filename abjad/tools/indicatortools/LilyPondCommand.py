@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -106,21 +107,15 @@ class LilyPondCommand(AbjadValueObject):
         else:
             return self.prefix + command
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.name,
-            )
-        keyword_argument_names = ()
+    def _get_format_specification(self):
+        names = []
         if not self.format_slot == 'opening':
-            keyword_argument_names = (
-                'format_slot',
-                )
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
+            names.append('format_slot')
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=[self.name],
+            storage_format_kwargs_names=names,
+            storage_format_is_indented=False,
             )
 
     ### PUBLIC PROPERTIES ###

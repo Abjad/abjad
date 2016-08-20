@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class RegistrationComponent(AbjadObject):
+class RegistrationComponent(AbjadValueObject):
     '''Registration component.
 
     ..  container:: example

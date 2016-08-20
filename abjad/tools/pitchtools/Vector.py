@@ -3,8 +3,9 @@ import abc
 import collections
 import types
 from abjad.tools import datastructuretools
+from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools import TypedCounter
-from abjad.tools.topleveltools import new
 
 
 class Vector(TypedCounter):
@@ -19,8 +20,6 @@ class Vector(TypedCounter):
     ### INITIALIZER ###
 
     def __init__(self, items=None, item_class=None):
-        from abjad.tools import datastructuretools
-        from abjad.tools import pitchtools
         prototype_1 = (collections.Iterator, types.GeneratorType)
         prototype_2 = (TypedCounter, collections.Counter)
         if isinstance(items, str):
@@ -83,25 +82,22 @@ class Vector(TypedCounter):
     def _parent_item_class(self):
         raise NotImplementedError
 
-    @property
-    def _repr_specification(self):
-        items = {}
-        for key, value in self.items():
-            items[str(key)] = value
-        keyword_argument_names = (
-            'item_class',
-            )
-        positional_argument_values = (
-            items,
-            )
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        if self.item_class.__name__.startswith('Named'):
+            repr_items = {str(k): v for k, v in self.items()}
+        else:
+            repr_items = {
+                mathtools.integer_equivalent_number_to_integer(float(k)): v
+                for k, v in self.items()
+                }
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            repr_args_values=[repr_items],
+            storage_format_args_values=[self._collection],
+            )
 
     def _dictionary_to_item_class(self, dictionary):
         if not len(dictionary):

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-import inspect
 from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -98,25 +98,17 @@ class QEventProxy(AbjadObject):
         '''
         return super(QEventProxy, self).__hash__()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        keyword_argument_names = (
-            'q_event',
-            'offset',
-            )
-        positional_argument_values = []
+    def _get_format_specification(self):
+        values = []
         if self.q_event:
-            positional_argument_values.append(self.q_event)
+            values.append(self.q_event)
         if self.offset:
-            positional_argument_values.append(self.offset)
-        positional_argument_values = tuple(positional_argument_values)
-        return systemtools.StorageFormatSpecification(
-            self,
-            #keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
+            values.append(self.offset)
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
             )
 
     ### PUBLIC PROPERTIES ###

@@ -96,14 +96,6 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
     def _pretty_rtm_format_pieces(self):
         return [str(self.preprolated_duration)]
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools.topleveltools import new
-        return new(
-            self._storage_format_specification,
-            is_indented=True,
-            )
-
     ### PUBLIC PROPERTIES ###
 
     @property

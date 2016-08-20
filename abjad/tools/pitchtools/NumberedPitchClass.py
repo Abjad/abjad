@@ -266,21 +266,6 @@ class NumberedPitchClass(PitchClass):
             expr)
         return type(self)(self.pitch_class_number - interval_class.number % 12)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.pitch_class_number,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PRIVATE METHODS ###
 
     def _initialize_by_named_pitch(self, expr):

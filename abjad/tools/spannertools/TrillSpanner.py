@@ -82,7 +82,7 @@ class TrillSpanner(Spanner):
     def __init__(
         self,
         interval=None,
-        is_harmonic=False,
+        is_harmonic=None,
         overrides=None,
         pitch=None,
         ):
@@ -91,7 +91,9 @@ class TrillSpanner(Spanner):
             overrides=overrides,
             )
         self._interval = interval
-        self._is_harmonic = bool(is_harmonic)
+        if is_harmonic is not None:
+            is_harmonic = bool(is_harmonic)
+        self._is_harmonic = is_harmonic
         if pitch is not None:
             pitch = pitchtools.NamedPitch(pitch)
         self._pitch = pitch

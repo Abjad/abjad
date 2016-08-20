@@ -2,6 +2,7 @@
 import functools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
+from abjad.tools.topleveltools import new
 
 
 @functools.total_ordering
@@ -172,30 +173,6 @@ class NamedInterval(Interval):
         '''
         return type(self)(self.quality_string, self.number)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a named interval with a quality string and
-        number equal to this named interval.
-
-        ::
-
-            >>> interval == pitchtools.NamedInterval('+M9')
-            True
-
-        Otherwise false:
-
-        ::
-
-            >>> interval == pitchtools.NamedInterval('-M9')
-            False
-
-        Returns true or false.
-        '''
-        if isinstance(arg, type(self)):
-            if self.quality_string == arg.quality_string:
-                if self.number == arg.number:
-                    return True
-        return False
-
     def __float__(self):
         r'''Changes number of named interval to a float.
 
@@ -207,15 +184,6 @@ class NamedInterval(Interval):
         Returns float.
         '''
         return float(self._number)
-
-    def __hash__(self):
-        r'''Hashes named interval.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(NamedInterval, self).__hash__()
 
     def __int__(self):
         r'''Returns number of named interval.
@@ -354,6 +322,16 @@ class NamedInterval(Interval):
         return pitchtools.NamedInterval.from_pitch_carriers(
             dummy_pitch, new_pitch)
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        superclass = super(NamedInterval, self)
+        format_specification = superclass._get_format_specification()
+        return new(
+            format_specification,
+            template_names=['quality_string', 'number'],
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -401,18 +379,6 @@ class NamedInterval(Interval):
             'major': 'M', 'minor': 'm', 'perfect': 'P',
             'augmented': 'aug', 'diminished': 'dim'}
         return _quality_string_to_quality_abbreviation[self.quality_string]
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            str(self),
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PUBLIC METHODS ###
 

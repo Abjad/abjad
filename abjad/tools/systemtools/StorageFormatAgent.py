@@ -30,15 +30,8 @@ class StorageFormatAgent(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(self, client):
-        from abjad.tools import systemtools
         self._client = client
-        if (not isinstance(self._client, type) and
-            hasattr(self._client, '_get_format_specification')):
-            self._format_specification = \
-                self._client._get_format_specification()
-        else:
-            self._format_specification = \
-                systemtools.FormatSpecification(self._client)
+        self._format_specification = None
         (
             self._signature_positional_names,
             self._signature_keyword_names,
@@ -254,7 +247,9 @@ class StorageFormatAgent(AbjadValueObject):
 
     def _get(self, name):
         try:
-            value = getattr(self._client, name)
+            value = getattr(self._client, name, None)
+            if value is None:
+                value = getattr(self._client, '_' + name, None)
         except AttributeError:
             try:
                 value = self._client[name]
@@ -269,6 +264,7 @@ class StorageFormatAgent(AbjadValueObject):
             spec = getattr(self._client, '_storage_format_specification', None)
             if spec:
                 #print('STORAGE', type(self._client), getattr(self._client, 'name', None))
+                via = '_storage_format_specification'
                 args_values = spec.positional_argument_values
                 is_bracketed = False
                 is_indented = spec.is_indented
@@ -276,6 +272,7 @@ class StorageFormatAgent(AbjadValueObject):
                 text = spec.storage_format_text
             else:
                 spec = self.format_specification
+                via = '_get_format_specification()'
                 args_values = spec.storage_format_args_values
                 is_bracketed = spec.storage_format_is_bracketed
                 is_indented = spec.storage_format_is_indented
@@ -285,6 +282,7 @@ class StorageFormatAgent(AbjadValueObject):
             spec = getattr(self._client, '_repr_specification', None)
             if spec:
                 #print('REPR', type(self._client), getattr(self._client, 'name', None))
+                via = '_repr_specification'
                 args_values = spec.positional_argument_values
                 is_bracketed = spec.is_bracketed
                 is_indented = spec.is_indented
@@ -292,18 +290,35 @@ class StorageFormatAgent(AbjadValueObject):
                 text = spec.repr_text
             else:
                 spec = self.format_specification
+                via = '_get_format_specification()'
                 args_values = spec.repr_args_values
+                if args_values is None:
+                    args_values = spec.storage_format_args_values
                 is_bracketed = spec.repr_is_bracketed
                 is_indented = spec.repr_is_indented
                 kwargs_names = spec.repr_kwargs_names
+                if kwargs_names is None:
+                    kwargs_names = spec.storage_format_kwargs_names
                 text = spec.repr_text
+                if text is None:
+                    text = spec.storage_format_text
+        if kwargs_names is None:
+            kwargs_names = self.signature_keyword_names
         if args_values is None:
             args_values = tuple(
                 self._get(_)
                 for _ in self.signature_positional_names
                 )
-        if kwargs_names is None:
-            kwargs_names = self.signature_keyword_names
+        if args_values:
+            kwargs_names = list(kwargs_names)
+            names = self.signature_positional_names
+            if not self.signature_accepts_args:
+                names += self.signature_keyword_names
+            names = names[:len(args_values)]
+            for name in names:
+                if name in kwargs_names:
+                    kwargs_names.remove(name)
+            kwargs_names = tuple(kwargs_names)
         return dict(
             args_values=args_values,
             as_storage_format=as_storage_format,
@@ -311,6 +326,7 @@ class StorageFormatAgent(AbjadValueObject):
             is_indented=is_indented,
             kwargs_names=kwargs_names,
             text=text,
+            via=via,
             )
 
     @staticmethod
@@ -451,6 +467,13 @@ class StorageFormatAgent(AbjadValueObject):
         elif isinstance(value, (set, frozenset)):
             value = tuple(value)
         return value
+
+    def _map_positional_values_to_names(self, values):
+        names = self.signature_positional_names
+        if not self.signature_accepts_args:
+            names += self.signature_keyword_names
+        names = names[:len(values)]
+        return names
 
     ### PUBLIC METHODS ###
 
@@ -606,15 +629,7 @@ class StorageFormatAgent(AbjadValueObject):
                     )
         template_dict = collections.OrderedDict()
         for name in template_names:
-            value = None
-            try:
-                value = getattr(self.client, name)
-            except AttributeError:
-                try:
-                    value = self.client[name]
-                except (TypeError, KeyError):
-                    continue
-            template_dict[name] = value
+            template_dict[name] = self._get(name)
         return template_dict
 
     def get_root_package_name(self):
@@ -671,6 +686,15 @@ class StorageFormatAgent(AbjadValueObject):
 
     @property
     def format_specification(self):
+        from abjad.tools import systemtools
+        if self._format_specification is None:
+            if (not isinstance(self._client, type) and
+                hasattr(self._client, '_get_format_specification')):
+                self._format_specification = \
+                    self._client._get_format_specification()
+            else:
+                self._format_specification = \
+                    systemtools.FormatSpecification(self._client)
         return self._format_specification
 
     @property

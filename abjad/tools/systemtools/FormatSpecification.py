@@ -12,6 +12,7 @@ class FormatSpecification(AbjadValueObject):
 
     __slots__ = (
         '_client',
+        '_coerce_for_equality',
         '_repr_args_values',
         '_repr_is_bracketed',
         '_repr_is_indented',
@@ -30,6 +31,7 @@ class FormatSpecification(AbjadValueObject):
     def __init__(
         self,
         client=None,
+        coerce_for_equality=None,
         repr_args_values=None,
         repr_is_bracketed=None,
         repr_is_indented=None,
@@ -43,6 +45,7 @@ class FormatSpecification(AbjadValueObject):
         template_names=None,
         ):
         self._client = client
+        self._coerce_for_equality = self._coerce_boolean(coerce_for_equality)
         self._repr_args_values = self._coerce_tuple(repr_args_values)
         self._repr_is_bracketed = self._coerce_boolean(repr_is_bracketed)
         self._repr_is_indented = self._coerce_boolean(repr_is_indented)
@@ -76,6 +79,10 @@ class FormatSpecification(AbjadValueObject):
     @property
     def client(self):
         return self._client
+
+    @property
+    def coerce_for_equality(self):
+        return self._coerce_for_equality
 
     @property
     def repr_args_values(self):

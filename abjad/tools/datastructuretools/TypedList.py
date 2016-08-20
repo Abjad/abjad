@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
-from abjad.tools.topleveltools.new import new
 
 
 class TypedList(TypedCollection):
@@ -202,36 +202,21 @@ class TypedList(TypedCollection):
         if self.keep_sorted:
             self.sort()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _repr_specification(self):
-        specification = self._storage_format_specification
-        return new(
-            specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
+    def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
-        superclass = super(TypedList, self)
-        specification = superclass._storage_format_specification
-        keyword_argument_names = specification.keyword_argument_names
-        if keyword_argument_names is None:
-            keyword_argument_names = agent.signature_keyword_names
-        keyword_argument_names = list(keyword_argument_names)
-        if (not self.keep_sorted and
-            'keep_sorted' in keyword_argument_names):
-            keyword_argument_names.remove('keep_sorted')
-        positional_argument_values = specification.positional_argument_values
-        return systemtools.StorageFormatSpecification(
+        names = list(agent.signature_keyword_names)
+        if 'items' in names:
+            names.remove('items')
+        if 'keep_sorted' in names:
+            names.remove('keep_sorted')
+        return systemtools.FormatSpecification(
             self,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
+            repr_is_indented=False,
+            storage_format_args_values=[self._collection],
+            storage_format_kwargs_names=names,
             )
-
     ### PUBLIC METHODS ###
 
     def append(self, item):

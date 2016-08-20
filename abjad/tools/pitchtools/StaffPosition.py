@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import numbers
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class StaffPosition(AbjadObject):
+class StaffPosition(AbjadValueObject):
     r'''Staff position.
 
     ..  container:: example

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import collections
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -196,6 +198,26 @@ class Scheme(AbjadValueObject):
             return self._quoting + self._formatted_value
         return self._formatted_value
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        if stringtools.is_string(self._value):
+            values = [self._value]
+        elif isinstance(self._value, collections.Iterable):
+            values = self._value
+        else:
+            values = [self._value]
+        names = []
+        if self.force_quotes:
+            names.append('force_quotes')
+        if self.quoting:
+            names.append('quoting')
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=names,
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -211,32 +233,6 @@ class Scheme(AbjadValueObject):
         if self._quoting is not None:
             return '#' + self._quoting + self._formatted_value
         return '#' + self._formatted_value
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools.topleveltools import new
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        if stringtools.is_string(self._value):
-            positional_argument_values = (self._value,)
-        else:
-            positional_argument_values = self._value
-        keyword_argument_names = []
-        if self.force_quotes:
-            keyword_argument_names.append('force_quotes')
-        if self.quoting:
-            keyword_argument_names.append('quoting')
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PUBLIC METHODS ###
 

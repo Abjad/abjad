@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -166,15 +167,6 @@ class Block(AbjadObject):
         return '\n'.join(self._get_format_pieces())
 
     @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_bracketed=True,
-            is_indented=False,
-            )
-
-    @property
     def _user_attributes(self):
         all_attributes = list(vars(self).keys())
         user_attributes = [x for x in all_attributes if not x.startswith('_')]
@@ -182,6 +174,13 @@ class Block(AbjadObject):
         return user_attributes
 
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_bracketed=True,
+            repr_is_indented=False,
+            )
 
     def _get_formatted_user_attributes(self):
         from abjad.tools import indicatortools

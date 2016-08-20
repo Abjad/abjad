@@ -166,50 +166,6 @@ class BurnishSpecifier(AbjadValueObject):
         else:
             return self._burnish_each_division(input_, divisions)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a burnish specifier with input parameters
-        equal to those of this burnish specifier. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> burnish_specifier_1 = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     left_counts=[1],
-                ... )
-                >>> burnish_specifier_2 = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     left_counts=[1],
-                ... )
-                >>> burnish_specifier_3 = rhythmmakertools.BurnishSpecifier()
-
-            ::
-
-                >>> burnish_specifier_1 == burnish_specifier_1
-                True
-                >>> burnish_specifier_1 == burnish_specifier_2
-                True
-                >>> burnish_specifier_1 == burnish_specifier_3
-                False
-                >>> burnish_specifier_2 == burnish_specifier_1
-                True
-                >>> burnish_specifier_2 == burnish_specifier_2
-                True
-                >>> burnish_specifier_2 == burnish_specifier_3
-                False
-                >>> burnish_specifier_3 == burnish_specifier_1
-                False
-                >>> burnish_specifier_3 == burnish_specifier_2
-                False
-                >>> burnish_specifier_3 == burnish_specifier_3
-                True
-
-        Returns true or false.
-        '''
-        from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, expr)
-
     def __format__(self, format_specification=''):
         r'''Formats burnish specifier.
 
@@ -240,57 +196,6 @@ class BurnishSpecifier(AbjadValueObject):
             format_specification=format_specification,
             )
 
-    def __hash__(self):
-        r'''Hashes burnish specifier.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(BurnishSpecifier, self).__hash__()
-
-    def __ne__(self, expr):
-        r'''Is true when `expr` does not equal burnish specifier.
-
-        ..  container:: example
-
-            ::
-
-                >>> burnish_specifier_1 = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     left_counts=[1],
-                ... )
-                >>> burnish_specifier_2 = rhythmmakertools.BurnishSpecifier(
-                ...     left_classes=[Rest, 0],
-                ...     left_counts=[1],
-                ... )
-                >>> burnish_specifier_3 = rhythmmakertools.BurnishSpecifier()
-
-            ::
-
-                >>> burnish_specifier_1 != burnish_specifier_1
-                False
-                >>> burnish_specifier_1 != burnish_specifier_2
-                False
-                >>> burnish_specifier_1 != burnish_specifier_3
-                True
-                >>> burnish_specifier_2 != burnish_specifier_1
-                False
-                >>> burnish_specifier_2 != burnish_specifier_2
-                False
-                >>> burnish_specifier_2 != burnish_specifier_3
-                True
-                >>> burnish_specifier_3 != burnish_specifier_1
-                True
-                >>> burnish_specifier_3 != burnish_specifier_2
-                True
-                >>> burnish_specifier_3 != burnish_specifier_3
-                False
-
-        Returns true or false.
-        '''
-        return super(BurnishSpecifier, self).__repr__()
-
     def __repr__(self):
         r'''Gets interpreter representation.
 
@@ -311,30 +216,6 @@ class BurnishSpecifier(AbjadValueObject):
         Returns string.
         '''
         return super(BurnishSpecifier, self).__repr__()
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
-        keyword_argument_names = list(agent.signature_keyword_names)
-        if not self.left_classes:
-            keyword_argument_names.remove('left_classes')
-        if not self.middle_classes:
-            keyword_argument_names.remove('middle_classes')
-        if not self.right_classes:
-            keyword_argument_names.remove('right_classes')
-        if not self.left_counts:
-            keyword_argument_names.remove('left_counts')
-        if not self.right_counts:
-            keyword_argument_names.remove('right_counts')
-        if self.outer_divisions_only is False:
-            keyword_argument_names.remove('outer_divisions_only')
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            )
 
     ### PRIVATE METHODS ###
 
@@ -498,6 +379,18 @@ class BurnishSpecifier(AbjadValueObject):
         # TODO: make the following work on Python 3:
         #assert tuple(burnished_weights) == tuple(unburnished_weights)
         return burnished_divisions
+
+    def _get_format_specification(self):
+        from abjad.tools import systemtools
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        for name in names[:]:
+            if not getattr(self, name):
+                names.remove(name)
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_kwargs_names=names,
+            )
 
     @staticmethod
     def _is_length_tuple(expr):

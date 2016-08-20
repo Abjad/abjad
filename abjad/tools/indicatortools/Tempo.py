@@ -183,7 +183,7 @@ class Tempo(AbjadValueObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
+        self,
         reference_duration=None,
         units_per_minute=None,
         textual_indication=None,
@@ -200,10 +200,10 @@ class Tempo(AbjadValueObject):
         if reference_duration:
             reference_duration = durationtools.Duration(reference_duration)
         prototype = (
-            int, 
-            float, 
+            int,
+            float,
             fractions.Fraction,
-            collections.Sequence, 
+            collections.Sequence,
             type(None),
             )
         assert isinstance(units_per_minute, prototype)
@@ -317,7 +317,7 @@ class Tempo(AbjadValueObject):
         ..  container:: example
 
             **Example 1.** Without custom markup:
-            
+
             ::
 
                 >>> tempo = Tempo((1, 4), 84, 'Allegro')
@@ -331,7 +331,7 @@ class Tempo(AbjadValueObject):
         ..  container:: example
 
             **Example 2.** With custom markup:
-            
+
             ::
 
                 >>> markup = Markup(r'\italic { Allegro }')
@@ -401,7 +401,7 @@ class Tempo(AbjadValueObject):
         new_reference_duration = durationtools.Duration(
             self.reference_duration)
         new_tempo = type(self)(
-            reference_duration=new_reference_duration, 
+            reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
         return new_tempo
@@ -439,7 +439,7 @@ class Tempo(AbjadValueObject):
         new_reference_duration = durationtools.Duration(
             self.reference_duration)
         new_tempo = type(self)(
-            reference_duration=new_reference_duration, 
+            reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
         return new_tempo
@@ -566,7 +566,7 @@ class Tempo(AbjadValueObject):
         new_reference_duration = durationtools.Duration(
             1, new_reference_duration_denominator)
         new_tempo = type(self)(
-            reference_duration=new_reference_duration, 
+            reference_duration=new_reference_duration,
             units_per_minute=new_units_per_minute,
             )
         return new_tempo
@@ -633,7 +633,7 @@ class Tempo(AbjadValueObject):
         if self.textual_indication is not None:
             text = self.textual_indication
             text = schemetools.Scheme.format_scheme_value(text)
-        if (self.reference_duration is not None and 
+        if (self.reference_duration is not None and
             self.units_per_minute is not None):
             equation = self._equation
         if self.custom_markup is not None:
@@ -658,13 +658,6 @@ class Tempo(AbjadValueObject):
             raise ValueError(result)
         return result
 
-    @property
-    def _repr_specification(self):
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
     ### PRIVATE METHODS ###
 
     def _make_lhs_score_markup(self, reference_duration=None):
@@ -680,12 +673,11 @@ class Tempo(AbjadValueObject):
             return self.custom_markup
         duration_log = int(math.log(self.reference_duration.denominator, 2))
         lhs = markuptools.Markup.note_by_number(
-            duration_log, 
+            duration_log,
             self.reference_duration.dot_count,
             1,
             )
         lhs = lhs.general_align('Y', Down).fontsize(-6)
-        left_space = markuptools.Markup.hspace(0.5)
         equals = markuptools.Markup('=')
         #right_space = markuptools.Markup.hspace(0.1)
         units = markuptools.Markup(self.units_per_minute)
@@ -1020,7 +1012,7 @@ class Tempo(AbjadValueObject):
         '''
         duration = durationtools.Duration(duration)
         # TODO: rewrite formula without line breaks;
-        #       use two or three temporary variables instead. 
+        #       use two or three temporary variables instead.
         whole_note_duration = 1000 \
             * durationtools.Multiplier(
                 self.reference_duration.denominator,
@@ -1110,8 +1102,8 @@ class Tempo(AbjadValueObject):
         Returns list of tempo / ratio pairs.
         '''
         from abjad.tools import sequencetools
-        allowable_numerators = range(1, maximum_numerator+1)
-        allowable_denominators = range(1, maximum_denominator+1)
+        allowable_numerators = range(1, maximum_numerator + 1)
+        allowable_denominators = range(1, maximum_denominator + 1)
         pairs = sequencetools.yield_outer_product_of_sequences([
             allowable_numerators,
             allowable_denominators,
@@ -1126,11 +1118,11 @@ class Tempo(AbjadValueObject):
         pairs = []
         for multiplier in multipliers:
             new_units_per_minute = multiplier * self.units_per_minute
-            if (integer_tempos_only and not 
+            if (integer_tempos_only and not
                 mathtools.is_integer_equivalent_number(new_units_per_minute)):
                 continue
             new_tempo = type(self)(
-                reference_duration=self.reference_duration, 
+                reference_duration=self.reference_duration,
                 units_per_minute=new_units_per_minute,
                 )
             ratio = mathtools.Ratio(multiplier.pair)
@@ -1462,7 +1454,7 @@ class Tempo(AbjadValueObject):
         lhs_score_markup = durationtools.Duration._to_score_markup(selection)
         lhs_score_markup = lhs_score_markup.scale((0.75, 0.75))
         equal_markup = markuptools.Markup('=')
-        if (isinstance(units_per_minute, fractions.Fraction) and 
+        if (isinstance(units_per_minute, fractions.Fraction) and
             not mathtools.is_integer_equivalent_number(units_per_minute)):
             rhs_markup = markuptools.Markup.make_improper_fraction_markup(
                 units_per_minute)

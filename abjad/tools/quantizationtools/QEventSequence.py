@@ -8,6 +8,7 @@ from abjad.tools import indicatortools
 from abjad.tools import mathtools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -192,20 +193,16 @@ class QEventSequence(AbjadObject):
         '''
         return len(self._sequence)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = ()
+    def _get_format_specification(self):
+        values = []
         if self.sequence:
-            positional_argument_values = (
-                self.sequence,
-                )
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=positional_argument_values,
-            keyword_argument_names=(),
+            values.append(self.sequence)
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=[],
             )
 
     ### PUBLIC PROPERTIES ###

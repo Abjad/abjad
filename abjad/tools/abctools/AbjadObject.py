@@ -124,16 +124,3 @@ class AbjadObject(AbstractBase):
     @property
     def _one_line_menu_summary(self):
         return str(self)
-
-#    @property
-#    def _repr_specification(self):
-#        from abjad.tools import systemtools
-#        return systemtools.StorageFormatSpecification(
-#            self,
-#            is_indented=False,
-#            )
-
-#    @property
-#    def _storage_format_specification(self):
-#        from abjad.tools import systemtools
-#        return systemtools.StorageFormatSpecification(self)

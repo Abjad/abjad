@@ -5,6 +5,7 @@ import itertools
 import types
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
@@ -191,21 +192,6 @@ class Selection(object):
     @property
     def _preprolated_duration(self):
         return sum(component._preprolated_duration for component in self)
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        if self._music:
-            positional_argument_values = (
-                self._music,
-                )
-        else:
-            positional_argument_values = ()
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PRIVATE METHODS ###
 
@@ -835,6 +821,15 @@ class Selection(object):
                     index = spanner._index(component)
                     receipt.add((spanner, index))
         return receipt
+
+    def _get_format_specification(self):
+        values = []
+        if self._music:
+            values.append(self._music)
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            )
 
     def _get_offset_lists(self):
         start_offsets, stop_offsets = [], []

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -125,6 +126,12 @@ class StemTremolo(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_is_indented=False,
+            )
+
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
@@ -136,14 +143,6 @@ class StemTremolo(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return str(self)
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            )
 
     ### PUBLIC PROPERTIES ###
 

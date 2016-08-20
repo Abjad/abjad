@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -61,16 +62,11 @@ class BarLine(AbjadValueObject):
     def _lilypond_format(self):
         return r'\bar "{}"'.format(self.abbreviation)
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                self.abbreviation,
-                ),
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_is_indented=False,
+            storage_format_args_values=[self.abbreviation],
             )
 
     ## PUBLIC PROPERTIES ##

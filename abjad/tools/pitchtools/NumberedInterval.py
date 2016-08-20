@@ -43,7 +43,7 @@ class NumberedInterval(Interval):
             message = 'can not initialize {}: {!r}.'
             message = message.format(type(self).__name__, arg)
             raise TypeError(message)
-        self._number = number
+        self._number = mathtools.integer_equivalent_number_to_integer(number)
 
     ### SPECIAL METHODS ###
 
@@ -152,19 +152,6 @@ class NumberedInterval(Interval):
     @property
     def _format_string(self):
         return '{}{}'.format(self._direction_symbol, abs(self.number))
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.number,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PUBLIC METHODS ###
 
@@ -369,7 +356,7 @@ class NumberedInterval(Interval):
         if not direction_number == 0:
             staff_positions *= direction_number
         named_interval = pitchtools.NamedInterval(
-            quality_string, 
+            quality_string,
             staff_positions,
             )
         return named_interval

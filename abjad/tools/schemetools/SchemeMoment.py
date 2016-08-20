@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import functools
 from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.schemetools.Scheme import Scheme
 
 
@@ -111,15 +112,16 @@ class SchemeMoment(Scheme):
         numerator, denominator = self._value.numerator, self._value.denominator
         return '(ly:make-moment {} {})'.format(numerator, denominator)
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=[
                 self._value.numerator,
                 self._value.denominator,
-                ),
+                ],
+            storage_format_kwargs_names=[],
             )
 
     ### PUBLIC PROPERTIES ###

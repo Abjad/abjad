@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import copy
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -206,6 +207,16 @@ class Articulation(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_format_specification(self):
+        values = [self.name]
+        if self.direction is not None:
+            values.append(self.direction)
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_is_indented=False,
+            )
+
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
@@ -224,23 +235,6 @@ class Articulation(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return str(self)
-
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = [self.name]
-        if self.direction is not None:
-            positional_argument_values.append(self.direction)
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PUBLIC PROPERTIES ###
 

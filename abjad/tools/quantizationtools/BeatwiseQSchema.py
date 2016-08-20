@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
+from abjad.tools import systemtools
 from abjad.tools.quantizationtools.QSchema import QSchema
 
 
@@ -292,20 +293,17 @@ class BeatwiseQSchema(QSchema):
         self._tempo = tempo
         QSchema.__init__(self, *args, **kwargs)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = self.items or ()
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=self.items or (),
+            storage_format_kwargs_names=[
                 'beatspan',
                 'search_tree',
                 'tempo',
-                ),
-            positional_argument_values=positional_argument_values,
+                ],
             )
 
     ### PUBLIC PROPERTIES ###

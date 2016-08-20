@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.schemetools.Scheme import Scheme
 
 
@@ -45,16 +46,14 @@ class SchemeVector(Scheme):
     def __init__(self, *args):
         Scheme.__init__(self, *args, quoting="'")
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
+    def _get_format_specification(self):
+        values = self._value
         if stringtools.is_string(self._value):
-            positional_argument_values = (self._value,)
-        else:
-            positional_argument_values = self._value
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=positional_argument_values,
+            values = [self._value]
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=[],
             )

@@ -3,12 +3,13 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
+from abjad.tools import systemtools
 from abjad.tools import timespantools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import override
 from abjad.tools.topleveltools import select
+from abjad.tools.topleveltools import set_
 Selection = selectiontools.Selection
 
 
@@ -150,32 +151,6 @@ class Spanner(AbjadObject):
     @property
     def _preprolated_duration(self):
         return sum([component._preprolated_duration for component in self])
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        if self._compact_summary == '':
-            positional_argument_values = None
-        else:
-            positional_argument_values = (self._compact_summary, )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
-        names = list(agent.signature_keyword_names)
-        if 'overrides' in names and not self.overrides:
-            names.remove('overrides')
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=names,
-            )
 
     @property
     def _summary(self):
@@ -374,6 +349,22 @@ class Spanner(AbjadObject):
         return sum(
             component._get_duration(in_seconds=in_seconds)
             for component in self
+            )
+
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        if self._compact_summary == '':
+            values = []
+        else:
+            values = [self._compact_summary]
+        if 'overrides' in names and not self.overrides:
+            names.remove('overrides')
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            repr_args_values=values,
+            storage_format_kwargs_names=names,
             )
 
     def _get_indicators(self, prototype=None, unwrap=True):

@@ -7,6 +7,7 @@ from abjad.tools import schemetools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools import systemtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import set_
@@ -61,29 +62,23 @@ class Scale(PitchClassSegment):
         mode = self.key_signature.mode.mode_name.title()
         return '{}{}'.format(letter, mode)
 
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=[
                 str(self.key_signature.tonic),
                 self.key_signature.mode.mode_name,
-                )
+                ],
             )
-
-    ### PRIVATE METHODS ###
 
     def _set_ascending_named_diatonic_pitches_on_logical_ties_in_expr(
         self, expr):
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
-        from abjad.tools import tonalanalysistools
         dicg = self.named_interval_class_segment
         length = len(dicg)
         octave_number = 4

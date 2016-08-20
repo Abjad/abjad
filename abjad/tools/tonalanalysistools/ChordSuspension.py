@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import re
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -88,29 +89,19 @@ class ChordSuspension(AbjadObject):
         else:
             return ''
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools.topleveltools import new
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = []
-        if self.start is not None and self.stop is not None:
-            positional_argument_values.append(self.start)
-            positional_argument_values.append(self.stop)
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        values = []
+        if self.start is not None and self.stop is not None:
+            values.append(self.start)
+            values.append(self.stop)
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            )
 
     def _initialize_by_pair(self, pair):
         start, stop = pair

@@ -5,6 +5,7 @@ import numbers
 from abjad.tools import mathtools
 from abjad.tools import schemetools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -271,26 +272,6 @@ class Markup(AbjadValueObject):
     def _lilypond_format(self):
         return '\n'.join(self._get_format_pieces())
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools.topleveltools import new
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
-        keyword_argument_names = list(agent.signature_keyword_names)
-        keyword_argument_names.remove('stack_priority')
-        keyword_argument_names = tuple(keyword_argument_names)
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            )
-
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
@@ -328,6 +309,16 @@ class Markup(AbjadValueObject):
                     content._get_format_pieces()])
         pieces.append('{}}}'.format(indent))
         return pieces
+
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        names.remove('stack_priority')
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_kwargs_names=names,
+            )
 
     @staticmethod
     def _parse_markup_command_argument(argument):
