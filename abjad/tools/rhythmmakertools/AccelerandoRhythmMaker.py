@@ -815,7 +815,6 @@ class AccelerandoRhythmMaker(RhythmMaker):
         return selection
 
     def _make_music(self, divisions, rotation):
-        from abjad.tools import rhythmmakertools
         selections = []
         interpolation_specifiers = self._get_interpolation_specifiers()
         beam_specifier = self._get_beam_specifier()

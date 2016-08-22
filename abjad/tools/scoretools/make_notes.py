@@ -3,13 +3,12 @@ import fractions
 import numbers
 from abjad.tools import durationtools
 from abjad.tools import mathtools
-from abjad.tools import pitchtools
 from abjad.tools import sequencetools
 
 
 def make_notes(
-    pitches, 
-    durations, 
+    pitches,
+    durations,
     decrease_durations_monotonically=True,
     use_messiaen_style_ties=False,
     ):
@@ -25,11 +24,11 @@ def make_notes(
 
             >>> notes = scoretools.make_notes([0], [(1, 16), (1, 8), (1, 8)])
             >>> notes
-            Selection(Note("c'16"), Note("c'8"), Note("c'8"))
-            >>> staff = Staff(notes)
+            Selection([Note("c'16"), Note("c'8"), Note("c'8")])
 
         ::
 
+            >>> staff = Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -53,11 +52,11 @@ def make_notes(
             ...     [(1, 16), (1, 8), (1, 8)],
             ...     )
             >>> notes
-            Selection(Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8"))
-            >>> staff = Staff(notes)
+            Selection([Note("c'16"), Note("d'8"), Note("e'8"), Note("f'16"), Note("g'8")])
 
         ::
 
+            >>> staff = Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -79,11 +78,11 @@ def make_notes(
 
             >>> notes = scoretools.make_notes([0], [(1, 16), (1, 12), (1, 8)])
             >>> notes
-            Selection(Note("c'16"), Tuplet(Multiplier(2, 3), "c'8"), Note("c'8"))
-            >>> staff = Staff(notes)
+            Selection([Note("c'16"), Tuplet(Multiplier(2, 3), "c'8"), Note("c'8")])
 
         ::
 
+            >>> staff = Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -111,11 +110,11 @@ def make_notes(
             ...     decrease_durations_monotonically=True,
             ...     )
             >>> notes
-            Selection(Note("c'2."), Note("c'16"))
-            >>> staff = Staff(notes)
+            Selection([Note("c'2."), Note("c'16")])
 
         ::
 
+            >>> staff = Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -139,11 +138,11 @@ def make_notes(
             ...     decrease_durations_monotonically=False,
             ...     )
             >>> notes
-            Selection(Note("c'16"), Note("c'2."))
-            >>> staff = Staff(notes)
+            Selection([Note("c'16"), Note("c'2.")])
 
         ::
 
+            >>> staff = Staff(notes)
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -166,9 +165,6 @@ def make_notes(
             ...     use_messiaen_style_ties=True,
             ...     )
             >>> staff = Staff(notes)
-
-        ::
-
             >>> show(staff) # doctest: +SKIP
 
         ..  doctest::
@@ -200,7 +196,7 @@ def make_notes(
     nonreduced_fractions = [mathtools.NonreducedFraction(_) for _ in durations]
     size = max(len(nonreduced_fractions), len(pitches))
     nonreduced_fractions = sequencetools.repeat_sequence_to_length(
-        nonreduced_fractions, 
+        nonreduced_fractions,
         size,
         )
     pitches = sequencetools.repeat_sequence_to_length(pitches, size)

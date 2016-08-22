@@ -14,6 +14,14 @@ from abjad.tools.topleveltools import select
 
 class Selection(object):
     r'''A selection of components.
+
+    ::
+
+        >>> staff = Staff("c'4 d'4 e'4 f'4")
+        >>> selection = selectiontools.Selection(staff[:])
+        >>> selection
+        Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+
     '''
 
     ### CLASS VARIABLES ###
@@ -177,7 +185,7 @@ class Selection(object):
 
         Returns string.
         '''
-        return '{}{!r}'.format(type(self).__name__, self._music)
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     def __setstate__(self, state):
         r'''Sets state of selection.
@@ -825,7 +833,7 @@ class Selection(object):
     def _get_format_specification(self):
         values = []
         if self._music:
-            values.append(self._music)
+            values = [list(self._music)]
         return systemtools.FormatSpecification(
             client=self,
             storage_format_args_values=values,
@@ -1126,10 +1134,10 @@ class Selection(object):
                 >>> for logical_tie in select(staff).by_logical_tie():
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'4"), Note("c'16"))
-                LogicalTie(Note("d'8"),)
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("f'4"), Note("f'16"))
+                LogicalTie([Note("c'4"), Note("c'16")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'4"), Note("f'16")])
 
         Returns new selection.
         '''
@@ -1181,8 +1189,8 @@ class Selection(object):
                 >>> for group in select(staff[:]).by_run((Note, Chord)):
                 ...     group
                 ...
-                Selection(Note("g'8"), Note("a'8"))
-                Selection(Chord("<b' d''>8"), Chord("<c'' e''>8"))
+                Selection([Note("g'8"), Note("a'8")])
+                Selection([Chord("<b' d''>8"), Chord("<c'' e''>8")])
 
         Returns new selection.
         '''
@@ -1285,14 +1293,14 @@ class Selection(object):
                 >>> for logical_tie in select(score).by_timeline_and_logical_tie():
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c''4"), Note("c''8"))
-                LogicalTie(Rest('r8'),)
-                LogicalTie(Note("g'4."), Note("g'8"))
-                LogicalTie(Note("d''8"),)
-                LogicalTie(Rest('r4'),)
-                LogicalTie(Rest('r16'),)
-                LogicalTie(Note("f'8."), Note("f'8"))
-                LogicalTie(Note("ef''4"),)
+                LogicalTie([Note("c''4"), Note("c''8")])
+                LogicalTie([Rest('r8')])
+                LogicalTie([Note("g'4."), Note("g'8")])
+                LogicalTie([Note("d''8")])
+                LogicalTie([Rest('r4')])
+                LogicalTie([Rest('r16')])
+                LogicalTie([Note("f'8."), Note("f'8")])
+                LogicalTie([Note("ef''4")])
 
         Returns new selection.
         '''

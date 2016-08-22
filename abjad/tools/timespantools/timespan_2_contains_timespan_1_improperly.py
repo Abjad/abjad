@@ -38,7 +38,7 @@ def timespan_2_contains_timespan_1_improperly(
             >>> start_index, stop_index = time_relation.get_offset_indices(*offset_lists)
             >>> selected_notes = staff[start_index:stop_index]
             >>> selected_notes
-            Selection(Note("a'4"),)
+            Selection([Note("a'4")])
 
         ::
 

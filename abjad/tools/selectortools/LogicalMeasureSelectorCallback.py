@@ -31,10 +31,10 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> for x in selector(staff):
             ...     x
             ...
-            Selection(Note("c'8"), Note("d'8"))
-            Selection(Note("e'8"), Note("f'8"))
-            Selection(Note("g'8"), Note("a'8"), Note("b'8"))
-            Selection(Note("c''8"),)
+            Selection([Note("c'8"), Note("d'8")])
+            Selection([Note("e'8"), Note("f'8")])
+            Selection([Note("g'8"), Note("a'8"), Note("b'8")])
+            Selection([Note("c''8")])
 
     ..  container:: example
 
@@ -47,7 +47,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> selector = selector.by_logical_measure()
             >>> selector = selector[0]
             >>> selector(staff)
-            Selection(Note("c'8"), Note("e'8"), Note("g'8"), Note("c''8"))
+            Selection([Note("c'8"), Note("e'8"), Note("g'8"), Note("c''8")])
 
     ..  container:: example
 
@@ -60,7 +60,7 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> selector = selector.by_logical_measure()
             >>> selector = selector[-1]
             >>> selector(staff)
-            Selection(Note("d'8"), Note("f'8"), Note("b'8"), Note("c''8"))
+            Selection([Note("d'8"), Note("f'8"), Note("b'8"), Note("c''8")])
 
     ..  container:: example
 
@@ -82,8 +82,8 @@ class LogicalMeasureSelectorCallback(AbjadValueObject):
             >>> for x in selector(score):
             ...     x
             ...
-            Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
-            Selection(Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4"))
+            Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
+            Selection([Note("g'4"), Note("a'4"), Note("b'4"), Note("c''4")])
 
     Groups components by the logical measure of component start offset.
     '''

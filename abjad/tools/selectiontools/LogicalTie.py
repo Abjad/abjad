@@ -20,13 +20,13 @@ class LogicalTie(Selection):
         ::
 
             >>> inspect_(staff[2]).get_logical_tie()
-            LogicalTie(Note("e'4"), Note("e'4"))
+            LogicalTie([Note("e'4"), Note("e'4")])
 
     '''
 
     ### CLASS VARIABLES ###
 
-    __slots__ = () 
+    __slots__ = ()
 
     ### PRIVATE METHODS ###
 

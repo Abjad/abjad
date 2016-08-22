@@ -427,7 +427,6 @@ class IncisedRhythmMaker(RhythmMaker):
         return selections
 
     def _prepare_input(self, rotation):
-        from abjad.tools import rhythmmakertools
         helper_functions = self.helper_functions or {}
         incise_specifier = self._get_incise_specifier()
         prefix_talea = incise_specifier.prefix_talea or ()

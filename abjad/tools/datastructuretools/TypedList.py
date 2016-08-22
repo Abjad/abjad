@@ -217,6 +217,7 @@ class TypedList(TypedCollection):
             storage_format_args_values=[self._collection],
             storage_format_kwargs_names=names,
             )
+
     ### PUBLIC METHODS ###
 
     def append(self, item):

@@ -66,11 +66,11 @@ def select_all_but_last_logical_tie_in_pitched_runs(expr=None):
             >>> for x in selector(staff):
             ...     x
             ...
-            LogicalTie(Note("c'4"),)
-            LogicalTie(Note("d'4"), Note("d'4"))
-            LogicalTie(Note("f'4"),)
-            LogicalTie(Note("a'4"),)
-            LogicalTie(Note("b'4"), Note("b'4"))
+            LogicalTie([Note("c'4")])
+            LogicalTie([Note("d'4"), Note("d'4")])
+            LogicalTie([Note("f'4")])
+            LogicalTie([Note("a'4")])
+            LogicalTie([Note("b'4"), Note("b'4")])
 
     '''
     from abjad.tools import selectortools

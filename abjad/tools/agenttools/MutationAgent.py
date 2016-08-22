@@ -20,7 +20,7 @@ class MutationAgent(abctools.AbjadObject):
         ::
 
             >>> mutate(staff[2:])
-            MutationAgent(client=Selection(Note("d'4"), Note("f'4")))
+            MutationAgent(client=Selection([Note("d'4"), Note("f'4")]))
 
     '''
 
@@ -97,7 +97,7 @@ class MutationAgent(abctools.AbjadObject):
 
                 >>> contents = mutate(container).eject_contents()
                 >>> contents
-                Selection(Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4"))
+                Selection([Note("c'4"), Note("c'4"), Note("d'4"), Note("d'4")])
 
             Container contents can be safely added to a new container:
 
@@ -473,9 +473,7 @@ class MutationAgent(abctools.AbjadObject):
 
         Returns none.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import selectiontools
-        Selection = selectiontools.Selection
         if isinstance(self._client, selectiontools.Selection):
             donors = self._client
         else:

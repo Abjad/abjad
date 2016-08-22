@@ -62,7 +62,7 @@ class TrillSpanner(Spanner):
             >>> attach(trill, staff[:1])
             Traceback (most recent call last):
             ...
-            Exception: TrillSpanner() attachment test fails for Selection(Note("c'4"),).
+            Exception: TrillSpanner() attachment test fails for Selection([Note("c'4")]).
 
     Formats LilyPond ``\startTrillSpan`` on first leaf in spanner.
 

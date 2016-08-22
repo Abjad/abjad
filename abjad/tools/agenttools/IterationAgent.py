@@ -146,7 +146,7 @@ class IterationAgent(abctools.AbjadObject):
             ::
 
                 >>> agent.client
-                Selection(Note("c'4"), Note("d'4"))
+                Selection([Note("c'4"), Note("d'4")])
 
         Returns component or selection.
         '''
@@ -967,10 +967,10 @@ class IterationAgent(abctools.AbjadObject):
                 >>> for logical_tie in iterate(staff).by_logical_tie():
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'4"), Note("c'16"))
-                LogicalTie(Note("d'8"),)
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("f'4"), Note("f'16"))
+                LogicalTie([Note("c'4"), Note("c'16")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'4"), Note("f'16")])
 
         ..  container:: example
 
@@ -1000,10 +1000,10 @@ class IterationAgent(abctools.AbjadObject):
                 >>> for logical_tie in iterate(staff).by_logical_tie(reverse=True):
                 ...     logical_tie
                 ...
-                LogicalTie(Note("f'4"), Note("f'16"))
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("d'8"),)
-                LogicalTie(Note("c'4"), Note("c'16"))
+                LogicalTie([Note("f'4"), Note("f'16")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("c'4"), Note("c'16")])
 
         ..  container:: example
 
@@ -1033,10 +1033,10 @@ class IterationAgent(abctools.AbjadObject):
                 >>> for logical_tie in iterate(staff).by_logical_tie(pitched=True):
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'4"), Note("c'16"))
-                LogicalTie(Note("d'8"),)
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("f'4"), Note("f'16"))
+                LogicalTie([Note("c'4"), Note("c'16")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'4"), Note("f'16")])
 
         ..  container:: example
 
@@ -1066,8 +1066,8 @@ class IterationAgent(abctools.AbjadObject):
                 >>> for logical_tie in iterate(staff).by_logical_tie(nontrivial=True):
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'4"), Note("c'16"))
-                LogicalTie(Note("f'4"), Note("f'16"))
+                LogicalTie([Note("c'4"), Note("c'16")])
+                LogicalTie([Note("f'4"), Note("f'16")])
 
         ..  container:: example
 
@@ -1087,8 +1087,8 @@ class IterationAgent(abctools.AbjadObject):
                 >>> for logical_tie in iterate(staff[1]).by_logical_tie():
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'1"), Note("c'2"))
-                LogicalTie(Note("d'2"), Note("d'1"))
+                LogicalTie([Note("c'1"), Note("c'2")])
+                LogicalTie([Note("d'2"), Note("d'1")])
 
             ::
 
@@ -1096,8 +1096,8 @@ class IterationAgent(abctools.AbjadObject):
                 ...     parentage_mask=staff[1]):
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'2"),)
-                LogicalTie(Note("d'2"),)
+                LogicalTie([Note("c'2")])
+                LogicalTie([Note("d'2")])
 
         ..  container:: example
 
@@ -1134,12 +1134,12 @@ class IterationAgent(abctools.AbjadObject):
                 ...     with_grace_notes=True,
                 ...     ):
                 ...     logical_tie
-                LogicalTie(Note("c'8"),)
-                LogicalTie(Note("cf''16"),)
-                LogicalTie(Note("bf'16"),)
-                LogicalTie(Note("d'8"),)
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("f'8"),)
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("cf''16")])
+                LogicalTie([Note("bf'16")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8")])
 
         ..  container:: example
 
@@ -1176,12 +1176,12 @@ class IterationAgent(abctools.AbjadObject):
                 ...     with_grace_notes=True,
                 ...     ):
                 ...     logical_tie
-                LogicalTie(Note("c'8"),)
-                LogicalTie(Note("d'8"),)
-                LogicalTie(Note("af'16"),)
-                LogicalTie(Note("gf'16"),)
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("f'8"),)
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("af'16")])
+                LogicalTie([Note("gf'16")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8")])
 
         ..  container:: example
 
@@ -1230,14 +1230,14 @@ class IterationAgent(abctools.AbjadObject):
                 ...     ):
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'8"),)
-                LogicalTie(Note("cf''16"),)
-                LogicalTie(Note("bf'16"),)
-                LogicalTie(Note("d'8"),)
-                LogicalTie(Note("af'16"),)
-                LogicalTie(Note("gf'16"),)
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("f'8"),)
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("cf''16")])
+                LogicalTie([Note("bf'16")])
+                LogicalTie([Note("d'8")])
+                LogicalTie([Note("af'16")])
+                LogicalTie([Note("gf'16")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8")])
 
         Returns generator.
         '''
@@ -2285,14 +2285,14 @@ class IterationAgent(abctools.AbjadObject):
                 >>> for logical_tie in iterate(score).by_timeline_and_logical_tie():
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c''4"), Note("c''8"))
-                LogicalTie(Rest('r8'),)
-                LogicalTie(Note("g'4."), Note("g'8"))
-                LogicalTie(Note("d''8"),)
-                LogicalTie(Rest('r4'),)
-                LogicalTie(Rest('r16'),)
-                LogicalTie(Note("f'8."), Note("f'8"))
-                LogicalTie(Note("ef''4"),)
+                LogicalTie([Note("c''4"), Note("c''8")])
+                LogicalTie([Rest('r8')])
+                LogicalTie([Note("g'4."), Note("g'8")])
+                LogicalTie([Note("d''8")])
+                LogicalTie([Rest('r4')])
+                LogicalTie([Rest('r16')])
+                LogicalTie([Note("f'8."), Note("f'8")])
+                LogicalTie([Note("ef''4")])
 
         ..  container:: example
 
@@ -2333,14 +2333,14 @@ class IterationAgent(abctools.AbjadObject):
                 ...     ):
                 ...     logical_tie
                 ...
-                LogicalTie(Note("ef''4"),)
-                LogicalTie(Note("f'8."), Note("f'8"))
-                LogicalTie(Rest('r4'),)
-                LogicalTie(Rest('r16'),)
-                LogicalTie(Note("g'4."), Note("g'8"))
-                LogicalTie(Note("d''8"),)
-                LogicalTie(Note("c''4"), Note("c''8"))
-                LogicalTie(Rest('r8'),)
+                LogicalTie([Note("ef''4")])
+                LogicalTie([Note("f'8."), Note("f'8")])
+                LogicalTie([Rest('r4')])
+                LogicalTie([Rest('r16')])
+                LogicalTie([Note("g'4."), Note("g'8")])
+                LogicalTie([Note("d''8")])
+                LogicalTie([Note("c''4"), Note("c''8")])
+                LogicalTie([Rest('r8')])
 
         ..  container:: example
 
@@ -2353,11 +2353,11 @@ class IterationAgent(abctools.AbjadObject):
                 ...     ):
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c''4"), Note("c''8"))
-                LogicalTie(Note("g'4."), Note("g'8"))
-                LogicalTie(Note("d''8"),)
-                LogicalTie(Note("f'8."), Note("f'8"))
-                LogicalTie(Note("ef''4"),)
+                LogicalTie([Note("c''4"), Note("c''8")])
+                LogicalTie([Note("g'4."), Note("g'8")])
+                LogicalTie([Note("d''8")])
+                LogicalTie([Note("f'8."), Note("f'8")])
+                LogicalTie([Note("ef''4")])
 
         ..  container:: example
 
@@ -2370,9 +2370,9 @@ class IterationAgent(abctools.AbjadObject):
                 ...     ):
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c''4"), Note("c''8"))
-                LogicalTie(Note("g'4."), Note("g'8"))
-                LogicalTie(Note("f'8."), Note("f'8"))
+                LogicalTie([Note("c''4"), Note("c''8")])
+                LogicalTie([Note("g'4."), Note("g'8")])
+                LogicalTie([Note("f'8."), Note("f'8")])
 
         '''
         visited_logical_ties = set()
@@ -2537,11 +2537,11 @@ class IterationAgent(abctools.AbjadObject):
                 >>> for item in iterate(staff).by_topmost_logical_ties_and_components():
                 ...     item
                 ...
-                LogicalTie(Note("c'8"), Note("c'32"))
-                LogicalTie(Note("d'8"), Note("d'32"))
+                LogicalTie([Note("c'8"), Note("c'32")])
+                LogicalTie([Note("d'8"), Note("d'32")])
                 Tuplet(Multiplier(2, 3), "e'8 f'8 g'8")
-                LogicalTie(Note("a'8"), Note("a'32"))
-                LogicalTie(Note("b'8"), Note("b'32"))
+                LogicalTie([Note("a'8"), Note("a'32")])
+                LogicalTie([Note("b'8"), Note("b'32")])
 
         Returns generator.
         '''

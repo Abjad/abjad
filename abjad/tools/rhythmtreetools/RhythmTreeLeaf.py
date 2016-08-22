@@ -24,7 +24,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
 
         >>> result = leaf((1, 8))
         >>> result
-        Selection(Note("c'2"), Note("c'8"))
+        Selection([Note("c'2"), Note("c'8")])
 
     Generates rests when called, if `is_pitched` is False:
 
@@ -32,7 +32,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
 
         >>> rhythmtreetools.RhythmTreeLeaf(
         ...     preprolated_duration=7, is_pitched=False)((1, 16))
-        Selection(Rest('r4..'),)
+        Selection([Rest('r4..')])
 
     '''
 
@@ -66,7 +66,7 @@ class RhythmTreeLeaf(RhythmTreeMixin, TreeNode):
 
             >>> leaf = rhythmtreetools.RhythmTreeLeaf(5)
             >>> leaf((1, 4))
-            Selection(Note("c'1"), Note("c'4"))
+            Selection([Note("c'1"), Note("c'4")])
 
         Returns sequence of components.
         '''

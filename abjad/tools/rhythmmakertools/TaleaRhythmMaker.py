@@ -261,10 +261,10 @@ class TaleaRhythmMaker(RhythmMaker):
 
                 >>> for selection in selections:
                 ...     selection
-                Selection(Note("c'16"), Note("c'8"), Note("c'8."))
-                Selection(Note("c'4"), Note("c'16"), Note("c'8"), Note("c'16"))
-                Selection(Note("c'8"), Note("c'4"))
-                Selection(Note("c'16"), Note("c'8"), Note("c'8."), Note("c'8"))
+                Selection([Note("c'16"), Note("c'8"), Note("c'8.")])
+                Selection([Note("c'4"), Note("c'16"), Note("c'8"), Note("c'16")])
+                Selection([Note("c'8"), Note("c'4")])
+                Selection([Note("c'16"), Note("c'8"), Note("c'8."), Note("c'8")])
 
         ..  todo:: Add rotation examples.
 

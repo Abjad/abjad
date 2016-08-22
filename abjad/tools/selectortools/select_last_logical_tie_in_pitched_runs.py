@@ -55,8 +55,8 @@ def select_last_logical_tie_in_pitched_runs(expr=None):
             >>> for x in selector(staff):
             ...     x
             ...
-            LogicalTie(Note("d'8"), Note("d'4"))
-            LogicalTie(Note("f'4."),)
+            LogicalTie([Note("d'8"), Note("d'4")])
+            LogicalTie([Note("f'4.")])
 
     '''
     from abjad.tools import selectortools

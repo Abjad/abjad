@@ -38,7 +38,7 @@ class CountsSelectorCallback(AbjadValueObject):
             >>> selector = selector.by_counts([3])
             >>> staff = Staff("c'8 r8 d'8 e'8 r8 f'8 g'8 a'8 b'8 r8 c''8")
             >>> selector(staff)
-            Selection(Selection(Note("c'8"), Rest('r8'), Note("d'8")),)
+            Selection([Selection([Note("c'8"), Rest('r8'), Note("d'8")])])
 
     ..  container:: example
 
@@ -50,7 +50,7 @@ class CountsSelectorCallback(AbjadValueObject):
             >>> selector = selector.by_counts([3])
             >>> numbers = [1, 'two', 'three', 4, -5, 'foo', 7.0, 8]
             >>> selector(numbers)
-            Selection(Selection(1, 'two', 'three'),)
+            Selection([Selection([1, 'two', 'three'])])
 
     '''
 

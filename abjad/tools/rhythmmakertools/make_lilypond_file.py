@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools import indicatortools
 from abjad.tools import lilypondfiletools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
@@ -9,8 +8,8 @@ from abjad.tools.topleveltools import mutate
 
 
 def make_lilypond_file(
-    selections, 
-    divisions, 
+    selections,
+    divisions,
     implicit_scaling=None,
     pitched_staff=None,
     time_signatures=None,

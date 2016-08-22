@@ -154,18 +154,6 @@ class Component(AbjadObject):
         self._update_now(indicators=True)
         return self._format_component()
 
-    @property
-    def _repr_specification(self):
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            repr_text='{}({!r})'.format(
-                type(self).__name__,
-                self._compact_representation,
-                ),
-            positional_argument_values=(),
-            )
-
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
@@ -437,6 +425,17 @@ class Component(AbjadObject):
 
     def _get_format_pieces(self):
         return self._format_component(pieces=True)
+
+    def _get_format_specification(self):
+        values = []
+        summary = self._contents_summary
+        if summary:
+            values.append(summary)
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=values,
+            storage_format_kwargs_names=[]
+            )
 
     def _get_grace_containers(self, kind=None):
         from abjad.tools import scoretools

@@ -3,6 +3,7 @@ from abjad.tools import durationtools
 from abjad.tools import mathtools
 from abjad.tools import selectiontools
 from abjad.tools import sequencetools
+from abjad.tools import systemtools
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
 from abjad.tools.scoretools.Component import Component
@@ -397,44 +398,33 @@ class Container(Component):
     def _preprolated_duration(self):
         return self._contents_duration
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = ()
-        if len(self):
-            positional_argument_values = (
-                self._contents_summary,
-                )
-        keyword_argument_names = ()
-        if self.is_simultaneous:
-            keyword_argument_names = (
-                'is_simultaneous',
-                )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=positional_argument_values,
-            keyword_argument_names=keyword_argument_names,
-            )
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        if not self:
-            positional_argument_values = ()
-        else:
+    def _get_format_specification(self):
+        from abjad.tools import scoretools
+        repr_text = None
+        repr_args_values = []
+        repr_kwargs_names = []
+        if self.is_simultaneous:
+            repr_kwargs_names.append('is_simultaneous')
+        storage_format_args_values = []
+        if self:
+            repr_args_values.append(self._contents_summary)
             lilypond_format = ' '.join(format(x, 'lilypond') for x in self)
             lilypond_format = lilypond_format.replace('\n', ' ')
             lilypond_format = lilypond_format.replace('\t', ' ')
             lilypond_format = lilypond_format.replace('  ', ' ')
-            positional_argument_values = (lilypond_format,)
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
+            storage_format_args_values.append(lilypond_format)
+            if not all(isinstance(x, scoretools.Leaf) for x in self):
+                repr_text = self._get_abbreviated_string_format()
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=repr_args_values,
+            repr_kwargs_names=repr_kwargs_names,
+            repr_text=repr_text,
+            storage_format_args_values=storage_format_args_values,
+            storage_format_kwargs_names=[],
             )
-
-    ### PRIVATE METHODS ###
 
     def _append_without_withdrawing_from_crossing_spanners(self, component):
         '''Not composer-safe.

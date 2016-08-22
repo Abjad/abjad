@@ -102,8 +102,8 @@ class NoteRhythmMaker(RhythmMaker):
                 >>> result = rhythm_maker(divisions)
                 >>> for x in result:
                 ...     x
-                Selection(Note("c'2"), Note("c'8"))
-                Selection(Note("c'4."),)
+                Selection([Note("c'2"), Note("c'8")])
+                Selection([Note("c'4.")])
 
         Returns list of selections. Each selection holds one or more notes.
         '''

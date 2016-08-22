@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -58,6 +59,22 @@ class NoteHeadInventory(TypedList):
 
     ### PRIVATE METHODS ###
 
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        if 'client' in names:
+            names.remove('client')
+        if 'items' in names:
+            names.remove('items')
+        if 'keep_sorted' in names:
+            names.remove('keep_sorted')
+        return systemtools.FormatSpecification(
+            self,
+            repr_is_indented=False,
+            storage_format_args_values=[self._collection],
+            storage_format_kwargs_names=names,
+            )
+
     def _on_insertion(self, item):
         item._client = self.client
 
@@ -68,7 +85,6 @@ class NoteHeadInventory(TypedList):
 
     @property
     def _item_coercer(self):
-        from abjad.tools import scoretools
         def coerce_(token):
             if not isinstance(token, scoretools.NoteHead):
                 token = scoretools.NoteHead(
@@ -76,18 +92,8 @@ class NoteHeadInventory(TypedList):
                     )
                 token._client = self.client
             return token
+        from abjad.tools import scoretools
         return coerce_
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                self._collection,
-                )
-            )
 
     ### PUBLIC PROPERTIES ###
 

@@ -19,7 +19,7 @@ def make_rests(
         ...     [(5, 16), (9, 16)],
         ...     decrease_durations_monotonically=True,
         ...     )
-        Selection(Rest('r4'), Rest('r16'), Rest('r2'), Rest('r16'))
+        Selection([Rest('r4'), Rest('r16'), Rest('r2'), Rest('r16')])
 
     Makes rests and increase durations monotonically:
 
@@ -29,7 +29,7 @@ def make_rests(
         ...     [(5, 16), (9, 16)],
         ...     decrease_durations_monotonically=False,
         ...     )
-        Selection(Rest('r16'), Rest('r4'), Rest('r16'), Rest('r2'))
+        Selection([Rest('r16'), Rest('r4'), Rest('r16'), Rest('r2')])
 
     Make tied rests:
 
@@ -56,7 +56,6 @@ def make_rests(
 
     Returns list of rests.
     '''
-    from abjad.tools import scoretools
     from abjad.tools import scoretools
 
     # check input
