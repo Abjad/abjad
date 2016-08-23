@@ -82,30 +82,6 @@ class Context(Container):
             return Container.__repr__(self)
         return self._get_abbreviated_string_format()
 
-    def _get_abbreviated_string_format(self):
-        if 0 < len(self):
-            summary = str(len(self))
-        else:
-            summary = ''
-        if self.is_simultaneous:
-            open_bracket_string, close_bracket_string = '<<', '>>'
-        else:
-            open_bracket_string, close_bracket_string = '{', '}'
-        name = self.name
-        if name is not None:
-            name = '-"{}"'.format(name)
-        else:
-            name = ''
-        result = '<{}{}{}{}{}>'
-        result = result.format(
-            self.context_name,
-            name,
-            open_bracket_string,
-            summary,
-            close_bracket_string,
-            )
-        return result
-
     ### PRIVATE PROPERTIES ###
 
     @property

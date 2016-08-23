@@ -400,6 +400,39 @@ class Container(Component):
 
     ### PRIVATE METHODS ###
 
+    def _get_abbreviated_string_format(self):
+        if 0 < len(self):
+            summary = str(len(self))
+        else:
+            summary = ''
+        if self.is_simultaneous:
+            open_bracket_string, close_bracket_string = '<<', '>>'
+        else:
+            open_bracket_string, close_bracket_string = '{', '}'
+        name = self.name
+        if name is not None:
+            name = '-"{}"'.format(name)
+        else:
+            name = ''
+        if hasattr(self, '_context_name'):
+            result = '<{}{}{}{}{}>'
+            result = result.format(
+                self.context_name,
+                name,
+                open_bracket_string,
+                summary,
+                close_bracket_string,
+                )
+        else:
+            result = '<{}{}{}{}>'
+            result = result.format(
+                name,
+                open_bracket_string,
+                summary,
+                close_bracket_string,
+                )
+        return result
+
     def _get_format_specification(self):
         from abjad.tools import scoretools
         repr_text = None

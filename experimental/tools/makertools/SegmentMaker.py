@@ -49,13 +49,13 @@ class SegmentMaker(AbjadObject):
         r'''Is true if `expr` is a segment-maker with equivalent properties.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
+        return systemtools.TestManager.compare_objects(self, expr)
 
     def __hash__(self):
         r'''Hashes segment-maker.
         '''
         from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
     def __illustrate__(self, **kwargs):
