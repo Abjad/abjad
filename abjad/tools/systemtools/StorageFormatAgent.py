@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 import collections
+import platform
 import sys
 import types
 from abjad.tools.abctools import AbjadValueObject
 try:
-    import funcsigs as inspect
+    import funcsigs
 except ImportError:
-    import inspect
+    import inspect as funcsigs
 
 
 class StorageFormatAgent(AbjadValueObject):
@@ -490,8 +491,9 @@ class StorageFormatAgent(AbjadValueObject):
             values.append(self._client)
         else:
             values.append(type(self._client))
-        template_dict = self.get_template_dict()
-        return tuple(self._make_hashable(_) for _ in template_dict.values())
+        template_items = sorted(self.get_template_dict().items())
+        values.extend(self._make_hashable(v) for k, v in template_items)
+        return tuple(values)
 
     def get_import_statements(self):
         r'''Gets import statements.
@@ -655,25 +657,41 @@ class StorageFormatAgent(AbjadValueObject):
         accepts_kwargs = False
         if not isinstance(subject, type):
             subject = type(subject)
-        try:
-            signature = inspect.signature(subject)
-        except ValueError:
-            return (
-                positional_names,
-                keyword_names,
-                accepts_args,
-                accepts_kwargs,
-                )
+        if platform.python_implementation() == 'PyPy':
+            if hasattr(subject.__init__.func_code, 'co_filename'):
+                signature = funcsigs.signature(subject.__init__)
+            elif hasattr(subject.__new__.func_code, 'co_filename'):
+                signature = funcsigs.signature(subject.__new__)
+            else:
+                return (
+                    positional_names,
+                    keyword_names,
+                    accepts_args,
+                    accepts_kwargs,
+                    )
+        else:
+            try:
+                signature = funcsigs.signature(subject)
+            except ValueError:
+                return (
+                    positional_names,
+                    keyword_names,
+                    accepts_args,
+                    accepts_kwargs,
+                    )
         for name, parameter in signature.parameters.items():
-            if parameter.kind == inspect._POSITIONAL_OR_KEYWORD:
+            if parameter.kind == funcsigs._POSITIONAL_OR_KEYWORD:
                 if parameter.default == parameter.empty:
                     positional_names.append(name)
                 else:
                     keyword_names.append(name)
-            elif parameter.kind == inspect._VAR_POSITIONAL:
+            elif parameter.kind == funcsigs._VAR_POSITIONAL:
                 accepts_args = True
-            elif parameter.kind == inspect._VAR_KEYWORD:
+            elif parameter.kind == funcsigs._VAR_KEYWORD:
                 accepts_kwargs = True
+        if platform.python_implementation() == 'PyPy':
+            if positional_names:
+                positional_names.pop(0)
         return (
             positional_names,
             keyword_names,
