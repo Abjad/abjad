@@ -658,6 +658,12 @@ class StorageFormatAgent(AbjadValueObject):
         if not isinstance(subject, type):
             subject = type(subject)
         if platform.python_implementation() == 'PyPy':
+            # Under PyPy, funcsigs can't automatically find the correct 
+            # initializer or constructor, so must be told what's desired.
+            # PyPy also seems to create function objects that don't exist
+            # under CPython, so we have to check for the existence of a 
+            # filename to prove that those functions / methods are actually
+            # being pulled from code that exists on the filesystem.
             if hasattr(subject.__init__.func_code, 'co_filename'):
                 signature = funcsigs.signature(subject.__init__)
             elif hasattr(subject.__new__.func_code, 'co_filename'):
@@ -690,6 +696,7 @@ class StorageFormatAgent(AbjadValueObject):
             elif parameter.kind == funcsigs._VAR_KEYWORD:
                 accepts_kwargs = True
         if platform.python_implementation() == 'PyPy':
+            # Funcsigs under PyPy doesn't discard cls or self.
             if positional_names:
                 positional_names.pop(0)
         return (
