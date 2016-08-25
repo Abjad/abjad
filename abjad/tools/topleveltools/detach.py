@@ -29,8 +29,8 @@ def detach(prototype, component_expression=None):
                     component_expression._indicator_expressions.remove(x)
                     result.append(x)
                 # indicator is a expression
-                elif hasattr(x, 'indicator') and \
-                    isinstance(x.indicator, prototype):
+                elif (hasattr(x, 'indicator') and
+                    isinstance(x.indicator, prototype)):
                     x._detach()
                     result.append(x.indicator)
             result = tuple(result)
@@ -39,7 +39,9 @@ def detach(prototype, component_expression=None):
         if isinstance(prototype, spannertools.Spanner):
             spanners = inspector.get_spanners(prototype)
         elif isinstance(prototype, scoretools.GraceContainer):
-            grace_containers = inspector.get_grace_containers(prototype)
+            grace_containers = inspector.get_grace_containers(
+                kind=prototype.kind,
+                )
         else:
             assert hasattr(component_expression, '_indicator_expressions')
             result = []
@@ -47,7 +49,7 @@ def detach(prototype, component_expression=None):
                 if x == prototype:
                     component_expression._indicator_expressions.remove(x)
                     result.append(x)
-                # indicator is a expression
+                # indicator is an expression
                 elif hasattr(x, 'indicator') and x.indicator == prototype:
                     x._detach()
                     result.append(x.indicator)
