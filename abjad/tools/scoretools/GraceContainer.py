@@ -67,6 +67,178 @@ class GraceContainer(Container):
     Fill grace containers with notes, rests or chords.
 
     Attach grace containers to notes, rests or chords.
+
+    ..  container:: example
+
+        **Example 3.** Detaches all grace containers:
+
+        ::
+
+            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> note = Note("cs'16")
+            >>> grace_container = scoretools.GraceContainer(
+            ...     [note],
+            ...     kind='grace',
+            ...     )
+            >>> attach(grace_container, voice[1])
+            >>> note = Note("ds'16")
+            >>> after_grace_container = scoretools.GraceContainer(
+            ...     [note],
+            ...     kind='after',
+            ...     )
+            >>> attach(after_grace_container, voice[1])
+            >>> show(voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'4
+                \grace {
+                    cs'16
+                }
+                \afterGrace
+                d'4
+                {
+                    ds'16
+                }
+                e'4
+                f'4
+            }
+
+        ::
+
+            >>> detach(scoretools.GraceContainer, voice[1])
+            (GraceContainer(), GraceContainer())
+            >>> show(voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'4
+                d'4
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        **Example 4.** Detaches (proper) grace container but leaves after grace
+        container attached:
+
+        ::
+
+            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> note = Note("cs'16")
+            >>> grace_container = scoretools.GraceContainer(
+            ...     [note],
+            ...     kind='grace',
+            ...     )
+            >>> attach(grace_container, voice[1])
+            >>> note = Note("ds'16")
+            >>> after_grace_container = scoretools.GraceContainer(
+            ...     [note],
+            ...     kind='after',
+            ...     )
+            >>> attach(after_grace_container, voice[1])
+            >>> show(voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'4
+                \grace {
+                    cs'16
+                }
+                \afterGrace
+                d'4
+                {
+                    ds'16
+                }
+                e'4
+                f'4
+            }
+
+        ::
+
+            >>> detach(grace_container, voice[1])
+            (GraceContainer(),)
+            >>> show(voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'4
+                \afterGrace
+                d'4
+                {
+                    ds'16
+                }
+                e'4
+                f'4
+            }
+
+    ..  container:: example
+
+        **Example 5.** Detaches after grace container but leaves (proper) grace
+        container attached:
+
+        ::
+
+            >>> voice = Voice("c'4 d'4 e'4 f'4")
+            >>> note = Note("cs'16")
+            >>> grace_container = scoretools.GraceContainer(
+            ...     [note],
+            ...     kind='grace',
+            ...     )
+            >>> attach(grace_container, voice[1])
+            >>> note = Note("ds'16")
+            >>> after_grace_container = scoretools.GraceContainer(
+            ...     [note],
+            ...     kind='after',
+            ...     )
+            >>> attach(after_grace_container, voice[1])
+            >>> show(voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'4
+                \grace {
+                    cs'16
+                }
+                \afterGrace
+                d'4
+                {
+                    ds'16
+                }
+                e'4
+                f'4
+            }
+
+        ::
+
+            >>> detach(after_grace_container, voice[1])
+            (GraceContainer(),)
+            >>> show(voice) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(voice)
+            \new Voice {
+                c'4
+                \grace {
+                    cs'16
+                }
+                d'4
+                e'4
+                f'4
+            }
+
     '''
 
     ### CLASS VARIABLES ###
