@@ -93,17 +93,6 @@ class StorageFormatAgent(AbjadValueObject):
             result = self._client.__name__
         return [result]
 
-    def _format_class_name_prefix(self, as_storage_format):
-        agent = StorageFormatAgent(self._client)
-        if not isinstance(self._client, type):
-            class_name = type(self._client).__name__
-        else:
-            class_name = self._client.__name__
-        if as_storage_format:
-            tools_package_name = agent.get_tools_package_name()
-            return '{}.{}'.format(tools_package_name, class_name)
-        return class_name
-
     def _format_specced_object(self, as_storage_format=True):
         formatting_keywords = self._get_formatting_keywords(as_storage_format)
         args_values = formatting_keywords['args_values']
@@ -119,7 +108,7 @@ class StorageFormatAgent(AbjadValueObject):
             result.append(text)
         else:
             prefix, infix, suffix = self._get_whitespace(is_indented)
-            class_name_prefix = self._format_class_name_prefix(as_storage_format)
+            class_name_prefix = self.get_class_name_prefix(as_storage_format)
             positional_argument_pieces = []
             for value in args_values:
                 agent = type(self)(value)
@@ -481,11 +470,24 @@ class StorageFormatAgent(AbjadValueObject):
 
     ### PUBLIC METHODS ###
 
-    def get_hash_values(self):
-        r'''Gets hash values for `subject`.
+    def get_class_name_prefix(
+        self,
+        as_storage_format,
+        include_root_package=None,
+        ):
+        agent = StorageFormatAgent(self._client)
+        if not isinstance(self._client, type):
+            class_name = type(self._client).__name__
+        else:
+            class_name = self._client.__name__
+        if as_storage_format:
+            if self.format_specification.storage_format_includes_root_package:
+                return '.'.join(self._get_module_path_parts(self._client))
+            tools_package_name = agent.get_tools_package_name()
+            return '{}.{}'.format(tools_package_name, class_name)
+        return class_name
 
-        Return tuple.
-        '''
+    def get_hash_values(self):
         values = []
         if isinstance(self._client, type):
             values.append(self._client)
