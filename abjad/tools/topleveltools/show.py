@@ -24,6 +24,7 @@ def show(expr, return_timing=False, **kwargs):
     Returns pair of `abjad_formatting_time` and `lilypond_rendering_time`
     when `return_timing` is true.
     '''
+    from abjad import abjad_configuration
     from abjad.tools import systemtools
     from abjad.tools import topleveltools
     assert hasattr(expr, '__illustrate__')
@@ -34,5 +35,8 @@ def show(expr, return_timing=False, **kwargs):
     success = result[3]
     if success:
         systemtools.IOManager.open_file(pdf_file_path)
+    else:
+        with open(abjad_configuration.lilypond_log_file_path, 'r') as fp:
+            print(fp.read())
     if return_timing:
         return abjad_formatting_time, lilypond_rendering_time
