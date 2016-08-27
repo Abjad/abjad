@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -56,16 +57,13 @@ class PostscriptOperator(AbjadValueObject):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        arguments = self.arguments or ()
-        positional_argument_values = (self.name,) + arguments
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
+    def _get_format_specification(self):
+        values = [self.name] + list(self.arguments or ())
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=values,
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
             )
 
     ### PUBLIC PROPERTIES ###

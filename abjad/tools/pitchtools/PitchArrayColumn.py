@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import sequencetools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.pitchtools.PitchArrayCell import PitchArrayCell
 
 
-class PitchArrayColumn(AbjadObject):
+class PitchArrayColumn(AbjadValueObject):
     '''Pitch array column.
 
     ..  container:: example

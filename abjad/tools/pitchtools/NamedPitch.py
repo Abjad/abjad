@@ -426,17 +426,6 @@ class NamedPitch(Pitch):
     def _lilypond_format(self):
         return str(self)
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                self.pitch_name,
-                )
-            )
-
     ### PRIVATE METHODS ###
 
     def _initialize_by_named_pitch(self, named_pitch):

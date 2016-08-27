@@ -120,26 +120,6 @@ class Leaf(Component):
     def _preprolated_duration(self):
         return self._multiplied_duration
 
-    @property
-    def _repr_specification(self):
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            body_text=repr(self._compact_representation),
-            positional_argument_values=(),
-            )
-
-    @property
-    def _storage_format_specification(self):
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                format(self, 'lilypond'),
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
@@ -288,6 +268,17 @@ class Leaf(Component):
 
     def _get_format_pieces(self):
         return self._lilypond_format.split('\n')
+
+    def _get_format_specification(self):
+        summary = self._compact_representation
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            repr_args_values=[summary],
+            storage_format_args_values=[format(self, 'lilypond')],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
+            )
 
     def _get_leaf(self, n=0):
         from abjad.tools import scoretools

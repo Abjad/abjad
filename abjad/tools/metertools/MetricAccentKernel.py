@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import datastructuretools
 from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadValueObject
 
 
@@ -109,20 +110,12 @@ class MetricAccentKernel(AbjadValueObject):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.kernel,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=True,
+            storage_format_args_values=[self.kernel],
+            storage_format_kwargs_names=[],
             )
 
     ### PUBLIC METHODS ###

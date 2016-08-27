@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 import abc
 import re
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import mathtools
+from abjad.tools import systemtools
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.pitchtools.Accidental import Accidental
 
 
-class PitchClass(AbjadObject):
+class PitchClass(AbjadValueObject):
     '''Pitch-class base class.
     '''
 
@@ -186,24 +188,24 @@ class PitchClass(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    def __hash__(self):
-        r'''Hases pitch-class.
+    ### PRIVATE METHODS ###
 
-        Returns integer.
-        '''
-        return hash(repr(self))
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
+    def _get_format_specification(self):
+        if type(self).__name__.startswith('Named'):
+            values = [str(self)]
+        else:
+            values = [
+                mathtools.integer_equivalent_number_to_integer(float(self))
+                ]
+        return systemtools.FormatSpecification(
+            client=self,
+            coerce_for_equality=True,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            template_names=['pitch_class_name'],
             )
 
     ### PUBLIC METHODS ###

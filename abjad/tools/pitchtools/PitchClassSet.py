@@ -78,32 +78,6 @@ class PitchClassSet(Set):
         from abjad.tools import pitchtools
         return pitchtools.PitchClass
 
-    @property
-    def _repr_specification(self):
-        items = []
-        if self.item_class.__name__.startswith('Named'):
-            items = [
-                str(x)
-                for x in sorted(self, key=lambda x: x.pitch_class_number)
-                ]
-        elif hasattr(self.item_class, 'pitch_number'):
-            items = sorted([x.pitch_number for x in self])
-        elif hasattr(self.item_class, 'pitch_class_number'):
-            items = sorted([x.pitch_class_number for x in self])
-        elif hasattr(self.item_class, '__abs__'):
-            items = sorted([abs(x) for x in self])
-        else:
-            raise ValueError
-        positional_argument_values=(
-            items,
-            )
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PUBLIC METHODS ###
 
     @classmethod

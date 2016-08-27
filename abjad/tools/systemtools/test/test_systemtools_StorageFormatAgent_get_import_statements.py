@@ -1,32 +1,42 @@
 # -*- coding: utf-8 -*-
-from abjad import *
+from abjad.tools import durationtools
+from abjad.tools import indicatortools
+from abjad.tools import mathtools
+from abjad.tools import pitchtools
+from abjad.tools import rhythmmakertools
+from abjad.tools import selectortools
+from abjad.tools import systemtools
 
-manager = systemtools.StorageFormatManager
 
-
-def test_systemtools_StorageFormatManager_get_import_statements_01():
+def test_systemtools_StorageFormatAgent_get_import_statements_01():
     subject = pitchtools.NamedPitch()
-    assert manager.get_import_statements(subject) == (
+    agent = systemtools.StorageFormatAgent(subject)
+    assert agent.get_import_statements() == (
         'from abjad.tools import pitchtools',
         )
 
 
-def test_systemtools_StorageFormatManager_get_import_statements_02():
+def test_systemtools_StorageFormatAgent_get_import_statements_02():
     subject = selectortools.Selector().by_leaf()
-    assert manager.get_import_statements(subject) == (
+    agent = systemtools.StorageFormatAgent(subject)
+    assert agent.get_import_statements() == (
         'from abjad.tools import scoretools',
         'from abjad.tools import selectortools',
         )
 
 
-def test_systemtools_StorageFormatManager_get_import_statements_03():
-    subject = [TimeSignature((3, 4)), TimeSignature((4, 4))]
-    assert manager.get_import_statements(subject) == (
+def test_systemtools_StorageFormatAgent_get_import_statements_03():
+    subject = [
+        indicatortools.TimeSignature((3, 4)),
+        indicatortools.TimeSignature((4, 4)),
+        ]
+    agent = systemtools.StorageFormatAgent(subject)
+    assert agent.get_import_statements() == (
         'from abjad.tools import indicatortools',
         )
 
 
-def test_systemtools_StorageFormatManager_get_import_statements_04():
+def test_systemtools_StorageFormatAgent_get_import_statements_04():
     subject = rhythmmakertools.IncisedRhythmMaker(
         incise_specifier=rhythmmakertools.InciseSpecifier(
             prefix_talea=(1,),
@@ -51,7 +61,8 @@ def test_systemtools_StorageFormatManager_get_import_statements_04():
             simplify_redundant_tuplets=True,
             ),
         )
-    assert manager.get_import_statements(subject) == (
+    agent = systemtools.StorageFormatAgent(subject)
+    assert agent.get_import_statements() == (
         'from abjad.tools import durationtools',
         'from abjad.tools import mathtools',
         'from abjad.tools import rhythmmakertools',

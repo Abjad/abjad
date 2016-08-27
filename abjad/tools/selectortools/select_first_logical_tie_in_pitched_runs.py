@@ -7,7 +7,7 @@ def select_first_logical_tie_in_pitched_runs(expr=None):
     ..  container:: example
 
         ::
-        
+
             >>> selector = selectortools.select_first_logical_tie_in_pitched_runs()
             >>> print(format(selector))
             selectortools.Selector(
@@ -57,8 +57,8 @@ def select_first_logical_tie_in_pitched_runs(expr=None):
             >>> for x in selector(staff):
             ...     x
             ...
-            LogicalTie(Note("c'4."),)
-            LogicalTie(Note("e'4"), Note("e'8"))
+            LogicalTie([Note("c'4.")])
+            LogicalTie([Note("e'4"), Note("e'8")])
 
     '''
     from abjad.tools import selectortools

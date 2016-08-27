@@ -9,7 +9,7 @@ def make_multimeasure_rests(durations):
     ::
 
         >>> scoretools.make_multimeasure_rests([(4, 4), (7, 4)])
-        Selection(MultimeasureRest('R1'), MultimeasureRest('R1..'))
+        Selection([MultimeasureRest('R1'), MultimeasureRest('R1..')])
 
     Returns list.
     '''

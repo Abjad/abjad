@@ -2,7 +2,6 @@
 import pytest
 from abjad import *
 from abjad.tools.abctools import AbjadObject
-pytest.skip()
 
 
 class Job(AbjadObject):
@@ -18,6 +17,7 @@ class Job(AbjadObject):
         self.result = [x for x in mathtools.yield_all_compositions_of_integer(self.number)]
 
 
+@pytest.mark.skip()
 def test_quantizationtools_ParallelJobHandler___call___01():
 
     jobs = [Job(x) for x in range(1, 11)]
@@ -25,6 +25,7 @@ def test_quantizationtools_ParallelJobHandler___call___01():
     finished_jobs = job_handler(jobs)
 
 
+@pytest.mark.skip()
 def test_quantizationtools_ParallelJobHandler___call___02():
 
     job_id = 1

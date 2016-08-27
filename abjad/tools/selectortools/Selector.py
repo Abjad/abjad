@@ -40,7 +40,7 @@ class Selector(AbjadValueObject):
 
             >>> selector = selectortools.Selector()
             >>> selector(staff)
-            Selection(<Staff{6}>,)
+            Selection([<Staff{6}>])
 
     ..  container:: example
 
@@ -51,7 +51,7 @@ class Selector(AbjadValueObject):
             >>> selector = selectortools.Selector()
             >>> selector = selector.by_leaf()
             >>> selector(staff)
-            Selection(Selection(Note("c'4"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4")),)
+            Selection([Selection([Note("c'4"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4")])])
 
     ..  container:: example
 
@@ -62,8 +62,12 @@ class Selector(AbjadValueObject):
             >>> selector = selectortools.Selector()
             >>> selector = selector.by_leaf()
             >>> selector = selector.by_run(Note)
-            >>> selector(staff)
-            Selection(Selection(Note("c'4"), Note("d'8")), Selection(Note("e'8"),), Selection(Note("f'16"), Note("g'8"), Note("a'4")))
+            >>> for selection in selector(staff):
+            ...     selection
+            ...
+            Selection([Note("c'4"), Note("d'8")])
+            Selection([Note("e'8")])
+            Selection([Note("f'16"), Note("g'8"), Note("a'4")])
 
     ..  container:: example
 
@@ -76,7 +80,7 @@ class Selector(AbjadValueObject):
             >>> selector = selector.by_run(Note)
             >>> selector = selector.get_item(0, apply_to_each=True)
             >>> selector(staff)
-            Selection(Note("c'4"), Note("e'8"), Note("f'16"))
+            Selection([Note("c'4"), Note("e'8"), Note("f'16")])
 
     '''
 
@@ -207,7 +211,7 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(Chord("<c' e' g'>4"), Chord("<e' g' c''>2"))
+                Selection([Chord("<c' e' g'>4"), Chord("<e' g' c''>2")])
 
         Returns new selector.
         '''
@@ -248,7 +252,7 @@ class Selector(AbjadValueObject):
                 >>> selector = select().by_class(prototype=Note)
                 >>> for selection in selector(staff):
                 ...     selection
-                Selection(Note("c'4"), Note("d'8"), Note("d'16"), Note("e'16"), Note("e'8"), Note("g'8"))
+                Selection([Note("c'4"), Note("d'8"), Note("d'16"), Note("e'16"), Note("e'8"), Note("g'8")])
 
             Call returns a selection containing a selection of notes.
 
@@ -369,8 +373,8 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16"))
-                Selection(Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16"))
+                Selection([Note("d'16"), Note("d'16"), Note("d'16"), Note("d'16")])
+                Selection([Note("f'16"), Note("f'16"), Note("f'16"), Note("f'16")])
 
         ..  container:: example
 
@@ -402,11 +406,11 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("c'4"),)
-                LogicalTie(Note("d'8"), Note("d'16"))
-                LogicalTie(Note("e'16"), Note("e'8"))
-                LogicalTie(Note("f'4"),)
-                LogicalTie(Note("g'8"),)
+                LogicalTie([Note("c'4")])
+                LogicalTie([Note("d'8"), Note("d'16")])
+                LogicalTie([Note("e'16"), Note("e'8")])
+                LogicalTie([Note("f'4")])
+                LogicalTie([Note("g'8")])
 
             ::
 
@@ -414,9 +418,9 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("d'8"), Note("d'16"))
-                LogicalTie(Note("e'16"), Note("e'8"))
-                LogicalTie(Note("g'8"),)
+                LogicalTie([Note("d'8"), Note("d'16")])
+                LogicalTie([Note("e'16"), Note("e'8")])
+                LogicalTie([Note("g'8")])
 
             ::
 
@@ -424,8 +428,8 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(LogicalTie(Note("d'8"), Note("d'16")), LogicalTie(Note("e'16"), Note("e'8")))
-                Selection(LogicalTie(Note("g'8"),),)
+                Selection([LogicalTie([Note("d'8"), Note("d'16")]), LogicalTie([Note("e'16"), Note("e'8")])])
+                Selection([LogicalTie([Note("g'8")])])
 
             ::
 
@@ -433,8 +437,8 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(Note("d'8"), Note("d'16"), Note("e'16"), Note("e'8"))
-                Selection(Note("g'8"),)
+                Selection([Note("d'8"), Note("d'16"), Note("e'16"), Note("e'8")])
+                Selection([Note("g'8")])
 
             ::
 
@@ -514,7 +518,7 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
+                Selection([Note("c'8"), Rest('r8'), Note("d'8")])
 
             Call returns a selection containing a component selection.
 
@@ -556,8 +560,8 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
-                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+                Selection([Note("c'8"), Rest('r8'), Note("d'8")])
+                Selection([Note("e'8"), Rest('r8'), Note("f'8")])
 
             Call returns a selection containing two component selections.
 
@@ -600,9 +604,9 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
-                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
-                Selection(Note("g'8"), Note("a'8"))
+                Selection([Note("c'8"), Rest('r8'), Note("d'8")])
+                Selection([Note("e'8"), Rest('r8'), Note("f'8")])
+                Selection([Note("g'8"), Note("a'8")])
 
             Call returns a selection containing three component selections.
 
@@ -646,8 +650,8 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'8"), Rest('r8'), Note("d'8"))
-                Selection(Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+                Selection([Note("c'8"), Rest('r8'), Note("d'8")])
+                Selection([Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
             Call returns a selection of two component selections.
 
@@ -692,12 +696,12 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'8"),)
-                Selection(Rest('r8'), Note("d'8"))
-                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
-                Selection(Note("g'8"),)
-                Selection(Note("a'8"), Note("b'8"))
-                Selection(Rest('r8'), Note("c''8"))
+                Selection([Note("c'8")])
+                Selection([Rest('r8'), Note("d'8")])
+                Selection([Note("e'8"), Rest('r8'), Note("f'8")])
+                Selection([Note("g'8")])
+                Selection([Note("a'8"), Note("b'8")])
+                Selection([Rest('r8'), Note("c''8")])
 
             Call returns a selection containing multiple component selections.
 
@@ -744,11 +748,11 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff, rotation=1):
                 ...     selection
                 ...
-                Selection(Note("c'8"), Rest('r8'))
-                Selection(Note("d'8"), Note("e'8"), Rest('r8'))
-                Selection(Note("f'8"),)
-                Selection(Note("g'8"), Note("a'8"))
-                Selection(Note("b'8"), Rest('r8'), Note("c''8"))
+                Selection([Note("c'8"), Rest('r8')])
+                Selection([Note("d'8"), Note("e'8"), Rest('r8')])
+                Selection([Note("f'8")])
+                Selection([Note("g'8"), Note("a'8")])
+                Selection([Note("b'8"), Rest('r8'), Note("c''8")])
 
             Call returns a selection containing multiple component selections.
 
@@ -804,7 +808,7 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("d'8"), Note("e'8"))
+                Selection([Note("d'8"), Note("e'8")])
 
             Call returns a selection containing one component selection.
 
@@ -844,8 +848,8 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'8"),)
-                Selection(Note("d'8"), Note("e'8"))
+                Selection([Note("c'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
             Call returns a selection containing component selections.
 
@@ -885,8 +889,8 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("d'8"), Note("e'8"))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+                Selection([Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
             Call returns a selection containing component selections.
 
@@ -920,11 +924,11 @@ class Selector(AbjadValueObject):
                 ...     attach(Articulation('accent'), logical_tie[0])
                 ...     print(logical_tie)
                 ...
-                LogicalTie(Note("d'16"), Note("d'16"))
-                LogicalTie(Note("e'16"), Note("e'16"))
-                LogicalTie(Note("f'16"), Note("f'16"))
-                LogicalTie(Note("g'16"), Note("g'16"))
-                LogicalTie(Note("a'16"), Note("a'16"))
+                LogicalTie([Note("d'16"), Note("d'16")])
+                LogicalTie([Note("e'16"), Note("e'16")])
+                LogicalTie([Note("f'16"), Note("f'16")])
+                LogicalTie([Note("g'16"), Note("g'16")])
+                LogicalTie([Note("a'16"), Note("a'16")])
 
             ::
 
@@ -999,7 +1003,7 @@ class Selector(AbjadValueObject):
                 >>> for selection in selections:
                 ...     selection
                 ...
-                Selection(Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+                Selection([Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
             Returns a selection of leaf selections.
 
@@ -1082,7 +1086,7 @@ class Selector(AbjadValueObject):
                 >>> for selection in selections:
                 ...     selection
                 ...
-                Selection(Measure((4, 4), "c'2 d'2"), Measure((3, 4), "e'4 f'4 g'4"))
+                Selection([Measure((4, 4), "c'2 d'2"), Measure((3, 4), "e'4 f'4 g'4")])
 
             Returns a selection of measure selections.
 
@@ -1093,7 +1097,7 @@ class Selector(AbjadValueObject):
                 >>> for selection in selections:
                 ...     selection
                 ...
-                Selection(Note("c'2"), Note("d'2"), Note("e'4"), Note("f'4"), Note("g'4"))
+                Selection([Note("c'2"), Note("d'2"), Note("e'4"), Note("f'4"), Note("g'4")])
 
             Returns a selection of leaf selections.
 
@@ -1143,8 +1147,8 @@ class Selector(AbjadValueObject):
                 >>> for selection in selections:
                 ...     selection
                 ...
-                Selection(Note("c'2"), Note("d'2"))
-                Selection(Note("e'4"), Note("f'4"), Note("g'4"))
+                Selection([Note("c'2"), Note("d'2")])
+                Selection([Note("e'4"), Note("f'4"), Note("g'4")])
 
             Returns a selection of leaf selections.
 
@@ -1234,7 +1238,7 @@ class Selector(AbjadValueObject):
             ::
 
                 >>> selection
-                Selection(Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+                Selection([Note("c'8"), Rest('r8'), Note("d'8"), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
             Returns leaf selection.
 
@@ -1267,8 +1271,8 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(Note("d'8"), Note("e'8"))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+                Selection([Note("d'8"), Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
         ..  container:: example
 
@@ -1287,8 +1291,8 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(Note("c'8"),)
-                Selection(Note("d'8"), Note("e'8"))
+                Selection([Note("c'8")])
+                Selection([Note("d'8"), Note("e'8")])
 
         Returns new selector.
         '''
@@ -1354,22 +1358,22 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("c'8"),)
-                LogicalTie(Note("d'8"), Note("d'8"))
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Rest('r8'),)
-                LogicalTie(Note("f'8"), Note("f'8"))
-                LogicalTie(Rest('r8'),)
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("d'8"), Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Rest('r8')])
+                LogicalTie([Note("f'8"), Note("f'8")])
+                LogicalTie([Rest('r8')])
 
             ::
 
                 >>> for x in selector(container):
                 ...     x
                 ...
-                LogicalTie(Note("d'8"), Note("d'8"))
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Rest('r8'),)
-                LogicalTie(Note("f'8"), Note("f'8"))
+                LogicalTie([Note("d'8"), Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Rest('r8')])
+                LogicalTie([Note("f'8"), Note("f'8")])
 
         ..  container:: example
 
@@ -1389,19 +1393,19 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("c'8"),)
-                LogicalTie(Note("d'8"), Note("d'8"))
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("f'8"), Note("f'8"))
+                LogicalTie([Note("c'8")])
+                LogicalTie([Note("d'8"), Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8"), Note("f'8")])
 
             ::
 
                 >>> for x in selector(container):
                 ...     x
                 ...
-                LogicalTie(Note("d'8"), Note("d'8"))
-                LogicalTie(Note("e'8"),)
-                LogicalTie(Note("f'8"), Note("f'8"))
+                LogicalTie([Note("d'8"), Note("d'8")])
+                LogicalTie([Note("e'8")])
+                LogicalTie([Note("f'8"), Note("f'8")])
 
         ..  container:: example
 
@@ -1422,16 +1426,16 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("d'8"), Note("d'8"))
-                LogicalTie(Note("f'8"), Note("f'8"))
+                LogicalTie([Note("d'8"), Note("d'8")])
+                LogicalTie([Note("f'8"), Note("f'8")])
 
             ::
 
                 >>> for x in selector(container):
                 ...     x
                 ...
-                LogicalTie(Note("d'8"), Note("d'8"))
-                LogicalTie(Note("f'8"), Note("f'8"))
+                LogicalTie([Note("d'8"), Note("d'8")])
+                LogicalTie([Note("f'8"), Note("f'8")])
 
         Returns new selector.
         '''
@@ -1488,7 +1492,7 @@ class Selector(AbjadValueObject):
                 >>> for logical_tie in selection:
                 ...     logical_tie
                 ...
-                LogicalTie(Note("d'4"), Note("d'4"))
+                LogicalTie([Note("d'4"), Note("d'4")])
 
             Returns selection of logical tie.
 
@@ -1528,8 +1532,8 @@ class Selector(AbjadValueObject):
                 >>> for logical_tie in selection:
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'4"),)
-                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+                LogicalTie([Note("c'4")])
+                LogicalTie([Note("e'4"), Note("e'4"), Note("e'4")])
 
             Returns selection of logical ties.
 
@@ -1848,8 +1852,8 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("c'4"),)
-                LogicalTie(Chord("<c' e' g'>4"), Chord("<c' e' g'>2"))
+                LogicalTie([Note("c'4")])
+                LogicalTie([Chord("<c' e' g'>4"), Chord("<c' e' g'>2")])
 
         Returns new selector.
         '''
@@ -1881,9 +1885,9 @@ class Selector(AbjadValueObject):
                 >>> for selection in selections:
                 ...     selection
                 ...
-                Selection(Note("c'8"), Note("d'8"))
-                Selection(Note("e'8"),)
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+                Selection([Note("c'8"), Note("d'8")])
+                Selection([Note("e'8")])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
         Returns new selector.
         '''
@@ -1921,14 +1925,19 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
-                >>> selector(staff)
-                Selection(LogicalTie(Note("c'4"),), LogicalTie(Note("d'4"), Note("d'4")), LogicalTie(Note("e'4"), Note("e'4"), Note("e'4")), LogicalTie(Note("f'4"),))
+                >>> for logical_tie in selector(staff):
+                ...     logical_tie
+                ...
+                LogicalTie([Note("c'4")])
+                LogicalTie([Note("d'4"), Note("d'4")])
+                LogicalTie([Note("e'4"), Note("e'4"), Note("e'4")])
+                LogicalTie([Note("f'4")])
 
             ::
 
                 >>> selector = selector.first()
                 >>> selector(staff)
-                LogicalTie(Note("c'4"),)
+                LogicalTie([Note("c'4")])
 
         Returns new selector.
         '''
@@ -1973,14 +1982,17 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.middle()
-                >>> selector(staff)
-                Selection(LogicalTie(Note("d'4"), Note("d'4")), LogicalTie(Note("e'4"), Note("e'4"), Note("e'4")))
+                >>> for logical_tie in selector(staff):
+                ...     logical_tie
+                ...
+                LogicalTie([Note("d'4"), Note("d'4")])
+                LogicalTie([Note("e'4"), Note("e'4"), Note("e'4")])
 
             Returns leaf selection:
 
                 >>> selector = selector.flatten()
                 >>> selector(staff)
-                Selection(Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"))
+                Selection([Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4")])
 
         ..  container:: example
 
@@ -2012,7 +2024,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selectortools.Selector()
                 >>> selector = selector.by_leaf()
                 >>> selector(staff)
-                Selection(Selection(Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4")),)
+                Selection([Selection([Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4")])])
 
             Returns leaf selection:
 
@@ -2020,7 +2032,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selector.flatten()
                 >>> selector(staff)
-                Selection(Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4"))
+                Selection([Note("c'4"), Note("d'4"), Note("d'4"), Note("e'4"), Note("e'4"), Note("e'4"), Rest('r4'), Note("f'4")])
 
         Returns new selector.
         '''
@@ -2102,7 +2114,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(1)
                 >>> selector(staff)
-                LogicalTie(Note("d'4"), Note("d'4"))
+                LogicalTie([Note("d'4"), Note("d'4")])
 
         ..  container:: example
 
@@ -2135,7 +2147,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(0, apply_to_each=True)
                 >>> selector(staff)
-                Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
+                Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
         Returns new selector.
         '''
@@ -2195,8 +2207,8 @@ class Selector(AbjadValueObject):
                 >>> for logical_tie in logical_ties:
                 ...     logical_tie
                 ...
-                LogicalTie(Note("d'4"),)
-                LogicalTie(Note("e'4"), Note("e'4"))
+                LogicalTie([Note("d'4")])
+                LogicalTie([Note("e'4"), Note("e'4")])
 
             Returns selection of logical ties.
 
@@ -2239,9 +2251,9 @@ class Selector(AbjadValueObject):
                 >>> for logical_tie in logical_ties:
                 ...     logical_tie
                 ...
-                LogicalTie(Note("c'4"),)
-                LogicalTie(Note("d'4"), Note("d'4"))
-                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+                LogicalTie([Note("c'4")])
+                LogicalTie([Note("d'4"), Note("d'4")])
+                LogicalTie([Note("e'4"), Note("e'4"), Note("e'4")])
 
             Returns selection of logical ties.
 
@@ -2280,7 +2292,7 @@ class Selector(AbjadValueObject):
                 ...     apply_to_each=False,
                 ...     )
                 >>> selector(staff)
-                Selection(Note("e'4"), Rest('r4'), Note("f'4"))
+                Selection([Note("e'4"), Rest('r4'), Note("f'4")])
 
         Returns new selector.
         '''
@@ -2306,7 +2318,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.last()
                 >>> selector(staff)
-                LogicalTie(Note("f'4"),)
+                LogicalTie([Note("f'4")])
 
         Returns new selector.
         '''
@@ -2337,8 +2349,8 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("d'4"), Note("d'4"))
-                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+                LogicalTie([Note("d'4"), Note("d'4")])
+                LogicalTie([Note("e'4"), Note("e'4"), Note("e'4")])
 
         Returns new selector.
         '''
@@ -2369,9 +2381,9 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("c'4"),)
-                LogicalTie(Note("d'4"), Note("d'4"))
-                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
+                LogicalTie([Note("c'4")])
+                LogicalTie([Note("d'4"), Note("d'4")])
+                LogicalTie([Note("e'4"), Note("e'4"), Note("e'4")])
 
         Returns new selector.
         '''
@@ -2421,7 +2433,8 @@ class Selector(AbjadValueObject):
                 >>> result = selector(staff)
                 >>> for selection in result:
                 ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+                ...
+                Selection([Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
 
             Returns selection of leaf selections:
 
@@ -2431,8 +2444,9 @@ class Selector(AbjadValueObject):
                 >>> result = selector(staff)
                 >>> for selection in result:
                 ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+                ...
+                Selection([Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8')])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
 
             Gets second leaf selection:
 
@@ -2440,7 +2454,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selector.get_item(1)
                 >>> selector(staff)
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+                Selection([Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
 
         ..  container:: example
 
@@ -2478,7 +2492,8 @@ class Selector(AbjadValueObject):
                 >>> result = selector(staff)
                 >>> for selection in result:
                 ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8'))
+                ...
+                Selection([Note("c'8"), Note("d'8"), Rest('r8'), Note("e'8"), Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"), Rest('r8')])
 
             Return selection of leaf selections:
 
@@ -2488,9 +2503,10 @@ class Selector(AbjadValueObject):
                 >>> result = selector(staff)
                 >>> for selection in result:
                 ...     selection
-                Selection(Note("c'8"), Note("d'8"), Rest('r8'))
-                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
-                Selection(Note("g'8"), Note("a'8"), Rest('r8'))
+                ...
+                Selection([Note("c'8"), Note("d'8"), Rest('r8')])
+                Selection([Note("e'8"), Rest('r8'), Note("f'8")])
+                Selection([Note("g'8"), Note("a'8"), Rest('r8')])
 
             Gets second leaf selection:
 
@@ -2498,7 +2514,7 @@ class Selector(AbjadValueObject):
 
                 >>> selector = selector.get_item(1)
                 >>> selector(staff)
-                Selection(Note("e'8"), Rest('r8'), Note("f'8"))
+                Selection([Note("e'8"), Rest('r8'), Note("f'8")])
 
         Returns new selector.
         '''
@@ -2525,9 +2541,9 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                LogicalTie(Note("d'4"), Note("d'4"))
-                LogicalTie(Note("e'4"), Note("e'4"), Note("e'4"))
-                LogicalTie(Note("f'4"),)
+                LogicalTie([Note("d'4"), Note("d'4")])
+                LogicalTie([Note("e'4"), Note("e'4"), Note("e'4")])
+                LogicalTie([Note("f'4")])
 
         Returns new selector.
         '''
@@ -2580,39 +2596,40 @@ class Selector(AbjadValueObject):
 
             >>> for x in result[logical_tie_selector]:
             ...     x
-            LogicalTie(Note("c'4"),)
-            LogicalTie(Note("d'8"),)
-            LogicalTie(Note("e'8"),)
-            LogicalTie(Note("f'4"),)
-            LogicalTie(Note("g'8"),)
-            LogicalTie(Note("a'4"),)
-            LogicalTie(Note("b'8"),)
-            LogicalTie(Note("c'8"),)
+            LogicalTie([Note("c'4")])
+            LogicalTie([Note("d'8")])
+            LogicalTie([Note("e'8")])
+            LogicalTie([Note("f'4")])
+            LogicalTie([Note("g'8")])
+            LogicalTie([Note("a'4")])
+            LogicalTie([Note("b'8")])
+            LogicalTie([Note("c'8")])
 
         ::
 
             >>> for x in result[pitched_selector]:
             ...     x
-            LogicalTie(Note("c'4"),)
-            LogicalTie(Note("c'8"),)
+            LogicalTie([Note("c'4")])
+            LogicalTie([Note("c'8")])
 
         ::
 
             >>> for x in result[duration_selector]:
             ...     x
-            LogicalTie(Note("d'8"),)
-            LogicalTie(Note("e'8"),)
-            LogicalTie(Note("g'8"),)
-            LogicalTie(Note("b'8"),)
-            LogicalTie(Note("c'8"),)
+            LogicalTie([Note("d'8")])
+            LogicalTie([Note("e'8")])
+            LogicalTie([Note("g'8")])
+            LogicalTie([Note("b'8")])
+            LogicalTie([Note("c'8")])
 
         ::
 
             >>> for x in result[contiguity_selector]:
             ...     x
-            Selection(LogicalTie(Note("d'8"),), LogicalTie(Note("e'8"),))
-            Selection(LogicalTie(Note("g'8"),),)
-            Selection(LogicalTie(Note("b'8"),), LogicalTie(Note("c'8"),))
+            ...
+            Selection([LogicalTie([Note("d'8")]), LogicalTie([Note("e'8")])])
+            Selection([LogicalTie([Note("g'8")])])
+            Selection([LogicalTie([Note("b'8")]), LogicalTie([Note("c'8")])])
 
         Returns a dictionary of selector/selection pairs.
         '''
@@ -2686,9 +2703,9 @@ class Selector(AbjadValueObject):
                 >>> for x in selector(staff):
                 ...     x
                 ...
-                Selection(Note("c'8"), Rest('r8'))
-                Selection(Note("d'8"), Note("e'8"), Rest('r8'))
-                Selection(Note("f'8"), Note("g'8"), Note("a'8"))
+                Selection([Note("c'8"), Rest('r8')])
+                Selection([Note("d'8"), Note("e'8"), Rest('r8')])
+                Selection([Note("f'8"), Note("g'8"), Note("a'8")])
 
         ..  container:: example
 
@@ -2706,7 +2723,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(-1, apply_to_each=True)
                 >>> selector(staff)
-                Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
+                Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
             ::
 
@@ -2717,10 +2734,10 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'4"), Note("d'4"))
-                Selection(Note("d'4"), Note("e'4"))
-                Selection(Note("e'4"), Rest('r4'))
-                Selection(Note("f'4"),)
+                Selection([Note("c'4"), Note("d'4")])
+                Selection([Note("d'4"), Note("e'4")])
+                Selection([Note("e'4"), Rest('r4')])
+                Selection([Note("f'4")])
 
         Returns new selector.
         '''
@@ -2748,9 +2765,9 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'8"),)
-                Selection(Rest('r8'), Note("d'8"), Note("e'8"))
-                Selection(Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8"))
+                Selection([Note("c'8")])
+                Selection([Rest('r8'), Note("d'8"), Note("e'8")])
+                Selection([Rest('r8'), Note("f'8"), Note("g'8"), Note("a'8")])
 
         ..  container:: example
 
@@ -2768,7 +2785,7 @@ class Selector(AbjadValueObject):
                 >>> selector = selector.by_logical_tie(pitched=True)
                 >>> selector = selector.get_item(0, apply_to_each=True)
                 >>> selector(staff)
-                Selection(Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4"))
+                Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")])
 
             ::
 
@@ -2779,10 +2796,10 @@ class Selector(AbjadValueObject):
                 >>> for selection in selector(staff):
                 ...     selection
                 ...
-                Selection(Note("c'4"),)
-                Selection(Note("c'4"), Note("d'4"))
-                Selection(Note("d'4"), Note("e'4"))
-                Selection(Rest('r4'), Note("f'4"))
+                Selection([Note("c'4")])
+                Selection([Note("c'4"), Note("d'4")])
+                Selection([Note("d'4"), Note("e'4")])
+                Selection([Rest('r4'), Note("f'4")])
 
         Returns new selector.
         '''

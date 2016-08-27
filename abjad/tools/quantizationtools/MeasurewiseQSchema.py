@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import indicatortools
-from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.quantizationtools.QSchema import QSchema
 
 
@@ -50,7 +50,7 @@ class MeasurewiseQSchema(QSchema):
                     },
                 ),
             tempo=indicatortools.Tempo(
-                reference_duration=durationtools.Duration(1, 4), 
+                reference_duration=durationtools.Duration(1, 4),
                 units_per_minute=60,
                 ),
             time_signature=indicatortools.TimeSignature((4, 4)),
@@ -98,8 +98,9 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> index = 0
-        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
-        ... 
+        >>> for key, value in sorted(q_schema[index].items()):
+        ...     print('{}:'.format(key), value)
+        ...
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
         time_signature: 3/4
@@ -108,8 +109,9 @@ class MeasurewiseQSchema(QSchema):
     ::
 
         >>> index = 1000
-        >>> for key, value in sorted(q_schema[index].items()): print('{}:'.format(key), value)
-        ... 
+        >>> for key, value in sorted(q_schema[index].items()):
+        ...     print('{}:'.format(key), value)
+        ...
         search_tree: UnweightedSearchTree(definition={7: None})
         tempo: 4=54
         time_signature: 3/4
@@ -239,6 +241,13 @@ class MeasurewiseQSchema(QSchema):
         '_use_full_measure',
         )
 
+    _keyword_argument_names = (
+        'search_tree',
+        'tempo',
+        'time_signature',
+        'use_full_measure',
+        )
+
     ### INITIALIZER ###
 
     def __init__(self, *args, **kwargs):
@@ -256,21 +265,18 @@ class MeasurewiseQSchema(QSchema):
         self._use_full_measure = bool(kwargs.get('use_full_measure'))
         QSchema.__init__(self, *args, **kwargs)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = self.items or ()
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=self.items or (),
+            storage_format_kwargs_names=[
                 'search_tree',
                 'tempo',
                 'time_signature',
                 'use_full_measure',
-                ),
-            positional_argument_values=positional_argument_values
+                ],
             )
 
     ### PUBLIC PROPERTIES ###

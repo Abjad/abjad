@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 import copy
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class RegistrationComponent(AbjadObject):
+class RegistrationComponent(AbjadValueObject):
     '''Registration component.
 
     ..  container:: example
@@ -65,7 +65,7 @@ class RegistrationComponent(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __hash__(self):

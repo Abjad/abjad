@@ -50,55 +50,6 @@ class Talea(AbjadValueObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a talea with `counts` and `denominator`
-        equal to those of this talea. Otherwise false.
-
-        ..  container:: example
-
-            **Example.**
-
-            ::
-
-                >>> talea_1 = rhythmmakertools.Talea(
-                ...    counts=(1, 2),
-                ...    denominator=16,
-                ...    )
-                >>> talea_2 = rhythmmakertools.Talea(
-                ...    counts=(1, 2),
-                ...    denominator=16,
-                ...    )
-                >>> talea_3 = rhythmmakertools.Talea(
-                ...    counts=(1, 2),
-                ...    denominator=8,
-                ...    )
-
-            ::
-
-                >>> talea_1 == talea_1
-                True
-                >>> talea_1 == talea_2
-                True
-                >>> talea_1 == talea_3
-                False
-                >>> talea_2 == talea_1
-                True
-                >>> talea_2 == talea_2
-                True
-                >>> talea_2 == talea_3
-                False
-                >>> talea_3 == talea_1
-                False
-                >>> talea_3 == talea_2
-                False
-                >>> talea_3 == talea_3
-                True
-
-        Returns true or false.
-        '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
-
     def __getitem__(self, item):
         r'''Gets nonreduced fraction at `item` cyclically.
 
@@ -146,15 +97,6 @@ class Talea(AbjadValueObject):
                 for count in counts]
             return result
         raise ValueError(item)
-
-    def __hash__(self):
-        r'''Hashes talea.
-
-        Returns integer.
-        '''
-        from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
-        return hash(hash_values)
 
     def __iter__(self):
         r'''Iterates talea.

@@ -8,6 +8,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import systemtools
 
 
 ignored_classes = (
@@ -22,6 +23,8 @@ ignored_classes = (
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(

@@ -6,6 +6,7 @@ from abjad.tools import mathtools
 from abjad.tools import rhythmtreetools
 from abjad.tools import scoretools
 from abjad.tools import sequencetools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -31,7 +32,7 @@ class Meter(AbjadObject):
             (2/4 (
                 1/4
                 1/4))
-        
+
         ::
 
             >>> graph(meter) # doctest: +SKIP
@@ -72,7 +73,7 @@ class Meter(AbjadObject):
                 1/4
                 1/4
                 1/4))
-        
+
         ::
 
             >>> graph(meter) # doctest: +SKIP
@@ -235,7 +236,7 @@ class Meter(AbjadObject):
                     1/4
                     1/4
                     1/4))))
-        
+
         ::
 
             >>> graph(meter) # doctest: +SKIP
@@ -266,14 +267,14 @@ class Meter(AbjadObject):
                     1/8
                     1/8
                     1/8))))
-        
+
         ::
 
             >>> graph(meter) # doctest: +SKIP
 
     Prime divisions greater than ``3`` are converted to sequences of ``2``
     and ``3`` summing to that prime. Summands are arranged from greatest
-    to least by default. This means that ``5`` becomes ``3+2`` and ``7`` 
+    to least by default. This means that ``5`` becomes ``3+2`` and ``7``
     becomes ``3+2+2`` in the examples above.
     '''
 
@@ -290,8 +291,8 @@ class Meter(AbjadObject):
     ### INITIALIZER ###
 
     def __init__(
-        self, 
-        arg=None, 
+        self,
+        arg=None,
         decrease_durations_monotonically=True,
         preferred_boundary_depth=None,
         ):
@@ -455,7 +456,7 @@ class Meter(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __graph__(self, **kwargs):
@@ -724,10 +725,10 @@ class Meter(AbjadObject):
             return result
         result = recurse(self.root_node)
         for x in result:
-            start_offset = mathtools.NonreducedFraction(x.start_offset
-                ).with_denominator(self.denominator)
-            stop_offset = mathtools.NonreducedFraction(x.stop_offset
-                ).with_denominator(self.denominator)
+            start_offset = mathtools.NonreducedFraction(
+                x.start_offset).with_denominator(self.denominator)
+            stop_offset = mathtools.NonreducedFraction(
+                x.stop_offset).with_denominator(self.denominator)
             yield start_offset, stop_offset
 
     def __str__(self):
@@ -755,20 +756,15 @@ class Meter(AbjadObject):
         '''
         return '{}/{}'.format(self.numerator, self.denominator)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                self.rtm_format,
-                ),
-            )
-
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.rtm_format],
+            storage_format_kwargs_names=[],
+            )
 
     @staticmethod
     def _make_gridded_test_rhythm(grid_length, rhythm_number, denominator=16):
@@ -901,7 +897,7 @@ class Meter(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** The same asymmetric meter with unequal beats 
+            **Example 2.** The same asymmetric meter with unequal beats
             arranged least to greatest:
 
             ::
@@ -1023,17 +1019,17 @@ class Meter(AbjadObject):
                 ...     string = True if meter.is_compound else ''
                 ...     print(str(meter), string)
                 ...
-                1/4 
-                2/4 
-                3/4 
-                4/4 
-                5/4 
+                1/4
+                2/4
+                3/4
+                4/4
+                5/4
                 6/4     True
-                7/4 
-                8/4 
+                7/4
+                8/4
                 9/4     True
-                10/4 
-                11/4 
+                10/4
+                11/4
                 12/4    True
 
         ..  container:: example
@@ -1047,17 +1043,17 @@ class Meter(AbjadObject):
                 ...     string = True if meter.is_compound else ''
                 ...     print(str(meter), string)
                 ...
-                1/8 
-                2/8 
-                3/8 
-                4/8 
-                5/8 
+                1/8
+                2/8
+                3/8
+                4/8
+                5/8
                 6/8     True
-                7/8 
-                8/8 
+                7/8
+                8/8
                 9/8     True
-                10/8 
-                11/8 
+                10/8
+                11/8
                 12/8    True
 
         Compound meters defined equal to those meters with a numerator
@@ -1090,13 +1086,13 @@ class Meter(AbjadObject):
                 3/4     True
                 4/4     True
                 5/4     True
-                6/4 
+                6/4
                 7/4     True
                 8/4     True
-                9/4 
+                9/4
                 10/4    True
                 11/4    True
-                12/4 
+                12/4
 
         ..  container:: example
 
@@ -1114,17 +1110,17 @@ class Meter(AbjadObject):
                 3/8     True
                 4/8     True
                 5/8     True
-                6/8 
+                6/8
                 7/8     True
                 8/8     True
-                9/8 
+                9/8
                 10/8    True
                 11/8    True
-                12/8 
+                12/8
 
         Simple meters defined equal to those meters with a numerator
         not divisible by ``3``.
-        
+
         Meters with numerator equal to ``3`` are also defined as simple.
 
         Returns true or false.

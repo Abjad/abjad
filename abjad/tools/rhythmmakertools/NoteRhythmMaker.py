@@ -102,8 +102,8 @@ class NoteRhythmMaker(RhythmMaker):
                 >>> result = rhythm_maker(divisions)
                 >>> for x in result:
                 ...     x
-                Selection(Note("c'2"), Note("c'8"))
-                Selection(Note("c'4."),)
+                Selection([Note("c'2"), Note("c'8")])
+                Selection([Note("c'4.")])
 
         Returns list of selections. Each selection holds one or more notes.
         '''
@@ -112,38 +112,6 @@ class NoteRhythmMaker(RhythmMaker):
             divisions,
             rotation=rotation,
             )
-
-    def __eq__(self, arg):
-        r'''True when `arg` is a note rhythm-maker with values of
-        `beam_specifier`, `duration_spelling_specifier` and `tie_specifier`
-        equal to those of this note rhythm-maker. Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> rhythm_maker_1 = rhythmmakertools.NoteRhythmMaker()
-                >>> tie_specifier = rhythmmakertools.TieSpecifier(
-                ...     tie_across_divisions=True,
-                ...     )
-                >>> rhythm_maker_2 = rhythmmakertools.NoteRhythmMaker(
-                ...     tie_specifier=tie_specifier,
-                ...     )
-
-            ::
-
-                >>> rhythm_maker_1 == rhythm_maker_1
-                True
-                >>> rhythm_maker_1 == rhythm_maker_2
-                False
-                >>> rhythm_maker_2 == rhythm_maker_1
-                False
-                >>> rhythm_maker_2 == rhythm_maker_2
-                True
-
-        Returns true or false.
-        '''
-        return RhythmMaker.__eq__(self, arg)
 
     def __format__(self, format_specification=''):
         r'''Formats note rhythm-maker.
@@ -163,15 +131,6 @@ class NoteRhythmMaker(RhythmMaker):
         superclass = super(NoteRhythmMaker, self)
         return superclass.__format__(format_specification=format_specification)
 
-    def __hash__(self):
-        r'''Hashes note rhythm-maker.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(NoteRhythmMaker, self).__hash__()
-
     def __repr__(self):
         r'''Gets interpreter representation.
 
@@ -184,7 +143,7 @@ class NoteRhythmMaker(RhythmMaker):
 
         Returns string.
         '''
-        return RhythmMaker.__repr__(self)
+        return super(NoteRhythmMaker, self).__repr__()
 
     ### PRIVATE METHODS ###
 

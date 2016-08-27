@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
@@ -168,6 +169,19 @@ class TypedCounter(TypedCollection):
         itemdict = _coerce_mapping(kwargs)
         return the_items, itemdict
 
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        if 'items' in names:
+            names.remove('items')
+        return systemtools.FormatSpecification(
+            self,
+            repr_is_indented=False,
+            storage_format_args_values=[self._collection],
+            storage_format_kwargs_names=names,
+            template_names=names,
+            )
+
     ### PUBLIC METHODS ###
 
     '''
@@ -215,13 +229,6 @@ class TypedCounter(TypedCollection):
         Returns tuple.
         '''
         return list(self._collection.items())
-
-    def items(self):
-        r'''Iterates items in typed counter.
-
-        Yields items.
-        '''
-        return iter(self._collection.items())
 
     def keys(self):
         r'''Iterates keys in typed counter.

@@ -649,14 +649,14 @@ class MetricModulation(AbjadValueObject):
                 >>> print(format(metric_modulation))
                 indicatortools.MetricModulation(
                     left_rhythm=selectiontools.Selection(
-                        (
+                        [
                             scoretools.Note("c'4"),
-                            )
+                            ]
                         ),
                     right_rhythm=selectiontools.Selection(
-                        (
+                        [
                             scoretools.Note("c'4."),
-                            )
+                            ]
                         ),
                     )
 
@@ -966,7 +966,7 @@ class MetricModulation(AbjadValueObject):
                 ...     right_rhythm=Note("c'4."),
                 ...     )
                 >>> metric_modulation.left_rhythm
-                Selection(Note("c'4"),)
+                Selection([Note("c'4")])
 
         Returns selection.
         '''
@@ -1026,7 +1026,7 @@ class MetricModulation(AbjadValueObject):
                 ...     right_rhythm=Note("c'4."),
                 ...     )
                 >>> metric_modulation.right_rhythm
-                Selection(Note("c'4."),)
+                Selection([Note("c'4.")])
 
         Returns selection.
         '''

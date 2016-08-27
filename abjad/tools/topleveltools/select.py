@@ -13,7 +13,7 @@ def select(expr=None):
 
             >>> staff = Staff("c'8 d'8 e'8 f'8")
             >>> select(staff[:2])
-            Selection(Note("c'8"), Note("d'8"))
+            Selection([Note("c'8"), Note("d'8")])
 
     ..  container:: example
 

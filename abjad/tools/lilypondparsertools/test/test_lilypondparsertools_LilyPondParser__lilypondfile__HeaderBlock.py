@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-@pytest.skip('Pending 2.19.24 update.')
+@pytest.mark.skip('Pending 2.19.24 update.')
 def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
     string = r'''
     globalvariable = "This is a global variable."
@@ -44,6 +44,7 @@ def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_01():
         )
 
 
+@pytest.mark.skip('Pending 2.19.24 update.')
 def test_lilypondparsertools_LilyPondParser__lilypondfile__HeaderBlock_02():
     string = r'''
     \header {

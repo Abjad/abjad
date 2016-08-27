@@ -3,6 +3,7 @@ import copy
 from abjad.tools import durationtools
 from abjad.tools import indicatortools
 from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.topleveltools import attach
 from abjad.tools.topleveltools import detach
 from abjad.tools.topleveltools import iterate
@@ -228,23 +229,6 @@ class Measure(FixedDurationContainer):
             time_signature_prolation = self.time_signature.implied_prolation
         return time_signature_prolation * self._contents_duration
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.time_signature,
-            self._contents_summary
-            )
-        if self.implicit_scaling:
-            keyword_argument_names = ('implicit_scaling',)
-        else:
-            keyword_argument_names = ()
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PRIVATE METHODS ###
 
     def _all_contents_are_scalable_by_multiplier(self, multiplier):
@@ -386,6 +370,23 @@ class Measure(FixedDurationContainer):
         result.append(('context settings', bundle.context_settings))
         result.append(('indicators', bundle.opening.indicators))
         return self._format_slot_contributions_with_indent(result)
+
+    def _get_format_specification(self):
+        names = []
+        if self.implicit_scaling:
+            names.append('implicit_scaling')
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=[
+                self.time_signature.pair,
+                self._contents_summary,
+                ],
+            storage_format_args_values=[
+                self.time_signature,
+                self._contents_summary,
+                ],
+            storage_format_kwargs_names=names,
+            )
 
     @staticmethod
     def _get_likely_multiplier_of_components(components):
@@ -877,7 +878,6 @@ class Measure(FixedDurationContainer):
         Returns none.
         '''
         from abjad.tools import indicatortools
-        from abjad.tools import scoretools
         if multiplier == 0:
             raise ZeroDivisionError
         old_time_signature = self.time_signature

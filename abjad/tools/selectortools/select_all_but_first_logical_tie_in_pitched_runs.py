@@ -66,11 +66,11 @@ def select_all_but_first_logical_tie_in_pitched_runs(expr=None):
             >>> for x in selector(staff):
             ...     x
             ...
-            LogicalTie(Note("d'4"), Note("d'4"))
-            LogicalTie(Note("e'4"),)
-            LogicalTie(Note("g'4"),)
-            LogicalTie(Note("b'4"), Note("b'4"))
-            LogicalTie(Note("c''4"),)
+            LogicalTie([Note("d'4"), Note("d'4")])
+            LogicalTie([Note("e'4")])
+            LogicalTie([Note("g'4")])
+            LogicalTie([Note("b'4"), Note("b'4")])
+            LogicalTie([Note("c''4")])
 
     '''
     from abjad.tools import selectortools

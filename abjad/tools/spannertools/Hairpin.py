@@ -156,22 +156,6 @@ class Hairpin(Spanner):
             stop_dynamic = indicatortools.Dynamic(stop_dynamic)
         self._stop_dynamic = stop_dynamic
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        if self._compact_summary == '':
-            positional_argument_values = None
-        else:
-            positional_argument_values = (self._compact_summary, )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=('descriptor',),
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, component_expression):
@@ -181,7 +165,7 @@ class Hairpin(Spanner):
             return False
         formattable_components = []
         for component in component_expression:
-            if (self.include_rests or 
+            if (self.include_rests or
                 isinstance(component, (scoretools.Note, scoretools.Chord))):
                 formattable_components.append(component)
         return 1 < len(formattable_components)

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -103,18 +104,11 @@ class Infinity(AbjadObject):
             return 0
         return self
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            storage_format_pieces=(
-                type(self).__name__,
-                ),
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_text=type(self).__name__,
+            storage_format_text=type(self).__name__,
             )

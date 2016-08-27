@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import copy
 import functools
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -95,7 +96,7 @@ class NoteHead(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getnewargs__(self):
@@ -146,10 +147,7 @@ class NoteHead(AbjadObject):
 
         Returns string.
         '''
-        args = [repr(self._format_string)]
-        args.extend(self.tweak._get_attribute_pairs())
-        args = ', '.join([str(x) for x in args])
-        return '{}({})'.format(type(self).__name__, args)
+        return super(NoteHead, self).__repr__()
 
     def __str__(self):
         r'''String representation of note-head.
@@ -179,10 +177,8 @@ class NoteHead(AbjadObject):
     @property
     def _keyword_argument_names(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
+        agent = systemtools.StorageFormatAgent(self)
+        keyword_argument_names = list(agent.signature_keyword_names)
         if 'client' in keyword_argument_names:
             keyword_argument_names.remove('client')
         if 'tweak_pairs' in keyword_argument_names:
@@ -219,21 +215,21 @@ class NoteHead(AbjadObject):
         # return formatted note head
         return result
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
-        if 'client' in keyword_argument_names:
-            keyword_argument_names.remove('client')
-        if 'tweak_pairs' in keyword_argument_names:
-            keyword_argument_names.remove('tweak_pairs')
-        keyword_argument_names = tuple(keyword_argument_names)
-        return systemtools.StorageFormatSpecification(
+    def _get_format_specification(self):
+        args = [repr(self._format_string)]
+        args.extend(self.tweak._get_attribute_pairs())
+        args = ', '.join([str(x) for x in args])
+        repr_text = '{}({})'.format(type(self).__name__, args)
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        if 'client' in names:
+            names.remove('client')
+        if 'tweak_pairs' in names:
+            names.remove('tweak_pairs')
+        return systemtools.FormatSpecification(
             self,
-            keyword_argument_names=keyword_argument_names,
+            repr_text=repr_text,
+            storage_format_kwargs_names=names,
             )
 
     ### PUBLIC PROPERTIES ###

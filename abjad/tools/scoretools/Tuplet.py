@@ -3,6 +3,7 @@ import fractions
 import math
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.scoretools.Container import Container
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
@@ -122,19 +123,6 @@ class Tuplet(Container):
         '''
         return (self.multiplier,)
 
-    def __repr__(self):
-        '''Gets interpreter representation of tuplet.
-
-        Returns string.
-        '''
-        result = '{}({!r}, {!r})'
-        result = result.format(
-            type(self).__name__,
-            self.multiplier,
-            self._contents_summary,
-            )
-        return result
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -189,19 +177,6 @@ class Tuplet(Container):
             return ratio_string
         else:
             return None
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.multiplier,
-            self[:],
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=positional_argument_values,
-            keyword_argument_names=(),
-            )
 
     @property
     def _summary(self):
@@ -332,6 +307,14 @@ class Tuplet(Container):
         denominator = duration.denominator
         if not mathtools.is_nonnegative_integer_power_of_two(denominator):
             return r"\tweak edge-height #'(0.7 . 0)"
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=[self.multiplier, self._contents_summary],
+            storage_format_args_values=[self.multiplier, self[:]],
+            storage_format_kwargs_names=[],
+            )
 
     def _get_scale_durations_command_string(self):
         multiplier = self.multiplier

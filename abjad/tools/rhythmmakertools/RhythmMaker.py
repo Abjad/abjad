@@ -77,52 +77,6 @@ class RhythmMaker(AbjadValueObject):
         self._check_well_formedness(selections)
         return selections
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a rhythm-maker with type and public
-        properties equal to those of this rhythm-maker. Otherwise false.
-
-        Returns true or false.
-        '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
-
-    def __format__(self, format_specification=''):
-        r'''Formats rhythm-maker.
-
-        Set `format_specification` to `''` or `'storage'`.
-
-        Defaults `format_specification=None` to
-        `format_specification='storage'`.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
-        return str(self)
-
-    def __getstate__(self):
-        r'''Gets state.
-
-        Returns dictionary.
-        '''
-        if hasattr(self, '__dict__'):
-            return vars(self)
-        state = {}
-        for class_ in type(self).__mro__:
-            for slot in getattr(class_, '__slots__', ()):
-                state[slot] = getattr(self, slot, None)
-        return state
-
-    def __hash__(self):
-        r'''Hashes rhythm-maker.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(RhythmMaker, self).__hash__()
-
     def __illustrate__(self, divisions=((3, 8), (4, 8), (3, 16), (4, 16))):
         r'''Illustrates rhythm-maker.
 
@@ -162,8 +116,8 @@ class RhythmMaker(AbjadValueObject):
         division_masks = self.division_masks
         for i, selection in enumerate(selections):
             matching_division_mask = division_masks.get_matching_pattern(
-                i, 
-                length, 
+                i,
+                length,
                 rotation=rotation,
                 )
             if not matching_division_mask:
@@ -260,7 +214,7 @@ class RhythmMaker(AbjadValueObject):
         tie_specifier = self._get_tie_specifier()
         tie_specifier(selections)
 
-    
+
     def _apply_tuplet_spelling_specifier(self, selections, divisions):
         # TODO: migrate functionality to TupletSpellingSpecifier.__call__()
         tuplet_spelling_specifier = self._get_tuplet_spelling_specifier()
@@ -306,7 +260,7 @@ class RhythmMaker(AbjadValueObject):
         for selection in selections:
             new_selection = []
             for component in selection:
-                if not (isinstance(component, scoretools.Tuplet) and 
+                if not (isinstance(component, scoretools.Tuplet) and
                     component.is_trivial):
                     new_selection.append(component)
                     continue
@@ -444,7 +398,7 @@ class RhythmMaker(AbjadValueObject):
         for selection in selections:
             new_selection = []
             for component in selection:
-                if not (isinstance(component, scoretools.Tuplet) and 
+                if not (isinstance(component, scoretools.Tuplet) and
                     component._is_rest_filled):
                     new_selection.append(component)
                     continue

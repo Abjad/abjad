@@ -261,10 +261,10 @@ class TaleaRhythmMaker(RhythmMaker):
 
                 >>> for selection in selections:
                 ...     selection
-                Selection(Note("c'16"), Note("c'8"), Note("c'8."))
-                Selection(Note("c'4"), Note("c'16"), Note("c'8"), Note("c'16"))
-                Selection(Note("c'8"), Note("c'4"))
-                Selection(Note("c'16"), Note("c'8"), Note("c'8."), Note("c'8"))
+                Selection([Note("c'16"), Note("c'8"), Note("c'8.")])
+                Selection([Note("c'4"), Note("c'16"), Note("c'8"), Note("c'16")])
+                Selection([Note("c'8"), Note("c'4")])
+                Selection([Note("c'16"), Note("c'8"), Note("c'8."), Note("c'8")])
 
         ..  todo:: Add rotation examples.
 
@@ -397,22 +397,19 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns string.
         '''
-        return RhythmMaker.__repr__(self)
+        return super(TaleaRhythmMaker, self).__repr__()
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _storage_format_specification(self):
+    def _get_format_specification(self):
         from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        keyword_argument_names = \
-            manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(keyword_argument_names)
-        if self.tie_split_notes == True:
-            keyword_argument_names.remove('tie_split_notes')
-        return systemtools.StorageFormatSpecification(
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        if self.tie_split_notes:
+            names.remove('tie_split_notes')
+        return systemtools.FormatSpecification(
             self,
-            keyword_argument_names=keyword_argument_names,
+            storage_format_kwargs_names=names,
             )
 
     ### PRIVATE METHODS ###

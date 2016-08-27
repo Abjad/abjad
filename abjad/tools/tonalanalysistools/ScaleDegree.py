@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import re
 from abjad.tools import pitchtools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -148,7 +149,7 @@ class ScaleDegree(AbjadObject):
 
         Returns string.
         '''
-        return '{}({})'.format(type(self).__name__, self._format_string)
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     def __str__(self):
         r'''String representation of scale degree.
@@ -160,7 +161,8 @@ class ScaleDegree(AbjadObject):
 
         Returns string.
         '''
-        return self._compact_format_string
+        return '{}{}'.format(
+            self.accidental.symbolic_string, self.number)
 
     ### PRIVATE PROPERTIES ###
 
@@ -168,27 +170,15 @@ class ScaleDegree(AbjadObject):
     def _acceptable_numbers(self):
         return tuple(range(1, 16))
 
-    @property
-    def _compact_format_string(self):
-        return '{}{}'.format(
-            self.accidental.symbolic_string, self.number)
-
-    @property
-    def _format_string(self):
-        parts = []
+    def _get_format_specification(self):
+        values = [self.number]
         if self.accidental.is_adjusted:
-            parts.append(repr(self.accidental.name))
-        parts.append(str(self.number))
-        return ', '.join(parts)
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (self._format_string,)
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=positional_argument_values,
+            values = [self.accidental.name, self.number]
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
             )
 
     ### PRIVATE METHODS ###

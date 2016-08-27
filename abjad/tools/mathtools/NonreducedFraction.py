@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import fractions
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
@@ -185,9 +186,8 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns string.
         '''
-        from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __ge__(self, expr):
@@ -347,11 +347,7 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
 
         Returns string.
         '''
-        return '{}({}, {})'.format(
-            type(self).__name__,
-            self.numerator,
-            self.denominator,
-            )
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     def __rmul__(self, expr):
         r'''Multiplies `expr` by nonreduced fraction.
@@ -417,21 +413,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         '''
         return self.__div__(expr)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                self.numerator,
-                self.denominator,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _fraction_with_denominator(self, fraction, denominator):
@@ -446,6 +427,18 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
         r'''Method is designed to be subclassed.
         '''
         return type(self)(pair)
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[
+                self.numerator,
+                self.denominator,
+                ],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
+            )
 
     @staticmethod
     def _parse_input_string(string):

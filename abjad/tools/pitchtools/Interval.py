@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 import abc
 import re
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools import mathtools
+from abjad.tools import systemtools
+from abjad.tools.abctools import AbjadValueObject
 
 
-class Interval(AbjadObject):
+class Interval(AbjadValueObject):
     '''Interval base class.
     '''
 
@@ -53,18 +55,6 @@ class Interval(AbjadObject):
         '''
         return type(self)(abs(self.number))
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is an interval with number and direction
-        equal to those of this interval. Otherwise false.
-
-        Returns true or false.
-        '''
-        if isinstance(arg, type(self)):
-            if arg.number == self.number:
-                if arg.direction_number == self.direction_number:
-                    return True
-        return False
-
     def __float__(self):
         r'''Change interval to float.
 
@@ -73,13 +63,6 @@ class Interval(AbjadObject):
         message = 'float needs to be implemented on {}.'
         message = message.format(type(self))
         raise NotImplementedError(message)
-
-    def __hash__(self):
-        r'''Hashes interval.
-
-        Returns integer.
-        '''
-        return hash(repr(self))
 
     def __int__(self):
         r'''Change interval to integer.
@@ -111,6 +94,24 @@ class Interval(AbjadObject):
         '''
         return str(self.number)
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        if type(self).__name__.startswith('Named'):
+            values = [str(self)]
+        else:
+            values = [
+                mathtools.integer_equivalent_number_to_integer(float(self))
+                ]
+        return systemtools.FormatSpecification(
+            client=self,
+            coerce_for_equality=True,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=values,
+            template_names=['direction_number', 'interval_number'],
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -127,17 +128,6 @@ class Interval(AbjadObject):
     @property
     def _format_string(self):
         return str(self.number)
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                self.number,
-                ),
-            )
 
     ### PUBLIC METHODS ###
 

@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 import abc
-import inspect
 from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
-from abjad.tools.topleveltools import new
 
 
 class QEvent(AbjadObject):
@@ -45,23 +44,18 @@ class QEvent(AbjadObject):
                 return True
         return False
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _repr_specification(self):
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            keywords_ignored_when_false=(
-                'attachments',
-                ),
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = agent.signature_keyword_names
+        for name in ('attachments',):
+            if not getattr(self, name, None) and name in names:
+                names.remove(name)
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_kwargs_names=names,
             )
 
     ### PUBLIC PROPERTIES ###

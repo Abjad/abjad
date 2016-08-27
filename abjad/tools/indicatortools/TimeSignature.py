@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
 from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -241,7 +242,7 @@ class TimeSignature(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         elif format_specification == 'lilypond':
             return self._lilypond_format
         return str(self)
@@ -372,22 +373,16 @@ class TimeSignature(AbjadValueObject):
             result.append(string)
             return result
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        is_indented = True
-        if self.partial is None and self.suppress is None:
-            is_indented = False
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=is_indented,
-            keyword_argument_names=(
-                'partial',
-                'suppress',
-                ),
-            positional_argument_values=(
-                self.pair,
-                ),
+    def _get_format_specification(self):
+        storage_format_is_indented = False
+        if self.partial is not None or self.suppress is not None:
+            storage_format_is_indented = True
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.pair],
+            storage_format_kwargs_names=['partial', 'suppress'],
+            storage_format_is_indented=storage_format_is_indented,
             )
 
     ### PUBLIC PROPERTIES ###

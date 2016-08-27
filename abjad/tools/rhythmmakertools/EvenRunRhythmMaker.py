@@ -109,9 +109,9 @@ class EvenRunRhythmMaker(RhythmMaker):
                 >>> result = rhythm_maker(divisions)
                 >>> for selection in result:
                 ...     selection
-                Selection(Container("c'8 c'8 c'8 c'8"),)
-                Selection(Container("c'4 c'4 c'4"),)
-                Selection(Container("c'4 c'4"),)
+                Selection([Container("c'8 c'8 c'8 c'8")])
+                Selection([Container("c'4 c'4 c'4")])
+                Selection([Container("c'4 c'4")])
 
         Returns a list of selections. Each selection holds a single container
         filled with notes.

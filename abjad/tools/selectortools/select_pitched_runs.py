@@ -46,8 +46,8 @@ def select_pitched_runs(expr=None):
             >>> for x in selector(staff):
             ...     x
             ...
-            Selection(Note("c'4."), Note("d'8"), Note("d'4"))
-            Selection(Note("e'4"), Note("e'8"), Note("f'4."))
+            Selection([Note("c'4."), Note("d'8"), Note("d'4")])
+            Selection([Note("e'4"), Note("e'8"), Note("f'4.")])
 
     '''
     from abjad.tools import scoretools

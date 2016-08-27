@@ -6,6 +6,7 @@ from abjad.tools import datastructuretools
 from abjad.tools import documentationtools
 from abjad.tools import lilypondparsertools
 from abjad.tools import rhythmtreetools
+from abjad.tools import systemtools
 
 
 ignored_names = (
@@ -36,6 +37,8 @@ ignored_classes = (
     lilypondparsertools.ReducedLyParser,
     lilypondparsertools.SchemeParser,
     rhythmtreetools.RhythmTreeParser,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(

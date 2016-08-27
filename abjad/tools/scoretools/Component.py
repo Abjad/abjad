@@ -97,7 +97,7 @@ class Component(AbjadObject):
         if format_specification in ('', 'lilypond'):
             return self._lilypond_format
         elif format_specification == 'storage':
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getnewargs__(self):
@@ -138,7 +138,7 @@ class Component(AbjadObject):
 
         Returns string.
         '''
-        return systemtools.StorageFormatManager.get_repr_format(self)
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     def __rmul__(self, n):
         r'''Copies component `n` times and detach spanners.
@@ -153,15 +153,6 @@ class Component(AbjadObject):
     def _lilypond_format(self):
         self._update_now(indicators=True)
         return self._format_component()
-
-    @property
-    def _repr_specification(self):
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            body_text=repr(self._compact_representation),
-            positional_argument_values=(),
-            )
 
     ### PRIVATE METHODS ###
 
@@ -434,6 +425,17 @@ class Component(AbjadObject):
 
     def _get_format_pieces(self):
         return self._format_component(pieces=True)
+
+    def _get_format_specification(self):
+        values = []
+        summary = self._contents_summary
+        if summary:
+            values.append(summary)
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=values,
+            storage_format_kwargs_names=[]
+            )
 
     def _get_grace_containers(self, kind=None):
         from abjad.tools import scoretools

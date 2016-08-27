@@ -81,7 +81,7 @@ class IntervalClassVector(Vector):
             ::
 
                 >>> vector
-                IntervalClassVector({'1': 12, '2': 12, '3': 12, '4': 12, '5': 12, '6': 6}, item_class=NumberedInversionEquivalentIntervalClass)
+                IntervalClassVector({1: 12, 2: 12, 3: 12, 4: 12, 5: 12, 6: 6}, item_class=NumberedInversionEquivalentIntervalClass)
 
         ..  container:: example
 
@@ -91,7 +91,7 @@ class IntervalClassVector(Vector):
             ::
 
                 >>> pitchtools.IntervalClassVector(vector)
-                IntervalClassVector({'1': 12, '2': 12, '3': 12, '4': 12, '5': 12, '6': 6}, item_class=NumberedInversionEquivalentIntervalClass)
+                IntervalClassVector({1: 12, 2: 12, 3: 12, 4: 12, 5: 12, 6: 6}, item_class=NumberedInversionEquivalentIntervalClass)
 
         Returns string.
         '''
@@ -137,7 +137,7 @@ class IntervalClassVector(Vector):
                 ...     item_class=pitchtools.NumberedInversionEquivalentIntervalClass,
                 ...     )
                 >>> vector
-                IntervalClassVector({'1': 1, '2': 1, '3': 1}, item_class=NumberedInversionEquivalentIntervalClass)
+                IntervalClassVector({1: 1, 2: 1, 3: 1}, item_class=NumberedInversionEquivalentIntervalClass)
 
         ..  container:: example
 
@@ -150,7 +150,7 @@ class IntervalClassVector(Vector):
                 ...     item_class=pitchtools.NumberedIntervalClass,
                 ...     )
                 >>> vector
-                IntervalClassVector({'-11': 1, '-2': 1, '-9': 1}, item_class=NumberedIntervalClass)
+                IntervalClassVector({-11: 1, -9: 1, -2: 1}, item_class=NumberedIntervalClass)
 
             .. todo:: This should probabaly be checked. Resulting values
                 should probabaly be positive (or signless) instead of negative.

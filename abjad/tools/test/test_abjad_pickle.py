@@ -34,6 +34,8 @@ ignored_classes = (
     systemtools.LilyPondFormatBundle,
     systemtools.LilyPondFormatBundle.SlotContributions,
     systemtools.RedirectedStreams,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     tonalanalysistools.TonalAnalysisAgent,
     tonalanalysistools.RootedChordClass
     )
@@ -47,7 +49,10 @@ classes = documentationtools.list_all_abjad_classes(
 def test_abjad_pickle_01(class_):
     r'''All storage-formattable classes are pickable.
     '''
-    if '_storage_format_specification' not in dir(class_):
+    if (
+        '_storage_format_specification' not in dir(class_) or
+        '_get_format_specification' not in dir(class_)
+        ):
         return
     if inspect.isabstract(class_):
         return

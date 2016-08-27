@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import enum
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 
 
 class Enumeration(enum.IntEnum):
@@ -37,8 +38,7 @@ class Enumeration(enum.IntEnum):
             '__members__',
             '__module__',
             '__repr__',
-            '_repr_specification',
-            '_storage_format_specification',
+            '_get_format_specification',
             'from_expr',
             ]
         names += self._member_names_
@@ -56,7 +56,7 @@ class Enumeration(enum.IntEnum):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __repr__(self):
@@ -65,39 +65,21 @@ class Enumeration(enum.IntEnum):
         Returns string.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
+        return systemtools.StorageFormatAgent(self).get_repr_format()
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        class_name = type(self).__name__
-        name = self.name
-        storage_format_pieces = '{}.{}'.format(
-            class_name,
-            name,
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        repr_text = '{}.{}'.format(type(self).__name__, self.name)
+        storage_format_text = '{}.{}'.format(
+            repr_text,
+            agent.get_tools_package_name(),
             )
-        return systemtools.StorageFormatSpecification(
-            self,
-            storage_format_pieces=(storage_format_pieces,),
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        tools_package_name = manager.get_tools_package_name(self)
-        class_name = type(self).__name__
-        name = self.name
-        storage_format_pieces = '{}.{}.{}'.format(
-            tools_package_name,
-            class_name,
-            name,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            storage_format_pieces=(storage_format_pieces,),
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_text=repr_text,
+            storage_format_text=storage_format_text,
             )
 
     ### PUBLIC METHODS ###
@@ -114,7 +96,7 @@ class Enumeration(enum.IntEnum):
             return cls(expr)
         elif isinstance(expr, str):
             expr = expr.strip()
-            expr = stringtools.to_snake_case(expr) 
+            expr = stringtools.to_snake_case(expr)
             expr = expr.upper()
             return cls[expr]
         elif expr is None:

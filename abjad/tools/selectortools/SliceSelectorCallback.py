@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
-import numbers
-from abjad.tools import durationtools
 from abjad.tools import scoretools
 from abjad.tools import selectiontools
 from abjad.tools.abctools import AbjadValueObject
-from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import select
 
 
 class SliceSelectorCallback(AbjadValueObject):
     r'''A slice selector callback.
-
     '''
 
     ### CLASS VARIABLES ###
@@ -59,7 +55,8 @@ class SliceSelectorCallback(AbjadValueObject):
 
                 >>> for selection in selections:
                 ...     selection
-                Selection(Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4"))
+                ...
+                Selection([Rest('r16'), Note("f'16"), Note("g'8"), Note("a'4")])
 
             Returns tuple of selections.
 

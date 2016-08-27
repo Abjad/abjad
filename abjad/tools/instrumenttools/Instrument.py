@@ -4,6 +4,7 @@ from abjad.tools import indicatortools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import stringtools
+from abjad.tools import systemtools
 from abjad.tools.topleveltools import new
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
@@ -81,28 +82,6 @@ class Instrument(AbjadValueObject):
         self._performer_names = ['instrumentalist']
         self._starting_clefs = copy.copy(allowable_clefs)
 
-    ### SPECIAL METHODS ###
-
-    def __format__(self, format_specification=''):
-        r'''Formats instrument.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
-        return str(self)
-
-    def __repr__(self):
-        r'''Gets interpreter representation of instrument.
-
-        Returns string.
-        '''
-        return '{}()'.format(type(self).__name__)
-
     ### PRIVATE PROPERTIES ###
 
     @staticmethod
@@ -166,6 +145,14 @@ class Instrument(AbjadValueObject):
             return performer_name
         else:
             return self._performer_names[-1]
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            self,
+            repr_args_values=[],
+            repr_is_indented=False,
+            repr_kwargs_names=[],
+            )
 
     def _get_performer_names(self):
         if self._performer_names is None:

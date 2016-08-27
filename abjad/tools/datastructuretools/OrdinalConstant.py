@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import functools
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools import systemtools
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
 @functools.total_ordering
-class OrdinalConstant(AbjadObject):
+class OrdinalConstant(AbjadValueObject):
     r'''An ordinal constant.
 
     ..  container:: example
@@ -112,60 +113,6 @@ class OrdinalConstant(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is an ordinal constant with dimension and value
-        equal to those of this ordinal constant. Otherwise false.
-
-        Returns true or false.
-        '''
-        if isinstance(expr, type(self)):
-            if self._dimension == expr._dimension:
-                return self._value == expr._value
-        return False
-
-    def __format__(self, format_specification=''):
-        r'''Formats ordinal constant.
-
-        Set `format_specification` to `''` or `'storage'`.
-        Interprets `''` equal to `'storage'`.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        if format_specification in ('', 'storage'):
-            if self._representation:
-                return systemtools.StorageFormatManager.get_storage_format(
-                    self)
-            else:
-                result = 'datastructuretools.{}()'
-                result = result.format(type(self).__name__)
-                return result
-        return str(self)
-
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (
-            self._dimension,
-            self._value,
-            self._representation,
-            )
-
-    def __hash__(self):
-        r'''Hashes ordinal constant.
-
-        Returns int.
-        '''
-        hash_values = (
-            type(self),
-            self._dimension,
-            self._representation,
-            self._value,
-            )
-        return hash(hash_values)
-
     def __lt__(self, expr):
         r'''Is true when `expr` is an ordinal with value greater than that of
         this ordinal constant. Otherwise false.
@@ -175,38 +122,19 @@ class OrdinalConstant(AbjadObject):
         self._check_comparator(expr)
         return self._value < expr._value
 
-    def __repr__(self):
-        r'''Gets interpreter representation of ordinal constant.
-
-        Returns string.
-        '''
-        if self._representation:
-            return AbjadObject.__repr__(self)
-        string = 'datastructuretools.{}()'
-        string = string.format(type(self).__name__)
-        return string
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _repr_specification(self):
-        return self._storage_format_specification
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            storage_format_pieces=(
-                self._representation,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     # can only compare like-dimensioned ordinal constants
     def _check_comparator(self, expr):
         if not isinstance(expr, type(self)) or \
-            not self._dimension == expr._dimension:
+            self._dimension != expr._dimension:
             message = 'can only compare like-dimensioned ordinal constants.'
             raise Exception(message)
+
+    def _get_format_specification(self):
+        storage_format_text = repr_text = self._representation or None
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_text=repr_text,
+            storage_format_text=storage_format_text,
+            )

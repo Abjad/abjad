@@ -89,7 +89,7 @@ class QSchema(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, i):
@@ -114,17 +114,15 @@ class QSchema(AbjadObject):
     ### PRIVATE METHODS ###
 
     def _create_lookups(self):
-        from abjad.tools import systemtools
-        fields = systemtools.StorageFormatManager.get_keyword_argument_names(
-            self.item_class)
+        names = self._keyword_argument_names
         lookups = {}
-        for field in fields:
-            lookups[field] = {0: getattr(self, field)}
+        for name in names:
+            lookups[name] = {0: getattr(self, name)}
             for position, item in self.items.items():
-                value = getattr(item, field)
+                value = getattr(item, name)
                 if value is not None:
-                    lookups[field][position] = value
-            lookups[field] = dict(lookups[field])
+                    lookups[name][position] = value
+            lookups[name] = dict(lookups[name])
         return dict(lookups)
 
     ### PUBLIC PROPERTIES ###

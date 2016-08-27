@@ -14,7 +14,7 @@ def make_skips(
 
         >>> scoretools.make_skips(
         ...     Duration(1, 4), [(1, 2), (1, 3), (1, 4), (1, 5)])
-        Selection(Skip('s4 * 2'), Skip('s4 * 4/3'), Skip('s4 * 1'), Skip('s4 * 4/5'))
+        Selection([Skip('s4 * 2'), Skip('s4 * 4/3'), Skip('s4 * 1'), Skip('s4 * 4/5')])
 
     Useful for making invisible layout voices.
 

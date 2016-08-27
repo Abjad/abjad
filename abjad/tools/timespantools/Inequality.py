@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import bisect
 from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.abctools import AbjadObject
 
 
@@ -84,22 +85,8 @@ class Inequality(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = []
-        positional_argument_values.append(self.template)
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PRIVATE METHODS ###
 
@@ -134,6 +121,14 @@ class Inequality(AbjadObject):
         if i:
             return i - 1
         raise ValueError
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=[self.template],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
+            )
 
     def _index(self, a, x):
         r'''Finds index of leftmost value exactly equal to x.

@@ -8,14 +8,14 @@ def make_repeated_notes_from_time_signature(time_signature, pitch="c'"):
     ::
 
         >>> scoretools.make_repeated_notes_from_time_signature((5, 32))
-        Selection(Note("c'32"), Note("c'32"), Note("c'32"), Note("c'32"), Note("c'32"))
+        Selection([Note("c'32"), Note("c'32"), Note("c'32"), Note("c'32"), Note("c'32")])
 
     Make repeated notes with `pitch` from `time_signature`:
 
     ::
 
         >>> scoretools.make_repeated_notes_from_time_signature((5, 32), pitch="d''")
-        Selection(Note("d''32"), Note("d''32"), Note("d''32"), Note("d''32"), Note("d''32"))
+        Selection([Note("d''32"), Note("d''32"), Note("d''32"), Note("d''32"), Note("d''32")])
 
     Returns list of notes.
     '''

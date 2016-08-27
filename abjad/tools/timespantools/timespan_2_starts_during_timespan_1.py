@@ -50,7 +50,7 @@ def timespan_2_starts_during_timespan_1(
 
             >>> selected_notes = staff_1[start_index:stop_index]
             >>> selected_notes
-            Selection(Note("d'4"), Note("e'4"), Note("f'4"), Note("g'2"))
+            Selection([Note("d'4"), Note("e'4"), Note("f'4"), Note("g'2")])
 
         ::
 

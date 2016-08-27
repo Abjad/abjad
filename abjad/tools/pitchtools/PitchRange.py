@@ -4,7 +4,7 @@ import copy
 import numbers
 import re
 from abjad.tools import indicatortools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools.abctools import AbjadValueObject
 from abjad.tools.pitchtools.Pitch import Pitch
 from abjad.tools.topleveltools import inspect_
 from abjad.tools.topleveltools import iterate
@@ -12,7 +12,7 @@ from abjad.tools.topleveltools import select
 
 
 # TODO: make iterable so that for x in PitchRange works
-class PitchRange(AbjadObject):
+class PitchRange(AbjadValueObject):
     r"""Pitch range.
 
     ..  container:: example
@@ -127,7 +127,7 @@ class PitchRange(AbjadObject):
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.compare(self, expr)
+        return systemtools.TestManager.compare_objects(self, expr)
 
     def __format__(self, format_specification=''):
         r'''Formats pitch range.
@@ -139,7 +139,7 @@ class PitchRange(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __ge__(self, arg):
@@ -180,7 +180,7 @@ class PitchRange(AbjadObject):
         Returns integer.
         '''
         from abjad.tools import systemtools
-        hash_values = systemtools.StorageFormatManager.get_hash_values(self)
+        hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
     def __illustrate__(self):

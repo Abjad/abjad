@@ -375,7 +375,7 @@ def make_leaves(
             ...     use_multimeasure_rests=True,
             ...     )
             >>> leaves
-            Selection(MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8'))
+            Selection([MultimeasureRest('R1 * 3/8'), MultimeasureRest('R1 * 5/8')])
 
         ::
 

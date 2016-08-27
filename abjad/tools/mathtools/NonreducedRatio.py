@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import systemtools
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
@@ -76,7 +77,7 @@ class NonreducedRatio(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'storage'):
-            return systemtools.StorageFormatManager.get_storage_format(self)
+            return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
     def __getitem__(self, i):
@@ -140,17 +141,14 @@ class NonreducedRatio(AbjadValueObject):
     def _number_coercer(self):
         return int
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self._numbers,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=[self.numbers],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
             )
 
     ### PUBLIC METHODS ###
@@ -198,9 +196,9 @@ class NonreducedRatio(AbjadValueObject):
         Returns tuple of multipliers.
         '''
         from abjad.tools import durationtools
-        weight = sum(self.numbers) 
+        weight = sum(self.numbers)
         multipliers = [
-            durationtools.Multiplier((_, weight)) 
+            durationtools.Multiplier((_, weight))
             for _ in self.numbers
             ]
         multipliers = tuple(multipliers)

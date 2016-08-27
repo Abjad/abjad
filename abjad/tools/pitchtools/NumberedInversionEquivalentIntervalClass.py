@@ -77,25 +77,6 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         '''
         return type(self)(self.number)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is a numbered inversion-equivalent interval-class
-        with number equal to that of this numbered inversion-equivalent
-        interval-class. Otherwise false.
-
-        Returns true or false.
-        '''
-        if isinstance(arg, type(self)):
-            if self.number == arg.number:
-                return True
-        return False
-
-    def __hash__(self):
-        r'''Hashes numbered inversion-equivalent interval-class.
-
-        Returns integer.
-        '''
-        return hash(repr(self))
-
     def __lt__(self, arg):
         r'''Is true when `arg` is a numbered inversion-equivalent
         interval-class with a number less than this numbered
@@ -119,18 +100,3 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
         Returns string.
         '''
         return str(self.number)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.number,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.scoretools.Tuplet import Tuplet
 from abjad.tools.topleveltools import iterate
 from abjad.tools.topleveltools import mutate
@@ -84,22 +85,15 @@ class FixedDurationTuplet(Tuplet):
             )
         return result
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.target_duration,
-            self[:]
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=positional_argument_values,
-            keyword_argument_names=(),
-            )
-
     ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=[self.target_duration, self._contents_summary],
+            storage_format_args_values=[self.target_duration, self[:]],
+            storage_format_kwargs_names=[],
+            )
 
     def _scale(self, multiplier):
         from abjad.tools import scoretools

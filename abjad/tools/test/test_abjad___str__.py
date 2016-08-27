@@ -8,6 +8,7 @@ from abjad.tools import documentationtools
 from abjad.tools import markuptools
 from abjad.tools import pitchtools
 from abjad.tools import schemetools
+from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
 
 
@@ -34,6 +35,8 @@ ignored_classes = (
     abjadbooktools.ShellDirective,
     abjadbooktools.ThumbnailDirective,
     datastructuretools.Enumeration,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(

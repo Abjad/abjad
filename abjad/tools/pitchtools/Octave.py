@@ -2,10 +2,11 @@
 import math
 import numbers
 import re
-from abjad.tools.abctools.AbjadObject import AbjadObject
+from abjad.tools import systemtools
+from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class Octave(AbjadObject):
+class Octave(AbjadValueObject):
     r'''Octave.
 
     ..  container:: example:
@@ -192,18 +193,15 @@ class Octave(AbjadObject):
             return ',' * abs(3 - self.octave_number)
         return ''
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                self.octave_number,
-                )
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            storage_format_args_values=[self.octave_number],
+            storage_format_kwargs_names=[],
             )
 
     ### PUBLIC PROPERTIES ###
@@ -308,7 +306,6 @@ class Octave(AbjadObject):
 
         Returns integer.
         '''
-        from abjad.tools import pitchtools
         if not isinstance(pitch_name, str):
             message = 'must be string: {!r}.'
             message = message.format(pitch_name)

@@ -142,14 +142,6 @@ class RootlessChordClass(IntervalSegment):
             )
 
     @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(),
-            )
-
-    @property
     def _title_case_name(self):
         return '{}{}In{}'.format(
             stringtools.to_upper_camel_case(self.quality_string),

@@ -6,6 +6,7 @@ import abjad
 from abjad.tools import abjadbooktools
 from abjad.tools import documentationtools
 from abjad.tools import metertools
+from abjad.tools import systemtools
 from abjad.tools import tonalanalysistools
 
 
@@ -14,6 +15,8 @@ ignored_classes = (
     abjadbooktools.CodeOutputProxy,
     abjadbooktools.GraphvizOutputProxy,
     abjadbooktools.LilyPondOutputProxy,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(
@@ -25,7 +28,10 @@ classes = documentationtools.list_all_abjad_classes(
 def test_abjad___format___01(class_):
     r'''All concrete classes have a storage format.
     '''
-    if '_storage_format_specification' not in dir(class_):
+    if (
+        '_storage_format_specification' not in dir(class_) or
+        '_get_format_specification' not in dir(class_)
+        ):
         return
     if inspect.isabstract(class_):
         return
@@ -42,6 +48,8 @@ ignored_classes = (
     abjadbooktools.LilyPondOutputProxy,
     metertools.Meter,
     tonalanalysistools.RootedChordClass,
+    systemtools.StorageFormatAgent,
+    systemtools.FormatSpecification,
     )
 
 classes = documentationtools.list_all_abjad_classes(

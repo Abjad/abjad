@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import argparse
 import doctest
 import os
 import re
@@ -54,6 +55,20 @@ class TestCase(unittest.TestCase):
             return None
     ''')
 
+    def compare_strings(self, expected, actual):
+        example = argparse.Namespace()
+        example.want = expected
+        output_checker = doctest.OutputChecker()
+        flags = (
+            doctest.NORMALIZE_WHITESPACE |
+            doctest.ELLIPSIS |
+            doctest.REPORT_NDIFF
+            )
+        success = output_checker.check_output(expected, actual, flags)
+        if not success:
+            diff = output_checker.output_difference(example, actual, flags)
+            raise Exception(diff)
+
     def setUp(self):
         if not self.doctest_path.exists():
             self.doctest_path.mkdir()
@@ -96,12 +111,9 @@ class TestCase(unittest.TestCase):
 
         FAILED: doctest_test/doctest_fail.py
 
-        1 of 2 tests passed in 2 modules.
+        1 passed, 1 failed out of 2 tests in 2 modules.
         '''.replace('/', os.path.sep))
-        assert doctest.OutputChecker().check_output(
-            expected, script_output,
-            doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-            )
+        self.compare_strings(expected, script_output)
 
     def test_diff(self):
         script = commandlinetools.DoctestScript()
@@ -130,12 +142,9 @@ class TestCase(unittest.TestCase):
 
         FAILED: doctest_test/doctest_fail.py
 
-        0 of 1 test passed in 1 module.
+        0 passed, 1 failed out of 1 test in 1 module.
         '''.replace('/', os.path.sep))
-        assert doctest.OutputChecker().check_output(
-            expected, script_output,
-            doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-            )
+        self.compare_strings(expected, script_output)
 
     def test_fail(self):
         script = commandlinetools.DoctestScript()
@@ -165,12 +174,9 @@ class TestCase(unittest.TestCase):
 
         FAILED: doctest_test/doctest_fail.py
 
-        0 of 1 test passed in 1 module.
+        0 passed, 1 failed out of 1 test in 1 module.
         '''.replace('/', os.path.sep))
-        assert doctest.OutputChecker().check_output(
-            expected, script_output,
-            doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-            )
+        self.compare_strings(expected, script_output)
 
     def test_pass(self):
         script = commandlinetools.DoctestScript()
@@ -185,9 +191,6 @@ class TestCase(unittest.TestCase):
         expected = stringtools.normalize('''
         doctest_test/doctest_pass.py OK
 
-        1 of 1 test passed in 1 module.
+        1 passed, 0 failed out of 1 test in 1 module.
         '''.replace('/', os.path.sep))
-        assert doctest.OutputChecker().check_output(
-            expected, script_output,
-            doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-            )
+        self.compare_strings(expected, script_output)

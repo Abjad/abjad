@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import stringtools
+from abjad.tools.topleveltools import new
 from abjad.tools.schemetools.Scheme import Scheme
 
 
@@ -66,6 +66,16 @@ class SchemePair(Scheme):
         superclass = super(SchemePair, self)
         return superclass.__format__(format_specification=format_specification)
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        specification = super(SchemePair, self)._get_format_specification()
+        return new(
+            specification,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -82,17 +92,3 @@ class SchemePair(Scheme):
     @property
     def _lilypond_format(self):
         return "#'%s" % self._formatted_value
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        if stringtools.is_string(self._value):
-            positional_argument_values = (self._value,)
-        else:
-            positional_argument_values = self._value
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=positional_argument_values,
-            )
-        

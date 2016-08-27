@@ -39,7 +39,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
         self._forbidden_written_duration = forbidden_written_duration
         assert isinstance(rewrite_meter, (bool, type(None)))
         self._rewrite_meter = rewrite_meter
-        assert (spell_metrically is None or 
+        assert (spell_metrically is None or
             isinstance(spell_metrically, bool) or
             spell_metrically == 'unassignable' or
             isinstance(spell_metrically, rhythmmakertools.PartitionTable))
@@ -82,14 +82,14 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
         Returns string.
         '''
-        return AbjadValueObject.__repr__(self)
+        return super(DurationSpellingSpecifier, self).__repr__()
 
     ### PRIVATE METHODS ###
 
     @staticmethod
     def _rewrite_meter_(
-        selections, 
-        meters, 
+        selections,
+        meters,
         reference_meters=None,
         rewrite_tuplets=False,
         use_messiaen_style_ties=False,
@@ -128,7 +128,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
 
     @staticmethod
     def _split_at_measure_boundaries(
-        selections, 
+        selections,
         meters,
         use_messiaen_style_ties=False,
         ):

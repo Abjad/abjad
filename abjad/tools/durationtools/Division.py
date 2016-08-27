@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import mathtools
+from abjad.tools import systemtools
 from abjad.tools.mathtools.NonreducedFraction import NonreducedFraction
-from abjad.tools.topleveltools.override import override
-from abjad.tools.topleveltools.set_ import set_
 
 
 class Division(NonreducedFraction):
@@ -245,7 +244,7 @@ class Division(NonreducedFraction):
 
             >>> parts[-1][0].start_offset
             Offset(15, 16)
-            
+
     '''
 
     ### CLASS VARIABLES ###
@@ -260,7 +259,7 @@ class Division(NonreducedFraction):
     def __new__(
         class_,
         argument=None,
-        payload=None, 
+        payload=None,
         start_offset=None,
         ):
         from abjad.tools import durationtools
@@ -436,14 +435,6 @@ class Division(NonreducedFraction):
         '''
         return (self.pair, self.payload, self.start_offset)
 
-    def __repr__(self):
-        r'''Gets interpreter representation of division.
-
-        Returns string.
-        '''
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatManager.get_repr_format(self)
-
     def __str__(self):
         r'''Gets string representation of division.
 
@@ -587,7 +578,7 @@ class Division(NonreducedFraction):
         if not self_has_start_offset == expr_has_start_offset:
             message = 'both divisions must have (or not have) start offsets.'
             raise Exception(message)
-            
+
         if self.start_offset is expr.start_offset is None:
             superclass = super(Division, self)
             difference = superclass.__sub__(expr)
@@ -619,26 +610,21 @@ class Division(NonreducedFraction):
             message = 'timespan subtraction creates more than one division.'
             raise Exception(message)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(
-                'payload',
-                'start_offset',
-                ),
-            positional_argument_values=(
-                self.pair,
-                ),
-            )
-
     ### PRIVATE METHODS ###
 
     def _from_pair(self, pair):
         return type(self)(pair, start_offset=self.start_offset)
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.pair],
+            storage_format_kwargs_names=[
+                'payload',
+                'start_offset',
+                ],
+            )
 
     def _to_timespan(self):
         from abjad.tools import timespantools
@@ -732,8 +718,7 @@ class Division(NonreducedFraction):
 
         Returns object or none.
         '''
-        return self._payload        
-
+        return self._payload
 
     @property
     def start_offset(self):
@@ -774,8 +759,7 @@ class Division(NonreducedFraction):
 
         Returns offset or none.
         '''
-        return self._start_offset        
-
+        return self._start_offset
 
     @property
     def stop_offset(self):

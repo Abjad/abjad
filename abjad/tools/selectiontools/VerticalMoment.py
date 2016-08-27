@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
+from abjad.tools import systemtools
 from abjad.tools.selectiontools.Selection import Selection
 
 
@@ -209,10 +210,8 @@ class VerticalMoment(Selection):
                     result.extend(VerticalMoment._recurse(child, offset))
         return result
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(self)
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(client=self)
 
     ### PUBLIC PROPERTIES ###
 
@@ -221,7 +220,6 @@ class VerticalMoment(Selection):
         r'''Positive integer number of pitch carriers
         starting at vertical moment.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import scoretools
         attack_carriers = []
         for leaf in self.start_leaves:
@@ -284,7 +282,6 @@ class VerticalMoment(Selection):
     def next_vertical_moment(self):
         r'''Reference to next vertical moment forward in time.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import scoretools
         candidate_shortest_leaf = self.leaves[0]
         for leaf in self.leaves[1:]:
@@ -377,7 +374,6 @@ class VerticalMoment(Selection):
     def previous_vertical_moment(self):
         r'''Reference to previous vertical moment backward in time.
         '''
-        from abjad.tools import scoretools
         from abjad.tools import scoretools
         if self.offset == 0:
             raise IndexError

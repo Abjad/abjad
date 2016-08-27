@@ -104,48 +104,51 @@ class DoctestScript(CommandlineScript):
         failed_file_paths = []
         error_messages = []
         file_paths = file_paths or self._get_file_paths(args.path)
-        for file_path in sorted(file_paths):
-            total_modules += 1
-            relative_path = os.path.relpath(file_path)
-            string_buffer = StringIO()
-            with systemtools.RedirectedStreams(stdout=string_buffer):
-                failure_count, test_count = doctest.testfile(
-                    file_path,
-                    module_relative=False,
-                    globs=globs,
-                    optionflags=optionflags,
-                    )
-            doctest_output = string_buffer.getvalue()
-            if failure_count:
-                failed_file_paths.append(os.path.relpath(file_path))
-                error_messages.append(doctest_output)
-                if print_to_terminal:
-                    result_code = ''.join((
-                        self._colors['RED'],
-                        'FAILED',
-                        self._colors['END'],
-                        ))
-                    print(relative_path, result_code)
+        try:
+            for file_path in sorted(file_paths):
+                total_modules += 1
+                relative_path = os.path.relpath(file_path)
+                string_buffer = StringIO()
+                with systemtools.RedirectedStreams(stdout=string_buffer):
+                    failure_count, test_count = doctest.testfile(
+                        file_path,
+                        module_relative=False,
+                        globs=globs,
+                        optionflags=optionflags,
+                        )
+                doctest_output = string_buffer.getvalue()
+                if failure_count:
+                    failed_file_paths.append(os.path.relpath(file_path))
+                    error_messages.append(doctest_output)
+                    if print_to_terminal:
+                        result_code = ''.join((
+                            self._colors['RED'],
+                            'FAILED',
+                            self._colors['END'],
+                            ))
+                        print(relative_path, result_code)
+                    else:
+                        result_code = 'FAILED'
+                        string = '{} {}'.format(relative_path, result_code)
+                        result.append(string)
+                    if args and args.x:
+                        break
                 else:
-                    result_code = 'FAILED'
-                    string = '{} {}'.format(relative_path, result_code)
-                    result.append(string)
-                if args and args.x:
-                    break
-            else:
-                if print_to_terminal:
-                    result_code = ''.join((
-                        self._colors['BLUE'],
-                        'OK',
-                        self._colors['END'],
-                        ))
-                    print(relative_path, result_code)
-                else:
-                    result_code = 'OK'
-                    string = '{} {}'.format(relative_path, result_code)
-                    result.append(string)
-            total_failures += failure_count
-            total_tests += test_count
+                    if print_to_terminal:
+                        result_code = ''.join((
+                            self._colors['BLUE'],
+                            'OK',
+                            self._colors['END'],
+                            ))
+                        print(relative_path, result_code)
+                    else:
+                        result_code = 'OK'
+                        string = '{} {}'.format(relative_path, result_code)
+                        result.append(string)
+                total_failures += failure_count
+                total_tests += test_count
+        except KeyboardInterrupt:
+            print('Interrupted. Halting tests.')
         self._report(
             error_messages=error_messages,
             failed_file_paths=failed_file_paths,
@@ -182,20 +185,24 @@ class DoctestScript(CommandlineScript):
                 print(string)
             else:
                 result.append(string)
-        total_successes = total_tests - total_failures
         if print_to_terminal:
             print()
         else:
             result.append('')
         test_identifier = stringtools.pluralize('test', total_tests)
         module_identifier = stringtools.pluralize('module', total_modules)
-        string = '{} of {} {} passed in {} {}.'
+        string = (
+            '{total_successes} passed, {total_failures} failed out of '
+            '{total_tests} {test_identifier} '
+            'in {total_modules} {module_identifier}.'
+            )
         string = string.format(
-            total_successes,
-            total_tests,
-            test_identifier,
-            total_modules,
-            module_identifier,
+            module_identifier=module_identifier,
+            test_identifier=test_identifier,
+            total_failures=total_failures,
+            total_modules=total_modules,
+            total_successes=total_tests - total_failures,
+            total_tests=total_tests,
             )
         if print_to_terminal:
             print(string)

@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import collections
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedCollection import TypedCollection
 
 
@@ -20,7 +21,7 @@ class TypedOrderedDict(TypedCollection):
         ::
 
             >>> print(format(dictionary))
-            datastructuretools.TypedOrderedDict(
+            abjad.datastructuretools.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
@@ -54,7 +55,7 @@ class TypedOrderedDict(TypedCollection):
         ::
 
             >>> print(format(dictionary))
-            datastructuretools.TypedOrderedDict(
+            abjad.datastructuretools.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
@@ -88,7 +89,7 @@ class TypedOrderedDict(TypedCollection):
         ::
 
             >>> print(format(dictionary_2))
-            datastructuretools.TypedOrderedDict(
+            abjad.datastructuretools.TypedOrderedDict(
                 [
                     ('color', 'red'),
                     (
@@ -226,22 +227,18 @@ class TypedOrderedDict(TypedCollection):
 
     ### PRIVATE PROPERTIES ###
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        manager = systemtools.StorageFormatManager
-        names = manager.get_signature_keyword_argument_names(self)
-        keyword_argument_names = list(names)
-        if 'items' in keyword_argument_names:
-            keyword_argument_names.remove('items')
-        keyword_argument_names = tuple(keyword_argument_names)
-        positional_argument_values = (
-            list(self._collection.items()),
-            )
-        return systemtools.StorageFormatSpecification(
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        if 'items' in names:
+            names.remove('items')
+        values = [list(self._collection.items())]
+        return systemtools.FormatSpecification(
             self,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=positional_argument_values,
+            repr_is_indented=False,
+            storage_format_args_values=values,
+            storage_format_kwargs_names=names,
+            storage_format_includes_root_package=True,
             )
 
     ### PUBLIC METHODS ###

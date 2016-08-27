@@ -230,17 +230,6 @@ class NamedIntervalClass(IntervalClass):
         return self._quality_string_to_quality_abbreviation[
             self._quality_string]
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=(
-                str(self),
-                ),
-            )
-
     ### PUBLIC METHODS ###
 
     @classmethod

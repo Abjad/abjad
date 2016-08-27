@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import durationtools
-from abjad.tools.abctools import AbjadObject
-from abjad.tools.topleveltools import new
+from abjad.tools import systemtools
+from abjad.tools.abctools import AbjadValueObject
 
 
-class SpacingIndication(AbjadObject):
+class SpacingIndication(AbjadValueObject):
     r'''Spacing indication token.
 
     LilyPond ``Score.proportionalNotationDuration``
@@ -96,24 +96,16 @@ class SpacingIndication(AbjadObject):
         '''
         return super(SpacingIndication, self).__hash__()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _repr_specification(self):
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            )
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[
                 self._tempo_indication,
                 self._proportional_notation_duration,
-                ),
+                ],
             )
 
     ### PUBLIC PROPERTIES ###
@@ -125,7 +117,6 @@ class SpacingIndication(AbjadObject):
         Returns duration.
         '''
         indication = self.tempo_indication
-        duration = self.proportional_notation_duration
         scalar = indication.reference_duration / indication.units_per_minute * \
             60 / durationtools.Duration(1, 4)
         return scalar * self.proportional_notation_duration

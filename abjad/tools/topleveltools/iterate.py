@@ -15,7 +15,7 @@ def iterate(expr):
 
             >>> notes = staff[-2:]
             >>> iterate(notes)
-            IterationAgent(client=Selection(Note("d'4"), Note("f'4")))
+            IterationAgent(client=Selection([Note("d'4"), Note("f'4")]))
 
     Returns score iteration agent.
     '''

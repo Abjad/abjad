@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 import re
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import systemtools
+from abjad.tools.abctools import AbjadValueObject
 
 
-class Accidental(AbjadObject):
+class Accidental(AbjadValueObject):
     '''Accidental.
 
     ..  container:: example
@@ -82,28 +83,28 @@ class Accidental(AbjadObject):
         )
 
     _name_to_abbreviation = {
-        'double sharp'            : 'ss',
-        'three-quarters sharp'    : 'tqs',
-        'sharp'                   : 's',
-        'quarter sharp'           : 'qs',
-        'natural'                 : '',
-        'forced natural'          : '!',
-        'quarter flat'            : 'qf',
-        'flat'                    : 'f',
-        'three-quarters flat'     : 'tqf',
-        'double flat'             :  'ff',
+        'double sharp': 'ss',
+        'three-quarters sharp': 'tqs',
+        'sharp': 's',
+        'quarter sharp': 'qs',
+        'natural': '',
+        'forced natural': '!',
+        'quarter flat': 'qf',
+        'flat': 'f',
+        'three-quarters flat': 'tqf',
+        'double flat':  'ff',
     }
 
     _semitones_to_abbreviation = {
-        -2   : 'ff',
-        -1.5 : 'tqf',
-        -1   : 'f',
-        -0.5 : 'qf',
-        0    : '',
-        0.5  : 'qs',
-        1    : 's',
-        1.5  : 'tqs',
-        2    : 'ss',
+        -2: 'ff',
+        -1.5: 'tqf',
+        -1: 'f',
+        -0.5: 'qf',
+        0: '',
+        0.5: 'qs',
+        1: 's',
+        1.5: 'tqs',
+        2: 'ss',
     }
 
     _symbolic_string_regex_body = '''
@@ -121,28 +122,28 @@ class Accidental(AbjadObject):
         )
 
     _symbolic_string_to_abbreviation = {
-        'bb' : 'ff',
-        'b~' : 'tqf',
-        'b'  : 'f',
-        '~'  : 'qf',
-        ''   : '',
-        '!'  : '!',
-        '+'  : 'qs',
-        '#'  : 's',
-        '#+' : 'tqs',
-        '##' : 'ss',
+        'bb': 'ff',
+        'b~': 'tqf',
+        'b': 'f',
+        '~': 'qf',
+        '': '',
+        '!': '!',
+        '+': 'qs',
+        '#': 's',
+        '#+': 'tqs',
+        '##': 'ss',
         }
 
     _symbolic_string_to_semitones = {
-        'bb' : -2,
-        'b~' : -1.5,
-        'b'  : -1,
-        '~'  : -0.5,
-        ''   : 0,
-        '+'  : 0.5,
-        '#'  : 1,
-        '#+' : 1.5,
-        '##' : 2,
+        'bb': -2,
+        'b~': -1.5,
+        'b': -1,
+        '~': -0.5,
+        '': 0,
+        '+': 0.5,
+        '#': 1,
+        '#+': 1.5,
+        '##': 2,
         }
 
     __slots__ = (
@@ -156,7 +157,6 @@ class Accidental(AbjadObject):
     ### INITIALIZER ##
 
     def __init__(self, arg=''):
-        from abjad.tools import pitchtools
         # initialize symbolic string from arg
         if self.is_abbreviation(arg):
             _abbreviation = arg
@@ -207,17 +207,6 @@ class Accidental(AbjadObject):
         semitones = self.semitones + arg.semitones
         return type(self)(semitones)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` is an accidental with an abbreviation equal to that
-        of this accidental. Otherwise false.
-
-        Returns true or false.
-        '''
-        if isinstance(arg, type(self)):
-            if self.abbreviation == arg.abbreviation:
-                return True
-        return False
-
     def __ge__(self, arg):
         r'''Is true when `arg` is an accidental with semitones less than or equal
         to those of this accidental. Otherwise false.
@@ -226,13 +215,6 @@ class Accidental(AbjadObject):
         '''
         return self.semitones >= arg.semitones
 
-    def __getnewargs__(self):
-        r'''Gets new arguments.
-
-        Returns tuple.
-        '''
-        return (self.abbreviation,)
-
     def __gt__(self, arg):
         r'''Is true when `arg` is an accidental with semitones less than
         those of this accidental. Otherwise false.
@@ -240,15 +222,6 @@ class Accidental(AbjadObject):
         Returns true or false.
         '''
         return self.semitones > arg.semitones
-
-    def __hash__(self):
-        r'''Hashes accidental.
-
-        Required to be explicitly redefined on Python 3 if __eq__ changes.
-
-        Returns integer.
-        '''
-        return super(Accidental, self).__hash__()
 
     def __le__(self, arg):
         r'''Is true when `arg` is an accidental with semitones greater than or
@@ -323,15 +296,16 @@ class Accidental(AbjadObject):
     def _lilypond_format(self):
         return self._abbreviation
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                self.abbreviation,
-                ),
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.abbreviation],
+            storage_format_is_indented=False,
+            storage_format_kwargs_names=[],
+            template_names=['abbreviation'],
             )
 
     ### PUBLIC METHODS ###

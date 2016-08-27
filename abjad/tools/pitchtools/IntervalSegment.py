@@ -72,22 +72,6 @@ class IntervalSegment(Segment):
         from abjad.tools import pitchtools
         return pitchtools.Interval
 
-    @property
-    def _repr_specification(self):
-        items = []
-        if self.item_class.__name__.startswith('Named'):
-            items = [str(x) for x in self]
-        else:
-            items = [x.number for x in self]
-        return new(
-            self._storage_format_specification,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=(
-                items,
-                ),
-            )
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -174,12 +158,12 @@ class IntervalSegment(Segment):
         ::
 
             >>> pitchtools.IntervalSegment([1, 2, -3, 1, -2, 1]).spread
-            NumberedInterval(4.0)
+            NumberedInterval(4)
 
         ::
 
             >>> pitchtools.IntervalSegment([1, 1, 1, 2, -3, -2]).spread
-            NumberedInterval(5.0)
+            NumberedInterval(5)
 
         Returns numbered interval.
         '''

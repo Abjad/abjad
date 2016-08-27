@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 import re
-from abjad.tools import indicatortools
-from abjad.tools.abctools import AbjadObject
+from abjad.tools import markuptools
+from abjad.tools import systemtools
+from abjad.tools.abctools import AbjadValueObject
 
 
-class RomanNumeral(AbjadObject):
+class RomanNumeral(AbjadValueObject):
     '''A functions in tonal harmony: I, I6, I64, V, V7, V43, V42,
     bII, bII6, etc., also i, i6, i64, v, v7, etc.
 
@@ -184,16 +185,11 @@ class RomanNumeral(AbjadObject):
             roman_numeral_string = roman_numeral_string.lower()
         return roman_numeral_string
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values=(
-            self.symbolic_string,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            positional_argument_values=positional_argument_values,
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_is_indented=False,
+            storage_format_args_values=[self.symbolic_string],
             )
 
     ### PRIVATE METHODS ###
@@ -248,7 +244,7 @@ class RomanNumeral(AbjadObject):
         accidental, roman_numeral, quality, figured_bass = groups
         scale_degree = tonalanalysistools.ScaleDegree(accidental + roman_numeral)
         figured_bass_parts = figured_bass.split('/')
-        naive_figured_bass = [x for x in figured_bass_parts if not '-' in x]
+        naive_figured_bass = [x for x in figured_bass_parts if '-' not in x]
         naive_figured_bass = '/'.join(naive_figured_bass)
         extent = self._figured_bass_string_to_extent[naive_figured_bass]
         extent = tonalanalysistools.ChordExtent(extent)

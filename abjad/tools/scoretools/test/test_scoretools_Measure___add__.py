@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-@pytest.skip()
+@pytest.mark.skip()
 def test_scoretools_Measure___add___01():
     r'''Add outside-of-score measures.
     '''
@@ -34,6 +34,7 @@ def test_scoretools_Measure___add___01():
     assert inspect_(new).is_well_formed()
 
 
+@pytest.mark.skip()
 def test_scoretools_Measure___add___02():
     r'''Add measures in score.
     '''

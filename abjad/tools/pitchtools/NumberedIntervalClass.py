@@ -140,19 +140,6 @@ class NumberedIntervalClass(IntervalClass):
     def _format_string(self):
         return '{}{}'.format(self.direction_symbol, abs(self.number))
 
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values = (
-            self.number,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
-
     ### PUBLIC METHODS ###
 
     @classmethod

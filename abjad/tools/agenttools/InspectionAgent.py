@@ -417,7 +417,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> for n in range(8):
                 ...     print(n, inspect_(first_leaf).get_leaf(n))
-                ... 
+                ...
                 0 c'8
                 1 d'8
                 2 e'8
@@ -439,7 +439,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> for n in range(0, -8, -1):
                 ...     print(n, inspect_(last_leaf).get_leaf(n))
-                ... 
+                ...
                 0 f'8
                 -1 e'8
                 -2 d'8
@@ -466,7 +466,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> for n in range(8):
                 ...     print(n, inspect_(first_voice).get_leaf(n))
-                ... 
+                ...
                 0 c'8
                 1 d'8
                 2 e'8
@@ -488,7 +488,7 @@ class InspectionAgent(abctools.AbjadObject):
 
                 >>> for n in range(-1, -9, -1):
                 ...     print(n, inspect_(first_voice).get_leaf(n))
-                ... 
+                ...
                 -1 f'8
                 -2 e'8
                 -3 d'8
@@ -588,11 +588,11 @@ class InspectionAgent(abctools.AbjadObject):
                     e'4
                     f'4
                 }
-            
+
             ::
 
                 >>> inspect_(grace_notes[0]).get_parentage()
-                Parentage(Note("c'16"), GraceContainer("c'16 d'16"))
+                Parentage([Note("c'16"), GraceContainer("c'16 d'16")])
 
         .. container:: example
 
@@ -622,12 +622,12 @@ class InspectionAgent(abctools.AbjadObject):
                     e'4
                     f'4
                 }
-            
+
             ::
 
                 >>> inspector = inspect_(grace_notes[0])
                 >>> inspector.get_parentage(with_grace_notes=True)
-                Parentage(Note("c'16"), GraceContainer("c'16 d'16"), Note("d'4"), Voice("c'4 d'4 e'4 f'4"))
+                Parentage([Note("c'16"), GraceContainer("c'16 d'16"), Note("d'4"), Voice("c'4 d'4 e'4 f'4")])
 
         Returns parentage.
         '''
@@ -938,7 +938,7 @@ class InspectionAgent(abctools.AbjadObject):
                 >>> for note in staff:
                 ...     result = inspect_(note).is_bar_line_crossing()
                 ...     print(note, result)
-                ... 
+                ...
                 c'4 False
                 d'4 True
                 e'4 False

@@ -57,38 +57,12 @@ class NumberedPitch(Pitch):
         semitones = self.pitch_number + arg.pitch_number
         return type(self)(semitones)
 
-    def __eq__(self, arg):
-        r'''Is true when `arg` can be coerced to a numbered pitch and when
-        this numbered pitch equals `arg`. Otherwise false.
-
-        Returns true or false.
-        '''
-        try:
-            arg = type(self)(arg)
-        except (ValueError, TypeError):
-            return False
-        return self.pitch_number == arg.pitch_number
-
     def __float__(self):
         r'''Changes numbered pitch to float.
 
         Returns float.
         '''
         return float(self._pitch_number)
-
-    def __getnewargs__(self):
-        r'''Gets new arugments.
-
-        Returns tuple.
-        '''
-        return (self._pitch_number, )
-
-    def __hash__(self):
-        r'''Hashes numbered pitch.
-
-        Returns integer.
-        '''
-        return hash(repr(self))
 
     def __int__(self):
         r'''Changes numbered pitch to integer.
@@ -142,19 +116,6 @@ class NumberedPitch(Pitch):
     @property
     def _lilypond_format(self):
         return self.pitch_name
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        positional_argument_values=(
-            self.pitch_number,
-            )
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=(),
-            positional_argument_values=positional_argument_values,
-            )
 
     ### PUBLIC METHODS ###
 

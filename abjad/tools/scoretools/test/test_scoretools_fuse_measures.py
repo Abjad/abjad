@@ -3,7 +3,7 @@ import pytest
 from abjad import *
 
 
-@pytest.skip()
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_01():
     r'''Fuse unicorporated measures carrying
     time signatures with power-of-two denominators.
@@ -54,6 +54,7 @@ def test_scoretools_fuse_measures_01():
     assert inspect_(new).is_well_formed()
 
 
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_02():
     r'''Fuse measures carrying time signatures with differing
     power-of-two denominators. Helpers selects minimum of two denominators.
@@ -101,6 +102,7 @@ def test_scoretools_fuse_measures_02():
     assert inspect_(voice).is_well_formed()
 
 
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_03():
     r'''Fuse measures with differing power-of-two denominators.
     Helpers selects minimum of two denominators.
@@ -147,6 +149,7 @@ def test_scoretools_fuse_measures_03():
     assert inspect_(voice).is_well_formed()
 
 
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_04():
     r'''Fuse measures with power-of-two-denominators together with measures
     without power-of-two denominators.
@@ -197,6 +200,7 @@ def test_scoretools_fuse_measures_04():
     assert inspect_(voice).is_well_formed()
 
 
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_05():
     r'''Fusing empty selection returns none.
     '''
@@ -206,6 +210,7 @@ def test_scoretools_fuse_measures_05():
     assert result is None
 
 
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_06():
     r'''Fusing selection of only one measure returns measure unaltered.
     '''
@@ -217,6 +222,7 @@ def test_scoretools_fuse_measures_06():
     assert new is measure
 
 
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_07():
     r'''Fuse three measures.
     '''
@@ -267,6 +273,7 @@ def test_scoretools_fuse_measures_07():
     assert inspect_(voice).is_well_formed()
 
 
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_08():
     r'''Measure fusion across intervening container boundaries is undefined.
     '''
@@ -312,6 +319,7 @@ def test_scoretools_fuse_measures_08():
         )
 
 
+@pytest.mark.skip()
 def test_scoretools_fuse_measures_09():
     r'''Fusing measures with power-of-two denominators
     to measures without power-of-two denominators.

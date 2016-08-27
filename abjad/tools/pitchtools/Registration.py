@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import copy
+from abjad.tools import systemtools
 from abjad.tools.datastructuretools.TypedList import TypedList
 
 
@@ -12,7 +13,6 @@ class Registration(TypedList):
 
         ::
 
-        
             >>> components = [('[A0, C4)', 15), ('[C4, C8)', 27)]
             >>> registration = pitchtools.Registration(components)
 
@@ -148,7 +148,6 @@ class Registration(TypedList):
 
     @property
     def _item_coercer(self):
-        from abjad.tools import pitchtools
         def coerce_(expr):
             if isinstance(expr, tuple):
                 component = pitchtools.RegistrationComponent(*expr)
@@ -157,6 +156,7 @@ class Registration(TypedList):
             else:
                 raise TypeError(repr(expr))
             return component
+        from abjad.tools import pitchtools
         return coerce_
 
     @property
@@ -168,24 +168,21 @@ class Registration(TypedList):
         contents_string = ', '.join(contents)
         return '{}: {}'.format(name, contents_string)
 
-    @property
-    def _repr_specification(self):
-        from abjad.tools import systemtools
-        input_argument_tokens = []
+    def _get_format_specification(self):
+        values = []
         for registration_component in self:
             item = (
                 registration_component.source_pitch_range.one_line_named_pitch_repr,
                 registration_component.target_octave_start_pitch.pitch_number
                 )
-            input_argument_tokens.append(item)
-        keyword_argument_names = []
-        return systemtools.StorageFormatSpecification(
-            self,
-            is_indented=False,
-            keyword_argument_names=keyword_argument_names,
-            positional_argument_values=(
-                input_argument_tokens,
-                ),
+            values.append(item)
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=[values],
+            repr_is_indented=False,
+            repr_kwargs_names=[],
+            storage_format_args_values=[self._collection],
+            storage_format_kwargs_names=[],
             )
 
     ### PRIVATE METHODS ###
