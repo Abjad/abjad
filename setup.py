@@ -70,7 +70,7 @@ if StrictVersion(version) < StrictVersion('3.3.0'):
 
 extras_require = {
     'development': [
-        'pytest',
+        'pytest>=3.0.0',
         'sphinx>=1.4',
         'sphinx-rtd-theme',
         'PyPDF2',
