@@ -481,10 +481,11 @@ class StorageFormatAgent(AbjadValueObject):
         else:
             class_name = self._client.__name__
         if as_storage_format:
-            if self.format_specification.storage_format_includes_root_package:
-                return '.'.join(self._get_module_path_parts(self._client))
             tools_package_name = agent.get_tools_package_name()
-            return '{}.{}'.format(tools_package_name, class_name)
+            parts = [tools_package_name, class_name]
+            if self.format_specification.storage_format_includes_root_package:
+                parts.insert(0, self.get_root_package_name())
+            return '.'.join(parts)
         return class_name
 
     def get_hash_values(self):

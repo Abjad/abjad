@@ -24,7 +24,7 @@ class PartitionTable(TypedOrderedDict):
         ::
 
             >>> print(format(table))
-            rhythmmakertools.PartitionTable(
+            abjad.rhythmmakertools.PartitionTable(
                 [
                     (
                         2,
@@ -62,7 +62,7 @@ class PartitionTable(TypedOrderedDict):
         ::
 
             >>> print(format(table))
-            rhythmmakertools.PartitionTable(
+            abjad.rhythmmakertools.PartitionTable(
                 [
                     (
                         2,
@@ -121,6 +121,7 @@ class PartitionTable(TypedOrderedDict):
                 ...     division = mathtools.NonreducedFraction(numerator, 4)
                 ...     result = table.respell_division(division)
                 ...     print((division, result))
+                ...
                 (NonreducedFraction(1, 4), [NonreducedFraction(1, 4)])
                 (NonreducedFraction(2, 4), [NonreducedFraction(1, 4), NonreducedFraction(1, 4)])
                 (NonreducedFraction(3, 4), [NonreducedFraction(2, 4), NonreducedFraction(1, 4)])
@@ -153,6 +154,7 @@ class PartitionTable(TypedOrderedDict):
                 ...     division = mathtools.NonreducedFraction(numerator, 4)
                 ...     result = table.respell_division(division)
                 ...     print((division, result))
+                ...
                 (NonreducedFraction(1, 4), [NonreducedFraction(1, 4)])
                 (NonreducedFraction(2, 4), [NonreducedFraction(2, 4)])
                 (NonreducedFraction(3, 4), [NonreducedFraction(3, 4)])
