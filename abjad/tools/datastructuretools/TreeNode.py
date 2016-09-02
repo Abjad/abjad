@@ -54,9 +54,12 @@ class TreeNode(AbjadObject):
         return name_dictionary
 
     def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = agent.signature_names
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=True,
+            template_names=names,
             )
 
     def _get_node_state_flags(self):

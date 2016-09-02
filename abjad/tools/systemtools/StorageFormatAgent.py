@@ -81,6 +81,8 @@ class StorageFormatAgent(AbjadValueObject):
                 as_storage_format, is_indented)
         elif isinstance(self._client, dict):
             return self._format_mapping(as_storage_format, is_indented)
+        elif isinstance(self._client, float):
+            return repr(round(self._client, 15)).split('\n')
         return repr(self._client).split('\n')
 
     def _format_class(self, as_storage_format, is_indented):
@@ -239,10 +241,13 @@ class StorageFormatAgent(AbjadValueObject):
         return result
 
     def _get(self, name):
+        value = None
         try:
             value = getattr(self._client, name, None)
             if value is None:
                 value = getattr(self._client, '_' + name, None)
+            if value is None:
+                value = getattr(self._client, '_' + name.rstrip('_'))
         except AttributeError:
             try:
                 value = self._client[name]
@@ -635,6 +640,10 @@ class StorageFormatAgent(AbjadValueObject):
                 template_names.extend(
                     specification._keyword_argument_names or ()
                     )
+            else:
+                template_names.extend(
+                    self.format_specification.storage_format_kwargs_names or ())
+            template_names = sorted(set(template_names))
         template_dict = collections.OrderedDict()
         for name in template_names:
             template_dict[name] = self._get(name)

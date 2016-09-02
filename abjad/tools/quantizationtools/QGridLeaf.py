@@ -38,7 +38,10 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
 
     def __init__(
         self,
-        preprolated_duration=1, q_event_proxies=None, is_divisible=True):
+        preprolated_duration=1,
+        q_event_proxies=None,
+        is_divisible=True,
+        ):
         from abjad.tools import quantizationtools
         TreeNode.__init__(self)
         RhythmTreeMixin.__init__(self, preprolated_duration)
@@ -82,12 +85,14 @@ class QGridLeaf(RhythmTreeMixin, TreeNode):
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
         names = agent.signature_names
+        template_names = names[:]
         if 'q_event_proxies' in names and not self.q_event_proxies:
             names.remove('q_event_proxies')
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=True,
             storage_format_kwargs_names=names,
+            template_names=template_names,
             )
 
     ### PRIVATE PROPERTIES ###
