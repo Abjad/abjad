@@ -73,6 +73,15 @@ class DoctestScript(CommandlineScript):
         except ImportError:
             pass
         globs['print_function'] = print_function
+        config_parser = self._config_parser
+        try:
+            imports = config_parser.get(self.alias, 'imports')
+        except:
+            imports = ''
+        imports = stringtools.normalize(imports).split('\n')
+        for line in imports:
+            exec(line, globs, globs)
+        globs
         return globs
 
     def _get_optionflags(self, args):
