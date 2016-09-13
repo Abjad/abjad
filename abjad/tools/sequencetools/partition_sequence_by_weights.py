@@ -17,7 +17,7 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 1.** Partition sequence once by weights exactly without
+        **Example 1.** Partitions sequence once by weights:
         overhang:
 
         ::
@@ -32,8 +32,7 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 2.** Partition sequence once by weights exactly with
-        overhang:
+        **Example 2.** Partitions sequence once by weights. Allows overhang:
 
         ::
 
@@ -47,8 +46,7 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 3.** Partition sequence cyclically by weights exactly
-        without overhang:
+        **Example 3.** Partitions sequence cyclically by weights:
 
         ::
 
@@ -62,7 +60,7 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 4.** Partition sequence cyclically by weights exactly with
+        **Example 4.** Partitions sequence cyclically by weights. Allows
         overhang:
 
         ::
@@ -81,8 +79,8 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 1.** Partition sequence once by weights at most without
-        overhang:
+        **Example 5.** Partitions sequence once by weights. Allows part weights
+        to be just less than specified:
 
         ::
 
@@ -97,8 +95,8 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 2.** Partition sequence once by weights at most with
-        overhang:
+        **Example 6.** Partitions sequence once by weights. Allows part weights
+        to be just less than specified. Allows overhang:
 
         ::
 
@@ -113,8 +111,8 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 3.** Partition sequence cyclically by weights at most
-        without overhang:
+        **Example 7.** Partitions sequence cyclically by weights. Allows part
+        weights to be just less than specified:
 
         ::
 
@@ -129,8 +127,8 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 4.** Partition sequence cyclically by weights at most
-        with overhang:
+        **Example 8.** Partitions sequence cyclically by weights. Allows part
+        weights to be just less than specified. Allows overhang:
 
         ::
 
@@ -149,8 +147,8 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 1.** Partition sequence once by weights at least without
-        overhang:
+        **Example 9.** Partitions sequence once by weights. Allow part weights
+        to be just more than specified:
 
         ::
 
@@ -165,8 +163,8 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 2.** Partition sequence once by weights at least with
-        overhang:
+        **Example 10.** Partitions sequence once by weights. Allows part
+        weights to be just more than specified. Allows overhang:
 
         ::
 
@@ -181,8 +179,8 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 3.** Partition sequence cyclically by weights at least
-        without overhang:
+        **Example 11.** Partitions sequence cyclically by weights. Allows part
+        weights to be just more than specified:
 
         ::
 
@@ -197,8 +195,8 @@ def partition_sequence_by_weights(
 
     ..  container:: example
 
-        **Example 4.** Partition sequence cyclically by weights at least with
-        overhang:
+        **Example 12.** Partitions sequence cyclically by weights. Allows part
+        weights to be just more than specified. Allows overhang:
 
         ::
 
@@ -211,7 +209,7 @@ def partition_sequence_by_weights(
             ...     )
             [[3, 3, 3, 3], [4], [4, 4, 4], [5], [5]]
 
-    Returns list sequence objects.
+    Returns list of sequence objects.
     '''
     from abjad.tools import sequencetools
 
@@ -231,10 +229,16 @@ def partition_sequence_by_weights(
     elif allow_part_weights == More:
         if not cyclic:
             return _partition_sequence_once_by_weights_at_least(
-                sequence, weights, overhang=overhang)
+                sequence,
+                weights,
+                overhang=overhang,
+                )
         else:
             return _partition_sequence_cyclically_by_weights_at_least(
-                sequence, weights, overhang=overhang)
+                sequence,
+                weights,
+                overhang=overhang,
+                )
     elif allow_part_weights == Less:
         if not cyclic:
             return _partition_sequence_once_by_weights_at_most(
