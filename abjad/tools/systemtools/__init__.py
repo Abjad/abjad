@@ -18,6 +18,7 @@ from .StorageFormatSpecification import StorageFormatSpecification
 from .TemporaryDirectory import TemporaryDirectory
 from .TemporaryDirectoryChange import TemporaryDirectoryChange
 from .TestManager import TestManager
+from .TestCase import TestCase
 from .Timer import Timer
 from .UpdateManager import UpdateManager
 from .WellformednessManager import WellformednessManager

@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-import argparse
-import doctest
 import os
-import re
 import shutil
-import unittest
 from abjad.tools import commandlinetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -12,15 +8,9 @@ try:
     import pathlib
 except ImportError:
     import pathlib2 as pathlib
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
 
 
-class TestCase(unittest.TestCase):
-
-    ansi_escape = re.compile(r'\x1b[^m]*m')
+class TestCase(systemtools.TestCase):
 
     test_path = pathlib.Path(__file__).parent
     doctest_path = test_path.joinpath('doctest_test')
@@ -55,32 +45,18 @@ class TestCase(unittest.TestCase):
             return None
     ''')
 
-    def compare_strings(self, expected, actual):
-        example = argparse.Namespace()
-        example.want = expected
-        output_checker = doctest.OutputChecker()
-        flags = (
-            doctest.NORMALIZE_WHITESPACE |
-            doctest.ELLIPSIS |
-            doctest.REPORT_NDIFF
-            )
-        success = output_checker.check_output(expected, actual, flags)
-        if not success:
-            diff = output_checker.output_difference(example, actual, flags)
-            raise Exception(diff)
-
     def setUp(self):
+        super(TestCase, self).setUp()
         if not self.doctest_path.exists():
             self.doctest_path.mkdir()
         with open(str(self.failing_module_path), 'w') as file_pointer:
             file_pointer.write(self.failing_module_contents)
         with open(str(self.passing_module_path), 'w') as file_pointer:
             file_pointer.write(self.passing_module_contents)
-        self.string_io = StringIO()
 
     def tearDown(self):
+        super(TestCase, self).tearDown()
         shutil.rmtree(str(self.doctest_path))
-        self.string_io.close()
 
     def test_both(self):
         script = commandlinetools.DoctestScript()
