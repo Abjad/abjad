@@ -165,22 +165,22 @@ class TestCase(unittest.TestCase):
         expected = stringtools.normalize('''
 Recursively scanning {} for errors...
 Errors in {}:
-Lines [9]: PROPERTY IN METHODS SECTION
+Lines [10]: BAD HEADER ORDER
 ===============================================================================
 Errors in {}:
 Lines [11]: METHOD IN PROPERTIES SECTION
 ===============================================================================
 Errors in {}:
-Lines [10]: BAD HEADER ORDER
+Lines [9]: PROPERTY IN METHODS SECTION
 ===============================================================================
 4 total files checked.
 1 passed.
 3 failed.
         '''.format(
                 self.temp_test_dir_name,
-                self.test_property_in_methods_module_path,
-                self.test_method_in_properties_module_path,
                 self.test_bad_header_order_module_path,
+                self.test_method_in_properties_module_path,
+                self.test_property_in_methods_module_path,
             )
         )
         expected = expected.replace('/', os.path.sep)

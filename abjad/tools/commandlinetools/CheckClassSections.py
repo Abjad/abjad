@@ -69,7 +69,7 @@ under PROPERTIES sections, and vice-versa.'''
         print('Recursively scanning {} for errors...'.format(check_path))
         line_divider = '=' * 79
         for path, dirs, files in os.walk(check_path):
-            for f in files:
+            for f in sorted(files):
                 test_file = os.path.abspath(os.path.join(path, f))
                 # Skip links and non-.py files
                 if (os.path.islink(test_file) or
