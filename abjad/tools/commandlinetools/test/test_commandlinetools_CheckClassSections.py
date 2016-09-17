@@ -183,5 +183,4 @@ Lines [9]: PROPERTY IN METHODS SECTION
                 self.test_property_in_methods_module_path,
             )
         )
-        expected = expected.replace('/', os.path.sep)
         self.compare_strings(expected, script_output)
