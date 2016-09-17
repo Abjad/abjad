@@ -95,10 +95,10 @@ class TestCase(unittest.TestCase):
         def __str__(self):
             print("Hello, testing!")
         ### PRIVATE METHODS ###
-        def _secrets(self):
+        def _some_private_method(self):
             pass
         ### PUBLIC METHODS ###
-        def secrets(self):
+        def some_public_method(self):
             pass
         ### PRIVATE PROPERTIES ###
         @property
