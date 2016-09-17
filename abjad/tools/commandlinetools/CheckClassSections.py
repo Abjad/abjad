@@ -25,27 +25,27 @@ class CheckClassSections(CommandlineScript):
     short_description = (
         'Check the order and contents of class sections in a path.'
         )
-    long_description = (
-        '''Finds and lists errors in class section order,
-    as well as cases where methods and properties appear
-    under incorrect section headers
+    long_description = ('''
+Finds and lists errors in class section order,
+as well as cases where methods and properties appear
+under incorrect section headers
 
-    If no `path` is given, the current directory is searched.
+If no `path` is given, the current directory is searched.
 
-    Checks that where they appear in classes, the following
-    comment headers appear in the given order:
+Checks that where they appear in classes, the following
+comment headers appear in the given order:
 
-        ### CLASS VARIABLES ###
-        ### CONSTRUCTOR ###
-        ### INITIALIZER ###
-        ### SPECIAL METHODS ###
-        ### PRIVATE METHODS ###
-        ### PUBLIC METHODS ###
-        ### PRIVATE PROPERTIES ###
-        ### PUBLIC PROPERTIES ###
+    ### CLASS VARIABLES ###
+    ### CONSTRUCTOR ###
+    ### INITIALIZER ###
+    ### SPECIAL METHODS ###
+    ### PRIVATE METHODS ###
+    ### PUBLIC METHODS ###
+    ### PRIVATE PROPERTIES ###
+    ### PUBLIC PROPERTIES ###
 
-    Additionally, this finds cases where methods appear
-    under PROPERTIES sections, and vice-versa.'''
+Additionally, this finds cases where methods appear
+under PROPERTIES sections, and vice-versa.'''
         )
 
     ### PRIVATE METHODS ###
