@@ -1,7 +1,6 @@
 # -*- encoding: utf-8 -*-
 import argparse
 import doctest
-import os
 import re
 import shutil
 import unittest
@@ -115,17 +114,9 @@ class TestCase(unittest.TestCase):
         def i_belong_here(self, value):
             pass
     ''')
-    test_cases = [
-        (test_bad_header_order_module_path,
-         test_bad_header_order_module_contents),
-        (test_method_in_properties_module_path,
-         test_method_in_properties_module_contents),
-        (test_property_in_methods_module_path,
-         test_property_in_methods_module_contents),
-        (test_passing_module_path,
-         test_passing_module_contents)
-        ]
 
+    ### TEST HELPER METHODS ###
+    
     def compare_strings(self, expected, actual):
         example = argparse.Namespace()
         example.want = expected
@@ -140,10 +131,18 @@ class TestCase(unittest.TestCase):
             diff = output_checker.output_difference(example, actual, flags)
             raise Exception(diff)
 
-    def setUp(self):
+    def create_test_modules(self, modules):
+        r'''Create temporary test case modules.
+        
+        `modules` should be a list of 2-tuples of strings in the form of
+        (file_name, file_contents).
+
+        This writes files within the directory `self.subdirectory_path`,
+        and should be cleaned up after by `self.tearDown()`.
+        '''
         if not self.subdirectory_path.exists():
             self.subdirectory_path.mkdir()
-        for case in self.test_cases:
+        for case in modules:
             with open(str(case[0]), 'w') as file_pointer:
                 file_pointer.write(case[1])
         self.string_io = StringIO()
@@ -152,35 +151,174 @@ class TestCase(unittest.TestCase):
         shutil.rmtree(str(self.subdirectory_path))
         self.string_io.close()
 
-    def test_check_class_sections(self):
-        script = commandlinetools.CheckClassSections()
-        command = [str(self.subdirectory_path)]
-        with systemtools.TemporaryDirectoryChange(str(self.test_path)):
+    def run_script_on_modules(
+        self,
+        modules,
+        script_args=None,
+        working_directory=None
+        ):
+        r'''Return the output and exit code of CheckClassSections
+        when run against `modules`.
+        
+        `modules` should be a list of 2-tuples of strings in the form of
+        (file_name, file_contents).
+        
+        `script_args` is an optional list of arguments to be passed to
+        CheckClassSections.
+
+        `working_directory` is an optional directory to run the script from.
+        if none is passed, `self.test_path` is used.
+        
+        This method actually touches the file system, creating a temporary
+        directory at `self.temp_test_dir_name` and creating temporary
+        modules as specified in `modules`. `self.tearDown` cleans up after
+        this method.
+
+        Returns a 2-tuple of (script_output, exit_code).
+        '''
+        # Handle arguments
+        if script_args:
+            if isinstance(script_args, list):
+                command = [s_arg for s_arg in map(str, script_args)]
+            else:
+                command = [str(script_args)]
+        else:
+            command = []
+        if working_directory:
+            test_working_directory = working_directory
+        else:
+            test_working_directory = self.test_path
+        # Create temporary testing modules
+        if not self.subdirectory_path.exists():
+            self.subdirectory_path.mkdir()
+        for case in modules:
+            with open(str(case[0]), 'w') as file_pointer:
+                file_pointer.write(case[1])
+        self.string_io = StringIO()
+        # cd into test_working_directory and run the script with commands
+        with systemtools.TemporaryDirectoryChange(str(test_working_directory)):
             with systemtools.RedirectedStreams(stdout=self.string_io):
                 with self.assertRaises(SystemExit) as context_manager:
+                    script = commandlinetools.CheckClassSections()
                     script(command)
-        assert context_manager.exception.code == 1
+        # Normalize script output for sane diffs
         script_output = self.ansi_escape.sub('', self.string_io.getvalue())
         script_output = stringtools.normalize(script_output)
+        return (script_output, context_manager.exception.code)
+
+    ### TEST CASES ###
+    
+    def test_bad_header_order(self):
         expected = stringtools.normalize('''
 Recursively scanning {} for errors...
 Errors in {}:
 Lines [10]: BAD HEADER ORDER
 ===============================================================================
-Errors in {}:
-Lines [11]: METHOD IN PROPERTIES SECTION
-===============================================================================
-Errors in {}:
-Lines [9]: PROPERTY IN METHODS SECTION
-===============================================================================
-4 total files checked.
-1 passed.
-3 failed.
+1 total files checked.
+0 passed.
+1 failed.
         '''.format(
                 self.temp_test_dir_name,
                 self.test_bad_header_order_module_path,
+             )
+        )
+        test_modules = [
+            (self.test_bad_header_order_module_path,
+             self.test_bad_header_order_module_contents),
+             ]
+        # Run test
+        script_output, exit_code = self.run_script_on_modules(
+            test_modules, self.subdirectory_path
+            )
+        self.compare_strings(expected, script_output)
+        self.assertEqual(exit_code, 1)
+
+    def test_method_in_properties(self):
+        expected = stringtools.normalize('''
+Recursively scanning {} for errors...
+Errors in {}:
+Lines [11]: METHOD IN PROPERTIES SECTION
+===============================================================================
+1 total files checked.
+0 passed.
+1 failed.
+        '''.format(
+                self.temp_test_dir_name,
                 self.test_method_in_properties_module_path,
+             )
+        )
+        test_modules = [
+            (self.test_method_in_properties_module_path,
+             self.test_method_in_properties_module_contents),
+            ]
+        # Run test
+        script_output, exit_code = self.run_script_on_modules(
+            test_modules, self.subdirectory_path
+            )
+        self.compare_strings(expected, script_output)
+        self.assertEqual(exit_code, 1)
+
+    def test_property_in_methods(self):
+        expected = stringtools.normalize('''
+Recursively scanning {} for errors...
+Errors in {}:
+Lines [9]: PROPERTY IN METHODS SECTION
+===============================================================================
+1 total files checked.
+0 passed.
+1 failed.
+        '''.format(
+                self.temp_test_dir_name,
                 self.test_property_in_methods_module_path,
             )
         )
+        test_modules = [
+            (self.test_property_in_methods_module_path,
+             self.test_property_in_methods_module_contents),
+             ]
+        # Run test
+        script_output, exit_code = self.run_script_on_modules(
+            test_modules, self.subdirectory_path
+            )
         self.compare_strings(expected, script_output)
+        self.assertEqual(exit_code, 1)
+
+    def test_passing_case(self):
+        expected = stringtools.normalize('''
+Recursively scanning {} for errors...
+1 total files checked.
+1 passed.
+0 failed.
+        '''.format(self.temp_test_dir_name)
+        )
+        test_modules = [
+            (self.test_passing_module_path,
+             self.test_passing_module_contents)
+            ]
+        # Run test
+        script_output, exit_code = self.run_script_on_modules(
+            test_modules, self.subdirectory_path
+            )
+        self.compare_strings(expected, script_output)
+        self.assertEqual(exit_code, 0)
+
+    def test_passing_case_without_passing_path(self):
+        expected = stringtools.normalize('''
+Recursively scanning current working directory for errors...
+1 total files checked.
+1 passed.
+0 failed.
+        '''.format(self.temp_test_dir_name)
+        )
+        test_modules = [
+            (self.test_passing_module_path,
+             self.test_passing_module_contents)
+            ]
+        # Run test
+        script_output, exit_code = self.run_script_on_modules(
+            test_modules,
+            working_directory=self.temp_test_dir_name
+            )
+        self.compare_strings(expected, script_output)
+        self.assertEqual(exit_code, 0)
+
