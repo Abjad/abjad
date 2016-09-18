@@ -116,7 +116,7 @@ class TestCase(unittest.TestCase):
     ''')
 
     ### TEST HELPER METHODS ###
-    
+
     def compare_strings(self, expected, actual):
         example = argparse.Namespace()
         example.want = expected
@@ -133,7 +133,7 @@ class TestCase(unittest.TestCase):
 
     def create_test_modules(self, modules):
         r'''Create temporary test case modules.
-        
+
         `modules` should be a list of 2-tuples of strings in the form of
         (file_name, file_contents).
 
@@ -159,19 +159,19 @@ class TestCase(unittest.TestCase):
         ):
         r'''Return the output and exit code of CheckClassSections
         when run against `modules`.
-        
+
         `modules` should be a list of 2-tuples of strings in the form of
         (file_name, file_contents).
-        
+
         `script_args` is an optional list of arguments to be passed to
         CheckClassSections.
 
         `working_directory` is an optional directory to run the script from.
         if none is passed, `self.test_path` is used.
-        
+
         This method actually touches the file system, creating a temporary
         directory at `self.temp_test_dir_name` and creating temporary
-        modules as specified in `modules`. `self.tearDown` cleans up after
+        modules as specified in `modules`. `self.tearDown()` cleans up after
         this method.
 
         Returns a 2-tuple of (script_output, exit_code).
@@ -207,7 +207,7 @@ class TestCase(unittest.TestCase):
         return (script_output, context_manager.exception.code)
 
     ### TEST CASES ###
-    
+
     def test_bad_header_order(self):
         expected = stringtools.normalize('''
 Recursively scanning {} for errors...
@@ -321,4 +321,3 @@ Recursively scanning current working directory for errors...
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
-
