@@ -17,7 +17,7 @@ except ImportError:
     from io import StringIO
 
 
-class TestCase(unittest.TestCase):
+class TestCheckClassSections(unittest.TestCase):
 
     ansi_escape = re.compile(r'\x1b[^m]*m')
     test_path = pathlib.Path(__file__).parent
@@ -130,22 +130,6 @@ class TestCase(unittest.TestCase):
         if not success:
             diff = output_checker.output_difference(example, actual, flags)
             raise Exception(diff)
-
-    def create_test_modules(self, modules):
-        r'''Create temporary test case modules.
-
-        `modules` should be a list of 2-tuples of strings in the form of
-        (file_name, file_contents).
-
-        This writes files within the directory `self.subdirectory_path`,
-        and should be cleaned up after by `self.tearDown()`.
-        '''
-        if not self.subdirectory_path.exists():
-            self.subdirectory_path.mkdir()
-        for case in modules:
-            with open(str(case[0]), 'w') as file_pointer:
-                file_pointer.write(case[1])
-        self.string_io = StringIO()
 
     def tearDown(self):
         shutil.rmtree(str(self.subdirectory_path))
@@ -317,7 +301,7 @@ Recursively scanning current working directory for errors...
         # Run test
         script_output, exit_code = self.run_script_on_modules(
             test_modules,
-            working_directory=self.temp_test_dir_name
+            working_directory=self.subdirectory_path
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
