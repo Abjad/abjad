@@ -60,15 +60,15 @@ under PROPERTIES sections, and vice-versa.'''
             )
 
     def _process_args(self, args):
-        if not args.path:
-            check_path = '.'
-        else:
-            check_path = args.path
+        print('Recursively scanning {} for errors...'.format(
+            'current working directory' if args.path == '.'
+            else args.path
+            )
+        )
         failed_files = 0
         checked_files = 0
-        print('Recursively scanning {} for errors...'.format(check_path))
         line_divider = '=' * 79
-        for path, dirs, files in os.walk(check_path):
+        for path, dirs, files in os.walk(args.path):
             for f in sorted(files):
                 test_file = os.path.abspath(os.path.join(path, f))
                 # Skip links and non-.py files
