@@ -23,7 +23,7 @@ class CheckClassSections(CommandlineScript):
 
     alias = 'check-class-sections'
     short_description = (
-        'Check the order and contents of class sections in a path.'
+        'Check the order and contents of class sections in a path or file.'
         )
     long_description = ('''
 Finds and lists errors in class section order,
@@ -35,14 +35,14 @@ If no `path` is given, the current directory is searched.
 Checks that where they appear in classes, the following
 comment headers appear in the given order:
 
-    ### CLASS VARIABLES ###
-    ### CONSTRUCTOR ###
-    ### INITIALIZER ###
-    ### SPECIAL METHODS ###
-    ### PRIVATE METHODS ###
-    ### PUBLIC METHODS ###
-    ### PRIVATE PROPERTIES ###
-    ### PUBLIC PROPERTIES ###
+        ### CLASS VARIABLES ###
+        ### CONSTRUCTOR ###
+        ### INITIALIZER ###
+        ### SPECIAL METHODS ###
+        ### PRIVATE METHODS ###
+        ### PUBLIC METHODS ###
+        ### PRIVATE PROPERTIES ###
+        ### PUBLIC PROPERTIES ###
 
 Additionally, this finds cases where methods appear
 under PROPERTIES sections, and vice-versa.'''
@@ -54,38 +54,47 @@ under PROPERTIES sections, and vice-versa.'''
         parser.add_argument(
             'path',
             default=os.getcwd(),
-            help='directory tree to be recursed over',
+            help='file or path to check',
             nargs='?',
-            type=self._validate_path,
             )
 
     def _process_args(self, args):
-        print('Recursively scanning {} for errors...'.format(
-            'current working directory' if args.path == '.'
-            else args.path
-            )
-        )
         failed_files = 0
         checked_files = 0
         line_divider = '=' * 79
-        for path, dirs, files in os.walk(args.path):
-            for f in sorted(files):
-                test_file = os.path.abspath(os.path.join(path, f))
-                # Skip links and non-.py files
-                if (os.path.islink(test_file) or
-                    (not test_file.endswith('.py'))
-                    ):
-                    continue
-                errors = self._check_class_sections(test_file)
-                checked_files += 1
-                if any(e for e in errors.values()):
-                    failed_files += 1
-                    print('Errors in {}:'.format(test_file))
-                    for error in errors.items():
-                        if not error[1]:
-                            continue
-                        print('Lines {}: {}'.format(error[1], error[0]))
-                        print(line_divider)
+        file_list = []
+        if os.path.isdir(args.path):
+            relative_path_name = os.path.relpath(args.path)
+            print('Recursively scanning {} for errors...'.format(
+                'current working directory' if relative_path_name == '.'
+                else relative_path_name
+                )
+            )
+            for path, dirs, files in os.walk(args.path):
+                for f in sorted(files):
+                    file_list.append(os.path.abspath(os.path.join(path, f)))
+        elif os.path.isfile(args.path):
+            print('Scanning {} for errors...'.format(args.path))
+            file_list.append(args.path)
+        else:
+            print('{} is not a valid directory or file'.format(args.path))
+            sys.exit(1)
+        for test_file in file_list:
+            # Skip links and non-.py files
+            if (os.path.islink(test_file) or
+                (not test_file.endswith('.py'))
+                ):
+                continue
+            errors = self._check_class_sections(test_file)
+            checked_files += 1
+            if any(e for e in errors.values()):
+                failed_files += 1
+                print('Errors in {}:'.format(test_file))
+                for error in sorted(errors.items(), key=lambda e: e[0]):
+                    if not error[1]:
+                        continue
+                    print('Lines {}: {}'.format(error[1], error[0]))
+                print(line_divider)
         # Done
         print(
             '{} total files checked.\n'

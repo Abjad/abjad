@@ -34,6 +34,9 @@ class TestCheckClassSections(unittest.TestCase):
     test_method_in_properties_module_path = subdirectory_path.joinpath(
         'MethodInProps.py'
         )
+    test_multiple_errors_in_file_module_path = subdirectory_path.joinpath(
+        'MultipleErrors.py'
+        )
     test_passing_module_path = subdirectory_path.joinpath(
         'GoodClass.py'
         )
@@ -77,6 +80,27 @@ class TestCheckClassSections(unittest.TestCase):
         ### SPECIAL METHODS ###
         ### PRIVATE METHODS ###
         ### PUBLIC METHODS ###
+        ### PRIVATE PROPERTIES ###
+        ### PUBLIC PROPERTIES ###
+        def i_dont_belong_here(self):
+            pass
+    ''')
+    test_multiple_errors_in_file_module_contents = stringtools.normalize(r'''
+    class MethodInProperties:
+        ### CLASS VARIABLES ###
+        ### CONSTRUCTOR ###
+        ### INITIALIZER ###
+        def __init__(self):
+            pass
+        ### SPECIAL METHODS ###
+        ### PRIVATE METHODS ###
+        ### PUBLIC METHODS ###
+        @property
+        def doesnt_belong_here(self):
+            pass
+        @property
+        def also_doesnt_belong_here(self):
+            pass
         ### PRIVATE PROPERTIES ###
         ### PUBLIC PROPERTIES ###
         def i_dont_belong_here(self):
@@ -267,6 +291,32 @@ Lines [9]: PROPERTY IN METHODS SECTION
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 1)
 
+    def test_multiple_errors_in_file(self):
+        expected = stringtools.normalize('''
+Recursively scanning {} for errors...
+Errors in {}:
+Lines [17]: METHOD IN PROPERTIES SECTION
+Lines [9, 12]: PROPERTY IN METHODS SECTION
+===============================================================================
+1 total files checked.
+0 passed.
+1 failed.
+        '''.format(
+                self.temp_test_dir_name,
+                self.test_multiple_errors_in_file_module_path,
+            )
+        )
+        test_modules = [
+            (self.test_multiple_errors_in_file_module_path,
+             self.test_multiple_errors_in_file_module_contents),
+             ]
+        # Run test
+        script_output, exit_code = self.run_script_on_modules(
+            test_modules, self.subdirectory_path
+            )
+        self.compare_strings(expected, script_output)
+        self.assertEqual(exit_code, 1)
+
     def test_passing_case(self):
         expected = stringtools.normalize('''
 Recursively scanning {} for errors...
@@ -302,6 +352,26 @@ Recursively scanning current working directory for errors...
         script_output, exit_code = self.run_script_on_modules(
             test_modules,
             working_directory=self.subdirectory_path
+            )
+        self.compare_strings(expected, script_output)
+        self.assertEqual(exit_code, 0)
+
+    def test_passing_file_instead_of_dir(self):
+        expected = stringtools.normalize('''
+Scanning {} for errors...
+1 total files checked.
+1 passed.
+0 failed.
+        '''.format(self.test_passing_module_path)
+        )
+        test_modules = [
+            (self.test_passing_module_path,
+             self.test_passing_module_contents)
+            ]
+        # Run test
+        script_output, exit_code = self.run_script_on_modules(
+            test_modules,
+            script_args=self.test_passing_module_path
             )
         self.compare_strings(expected, script_output)
         self.assertEqual(exit_code, 0)
