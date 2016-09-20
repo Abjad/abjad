@@ -239,12 +239,6 @@ class PitchArray(AbjadObject):
         '''
         return self._two_by_two_format_string
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _two_by_two_format_string(self):
-        return '\n'.join([str(x) for x in self.rows])
-
     ### PRIVATE METHODS ###
 
     def _column_format_width_at_index(self, index):
@@ -270,160 +264,6 @@ class PitchArray(AbjadObject):
                 offsets.append(stop_offset)
         offsets.sort()
         return list(mathtools.difference_series(offsets))
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def cell_tokens_by_row(self):
-        r'''Gets cells tokens of pitch array by row.
-
-        Returns tuple.
-        '''
-        return tuple([row.cell_tokens for row in self.rows])
-
-    @property
-    def cell_widths_by_row(self):
-        r'''Gets cell widths of pitch array by row.
-
-        Returns tuple.
-        '''
-        return tuple([row.cell_widths for row in self.rows])
-
-    @property
-    def cells(self):
-        r'''Gets cells of pitch array.
-
-        Returns set.
-        '''
-        cells = set([])
-        for row in self.rows:
-            cells.update(row.cells)
-        return cells
-
-    @property
-    def columns(self):
-        r'''Gets columns of pitch array.
-
-        Returns tuple.
-        '''
-        from abjad.tools import pitchtools
-        columns = []
-        for i, cells in enumerate(
-            sequencetools.zip_sequences(self.rows, truncate=False)):
-            column = pitchtools.PitchArrayColumn(cells)
-            column._parent_array = self
-            column._column_index = i
-            columns.append(column)
-        return tuple(columns)
-
-    @property
-    def depth(self):
-        r'''Gets depth of pitch array.
-
-        Defined equal to number of pitch array rows in pitch array.
-
-        Returns nonnegative integer.
-        '''
-        return len(self.rows)
-
-    @property
-    def dimensions(self):
-        r'''Gets dimensions of pitch array.
-
-        Returns pair.
-        '''
-        return self.depth, self.width
-
-    @property
-    def has_voice_crossing(self):
-        r'''Is true when pitch array has voice crossing. Otherwise false.
-
-        Returns true or false.
-        '''
-        for column in self.columns:
-            if column.has_voice_crossing:
-                return True
-        return False
-
-    @property
-    def is_rectangular(self):
-        r'''Is true when no rows in pitch array are defective. Otherwise false.
-
-        Returns true or false.
-        '''
-        return all(not row.is_defective for row in self.rows)
-
-    @property
-    def pitches(self):
-        r'''Gets pitches in pitch array.
-
-        Returns tuple.
-        '''
-        return sequencetools.flatten_sequence(self.pitches_by_row)
-
-    @property
-    def pitches_by_row(self):
-        r'''Gets pitches in pitch array by row.
-
-        Returns tuple.
-        '''
-        pitches = []
-        for row in self.rows:
-            pitches.append(row.pitches)
-        return tuple(pitches)
-
-    @property
-    def rows(self):
-        r'''Gets rows in pitch array.
-
-        Returns tuple.
-        '''
-        return tuple(self._rows)
-
-    @property
-    def size(self):
-        r'''Gets size of pitch array.
-
-        Defined equal to the product of depth and width.
-
-        Returns nonnegative integer.
-        '''
-        return self.depth * self.width
-
-    @property
-    def voice_crossing_count(self):
-        r'''Gets voice crossing count of pitch array.
-
-        Returns nonnegative integer.
-        '''
-        count = 0
-        for column in self.columns:
-            if column.has_voice_crossing:
-                count += 1
-        return count
-
-    @property
-    def weight(self):
-        r'''Gets weight of pitch array.
-
-        Defined equal to the sum of the weight of the rows in pitch array.
-
-        Returns nonnegative integer.
-        '''
-        return sum([row.weight for row in self.rows])
-
-    @property
-    def width(self):
-        r'''Gets width of pitch array.
-
-        Defined equal to the width of the widest row in pitch array.
-
-        Returns nonnegative integer.
-        '''
-        try:
-            return max([row.width for row in self.rows])
-        except ValueError:
-            return 0
 
     ### PUBLIC METHODS ###
 
@@ -845,3 +685,163 @@ class PitchArray(AbjadObject):
             measure = row.to_measure(cell_duration_denominator)
             measures.append(measure)
         return measures
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _two_by_two_format_string(self):
+        return '\n'.join([str(x) for x in self.rows])
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def cell_tokens_by_row(self):
+        r'''Gets cells tokens of pitch array by row.
+
+        Returns tuple.
+        '''
+        return tuple([row.cell_tokens for row in self.rows])
+
+    @property
+    def cell_widths_by_row(self):
+        r'''Gets cell widths of pitch array by row.
+
+        Returns tuple.
+        '''
+        return tuple([row.cell_widths for row in self.rows])
+
+    @property
+    def cells(self):
+        r'''Gets cells of pitch array.
+
+        Returns set.
+        '''
+        cells = set([])
+        for row in self.rows:
+            cells.update(row.cells)
+        return cells
+
+    @property
+    def columns(self):
+        r'''Gets columns of pitch array.
+
+        Returns tuple.
+        '''
+        from abjad.tools import pitchtools
+        columns = []
+        for i, cells in enumerate(
+            sequencetools.zip_sequences(self.rows, truncate=False)):
+            column = pitchtools.PitchArrayColumn(cells)
+            column._parent_array = self
+            column._column_index = i
+            columns.append(column)
+        return tuple(columns)
+
+    @property
+    def depth(self):
+        r'''Gets depth of pitch array.
+
+        Defined equal to number of pitch array rows in pitch array.
+
+        Returns nonnegative integer.
+        '''
+        return len(self.rows)
+
+    @property
+    def dimensions(self):
+        r'''Gets dimensions of pitch array.
+
+        Returns pair.
+        '''
+        return self.depth, self.width
+
+    @property
+    def has_voice_crossing(self):
+        r'''Is true when pitch array has voice crossing. Otherwise false.
+
+        Returns true or false.
+        '''
+        for column in self.columns:
+            if column.has_voice_crossing:
+                return True
+        return False
+
+    @property
+    def is_rectangular(self):
+        r'''Is true when no rows in pitch array are defective. Otherwise false.
+
+        Returns true or false.
+        '''
+        return all(not row.is_defective for row in self.rows)
+
+    @property
+    def pitches(self):
+        r'''Gets pitches in pitch array.
+
+        Returns tuple.
+        '''
+        return sequencetools.flatten_sequence(self.pitches_by_row)
+
+    @property
+    def pitches_by_row(self):
+        r'''Gets pitches in pitch array by row.
+
+        Returns tuple.
+        '''
+        pitches = []
+        for row in self.rows:
+            pitches.append(row.pitches)
+        return tuple(pitches)
+
+    @property
+    def rows(self):
+        r'''Gets rows in pitch array.
+
+        Returns tuple.
+        '''
+        return tuple(self._rows)
+
+    @property
+    def size(self):
+        r'''Gets size of pitch array.
+
+        Defined equal to the product of depth and width.
+
+        Returns nonnegative integer.
+        '''
+        return self.depth * self.width
+
+    @property
+    def voice_crossing_count(self):
+        r'''Gets voice crossing count of pitch array.
+
+        Returns nonnegative integer.
+        '''
+        count = 0
+        for column in self.columns:
+            if column.has_voice_crossing:
+                count += 1
+        return count
+
+    @property
+    def weight(self):
+        r'''Gets weight of pitch array.
+
+        Defined equal to the sum of the weight of the rows in pitch array.
+
+        Returns nonnegative integer.
+        '''
+        return sum([row.weight for row in self.rows])
+
+    @property
+    def width(self):
+        r'''Gets width of pitch array.
+
+        Defined equal to the width of the widest row in pitch array.
+
+        Returns nonnegative integer.
+        '''
+        try:
+            return max([row.width for row in self.rows])
+        except ValueError:
+            return 0

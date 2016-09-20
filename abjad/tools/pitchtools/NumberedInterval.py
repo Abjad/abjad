@@ -147,12 +147,6 @@ class NumberedInterval(Interval):
         message = message.format(type(self), arg)
         raise TypeError(message)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return '{}{}'.format(self._direction_symbol, abs(self.number))
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -181,68 +175,6 @@ class NumberedInterval(Interval):
         number = mathtools.integer_equivalent_number_to_integer(number)
         # return numbered interval
         return class_(number)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def direction_number(self):
-        r'''Direction sign of numbered interval.
-
-        ::
-
-            >>> pitchtools.NumberedInterval(-14).direction_number
-            -1
-
-        Returns integer.
-        '''
-        return mathtools.sign(self.number)
-
-    @property
-    def direction_string(self):
-        r'''Direction string of named interval.
-
-        ::
-
-            >>> pitchtools.NumberedInterval(-14).direction_string
-            'descending'
-
-        Returns ``'ascending'``, ``'descending'`` or none.
-        '''
-        if self.direction_number == -1:
-            return 'descending'
-        elif self.direction_number == 0:
-            return None
-        elif self.direction_number == 1:
-            return 'ascending'
-
-    @property
-    def number(self):
-        r'''Number of numbered interval.
-
-        Returns number.
-        '''
-        return self._number
-
-    @property
-    def numbered_interval_number(self):
-        r'''Number of numbered interval.
-
-        ::
-
-            >>> pitchtools.NumberedInterval(-14).numbered_interval_number
-            -14
-
-        Returns integer or float.
-        '''
-        return self._number
-
-    @property
-    def semitones(self):
-        r'''Semitones corresponding to numbered interval.
-
-        Returns nonnegative number.
-        '''
-        return self.number
 
     ### PUBLIC METHODS ###
 
@@ -360,3 +292,71 @@ class NumberedInterval(Interval):
             staff_positions,
             )
         return named_interval
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_string(self):
+        return '{}{}'.format(self._direction_symbol, abs(self.number))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def direction_number(self):
+        r'''Direction sign of numbered interval.
+
+        ::
+
+            >>> pitchtools.NumberedInterval(-14).direction_number
+            -1
+
+        Returns integer.
+        '''
+        return mathtools.sign(self.number)
+
+    @property
+    def direction_string(self):
+        r'''Direction string of named interval.
+
+        ::
+
+            >>> pitchtools.NumberedInterval(-14).direction_string
+            'descending'
+
+        Returns ``'ascending'``, ``'descending'`` or none.
+        '''
+        if self.direction_number == -1:
+            return 'descending'
+        elif self.direction_number == 0:
+            return None
+        elif self.direction_number == 1:
+            return 'ascending'
+
+    @property
+    def number(self):
+        r'''Number of numbered interval.
+
+        Returns number.
+        '''
+        return self._number
+
+    @property
+    def numbered_interval_number(self):
+        r'''Number of numbered interval.
+
+        ::
+
+            >>> pitchtools.NumberedInterval(-14).numbered_interval_number
+            -14
+
+        Returns integer or float.
+        '''
+        return self._number
+
+    @property
+    def semitones(self):
+        r'''Semitones corresponding to numbered interval.
+
+        Returns nonnegative number.
+        '''
+        return self.number

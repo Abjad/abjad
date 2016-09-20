@@ -51,23 +51,6 @@ class PitchSet(Set):
         from abjad.tools import pitchtools
         return sorted(pitchtools.PitchSegment(tuple(self)))
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitch
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitch
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.Pitch
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -170,6 +153,23 @@ class PitchSet(Set):
         '''
         items = (pitch.transpose(expr) for pitch in self)
         return new(self, items=items)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitch
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitch
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.Pitch
 
     ### PUBLIC PROPERTIES ###
 

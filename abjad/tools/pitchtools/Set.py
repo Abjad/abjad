@@ -60,25 +60,6 @@ class Set(TypedFrozenset):
 
     ### PRIVATE METHODS ###
 
-    def _sort_self(self):
-        return tuple(self)
-
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
-        raise NotImplementedError
-
-    ### PRIVATE PROPERTIES ###
-
     def _get_format_specification(self):
         items = sorted(self, key=lambda x: (float(x), str(x)))
         if self.item_class.__name__.startswith('Named'):
@@ -99,6 +80,9 @@ class Set(TypedFrozenset):
             storage_format_kwargs_names=[],
             )
 
+    def _sort_self(self):
+        return tuple(self)
+
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
@@ -111,4 +95,18 @@ class Set(TypedFrozenset):
 
         Returns set.
         '''
+        raise NotImplementedError
+
+    ### PRIVATE PROPERTIES ###
+
+    @abc.abstractproperty
+    def _named_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _numbered_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _parent_item_class(self):
         raise NotImplementedError

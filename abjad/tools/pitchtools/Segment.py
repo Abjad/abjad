@@ -125,24 +125,6 @@ class Segment(TypedTuple):
         parts = [str(x) for x in self]
         return '<{}>'.format(', '.join(parts))
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_coercer(self):
-        return self._item_class
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
-        raise NotImplementedError
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -180,6 +162,24 @@ class Segment(TypedTuple):
 
         Returns new segment.
         '''
+        raise NotImplementedError
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        return self._item_class
+
+    @abc.abstractproperty
+    def _named_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _numbered_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _parent_item_class(self):
         raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###

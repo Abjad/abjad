@@ -278,24 +278,6 @@ class Accidental(AbjadValueObject):
         semitones = self.semitones - arg.semitones
         return type(self)(semitones)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _all_accidental_abbreviations(self):
-        return list(self._abbreviation_to_symbolic_string.keys())
-
-    @property
-    def _all_accidental_names(self):
-        return list(self._name_to_abbreviation.keys())
-
-    @property
-    def _all_accidental_semitone_values(self):
-        return list(self._semitones_to_abbreviation.keys())
-
-    @property
-    def _lilypond_format(self):
-        return self._abbreviation
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -348,6 +330,24 @@ class Accidental(AbjadValueObject):
         if not isinstance(expr, str):
             return False
         return bool(Accidental._symbolic_string_regex.match(expr))
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _all_accidental_abbreviations(self):
+        return list(self._abbreviation_to_symbolic_string.keys())
+
+    @property
+    def _all_accidental_names(self):
+        return list(self._name_to_abbreviation.keys())
+
+    @property
+    def _all_accidental_semitone_values(self):
+        return list(self._semitones_to_abbreviation.keys())
+
+    @property
+    def _lilypond_format(self):
+        return self._abbreviation
 
     ### PUBLIC PROPERTIES ###
 

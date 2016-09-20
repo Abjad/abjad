@@ -204,6 +204,28 @@ class NamedIntervalClass(IntervalClass):
             abs(self.number),
             )
 
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
+        '''Makes named interval-class from `pitch_carrier_1` and
+        `pitch_carrier_2`.
+
+        ::
+
+            >>> pitchtools.NamedIntervalClass.from_pitch_carriers(
+            ...     NamedPitch(-2),
+            ...     NamedPitch(12),
+            ...     )
+            NamedIntervalClass('+M2')
+
+        Returns named interval-class.
+        '''
+        from abjad.tools import pitchtools
+        named_interval = pitchtools.NamedInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        return class_(named_interval)
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -229,28 +251,6 @@ class NamedIntervalClass(IntervalClass):
     def _quality_abbreviation(self):
         return self._quality_string_to_quality_abbreviation[
             self._quality_string]
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes named interval-class from `pitch_carrier_1` and
-        `pitch_carrier_2`.
-
-        ::
-
-            >>> pitchtools.NamedIntervalClass.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
-            ...     )
-            NamedIntervalClass('+M2')
-
-        Returns named interval-class.
-        '''
-        from abjad.tools import pitchtools
-        named_interval = pitchtools.NamedInterval.from_pitch_carriers(
-            pitch_carrier_1, pitch_carrier_2)
-        return class_(named_interval)
 
     ### PUBLIC PROPERTIES ###
 

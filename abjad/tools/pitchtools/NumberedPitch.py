@@ -111,12 +111,6 @@ class NumberedPitch(Pitch):
             return pitchtools.transpose_pitch_carrier_by_interval(
                 self, -interval)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return self.pitch_name
-
     ### PUBLIC METHODS ###
 
     def apply_accidental(self, accidental=None):
@@ -275,6 +269,12 @@ class NumberedPitch(Pitch):
         '''
         semitones = self.pitch_number + float(n)
         return type(self)(semitones)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        return self.pitch_name
 
     ### PUBLIC PROPERTIES ###
 

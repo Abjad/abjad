@@ -113,6 +113,48 @@ class PitchArrayColumn(AbjadValueObject):
         result = '\n'.join(result)
         return result
 
+    ### PRIVATE METHODS ###
+
+    def _cells_starting_at_index(self, index):
+        result = []
+        for cell in self.cells:
+            if cell.column_indices[0] == index:
+                result.append(cell)
+        result = tuple(result)
+        return result
+
+    ### PUBLIC METHODS ###
+
+    def append(self, cell):
+        r'''Appends `cell` to pitch array column.
+
+        Returns none.
+        '''
+        if not isinstance(cell, PitchArrayCell):
+            message = 'must be cell.'
+            raise TypeError(message)
+        cell._row_parent = self
+        self._cells.append(cell)
+
+    def extend(self, cells):
+        r'''Extends `cells` against pitch array column.
+
+        Returns none.
+        '''
+        if not all(isinstance(cell, PitchArrayCell) for cell in cells):
+            message = 'must be cells.'
+            raise TypeError(message)
+        for cell in cells:
+            self.append(cell)
+
+    def remove_pitches(self):
+        r'''Removes pitches from pitch array cells in pitch array column.
+
+        Returns none.
+        '''
+        for cell in self.cells:
+            cell.pitch = None
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -180,17 +222,6 @@ class PitchArrayColumn(AbjadValueObject):
     def _start_cells(self):
         column_index = self.column_index
         return self._cells_starting_at_index(column_index)
-
-    ### PRIVATE METHODS ###
-
-    def _cells_starting_at_index(self, index):
-        result = []
-        for cell in self.cells:
-            if cell.column_indices[0] == index:
-                result.append(cell)
-        result = tuple(result)
-        return result
-
 
     ### PUBLIC PROPERTIES ###
 
@@ -365,35 +396,3 @@ class PitchArrayColumn(AbjadValueObject):
             return 1
         else:
             return 0
-
-    ### PUBLIC METHODS ###
-
-    def append(self, cell):
-        r'''Appends `cell` to pitch array column.
-
-        Returns none.
-        '''
-        if not isinstance(cell, PitchArrayCell):
-            message = 'must be cell.'
-            raise TypeError(message)
-        cell._row_parent = self
-        self._cells.append(cell)
-
-    def extend(self, cells):
-        r'''Extends `cells` against pitch array column.
-
-        Returns none.
-        '''
-        if not all(isinstance(cell, PitchArrayCell) for cell in cells):
-            message = 'must be cells.'
-            raise TypeError(message)
-        for cell in cells:
-            self.append(cell)
-
-    def remove_pitches(self):
-        r'''Removes pitches from pitch array cells in pitch array column.
-
-        Returns none.
-        '''
-        for cell in self.cells:
-            cell.pitch = None
