@@ -35,16 +35,6 @@ class MutationAgent(abctools.AbjadObject):
     def __init__(self, client=None):
         self._client = client
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Returns client of mutation agent.
-
-        Returns selection or component.
-        '''
-        return self._client
-
     ### PUBLIC METHODS ###
 
     def copy(self, n=1, include_enclosing_containers=False):
@@ -2848,3 +2838,13 @@ class MutationAgent(abctools.AbjadObject):
                     new_written_pitch = old_written_pitch.transpose(
                         named_interval)
                     note_head.written_pitch = new_written_pitch
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Returns client of mutation agent.
+
+        Returns selection or component.
+        '''
+        return self._client
