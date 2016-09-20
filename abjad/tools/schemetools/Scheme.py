@@ -218,22 +218,6 @@ class Scheme(AbjadValueObject):
             storage_format_kwargs_names=names,
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_value(self):
-        return Scheme.format_scheme_value(
-            self._value,
-            force_quotes=self.force_quotes,
-            verbatim=self.verbatim,
-            )
-
-    @property
-    def _lilypond_format(self):
-        if self._quoting is not None:
-            return '#' + self._quoting + self._formatted_value
-        return '#' + self._formatted_value
-
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -347,6 +331,22 @@ class Scheme(AbjadValueObject):
         elif isinstance(value, type(None)):
             return '#f'
         return str(value)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _formatted_value(self):
+        return Scheme.format_scheme_value(
+            self._value,
+            force_quotes=self.force_quotes,
+            verbatim=self.verbatim,
+            )
+
+    @property
+    def _lilypond_format(self):
+        if self._quoting is not None:
+            return '#' + self._quoting + self._formatted_value
+        return '#' + self._formatted_value
 
     ### PUBLIC PROPERTIES ###
 
