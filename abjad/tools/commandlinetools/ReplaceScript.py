@@ -32,46 +32,6 @@ class ReplaceScript(CommandlineScript):
     alias = 'replace'
     short_description = 'Replace text.'
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def skipped_directories(self):
-        r'''Skipped directories.
-
-        Returns list.
-        '''
-        return [
-            '.svn',
-            '.git',
-            'build'
-            ]
-
-    @property
-    def skipped_files(self):
-        r'''Skipped files.
-
-        Returns list.
-        '''
-        return [
-            __file__,
-            self.program_name,
-            '*.backup',
-            '*.doctree',
-            '*.gif',
-            '*.jpg',
-            '*.jpeg',
-            '*.nb',
-            '*.pdf',
-            '*.pickle',
-            '*.pkl',
-            '*.png',
-            '*.ps',
-            '*.pyc',
-            '*.rtf',
-            '*.txt',
-            '.DS_Store',
-            ]
-
     ### PRIVATE METHODS ###
 
     def _get_naive_search_callable(self, args):
@@ -296,3 +256,43 @@ class ReplaceScript(CommandlineScript):
             help='Exclude folders matching pattern(s)',
             metavar='PATTERN',
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def skipped_directories(self):
+        r'''Skipped directories.
+
+        Returns list.
+        '''
+        return [
+            '.svn',
+            '.git',
+            'build'
+            ]
+
+    @property
+    def skipped_files(self):
+        r'''Skipped files.
+
+        Returns list.
+        '''
+        return [
+            __file__,
+            self.program_name,
+            '*.backup',
+            '*.doctree',
+            '*.gif',
+            '*.jpg',
+            '*.jpeg',
+            '*.nb',
+            '*.pdf',
+            '*.pickle',
+            '*.pkl',
+            '*.png',
+            '*.ps',
+            '*.pyc',
+            '*.rtf',
+            '*.txt',
+            '.DS_Store',
+            ]

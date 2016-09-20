@@ -86,8 +86,6 @@ class DoctestScript(CommandlineScript):
             optionflags = optionflags | doctest.REPORT_ONLY_FIRST_FAILURE
         return optionflags
 
-    ### PUBLIC PROPERTIES ###
-
     def _process_args(
         self,
         args=None,
