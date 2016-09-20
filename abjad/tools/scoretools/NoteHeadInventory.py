@@ -95,14 +95,6 @@ class NoteHeadInventory(TypedList):
         from abjad.tools import scoretools
         return coerce_
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''The note head inventory's chord client.
-        '''
-        return self._client
-
     ### PUBLIC METHODS ###
 
     def get(self, pitch):
@@ -182,3 +174,11 @@ class NoteHeadInventory(TypedList):
         else:
             message = 'extra note head.'
             raise ValueError(message)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''The note head inventory's chord client.
+        '''
+        return self._client

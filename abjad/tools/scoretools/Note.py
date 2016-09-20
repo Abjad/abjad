@@ -104,37 +104,6 @@ class Note(Leaf):
         '''
         return (self.written_pitch, self.written_duration)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _body(self):
-        result = []
-        if self.note_head is not None and self.note_head.is_parenthesized:
-            result.append(r'\parenthesize')
-        body = ''
-        if self.written_pitch:
-            body += str(self.written_pitch)
-            if self.note_head.is_forced:
-                body += '!'
-            if self.note_head.is_cautionary:
-                body += '?'
-        body += self._formatted_duration
-        result.append(body)
-        result = ['\n'.join(result)]
-        return result
-
-    @property
-    def _compact_representation(self):
-        return self._body[0]
-
-    @property
-    def _compact_representation_with_tie(self):
-        logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return '{} ~'.format(self._body[0])
-        else:
-            return self._body[0]
-
     ### PRIVATE METHODS ###
 
     def _divide(self, pitch=None):
@@ -176,6 +145,37 @@ class Note(Leaf):
             sounding_pitch = pitchtools.transpose_pitch_carrier_by_interval(
                 self.written_pitch, t_n)
             return sounding_pitch
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _body(self):
+        result = []
+        if self.note_head is not None and self.note_head.is_parenthesized:
+            result.append(r'\parenthesize')
+        body = ''
+        if self.written_pitch:
+            body += str(self.written_pitch)
+            if self.note_head.is_forced:
+                body += '!'
+            if self.note_head.is_cautionary:
+                body += '?'
+        body += self._formatted_duration
+        result.append(body)
+        result = ['\n'.join(result)]
+        return result
+
+    @property
+    def _compact_representation(self):
+        return self._body[0]
+
+    @property
+    def _compact_representation_with_tie(self):
+        logical_tie = self._get_logical_tie()
+        if 1 < len(logical_tie) and self is not logical_tie[-1]:
+            return '{} ~'.format(self._body[0])
+        else:
+            return self._body[0]
 
     ### PUBLIC PROPERTIES ###
 

@@ -82,13 +82,6 @@ class Context(Container):
             return Container.__repr__(self)
         return self._get_abbreviated_string_format()
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
-
     ### PRIVATE METHODS ###
 
     def _copy_with_indicators_but_without_children_or_spanners(self):
@@ -184,6 +177,13 @@ class Context(Container):
 
     def _get_format_pieces(self):
         return self._format_component(pieces=True)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        self._update_now(indicators=True)
+        return self._format_component()
 
     ### PUBLIC PROPERTIES ###
 

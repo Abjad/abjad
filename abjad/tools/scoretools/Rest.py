@@ -52,16 +52,6 @@ class Rest(Leaf):
         if isinstance(original_input, Leaf):
             self._copy_override_and_set_from_leaf(original_input)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _body(self):
-        return [self._compact_representation]
-
-    @property
-    def _compact_representation(self):
-        return 'r{}'.format(self._formatted_duration)
-
     ### PRIVATE METHODS ###
 
     def _divide(self, pitch=None):
@@ -79,3 +69,13 @@ class Rest(Leaf):
         for markup in down_markup:
             markup(bass)
         return treble, bass
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _body(self):
+        return [self._compact_representation]
+
+    @property
+    def _compact_representation(self):
+        return 'r{}'.format(self._formatted_duration)

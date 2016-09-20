@@ -112,86 +112,6 @@ class FixedDurationTuplet(Tuplet):
                     component._set_duration(new_duration)
         self._fix()
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def multiplied_duration(self):
-        r'''Gets multiplied duration of tuplet.
-
-        ::
-
-            >>> tuplet = scoretools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
-            >>> tuplet.multiplied_duration
-            Duration(1, 4)
-
-        Returns duration.
-        '''
-        return self.target_duration
-
-    @property
-    def multiplier(self):
-        r'''Gets and sets multiplier of fixed-duration tuplet.
-
-        ::
-
-            >>> tuplet = scoretools.FixedDurationTuplet(
-            ...     (1, 4), "c'8 d'8 e'8")
-            >>> tuplet.multiplier
-            Multiplier(2, 3)
-
-        Returns multiplier.
-        '''
-        if 0 < len(self):
-            return durationtools.Multiplier(
-                self.target_duration / self._contents_duration)
-        else:
-            return None
-
-    @multiplier.setter
-    def multiplier(self, expr):
-        pass
-
-    @property
-    def target_duration(self):
-        r'''Gets and sets target duration of fixed-duration tuplet.
-
-        ::
-
-            >>> tuplet = scoretools.FixedDurationTuplet(
-            ...     (1, 4), "c'8 d'8 e'8")
-            >>> tuplet.target_duration
-            Duration(1, 4)
-
-        ..  doctest::
-
-            >>> print(format(tuplet))
-            \times 2/3 {
-                c'8
-                d'8
-                e'8
-            }
-
-        ::
-
-            >>> tuplet.target_duration = Duration(5, 8)
-            >>> print(format(tuplet))
-            \tweak text #tuplet-number::calc-fraction-text
-            \times 5/3 {
-                c'8
-                d'8
-                e'8
-            }
-
-        Returns duration.
-        '''
-        return self._target_duration
-
-    @target_duration.setter
-    def target_duration(self, expr):
-        target_duration = durationtools.Duration(expr)
-        assert 0 < target_duration
-        self._target_duration = target_duration
-
     ### PUBLIC METHODS ###
 
     def to_fixed_multiplier(self):
@@ -286,3 +206,83 @@ class FixedDurationTuplet(Tuplet):
         else:
             del(self[start:stop])
         self.target_duration = old_multiplier * self._contents_duration
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def multiplied_duration(self):
+        r'''Gets multiplied duration of tuplet.
+
+        ::
+
+            >>> tuplet = scoretools.FixedDurationTuplet((1, 4), "c'8 d'8 e'8")
+            >>> tuplet.multiplied_duration
+            Duration(1, 4)
+
+        Returns duration.
+        '''
+        return self.target_duration
+
+    @property
+    def multiplier(self):
+        r'''Gets and sets multiplier of fixed-duration tuplet.
+
+        ::
+
+            >>> tuplet = scoretools.FixedDurationTuplet(
+            ...     (1, 4), "c'8 d'8 e'8")
+            >>> tuplet.multiplier
+            Multiplier(2, 3)
+
+        Returns multiplier.
+        '''
+        if 0 < len(self):
+            return durationtools.Multiplier(
+                self.target_duration / self._contents_duration)
+        else:
+            return None
+
+    @multiplier.setter
+    def multiplier(self, expr):
+        pass
+
+    @property
+    def target_duration(self):
+        r'''Gets and sets target duration of fixed-duration tuplet.
+
+        ::
+
+            >>> tuplet = scoretools.FixedDurationTuplet(
+            ...     (1, 4), "c'8 d'8 e'8")
+            >>> tuplet.target_duration
+            Duration(1, 4)
+
+        ..  doctest::
+
+            >>> print(format(tuplet))
+            \times 2/3 {
+                c'8
+                d'8
+                e'8
+            }
+
+        ::
+
+            >>> tuplet.target_duration = Duration(5, 8)
+            >>> print(format(tuplet))
+            \tweak text #tuplet-number::calc-fraction-text
+            \times 5/3 {
+                c'8
+                d'8
+                e'8
+            }
+
+        Returns duration.
+        '''
+        return self._target_duration
+
+    @target_duration.setter
+    def target_duration(self, expr):
+        target_duration = durationtools.Duration(expr)
+        assert 0 < target_duration
+        self._target_duration = target_duration
