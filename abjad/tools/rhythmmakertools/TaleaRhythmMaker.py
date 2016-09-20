@@ -399,19 +399,6 @@ class TaleaRhythmMaker(RhythmMaker):
         '''
         return super(TaleaRhythmMaker, self).__repr__()
 
-    ### PRIVATE PROPERTIES ###
-
-    def _get_format_specification(self):
-        from abjad.tools import systemtools
-        agent = systemtools.StorageFormatAgent(self)
-        names = list(agent.signature_keyword_names)
-        if self.tie_split_notes:
-            names.remove('tie_split_notes')
-        return systemtools.FormatSpecification(
-            self,
-            storage_format_kwargs_names=names,
-            )
-
     ### PRIVATE METHODS ###
 
     def _apply_burnish_specifier(self, divisions):
@@ -468,6 +455,17 @@ class TaleaRhythmMaker(RhythmMaker):
         if self.burnish_specifier is not None:
             return self.burnish_specifier
         return rhythmmakertools.BurnishSpecifier()
+
+    def _get_format_specification(self):
+        from abjad.tools import systemtools
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        if self.tie_split_notes:
+            names.remove('tie_split_notes')
+        return systemtools.FormatSpecification(
+            self,
+            storage_format_kwargs_names=names,
+            )
 
     def _get_talea(self):
         from abjad.tools import rhythmmakertools
@@ -568,7 +566,7 @@ class TaleaRhythmMaker(RhythmMaker):
         specifier = self._get_duration_spelling_specifier()
         if specifier.rewrite_meter:
             selections = specifier._rewrite_meter_(
-                selections, 
+                selections,
                 input_divisions,
                 )
         return selections
@@ -2208,7 +2206,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             The duration of each added count equals the duration
             of each count in the rhythm-maker's input talea.
-            
+
         ..  container:: example
 
             **Example 4.** Removes one count from every other division:
@@ -2417,7 +2415,7 @@ class TaleaRhythmMaker(RhythmMaker):
         ..  container:: example
 
             **Example 1.** Reads talea cyclically:
-            
+
             ::
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
@@ -2469,7 +2467,7 @@ class TaleaRhythmMaker(RhythmMaker):
         ..  container:: example
 
             **Example 2.** Reads talea once only:
-            
+
             ::
 
                 >>> rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
@@ -2494,7 +2492,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Set to true to ensure talea is long enough to cover all divisions
         without repeating.
-        
+
         Provides way of using talea noncyclically when, for example,
         interpolating from short durations to long durations.
 

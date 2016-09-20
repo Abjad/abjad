@@ -29,44 +29,6 @@ class InterpolationSpecifier(AbjadValueObject):
         self._stop_duration = durationtools.Duration(stop_duration)
         self._written_duration = durationtools.Duration(written_duration)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def start_duration(self):
-        r'''Gets start duration.
-
-        Defaults to ``1/8``.
-
-        Set to positive duration.
-
-        Returns position duration.
-        '''
-        return self._start_duration
-
-    @property
-    def stop_duration(self):
-        r'''Gets stop duration.
-
-        Defaults to ``1/16``.
-
-        Set to positive duration.
-
-        Returns position duration.
-        '''
-        return self._stop_duration
-
-    @property
-    def written_duration(self):
-        r'''Gets written duration.
-
-        Defaults to ``1/16``.
-
-        Set to positive duration.
-
-        Returns position duration.
-        '''
-        return self._written_duration
-
     ### PUBLIC METHODS ###
 
     def reverse(self):
@@ -119,3 +81,41 @@ class InterpolationSpecifier(AbjadValueObject):
             stop_duration=self.start_duration,
             written_duration=self.written_duration,
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def start_duration(self):
+        r'''Gets start duration.
+
+        Defaults to ``1/8``.
+
+        Set to positive duration.
+
+        Returns position duration.
+        '''
+        return self._start_duration
+
+    @property
+    def stop_duration(self):
+        r'''Gets stop duration.
+
+        Defaults to ``1/16``.
+
+        Set to positive duration.
+
+        Returns position duration.
+        '''
+        return self._stop_duration
+
+    @property
+    def written_duration(self):
+        r'''Gets written duration.
+
+        Defaults to ``1/16``.
+
+        Set to positive duration.
+
+        Returns position duration.
+        '''
+        return self._written_duration
