@@ -73,8 +73,8 @@ class Enumeration(enum.IntEnum):
         agent = systemtools.StorageFormatAgent(self)
         repr_text = '{}.{}'.format(type(self).__name__, self.name)
         storage_format_text = '{}.{}'.format(
-            repr_text,
             agent.get_tools_package_name(),
+            repr_text,
             )
         return systemtools.FormatSpecification(
             client=self,
@@ -98,7 +98,10 @@ class Enumeration(enum.IntEnum):
             expr = expr.strip()
             expr = stringtools.to_snake_case(expr)
             expr = expr.upper()
-            return cls[expr]
+            try:
+                return cls[expr]
+            except KeyError:
+                return cls[expr.replace('_', '')]
         elif expr is None:
             return cls(0)
         message = 'Cannot instantiate {} from {}.'.format(cls.__name__, expr)

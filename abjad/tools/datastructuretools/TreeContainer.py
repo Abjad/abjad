@@ -290,6 +290,7 @@ class TreeContainer(TreeNode):
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
         names = list(agent.signature_keyword_names)
+        template_names = names[:]
         for name in ('children',):
             if not getattr(self, name, None) and name in names:
                 names.remove(name)
@@ -297,6 +298,7 @@ class TreeContainer(TreeNode):
             client=self,
             repr_is_indented=True,
             storage_format_kwargs_names=names,
+            template_names=template_names,
             )
 
     ### PUBLIC PROPERTIES ###
