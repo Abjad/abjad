@@ -98,18 +98,6 @@ class TypedCollection(AbjadObject):
         '''
         pass
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_coercer(self):
-        def coerce_(x):
-            if isinstance(x, self._item_class):
-                return x
-            return self._item_class(x)
-        if self._item_class is None:
-            return lambda x: x
-        return coerce_
-
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
         names = list(agent.signature_keyword_names)
@@ -121,6 +109,18 @@ class TypedCollection(AbjadObject):
             storage_format_args_values=[self._collection],
             storage_format_kwargs_names=names,
             )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        def coerce_(x):
+            if isinstance(x, self._item_class):
+                return x
+            return self._item_class(x)
+        if self._item_class is None:
+            return lambda x: x
+        return coerce_
 
     ### PUBLIC PROPERTIES ###
 

@@ -24,7 +24,7 @@ class CyclicTuple(AbjadValueObject, tuple):
 
             >>> for x in range(8):
             ...     print(x, cyclic_tuple[x])
-            ... 
+            ...
             0 a
             1 b
             2 c
@@ -134,7 +134,7 @@ class CyclicTuple(AbjadValueObject, tuple):
             return string
         return '()'
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         return systemtools.FormatSpecification(

@@ -225,7 +225,7 @@ class TypedOrderedDict(TypedCollection):
         new_item = self._item_coercer(expr)
         self._collection[i] = new_item
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
