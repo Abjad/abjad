@@ -27,19 +27,19 @@ class Pattern(AbjadValueObject):
             ...     print(index, match)
             0 True
             1 True
-            2 
-            3 
-            4 
-            5 
-            6 
+            2
+            3
+            4
+            5
+            6
             7 True
             8 True
             9 True
-            10 
-            11 
-            12 
-            13 
-            14 
+            10
+            11
+            12
+            13
+            14
             15 True
 
     ..  container:: example
@@ -62,19 +62,19 @@ class Pattern(AbjadValueObject):
             ...     print(index, match)
             0 True
             1 True
-            2 
-            3 
-            4 
-            5 
-            6 
+            2
+            3
+            4
+            5
+            6
             7 True
             8
             9
-            10 
-            11 
-            12 
-            13 
-            14 
+            10
+            11
+            12
+            13
+            14
             15
 
     ..  container:: example
@@ -97,20 +97,20 @@ class Pattern(AbjadValueObject):
             ...     print(index, match)
             0 True
             1 True
-            2 
-            3 
-            4 
-            5 
-            6 
+            2
+            3
+            4
+            5
+            6
             7 True
-            8 
-            9 
-            10 
-            11 
-            12 
-            13 
-            14 
-            15 
+            8
+            9
+            10
+            11
+            12
+            13
+            14
+            15
 
     '''
 
@@ -211,7 +211,7 @@ class Pattern(AbjadValueObject):
                     indices=(0, 1, 2),
                     inverted=False,
                     )
-                    
+
             Negation defined equal to inversion.
 
         Returns new pattern.
@@ -359,49 +359,6 @@ class Pattern(AbjadValueObject):
         from abjad.tools import patterntools
         return patterntools.CompoundPattern([self, other], operator='xor')
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def weight(self):
-        r'''Gets weight of pattern.
-
-        ..  container:: example
-
-            **Example 1.** Gets weight of cyclic pattern:
-
-            ::
-
-                >>> pattern = patterntools.Pattern(
-                ...     indices=[0, 1, 7],
-                ...     period=8,
-                ...     )
-
-            ::
-
-                >>> pattern.weight
-                3
-
-        ..  container:: example
-
-            **Example 2.** Gets weight of acyclic pattern:
-
-            ::
-
-                >>> pattern = patterntools.Pattern(
-                ...     indices=[0, 2, 3],
-                ...     )
-
-            ::
-
-                >>> pattern.weight
-                3
-
-        Weight defined equal to number of indices in pattern.
-
-        Returns nonnegative integer.
-        '''
-        return len(self.indices)
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -421,7 +378,7 @@ class Pattern(AbjadValueObject):
                     indices=(0, 3, 4),
                     period=5,
                     )
-                    
+
             ::
 
                 >>> total_length = 10
@@ -430,13 +387,13 @@ class Pattern(AbjadValueObject):
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
-                1 
-                2 
+                1
+                2
                 3 True
                 4 True
                 5 True
-                6 
-                7 
+                6
+                7
                 8 True
                 9 True
 
@@ -453,7 +410,7 @@ class Pattern(AbjadValueObject):
                     indices=(0, 3, 4),
                     period=6,
                     )
-                    
+
             ::
 
                 >>> total_length = 12
@@ -462,17 +419,17 @@ class Pattern(AbjadValueObject):
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
-                1 
-                2 
+                1
+                2
                 3 True
                 4 True
-                5 
+                5
                 6 True
-                7 
-                8 
+                7
+                8
                 9 True
                 10 True
-                11 
+                11
 
         Returns pattern.
         '''
@@ -520,7 +477,7 @@ class Pattern(AbjadValueObject):
 
                 >>> pattern.get_boolean_vector()
                 [0, 0, 0, 0, 1, 1, 1, 1]
-        
+
         ..  container:: example
 
             **Example 2.** Gets vector of cyclic pattern:
@@ -620,19 +577,19 @@ class Pattern(AbjadValueObject):
                 ...     print(index, match)
                 0 True
                 1 True
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 True
                 8 True
                 9 True
-                10 
-                11 
-                12 
-                13 
-                14 
+                10
+                11
+                12
+                13
+                14
                 15 True
 
             **Example 1b.** Matches three indices out of every eight, offset
@@ -657,19 +614,19 @@ class Pattern(AbjadValueObject):
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
-                1 
-                2 
-                3 
-                4 
-                5 
+                1
+                2
+                3
+                4
+                5
                 6 True
                 7 True
                 8 True
-                9 
-                10 
-                11 
-                12 
-                13 
+                9
+                10
+                11
+                12
+                13
                 14 True
                 15 True
 
@@ -694,19 +651,19 @@ class Pattern(AbjadValueObject):
                 ...         )
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
-                2 
-                3 
-                4 
+                0
+                1
+                2
+                3
+                4
                 5 True
                 6 True
                 7 True
-                8 
-                9 
-                10 
-                11 
-                12 
+                8
+                9
+                10
+                11
+                12
                 13 True
                 14 True
                 15 True
@@ -731,19 +688,19 @@ class Pattern(AbjadValueObject):
                 ...     print(index, match)
                 0 True
                 1 True
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 True
                 8
                 9
-                10 
-                11 
-                12 
-                13 
-                14 
+                10
+                11
+                12
+                13
+                14
                 15
 
             **Example 2b.** Matches three indices out of every sixteen, offset
@@ -768,20 +725,20 @@ class Pattern(AbjadValueObject):
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
-                1 
-                2 
-                3 
-                4 
-                5 
+                1
+                2
+                3
+                4
+                5
                 6 True
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
-                13 
-                14 
+                7
+                8
+                9
+                10
+                11
+                12
+                13
+                14
                 15 True
 
             **Example 2c.** Matches three indices out of every sixteen, offset
@@ -805,20 +762,20 @@ class Pattern(AbjadValueObject):
                 ...         )
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
-                2 
-                3 
-                4 
+                0
+                1
+                2
+                3
+                4
                 5 True
-                6 
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
-                13 
+                6
+                7
+                8
+                9
+                10
+                11
+                12
+                13
                 14 True
                 15 True
 
@@ -874,19 +831,19 @@ class Pattern(AbjadValueObject):
                 ...     print(index, match)
                 0 True
                 1 True
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 True
                 8 True
                 9 True
-                10 
-                11 
-                12 
-                13 
-                14 
+                10
+                11
+                12
+                13
+                14
                 15 True
 
         ..  container:: example
@@ -917,19 +874,19 @@ class Pattern(AbjadValueObject):
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
-                1 
-                2 
-                3 
-                4 
-                5 
+                1
+                2
+                3
+                4
+                5
                 6 True
                 7 True
                 8 True
-                9 
-                10 
-                11 
-                12 
-                13 
+                9
+                10
+                11
+                12
+                13
                 14 True
                 15 True
 
@@ -961,19 +918,19 @@ class Pattern(AbjadValueObject):
                 ...     print(index, match)
                 0 True
                 1 True
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 True
                 8 True
                 9 True
-                10 
-                11 
-                12 
-                13 
-                14 
+                10
+                11
+                12
+                13
+                14
                 15 True
 
             Rotates pattern two elements to the right:
@@ -1001,22 +958,22 @@ class Pattern(AbjadValueObject):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
+                0
                 1 True
                 2 True
                 3 True
-                4 
-                5 
-                6 
-                7 
-                8 
+                4
+                5
+                6
+                7
+                8
                 9 True
                 10 True
                 11 True
-                12 
-                13 
-                14 
-                15 
+                12
+                13
+                14
+                15
 
         ..  container:: example
 
@@ -1037,19 +994,19 @@ class Pattern(AbjadValueObject):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
-                2 
-                3 
-                4 
+                0
+                1
+                2
+                3
+                4
                 5 True
                 6 True
                 7 True
-                8 
-                9 
-                10 
-                11 
-                12 
+                8
+                9
+                10
+                11
+                12
                 13 True
                 14 True
                 15 True
@@ -1081,19 +1038,19 @@ class Pattern(AbjadValueObject):
                 ...     print(index, match)
                 0 True
                 1 True
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 True
                 8 True
                 9 True
-                10 
-                11 
-                12 
-                13 
-                14 
+                10
+                11
+                12
+                13
+                14
                 15 True
 
         Returns new pattern.
@@ -1176,19 +1133,19 @@ class Pattern(AbjadValueObject):
                 ...     print(index, match)
                 0 True
                 1 True
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 True
                 8 True
                 9 True
-                10 
-                11 
-                12 
-                13 
-                14 
+                10
+                11
+                12
+                13
+                14
                 15 True
 
         ..  container:: example
@@ -1216,22 +1173,22 @@ class Pattern(AbjadValueObject):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
+                0
+                1
                 2 True
                 3 True
                 4 True
                 5 True
                 6 True
-                7 
-                8 
-                9 
+                7
+                8
+                9
                 10 True
                 11 True
                 12 True
                 13 True
                 14 True
-                15 
+                15
 
         Defaults to none.
 
@@ -1271,11 +1228,11 @@ class Pattern(AbjadValueObject):
                 ...     print(index, payload)
                 0 NoteRhythmMaker()
                 1 NoteRhythmMaker()
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 NoteRhythmMaker()
                 8 NoteRhythmMaker()
                 9 NoteRhythmMaker()
@@ -1317,19 +1274,19 @@ class Pattern(AbjadValueObject):
                 ...     print(index, match)
                 0 True
                 1 True
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 True
                 8 True
                 9 True
-                10 
-                11 
-                12 
-                13 
-                14 
+                10
+                11
+                12
+                13
+                14
                 15 True
 
         ..  container:: example
@@ -1357,20 +1314,20 @@ class Pattern(AbjadValueObject):
                 ...     print(index, match)
                 0 True
                 1 True
-                2 
-                3 
-                4 
-                5 
-                6 
+                2
+                3
+                4
+                5
+                6
                 7 True
-                8 
-                9 
-                10 
-                11 
-                12 
-                13 
-                14 
-                15 
+                8
+                9
+                10
+                11
+                12
+                13
+                14
+                15
 
         Defaults to none.
 
@@ -1379,3 +1336,44 @@ class Pattern(AbjadValueObject):
         Returns positive integer or none.
         '''
         return self._period
+
+    @property
+    def weight(self):
+        r'''Gets weight of pattern.
+
+        ..  container:: example
+
+            **Example 1.** Gets weight of cyclic pattern:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[0, 1, 7],
+                ...     period=8,
+                ...     )
+
+            ::
+
+                >>> pattern.weight
+                3
+
+        ..  container:: example
+
+            **Example 2.** Gets weight of acyclic pattern:
+
+            ::
+
+                >>> pattern = patterntools.Pattern(
+                ...     indices=[0, 2, 3],
+                ...     )
+
+            ::
+
+                >>> pattern.weight
+                3
+
+        Weight defined equal to number of indices in pattern.
+
+        Returns nonnegative integer.
+        '''
+        return len(self.indices)

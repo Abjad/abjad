@@ -478,143 +478,10 @@ class CompoundPattern(TypedTuple):
         if operator_ == self.operator:
             if isinstance(pattern, patterntools.Pattern):
                 return True
-            if (isinstance(pattern, type(self)) and 
+            if (isinstance(pattern, type(self)) and
                 pattern.operator == self.operator):
                 return True
         return False
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def inverted(self):
-        '''Is true when compound pattern is inverted. Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Matches every index that is (one of the first three
-            indices) OR (one of the last three indices):
-
-            ::
-
-                >>> pattern_1 = patterntools.select_first(3)
-                >>> pattern_2 = patterntools.select_last(3)
-                >>> pattern = pattern_1 | pattern_2
-                >>> pattern.inverted is None
-                True
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
-
-
-        ..  container:: example
-
-            **Example 2.** Matches every index that is NOT (one of the first
-            three indices) OR (one of the last three indices):
-
-            ::
-
-                >>> pattern = new(pattern, inverted=True)
-                >>> pattern.inverted
-                True
-
-            ::
-
-                >>> pattern.get_boolean_vector(total_length=16)
-                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
-
-        Defaults to none.
-
-        Set to true, false or none.
-
-        Returns true, false or none.
-        '''
-        return self._inverted
-
-    @property
-    def operator(self):
-        r'''Gets operator of compounnd pattern.
-
-        Set to string.
-
-        Returns string.
-        '''
-        return self._operator
-
-    @property
-    def period(self):
-        r'''Gets period of compound pattern.
-
-        ..  container:: example
-
-            **Example 1.** Gets period of pattern that selects every fourth and
-            fifth element:
-
-            ::
-
-                >>> pattern_1 = patterntools.Pattern([0], period=4)
-                >>> pattern_2 = patterntools.Pattern([0], period=5)
-                >>> pattern = pattern_1 | pattern_2
-
-            ::
-
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
-                    (
-                        patterntools.Pattern(
-                            indices=(0,),
-                            period=4,
-                            ),
-                        patterntools.Pattern(
-                            indices=(0,),
-                            period=5,
-                            ),
-                        ),
-                    operator='or',
-                    )
-
-            ::
-
-                >>> pattern.period
-                20
-
-        ..  container:: example
-
-            **Example 2.** Returns none when pattern contains acyclic parts:
-
-            ::
-
-                >>> pattern_1 = patterntools.Pattern([0], period=4)
-                >>> pattern_2 = patterntools.Pattern([0])
-                >>> pattern = pattern_1 | pattern_2
-
-            ::
-
-                >>> print(format(pattern))
-                patterntools.CompoundPattern(
-                    (
-                        patterntools.Pattern(
-                            indices=(0,),
-                            period=4,
-                            ),
-                        patterntools.Pattern(
-                            indices=(0,),
-                            ),
-                        ),
-                    operator='or',
-                    )
-
-            ::
-
-                >>> pattern.period is None
-                True
-
-        Returns positive integer.
-        '''
-        periods = [_.period for _ in self]
-        if None not in periods:
-            return mathtools.least_common_multiple(*periods)
 
     ### PUBLIC METHODS ###
 
@@ -788,22 +655,22 @@ class CompoundPattern(TypedTuple):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
-                2 
-                3 
-                4 
-                5 
-                6 
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
-                13 
-                14 
-                15 
+                0
+                1
+                2
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                10
+                11
+                12
+                13
+                14
+                15
 
             Total length 8:
 
@@ -814,14 +681,14 @@ class CompoundPattern(TypedTuple):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
-                2 
-                3 
-                4 
-                5 
-                6 
-                7 
+                0
+                1
+                2
+                3
+                4
+                5
+                6
+                7
 
             Total length 4:
 
@@ -832,10 +699,10 @@ class CompoundPattern(TypedTuple):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
-                2 
-                3 
+                0
+                1
+                2
+                3
 
             Matches nothing.
 
@@ -863,19 +730,19 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
-                4 
-                5 
-                6 
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
-                13 
-                14 
-                15 
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                10
+                11
+                12
+                13
+                14
+                15
 
             Logical AND:
 
@@ -897,19 +764,19 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
-                4 
-                5 
-                6 
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
-                13 
-                14 
-                15 
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                10
+                11
+                12
+                13
+                14
+                15
 
             Logical XOR:
 
@@ -931,19 +798,19 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
-                4 
-                5 
-                6 
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
-                13 
-                14 
-                15 
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                10
+                11
+                12
+                13
+                14
+                15
 
             Matches every index that is (one of the first three indices).
 
@@ -979,16 +846,16 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
-                4 
-                5 
-                6 
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                10
+                11
+                12
                 13 True
                 14 True
                 15 True
@@ -1005,8 +872,8 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
-                4 
+                3
+                4
                 5 True
                 6 True
                 7 True
@@ -1055,22 +922,22 @@ class CompoundPattern(TypedTuple):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
-                2 
-                3 
-                4 
-                5 
-                6 
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
-                13 
-                14 
-                15 
+                0
+                1
+                2
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                10
+                11
+                12
+                13
+                14
+                15
 
             Total length 8:
 
@@ -1081,14 +948,14 @@ class CompoundPattern(TypedTuple):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
-                1 
-                2 
-                3 
-                4 
-                5 
-                6 
-                7 
+                0
+                1
+                2
+                3
+                4
+                5
+                6
+                7
 
             Total length 4:
 
@@ -1099,10 +966,10 @@ class CompoundPattern(TypedTuple):
                 ...     match = pattern.matches_index(index, total_length)
                 ...     match = match or ''
                 ...     print(index, match)
-                0 
+                0
                 1 True
                 2 True
-                3 
+                3
 
             Matches every index that is (one of the first three indices) AND
             (one of the last three indices).
@@ -1137,16 +1004,16 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
-                4 
-                5 
-                6 
-                7 
-                8 
-                9 
-                10 
-                11 
-                12 
+                3
+                4
+                5
+                6
+                7
+                8
+                9
+                10
+                11
+                12
                 13 True
                 14 True
                 15 True
@@ -1163,8 +1030,8 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
-                4 
+                3
+                4
                 5 True
                 6 True
                 7 True
@@ -1217,21 +1084,21 @@ class CompoundPattern(TypedTuple):
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
-                1 
+                1
                 2 True
-                3 
+                3
                 4 True
-                5 
+                5
                 6 True
-                7 
+                7
                 8 True
-                9 
+                9
                 10 True
-                11 
+                11
                 12 True
-                13 
-                14 
-                15 
+                13
+                14
+                15
 
             Total length 8:
 
@@ -1243,13 +1110,13 @@ class CompoundPattern(TypedTuple):
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
-                1 
+                1
                 2 True
-                3 
+                3
                 4 True
-                5 
-                6 
-                7 
+                5
+                6
+                7
 
             Total length 4:
 
@@ -1261,9 +1128,9 @@ class CompoundPattern(TypedTuple):
                 ...     match = match or ''
                 ...     print(index, match)
                 0 True
-                1 
-                2 
-                3 
+                1
+                2
+                3
 
             Matches every index that is (equal to 0 % 2) AND (not one of the
             last three indices).
@@ -1334,19 +1201,19 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
+                3
                 4 True
-                5 
+                5
                 6 True
-                7 
+                7
                 8 True
-                9 
+                9
                 10 True
                 11 
                 12 True
-                13 
-                14 
-                15 
+                13
+                14
+                15
 
             Total length 8:
 
@@ -1360,11 +1227,11 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
+                3
                 4 True
-                5 
-                6 
-                7 
+                5
+                6
+                7
 
             Total length 4:
 
@@ -1378,7 +1245,7 @@ class CompoundPattern(TypedTuple):
                 0 True
                 1 True
                 2 True
-                3 
+                3
 
             Matches every index that is ((equal to 0 % 2) AND (not one of the
             last three indices)) OR is (one of the first three indices).
@@ -1390,7 +1257,7 @@ class CompoundPattern(TypedTuple):
         elif len(self.items) == 1:
             pattern = self.items[0]
             result = pattern.matches_index(
-                index, 
+                index,
                 total_length,
                 rotation=rotation,
                 )
@@ -1398,13 +1265,13 @@ class CompoundPattern(TypedTuple):
             operator_ = self._name_to_operator[self.operator]
             pattern = self.items[0]
             result = pattern.matches_index(
-                index, 
-                total_length, 
+                index,
+                total_length,
                 rotation=rotation,
                 )
             for pattern in self.items[1:]:
                 result_ = pattern.matches_index(
-                    index, 
+                    index,
                     total_length,
                     rotation=rotation,
                     )
@@ -1542,7 +1409,7 @@ class CompoundPattern(TypedTuple):
                         ),
                     operator='and',
                     )
-            
+
             New pattern matches every index that is (equal to 2 % 2) AND (not
             the first, second or last index in the pattern).
 
@@ -1550,3 +1417,136 @@ class CompoundPattern(TypedTuple):
         '''
         patterns = [_.rotate(n=n) for _ in self]
         return new(self, items=patterns)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def inverted(self):
+        '''Is true when compound pattern is inverted. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Matches every index that is (one of the first three
+            indices) OR (one of the last three indices):
+
+            ::
+
+                >>> pattern_1 = patterntools.select_first(3)
+                >>> pattern_2 = patterntools.select_last(3)
+                >>> pattern = pattern_1 | pattern_2
+                >>> pattern.inverted is None
+                True
+
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1]
+
+
+        ..  container:: example
+
+            **Example 2.** Matches every index that is NOT (one of the first
+            three indices) OR (one of the last three indices):
+
+            ::
+
+                >>> pattern = new(pattern, inverted=True)
+                >>> pattern.inverted
+                True
+
+            ::
+
+                >>> pattern.get_boolean_vector(total_length=16)
+                [0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0]
+
+        Defaults to none.
+
+        Set to true, false or none.
+
+        Returns true, false or none.
+        '''
+        return self._inverted
+
+    @property
+    def operator(self):
+        r'''Gets operator of compounnd pattern.
+
+        Set to string.
+
+        Returns string.
+        '''
+        return self._operator
+
+    @property
+    def period(self):
+        r'''Gets period of compound pattern.
+
+        ..  container:: example
+
+            **Example 1.** Gets period of pattern that selects every fourth and
+            fifth element:
+
+            ::
+
+                >>> pattern_1 = patterntools.Pattern([0], period=4)
+                >>> pattern_2 = patterntools.Pattern([0], period=5)
+                >>> pattern = pattern_1 | pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=4,
+                            ),
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=5,
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+            ::
+
+                >>> pattern.period
+                20
+
+        ..  container:: example
+
+            **Example 2.** Returns none when pattern contains acyclic parts:
+
+            ::
+
+                >>> pattern_1 = patterntools.Pattern([0], period=4)
+                >>> pattern_2 = patterntools.Pattern([0])
+                >>> pattern = pattern_1 | pattern_2
+
+            ::
+
+                >>> print(format(pattern))
+                patterntools.CompoundPattern(
+                    (
+                        patterntools.Pattern(
+                            indices=(0,),
+                            period=4,
+                            ),
+                        patterntools.Pattern(
+                            indices=(0,),
+                            ),
+                        ),
+                    operator='or',
+                    )
+
+            ::
+
+                >>> pattern.period is None
+                True
+
+        Returns positive integer.
+        '''
+        periods = [_.period for _ in self]
+        if None not in periods:
+            return mathtools.least_common_multiple(*periods)
