@@ -113,189 +113,6 @@ class Performer(AbjadObject):
         '''
         return hash((type(self).__name__, self.name, tuple(self.instruments)))
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _one_line_menu_summary(self):
-        if not self.instruments:
-            result = '{}: no instruments'.format(self.name)
-        elif len(self.instruments) == 1 and self.name == \
-            self.instruments[0].instrument_name:
-            result = '{}'.format(self.name)
-        else:
-            instruments = ([x.instrument_name for x in self.instruments])
-            instruments = ', '.join(instruments)
-            result = '{}: {}'.format(self.name, instruments)
-        return result
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def instrument_count(self):
-        r'''Gets count of instruments to be played by performer.
-
-        ..  container:: example
-
-            ::
-
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
-
-            ::
-
-                >>> performer.instrument_count
-                2
-
-        Returns nonnegative integer
-        '''
-        return len(self.instruments)
-
-    @property
-    def instruments(self):
-        r'''Gets and sets instruments to be played by performer.
-
-        ..  container:: example
-
-            ::
-
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
-
-            ::
-
-                >>> for instrument in performer.instruments:
-                ...     instrument
-                Flute()
-                Piccolo()
-
-        Returns instrument inventory.
-        '''
-        return self._instruments
-
-    @instruments.setter
-    def instruments(self, instruments):
-        from abjad.tools.instrumenttools.Instrument import Instrument
-        if instruments is None:
-            self._instruments[:] = []
-        elif isinstance(instruments,
-            (list, datastructuretools.TypedList)):
-            assert all(isinstance(x, Instrument) for x in instruments)
-            self._instruments[:] = instruments[:]
-        else:
-            message = 'instruments {!r} must be list or none.'
-            message = message.format(instruments)
-            raise TypeError(message)
-
-    @property
-    def is_doubling(self):
-        r'''Is true when performer is to play more than one instrument.
-        Otherwise false.
-
-        ..  container:: example
-
-            ::
-
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
-
-            ::
-
-                >>> performer.is_doubling
-                True
-
-        Returns true or false.
-        '''
-        return 1 < self.instrument_count
-
-    # TODO: make private
-    @property
-    def likely_instruments_based_on_performer_name(self):
-        r'''Gets likely instruments based on performer name.
-
-        ..  container:: example
-
-            ::
-
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
-
-            ::
-
-                >>> for likely_instrument in \
-                ...     performer.likely_instruments_based_on_performer_name:
-                ...     likely_instrument.__name__
-                ...
-                'AltoFlute'
-                'BassFlute'
-                'ContrabassFlute'
-                'Flute'
-                'Piccolo'
-
-        Returns list.
-        '''
-        dictionary = self.make_performer_name_instrument_dictionary()
-        try:
-            result = dictionary[self.name]
-        except KeyError:
-            result = []
-        return result
-
-    # TODO: make private
-    @property
-    def most_likely_instrument_based_on_performer_name(self):
-        r'''Gets most likely instrument based on performer name.
-
-        ..  container:: example
-
-            ::
-
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
-
-            ::
-
-                >>> performer.most_likely_instrument_based_on_performer_name
-                <class 'abjad.tools.instrumenttools.Flute.Flute'>
-
-        Returns instrument class.
-        '''
-        for likely_instrument_class in \
-            self.likely_instruments_based_on_performer_name:
-            likely_instrument = likely_instrument_class()
-            if likely_instrument._is_primary_instrument:
-                return likely_instrument_class
-
-    @property
-    def name(self):
-        r'''Gets and sets score name of performer.
-
-        ..  container:: example
-
-            ::
-
-                >>> performer = instrumenttools.Performer(name='flutist')
-                >>> performer.instruments.append(instrumenttools.Flute())
-                >>> performer.instruments.append(instrumenttools.Piccolo())
-
-            ::
-
-                >>> performer.name
-                'flutist'
-
-        Returns string.
-        '''
-        return self._name
-
-    @name.setter
-    def name(self, name):
-        assert isinstance(name, (str, type(None)))
-        self._name = name
-
     ### PUBLIC METHODS ###
 
     def get_instrument(self, instrument_name):
@@ -316,7 +133,7 @@ class Performer(AbjadObject):
             **Example 1.** Gets instrument with instrument name:
 
             ::
-            
+
                 >>> flutist.get_instrument('piccolo')
                 Piccolo()
 
@@ -325,7 +142,7 @@ class Performer(AbjadObject):
             **Example 2.** Gets instrument with short instrument name:
 
             ::
-            
+
                 >>> flutist.get_instrument('picc.')
                 Piccolo()
 
@@ -334,7 +151,7 @@ class Performer(AbjadObject):
             **Example 3.** Gets instrument regardless of case:
 
             ::
-            
+
                 >>> flutist.get_instrument('PICCOLO')
                 Piccolo()
 
@@ -343,7 +160,7 @@ class Performer(AbjadObject):
             **Example 4.** Returns none when no match is found:
 
             ::
-            
+
                 >>> flutist.get_instrument('xyl.') is None
                 True
 
@@ -709,3 +526,186 @@ class Performer(AbjadObject):
         for instruments in result.values():
             instruments.sort(key=lambda x: x.__name__.lower())
         return result
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _one_line_menu_summary(self):
+        if not self.instruments:
+            result = '{}: no instruments'.format(self.name)
+        elif len(self.instruments) == 1 and self.name == \
+            self.instruments[0].instrument_name:
+            result = '{}'.format(self.name)
+        else:
+            instruments = ([x.instrument_name for x in self.instruments])
+            instruments = ', '.join(instruments)
+            result = '{}: {}'.format(self.name, instruments)
+        return result
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def instrument_count(self):
+        r'''Gets count of instruments to be played by performer.
+
+        ..  container:: example
+
+            ::
+
+                >>> performer = instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(instrumenttools.Flute())
+                >>> performer.instruments.append(instrumenttools.Piccolo())
+
+            ::
+
+                >>> performer.instrument_count
+                2
+
+        Returns nonnegative integer
+        '''
+        return len(self.instruments)
+
+    @property
+    def instruments(self):
+        r'''Gets and sets instruments to be played by performer.
+
+        ..  container:: example
+
+            ::
+
+                >>> performer = instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(instrumenttools.Flute())
+                >>> performer.instruments.append(instrumenttools.Piccolo())
+
+            ::
+
+                >>> for instrument in performer.instruments:
+                ...     instrument
+                Flute()
+                Piccolo()
+
+        Returns instrument inventory.
+        '''
+        return self._instruments
+
+    @instruments.setter
+    def instruments(self, instruments):
+        from abjad.tools.instrumenttools.Instrument import Instrument
+        if instruments is None:
+            self._instruments[:] = []
+        elif isinstance(instruments,
+            (list, datastructuretools.TypedList)):
+            assert all(isinstance(x, Instrument) for x in instruments)
+            self._instruments[:] = instruments[:]
+        else:
+            message = 'instruments {!r} must be list or none.'
+            message = message.format(instruments)
+            raise TypeError(message)
+
+    @property
+    def is_doubling(self):
+        r'''Is true when performer is to play more than one instrument.
+        Otherwise false.
+
+        ..  container:: example
+
+            ::
+
+                >>> performer = instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(instrumenttools.Flute())
+                >>> performer.instruments.append(instrumenttools.Piccolo())
+
+            ::
+
+                >>> performer.is_doubling
+                True
+
+        Returns true or false.
+        '''
+        return 1 < self.instrument_count
+
+    # TODO: make private
+    @property
+    def likely_instruments_based_on_performer_name(self):
+        r'''Gets likely instruments based on performer name.
+
+        ..  container:: example
+
+            ::
+
+                >>> performer = instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(instrumenttools.Flute())
+                >>> performer.instruments.append(instrumenttools.Piccolo())
+
+            ::
+
+                >>> for likely_instrument in \
+                ...     performer.likely_instruments_based_on_performer_name:
+                ...     likely_instrument.__name__
+                ...
+                'AltoFlute'
+                'BassFlute'
+                'ContrabassFlute'
+                'Flute'
+                'Piccolo'
+
+        Returns list.
+        '''
+        dictionary = self.make_performer_name_instrument_dictionary()
+        try:
+            result = dictionary[self.name]
+        except KeyError:
+            result = []
+        return result
+
+    # TODO: make private
+    @property
+    def most_likely_instrument_based_on_performer_name(self):
+        r'''Gets most likely instrument based on performer name.
+
+        ..  container:: example
+
+            ::
+
+                >>> performer = instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(instrumenttools.Flute())
+                >>> performer.instruments.append(instrumenttools.Piccolo())
+
+            ::
+
+                >>> performer.most_likely_instrument_based_on_performer_name
+                <class 'abjad.tools.instrumenttools.Flute.Flute'>
+
+        Returns instrument class.
+        '''
+        for likely_instrument_class in \
+            self.likely_instruments_based_on_performer_name:
+            likely_instrument = likely_instrument_class()
+            if likely_instrument._is_primary_instrument:
+                return likely_instrument_class
+
+    @property
+    def name(self):
+        r'''Gets and sets score name of performer.
+
+        ..  container:: example
+
+            ::
+
+                >>> performer = instrumenttools.Performer(name='flutist')
+                >>> performer.instruments.append(instrumenttools.Flute())
+                >>> performer.instruments.append(instrumenttools.Piccolo())
+
+            ::
+
+                >>> performer.name
+                'flutist'
+
+        Returns string.
+        '''
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        assert isinstance(name, (str, type(None)))
+        self._name = name
