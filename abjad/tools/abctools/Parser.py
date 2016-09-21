@@ -95,6 +95,15 @@ class Parser(AbjadObject):
 
         return result
 
+    ### PUBLIC METHODS ###
+
+    def tokenize(self, input_string):
+        r'''Tokenize `input string` and print results.
+        '''
+        self.lexer.input(input_string)
+        for token in self.lexer:
+            print(token)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -176,12 +185,3 @@ class Parser(AbjadObject):
             '-'.join(str(x) for x in sys.version_info),
             )
         return os.path.join(self.output_path, file_name)
-
-    ### PUBLIC METHODS ###
-
-    def tokenize(self, input_string):
-        r'''Tokenize `input string` and print results.
-        '''
-        self.lexer.input(input_string)
-        for token in self.lexer:
-            print(token)
