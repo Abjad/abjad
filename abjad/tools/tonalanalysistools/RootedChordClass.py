@@ -125,6 +125,69 @@ class RootedChordClass(PitchClassSet):
         quality = self.chord_quality._title_case_name
         return root + quality
 
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def cardinality_to_extent(cardinality):
+        r'''Change `cardinality` to extent.
+
+        ..  container:: example
+
+            Tertian chord with four pitch classes qualifies as a seventh chord:
+
+            ::
+
+                >>> tonalanalysistools.RootedChordClass.cardinality_to_extent(4)
+                7
+
+        Returns integer.
+        '''
+        return RootedChordClass._cardinality_to_extent[cardinality]
+
+    @staticmethod
+    def extent_to_cardinality(extent):
+        r'''Change `extent` to cardinality.
+
+        ..  container:: example
+
+            Tertian chord with extent of seven
+            comprises four pitch-clases:
+
+            ::
+
+                >>> tonalanalysistools.RootedChordClass.extent_to_cardinality(7)
+                4
+
+        Returns integer.
+        '''
+        return RootedChordClass._extent_to_cardinality[extent]
+
+    @staticmethod
+    def extent_to_extent_name(extent):
+        r'''Change `extent` to extent name.
+
+        ..  container:: example
+
+            Extent of seven is a seventh:
+
+            ::
+
+                >>> tonalanalysistools.RootedChordClass.extent_to_extent_name(7)
+                'seventh'
+
+        Returns string.
+        '''
+        return RootedChordClass._extent_to_extent_name[extent]
+
+    def transpose(self):
+        r'''Transpose rooted chord-class.
+
+        Not yet implemented.
+
+        Will return new rooted chord-class.
+        '''
+        raise NotImplementedError
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -351,66 +414,3 @@ class RootedChordClass(PitchClassSet):
         else:
             letter = letter.lower()
         return letter + accidental
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def cardinality_to_extent(cardinality):
-        r'''Change `cardinality` to extent.
-
-        ..  container:: example
-
-            Tertian chord with four pitch classes qualifies as a seventh chord:
-
-            ::
-
-                >>> tonalanalysistools.RootedChordClass.cardinality_to_extent(4)
-                7
-
-        Returns integer.
-        '''
-        return RootedChordClass._cardinality_to_extent[cardinality]
-
-    @staticmethod
-    def extent_to_cardinality(extent):
-        r'''Change `extent` to cardinality.
-
-        ..  container:: example
-
-            Tertian chord with extent of seven
-            comprises four pitch-clases:
-
-            ::
-
-                >>> tonalanalysistools.RootedChordClass.extent_to_cardinality(7)
-                4
-
-        Returns integer.
-        '''
-        return RootedChordClass._extent_to_cardinality[extent]
-
-    @staticmethod
-    def extent_to_extent_name(extent):
-        r'''Change `extent` to extent name.
-
-        ..  container:: example
-
-            Extent of seven is a seventh:
-
-            ::
-
-                >>> tonalanalysistools.RootedChordClass.extent_to_extent_name(7)
-                'seventh'
-
-        Returns string.
-        '''
-        return RootedChordClass._extent_to_extent_name[extent]
-
-    def transpose(self):
-        r'''Transpose rooted chord-class.
-
-        Not yet implemented.
-
-        Will return new rooted chord-class.
-        '''
-        raise NotImplementedError

@@ -105,50 +105,6 @@ class RootlessChordClass(IntervalSegment):
             ', '.join(parts),
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _acceptable_augmented_sixth_qualities(self):
-        return (
-            'french',
-            'german',
-            'italian',
-            'swiss',
-            )
-
-    @property
-    def _acceptable_ninth_qualities(self):
-        return (
-            'dominant',
-            )
-
-    @property
-    def _acceptable_seventh_qualities(self):
-        return (
-            'dominant',
-            'major',
-            'minor',
-            'fully diminshed',
-            'half diminished',
-            )
-
-    @property
-    def _acceptable_triad_qualities(self):
-        return (
-            'major',
-            'minor',
-            'diminished',
-            'augmented',
-            )
-
-    @property
-    def _title_case_name(self):
-        return '{}{}In{}'.format(
-            stringtools.to_upper_camel_case(self.quality_string),
-            stringtools.to_upper_camel_case(self.extent_name),
-            stringtools.to_upper_camel_case(self.position),
-            )
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -289,6 +245,62 @@ class RootlessChordClass(IntervalSegment):
             raise ValueError(message.format(inversion))
         return intervals, rotation
 
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_interval_class_segment(segment):
+        r'''Makes new rootless chord-class from `segment`.
+
+        Returns new rootless chord-class.
+        '''
+        quality, extent = \
+            RootlessChordClass._segment_to_quality_and_extent[str(segment)]
+        return RootlessChordClass(quality, extent=extent)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _acceptable_augmented_sixth_qualities(self):
+        return (
+            'french',
+            'german',
+            'italian',
+            'swiss',
+            )
+
+    @property
+    def _acceptable_ninth_qualities(self):
+        return (
+            'dominant',
+            )
+
+    @property
+    def _acceptable_seventh_qualities(self):
+        return (
+            'dominant',
+            'major',
+            'minor',
+            'fully diminshed',
+            'half diminished',
+            )
+
+    @property
+    def _acceptable_triad_qualities(self):
+        return (
+            'major',
+            'minor',
+            'diminished',
+            'augmented',
+            )
+
+    @property
+    def _title_case_name(self):
+        return '{}{}In{}'.format(
+            stringtools.to_upper_camel_case(self.quality_string),
+            stringtools.to_upper_camel_case(self.extent_name),
+            stringtools.to_upper_camel_case(self.position),
+            )
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -362,15 +374,3 @@ class RootlessChordClass(IntervalSegment):
         Returns nonnegative integer.
         '''
         return self._rotation
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def from_interval_class_segment(segment):
-        r'''Makes new rootless chord-class from `segment`.
-
-        Returns new rootless chord-class.
-        '''
-        quality, extent = \
-            RootlessChordClass._segment_to_quality_and_extent[str(segment)]
-        return RootlessChordClass(quality, extent=extent)

@@ -164,11 +164,7 @@ class ScaleDegree(AbjadObject):
         return '{}{}'.format(
             self.accidental.symbolic_string, self.number)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _acceptable_numbers(self):
-        return tuple(range(1, 16))
+    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         values = [self.number]
@@ -180,8 +176,6 @@ class ScaleDegree(AbjadObject):
             storage_format_is_indented=False,
             storage_format_args_values=values,
             )
-
-    ### PRIVATE METHODS ###
 
     def _initialize_by_accidental_and_number(self, accidental, number):
         accidental = pitchtools.Accidental(accidental)
@@ -211,6 +205,28 @@ class ScaleDegree(AbjadObject):
         except KeyError:
             number = int(roman_numeral)
         return accidental, number
+
+    ### PUBLIC METHODS ###
+
+    def apply_accidental(self, accidental):
+        r'''Applies accidental to scale degree.
+
+        ::
+
+            >>> scale_degree.apply_accidental('ff')
+            ScaleDegree('flat', 4)
+
+        Returns new scale degree.
+        '''
+        accidental = pitchtools.Accidental(accidental)
+        new_accidental = self.accidental + accidental
+        return type(self)(new_accidental, self.number)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _acceptable_numbers(self):
+        return tuple(range(1, 16))
 
     ### PUBLIC PROPERTIES ###
 
@@ -301,19 +317,3 @@ class ScaleDegree(AbjadObject):
             accidental = ''
         number = self._numeral_to_number_name[self.number]
         return '{}{}'.format(accidental.title(), number.title())
-
-    ### PUBLIC METHODS ###
-
-    def apply_accidental(self, accidental):
-        r'''Applies accidental to scale degree.
-
-        ::
-
-            >>> scale_degree.apply_accidental('ff')
-            ScaleDegree('flat', 4)
-
-        Returns new scale degree.
-        '''
-        accidental = pitchtools.Accidental(accidental)
-        new_accidental = self.accidental + accidental
-        return type(self)(new_accidental, self.number)

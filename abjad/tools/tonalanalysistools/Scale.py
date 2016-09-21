@@ -54,14 +54,6 @@ class Scale(PitchClassSegment):
             )
         self._key_signature = key_signature
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _capital_name(self):
-        letter = str(self.key_signature.tonic).title()
-        mode = self.key_signature.mode.mode_name.title()
-        return '{}{}'.format(letter, mode)
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -95,89 +87,6 @@ class Scale(PitchClassSegment):
             dic = dicg[i % length]
             ascending_mdi = pitchtools.NamedInterval(dic.quality_string, dic.number)
             pitch += ascending_mdi
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def dominant(self):
-        r'''Dominant of scale.
-
-        Return pitch-class.
-        '''
-        return self[4]
-
-    @property
-    def key_signature(self):
-        r'''Key signature of scale.
-
-        Returns key signature.
-        '''
-        return self._key_signature
-
-    @property
-    def leading_tone(self):
-        r'''Leading tone of scale.
-
-        Returns pitch-class.
-        '''
-        return self[-1]
-
-    @property
-    def mediant(self):
-        r'''Mediant of scale.
-
-        Returns pitch-class.
-        '''
-        return self[2]
-
-    @property
-    def named_interval_class_segment(self):
-        r'''Named interval class segment of scale.
-
-        Returns interval-class segment.
-        '''
-        dics = []
-        for left, right in \
-            sequencetools.iterate_sequence_nwise(self, wrapped=True):
-            dic = left - right
-            dics.append(dic)
-        dicg = pitchtools.IntervalClassSegment(
-            items=dics,
-            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
-            )
-        return dicg
-
-    @property
-    def subdominant(self):
-        r'''Subdominant of scale.
-
-        Returns pitch-class.
-        '''
-        return self[3]
-
-    @property
-    def submediant(self):
-        r'''Submediate of scale.
-
-        Returns pitch-class.
-        '''
-        return self[5]
-
-    @property
-    def superdominant(self):
-        r'''Superdominant of scale.
-
-        Returns pitch-class.
-        '''
-        return self[1]
-
-    @property
-    def tonic(self):
-        r'''Tonic of scale.
-
-        Returns pitch-class.
-        '''
-        return self[0]
 
     ### PUBLIC METHODS ###
 
@@ -406,3 +315,94 @@ class Scale(PitchClassSegment):
             pitches.append(pitch)
         pitches = pitchtools.PitchSegment(pitches)
         return pitches
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _capital_name(self):
+        letter = str(self.key_signature.tonic).title()
+        mode = self.key_signature.mode.mode_name.title()
+        return '{}{}'.format(letter, mode)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def dominant(self):
+        r'''Dominant of scale.
+
+        Return pitch-class.
+        '''
+        return self[4]
+
+    @property
+    def key_signature(self):
+        r'''Key signature of scale.
+
+        Returns key signature.
+        '''
+        return self._key_signature
+
+    @property
+    def leading_tone(self):
+        r'''Leading tone of scale.
+
+        Returns pitch-class.
+        '''
+        return self[-1]
+
+    @property
+    def mediant(self):
+        r'''Mediant of scale.
+
+        Returns pitch-class.
+        '''
+        return self[2]
+
+    @property
+    def named_interval_class_segment(self):
+        r'''Named interval class segment of scale.
+
+        Returns interval-class segment.
+        '''
+        dics = []
+        for left, right in \
+            sequencetools.iterate_sequence_nwise(self, wrapped=True):
+            dic = left - right
+            dics.append(dic)
+        dicg = pitchtools.IntervalClassSegment(
+            items=dics,
+            item_class=pitchtools.NamedInversionEquivalentIntervalClass,
+            )
+        return dicg
+
+    @property
+    def subdominant(self):
+        r'''Subdominant of scale.
+
+        Returns pitch-class.
+        '''
+        return self[3]
+
+    @property
+    def submediant(self):
+        r'''Submediate of scale.
+
+        Returns pitch-class.
+        '''
+        return self[5]
+
+    @property
+    def superdominant(self):
+        r'''Superdominant of scale.
+
+        Returns pitch-class.
+        '''
+        return self[1]
+
+    @property
+    def tonic(self):
+        r'''Tonic of scale.
+
+        Returns pitch-class.
+        '''
+        return self[0]
