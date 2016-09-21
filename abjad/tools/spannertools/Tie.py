@@ -40,6 +40,25 @@ class Tie(Spanner):
             ...
             Exception: Tie() attachment test fails for Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]).
 
+    ..  container:: example
+
+        **Example 3.** Ties consecutive chords if all adjacent pairs have at least one pitch in common:
+
+        ::
+
+            >>> staff = Staff("<c'>4 <c' d'>4 <d'>4")
+            >>> attach(Tie(), staff[:])
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                <c'>4 ~
+                <c' d'>4 ~
+                <d'>4
+            }
+
     Formats LilyPond ``~`` command on nonlast leaves in spanner.
     '''
 
@@ -76,6 +95,7 @@ class Tie(Spanner):
 
     def _attachment_test_all(self, component_expression):
         from abjad.tools import scoretools
+        from abjad.tools import sequencetools
         #if not self._at_least_two_leaves(component_expression):
         #    return False
         written_pitches = []
@@ -83,13 +103,14 @@ class Tie(Spanner):
             component_expression = [component_expression]
         for component in component_expression:
             if isinstance(component, scoretools.Note):
-                written_pitches.append(component.written_pitch)
+                written_pitches.append(set([component.written_pitch]))
             elif isinstance(component, scoretools.Chord):
-                written_pitches.append(component.written_pitches)
+                written_pitches.append(set(component.written_pitches))
             else:
                 return False
-        if not mathtools.all_are_equal(written_pitches):
-            return False
+        for pair in sequencetools.iterate_sequence_nwise(written_pitches):
+            if not set.intersection(*pair):
+                return False
         return True
 
     def _copy_keyword_args(self, new):
