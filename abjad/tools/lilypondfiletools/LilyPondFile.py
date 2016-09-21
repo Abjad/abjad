@@ -229,6 +229,32 @@ class LilyPondFile(AbjadObject):
         superclass = super(LilyPondFile, self)
         return superclass.__repr__()
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_pieces(self):
+        result = []
+        if self.date_time_token is not None:
+            string = '% {}'.format(self.date_time_token)
+            result.append(string)
+        result.extend(self._formatted_comments)
+        includes = []
+        if self.lilypond_version_token is not None:
+            string = '{}'.format(self.lilypond_version_token)
+            includes.append(string)
+        if self.lilypond_language_token is not None:
+            string = '{}'.format(self.lilypond_language_token)
+            includes.append(string)
+        includes = '\n'.join(includes)
+        if includes:
+            result.append(includes)
+        if self.use_relative_includes:
+            string = "#(ly:set-option 'relative-includes #t)"
+            result.append(string)
+        result.extend(self._formatted_includes)
+        result.extend(self._formatted_scheme_settings)
+        result.extend(self._formatted_blocks)
+        return result
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -262,32 +288,6 @@ class LilyPondFile(AbjadObject):
             )
         lilypond_file.header_block.tagline = False
         return lilypond_file
-
-    ### PRIVATE PROPERTIES ###
-
-    def _get_format_pieces(self):
-        result = []
-        if self.date_time_token is not None:
-            string = '% {}'.format(self.date_time_token)
-            result.append(string)
-        result.extend(self._formatted_comments)
-        includes = []
-        if self.lilypond_version_token is not None:
-            string = '{}'.format(self.lilypond_version_token)
-            includes.append(string)
-        if self.lilypond_language_token is not None:
-            string = '{}'.format(self.lilypond_language_token)
-            includes.append(string)
-        includes = '\n'.join(includes)
-        if includes:
-            result.append(includes)
-        if self.use_relative_includes:
-            string = "#(ly:set-option 'relative-includes #t)"
-            result.append(string)
-        result.extend(self._formatted_includes)
-        result.extend(self._formatted_scheme_settings)
-        result.extend(self._formatted_blocks)
-        return result
 
     ### PRIVATE PROPERTIES ###
 
