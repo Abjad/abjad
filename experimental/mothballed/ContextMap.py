@@ -349,39 +349,6 @@ class _ContextMapComponent(AbjadObject):
         self._context_name = context_name
         self._context_settings = {}
 
-    ### PRIVATE METHODS ###
-
-    def _as_chain_map(self):
-        dictionaries = []
-        components = self._client._components
-        score = self._client._score
-        if self._context_name == score.name:
-            context = score
-        else:
-            context = score[self._context_name]
-        parentage = inspect_(context).get_parentage()
-        for context in parentage:
-            context_name = context.name
-            context_settings = components[context_name]._context_settings
-            dictionaries.append(context_settings)
-        dictionaries.reverse()
-        chain_map = dictionaries[0].copy()
-        for dictionary in dictionaries[1:]:
-            chain_map.update(dictionary)
-        return chain_map
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _storage_format_specification(self):
-        from abjad.tools import systemtools
-        return systemtools.StorageFormatSpecification(
-            self,
-            positional_argument_values=(
-                self._context_name,
-                )
-            )
-
     ### SPECIAL METHODS ###
 
     def __contains__(self, key):
@@ -421,3 +388,36 @@ class _ContextMapComponent(AbjadObject):
         '''
         assert isinstance(key, str)
         self._context_settings[key] = value
+
+    ### PRIVATE METHODS ###
+
+    def _as_chain_map(self):
+        dictionaries = []
+        components = self._client._components
+        score = self._client._score
+        if self._context_name == score.name:
+            context = score
+        else:
+            context = score[self._context_name]
+        parentage = inspect_(context).get_parentage()
+        for context in parentage:
+            context_name = context.name
+            context_settings = components[context_name]._context_settings
+            dictionaries.append(context_settings)
+        dictionaries.reverse()
+        chain_map = dictionaries[0].copy()
+        for dictionary in dictionaries[1:]:
+            chain_map.update(dictionary)
+        return chain_map
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _storage_format_specification(self):
+        from abjad.tools import systemtools
+        return systemtools.StorageFormatSpecification(
+            self,
+            positional_argument_values=(
+                self._context_name,
+                )
+            )
