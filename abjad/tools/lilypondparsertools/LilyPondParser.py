@@ -259,87 +259,6 @@ class LilyPondParser(abctools.Parser):
                         self._apply_spanners(y)
         return result
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def available_languages(self):
-        r'''Tuple of pitch-name languages supported by LilyPondParser.
-
-        ::
-
-            >>> parser = lilypondparsertools.LilyPondParser()
-            >>> for language in parser.available_languages:
-            ...     print(language)
-            catalan
-            deutsch
-            english
-            espanol
-            español
-            français
-            italiano
-            nederlands
-            norsk
-            portugues
-            suomi
-            svenska
-            vlaams
-
-        Returns tuple.
-        '''
-        return tuple(sorted(self._language_pitch_names.keys()))
-
-    @property
-    def lexer_rules_object(self):
-        r'''Lexer rules object of LilyPond parser.
-        '''
-        return self._lexdef
-
-    @property
-    def parser_rules_object(self):
-        r'''Parser rules object of LilyPond parser.
-        '''
-        return self._syndef
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_language(self):
-        r'''Gets and sets default language of parser.
-
-        ::
-
-            >>> parser = lilypondparsertools.LilyPondParser()
-
-        ::
-
-            >>> parser.default_language
-            'english'
-
-        ::
-
-            >>> parser('{ c df e fs }')
-            Container('c4 df4 e4 fs4')
-
-        ::
-
-            >>> parser.default_language = 'nederlands'
-            >>> parser.default_language
-            'nederlands'
-
-        ::
-
-            >>> parser('{ c des e fis }')
-            Container('c4 df4 e4 fs4')
-
-        Returns string.
-        '''
-        return self._default_language
-
-    @default_language.setter
-    def default_language(self, arg):
-        assert arg in self.available_languages
-        self._default_language = arg
-
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, music):
@@ -1466,3 +1385,82 @@ class LilyPondParser(abctools.Parser):
             assert all(not x.isspace() for x in predicate)
             assert predicate.endswith('?')
         markup_functions[name] = tuple(signature)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def available_languages(self):
+        r'''Tuple of pitch-name languages supported by LilyPondParser.
+
+        ::
+
+            >>> parser = lilypondparsertools.LilyPondParser()
+            >>> for language in parser.available_languages:
+            ...     print(language)
+            catalan
+            deutsch
+            english
+            espanol
+            español
+            français
+            italiano
+            nederlands
+            norsk
+            portugues
+            suomi
+            svenska
+            vlaams
+
+        Returns tuple.
+        '''
+        return tuple(sorted(self._language_pitch_names.keys()))
+
+    @property
+    def default_language(self):
+        r'''Gets and sets default language of parser.
+
+        ::
+
+            >>> parser = lilypondparsertools.LilyPondParser()
+
+        ::
+
+            >>> parser.default_language
+            'english'
+
+        ::
+
+            >>> parser('{ c df e fs }')
+            Container('c4 df4 e4 fs4')
+
+        ::
+
+            >>> parser.default_language = 'nederlands'
+            >>> parser.default_language
+            'nederlands'
+
+        ::
+
+            >>> parser('{ c des e fis }')
+            Container('c4 df4 e4 fs4')
+
+        Returns string.
+        '''
+        return self._default_language
+
+    @default_language.setter
+    def default_language(self, arg):
+        assert arg in self.available_languages
+        self._default_language = arg
+
+    @property
+    def lexer_rules_object(self):
+        r'''Lexer rules object of LilyPond parser.
+        '''
+        return self._lexdef
+
+    @property
+    def parser_rules_object(self):
+        r'''Parser rules object of LilyPond parser.
+        '''
+        return self._syndef

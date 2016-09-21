@@ -501,28 +501,6 @@ class ReducedLyParser(abctools.Parser):
         '''
         p[0] = scoretools.Tuplet(p[1], p[2][:])
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def debug(self):
-        r'''Gets debug boolean of reduced ly parser.
-
-        Returns true or false.
-        '''
-        return self._debug
-
-    @property
-    def lexer_rules_object(self):
-        r'''Lexer rules object of reduced ly parser.
-        '''
-        return self
-
-    @property
-    def parser_rules_object(self):
-        r'''Parser rules object of reduced ly parser.
-        '''
-        return self
-
     ### PRIVATE METHODS ###
 
     def _apply_spanners(self, leaves):
@@ -635,3 +613,25 @@ class ReducedLyParser(abctools.Parser):
     def _setup(self):
         self._toplevel_component_count = 0
         self._default_duration = durationtools.Duration((1, 4))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def debug(self):
+        r'''Gets debug boolean of reduced ly parser.
+
+        Returns true or false.
+        '''
+        return self._debug
+
+    @property
+    def lexer_rules_object(self):
+        r'''Lexer rules object of reduced ly parser.
+        '''
+        return self
+
+    @property
+    def parser_rules_object(self):
+        r'''Parser rules object of reduced ly parser.
+        '''
+        return self
