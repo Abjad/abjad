@@ -125,40 +125,6 @@ class Spanner(AbjadObject):
             raise TypeError
         return repr(self) < repr(expr)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_summary(self):
-        len_self = len(self)
-        if not len_self:
-            return ''
-        elif 0 < len_self <= 8:
-            return ', '.join([str(x) for x in self])
-        else:
-            left = ', '.join([str(x) for x in self[:2]])
-            right = ', '.join([str(x) for x in self[-2:]])
-            number_in_middle = len_self - 4
-            middle = ', ... [%s] ..., ' % number_in_middle
-            return left + middle + right
-
-    @property
-    def _duration_in_seconds(self):
-        duration = durationtools.Duration(0)
-        for leaf in self.leaves:
-            duration += leaf._get_duration(in_seconds=True)
-        return duration
-
-    @property
-    def _preprolated_duration(self):
-        return sum([component._preprolated_duration for component in self])
-
-    @property
-    def _summary(self):
-        if 0 < len(self):
-            return ', '.join([str(x) for x in self])
-        else:
-            return ' '
-
     ### PRIVATE METHODS ###
 
     def _append(self, component):
@@ -602,6 +568,40 @@ class Spanner(AbjadObject):
         r'''Not composer-safe.
         '''
         self._contiguity_constraint = None
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _compact_summary(self):
+        len_self = len(self)
+        if not len_self:
+            return ''
+        elif 0 < len_self <= 8:
+            return ', '.join([str(x) for x in self])
+        else:
+            left = ', '.join([str(x) for x in self[:2]])
+            right = ', '.join([str(x) for x in self[-2:]])
+            number_in_middle = len_self - 4
+            middle = ', ... [%s] ..., ' % number_in_middle
+            return left + middle + right
+
+    @property
+    def _duration_in_seconds(self):
+        duration = durationtools.Duration(0)
+        for leaf in self.leaves:
+            duration += leaf._get_duration(in_seconds=True)
+        return duration
+
+    @property
+    def _preprolated_duration(self):
+        return sum([component._preprolated_duration for component in self])
+
+    @property
+    def _summary(self):
+        if 0 < len(self):
+            return ', '.join([str(x) for x in self])
+        else:
+            return ' '
 
     ### PUBLIC PROPERTIES ###
 
