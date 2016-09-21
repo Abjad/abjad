@@ -155,14 +155,6 @@ class Selector(AbjadValueObject):
         callbacks = callbacks + (callback,)
         return type(self)(callbacks)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def callbacks(self):
-        r'''Gets callbacks of selector.
-        '''
-        return self._callbacks
-
     ### PUBLIC METHODS ###
 
     def append_callback(self, callback):
@@ -2808,3 +2800,11 @@ class Selector(AbjadValueObject):
             with_previous_leaf=True,
             )
         return self._append_callback(callback)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def callbacks(self):
+        r'''Gets callbacks of selector.
+        '''
+        return self._callbacks
