@@ -201,6 +201,61 @@ class LilyPondFormatBundle(AbjadObject):
             storage_format_kwargs_names=names,
             )
 
+    ### PUBLIC METHODS ###
+
+    def alphabetize(self):
+        r'''Alphabetizes format contributions in each slot.
+
+        Returns none.
+        '''
+        self.before.alphabetize()
+        self.after.alphabetize()
+        self.opening.alphabetize()
+        self.closing.alphabetize()
+        self.right.alphabetize()
+        self._context_settings.sort()
+        self._grob_overrides.sort()
+        self._grob_reverts.sort()
+
+    def get(self, identifier):
+        r'''Gets `identifier`.
+
+        Returns format contributions object or list.
+        '''
+        return getattr(self, identifier)
+
+    def make_immutable(self):
+        r'''Makes each slot immutable.
+
+        Returns none.
+        '''
+        self.before.make_immutable()
+        self.after.make_immutable()
+        self.opening.make_immutable()
+        self.closing.make_immutable()
+        self.right.make_immutable()
+        self._context_settings = tuple(sorted(set(self.context_settings)))
+        self._grob_overrides = tuple(sorted(set(self.grob_overrides)))
+        self._grob_reverts = tuple(sorted(set(self.grob_reverts)))
+
+    def update(self, format_bundle):
+        r'''Updates format bundle with all format contributions in
+        `format_bundle`.
+
+        Returns none.
+        '''
+        if hasattr(format_bundle, '_get_lilypond_format_bundle'):
+            format_bundle = format_bundle._get_lilypond_format_bundle()
+        assert isinstance(format_bundle, type(self))
+        self.before.update(format_bundle.before)
+        self.after.update(format_bundle.after)
+        self.opening.update(format_bundle.opening)
+        self.closing.update(format_bundle.closing)
+        self.right.update(format_bundle.right)
+        self.context_settings.extend(format_bundle.context_settings)
+        self.grob_overrides.extend(format_bundle.grob_overrides)
+        self.grob_reverts.extend(format_bundle.grob_reverts)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -266,58 +321,3 @@ class LilyPondFormatBundle(AbjadObject):
         Returns slot contributions object.
         '''
         return self._right
-
-    ### PUBLIC METHODS ###
-
-    def alphabetize(self):
-        r'''Alphabetizes format contributions in each slot.
-
-        Returns none.
-        '''
-        self.before.alphabetize()
-        self.after.alphabetize()
-        self.opening.alphabetize()
-        self.closing.alphabetize()
-        self.right.alphabetize()
-        self._context_settings.sort()
-        self._grob_overrides.sort()
-        self._grob_reverts.sort()
-
-    def get(self, identifier):
-        r'''Gets `identifier`.
-
-        Returns format contributions object or list.
-        '''
-        return getattr(self, identifier)
-
-    def make_immutable(self):
-        r'''Makes each slot immutable.
-
-        Returns none.
-        '''
-        self.before.make_immutable()
-        self.after.make_immutable()
-        self.opening.make_immutable()
-        self.closing.make_immutable()
-        self.right.make_immutable()
-        self._context_settings = tuple(sorted(set(self.context_settings)))
-        self._grob_overrides = tuple(sorted(set(self.grob_overrides)))
-        self._grob_reverts = tuple(sorted(set(self.grob_reverts)))
-
-    def update(self, format_bundle):
-        r'''Updates format bundle with all format contributions in
-        `format_bundle`.
-
-        Returns none.
-        '''
-        if hasattr(format_bundle, '_get_lilypond_format_bundle'):
-            format_bundle = format_bundle._get_lilypond_format_bundle()
-        assert isinstance(format_bundle, type(self))
-        self.before.update(format_bundle.before)
-        self.after.update(format_bundle.after)
-        self.opening.update(format_bundle.opening)
-        self.closing.update(format_bundle.closing)
-        self.right.update(format_bundle.right)
-        self.context_settings.extend(format_bundle.context_settings)
-        self.grob_overrides.extend(format_bundle.grob_overrides)
-        self.grob_reverts.extend(format_bundle.grob_reverts)
