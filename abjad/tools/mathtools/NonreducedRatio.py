@@ -135,12 +135,6 @@ class NonreducedRatio(AbjadValueObject):
         '''
         return reversed(self._numbers)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _number_coercer(self):
-        return int
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -166,6 +160,12 @@ class NonreducedRatio(AbjadValueObject):
         Returns integer.
         '''
         return self._numbers.index(expr)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _number_coercer(self):
+        return int
 
     ### PUBLIC PROPERTIES ###
 
