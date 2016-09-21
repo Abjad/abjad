@@ -37,7 +37,7 @@ class QEventSequence(AbjadObject):
 
         >>> for q_event in sequence:
         ...     print(format(q_event, 'storage'))
-        ... 
+        ...
         quantizationtools.PitchedQEvent(
             offset=durationtools.Offset(0, 1),
             pitches=(
@@ -205,62 +205,6 @@ class QEventSequence(AbjadObject):
             storage_format_kwargs_names=[],
             )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def duration_in_ms(self):
-        r'''Duration in milliseconds of the ``QEventSequence``:
-
-        ::
-
-            >>> sequence.duration_in_ms
-            Duration(4000, 1)
-
-        Return ``Duration`` instance.
-        '''
-        return durationtools.Duration(self[-1].offset)
-
-    @property
-    def sequence(self):
-        r'''Sequence of q-events.
-
-        ::
-
-            >>> for q_event in sequence.sequence:
-            ...     print(format(q_event, 'storage'))
-            ... 
-            quantizationtools.PitchedQEvent(
-                offset=durationtools.Offset(0, 1),
-                pitches=(
-                    pitchtools.NamedPitch("c'"),
-                    ),
-                )
-            quantizationtools.SilentQEvent(
-                offset=durationtools.Offset(1000, 1),
-                )
-            quantizationtools.PitchedQEvent(
-                offset=durationtools.Offset(1500, 1),
-                pitches=(
-                    pitchtools.NamedPitch("c'"),
-                    ),
-                )
-            quantizationtools.SilentQEvent(
-                offset=durationtools.Offset(2750, 1),
-                )
-            quantizationtools.PitchedQEvent(
-                offset=durationtools.Offset(3250, 1),
-                pitches=(
-                    pitchtools.NamedPitch("c'"),
-                    ),
-                )
-            quantizationtools.TerminalQEvent(
-                offset=durationtools.Offset(4000, 1),
-                )
-
-        Returns tuple.
-        '''
-        return self._sequence
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -282,7 +226,7 @@ class QEventSequence(AbjadObject):
 
             >>> for q_event in sequence:
             ...     print(format(q_event, 'storage'))
-            ... 
+            ...
             quantizationtools.SilentQEvent(
                 offset=durationtools.Offset(0, 1),
                 )
@@ -349,7 +293,7 @@ class QEventSequence(AbjadObject):
 
             >>> for q_event in sequence:
             ...     print(format(q_event, 'storage'))
-            ... 
+            ...
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(
@@ -413,7 +357,7 @@ class QEventSequence(AbjadObject):
 
             >>> for q_event in sequence:
             ...     print(format(q_event, 'storage'))
-            ... 
+            ...
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(
@@ -503,7 +447,7 @@ class QEventSequence(AbjadObject):
 
             >>> for q_event in sequence:
             ...     print(format(q_event, 'storage'))
-            ... 
+            ...
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(
@@ -571,7 +515,7 @@ class QEventSequence(AbjadObject):
 
             >>> for q_event in sequence:
             ...     print(format(q_event, 'storage'))
-            ... 
+            ...
             quantizationtools.PitchedQEvent(
                 offset=durationtools.Offset(0, 1),
                 pitches=(
@@ -659,3 +603,69 @@ class QEventSequence(AbjadObject):
         # convert durations and pitches to QEvents and return
         return cls.from_millisecond_pitch_pairs(
             tuple(zip(durations, pitches)))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duration_in_ms(self):
+        r'''Duration in milliseconds of the ``QEventSequence``:
+
+        ::
+
+            >>> durations = (1000, -500, 1250, -500, 750)
+
+        ::
+
+            >>> sequence = \
+            ...     quantizationtools.QEventSequence.from_millisecond_durations(
+            ...     durations)
+
+        ::
+
+            >>> sequence.duration_in_ms
+            Duration(4000, 1)
+
+        Return ``Duration`` instance.
+        '''
+        return durationtools.Duration(self[-1].offset)
+
+    @property
+    def sequence(self):
+        r'''Sequence of q-events.
+
+        ::
+
+            >>> for q_event in sequence.sequence:
+            ...     print(format(q_event, 'storage'))
+            ...
+            quantizationtools.PitchedQEvent(
+                offset=durationtools.Offset(0, 1),
+                pitches=(
+                    pitchtools.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.SilentQEvent(
+                offset=durationtools.Offset(1000, 1),
+                )
+            quantizationtools.PitchedQEvent(
+                offset=durationtools.Offset(1500, 1),
+                pitches=(
+                    pitchtools.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.SilentQEvent(
+                offset=durationtools.Offset(2750, 1),
+                )
+            quantizationtools.PitchedQEvent(
+                offset=durationtools.Offset(3250, 1),
+                pitches=(
+                    pitchtools.NamedPitch("c'"),
+                    ),
+                )
+            quantizationtools.TerminalQEvent(
+                offset=durationtools.Offset(4000, 1),
+                )
+
+        Returns tuple.
+        '''
+        return self._sequence

@@ -173,80 +173,6 @@ class QGrid(AbjadObject):
         '''
         return super(QGrid, self).__hash__()
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def distance(self):
-        r'''The computed total distance of the offset of each ``QEventProxy``
-        contained by the ``QGrid`` to the offset of the ``QGridLeaf`` to
-        which the ``QEventProxy`` is attached.
-
-        Return ``Duration`` instance.
-        '''
-        count = 0
-        absolute_distance = 0
-        for leaf, offset in zip(self.leaves, self.offsets):
-            for q_event_proxy in leaf.q_event_proxies:
-                absolute_distance += abs(q_event_proxy.offset - offset)
-                count += 1
-        if count:
-            return absolute_distance / count
-        return None
-
-    @property
-    def leaves(self):
-        r'''All of the leaf nodes in the QGrid, including the next
-        downbeat's node.
-
-        Returns tuple of ``QGridLeaf`` instances.
-        '''
-        from abjad.tools import quantizationtools
-        if isinstance(self._root_node, quantizationtools.QGridLeaf):
-            return (self._root_node, self._next_downbeat)
-        return self._root_node.leaves + (self._next_downbeat,)
-
-    @property
-    def next_downbeat(self):
-        r'''The node representing the "next" downbeat after the contents
-        of the QGrid's tree.
-
-        Return ``QGridLeaf`` instance.
-        '''
-        return self._next_downbeat
-
-    @property
-    def offsets(self):
-        r'''The offsets between 0 and 1 of all of the leaf nodes in the QGrid.
-
-        Returns tuple of ``Offset`` instances.
-        '''
-        return tuple([x.start_offset
-            for x in self.leaves[:-1]] + [durationtools.Offset(1)])
-
-    @property
-    def pretty_rtm_format(self):
-        r'''The pretty RTM-format of the root node of the ``QGrid``.
-
-        Returns string.
-        '''
-        return self._root_node.pretty_rtm_format
-
-    @property
-    def root_node(self):
-        r'''The root node of the ``QGrid``.
-
-        Return ``QGridLeaf`` or ``QGridContainer``.
-        '''
-        return self._root_node
-
-    @property
-    def rtm_format(self):
-        r'''The RTM format of the root node of the ``QGrid``.
-
-        Returns string.
-        '''
-        return self._root_node.rtm_format
-
     ### PUBLIC METHODS ###
 
     def fit_q_events(self, q_event_proxies):
@@ -335,3 +261,77 @@ class QGrid(AbjadObject):
                     q_event_proxies.append(next_leaf.q_event_proxies.pop(idx))
 
         return q_event_proxies
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def distance(self):
+        r'''The computed total distance of the offset of each ``QEventProxy``
+        contained by the ``QGrid`` to the offset of the ``QGridLeaf`` to
+        which the ``QEventProxy`` is attached.
+
+        Return ``Duration`` instance.
+        '''
+        count = 0
+        absolute_distance = 0
+        for leaf, offset in zip(self.leaves, self.offsets):
+            for q_event_proxy in leaf.q_event_proxies:
+                absolute_distance += abs(q_event_proxy.offset - offset)
+                count += 1
+        if count:
+            return absolute_distance / count
+        return None
+
+    @property
+    def leaves(self):
+        r'''All of the leaf nodes in the QGrid, including the next
+        downbeat's node.
+
+        Returns tuple of ``QGridLeaf`` instances.
+        '''
+        from abjad.tools import quantizationtools
+        if isinstance(self._root_node, quantizationtools.QGridLeaf):
+            return (self._root_node, self._next_downbeat)
+        return self._root_node.leaves + (self._next_downbeat,)
+
+    @property
+    def next_downbeat(self):
+        r'''The node representing the "next" downbeat after the contents
+        of the QGrid's tree.
+
+        Return ``QGridLeaf`` instance.
+        '''
+        return self._next_downbeat
+
+    @property
+    def offsets(self):
+        r'''The offsets between 0 and 1 of all of the leaf nodes in the QGrid.
+
+        Returns tuple of ``Offset`` instances.
+        '''
+        return tuple([x.start_offset
+            for x in self.leaves[:-1]] + [durationtools.Offset(1)])
+
+    @property
+    def pretty_rtm_format(self):
+        r'''The pretty RTM-format of the root node of the ``QGrid``.
+
+        Returns string.
+        '''
+        return self._root_node.pretty_rtm_format
+
+    @property
+    def root_node(self):
+        r'''The root node of the ``QGrid``.
+
+        Return ``QGridLeaf`` or ``QGridContainer``.
+        '''
+        return self._root_node
+
+    @property
+    def rtm_format(self):
+        r'''The RTM format of the root node of the ``QGrid``.
+
+        Returns string.
+        '''
+        return self._root_node.rtm_format
