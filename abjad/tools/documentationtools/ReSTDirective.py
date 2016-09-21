@@ -29,6 +29,20 @@ class ReSTDirective(TreeContainer):
             self._options.update(options)
         self._directive = directive
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        for name in ('children', 'name', 'options'):
+            if not getattr(self, name, None) and name in names:
+                names.remove(name)
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=True,
+            storage_format_kwargs_names=names,
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -63,20 +77,6 @@ class ReSTDirective(TreeContainer):
             result.append(option)
         result.extend(self._children_rest_format_contributions)
         return result
-
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        agent = systemtools.StorageFormatAgent(self)
-        names = list(agent.signature_keyword_names)
-        for name in ('children', 'name', 'options'):
-            if not getattr(self, name, None) and name in names:
-                names.remove(name)
-        return systemtools.FormatSpecification(
-            client=self,
-            repr_is_indented=True,
-            storage_format_kwargs_names=names,
-            )
 
     ### PUBLIC PROPERTIES ###
 
