@@ -316,71 +316,6 @@ class TimespanTimespanTimeRelation(TimeRelation):
         '''
         return super(TimespanTimespanTimeRelation, self).__hash__()
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def is_fully_loaded(self):
-        r'''Is true when `timespan_1` and `timespan_2` are both not none.
-        Otherwise false:
-
-        ::
-
-            >>> timespan_1 = timespantools.Timespan(0, 10)
-            >>> timespan_2 = timespantools.Timespan(5, 15)
-            >>> time_relation = \
-            ...     timespantools.timespan_2_starts_during_timespan_1(
-            ...     timespan_1=timespan_1,
-            ...     timespan_2=timespan_2,
-            ...     hold=True,
-            ...     )
-
-        ::
-
-            >>> time_relation.is_fully_loaded
-            True
-
-        Returns true or false.
-        '''
-        return self.timespan_1 is not None and self.timespan_2 is not None
-
-    @property
-    def is_fully_unloaded(self):
-        r'''Is true when `timespan_1` and `timespan_2` are both none.
-        Otherwise false.
-
-            >>> time_relation.is_fully_unloaded
-            False
-
-        Returns true or false.
-        '''
-        return self.timespan_1 is None and self.timespan_2 is None
-
-    @property
-    def timespan_1(self):
-        r'''Time relation timespan ``1``:
-
-        ::
-
-            >>> time_relation.timespan_1
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
-
-        Returns timespan.
-        '''
-        return self._timespan_1
-
-    @property
-    def timespan_2(self):
-        r'''Time relation timespan ``2``:
-
-        ::
-
-            >>> time_relation.timespan_2
-            Timespan(start_offset=Offset(5, 1), stop_offset=Offset(15, 1))
-
-        Returns timespan.
-        '''
-        return self._timespan_2
-
     ### PUBLIC METHODS ###
 
     def get_counttime_components(self, counttime_components):
@@ -502,3 +437,68 @@ class TimespanTimespanTimeRelation(TimeRelation):
             message = 'inequality evaluates to disjunct range: {!r}.'
             message = message.format(result)
             raise Exception(message)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def is_fully_loaded(self):
+        r'''Is true when `timespan_1` and `timespan_2` are both not none.
+        Otherwise false:
+
+        ::
+
+            >>> timespan_1 = timespantools.Timespan(0, 10)
+            >>> timespan_2 = timespantools.Timespan(5, 15)
+            >>> time_relation = \
+            ...     timespantools.timespan_2_starts_during_timespan_1(
+            ...     timespan_1=timespan_1,
+            ...     timespan_2=timespan_2,
+            ...     hold=True,
+            ...     )
+
+        ::
+
+            >>> time_relation.is_fully_loaded
+            True
+
+        Returns true or false.
+        '''
+        return self.timespan_1 is not None and self.timespan_2 is not None
+
+    @property
+    def is_fully_unloaded(self):
+        r'''Is true when `timespan_1` and `timespan_2` are both none.
+        Otherwise false.
+
+            >>> time_relation.is_fully_unloaded
+            False
+
+        Returns true or false.
+        '''
+        return self.timespan_1 is None and self.timespan_2 is None
+
+    @property
+    def timespan_1(self):
+        r'''Time relation timespan ``1``:
+
+        ::
+
+            >>> time_relation.timespan_1
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
+
+        Returns timespan.
+        '''
+        return self._timespan_1
+
+    @property
+    def timespan_2(self):
+        r'''Time relation timespan ``2``:
+
+        ::
+
+            >>> time_relation.timespan_2
+            Timespan(start_offset=Offset(5, 1), stop_offset=Offset(15, 1))
+
+        Returns timespan.
+        '''
+        return self._timespan_2

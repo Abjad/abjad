@@ -373,285 +373,6 @@ class TimespanInventory(TypedList):
         markup = markuptools.Markup.column([fraction_markup, lines_markup])
         return markup
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def all_are_contiguous(self):
-        r'''Is true when all timespans are time-contiguous:
-
-        ::
-
-            >>> timespan_inventory_1.all_are_contiguous
-            True
-
-        False when timespans not time-contiguous:
-
-        ::
-
-            >>> timespan_inventory_2.all_are_contiguous
-            False
-
-        Is true when empty:
-
-        ::
-
-            >>> timespan_inventory_3.all_are_contiguous
-            True
-
-        Returns true or false.
-        '''
-        if len(self) <= 1:
-            return True
-        timespans = sorted(self[:])
-        last_stop_offset = timespans[0].stop_offset
-        for timespan in timespans[1:]:
-            if timespan.start_offset != last_stop_offset:
-                return False
-            last_stop_offset = timespan.stop_offset
-        return True
-
-    @property
-    def all_are_nonoverlapping(self):
-        r'''Is true when all timespans are non-overlapping:
-
-        ::
-
-            >>> timespan_inventory_1.all_are_nonoverlapping
-            True
-
-        False when timespans are overlapping:
-
-        ::
-
-            >>> timespan_inventory_2.all_are_nonoverlapping
-            False
-
-        Is true when empty:
-
-        ::
-
-            >>> timespan_inventory_3.all_are_nonoverlapping
-            True
-
-        Returns true or false.
-        '''
-        if len(self) <= 1:
-            return True
-        timespans = sorted(self[:])
-        last_stop_offset = timespans[0].stop_offset
-        for timespan in timespans[1:]:
-            if timespan.start_offset < last_stop_offset:
-                return False
-            if last_stop_offset < timespan.stop_offset:
-                last_stop_offset = timespan.stop_offset
-        return True
-
-    @property
-    def all_are_well_formed(self):
-        r'''Is true when all timespans are well-formed:
-
-        ::
-
-            >>> timespan_inventory_1.all_are_well_formed
-            True
-
-        ::
-
-            >>> timespan_inventory_2.all_are_well_formed
-            True
-
-        Also true when empty:
-
-        ::
-
-            >>> timespan_inventory_3.all_are_well_formed
-            True
-
-        Otherwise false.
-
-        Returns true or false.
-        '''
-        return all(self._get_timespan(expr).is_well_formed for expr in self)
-
-    @property
-    def axis(self):
-        r'''Arithmetic mean of start- and stop-offsets.
-
-            >>> timespan_inventory_1.axis
-            Offset(5, 1)
-
-        ::
-
-            >>> timespan_inventory_2.axis
-            Offset(14, 1)
-
-        None when empty:
-
-        ::
-
-            >>> timespan_inventory_3.axis is None
-            True
-
-        Returns offset or none.
-        '''
-        if self:
-            return (self.start_offset + self.stop_offset) / 2
-
-    @property
-    def duration(self):
-        r'''Time from start offset to stop offset:
-
-        ::
-
-            >>> timespan_inventory_1.duration
-            Duration(10, 1)
-
-        ::
-
-            >>> timespan_inventory_2.duration
-            Duration(32, 1)
-
-        Zero when empty:
-
-        ::
-
-            >>> timespan_inventory_3.duration
-            Duration(0, 1)
-
-        Returns duration.
-        '''
-        if self.stop_offset is not Infinity and \
-            self.start_offset is not NegativeInfinity:
-            return self.stop_offset - self.start_offset
-        else:
-            return durationtools.Duration(0)
-
-    @property
-    def is_sorted(self):
-        r'''Is true when timespans are in time order:
-
-        ::
-
-            >>> timespan_inventory = timespantools.TimespanInventory([
-            ...     timespantools.Timespan(0, 3),
-            ...     timespantools.Timespan(3, 6),
-            ...     timespantools.Timespan(6, 10),
-            ...     ])
-
-        ::
-
-            >>> timespan_inventory.is_sorted
-            True
-
-        Otherwise false:
-
-        ::
-
-            >>> timespan_inventory = timespantools.TimespanInventory([
-            ...     timespantools.Timespan(0, 3),
-            ...     timespantools.Timespan(6, 10),
-            ...     timespantools.Timespan(3, 6),
-            ...     ])
-
-        ::
-
-            >>> timespan_inventory.is_sorted
-            False
-
-        Returns true or false.
-        '''
-        if len(self) < 2:
-            return True
-        for left_timespan, right_timespan in \
-            sequencetools.iterate_sequence_nwise(self):
-            if right_timespan.start_offset < left_timespan.start_offset:
-                return False
-            if left_timespan.start_offset == right_timespan.start_offset:
-                if right_timespan.stop_offset < left_timespan.stop_offset:
-                    return False
-        return True
-
-    @property
-    def start_offset(self):
-        r'''Earliest start offset of any timespan:
-
-        ::
-
-            >>> timespan_inventory_1.start_offset
-            Offset(0, 1)
-
-        ::
-
-            >>> timespan_inventory_2.start_offset
-            Offset(-2, 1)
-
-        Negative infinity when empty:
-
-        ::
-
-            >>> timespan_inventory_3.start_offset
-            NegativeInfinity
-
-        Returns offset or none.
-        '''
-        if self:
-            return min([self._get_timespan(expr).start_offset
-                for expr in self])
-        else:
-            return NegativeInfinity
-
-    @property
-    def stop_offset(self):
-        r'''Latest stop offset of any timespan:
-
-        ::
-
-            >>> timespan_inventory_1.stop_offset
-            Offset(10, 1)
-
-        ::
-
-            >>> timespan_inventory_2.stop_offset
-            Offset(30, 1)
-
-        Infinity when empty:
-
-        ::
-
-            >>> timespan_inventory_3.stop_offset
-            Infinity
-
-        Returns offset or none.
-        '''
-        if self:
-            return max([self._get_timespan(expr).stop_offset for expr in self])
-        else:
-            return Infinity
-
-    @property
-    def timespan(self):
-        r'''Timespan inventory timespan:
-
-        ::
-
-            >>> timespan_inventory_1.timespan
-            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
-
-        ::
-
-            >>> timespan_inventory_2.timespan
-            Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(30, 1))
-
-        ::
-
-            >>> timespan_inventory_3.timespan
-            Timespan(start_offset=NegativeInfinity, stop_offset=Infinity)
-
-        Returns timespan.
-        '''
-        from abjad.tools import timespantools
-        return timespantools.Timespan(self.start_offset, self.stop_offset)
-
     ### PUBLIC METHODS ###
 
     def clip_timespan_durations(self, minimum=None, maximum=None, anchor=Left):
@@ -3083,3 +2804,282 @@ class TimespanInventory(TypedList):
             timespans.append(timespan)
         self[:] = timespans
         return self
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def all_are_contiguous(self):
+        r'''Is true when all timespans are time-contiguous:
+
+        ::
+
+            >>> timespan_inventory_1.all_are_contiguous
+            True
+
+        False when timespans not time-contiguous:
+
+        ::
+
+            >>> timespan_inventory_2.all_are_contiguous
+            False
+
+        Is true when empty:
+
+        ::
+
+            >>> timespan_inventory_3.all_are_contiguous
+            True
+
+        Returns true or false.
+        '''
+        if len(self) <= 1:
+            return True
+        timespans = sorted(self[:])
+        last_stop_offset = timespans[0].stop_offset
+        for timespan in timespans[1:]:
+            if timespan.start_offset != last_stop_offset:
+                return False
+            last_stop_offset = timespan.stop_offset
+        return True
+
+    @property
+    def all_are_nonoverlapping(self):
+        r'''Is true when all timespans are non-overlapping:
+
+        ::
+
+            >>> timespan_inventory_1.all_are_nonoverlapping
+            True
+
+        False when timespans are overlapping:
+
+        ::
+
+            >>> timespan_inventory_2.all_are_nonoverlapping
+            False
+
+        Is true when empty:
+
+        ::
+
+            >>> timespan_inventory_3.all_are_nonoverlapping
+            True
+
+        Returns true or false.
+        '''
+        if len(self) <= 1:
+            return True
+        timespans = sorted(self[:])
+        last_stop_offset = timespans[0].stop_offset
+        for timespan in timespans[1:]:
+            if timespan.start_offset < last_stop_offset:
+                return False
+            if last_stop_offset < timespan.stop_offset:
+                last_stop_offset = timespan.stop_offset
+        return True
+
+    @property
+    def all_are_well_formed(self):
+        r'''Is true when all timespans are well-formed:
+
+        ::
+
+            >>> timespan_inventory_1.all_are_well_formed
+            True
+
+        ::
+
+            >>> timespan_inventory_2.all_are_well_formed
+            True
+
+        Also true when empty:
+
+        ::
+
+            >>> timespan_inventory_3.all_are_well_formed
+            True
+
+        Otherwise false.
+
+        Returns true or false.
+        '''
+        return all(self._get_timespan(expr).is_well_formed for expr in self)
+
+    @property
+    def axis(self):
+        r'''Arithmetic mean of start- and stop-offsets.
+
+            >>> timespan_inventory_1.axis
+            Offset(5, 1)
+
+        ::
+
+            >>> timespan_inventory_2.axis
+            Offset(14, 1)
+
+        None when empty:
+
+        ::
+
+            >>> timespan_inventory_3.axis is None
+            True
+
+        Returns offset or none.
+        '''
+        if self:
+            return (self.start_offset + self.stop_offset) / 2
+
+    @property
+    def duration(self):
+        r'''Time from start offset to stop offset:
+
+        ::
+
+            >>> timespan_inventory_1.duration
+            Duration(10, 1)
+
+        ::
+
+            >>> timespan_inventory_2.duration
+            Duration(32, 1)
+
+        Zero when empty:
+
+        ::
+
+            >>> timespan_inventory_3.duration
+            Duration(0, 1)
+
+        Returns duration.
+        '''
+        if self.stop_offset is not Infinity and \
+            self.start_offset is not NegativeInfinity:
+            return self.stop_offset - self.start_offset
+        else:
+            return durationtools.Duration(0)
+
+    @property
+    def is_sorted(self):
+        r'''Is true when timespans are in time order:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(3, 6),
+            ...     timespantools.Timespan(6, 10),
+            ...     ])
+
+        ::
+
+            >>> timespan_inventory.is_sorted
+            True
+
+        Otherwise false:
+
+        ::
+
+            >>> timespan_inventory = timespantools.TimespanInventory([
+            ...     timespantools.Timespan(0, 3),
+            ...     timespantools.Timespan(6, 10),
+            ...     timespantools.Timespan(3, 6),
+            ...     ])
+
+        ::
+
+            >>> timespan_inventory.is_sorted
+            False
+
+        Returns true or false.
+        '''
+        if len(self) < 2:
+            return True
+        for left_timespan, right_timespan in \
+            sequencetools.iterate_sequence_nwise(self):
+            if right_timespan.start_offset < left_timespan.start_offset:
+                return False
+            if left_timespan.start_offset == right_timespan.start_offset:
+                if right_timespan.stop_offset < left_timespan.stop_offset:
+                    return False
+        return True
+
+    @property
+    def start_offset(self):
+        r'''Earliest start offset of any timespan:
+
+        ::
+
+            >>> timespan_inventory_1.start_offset
+            Offset(0, 1)
+
+        ::
+
+            >>> timespan_inventory_2.start_offset
+            Offset(-2, 1)
+
+        Negative infinity when empty:
+
+        ::
+
+            >>> timespan_inventory_3.start_offset
+            NegativeInfinity
+
+        Returns offset or none.
+        '''
+        if self:
+            return min([self._get_timespan(expr).start_offset
+                for expr in self])
+        else:
+            return NegativeInfinity
+
+    @property
+    def stop_offset(self):
+        r'''Latest stop offset of any timespan:
+
+        ::
+
+            >>> timespan_inventory_1.stop_offset
+            Offset(10, 1)
+
+        ::
+
+            >>> timespan_inventory_2.stop_offset
+            Offset(30, 1)
+
+        Infinity when empty:
+
+        ::
+
+            >>> timespan_inventory_3.stop_offset
+            Infinity
+
+        Returns offset or none.
+        '''
+        if self:
+            return max([self._get_timespan(expr).stop_offset for expr in self])
+        else:
+            return Infinity
+
+    @property
+    def timespan(self):
+        r'''Timespan inventory timespan:
+
+        ::
+
+            >>> timespan_inventory_1.timespan
+            Timespan(start_offset=Offset(0, 1), stop_offset=Offset(10, 1))
+
+        ::
+
+            >>> timespan_inventory_2.timespan
+            Timespan(start_offset=Offset(-2, 1), stop_offset=Offset(30, 1))
+
+        ::
+
+            >>> timespan_inventory_3.timespan
+            Timespan(start_offset=NegativeInfinity, stop_offset=Infinity)
+
+        Returns timespan.
+        '''
+        from abjad.tools import timespantools
+        return timespantools.Timespan(self.start_offset, self.stop_offset)
