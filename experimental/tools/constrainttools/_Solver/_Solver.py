@@ -8,6 +8,19 @@ class _Solver(AbjadObject):
 
     __slots__ = ()
 
+    ### PUBLIC METHODS ###
+
+    def get_le_n_solutions(self, n):
+        assert 0 < n
+        solutions = []
+        iter = self.iterator
+        for _ in xrange(n):
+            try:
+                solutions.append(iter.next())
+            except StopIteration:
+                break
+        return tuple(solutions)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -29,16 +42,3 @@ class _Solver(AbjadObject):
     @property
     def solutions(self):
         return [x for x in self.iterator]
-
-    ### PUBLIC METHODS ###
-
-    def get_le_n_solutions(self, n):
-        assert 0 < n
-        solutions = []
-        iter = self.iterator
-        for _ in xrange(n):
-            try:
-                solutions.append(iter.next())
-            except StopIteration:
-                break
-        return tuple(solutions)
