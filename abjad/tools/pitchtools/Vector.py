@@ -68,20 +68,6 @@ class Vector(TypedCounter):
             for key, value in self.items()]
         return '<{}>'.format(', '.join(parts))
 
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
-        raise NotImplementedError
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -132,4 +118,18 @@ class Vector(TypedCounter):
 
         Returns vector.
         '''
+        raise NotImplementedError
+
+    ### PRIVATE PROPERTIES ###
+
+    @abc.abstractproperty
+    def _named_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _numbered_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _parent_item_class(self):
         raise NotImplementedError

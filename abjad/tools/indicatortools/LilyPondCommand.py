@@ -91,6 +91,40 @@ class LilyPondCommand(AbjadValueObject):
         format_slot.commands.append(self._lilypond_format)
         return lilypond_format_bundle
 
+    def _get_format_specification(self):
+        names = []
+        if not self.format_slot == 'opening':
+            names.append('format_slot')
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_args_values=[self.name],
+            storage_format_kwargs_names=names,
+            storage_format_is_indented=False,
+            )
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_allowable_format_slots():
+        r'''Lists allowable format slots.
+
+        ..  container:: example
+
+            **Example 1.** Default:
+
+                >>> commands = indicatortools.LilyPondCommand.list_allowable_format_slots()
+                >>> for command in commands:
+                ...     command
+                'after'
+                'before'
+                'closing'
+                'opening'
+                'right'
+
+        Returns tuple of strings.
+        '''
+        return LilyPondCommand._allowable_format_slots
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -106,17 +140,6 @@ class LilyPondCommand(AbjadValueObject):
             return self.prefix + stringtools.to_lower_camel_case(command)
         else:
             return self.prefix + command
-
-    def _get_format_specification(self):
-        names = []
-        if not self.format_slot == 'opening':
-            names.append('format_slot')
-        return systemtools.FormatSpecification(
-            client=self,
-            storage_format_args_values=[self.name],
-            storage_format_kwargs_names=names,
-            storage_format_is_indented=False,
-            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -187,26 +210,3 @@ class LilyPondCommand(AbjadValueObject):
         Returns string.
         '''
         return self._prefix
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def list_allowable_format_slots():
-        r'''Lists allowable format slots.
-
-        ..  container:: example
-
-            **Example 1.** Default:
-
-                >>> commands = indicatortools.LilyPondCommand.list_allowable_format_slots()
-                >>> for command in commands:
-                ...     command
-                'after'
-                'before'
-                'closing'
-                'opening'
-                'right'
-
-        Returns tuple of strings.
-        '''
-        return LilyPondCommand._allowable_format_slots

@@ -105,13 +105,6 @@ class SchemeMoment(Scheme):
                 return True
         return False
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_value(self):
-        numerator, denominator = self._value.numerator, self._value.denominator
-        return '(ly:make-moment {} {})'.format(numerator, denominator)
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -123,6 +116,13 @@ class SchemeMoment(Scheme):
                 ],
             storage_format_kwargs_names=[],
             )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _formatted_value(self):
+        numerator, denominator = self._value.numerator, self._value.denominator
+        return '(ly:make-moment {} {})'.format(numerator, denominator)
 
     ### PUBLIC PROPERTIES ###
 

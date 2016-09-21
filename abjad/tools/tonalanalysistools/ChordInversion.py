@@ -90,6 +90,21 @@ class ChordInversion(AbjadObject):
         '''
         return not self == arg
 
+    ### PUBLIC METHODS ###
+
+    def extent_to_figured_bass_string(self, extent):
+        r'''Changes `extent` to figured bass string.
+
+        Returns string.
+        '''
+        if extent == 5:
+            return self._triadic_inversion_to_figured_bass_string[self.number]
+        elif extent == 7:
+            return self._seventh_chord_inversion_to_figured_bass_string[
+                self.number]
+        else:
+            raise NotImplementedError
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -118,18 +133,3 @@ class ChordInversion(AbjadObject):
         if name == 'root position':
             return 'RootPosition'
         return '{}Inversion'.format(name.title())
-
-    ### PUBLIC METHODS ###
-
-    def extent_to_figured_bass_string(self, extent):
-        r'''Changes `extent` to figured bass string.
-
-        Returns string.
-        '''
-        if extent == 5:
-            return self._triadic_inversion_to_figured_bass_string[self.number]
-        elif extent == 7:
-            return self._seventh_chord_inversion_to_figured_bass_string[
-                self.number]
-        else:
-            raise NotImplementedError

@@ -76,39 +76,6 @@ class CommandlineScript(abctools.AbjadObject):
         '''
         return {}
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def argument_parser(self):
-        r'''The script's instance of argparse.ArgumentParser.
-        '''
-        return self._argument_parser
-
-    @property
-    def formatted_help(self):
-        r'''Formatted help of developer script.
-        '''
-        return self._argument_parser.format_help()
-
-    @property
-    def formatted_usage(self):
-        r'''Formatted usage of developer script.
-        '''
-        return self._argument_parser.format_usage()
-
-    @property
-    def formatted_version(self):
-        r'''Formatted version of developer script.
-        '''
-        return self._argument_parser.format_version()
-
-    @property
-    def program_name(self):
-        r'''The name of the script, callable from the command line.
-        '''
-        name = type(self).__name__[:type(self).__name__.rfind('Script')]
-        return stringtools.to_space_delimited_lowercase(name).replace(' ', '-')
-
     ### PRIVATE METHODS ###
 
     def _is_valid_path(self, path):
@@ -160,3 +127,36 @@ class CommandlineScript(abctools.AbjadObject):
                     ):
                     script_classes.append(class_)
         return list(sorted(script_classes, key=lambda x: x.__name__))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def argument_parser(self):
+        r'''The script's instance of argparse.ArgumentParser.
+        '''
+        return self._argument_parser
+
+    @property
+    def formatted_help(self):
+        r'''Formatted help of developer script.
+        '''
+        return self._argument_parser.format_help()
+
+    @property
+    def formatted_usage(self):
+        r'''Formatted usage of developer script.
+        '''
+        return self._argument_parser.format_usage()
+
+    @property
+    def formatted_version(self):
+        r'''Formatted version of developer script.
+        '''
+        return self._argument_parser.format_version()
+
+    @property
+    def program_name(self):
+        r'''The name of the script, callable from the command line.
+        '''
+        name = type(self).__name__[:type(self).__name__.rfind('Script')]
+        return stringtools.to_space_delimited_lowercase(name).replace(' ', '-')

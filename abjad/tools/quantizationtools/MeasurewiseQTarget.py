@@ -20,25 +20,6 @@ class MeasurewiseQTarget(QTarget):
     __slots__ = (
         )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def beats(self):
-        r'''Beats of measurewise q-target.
-
-        Returns tuple.
-        '''
-        return tuple([beat for item in self.items for beat in item.beats])
-
-    @property
-    def item_class(self):
-        r'''Item class of measurewise q-target.
-
-        Returns q-target measure class.
-        '''
-        from abjad.tools import quantizationtools
-        return quantizationtools.QTargetMeasure
-
     ### PRIVATE METHODS ###
 
     def _notate(
@@ -82,3 +63,22 @@ class MeasurewiseQTarget(QTarget):
             attack_point_optimizer(measure)
 
         return voice
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def beats(self):
+        r'''Beats of measurewise q-target.
+
+        Returns tuple.
+        '''
+        return tuple([beat for item in self.items for beat in item.beats])
+
+    @property
+    def item_class(self):
+        r'''Item class of measurewise q-target.
+
+        Returns q-target measure class.
+        '''
+        from abjad.tools import quantizationtools
+        return quantizationtools.QTargetMeasure

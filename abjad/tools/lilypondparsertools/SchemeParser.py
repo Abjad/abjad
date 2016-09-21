@@ -40,20 +40,6 @@ class SchemeParser(abctools.Parser):
             debug=debug,
             )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def lexer_rules_object(self):
-        r'''Lexer rules object of Scheme parser.
-        '''
-        return self
-
-    @property
-    def parser_rules_object(self):
-        r'''Parser rules object of Scheme parser.
-        '''
-        return self
-
     ### PRIVATE METHODS ###
 
     def _setup(self):
@@ -652,3 +638,17 @@ class SchemeParser(abctools.Parser):
         else:
             if self.debug:
                 print(("SchemeParser-{}: Syntax error at EOF".format(id(self))))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def lexer_rules_object(self):
+        r'''Lexer rules object of Scheme parser.
+        '''
+        return self
+
+    @property
+    def parser_rules_object(self):
+        r'''Parser rules object of Scheme parser.
+        '''
+        return self

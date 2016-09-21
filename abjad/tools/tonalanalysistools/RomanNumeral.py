@@ -114,76 +114,7 @@ class RomanNumeral(AbjadValueObject):
         '''
         return self._format_string
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _accidental_name(self):
-        accidental = self.scale_degree.accidental
-        if accidental.is_adjusted:
-            return accidental.name.title()
-        return ''
-
-    @property
-    def _figured_bass_digits(self):
-        characters = self._figured_bass_string
-        if characters:
-            characters = characters.split('/')
-            digits = [int(x) for x in characters]
-            return tuple(digits)
-        return ()
-
-    @property
-    def _figured_bass_string(self):
-        return self.inversion.extent_to_figured_bass_string(self.extent.number)
-
-    @property
-    def _format_string(self):
-        result = []
-        result.append(self._accidental_name)
-        result.append(self._roman_numeral_string)
-        result.append(self.quality.quality_string.title())
-        result.append(self.extent.name.title())
-        result.append('In')
-        result.append(self.inversion.title)
-        if not self.suspension.is_empty:
-            result.append('With')
-            result.append(self.suspension.title_string)
-        return ''.join(result)
-
-    @property
-    def _quality_symbolic_string(self):
-        from abjad.tools import tonalanalysistools
-        if self.extent == tonalanalysistools.ChordExtent(5):
-            if self.quality == tonalanalysistools.ChordQuality('diminished'):
-                return 'o'
-            elif self.quality == tonalanalysistools.ChordQuality('augmented'):
-                return '+'
-            else:
-                return ''
-        elif self.extent == tonalanalysistools.ChordExtent(7):
-            if self.quality == tonalanalysistools.ChordQuality('dominant'):
-                return ''
-            elif self.quality == tonalanalysistools.ChordQuality('major'):
-                return 'M'
-            elif self.quality == \
-                tonalanalysistools.ChordQuality('diminished'):
-                return 'o'
-            elif self.quality == \
-                tonalanalysistools.ChordQuality('half diminished'):
-                return '@'
-            elif self.quality == tonalanalysistools.ChordQuality('augmented'):
-                return '+'
-            else:
-                return ''
-        else:
-            raise NotImplementedError
-
-    @property
-    def _roman_numeral_string(self):
-        roman_numeral_string = self.scale_degree.roman_numeral_string
-        if not self.quality.is_uppercase:
-            roman_numeral_string = roman_numeral_string.lower()
-        return roman_numeral_string
+    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         return systemtools.FormatSpecification(
@@ -191,8 +122,6 @@ class RomanNumeral(AbjadValueObject):
             storage_format_is_indented=False,
             storage_format_args_values=[self.symbolic_string],
             )
-
-    ### PRIVATE METHODS ###
 
     def _get_quality_name(self, uppercase, quality_string, extent):
         if quality_string == 'o':
@@ -270,6 +199,77 @@ class RomanNumeral(AbjadValueObject):
         suspension = args[-1]
         suspension = tonalanalysistools.ChordSuspension(suspension)
         return scale_degree, quality, extent, inversion, suspension
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _accidental_name(self):
+        accidental = self.scale_degree.accidental
+        if accidental.is_adjusted:
+            return accidental.name.title()
+        return ''
+
+    @property
+    def _figured_bass_digits(self):
+        characters = self._figured_bass_string
+        if characters:
+            characters = characters.split('/')
+            digits = [int(x) for x in characters]
+            return tuple(digits)
+        return ()
+
+    @property
+    def _figured_bass_string(self):
+        return self.inversion.extent_to_figured_bass_string(self.extent.number)
+
+    @property
+    def _format_string(self):
+        result = []
+        result.append(self._accidental_name)
+        result.append(self._roman_numeral_string)
+        result.append(self.quality.quality_string.title())
+        result.append(self.extent.name.title())
+        result.append('In')
+        result.append(self.inversion.title)
+        if not self.suspension.is_empty:
+            result.append('With')
+            result.append(self.suspension.title_string)
+        return ''.join(result)
+
+    @property
+    def _quality_symbolic_string(self):
+        from abjad.tools import tonalanalysistools
+        if self.extent == tonalanalysistools.ChordExtent(5):
+            if self.quality == tonalanalysistools.ChordQuality('diminished'):
+                return 'o'
+            elif self.quality == tonalanalysistools.ChordQuality('augmented'):
+                return '+'
+            else:
+                return ''
+        elif self.extent == tonalanalysistools.ChordExtent(7):
+            if self.quality == tonalanalysistools.ChordQuality('dominant'):
+                return ''
+            elif self.quality == tonalanalysistools.ChordQuality('major'):
+                return 'M'
+            elif self.quality == \
+                tonalanalysistools.ChordQuality('diminished'):
+                return 'o'
+            elif self.quality == \
+                tonalanalysistools.ChordQuality('half diminished'):
+                return '@'
+            elif self.quality == tonalanalysistools.ChordQuality('augmented'):
+                return '+'
+            else:
+                return ''
+        else:
+            raise NotImplementedError
+
+    @property
+    def _roman_numeral_string(self):
+        roman_numeral_string = self.scale_degree.roman_numeral_string
+        if not self.quality.is_uppercase:
+            roman_numeral_string = roman_numeral_string.lower()
+        return roman_numeral_string
 
     ### PUBLIC PROPERTIES ###
 

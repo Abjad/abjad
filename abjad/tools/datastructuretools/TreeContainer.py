@@ -277,15 +277,7 @@ class TreeContainer(TreeNode):
             self._children.__setitem__(slice(start, start), expr)
         self._mark_entire_tree_for_later_update()
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _leaf_class(self):
-        return TreeNode
-
-    @property
-    def _node_class(self):
-        return TreeNode
+    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
@@ -300,149 +292,6 @@ class TreeContainer(TreeNode):
             storage_format_kwargs_names=names,
             template_names=template_names,
             )
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def children(self):
-        r'''Children of tree container.
-
-        ::
-
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeContainer()
-            >>> c = datastructuretools.TreeNode()
-            >>> d = datastructuretools.TreeNode()
-            >>> e = datastructuretools.TreeContainer()
-
-        ::
-
-            >>> a.extend([b, c])
-            >>> b.extend([d, e])
-
-        ::
-
-            >>> a.children == (b, c)
-            True
-
-        ::
-
-            >>> b.children == (d, e)
-            True
-
-        ::
-
-            >>> e.children == ()
-            True
-
-        Returns tuple of tree nodes.
-        '''
-        return tuple(self._children)
-
-    @property
-    def leaves(self):
-        r'''Leaves of tree container.
-
-        ::
-
-            >>> a = datastructuretools.TreeContainer(name='a')
-            >>> b = datastructuretools.TreeContainer(name='b')
-            >>> c = datastructuretools.TreeNode(name='c')
-            >>> d = datastructuretools.TreeNode(name='d')
-            >>> e = datastructuretools.TreeContainer(name='e')
-
-        ::
-
-            >>> a.extend([b, c])
-            >>> b.extend([d, e])
-
-        ::
-
-            >>> for leaf in a.leaves:
-            ...     print(leaf.name)
-            ... 
-            d
-            e
-            c
-
-        Returns tuple.
-        '''
-        def recurse(node):
-            result = []
-            for child in node:
-                if not hasattr(child, 'children'):
-                    if isinstance(child, self._leaf_class):
-                        result.append(child)
-                elif not child.children:
-                    if isinstance(child, self._leaf_class):
-                        result.append(child)
-                else:
-                    result.extend(recurse(child))
-            return result
-        return tuple(recurse(self))
-
-    @property
-    def nodes(self):
-        r'''The collection of tree nodes produced by iterating tree container
-        depth-first.
-
-        ::
-
-            >>> a = datastructuretools.TreeContainer()
-            >>> b = datastructuretools.TreeContainer()
-            >>> c = datastructuretools.TreeNode()
-            >>> d = datastructuretools.TreeNode()
-            >>> e = datastructuretools.TreeContainer()
-
-        ::
-
-            >>> a.extend([b, c])
-            >>> b.extend([d, e])
-
-        ::
-
-            >>> nodes = a.nodes
-            >>> len(nodes)
-            5
-
-        ::
-
-            >>> nodes[0] is a
-            True
-
-        ::
-
-            >>> nodes[1] is b
-            True
-
-        ::
-
-            >>> nodes[2] is d
-            True
-
-        ::
-
-            >>> nodes[3] is e
-            True
-
-        ::
-
-            >>> nodes[4] is c
-            True
-
-        Returns tuple.
-        '''
-        from abjad.tools import datastructuretools
-        def recurse(container):
-            result = []
-            for child in container.children:
-                result.append(child)
-                if isinstance(child, datastructuretools.TreeContainer):
-                    result.extend(recurse(child))
-            return result
-        result = [self] + recurse(self)
-        return tuple(result)
-
     ### PUBLIC METHODS ###
 
     def append(self, node):
@@ -686,3 +535,155 @@ class TreeContainer(TreeNode):
         '''
         i = self.index(node)
         del(self[i])
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _leaf_class(self):
+        return TreeNode
+
+    @property
+    def _node_class(self):
+        return TreeNode
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def children(self):
+        r'''Children of tree container.
+
+        ::
+
+            >>> a = datastructuretools.TreeContainer()
+            >>> b = datastructuretools.TreeContainer()
+            >>> c = datastructuretools.TreeNode()
+            >>> d = datastructuretools.TreeNode()
+            >>> e = datastructuretools.TreeContainer()
+
+        ::
+
+            >>> a.extend([b, c])
+            >>> b.extend([d, e])
+
+        ::
+
+            >>> a.children == (b, c)
+            True
+
+        ::
+
+            >>> b.children == (d, e)
+            True
+
+        ::
+
+            >>> e.children == ()
+            True
+
+        Returns tuple of tree nodes.
+        '''
+        return tuple(self._children)
+
+    @property
+    def leaves(self):
+        r'''Leaves of tree container.
+
+        ::
+
+            >>> a = datastructuretools.TreeContainer(name='a')
+            >>> b = datastructuretools.TreeContainer(name='b')
+            >>> c = datastructuretools.TreeNode(name='c')
+            >>> d = datastructuretools.TreeNode(name='d')
+            >>> e = datastructuretools.TreeContainer(name='e')
+
+        ::
+
+            >>> a.extend([b, c])
+            >>> b.extend([d, e])
+
+        ::
+
+            >>> for leaf in a.leaves:
+            ...     print(leaf.name)
+            ...
+            d
+            e
+            c
+
+        Returns tuple.
+        '''
+        def recurse(node):
+            result = []
+            for child in node:
+                if not hasattr(child, 'children'):
+                    if isinstance(child, self._leaf_class):
+                        result.append(child)
+                elif not child.children:
+                    if isinstance(child, self._leaf_class):
+                        result.append(child)
+                else:
+                    result.extend(recurse(child))
+            return result
+        return tuple(recurse(self))
+
+    @property
+    def nodes(self):
+        r'''The collection of tree nodes produced by iterating tree container
+        depth-first.
+
+        ::
+
+            >>> a = datastructuretools.TreeContainer()
+            >>> b = datastructuretools.TreeContainer()
+            >>> c = datastructuretools.TreeNode()
+            >>> d = datastructuretools.TreeNode()
+            >>> e = datastructuretools.TreeContainer()
+
+        ::
+
+            >>> a.extend([b, c])
+            >>> b.extend([d, e])
+
+        ::
+
+            >>> nodes = a.nodes
+            >>> len(nodes)
+            5
+
+        ::
+
+            >>> nodes[0] is a
+            True
+
+        ::
+
+            >>> nodes[1] is b
+            True
+
+        ::
+
+            >>> nodes[2] is d
+            True
+
+        ::
+
+            >>> nodes[3] is e
+            True
+
+        ::
+
+            >>> nodes[4] is c
+            True
+
+        Returns tuple.
+        '''
+        from abjad.tools import datastructuretools
+        def recurse(container):
+            result = []
+            for child in container.children:
+                result.append(child)
+                if isinstance(child, datastructuretools.TreeContainer):
+                    result.extend(recurse(child))
+            return result
+        result = [self] + recurse(self)
+        return tuple(result)

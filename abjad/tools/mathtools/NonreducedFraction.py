@@ -451,85 +451,6 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             denominator = 1
         return numerator, denominator
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def denominator(self):
-        r'''Denominator of nonreduced fraction.
-
-        ::
-
-            >>> fraction = mathtools.NonreducedFraction(-6, 3)
-
-        ::
-
-            >>> fraction.denominator
-            3
-
-        Returns positive integer.
-        '''
-        return self._denominator
-
-    @property
-    def imag(self):
-        r'''Nonreduced fractions have no imaginary part.
-
-        ::
-
-            >>> fraction.imag
-            0
-
-        Returns zero.
-        '''
-        return fractions.Fraction.imag.fget(self)
-
-    @property
-    def numerator(self):
-        r'''Numerator of nonreduced fraction.
-
-        ::
-
-            >>> fraction = mathtools.NonreducedFraction(-6, 3)
-
-        ::
-
-            >>> fraction.numerator
-            -6
-
-        Returns integer.
-        '''
-        return self._numerator
-
-    @property
-    def pair(self):
-        r'''Read only pair of nonreduced fraction numerator and denominator.
-
-        ::
-
-            >>> fraction = mathtools.NonreducedFraction(-6, 3)
-
-        ::
-
-            >>> fraction.pair
-            (-6, 3)
-
-        Returns integer pair.
-        '''
-        return self.numerator, self.denominator
-
-    @property
-    def real(self):
-        r'''Nonreduced fractions are their own real component.
-
-        ::
-
-            >>> fraction.real
-            NonreducedFraction(-6, 3)
-
-        Returns nonreduced fraction.
-        '''
-        return self
-
     ### PUBLIC METHODS ###
 
     def multiply_with_cross_cancelation(self, multiplier):
@@ -736,3 +657,82 @@ class NonreducedFraction(AbjadObject, fractions.Fraction):
             denominator *= 2
             result = result.with_denominator(denominator)
         return result
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def denominator(self):
+        r'''Denominator of nonreduced fraction.
+
+        ::
+
+            >>> fraction = mathtools.NonreducedFraction(-6, 3)
+
+        ::
+
+            >>> fraction.denominator
+            3
+
+        Returns positive integer.
+        '''
+        return self._denominator
+
+    @property
+    def imag(self):
+        r'''Nonreduced fractions have no imaginary part.
+
+        ::
+
+            >>> fraction.imag
+            0
+
+        Returns zero.
+        '''
+        return fractions.Fraction.imag.fget(self)
+
+    @property
+    def numerator(self):
+        r'''Numerator of nonreduced fraction.
+
+        ::
+
+            >>> fraction = mathtools.NonreducedFraction(-6, 3)
+
+        ::
+
+            >>> fraction.numerator
+            -6
+
+        Returns integer.
+        '''
+        return self._numerator
+
+    @property
+    def pair(self):
+        r'''Read only pair of nonreduced fraction numerator and denominator.
+
+        ::
+
+            >>> fraction = mathtools.NonreducedFraction(-6, 3)
+
+        ::
+
+            >>> fraction.pair
+            (-6, 3)
+
+        Returns integer pair.
+        '''
+        return self.numerator, self.denominator
+
+    @property
+    def real(self):
+        r'''Nonreduced fractions are their own real component.
+
+        ::
+
+            >>> fraction.real
+            NonreducedFraction(-6, 3)
+
+        Returns nonreduced fraction.
+        '''
+        return self

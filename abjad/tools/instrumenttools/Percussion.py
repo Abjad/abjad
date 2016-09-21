@@ -33,35 +33,6 @@ class Percussion(Instrument):
 
     __slots__ = ()
 
-    ### INITIALIZER ###
-
-    def __init__(
-        self,
-        instrument_name='percussion',
-        short_instrument_name='perc.',
-        instrument_name_markup=None,
-        short_instrument_name_markup=None,
-        allowable_clefs=('percussion',),
-        pitch_range=None,
-        sounding_pitch_of_written_middle_c=None,
-        ):
-        Instrument.__init__(
-            self,
-            instrument_name=instrument_name,
-            short_instrument_name=short_instrument_name,
-            instrument_name_markup=instrument_name_markup,
-            short_instrument_name_markup=short_instrument_name_markup,
-            allowable_clefs=allowable_clefs,
-            pitch_range=pitch_range,
-            sounding_pitch_of_written_middle_c=\
-                sounding_pitch_of_written_middle_c,
-            )
-        self._performer_names.extend([
-            'percussionist',
-            ])
-
-    ### CLASS VARIABLES ###
-
     known_percussion = list(sorted(set([
         'agogô',
         'anvil',
@@ -111,6 +82,33 @@ class Percussion(Instrument):
         'wood blocks',
         'wood planks',
         ])))
+
+    ### INITIALIZER ###
+
+    def __init__(
+        self,
+        instrument_name='percussion',
+        short_instrument_name='perc.',
+        instrument_name_markup=None,
+        short_instrument_name_markup=None,
+        allowable_clefs=('percussion',),
+        pitch_range=None,
+        sounding_pitch_of_written_middle_c=None,
+        ):
+        Instrument.__init__(
+            self,
+            instrument_name=instrument_name,
+            short_instrument_name=short_instrument_name,
+            instrument_name_markup=instrument_name_markup,
+            short_instrument_name_markup=short_instrument_name_markup,
+            allowable_clefs=allowable_clefs,
+            pitch_range=pitch_range,
+            sounding_pitch_of_written_middle_c=\
+                sounding_pitch_of_written_middle_c,
+            )
+        self._performer_names.extend([
+            'percussionist',
+            ])
 
     ### PUBLIC PROPERTIES ###
 

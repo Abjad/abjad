@@ -73,6 +73,25 @@ class NumberedPitchClassColorMap(AbjadValueObject):
                     raise KeyError(message)
                 self._color_dictionary[pc.pitch_class_number] = color
 
+    ### PUBLIC METHODS ###
+
+    def get(self, key, alternative=None):
+        r'''Gets `key` from color map.
+
+        ::
+
+            >>> color_map.get(11)
+            'green'
+
+        Returns `alternative` when `key` is not found.
+
+        Returns string.
+        '''
+        try:
+            return self[key]
+        except (KeyError, TypeError, ValueError):
+            return alternative
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -155,22 +174,3 @@ class NumberedPitchClassColorMap(AbjadValueObject):
         Returns ?
         '''
         return self._pitch_iterables
-
-    ### PUBLIC METHODS ###
-
-    def get(self, key, alternative=None):
-        r'''Gets `key` from color map.
-
-        ::
-
-            >>> color_map.get(11)
-            'green'
-
-        Returns `alternative` when `key` is not found.
-
-        Returns string.
-        '''
-        try:
-            return self[key]
-        except (KeyError, TypeError, ValueError):
-            return alternative

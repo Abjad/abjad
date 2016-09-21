@@ -48,17 +48,6 @@ class InstrumentInventory(TypedList):
         contents = ', '.join(contents)
         return '{}([{}])'.format(type(self).__name__, contents)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_creator_class(self):
-        item_creator_class = self._make_item_creator_class()
-        return item_creator_class
-
-    @property
-    def _item_creator_class_kwargs(self):
-        return {'is_ranged': True}
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -149,3 +138,14 @@ class InstrumentInventory(TypedList):
             def target(self):
                 return self._target
         return ItemCreator
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_creator_class(self):
+        item_creator_class = self._make_item_creator_class()
+        return item_creator_class
+
+    @property
+    def _item_creator_class_kwargs(self):
+        return {'is_ranged': True}

@@ -287,26 +287,6 @@ class PitchRange(AbjadValueObject):
         ')': 'exclusive',
         }
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _close_bracket_string(self):
-        if self.stop_pitch_is_included_in_range:
-            return ']'
-        else:
-            return ')'
-
-    @property
-    def _one_line_menu_summary(self):
-        return self.one_line_named_pitch_repr
-
-    @property
-    def _open_bracket_string(self):
-        if self.start_pitch_is_included_in_range:
-            return '['
-        else:
-            return '('
-
     ### PRIVATE METHODS ###
 
     def _contains_pitch(self, pitch):
@@ -397,6 +377,49 @@ class PitchRange(AbjadValueObject):
         return start_pair, stop_pair
 
     ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_pitches(
+        start_pitch,
+        stop_pitch,
+        start_pitch_is_included_in_range=True,
+        stop_pitch_is_included_in_range=True,
+        ):
+        r'''Initializes pitch range from numbers.
+
+        ..  container:: example
+
+            ::
+
+                >>> pitchtools.PitchRange.from_pitches(-18, 19)
+                PitchRange(range_string='[F#2, G5]')
+
+        Returns pitch range.
+        '''
+        from abjad.tools import pitchtools
+        if start_pitch is None:
+            start_pitch_string = '-inf'
+        else:
+            start_pitch_string = str(pitchtools.NamedPitch(start_pitch))
+        if stop_pitch is None:
+            stop_pitch_string = '+inf'
+        else:
+            stop_pitch_string = str(pitchtools.NamedPitch(stop_pitch))
+        start_containment = '['
+        if not start_pitch_is_included_in_range:
+            start_containment = '('
+        stop_containment = ']'
+        if not stop_pitch_is_included_in_range:
+            stop_containment = ')'
+        string = '{}{}, {}{}'
+        string = string.format(
+            start_containment,
+            start_pitch_string,
+            stop_pitch_string,
+            stop_containment,
+            )
+        pitch_range = PitchRange(string)
+        return pitch_range
 
     @classmethod
     def is_range_string(class_, expr):
@@ -509,6 +532,26 @@ class PitchRange(AbjadValueObject):
                 result.append(named_pitch)
             named_pitch += 12
         return tuple(result)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _close_bracket_string(self):
+        if self.stop_pitch_is_included_in_range:
+            return ']'
+        else:
+            return ')'
+
+    @property
+    def _one_line_menu_summary(self):
+        return self.one_line_named_pitch_repr
+
+    @property
+    def _open_bracket_string(self):
+        if self.start_pitch_is_included_in_range:
+            return '['
+        else:
+            return '('
 
     ### PUBLIC PROPERTIES ###
 
@@ -635,48 +678,3 @@ class PitchRange(AbjadValueObject):
         if self._stop is None:
             return True
         return self._stop[1] == 'inclusive'
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def from_pitches(
-        start_pitch,
-        stop_pitch,
-        start_pitch_is_included_in_range=True,
-        stop_pitch_is_included_in_range=True,
-        ):
-        r'''Initializes pitch range from numbers.
-
-        ..  container:: example
-
-            ::
-
-                >>> pitchtools.PitchRange.from_pitches(-18, 19)
-                PitchRange(range_string='[F#2, G5]')
-
-        Returns pitch range.
-        '''
-        from abjad.tools import pitchtools
-        if start_pitch is None:
-            start_pitch_string = '-inf'
-        else:
-            start_pitch_string = str(pitchtools.NamedPitch(start_pitch))
-        if stop_pitch is None:
-            stop_pitch_string = '+inf'
-        else:
-            stop_pitch_string = str(pitchtools.NamedPitch(stop_pitch))
-        start_containment = '['
-        if not start_pitch_is_included_in_range:
-            start_containment = '('
-        stop_containment = ']'
-        if not stop_pitch_is_included_in_range:
-            stop_containment = ')'
-        string = '{}{}, {}{}'
-        string = string.format(
-            start_containment,
-            start_pitch_string,
-            stop_pitch_string,
-            stop_containment,
-            )
-        pitch_range = PitchRange(string)
-        return pitch_range

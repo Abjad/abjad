@@ -817,191 +817,6 @@ class Timespan(BoundedObject):
             return offset
         return durationtools.Offset(offset)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def axis(self):
-        r'''Arithmetic mean of timespan start- and stop-offsets.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).axis
-            Offset(5, 1)
-
-        Returns offset.
-        '''
-        return (self._start_offset + self._stop_offset) / 2
-
-    @property
-    def duration(self):
-        r'''Duration of timespan.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).duration
-            Duration(10, 1)
-
-        Returns duration.
-        '''
-        return self._stop_offset - self._start_offset
-
-    @property
-    def is_closed(self):
-        r'''False for all timespans.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_closed
-            False
-
-        Returns true or false.
-        '''
-        return BoundedObject.is_closed.fget(self)
-
-    @property
-    def is_half_closed(self):
-        r'''True for all timespans.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_half_closed
-            True
-
-        Returns true or false.
-        '''
-        return BoundedObject.is_half_closed.fget(self)
-
-    @property
-    def is_half_open(self):
-        r'''True for all timespans.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_half_open
-            True
-
-        Returns true or false.
-        '''
-        return BoundedObject.is_half_open.fget(self)
-
-    @property
-    def is_left_closed(self):
-        r'''True for all timespans.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_left_closed
-            True
-
-        Returns true or false.
-        '''
-        return True
-
-    @property
-    def is_left_open(self):
-        r'''False for all timespans.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_left_open
-            False
-
-        Returns true or false.
-        '''
-        return False
-
-    @property
-    def is_open(self):
-        r'''False for all timespans.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_open
-            False
-
-        Returns true or false.
-        '''
-        return BoundedObject.is_open.fget(self)
-
-    @property
-    def is_right_closed(self):
-        r'''False for all timespans.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_right_closed
-            False
-
-        Returns true or false.
-        '''
-        return False
-
-    @property
-    def is_right_open(self):
-        r'''True for all timespans.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_right_open
-            True
-
-        Returns true or false.
-        '''
-        return True
-
-    @property
-    def is_well_formed(self):
-        r'''Is true when timespan start offset preceeds timespan stop offset.
-        Otherwise false:
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).is_well_formed
-            True
-
-        Returns true or false.
-        '''
-        return self._start_offset < self._stop_offset
-
-    @property
-    def offsets(self):
-        r'''Timespan offsets.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).offsets
-            (Offset(0, 1), Offset(10, 1))
-
-        Returns offset pair.
-        '''
-        return self._start_offset, self._stop_offset
-
-    @property
-    def start_offset(self):
-        r'''Timespan start offset.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).start_offset
-            Offset(0, 1)
-
-        Returns offset.
-        '''
-        return self._start_offset
-
-    @property
-    def stop_offset(self):
-        r'''Timespan stop offset.
-
-        ::
-
-            >>> timespantools.Timespan(0, 10).stop_offset
-            Offset(10, 1)
-
-        Returns offset.
-        '''
-        return self._stop_offset
-
     ### PUBLIC METHODS ###
 
     def contains_timespan_improperly(self, timespan):
@@ -2487,3 +2302,188 @@ class Timespan(BoundedObject):
             expr_start_offset < self_start_offset and
             self_stop_offset < expr_stop_offset
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def axis(self):
+        r'''Arithmetic mean of timespan start- and stop-offsets.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).axis
+            Offset(5, 1)
+
+        Returns offset.
+        '''
+        return (self._start_offset + self._stop_offset) / 2
+
+    @property
+    def duration(self):
+        r'''Duration of timespan.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).duration
+            Duration(10, 1)
+
+        Returns duration.
+        '''
+        return self._stop_offset - self._start_offset
+
+    @property
+    def is_closed(self):
+        r'''False for all timespans.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_closed
+            False
+
+        Returns true or false.
+        '''
+        return BoundedObject.is_closed.fget(self)
+
+    @property
+    def is_half_closed(self):
+        r'''True for all timespans.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_half_closed
+            True
+
+        Returns true or false.
+        '''
+        return BoundedObject.is_half_closed.fget(self)
+
+    @property
+    def is_half_open(self):
+        r'''True for all timespans.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_half_open
+            True
+
+        Returns true or false.
+        '''
+        return BoundedObject.is_half_open.fget(self)
+
+    @property
+    def is_left_closed(self):
+        r'''True for all timespans.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_left_closed
+            True
+
+        Returns true or false.
+        '''
+        return True
+
+    @property
+    def is_left_open(self):
+        r'''False for all timespans.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_left_open
+            False
+
+        Returns true or false.
+        '''
+        return False
+
+    @property
+    def is_open(self):
+        r'''False for all timespans.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_open
+            False
+
+        Returns true or false.
+        '''
+        return BoundedObject.is_open.fget(self)
+
+    @property
+    def is_right_closed(self):
+        r'''False for all timespans.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_right_closed
+            False
+
+        Returns true or false.
+        '''
+        return False
+
+    @property
+    def is_right_open(self):
+        r'''True for all timespans.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_right_open
+            True
+
+        Returns true or false.
+        '''
+        return True
+
+    @property
+    def is_well_formed(self):
+        r'''Is true when timespan start offset preceeds timespan stop offset.
+        Otherwise false:
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).is_well_formed
+            True
+
+        Returns true or false.
+        '''
+        return self._start_offset < self._stop_offset
+
+    @property
+    def offsets(self):
+        r'''Timespan offsets.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).offsets
+            (Offset(0, 1), Offset(10, 1))
+
+        Returns offset pair.
+        '''
+        return self._start_offset, self._stop_offset
+
+    @property
+    def start_offset(self):
+        r'''Timespan start offset.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).start_offset
+            Offset(0, 1)
+
+        Returns offset.
+        '''
+        return self._start_offset
+
+    @property
+    def stop_offset(self):
+        r'''Timespan stop offset.
+
+        ::
+
+            >>> timespantools.Timespan(0, 10).stop_offset
+            Offset(10, 1)
+
+        Returns offset.
+        '''
+        return self._stop_offset

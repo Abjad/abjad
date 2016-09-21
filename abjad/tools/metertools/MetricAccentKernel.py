@@ -108,7 +108,7 @@ class MetricAccentKernel(AbjadValueObject):
         '''
         return super(MetricAccentKernel, self).__hash__()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         return systemtools.FormatSpecification(

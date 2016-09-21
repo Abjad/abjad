@@ -138,12 +138,6 @@ class VerticalMoment(Selection):
             )
         return result
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return ', '.join([str(x) for x in self.components])
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -212,6 +206,12 @@ class VerticalMoment(Selection):
 
     def _get_format_specification(self):
         return systemtools.FormatSpecification(client=self)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_string(self):
+        return ', '.join([str(x) for x in self.components])
 
     ### PUBLIC PROPERTIES ###
 

@@ -54,72 +54,6 @@ class Leaf(Component):
         '''
         return self._compact_representation
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        return '({})'.format(self._formatted_duration)
-
-    @property
-    def _duration_in_seconds(self):
-        from abjad.tools import indicatortools
-        tempo = self._get_effective(indicatortools.Tempo)
-        if tempo is not None and not tempo.is_imprecise:
-            result = (self._get_duration() /
-                tempo.reference_duration /
-                tempo.units_per_minute * 60
-                )
-            return durationtools.Duration(result)
-        raise MissingTempoError
-
-    @property
-    def _formatted_duration(self):
-        duration_string = self.written_duration.lilypond_duration_string
-        multiplier = None
-        multiplier_prototype = (
-            durationtools.Multiplier,
-            mathtools.NonreducedFraction,
-            )
-        multipliers = self._get_indicators(multiplier_prototype)
-        if not multipliers:
-            pass
-        elif len(multipliers) == 1:
-            multiplier = multipliers[0]
-        elif 1 < len(multipliers):
-            message = 'more than one LilyPond duration multiplier.'
-            raise ValueError(message)
-        if multiplier is not None:
-            result = '{} * {!s}'.format(duration_string, multiplier)
-        else:
-            result = duration_string
-        return result
-
-    @property
-    def _multiplied_duration(self):
-        if self.written_duration:
-            multiplier_prototype = (
-                durationtools.Multiplier,
-                mathtools.NonreducedFraction,
-                )
-            if self._get_indicators(multiplier_prototype):
-                multipliers = self._get_indicators(multiplier_prototype)
-                if 1 == len(multipliers):
-                    multiplier = multipliers[0]
-                    multiplier = durationtools.Duration(multiplier)
-                elif 1 < len(multipliers):
-                    message = 'more than one duration multiplier.'
-                    raise ValueError(message)
-                multiplied_duration = multiplier * self.written_duration
-                return multiplied_duration
-            else:
-                return durationtools.Duration(self.written_duration)
-        else:
-            return None
-
-    @property
-    def _preprolated_duration(self):
-        return self._multiplied_duration
-
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
@@ -668,6 +602,72 @@ class Leaf(Component):
                     tuplet.toggle_prolation()
         # return tuplet
         return tuplet
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _compact_representation(self):
+        return '({})'.format(self._formatted_duration)
+
+    @property
+    def _duration_in_seconds(self):
+        from abjad.tools import indicatortools
+        tempo = self._get_effective(indicatortools.Tempo)
+        if tempo is not None and not tempo.is_imprecise:
+            result = (self._get_duration() /
+                tempo.reference_duration /
+                tempo.units_per_minute * 60
+                )
+            return durationtools.Duration(result)
+        raise MissingTempoError
+
+    @property
+    def _formatted_duration(self):
+        duration_string = self.written_duration.lilypond_duration_string
+        multiplier = None
+        multiplier_prototype = (
+            durationtools.Multiplier,
+            mathtools.NonreducedFraction,
+            )
+        multipliers = self._get_indicators(multiplier_prototype)
+        if not multipliers:
+            pass
+        elif len(multipliers) == 1:
+            multiplier = multipliers[0]
+        elif 1 < len(multipliers):
+            message = 'more than one LilyPond duration multiplier.'
+            raise ValueError(message)
+        if multiplier is not None:
+            result = '{} * {!s}'.format(duration_string, multiplier)
+        else:
+            result = duration_string
+        return result
+
+    @property
+    def _multiplied_duration(self):
+        if self.written_duration:
+            multiplier_prototype = (
+                durationtools.Multiplier,
+                mathtools.NonreducedFraction,
+                )
+            if self._get_indicators(multiplier_prototype):
+                multipliers = self._get_indicators(multiplier_prototype)
+                if 1 == len(multipliers):
+                    multiplier = multipliers[0]
+                    multiplier = durationtools.Duration(multiplier)
+                elif 1 < len(multipliers):
+                    message = 'more than one duration multiplier.'
+                    raise ValueError(message)
+                multiplied_duration = multiplier * self.written_duration
+                return multiplied_duration
+            else:
+                return durationtools.Duration(self.written_duration)
+        else:
+            return None
+
+    @property
+    def _preprolated_duration(self):
+        return self._multiplied_duration
 
     ### PUBLIC PROPERTIES ###
 

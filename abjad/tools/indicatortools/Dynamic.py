@@ -201,16 +201,6 @@ class Dynamic(AbjadValueObject):
         superclass = super(Dynamic, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self._name)
-
-    @property
-    def _lilypond_format(self):
-        return r'\{}'.format(self.name)
-
     ### PRIVATE METHODS ###
 
     def _attachment_test_all(self, component_expression):
@@ -220,113 +210,6 @@ class Dynamic(AbjadValueObject):
         if self.name not in self._lilypond_dynamic_commands:
             return False
         return True
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def default_scope(self):
-        r'''Gets default scope of dynamic.
-
-        ..  container:: example
-
-            **Example 1.** Forte:
-
-            ::
-
-                >>> dynamic = Dynamic('f')
-                >>> dynamic.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
-
-        ..  container:: example
-
-            **Example 2.** Piano:
-
-            ::
-
-                >>> dynamic = Dynamic('p')
-                >>> dynamic.default_scope
-                <class 'abjad.tools.scoretools.Staff.Staff'>
-
-        Dynamics are staff-scoped by default.
-
-        Returns staff.
-        '''
-        return self._default_scope
-
-    @property
-    def name(self):
-        r'''Gets name of dynamic.
-
-        ..  container:: example
-
-            **Example 1.** Forte:
-
-            ::
-
-                >>> Dynamic('f').name
-                'f'
-
-        ..  container:: example
-
-            **Example 2.** Piano:
-
-            ::
-
-                >>> Dynamic('p').name
-                'p'
-
-        ..  container:: example
-
-            **Example 3.** Double sforzando:
-
-            ::
-
-                >>> Dynamic('sffz').name
-                'sffz'
-
-        ..  container:: example
-
-            **Example 4.** Double sforzando-piano:
-
-            ::
-
-                >>> Dynamic('sffp').name
-                'sffp'
-
-        Returns string.
-        '''
-        return self._name
-
-    @property
-    def ordinal(self):
-        r'''Gets ordinal value of dynamic.
-
-        ..  container:: example
-
-            **Example 1.** Forte:
-
-            ::
-
-                >>> Dynamic('f').ordinal
-                2
-
-        ..  container:: example
-
-            **Example 2.** Piano:
-
-            ::
-
-                >>> Dynamic('p').ordinal
-                -2
-        
-        Returns integer.
-        '''
-        name = self.name
-        if name in self._composite_dynamic_name_to_steady_state_dynamic_name:
-            name = self._composite_dynamic_name_to_steady_state_dynamic_name[
-                name]
-        ordinal = self._dynamic_name_to_dynamic_ordinal[name]
-        return ordinal
 
     ### PUBLIC METHODS ###
 
@@ -448,3 +331,120 @@ class Dynamic(AbjadValueObject):
         Returns true or false.
         '''
         return arg in Dynamic._dynamic_names
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self._name)
+
+    @property
+    def _lilypond_format(self):
+        return r'\{}'.format(self.name)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def default_scope(self):
+        r'''Gets default scope of dynamic.
+
+        ..  container:: example
+
+            **Example 1.** Forte:
+
+            ::
+
+                >>> dynamic = Dynamic('f')
+                >>> dynamic.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        ..  container:: example
+
+            **Example 2.** Piano:
+
+            ::
+
+                >>> dynamic = Dynamic('p')
+                >>> dynamic.default_scope
+                <class 'abjad.tools.scoretools.Staff.Staff'>
+
+        Dynamics are staff-scoped by default.
+
+        Returns staff.
+        '''
+        return self._default_scope
+
+    @property
+    def name(self):
+        r'''Gets name of dynamic.
+
+        ..  container:: example
+
+            **Example 1.** Forte:
+
+            ::
+
+                >>> Dynamic('f').name
+                'f'
+
+        ..  container:: example
+
+            **Example 2.** Piano:
+
+            ::
+
+                >>> Dynamic('p').name
+                'p'
+
+        ..  container:: example
+
+            **Example 3.** Double sforzando:
+
+            ::
+
+                >>> Dynamic('sffz').name
+                'sffz'
+
+        ..  container:: example
+
+            **Example 4.** Double sforzando-piano:
+
+            ::
+
+                >>> Dynamic('sffp').name
+                'sffp'
+
+        Returns string.
+        '''
+        return self._name
+
+    @property
+    def ordinal(self):
+        r'''Gets ordinal value of dynamic.
+
+        ..  container:: example
+
+            **Example 1.** Forte:
+
+            ::
+
+                >>> Dynamic('f').ordinal
+                2
+
+        ..  container:: example
+
+            **Example 2.** Piano:
+
+            ::
+
+                >>> Dynamic('p').ordinal
+                -2
+
+        Returns integer.
+        '''
+        name = self.name
+        if name in self._composite_dynamic_name_to_steady_state_dynamic_name:
+            name = self._composite_dynamic_name_to_steady_state_dynamic_name[
+                name]
+        ordinal = self._dynamic_name_to_dynamic_ordinal[name]
+        return ordinal

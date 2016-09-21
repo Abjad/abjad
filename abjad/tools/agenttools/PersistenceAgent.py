@@ -36,16 +36,6 @@ class PersistenceAgent(abctools.AbjadObject):
     def __init__(self, client=None):
         self._client = client
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Client of persistence agent.
-
-        Returns selection or component.
-        '''
-        return self._client
-
     ### PUBLIC METHODS ###
 
     def as_ly(
@@ -351,3 +341,13 @@ class PersistenceAgent(abctools.AbjadObject):
             lilypond_rendering_time,
             success,
             )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Client of persistence agent.
+
+        Returns selection or component.
+        '''
+        return self._client

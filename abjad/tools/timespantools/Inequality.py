@@ -142,19 +142,6 @@ class Inequality(AbjadObject):
     def _make_repr(offset):
         return 'Offset({}, {})'.format(*offset.pair)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def template(self):
-        r'''Gets template of inequality.
-
-            >>> inequality.template
-            'timespan_2.start_offset < timespan_1.start_offset'
-
-        Returns string.
-        '''
-        return self._template
-
     ### PUBLIC METHODS ###
 
     def evaluate(
@@ -442,3 +429,16 @@ class Inequality(AbjadObject):
             return leftmost_index, rightmost_index
         else:
             return []
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def template(self):
+        r'''Gets template of inequality.
+
+            >>> inequality.template
+            'timespan_2.start_offset < timespan_1.start_offset'
+
+        Returns string.
+        '''
+        return self._template

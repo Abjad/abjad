@@ -72,26 +72,6 @@ class WeightedSearchTree(SearchTree):
             all_compositions.extend(value)
         self._all_compositions = tuple(all_compositions)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def all_compositions(self):
-        r'''All compositions of weighted search tree.
-        '''
-        return self._all_compositions
-
-    @property
-    def default_definition(self):
-        r'''Default definition of weighted search tree.
-
-        Returns dictionary.
-        '''
-        return {
-            'divisors': (2, 3, 5, 7),
-            'max_depth': 3,
-            'max_divisions': 2,
-            }
-
     ### PRIVATE METHODS ###
 
     def _find_leaf_subdivisions(self, parentage_ratios):
@@ -134,3 +114,23 @@ class WeightedSearchTree(SearchTree):
                 mathtools.yield_all_compositions_of_integer(divisor)
                 if 1 < len(x) <= max_divisions]
         return compositions
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def all_compositions(self):
+        r'''All compositions of weighted search tree.
+        '''
+        return self._all_compositions
+
+    @property
+    def default_definition(self):
+        r'''Default definition of weighted search tree.
+
+        Returns dictionary.
+        '''
+        return {
+            'divisors': (2, 3, 5, 7),
+            'max_depth': 3,
+            'max_divisions': 2,
+            }

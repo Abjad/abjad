@@ -125,14 +125,6 @@ class Pitch(AbjadValueObject):
         message = 'TODO: all pitch-related classes must implement int.'
         raise NotImplementedError(message)
 
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _lilypond_format(self):
-        r'''LilyPond input format.
-        '''
-        raise NotImplementedError
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -326,6 +318,14 @@ class Pitch(AbjadValueObject):
         r'''Transposes pitch by `expr`.
 
         Returns new pitch.
+        '''
+        raise NotImplementedError
+
+    ### PRIVATE PROPERTIES ###
+
+    @abc.abstractproperty
+    def _lilypond_format(self):
+        r'''LilyPond input format.
         '''
         raise NotImplementedError
 

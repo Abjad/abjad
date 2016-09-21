@@ -54,6 +54,8 @@ class Cluster(Container):
         result.append([contributor, contributions])
         return tuple(result)
 
+    ### PRIVATE PROPERTIES ###
+
     @property
     def _lilypond_format(self):
         self._update_now(indicators=True)

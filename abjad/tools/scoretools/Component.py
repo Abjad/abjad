@@ -147,13 +147,6 @@ class Component(AbjadObject):
         '''
         return self * n
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
-
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
@@ -886,6 +879,13 @@ class Component(AbjadObject):
             offsets_in_seconds=offsets_in_seconds,
             indicators=indicators,
             )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        self._update_now(indicators=True)
+        return self._format_component()
 
     ### PUBLIC PROPERTIES ###
 

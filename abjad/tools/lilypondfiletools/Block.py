@@ -148,31 +148,6 @@ class Block(AbjadObject):
         result.append('}')
         return result
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _formatted_context_blocks(self):
-        from abjad.tools import lilypondfiletools
-        result = []
-        context_blocks = []
-        for item in self.items:
-            if isinstance(item, lilypondfiletools.ContextBlock):
-                context_blocks.append(item)
-        for context_block in context_blocks:
-            result.extend(context_block._get_format_pieces())
-        return result
-
-    @property
-    def _lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
-
-    @property
-    def _user_attributes(self):
-        all_attributes = list(vars(self).keys())
-        user_attributes = [x for x in all_attributes if not x.startswith('_')]
-        user_attributes.sort()
-        return user_attributes
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -227,6 +202,31 @@ class Block(AbjadObject):
                 result.append(setting)
                 result.extend(formatted_value[1:])
         return result
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _formatted_context_blocks(self):
+        from abjad.tools import lilypondfiletools
+        result = []
+        context_blocks = []
+        for item in self.items:
+            if isinstance(item, lilypondfiletools.ContextBlock):
+                context_blocks.append(item)
+        for context_block in context_blocks:
+            result.extend(context_block._get_format_pieces())
+        return result
+
+    @property
+    def _lilypond_format(self):
+        return '\n'.join(self._get_format_pieces())
+
+    @property
+    def _user_attributes(self):
+        all_attributes = list(vars(self).keys())
+        user_attributes = [x for x in all_attributes if not x.startswith('_')]
+        user_attributes.sort()
+        return user_attributes
 
     ### PUBLIC PROPERTIES ###
 

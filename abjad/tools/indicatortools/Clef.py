@@ -170,33 +170,6 @@ class Clef(AbjadValueObject):
         superclass = super(Clef, self)
         return superclass.__ne__(arg)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _clef_name_to_staff_position_zero(self, clef_name):
-        from abjad.tools import pitchtools
-        return {
-            'treble': pitchtools.NamedPitch('B4'),
-            'alto': pitchtools.NamedPitch('C4'),
-            'tenor': pitchtools.NamedPitch('A3'),
-            'bass': pitchtools.NamedPitch('D3'),
-            'french': pitchtools.NamedPitch('D5'),
-            'soprano': pitchtools.NamedPitch('G4'),
-            'mezzosoprano': pitchtools.NamedPitch('E4'),
-            'baritone': pitchtools.NamedPitch('F3'),
-            'varbaritone': pitchtools.NamedPitch('F3'),
-            'percussion': None,
-            'tab': None,
-            }[clef_name]
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self._name)
-
-    @property
-    def _lilypond_format(self):
-        return r'\clef "{}"'.format(self._name)
-
     ### PRIVATE METHODS ###
 
     def _calculate_middle_c_position(self, clef_name):
@@ -228,6 +201,73 @@ class Clef(AbjadValueObject):
     @classmethod
     def _list_clef_names(cls):
         return list(sorted(cls._clef_name_to_middle_c_position))
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def from_selection(selection):
+        r'''Makes clef from `selection`.
+
+        ..  container:: example
+
+            ::
+
+                >>> numbers = list(range(-12, -6))
+                >>> notes = scoretools.make_notes(numbers, [Duration(1, 4)])
+                >>> staff = Staff(notes)
+                >>> Clef.from_selection(staff)
+                Clef(name='bass')
+
+            Choses between treble and bass based on minimal number of ledger
+            lines.
+
+        Returns new clef.
+        '''
+        from abjad.tools import pitchtools
+        pitches = pitchtools.list_named_pitches_in_expr(selection)
+        diatonic_pitch_numbers = [pitch.diatonic_pitch_number for pitch in pitches]
+        max_diatonic_pitch_number = max(diatonic_pitch_numbers)
+        min_diatonic_pitch_number = min(diatonic_pitch_numbers)
+        lowest_treble_line_pitch = pitchtools.NamedPitch('e', 4)
+        lowest_treble_line_diatonic_pitch_number = \
+            lowest_treble_line_pitch.diatonic_pitch_number
+        candidate_steps_below_treble = \
+            lowest_treble_line_diatonic_pitch_number - min_diatonic_pitch_number
+        highest_bass_line_pitch = pitchtools.NamedPitch('a', 3)
+        highest_bass_line_diatonic_pitch_number = \
+            highest_bass_line_pitch.diatonic_pitch_number
+        candidate_steps_above_bass = max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
+        if candidate_steps_above_bass < candidate_steps_below_treble:
+            return Clef('bass')
+        else:
+            return Clef('treble')
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _clef_name_to_staff_position_zero(self, clef_name):
+        from abjad.tools import pitchtools
+        return {
+            'treble': pitchtools.NamedPitch('B4'),
+            'alto': pitchtools.NamedPitch('C4'),
+            'tenor': pitchtools.NamedPitch('A3'),
+            'bass': pitchtools.NamedPitch('D3'),
+            'french': pitchtools.NamedPitch('D5'),
+            'soprano': pitchtools.NamedPitch('G4'),
+            'mezzosoprano': pitchtools.NamedPitch('E4'),
+            'baritone': pitchtools.NamedPitch('F3'),
+            'varbaritone': pitchtools.NamedPitch('F3'),
+            'percussion': None,
+            'tab': None,
+            }[clef_name]
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self._name)
+
+    @property
+    def _lilypond_format(self):
+        return r'\clef "{}"'.format(self._name)
 
     ### PUBLIC PROPERTIES ###
 
@@ -300,43 +340,3 @@ class Clef(AbjadValueObject):
         Returns string.
         '''
         return self._name
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def from_selection(selection):
-        r'''Makes clef from `selection`.
-
-        ..  container:: example
-
-            ::
-
-                >>> numbers = list(range(-12, -6))
-                >>> notes = scoretools.make_notes(numbers, [Duration(1, 4)])
-                >>> staff = Staff(notes)
-                >>> Clef.from_selection(staff)
-                Clef(name='bass')
-
-            Choses between treble and bass based on minimal number of ledger 
-            lines.
-
-        Returns new clef.
-        '''
-        from abjad.tools import pitchtools
-        pitches = pitchtools.list_named_pitches_in_expr(selection)
-        diatonic_pitch_numbers = [pitch.diatonic_pitch_number for pitch in pitches]
-        max_diatonic_pitch_number = max(diatonic_pitch_numbers)
-        min_diatonic_pitch_number = min(diatonic_pitch_numbers)
-        lowest_treble_line_pitch = pitchtools.NamedPitch('e', 4)
-        lowest_treble_line_diatonic_pitch_number = \
-            lowest_treble_line_pitch.diatonic_pitch_number
-        candidate_steps_below_treble = \
-            lowest_treble_line_diatonic_pitch_number - min_diatonic_pitch_number
-        highest_bass_line_pitch = pitchtools.NamedPitch('a', 3)
-        highest_bass_line_diatonic_pitch_number = \
-            highest_bass_line_pitch.diatonic_pitch_number
-        candidate_steps_above_bass = max_diatonic_pitch_number - highest_bass_line_diatonic_pitch_number
-        if candidate_steps_above_bass < candidate_steps_below_treble:
-            return Clef('bass')
-        else:
-            return Clef('treble')

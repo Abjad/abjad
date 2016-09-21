@@ -84,34 +84,6 @@ class SortedCollection(object):
         self._items = [item for k, item in decorated]
         self._key = key
 
-    ### PRIVATE METHODS ###
-
-    def _delkey(self):
-        self._setkey(None)
-
-    def _getkey(self):
-        return self._key
-
-    def _setkey(self, key):
-        if key is not self._key:
-            self.__init__(self._items, key=key)
-
-    key = property(_getkey, _setkey, _delkey, 'key function')
-
-    def clear(self):
-        r'''Clears sorted collection.
-
-        Returns none.
-        '''
-        self.__init__([], self._key)
-
-    def copy(self):
-        r'''Copies sorted collection.
-
-        Returns new sorted collection.
-        '''
-        return type(self)(self, self._key)
-
     ### SPECIAL METHODS ###
 
     def __contains__(self, item):
@@ -169,6 +141,34 @@ class SortedCollection(object):
         Yields items.
         '''
         return reversed(self._items)
+
+    ### PRIVATE METHODS ###
+
+    def _delkey(self):
+        self._setkey(None)
+
+    def _getkey(self):
+        return self._key
+
+    def _setkey(self, key):
+        if key is not self._key:
+            self.__init__(self._items, key=key)
+
+    key = property(_getkey, _setkey, _delkey, 'key function')
+
+    def clear(self):
+        r'''Clears sorted collection.
+
+        Returns none.
+        '''
+        self.__init__([], self._key)
+
+    def copy(self):
+        r'''Copies sorted collection.
+
+        Returns new sorted collection.
+        '''
+        return type(self)(self, self._key)
 
     ### PUBLIC METHODS ###
 

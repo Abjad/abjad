@@ -123,28 +123,6 @@ class Chord(Leaf):
         '''
         return (self.written_pitches, self.written_duration)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        return '<{}>{}'.format(self._summary, self._formatted_duration)
-
-    @property
-    def _compact_representation_with_tie(self):
-        logical_tie = self._get_logical_tie()
-        if 1 < len(logical_tie) and self is not logical_tie[-1]:
-            return '{} ~'.format(self._body[0])
-        else:
-            return self._body[0]
-
-    @property
-    def _lilypond_format(self):
-        return super(Chord, self)._lilypond_format
-
-    @property
-    def _summary(self):
-        return ' '.join([str(x) for x in self.note_heads])
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -314,6 +292,28 @@ class Chord(Leaf):
         denominator = 2 ** exponent
         reattack_duration = durationtools.Duration(1, denominator)
         return reattack_duration
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _compact_representation(self):
+        return '<{}>{}'.format(self._summary, self._formatted_duration)
+
+    @property
+    def _compact_representation_with_tie(self):
+        logical_tie = self._get_logical_tie()
+        if 1 < len(logical_tie) and self is not logical_tie[-1]:
+            return '{} ~'.format(self._body[0])
+        else:
+            return self._body[0]
+
+    @property
+    def _lilypond_format(self):
+        return super(Chord, self)._lilypond_format
+
+    @property
+    def _summary(self):
+        return ' '.join([str(x) for x in self.note_heads])
 
     ### PUBLIC PROPERTIES ###
 

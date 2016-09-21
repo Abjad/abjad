@@ -144,6 +144,47 @@ class Registration(TypedList):
         superclass = super(Registration, self)
         return superclass.__format__(format_specification=format_specification)
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        values = []
+        for registration_component in self:
+            item = (
+                registration_component.source_pitch_range.one_line_named_pitch_repr,
+                registration_component.target_octave_start_pitch.pitch_number
+                )
+            values.append(item)
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_args_values=[values],
+            repr_is_indented=False,
+            repr_kwargs_names=[],
+            storage_format_args_values=[self._collection],
+            storage_format_kwargs_names=[],
+            )
+
+    def _transpose_pitch(self, pitch):
+        from abjad.tools import pitchtools
+        pitch = pitchtools.NamedPitch(pitch)
+        for component in self:
+            if pitch in component.source_pitch_range:
+                start_pitch = component.target_octave_start_pitch
+                stop_pitch = start_pitch + 12
+                if start_pitch <= pitch < stop_pitch:
+                    return pitch
+                elif pitch < start_pitch:
+                    while pitch < start_pitch:
+                        pitch += 12
+                    return pitch
+                elif stop_pitch <= pitch:
+                    while stop_pitch <= pitch:
+                        pitch -= 12
+                    return pitch
+                else:
+                    raise ValueError
+        raise Exception('how did we get here?')
+        #return pitch
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -167,44 +208,3 @@ class Registration(TypedList):
             contents.append(registration_component._one_line_menu_summary)
         contents_string = ', '.join(contents)
         return '{}: {}'.format(name, contents_string)
-
-    def _get_format_specification(self):
-        values = []
-        for registration_component in self:
-            item = (
-                registration_component.source_pitch_range.one_line_named_pitch_repr,
-                registration_component.target_octave_start_pitch.pitch_number
-                )
-            values.append(item)
-        return systemtools.FormatSpecification(
-            client=self,
-            repr_args_values=[values],
-            repr_is_indented=False,
-            repr_kwargs_names=[],
-            storage_format_args_values=[self._collection],
-            storage_format_kwargs_names=[],
-            )
-
-    ### PRIVATE METHODS ###
-
-    def _transpose_pitch(self, pitch):
-        from abjad.tools import pitchtools
-        pitch = pitchtools.NamedPitch(pitch)
-        for component in self:
-            if pitch in component.source_pitch_range:
-                start_pitch = component.target_octave_start_pitch
-                stop_pitch = start_pitch + 12
-                if start_pitch <= pitch < stop_pitch:
-                    return pitch
-                elif pitch < start_pitch:
-                    while pitch < start_pitch:
-                        pitch += 12
-                    return pitch
-                elif stop_pitch <= pitch:
-                    while stop_pitch <= pitch:
-                        pitch -= 12
-                    return pitch
-                else:
-                    raise ValueError
-        raise Exception('how did we get here?')
-        #return pitch

@@ -146,6 +146,30 @@ class Fermata(AbjadValueObject):
         lilypond_format_bundle.right.articulations.append(str(self))
         return lilypond_format_bundle
 
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_allowable_commands():
+        r'''Lists allowable commands:
+
+        ..  container:: example
+
+            **Example 1.** All allowable commands:
+
+            ::
+
+                >>> commands = indicatortools.Fermata.list_allowable_commands()
+                >>> for command in commands:
+                ...     command
+                'fermata'
+                'longfermata'
+                'shortfermata'
+                'verylongfermata'
+
+        Returns tuple of strings.
+        '''
+        return Fermata._allowable_commands
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -215,27 +239,3 @@ class Fermata(AbjadValueObject):
         Returns score.
         '''
         return self._default_scope
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def list_allowable_commands():
-        r'''Lists allowable commands:
-
-        ..  container:: example
-
-            **Example 1.** All allowable commands:
-
-            ::
-
-                >>> commands = indicatortools.Fermata.list_allowable_commands()
-                >>> for command in commands:
-                ...     command
-                'fermata'
-                'longfermata'
-                'shortfermata'
-                'verylongfermata'
-
-        Returns tuple of strings.
-        '''
-        return Fermata._allowable_commands

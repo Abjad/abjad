@@ -120,35 +120,6 @@ class QTarget(AbjadObject):
             grace_handler=grace_handler,
             )
 
-    ### PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def beats(self):
-        r'''Beats of q-target.
-        '''
-        raise NotImplementedError
-
-    @property
-    def duration_in_ms(self):
-        r'''Duration of q-target in milliseconds.
-
-        Returns duration.
-        '''
-        last_item = self._items[-1]
-        return last_item.offset_in_ms + last_item.duration_in_ms
-
-    @abc.abstractproperty
-    def item_class(self):
-        r'''Item class of q-target.
-        '''
-        raise NotImplementedError
-
-    @property
-    def items(self):
-        r'''Items of q-target.
-        '''
-        return self._items
-
     ### PRIVATE METHODS ###
 
     @abc.abstractmethod
@@ -215,3 +186,32 @@ class QTarget(AbjadObject):
             two_q_events = two.q_grid.leaves[0].q_event_proxies
             while one_q_events:
                 two_q_events.append(one_q_events.pop())
+
+    ### PUBLIC PROPERTIES ###
+
+    @abc.abstractproperty
+    def beats(self):
+        r'''Beats of q-target.
+        '''
+        raise NotImplementedError
+
+    @property
+    def duration_in_ms(self):
+        r'''Duration of q-target in milliseconds.
+
+        Returns duration.
+        '''
+        last_item = self._items[-1]
+        return last_item.offset_in_ms + last_item.duration_in_ms
+
+    @abc.abstractproperty
+    def item_class(self):
+        r'''Item class of q-target.
+        '''
+        raise NotImplementedError
+
+    @property
+    def items(self):
+        r'''Items of q-target.
+        '''
+        return self._items

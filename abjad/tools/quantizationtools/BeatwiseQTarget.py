@@ -20,21 +20,6 @@ class BeatwiseQTarget(QTarget):
     __slots__ = (
         )
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def beats(self):
-        r'''Beats of beatwise q-target.
-        '''
-        return tuple(self.items)
-
-    @property
-    def item_class(self):
-        r'''Item class of beatwise q-target.
-        '''
-        from abjad.tools import quantizationtools
-        return quantizationtools.QTargetBeat
-
     ### PRIVATE METHODS ###
 
     def _notate(
@@ -80,3 +65,18 @@ class BeatwiseQTarget(QTarget):
         attack_point_optimizer(voice)
 
         return voice
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def beats(self):
+        r'''Beats of beatwise q-target.
+        '''
+        return tuple(self.items)
+
+    @property
+    def item_class(self):
+        r'''Item class of beatwise q-target.
+        '''
+        from abjad.tools import quantizationtools
+        return quantizationtools.QTargetBeat

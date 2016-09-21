@@ -114,44 +114,6 @@ class IterationAgent(abctools.AbjadObject):
                     ):
                     yield x
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Gets client of iteration agent.
-
-        ..  container:: example
-
-            **Example 1.** Gets component client:
-
-            ::
-
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> agent = iterate(staff)
-
-            ::
-
-                >>> agent.client
-                Staff("c'4 d'4 e'4 f'4")
-
-        ..  container:: example
-
-            **Example 2.** Gets selection client:
-
-            ::
-
-                >>> staff = Staff("c'4 d' e' f'")
-                >>> agent = iterate(staff[:2])
-
-            ::
-
-                >>> agent.client
-                Selection([Note("c'4"), Note("d'4")])
-
-        Returns component or selection.
-        '''
-        return self._client
-
     ### PUBLIC METHODS ###
 
     def by_class(
@@ -3089,3 +3051,41 @@ class IterationAgent(abctools.AbjadObject):
             else:
                 node, rank = _advance_node_depth_first(node, rank, direction)
         queue.clear()
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Gets client of iteration agent.
+
+        ..  container:: example
+
+            **Example 1.** Gets component client:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> agent = iterate(staff)
+
+            ::
+
+                >>> agent.client
+                Staff("c'4 d'4 e'4 f'4")
+
+        ..  container:: example
+
+            **Example 2.** Gets selection client:
+
+            ::
+
+                >>> staff = Staff("c'4 d' e' f'")
+                >>> agent = iterate(staff[:2])
+
+            ::
+
+                >>> agent.client
+                Selection([Note("c'4"), Note("d'4")])
+
+        Returns component or selection.
+        '''
+        return self._client

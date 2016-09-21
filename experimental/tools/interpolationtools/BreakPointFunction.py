@@ -188,125 +188,6 @@ class BreakPointFunction(AbjadObject):
         '''
         return self._operate(expr, operator.sub)
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def bpf(self):
-        r'''A copy of the BreakPointFunction's internal data-structure:
-
-        ::
-
-            >>> interpolationtools.BreakPointFunction(
-            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).bpf
-            {0.0: (0.25,), 0.5: (1.3,), 1.0: (0.9,)}
-
-        Returns dict.
-        '''
-        return self._bpf.copy()
-
-    @property
-    def dc_bias(self):
-        r'''The mean y-value of a BreakPointFunction:
-
-        ::
-
-            >>> interpolationtools.BreakPointFunction(
-            ...     {0.: 0., 0.25: 0., 0.5: (0.75, 0.25), 1.: 1.}
-            ...     ).dc_bias
-            0.4
-
-        Returns number.
-        '''
-        return self._dc_bias
-
-    @property
-    def gnuplot_format(self):
-        result = [
-            "set border lw 1.5 lc rgb '#606060'",
-            "set output {filename!r}",
-            "set style line 1 lc rgb '#000000' lt 1 lw 2 pt 7 pi -1 ps 1.5",
-            "set terminal {image_format} size {width},{height} enhanced",
-            "set tics scale 0.75",
-            "unset key",
-            "plot '-' using 1:2 with linespoints ls 1",
-        ]
-        for x, ys in sorted(self._bpf.items()):
-            if len(ys) == 2:
-                result.append('\t{} {}'.format(float(x), float(ys[0])))
-                result.append('')
-            result.append('\t{} {}'.format(float(x), float(ys[-1])))
-        return '\n'.join(result)
-
-    @property
-    def x_center(self):
-        r'''The arithmetic mean of a BreakPointFunction's x-range:
-
-        ::
-
-            >>> interpolationtools.BreakPointFunction(
-            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_center
-            0.5
-
-        Returns number.
-        '''
-        return (self.x_range[1] + self.x_range[0]) / 2
-
-    @property
-    def x_range(self):
-        r'''The minimum and maximum x-values of a BreakPointFunction:
-
-        ::
-
-            >>> interpolationtools.BreakPointFunction(
-            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_range
-            (0.0, 1.0)
-
-        Returns pair.
-        '''
-        return self.x_values[0], self.x_values[-1]
-
-    @property
-    def x_values(self):
-        r'''The sorted x-values of a BreakPointFunction:
-
-        ::
-
-            >>> interpolationtools.BreakPointFunction(
-            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_values
-            (0.0, 0.5, 1.0)
-
-        Returns tuple.
-        '''
-        return tuple(sorted(self._bpf))
-
-    @property
-    def y_center(self):
-        r'''The arithmetic mean of a BreakPointFunction's y-range:
-
-        ::
-
-            >>> interpolationtools.BreakPointFunction(
-            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_center
-            0.775
-
-        Returns number.
-        '''
-        return (self.y_range[1] + self.y_range[0]) / 2
-
-    @property
-    def y_range(self):
-        r'''The minimum and maximum y-values of a BreakPointFunction:
-
-        ::
-
-            >>> interpolationtools.BreakPointFunction(
-            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_range
-            (0.25, 1.3)
-
-        Returns pair.
-        '''
-        return self._y_range
-
     ### PRIVATE METHODS ###
 
     def _operate(self, expr, operator):
@@ -852,3 +733,122 @@ class BreakPointFunction(AbjadObject):
             else:
                 tessalated_bpf = tessalated_bpf.concatenate(bpf)
         return tessalated_bpf
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def bpf(self):
+        r'''A copy of the BreakPointFunction's internal data-structure:
+
+        ::
+
+            >>> interpolationtools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).bpf
+            {0.0: (0.25,), 0.5: (1.3,), 1.0: (0.9,)}
+
+        Returns dict.
+        '''
+        return self._bpf.copy()
+
+    @property
+    def dc_bias(self):
+        r'''The mean y-value of a BreakPointFunction:
+
+        ::
+
+            >>> interpolationtools.BreakPointFunction(
+            ...     {0.: 0., 0.25: 0., 0.5: (0.75, 0.25), 1.: 1.}
+            ...     ).dc_bias
+            0.4
+
+        Returns number.
+        '''
+        return self._dc_bias
+
+    @property
+    def gnuplot_format(self):
+        result = [
+            "set border lw 1.5 lc rgb '#606060'",
+            "set output {filename!r}",
+            "set style line 1 lc rgb '#000000' lt 1 lw 2 pt 7 pi -1 ps 1.5",
+            "set terminal {image_format} size {width},{height} enhanced",
+            "set tics scale 0.75",
+            "unset key",
+            "plot '-' using 1:2 with linespoints ls 1",
+        ]
+        for x, ys in sorted(self._bpf.items()):
+            if len(ys) == 2:
+                result.append('\t{} {}'.format(float(x), float(ys[0])))
+                result.append('')
+            result.append('\t{} {}'.format(float(x), float(ys[-1])))
+        return '\n'.join(result)
+
+    @property
+    def x_center(self):
+        r'''The arithmetic mean of a BreakPointFunction's x-range:
+
+        ::
+
+            >>> interpolationtools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_center
+            0.5
+
+        Returns number.
+        '''
+        return (self.x_range[1] + self.x_range[0]) / 2
+
+    @property
+    def x_range(self):
+        r'''The minimum and maximum x-values of a BreakPointFunction:
+
+        ::
+
+            >>> interpolationtools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_range
+            (0.0, 1.0)
+
+        Returns pair.
+        '''
+        return self.x_values[0], self.x_values[-1]
+
+    @property
+    def x_values(self):
+        r'''The sorted x-values of a BreakPointFunction:
+
+        ::
+
+            >>> interpolationtools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).x_values
+            (0.0, 0.5, 1.0)
+
+        Returns tuple.
+        '''
+        return tuple(sorted(self._bpf))
+
+    @property
+    def y_center(self):
+        r'''The arithmetic mean of a BreakPointFunction's y-range:
+
+        ::
+
+            >>> interpolationtools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_center
+            0.775
+
+        Returns number.
+        '''
+        return (self.y_range[1] + self.y_range[0]) / 2
+
+    @property
+    def y_range(self):
+        r'''The minimum and maximum y-values of a BreakPointFunction:
+
+        ::
+
+            >>> interpolationtools.BreakPointFunction(
+            ...     {0.: 0.25, 0.5: 1.3, 1.: 0.9}).y_range
+            (0.25, 1.3)
+
+        Returns pair.
+        '''
+        return self._y_range

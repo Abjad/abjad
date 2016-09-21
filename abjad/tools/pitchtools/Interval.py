@@ -112,23 +112,6 @@ class Interval(AbjadValueObject):
             template_names=['direction_number', 'interval_number'],
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _direction_symbol(self):
-        if self.direction_number == -1:
-            return '-'
-        elif self.direction_number == 0:
-            return ''
-        elif self.direction_number == 1:
-            return '+'
-        else:
-            raise ValueError
-
-    @property
-    def _format_string(self):
-        return str(self.number)
-
     ### PUBLIC METHODS ###
 
     @staticmethod
@@ -167,6 +150,23 @@ class Interval(AbjadValueObject):
             return False
         return bool(Interval._named_interval_quality_abbreviation_regex.match(
             expr))
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _direction_symbol(self):
+        if self.direction_number == -1:
+            return '-'
+        elif self.direction_number == 0:
+            return ''
+        elif self.direction_number == 1:
+            return '+'
+        else:
+            raise ValueError
+
+    @property
+    def _format_string(self):
+        return str(self.number)
 
     ### PUBLIC PROPERTIES ###
 

@@ -348,56 +348,6 @@ class Container(Component):
         '''
         return self._set_item(i, expr)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        if not self:
-            return '{ }'
-        return '{{ {} }}'.format(self._contents_summary)
-
-    @property
-    def _contents_duration(self):
-        if self.is_simultaneous:
-            return max([durationtools.Duration(0)] +
-                [x._preprolated_duration for x in self])
-        else:
-            duration = durationtools.Duration(0)
-            for x in self:
-                duration += x._preprolated_duration
-            return duration
-
-    @property
-    def _contents_summary(self):
-        if 0 < len(self):
-            result = []
-            for x in self._music:
-                if hasattr(x, '_compact_representation_with_tie'):
-                    result.append(x._compact_representation_with_tie)
-                elif hasattr(x, '_compact_representation'):
-                    result.append(x._compact_representation)
-                else:
-                    result.append(str(x))
-            return ' '.join(result)
-        else:
-            return ''
-
-    @property
-    def _duration_in_seconds(self):
-        from abjad.tools import scoretools
-        if self.is_simultaneous:
-            return max([durationtools.Duration(0)] +
-                [x._get_duration(in_seconds=True) for x in self])
-        else:
-            duration = durationtools.Duration(0)
-            for leaf in iterate(self).by_class(scoretools.Leaf):
-                duration += leaf._get_duration(in_seconds=True)
-            return duration
-
-    @property
-    def _preprolated_duration(self):
-        return self._contents_duration
-
     ### PRIVATE METHODS ###
 
     def _get_abbreviated_string_format(self):
@@ -752,173 +702,6 @@ class Container(Component):
         for indicator in expr_indicators:
             if hasattr(indicator, '_update_effective_context'):
                 indicator._update_effective_context()
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def is_simultaneous(self):
-        r'''Is true when container is simultaneous. Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Gets simultaneity status of container:
-
-            ::
-
-                >>> container = Container()
-                >>> container.append(Voice("c'8 d'8 e'8"))
-                >>> container.append(Voice('g4.'))
-                >>> show(container) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(container))
-                {
-                    \new Voice {
-                        c'8
-                        d'8
-                        e'8
-                    }
-                    \new Voice {
-                        g4.
-                    }
-                }
-
-            ::
-
-                >>> container.is_simultaneous
-                False
-
-        ..  container:: example
-
-            **Example 2.** Sets simultaneity status of container:
-
-            ::
-
-                >>> container = Container()
-                >>> container.append(Voice("c'8 d'8 e'8"))
-                >>> container.append(Voice('g4.'))
-                >>> show(container) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(container))
-                {
-                    \new Voice {
-                        c'8
-                        d'8
-                        e'8
-                    }
-                    \new Voice {
-                        g4.
-                    }
-                }
-
-            ::
-
-                >>> container.is_simultaneous = True
-                >>> show(container) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(container))
-                <<
-                    \new Voice {
-                        c'8
-                        d'8
-                        e'8
-                    }
-                    \new Voice {
-                        g4.
-                    }
-                >>
-
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
-        '''
-        return self._is_simultaneous
-
-    @is_simultaneous.setter
-    def is_simultaneous(self, expr):
-        from abjad.tools import scoretools
-        if expr is None:
-            return
-        assert isinstance(expr, bool), repr(expr)
-        prototype = scoretools.Context
-        if expr and not all(isinstance(x, prototype) for x in self):
-            message = 'simultaneous containers must contain only contexts.'
-            raise ValueError(message)
-        self._is_simultaneous = expr
-        self._update_later(offsets=True)
-
-    @property
-    def name(self):
-        r'''Gets and sets name of container.
-
-        ..  container:: example
-
-            **Example 1.** Gets container name:
-
-            ::
-
-                >>> container = Container("c'4 d'4 e'4 f'4")
-                >>> show(container) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(container)
-                {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-
-            ::
-
-                >>> container.name is None
-                True
-
-        ..  container:: example
-
-            **Example 2.** Sets container name:
-
-            ::
-
-                >>> container = Container("c'4 d'4 e'4 f'4", name='Special')
-                >>> show(container) # doctest: +SKIP
-
-            ::
-
-                >>> container.name
-                'Special'
-
-            Container name does not appear in LilyPond output:
-
-            ::
-
-                >>> f(container)
-                {
-                    c'4
-                    d'4
-                    e'4
-                    f'4
-                }
-
-        Defaults to none.
-
-        Set to string or none.
-
-        Returns string or none.
-        '''
-        return Component.name.fget(self)
-
-    @name.setter
-    def name(self, arg):
-        return Component.name.fset(self, arg)
 
     ### PRIVATE METHODS ###
 
@@ -1692,3 +1475,220 @@ class Container(Component):
 #                music)
 #            selection = selectiontools.Selection(music=music)
 #        return selection
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _compact_representation(self):
+        if not self:
+            return '{ }'
+        return '{{ {} }}'.format(self._contents_summary)
+
+    @property
+    def _contents_duration(self):
+        if self.is_simultaneous:
+            return max([durationtools.Duration(0)] +
+                [x._preprolated_duration for x in self])
+        else:
+            duration = durationtools.Duration(0)
+            for x in self:
+                duration += x._preprolated_duration
+            return duration
+
+    @property
+    def _contents_summary(self):
+        if 0 < len(self):
+            result = []
+            for x in self._music:
+                if hasattr(x, '_compact_representation_with_tie'):
+                    result.append(x._compact_representation_with_tie)
+                elif hasattr(x, '_compact_representation'):
+                    result.append(x._compact_representation)
+                else:
+                    result.append(str(x))
+            return ' '.join(result)
+        else:
+            return ''
+
+    @property
+    def _duration_in_seconds(self):
+        from abjad.tools import scoretools
+        if self.is_simultaneous:
+            return max([durationtools.Duration(0)] +
+                [x._get_duration(in_seconds=True) for x in self])
+        else:
+            duration = durationtools.Duration(0)
+            for leaf in iterate(self).by_class(scoretools.Leaf):
+                duration += leaf._get_duration(in_seconds=True)
+            return duration
+
+    @property
+    def _preprolated_duration(self):
+        return self._contents_duration
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def is_simultaneous(self):
+        r'''Is true when container is simultaneous. Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Gets simultaneity status of container:
+
+            ::
+
+                >>> container = Container()
+                >>> container.append(Voice("c'8 d'8 e'8"))
+                >>> container.append(Voice('g4.'))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(container))
+                {
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \new Voice {
+                        g4.
+                    }
+                }
+
+            ::
+
+                >>> container.is_simultaneous
+                False
+
+        ..  container:: example
+
+            **Example 2.** Sets simultaneity status of container:
+
+            ::
+
+                >>> container = Container()
+                >>> container.append(Voice("c'8 d'8 e'8"))
+                >>> container.append(Voice('g4.'))
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(container))
+                {
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \new Voice {
+                        g4.
+                    }
+                }
+
+            ::
+
+                >>> container.is_simultaneous = True
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(container))
+                <<
+                    \new Voice {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \new Voice {
+                        g4.
+                    }
+                >>
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._is_simultaneous
+
+    @is_simultaneous.setter
+    def is_simultaneous(self, expr):
+        from abjad.tools import scoretools
+        if expr is None:
+            return
+        assert isinstance(expr, bool), repr(expr)
+        prototype = scoretools.Context
+        if expr and not all(isinstance(x, prototype) for x in self):
+            message = 'simultaneous containers must contain only contexts.'
+            raise ValueError(message)
+        self._is_simultaneous = expr
+        self._update_later(offsets=True)
+
+    @property
+    def name(self):
+        r'''Gets and sets name of container.
+
+        ..  container:: example
+
+            **Example 1.** Gets container name:
+
+            ::
+
+                >>> container = Container("c'4 d'4 e'4 f'4")
+                >>> show(container) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(container)
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+            ::
+
+                >>> container.name is None
+                True
+
+        ..  container:: example
+
+            **Example 2.** Sets container name:
+
+            ::
+
+                >>> container = Container("c'4 d'4 e'4 f'4", name='Special')
+                >>> show(container) # doctest: +SKIP
+
+            ::
+
+                >>> container.name
+                'Special'
+
+            Container name does not appear in LilyPond output:
+
+            ::
+
+                >>> f(container)
+                {
+                    c'4
+                    d'4
+                    e'4
+                    f'4
+                }
+
+        Defaults to none.
+
+        Set to string or none.
+
+        Returns string or none.
+        '''
+        return Component.name.fget(self)
+
+    @name.setter
+    def name(self, arg):
+        return Component.name.fset(self, arg)

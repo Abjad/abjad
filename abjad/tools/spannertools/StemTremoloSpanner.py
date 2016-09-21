@@ -44,7 +44,7 @@ class StemTremoloSpanner(Spanner):
             minimum_duration = durationtools.Duration(minimum_duration)
         self._minimum_duration = minimum_duration
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
     def _copy_keyword_args(self, new):
         new._minimum_duration = self.minimum_duration

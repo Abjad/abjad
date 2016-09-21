@@ -70,12 +70,6 @@ class TwelveToneRow(PitchClassSegment):
         '''
         return PitchClassSegment(self) * expr
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_string(self):
-        return ', '.join([str(abs(pc)) for pc in self])
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -87,7 +81,7 @@ class TwelveToneRow(PitchClassSegment):
             message = message.format(pitch_classes)
             raise ValueError(message)
 
-    ### PUBLIC METHODS ###d
+    ### PUBLIC METHODS ###
 
     @classmethod
     def from_selection(
@@ -109,7 +103,7 @@ class TwelveToneRow(PitchClassSegment):
             **Example 1.** Inverts twelve-tone row about first pitch-class
             in row when `axis` is none:
 
-            :: 
+            ::
 
                 >>> row = pitchtools.TwelveToneRow(
                 ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
@@ -126,7 +120,7 @@ class TwelveToneRow(PitchClassSegment):
 
             **Example 2.** Inverts twelve-tone row about pitch-class 1:
 
-            :: 
+            ::
 
                 >>> row = pitchtools.TwelveToneRow(
                 ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
@@ -143,7 +137,7 @@ class TwelveToneRow(PitchClassSegment):
 
             **Example 3.** Inverts twelve-tone row about pitch-class 0:
 
-            :: 
+            ::
 
                 >>> row = pitchtools.TwelveToneRow(
                 ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
@@ -158,7 +152,7 @@ class TwelveToneRow(PitchClassSegment):
 
             **Example 4.** Inverts twelve-tone row about pitch-class 5:
 
-            :: 
+            ::
 
                 >>> row = pitchtools.TwelveToneRow(
                 ...     [1, 11, 9, 3, 6, 7, 5, 4, 10, 2, 8, 0]
@@ -211,3 +205,9 @@ class TwelveToneRow(PitchClassSegment):
                     raise TypeError(message)
             result.extend(matching_pitches)
         return result
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_string(self):
+        return ', '.join([str(abs(pc)) for pc in self])

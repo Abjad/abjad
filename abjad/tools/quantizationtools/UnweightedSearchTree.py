@@ -110,6 +110,40 @@ class UnweightedSearchTree(SearchTree):
 
     __slots__ = ()
 
+    ### PRIVATE METHODS ###
+
+    def _find_leaf_subdivisions(self, parentage_ratios):
+        parentage = [x[1] for x in parentage_ratios[1:]]
+        if not parentage:
+            return tuple((1,) * x for x in sorted(self._definition.keys()))
+        node = self._definition[parentage[0]]
+        for item in parentage[1:]:
+            node = node[item]
+            if node is None:
+                return ()
+        if node is None:
+            return ()
+        return tuple((1,) * x for x in sorted(node.keys()))
+
+    def _is_valid_definition(self, definition):
+        def recurse(n):
+            results = []
+            for key in n:
+                if not isinstance(key, int) or \
+                    not 0 < key or \
+                    not mathtools.divisors(key) == [1, key]:
+                    results.append(False)
+                elif not isinstance(n[key], (dict, type(None))):
+                    results.append(False)
+                elif isinstance(n[key], dict) and not recurse(n[key]):
+                    results.append(False)
+                else:
+                    results.append(True)
+            return results
+        if not isinstance(definition, dict) or not len(definition):
+            return False
+        return all(recurse(definition))
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -160,37 +194,3 @@ class UnweightedSearchTree(SearchTree):
             11: None,             # 1/11
             13: None,             # 1/13
             }
-
-    ### PRIVATE METHODS ###
-
-    def _find_leaf_subdivisions(self, parentage_ratios):
-        parentage = [x[1] for x in parentage_ratios[1:]]
-        if not parentage:
-            return tuple((1,) * x for x in sorted(self._definition.keys()))
-        node = self._definition[parentage[0]]
-        for item in parentage[1:]:
-            node = node[item]
-            if node is None:
-                return ()
-        if node is None:
-            return ()
-        return tuple((1,) * x for x in sorted(node.keys()))
-
-    def _is_valid_definition(self, definition):
-        def recurse(n):
-            results = []
-            for key in n:
-                if not isinstance(key, int) or \
-                    not 0 < key or \
-                    not mathtools.divisors(key) == [1, key]:
-                    results.append(False)
-                elif not isinstance(n[key], (dict, type(None))):
-                    results.append(False)
-                elif isinstance(n[key], dict) and not recurse(n[key]):
-                    results.append(False)
-                else:
-                    results.append(True)
-            return results
-        if not isinstance(definition, dict) or not len(definition):
-            return False
-        return all(recurse(definition))

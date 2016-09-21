@@ -55,12 +55,6 @@ class Arpeggio(AbjadValueObject):
             assert direction in (Up, Down, Center)
         self._direction = direction
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return r'\arpeggio'
-
     ### PRIVATE METHODS ###
 
     def _get_lilypond_format_bundle(self, component=None):
@@ -74,6 +68,12 @@ class Arpeggio(AbjadValueObject):
                 command = r'\arpeggioArrowDown'
             lilypond_format_bundle.before.commands.append(command)
         return lilypond_format_bundle
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        return r'\arpeggio'
 
     ### PUBLIC PROPERTIES ###
 

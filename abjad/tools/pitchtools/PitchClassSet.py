@@ -20,7 +20,7 @@ class PitchClassSet(Set):
             PitchClassSet([6, 7, 10, 10.5])
 
     ..  container:: example
-        
+
         **Example 2.** Named pitch-class set:
 
         ::
@@ -60,23 +60,6 @@ class PitchClassSet(Set):
         result = list(self)
         result.sort(helper)
         return result
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitchClass
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitchClass
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.PitchClass
 
     ### PUBLIC METHODS ###
 
@@ -213,3 +196,20 @@ class PitchClassSet(Set):
         '''
         items = (pitch_class + expr for pitch_class in self)
         return new(self, items=items)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitchClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitchClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.PitchClass

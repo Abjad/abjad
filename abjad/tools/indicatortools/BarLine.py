@@ -52,6 +52,15 @@ class BarLine(AbjadValueObject):
         self._abbreviation = abbreviation
         self._default_scope = scoretools.Staff
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        return systemtools.FormatSpecification(
+            client=self,
+            storage_format_is_indented=False,
+            storage_format_args_values=[self.abbreviation],
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -61,13 +70,6 @@ class BarLine(AbjadValueObject):
     @property
     def _lilypond_format(self):
         return r'\bar "{}"'.format(self.abbreviation)
-
-    def _get_format_specification(self):
-        return systemtools.FormatSpecification(
-            client=self,
-            storage_format_is_indented=False,
-            storage_format_args_values=[self.abbreviation],
-            )
 
     ## PUBLIC PROPERTIES ##
 

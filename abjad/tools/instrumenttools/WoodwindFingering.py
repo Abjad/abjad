@@ -258,78 +258,6 @@ class WoodwindFingering(AbjadObject):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _valid_instrument_names(self):
-        return (
-            'piccolo',
-            'flute',
-            'oboe',
-            'clarinet',
-            'bass-clarinet',
-            'saxophone',
-            'bassoon',
-            'contrabassoon',
-            )
-
-     ### PUBLIC PROPERTIES ###
-
-    @property
-    def center_column(self):
-        r'''Tuple of contents of key strings in center
-        column key group:
-
-    ::
-
-        >>> woodwind_fingering.center_column
-        ('one', 'two', 'three', 'five')
-
-    Returns tuple.
-        '''
-        return self._center_column
-
-    @property
-    def instrument_name(self):
-        r'''String of valid woodwind instrument name:
-
-    ::
-
-        >>> woodwind_fingering.instrument_name
-        'clarinet'
-
-    Returns string.
-        '''
-        return self._instrument_name
-
-    @property
-    def left_hand(self):
-        r'''Tuple of contents of key strings in left
-        hand key group:
-
-    ::
-
-        >>> woodwind_fingering.left_hand
-        ('R', 'thumb')
-
-    Returns tuple.
-        '''
-        return self._left_hand
-
-    @property
-    def right_hand(self):
-        r'''Tuple of contents of key strings in right
-        hand key group:
-
-    ::
-
-        >>> woodwind_fingering.right_hand
-        ('e',)
-
-    Returns tuple.
-        '''
-        return self._right_hand
-
     ### PUBLIC METHODS ###
 
     def print_guide(self):
@@ -444,3 +372,75 @@ class WoodwindFingering(AbjadObject):
                 ]
             for line in lines:
                 print(line)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _valid_instrument_names(self):
+        return (
+            'piccolo',
+            'flute',
+            'oboe',
+            'clarinet',
+            'bass-clarinet',
+            'saxophone',
+            'bassoon',
+            'contrabassoon',
+            )
+
+     ### PUBLIC PROPERTIES ###
+
+    @property
+    def center_column(self):
+        r'''Tuple of contents of key strings in center
+        column key group:
+
+    ::
+
+        >>> woodwind_fingering.center_column
+        ('one', 'two', 'three', 'five')
+
+    Returns tuple.
+        '''
+        return self._center_column
+
+    @property
+    def instrument_name(self):
+        r'''String of valid woodwind instrument name:
+
+    ::
+
+        >>> woodwind_fingering.instrument_name
+        'clarinet'
+
+    Returns string.
+        '''
+        return self._instrument_name
+
+    @property
+    def left_hand(self):
+        r'''Tuple of contents of key strings in left
+        hand key group:
+
+    ::
+
+        >>> woodwind_fingering.left_hand
+        ('R', 'thumb')
+
+    Returns tuple.
+        '''
+        return self._left_hand
+
+    @property
+    def right_hand(self):
+        r'''Tuple of contents of key strings in right
+        hand key group:
+
+    ::
+
+        >>> woodwind_fingering.right_hand
+        ('e',)
+
+    Returns tuple.
+        '''
+        return self._right_hand

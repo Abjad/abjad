@@ -68,7 +68,7 @@ class ContextBlock(Block):
         self._consists_commands = []
         self._remove_commands = []
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
         from abjad.tools import systemtools

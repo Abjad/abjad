@@ -24,6 +24,17 @@ class _SolutionNode(AbjadObject):
     def __repr__(self):
         return '%s(%s)' % (type(self).__name__, self.value)
 
+    ### PUBLIC METHODS ###
+
+    def append(self, arg):
+        self.children.append(arg)
+
+    def extend(self, arg):
+        self.children.extend(arg)
+
+    def pop(self, i=-1):
+        return self.children.pop(i)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -43,14 +54,3 @@ class _SolutionNode(AbjadObject):
             node = node.parent
             result.append(node.value)
         return tuple(reversed(result))
-
-    ### PUBLIC METHODS ###
-
-    def append(self, arg):
-        self.children.append(arg)
-
-    def extend(self, arg):
-        self.children.extend(arg)
-
-    def pop(self, i=-1):
-        return self.children.pop(i)

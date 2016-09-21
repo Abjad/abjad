@@ -230,95 +230,6 @@ class Sequence(AbjadObject):
         string = string.format(type(self).__name__, items)
         return string
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def degree_of_rotational_symmetry(self):
-        '''Gets degree of rotational symmetry.
-
-        ..  container:: example
-
-            ::
-
-                >>> Sequence((1, 1, 1, 1, 1, 1)).degree_of_rotational_symmetry
-                6
-
-            ::
-
-                >>> Sequence((1, 2, 1, 2, 1, 2)).degree_of_rotational_symmetry
-                3
-
-            ::
-
-                >>> Sequence((1, 2, 3, 1, 2, 3)).degree_of_rotational_symmetry
-                2
-
-            ::
-
-                >>> Sequence((1, 2, 3, 4, 5, 6)).degree_of_rotational_symmetry
-                1
-
-            ::
-
-                >>> Sequence().degree_of_rotational_symmetry
-                1
-
-        Returns positive integer.
-        '''
-        degree_of_rotational_symmetry = 0
-        for index in range(len(self)):
-            rotation = self[index:] + self[:index]
-            if rotation == self:
-                degree_of_rotational_symmetry += 1
-        degree_of_rotational_symmetry = degree_of_rotational_symmetry or 1
-        return degree_of_rotational_symmetry
-
-    @property
-    def items(self):
-        r'''Gets sequence items.
-
-        Returns tuple.
-        '''
-        return self._items
-
-    @property
-    def period_of_rotation(self):
-        '''Gets period of rotation.
-
-        ..  container:: example
-
-            ::
-
-                >>> Sequence((1, 2, 3, 4, 5, 6)).period_of_rotation
-                6
-
-            ::
-
-                >>> Sequence((1, 2, 3, 1, 2, 3)).period_of_rotation
-                3
-
-            ::
-
-                >>> Sequence((1, 2, 1, 2, 1, 2)).period_of_rotation
-                2
-
-            ::
-
-                >>> Sequence((1, 1, 1, 1, 1, 1)).period_of_rotation
-                1
-
-            ::
-
-                >>> Sequence().period_of_rotation
-                0
-
-        Defined equal to length of sequence divided by degree of rotational
-        symmetry of sequence.
-
-        Returns positive integer.
-        '''
-        return len(self) // self.degree_of_rotational_symmetry
-
     ### PUBLIC METHODS ###
 
     def flatten(self, classes=None, depth=-1, indices=None):
@@ -762,7 +673,7 @@ class Sequence(AbjadObject):
 
             ::
 
-                
+
                 >>> sequence_ = Sequence(range(16))
                 >>> parts = sequence_.partition_by_counts(
                 ...     [3],
@@ -927,7 +838,7 @@ class Sequence(AbjadObject):
 
             ::
 
-                
+
                 >>> sequence_ = Sequence(range(16))
                 >>> parts = sequence_.partition_by_counts(
                 ...     [3],
@@ -1229,5 +1140,93 @@ class Sequence(AbjadObject):
         '''
         return sum(self)
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def degree_of_rotational_symmetry(self):
+        '''Gets degree of rotational symmetry.
+
+        ..  container:: example
+
+            ::
+
+                >>> Sequence((1, 1, 1, 1, 1, 1)).degree_of_rotational_symmetry
+                6
+
+            ::
+
+                >>> Sequence((1, 2, 1, 2, 1, 2)).degree_of_rotational_symmetry
+                3
+
+            ::
+
+                >>> Sequence((1, 2, 3, 1, 2, 3)).degree_of_rotational_symmetry
+                2
+
+            ::
+
+                >>> Sequence((1, 2, 3, 4, 5, 6)).degree_of_rotational_symmetry
+                1
+
+            ::
+
+                >>> Sequence().degree_of_rotational_symmetry
+                1
+
+        Returns positive integer.
+        '''
+        degree_of_rotational_symmetry = 0
+        for index in range(len(self)):
+            rotation = self[index:] + self[:index]
+            if rotation == self:
+                degree_of_rotational_symmetry += 1
+        degree_of_rotational_symmetry = degree_of_rotational_symmetry or 1
+        return degree_of_rotational_symmetry
+
+    @property
+    def items(self):
+        r'''Gets sequence items.
+
+        Returns tuple.
+        '''
+        return self._items
+
+    @property
+    def period_of_rotation(self):
+        '''Gets period of rotation.
+
+        ..  container:: example
+
+            ::
+
+                >>> Sequence((1, 2, 3, 4, 5, 6)).period_of_rotation
+                6
+
+            ::
+
+                >>> Sequence((1, 2, 3, 1, 2, 3)).period_of_rotation
+                3
+
+            ::
+
+                >>> Sequence((1, 2, 1, 2, 1, 2)).period_of_rotation
+                2
+
+            ::
+
+                >>> Sequence((1, 1, 1, 1, 1, 1)).period_of_rotation
+                1
+
+            ::
+
+                >>> Sequence().period_of_rotation
+                0
+
+        Defined equal to length of sequence divided by degree of rotational
+        symmetry of sequence.
+
+        Returns positive integer.
+        '''
+        return len(self) // self.degree_of_rotational_symmetry
 
 collections.Sequence.register(Sequence)

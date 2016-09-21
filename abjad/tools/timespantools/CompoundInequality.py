@@ -72,30 +72,6 @@ class CompoundInequality(TypedList):
             )
         self._logical_operator = logical_operator
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_coercer(self):
-        from abjad.tools import timespantools
-        def coerce_(expr):
-            if isinstance(expr, str):
-                return timespantools.Inequality(expr)
-            elif isinstance(expr, timespantools.Inequality):
-                return expr
-            elif isinstance(expr, timespantools.CompoundInequality):
-                return expr
-            else:
-                raise TypeError(expr)
-        return coerce_
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def logical_operator(self):
-        r'''Compound inequality logical operator.
-        '''
-        return self._logical_operator
-
     ### PUBLIC METHODS ###
 
     def evaluate(
@@ -215,3 +191,27 @@ class CompoundInequality(TypedList):
             message = mesage.format(self.logical_operator)
             raise ValueError(message)
         return result
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        from abjad.tools import timespantools
+        def coerce_(expr):
+            if isinstance(expr, str):
+                return timespantools.Inequality(expr)
+            elif isinstance(expr, timespantools.Inequality):
+                return expr
+            elif isinstance(expr, timespantools.CompoundInequality):
+                return expr
+            else:
+                raise TypeError(expr)
+        return coerce_
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def logical_operator(self):
+        r'''Compound inequality logical operator.
+        '''
+        return self._logical_operator

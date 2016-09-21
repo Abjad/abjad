@@ -211,6 +211,227 @@ class PitchArrayRow(AbjadObject):
         result = ' '.join(result)
         return result
 
+    ### PUBLIC METHODS ###
+
+    def append(self, cell):
+        r'''Appends `cell` to pitch array row.
+
+        Returns none.
+        '''
+        from abjad.tools import pitchtools
+        assert isinstance(cell, pitchtools.PitchArrayCell), repr(cell)
+        cell._parent_row = self
+        self._cells.append(cell)
+
+    def apply_pitches(self, pitch_tokens):
+        r'''Applies `pitch_tokens` to pitch cells in pitch array row.
+
+        Returns none.
+        '''
+        pitch_tokens = pitch_tokens[:]
+        if pitch_tokens:
+            for cell in self.cells:
+                if cell.pitches:
+                    cell.pitches = [pitch_tokens.pop(0)]
+        else:
+            self.empty_pitches()
+
+    def copy_subrow(self, start=None, stop=None):
+        r'''Copies subrow of pitch array row from `start` to `stop`.
+
+        Returns new pitch array row.
+        '''
+        arg = slice(start, stop)
+        start, stop, step = arg.indices(self.width)
+        if not step == 1:
+            message = 'step no implemented.'
+            raise NotImplementedError(message)
+        column_indices = set(range(start, stop, step))
+        row = PitchArrayRow([])
+        cells = self[arg]
+        new_cells = []
+        for cell in cells:
+            if not cell in new_cells:
+                trim = [
+                    x for x in cell.column_indices if x not in column_indices]
+                new_width = cell.width - len(trim)
+                new_cell = copy.copy(cell)
+                new_cell._width = new_width
+                new_cells.append(new_cell)
+        row.extend(new_cells)
+        return row
+
+    def empty_pitches(self):
+        r'''Empties pitches in pitch array row.
+
+        Returns none.
+        '''
+        for cell in self.cells:
+            cell.pitches = []
+
+    def extend(self, cells):
+        r'''Extends pitch array row with `cells`.
+
+        Returns none.
+        '''
+        for cell in cells:
+            self.append(cell)
+
+    def has_spanning_cell_over_index(self, i):
+        r'''Is true when pitch array row has one or more cells spanning over
+        index `i`. Otherwise false.
+
+        Returns true or false.
+        '''
+        try:
+            cell = self[i]
+            return cell.column_indices[0] < i
+        except IndexError:
+            return False
+
+    def index(self, cell):
+        r'''Gets index of pitch array `cell` in pitch array row.
+
+        Retunrs nonnegative integer.
+        '''
+        return self._cells.index(cell)
+
+    def merge(self, cells):
+        r'''Merges `cells`.
+
+        Returns pitch array cell.
+        '''
+        from abjad.tools import pitchtools
+        column_indices = []
+        pitches = []
+        width = 0
+        for cell in cells:
+            if not isinstance(cell, pitchtools.PitchArrayCell):
+                raise TypeError
+            if not cell.parent_row is self:
+                message = 'cells must belong to row.'
+                raise ValueError(message)
+            column_indices.extend(cell.column_indices)
+            if cell.pitches is not None:
+                pitches.extend(cell.pitches)
+            width += cell.width
+        start = min(column_indices)
+        stop = start + len(column_indices)
+        strict_series = list(range(start, stop))
+        if not column_indices == strict_series:
+            message = 'cells must be contiguous.'
+            raise ValueError(message)
+        first_cell = cells[0]
+        for cell in cells[1:]:
+            self.remove(cell)
+        first_cell._pitches = pitches
+        first_cell._width = width
+        return first_cell
+
+    def pad_to_width(self, width):
+        r'''Pads pitch array row to `width`.
+
+        Returns none.
+        '''
+        from abjad.tools import pitchtools
+        self_width = self.width
+        if width < self_width:
+            message = 'pad width must not be less than row width.'
+            raise ValueError(message)
+        missing_width = width - self_width
+        for i in range(missing_width):
+            cell = pitchtools.PitchArrayCell()
+            self.append(cell)
+
+    def pop(self, cell_index):
+        r'''Pops cell `cell_index` from pitch array row.
+
+        Returns pitch array cell.
+        '''
+        cell = self.pop(cell_index)
+        cell._parent_row = None
+        return cell
+
+    def remove(self, cell):
+        r'''Removes `cell` form pitch array row.
+
+        Returns none.
+        '''
+        for i, x in enumerate(self.cells):
+            if x is cell:
+                self._cells.pop(i)
+                break
+        cell._parent_row = None
+
+    def to_measure(self, cell_duration_denominator=8):
+        r'''Changes pitch array row to measures.
+
+        Sets time signature numerators equal to pitch array row widths and time
+        signature denominators equal to `cell_duration_denominator`.
+
+        ..  container:: example
+
+            **Example 1.** Changes row to measure:
+
+            ::
+
+                >>> array = pitchtools.PitchArray([
+                ...     [1, (2, 1), ([-2, -1.5], 2)],
+                ...     [(7, 2), (6, 1), 1]])
+
+            ::
+
+                >>> print(array)
+                [  ] [d'] [bf bqf    ]
+                [g'     ] [fs'   ] [ ]
+
+            ::
+
+                >>> measure = array.rows[0].to_measure()
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(measure)
+                {
+                    \time 4/8
+                    r8
+                    d'8
+                    <bf bqf>4
+                }
+
+        Returns measure.
+        '''
+        from abjad.tools import scoretools
+        time_signature = indicatortools.TimeSignature(
+            (self.width, cell_duration_denominator))
+        measure = scoretools.Measure(time_signature, [])
+        basic_cell_duration = \
+            durationtools.Duration(1, cell_duration_denominator)
+        measure_pitches, measure_durations = [], []
+        for cell in self.cells:
+            cell_pitches = cell.pitches
+            if not cell_pitches:
+                measure_pitches.append(None)
+            elif len(cell_pitches) == 1:
+                measure_pitches.append(cell_pitches[0])
+            else:
+                measure_pitches.append(cell_pitches)
+            measure_duration = cell.width * basic_cell_duration
+            measure_durations.append(measure_duration)
+        leaves = scoretools.make_leaves(measure_pitches, measure_durations)
+        measure.extend(leaves)
+        return measure
+
+    def withdraw(self):
+        r'''Withdraws pitch array row from parent pitch array.
+
+        Returns pitch array row.
+        '''
+        if self.parent_array is not None:
+            self.parent_array.remove_row(self)
+        return self
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -371,224 +592,3 @@ class PitchArrayRow(AbjadObject):
         Returns nonnegative integer.
         '''
         return sum([cell.width for cell in self.cells])
-
-    ### PUBLIC METHODS ###
-
-    def append(self, cell):
-        r'''Appends `cell` to pitch array row.
-
-        Returns none.
-        '''
-        from abjad.tools import pitchtools
-        assert isinstance(cell, pitchtools.PitchArrayCell), repr(cell)
-        cell._parent_row = self
-        self._cells.append(cell)
-
-    def apply_pitches(self, pitch_tokens):
-        r'''Applies `pitch_tokens` to pitch cells in pitch array row.
-
-        Returns none.
-        '''
-        pitch_tokens = pitch_tokens[:]
-        if pitch_tokens:
-            for cell in self.cells:
-                if cell.pitches:
-                    cell.pitches = [pitch_tokens.pop(0)]
-        else:
-            self.empty_pitches()
-
-    def copy_subrow(self, start=None, stop=None):
-        r'''Copies subrow of pitch array row from `start` to `stop`.
-
-        Returns new pitch array row.
-        '''
-        arg = slice(start, stop)
-        start, stop, step = arg.indices(self.width)
-        if not step == 1:
-            message = 'step no implemented.'
-            raise NotImplementedError(message)
-        column_indices = set(range(start, stop, step))
-        row = PitchArrayRow([])
-        cells = self[arg]
-        new_cells = []
-        for cell in cells:
-            if not cell in new_cells:
-                trim = [
-                    x for x in cell.column_indices if x not in column_indices]
-                new_width = cell.width - len(trim)
-                new_cell = copy.copy(cell)
-                new_cell._width = new_width
-                new_cells.append(new_cell)
-        row.extend(new_cells)
-        return row
-
-    def empty_pitches(self):
-        r'''Empties pitches in pitch array row.
-
-        Returns none.
-        '''
-        for cell in self.cells:
-            cell.pitches = []
-
-    def extend(self, cells):
-        r'''Extends pitch array row with `cells`.
-
-        Returns none.
-        '''
-        for cell in cells:
-            self.append(cell)
-
-    def has_spanning_cell_over_index(self, i):
-        r'''Is true when pitch array row has one or more cells spanning over
-        index `i`. Otherwise false.
-
-        Returns true or false.
-        '''
-        try:
-            cell = self[i]
-            return cell.column_indices[0] < i
-        except IndexError:
-            return False
-
-    def index(self, cell):
-        r'''Gets index of pitch array `cell` in pitch array row.
-
-        Retunrs nonnegative integer.
-        '''
-        return self._cells.index(cell)
-
-    def merge(self, cells):
-        r'''Merges `cells`.
-
-        Returns pitch array cell.
-        '''
-        from abjad.tools import pitchtools
-        column_indices = []
-        pitches = []
-        width = 0
-        for cell in cells:
-            if not isinstance(cell, pitchtools.PitchArrayCell):
-                raise TypeError
-            if not cell.parent_row is self:
-                message = 'cells must belong to row.'
-                raise ValueError(message)
-            column_indices.extend(cell.column_indices)
-            if cell.pitches is not None:
-                pitches.extend(cell.pitches)
-            width += cell.width
-        start = min(column_indices)
-        stop = start + len(column_indices)
-        strict_series = list(range(start, stop))
-        if not column_indices == strict_series:
-            message = 'cells must be contiguous.'
-            raise ValueError(message)
-        first_cell = cells[0]
-        for cell in cells[1:]:
-            self.remove(cell)
-        first_cell._pitches = pitches
-        first_cell._width = width
-        return first_cell
-
-    def pad_to_width(self, width):
-        r'''Pads pitch array row to `width`.
-
-        Returns none.
-        '''
-        from abjad.tools import pitchtools
-        self_width = self.width
-        if width < self_width:
-            message = 'pad width must not be less than row width.'
-            raise ValueError(message)
-        missing_width = width - self_width
-        for i in range(missing_width):
-            cell = pitchtools.PitchArrayCell()
-            self.append(cell)
-
-    def pop(self, cell_index):
-        r'''Pops cell `cell_index` from pitch array row.
-
-        Returns pitch array cell.
-        '''
-        cell = self.pop(cell_index)
-        cell._parent_row = None
-        return cell
-
-    def remove(self, cell):
-        r'''Removes `cell` form pitch array row.
-
-        Returns none.
-        '''
-        for i, x in enumerate(self.cells):
-            if x is cell:
-                self._cells.pop(i)
-                break
-        cell._parent_row = None
-
-    def to_measure(self, cell_duration_denominator=8):
-        r'''Changes pitch array row to measures.
-        
-        Sets time signature numerators equal to pitch array row widths and time
-        signature denominators equal to `cell_duration_denominator`.
-
-        ..  container:: example
-
-            **Example 1.** Changes row to measure:
-
-            ::
-
-                >>> array = pitchtools.PitchArray([
-                ...     [1, (2, 1), ([-2, -1.5], 2)],
-                ...     [(7, 2), (6, 1), 1]])
-
-            ::
-
-                >>> print(array)
-                [  ] [d'] [bf bqf    ]
-                [g'     ] [fs'   ] [ ]
-
-            ::
-
-                >>> measure = array.rows[0].to_measure()
-                >>> show(measure) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(measure)
-                {
-                    \time 4/8
-                    r8
-                    d'8
-                    <bf bqf>4
-                }
-
-        Returns measure.
-        '''
-        from abjad.tools import scoretools
-        time_signature = indicatortools.TimeSignature(
-            (self.width, cell_duration_denominator))
-        measure = scoretools.Measure(time_signature, [])
-        basic_cell_duration = \
-            durationtools.Duration(1, cell_duration_denominator)
-        measure_pitches, measure_durations = [], []
-        for cell in self.cells:
-            cell_pitches = cell.pitches
-            if not cell_pitches:
-                measure_pitches.append(None)
-            elif len(cell_pitches) == 1:
-                measure_pitches.append(cell_pitches[0])
-            else:
-                measure_pitches.append(cell_pitches)
-            measure_duration = cell.width * basic_cell_duration
-            measure_durations.append(measure_duration)
-        leaves = scoretools.make_leaves(measure_pitches, measure_durations)
-        measure.extend(leaves)
-        return measure
-
-    def withdraw(self):
-        r'''Withdraws pitch array row from parent pitch array.
-
-        Returns pitch array row.
-        '''
-        if self.parent_array is not None:
-            self.parent_array.remove_row(self)
-        return self

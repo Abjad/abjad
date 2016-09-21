@@ -117,19 +117,6 @@ class AbjadConfiguration(Configuration):
             }
         return options
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _initial_comment(self):
-        current_time = self._current_time
-        return [
-            '-*- coding: utf-8 -*-',
-            '',
-            'Abjad configuration file created on {}.'.format(current_time),
-            "This file is interpreted by Python's ConfigParser ",
-            'and follows ini syntax.',
-            ]
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -372,6 +359,19 @@ class AbjadConfiguration(Configuration):
         if spelling not in ('mixed', 'sharps', 'flats'):
             raise ValueError
         abjad_configuration['accidental_spelling'] = spelling
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _initial_comment(self):
+        current_time = self._current_time
+        return [
+            '-*- coding: utf-8 -*-',
+            '',
+            'Abjad configuration file created on {}.'.format(current_time),
+            "This file is interpreted by Python's ConfigParser ",
+            'and follows ini syntax.',
+            ]
 
     ### PUBLIC PROPERTIES ###
 

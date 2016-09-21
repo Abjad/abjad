@@ -95,16 +95,6 @@ class LabelAgent(abctools.AbjadObject):
         else:
             return r'\tiny %s' % counts
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Gets client of label agent.
-
-        Returns component, selection, spanner or none.
-        '''
-        return self._client
-
     ### PUBLIC METHODS ###
 
     def color_container(self, color='red'):
@@ -1764,3 +1754,13 @@ class LabelAgent(abctools.AbjadObject):
             if font_size is not None:
                 label = label.fontsize(font_size)
             attach(label, logical_tie.head)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Gets client of label agent.
+
+        Returns component, selection, spanner or none.
+        '''
+        return self._client

@@ -67,7 +67,7 @@ class Enumeration(enum.IntEnum):
         from abjad.tools import systemtools
         return systemtools.StorageFormatAgent(self).get_repr_format()
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)

@@ -36,16 +36,6 @@ class InspectionAgent(abctools.AbjadObject):
         assert isinstance(client, prototype), repr(client)
         self._client = client
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Client of inspection agent.
-
-        Returns component.
-        '''
-        return self._client
-
     ### PUBLIC METHODS ###
 
     def get_annotation(self, name, default=None):
@@ -1108,3 +1098,13 @@ class InspectionAgent(abctools.AbjadObject):
             string = string.format(violator_count, total, check_name)
             strings.append(string)
         return '\n'.join(strings)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Client of inspection agent.
+
+        Returns component.
+        '''
+        return self._client

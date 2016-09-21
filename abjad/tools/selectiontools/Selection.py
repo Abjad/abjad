@@ -195,12 +195,6 @@ class Selection(object):
         for key, value in state.items():
             setattr(self, key, value)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _preprolated_duration(self):
-        return sum(component._preprolated_duration for component in self)
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -1476,5 +1470,11 @@ class Selection(object):
             if overhang:
                 result.append(components_copy)
         return result
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _preprolated_duration(self):
+        return sum(component._preprolated_duration for component in self)
 
 collections.Sequence.register(Selection)

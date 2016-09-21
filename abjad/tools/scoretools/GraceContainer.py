@@ -265,13 +265,6 @@ class GraceContainer(Container):
         Container.__init__(self, music)
         self.kind = kind
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
-
     ### PRIVATE METHODS ###
 
     def _attach(self, leaf):
@@ -313,6 +306,13 @@ class GraceContainer(Container):
             contributions = [r'\{} {{'.format(kind)]
             result.append([contributor, contributions])
         return tuple(result)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        self._update_now(indicators=True)
+        return self._format_component()
 
     ### PUBLIC PROPERTIES ###
 

@@ -161,6 +161,25 @@ class NoteHead(AbjadObject):
         '''
         return self._format_string
 
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        args = [repr(self._format_string)]
+        args.extend(self.tweak._get_attribute_pairs())
+        args = ', '.join([str(x) for x in args])
+        repr_text = '{}({})'.format(type(self).__name__, args)
+        agent = systemtools.StorageFormatAgent(self)
+        names = list(agent.signature_keyword_names)
+        if 'client' in names:
+            names.remove('client')
+        if 'tweak_pairs' in names:
+            names.remove('tweak_pairs')
+        return systemtools.FormatSpecification(
+            self,
+            repr_text=repr_text,
+            storage_format_kwargs_names=names,
+            )
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -214,23 +233,6 @@ class NoteHead(AbjadObject):
         result = '\n'.join(result)
         # return formatted note head
         return result
-
-    def _get_format_specification(self):
-        args = [repr(self._format_string)]
-        args.extend(self.tweak._get_attribute_pairs())
-        args = ', '.join([str(x) for x in args])
-        repr_text = '{}({})'.format(type(self).__name__, args)
-        agent = systemtools.StorageFormatAgent(self)
-        names = list(agent.signature_keyword_names)
-        if 'client' in names:
-            names.remove('client')
-        if 'tweak_pairs' in names:
-            names.remove('tweak_pairs')
-        return systemtools.FormatSpecification(
-            self,
-            repr_text=repr_text,
-            storage_format_kwargs_names=names,
-            )
 
     ### PUBLIC PROPERTIES ###
 

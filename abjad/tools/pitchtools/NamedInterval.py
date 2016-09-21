@@ -332,54 +332,6 @@ class NamedInterval(Interval):
             template_names=['quality_string', 'number'],
             )
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return '{}{}'.format(self._quality_abbreviation, self.number)
-
-    @property
-    def _interval_string(self):
-        interval_to_string = {
-            1: 'unison',
-            2: 'second',
-            3: 'third',
-            4: 'fourth',
-            5: 'fifth',
-            6: 'sixth',
-            7: 'seventh',
-            8: 'octave',
-            9: 'ninth',
-            10: 'tenth',
-            11: 'eleventh',
-            12: 'twelth',
-            13: 'thirteenth',
-            14: 'fourteenth',
-            15: 'fifteenth',
-            }
-        try:
-            interval_string = interval_to_string[abs(self.number)]
-        except KeyError:
-            abs_number = abs(self.number)
-            residue = abs_number % 10
-            if residue == 1:
-                suffix = 'st'
-            elif residue == 2:
-                suffix = 'nd'
-            elif residue == 3:
-                suffix = 'rd'
-            else:
-                suffix = 'th'
-            interval_string = '%s%s' % (abs_number, suffix)
-        return interval_string
-
-    @property
-    def _quality_abbreviation(self):
-        _quality_string_to_quality_abbreviation = {
-            'major': 'M', 'minor': 'm', 'perfect': 'P',
-            'augmented': 'aug', 'diminished': 'dim'}
-        return _quality_string_to_quality_abbreviation[self.quality_string]
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -428,6 +380,54 @@ class NamedInterval(Interval):
         else:
             named_interval = absolute_named_interval
         return class_(named_interval)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_string(self):
+        return '{}{}'.format(self._quality_abbreviation, self.number)
+
+    @property
+    def _interval_string(self):
+        interval_to_string = {
+            1: 'unison',
+            2: 'second',
+            3: 'third',
+            4: 'fourth',
+            5: 'fifth',
+            6: 'sixth',
+            7: 'seventh',
+            8: 'octave',
+            9: 'ninth',
+            10: 'tenth',
+            11: 'eleventh',
+            12: 'twelth',
+            13: 'thirteenth',
+            14: 'fourteenth',
+            15: 'fifteenth',
+            }
+        try:
+            interval_string = interval_to_string[abs(self.number)]
+        except KeyError:
+            abs_number = abs(self.number)
+            residue = abs_number % 10
+            if residue == 1:
+                suffix = 'st'
+            elif residue == 2:
+                suffix = 'nd'
+            elif residue == 3:
+                suffix = 'rd'
+            else:
+                suffix = 'th'
+            interval_string = '%s%s' % (abs_number, suffix)
+        return interval_string
+
+    @property
+    def _quality_abbreviation(self):
+        _quality_string_to_quality_abbreviation = {
+            'major': 'M', 'minor': 'm', 'perfect': 'P',
+            'augmented': 'aug', 'diminished': 'dim'}
+        return _quality_string_to_quality_abbreviation[self.quality_string]
 
     ### PUBLIC PROPERTIES ###
 

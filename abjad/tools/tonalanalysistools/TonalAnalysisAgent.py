@@ -67,16 +67,6 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             client = selectiontools.Selection(client)
         self._client = client
 
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def client(self):
-        r'''Returns client of mutation agent.
-
-        Returns selection or component.
-        '''
-        return self._client
-
     ### PRIVATE METHODS ###
 
     @staticmethod
@@ -545,3 +535,13 @@ class TonalAnalysisAgent(abctools.AbjadObject):
             except AssertionError:
                 return False
         return True
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def client(self):
+        r'''Returns client of mutation agent.
+
+        Returns selection or component.
+        '''
+        return self._client

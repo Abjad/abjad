@@ -356,6 +356,112 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
         self._use_percussion_clefs = bool(use_percussion_clefs)
         self._context_name_abbreviations = collections.OrderedDict()
 
+    ### SPECIAL METHODS ###
+
+    def __call__(self):
+        r'''Calls string orchestra template.
+
+        Returns score.
+        '''
+
+        ### TAGS ###
+
+        tag_names = []
+
+        ### SCORE ###
+
+        staff_group = scoretools.StaffGroup(
+            name='Outer Staff Group',
+            )
+
+        score = scoretools.Score(
+            [staff_group],
+            name='Score',
+            )
+
+        ### VIOLINS ###
+
+        if self.violin_count:
+            clef_name = 'treble'
+            if self.use_percussion_clefs:
+                clef_name = 'percussion'
+            instrument = instrumenttools.Violin()
+            instrument_count = self.violin_count
+            instrument_staff_group, instrument_tag_names = \
+                self._make_instrument_staff_group(
+                    clef_name=clef_name,
+                    count=instrument_count,
+                    instrument=instrument,
+                    )
+            staff_group.append(instrument_staff_group)
+            tag_names.extend(instrument_tag_names)
+
+        ### VIOLAS ###
+
+        if self.viola_count:
+            clef_name = 'alto'
+            if self.use_percussion_clefs:
+                clef_name = 'percussion'
+            instrument = instrumenttools.Viola()
+            instrument_count = self.viola_count
+            instrument_staff_group, instrument_tag_names = \
+                self._make_instrument_staff_group(
+                    clef_name=clef_name,
+                    count=instrument_count,
+                    instrument=instrument,
+                    )
+            staff_group.append(instrument_staff_group)
+            tag_names.extend(instrument_tag_names)
+
+        ### CELLOS ###
+
+        if self.cello_count:
+            clef_name = 'bass'
+            if self.use_percussion_clefs:
+                clef_name = 'percussion'
+            instrument = instrumenttools.Cello()
+            instrument_count = self.cello_count
+            instrument_staff_group, instrument_tag_names = \
+                self._make_instrument_staff_group(
+                    clef_name=clef_name,
+                    count=instrument_count,
+                    instrument=instrument,
+                    )
+            staff_group.append(instrument_staff_group)
+            tag_names.extend(instrument_tag_names)
+
+        ### BASSES ###
+
+        if self.contrabass_count:
+            clef_name = 'bass_8'
+            if self.use_percussion_clefs:
+                clef_name = 'percussion'
+            instrument = instrumenttools.Contrabass()
+            instrument_count = self.contrabass_count
+            instrument_staff_group, instrument_tag_names = \
+                self._make_instrument_staff_group(
+                    clef_name=clef_name,
+                    count=instrument_count,
+                    instrument=instrument,
+                    )
+            staff_group.append(instrument_staff_group)
+            tag_names.extend(instrument_tag_names)
+
+        ### TIME SIGNATURE CONTEXT ###
+
+        time_signature_context = scoretools.Context(
+            name='TimeSignatureContext',
+            context_name='TimeSignatureContext',
+            )
+        instrument_tags = ' '.join(tag_names)
+        tag_string = "tag #'({})".format(instrument_tags)
+        tag_command = indicatortools.LilyPondCommand(tag_string, 'before')
+        attach(tag_command, time_signature_context)
+
+        score.insert(0, time_signature_context)
+
+        return score
+
     ### PRIVATE METHODS ###
 
     def _make_instrument_staff_group(
@@ -465,112 +571,6 @@ class StringOrchestraScoreTemplate(AbjadValueObject):
             attach(indicatortools.Clef(clef_name), lh_staff)
             staff_group.append(lh_staff)
         return staff_group, tag_name
-
-    ### SPECIAL METHODS ###
-
-    def __call__(self):
-        r'''Calls string orchestra template.
-
-        Returns score.
-        '''
-
-        ### TAGS ###
-
-        tag_names = []
-
-        ### SCORE ###
-
-        staff_group = scoretools.StaffGroup(
-            name='Outer Staff Group',
-            )
-
-        score = scoretools.Score(
-            [staff_group],
-            name='Score',
-            )
-
-        ### VIOLINS ###
-
-        if self.violin_count:
-            clef_name = 'treble'
-            if self.use_percussion_clefs:
-                clef_name = 'percussion'
-            instrument = instrumenttools.Violin()
-            instrument_count = self.violin_count
-            instrument_staff_group, instrument_tag_names = \
-                self._make_instrument_staff_group(
-                    clef_name=clef_name,
-                    count=instrument_count,
-                    instrument=instrument,
-                    )
-            staff_group.append(instrument_staff_group)
-            tag_names.extend(instrument_tag_names)
-
-        ### VIOLAS ###
-
-        if self.viola_count:
-            clef_name = 'alto'
-            if self.use_percussion_clefs:
-                clef_name = 'percussion'
-            instrument = instrumenttools.Viola()
-            instrument_count = self.viola_count
-            instrument_staff_group, instrument_tag_names = \
-                self._make_instrument_staff_group(
-                    clef_name=clef_name,
-                    count=instrument_count,
-                    instrument=instrument,
-                    )
-            staff_group.append(instrument_staff_group)
-            tag_names.extend(instrument_tag_names)
-
-        ### CELLOS ###
-
-        if self.cello_count:
-            clef_name = 'bass'
-            if self.use_percussion_clefs:
-                clef_name = 'percussion'
-            instrument = instrumenttools.Cello()
-            instrument_count = self.cello_count
-            instrument_staff_group, instrument_tag_names = \
-                self._make_instrument_staff_group(
-                    clef_name=clef_name,
-                    count=instrument_count,
-                    instrument=instrument,
-                    )
-            staff_group.append(instrument_staff_group)
-            tag_names.extend(instrument_tag_names)
-
-        ### BASSES ###
-
-        if self.contrabass_count:
-            clef_name = 'bass_8'
-            if self.use_percussion_clefs:
-                clef_name = 'percussion'
-            instrument = instrumenttools.Contrabass()
-            instrument_count = self.contrabass_count
-            instrument_staff_group, instrument_tag_names = \
-                self._make_instrument_staff_group(
-                    clef_name=clef_name,
-                    count=instrument_count,
-                    instrument=instrument,
-                    )
-            staff_group.append(instrument_staff_group)
-            tag_names.extend(instrument_tag_names)
-
-        ### TIME SIGNATURE CONTEXT ###
-
-        time_signature_context = scoretools.Context(
-            name='TimeSignatureContext',
-            context_name='TimeSignatureContext',
-            )
-        instrument_tags = ' '.join(tag_names)
-        tag_string = "tag #'({})".format(instrument_tags)
-        tag_command = indicatortools.LilyPondCommand(tag_string, 'before')
-        attach(tag_command, time_signature_context)
-
-        score.insert(0, time_signature_context)
-
-        return score
 
     ### PUBLIC PROPERTIES ###
 

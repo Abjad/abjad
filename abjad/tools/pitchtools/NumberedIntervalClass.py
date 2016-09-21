@@ -134,12 +134,6 @@ class NumberedIntervalClass(IntervalClass):
         '''
         return self._number
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return '{}{}'.format(self.direction_symbol, abs(self.number))
-
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -163,6 +157,12 @@ class NumberedIntervalClass(IntervalClass):
             pitch_carrier_1, pitch_carrier_2)
         # return numbered interval-class
         return class_(interval)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_string(self):
+        return '{}{}'.format(self.direction_symbol, abs(self.number))
 
     ### PUBLIC PROPERTIES ###
 
