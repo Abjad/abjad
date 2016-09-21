@@ -854,6 +854,146 @@ class Meter(AbjadObject):
         # return notes
         return notes
 
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def fit_meters_to_expr(
+        expr,
+        meters,
+        denominator=32,
+        discard_final_orphan_downbeat=True,
+        maximum_run_length=None,
+        starting_offset=None,
+        ):
+        r'''Finds the best-matching sequence of meters for the offsets
+        contained in `expr`.
+
+        ..  container:: example
+
+            ::
+
+                >>> meters = [(3, 4), (4, 4), (5, 4)]
+                >>> meters = [metertools.Meter(_) for _ in meters]
+
+        ..  container:: example
+
+            **Example 1.** Matches a series of hypothetical ``4/4`` measures:
+
+            ::
+
+                >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
+                >>> for x in metertools.Meter.fit_meters_to_expr(
+                ...     expr, meters):
+                ...     print(x.implied_time_signature)
+                ...
+                4/4
+                4/4
+                4/4
+                4/4
+
+        ..  container:: example
+
+            **Example 2.** Matches a series of hypothetical ``5/4`` measures:
+
+            ::
+
+                >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
+                >>> for x in metertools.Meter.fit_meters_to_expr(
+                ...     expr, meters):
+                ...     print(x.implied_time_signature)
+                ...
+                3/4
+                4/4
+                3/4
+                5/4
+                5/4
+
+        Coerces offsets from `expr` via
+        `MetricAccentKernel.count_offsets_in_expr()`.
+
+        Coerces MetricalHierarchies from `meters` via
+        `MetricalHierarchyInventory`.
+
+        Returns list.
+        '''
+        from abjad.tools import metertools
+        session = metertools.MeterFittingSession(
+            kernel_denominator=denominator,
+            maximum_run_length=maximum_run_length,
+            meters=meters,
+            offset_counter=expr,
+            )
+        meters = session()
+        return meters
+
+    def generate_offset_kernel_to_denominator(
+        self,
+        denominator,
+        normalize=True,
+        ):
+        r'''Generates a dictionary of all offsets in a meter up
+        to `denominator`.
+
+        Keys are the offsets and the values are the normalized weights of
+        those offsets.
+
+        ..  container:: example
+
+            ::
+
+                >>> meter = metertools.Meter((4, 4))
+                >>> kernel = meter.generate_offset_kernel_to_denominator(8)
+                >>> for offset, weight in sorted(kernel.kernel.items()):
+                ...     print('{!s}\t{!s}'.format(offset, weight))
+                ...
+                0       3/16
+                1/8     1/16
+                1/4     1/8
+                3/8     1/16
+                1/2     1/8
+                5/8     1/16
+                3/4     1/8
+                7/8     1/16
+                1       3/16
+
+        This is useful for testing how strongly a collection of offsets
+        responds to a given meter.
+
+        Returns dictionary.
+        '''
+        from abjad.tools import metertools
+        assert mathtools.is_positive_integer_power_of_two(
+            denominator // self.denominator)
+
+        inventory = list(self.depthwise_offset_inventory)
+        old_flag_count = durationtools.Duration(1, self.denominator).flag_count
+        new_flag_count = durationtools.Duration(1, denominator).flag_count
+        extra_depth = new_flag_count - old_flag_count
+        for _ in range(extra_depth):
+            old_offsets = inventory[-1]
+            new_offsets = []
+            for first, second in \
+                sequencetools.iterate_sequence_nwise(old_offsets):
+                new_offsets.append(first)
+                new_offsets.append((first + second) / 2)
+            new_offsets.append(old_offsets[-1])
+            inventory.append(tuple(new_offsets))
+
+        total = 0
+        kernel = {}
+        for offsets in inventory:
+            for offset in offsets:
+                if offset not in kernel:
+                    kernel[offset] = 0
+                kernel[offset] += 1
+                total += 1
+
+        if normalize:
+            for offset, response in kernel.items():
+                kernel[offset] = durationtools.Multiplier(response, total)
+
+        return metertools.MetricAccentKernel(kernel)
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -1299,143 +1439,3 @@ class Meter(AbjadObject):
         Returns string.
         '''
         return self._root_node.rtm_format
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def fit_meters_to_expr(
-        expr,
-        meters,
-        denominator=32,
-        discard_final_orphan_downbeat=True,
-        maximum_run_length=None,
-        starting_offset=None,
-        ):
-        r'''Finds the best-matching sequence of meters for the offsets
-        contained in `expr`.
-
-        ..  container:: example
-
-            ::
-
-                >>> meters = [(3, 4), (4, 4), (5, 4)]
-                >>> meters = [metertools.Meter(_) for _ in meters]
-
-        ..  container:: example
-
-            **Example 1.** Matches a series of hypothetical ``4/4`` measures:
-
-            ::
-
-                >>> expr = [(0, 4), (4, 4), (8, 4), (12, 4), (16, 4)]
-                >>> for x in metertools.Meter.fit_meters_to_expr(
-                ...     expr, meters):
-                ...     print(x.implied_time_signature)
-                ...
-                4/4
-                4/4
-                4/4
-                4/4
-
-        ..  container:: example
-
-            **Example 2.** Matches a series of hypothetical ``5/4`` measures:
-
-            ::
-
-                >>> expr = [(0, 4), (3, 4), (5, 4), (10, 4), (15, 4), (20, 4)]
-                >>> for x in metertools.Meter.fit_meters_to_expr(
-                ...     expr, meters):
-                ...     print(x.implied_time_signature)
-                ...
-                3/4
-                4/4
-                3/4
-                5/4
-                5/4
-
-        Coerces offsets from `expr` via
-        `MetricAccentKernel.count_offsets_in_expr()`.
-
-        Coerces MetricalHierarchies from `meters` via
-        `MetricalHierarchyInventory`.
-
-        Returns list.
-        '''
-        from abjad.tools import metertools
-        session = metertools.MeterFittingSession(
-            kernel_denominator=denominator,
-            maximum_run_length=maximum_run_length,
-            meters=meters,
-            offset_counter=expr,
-            )
-        meters = session()
-        return meters
-
-    def generate_offset_kernel_to_denominator(
-        self,
-        denominator,
-        normalize=True,
-        ):
-        r'''Generates a dictionary of all offsets in a meter up
-        to `denominator`.
-
-        Keys are the offsets and the values are the normalized weights of
-        those offsets.
-
-        ..  container:: example
-
-            ::
-
-                >>> meter = metertools.Meter((4, 4))
-                >>> kernel = meter.generate_offset_kernel_to_denominator(8)
-                >>> for offset, weight in sorted(kernel.kernel.items()):
-                ...     print('{!s}\t{!s}'.format(offset, weight))
-                ...
-                0       3/16
-                1/8     1/16
-                1/4     1/8
-                3/8     1/16
-                1/2     1/8
-                5/8     1/16
-                3/4     1/8
-                7/8     1/16
-                1       3/16
-
-        This is useful for testing how strongly a collection of offsets
-        responds to a given meter.
-
-        Returns dictionary.
-        '''
-        from abjad.tools import metertools
-        assert mathtools.is_positive_integer_power_of_two(
-            denominator // self.denominator)
-
-        inventory = list(self.depthwise_offset_inventory)
-        old_flag_count = durationtools.Duration(1, self.denominator).flag_count
-        new_flag_count = durationtools.Duration(1, denominator).flag_count
-        extra_depth = new_flag_count - old_flag_count
-        for _ in range(extra_depth):
-            old_offsets = inventory[-1]
-            new_offsets = []
-            for first, second in \
-                sequencetools.iterate_sequence_nwise(old_offsets):
-                new_offsets.append(first)
-                new_offsets.append((first + second) / 2)
-            new_offsets.append(old_offsets[-1])
-            inventory.append(tuple(new_offsets))
-
-        total = 0
-        kernel = {}
-        for offsets in inventory:
-            for offset in offsets:
-                if offset not in kernel:
-                    kernel[offset] = 0
-                kernel[offset] += 1
-                total += 1
-
-        if normalize:
-            for offset, response in kernel.items():
-                kernel[offset] = durationtools.Multiplier(response, total)
-
-        return metertools.MetricAccentKernel(kernel)
