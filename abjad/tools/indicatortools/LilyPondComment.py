@@ -111,6 +111,29 @@ class LilyPondComment(AbjadValueObject):
         format_slot.comments.append(str(self))
         return lilypond_format_bundle
 
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def list_allowable_format_slots():
+        r'''Lists allowable format slots.
+
+        ..  container:: example
+
+            **Example 1.** Default:
+
+                >>> commands = indicatortools.LilyPondComment.list_allowable_format_slots()
+                >>> for command in commands:
+                ...     command
+                'after'
+                'before'
+                'closing'
+                'opening'
+                'right'
+
+        Returns tuple of strings.
+        '''
+        return LilyPondComment._allowable_format_slots
+
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -182,26 +205,3 @@ class LilyPondComment(AbjadValueObject):
         Returns string.
         '''
         return self._format_slot
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def list_allowable_format_slots():
-        r'''Lists allowable format slots.
-
-        ..  container:: example
-
-            **Example 1.** Default:
-
-                >>> commands = indicatortools.LilyPondComment.list_allowable_format_slots()
-                >>> for command in commands:
-                ...     command
-                'after'
-                'before'
-                'closing'
-                'opening'
-                'right'
-
-        Returns tuple of strings.
-        '''
-        return LilyPondComment._allowable_format_slots

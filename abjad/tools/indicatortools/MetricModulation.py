@@ -852,16 +852,6 @@ class MetricModulation(AbjadValueObject):
         '''
         return str(self._get_markup())
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
-    @property
-    def _lilypond_format(self):
-        return str(self)
-
     ### PRIVATE METHODS ###
 
     def _get_left_markup(self):
@@ -911,6 +901,16 @@ class MetricModulation(AbjadValueObject):
             raise TypeError(message)
         assert isinstance(selection, selectiontools.Selection)
         return selection
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return str(self)
+
+    @property
+    def _lilypond_format(self):
+        return str(self)
 
     ### PUBLIC PROPERTIES ###
 
