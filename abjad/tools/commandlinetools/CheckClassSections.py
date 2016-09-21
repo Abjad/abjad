@@ -127,6 +127,12 @@ under PROPERTIES sections, and vice-versa.'''
             '    ### PRIVATE PROPERTIES ###\n',
             '    ### PUBLIC PROPERTIES ###\n'
             ]
+        non_property_decorators = [
+            '    @staticmethod',
+            '    @classmethod',
+            '    @abc.abstractmethod',
+            '    @lex.TOKEN(',
+            ]
         current_header = ''
         current_header_index = 0
         # Dict of error classes with a list of violating line numbers
@@ -139,7 +145,11 @@ under PROPERTIES sections, and vice-versa.'''
             lines = f.readlines()
 
         for line_num in range(0, len(lines)):
-            if lines[line_num].startswith('    ### '):
+            if lines[line_num].startswith('class '):
+                # Reset header after running into a new class
+                current_header = '[no header]'
+                current_header_index = 0
+            elif lines[line_num].startswith('    ### '):
                 # This looks like a header - compare against known headers
                 for header_index, header in enumerate(headers):
                     if lines[line_num] == header:
@@ -160,9 +170,8 @@ under PROPERTIES sections, and vice-versa.'''
                 if (
                     lines[line_num].startswith('    @') and not (
                     # Whitelist known non-property decorators
-                    lines[line_num] == '    @staticmethod\n' or
-                    lines[line_num] == '    @classmethod\n' or
-                    lines[line_num] == '    @abc.abstractmethod\n'
+                    any(lines[line_num].startswith(dec)
+                        for dec in non_property_decorators)
                     )):
                     errors['PROPERTY IN METHODS SECTION'].append(line_num)
             elif 'PROPERTIES' in current_header:
@@ -171,8 +180,4 @@ under PROPERTIES sections, and vice-versa.'''
                     not lines[line_num - 1].startswith('    @')
                     ):
                     errors['METHOD IN PROPERTIES SECTION'].append(line_num)
-            elif lines[line_num].startswith('class '):
-                # Reset header after running into a new class
-                current_header = '[no header]'
-                current_header_index = 0
         return errors
