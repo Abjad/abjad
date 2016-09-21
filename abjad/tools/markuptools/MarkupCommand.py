@@ -209,12 +209,6 @@ class MarkupCommand(AbjadValueObject):
         '''
         return self._lilypond_format
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
-
     ### PRIVATE METHODS ###
 
     def _escape_string(self, string):
@@ -266,6 +260,73 @@ class MarkupCommand(AbjadValueObject):
             storage_format_args_values=(self.command,) + self.args,
             storage_format_kwargs_names=[],
             )
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def combine_markup_commands(*commands):
+        r'''Combine MarkupCommand and/or string objects.
+
+        LilyPond's '\combine' markup command can only take two arguments, so in
+        order to combine more than two stencils, a cascade of '\combine'
+        commands must be employed.  `combine_markup_commands` simplifies this
+        process.
+
+        ..  container:: example
+
+            ::
+
+                >>> markup_a = markuptools.MarkupCommand(
+                ...     'draw-circle',
+                ...     4,
+                ...     0.4,
+                ...     False,
+                ...     )
+                >>> markup_b = markuptools.MarkupCommand(
+                ...     'filled-box',
+                ...     schemetools.SchemePair(-4, 4),
+                ...     schemetools.SchemePair(-0.5, 0.5), 1)
+                >>> markup_c = "some text"
+
+            ::
+
+                >>> markup = markuptools.MarkupCommand.combine_markup_commands(
+                ...     markup_a,
+                ...     markup_b,
+                ...     markup_c,
+                ...     )
+                >>> result = format(markup, 'lilypond')
+
+            ::
+
+                >>> print(result)
+                \combine \combine \draw-circle #4 #0.4 ##f
+                    \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 "some text"
+
+        Returns a markup command instance, or a string if that was the only
+        argument.
+        '''
+        from abjad.tools import markuptools
+
+        assert len(commands)
+        assert all(
+            isinstance(command, (markuptools.MarkupCommand, str))
+            for command in commands
+            )
+
+        if 1 == len(commands):
+            return commands[0]
+
+        combined = MarkupCommand('combine', commands[0], commands[1])
+        for command in commands[2:]:
+            combined = MarkupCommand('combine', combined, command)
+        return combined
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        return '\n'.join(self._get_format_pieces())
 
     ### PUBLIC PROPERTIES ###
 
@@ -352,64 +413,3 @@ class MarkupCommand(AbjadValueObject):
     def force_quotes(self, arg):
         assert isinstance(arg, bool), repr(arg)
         self._force_quotes = arg
-
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def combine_markup_commands(*commands):
-        r'''Combine MarkupCommand and/or string objects.
-
-        LilyPond's '\combine' markup command can only take two arguments, so in
-        order to combine more than two stencils, a cascade of '\combine'
-        commands must be employed.  `combine_markup_commands` simplifies this
-        process.
-
-        ..  container:: example
-
-            ::
-
-                >>> markup_a = markuptools.MarkupCommand(
-                ...     'draw-circle',
-                ...     4,
-                ...     0.4,
-                ...     False,
-                ...     )
-                >>> markup_b = markuptools.MarkupCommand(
-                ...     'filled-box',
-                ...     schemetools.SchemePair(-4, 4),
-                ...     schemetools.SchemePair(-0.5, 0.5), 1)
-                >>> markup_c = "some text"
-
-            ::
-
-                >>> markup = markuptools.MarkupCommand.combine_markup_commands(
-                ...     markup_a,
-                ...     markup_b,
-                ...     markup_c,
-                ...     )
-                >>> result = format(markup, 'lilypond')
-
-            ::
-
-                >>> print(result)
-                \combine \combine \draw-circle #4 #0.4 ##f
-                    \filled-box #'(-4 . 4) #'(-0.5 . 0.5) #1 "some text"
-
-        Returns a markup command instance, or a string if that was the only
-        argument.
-        '''
-        from abjad.tools import markuptools
-
-        assert len(commands)
-        assert all(
-            isinstance(command, (markuptools.MarkupCommand, str)) 
-            for command in commands
-            )
-
-        if 1 == len(commands):
-            return commands[0]
-
-        combined = MarkupCommand('combine', commands[0], commands[1])
-        for command in commands[2:]:
-            combined = MarkupCommand('combine', combined, command)
-        return combined

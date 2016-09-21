@@ -266,12 +266,6 @@ class Markup(AbjadValueObject):
         '''
         return self._lilypond_format
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
-
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
@@ -335,125 +329,6 @@ class Markup(AbjadValueObject):
             message = message.format(argument)
             raise TypeError(argument)
         return contents
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def contents(self):
-        r'''Gets contents of markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> string = r'\bold { "This is markup text." }'
-                >>> markup = Markup(string)
-                >>> show(markup) # doctest: +SKIP
-
-            ::
-
-                >>> markup.contents
-                (MarkupCommand('bold', ['This is markup text.']),)
-
-        Returns tuple.
-        '''
-        return self._contents
-
-    @property
-    def direction(self):
-        r'''Gets direction of markup.
-
-        ..  container:: example
-
-            ::
-
-                >>> string = r'\bold { "This is markup text." }'
-                >>> markup = Markup(string, direction=Up)
-                >>> show(markup) # doctest: +SKIP
-
-            ::
-
-                >>> markup.direction
-                Up
-
-        Returns up, down, center or none.
-        '''
-        return self._direction
-
-    @property
-    def stack_priority(self):
-        r'''Gets stack priority of markup.
-
-        ..  container:: example
-
-            **Example 1.** ``'foo'`` appears higher in stack than ``'bar'``:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> attach(Markup('foo', stack_priority=1000), staff[1])
-                >>> attach(Markup('bar', stack_priority=0), staff[1])
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest:
-
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                    d'8
-                        - \markup {
-                            \column
-                                {
-                                    foo
-                                    bar
-                                }
-                            }
-                    e'8
-                    f'8
-                }
-
-        ..  container:: example
-
-            **Example 2.** ``'foo'`` appears lower in stack than ``'bar'``:
-
-            ::
-
-                >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> attach(Markup('foo', stack_priority=0), staff[1])
-                >>> attach(Markup('bar', stack_priority=1000), staff[1])
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest:
-
-                >>> f(staff)
-                \new Staff {
-                    c'8
-                    d'8
-                        - \markup {
-                            \column
-                                {
-                                    bar
-                                    foo
-                                }
-                            }
-                    e'8
-                    f'8
-                }
-
-
-        Higher priority equals higher position.
-
-        Defaults to zero.
-
-        Set to integer.
-        '''
-        return self._stack_priority
 
     ### PUBLIC METHODS ###
 
@@ -2939,3 +2814,128 @@ class Markup(AbjadValueObject):
             contents,
             )
         return new(self, contents=command)
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        return '\n'.join(self._get_format_pieces())
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def contents(self):
+        r'''Gets contents of markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = r'\bold { "This is markup text." }'
+                >>> markup = Markup(string)
+                >>> show(markup) # doctest: +SKIP
+
+            ::
+
+                >>> markup.contents
+                (MarkupCommand('bold', ['This is markup text.']),)
+
+        Returns tuple.
+        '''
+        return self._contents
+
+    @property
+    def direction(self):
+        r'''Gets direction of markup.
+
+        ..  container:: example
+
+            ::
+
+                >>> string = r'\bold { "This is markup text." }'
+                >>> markup = Markup(string, direction=Up)
+                >>> show(markup) # doctest: +SKIP
+
+            ::
+
+                >>> markup.direction
+                Up
+
+        Returns up, down, center or none.
+        '''
+        return self._direction
+
+    @property
+    def stack_priority(self):
+        r'''Gets stack priority of markup.
+
+        ..  container:: example
+
+            **Example 1.** ``'foo'`` appears higher in stack than ``'bar'``:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> attach(Markup('foo', stack_priority=1000), staff[1])
+                >>> attach(Markup('bar', stack_priority=0), staff[1])
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest:
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                        - \markup {
+                            \column
+                                {
+                                    foo
+                                    bar
+                                }
+                            }
+                    e'8
+                    f'8
+                }
+
+        ..  container:: example
+
+            **Example 2.** ``'foo'`` appears lower in stack than ``'bar'``:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> attach(Markup('foo', stack_priority=0), staff[1])
+                >>> attach(Markup('bar', stack_priority=1000), staff[1])
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest:
+
+                >>> f(staff)
+                \new Staff {
+                    c'8
+                    d'8
+                        - \markup {
+                            \column
+                                {
+                                    bar
+                                    foo
+                                }
+                            }
+                    e'8
+                    f'8
+                }
+
+
+        Higher priority equals higher position.
+
+        Defaults to zero.
+
+        Set to integer.
+        '''
+        return self._stack_priority

@@ -55,7 +55,7 @@ class PostscriptOperator(AbjadValueObject):
         string = ' '.join(parts)
         return string
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
         values = [self.name] + list(self.arguments or ())
