@@ -366,6 +366,8 @@ class IOManager(AbjadObject):
             viewer = application or abjad_configuration['text_editor']
         elif file_path.endswith('.txt'):
             viewer = application or abjad_configuration['text_editor']
+        elif file_path.endswith('.midi'):
+            viewer = application or abjad_configuration['midi_player']
         viewer = viewer or 'open'
         if line_number:
             command = '{} +{} {}'.format(viewer, line_number, file_path)
