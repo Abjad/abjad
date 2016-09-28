@@ -16,7 +16,7 @@ class GraphvizMixin(AbjadObject):
 
     __slots__ = ()
 
-    _word_pattern = re.compile('^[\w\-:]+$')
+    _word_pattern = re.compile('^\w[\w\-:]*$')
 
     ### INITIALIZER ###
 

@@ -261,6 +261,9 @@ class TreeContainer(TreeNode):
             expr._set_parent(self)
             self._children.insert(i, expr)
         else:
+            if isinstance(expr, TreeContainer):
+                # Prevent mutating while iterating by copying.
+                expr = expr[:]
             assert all(isinstance(x, self._node_class) for x in expr)
             if i.start == i.stop and i.start is not None \
                 and i.stop is not None and i.start <= -len(self):
@@ -677,7 +680,6 @@ class TreeContainer(TreeNode):
 
         Returns tuple.
         '''
-        from abjad.tools import datastructuretools
         def recurse(container):
             result = []
             for child in container.children:
@@ -685,5 +687,6 @@ class TreeContainer(TreeNode):
                 if isinstance(child, datastructuretools.TreeContainer):
                     result.extend(recurse(child))
             return result
+        from abjad.tools import datastructuretools
         result = [self] + recurse(self)
         return tuple(result)

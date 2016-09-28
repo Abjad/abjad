@@ -101,7 +101,7 @@ class GraphvizTable(TreeContainer):
         if not self.attributes:
             return ''
         result = []
-        for key, value in self.attributes.items():
+        for key, value in sorted(self.attributes.items()):
             attribute = '{}="{}"'.format(key.upper(), str(value).upper())
             result.append(attribute)
         result = ' '.join(result)
