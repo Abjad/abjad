@@ -98,7 +98,7 @@ class NumberedPitchClass(PitchClass):
         elif expr is None:
             self._initialize_by_number(0)
         else:
-            message = 'can not instantiate {}: {!r}.'
+            message = 'can not instantiate {} from {!r}.'
             message = message.format(type(self).__name__, expr)
             raise TypeError(message)
 
@@ -295,58 +295,6 @@ class NumberedPitchClass(PitchClass):
         named_pitch_class = pitchtools.NamedPitchClass(expr)
         self._initialize_by_named_pitch_class(named_pitch_class)
 
-    ### PUBLIC METHODS ###
-
-    def apply_accidental(self, accidental=None):
-        '''Applies `accidental` to numbered pitch-class.
-
-        ::
-
-            >>> pitchtools.NumberedPitchClass(1).apply_accidental('flat')
-            NumberedPitchClass(0)
-
-        Returns new numbered pitch-class.
-        '''
-        from abjad.tools import pitchtools
-        accidental = pitchtools.Accidental(accidental)
-        semitones = self.pitch_class_number + accidental.semitones
-        return type(self)(semitones)
-
-    def invert(self, axis=None):
-        r'''Inverts numbered pitch-class.
-
-        Interprets axis of inversion equal to pitch-class 0.
-
-        Returns new numbered pitch-class.
-        '''
-        from abjad.tools import pitchtools
-        axis = axis or pitchtools.NumberedPitch('c')
-        axis = pitchtools.NumberedPitch(axis)
-        this = pitchtools.NumberedPitch(self)
-        interval = this - axis
-        result = axis.transpose(interval)
-        result = type(self)(result)
-        return result
-
-    def multiply(self, n=1):
-        r'''Multiplies pitch-class number by `n`.
-
-        ::
-
-            >>> pitchtools.NumberedPitchClass(11).multiply(3)
-            NumberedPitchClass(9)
-
-        Returns new numbered pitch-class.
-        '''
-        return type(self)(self.pitch_class_number * n)
-
-    def transpose(self, n):
-        r'''Transposes numbered pitch-class by `n` semitones.
-
-        Returns new numbered pitch-class.
-        '''
-        return type(self)(self.pitch_class_number + n)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -488,3 +436,55 @@ class NumberedPitchClass(PitchClass):
         Returns number.
         '''
         return self._pitch_class_number
+
+    ### PUBLIC METHODS ###
+
+    def apply_accidental(self, accidental=None):
+        '''Applies `accidental` to numbered pitch-class.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(1).apply_accidental('flat')
+            NumberedPitchClass(0)
+
+        Returns new numbered pitch-class.
+        '''
+        from abjad.tools import pitchtools
+        accidental = pitchtools.Accidental(accidental)
+        semitones = self.pitch_class_number + accidental.semitones
+        return type(self)(semitones)
+
+    def invert(self, axis=None):
+        r'''Inverts numbered pitch-class.
+
+        Interprets axis of inversion equal to pitch-class 0.
+
+        Returns new numbered pitch-class.
+        '''
+        from abjad.tools import pitchtools
+        axis = axis or pitchtools.NumberedPitch('c')
+        axis = pitchtools.NumberedPitch(axis)
+        this = pitchtools.NumberedPitch(self)
+        interval = this - axis
+        result = axis.transpose(interval)
+        result = type(self)(result)
+        return result
+
+    def multiply(self, n=1):
+        r'''Multiplies pitch-class number by `n`.
+
+        ::
+
+            >>> pitchtools.NumberedPitchClass(11).multiply(3)
+            NumberedPitchClass(9)
+
+        Returns new numbered pitch-class.
+        '''
+        return type(self)(self.pitch_class_number * n)
+
+    def transpose(self, n=0):
+        r'''Transposes numbered pitch-class by `n`.
+
+        Returns new numbered pitch-class.
+        '''
+        return type(self)(self.pitch_class_number + n)

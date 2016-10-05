@@ -104,6 +104,23 @@ class PitchClassVector(Vector):
         superclass = super(PitchClassVector, self)
         return superclass.__repr__()
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitchClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitchClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.PitchClass
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -122,20 +139,3 @@ class PitchClassVector(Vector):
             pitch_segment,
             item_class=item_class,
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitchClass
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitchClass
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.PitchClass

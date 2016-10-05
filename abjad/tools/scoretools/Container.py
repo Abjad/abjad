@@ -185,7 +185,7 @@ class Container(Component):
         components._set_parents(None)
 
     def __getitem__(self, i):
-        r'''Gets container `i`.
+        r'''Gets container at index or slice `i`.
 
         Traverses top-level items only.
 

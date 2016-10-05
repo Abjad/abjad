@@ -131,6 +131,14 @@ class Pitch(AbjadValueObject):
         message = 'TODO: all pitch-related classes must implement int.'
         raise NotImplementedError(message)
 
+    ### PRIVATE PROPERTIES ###
+
+    @abc.abstractproperty
+    def _lilypond_format(self):
+        r'''LilyPond input format.
+        '''
+        raise NotImplementedError
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -148,6 +156,160 @@ class Pitch(AbjadValueObject):
             storage_format_args_values=values,
             template_names=['pitch_name'],
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @abc.abstractproperty
+    def accidental(self):
+        r'''Accidental of pitch.
+        '''
+        raise NotImplementedError
+
+    @property
+    def accidental_spelling(self):
+        r'''Accidental spelling of Abjad session.
+
+        ::
+
+            >>> NamedPitch("c").accidental_spelling
+            'mixed'
+
+        Returns string.
+        '''
+        from abjad import abjad_configuration
+        return abjad_configuration['accidental_spelling']
+
+    @abc.abstractproperty
+    def alteration_in_semitones(self):
+        r'''Alteration of pitch in semitones.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def diatonic_pitch_class_name(self):
+        r'''Diatonic pitch-class name of pitch.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def diatonic_pitch_class_number(self):
+        r'''Diatonic pitch-class number of pitch.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def diatonic_pitch_name(self):
+        r'''Diatonic pitch name of pitch.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def diatonic_pitch_number(self):
+        r'''Diatonic pitch number of pitch.
+        '''
+        raise NotImplementedError
+
+    @property
+    def hertz(self):
+        r'''Gets hertz value of pitch.
+
+        ::
+
+            >>> pitchtools.NamedPitch("a'").hertz
+            440.0
+
+        ::
+
+            >>> pitchtools.NamedPitch("c'").hertz
+            261.62...
+
+        ::
+
+            >>> pitchtools.NamedPitch("c''").hertz
+            523.25...
+
+        Returns float.
+        '''
+        hertz = pow(2., (float(self) - 9.) / 12.) * 440.
+        return hertz
+
+    @abc.abstractproperty
+    def named_pitch(self):
+        r'''Named pitch corresponding to pitch.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def named_pitch_class(self):
+        r'''Named pitch-class corresponding to pitch.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def numbered_pitch(self):
+        r'''Numbered pitch corresponding to pitch.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def numbered_pitch_class(self):
+        r'''Numbered pitch-class corresponding to pitch.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def octave(self):
+        r'''Octave of pitch.
+
+        Returns octave.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def octave_number(self):
+        r'''Octave number of pitch.
+
+        Returns integer.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_class_name(self):
+        r'''Pitch-class name corresponding to pitch.
+
+        Returns string.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_class_number(self):
+        r'''Pitch-class number of pitch.
+
+        Returns number
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_class_octave_label(self):
+        r'''Pitch-class / octave label of pitch.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_name(self):
+        r'''Pitch name of pitch.
+
+        Returns string.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_number(self):
+        r'''Pitch number of pitch.
+
+        Returns number.
+        '''
+        raise NotImplementedError
 
     ### PUBLIC METHODS ###
 
@@ -324,167 +486,5 @@ class Pitch(AbjadValueObject):
         r'''Transposes pitch by `expr`.
 
         Returns new pitch.
-        '''
-        raise NotImplementedError
-
-    ### PRIVATE PROPERTIES ###
-
-    @abc.abstractproperty
-    def _lilypond_format(self):
-        r'''LilyPond input format.
-        '''
-        raise NotImplementedError
-
-    ### PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def accidental(self):
-        r'''Accidental of pitch.
-        '''
-        raise NotImplementedError
-
-    @property
-    def accidental_spelling(self):
-        r'''Accidental spelling of Abjad session.
-
-        ::
-
-            >>> NamedPitch("c").accidental_spelling
-            'mixed'
-
-        Returns string.
-        '''
-        from abjad import abjad_configuration
-        return abjad_configuration['accidental_spelling']
-
-    @abc.abstractproperty
-    def alteration_in_semitones(self):
-        r'''Alteration of pitch in semitones.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_class_name(self):
-        r'''Diatonic pitch-class name of pitch.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_class_number(self):
-        r'''Diatonic pitch-class number of pitch.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_name(self):
-        r'''Diatonic pitch name of pitch.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_number(self):
-        r'''Diatonic pitch number of pitch.
-        '''
-        raise NotImplementedError
-
-    @property
-    def hertz(self):
-        r'''Gets hertz value of pitch.
-
-        ::
-
-            >>> pitchtools.NamedPitch("a'").hertz
-            440.0
-
-        ::
-
-            >>> pitchtools.NamedPitch("c'").hertz
-            261.62...
-
-        ::
-
-            >>> pitchtools.NamedPitch("c''").hertz
-            523.25...
-
-        Returns float.
-        '''
-        hertz = pow(2., (float(self) - 9.) / 12.) * 440.
-        return hertz
-
-    @abc.abstractproperty
-    def named_pitch(self):
-        r'''Named pitch corresponding to pitch.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def named_pitch_class(self):
-        r'''Named pitch-class corresponding to pitch.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def numbered_pitch(self):
-        r'''Numbered pitch corresponding to pitch.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def numbered_pitch_class(self):
-        r'''Numbered pitch-class corresponding to pitch.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def octave(self):
-        r'''Octave of pitch.
-
-        Returns octave.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def octave_number(self):
-        r'''Octave number of pitch.
-
-        Returns integer.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_name(self):
-        r'''Pitch-class name corresponding to pitch.
-
-        Returns string.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_number(self):
-        r'''Pitch-class number of pitch.
-
-        Returns number
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_octave_label(self):
-        r'''Pitch-class / octave label of pitch.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_name(self):
-        r'''Pitch name of pitch.
-
-        Returns string.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_number(self):
-        r'''Pitch number of pitch.
-
-        Returns number.
         '''
         raise NotImplementedError

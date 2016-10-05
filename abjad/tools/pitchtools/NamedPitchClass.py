@@ -286,67 +286,6 @@ class NamedPitchClass(PitchClass):
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]
 
-    ### PUBLIC METHODS ###
-
-    def apply_accidental(self, accidental):
-        r'''Applies `accidental` to named pitch-class.
-
-        ::
-
-            >>> pitchtools.NamedPitchClass('cs').apply_accidental('qs')
-            NamedPitchClass('ctqs')
-
-        Returns new named pitch-class.
-        '''
-        from abjad.tools import pitchtools
-        accidental = pitchtools.Accidental(accidental)
-        new_accidental = self.accidental + accidental
-        new_name = self.diatonic_pitch_class_name + new_accidental.abbreviation
-        return type(self)(new_name)
-
-    def invert(self, axis=None):
-        r'''Inverts named pitch-class.
-
-        Not yet implemented.
-        '''
-        from abjad.tools import pitchtools
-        axis = axis or pitchtools.NamedPitch('c')
-        axis = pitchtools.NamedPitch(axis)
-        this = pitchtools.NamedPitch(self)
-        interval = this - axis
-        result = axis.transpose(interval)
-        result = type(self)(result)
-        return result
-
-    def multiply(self, n=1):
-        r'''Multiplies named pitch-class by `n`.
-
-        ::
-
-            >>> pitchtools.NamedPitchClass('cs').multiply(3)
-            NamedPitchClass('ef')
-
-        Returns new named pitch-class.
-        '''
-        return type(self)(self.pitch_class_number * n)
-
-    def transpose(self, expr):
-        r'''Transposes named pitch-class by named interval `expr`.
-
-        ::
-
-            >>> named_interval = pitchtools.NamedInterval('major', 2)
-            >>> pitchtools.NamedPitchClass('cs').transpose(named_interval)
-            NamedPitchClass('ds')
-
-        Returns new named pitch-class.
-        '''
-        from abjad.tools import pitchtools
-        interval = pitchtools.NamedInterval(expr)
-        pitch = pitchtools.NamedPitch(self, 4)
-        pitch = interval.transpose(pitch)
-        return type(self)(pitch)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -479,3 +418,64 @@ class NamedPitchClass(PitchClass):
             self._diatonic_pitch_class_number_to_pitch_class_number[
                 self._diatonic_pitch_class_number] +
                 self._alteration_in_semitones) % 12
+
+    ### PUBLIC METHODS ###
+
+    def apply_accidental(self, accidental):
+        r'''Applies `accidental` to named pitch-class.
+
+        ::
+
+            >>> pitchtools.NamedPitchClass('cs').apply_accidental('qs')
+            NamedPitchClass('ctqs')
+
+        Returns new named pitch-class.
+        '''
+        from abjad.tools import pitchtools
+        accidental = pitchtools.Accidental(accidental)
+        new_accidental = self.accidental + accidental
+        new_name = self.diatonic_pitch_class_name + new_accidental.abbreviation
+        return type(self)(new_name)
+
+    def invert(self, axis=None):
+        r'''Inverts named pitch-class.
+
+        Not yet implemented.
+        '''
+        from abjad.tools import pitchtools
+        axis = axis or pitchtools.NamedPitch('c')
+        axis = pitchtools.NamedPitch(axis)
+        this = pitchtools.NamedPitch(self)
+        interval = this - axis
+        result = axis.transpose(interval)
+        result = type(self)(result)
+        return result
+
+    def multiply(self, n=1):
+        r'''Multiplies named pitch-class by `n`.
+
+        ::
+
+            >>> pitchtools.NamedPitchClass('cs').multiply(3)
+            NamedPitchClass('ef')
+
+        Returns new named pitch-class.
+        '''
+        return type(self)(self.pitch_class_number * n)
+
+    def transpose(self, n=0):
+        r'''Transposes named pitch-class by `n`.
+
+        ::
+
+            >>> named_interval = pitchtools.NamedInterval('major', 2)
+            >>> pitchtools.NamedPitchClass('cs').transpose(named_interval)
+            NamedPitchClass('ds')
+
+        Returns new named pitch-class.
+        '''
+        from abjad.tools import pitchtools
+        interval = pitchtools.NamedInterval(n)
+        pitch = pitchtools.NamedPitch(self, 4)
+        pitch = interval.transpose(pitch)
+        return type(self)(pitch)

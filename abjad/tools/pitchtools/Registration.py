@@ -141,6 +141,30 @@ class Registration(TypedList):
         superclass = super(Registration, self)
         return superclass.__format__(format_specification=format_specification)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        def coerce_(expr):
+            if isinstance(expr, tuple):
+                component = pitchtools.RegistrationComponent(*expr)
+            elif isinstance(expr, pitchtools.RegistrationComponent):
+                component = copy.copy(expr)
+            else:
+                raise TypeError(repr(expr))
+            return component
+        from abjad.tools import pitchtools
+        return coerce_
+
+    @property
+    def _one_line_menu_summary(self):
+        name = 'registration'
+        contents = []
+        for registration_component in self:
+            contents.append(registration_component._one_line_menu_summary)
+        contents_string = ', '.join(contents)
+        return '{}: {}'.format(name, contents_string)
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -181,27 +205,3 @@ class Registration(TypedList):
                     raise ValueError
         raise Exception('how did we get here?')
         #return pitch
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_coercer(self):
-        def coerce_(expr):
-            if isinstance(expr, tuple):
-                component = pitchtools.RegistrationComponent(*expr)
-            elif isinstance(expr, pitchtools.RegistrationComponent):
-                component = copy.copy(expr)
-            else:
-                raise TypeError(repr(expr))
-            return component
-        from abjad.tools import pitchtools
-        return coerce_
-
-    @property
-    def _one_line_menu_summary(self):
-        name = 'registration'
-        contents = []
-        for registration_component in self:
-            contents.append(registration_component._one_line_menu_summary)
-        contents_string = ', '.join(contents)
-        return '{}: {}'.format(name, contents_string)

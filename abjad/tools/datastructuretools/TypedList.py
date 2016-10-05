@@ -247,20 +247,26 @@ class TypedList(TypedCollection):
             self.sort()
 
     def count(self, item):
-        r'''Changes `item` to item and returns count.
+        r'''Gets count of `item` in typed list.
 
-        ::
+        ..  container:: example
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     items=[0, 0., '0', 99],
-            ...     item_class=int)
-            >>> integer_collection[:]
-            [0, 0, 0, 99]
+            **Example.** Gets count:
 
-        ::
+            ::
 
-            >>> integer_collection.count(0)
-            3
+                >>> integer_collection = datastructuretools.TypedList(
+                ...     items=[0, 0., '0', 99],
+                ...     item_class=int)
+                >>> integer_collection[:]
+                [0, 0, 0, 99]
+
+            ::
+
+                >>> integer_collection.count(0)
+                3
+
+        Coerces `item`.
 
         Returns count.
         '''
@@ -268,15 +274,21 @@ class TypedList(TypedCollection):
         return self._collection.count(item)
 
     def extend(self, items):
-        r'''Changes `items` to items and extends.
+        r'''Extends typed list with `items`.
+        
+        ..  container:: example
 
-        ::
+            **Example 1.** Extends typed list:
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     item_class=int)
-            >>> integer_collection.extend(('0', 1.0, 2, 3.14159))
-            >>> integer_collection[:]
-            [0, 1, 2, 3]
+            ::
+
+                >>> integer_collection = datastructuretools.TypedList(
+                ...     item_class=int)
+                >>> integer_collection.extend(('0', 1.0, 2, 3.14159))
+                >>> integer_collection[:]
+                [0, 1, 2, 3]
+
+        Coerces `items`.
 
         Returns none.
         '''
@@ -286,15 +298,21 @@ class TypedList(TypedCollection):
             self.sort()
 
     def index(self, item):
-        r'''Changes `item` to item and returns index.
+        r'''Gets index of `item` in typed list.
 
-        ::
+        ..  container:: example
 
-            >>> pitch_collection = datastructuretools.TypedList(
-            ...     items=('cqf', "as'", 'b,', 'dss'),
-            ...     item_class=NamedPitch)
-            >>> pitch_collection.index("as'")
-            1
+            **Example.** Gets index:
+
+            ::
+
+                >>> pitch_collection = datastructuretools.TypedList(
+                ...     items=('cqf', "as'", 'b,', 'dss'),
+                ...     item_class=NamedPitch)
+                >>> pitch_collection.index("as'")
+                1
+
+        Coeres `item`.
 
         Returns index.
         '''
@@ -302,27 +320,33 @@ class TypedList(TypedCollection):
         return self._collection.index(item)
 
     def insert(self, i, item):
-        r'''Changes `item` to item and inserts.
+        r'''Insert `item` into typed list.
 
-        ::
+        ..  container:: example
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     item_class=int)
-            >>> integer_collection.extend(('1', 2, 4.3))
-            >>> integer_collection[:]
-            [1, 2, 4]
+            **Example.** Inserts into typed list.
 
-        ::
+            ::
 
-            >>> integer_collection.insert(0, '0')
-            >>> integer_collection[:]
-            [0, 1, 2, 4]
+                >>> integer_collection = datastructuretools.TypedList(
+                ...     item_class=int)
+                >>> integer_collection.extend(('1', 2, 4.3))
+                >>> integer_collection[:]
+                [1, 2, 4]
 
-        ::
+            ::
 
-            >>> integer_collection.insert(1, '9')
-            >>> integer_collection[:]
-            [0, 9, 1, 2, 4]
+                >>> integer_collection.insert(0, '0')
+                >>> integer_collection[:]
+                [0, 1, 2, 4]
+
+            ::
+
+                >>> integer_collection.insert(1, '9')
+                >>> integer_collection[:]
+                [0, 9, 1, 2, 4]
+
+        Coerces `item`.
 
         Returns none.
         '''
@@ -343,21 +367,27 @@ class TypedList(TypedCollection):
         return result
 
     def remove(self, item):
-        r'''Changes `item` to item and removes.
+        r'''Removes `item` from typed list.
 
-        ::
+        ..  container:: example
 
-            >>> integer_collection = datastructuretools.TypedList(
-            ...     item_class=int)
-            >>> integer_collection.extend(('0', 1.0, 2, 3.14159))
-            >>> integer_collection[:]
-            [0, 1, 2, 3]
+            **Example.** Removes item:
 
-        ::
+            ::
 
-            >>> integer_collection.remove('1')
-            >>> integer_collection[:]
-            [0, 2, 3]
+                >>> integer_collection = datastructuretools.TypedList(
+                ...     item_class=int)
+                >>> integer_collection.extend(('0', 1.0, 2, 3.14159))
+                >>> integer_collection[:]
+                [0, 1, 2, 3]
+
+            ::
+
+                >>> integer_collection.remove('1')
+                >>> integer_collection[:]
+                [0, 2, 3]
+
+        Coerces `item`.
 
         Returns none.
         '''

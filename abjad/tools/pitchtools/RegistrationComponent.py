@@ -9,7 +9,7 @@ class RegistrationComponent(AbjadValueObject):
     ..  container:: example
 
         **Example 1.** Initializes a registration component that specifies that
-        all pitches from A0 up to and including C8 should be tranposed to the
+        all pitches from A0 up to and including C8 should be transposed to the
         octave starting at Eb5 (numbered pitch 15):
 
         ::

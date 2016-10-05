@@ -175,86 +175,6 @@ class PitchArrayCell(AbjadObject):
         '''
         return self._format_string
 
-    ### PRIVATE METHODS ###
-
-    def _parse_cell_token(self, cell_token):
-        from abjad.tools import pitchtools
-        if cell_token is None:
-            pitches, width = [], 1
-        elif isinstance(cell_token, int):
-            if 0 < cell_token:
-                pitches, width = [], cell_token
-            else:
-                message = 'integer width item must be positive.'
-                raise ValueError(message)
-        elif isinstance(cell_token, pitchtools.NamedPitch):
-            pitches, width = [cell_token], 1
-        elif isinstance(cell_token, list):
-            pitch_token, width = cell_token, 1
-            pitches = self._parse_pitch_token(pitch_token)
-        elif isinstance(cell_token, tuple):
-            if not len(cell_token) == 2:
-                message = 'tuple item must be of length two.'
-                raise ValueError(message)
-            if isinstance(cell_token[0], str):
-                pitches = self._parse_pitch_token(cell_token)
-                width = 1
-            else:
-                pitch_token, width = cell_token
-                pitches = self._parse_pitch_token(pitch_token)
-        elif isinstance(cell_token, type(self)):
-            pitches, width = cell_token.pitches, cell_token.width
-        else:
-            message = 'cell item must be integer width, pitch or pair.'
-            raise TypeError(message)
-        return pitches, width
-
-    def _parse_pitch_token(self, pitch_token):
-        from abjad.tools import pitchtools
-        pitches = []
-        if isinstance(pitch_token, (int, float, pitchtools.NamedPitch)):
-            pitch = pitchtools.NamedPitch(pitch_token)
-            pitches.append(pitch)
-        elif isinstance(pitch_token, tuple):
-            pitches.append(pitchtools.NamedPitch(*pitch_token))
-        elif isinstance(pitch_token, list):
-            for element in pitch_token:
-                pitch = pitchtools.NamedPitch(element)
-                pitches.append(pitch)
-        else:
-            message = 'pitch item must be number, pitch or list.'
-            raise TypeError(message)
-        return pitches
-
-    def _withdraw(self):
-        parent_row = self.parent_row
-        parent_row.remove(self)
-        return self
-
-    ### PUBLIC METHODS ###
-
-    def append_pitch(self, pitch):
-        r'''Appends `pitch` to cell.
-
-        Returns none.
-        '''
-        from abjad.tools import pitchtools
-        if self.pitches is None:
-            self._pitches = []
-        pitch = pitchtools.NamedPitch(pitch)
-        self._pitches.append(pitch)
-
-    def matches_cell(self, arg):
-        r'''Is true when pitch array cell matches `arg`. Otherwise false.
-
-        Returns true or false.
-        '''
-        if isinstance(arg, type(self)):
-            if self.pitches == arg.pitches:
-                if self.width == arg.width:
-                    return True
-        return False
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -316,6 +236,62 @@ class PitchArrayCell(AbjadObject):
     @property
     def _width_string(self):
         return 'x%s' % self.width
+
+    ### PRIVATE METHODS ###
+
+    def _parse_cell_token(self, cell_token):
+        from abjad.tools import pitchtools
+        if cell_token is None:
+            pitches, width = [], 1
+        elif isinstance(cell_token, int):
+            if 0 < cell_token:
+                pitches, width = [], cell_token
+            else:
+                message = 'integer width item must be positive.'
+                raise ValueError(message)
+        elif isinstance(cell_token, pitchtools.NamedPitch):
+            pitches, width = [cell_token], 1
+        elif isinstance(cell_token, list):
+            pitch_token, width = cell_token, 1
+            pitches = self._parse_pitch_token(pitch_token)
+        elif isinstance(cell_token, tuple):
+            if not len(cell_token) == 2:
+                message = 'tuple item must be of length two.'
+                raise ValueError(message)
+            if isinstance(cell_token[0], str):
+                pitches = self._parse_pitch_token(cell_token)
+                width = 1
+            else:
+                pitch_token, width = cell_token
+                pitches = self._parse_pitch_token(pitch_token)
+        elif isinstance(cell_token, type(self)):
+            pitches, width = cell_token.pitches, cell_token.width
+        else:
+            message = 'cell item must be integer width, pitch or pair.'
+            raise TypeError(message)
+        return pitches, width
+
+    def _parse_pitch_token(self, pitch_token):
+        from abjad.tools import pitchtools
+        pitches = []
+        if isinstance(pitch_token, (int, float, pitchtools.NamedPitch)):
+            pitch = pitchtools.NamedPitch(pitch_token)
+            pitches.append(pitch)
+        elif isinstance(pitch_token, tuple):
+            pitches.append(pitchtools.NamedPitch(*pitch_token))
+        elif isinstance(pitch_token, list):
+            for element in pitch_token:
+                pitch = pitchtools.NamedPitch(element)
+                pitches.append(pitch)
+        else:
+            message = 'pitch item must be number, pitch or list.'
+            raise TypeError(message)
+        return pitches
+
+    def _withdraw(self):
+        parent_row = self.parent_row
+        parent_row.remove(self)
+        return self
 
     ### PUBLIC PROPERTIES ###
 
@@ -589,3 +565,27 @@ class PitchArrayCell(AbjadObject):
         Returns positive integer.
         '''
         return self._width
+
+    ### PUBLIC METHODS ###
+
+    def append_pitch(self, pitch):
+        r'''Appends `pitch` to cell.
+
+        Returns none.
+        '''
+        from abjad.tools import pitchtools
+        if self.pitches is None:
+            self._pitches = []
+        pitch = pitchtools.NamedPitch(pitch)
+        self._pitches.append(pitch)
+
+    def matches_cell(self, arg):
+        r'''Is true when pitch array cell matches `arg`. Otherwise false.
+
+        Returns true or false.
+        '''
+        if isinstance(arg, type(self)):
+            if self.pitches == arg.pitches:
+                if self.width == arg.width:
+                    return True
+        return False

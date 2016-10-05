@@ -17,7 +17,7 @@ def test_pitchtools_Accidental_abbreviation_03():
     assert accidental.abbreviation == ''
 
 
-def test_pitchtools_Accidental_abbreviation_05():
+def test_pitchtools_Accidental_abbreviation_04():
 
     assert pitchtools.Accidental('').abbreviation == ''
     assert pitchtools.Accidental('bb').abbreviation == 'ff'

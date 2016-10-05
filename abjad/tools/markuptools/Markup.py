@@ -76,6 +76,8 @@ class Markup(AbjadValueObject):
                 f'8
             }
 
+    ..  note:: All static markup methods should implement a direction keyword.
+
     Set `direction` to ``Up``, ``Down``, ``'neutral'``,
     ``'^'``, ``'_'``, ``'-'`` or None.
 
@@ -172,7 +174,7 @@ class Markup(AbjadValueObject):
             message = 'must be markup or markup command: {!r}.'
             message = message.format(expr)
             raise TypeError(message)
-        markup = type(self)(contents=commands)
+        markup = type(self)(contents=commands, direction=self.direction)
         return markup
 
     def __format__(self, format_specification=''):
@@ -663,7 +665,7 @@ class Markup(AbjadValueObject):
         return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def combine(markup_one, markup_two):
+    def combine(markup_one, markup_two, direction=None):
         r'''LilyPond ``\combine`` markup command.
 
         ..  container:: example
@@ -672,9 +674,13 @@ class Markup(AbjadValueObject):
 
                 >>> markup_one = Markup('a few words')
                 >>> markup_two = Markup.draw_line(10, 0)
-                >>> markup = Markup.combine(markup_one, markup_two)
+                >>> markup = Markup.combine(
+                ...     markup_one,
+                ...     markup_two,
+                ...     direction=Up,
+                ...     )
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \combine
                         "a few words"
                         \draw-line
@@ -695,10 +701,10 @@ class Markup(AbjadValueObject):
             contents_one,
             contents_two,
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def concat(markup_list):
+    def concat(markup_list, direction=None):
         r'''LilyPond ``\concat`` markup command.
 
         ..  container:: example
@@ -708,9 +714,10 @@ class Markup(AbjadValueObject):
                 >>> downbow = Markup.musicglyph('scripts.downbow')
                 >>> hspace = Markup.hspace(1)
                 >>> upbow = Markup.musicglyph('scripts.upbow')
-                >>> markup = Markup.concat([downbow, hspace, upbow])
+                >>> markup_list = [downbow, hspace, upbow]
+                >>> markup = Markup.concat(markup_list, direction=Up)
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \concat
                         {
                             \musicglyph
@@ -737,22 +744,22 @@ class Markup(AbjadValueObject):
             'concat',
             result,
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def draw_circle(radius, thickness, filled=False):
+    def draw_circle(radius, thickness, direction=None, filled=False):
         r'''LilyPond ``\draw-circle`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.draw_circle(10, 1.5)
+                >>> markup = Markup.draw_circle(10, 1.5, direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \draw-circle
                         #10
                         #1.5
@@ -772,22 +779,22 @@ class Markup(AbjadValueObject):
             thickness,
             filled,
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
-    def draw_line(x, y):
+    def draw_line(x, y, direction=None):
         r'''LilyPond ``\draw-line`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.draw_line(5, -2.5)
+                >>> markup = Markup.draw_line(5, -2.5, direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \draw-line
                         #'(5 . -2.5)
                     }
@@ -804,7 +811,7 @@ class Markup(AbjadValueObject):
             'draw-line',
             pair,
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     def dynamic(self):
         r'''LilyPond ``\dynamic`` markup command.
@@ -839,16 +846,16 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def filled_box(x_extent, y_extent, blot=0):
+    def filled_box(x_extent, y_extent, blot=0, direction=None):
         r'''LilyPond ``filled-box`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.filled_box((0, 10), (2, 5), 1.5)
+                >>> markup = Markup.filled_box((0, 10), (2, 5), 1.5, direction=Up)
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \filled-box
                         #'(0 . 10)
                         #'(2 . 5)
@@ -871,7 +878,7 @@ class Markup(AbjadValueObject):
             y_extent,
             blot,
             )
-        return Markup(command)
+        return Markup(command, direction=direction)
 
     def finger(self):
         r'''LilyPond ``\finger`` markup command.
@@ -906,19 +913,19 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def flat():
+    def flat(direction=None):
         r'''LilyPond ``\flat`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.flat()
+                >>> markup = Markup.flat(direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \flat
                     }
 
@@ -930,7 +937,7 @@ class Markup(AbjadValueObject):
         '''
         from abjad.tools import markuptools
         command = markuptools.MarkupCommand('flat')
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     def fontsize(self, fontsize):
         r'''LilyPond ``\fontsize`` markup command.
@@ -968,7 +975,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def fraction(numerator, denominator):
+    def fraction(numerator, denominator, direction=None):
         r'''LilyPond ``\fraction`` markup command.
 
         ..  container:: example
@@ -977,7 +984,7 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.fraction(1, 4)
+                >>> markup = Markup.fraction(1, 4, direction=Up)
 
             ::
 
@@ -986,7 +993,7 @@ class Markup(AbjadValueObject):
             ..  doctest::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \fraction
                         1
                         4
@@ -1022,7 +1029,7 @@ class Markup(AbjadValueObject):
             str(numerator),
             str(denominator),
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     def general_align(self, axis, direction):
         r'''LilyPond ``\general-align`` markup command.
@@ -1168,19 +1175,19 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def hspace(amount):
+    def hspace(amount, direction=None):
         r'''LilyPond ``\hspace`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.hspace(0.75)
+                >>> markup = Markup.hspace(0.75, direction=Up)
 
             ::
 
                 >>> f(markup)
-                \markup {
+                ^ \markup {
                     \hspace
                         #0.75
                     }
@@ -1196,7 +1203,7 @@ class Markup(AbjadValueObject):
             'hspace',
             amount,
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     def huge(self):
         r'''LilyPond ``\huge`` markup command.
@@ -1374,19 +1381,19 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def make_big_centered_page_number_markup(text=None):
+    def make_big_centered_page_number_markup(text=None, direction=None):
         r'''Makes big centered page number markup.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.make_big_centered_page_number_markup()
+                >>> markup = Markup.make_big_centered_page_number_markup(direction=Up)
 
             ::
 
                 >>> print(format(markup, 'lilypond'))
-                \markup {
+                ^ \markup {
                     \fill-line
                         {
                             \bold
@@ -1419,23 +1426,23 @@ class Markup(AbjadValueObject):
             \on-the-fly #print-page-number-check-first
             \fromproperty #'page:page-number-string }} }}'''
             contents = contents.format(text)
-        markup = Markup(contents)
+        markup = Markup(contents=contents, direction=direction)
         return markup
 
     @staticmethod
-    def make_blank_line_markup():
+    def make_blank_line_markup(direction=None):
         r'''Makes blank line markup.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.make_blank_line_markup()
+                >>> markup = Markup.make_blank_line_markup(direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup { \fill-line { " " } }
+                ^ \markup { \fill-line { " " } }
 
             ::
 
@@ -1443,11 +1450,12 @@ class Markup(AbjadValueObject):
 
         Returns markup.
         '''
-        return Markup(r'\fill-line { " " }')
+        return Markup(r'\fill-line { " " }', direction=direction)
 
     @staticmethod
     def make_centered_title_markup(
         title,
+        direction=None,
         font_name='Times New Roman',
         font_size=18,
         vspace_before=6,
@@ -1459,12 +1467,15 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.make_centered_title_markup('String Quartet')
+                >>> markup = Markup.make_centered_title_markup(
+                ...     'String Quartet',
+                ...     direction=Up,
+                ...     )
 
             ::
 
                 >>> print(format(markup, 'lilypond'))
-                \markup {
+                ^ \markup {
                     \override
                         #'(font-name . "Times New Roman")
                         \fontsize
@@ -1525,10 +1536,10 @@ class Markup(AbjadValueObject):
             title_lines_string,
             vspace_after,
             )
-        return Markup(contents)
+        return Markup(contents=contents, direction=direction)
 
     @staticmethod
-    def make_improper_fraction_markup(rational):
+    def make_improper_fraction_markup(rational, direction=None):
         r'''Makes improper fraction markup.
 
         ..  container:: example
@@ -1537,12 +1548,15 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.make_improper_fraction_markup(Fraction(6, 3))
+                >>> markup = Markup.make_improper_fraction_markup(
+                ...     Fraction(6, 3),
+                ...     direction=Up,
+                ...     )
 
             ::
 
                 >>> print(format(markup))
-                \markup { 2 }
+                ^ \markup { 2 }
 
             ::
 
@@ -1575,15 +1589,18 @@ class Markup(AbjadValueObject):
         from abjad.tools import mathtools
         if mathtools.is_integer_equivalent_number(rational):
             number = int(rational)
-            markup = Markup(number)
+            markup = Markup(number, direction=direction)
             return markup
         assert isinstance(rational, Fraction), repr(rational)
         integer_part = int(rational)
         fraction_part = rational - integer_part
-        integer_markup = Markup(integer_part)
+        integer_markup = Markup(integer_part, direction=direction)
         numerator = fraction_part.numerator
         denominator = fraction_part.denominator
-        fraction_markup = Markup.fraction(numerator, denominator)
+        fraction_markup = Markup.fraction(
+            numerator,
+            denominator,
+            )
         fraction_markup = fraction_markup.tiny()
         markup = integer_markup + fraction_markup
         return markup
@@ -1591,6 +1608,7 @@ class Markup(AbjadValueObject):
     @staticmethod
     def make_vertically_adjusted_composer_markup(
         composer,
+        direction=None,
         font_name='Times New Roman',
         font_size=3,
         space_above=20,
@@ -1604,12 +1622,13 @@ class Markup(AbjadValueObject):
 
                 >>> markup = Markup.make_vertically_adjusted_composer_markup(
                 ...     'Josquin Desprez',
+                ...     direction=Up,
                 ...     )
 
             ::
 
                 >>> print(format(markup, 'lilypond'))
-                \markup {
+                ^ \markup {
                     \override
                         #'(font-name . "Times New Roman")
                         {
@@ -1650,7 +1669,7 @@ class Markup(AbjadValueObject):
             composer,
             space_right,
             )
-        return Markup(contents)
+        return Markup(contents=contents, direction=direction)
 
     @staticmethod
     def musicglyph(glyph_name=None, direction=None):
@@ -1660,12 +1679,15 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.musicglyph('accidentals.sharp')
+                >>> markup = Markup.musicglyph(
+                ...     'accidentals.sharp',
+                ...     direction=Up,
+                ...     )
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \musicglyph
                         #"accidentals.sharp"
                     }
@@ -1689,19 +1711,19 @@ class Markup(AbjadValueObject):
         return markuptools.Markup(contents=command, direction=direction)
 
     @staticmethod
-    def natural():
+    def natural(direction=None):
         r'''LilyPond ``\natural`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.natural()
+                >>> markup = Markup.natural(direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \natural
                     }
 
@@ -1713,7 +1735,7 @@ class Markup(AbjadValueObject):
         '''
         from abjad.tools import markuptools
         command = markuptools.MarkupCommand('natural')
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     @staticmethod
     def note_by_number(log, dot_count, stem_direction, direction=None):
@@ -1723,12 +1745,12 @@ class Markup(AbjadValueObject):
 
             ::
 
-                >>> markup = Markup.note_by_number(3, 2, 1)
+                >>> markup = Markup.note_by_number(3, 2, 1, direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \note-by-number
                         #3
                         #2
@@ -1789,12 +1811,12 @@ class Markup(AbjadValueObject):
 
                 >>> city = Markup('Los Angeles')
                 >>> date = Markup('May - August 2014')
-                >>> markup = Markup.overlay([city, date])
+                >>> markup = Markup.overlay([city, date], direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \overlay
                         {
                             "Los Angeles"
@@ -2086,7 +2108,7 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def postscript(postscript):
+    def postscript(postscript, direction=None):
         r'''LilyPond ``\postscript`` markup command.
 
         ..  container:: example
@@ -2099,12 +2121,12 @@ class Markup(AbjadValueObject):
                 >>> postscript = postscript.setdash((2, 1))
                 >>> postscript = postscript.lineto(3, -4)
                 >>> postscript = postscript.stroke()
-                >>> markup = markuptools.Markup.postscript(postscript)
+                >>> markup = markuptools.Markup.postscript(postscript, direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \postscript
                         #"
                         1 1 moveto
@@ -2129,7 +2151,7 @@ class Markup(AbjadValueObject):
             'postscript',
             postscript,
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     def raise_(self, amount):
         r'''LilyPond ``\raise`` markup command.
@@ -2175,12 +2197,12 @@ class Markup(AbjadValueObject):
 
                 >>> city = Markup('Los Angeles')
                 >>> date = Markup('May - August 2014')
-                >>> markup = Markup.right_column([city, date])
+                >>> markup = Markup.right_column([city, date], direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \right-column
                         {
                             "Los Angeles"
@@ -2306,19 +2328,19 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def sharp():
+    def sharp(direction=None):
         r'''LilyPond ``\sharp`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.sharp()
+                >>> markup = Markup.sharp(direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \sharp
                     }
 
@@ -2330,7 +2352,7 @@ class Markup(AbjadValueObject):
         '''
         from abjad.tools import markuptools
         command = markuptools.MarkupCommand('sharp')
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     def small(self):
         r'''LilyPond ``\small`` markup command.
@@ -2536,19 +2558,19 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def triangle(is_filled=True):
+    def triangle(direction=None, is_filled=True):
         r'''LilyPond ``\triangle`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.triangle()
+                >>> markup = Markup.triangle(direction=Up)
 
             ::
 
                 >>> print(format(markup))
-                \markup {
+                ^ \markup {
                     \triangle
                         ##t
                     }
@@ -2564,7 +2586,7 @@ class Markup(AbjadValueObject):
             'triangle',
             bool(is_filled),
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     def upright(self):
         r'''LilyPond ``\upright`` markup command.
@@ -2631,19 +2653,19 @@ class Markup(AbjadValueObject):
         return new(self, contents=command)
 
     @staticmethod
-    def vspace(amount):
+    def vspace(amount, direction=None):
         r'''LilyPond ``\vspace`` markup command.
 
         ..  container:: example
 
             ::
 
-                >>> markup = Markup.vspace(0.75)
+                >>> markup = Markup.vspace(0.75, direction=Up)
 
             ::
 
                 >>> f(markup)
-                \markup {
+                ^ \markup {
                     \vspace
                         #0.75
                     }
@@ -2659,7 +2681,7 @@ class Markup(AbjadValueObject):
             'vspace',
             amount,
             )
-        return Markup(contents=command)
+        return Markup(contents=command, direction=direction)
 
     def whiteout(self):
         r'''LilyPond ``\whiteout`` markup command.

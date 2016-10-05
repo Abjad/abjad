@@ -98,6 +98,75 @@ class PitchSegment(Segment):
         lilypond_file.header_block.tagline = False
         return lilypond_file
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitch
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitch
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.Pitch
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def hertz(self):
+        r'''Gets hertz of pitches in pitch segment.
+
+        ::
+
+            >>> pitch_segment = pitchtools.PitchSegment('c e g b')
+            >>> pitch_segment.hertz
+            (130.81..., 164.81..., 195.99..., 246.94...)
+
+        Returns tuple.
+        '''
+        return tuple(_.hertz for _ in self)
+
+    @property
+    def inflection_point_count(self):
+        r'''Inflection point count of pitch segment.
+
+        Returns nonnegative integer.
+        '''
+        return len(self.local_minima) + len(self.local_maxima)
+
+    @property
+    def local_maxima(self):
+        r'''Local maxima of pitch segment.
+
+        Returns tuple.
+        '''
+        result = []
+        if 3 <= len(self):
+            for i in range(1, len(self) - 1):
+                left, middle, right = self[i - 1], self[i], self[i + 1]
+                if left < middle and right < middle:
+                    result.append(middle)
+        return tuple(result)
+
+    @property
+    def local_minima(self):
+        r'''Local minima of pitch segment.
+
+        Returns tuple.
+        '''
+        result = []
+        if 3 <= len(self):
+            for i in range(1, len(self) - 1):
+                left, middle, right = self[i - 1], self[i], self[i + 1]
+                if middle < left and middle < right:
+                    result.append(middle)
+        return tuple(result)
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -140,6 +209,30 @@ class PitchSegment(Segment):
             item_class=item_class,
             )
 
+    def has_duplicates(self):
+        r'''True if pitch segment has duplicate items. Otherwise false.
+
+        ::
+
+            >>> pitch_class_segment = pitchtools.PitchSegment(
+            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
+            ...     )
+            >>> pitch_class_segment.has_duplicates()
+            True
+
+        ::
+
+            >>> pitch_class_segment = pitchtools.PitchSegment(
+            ...     items="c d e f g a b",
+            ...     )
+            >>> pitch_class_segment.has_duplicates()
+            False
+
+        Returns true or false.
+        '''
+        from abjad.tools import pitchtools
+        return len(pitchtools.PitchSet(self)) < len(self)
+
     def invert(self, axis=None):
         r'''Inverts pitch segment about `axis`.
 
@@ -148,7 +241,7 @@ class PitchSegment(Segment):
         items = (pitch.invert(axis) for pitch in self)
         return new(self, items=items)
 
-    def is_equivalent_under_transposition(self, expr):
+    def _is_equivalent_under_transposition(self, expr):
         r'''True if pitch segment is equivalent to `expr` under transposition.
         Otherwise false.
 
@@ -263,7 +356,7 @@ class PitchSegment(Segment):
         '''
         return new(self, items=reversed(self))
 
-    def rotate(self, n, transpose=False):
+    def rotate(self, n=0, stravinsky=False):
         r'''Rotates pitch segment.
 
         ::
@@ -289,7 +382,7 @@ class PitchSegment(Segment):
         ::
 
             >>> pitch_segment = pitchtools.PitchSegment("c' d' e' f'")
-            >>> result = pitch_segment.rotate(-1, transpose=True)
+            >>> result = pitch_segment.rotate(-1, stravinsky=True)
             >>> result
             PitchSegment(["c'", "d'", "ef'", 'bf'])
 
@@ -300,10 +393,9 @@ class PitchSegment(Segment):
         Returns new pitch segment.
         '''
         from abjad.tools import sequencetools
-        rotated_pitches = sequencetools.rotate_sequence(
-            self._collection, n)
+        rotated_pitches = sequencetools.rotate_sequence(self._collection, n)
         new_segment = new(self, items=rotated_pitches)
-        if transpose:
+        if stravinsky:
             if self[0] != new_segment[0]:
                 interval = new_segment[0] - self[0]
                 new_segment = new_segment.transpose(interval)
@@ -316,97 +408,3 @@ class PitchSegment(Segment):
         '''
         items = (pitch.transpose(expr) for pitch in self)
         return new(self, items=items)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitch
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitch
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.Pitch
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def has_duplicates(self):
-        r'''True if pitch segment has duplicate items. Otherwise false.
-
-        ::
-
-            >>> pitch_class_segment = pitchtools.PitchSegment(
-            ...     items=[-2, -1.5, 6, 7, -1.5, 7],
-            ...     )
-            >>> pitch_class_segment.has_duplicates
-            True
-
-        ::
-
-            >>> pitch_class_segment = pitchtools.PitchSegment(
-            ...     items="c d e f g a b",
-            ...     )
-            >>> pitch_class_segment.has_duplicates
-            False
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        return len(pitchtools.PitchSet(self)) < len(self)
-
-    @property
-    def hertz(self):
-        r'''Gets hertz of pitches in pitch segment.
-
-        ::
-
-            >>> pitch_segment = pitchtools.PitchSegment('c e g b')
-            >>> pitch_segment.hertz
-            (130.81..., 164.81..., 195.99..., 246.94...)
-
-        Returns tuple.
-        '''
-        return tuple(_.hertz for _ in self)
-
-    @property
-    def inflection_point_count(self):
-        r'''Inflection point count of pitch segment.
-
-        Returns nonnegative integer.
-        '''
-        return len(self.local_minima) + len(self.local_maxima)
-
-    @property
-    def local_maxima(self):
-        r'''Local maxima of pitch segment.
-
-        Returns tuple.
-        '''
-        result = []
-        if 3 <= len(self):
-            for i in range(1, len(self) - 1):
-                left, middle, right = self[i - 1], self[i], self[i + 1]
-                if left < middle and right < middle:
-                    result.append(middle)
-        return tuple(result)
-
-    @property
-    def local_minima(self):
-        r'''Local minima of pitch segment.
-
-        Returns tuple.
-        '''
-        result = []
-        if 3 <= len(self):
-            for i in range(1, len(self) - 1):
-                left, middle, right = self[i - 1], self[i], self[i + 1]
-                if middle < left and middle < right:
-                    result.append(middle)
-        return tuple(result)

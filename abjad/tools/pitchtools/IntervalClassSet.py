@@ -33,6 +33,23 @@ class IntervalClassSet(Set):
             item_class=item_class,
             )
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedIntervalClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedIntervalClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.IntervalClass
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -75,20 +92,3 @@ class IntervalClassSet(Set):
             items=interval_set,
             item_class=item_class,
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedIntervalClass
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedIntervalClass
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.IntervalClass

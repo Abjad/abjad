@@ -414,6 +414,47 @@ class LilyPondFile(AbjadObject):
     def _lilypond_format(self):
         return '\n\n'.join(self._get_format_pieces())
 
+    ### PRIVATE METHODS ###
+
+    def _get_score(self):
+        from abjad.tools import scoretools
+        score = self.score_block.items[0]
+        assert isinstance(score, scoretools.Score)
+        return score
+
+    def _get_first_voice(self):
+
+        from abjad.tools import scoretools
+        from abjad.tools.topleveltools import iterate
+        score = self.score_block.items[0]
+        assert isinstance(score, scoretools.Score)
+        for voice in iterate(score).by_class(scoretools.Voice):
+            return voice
+
+    def _get_format_pieces(self):
+        result = []
+        if self.date_time_token is not None:
+            string = '% {}'.format(self.date_time_token)
+            result.append(string)
+        result.extend(self._formatted_comments)
+        includes = []
+        if self.lilypond_version_token is not None:
+            string = '{}'.format(self.lilypond_version_token)
+            includes.append(string)
+        if self.lilypond_language_token is not None:
+            string = '{}'.format(self.lilypond_language_token)
+            includes.append(string)
+        includes = '\n'.join(includes)
+        if includes:
+            result.append(includes)
+        if self.use_relative_includes:
+            string = "#(ly:set-option 'relative-includes #t)"
+            result.append(string)
+        result.extend(self._formatted_includes)
+        result.extend(self._formatted_scheme_settings)
+        result.extend(self._formatted_blocks)
+        return result
+
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -719,3 +760,37 @@ class LilyPondFile(AbjadObject):
         Returns true, false or none.
         '''
         return self._use_relative_includes
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def new(
+        cls,
+        music=None,
+        date_time_token=None,
+        default_paper_size=None,
+        comments=None,
+        includes=None,
+        global_staff_size=None,
+        lilypond_language_token=None,
+        lilypond_version_token=None,
+        use_relative_includes=None,
+        ):
+        r'''Makes basic LilyPond file.
+
+        Return LilyPond file.
+        '''
+        from abjad.tools import lilypondfiletools
+        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+            music=music,
+            date_time_token=date_time_token,
+            default_paper_size=default_paper_size,
+            comments=comments,
+            includes=includes,
+            global_staff_size=global_staff_size,
+            lilypond_language_token=lilypond_language_token,
+            lilypond_version_token=lilypond_version_token,
+            use_relative_includes=use_relative_includes,
+            )
+        lilypond_file.header_block.tagline = False
+        return lilypond_file

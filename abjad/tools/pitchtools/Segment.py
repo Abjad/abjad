@@ -35,8 +35,8 @@ class Segment(TypedTuple):
         if item_class is None:
             item_class = self._named_item_class
             if items is not None:
-                if isinstance(items, datastructuretools.TypedCollection) and \
-                    issubclass(items.item_class, self._parent_item_class):
+                if (isinstance(items, datastructuretools.TypedCollection) and
+                    issubclass(items.item_class, self._parent_item_class)):
                     item_class = items.item_class
                 elif len(items):
                     if isinstance(items, collections.Set):
@@ -125,6 +125,24 @@ class Segment(TypedTuple):
         parts = [str(x) for x in self]
         return '<{}>'.format(', '.join(parts))
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        return self._item_class
+
+    @abc.abstractproperty
+    def _named_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _numbered_item_class(self):
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def _parent_item_class(self):
+        raise NotImplementedError
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -150,7 +168,24 @@ class Segment(TypedTuple):
             storage_format_args_values=[tuple(self._collection)],
             )
 
+    def _get_padded_string(self, width=2):
+        strings = []
+        for item in self:
+            string = '{{!s:>{}}}'
+            string = string.format(width)
+            string = string.format(item)
+            strings.append(string)
+        return '<{}>'.format(', '.join(strings))
+
     ### PUBLIC METHODS ###
+
+    @abc.abstractmethod
+    def has_duplicates(self):
+        r'''Is true when segment has duplicates. Otherwise false.
+
+        Returns true or false.
+        '''
+        raise NotImplementedError
 
     @abc.abstractmethod
     def from_selection(
@@ -161,33 +196,5 @@ class Segment(TypedTuple):
         r'''Makes segment from `selection`.
 
         Returns new segment.
-        '''
-        raise NotImplementedError
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _item_coercer(self):
-        return self._item_class
-
-    @abc.abstractproperty
-    def _named_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _numbered_item_class(self):
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def _parent_item_class(self):
-        raise NotImplementedError
-
-    ### PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def has_duplicates(self):
-        r'''Is true when segment has duplicates. Otherwise false.
-
-        Returns true or false.
         '''
         raise NotImplementedError

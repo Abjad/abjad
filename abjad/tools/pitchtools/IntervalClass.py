@@ -50,6 +50,12 @@ class IntervalClass(AbjadValueObject):
         '''
         return self._format_string
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_string(self):
+        return str(self.number)
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -67,12 +73,6 @@ class IntervalClass(AbjadValueObject):
             storage_format_args_values=values,
             template_names=['number'],
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _format_string(self):
-        return str(self.number)
 
     ### PUBLIC PROPERTIES ###
 

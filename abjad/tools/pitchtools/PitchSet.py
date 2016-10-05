@@ -43,13 +43,77 @@ class PitchSet(Set):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitch
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitch
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.Pitch
 
     ### PRIVATE METHODS ###
 
     def _sort_self(self):
         from abjad.tools import pitchtools
         return sorted(pitchtools.PitchSegment(tuple(self)))
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def duplicate_pitch_classes(self):
+        r'''Duplicate pitch-classes in pitch set.
+
+        Returns pitch-class set.
+        '''
+        from abjad.tools import pitchtools
+        pitch_classes = []
+        duplicate_pitch_classes = []
+        for pitch in self:
+            pitch_class = pitchtools.NumberedPitchClass(pitch)
+            if pitch_class in pitch_classes:
+                duplicate_pitch_classes.append(pitch_class)
+            pitch_classes.append(pitch_class)
+        return pitchtools.PitchClassSet(
+            duplicate_pitch_classes,
+            item_class=pitchtools.NumberedPitchClass,
+            )
+
+    @property
+    def hertz(self):
+        r'''Gets hertz of pitches in pitch segment.
+
+        ::
+
+            >>> pitch_set = pitchtools.PitchSet('c e g b')
+            >>> sorted(pitch_set.hertz)
+            [130.81..., 164.81..., 195.99..., 246.94...]
+
+        Returns set.
+        '''
+        return set(_.hertz for _ in self)
+
+    @property
+    def is_pitch_class_unique(self):
+        r'''Is true when pitch set is pitch-class-unique. Otherwise false.
+
+        Returns true or false.
+        '''
+        from abjad.tools import pitchtools
+        numbered_pitch_class_set = pitchtools.PitchClassSet(
+            self, item_class=pitchtools.NumberedPitchClass)
+        return len(self) == len(numbered_pitch_class_set)
 
     ### PUBLIC METHODS ###
 
@@ -86,7 +150,7 @@ class PitchSet(Set):
         items = (pitch.invert(axis) for pitch in self)
         return new(self, items=items)
 
-    def is_equivalent_under_transposition(self, expr):
+    def _is_equivalent_under_transposition(self, expr):
         r'''True if pitch set is equivalent to `expr` under transposition.
         Otherwise false.
 
@@ -153,66 +217,3 @@ class PitchSet(Set):
         '''
         items = (pitch.transpose(expr) for pitch in self)
         return new(self, items=items)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitch
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitch
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.Pitch
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def duplicate_pitch_classes(self):
-        r'''Duplicate pitch-classes in pitch set.
-
-        Returns pitch-class set.
-        '''
-        from abjad.tools import pitchtools
-        pitch_classes = []
-        duplicate_pitch_classes = []
-        for pitch in self:
-            pitch_class = pitchtools.NumberedPitchClass(pitch)
-            if pitch_class in pitch_classes:
-                duplicate_pitch_classes.append(pitch_class)
-            pitch_classes.append(pitch_class)
-        return pitchtools.PitchClassSet(
-            duplicate_pitch_classes,
-            item_class=pitchtools.NumberedPitchClass,
-            )
-
-    @property
-    def hertz(self):
-        r'''Gets hertz of pitches in pitch segment.
-
-        ::
-
-            >>> pitch_set = pitchtools.PitchSet('c e g b')
-            >>> sorted(pitch_set.hertz)
-            [130.81..., 164.81..., 195.99..., 246.94...]
-
-        Returns set.
-        '''
-        return set(_.hertz for _ in self)
-
-    @property
-    def is_pitch_class_unique(self):
-        r'''Is true when pitch set is pitch-class-unique. Otherwise false.
-
-        Returns true or false.
-        '''
-        from abjad.tools import pitchtools
-        numbered_pitch_class_set = pitchtools.PitchClassSet(
-            self, item_class=pitchtools.NumberedPitchClass)
-        return len(self) == len(numbered_pitch_class_set)

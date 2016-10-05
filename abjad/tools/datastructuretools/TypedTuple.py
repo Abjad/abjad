@@ -5,7 +5,7 @@ from abjad.tools.topleveltools import new
 
 
 class TypedTuple(TypedCollection):
-    r'''A typed tuple.
+    r'''Typed tuple.
     '''
 
     ### CLASS VARIABLES ###
@@ -41,8 +41,9 @@ class TypedTuple(TypedCollection):
         raise NotImplementedError
 
     def __contains__(self, item):
-        r'''Change `item` to item and return true if item exists in
-        collection.
+        r'''Is true if typed tuple contains `item`.
+
+        Coerces `item`.
 
         Returns none.
         '''
@@ -53,7 +54,7 @@ class TypedTuple(TypedCollection):
         return self._collection.__contains__(item)
 
     def __getitem__(self, i):
-        '''Gets `i` from type tuple.
+        '''Gets `i` from typed tuple.
 
         Returns item.
         '''
@@ -103,17 +104,24 @@ class TypedTuple(TypedCollection):
     ### PUBLIC METHODS ###
 
     def count(self, item):
-        r'''Changes `item` to item.
+        r'''Counts `item` in collection.
 
-        Returns count in collection.
+        Coerces `item`.
+
+        Returns nonnegative integer.
         '''
-        item = self._item_coercer(item)
+        try:
+            item = self._item_coercer(item)
+        except TypeError:
+            return 0
         return self._collection.count(item)
 
     def index(self, item):
-        r'''Changes `item` to item.
+        r'''Gets index of `item` in collection.
 
-        Returns index in collection.
+        Coerces `item`.
+
+        Returns nonnegative integer.
         '''
         item = self._item_coercer(item)
         return self._collection.index(item)

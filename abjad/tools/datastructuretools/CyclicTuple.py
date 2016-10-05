@@ -83,9 +83,9 @@ class CyclicTuple(AbjadValueObject, tuple):
 
             ::
 
-                >>> sequence = [0, 1, 2, 3, 4, 5]
-                >>> sequence = datastructuretools.CyclicTuple(sequence)
-                >>> sequence[2:]
+                >>> items = [0, 1, 2, 3, 4, 5]
+                >>> tuple_ = datastructuretools.CyclicTuple(items=items)
+                >>> tuple_[2:]
                 (2, 3, 4, 5)
 
         ..  container:: example
@@ -94,9 +94,9 @@ class CyclicTuple(AbjadValueObject, tuple):
 
             ::
 
-                >>> sequence = [0, 1, 2, 3, 4, 5]
-                >>> sequence = datastructuretools.CyclicTuple(sequence)
-                >>> sequence[:15]
+                >>> items = [0, 1, 2, 3, 4, 5]
+                >>> tuple_ = datastructuretools.CyclicTuple(items=items)
+                >>> tuple_[:15]
                 (0, 1, 2, 3, 4, 5, 0, 1, 2, 3, 4, 5, 0, 1, 2)
 
         Returns tuple.

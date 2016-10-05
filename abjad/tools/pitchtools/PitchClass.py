@@ -208,6 +208,71 @@ class PitchClass(AbjadValueObject):
             template_names=['pitch_class_name'],
             )
 
+    ### PUBLIC PROPERTIES ###
+
+    @abc.abstractproperty
+    def accidental(self):
+        r'''Accidental of pitch-class.
+        '''
+        raise NotImplementedError
+
+    @property
+    def accidental_spelling(self):
+        r'''Accidental spelling of pitch-class.
+
+        Returns string.
+        '''
+        from abjad import abjad_configuration
+        return abjad_configuration['accidental_spelling']
+
+    @abc.abstractproperty
+    def alteration_in_semitones(self):
+        r'''Alteration of pitch-class in semitones.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def diatonic_pitch_class_name(self):
+        r'''Diatonic pitch-class name corresponding to pitch-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def diatonic_pitch_class_number(self):
+        r'''Diatonic pitch-class number corresponding to pitch-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def named_pitch_class(self):
+        r'''Named pitch-class corresponding to pitch-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def numbered_pitch_class(self):
+        r'''Numbered pitch-class corresponding to pitch-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_class_label(self):
+        r'''Pitch-class label of pitch-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_class_name(self):
+        r'''Pitch-class name of pitch-class.
+        '''
+        raise NotImplementedError
+
+    @abc.abstractproperty
+    def pitch_class_number(self):
+        r'''Pitch-class number of pitch-class.
+        '''
+        raise NotImplementedError
+
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
@@ -314,70 +379,5 @@ class PitchClass(AbjadValueObject):
         r'''Transposes pitch-class by `n`'.
 
         Returns new pitch-class.
-        '''
-        raise NotImplementedError
-
-    ### PUBLIC PROPERTIES ###
-
-    @abc.abstractproperty
-    def accidental(self):
-        r'''Accidental of pitch-class.
-        '''
-        raise NotImplementedError
-
-    @property
-    def accidental_spelling(self):
-        r'''Accidental spelling of pitch-class.
-
-        Returns string.
-        '''
-        from abjad import abjad_configuration
-        return abjad_configuration['accidental_spelling']
-
-    @abc.abstractproperty
-    def alteration_in_semitones(self):
-        r'''Alteration of pitch-class in semitones.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_class_name(self):
-        r'''Diatonic pitch-class name corresponding to pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def diatonic_pitch_class_number(self):
-        r'''Diatonic pitch-class number corresponding to pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def named_pitch_class(self):
-        r'''Named pitch-class corresponding to pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def numbered_pitch_class(self):
-        r'''Numbered pitch-class corresponding to pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_label(self):
-        r'''Pitch-class label of pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_name(self):
-        r'''Pitch-class name of pitch-class.
-        '''
-        raise NotImplementedError
-
-    @abc.abstractproperty
-    def pitch_class_number(self):
-        r'''Pitch-class number of pitch-class.
         '''
         raise NotImplementedError

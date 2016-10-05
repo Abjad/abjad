@@ -5,7 +5,9 @@ from abjad.tools.abctools.AbjadObject import AbjadObject
 
 
 class TypedCollection(AbjadObject):
-    r'''Abstract base class for typed collections.
+    r'''Typed collection.
+    
+    Abstract base class for typed collections.
     '''
 
     ### CLASS VARIABLES ###
@@ -25,7 +27,7 @@ class TypedCollection(AbjadObject):
     ### SPECIAL METHODS ###
 
     def __contains__(self, item):
-        r'''Is true when typed collection container `item`.
+        r'''Is true when typed collection contains `item`.
         Otherwise false.
 
         Returns true or false.
@@ -72,7 +74,7 @@ class TypedCollection(AbjadObject):
         return self._collection.__iter__()
 
     def __len__(self):
-        r'''Length of typed collection.
+        r'''Gets length of typed collection.
 
         Returns nonnegative integer.
         '''
@@ -126,12 +128,18 @@ class TypedCollection(AbjadObject):
 
     @property
     def item_class(self):
-        r'''Item class to coerce items into.
+        r'''Gets item class of collection.
+        
+        Collection coerces items according to `item_class`.
+
+        Returns class.
         '''
         return self._item_class
 
     @property
     def items(self):
-        r'''Gets collection items.
+        r'''Gets items in collection.
+
+        Returns list.
         '''
         return [x for x in self]

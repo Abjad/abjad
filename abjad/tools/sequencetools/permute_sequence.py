@@ -1,41 +1,40 @@
 # -*- coding: utf-8 -*-
-import collections
 
 
 def permute_sequence(sequence, permutation):
     '''Permutes `sequence`.
 
-    ::
+    ..  note:: Deprecated. Use ``sequencetools.Permutation`` instead.
 
-        >>> sequencetools.permute_sequence([10, 11, 12, 13, 14, 15], [5, 4, 0, 1, 2, 3])
-        [15, 14, 10, 11, 12, 13]
+    ..  container:: example
 
-    Permutes references to `sequence` elements; does not copy `sequence`
-    elements.
+        **Example 1.** Permutes length-6 sequence:
+        
+        ::
+
+            >>> sequence_ = [10, 11, 12, 13, 14, 15]
+            >>> permutation = [5, 4, 0, 1, 2, 3]
+            >>> sequencetools.permute_sequence(sequence_, permutation)
+            [15, 14, 10, 11, 12, 13]
+
+    ..  container:: example
+
+        **Example 2.** Permutes length-6 sequence:
+        
+        ::
+
+            >>> sequence_ = [10, 11, 12, 13, 14, 15]
+            >>> permutation = sequencetools.Permutation([5, 4, 0, 1, 2, 3])
+            >>> sequencetools.permute_sequence(sequence_, permutation)
+            [15, 14, 10, 11, 12, 13]
+
+    Copies references.
+    
+    Does not copy items.
 
     Returns new object of `sequence` type.
     '''
     from abjad.tools import sequencetools
-
-    if not isinstance(sequence, collections.Sequence):
-        message = 'must by sequence {!r}.'
-        message = message.format(sequence)
-        raise Exception(message)
-
-    sequence_type = type(sequence)
-
-    if not sequencetools.Sequence(permutation).is_permutation() or \
-        len(sequence) != len(permutation):
-        message = '{!r} must be permutation of length {}.'
-        message = message.format(permutation, len(sequence))
-        raise TypeError(message)
-
-    result = []
-    for index in permutation:
-        new_element = sequence[index]
-        result.append(new_element)
-    if isinstance(sequence, str):
-        result = ''.join(result)
-
-    result = sequence_type(result)
+    permutation = sequencetools.Permutation(permutation)
+    result = permutation(sequence)
     return result

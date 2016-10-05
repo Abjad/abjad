@@ -98,6 +98,38 @@ class IntervalClassVector(Vector):
         superclass = super(IntervalClassVector, self)
         return superclass.__repr__()
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _label(self):
+        counts = []
+        for i in range(7):
+            counts.append(self[i])
+        counts = ''.join([str(x) for x in counts])
+        if len(self) == 13:
+            quartertones = []
+            for i in range(6):
+                quartertones.append(self[i + 0.5])
+            quartertones = ''.join([str(x) for x in quartertones])
+            return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
+        else:
+            return r'\tiny %s' % counts
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedIntervalClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedIntervalClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.IntervalClass
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -162,35 +194,3 @@ class IntervalClassVector(Vector):
             pitch_segment,
             item_class=item_class,
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _label(self):
-        counts = []
-        for i in range(7):
-            counts.append(self[i])
-        counts = ''.join([str(x) for x in counts])
-        if len(self) == 13:
-            quartertones = []
-            for i in range(6):
-                quartertones.append(self[i + 0.5])
-            quartertones = ''.join([str(x) for x in quartertones])
-            return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
-        else:
-            return r'\tiny %s' % counts
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedIntervalClass
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedIntervalClass
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.IntervalClass

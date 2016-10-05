@@ -15,6 +15,6 @@ def test_pitchtools_Accidental_is_abbreviation_01():
     assert pitchtools.Accidental.is_abbreviation('tqf')
 
 
-def test_pitchtools_Accidental_is_abbreviation_03():
+def test_pitchtools_Accidental_is_abbreviation_02():
 
     assert not pitchtools.Accidental.is_abbreviation(8)

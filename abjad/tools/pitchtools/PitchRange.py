@@ -44,6 +44,11 @@ class PitchRange(AbjadValueObject):
 
     ### CLASS VARIABLES ###
 
+    __slots__ = (
+        '_start',
+        '_stop',
+        )
+
     _range_string_regex_body = '''
         (?P<open_bracket>
             [\[(]       # open bracket or open parenthesis
@@ -71,10 +76,15 @@ class PitchRange(AbjadValueObject):
         re.VERBOSE,
         )
 
-    __slots__ = (
-        '_start',
-        '_stop',
-        )
+    _start_punctuation_to_inclusivity_string = {
+        '[': 'inclusive',
+        '(': 'exclusive',
+        }
+
+    _stop_punctuation_to_inclusivity_string = {
+        ']': 'inclusive',
+        ')': 'exclusive',
+        }
 
     ### INITIALIZER ###
 
@@ -283,17 +293,25 @@ class PitchRange(AbjadValueObject):
         '''
         return not self == arg
 
-    ### PRIVATE CLASS VARIABLES ###
+    ### PRIVATE PROPERTIES ###
 
-    _start_punctuation_to_inclusivity_string = {
-        '[': 'inclusive',
-        '(': 'exclusive',
-        }
+    @property
+    def _close_bracket_string(self):
+        if self.stop_pitch_is_included_in_range:
+            return ']'
+        else:
+            return ')'
 
-    _stop_punctuation_to_inclusivity_string = {
-        ']': 'inclusive',
-        ')': 'exclusive',
-        }
+    @property
+    def _one_line_menu_summary(self):
+        return self.one_line_named_pitch_repr
+
+    @property
+    def _open_bracket_string(self):
+        if self.start_pitch_is_included_in_range:
+            return '['
+        else:
+            return '('
 
     ### PRIVATE METHODS ###
 
@@ -383,6 +401,132 @@ class PitchRange(AbjadValueObject):
         start_pair = (start_pitch, start_inclusivity_string)
         stop_pair = (stop_pitch, stop_inclusivity_string)
         return start_pair, stop_pair
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def one_line_named_pitch_repr(self):
+        r'''One-line named pitch representation of pitch range.
+
+        ::
+
+            >>> pitch_range = pitchtools.PitchRange('[C3, C7]')
+            >>> pitch_range.one_line_named_pitch_repr
+            '[C3, C7]'
+
+        Returns string.
+        '''
+        result = []
+        result.append(self._open_bracket_string)
+        if self.start_pitch:
+            result.append(self.start_pitch.pitch_class_octave_label)
+        else:
+            result.append('-inf')
+        result.append(', ')
+        if self.stop_pitch:
+            result.append(self.stop_pitch.pitch_class_octave_label)
+        else:
+            result.append('+inf')
+        result.append(self._close_bracket_string)
+        result = ''.join(result)
+        return result
+
+    @property
+    def one_line_numbered_pitch_repr(self):
+        r'''One-line numbered pitch representation of pitch range.
+
+        ::
+
+            >>> pitch_range.one_line_numbered_pitch_repr
+            '[-12, 36]'
+
+        Returns string.
+        '''
+        result = []
+        result.append(self._open_bracket_string)
+        result.append(str(self.start_pitch.pitch_number))
+        result.append(', ')
+        result.append(str(self.stop_pitch.pitch_number))
+        result.append(self._close_bracket_string)
+        result = ''.join(result)
+        return result
+
+    @property
+    def range_string(self):
+        r'''Gets range string of pitch range.
+
+        ::
+
+            >>> pitch_range.range_string
+            '[C3, C7]'
+
+        Aliased to `one_line_named_pitch_repr`.
+
+        Returns string.
+        '''
+        return self.one_line_named_pitch_repr
+
+    @property
+    def start_pitch(self):
+        r'''Start pitch of pitch range.
+
+        ::
+
+            >>> pitch_range.start_pitch
+            NamedPitch('c')
+
+        Returns pitch.
+        '''
+        if self._start is None:
+            return None
+        return self._start[0]
+
+    @property
+    def start_pitch_is_included_in_range(self):
+        r'''Is true when start pitch is included in range.
+        Otherwise false:
+
+        ::
+
+            >>> pitch_range.start_pitch_is_included_in_range
+            True
+
+        Returns true or false.
+        '''
+        if self._start is None:
+            return True
+        return self._start[1] == 'inclusive'
+
+    @property
+    def stop_pitch(self):
+        r"""Stop pitch of pitch range.
+
+        ::
+
+            >>> pitch_range.stop_pitch
+            NamedPitch("c''''")
+
+        Returns pitch.
+        """
+        if self._stop is None:
+            return None
+        return self._stop[0]
+
+    @property
+    def stop_pitch_is_included_in_range(self):
+        r'''Is true when stop pitch is included in range.
+        Otherwise false:
+
+        ::
+
+            >>> pitch_range.stop_pitch_is_included_in_range
+            True
+
+        Returns true or false.
+        '''
+        if self._stop is None:
+            return True
+        return self._stop[1] == 'inclusive'
 
     ### PUBLIC METHODS ###
 
@@ -566,149 +710,3 @@ class PitchRange(AbjadValueObject):
                 result.append(named_pitch)
             named_pitch += 12
         return tuple(result)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _close_bracket_string(self):
-        if self.stop_pitch_is_included_in_range:
-            return ']'
-        else:
-            return ')'
-
-    @property
-    def _one_line_menu_summary(self):
-        return self.one_line_named_pitch_repr
-
-    @property
-    def _open_bracket_string(self):
-        if self.start_pitch_is_included_in_range:
-            return '['
-        else:
-            return '('
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def one_line_named_pitch_repr(self):
-        r'''One-line named pitch representation of pitch range.
-
-        ::
-
-            >>> pitch_range = pitchtools.PitchRange('[C3, C7]')
-            >>> pitch_range.one_line_named_pitch_repr
-            '[C3, C7]'
-
-        Returns string.
-        '''
-        result = []
-        result.append(self._open_bracket_string)
-        if self.start_pitch:
-            result.append(self.start_pitch.pitch_class_octave_label)
-        else:
-            result.append('-inf')
-        result.append(', ')
-        if self.stop_pitch:
-            result.append(self.stop_pitch.pitch_class_octave_label)
-        else:
-            result.append('+inf')
-        result.append(self._close_bracket_string)
-        result = ''.join(result)
-        return result
-
-    @property
-    def one_line_numbered_pitch_repr(self):
-        r'''One-line numbered pitch representation of pitch range.
-
-        ::
-
-            >>> pitch_range.one_line_numbered_pitch_repr
-            '[-12, 36]'
-
-        Returns string.
-        '''
-        result = []
-        result.append(self._open_bracket_string)
-        result.append(str(self.start_pitch.pitch_number))
-        result.append(', ')
-        result.append(str(self.stop_pitch.pitch_number))
-        result.append(self._close_bracket_string)
-        result = ''.join(result)
-        return result
-
-    @property
-    def range_string(self):
-        r'''Gets range string of pitch range.
-
-        ::
-
-            >>> pitch_range.range_string
-            '[C3, C7]'
-
-        Aliased to `one_line_named_pitch_repr`.
-
-        Returns string.
-        '''
-        return self.one_line_named_pitch_repr
-
-    @property
-    def start_pitch(self):
-        r'''Start pitch of pitch range.
-
-        ::
-
-            >>> pitch_range.start_pitch
-            NamedPitch('c')
-
-        Returns pitch.
-        '''
-        if self._start is None:
-            return None
-        return self._start[0]
-
-    @property
-    def start_pitch_is_included_in_range(self):
-        r'''Is true when start pitch is included in range.
-        Otherwise false:
-
-        ::
-
-            >>> pitch_range.start_pitch_is_included_in_range
-            True
-
-        Returns true or false.
-        '''
-        if self._start is None:
-            return True
-        return self._start[1] == 'inclusive'
-
-    @property
-    def stop_pitch(self):
-        r"""Stop pitch of pitch range.
-
-        ::
-
-            >>> pitch_range.stop_pitch
-            NamedPitch("c''''")
-
-        Returns pitch.
-        """
-        if self._stop is None:
-            return None
-        return self._stop[0]
-
-    @property
-    def stop_pitch_is_included_in_range(self):
-        r'''Is true when stop pitch is included in range.
-        Otherwise false:
-
-        ::
-
-            >>> pitch_range.stop_pitch_is_included_in_range
-            True
-
-        Returns true or false.
-        '''
-        if self._stop is None:
-            return True
-        return self._stop[1] == 'inclusive'

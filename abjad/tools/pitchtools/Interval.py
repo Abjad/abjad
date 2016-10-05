@@ -94,6 +94,23 @@ class Interval(AbjadValueObject):
         '''
         return str(self.number)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _direction_symbol(self):
+        if self.direction_number == -1:
+            return '-'
+        elif self.direction_number == 0:
+            return ''
+        elif self.direction_number == 1:
+            return '+'
+        else:
+            raise ValueError
+
+    @property
+    def _format_string(self):
+        return str(self.number)
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -111,6 +128,16 @@ class Interval(AbjadValueObject):
             storage_format_args_values=values,
             template_names=['direction_number', 'interval_number'],
             )
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def cents(self):
+        r'''Cents of interval.
+
+        Returns nonnegative number.
+        '''
+        return 100 * self.semitones
 
     ### PUBLIC METHODS ###
 
@@ -150,30 +177,3 @@ class Interval(AbjadValueObject):
             return False
         return bool(Interval._named_interval_quality_abbreviation_regex.match(
             expr))
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _direction_symbol(self):
-        if self.direction_number == -1:
-            return '-'
-        elif self.direction_number == 0:
-            return ''
-        elif self.direction_number == 1:
-            return '+'
-        else:
-            raise ValueError
-
-    @property
-    def _format_string(self):
-        return str(self.number)
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def cents(self):
-        r'''Cents of interval.
-
-        Returns nonnegative number.
-        '''
-        return 100 * self.semitones

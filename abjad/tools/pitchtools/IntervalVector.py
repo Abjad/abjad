@@ -107,6 +107,23 @@ class IntervalVector(Vector):
         superclass = super(IntervalVector, self)
         return superclass.__repr__()
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedInterval
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedInterval
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.Interval
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -125,20 +142,3 @@ class IntervalVector(Vector):
             pitch_segment,
             item_class=item_class,
             )
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedInterval
-
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedInterval
-
-    @property
-    def _parent_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.Interval

@@ -155,35 +155,6 @@ class NumberedInterval(Interval):
     def _format_string(self):
         return '{}{}'.format(self._direction_symbol, abs(self.number))
 
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes numbered interval from `pitch_carrier_1` and
-        `pitch_carrier_2`.
-
-        ::
-
-            >>> pitchtools.NumberedInterval.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
-            ...     )
-            NumberedInterval(14)
-
-        Returns numbered interval.
-        '''
-        from abjad.tools import pitchtools
-        # get pitches
-        pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
-        pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
-        # get difference in semitones
-        number = pitchtools.NumberedPitch(pitch_2).pitch_number - \
-            pitchtools.NumberedPitch(pitch_1).pitch_number
-        # change 1.0, 2.0, ... into 1, 2, ...
-        number = mathtools.integer_equivalent_number_to_integer(number)
-        # return numbered interval
-        return class_(number)
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -247,6 +218,33 @@ class NumberedInterval(Interval):
         return self.number
 
     ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
+        '''Makes numbered interval from `pitch_carrier_1` and
+        `pitch_carrier_2`.
+
+        ::
+
+            >>> pitchtools.NumberedInterval.from_pitch_carriers(
+            ...     NamedPitch(-2),
+            ...     NamedPitch(12),
+            ...     )
+            NumberedInterval(14)
+
+        Returns numbered interval.
+        '''
+        from abjad.tools import pitchtools
+        # get pitches
+        pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
+        pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
+        # get difference in semitones
+        number = pitchtools.NumberedPitch(pitch_2).pitch_number - \
+            pitchtools.NumberedPitch(pitch_1).pitch_number
+        # change 1.0, 2.0, ... into 1, 2, ...
+        number = mathtools.integer_equivalent_number_to_integer(number)
+        # return numbered interval
+        return class_(number)
 
     def to_named_interval(self, staff_positions):
         r'''Changes numbered interval to named interval that encompasses

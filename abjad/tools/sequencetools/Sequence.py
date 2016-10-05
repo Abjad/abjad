@@ -4,7 +4,7 @@ from abjad.tools.abctools import AbjadObject
 
 
 class Sequence(AbjadObject):
-    r'''A sequence.
+    r'''Sequence.
     '''
 
     ### CLASS VARIABLES ###

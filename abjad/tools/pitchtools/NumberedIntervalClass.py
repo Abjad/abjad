@@ -134,30 +134,6 @@ class NumberedIntervalClass(IntervalClass):
         '''
         return self._number
 
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Makes numbered interval-class from `pitch_carrier_1` and
-        `pitch_carrier_2`.
-
-        ::
-
-            >>> pitchtools.NumberedIntervalClass.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
-            ...     )
-            NumberedIntervalClass(2)
-
-        Returns numbered interval-class.
-        '''
-        from abjad.tools import pitchtools
-        # get numbered interval
-        interval = pitchtools.NumberedInterval.from_pitch_carriers(
-            pitch_carrier_1, pitch_carrier_2)
-        # return numbered interval-class
-        return class_(interval)
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -202,3 +178,27 @@ class NumberedIntervalClass(IntervalClass):
             return ''
         else:
             return 'ascending'
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
+        '''Makes numbered interval-class from `pitch_carrier_1` and
+        `pitch_carrier_2`.
+
+        ::
+
+            >>> pitchtools.NumberedIntervalClass.from_pitch_carriers(
+            ...     NamedPitch(-2),
+            ...     NamedPitch(12),
+            ...     )
+            NumberedIntervalClass(2)
+
+        Returns numbered interval-class.
+        '''
+        from abjad.tools import pitchtools
+        # get numbered interval
+        interval = pitchtools.NumberedInterval.from_pitch_carriers(
+            pitch_carrier_1, pitch_carrier_2)
+        # return numbered interval-class
+        return class_(interval)
