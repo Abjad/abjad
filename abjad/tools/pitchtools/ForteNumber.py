@@ -37,7 +37,7 @@ class ForteNumber(AbjadValueObject):
         cardinality = int(cardinality)
         assert 1 <= cardinality < 12, repr(cardinality)
         rank = int(rank)
-        assert 1 < rank, repr(rank)
+        assert 1 <= rank, repr(rank)
         self._cardinality = cardinality
         self._rank = rank
 
