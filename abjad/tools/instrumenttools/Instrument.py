@@ -48,17 +48,18 @@ class Instrument(AbjadValueObject):
         from abjad.tools import scoretools
         self._do_not_format = False
         if instrument_name is not None:
-            assert isinstance(instrument_name, str), repr(instrument_name)
+            instrument_name = str(instrument_name)
         self._instrument_name = instrument_name
-        prototype = markuptools.Markup
         if instrument_name_markup is not None:
-            assert isinstance(instrument_name_markup, prototype)
+            instrument_name_markup = markuptools.Markup(
+                instrument_name_markup)
         self._instrument_name_markup = instrument_name_markup
         if short_instrument_name is not None:
-            assert isinstance(short_instrument_name, str)
+            short_instrument_name = str(short_instrument_name)
         self._short_instrument_name = short_instrument_name
         if short_instrument_name_markup is not None:
-            assert isinstance(short_instrument_name_markup, prototype)
+            short_instrument_name_markup = markuptools.Markup(
+                short_instrument_name_markup)
         self._short_instrument_name_markup = short_instrument_name_markup
         allowable_clefs = allowable_clefs or ['treble']
         allowable_clefs = instrumenttools.ClefList(allowable_clefs)
