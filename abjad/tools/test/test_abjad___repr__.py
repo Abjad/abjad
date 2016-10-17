@@ -21,6 +21,7 @@ ignored_classes = (
     datastructuretools.Enumeration,
     systemtools.StorageFormatAgent,
     systemtools.FormatSpecification,
+    systemtools.TestCase,
     )
 
 classes = documentationtools.list_all_abjad_classes(

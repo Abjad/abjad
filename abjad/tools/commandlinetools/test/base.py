@@ -1,10 +1,6 @@
 # -*- coding: utf-8 -*-
-import argparse
-import doctest
-import re
 import shutil
 import sys
-import unittest
 from abjad.tools import commandlinetools
 from abjad.tools import stringtools
 from abjad.tools import systemtools
@@ -12,17 +8,12 @@ try:
     import pathlib
 except ImportError:
     import pathlib2 as pathlib
-try:
-    from StringIO import StringIO
-except ImportError:
-    from io import StringIO
 
 
-class ScorePackageScriptTestCase(unittest.TestCase):
+class ScorePackageScriptTestCase(systemtools.TestCase):
     r'''A base test class for score-package scripts.
     '''
 
-    ansi_escape = re.compile(r'\x1b[^m]*m')
     test_path = pathlib.Path(__file__).parent
     score_path = test_path.joinpath('test_score')
     build_path = score_path.joinpath('test_score', 'build')
@@ -121,14 +112,14 @@ class ScorePackageScriptTestCase(unittest.TestCase):
     ### TEST LIFECYCLE ###
 
     def setUp(self):
+        super(ScorePackageScriptTestCase, self).setUp()
         if self.score_path.exists():
             shutil.rmtree(str(self.score_path))
         self.directory_items = set(self.test_path.iterdir())
         sys.path.insert(0, str(self.score_path))
-        self.string_io = StringIO()
 
     def tearDown(self):
-        self.string_io.close()
+        super(ScorePackageScriptTestCase, self).tearDown()
         for path in sorted(self.test_path.iterdir()):
             if path in self.directory_items:
                 continue
@@ -150,54 +141,6 @@ class ScorePackageScriptTestCase(unittest.TestCase):
         command = ['--collect']
         with systemtools.TemporaryDirectoryChange(str(self.score_path)):
             script(command)
-
-    def compare_captured_output(self, expected):
-        actual = self.ansi_escape.sub('', self.string_io.getvalue())
-        actual = stringtools.normalize(actual)
-        expected = stringtools.normalize(expected)
-        self.compare_strings(expected, actual)
-
-    def compare_file_contents(self, path, expected_contents):
-        expected_contents = stringtools.normalize(expected_contents)
-        with open(str(path), 'r') as file_pointer:
-            contents = stringtools.normalize(file_pointer.read())
-        self.compare_strings(expected_contents, contents)
-
-    def compare_lilypond_contents(self, ly_path, expected_contents):
-        expected_contents = stringtools.normalize(expected_contents)
-        with open(str(ly_path), 'r') as file_pointer:
-            contents = file_pointer.read()
-        if ly_path.suffix == '.ly':
-            contents = contents.splitlines()
-            while 'version' not in contents[0]:
-                contents.pop(0)
-            contents.pop(0)
-            contents = '\n'.join(contents)
-        contents = stringtools.normalize(contents)
-        self.compare_strings(expected_contents, contents)
-
-    def compare_path_contents(self, path_to_search, expected_files):
-        actual_files = sorted(
-            str(path.relative_to(self.test_path))
-            for path in path_to_search.glob('**/*.*')
-            if '__pycache__' not in path.parts and
-            path.suffix != '.pyc'
-            )
-        assert actual_files == expected_files
-
-    def compare_strings(self, expected, actual):
-        example = argparse.Namespace()
-        example.want = expected
-        output_checker = doctest.OutputChecker()
-        flags = (
-            doctest.NORMALIZE_WHITESPACE |
-            doctest.ELLIPSIS |
-            doctest.REPORT_NDIFF
-            )
-        success = output_checker.check_output(expected, actual, flags)
-        if not success:
-            diff = output_checker.output_difference(example, actual, flags)
-            raise Exception(diff)
 
     def create_build_target(
         self,
@@ -328,7 +271,3 @@ class ScorePackageScriptTestCase(unittest.TestCase):
         parts_path = self.build_path.joinpath('parts.ily')
         with open(str(parts_path), 'w') as file_pointer:
             file_pointer.write(self.fancy_parts_code)
-
-    def reset_string_io(self):
-        self.string_io.close()
-        self.string_io = StringIO()
