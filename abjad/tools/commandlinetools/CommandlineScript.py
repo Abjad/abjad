@@ -7,6 +7,14 @@ import os
 from abjad.tools import abctools
 from abjad.tools import documentationtools
 from abjad.tools import stringtools
+try:
+    from ConfigParser import ConfigParser
+except ImportError:
+    from configparser import ConfigParser
+try:
+    import pathlib
+except ImportError:
+    import pathlib2 as pathlib
 
 
 class CommandlineScript(abctools.AbjadObject):
@@ -26,6 +34,7 @@ class CommandlineScript(abctools.AbjadObject):
 
     __slots__ = (
         '_argument_parser',
+        '_config_parser',
         )
 
     _colors = {
@@ -53,6 +62,7 @@ class CommandlineScript(abctools.AbjadObject):
         parser.add_argument('--version', action='version', version=version)
         self._argument_parser = parser
         self._setup_argument_parser(parser)
+        self._config_parser = None
 
     ### SPECIAL METHODS ###
 
@@ -61,6 +71,7 @@ class CommandlineScript(abctools.AbjadObject):
 
         Returns none.
         '''
+        self._config_parser = self._read_config_files()
         if args is None:
             args = self.argument_parser.parse_args()
         else:
@@ -87,6 +98,24 @@ class CommandlineScript(abctools.AbjadObject):
     @abc.abstractmethod
     def _process_args(self, args):
         raise NotImplementedError
+
+    def _read_config_files(self):
+        paths = []
+        home_config = pathlib.Path(os.path.expanduser('~/.ajv'))
+        if home_config.exists():
+            paths.append(home_config)
+        path = pathlib.Path.cwd()
+        while not path.joinpath('.ajv').exists():
+            path = path.parent
+            if path.parent == path:
+                break
+        if path.joinpath('.ajv').exists():
+            if path.joinpath('.ajv') not in paths:
+                paths.append(path.joinpath('.ajv'))
+        paths = [str(_) for _ in paths]
+        config_parser = ConfigParser()
+        config_parser.read(paths)
+        return config_parser
 
     @abc.abstractmethod
     def _setup_argument_parser(self, parser):
