@@ -34,9 +34,7 @@ class DoctestScript(CommandlineScript):
 
     ### PRIVATE METHODS ###
 
-    def _get_file_paths(self, path):
-        if os.path.isfile(path):
-            return [path]
+    def _get_file_paths(self, input_paths):
         ignored_directory_names = (
             '__pycache__',
             '.git',
@@ -45,18 +43,24 @@ class DoctestScript(CommandlineScript):
             'docs',
             )
         file_paths = []
-        for current_root, directories, files in os.walk(path):
-            for directory in directories[:]:
-                if directory in ignored_directory_names:
-                    directories.remove(directory)
-                elif not os.path.exists(os.path.join(
-                    current_root, directory, '__init__.py')):
-                    directories.remove(directory)
-            for file_name in files[:]:
-                if not file_name.endswith('.py'):
-                    continue
-                file_path = os.path.join(current_root, file_name)
-                file_paths.append(file_path)
+        for input_path in input_paths:
+            if not os.path.exists(input_path):
+                print('No such path {!r}'.format(input_path))
+                sys.exit(1)
+            elif os.path.isfile(input_path):
+                file_paths.append(input_path)
+            for current_root, directories, files in os.walk(input_path):
+                for directory in directories[:]:
+                    if directory in ignored_directory_names:
+                        directories.remove(directory)
+                    elif not os.path.exists(os.path.join(
+                        current_root, directory, '__init__.py')):
+                        directories.remove(directory)
+                for file_name in files[:]:
+                    if not file_name.endswith('.py'):
+                        continue
+                    file_path = os.path.join(current_root, file_name)
+                    file_paths.append(file_path)
         return file_paths
 
     def _get_namespace(self):
@@ -224,9 +228,9 @@ class DoctestScript(CommandlineScript):
     def _setup_argument_parser(self, parser):
         parser.add_argument(
             'path',
-            default=os.getcwd(),
+            default=[os.getcwd()],
             help='directory tree to be recursed over',
-            nargs='?',
+            nargs='*',
             )
         parser.add_argument(
             '--diff',
