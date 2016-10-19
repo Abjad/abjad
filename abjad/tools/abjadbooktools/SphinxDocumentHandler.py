@@ -122,8 +122,18 @@ class SphinxDocumentHandler(abctools.AbjadObject):
         app.connect('builder-inited', SphinxDocumentHandler.on_builder_inited)
         app.connect('doctree-read', SphinxDocumentHandler.on_doctree_read)
         app.connect('env-updated', SphinxDocumentHandler.on_env_updated)
+        app.connect(
+            'autodoc-process-docstring',
+            SphinxDocumentHandler.on_autodoc_process_docstring,
+            )
 
     ### ON BUILDER INITIALIZED ###
+
+    @staticmethod
+    def on_autodoc_process_docstring(app, what, name, obj, options, lines):
+        string = stringtools.normalize('\n'.join(lines))
+        if string:
+            lines[:] = string.split('\n')
 
     @staticmethod
     def on_builder_inited(app):
