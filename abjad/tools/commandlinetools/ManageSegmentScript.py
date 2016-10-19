@@ -249,10 +249,12 @@ class ManageSegmentScript(ScorePackageScript):
         segment_name = segment_directory_path.name
         segment_names = self._read_segments_list_json()
         previous_segment_name = None
+        index = None
         if segment_name in segment_names:
             index = segment_names.index(segment_name)
             if 0 < index:
                 previous_segment_name = segment_names[index - 1]
+            index += 1
         previous_segment_metadata = {}
         if previous_segment_name:
             previous_segment_metadata_path = self._segments_path.joinpath(
@@ -264,7 +266,7 @@ class ManageSegmentScript(ScorePackageScript):
         segment_metadata_path = segment_directory_path.joinpath('metadata.json')
         segment_metadata = self._read_json(segment_metadata_path)
         segment_metadata['segment_count'] = len(segment_names)
-        segment_metadata['segment_number'] = index + 1
+        segment_metadata['segment_number'] = index
         segment_metadata['first_bar_number'] = (
             previous_segment_metadata.get('measure_count', 0) +
             previous_segment_metadata.get('first_bar_number', 1)
