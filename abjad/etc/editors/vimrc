@@ -19,8 +19,9 @@ autocmd BufWinEnter *.py silent set foldmethod=indent
 autocmd BufWinEnter *.py silent set foldminlines=0
 autocmd BufWinEnter *.py silent set foldnestmax=2
 autocmd BufWinEnter *.py silent set nofoldenable
-au BufWritePre * :set binary | set noeol
-au BufWritePost * :set nobinary | set eol
+" these settings tell vim NOT to add an EOL at EOF:
+"au BufWritePre * :set binary | set noeol
+"au BufWritePost * :set nobinary | set eol
 
 " 2. settings (alphabetical)
 " ==========================
@@ -42,7 +43,8 @@ set history=700
 set ignorecase
 set incsearch
 set nobackup
-set noeol
+" this setting works with the BufWritePre and BufWritePost pair above:
+"set noeol
 set nojoinspaces
 set noswapfile
 set nowrap
