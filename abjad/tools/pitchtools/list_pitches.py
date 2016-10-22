@@ -25,18 +25,15 @@ def list_pitches(expr):
             NamedPitch("e'")
             NamedPitch("f'")
 
-    Returns tuple.
+    Returns generator.
     '''
     from abjad.tools import pitchtools
     from abjad.tools import scoretools
     from abjad.tools import spannertools
 
     if isinstance(expr, pitchtools.Pitch):
-        result = pitchtools.NamedPitch.from_pitch_carrier(expr)
-        return pitchtools.PitchSegment(
-            items=(result,),
-            item_class=pitchtools.NamedPitch,
-            )
+        named_pitch = pitchtools.NamedPitch.from_pitch_carrier(expr)
+        yield named_pitch
         
     result = []
     if hasattr(expr, 'written_pitches'):
@@ -63,7 +60,9 @@ def list_pitches(expr):
                 result.append(leaf.written_pitch)
             elif hasattr(leaf, 'written_pitches'):
                 result.extend(leaf.written_pitches)
-    return pitchtools.PitchSegment(
+    pitch_segment = pitchtools.PitchSegment(
         items=result,
         item_class=pitchtools.NamedPitch,
         )
+    for pitch in pitch_segment:
+        yield pitch
