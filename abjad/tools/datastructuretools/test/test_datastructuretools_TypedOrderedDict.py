@@ -140,7 +140,7 @@ def test_datastructuretools_TypedOrderedDict_06():
     assert len(dictionary) == 1
 
 
-def test_TypedOrderedDict_07():
+def test_datastructuretools_TypedOrderedDict_07():
     r'''Implements __ne__().
     '''
 
@@ -178,7 +178,7 @@ def test_datastructuretools_TypedOrderedDict_08():
     assert [_ for _ in generator] == ['bass', 'tenor', 'alto', 'soprano']
 
 
-def test_TypedOrderedDict_09():
+def test_datastructuretools_TypedOrderedDict_09():
     r'''Implements clear().
     '''
 
@@ -193,7 +193,7 @@ def test_TypedOrderedDict_09():
     assert dictionary_1 == dictionary_2
 
 
-def test_TypedOrderedDict_10():
+def test_datastructuretools_TypedOrderedDict_10():
     r'''Implements copy().
     '''
 
@@ -207,7 +207,7 @@ def test_TypedOrderedDict_10():
     assert dictionary_1 == dictionary_2
 
 
-def test_TypedOrderedDict_11():
+def test_datastructuretools_TypedOrderedDict_11():
     r'''Implements get().
     '''
 
@@ -222,7 +222,7 @@ def test_TypedOrderedDict_11():
     assert dictionary.get('foo', 'bar') == 'bar'
 
 
-def test_TypedOrderedDict_12():
+def test_datastructuretools_TypedOrderedDict_12():
     r'''Implements has_key().
     '''
 
@@ -237,7 +237,7 @@ def test_TypedOrderedDict_12():
     assert not dictionary.has_key('foo')
 
 
-def test_TypedOrderedDict_13():
+def test_datastructuretools_TypedOrderedDict_13():
     r'''Implements items().
     '''
 
@@ -255,7 +255,7 @@ def test_TypedOrderedDict_13():
         ]
 
 
-def test_TypedOrderedDict_14():
+def test_datastructuretools_TypedOrderedDict_14():
     r'''Implements keys().
     '''
 
@@ -268,7 +268,7 @@ def test_TypedOrderedDict_14():
     assert list(dictionary.keys()) == ['soprano', 'alto', 'tenor', 'bass']
 
 
-def test_TypedOrderedDict_15():
+def test_datastructuretools_TypedOrderedDict_15():
     r'''Implements pop().
     '''
 
@@ -287,7 +287,7 @@ def test_TypedOrderedDict_15():
     assert dictionary_1 == dictionary_2
 
 
-#def test_TypedOrderedDict_16():
+#def test_datastructuretools_TypedOrderedDict_16():
 #    r'''Implements popitem().
 #    '''
 #
@@ -307,7 +307,7 @@ def test_TypedOrderedDict_15():
 #    assert dictionary_1 == dictionary_2
 
 
-def test_TypedOrderedDict_17():
+def test_datastructuretools_TypedOrderedDict_17():
     r'''Implements update().
     '''
 
