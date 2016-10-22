@@ -46,7 +46,7 @@ applications = (None, 'custom-viewer')
 @pytest.mark.parametrize('configuration', abjad_configurations)
 @pytest.mark.parametrize('file_path', test_files)
 @pytest.mark.parametrize('application', applications)
-def test_systemtools_IOManager__open_file_01(spawn_subprocess_mock,
+def test_systemtools_IOManager_open_file_01(spawn_subprocess_mock,
                                              configuration,
                                              file_path,
                                              application):
@@ -68,7 +68,7 @@ def test_systemtools_IOManager__open_file_01(spawn_subprocess_mock,
 @pytest.mark.parametrize('configuration', abjad_configurations)
 @pytest.mark.parametrize('file_path', test_files)
 @pytest.mark.parametrize('application', applications)
-def test_systemtools_IOManager__open_file_02(spawn_subprocess_mock,
+def test_systemtools_IOManager_open_file_02(spawn_subprocess_mock,
                                              configuration,
                                              file_path,
                                              application):
@@ -94,7 +94,7 @@ def test_systemtools_IOManager__open_file_02(spawn_subprocess_mock,
 @pytest.mark.parametrize('configuration', abjad_configurations)
 @pytest.mark.parametrize('file_path', test_files)
 @pytest.mark.parametrize('application', applications)
-def test_systemtools_IOManager__open_file_03(startfile_mock,
+def test_systemtools_IOManager_open_file_03(startfile_mock,
                                              configuration,
                                              file_path,
                                              application):
