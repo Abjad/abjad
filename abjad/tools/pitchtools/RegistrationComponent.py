@@ -8,9 +8,9 @@ class RegistrationComponent(AbjadValueObject):
 
     ..  container:: example
 
-        **Example.** Initializes a registration component that specifies that
-        all pitches from A0 up to and including C8 should be tranposed to
-        the octave starting at Eb5 (numbered pitch 15):
+        **Example 1.** Initializes a registration component that specifies that
+        all pitches from A0 up to and including C8 should be tranposed to the
+        octave starting at Eb5 (numbered pitch 15):
 
         ::
 
@@ -18,9 +18,6 @@ class RegistrationComponent(AbjadValueObject):
             >>> component
             RegistrationComponent(source_pitch_range=PitchRange(range_string='[A0, C8]'), target_octave_start_pitch=NumberedPitch(15))
 
-    Models
-    ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
-    input part. (See the docs for that function.)
     '''
 
     ### INITIALIZER ###

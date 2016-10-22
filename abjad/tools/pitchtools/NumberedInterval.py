@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
+import copy
 import functools
+import numbers
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
 
@@ -147,6 +149,12 @@ class NumberedInterval(Interval):
         message = message.format(type(self), arg)
         raise TypeError(message)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _format_string(self):
+        return '{}{}'.format(self._direction_symbol, abs(self.number))
+
     ### PUBLIC METHODS ###
 
     @classmethod
@@ -175,6 +183,68 @@ class NumberedInterval(Interval):
         number = mathtools.integer_equivalent_number_to_integer(number)
         # return numbered interval
         return class_(number)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def direction_number(self):
+        r'''Direction sign of numbered interval.
+
+        ::
+
+            >>> pitchtools.NumberedInterval(-14).direction_number
+            -1
+
+        Returns integer.
+        '''
+        return mathtools.sign(self.number)
+
+    @property
+    def direction_string(self):
+        r'''Direction string of named interval.
+
+        ::
+
+            >>> pitchtools.NumberedInterval(-14).direction_string
+            'descending'
+
+        Returns ``'ascending'``, ``'descending'`` or none.
+        '''
+        if self.direction_number == -1:
+            return 'descending'
+        elif self.direction_number == 0:
+            return None
+        elif self.direction_number == 1:
+            return 'ascending'
+
+    @property
+    def number(self):
+        r'''Number of numbered interval.
+
+        Returns number.
+        '''
+        return self._number
+
+    @property
+    def numbered_interval_number(self):
+        r'''Number of numbered interval.
+
+        ::
+
+            >>> pitchtools.NumberedInterval(-14).numbered_interval_number
+            -14
+
+        Returns integer or float.
+        '''
+        return self._number
+
+    @property
+    def semitones(self):
+        r'''Semitones corresponding to numbered interval.
+
+        Returns nonnegative number.
+        '''
+        return self.number
 
     ### PUBLIC METHODS ###
 
@@ -293,70 +363,50 @@ class NumberedInterval(Interval):
             )
         return named_interval
 
-    ### PRIVATE PROPERTIES ###
+    def transpose(self, pitch_carrier):
+        r'''Transposes `pitch_carrier`.
 
-    @property
-    def _format_string(self):
-        return '{}{}'.format(self._direction_symbol, abs(self.number))
+        ..  container:: example
 
-    ### PUBLIC PROPERTIES ###
+            **Example 1.** Transposes chord:
 
-    @property
-    def direction_number(self):
-        r'''Direction sign of numbered interval.
+            ::
 
-        ::
+                >>> chord = Chord("<c' e' g'>4")
 
-            >>> pitchtools.NumberedInterval(-14).direction_number
-            -1
+            ::
 
-        Returns integer.
+                >>> interval = pitchtools.NumberedInterval(1)
+                >>> interval.transpose(chord)
+                Chord("<cs' f' af'>4")
+
+        Returns new (copied) object of `pitch_carrier` type.
         '''
-        return mathtools.sign(self.number)
-
-    @property
-    def direction_string(self):
-        r'''Direction string of named interval.
-
-        ::
-
-            >>> pitchtools.NumberedInterval(-14).direction_string
-            'descending'
-
-        Returns ``'ascending'``, ``'descending'`` or none.
-        '''
-        if self.direction_number == -1:
-            return 'descending'
-        elif self.direction_number == 0:
-            return None
-        elif self.direction_number == 1:
-            return 'ascending'
-
-    @property
-    def number(self):
-        r'''Number of numbered interval.
-
-        Returns number.
-        '''
-        return self._number
-
-    @property
-    def numbered_interval_number(self):
-        r'''Number of numbered interval.
-
-        ::
-
-            >>> pitchtools.NumberedInterval(-14).numbered_interval_number
-            -14
-
-        Returns integer or float.
-        '''
-        return self._number
-
-    @property
-    def semitones(self):
-        r'''Semitones corresponding to numbered interval.
-
-        Returns nonnegative number.
-        '''
-        return self.number
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        if isinstance(pitch_carrier, pitchtools.Pitch):
+            number = pitch_carrier.pitch_number + self.semitones
+            return type(pitch_carrier)(number)
+        elif isinstance(pitch_carrier, numbers.Number):
+            pitch_carrier = pitchtools.NumberedPitch(pitch_carrier)
+            result = self.transpose(pitch_carrier)
+            return result.pitch_number
+        elif isinstance(pitch_carrier, scoretools.Note):
+            new_note = copy.copy(pitch_carrier)
+            number = pitchtools.NumberedPitch(pitch_carrier.written_pitch).pitch_number
+            number += self.number
+            new_pitch = pitchtools.NamedPitch(number)
+            new_note.written_pitch = new_pitch
+            return new_note
+        elif isinstance(pitch_carrier, scoretools.Chord):
+            new_chord = copy.copy(pitch_carrier)
+            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
+            for new_nh, old_nh in pairs:
+                number = \
+                    pitchtools.NumberedPitch(old_nh.written_pitch).pitch_number
+                number += self.number
+                new_pitch = pitchtools.NamedPitch(number)
+                new_nh.written_pitch = new_pitch
+            return new_chord
+        else:
+            return pitch_carrier

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 import functools
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Interval import Interval
@@ -322,65 +323,6 @@ class NamedInterval(Interval):
         return pitchtools.NamedInterval.from_pitch_carriers(
             dummy_pitch, new_pitch)
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        superclass = super(NamedInterval, self)
-        format_specification = superclass._get_format_specification()
-        return new(
-            format_specification,
-            template_names=['quality_string', 'number'],
-            )
-
-    ### PUBLIC METHODS ###
-
-    @classmethod
-    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
-        '''Calculate named interval from `pitch_carrier_1` to
-        `pitch_carrier_2`:
-
-        ::
-
-            >>> pitchtools.NamedInterval.from_pitch_carriers(
-            ...     NamedPitch(-2),
-            ...     NamedPitch(12),
-            ...     )
-            NamedInterval('+M9')
-
-        ::
-
-            ..  todo:: Improve this behavior.
-
-            >>> pitchtools.NamedInterval.from_pitch_carriers(
-            ...     NamedPitch("cs'"),
-            ...     NamedPitch("cf'"),
-            ...     )
-            NamedInterval('-M2')
-
-        Returns named interval.
-        '''
-        from abjad.tools import pitchtools
-        pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
-        pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
-        degree_1 = pitch_1.diatonic_pitch_number
-        degree_2 = pitch_2.diatonic_pitch_number
-        named_interval_number = abs(degree_1 - degree_2) + 1
-        numbered_interval_number = abs(
-            pitchtools.NumberedPitch(pitch_1).pitch_number -
-            pitchtools.NumberedPitch(pitch_2).pitch_number
-            )
-        numbered_interval = pitchtools.NumberedInterval(
-            numbered_interval_number,
-            )
-        absolute_named_interval = numbered_interval.to_named_interval(
-            named_interval_number
-            )
-        if pitch_2 < pitch_1:
-            named_interval = -absolute_named_interval
-        else:
-            named_interval = absolute_named_interval
-        return class_(named_interval)
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -428,6 +370,28 @@ class NamedInterval(Interval):
             'major': 'M', 'minor': 'm', 'perfect': 'P',
             'augmented': 'aug', 'diminished': 'dim'}
         return _quality_string_to_quality_abbreviation[self.quality_string]
+
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        superclass = super(NamedInterval, self)
+        format_specification = superclass._get_format_specification()
+        return new(
+            format_specification,
+            template_names=['quality_string', 'number'],
+            )
+
+    def _transpose_pitch(self, pitch):
+        from abjad.tools import pitchtools
+        pitch_number = pitch.pitch_number + self.semitones
+        diatonic_pitch_class_number = \
+            (pitch.diatonic_pitch_class_number + self.staff_spaces) % 7
+        diatonic_pitch_class_name = \
+            pitchtools.PitchClass._diatonic_pitch_class_number_to_diatonic_pitch_class_name[
+                diatonic_pitch_class_number]
+        named_pitch = pitchtools.NamedPitch(
+            pitch_number, diatonic_pitch_class_name)
+        return type(pitch)(named_pitch)
 
     ### PUBLIC PROPERTIES ###
 
@@ -605,3 +569,90 @@ class NamedInterval(Interval):
             return 0
         elif self.direction_string == 'ascending':
             return self.number - 1
+
+    ### PUBLIC METHODS ###
+
+    @classmethod
+    def from_pitch_carriers(class_, pitch_carrier_1, pitch_carrier_2):
+        '''Calculate named interval from `pitch_carrier_1` to
+        `pitch_carrier_2`:
+
+        ::
+
+            >>> pitchtools.NamedInterval.from_pitch_carriers(
+            ...     NamedPitch(-2),
+            ...     NamedPitch(12),
+            ...     )
+            NamedInterval('+M9')
+
+        ::
+
+            ..  todo:: Improve this behavior.
+
+            >>> pitchtools.NamedInterval.from_pitch_carriers(
+            ...     NamedPitch("cs'"),
+            ...     NamedPitch("cf'"),
+            ...     )
+            NamedInterval('-M2')
+
+        Returns named interval.
+        '''
+        from abjad.tools import pitchtools
+        pitch_1 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_1)
+        pitch_2 = pitchtools.NamedPitch.from_pitch_carrier(pitch_carrier_2)
+        degree_1 = pitch_1.diatonic_pitch_number
+        degree_2 = pitch_2.diatonic_pitch_number
+        named_interval_number = abs(degree_1 - degree_2) + 1
+        numbered_interval_number = abs(
+            pitchtools.NumberedPitch(pitch_1).pitch_number -
+            pitchtools.NumberedPitch(pitch_2).pitch_number
+            )
+        numbered_interval = pitchtools.NumberedInterval(
+            numbered_interval_number,
+            )
+        absolute_named_interval = numbered_interval.to_named_interval(
+            named_interval_number
+            )
+        if pitch_2 < pitch_1:
+            named_interval = -absolute_named_interval
+        else:
+            named_interval = absolute_named_interval
+        return class_(named_interval)
+
+    def transpose(self, pitch_carrier):
+        r'''Transposes `pitch_carrier`.
+
+        ..  container:: example
+
+            **Example 1.** Transposes chord:
+
+            ::
+
+                >>> chord = Chord("<c' e' g'>4")
+
+            ::
+
+                >>> interval = pitchtools.NamedInterval('+m2')
+                >>> interval.transpose(chord)
+                Chord("<df' f' af'>4")
+
+        Returns new (copied) object of `pitch_carrier` type.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        if isinstance(pitch_carrier, pitchtools.Pitch):
+            return self._transpose_pitch(pitch_carrier)
+        elif isinstance(pitch_carrier, scoretools.Note):
+            new_note = copy.copy(pitch_carrier)
+            new_pitch = self._transpose_pitch(pitch_carrier.written_pitch)
+            new_note.written_pitch = new_pitch
+            return new_note
+        elif isinstance(pitch_carrier, scoretools.Chord):
+            new_chord = copy.copy(pitch_carrier)
+            pairs = zip(new_chord.note_heads, pitch_carrier.note_heads)
+            for new_nh, old_nh in pairs:
+                new_pitch = self._transpose_pitch(old_nh.written_pitch)
+                new_nh.written_pitch = new_pitch
+            return new_chord
+        else:
+            return pitch_carrier

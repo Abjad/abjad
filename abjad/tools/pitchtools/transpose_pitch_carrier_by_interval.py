@@ -109,7 +109,6 @@ def transpose_pitch_carrier_by_interval(pitch_carrier, interval):
         else:
             return pitch_carrier
 
-
     diatonic_types = (pitchtools.NamedInterval, str)
     if isinstance(interval, diatonic_types):
         interval = \

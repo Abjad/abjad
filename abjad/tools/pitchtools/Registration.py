@@ -36,9 +36,6 @@ class Registration(TypedList):
                     ]
                 )
 
-    Registrations model
-    ``pitchtools.transpose_pitch_number_by_octave_transposition_mapping``
-    input.
     '''
 
     ### CLASS VARIABLES ###
