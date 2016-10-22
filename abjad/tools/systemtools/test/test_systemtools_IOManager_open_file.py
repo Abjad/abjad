@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from abjad.tools import systemtools
 import pytest
-import unittest
 try:
     from unittest import mock
 except ImportError:
@@ -90,7 +89,7 @@ def test_systemtools_IOManager__open_file_02(spawn_subprocess_mock,
         spawn_subprocess_mock.assert_called_with(command)
 
 
-@mock.patch('os.name', 'nt')
+@mock.patch('sys.platform', 'win32')
 @mock.patch('os.startfile', create=True)
 @pytest.mark.parametrize('configuration', abjad_configurations)
 @pytest.mark.parametrize('file_path', test_files)

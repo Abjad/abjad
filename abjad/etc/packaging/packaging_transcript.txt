@@ -1,3 +1,43 @@
+Abjad 2.19
+    Build start date: 2016-10-21
+    Build complete date: 2016-10-22
+
+    Packaging environment:
+        0. workstation description:
+        1. uname -v: Darwin Kernel Version 15.6.0
+        2. git --version: git version 2.6.3
+        3. python --version: Python 3.5.2
+        4. pip --version: pip 8.1.2
+        5. py.test --version: This is pytest version 3.0.1
+        6. sphinx-build --version: Sphinx (sphinx-build) 1.4.4
+        7. lilypond --version: GNU LilyPond 2.19.44
+        8. convert --version: ImageMagick 7.0.2-1 Q16 x86_64 2016-06-12 http://www.imagemagick.org
+        9. dot -V: graphviz version 2.38.0 (20140413.2041)
+
+    Python 3.5.2 (OSX) test results:
+        1. mainline py.test test results: 10193 passed, 527 skipped
+        2. mainline doctest test results: 12096 passed in 911 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 passed in 43 modules
+        5. sanity check test results: OK
+        6. experimental HTML build results: OK
+        7. mainline HTML build results: OK
+
+    Python 3.5.2 (Windows) test results:
+        1. mainline py.test test results: 10191 passed, 529 skipped
+        2. mainline doctest test results: 12096 passed in 911 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 passed in 43 modules
+        5. sanity check test results: 
+
+    Python 2.7.12 (OSX) test results:
+        1. mainline py.test test results: 10181 passed, 525 skipped
+        2. mainline doctest test results: 12096 passed in 911 modules
+        3. experimental py.test test results: 3 passed, 0 skipped
+        4. experimental doctest test results: 120 passed in 43 modules
+        5. sanity check test results: OK
+
+
 Abjad 2.18
     Build start date: 2016-07-04
     Build complete date:

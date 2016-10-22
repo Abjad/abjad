@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import sys
 import sphinx_rtd_theme
 from sphinx.highlighting import PygmentsBridge
 from pygments.formatters.latex import LatexFormatter
@@ -105,5 +106,8 @@ abjadbook_ignored_documents = ()
 autodoc_member_order = 'groupwise'
 graphviz_dot_args = ['-s32']
 graphviz_output_format = 'svg'
-intersphinx_mapping = {'python': ('http://docs.python.org/3.4', None)}
+intersphinx_mapping = {
+    'python': (
+        'http://docs.python.org/{}.{}'.format(*sys.version_info[:2]), None),
+    }
 todo_include_todos = True

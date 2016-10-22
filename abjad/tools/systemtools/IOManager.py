@@ -11,6 +11,10 @@ try:
     from StringIO import StringIO
 except ImportError:
     from io import StringIO
+try:
+    input = raw_input
+except NameError:
+    pass
 
 
 class IOManager(AbjadObject):
@@ -35,7 +39,7 @@ class IOManager(AbjadObject):
             lines.append('Abjad will now create it to store all output files.')
             lines.append('Press any key to continue.')
             message = '\n'.join(lines)
-            raw_input(message)
+            input(message)
             os.makedirs(directory)
 
     @staticmethod
@@ -253,9 +257,10 @@ class IOManager(AbjadObject):
             return
         all_file_names = os.listdir(output_directory)
         if extension:
-            all_output = [x for x in all_file_names
-                if pattern.match(x)
-                and x.endswith(extension)]
+            all_output = [
+                x for x in all_file_names
+                if pattern.match(x) and x.endswith(extension)
+                ]
         else:
             all_output = [x for x in all_file_names if pattern.match(x)]
         if all_output == []:
@@ -354,7 +359,7 @@ class IOManager(AbjadObject):
         Returns none.
         '''
         from abjad import abjad_configuration
-        if os.name == 'nt':
+        if sys.platform.lower().startswith('win'):
             os.startfile(file_path)
             return
         viewer = None
@@ -362,11 +367,17 @@ class IOManager(AbjadObject):
             viewer = application or 'xdg-open'
         elif file_path.endswith('.pdf'):
             viewer = application or abjad_configuration['pdf_viewer']
-        elif file_path.endswith('.py'):
+        elif file_path.endswith((
+            '.log',
+            '.py',
+            '.rst',
+            '.txt',
+            )):
             viewer = application or abjad_configuration['text_editor']
-        elif file_path.endswith('.txt'):
-            viewer = application or abjad_configuration['text_editor']
-        elif file_path.endswith('.midi'):
+        elif file_path.endswith((
+            '.mid',
+            '.midi',
+            )):
             viewer = application or abjad_configuration['midi_player']
         viewer = viewer or 'open'
         if line_number:
@@ -384,11 +395,8 @@ class IOManager(AbjadObject):
         '''
         from abjad import abjad_configuration
         text_editor = abjad_configuration.get_text_editor()
-        command = '{} {}'.format(
-            text_editor,
-            abjad_configuration.lilypond_log_file_path,
-            )
-        IOManager.spawn_subprocess(command)
+        file_path = abjad_configuration.lilypond_log_file_path
+        IOManager.open_file(file_path, application=text_editor)
 
     @staticmethod
     def open_last_ly(target=-1):
@@ -432,9 +440,8 @@ class IOManager(AbjadObject):
             message = 'can not get target LilyPond input from {}.'
             message = message.format(target)
             raise ValueError(message)
-        if os.stat(target_ly):
-            command = '{} {}'.format(text_editor, target_ly)
-            IOManager.spawn_subprocess(command)
+        if os.path.exists(target_ly):
+            IOManager.open_file(target_ly, application=text_editor)
         else:
             message = 'Target LilyPond input file {} does not exist.'
             message = message.format(target_ly)
