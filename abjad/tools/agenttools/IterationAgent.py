@@ -1780,7 +1780,7 @@ class IterationAgent(abctools.AbjadObject):
                     leaf_pair):
                     yield pair
             elif isinstance(leaf_pair, tuple):
-                for pair in pitchtools.list_ordered_named_pitch_pairs_from_expr_1_to_expr_2(
+                for pair in pitchtools.list_ordered_pitch_pairs(
                     *leaf_pair):
                     yield pair
             else:

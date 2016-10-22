@@ -2,7 +2,7 @@
 from abjad.tools import sequencetools
 
 
-def list_ordered_named_pitch_pairs_from_expr_1_to_expr_2(expr_1, expr_2):
+def list_ordered_pitch_pairs(expr_1, expr_2):
     '''Lists ordered named pitch pairs from `expr_1` to `expr_2`.
 
     ::
@@ -12,7 +12,7 @@ def list_ordered_named_pitch_pairs_from_expr_1_to_expr_2(expr_1, expr_2):
 
     ::
 
-        >>> for pair in pitchtools.list_ordered_named_pitch_pairs_from_expr_1_to_expr_2(
+        >>> for pair in pitchtools.list_ordered_pitch_pairs(
         ...     chord_1, chord_2):
         ...     pair
         (NamedPitch("c'"), NamedPitch("ef'"))
