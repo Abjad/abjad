@@ -7,13 +7,13 @@ def test_pitchtools_list_pitches_01():
     '''
 
     tuplet = scoretools.FixedDurationTuplet(Duration(2, 8), "c'8 d'8 e'8")
-    named_pitches = pitchtools.list_pitches(tuplet)
+    named_pitches = list(pitchtools.list_pitches(tuplet))
 
-    assert named_pitches == (
+    assert named_pitches == [
         NamedPitch('c', 4),
         NamedPitch('d', 4),
         NamedPitch('e', 4),
-        )
+        ]
 
 
 def test_pitchtools_list_pitches_02():
@@ -23,14 +23,14 @@ def test_pitchtools_list_pitches_02():
     staff = Staff("c'8 d'8 e'8 f'8")
     beam = Beam()
     attach(beam, staff[:])
-    named_pitches = pitchtools.list_pitches(beam)
+    named_pitches = list(pitchtools.list_pitches(beam))
 
-    assert named_pitches == (
+    assert named_pitches == [
         NamedPitch('c', 4),
         NamedPitch('d', 4),
         NamedPitch('e', 4),
         NamedPitch('f', 4),
-        )
+        ]
 
 
 def test_pitchtools_list_pitches_03():
@@ -38,14 +38,14 @@ def test_pitchtools_list_pitches_03():
     '''
 
     pitch_set = pitchtools.PitchSet([0, 2, 4, 5])
-    named_pitches = pitchtools.list_pitches(pitch_set)
+    named_pitches = list(pitchtools.list_pitches(pitch_set))
 
-    assert named_pitches == (
+    assert named_pitches == [
         NamedPitch('c', 4),
         NamedPitch('d', 4),
         NamedPitch('e', 4),
         NamedPitch('f', 4),
-        )
+        ]
 
 
 def test_pitchtools_list_pitches_04():
@@ -57,12 +57,12 @@ def test_pitchtools_list_pitches_04():
         [(7, 2), (6, 1), 1],
         ])
 
-    assert pitchtools.list_pitches(array) == (
+    assert list(pitchtools.list_pitches(array)) == [
         NamedPitch('d', 4),
         NamedPitch('bqf', 3),
         NamedPitch('g', 4),
         NamedPitch('fs', 4),
-        )
+        ]
 
 
 def test_pitchtools_list_pitches_05():
@@ -74,10 +74,10 @@ def test_pitchtools_list_pitches_05():
         Note(2, (1, 4)),
         Chord([4, 6, 7], (1, 4)),
         )
-    assert pitchtools.list_pitches(named_pitches) == (
+    assert list(pitchtools.list_pitches(named_pitches)) == [
         NamedPitch('c', 4),
         NamedPitch('d', 4),
         NamedPitch('e', 4),
         NamedPitch('fs', 4),
         NamedPitch('g', 4),
-        )
+        ]
