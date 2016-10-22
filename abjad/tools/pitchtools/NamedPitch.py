@@ -851,7 +851,10 @@ class NamedPitch(Pitch):
 
         Returns new named pitch.
         '''
-        return Pitch.invert(self, axis=axis)
+        try:
+            return Pitch.invert(self, axis=axis)
+        except:
+            return Pitch.invert(type(self)(float(self)), axis=axis)
 
     def multiply(self, n=1):
         r'''Multiplies pitch-class of named pitch by `n` while maintaining
