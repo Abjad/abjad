@@ -2,7 +2,7 @@
 from abjad.tools.abctools.AbjadValueObject import AbjadValueObject
 
 
-class ForteNumber(AbjadValueObject):
+class SetClass(AbjadValueObject):
     r'''Forte number.
 
     ..  container:: example
@@ -11,12 +11,12 @@ class ForteNumber(AbjadValueObject):
 
         ::
 
-            >>> forte_number = pitchtools.ForteNumber(4, 9)
+            >>> set_class = pitchtools.SetClass(4, 9)
 
         ::
 
-            >>> print(format(forte_number))
-            pitchtools.ForteNumber(
+            >>> print(format(set_class))
+            pitchtools.SetClass(
                 cardinality=4,
                 rank=9,
                 )
@@ -51,8 +51,8 @@ class ForteNumber(AbjadValueObject):
 
             ::
 
-                >>> forte_number = pitchtools.ForteNumber(4, 9)
-                >>> forte_number.cardinality
+                >>> set_class = pitchtools.SetClass(4, 9)
+                >>> set_class.cardinality
                 4
 
         Set to integer between 1 and 12, inclusive.
@@ -67,8 +67,8 @@ class ForteNumber(AbjadValueObject):
 
             ::
 
-                >>> forte_number = pitchtools.ForteNumber(4, 9)
-                >>> forte_number.rank
+                >>> set_class = pitchtools.SetClass(4, 9)
+                >>> set_class.rank
                 9
 
         Set to positive integer.
