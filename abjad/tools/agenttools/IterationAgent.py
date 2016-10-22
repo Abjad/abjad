@@ -117,8 +117,8 @@ class IterationAgent(abctools.AbjadObject):
     @staticmethod
     def _list_ordered_pitch_pairs(expr_1, expr_2):
         from abjad.tools import pitchtools
-        pitches_1 = sorted(pitchtools.list_named_pitches_in_expr(expr_1))
-        pitches_2 = sorted(pitchtools.list_named_pitches_in_expr(expr_2))
+        pitches_1 = sorted(pitchtools.list_pitches(expr_1))
+        pitches_2 = sorted(pitchtools.list_pitches(expr_2))
         for pair in sequencetools.yield_all_pairs_between_sequences(
             pitches_1, pitches_2):
             yield pair
@@ -127,7 +127,7 @@ class IterationAgent(abctools.AbjadObject):
     def _list_unordered_pitch_pairs(expr):
         from abjad.tools import pitchtools
         for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
-            sorted(pitchtools.list_named_pitches_in_expr(expr))):
+            sorted(pitchtools.list_pitches(expr))):
             yield pair
 
     ### PUBLIC METHODS ###

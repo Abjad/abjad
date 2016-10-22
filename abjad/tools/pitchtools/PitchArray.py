@@ -498,7 +498,7 @@ class PitchArray(AbjadObject):
             if populate:
                 for cell, leaf in zip(pitch_array_row.cells, leaves):
                     cell.pitches.extend(
-                        pitchtools.list_named_pitches_in_expr(leaf))
+                        pitchtools.list_pitches(leaf))
         return pitch_array
 
     def has_spanning_cell_over_index(self, index):

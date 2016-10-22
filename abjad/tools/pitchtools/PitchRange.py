@@ -118,7 +118,7 @@ class PitchRange(AbjadValueObject):
         elif isinstance(arg, scoretools.Container):
             return all(x in self for x in iterate(arg).by_leaf())
         else:
-            pitches = pitchtools.list_named_pitches_in_expr(arg)
+            pitches = pitchtools.list_pitches(arg)
             if pitches:
                 return all(self._contains_pitch(x) for x in pitches)
             else:
