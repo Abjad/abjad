@@ -136,9 +136,9 @@ def test_pitchtools_PitchArray_from_score_03():
     [c'] [d'] [e'] [f'] [g'] [a']
     '''
 
-    assert pitch_array[0].pitches == tuple(pitchtools.list_pitches(score[0]))
-    assert pitch_array[1].pitches == tuple(pitchtools.list_pitches(score[1]))
-    assert pitch_array[2].pitches == tuple(pitchtools.list_pitches(score[2]))
+    assert pitch_array[0].pitches == tuple(pitchtools.iterate_pitches(score[0]))
+    assert pitch_array[1].pitches == tuple(pitchtools.iterate_pitches(score[1]))
+    assert pitch_array[2].pitches == tuple(pitchtools.iterate_pitches(score[2]))
 
 
 def test_pitchtools_PitchArray_from_score_04():
@@ -185,6 +185,6 @@ def test_pitchtools_PitchArray_from_score_04():
     [c'] [d'      ] [e'] [c'] [d'      ] [e']
     '''
 
-    assert pitch_array[0].pitches == tuple(pitchtools.list_pitches(score[0]))
-    assert pitch_array[1].pitches == tuple(pitchtools.list_pitches(score[1]))
-    assert pitch_array[2].pitches == tuple(pitchtools.list_pitches(score[2]))
+    assert pitch_array[0].pitches == tuple(pitchtools.iterate_pitches(score[0]))
+    assert pitch_array[1].pitches == tuple(pitchtools.iterate_pitches(score[1]))
+    assert pitch_array[2].pitches == tuple(pitchtools.iterate_pitches(score[2]))
