@@ -114,6 +114,15 @@ class IterationAgent(abctools.AbjadObject):
                     ):
                     yield x
 
+    @staticmethod
+    def _list_ordered_pitch_pairs(expr_1, expr_2):
+        from abjad.tools import pitchtools
+        pitches_1 = sorted(pitchtools.list_named_pitches_in_expr(expr_1))
+        pitches_2 = sorted(pitchtools.list_named_pitches_in_expr(expr_2))
+        for pair in sequencetools.yield_all_pairs_between_sequences(
+            pitches_1, pitches_2):
+            yield pair
+
     ### PUBLIC METHODS ###
 
     def by_class(
@@ -1780,8 +1789,7 @@ class IterationAgent(abctools.AbjadObject):
                     leaf_pair):
                     yield pair
             elif isinstance(leaf_pair, tuple):
-                for pair in pitchtools.list_ordered_pitch_pairs(
-                    *leaf_pair):
+                for pair in self._list_ordered_pitch_pairs(*leaf_pair):
                     yield pair
             else:
                 message = 'leaf pair must be set or tuple.'
