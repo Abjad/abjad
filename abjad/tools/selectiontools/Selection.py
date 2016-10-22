@@ -142,7 +142,7 @@ class Selection(object):
         music = mutate(self).copy()
         staff = scoretools.Staff(music)
         found_different_pitch = False
-        for pitch in pitchtools.list_pitches(staff):
+        for pitch in pitchtools.iterate_pitches(staff):
             if pitch != pitchtools.NamedPitch("c'"):
                 found_different_pitch = True
                 break

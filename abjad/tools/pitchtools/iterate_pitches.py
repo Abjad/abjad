@@ -2,7 +2,7 @@
 from abjad.tools.topleveltools import iterate
 
 
-def list_pitches(expr):
+def iterate_pitches(expr):
     '''Lists pitches in `expr`.
 
     ..  container:: example
@@ -17,7 +17,7 @@ def list_pitches(expr):
 
         ::
 
-            >>> for x in pitchtools.list_pitches(beam):
+            >>> for x in pitchtools.iterate_pitches(beam):
             ...     x
             ...
             NamedPitch("c'")
@@ -52,7 +52,7 @@ def list_pitches(expr):
         result.extend(sorted(list(expr)))
     elif isinstance(expr, (list, tuple, set)):
         for x in expr:
-            result.extend(list_pitches(x))
+            result.extend(iterate_pitches(x))
     else:
         for leaf in iterate(expr).by_class(scoretools.Leaf):
             if (hasattr(leaf, 'written_pitch') and
