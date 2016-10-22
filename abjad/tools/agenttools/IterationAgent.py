@@ -123,6 +123,13 @@ class IterationAgent(abctools.AbjadObject):
             pitches_1, pitches_2):
             yield pair
 
+    @staticmethod
+    def _list_unordered_pitch_pairs(expr):
+        from abjad.tools import pitchtools
+        for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
+            sorted(pitchtools.list_named_pitches_in_expr(expr))):
+            yield pair
+
     ### PUBLIC METHODS ###
 
     def by_class(
@@ -1781,12 +1788,10 @@ class IterationAgent(abctools.AbjadObject):
         for leaf_pair in self.by_leaf_pair():
             leaf_pair_list = list(leaf_pair)
             # iterate chord pitches if first leaf is chord
-            for pair in pitchtools.list_unordered_named_pitch_pairs_in_expr(
-                leaf_pair_list[0]):
+            for pair in self._list_unordered_pitch_pairs(leaf_pair_list[0]):
                 yield pair
             if isinstance(leaf_pair, set):
-                for pair in pitchtools.list_unordered_named_pitch_pairs_in_expr(
-                    leaf_pair):
+                for pair in self._list_unordered_pitch_pairs(leaf_pair):
                     yield pair
             elif isinstance(leaf_pair, tuple):
                 for pair in self._list_ordered_pitch_pairs(*leaf_pair):
@@ -1795,8 +1800,7 @@ class IterationAgent(abctools.AbjadObject):
                 message = 'leaf pair must be set or tuple.'
                 raise TypeError(message)
             # iterate chord pitches if last leaf is chord
-            for pair in pitchtools.list_unordered_named_pitch_pairs_in_expr(
-                leaf_pair_list[1]):
+            for pair in self._list_unordered_pitch_pairs(leaf_pair_list[1]):
                 yield pair
 
     def by_run(self, prototype=None):
