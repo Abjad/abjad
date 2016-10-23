@@ -117,8 +117,8 @@ class IterationAgent(abctools.AbjadObject):
     @staticmethod
     def _list_ordered_pitch_pairs(expr_1, expr_2):
         from abjad.tools import pitchtools
-        pitches_1 = sorted(pitchtools.iterate_pitches(expr_1))
-        pitches_2 = sorted(pitchtools.iterate_pitches(expr_2))
+        pitches_1 = sorted(iterate(expr_1).by_pitch())
+        pitches_2 = sorted(iterate(expr_2).by_pitch())
         for pair in sequencetools.yield_all_pairs_between_sequences(
             pitches_1, pitches_2):
             yield pair
@@ -126,8 +126,9 @@ class IterationAgent(abctools.AbjadObject):
     @staticmethod
     def _list_unordered_pitch_pairs(expr):
         from abjad.tools import pitchtools
-        for pair in sequencetools.yield_all_unordered_pairs_of_sequence(
-            sorted(pitchtools.iterate_pitches(expr))):
+        pitches = sorted(iterate(expr).by_pitch())
+        pairs = sequencetools.yield_all_unordered_pairs_of_sequence(pitches)
+        for pair in pairs:
             yield pair
 
     ### PUBLIC METHODS ###
@@ -1695,7 +1696,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Iterates pitches in staff:
+            **Example 1.** Iterates pitches in container:
 
             ::
 
@@ -1716,7 +1717,7 @@ class IterationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Iterates pitches in beam:
+            **Example 2.** Iterates pitches in spanner:
 
             ::
 
@@ -1734,6 +1735,68 @@ class IterationAgent(abctools.AbjadObject):
                 NamedPitch("d'")
                 NamedPitch("e'")
                 NamedPitch("f'")
+
+        ..  container:: example
+
+            **Example 3.** Iterates pitches in pitch set:
+
+            ::
+
+                >>> pitch_set = pitchtools.PitchSet([0, 2, 4, 5])
+
+            ::
+
+                >>> for pitch in iterate(pitch_set).by_pitch():
+                ...     pitch
+                ...
+                NumberedPitch(0)
+                NumberedPitch(2)
+                NumberedPitch(4)
+                NumberedPitch(5)
+
+        ..  container:: example
+
+            **Example 4.** Iterates pitches in array:
+
+            ::
+
+                >>> array = pitchtools.PitchArray([
+                ...     [1, (2, 1), (-1.5, 2)],
+                ...     [(7, 2), (6, 1), 1],
+                ...     ])
+
+            ::
+
+                >>> for pitch in iterate(array).by_pitch():
+                ...     pitch
+                ...
+                NamedPitch("d'")
+                NamedPitch('bqf')
+                NamedPitch("g'")
+                NamedPitch("fs'")
+
+        ..  container:: example
+
+            **Example 5.** Iterates different types of object in tuple:
+
+            ::
+
+                >>> pitches = (
+                ...     NamedPitch("c'"),
+                ...     Note("d'4"),
+                ...     Chord("<e' fs' g>4"),
+                ...     )
+
+            ::
+
+                >>> for pitch in iterate(pitches).by_pitch():
+                ...     pitch
+                ...
+                NamedPitch("c'")
+                NamedPitch("d'")
+                NamedPitch('g')
+                NamedPitch("e'")
+                NamedPitch("fs'")
 
         Returns generator.
         '''

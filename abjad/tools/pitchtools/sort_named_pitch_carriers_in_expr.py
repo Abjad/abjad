@@ -18,12 +18,14 @@ def sort_named_pitch_carriers_in_expr(pitch_carriers):
     Returns list.
     '''
     from abjad.tools import pitchtools
+    from abjad.tools.topleveltools import iterate
 
     result = list(pitch_carriers[:])
-    tmp = pitchtools.iterate_pitches
+    def tmp(expr):
+        return list(iterate(expr).by_pitch())[0]
     result.sort(
         key=lambda x:
-        pitchtools.NumberedPitchClass(list(tmp(x))[0]).pitch_class_number
+        pitchtools.NumberedPitchClass(tmp(x)).pitch_class_number
         )
 
     return result
