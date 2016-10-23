@@ -22,29 +22,30 @@ Abjad {abjad_version}
         8. convert --version: {imagemagick_version}
         9. dot -V: {graphviz_version}
 
-    Python 3.4.3 test results:
+    Python 3.5.2 (OSX) test results:
         1. mainline py.test test results:
         2. mainline doctest test results:
         3. experimental py.test test results:
         4. experimental doctest test results:
-        5. ide py.test test results:
-        6. ide doctest test results:
-        7. sanity check test results:
-        8. experimental HTML build results:
-        9. mainline HTML build results:
-       10. ide HTML build results:
-       11. LaTeX build results:
-       12. Abjad.pdf build results:
-       13. AbjadAPI.pdf build results:
+        5. sanity check test results:
+        6. experimental HTML build results:
+        7. mainline HTML build results:
 
-    Python 2.7.9 test results:
+    Python 3.5.2 (Windows) test results:
         1. mainline py.test test results:
         2. mainline doctest test results:
         3. experimental py.test test results:
         4. experimental doctest test results:
-        5. ide py.test test results:
-        6. ide doctest test results:
-        7. sanity check test results:
+        5. sanity check test results:
+
+    Python 2.7.12 (OSX) test results:
+        1. mainline py.test test results:
+        2. mainline doctest test results:
+        3. experimental py.test test results:
+        4. experimental doctest test results:
+        5. sanity check test results:
+
+
 """
 
 

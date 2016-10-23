@@ -1,5 +1,5 @@
 ##########
-Abjad 2.18
+Abjad 2.19
 ##########
 
 Abjad helps composers build up complex pieces of music notation in an iterative
@@ -79,13 +79,13 @@ Once you have Abjad installed, fire up Python and import it:
 
 ..  code-block:: bash
 
-    $ python
-    Python 2.7.9 (default, Nov  9 2015, 10:50:36) 
-    [GCC 4.2.1 Compatible Apple LLVM 7.0.0 (clang-700.1.76)] on darwin
+    ~$ python
+    Python 3.5.2 (v3.5.2:4def2a2901a5, Jun 26 2016, 10:47:25) 
+    [GCC 4.2.1 (Apple Inc. build 5666) (dot 3)] on darwin
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import abjad
     >>> abjad.__version__
-    '2.16'
+    '2.19'
 
 Congratulations!
 
@@ -166,7 +166,8 @@ command-line by running the following command:
     dot - graphviz version 2.38.0 (20140413.2041)
 
 All of the graph images in Abjad's API documentation were created via
-`graphviz`_. See the API entry for `topleveltools.graph()` for more details.
+`graphviz`_. See `topleveltools.graph()` for more
+details.
 
 Development installation
 ------------------------

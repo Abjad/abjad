@@ -118,10 +118,13 @@ class Callback(AbjadObject):
         Returns object.
         '''
         import abjad
-        import experimental
         globals_ = {}
         globals_.update(abjad.__dict__.copy())
-        globals_.update(experimental.__dict__.copy())
+        try:
+            import experimental
+            globals_.update(experimental.__dict__.copy())
+        except ImportError:
+            pass
         globals_['functools'] = functools
         module_names = self.module_names or ()
         for module_name in module_names:
