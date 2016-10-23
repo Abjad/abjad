@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
 
-# TODO: remove in favor of Registration.__call__()
 def transpose_pitch_number_by_octave_transposition_mapping(
     pitch_number,
     mapping,
     ):
-    '''Transposes `pitch_number` by the some number of octaves up or down.
+    '''Deprecated: use pitchtools.Registration.__call__() instead.
+    
+    Transposes `pitch_number` by the some number of octaves up or down.
     Derive correct number of octaves from `mapping` where
     `mapping` is a list of ``(range_spec, octave)`` pairs
     and ``range_spec`` is, in turn, a ``(start, stop)`` pair
@@ -42,11 +43,15 @@ def transpose_pitch_number_by_octave_transposition_mapping(
     for example, all the f-sharps within the range of the piano now
     undergo a known transposition under `mapping` as defined here:
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.transpose_pitch_number_by_octave_transposition_mapping(
-        ...     -30, mapping)
-        6
+        **Example 1.** Transposes pitch -30 by mapping:
+
+        ::
+
+            >>> function = pitchtools.transpose_pitch_number_by_octave_transposition_mapping
+            >>> function(-30, mapping)
+            6
 
     We verify that pitch ``-30`` should map to pitch ``6`` by noticing
     that pitch ``-30`` falls in the first of the three subranges
@@ -55,42 +60,41 @@ def transpose_pitch_number_by_octave_transposition_mapping(
     rooted at pitch ``0``. The octave transposition of ``-30`` that
     falls within the octave rooted at ``0`` is ``6``:
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.transpose_pitch_number_by_octave_transposition_mapping(
-        ...     -18, mapping)
-        6
+        **Example 2.** Transposes pitch -18 by mapping:
+
+        ::
+
+            >>> function(-18, mapping)
+            6
 
     Likewise, `mapping` sends pitch ``-18`` to pitch ``6`` because
     pitch ``-18`` falls in the same subrange from ``-39`` to ``-13``
     as did pitch ``-39`` and so undergoes the same transposition to
     the octave rooted at ``0``.
 
-    In this way we can map all f-sharps from ``-39`` to ``48`` according
-    to `mapping`:
+    ..  container:: example
 
-    ::
+        **Example 3.** Transposes all f-sharps from -39 to 48 by mapping:
 
-        >>> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
-        >>> for n in pitch_numbers:
-        ...   n, pitchtools.transpose_pitch_number_by_octave_transposition_mapping(
-        ...         n, mapping)
-        ...
-        (-30, 6)
-        (-18, 6)
-        (-6, 18)
-        (6, 18)
-        (18, 18)
-        (30, 30)
-        (42, 30)
+        ::
 
-    And so on.
+            >>> pitch_numbers = [-30, -18, -6, 6, 18, 30, 42]
+            >>> for pitch_number in pitch_numbers:
+            ...   pitch_number, function(pitch_number, mapping)
+            ...
+            (-30, 6)
+            (-18, 6)
+            (-6, 18)
+            (6, 18)
+            (18, 18)
+            (30, 30)
+            (42, 30)
 
-    Returns pitch number.
+    Returns new pitch number.
     '''
-
     target_pitch_class = pitch_number % 12
-
     for ((start, stop), octave_root) in mapping:
         source_range = range(start, stop + 1)
         if pitch_number in source_range:
