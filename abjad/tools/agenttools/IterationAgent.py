@@ -1690,6 +1690,89 @@ class IterationAgent(abctools.AbjadObject):
                     if x._get_parentage().logical_voice == signature:
                         yield x
 
+    def by_pitch(self):
+        '''Iterates pitches.
+
+        ..  container:: example
+
+            **Example 1.** Iterates pitches in staff:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> beam = spannertools.Beam()
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> for pitch in iterate(staff).by_pitch():
+                ...     pitch
+                ...
+                NamedPitch("c'")
+                NamedPitch("d'")
+                NamedPitch("e'")
+                NamedPitch("f'")
+
+        ..  container:: example
+
+            **Example 2.** Iterates pitches in beam:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> beam = spannertools.Beam()
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> for pitch in iterate(beam).by_pitch():
+                ...     pitch
+                ...
+                NamedPitch("c'")
+                NamedPitch("d'")
+                NamedPitch("e'")
+                NamedPitch("f'")
+
+        Returns generator.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import iterate
+        if isinstance(self._client, pitchtools.Pitch):
+            pitch = pitchtools.NamedPitch.from_pitch_carrier(self._client)
+            yield pitch
+        result = []
+        if hasattr(self._client, 'written_pitches'):
+            result.extend(self._client.written_pitches)
+        # for pitch arrays
+        elif hasattr(self._client, 'pitches'):
+            result.extend(self._client.pitches)
+        elif isinstance(self._client, spannertools.Spanner):
+            for leaf in self._client._get_leaves():
+                if (hasattr(leaf, 'written_pitch') and
+                    not isinstance(leaf, scoretools.Rest)):
+                    result.append(leaf.written_pitch)
+                elif hasattr(leaf, 'written_pitches'):
+                    result.extend(leaf.written_pitches)
+        elif isinstance(self._client, pitchtools.PitchSet):
+            result.extend(sorted(list(self._client)))
+        elif isinstance(self._client, (list, tuple, set)):
+            for item in self._client:
+                for pitch_ in iterate(item).by_pitch():
+                    result.append(pitch_)
+        else:
+            for leaf in iterate(self._client).by_leaf():
+                if (hasattr(leaf, 'written_pitch') and
+                    not isinstance(leaf, scoretools.Rest)):
+                    result.append(leaf.written_pitch)
+                elif hasattr(leaf, 'written_pitches'):
+                    result.extend(leaf.written_pitches)
+        for pitch in result:
+            yield pitch
+
     def by_pitch_pair(self):
         r'''Iterates by pitch pair.
 
