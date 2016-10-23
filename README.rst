@@ -1,5 +1,5 @@
 ##########
-Abjad 2.19
+Abjad 2.20
 ##########
 
 Abjad helps composers build up complex pieces of music notation in an iterative
@@ -85,7 +85,7 @@ Once you have Abjad installed, fire up Python and import it:
     Type "help", "copyright", "credits" or "license" for more information.
     >>> import abjad
     >>> abjad.__version__
-    '2.19'
+    '2.20'
 
 Congratulations!
 
@@ -107,7 +107,7 @@ command-line by running the following command:
 ..  code-block:: bash
 
     ~$ lilypond --version
-    GNU LilyPond 2.19.20
+    GNU LilyPond 2.19.44
 
     Copyright (c) 1996--2015 by
       Han-Wen Nienhuys <hanwen@xs4all.nl>
