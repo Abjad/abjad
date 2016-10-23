@@ -434,10 +434,23 @@ class PitchRange(AbjadValueObject):
         '''Is true when `expr` is a symbolic pitch range string.
         Otherwise false:
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.PitchRange.is_range_string('[A0, C8]')
-            True
+            **Example 1.** Returns true:
+
+            ::
+
+                >>> pitchtools.PitchRange.is_range_string('[A0, C8]')
+                True
+
+        ..  container:: example
+
+            **Example 2.** Returns false:
+
+            ::
+
+                >>> pitchtools.PitchRange.is_range_string('text')
+                False
 
         The regex that underlies this predicate matches against two
         comma-separated pitches enclosed in some combination of square
@@ -453,6 +466,8 @@ class PitchRange(AbjadValueObject):
         r"""Lists octave transpositions of `pitch_carrier` in pitch range.
 
         ..  container:: example
+
+            **Example 1.** Lists octave transpositions of three-pitch chord:
 
             ::
 
@@ -507,24 +522,37 @@ class PitchRange(AbjadValueObject):
         return result
 
     def voice_pitch_class(self, pitch_class):
-        r"""Voices `pitch_class` in this pitch-range.
+        r"""Voices `pitch_class`:
 
-        ::
+        ..  container:: example
 
-            >>> a_pitch_range = pitchtools.PitchRange('[C4, C6]')
-            >>> a_pitch_range.voice_pitch_class('c')
-            (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
+            **Example 1.** Voices C three times:
 
-        ::
+            ::
 
-            >>> a_pitch_range.voice_pitch_class('b')
-            (NamedPitch("b'"), NamedPitch("b''"))
+                >>> pitch_range = pitchtools.PitchRange('[C4, C6]')
+                >>> pitch_range.voice_pitch_class('c')
+                (NamedPitch("c'"), NamedPitch("c''"), NamedPitch("c'''"))
 
-        ::
+        ..  container:: example
 
-            >>> a_pitch_range = pitchtools.PitchRange('[C4, A4)')
-            >>> a_pitch_range.voice_pitch_class('b')
-            ()
+            **Example 2.** Voices B two times:
+
+            ::
+
+                >>> pitch_range = pitchtools.PitchRange('[C4, C6]')
+                >>> pitch_range.voice_pitch_class('b')
+                (NamedPitch("b'"), NamedPitch("b''"))
+
+        ..  container:: example
+
+            **Example 3.** Returns empty because B can not voice:
+
+            ::
+
+                >>> pitch_range = pitchtools.PitchRange('[C4, A4)')
+                >>> pitch_range.voice_pitch_class('b')
+                ()
 
         Returns tuple of zero or more named pitches.
         """
