@@ -422,6 +422,12 @@ class NamedPitch(Pitch):
             return pitchtools.transpose_pitch_carrier_by_interval(
                 self, -interval)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        return str(self)
+
     ### PRIVATE METHODS ###
 
     def _initialize_by_named_pitch(self, named_pitch):
@@ -508,8 +514,7 @@ class NamedPitch(Pitch):
         # find accidental semitones
         pc = pitchtools.PitchClass._diatonic_pitch_class_name_to_pitch_class_number[
             diatonic_pitch_class_name]
-        nearest_neighbor = pitchtools.transpose_pitch_class_number_to_pitch_number_neighbor(
-            pitch_number, pc)
+        nearest_neighbor = NamedPitch._to_nearest_octave(pitch_number, pc)
         semitones = pitch_number - nearest_neighbor
         # find accidental alphabetic string
         abbreviation = pitchtools.Accidental._semitones_to_abbreviation[
@@ -519,6 +524,16 @@ class NamedPitch(Pitch):
         octave_number = int(math.floor((pitch_number - semitones) / 12)) + 4
         # return accidental and octave
         return accidental, octave_number
+
+    @staticmethod
+    def _to_nearest_octave(pitch_number, pitch_class_number):
+        target_pc = pitch_number % 12
+        down = (target_pc - pitch_class_number) % 12
+        up = (pitch_class_number - target_pc) % 12
+        if up < down:
+            return pitch_number + up
+        else:
+            return pitch_number - down
 
     ### PUBLIC METHODS ###
 
@@ -1212,12 +1227,6 @@ class NamedPitch(Pitch):
             class_._diatonic_pitch_class_number_to_diatonic_pitch_class_name
         diatonic_pitch_class_name = dictionary[diatonic_pitch_class_number]
         return type(self)(pitch_number, diatonic_pitch_class_name)
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return str(self)
 
     ### PUBLIC PROPERTIES ###
 
