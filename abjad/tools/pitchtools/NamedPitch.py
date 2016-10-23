@@ -126,7 +126,8 @@ class NamedPitch(Pitch):
         '''
         from abjad.tools import pitchtools
         interval = pitchtools.NamedInterval(interval)
-        return pitchtools.transpose_pitch_carrier_by_interval(self, interval)
+        pitch = interval.transpose(self)
+        return pitch
 
     def __copy__(self, *args):
         r'''Copies named pitch.
@@ -415,12 +416,11 @@ class NamedPitch(Pitch):
         '''
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
-            return pitchtools.NamedInterval.from_pitch_carriers(
-                self, arg)
-        else:
-            interval = arg
-            return pitchtools.transpose_pitch_carrier_by_interval(
-                self, -interval)
+            return pitchtools.NamedInterval.from_pitch_carriers(self, arg)
+        interval = arg
+        interval = -interval
+        pitch = interval.transpose(self)
+        return pitch
 
     ### PRIVATE PROPERTIES ###
 
@@ -1155,10 +1155,9 @@ class NamedPitch(Pitch):
         Returns new named pitch.
         '''
         from abjad.tools import pitchtools
-        named_interval = pitchtools.NamedInterval(expr)
-        transposed_pitch = pitchtools.transpose_pitch_carrier_by_interval(
-            self, named_interval)
-        return type(self)(transposed_pitch)
+        interval = pitchtools.NamedInterval(expr)
+        pitch = interval.transpose(self)
+        return type(self)(pitch)
 
     def transpose_staff_position(self, staff_positions, interval):
         '''Transposes named pitch by `staff_positions` and `interval`.

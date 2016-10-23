@@ -55,15 +55,15 @@ def transpose_from_sounding_pitch_to_written_pitch(expr):
         if not instrument:
             continue
         sounding_pitch = instrument.sounding_pitch_of_written_middle_c
-        t_n = pitchtools.NamedPitch('C4') - sounding_pitch
-        t_n *= -1
+        interval = pitchtools.NamedPitch('C4') - sounding_pitch
+        interval *= -1
         if isinstance(note_or_chord, scoretools.Note):
-            note_or_chord.written_pitch = \
-                pitchtools.transpose_pitch_carrier_by_interval(
-                    note_or_chord.written_pitch, t_n)
+            pitch = note_or_chord.written_pitch
+            pitch = interval.transpose(pitch)
+            note_or_chord.written_pitch = pitch
         elif isinstance(note_or_chord, scoretools.Chord):
             pitches = [
-                pitchtools.transpose_pitch_carrier_by_interval(pitch, t_n)
+                interval.transpose(pitch)
                 for pitch in note_or_chord.written_pitches
                 ]
             note_or_chord.written_pitches = pitches
