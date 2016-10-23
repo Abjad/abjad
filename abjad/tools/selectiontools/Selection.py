@@ -138,11 +138,12 @@ class Selection(object):
         from abjad.tools import lilypondfiletools
         from abjad.tools import pitchtools
         from abjad.tools import scoretools
+        from abjad.tools.topleveltools import iterate
         from abjad.tools.topleveltools import mutate
         music = mutate(self).copy()
         staff = scoretools.Staff(music)
         found_different_pitch = False
-        for pitch in pitchtools.iterate_pitches(staff):
+        for pitch in iterate(staff).by_pitch():
             if pitch != pitchtools.NamedPitch("c'"):
                 found_different_pitch = True
                 break
@@ -154,7 +155,7 @@ class Selection(object):
         return lilypond_file
 
     def __len__(self):
-        r'''Number of components in selection.
+        r'''Gets number of components in selection.
 
         Returns nonnegative integer.
         '''
