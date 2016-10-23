@@ -211,15 +211,15 @@ class Instrument(AbjadValueObject):
         '''
         from abjad.tools import scoretools
         sounding_pitch = self.sounding_pitch_of_written_middle_c
-        index = pitchtools.NamedPitch('C4') - sounding_pitch
-        index *= -1
+        interval = pitchtools.NamedPitch('C4') - sounding_pitch
+        interval *= -1
         if isinstance(note_or_chord, scoretools.Note):
-            note_or_chord.written_pitch = \
-                pitchtools.transpose_pitch_carrier_by_interval(
-                    note_or_chord.written_pitch, index)
+            pitch = note_or_chord.written_pitch
+            pitch = interval.transpose(pitch)
+            note_or_chord.written_pitch = pitch
         elif isinstance(note_or_chord, scoretools.Chord):
             pitches = [
-                pitchtools.transpose_pitch_carrier_by_interval(pitch, index)
+                interval.transpose(pitch)
                 for pitch in note_or_chord.written_pitches
                 ]
             note_or_chord.written_pitches = pitches
@@ -236,14 +236,14 @@ class Instrument(AbjadValueObject):
         '''
         from abjad.tools import scoretools
         sounding_pitch = self.sounding_pitch_of_written_middle_c
-        index = pitchtools.NamedPitch('C4') - sounding_pitch
+        interval = pitchtools.NamedPitch('C4') - sounding_pitch
         if isinstance(note_or_chord, scoretools.Note):
-            note_or_chord.written_pitch = \
-                pitchtools.transpose_pitch_carrier_by_interval(
-                    note_or_chord.written_pitch, index)
+            pitch = note_or_chord.written_pitch
+            pitch = interval.transpose(pitch)
+            note_or_chord.written_pitch = pitch
         elif isinstance(note_or_chord, scoretools.Chord):
             pitches = [
-                pitchtools.transpose_pitch_carrier_by_interval(pitch, index)
+                interval.transpose(pitch)
                 for pitch in note_or_chord.written_pitches
                 ]
             note_or_chord.written_pitches = pitches
