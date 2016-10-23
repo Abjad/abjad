@@ -1145,6 +1145,74 @@ class NamedPitch(Pitch):
             self, named_interval)
         return type(self)(transposed_pitch)
 
+    def transpose_staff_position(self, staff_positions, interval):
+        '''Transposes named pitch by `staff_positions` and `interval`.
+
+        ..  container:: example
+
+            **Example 1.** Transposes middle C but leaves at same staff
+            position:
+
+            ::
+
+                >>> pitch = NamedPitch(0)
+
+            ::
+
+                >>> pitch.transpose_staff_position(0, -2)
+                NamedPitch("cff'")
+                >>> pitch.transpose_staff_position(0, -1.5)
+                NamedPitch("ctqf'")
+                >>> pitch.transpose_staff_position(0, -1)
+                NamedPitch("cf'")
+                >>> pitch.transpose_staff_position(0, -0.5)
+                NamedPitch("cqf'")
+                >>> pitch.transpose_staff_position(0, 0)
+                NamedPitch("c'")
+                >>> pitch.transpose_staff_position(0, 0.5)
+                NamedPitch("cqs'")
+                >>> pitch.transpose_staff_position(0, 1)
+                NamedPitch("cs'")
+                >>> pitch.transpose_staff_position(0, 1.5)
+                NamedPitch("ctqs'")
+
+        ..  container:: example
+
+            **Example 2.** Transposes middle C and then respells up 1 staff
+            position:
+
+                >>> pitch.transpose_staff_position(1, 0)
+                NamedPitch("dff'")
+                >>> pitch.transpose_staff_position(1, 0.5)
+                NamedPitch("dtqf'")
+                >>> pitch.transpose_staff_position(1, 1)
+                NamedPitch("df'")
+                >>> pitch.transpose_staff_position(1, 1.5)
+                NamedPitch("dqf'")
+                >>> pitch.transpose_staff_position(1, 2)
+                NamedPitch("d'")
+                >>> pitch.transpose_staff_position(1, 2.5)
+                NamedPitch("dqs'")
+                >>> pitch.transpose_staff_position(1, 3)
+                NamedPitch("ds'")
+                >>> pitch.transpose_staff_position(1, 3.5)
+                NamedPitch("dtqs'")
+                >>> pitch.transpose_staff_position(1, 4)
+                NamedPitch("dss'")
+
+        Returns new named pitch.
+        '''
+        from abjad.tools import pitchtools
+        pitch_number = self.pitch_number + interval
+        diatonic_pitch_class_number = self.diatonic_pitch_class_number
+        diatonic_pitch_class_number += staff_positions
+        diatonic_pitch_class_number %= 7
+        class_ = pitchtools.PitchClass
+        dictionary = \
+            class_._diatonic_pitch_class_number_to_diatonic_pitch_class_name
+        diatonic_pitch_class_name = dictionary[diatonic_pitch_class_number]
+        return type(self)(pitch_number, diatonic_pitch_class_name)
+
     ### PRIVATE PROPERTIES ###
 
     @property
