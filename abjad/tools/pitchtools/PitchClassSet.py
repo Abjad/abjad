@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import mathtools
 from abjad.tools.pitchtools.Set import Set
 from abjad.tools.topleveltools import new
 
@@ -8,7 +9,7 @@ class PitchClassSet(Set):
 
     ..  container:: example
 
-        **Example 1.** Numbered pitch-class set:
+        **Example 1.** Initializes numbered pitch-class set:
 
         ::
 
@@ -21,7 +22,7 @@ class PitchClassSet(Set):
 
     ..  container:: example
 
-        **Example 2.** Named pitch-class set:
+        **Example 2.** Initializes named pitch-class set:
 
         ::
 
@@ -60,6 +61,23 @@ class PitchClassSet(Set):
         result = list(self)
         result.sort(helper)
         return result
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitchClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitchClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.PitchClass
 
     ### PUBLIC METHODS ###
 
@@ -197,19 +215,64 @@ class PitchClassSet(Set):
         items = (pitch_class + expr for pitch_class in self)
         return new(self, items=items)
 
-    ### PRIVATE PROPERTIES ###
+    @staticmethod
+    def yield_all_pitch_class_sets():
+        '''Yields all pitch-class sets.
 
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitchClass
+        ..  container:: example
 
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitchClass
+            **Example 1.** Yields all pitch-class sets:
 
-    @property
-    def _parent_item_class(self):
+            ::
+
+
+                >>> class_ = pitchtools.PitchClassSet
+                >>> pcsets = list(class_.yield_all_pitch_class_sets())
+                >>> len(pcsets)
+                4096
+
+            ::
+
+                >>> for pcset in pcsets[:20]:
+                ...   pcset
+                PitchClassSet([])
+                PitchClassSet([0])
+                PitchClassSet([1])
+                PitchClassSet([0, 1])
+                PitchClassSet([2])
+                PitchClassSet([0, 2])
+                PitchClassSet([1, 2])
+                PitchClassSet([0, 1, 2])
+                PitchClassSet([3])
+                PitchClassSet([0, 3])
+                PitchClassSet([1, 3])
+                PitchClassSet([0, 1, 3])
+                PitchClassSet([2, 3])
+                PitchClassSet([0, 2, 3])
+                PitchClassSet([1, 2, 3])
+                PitchClassSet([0, 1, 2, 3])
+                PitchClassSet([4])
+                PitchClassSet([0, 4])
+                PitchClassSet([1, 4])
+                PitchClassSet([0, 1, 4])
+
+        There are 4096 pitch-class sets.
+
+        This is ``U*`` in [Morris 1987].
+
+        Returns generator.
+        '''
         from abjad.tools import pitchtools
-        return pitchtools.PitchClass
+        def _helper(binary_string):
+            result = zip(binary_string, range(len(binary_string)))
+            result = [string[1] for string in result if string[0] == '1']
+            return result
+        for i in range(4096):
+            string = mathtools.integer_to_binary_string(i).zfill(12)
+            subset = ''.join(list(reversed(string)))
+            subset = _helper(subset)
+            subset = pitchtools.PitchClassSet(
+                subset,
+                item_class=pitchtools.NumberedPitchClass,
+                )
+            yield subset
