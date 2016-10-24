@@ -25,7 +25,7 @@ class NamedPitchClass(PitchClass):
             NamedPitchClass('d')
 
     ..  container:: example
-        
+
         **Example 3.** Initializes from named pitch:
 
         ::
@@ -262,10 +262,10 @@ class NamedPitchClass(PitchClass):
 
     def _initialize_by_pitch_class_octave_number_string(self, expr):
         from abjad.tools import pitchtools
-        groups = pitchtools.Pitch._pitch_class_octave_number_regex.match(
-            expr).groups()
-        diatonic_pitch_class_name = groups[0].lower()
-        symbolic_string = groups[1]
+        group_dict = pitchtools.Pitch._pitch_class_octave_number_regex.match(
+            expr).groupdict()
+        diatonic_pitch_class_name = group_dict['diatonic_pitch_class_name'].lower()
+        symbolic_string = group_dict['symbolic_string']
         self._alteration_in_semitones = \
             pitchtools.Accidental._symbolic_string_to_semitones[
                 symbolic_string]
@@ -281,8 +281,10 @@ class NamedPitchClass(PitchClass):
         groups = match.groups()
         diatonic_pitch_class_name = groups[0]
         abbreviation = groups[1]
-        self._alteration_in_semitones = \
-            pitchtools.Accidental._abbreviation_to_semitones[abbreviation]
+        accidental = pitchtools.Accidental(abbreviation)
+        self._alteration_in_semitones = accidental.semitones
+        #self._alteration_in_semitones = \
+        #    pitchtools.Accidental._abbreviation_to_semitones[abbreviation]
         self._diatonic_pitch_class_number = \
             self._diatonic_pitch_class_name_to_diatonic_pitch_class_number[
                 diatonic_pitch_class_name]

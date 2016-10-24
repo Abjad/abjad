@@ -33,10 +33,16 @@ class Pitch(AbjadValueObject):
         )
 
     _pitch_class_octave_number_regex_body = '''
-        ([A-G])         # exactly one diatonic pitch-class letter
-        {}              # plus an optional symbolic accidental string
-        ([-]?           # plus an optional negative sign
-        [0-9]+)         # plus one or more digits
+        (
+        (?P<diatonic_pitch_class_name>
+            [A-G]   # exactly one diatonic pitch-class name
+        )
+        {}          # plus an optional symbolic accidental string
+        (?P<octave_number>
+            [-]?    # plus an optional negative sign
+            [0-9]+  # plus one or more digits
+        )
+        )
         '''.format(
         Accidental._symbolic_string_regex_body,
         )
