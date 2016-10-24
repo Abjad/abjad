@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+import copy
 from abjad.tools import mathtools
 from abjad.tools.pitchtools.Set import Set
 from abjad.tools.topleveltools import new
@@ -78,6 +79,35 @@ class PitchClassSet(Set):
     def _parent_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.PitchClass
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def normal_order(self):
+        r'''Gets normal order.
+
+        Returns pitch-class segment.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import sequencetools
+        pitch_classes = list(self)
+        pitch_classes.sort()
+        candidates = []
+        widths = []
+        for i in range(self.cardinality):
+            print(i)
+            candidate = [pitchtools.NumberedPitch(_) for _ in pitch_classes]
+            candidate = sequencetools.rotate_sequence(candidate, -i)
+            candidates.append(candidate)
+            if candidate[0] < candidate[-1]:
+                width = abs(candidate[-1] - candidate[0])
+            else:
+                width = abs(candidate[-1] + 12 - candidate[0])
+            print(candidate)
+            widths.append(width)
+        print(widths)
+        minimum_width = min(widths)
+        print(minimum_width)
 
     ### PUBLIC METHODS ###
 
