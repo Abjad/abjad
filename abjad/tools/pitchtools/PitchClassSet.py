@@ -246,20 +246,68 @@ class PitchClassSet(Set):
             candidates.append(candidate)
         return self._get_most_compact_ordering(candidates)
 
-#    def get_prime_form(self, exclude_inversion=False):
-#        r'''Gets prime form.
-#        
-#        Returns new pitch-class set.
-#        '''
-#        normal_orders = [self.get_normal_order()]
-#        if not exclude_inversion:
-#            inversion = self.invert()
-#            normal_order = inversion.get_normal_order()
-#            normal_orders.append(normal_order)
-#        normal_order = self._get_most_compact_order(normal_orders)
-#        minimum_pc = min(normal_order)
-#        prime_form = [pc - minimum_pc for pc in normal_order]
-#        return prime_form
+    def get_prime_form(self, exclude_inversion=False):
+        r'''Gets prime form.
+
+        ..  container:: example
+
+            **Example 1.** Gets prime form:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 2, 3])
+
+        ..  container:: example
+
+            **Example 2.** Gets prime form:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 6])
+
+        ..  container:: example
+
+            **Example 3.** Gets prime form of pitch-class set with degree of
+            symmetry equal to 2:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 6, 7])
+
+        ..  container:: example
+
+            **Example 4.** Gets prime form of pitch-class set with degree of
+            symmetry equal to 4:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 3, 6, 9])
+
+        Returns new pitch-class set.
+        '''
+        from abjad.tools import pitchtools
+        normal_orders = [self.get_normal_order()]
+        if not exclude_inversion:
+            inversion = self.invert()
+            normal_order = inversion.get_normal_order()
+            normal_orders.append(normal_order)
+        normal_order = self._get_most_compact_ordering(normal_orders)
+        pcs = [int(_) for _ in normal_order]
+        first_pc = pcs[0]
+        pcs = [pc - first_pc for pc in pcs]
+        prime_form = type(self)(
+            items=pcs,
+            item_class=pitchtools.NumberedPitchClass,
+            )
+        return prime_form
 
     def invert(self, axis=None):
         r'''Inverts pitch-class set.
