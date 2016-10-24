@@ -50,6 +50,34 @@ class PitchClassSet(Set):
         '''
         return hash(repr(self))
 
+    def __str__(self):
+        r'''Gets string representation of pitch-class set.
+
+        ..  container:: example
+
+            **Example 1.** Gets string of set sorted at initialization:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([6, 7, 10, 10.5])
+                >>> str(pc_set)
+                '{6, 7, 10, 10.5}'
+
+        ..  container:: example
+
+            **Example 2.** Gets string of set not sorted at initialization:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([10.5, 10, 7, 6])
+                >>> str(pc_set)
+                '{6, 7, 10, 10.5}'
+
+        Returns string.
+        '''
+        superclass = super(PitchClassSet, self)
+        return superclass.__str__()
+
     ### PRIVATE METHODS ###
 
     def _sort_self(self):
