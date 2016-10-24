@@ -83,6 +83,18 @@ class Set(TypedFrozenset):
     def _sort_self(self):
         return tuple(self)
 
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def cardinality(self):
+        r'''Gets cardinality of set.
+
+        Defined equal to length of set.
+
+        Returns nonnegative integer.
+        '''
+        return len(self)
+
     ### PUBLIC METHODS ###
 
     @abc.abstractmethod
