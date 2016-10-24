@@ -10,7 +10,7 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Sharp:
+        **Example**: Sharp.
 
         ::
 
@@ -19,39 +19,58 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Quarter-sharp:
+        **Example**: Quarter-sharp.
 
         ::
 
             >>> pitchtools.Accidental('qs')
             Accidental('qs')
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.Accidental('tqf')
-        Accidental('tqf')
+        **Example**: Three-quarters-flat.
 
-    ::
+        ::
 
-        >>> pitchtools.Accidental('#+')
-        Accidental('tqs')
+            >>> pitchtools.Accidental('tqf')
+            Accidental('tqf')
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.Accidental('flat')
-        Accidental('f')
+        **Example**: Three-quarters-sharp.
 
-    ::
+        ::
 
-        >>> pitchtools.Accidental(2)
-        Accidental('ss')
+            >>> pitchtools.Accidental('#+')
+            Accidental('tqs')
 
-    ::
+    ..  container:: example
 
-        >>> pitchtools.Accidental('ssssqs')
-        Accidental('ssssqs')
+        **Example**: Flat.
 
-    Accidentals are immutable.
+        ::
+
+            >>> pitchtools.Accidental('flat')
+            Accidental('f')
+
+    ..  container:: example
+
+        **Example**: Double-sharp.
+
+        ::
+
+            >>> pitchtools.Accidental(2)
+            Accidental('ss')
+
+    ..  container:: example
+
+        **Example**: Four-and-a-half-sharp.
+
+        ::
+
+            >>> pitchtools.Accidental('ssssqs')
+            Accidental('ssssqs')
+
     '''
 
     ### CLASS VARIABLES ###
