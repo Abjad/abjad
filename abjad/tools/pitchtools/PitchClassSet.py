@@ -114,6 +114,48 @@ class PitchClassSet(Set):
     def normal_order(self):
         r'''Gets normal order.
 
+        ..  container:: example
+
+            **Example 1.** Gets normal order:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set.normal_order
+                PitchClassSegment([10, 11, 0, 1])
+
+        ..  container:: example
+
+            **Example 2.** Gets normal order:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set.normal_order
+                PitchClassSegment([8, 9, 2])
+
+        ..  container:: example
+
+            **Example 3.** Gets normal order of pitch-class set with degree of
+            symmetry equal to 2:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set.normal_order
+                PitchClassSegment([1, 2, 7, 8])
+
+        ..  container:: example
+
+            **Example 4.** Gets normal order of pitch-class set with degree of
+            symmetry equal to 4:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set.normal_order
+                PitchClassSegment([0, 3, 6, 9])
+
         Returns pitch-class segment.
         '''
         from abjad.tools import pitchtools
@@ -130,9 +172,7 @@ class PitchClassSet(Set):
                 width = abs(candidate[-1] - candidate[0])
             else:
                 width = abs(candidate[-1] + 12 - candidate[0])
-            print(candidate)
             widths.append(width)
-        print(widths)
         minimum_width = min(widths)
         candidates_ = []
         for candidate, width in zip(candidates, widths):
@@ -142,11 +182,39 @@ class PitchClassSet(Set):
         assert 1 <= len(candidates)
         if len(candidates) == 1:
             segment = candidates[0]
-            segment = pitchtools.PitchClassSegment(segment)
+            segment = pitchtools.PitchClassSegment(
+                items=segment,
+                item_class=pitchtools.NumberedPitchClass,
+                )
             return segment
-        message = 'can not chose between candidates: {!r}.'
-        message = message.format(candidates)
-        raise Exception(message)
+        for i in range(self.cardinality - 1):
+            widths = []
+            for candidate in candidates:
+                if candidate[0] < candidate[i+1]:
+                    width = abs(candidate[i+1] - candidate[0])
+                else:
+                    width = abs(candidate[i+1] + 12 - candidate[0])
+                widths.append(width)
+            minimum_width = min(widths)
+            candidates_ = []
+            for candidate, width in zip(candidates, widths):
+                if width == minimum_width:
+                    candidates_.append(candidate)
+            candidates = candidates_
+            if len(candidates) == 1:
+                segment = candidates[0]
+                segment = pitchtools.PitchClassSegment(
+                    items=segment,
+                    item_class=pitchtools.NumberedPitchClass,
+                    )
+                return segment
+        candidates.sort(key=lambda x: x[0])
+        segment = candidates[0]
+        segment = pitchtools.PitchClassSegment(
+            items=segment,
+            item_class=pitchtools.NumberedPitchClass,
+            )
+        return segment
 
     ### PUBLIC METHODS ###
 
