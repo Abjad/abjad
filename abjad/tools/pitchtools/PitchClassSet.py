@@ -95,7 +95,6 @@ class PitchClassSet(Set):
         candidates = []
         widths = []
         for i in range(self.cardinality):
-            print(i)
             candidate = [pitchtools.NumberedPitch(_) for _ in pitch_classes]
             candidate = sequencetools.rotate_sequence(candidate, -i)
             candidates.append(candidate)
@@ -107,7 +106,19 @@ class PitchClassSet(Set):
             widths.append(width)
         print(widths)
         minimum_width = min(widths)
-        print(minimum_width)
+        candidates_ = []
+        for candidate, width in zip(candidates, widths):
+            if width == minimum_width:
+                candidates_.append(candidate)
+        candidates = candidates_
+        assert 1 <= len(candidates)
+        if len(candidates) == 1:
+            segment = candidates[0]
+            segment = pitchtools.PitchClassSegment(segment)
+            return segment
+        message = 'can not chose between candidates: {!r}.'
+        message = message.format(candidates)
+        raise Exception(message)
 
     ### PUBLIC METHODS ###
 
