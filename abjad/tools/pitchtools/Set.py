@@ -51,7 +51,7 @@ class Set(TypedFrozenset):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''String representation of set.
+        r'''Gets string representation.
 
         Returns string.
         '''
