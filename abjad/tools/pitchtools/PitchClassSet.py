@@ -193,6 +193,16 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
+            **Example 0.** Gets normal order of empty pitch-class set:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set.get_normal_order()
+                PitchClassSegment([])
+
+        ..  container:: example
+
             **Example 1.** Gets normal order:
 
             ::
@@ -237,6 +247,11 @@ class PitchClassSet(Set):
         '''
         from abjad.tools import pitchtools
         from abjad.tools import sequencetools
+        if not len(self):
+            return pitchtools.PitchClassSegment(
+                items=None,
+                item_class=pitchtools.NumberedPitchClass,
+                )
         pitch_classes = list(self)
         pitch_classes.sort()
         candidates = []
@@ -248,6 +263,16 @@ class PitchClassSet(Set):
 
     def get_prime_form(self, exclude_inversion=False):
         r'''Gets prime form.
+
+        ..  container:: example
+
+            **Example 0.** Gets prime form of empty pitch-class set:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set.get_prime_form()
+                PitchClassSet([])
 
         ..  container:: example
 
@@ -294,6 +319,8 @@ class PitchClassSet(Set):
         Returns new pitch-class set.
         '''
         from abjad.tools import pitchtools
+        if not len(self):
+            return copy.copy(self)
         normal_orders = [self.get_normal_order()]
         if not exclude_inversion:
             inversion = self.invert()
