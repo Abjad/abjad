@@ -20,18 +20,18 @@ class LilyPondLexicalDefinition(AbjadObject):
 
     states = (
         # lexer.ll:115
-#        ('extratoken', 'exclusive'),
-#        ('chords', 'exclusive'),
-#        ('figures', 'exclusive'),
-#        ('incl', 'exclusive'),
-#        ('lyrics', 'exclusive'),
-#        ('lyric_quote ', 'exclusive'),
+        # ('extratoken', 'exclusive'),
+        # ('chords', 'exclusive'),
+        # ('figures', 'exclusive'),
+        # ('incl', 'exclusive'),
+        # ('lyrics', 'exclusive'),
+        # ('lyric_quote ', 'exclusive'),
         ('longcomment', 'exclusive'),
         ('markup', 'exclusive'),
         ('notes', 'exclusive'),
         ('quote', 'exclusive'),
-#        ('sourcefileline', 'exclusive'),
-#        ('sourcefilename', 'exclusive'),
+        # ('sourcefileline', 'exclusive'),
+        # ('sourcefilename', 'exclusive'),
         ('version', 'exclusive'),
         ('scheme', 'exclusive'),
     )
@@ -193,7 +193,7 @@ class LilyPondLexicalDefinition(AbjadObject):
         'MUSIC_IDENTIFIER',
         'NOTENAME_PITCH',
         'NUMBER_IDENTIFIER',
-        'output_DEF_IDENTIFIER',
+        'OUTPUT_DEF_IDENTIFIER',
         'REAL',
         'RESTNAME',
         'SCM_FUNCTION',
@@ -617,7 +617,6 @@ class LilyPondLexicalDefinition(AbjadObject):
     @lex.TOKEN(MARKUPCOMMAND)
     def t_markup_548(self, t):
         value = t.value[1:]
-
         if value in self.client._markup_functions or \
             value in self.client._markup_list_functions:
             if value in self.client._markup_functions:
@@ -626,14 +625,10 @@ class LilyPondLexicalDefinition(AbjadObject):
             else:
                 t.type = 'MARKUP_LIST_FUNCTION'
                 signature = self.client._markup_list_functions[value]
-
             #print t.type, value, signature
-
             self.push_signature(signature, t)
-
         else:
             t.type = self.scan_escaped_word(t)
-
         return t
 
     # lexer.ll:598
@@ -787,9 +782,7 @@ class LilyPondLexicalDefinition(AbjadObject):
     #    t_sourcefileline_error = t_error
     #    t_sourcefilename_error = t_error
     t_version_error = t_error
-
     t_scheme_error = t_error
-
 
     def scan_bare_word(self, t):
         if t.lexer.current_state() in ('notes',):
@@ -800,30 +793,22 @@ class LilyPondLexicalDefinition(AbjadObject):
                 t.type = 'CHORD_REPETITION'
         return 'STRING'
 
-
     def scan_escaped_word(self, t):
         from abjad.tools import lilypondparsertools
-
         # first, check for it in the keyword list
         if t.value in self.keywords:
             value = self.keywords[t.value]
-
             if value == 'MARKUP':
                 t.lexer.push_state('markup')
                 if t.lexer.current_state() == 'lyrics':
                     return 'LYRIC_MARKUP'
-
             elif value == 'WITH':
                 t.lexer.push_state('INITIAL')
-
             return value
-
         identifier = t.value[1:]
-
         # check for the identifier in the scope stack
         lookup = self.client._resolve_identifier(identifier)
         if lookup is not None:
-
             identifier_lookup = {
                 'book_block': 'BOOK_IDENTIFIER',
                 'bookpart_block': 'BOOK_IDENTIFIER',
@@ -842,49 +827,44 @@ class LilyPondLexicalDefinition(AbjadObject):
                 # 'DURATION_IDENTIFIER' ?
                 # 'LYRIC_MARKUP_IDENTIFIER' ?
             }
-
             t.value = copy.deepcopy(lookup.value)
             return identifier_lookup[lookup.type]
-
         # then, check for it in the "current_module" dictionary
         # which we've dumped out of LilyPond
         if identifier not in self.client._current_module:
             message = 'unknown escaped word: {!r}.'
             message = message.format(t.value)
             raise Exception(message)
-
         lookup = self.client._current_module[identifier]
-
         # if the lookup resolves to a function definition,
         # we have to push artificial tokens onto the token stack.
         # the tokens are pushed in reverse order (LIFO).
         if isinstance(lookup, dict) and 'type' in lookup:
-
             if lookup['type'] == 'ly:music-function?':
-
                 signature = lookup['signature']
                 funtype = 'SCM_FUNCTION'
                 if signature[0] == 'ly:music?':
                     funtype = 'MUSIC_FUNCTION'
                 elif signature[0] == 'ly:event?':
                     funtype = 'EVENT_FUNCTION'
-
                 self.push_signature(signature[1:], t)
-
                 return funtype
-
-            elif lookup['type'] == 'ly:prob?' and 'event' in lookup['types']:
-                return 'EVENT_IDENTIFIER'
-
+            elif lookup['type'] == 'ly:prob?':
+                if 'event' in lookup['types']:
+                    return 'EVENT_IDENTIFIER'
+                elif (
+                    'context-specification' in lookup['types'] and
+                    hasattr(self.client._guile, identifier)
+                    ):
+                    t.value = getattr(self.client._guile, identifier)()
+                    return 'MUSIC_IDENTIFIER'
         # we also check for other types, to handle \longa, \breve etc.
         elif isinstance(lookup, lilypondparsertools.LilyPondDuration):
             t.value = copy.copy(lookup)
             return 'DURATION_IDENTIFIER'
-
         # else...
         t.value = copy.copy(lookup)
         return 'SCM_IDENTIFIER'
-
 
     def push_signature(self, signature, t):
 

@@ -111,7 +111,7 @@ class GuileProxy(AbjadObject):
             label = '\default'
         return indicatortools.LilyPondCommand('mark %s' % label)
 
-    def one_voice(self):
+    def oneVoice(self):
         r'''Handles LilyPond ``\oneVoice`` command.
         '''
         return indicatortools.LilyPondCommand('oneVoice')

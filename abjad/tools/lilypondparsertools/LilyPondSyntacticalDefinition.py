@@ -2534,8 +2534,8 @@ class LilyPondSyntacticalDefinition(AbjadObject):
         "output_def_body : output_def_head_with_mode_switch '{'"
         p[0] = p[1]
 
-    def p_output_def_body__output_def_head_with_mode_switch__Chr123__output_DEF_IDENTIFIER(self, p):
-        "output_def_body : output_def_head_with_mode_switch '{' output_DEF_IDENTIFIER"
+    def p_output_def_body__output_def_head_with_mode_switch__Chr123__OUTPUT_DEF_IDENTIFIER(self, p):
+        "output_def_body : output_def_head_with_mode_switch '{' OUTPUT_DEF_IDENTIFIER"
         p[0] = p[2]
 
     ### output_def_head ###
