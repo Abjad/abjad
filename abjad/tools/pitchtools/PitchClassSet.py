@@ -261,7 +261,7 @@ class PitchClassSet(Set):
             candidates.append(candidate)
         return self._get_most_compact_ordering(candidates)
 
-    def get_prime_form(self, exclude_inversion=False):
+    def get_prime_form(self, transposition_only=False):
         r'''Gets prime form.
 
         ..  container:: example
@@ -274,6 +274,12 @@ class PitchClassSet(Set):
                 >>> pc_set.get_prime_form()
                 PitchClassSet([])
 
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([])
+
         ..  container:: example
 
             **Example 1.** Gets prime form:
@@ -284,6 +290,12 @@ class PitchClassSet(Set):
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 2, 3])
 
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 1, 2, 3])
+
         ..  container:: example
 
             **Example 2.** Gets prime form:
@@ -292,6 +304,12 @@ class PitchClassSet(Set):
 
                 >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
                 >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 6])
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set.get_prime_form(transposition_only=True)
                 PitchClassSet([0, 1, 6])
 
         ..  container:: example
@@ -305,6 +323,12 @@ class PitchClassSet(Set):
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 1, 6, 7])
 
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 1, 6, 7])
+
         ..  container:: example
 
             **Example 4.** Gets prime form of pitch-class set with degree of
@@ -316,13 +340,36 @@ class PitchClassSet(Set):
                 >>> pc_set.get_prime_form()
                 PitchClassSet([0, 3, 6, 9])
 
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 3, 6, 9])
+
+        ..  container:: example
+
+            **Example 4.** Gets prime form of pitch-class that is not
+            inversion-equivalent:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 4, 6, 7])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 3, 7])
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 4, 6, 7])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 4, 6, 7])
+
         Returns new pitch-class set.
         '''
         from abjad.tools import pitchtools
         if not len(self):
             return copy.copy(self)
         normal_orders = [self.get_normal_order()]
-        if not exclude_inversion:
+        if not transposition_only:
             inversion = self.invert()
             normal_order = inversion.get_normal_order()
             normal_orders.append(normal_order)
