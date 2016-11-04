@@ -166,6 +166,21 @@ class IntervalClassVector(Vector):
     ### PRIVATE PROPERTIES ###
 
     @property
+    def _label(self):
+        counts = []
+        for i in range(7):
+            counts.append(self[i])
+        counts = ''.join([str(x) for x in counts])
+        if len(self) == 13:
+            quartertones = []
+            for i in range(6):
+                quartertones.append(self[i + 0.5])
+            quartertones = ''.join([str(x) for x in quartertones])
+            return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
+        else:
+            return r'\tiny %s' % counts
+
+    @property
     def _named_item_class(self):
         from abjad.tools import pitchtools
         return pitchtools.NamedIntervalClass
