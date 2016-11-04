@@ -19,7 +19,7 @@ class Glissando(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 \glissando
                 d'8 \glissando
@@ -42,7 +42,7 @@ class Glissando(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8 \glissando
                 d'8 - \bendAfter #'-4.0

@@ -27,7 +27,7 @@ class MeasuredComplexBeam(ComplexBeam):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {

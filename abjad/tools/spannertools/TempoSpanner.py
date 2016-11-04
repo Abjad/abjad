@@ -45,7 +45,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
             } <<
@@ -161,7 +161,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -302,7 +302,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -445,7 +445,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -608,7 +608,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -736,7 +736,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -867,7 +867,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1015,7 +1015,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1160,7 +1160,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1272,7 +1272,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1382,7 +1382,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -1538,7 +1538,7 @@ class TempoSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 \override TextScript.staff-padding = #2.25
                 \override TextSpanner.staff-padding = #3
@@ -2096,7 +2096,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2213,7 +2213,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2333,7 +2333,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2452,7 +2452,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2570,7 +2570,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3
@@ -2701,7 +2701,7 @@ class TempoSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score \with {
                     \override TextScript.staff-padding = #2.25
                     \override TextSpanner.staff-padding = #3

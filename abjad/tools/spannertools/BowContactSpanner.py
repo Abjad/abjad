@@ -53,7 +53,7 @@ class BowContactSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \override BarLine.transparent = ##t
                 \override Dots.staff-position = #-8
@@ -166,7 +166,7 @@ class BowContactSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 \override BarLine.transparent = ##t
                 \override Dots.staff-position = #-8

@@ -24,7 +24,7 @@ class ClefSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \clef "treble"
                 c'4
@@ -57,7 +57,7 @@ class ClefSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \clef "treble"
                 r4
