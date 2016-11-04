@@ -18,15 +18,75 @@ class LabelAgent(abctools.AbjadObject):
 
     ..  container:: example
 
+        **Example 1.** Labels pitch names:
+
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> label(staff).with_pitches()
             >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                    ^ \markup {
+                        \small
+                            c'
+                        }
+                e'4
+                    ^ \markup {
+                        \small
+                            e'
+                        }
+                d'4
+                    ^ \markup {
+                        \small
+                            d'
+                        }
+                f'4
+                    ^ \markup {
+                        \small
+                            f'
+                        }
+            }
+
+    ..  container:: example
+
+        **Example 2.** Labels durations:
 
         ::
 
-            >>> label(staff)
-            LabelAgent(client=Staff("c'4 e'4 d'4 f'4"))
+            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> label(staff).with_durations()
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
+                e'4
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
+                d'4
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
+                f'4
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
+            }
 
     '''
 
