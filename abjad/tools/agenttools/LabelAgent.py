@@ -122,6 +122,7 @@ class LabelAgent(abctools.AbjadObject):
             scoretools.Component,
             selectiontools.Selection,
             spannertools.Spanner,
+            list,
             type(None),
             )
         assert isinstance(client, prototype), repr(client)
@@ -1710,6 +1711,161 @@ class LabelAgent(abctools.AbjadObject):
                             }
                 }
 
+        ..  container:: example
+
+            **Example 4.** Labels logical ties with pitch names (filtered by
+            selection):
+
+            ::
+
+                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:2], voice[-2:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> label(selections).with_pitches()
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''4 \startGroup
+                        ^ \markup {
+                            \small
+                                df''
+                            }
+                    c''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                c''
+                            }
+                    f'4
+                    fs'4
+                    d''4 \startGroup
+                        ^ \markup {
+                            \small
+                                d''
+                            }
+                    ds''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                ds''
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 5.** Labels logical ties with pitch numbers (filtered by
+            selection):
+
+            ::
+
+                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:2], voice[-2:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> prototype = pitchtools.NumberedPitch
+                >>> label(selections).with_pitches(prototype=prototype)
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''4 \startGroup
+                        ^ \markup {
+                            \small
+                                13
+                            }
+                    c''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                12
+                            }
+                    f'4
+                    fs'4
+                    d''4 \startGroup
+                        ^ \markup {
+                            \small
+                                14
+                            }
+                    ds''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                15
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 6.** Labels logical ties with pitch-class numbers
+            (filtered by selection):
+
+            ::
+
+                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:2], voice[-2:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> prototype = pitchtools.NumberedPitchClass
+                >>> label(selections).with_pitches(prototype=prototype)
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''4 \startGroup
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                    c''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                0
+                            }
+                    f'4
+                    fs'4
+                    d''4 \startGroup
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                    ds''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                3
+                            }
+                }
+
         Returns none.
         '''
         prototype = prototype or pitchtools.NamedPitch
@@ -1757,6 +1913,194 @@ class LabelAgent(abctools.AbjadObject):
                     label = label.small()
             if label is not None:
                 label = new(label, direction=direction)
+                attach(label, leaf)
+
+    def with_set_classes(self, direction=Up, prototype=None):
+        r'''Labels items in client with set-classes.
+
+        ..  container:: example
+
+            **Example 1.** Labels selections with Forte-ranked
+            transposition-inversion set-classes:
+
+            ::
+
+                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                >>> voice = Voice(string)
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:4], voice[-4:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> label(selections).with_set_classes()
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-3){0, 1, 3, 4}"
+                                    }
+                            }
+                    c''8
+                    bf'8
+                    a'8 \stopGroup
+                    f'4.
+                    fs'8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-20){0, 1, 5, 8}"
+                                    }
+                            }
+                    g'8
+                    b'8
+                    d''2. \stopGroup
+                }
+
+        ..  container:: example
+
+            **Example 2.** Labels selections with lex-ranked
+            transposition-inversion set-classes:
+
+            ::
+
+                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                >>> voice = Voice(string)
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:4], voice[-4:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> prototype = pitchtools.SetClass(lex_rank=True)
+                >>> label(selections).with_set_classes(prototype=prototype)
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-6){0, 1, 3, 4}"
+                                    }
+                            }
+                    c''8
+                    bf'8
+                    a'8 \stopGroup
+                    f'4.
+                    fs'8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-16){0, 1, 5, 8}"
+                                    }
+                            }
+                    g'8
+                    b'8
+                    d''2. \stopGroup
+                }
+
+        ..  container:: example
+
+            **Example 3.** Labels selections with transposition-only
+            set-classes:
+
+            ::
+
+                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                >>> voice = Voice(string)
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:4], voice[-4:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> prototype = pitchtools.SetClass(transposition_only=True)
+                >>> label(selections).with_set_classes(prototype=prototype)
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-3){0, 1, 2, 5}"
+                                    }
+                            }
+                    c''8
+                    bf'8
+                    a'8 \stopGroup
+                    f'4.
+                    fs'8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-20){0, 2, 3, 6}"
+                                    }
+                            }
+                    g'8
+                    b'8
+                    d''2. \stopGroup
+                }
+
+        Returns none.
+        '''
+        prototype = prototype or pitchtools.SetClass()
+        if prototype is pitchtools.SetClass:
+            prototype = prototype()
+        assert isinstance(prototype, pitchtools.SetClass), repr(prototype)
+        for selection in self._client:
+            pitch_class_set = pitchtools.PitchClassSet.from_selection(
+                selection)
+            if not pitch_class_set:
+                continue
+            set_class = pitchtools.SetClass.from_pitch_class_set(
+                pitch_class_set,
+                lex_rank=prototype.lex_rank,
+                transposition_only=prototype.transposition_only,
+                )
+            string = str(set_class)
+            command = markuptools.MarkupCommand('line', [string])
+            label = markuptools.Markup(command, direction=direction)
+            if label is not None:
+                label = label.tiny()
+                leaf = selection[0]
                 attach(label, leaf)
 
     def with_start_offsets(
