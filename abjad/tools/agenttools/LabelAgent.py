@@ -897,6 +897,82 @@ class LabelAgent(abctools.AbjadObject):
                     }
                 >>
 
+        ..  container:: example
+
+            **Example 7.** Labels set-classes:
+
+            ::
+
+                >>> staff_group = StaffGroup([])
+                >>> staff = Staff("c'8 d'4 e'16 f'16")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "bass" c,2""")
+                >>> staff_group.append(staff)
+
+            ::
+
+                >>> prototype = pitchtools.SetClass()
+                >>> label(staff_group).vertical_moments(prototype=prototype)
+                >>> show(staff_group) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff_group))
+                \new StaffGroup <<
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(2-5){0, 5}"
+                                        }
+                                }
+                        d'4
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-9){0, 2, 7}"
+                                        }
+                                }
+                        e'16
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-4){0, 1, 5}"
+                                        }
+                                }
+                        f'16
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(2-5){0, 5}"
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "alto"
+                        g4
+                        f4
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-7){0, 2, 5}"
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c,2
+                    }
+                >>
+
         Set `prototype` to one of the classes shown above.
 
         Returns none.
@@ -978,9 +1054,34 @@ class LabelAgent(abctools.AbjadObject):
                     item_class=pitchtools
                         .NumberedInversionEquivalentIntervalClass,
                     )
-                formatted = self._format_interval_class_vector(
+                markup = self._format_interval_class_vector(
                     interval_class_vector)
-                label = markuptools.Markup(formatted, direction=direction)
+                label = markuptools.Markup(markup, direction=direction)
+            elif (prototype is pitchtools.SetClass or
+                isinstance(prototype, pitchtools.SetClass)):
+                if prototype is pitchtools.SetClass:
+                    prototype = prototype()
+                assert isinstance(prototype, pitchtools.SetClass)
+                leaves = vertical_moment.leaves
+                pitch_class_set = pitchtools.PitchClassSet.from_selection(
+                    leaves)
+                if not pitch_class_set:
+                    continue
+                set_class = pitchtools.SetClass.from_pitch_class_set(
+                    pitch_class_set,
+                    lex_rank=prototype.lex_rank,
+                    transposition_only=prototype.transposition_only,
+                    )
+                string = str(set_class)
+                #string = string.replace('{', '\\{')
+                #string = string.replace('}', '\\}')
+                #string = r'\line {{{}}}'.format(string)
+                command = markuptools.MarkupCommand('line', [string])
+                label = markuptools.Markup(command, direction=direction)
+            else:
+                message = 'unknown prototype: {!r}.'
+                message = message.format(prototype)
+                raise TypeError(message)
             if label is not None:
                 label = label.tiny()
                 if direction is Up:
