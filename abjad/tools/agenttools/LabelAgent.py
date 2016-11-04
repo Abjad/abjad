@@ -141,20 +141,6 @@ class LabelAgent(abctools.AbjadObject):
             override(leaf).rest.color = color
         return leaf
 
-    def _format_interval_class_vector(self, interval_class_vector):
-        counts = []
-        for i in range(7):
-            counts.append(interval_class_vector[i])
-        counts = ''.join([str(x) for x in counts])
-        if len(interval_class_vector) == 13:
-            quartertones = []
-            for i in range(6):
-                quartertones.append(interval_class_vector[i + 0.5])
-            quartertones = ''.join([str(x) for x in quartertones])
-            return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
-        else:
-            return r'\tiny %s' % counts
-
     ### PUBLIC METHODS ###
 
     def color_container(self, color='red'):
@@ -172,7 +158,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \override Accidental.color = #red
                     \override Beam.color = #red
@@ -220,7 +206,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     cs'8. [
                     r8.
@@ -235,7 +221,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
@@ -278,7 +264,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 <
                     \tweak color #red
                     c''
@@ -304,7 +290,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(note))
+                >>> f(note)
                 \once \override NoteHead.color = #red
                 c'4
 
@@ -329,7 +315,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \once \override NoteHead.color = #(x11-color 'red)
                     c'8
@@ -391,7 +377,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8
                         ^ \markup {
@@ -422,7 +408,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8
                     d'8
@@ -460,7 +446,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -521,7 +507,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -607,7 +593,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -691,7 +677,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -772,7 +758,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -853,7 +839,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -919,7 +905,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -1054,8 +1040,7 @@ class LabelAgent(abctools.AbjadObject):
                     item_class=pitchtools
                         .NumberedInversionEquivalentIntervalClass,
                     )
-                markup = self._format_interval_class_vector(
-                    interval_class_vector)
+                markup = interval_class_vector._label
                 label = markuptools.Markup(markup, direction=direction)
             elif (prototype is pitchtools.SetClass or
                 isinstance(prototype, pitchtools.SetClass)):
@@ -1102,7 +1087,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'4.
                         ^ \markup {
@@ -1139,7 +1124,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'4.
                         ^ \markup {
@@ -1796,7 +1781,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override TextScript.staff-padding = #4
                     \override TupletBracket.staff-padding = #0
@@ -1826,7 +1811,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff \with {
                         \override TextScript.staff-padding = #4
@@ -1860,7 +1845,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff \with {
                         \override TextScript.staff-padding = #4
