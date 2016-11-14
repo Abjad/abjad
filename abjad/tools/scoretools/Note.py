@@ -141,9 +141,8 @@ class Note(Leaf):
                 sounding_pitch = instrument.sounding_pitch_of_written_middle_c
             else:
                 sounding_pitch = pitchtools.NamedPitch('C4')
-            t_n = pitchtools.NamedPitch('C4') - sounding_pitch
-            sounding_pitch = pitchtools.transpose_pitch_carrier_by_interval(
-                self.written_pitch, t_n)
+            interval = pitchtools.NamedPitch('C4') - sounding_pitch
+            sounding_pitch = interval.transpose(self.written_pitch)
             return sounding_pitch
 
     ### PRIVATE PROPERTIES ###

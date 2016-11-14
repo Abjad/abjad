@@ -126,7 +126,8 @@ class NamedPitch(Pitch):
         '''
         from abjad.tools import pitchtools
         interval = pitchtools.NamedInterval(interval)
-        return pitchtools.transpose_pitch_carrier_by_interval(self, interval)
+        pitch = interval.transpose(self)
+        return pitch
 
     def __copy__(self, *args):
         r'''Copies named pitch.
@@ -415,12 +416,17 @@ class NamedPitch(Pitch):
         '''
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
-            return pitchtools.NamedInterval.from_pitch_carriers(
-                self, arg)
-        else:
-            interval = arg
-            return pitchtools.transpose_pitch_carrier_by_interval(
-                self, -interval)
+            return pitchtools.NamedInterval.from_pitch_carriers(self, arg)
+        interval = arg
+        interval = -interval
+        pitch = interval.transpose(self)
+        return pitch
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _lilypond_format(self):
+        return str(self)
 
     ### PRIVATE METHODS ###
 
@@ -508,8 +514,7 @@ class NamedPitch(Pitch):
         # find accidental semitones
         pc = pitchtools.PitchClass._diatonic_pitch_class_name_to_pitch_class_number[
             diatonic_pitch_class_name]
-        nearest_neighbor = pitchtools.transpose_pitch_class_number_to_pitch_number_neighbor(
-            pitch_number, pc)
+        nearest_neighbor = NamedPitch._to_nearest_octave(pitch_number, pc)
         semitones = pitch_number - nearest_neighbor
         # find accidental alphabetic string
         abbreviation = pitchtools.Accidental._semitones_to_abbreviation[
@@ -519,6 +524,16 @@ class NamedPitch(Pitch):
         octave_number = int(math.floor((pitch_number - semitones) / 12)) + 4
         # return accidental and octave
         return accidental, octave_number
+
+    @staticmethod
+    def _to_nearest_octave(pitch_number, pitch_class_number):
+        target_pc = pitch_number % 12
+        down = (target_pc - pitch_class_number) % 12
+        up = (pitch_class_number - target_pc) % 12
+        if up < down:
+            return pitch_number + up
+        else:
+            return pitch_number - down
 
     ### PUBLIC METHODS ###
 
@@ -1140,16 +1155,77 @@ class NamedPitch(Pitch):
         Returns new named pitch.
         '''
         from abjad.tools import pitchtools
-        named_interval = pitchtools.NamedInterval(expr)
-        transposed_pitch = pitchtools.transpose_pitch_carrier_by_interval(
-            self, named_interval)
-        return type(self)(transposed_pitch)
+        interval = pitchtools.NamedInterval(expr)
+        pitch = interval.transpose(self)
+        return type(self)(pitch)
 
-    ### PRIVATE PROPERTIES ###
+    def transpose_staff_position(self, staff_positions, interval):
+        '''Transposes named pitch by `staff_positions` and `interval`.
 
-    @property
-    def _lilypond_format(self):
-        return str(self)
+        ..  container:: example
+
+            **Example 1.** Transposes middle C but leaves at same staff
+            position:
+
+            ::
+
+                >>> pitch = NamedPitch(0)
+
+            ::
+
+                >>> pitch.transpose_staff_position(0, -2)
+                NamedPitch("cff'")
+                >>> pitch.transpose_staff_position(0, -1.5)
+                NamedPitch("ctqf'")
+                >>> pitch.transpose_staff_position(0, -1)
+                NamedPitch("cf'")
+                >>> pitch.transpose_staff_position(0, -0.5)
+                NamedPitch("cqf'")
+                >>> pitch.transpose_staff_position(0, 0)
+                NamedPitch("c'")
+                >>> pitch.transpose_staff_position(0, 0.5)
+                NamedPitch("cqs'")
+                >>> pitch.transpose_staff_position(0, 1)
+                NamedPitch("cs'")
+                >>> pitch.transpose_staff_position(0, 1.5)
+                NamedPitch("ctqs'")
+
+        ..  container:: example
+
+            **Example 2.** Transposes middle C and then respells up 1 staff
+            position:
+
+                >>> pitch.transpose_staff_position(1, 0)
+                NamedPitch("dff'")
+                >>> pitch.transpose_staff_position(1, 0.5)
+                NamedPitch("dtqf'")
+                >>> pitch.transpose_staff_position(1, 1)
+                NamedPitch("df'")
+                >>> pitch.transpose_staff_position(1, 1.5)
+                NamedPitch("dqf'")
+                >>> pitch.transpose_staff_position(1, 2)
+                NamedPitch("d'")
+                >>> pitch.transpose_staff_position(1, 2.5)
+                NamedPitch("dqs'")
+                >>> pitch.transpose_staff_position(1, 3)
+                NamedPitch("ds'")
+                >>> pitch.transpose_staff_position(1, 3.5)
+                NamedPitch("dtqs'")
+                >>> pitch.transpose_staff_position(1, 4)
+                NamedPitch("dss'")
+
+        Returns new named pitch.
+        '''
+        from abjad.tools import pitchtools
+        pitch_number = self.pitch_number + interval
+        diatonic_pitch_class_number = self.diatonic_pitch_class_number
+        diatonic_pitch_class_number += staff_positions
+        diatonic_pitch_class_number %= 7
+        class_ = pitchtools.PitchClass
+        dictionary = \
+            class_._diatonic_pitch_class_number_to_diatonic_pitch_class_name
+        diatonic_pitch_class_name = dictionary[diatonic_pitch_class_number]
+        return type(self)(pitch_number, diatonic_pitch_class_name)
 
     ### PUBLIC PROPERTIES ###
 
