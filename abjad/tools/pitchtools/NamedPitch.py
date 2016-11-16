@@ -417,7 +417,7 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         if isinstance(arg, type(self)):
             return pitchtools.NamedInterval.from_pitch_carriers(self, arg)
-        interval = arg
+        interval = pitchtools.NamedInterval(arg)
         interval = -interval
         pitch = interval.transpose(self)
         return pitch
