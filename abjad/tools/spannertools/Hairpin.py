@@ -25,7 +25,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 r4
                 c'8 \< \p
@@ -49,7 +49,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 r4
                 c'8 \> \f
@@ -75,7 +75,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \once \override Hairpin.circled-tip = ##t
                 c'4 \<
@@ -98,7 +98,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \once \override Hairpin.circled-tip = ##t
                 c'4 \> \f
@@ -436,7 +436,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 r4
                 c'8 ^ \< ^ \p
@@ -479,7 +479,7 @@ class Hairpin(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 r4 \< \p
                 c'8

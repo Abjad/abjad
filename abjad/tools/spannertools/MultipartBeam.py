@@ -22,7 +22,7 @@ class MultipartBeam(Beam):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -152,7 +152,7 @@ class MultipartBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     autoBeaming = ##f
                 } {
@@ -178,7 +178,7 @@ class MultipartBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     autoBeaming = ##f
                 } {

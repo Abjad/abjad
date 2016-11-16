@@ -51,16 +51,27 @@ class Set(TypedFrozenset):
     ### SPECIAL METHODS ###
 
     def __str__(self):
-        r'''String representation of set.
+        r'''Gets string representation.
 
         Returns string.
         '''
-        parts = [str(x) for x in self]
-        return '<{}>'.format(', '.join(parts))
+        items = self._get_sorted_repr_items()
+        items = [str(_) for _ in items]
+        return '{{{}}}'.format(', '.join(items))
 
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
+        repr_items = self._get_sorted_repr_items()
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            repr_args_values=[repr_items],
+            storage_format_args_values=[repr_items],
+            storage_format_kwargs_names=[],
+            )
+
+    def _get_sorted_repr_items(self):
         items = sorted(self, key=lambda x: (float(x), str(x)))
         if self.item_class.__name__.startswith('Named'):
             repr_items = [str(x) for x in items]
@@ -72,16 +83,22 @@ class Set(TypedFrozenset):
             repr_items = [abs(x) for x in items]
         else:
             raise ValueError
-        return systemtools.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            repr_args_values=[repr_items],
-            storage_format_args_values=[repr_items],
-            storage_format_kwargs_names=[],
-            )
+        return repr_items
 
     def _sort_self(self):
         return tuple(self)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def cardinality(self):
+        r'''Gets cardinality of set.
+
+        Defined equal to length of set.
+
+        Returns nonnegative integer.
+        '''
+        return len(self)
 
     ### PUBLIC METHODS ###
 

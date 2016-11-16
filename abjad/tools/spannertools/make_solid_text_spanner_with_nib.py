@@ -27,7 +27,7 @@ def make_solid_text_spanner_with_nib(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \override TextSpanner.bound-details.left.text = \markup { foo }
                 \override TextSpanner.bound-details.right-broken.text = ##f
@@ -60,7 +60,7 @@ def make_solid_text_spanner_with_nib(
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \override TextSpanner.bound-details.left.text = \markup { foo }
                 \override TextSpanner.bound-details.right-broken.text = ##f

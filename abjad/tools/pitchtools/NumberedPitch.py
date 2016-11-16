@@ -106,10 +106,9 @@ class NumberedPitch(Pitch):
         if isinstance(arg, type(self)):
             return pitchtools.NumberedInterval.from_pitch_carriers(
                 self, arg)
-        else:
-            interval = arg
-            return pitchtools.transpose_pitch_carrier_by_interval(
-                self, -interval)
+        interval = pitchtools.NumberedInterval(arg)
+        interval = -interval
+        return interval.transpose(self)
 
     ### PUBLIC METHODS ###
 

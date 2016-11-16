@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import copy
+from abjad.tools import mathtools
 from abjad.tools.pitchtools.Set import Set
 from abjad.tools.topleveltools import new
 
@@ -8,7 +10,7 @@ class PitchClassSet(Set):
 
     ..  container:: example
 
-        **Example 1.** Numbered pitch-class set:
+        **Example 1.** Initializes numbered pitch-class set:
 
         ::
 
@@ -21,7 +23,7 @@ class PitchClassSet(Set):
 
     ..  container:: example
 
-        **Example 2.** Named pitch-class set:
+        **Example 2.** Initializes named pitch-class set:
 
         ::
 
@@ -48,7 +50,88 @@ class PitchClassSet(Set):
         '''
         return hash(repr(self))
 
+    def __str__(self):
+        r'''Gets string representation of pitch-class set.
+
+        ..  container:: example
+
+            **Example 1.** Gets string of set sorted at initialization:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([6, 7, 10, 10.5])
+                >>> str(pc_set)
+                '{6, 7, 10, 10.5}'
+
+        ..  container:: example
+
+            **Example 2.** Gets string of set not sorted at initialization:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([10.5, 10, 7, 6])
+                >>> str(pc_set)
+                '{6, 7, 10, 10.5}'
+
+        Returns string.
+        '''
+        superclass = super(PitchClassSet, self)
+        return superclass.__str__()
+
     ### PRIVATE METHODS ###
+
+    @staticmethod
+    def _get_most_compact_ordering(candidates):
+        from abjad.tools import pitchtools
+        widths = []
+        for candidate in candidates:
+            if candidate[0] < candidate[-1]:
+                width = abs(candidate[-1] - candidate[0])
+            else:
+                width = abs(candidate[-1] + 12 - candidate[0])
+            widths.append(width)
+        minimum_width = min(widths)
+        candidates_ = []
+        for candidate, width in zip(candidates, widths):
+            if width == minimum_width:
+                candidates_.append(candidate)
+        candidates = candidates_
+        assert 1 <= len(candidates)
+        if len(candidates) == 1:
+            segment = candidates[0]
+            segment = pitchtools.PitchClassSegment(
+                items=segment,
+                item_class=pitchtools.NumberedPitchClass,
+                )
+            return segment
+        for i in range(len(candidates[0]) - 1):
+            widths = []
+            for candidate in candidates:
+                if candidate[0] < candidate[i+1]:
+                    width = abs(candidate[i+1] - candidate[0])
+                else:
+                    width = abs(candidate[i+1] + 12 - candidate[0])
+                widths.append(width)
+            minimum_width = min(widths)
+            candidates_ = []
+            for candidate, width in zip(candidates, widths):
+                if width == minimum_width:
+                    candidates_.append(candidate)
+            candidates = candidates_
+            if len(candidates) == 1:
+                segment = candidates[0]
+                segment = pitchtools.PitchClassSegment(
+                    items=segment,
+                    item_class=pitchtools.NumberedPitchClass,
+                    )
+                return segment
+        candidates.sort(key=lambda x: x[0])
+        segment = candidates[0]
+        segment = pitchtools.PitchClassSegment(
+            items=segment,
+            item_class=pitchtools.NumberedPitchClass,
+            )
+        return segment
 
     def _sort_self(self):
         from abjad.tools import pitchtools
@@ -60,6 +143,23 @@ class PitchClassSet(Set):
         result = list(self)
         result.sort(helper)
         return result
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _named_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NamedPitchClass
+
+    @property
+    def _numbered_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.NumberedPitchClass
+
+    @property
+    def _parent_item_class(self):
+        from abjad.tools import pitchtools
+        return pitchtools.PitchClass
 
     ### PUBLIC METHODS ###
 
@@ -87,6 +187,201 @@ class PitchClassSet(Set):
             items=pitch_segment,
             item_class=item_class,
             )
+
+    def get_normal_order(self):
+        r'''Gets normal order.
+
+        ..  container:: example
+
+            **Example 0.** Gets normal order of empty pitch-class set:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set.get_normal_order()
+                PitchClassSegment([])
+
+        ..  container:: example
+
+            **Example 1.** Gets normal order:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set.get_normal_order()
+                PitchClassSegment([10, 11, 0, 1])
+
+        ..  container:: example
+
+            **Example 2.** Gets normal order:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set.get_normal_order()
+                PitchClassSegment([8, 9, 2])
+
+        ..  container:: example
+
+            **Example 3.** Gets normal order of pitch-class set with degree of
+            symmetry equal to 2:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set.get_normal_order()
+                PitchClassSegment([1, 2, 7, 8])
+
+        ..  container:: example
+
+            **Example 4.** Gets normal order of pitch-class set with degree of
+            symmetry equal to 4:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set.get_normal_order()
+                PitchClassSegment([0, 3, 6, 9])
+
+        Returns pitch-class segment.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import sequencetools
+        if not len(self):
+            return pitchtools.PitchClassSegment(
+                items=None,
+                item_class=pitchtools.NumberedPitchClass,
+                )
+        pitch_classes = list(self)
+        pitch_classes.sort()
+        candidates = []
+        for i in range(self.cardinality):
+            candidate = [pitchtools.NumberedPitch(_) for _ in pitch_classes]
+            candidate = sequencetools.rotate_sequence(candidate, -i)
+            candidates.append(candidate)
+        return self._get_most_compact_ordering(candidates)
+
+    def get_prime_form(self, transposition_only=False):
+        r'''Gets prime form.
+
+        ..  container:: example
+
+            **Example 0.** Gets prime form of empty pitch-class set:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set.get_prime_form()
+                PitchClassSet([])
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet()
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([])
+
+        ..  container:: example
+
+            **Example 1.** Gets prime form:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 2, 3])
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 1, 10, 11])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 1, 2, 3])
+
+        ..  container:: example
+
+            **Example 2.** Gets prime form:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 6])
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([2, 8, 9])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 1, 6])
+
+        ..  container:: example
+
+            **Example 3.** Gets prime form of pitch-class set with degree of
+            symmetry equal to 2:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 6, 7])
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([1, 2, 7, 8])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 1, 6, 7])
+
+        ..  container:: example
+
+            **Example 4.** Gets prime form of pitch-class set with degree of
+            symmetry equal to 4:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 3, 6, 9])
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 3, 6, 9])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 3, 6, 9])
+
+        ..  container:: example
+
+            **Example 4.** Gets prime form of pitch-class that is not
+            inversion-equivalent:
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 4, 6, 7])
+                >>> pc_set.get_prime_form()
+                PitchClassSet([0, 1, 3, 7])
+
+            ::
+
+                >>> pc_set = pitchtools.PitchClassSet([0, 4, 6, 7])
+                >>> pc_set.get_prime_form(transposition_only=True)
+                PitchClassSet([0, 4, 6, 7])
+
+        Returns new pitch-class set.
+        '''
+        from abjad.tools import pitchtools
+        if not len(self):
+            return copy.copy(self)
+        normal_orders = [self.get_normal_order()]
+        if not transposition_only:
+            inversion = self.invert()
+            normal_order = inversion.get_normal_order()
+            normal_orders.append(normal_order)
+        normal_order = self._get_most_compact_ordering(normal_orders)
+        pcs = [int(_) for _ in normal_order]
+        first_pc = pcs[0]
+        pcs = [pc - first_pc for pc in pcs]
+        prime_form = type(self)(
+            items=pcs,
+            item_class=pitchtools.NumberedPitchClass,
+            )
+        return prime_form
 
     def invert(self, axis=None):
         r'''Inverts pitch-class set.
@@ -197,19 +492,64 @@ class PitchClassSet(Set):
         items = (pitch_class + expr for pitch_class in self)
         return new(self, items=items)
 
-    ### PRIVATE PROPERTIES ###
+    @staticmethod
+    def yield_all_pitch_class_sets():
+        '''Yields all pitch-class sets.
 
-    @property
-    def _named_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NamedPitchClass
+        ..  container:: example
 
-    @property
-    def _numbered_item_class(self):
-        from abjad.tools import pitchtools
-        return pitchtools.NumberedPitchClass
+            **Example 1.** Yields all pitch-class sets:
 
-    @property
-    def _parent_item_class(self):
+            ::
+
+
+                >>> class_ = pitchtools.PitchClassSet
+                >>> pcsets = list(class_.yield_all_pitch_class_sets())
+                >>> len(pcsets)
+                4096
+
+            ::
+
+                >>> for pcset in pcsets[:20]:
+                ...   pcset
+                PitchClassSet([])
+                PitchClassSet([0])
+                PitchClassSet([1])
+                PitchClassSet([0, 1])
+                PitchClassSet([2])
+                PitchClassSet([0, 2])
+                PitchClassSet([1, 2])
+                PitchClassSet([0, 1, 2])
+                PitchClassSet([3])
+                PitchClassSet([0, 3])
+                PitchClassSet([1, 3])
+                PitchClassSet([0, 1, 3])
+                PitchClassSet([2, 3])
+                PitchClassSet([0, 2, 3])
+                PitchClassSet([1, 2, 3])
+                PitchClassSet([0, 1, 2, 3])
+                PitchClassSet([4])
+                PitchClassSet([0, 4])
+                PitchClassSet([1, 4])
+                PitchClassSet([0, 1, 4])
+
+        There are 4096 pitch-class sets.
+
+        This is ``U*`` in [Morris 1987].
+
+        Returns generator.
+        '''
         from abjad.tools import pitchtools
-        return pitchtools.PitchClass
+        def _helper(binary_string):
+            result = zip(binary_string, range(len(binary_string)))
+            result = [string[1] for string in result if string[0] == '1']
+            return result
+        for i in range(4096):
+            string = mathtools.integer_to_binary_string(i).zfill(12)
+            subset = ''.join(list(reversed(string)))
+            subset = _helper(subset)
+            subset = pitchtools.PitchClassSet(
+                subset,
+                item_class=pitchtools.NumberedPitchClass,
+                )
+            yield subset

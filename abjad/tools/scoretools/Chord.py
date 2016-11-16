@@ -278,7 +278,7 @@ class Chord(Leaf):
                 sounding_pitch = pitchtools.NamedPitch('C4')
             interval = pitchtools.NamedPitch('C4') - sounding_pitch
             sounding_pitches = [
-                pitchtools.transpose_pitch_carrier_by_interval(pitch, interval)
+                interval.transpose(pitch)
                 for pitch in self.written_pitches
                 ]
             return tuple(sounding_pitches)

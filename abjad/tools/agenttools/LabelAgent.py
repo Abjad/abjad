@@ -18,15 +18,75 @@ class LabelAgent(abctools.AbjadObject):
 
     ..  container:: example
 
+        **Example 1.** Labels pitch names:
+
         ::
 
             >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> label(staff).with_pitches()
             >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                    ^ \markup {
+                        \small
+                            c'
+                        }
+                e'4
+                    ^ \markup {
+                        \small
+                            e'
+                        }
+                d'4
+                    ^ \markup {
+                        \small
+                            d'
+                        }
+                f'4
+                    ^ \markup {
+                        \small
+                            f'
+                        }
+            }
+
+    ..  container:: example
+
+        **Example 2.** Labels durations:
 
         ::
 
-            >>> label(staff)
-            LabelAgent(client=Staff("c'4 e'4 d'4 f'4"))
+            >>> staff = Staff("c'4 e'4 d'4 f'4")
+            >>> label(staff).with_durations()
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
+            \new Staff {
+                c'4
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
+                e'4
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
+                d'4
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
+                f'4
+                    ^ \markup {
+                        \small
+                            1/4
+                        }
+            }
 
     '''
 
@@ -62,6 +122,7 @@ class LabelAgent(abctools.AbjadObject):
             scoretools.Component,
             selectiontools.Selection,
             spannertools.Spanner,
+            list,
             type(None),
             )
         assert isinstance(client, prototype), repr(client)
@@ -81,20 +142,6 @@ class LabelAgent(abctools.AbjadObject):
             override(leaf).rest.color = color
         return leaf
 
-    def _format_interval_class_vector(self, interval_class_vector):
-        counts = []
-        for i in range(7):
-            counts.append(interval_class_vector[i])
-        counts = ''.join([str(x) for x in counts])
-        if len(interval_class_vector) == 13:
-            quartertones = []
-            for i in range(6):
-                quartertones.append(interval_class_vector[i + 0.5])
-            quartertones = ''.join([str(x) for x in quartertones])
-            return r'\tiny \column { "%s" "%s" }' % (counts, quartertones)
-        else:
-            return r'\tiny %s' % counts
-
     ### PUBLIC METHODS ###
 
     def color_container(self, color='red'):
@@ -112,7 +159,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \override Accidental.color = #red
                     \override Beam.color = #red
@@ -160,7 +207,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     cs'8. [
                     r8.
@@ -175,7 +222,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \once \override Accidental.color = #red
                     \once \override Beam.color = #red
@@ -218,7 +265,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(chord))
+                >>> f(chord)
                 <
                     \tweak color #red
                     c''
@@ -244,7 +291,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(note))
+                >>> f(note)
                 \once \override NoteHead.color = #red
                 c'4
 
@@ -269,7 +316,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     \once \override NoteHead.color = #(x11-color 'red)
                     c'8
@@ -331,7 +378,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8
                         ^ \markup {
@@ -362,7 +409,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8
                     d'8
@@ -400,7 +447,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -461,7 +508,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -547,7 +594,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -631,7 +678,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -712,7 +759,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -793,7 +840,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff_group))
+                >>> f(staff_group)
                 \new StaffGroup <<
                     \new Staff {
                         c'8
@@ -829,6 +876,82 @@ class LabelAgent(abctools.AbjadObject):
                                 \tiny
                                     \tiny
                                         0011010
+                                }
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c,2
+                    }
+                >>
+
+        ..  container:: example
+
+            **Example 7.** Labels set-classes:
+
+            ::
+
+                >>> staff_group = StaffGroup([])
+                >>> staff = Staff("c'8 d'4 e'16 f'16")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "alto" g4 f4""")
+                >>> staff_group.append(staff)
+                >>> staff = Staff(r"""\clef "bass" c,2""")
+                >>> staff_group.append(staff)
+
+            ::
+
+                >>> prototype = pitchtools.SetClass()
+                >>> label(staff_group).vertical_moments(prototype=prototype)
+                >>> show(staff_group) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff_group)
+                \new StaffGroup <<
+                    \new Staff {
+                        c'8
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(2-5){0, 5}"
+                                        }
+                                }
+                        d'4
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-9){0, 2, 7}"
+                                        }
+                                }
+                        e'16
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-4){0, 1, 5}"
+                                        }
+                                }
+                        f'16
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(2-5){0, 5}"
+                                        }
+                                }
+                    }
+                    \new Staff {
+                        \clef "alto"
+                        g4
+                        f4
+                            ^ \markup {
+                                \tiny
+                                    \line
+                                        {
+                                            "SC(3-7){0, 2, 5}"
+                                        }
                                 }
                     }
                     \new Staff {
@@ -918,9 +1041,30 @@ class LabelAgent(abctools.AbjadObject):
                     item_class=pitchtools
                         .NumberedInversionEquivalentIntervalClass,
                     )
-                formatted = self._format_interval_class_vector(
-                    interval_class_vector)
-                label = markuptools.Markup(formatted, direction=direction)
+                markup = interval_class_vector._label
+                label = markuptools.Markup(markup, direction=direction)
+            elif (prototype is pitchtools.SetClass or
+                isinstance(prototype, pitchtools.SetClass)):
+                if prototype is pitchtools.SetClass:
+                    prototype = prototype()
+                assert isinstance(prototype, pitchtools.SetClass)
+                leaves = vertical_moment.leaves
+                pitch_class_set = pitchtools.PitchClassSet.from_selection(
+                    leaves)
+                if not pitch_class_set:
+                    continue
+                set_class = pitchtools.SetClass.from_pitch_class_set(
+                    pitch_class_set,
+                    lex_rank=prototype.lex_rank,
+                    transposition_only=prototype.transposition_only,
+                    )
+                string = str(set_class)
+                command = markuptools.MarkupCommand('line', [string])
+                label = markuptools.Markup(command, direction=direction)
+            else:
+                message = 'unknown prototype: {!r}.'
+                message = message.format(prototype)
+                raise TypeError(message)
             if label is not None:
                 label = label.tiny()
                 if direction is Up:
@@ -944,7 +1088,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'4.
                         ^ \markup {
@@ -981,7 +1125,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'4.
                         ^ \markup {
@@ -1567,6 +1711,161 @@ class LabelAgent(abctools.AbjadObject):
                             }
                 }
 
+        ..  container:: example
+
+            **Example 4.** Labels logical ties with pitch names (filtered by
+            selection):
+
+            ::
+
+                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:2], voice[-2:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> label(selections).with_pitches()
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''4 \startGroup
+                        ^ \markup {
+                            \small
+                                df''
+                            }
+                    c''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                c''
+                            }
+                    f'4
+                    fs'4
+                    d''4 \startGroup
+                        ^ \markup {
+                            \small
+                                d''
+                            }
+                    ds''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                ds''
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 5.** Labels logical ties with pitch numbers (filtered by
+            selection):
+
+            ::
+
+                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:2], voice[-2:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> prototype = pitchtools.NumberedPitch
+                >>> label(selections).with_pitches(prototype=prototype)
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''4 \startGroup
+                        ^ \markup {
+                            \small
+                                13
+                            }
+                    c''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                12
+                            }
+                    f'4
+                    fs'4
+                    d''4 \startGroup
+                        ^ \markup {
+                            \small
+                                14
+                            }
+                    ds''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                15
+                            }
+                }
+
+        ..  container:: example
+
+            **Example 6.** Labels logical ties with pitch-class numbers
+            (filtered by selection):
+
+            ::
+
+                >>> voice = Voice("df''4 c''4 f'4 fs'4 d''4 ds''4")
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:2], voice[-2:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> prototype = pitchtools.NumberedPitchClass
+                >>> label(selections).with_pitches(prototype=prototype)
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''4 \startGroup
+                        ^ \markup {
+                            \small
+                                1
+                            }
+                    c''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                0
+                            }
+                    f'4
+                    fs'4
+                    d''4 \startGroup
+                        ^ \markup {
+                            \small
+                                2
+                            }
+                    ds''4 \stopGroup
+                        ^ \markup {
+                            \small
+                                3
+                            }
+                }
+
         Returns none.
         '''
         prototype = prototype or pitchtools.NamedPitch
@@ -1616,6 +1915,194 @@ class LabelAgent(abctools.AbjadObject):
                 label = new(label, direction=direction)
                 attach(label, leaf)
 
+    def with_set_classes(self, direction=Up, prototype=None):
+        r'''Labels items in client with set-classes.
+
+        ..  container:: example
+
+            **Example 1.** Labels selections with Forte-ranked
+            transposition-inversion set-classes:
+
+            ::
+
+                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                >>> voice = Voice(string)
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:4], voice[-4:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> label(selections).with_set_classes()
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-3){0, 1, 3, 4}"
+                                    }
+                            }
+                    c''8
+                    bf'8
+                    a'8 \stopGroup
+                    f'4.
+                    fs'8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-20){0, 1, 5, 8}"
+                                    }
+                            }
+                    g'8
+                    b'8
+                    d''2. \stopGroup
+                }
+
+        ..  container:: example
+
+            **Example 2.** Labels selections with lex-ranked
+            transposition-inversion set-classes:
+
+            ::
+
+                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                >>> voice = Voice(string)
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:4], voice[-4:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> prototype = pitchtools.SetClass(lex_rank=True)
+                >>> label(selections).with_set_classes(prototype=prototype)
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-6){0, 1, 3, 4}"
+                                    }
+                            }
+                    c''8
+                    bf'8
+                    a'8 \stopGroup
+                    f'4.
+                    fs'8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-16){0, 1, 5, 8}"
+                                    }
+                            }
+                    g'8
+                    b'8
+                    d''2. \stopGroup
+                }
+
+        ..  container:: example
+
+            **Example 3.** Labels selections with transposition-only
+            set-classes:
+
+            ::
+
+                >>> string = "df''8 c''8 bf'8 a'8 f'4. fs'8 g'8 b'8 d''2."
+                >>> voice = Voice(string)
+                >>> voice.consists_commands.append('Horizontal_bracket_engraver')
+                >>> selections = [voice[:4], voice[-4:]]
+                >>> for selection in selections:
+                ...     spanner = spannertools.HorizontalBracketSpanner()
+                ...     attach(spanner, selection)
+                ...
+                >>> prototype = pitchtools.SetClass(transposition_only=True)
+                >>> label(selections).with_set_classes(prototype=prototype)
+                >>> override(voice).horizontal_bracket.staff_padding = 3
+                >>> override(voice).text_script.staff_padding = 2
+                >>> show(voice) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(voice)
+                \new Voice \with {
+                    \consists Horizontal_bracket_engraver
+                    \override HorizontalBracket.staff-padding = #3
+                    \override TextScript.staff-padding = #2
+                } {
+                    df''8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-3){0, 1, 2, 5}"
+                                    }
+                            }
+                    c''8
+                    bf'8
+                    a'8 \stopGroup
+                    f'4.
+                    fs'8 \startGroup
+                        ^ \markup {
+                            \tiny
+                                \line
+                                    {
+                                        "SC(4-20){0, 2, 3, 6}"
+                                    }
+                            }
+                    g'8
+                    b'8
+                    d''2. \stopGroup
+                }
+
+        Returns none.
+        '''
+        prototype = prototype or pitchtools.SetClass()
+        if prototype is pitchtools.SetClass:
+            prototype = prototype()
+        assert isinstance(prototype, pitchtools.SetClass), repr(prototype)
+        for selection in self._client:
+            pitch_class_set = pitchtools.PitchClassSet.from_selection(
+                selection)
+            if not pitch_class_set:
+                continue
+            set_class = pitchtools.SetClass.from_pitch_class_set(
+                pitch_class_set,
+                lex_rank=prototype.lex_rank,
+                transposition_only=prototype.transposition_only,
+                )
+            string = str(set_class)
+            command = markuptools.MarkupCommand('line', [string])
+            label = markuptools.Markup(command, direction=direction)
+            if label is not None:
+                label = label.tiny()
+                leaf = selection[0]
+                attach(label, leaf)
+
     def with_start_offsets(
         self,
         clock_time=False,
@@ -1638,7 +2125,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff \with {
                     \override TextScript.staff-padding = #4
                     \override TupletBracket.staff-padding = #0
@@ -1668,7 +2155,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff \with {
                         \override TextScript.staff-padding = #4
@@ -1702,7 +2189,7 @@ class LabelAgent(abctools.AbjadObject):
 
             ..  doctest::
 
-                >>> print(format(score))
+                >>> f(score)
                 \new Score <<
                     \new Staff \with {
                         \override TextScript.staff-padding = #4

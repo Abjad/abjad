@@ -114,6 +114,23 @@ class IterationAgent(abctools.AbjadObject):
                     ):
                     yield x
 
+    @staticmethod
+    def _list_ordered_pitch_pairs(expr_1, expr_2):
+        from abjad.tools import pitchtools
+        pitches_1 = sorted(iterate(expr_1).by_pitch())
+        pitches_2 = sorted(iterate(expr_2).by_pitch())
+        for pair in sequencetools.yield_all_pairs_between_sequences(
+            pitches_1, pitches_2):
+            yield pair
+
+    @staticmethod
+    def _list_unordered_pitch_pairs(expr):
+        from abjad.tools import pitchtools
+        pitches = sorted(iterate(expr).by_pitch())
+        pairs = sequencetools.yield_all_unordered_pairs_of_sequence(pitches)
+        for pair in pairs:
+            yield pair
+
     ### PUBLIC METHODS ###
 
     def by_class(
@@ -1673,6 +1690,264 @@ class IterationAgent(abctools.AbjadObject):
                 if isinstance(x, prototype):
                     if x._get_parentage().logical_voice == signature:
                         yield x
+
+    def by_pitch(self):
+        '''Iterates pitches.
+
+        ..  container:: example
+
+            **Example 1.** Iterates pitches in container:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> beam = spannertools.Beam()
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> for pitch in iterate(staff).by_pitch():
+                ...     pitch
+                ...
+                NamedPitch("c'")
+                NamedPitch("d'")
+                NamedPitch("e'")
+                NamedPitch("f'")
+
+        ..  container:: example
+
+            **Example 2.** Iterates pitches in spanner:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 e'8 f'8")
+                >>> beam = spannertools.Beam()
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> for pitch in iterate(beam).by_pitch():
+                ...     pitch
+                ...
+                NamedPitch("c'")
+                NamedPitch("d'")
+                NamedPitch("e'")
+                NamedPitch("f'")
+
+        ..  container:: example
+
+            **Example 3.** Iterates pitches in pitch set:
+
+            ::
+
+                >>> pitch_set = pitchtools.PitchSet([0, 2, 4, 5])
+
+            ::
+
+                >>> for pitch in iterate(pitch_set).by_pitch():
+                ...     pitch
+                ...
+                NumberedPitch(0)
+                NumberedPitch(2)
+                NumberedPitch(4)
+                NumberedPitch(5)
+
+        ..  container:: example
+
+            **Example 4.** Iterates pitches in array:
+
+            ::
+
+                >>> array = pitchtools.PitchArray([
+                ...     [1, (2, 1), (-1.5, 2)],
+                ...     [(7, 2), (6, 1), 1],
+                ...     ])
+
+            ::
+
+                >>> for pitch in iterate(array).by_pitch():
+                ...     pitch
+                ...
+                NamedPitch("d'")
+                NamedPitch('bqf')
+                NamedPitch("g'")
+                NamedPitch("fs'")
+
+        ..  container:: example
+
+            **Example 5.** Iterates different types of object in tuple:
+
+            ::
+
+                >>> pitches = (
+                ...     NamedPitch("c'"),
+                ...     Note("d'4"),
+                ...     Chord("<e' fs' g>4"),
+                ...     )
+
+            ::
+
+                >>> for pitch in iterate(pitches).by_pitch():
+                ...     pitch
+                ...
+                NamedPitch("c'")
+                NamedPitch("d'")
+                NamedPitch('g')
+                NamedPitch("e'")
+                NamedPitch("fs'")
+
+        Returns generator.
+        '''
+        from abjad.tools import pitchtools
+        from abjad.tools import scoretools
+        from abjad.tools import spannertools
+        from abjad.tools.topleveltools import iterate
+        if isinstance(self._client, pitchtools.Pitch):
+            pitch = pitchtools.NamedPitch.from_pitch_carrier(self._client)
+            yield pitch
+        result = []
+        if hasattr(self._client, 'written_pitches'):
+            result.extend(self._client.written_pitches)
+        # for pitch arrays
+        elif hasattr(self._client, 'pitches'):
+            result.extend(self._client.pitches)
+        elif isinstance(self._client, spannertools.Spanner):
+            for leaf in self._client._get_leaves():
+                if (hasattr(leaf, 'written_pitch') and
+                    not isinstance(leaf, scoretools.Rest)):
+                    result.append(leaf.written_pitch)
+                elif hasattr(leaf, 'written_pitches'):
+                    result.extend(leaf.written_pitches)
+        elif isinstance(self._client, pitchtools.PitchSet):
+            result.extend(sorted(list(self._client)))
+        elif isinstance(self._client, (list, tuple, set)):
+            for item in self._client:
+                for pitch_ in iterate(item).by_pitch():
+                    result.append(pitch_)
+        else:
+            for leaf in iterate(self._client).by_leaf():
+                if (hasattr(leaf, 'written_pitch') and
+                    not isinstance(leaf, scoretools.Rest)):
+                    result.append(leaf.written_pitch)
+                elif hasattr(leaf, 'written_pitches'):
+                    result.extend(leaf.written_pitches)
+        for pitch in result:
+            yield pitch
+
+    def by_pitch_pair(self):
+        r'''Iterates by pitch pair.
+
+        ..  container:: example
+
+            **Example 1.** With notes:
+
+            ::
+
+                >>> score = Score([])
+                >>> notes = [Note("c'8"), Note("d'8"), Note("e'8"), Note("f'8"), Note("g'4")]
+                >>> score.append(Staff(notes))
+                >>> notes = [Note(x, (1, 4)) for x in [-12, -15, -17]]
+                >>> score.append(Staff(notes))
+                >>> clef = Clef('bass')
+                >>> attach(clef, score[1])
+                >>> show(score) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(score)
+                \new Score <<
+                    \new Staff {
+                        c'8
+                        d'8
+                        e'8
+                        f'8
+                        g'4
+                    }
+                    \new Staff {
+                        \clef "bass"
+                        c4
+                        a,4
+                        g,4
+                    }
+                >>
+
+            ::
+
+                >>> for pair in iterate(score).by_pitch_pair():
+                ...     pair
+                ...
+                (NamedPitch("c'"), NamedPitch('c'))
+                (NamedPitch("c'"), NamedPitch("d'"))
+                (NamedPitch('c'), NamedPitch("d'"))
+                (NamedPitch("d'"), NamedPitch("e'"))
+                (NamedPitch("d'"), NamedPitch('a,'))
+                (NamedPitch('c'), NamedPitch("e'"))
+                (NamedPitch('c'), NamedPitch('a,'))
+                (NamedPitch("e'"), NamedPitch('a,'))
+                (NamedPitch("e'"), NamedPitch("f'"))
+                (NamedPitch('a,'), NamedPitch("f'"))
+                (NamedPitch("f'"), NamedPitch("g'"))
+                (NamedPitch("f'"), NamedPitch('g,'))
+                (NamedPitch('a,'), NamedPitch("g'"))
+                (NamedPitch('a,'), NamedPitch('g,'))
+                (NamedPitch("g'"), NamedPitch('g,'))
+
+        ..  container:: example
+
+            **Example 2.** With chords:
+
+            ::
+
+                >>> chord_1 = Chord([0, 2, 4], (1, 4))
+                >>> chord_2 = Chord([17, 19], (1, 4))
+                >>> staff = Staff([chord_1, chord_2])
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    <c' d' e'>4
+                    <f'' g''>4
+                }
+
+            ::
+
+                >>> for pair in iterate(staff).by_pitch_pair():
+                ...     pair
+                ...
+                (NamedPitch("c'"), NamedPitch("d'"))
+                (NamedPitch("c'"), NamedPitch("e'"))
+                (NamedPitch("d'"), NamedPitch("e'"))
+                (NamedPitch("c'"), NamedPitch("f''"))
+                (NamedPitch("c'"), NamedPitch("g''"))
+                (NamedPitch("d'"), NamedPitch("f''"))
+                (NamedPitch("d'"), NamedPitch("g''"))
+                (NamedPitch("e'"), NamedPitch("f''"))
+                (NamedPitch("e'"), NamedPitch("g''"))
+                (NamedPitch("f''"), NamedPitch("g''"))
+
+        Returns generator.
+        '''
+        from abjad.tools import pitchtools
+        for leaf_pair in self.by_leaf_pair():
+            leaf_pair_list = list(leaf_pair)
+            # iterate chord pitches if first leaf is chord
+            for pair in self._list_unordered_pitch_pairs(leaf_pair_list[0]):
+                yield pair
+            if isinstance(leaf_pair, set):
+                for pair in self._list_unordered_pitch_pairs(leaf_pair):
+                    yield pair
+            elif isinstance(leaf_pair, tuple):
+                for pair in self._list_ordered_pitch_pairs(*leaf_pair):
+                    yield pair
+            else:
+                message = 'leaf pair must be set or tuple.'
+                raise TypeError(message)
+            # iterate chord pitches if last leaf is chord
+            for pair in self._list_unordered_pitch_pairs(leaf_pair_list[1]):
+                yield pair
 
     def by_run(self, prototype=None):
         r'''Iterates by run.

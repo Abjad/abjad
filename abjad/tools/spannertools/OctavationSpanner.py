@@ -130,7 +130,7 @@ class OctavationSpanner(Spanner):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                     {
                         \time 4/8
                         \ottava #1
