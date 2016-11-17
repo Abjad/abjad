@@ -276,7 +276,8 @@ class Configuration(AbjadObject):
         path = (
             os.environ.get('HOME') or
             os.environ.get('HOMEPATH') or
-            os.environ.get('APPDATA')
+            os.environ.get('APPDATA') or
+            tempfile.gettempdir()
             )
         return os.path.abspath(path)
 
