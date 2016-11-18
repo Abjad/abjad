@@ -540,8 +540,8 @@ class LilyPondParser(abctools.Parser):
                 else:
                     for indicator in apply_backward:
                         attach(indicator, x)
-                apply_forward = []
-                apply_backward = []
+                apply_forward[:] = []
+                apply_backward[:] = []
                 previous_leaf = x
                 container.append(x)
             else:
@@ -551,9 +551,11 @@ class LilyPondParser(abctools.Parser):
                     indicatortools.SystemBreak,
                     )):
                     apply_backward.append(x)
-                elif isinstance(x, indicatortools.LilyPondCommand):
-                    if x.name in ('breathe',):
-                        apply_backward.append(x)
+                elif (
+                    isinstance(x, indicatortools.LilyPondCommand) and
+                    x.name in ('breathe',)
+                    ):
+                    apply_backward.append(x)
                 else:
                     apply_forward.append(x)
         # attach remaining events to last leaf
