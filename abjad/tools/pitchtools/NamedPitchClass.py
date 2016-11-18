@@ -128,12 +128,9 @@ class NamedPitchClass(PitchClass):
         Return new named pitch-class.
         '''
         from abjad.tools import pitchtools
-        dummy = pitchtools.NamedPitch(
-            self.pitch_class_name, 4)
-        mdi = named_interval
-        new = pitchtools.transpose_pitch_carrier_by_interval(
-            dummy, mdi)
-        return type(self)(new)
+        dummy_pitch = pitchtools.NamedPitch(self.pitch_class_name, 4)
+        pitch = named_interval.transpose(dummy_pitch)
+        return type(self)(pitch)
 
     def __copy__(self, *args):
         r'''Copies named pitch-class.
@@ -345,12 +342,10 @@ class NamedPitchClass(PitchClass):
         Returns new named pitch-class.
         '''
         from abjad.tools import pitchtools
-        named_interval = pitchtools.NamedInterval(expr)
+        interval = pitchtools.NamedInterval(expr)
         pitch = pitchtools.NamedPitch(self, 4)
-        transposed_pitch = \
-            pitchtools.transpose_pitch_carrier_by_interval(
-                pitch, named_interval)
-        return type(self)(transposed_pitch)
+        pitch = interval.transpose(pitch)
+        return type(self)(pitch)
 
     ### PUBLIC PROPERTIES ###
 
