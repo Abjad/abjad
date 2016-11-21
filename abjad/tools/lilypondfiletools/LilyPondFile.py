@@ -423,10 +423,9 @@ class LilyPondFile(AbjadObject):
         return score
 
     def _get_first_voice(self):
-
         from abjad.tools import scoretools
         from abjad.tools.topleveltools import iterate
-        score = self.score_block.items[0]
+        score = self._get_score()
         assert isinstance(score, scoretools.Score)
         for voice in iterate(score).by_class(scoretools.Voice):
             return voice

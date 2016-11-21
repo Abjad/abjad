@@ -85,24 +85,24 @@ class Enumeration(enum.IntEnum):
     ### PUBLIC METHODS ###
 
     @classmethod
-    def from_expr(cls, expr):
+    def from_expr(cls, argument):
         r'''Convenience constructor for enumerations.
 
         Returns new enumeration item.
         '''
-        if isinstance(expr, cls):
-            return expr
-        elif isinstance(expr, int):
-            return cls(expr)
-        elif isinstance(expr, str):
-            expr = expr.strip()
-            expr = stringtools.to_snake_case(expr)
-            expr = expr.upper()
+        if isinstance(argument, cls):
+            return argument
+        elif isinstance(argument, int):
+            return cls(argument)
+        elif isinstance(argument, str):
+            argument = argument.strip()
+            argument = stringtools.to_snake_case(argument)
+            argument = argument.upper()
             try:
-                return cls[expr]
+                return cls[argument]
             except KeyError:
-                return cls[expr.replace('_', '')]
-        elif expr is None:
+                return cls[argument.replace('_', '')]
+        elif argument is None:
             return cls(0)
-        message = 'Cannot instantiate {} from {}.'.format(cls.__name__, expr)
+        message = 'Cannot instantiate {} from {}.'.format(cls.__name__, argument)
         raise ValueError(message)

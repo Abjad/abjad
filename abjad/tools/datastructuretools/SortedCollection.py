@@ -321,10 +321,10 @@ if __name__ == '__main__':
                 return i
         return -1
 
-    def ve2no(f, *args):
+    def ve2no(f, *arguments):
         'Convert ValueError result to -1'
         try:
-            return f(*args)
+            return f(*arguments)
         except ValueError:
             return -1
 

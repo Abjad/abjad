@@ -13,7 +13,7 @@ class AbjadValueObject(AbjadObject):
 
     ### SPECIAL METHODS ###
 
-    def __copy__(self, *args):
+    def __copy__(self, *arguments):
         r'''Copies Abjad value object.
 
         Returns new Abjad value object.
@@ -21,14 +21,14 @@ class AbjadValueObject(AbjadObject):
         from abjad.tools.topleveltools import new
         return new(self)
 
-    def __eq__(self, expr):
+    def __eq__(self, argument):
         r'''Is true when all initialization values of Abjad value object equal
-        the initialization values of `expr`.
+        the initialization values of `argument`.
 
         Returns true or false.
         '''
         from abjad.tools import systemtools
-        return systemtools.TestManager.compare_objects(self, expr)
+        return systemtools.TestManager.compare_objects(self, argument)
 
     def __hash__(self):
         r'''Hashes Abjad value object.

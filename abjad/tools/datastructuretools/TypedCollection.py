@@ -38,16 +38,16 @@ class TypedCollection(AbjadObject):
             return False
         return self._collection.__contains__(item)
 
-    def __eq__(self, expr):
-        r'''Is true when `expr` is a typed collection with items that compare
+    def __eq__(self, argument):
+        r'''Is true when `argument` is a typed collection with items that compare
         equal to those of this typed collection. Otherwise false.
 
         Returns true or false.
         '''
-        if isinstance(expr, type(self)):
-            return self._collection == expr._collection
-        elif isinstance(expr, type(self._collection)):
-            return self._collection == expr
+        if isinstance(argument, type(self)):
+            return self._collection == argument._collection
+        elif isinstance(argument, type(self._collection)):
+            return self._collection == argument
         return False
 
     def __getnewargs__(self):
@@ -80,13 +80,13 @@ class TypedCollection(AbjadObject):
         '''
         return len(self._collection)
 
-    def __ne__(self, expr):
-        r'''Is true when `expr` is not a typed collection with items equal to
+    def __ne__(self, argument):
+        r'''Is true when `argument` is not a typed collection with items equal to
         this typed collection. Otherwise false.
 
         Returns true or false.
         '''
-        return not self.__eq__(expr)
+        return not self.__eq__(argument)
 
     ### PRIVATE METHODS ###
 

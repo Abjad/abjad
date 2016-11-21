@@ -27,16 +27,16 @@ class TypedTuple(TypedCollection):
 
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
-        r'''Adds typed tuple to `expr`.
+    def __add__(self, argument):
+        r'''Adds typed tuple to `argument`.
 
         Returns new typed tuple.
         '''
-        if isinstance(expr, type(self)):
-            items = expr._collection
+        if isinstance(argument, type(self)):
+            items = argument._collection
             return new(self, items=self._collection[:] + items)
-        elif isinstance(expr, type(self._collection)):
-            items = expr[:]
+        elif isinstance(argument, type(self._collection)):
+            items = argument[:]
             return new(self, items=self._collection[:] + items)
         raise NotImplementedError
 
@@ -58,16 +58,11 @@ class TypedTuple(TypedCollection):
 
         Returns item.
         '''
-        if type(i) == slice:
-            return self.__getslice__(i.start, i.stop)
-        return self._collection[i]
-
-    def __getslice__(self, start, stop):
-        r'''Gets slice from `start` to `stop` in typed tuple.
-
-        Returns new typed tuple.
-        '''
-        return new(self, items=self._collection[start:stop])
+        result = self._collection.__getitem__(i)
+        try:
+            return type(self)(result)
+        except TypeError:
+            return result
 
     def __hash__(self):
         r'''Hashes typed tuple.
@@ -80,26 +75,26 @@ class TypedTuple(TypedCollection):
             self.item_class,
             ))
 
-    def __mul__(self, expr):
-        r'''Multiplies typed tuple by `expr`.
+    def __mul__(self, argument):
+        r'''Multiplies typed tuple by `argument`.
 
         Returns new typed tuple.
         '''
-        items = self._collection * expr
+        items = self._collection * argument
         return new(self, items=items)
 
-    def __radd__(self, expr):
-        r'''Right-adds `expr` to typed tuple.
+    def __radd__(self, argument):
+        r'''Right-adds `argument` to typed tuple.
         '''
-        items = expr + self._collection
+        items = argument + self._collection
         return new(self, items=items)
 
-    def __rmul__(self, expr):
-        r'''Multiplies `expr` by typed tuple.
+    def __rmul__(self, argument):
+        r'''Multiplies `argument` by typed tuple.
 
         Returns new typed tuple.
         '''
-        return self.__mul__(expr)
+        return self.__mul__(argument)
 
     ### PUBLIC METHODS ###
 
