@@ -16,7 +16,7 @@ class SustainMask(AbjadValueObject):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
                     indices=(0, 1, 7),
@@ -33,6 +33,8 @@ class SustainMask(AbjadValueObject):
     __slots__ = (
         '_pattern',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

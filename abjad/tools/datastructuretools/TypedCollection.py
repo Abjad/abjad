@@ -14,15 +14,46 @@ class TypedCollection(AbjadObject):
 
     __slots__ = (
         '_collection',
+        '_equivalence_markup',
+        '_expression',
         '_item_class',
+        '_name',
+        '_name_markup',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 
     @abc.abstractmethod
-    def __init__(self, items=None, item_class=None):
+    def __init__(
+        self,
+        items=None,
+        item_class=None,
+        name=None,
+        name_markup=None,
+        ):
+        from abjad.tools import expressiontools
+        from abjad.tools import markuptools
         assert isinstance(item_class, (type(None), type))
         self._item_class = item_class
+        self._equivalence_markup = None
+        expression = getattr(items, '_expression', None)
+        prototype = (type(None), expressiontools.Expression)
+        if not isinstance(expression, prototype):
+            message = 'must be expression or none: {!r}.'
+            message = message.format(expression)
+        self._expression = expression
+        if name is None:
+            name = getattr(items, '_name', None)
+        if name is not None:
+            assert isinstance(name, str), repr(name)
+        self._name = name
+        if name_markup is None:
+            name_markup = getattr(items, '_name_markup', None)
+        if name_markup is not None:
+            name_markup = markuptools.Markup(name_markup)
+        self._name_markup = name_markup
 
     ### SPECIAL METHODS ###
 
@@ -88,17 +119,19 @@ class TypedCollection(AbjadObject):
         '''
         return not self.__eq__(argument)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _item_coercer(self):
+        def coerce_(x):
+            if isinstance(x, self._item_class):
+                return x
+            return self._item_class(x)
+        if self._item_class is None:
+            return lambda x: x
+        return coerce_
+
     ### PRIVATE METHODS ###
-
-    def _on_insertion(self, item):
-        r'''Override to operate on item after insertion into collection.
-        '''
-        pass
-
-    def _on_removal(self, item):
-        r'''Override to operate on item after removal from collection.
-        '''
-        pass
 
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
@@ -112,17 +145,15 @@ class TypedCollection(AbjadObject):
             storage_format_kwargs_names=names,
             )
 
-    ### PRIVATE PROPERTIES ###
+    def _on_insertion(self, item):
+        r'''Override to operate on item after insertion into collection.
+        '''
+        pass
 
-    @property
-    def _item_coercer(self):
-        def coerce_(x):
-            if isinstance(x, self._item_class):
-                return x
-            return self._item_class(x)
-        if self._item_class is None:
-            return lambda x: x
-        return coerce_
+    def _on_removal(self, item):
+        r'''Override to operate on item after removal from collection.
+        '''
+        pass
 
     ### PUBLIC PROPERTIES ###
 
@@ -143,3 +174,29 @@ class TypedCollection(AbjadObject):
         Returns list.
         '''
         return [x for x in self]
+
+    @property
+    def name(self):
+        r'''Gets name.
+
+        Defaults to none.
+
+        Set to string or none.
+
+        Returns string or none.
+        '''
+        if self._expression is not None:
+            return self._expression.get_string(name=self._name)
+        return self._name
+
+    @property
+    def name_markup(self):
+        r'''Gets name markup.
+
+        Defaults to none.
+
+        Set to markup or none.
+
+        Returns markup or none.
+        '''
+        return self._name_markup

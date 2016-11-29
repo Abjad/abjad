@@ -16,7 +16,7 @@ def sustain(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
                     indices=(1, 2),
@@ -72,7 +72,7 @@ def sustain(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
                     indices=(-1, -2),
@@ -132,7 +132,7 @@ def sustain(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.CompoundPattern(
                     (
@@ -204,7 +204,7 @@ def sustain(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.CompoundPattern(
                     (

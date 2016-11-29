@@ -123,7 +123,7 @@ class NoteRhythmMaker(RhythmMaker):
             ::
 
                 >>> rhythm_maker = rhythmmakertools.NoteRhythmMaker()
-                >>> print(format(rhythm_maker))
+                >>> f(rhythm_maker)
                 rhythmmakertools.NoteRhythmMaker()
 
         Returns string.

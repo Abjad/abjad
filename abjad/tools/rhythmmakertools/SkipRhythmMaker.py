@@ -78,7 +78,7 @@ class SkipRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print(format(rhythm_maker))
+                >>> f(rhythm_maker)
                 rhythmmakertools.SkipRhythmMaker()
 
         Returns string.

@@ -34,6 +34,8 @@ class RhythmMaker(AbjadValueObject):
         '_tuplet_spelling_specifier',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(

@@ -19,6 +19,8 @@ class DurationSpellingSpecifier(AbjadValueObject):
         '_spell_metrically',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -58,7 +60,7 @@ class DurationSpellingSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.DurationSpellingSpecifier()
-                >>> print(format(specifier))
+                >>> f(specifier)
                 rhythmmakertools.DurationSpellingSpecifier(
                     decrease_durations_monotonically=True,
                     )

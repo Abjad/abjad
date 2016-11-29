@@ -383,7 +383,7 @@ class LabelExpression(Expression):
         arguments = {
             'color': color,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.color_container',
             arguments,
             )
@@ -396,7 +396,7 @@ class LabelExpression(Expression):
         arguments = {
             'color': color,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.color_leaves',
             arguments,
             )
@@ -409,7 +409,7 @@ class LabelExpression(Expression):
         arguments = {
             'color_map': color_map,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.color_note_heads',
             arguments,
             )
@@ -419,7 +419,7 @@ class LabelExpression(Expression):
 
         Returns callback.
         '''
-        return self._make_callback('agenttools.LabelAgent.remove_markup')
+        return self.make_callback('agenttools.LabelAgent.remove_markup')
 
     def vertical_moments(self, direction=Up, prototype=None):
         r'''Makes vertical-moments callback.
@@ -430,7 +430,7 @@ class LabelExpression(Expression):
             'direction': direction,
             'prototype': prototype,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.vertical_moments',
             arguments,
             )
@@ -444,7 +444,7 @@ class LabelExpression(Expression):
             'direction': direction,
             'preferred_denominator': preferred_denominator,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.with_durations',
             arguments,
             )
@@ -458,7 +458,7 @@ class LabelExpression(Expression):
             'direction': direction,
             'prototype': prototype,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.with_indices',
             arguments,
             )
@@ -472,7 +472,7 @@ class LabelExpression(Expression):
             'direction': direction,
             'prototype': prototype,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.with_intervals',
             arguments,
             )
@@ -486,7 +486,7 @@ class LabelExpression(Expression):
             'direction': direction,
             'prototype': prototype,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.with_pitches',
             arguments,
             )
@@ -506,7 +506,7 @@ class LabelExpression(Expression):
             'direction': direction,
             'font_size': font_size,
             }
-        return self._make_callback(
+        return self.make_callback(
             'agenttools.LabelAgent.with_start_offsets',
             arguments,
             )

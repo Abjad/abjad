@@ -16,7 +16,7 @@ def silence(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(1, 2),
@@ -69,7 +69,7 @@ def silence(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(-1, -2),
@@ -128,7 +128,7 @@ def silence(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.CompoundPattern(
                     (
@@ -199,7 +199,7 @@ def silence(indices=None, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.CompoundPattern(
                     (

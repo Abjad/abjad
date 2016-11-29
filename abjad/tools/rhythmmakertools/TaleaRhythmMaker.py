@@ -89,7 +89,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ::
 
-            >>> print(format(rhythm_maker))
+            >>> f(rhythm_maker)
             rhythmmakertools.TaleaRhythmMaker(
                 talea=rhythmmakertools.Talea(
                     counts=(1, 2, 3, 4),
@@ -294,7 +294,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print(format(rhythm_maker))
+                >>> f(rhythm_maker)
                 rhythmmakertools.TaleaRhythmMaker(
                     talea=rhythmmakertools.Talea(
                         counts=(1, 2, 3, 4),
@@ -315,7 +315,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print(format(rhythm_maker, 'storage'))
+                >>> f(rhythm_maker)
                 rhythmmakertools.TaleaRhythmMaker(
                     talea=rhythmmakertools.Talea(
                         counts=(1, 2, 3, 4),

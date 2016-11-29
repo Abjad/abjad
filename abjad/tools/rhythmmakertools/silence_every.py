@@ -20,7 +20,7 @@ def silence_every(
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(1,),
@@ -74,7 +74,7 @@ def silence_every(
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(1, 2),
@@ -128,7 +128,7 @@ def silence_every(
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(-1,),

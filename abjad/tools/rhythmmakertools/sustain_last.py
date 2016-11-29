@@ -15,7 +15,7 @@ def sustain_last(n=1, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
                     indices=(-1,),
@@ -71,7 +71,7 @@ def sustain_last(n=1, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
                     indices=(-2, -1),
@@ -127,7 +127,7 @@ def sustain_last(n=1, inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
                     indices=(),

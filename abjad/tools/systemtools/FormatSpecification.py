@@ -3,7 +3,7 @@ from abjad.tools.abctools import AbjadValueObject
 
 
 class FormatSpecification(AbjadValueObject):
-    r'''Specifies the storage format of a given object.
+    r'''Format specification.
     '''
 
     ### CLASS VARIABLES ###

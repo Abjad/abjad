@@ -23,7 +23,7 @@ class PartitionTable(TypedOrderedDict):
 
         ::
 
-            >>> print(format(table))
+            >>> f(table)
             abjad.rhythmmakertools.PartitionTable(
                 [
                     (
@@ -61,7 +61,7 @@ class PartitionTable(TypedOrderedDict):
 
         ::
 
-            >>> print(format(table))
+            >>> f(table)
             abjad.rhythmmakertools.PartitionTable(
                 [
                     (
@@ -89,7 +89,10 @@ class PartitionTable(TypedOrderedDict):
 
     __documentation_section__ = 'Specifiers'
 
-    __slots__ = ()
+    __slots__ = (
+        )
+
+    _publish_storage_format = True
 
     ### PRIVATE METHODS ###
 

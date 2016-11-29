@@ -1445,7 +1445,7 @@ class Duration(AbjadObject, Fraction):
 
         ..  container:: example
 
-            **Example 2.** Yields durations equivalent ot ``1/12``:
+            **Example 2.** Yields durations equivalent to ``1/12``:
 
             ::
 

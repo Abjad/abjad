@@ -22,6 +22,8 @@ class Segment(TypedTuple):
         self,
         items=None,
         item_class=None,
+        name=None,
+        name_markup=None,
         ):
         from abjad.tools import datastructuretools
         prototype = (
@@ -52,68 +54,72 @@ class Segment(TypedTuple):
             self,
             items=items,
             item_class=item_class,
+            name=name,
+            name_markup=name_markup,
             )
 
     ### SPECIAL METHODS ###
 
-    def __illustrate__(self, **kwargs):
+    def __illustrate__(
+        self,
+        name_markup_direction=Up,
+        **kwargs
+        ):
         r'''Illustrates segment.
 
         Returns LilyPond file.
         '''
-        from abjad.tools import durationtools
-        from abjad.tools import indicatortools
-        from abjad.tools import lilypondfiletools
-        from abjad.tools import markuptools
-        from abjad.tools import scoretools
-        from abjad.tools import schemetools
-        from abjad.tools.topleveltools import attach
-        from abjad.tools.topleveltools import override
-        from abjad.tools.topleveltools import select
-        from abjad.tools.topleveltools import set_
+        import abjad
         notes = []
         for item in self:
-            note = scoretools.Note(item, durationtools.Duration(1, 8))
+            note = abjad.Note(item, abjad.Duration(1, 8))
             notes.append(note)
-        voice = scoretools.Voice(notes)
-        staff = scoretools.Staff([voice])
-        score = scoretools.Score([staff])
+        expression_markup = \
+            abjad.expressiontools.Expression._get_expression_markup(
+            self,
+            direction=name_markup_direction,
+            )
+        if expression_markup is not None:
+            abjad.attach(expression_markup, notes[0])
+        voice = abjad.Voice(notes)
+        staff = abjad.Staff([voice])
+        score = abjad.Score([staff])
         score.add_final_bar_line()
-        override(score).bar_line.transparent = True
-        override(score).bar_number.stencil = False
-        override(score).beam.stencil = False
-        override(score).flag.stencil = False
-        override(score).stem.stencil = False
-        override(score).time_signature.stencil = False
+        abjad.override(score).bar_line.transparent = True
+        abjad.override(score).bar_number.stencil = False
+        abjad.override(score).beam.stencil = False
+        abjad.override(score).flag.stencil = False
+        abjad.override(score).stem.stencil = False
+        abjad.override(score).time_signature.stencil = False
         string = 'override Score.BarLine.transparent = ##f'
-        command = indicatortools.LilyPondCommand(string, format_slot='after')
-        last_leaf = select().by_leaf()(score)[-1][-1]
-        attach(command, last_leaf)
-        moment = schemetools.SchemeMoment((1, 12))
-        set_(score).proportional_notation_duration = moment
-        lilypond_file = lilypondfiletools.LilyPondFile.new(
+        command = abjad.LilyPondCommand(string, format_slot='after')
+        last_leaf = abjad.select().by_leaf()(score)[-1][-1]
+        abjad.attach(command, last_leaf)
+        moment = abjad.schemetools.SchemeMoment((1, 12))
+        abjad.set_(score).proportional_notation_duration = moment
+        lilypond_file = abjad.lilypondfiletools.LilyPondFile.new(
             global_staff_size=12,
             music=score,
             )
         if 'title' in kwargs:
             title = kwargs.get('title')
-            if not isinstance(title, markuptools.Markup):
-                title = markuptools.Markup(title)
+            if not isinstance(title, abjad.Markup):
+                title = abjad.Markup(title)
             lilypond_file.header_block.title = title
         if 'subtitle' in kwargs:
-            markup = markuptools.Markup(kwargs.get('subtitle'))
+            markup = abjad.Markup(kwargs.get('subtitle'))
             lilypond_file.header_block.subtitle = markup
-        command = indicatortools.LilyPondCommand('accidentalStyle forget')
+        command = abjad.LilyPondCommand('accidentalStyle forget')
         lilypond_file.layout_block.items.append(command)
         lilypond_file.layout_block.indent = 0
         string = 'markup-system-spacing.padding = 8'
-        command = indicatortools.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondCommand(string, prefix='')
         lilypond_file.paper_block.items.append(command)
         string = 'system-system-spacing.padding = 10'
-        command = indicatortools.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondCommand(string, prefix='')
         lilypond_file.paper_block.items.append(command)
         string = 'top-markup-spacing.padding = 4'
-        command = indicatortools.LilyPondCommand(string, prefix='')
+        command = abjad.LilyPondCommand(string, prefix='')
         lilypond_file.paper_block.items.append(command)
         return lilypond_file
 
@@ -163,7 +169,7 @@ class Segment(TypedTuple):
         return systemtools.FormatSpecification(
             client=self,
             repr_is_indented=False,
-            repr_kwargs_names=[],
+            repr_kwargs_names=['name'],
             repr_args_values=[items],
             storage_format_args_values=[tuple(self._collection)],
             )

@@ -2,7 +2,7 @@
 import collections
 
 
-def rotate_sequence(sequence, index=None):
+def rotate_sequence(sequence, n=None):
     '''Rotates `sequence`.
 
     ..  container:: example
@@ -57,6 +57,6 @@ def rotate_sequence(sequence, index=None):
     from abjad.tools import sequencetools
     sequence_type = type(sequence)
     result = sequencetools.Sequence(sequence)
-    result = result.rotate(index=index)
+    result = result.rotate(n=n)
     result = sequence_type(result)
     return result

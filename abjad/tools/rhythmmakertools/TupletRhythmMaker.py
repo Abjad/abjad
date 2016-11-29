@@ -314,7 +314,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print(format(rhythm_maker))
+                >>> f(rhythm_maker)
                 rhythmmakertools.TupletRhythmMaker(
                     tuplet_ratios=(
                         mathtools.Ratio((3, 2)),
@@ -333,7 +333,7 @@ class TupletRhythmMaker(RhythmMaker):
 
             ::
 
-                >>> print(format(rhythm_maker))
+                >>> f(rhythm_maker)
                 rhythmmakertools.TupletRhythmMaker(
                     tuplet_ratios=(
                         mathtools.Ratio((1, -1)),

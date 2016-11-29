@@ -62,6 +62,8 @@ class BeamSpecifier(AbjadValueObject):
         '_use_feather_beams',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -142,7 +144,7 @@ class BeamSpecifier(AbjadValueObject):
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
-                >>> print(format(specifier))
+                >>> f(specifier)
                 rhythmmakertools.BeamSpecifier(
                     beam_each_division=True,
                     )

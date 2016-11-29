@@ -117,6 +117,8 @@ class BurnishSpecifier(AbjadValueObject):
         '_rights',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(
@@ -180,7 +182,7 @@ class BurnishSpecifier(AbjadValueObject):
 
             ::
 
-                >>> print(format(burnish_specifier))
+                >>> f(burnish_specifier)
                 rhythmmakertools.BurnishSpecifier(
                     left_classes=(
                         scoretools.Rest,

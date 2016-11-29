@@ -15,7 +15,7 @@ class SilenceMask(AbjadValueObject):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(0, 1, 7),
@@ -33,6 +33,8 @@ class SilenceMask(AbjadValueObject):
         '_pattern',
         '_use_multimeasure_rests',
         )
+
+    _publish_storage_format = True
 
     ### INITIALIZER ###
 

@@ -50,9 +50,11 @@ def attach(
         return
 
     component = component_expression
-    #assert isinstance(component, scoretools.Component), repr(component)
     prototype = (scoretools.Component, spannertools.Spanner)
-    assert isinstance(component, prototype), repr(component)
+    if not isinstance(component, prototype):
+        message = 'must be component or spanner: {!r}.'
+        message = message.format(component)
+        raise Exception(message)
 
     if isinstance(indicator, indicatortools.IndicatorExpression):
         is_annotation = is_annotation or indicator.is_annotation

@@ -72,7 +72,7 @@ def sustain_all(inverted=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
                     indices=(0,),

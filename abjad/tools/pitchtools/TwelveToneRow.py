@@ -43,13 +43,18 @@ class TwelveToneRow(PitchClassSegment):
 
     ### INITIALIZER ###
 
-    def __init__(self, items=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11)):
+    def __init__(
+        self,
+        items=(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11),
+        name=None,
+        ):
         from abjad.tools import pitchtools
         assert items is not None
         PitchClassSegment.__init__(
             self,
             items=items,
             item_class=pitchtools.NumberedPitchClass,
+            name=name,
             )
         self._validate_pitch_classes(self)
 

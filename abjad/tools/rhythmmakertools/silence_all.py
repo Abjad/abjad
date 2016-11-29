@@ -15,7 +15,7 @@ def silence_all(inverted=None, use_multimeasure_rests=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(0,),

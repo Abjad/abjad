@@ -16,7 +16,7 @@ def silence_except(indices=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(1, 2),
@@ -70,7 +70,7 @@ def silence_except(indices=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
                     indices=(-1, -2),
@@ -130,7 +130,7 @@ def silence_except(indices=None):
 
         ::
 
-            >>> print(format(mask))
+            >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.CompoundPattern(
                     (

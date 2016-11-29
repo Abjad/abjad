@@ -16,13 +16,13 @@ class SequenceExpression(Expression):
 
         ::
 
-            >>> expression()
-            Sequence(())
+            >>> str(expression)
+            'SequenceExpression()'
 
         ::
 
             >>> expression([1, 2, [3, [4]], 5])
-            Sequence((1, 2, [3, [4]], 5))
+            Sequence([1, 2, [3, [4]], 5])
             
     ..  container:: example
 
@@ -35,12 +35,17 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'flatten(X)'
+
+        ::
+
             >>> expression([1, 2, [3, [4]], 5])
-            Sequence((1, 2, 3, 4, 5))
+            Sequence([1, 2, 3, 4, 5])
 
     ..  container:: example
 
-        **Example 3.** Makes expression ot reverse sequence:
+        **Example 3.** Makes expression to reverse sequence:
 
         ::
 
@@ -49,8 +54,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'R(X)'
+
+        ::
+
             >>> expression([1, 2, [3, [4]], 5])
-            Sequence((5, [3, [4]], 2, 1))
+            Sequence([5, [3, [4]], 2, 1])
 
     ..  container:: example
 
@@ -64,8 +74,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'R(flatten(X))'
+
+        ::
+
             >>> expression([1, 2, [3, [4]], 5])
-            Sequence((5, 4, 3, 2, 1))
+            Sequence([5, 4, 3, 2, 1])
 
     ..  container:: example
 
@@ -79,8 +94,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'flatten(R(X))'
+
+        ::
+
             >>> expression([1, 2, [3, [4]], 5])
-            Sequence((5, 3, 4, 2, 1))
+            Sequence([5, 3, 4, 2, 1])
 
     ..  container:: example
 
@@ -90,6 +110,11 @@ class SequenceExpression(Expression):
 
             >>> expression = sequence()
             >>> expression = expression[-1]
+
+        ::
+        
+            >>> expression.get_string()
+            'X[-1]'
 
         ::
 
@@ -109,8 +134,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'sequence(X[-1])'
+
+        ::
+
             >>> expression([1, 2, [3, [4]], 5])
-            Sequence((5,))
+            Sequence([5])
 
     ..  container:: example
 
@@ -123,8 +153,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'X[:-1]'
+
+        ::
+
             >>> expression([1, 2, [3, [4]], 5])
-            Sequence((1, 2, [3, [4]]))
+            Sequence([1, 2, [3, [4]]])
 
     ..  container:: example
 
@@ -139,8 +174,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'flatten(X[:-1])'
+
+        ::
+
             >>> expression([1, 2, [3, [4]], 5])
-            Sequence((1, 2, 3, 4))
+            Sequence([1, 2, 3, 4])
 
     ..  container:: example
 
@@ -149,12 +189,17 @@ class SequenceExpression(Expression):
         ::
 
             >>> expression = sequence()
-            >>> expression = expression.__add__([4, 5])
+            >>> expression = expression + [4, 5]
+
+        ::
+    
+            >>> expression.get_string()
+            'X + [4, 5]'
 
         ::
 
             >>> expression([1, 2, 3])
-            Sequence((1, 2, 3, 4, 5))
+            Sequence([1, 2, 3, 4, 5])
 
     ..  container:: example
 
@@ -170,8 +215,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'partition_ratio(X, 1:1:1)[1]'
+
+        ::
+
             >>> expression(range(1, 10+1))
-            Sequence((4, 5, 6, 7))
+            Sequence([4, 5, 6, 7])
 
     ..  container:: example
 
@@ -185,8 +235,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'partition_cyclic(X, [3])'
+
+        ::
+
             >>> expression(range(1, 10+1))
-            Sequence((Sequence((1, 2, 3)), Sequence((4, 5, 6)), Sequence((7, 8, 9))))
+            Sequence([Sequence([1, 2, 3]), Sequence([4, 5, 6]), Sequence([7, 8, 9])])
 
     ..  container:: example
 
@@ -194,14 +249,20 @@ class SequenceExpression(Expression):
 
         ::
 
-            >>> expression = sequence()
-            >>> expression = expression.partition_by_counts([3], cyclic=True)
-            >>> expression = expression.map().sum()
+            >>> expression_1 = sequence()
+            >>> expression_1 = expression_1.partition_by_counts([3], cyclic=True)
+            >>> expression_2 = sequence().sum()
+            >>> expression = expression_1.map(expression_2)
+
+        ::
+
+            >>> expression.get_string()
+            'sum(X) /@ partition_cyclic(X, [3])'
 
         ::
 
             >>> expression(range(1, 10+1))
-            Sequence((6, 15, 24))
+            Sequence([6, 15, 24])
 
     ..  container:: example
 
@@ -211,6 +272,11 @@ class SequenceExpression(Expression):
 
             >>> expression = sequence()
             >>> expression = expression.sum()
+
+        ::
+
+            >>> expression.get_string()
+            'sum(X)'
 
         ::
 
@@ -230,8 +296,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'sequence(sum(X))'
+
+        ::
+
             >>> expression(range(1, 10+1))
-            Sequence((55,))
+            Sequence([55])
 
     ..  container:: example
 
@@ -245,8 +316,13 @@ class SequenceExpression(Expression):
 
         ::
 
+            >>> expression.get_string()
+            'sequence(split_cyclic(X, [10]))'
+
+        ::
+
             >>> expression(range(1, 10+1))
-            Sequence((Sequence((1, 2, 3, 4)), Sequence((5, 5)), Sequence((1, 7, 2)), Sequence((6, 4)), Sequence((5, 5))))
+            Sequence([Sequence([1, 2, 3, 4]), Sequence([5, 5]), Sequence([1, 7, 2]), Sequence([6, 4]), Sequence([5, 5])])
 
     ..  container:: example
 
@@ -259,10 +335,15 @@ class SequenceExpression(Expression):
 
         ::
 
-            >>> expression(range(1, 10+1))
-            Sequence((2, 3, 4, 5, 6, 7, 8, 9, 10, 1))
+            >>> expression.get_string()
+            'r-1(X)'
 
-    ..  note:: Aadd usage examples to this docstring. Do not add
+        ::
+
+            >>> expression(range(1, 10+1))
+            Sequence([2, 3, 4, 5, 6, 7, 8, 9, 10, 1])
+
+    ..  note:: Add usage examples to this docstring. Do not add
         usage examples to property and method docstrings. Properties
         and methods will all be derived automatically from the Sequence class
         at some point in future.
@@ -277,24 +358,26 @@ class SequenceExpression(Expression):
     __slots__ = (
         )
 
-    ### INITIALIZER ###
-
-    def __init__(self, callbacks=None):
-        superclass = super(SequenceExpression, self)
-        superclass.__init__(callbacks=callbacks)
-        self._client_class = sequencetools.Sequence
-
     ### SPECIAL METHODS ###
 
-    def __add__(self, expr):
+    def __add__(self, sequence_=None):
         r'''Makes add callback.
 
         Returns callback.
         '''
         arguments={
-            'expr': expr,
+            'sequence_': sequence_,
             }
-        return self._make_callback('Sequence.__add__', arguments)
+        string_expression = '{{}} + {}'
+        if hasattr(sequence_, 'name'):
+            string_expression = string_expression.format(sequence_.name)
+        else:
+            string_expression = string_expression.format(sequence_)
+        return self.make_callback(
+            'Sequence.__add__',
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
     def __call__(self, items=None):
         r'''Calls sequence expression on `items`.
@@ -307,26 +390,21 @@ class SequenceExpression(Expression):
         '''
         from abjad.tools import sequencetools
         if items is None:
-            #result = sequencetools.Sequence()
-            result = self._client_class()
+            result = sequencetools.Sequence()
         else:
-            #result = sequencetools.Sequence(items)
-            result = self._client_class(items)
-        callbacks = self.callbacks or ()
-        map_next = False
+            result = sequencetools.Sequence(items=items)
+        callbacks = self.callbacks or []
         for callback in callbacks:
-            if callback.name == 'Sequence.__init__':
+            if callback.template == 'Sequence.__init__':
                 result = sequencetools.Sequence(result)
-                map_next = False
-            elif callback.name == 'map':
-                map_next = True
+            elif not callback.template == 'map':
+                result = callback(result)
             else:
-                if map_next:
-                    class_ = type(result)
-                    result = class_([callback(_) for _ in result])
-                else:
-                    result = callback(result)
-                map_next = False
+                key, sequence_expression = callback.arguments[0]
+                assert key == 'expression'
+                assert isinstance(sequence_expression, type(self))
+                class_ = type(result)
+                result = class_([sequence_expression(_) for _ in result])
         return result
 
     def __format__(self, format_specification=''):
@@ -334,7 +412,7 @@ class SequenceExpression(Expression):
 
         ..  container:: example
 
-            **Example 1.** Gets storage format:
+            Gets storage format:
 
             ::
 
@@ -350,30 +428,34 @@ class SequenceExpression(Expression):
                 expressiontools.SequenceExpression(
                     callbacks=(
                         expressiontools.Callback(
-                            name='Sequence.reverse',
+                            'Sequence.reverse',
+                            string_expression='R({})',
                             ),
                         expressiontools.Callback(
-                            name='Sequence.flatten',
+                            'Sequence.flatten',
                             arguments=[
                                 ('classes', None),
                                 ('depth', -1),
                                 ('indices', None),
                                 ],
+                            string_expression='flatten({})',
                             ),
                         expressiontools.Callback(
-                            name='Sequence.__getitem__',
+                            'Sequence.__getitem__',
                             arguments=[
                                 (
                                     'i',
                                     slice(None, -3, None),
                                     ),
                                 ],
+                            string_expression='{}[:-3]',
                             ),
                         expressiontools.Callback(
-                            name='Sequence.__getitem__',
+                            'Sequence.__getitem__',
                             arguments=[
                                 ('i', 0),
                                 ],
+                            string_expression='{}[0]',
                             ),
                         ),
                     )
@@ -393,17 +475,53 @@ class SequenceExpression(Expression):
         arguments={
             'i': i,
             }
-        return self._make_callback('Sequence.__getitem__', arguments)
+        if isinstance(i, int):
+            string_expression = '{{}}[{i}]'
+            start = stop = step = None
+        elif isinstance(i, slice):
+            if i.step is not None:
+                raise NotImplementedError
+            if i.start is None and i.stop is None:
+                string_expression = '{{}}[:]'
+            elif i.start is None:
+                string_expression = '{{}}[:{stop}]'
+            elif i.stop is None:
+                string_expression = '{{}}[{start}:]'
+            else:
+                string_expression = '{{}}[{start}:{stop}]'
+            start = i.start
+            stop = i.stop
+            step = i.step
+        else:
+            message = 'must be integer or slice: {!r}.'
+            message = message.format(i)
+            raise TypeError(message)
+        string_expression = string_expression.format(
+            i=i,
+            start=start,
+            stop=stop,
+            step=step,
+            )
+        return self.make_callback(
+            'Sequence.__getitem__',
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
-    def __radd__(self, expr):
+    def __radd__(self, sequence_):
         r'''Makes right-add callback.
 
         Returns callback.
         '''
         arguments={
-            'expr': expr,
+            'sequence_': sequence_,
             }
-        return self._make_callback('Sequence.__radd__', arguments)
+        string_expression= '{} + {{}}'.format(sequence_.name)
+        return self.make_callback(
+            'Sequence.__radd__',
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
     ### PUBLIC METHODS ###
 
@@ -417,16 +535,45 @@ class SequenceExpression(Expression):
             'depth': depth,
             'indices': indices,
             }
-        return self._make_callback('Sequence.flatten', arguments)
+        string_expression = 'flatten({}'
+        if classes is not None:
+            string_expression += ', classes={}'.format(classes)
+        if depth is not -1:
+            string_expression += ', depth={}'.format(depth)
+        if indices is not None:
+            string_expression += ', indices={}'.format(indices)
+        string_expression += ')'
+        return self.make_callback(
+            'Sequence.flatten',
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
-    def map(self):
+    def map(self, expression):
         r'''Makes map callback.
 
         Returns callback.
         '''
-        return self._make_callback('map')
+        arguments = {
+            'expression': expression,
+            }
+        string_expression = '{expression} /@ {{}}'
+        string_expression = string_expression.format(
+            expression=expression.get_string(),
+            )
+        return self.make_callback(
+            'map',
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
-    def partition_by_counts(self, counts, cyclic=False, overhang=False):
+    def partition_by_counts(
+        self,
+        counts,
+        cyclic=False,
+        overhang=False,
+        reversed_=False,
+        ):
         r'''Makes partition-by-counts callback.
 
         Returns callback.
@@ -435,43 +582,77 @@ class SequenceExpression(Expression):
             'counts': counts,
             'cyclic': cyclic,
             'overhang': overhang,
+            'reversed_': reversed_,
             }
-        return self._make_callback('Sequence.partition_by_counts', arguments)
+        if not cyclic and not overhang:
+            string_expression = 'partition({{}}, {counts})'
+        elif cyclic:
+            string_expression = 'partition_cyclic({{}}, {counts})'
+        elif overhang:
+            string_expression = 'partition_overhang({{}}, {counts})'
+        else:
+            string_expression = 'partition_cyclic_overhang({{}}, {counts})'
+        string_expression = string_expression.format(counts=counts)
+        return self.make_callback(
+            'Sequence.partition_by_counts',
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
     def partition_by_ratio_of_lengths(self, ratio):
         r'''Makes partition-by-ratio-of-lengths callback.
 
         Returns callback.
         '''
-        name = 'Sequence.partition_by_ratio_of_lengths'
+        template = 'Sequence.partition_by_ratio_of_lengths'
         arguments={
             'ratio': ratio,
             }
-        return self._make_callback(name, arguments)
+        string_expression = 'partition_ratio({{}}, {ratio!s})'
+        string_expression = string_expression.format(ratio=ratio)
+        return self.make_callback(
+            template,
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
     def reverse(self):
         r'''Makes reverse callback.
 
         Returns callback.
         '''
-        return self._make_callback('Sequence.reverse')
+        string_expression = 'R({})'
+        return self.make_callback(
+            'Sequence.reverse',
+            string_expression=string_expression,
+            )
 
-    def rotate(self, index=None):
+    def rotate(self, n=None):
         r'''Makes rotate callback.
 
         Returns callback.
         '''
         arguments = {
-            'index': index,
+            'n': n,
             }
-        return self._make_callback('Sequence.rotate', arguments)
+        string_expression = 'r{n}({{}})'
+        string_expression = string_expression.format(n=n)
+        return self.make_callback(
+            'Sequence.rotate',
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
     def sequence(self):
         r'''Makes sequence callback.
 
         Returns callback.
         '''
-        return self._make_callback('Sequence.__init__')
+        string_expression = 'sequence({})'
+        return self.make_callback(
+            'Sequence.__init__',
+            string_expression=string_expression,
+            )
 
     def split(self, weights, cyclic=False, overhang=False):
         r'''Makes split callback.
@@ -483,11 +664,28 @@ class SequenceExpression(Expression):
             'cyclic': cyclic,
             'overhang': overhang,
             }
-        return self._make_callback('Sequence.split', arguments)
+        if not cyclic and not overhang:
+            string_expression = 'split({{}}, {weights})'
+        elif cyclic:
+            string_expression = 'split_cyclic({{}}, {weights})'
+        elif overhang:
+            string_expression = 'split_overhang({{}}, {weights})'
+        else:
+            string_expression = 'split_cyclic_overhang({{}}, {weights})'
+        string_expression = string_expression.format(weights=weights)
+        return self.make_callback(
+            'Sequence.split',
+            arguments=arguments,
+            string_expression=string_expression,
+            )
 
     def sum(self):
         r'''Makes sum callback.
 
         Returns callback.
         '''
-        return self._make_callback('Sequence.sum')
+        string_expression = 'sum({})'
+        return self.make_callback(
+            'Sequence.sum',
+            string_expression=string_expression,
+            )
