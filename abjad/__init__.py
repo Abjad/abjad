@@ -115,7 +115,10 @@ from abjad._version import __version_info__, __version__
 del _version
 
 def f(expr):
-    print(format(expr, 'lilypond'))
+    if hasattr(expr, '_publish_storage_format'):
+        print(format(expr, 'storage'))
+    else:
+        print(format(expr, 'lilypond'))
 
 from abjad import demos
 from abjad import ext

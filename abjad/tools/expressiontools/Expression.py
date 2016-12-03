@@ -15,6 +15,8 @@ class Expression(AbjadObject):
         '_client_class',
         )
 
+    _publish_storage_format = True
+
     ### INITIALIZER ###
 
     def __init__(self, callbacks=None):

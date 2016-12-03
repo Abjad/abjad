@@ -17,7 +17,7 @@ class StaffLinesSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8
                 \stopStaff
@@ -126,7 +126,11 @@ class StaffLinesSpanner(Spanner):
             ...     forbid_restarting=True,
             ...     )
             >>> attach(spanner, staff[:])
-            >>> print(format(staff))
+            >>> show(staff) # doctest: +SKIP
+
+        ..  doctest::
+
+            >>> f(staff)
             \new Staff {
                 \stopStaff
                 \once \override Staff.StaffSymbol.line-count = 1

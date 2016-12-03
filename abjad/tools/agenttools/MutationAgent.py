@@ -10,7 +10,7 @@ class MutationAgent(abctools.AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** Creates mutation agent for last two notes in staff:
+        Creates mutation agent for last two notes in staff:
 
         ::
 
@@ -64,7 +64,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Ejects leaves from container:
+            Ejects leaves from container:
 
             ::
 
@@ -131,7 +131,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Extract tuplet:
+            Extract tuplets:
 
             ::
 
@@ -182,7 +182,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Scale tuplet contents and then extract tuplet:
+            Scales tuplet contents and then extracts tuplet:
 
             ::
 
@@ -242,7 +242,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Fuse in-score leaves:
+            Fuses in-score leaves:
 
             ::
 
@@ -265,8 +265,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Fuse parent-contiguous fixed-duration tuplets
-            in selection:
+            Fuses parent-contiguous fixed-duration tuplets in selection:
 
             ::
 
@@ -334,7 +333,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3.** Fuse in-score measures:
+            Fuses in-score measures:
 
             ::
 
@@ -401,8 +400,8 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Replace in-score tuplet (and children of tuplet)
-            with notes. Functions exactly the same as container setitem:
+            Replaces in-score tuplet (and children of tuplet) with notes.
+            Functions exactly the same as container setitem:
 
                 >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
                 >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
@@ -485,7 +484,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Replaces skip-filled measures with notes:
+            Replaces skip-filled measures with notes:
 
             ::
 
@@ -597,11 +596,13 @@ class MutationAgent(abctools.AbjadObject):
         return result
 
     def respell_with_flats(self):
-        r'''Respell named pitches in mutation client with flats:
+        r'''Respells named pitches in mutation client with flats.
+
+        ..  todo:: Move to pitchtools package.
 
         ..  container:: example
 
-            **Example 1.** Respells notes in staff:
+            Respells notes in staff:
 
             ::
 
@@ -649,7 +650,9 @@ class MutationAgent(abctools.AbjadObject):
                 leaf.written_pitch = leaf.written_pitch.respell_with_flats()
 
     def respell_with_sharps(self):
-        r'''Respell named pitches in mutation client with sharps:
+        r'''Respells named pitches in mutation client with sharps.
+
+        ..  todo:: Move to pitchtools package.
 
         ..  container:: example
 
@@ -709,12 +712,12 @@ class MutationAgent(abctools.AbjadObject):
         rewrite_tuplets=True,
         use_messiaen_style_ties=False,
         ):
-        r'''Rewrite the contents of logical ties in an expression to match
-        a meter.
+        r'''Rewrites the contents of logical ties in an expression to match
+        `meter`.
 
         ..  container:: example
 
-            **Example 1.** Rewrite the contents of a measure in a staff
+            **Example 1.** Rewrites the contents of a measure in a staff
             using the default meter for that measure's time signature:
 
             ::
@@ -785,7 +788,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Rewrite the contents of a measure in a staff
+            **Example 2.** Rewrites the contents of a measure in a staff
             using a custom meter:
 
             ::
@@ -1696,7 +1699,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1a.** Scale note duration by dot-generating multiplier:
+            **Example 1a.** Scales note duration by dot-generating multiplier:
 
             ::
 
@@ -1720,8 +1723,8 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1b.** Scale nontrivial logical tie
-            by dot-generating `multiplier`:
+            **Example 1b.** Scales nontrivial logical tie by dot-generating
+            `multiplier`:
 
             ::
 
@@ -1757,7 +1760,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1c.** Scale container by dot-generating multiplier:
+            **Example 1c.** Scales container by dot-generating multiplier:
 
             ::
 
@@ -1791,7 +1794,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2a.** Scale note by tie-generating multiplier:
+            **Example 2a.** Scales note by tie-generating multiplier:
 
             ::
 
@@ -1816,7 +1819,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2b.** Scale nontrivial logical tie
+            **Example 2b.** Scales nontrivial logical tie
             by tie-generating `multiplier`:
 
             ::
@@ -1854,7 +1857,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2c.** Scale container by tie-generating multiplier:
+            **Example 2c.** Scales container by tie-generating multiplier:
 
             ::
 
@@ -1892,7 +1895,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3a.** Scale note by tuplet-generating multiplier:
+            **Example 3a.** Scales note by tuplet-generating multiplier:
 
             ::
 
@@ -1919,8 +1922,8 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3b.** Scale trivial logical tie
-            by tuplet-generating multiplier:
+            **Example 3b.** Scales trivial logical tie by tuplet-generating
+            multiplier:
 
             ::
 
@@ -1952,7 +1955,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3c.** Scale container by tuplet-generating multiplier:
+            **Example 3c.** Scales container by tuplet-generating multiplier:
 
             ::
 
@@ -1998,7 +2001,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Scale note by tie- and tuplet-generating
+            **Example 4.** Scales note by tie- and tuplet-generating
             multiplier:
 
             ::
@@ -2027,7 +2030,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 5.** Scale note carrying LilyPond multiplier:
+            **Example 5.** Scales note carrying LilyPond multiplier:
 
             ::
 
@@ -2052,7 +2055,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 6.** Scale tuplet:
+            **Example 6.** Scales tuplet:
 
             ::
 
@@ -2099,7 +2102,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 7.** Scale fixed-duration tuplet:
+            **Example 7.** Scales fixed-duration tuplet:
 
             ::
 
@@ -2189,7 +2192,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Split leaves:
+            Splits leaves:
 
             ::
 
@@ -2245,7 +2248,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Split leaves and fracture crossing spanners:
+            Splits leaves and fracture crossing spanners:
 
             ::
 
@@ -2302,7 +2305,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 3.** Split leaves cyclically:
+            Splits leaves cyclically:
 
             ::
 
@@ -2361,7 +2364,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 4.** Split leaves cyclically and fracture spanners:
+            Splits leaves cyclically and fracture spanners:
 
             ::
 
@@ -2421,8 +2424,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 5.** Split tupletted leaves and fracture crossing
-            spanners:
+            Splits tupletted leaves and fracture crossing spanners:
 
             ::
 
@@ -2480,7 +2482,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 6a.** Splits leaves cyclically and ties split notes:
+            Splits leaves cyclically and ties split notes:
 
             ::
 
@@ -2523,7 +2525,7 @@ class MutationAgent(abctools.AbjadObject):
                     d'2 \f
                 }
 
-            **Example 6b.** As above but with Messiaen-style ties:
+            As above but with Messiaen-style ties:
 
             ::
 
@@ -2695,7 +2697,7 @@ class MutationAgent(abctools.AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Swap measures for tuplet:
+            Swaps measures for tuplet:
 
                 >>> staff = Staff()
                 >>> staff.append(Measure((3, 4), "c'4 d'4 e'4"))
@@ -2767,9 +2769,11 @@ class MutationAgent(abctools.AbjadObject):
     def transpose(self, expr):
         r'''Transposes notes and chords in mutation client by `expr`.
 
+        ..  todo:: Move to pitchtools package.
+
         ..  container:: example
 
-            **Example 1.** Transposes notes and chords in staff:
+            Transposes notes and chords in staff:
 
             ::
 

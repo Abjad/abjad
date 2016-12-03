@@ -1059,9 +1059,6 @@ class LabelAgent(abctools.AbjadObject):
                     transposition_only=prototype.transposition_only,
                     )
                 string = str(set_class)
-                #string = string.replace('{', '\\{')
-                #string = string.replace('}', '\\}')
-                #string = r'\line {{{}}}'.format(string)
                 command = markuptools.MarkupCommand('line', [string])
                 label = markuptools.Markup(command, direction=direction)
             else:

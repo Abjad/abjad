@@ -137,7 +137,7 @@ class Scale(PitchClassSegment):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 c'8
                 d'8
@@ -164,7 +164,7 @@ class Scale(PitchClassSegment):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \time 5/4
                 c'4 ~
@@ -196,10 +196,11 @@ class Scale(PitchClassSegment):
 
             >>> scale = tonalanalysistools.Scale('E', 'major')
             >>> score = scale.make_score()
+            >>> show(score) # doctest: +SKIP
 
         ..  doctest::
 
-            >>> print(format(score))
+            >>> f(score)
             \new Score \with {
                 tempoWholesPerMinute = #(ly:make-moment 30 1)
             } <<
@@ -222,10 +223,6 @@ class Scale(PitchClassSegment):
                     e'4
                 }
             >>
-
-        ::
-
-            >>> show(score) # doctest: +SKIP
 
         Returns score.
         '''

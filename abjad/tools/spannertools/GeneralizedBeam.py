@@ -24,7 +24,7 @@ class GeneralizedBeam(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -57,7 +57,7 @@ class GeneralizedBeam(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -90,7 +90,7 @@ class GeneralizedBeam(Spanner):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {

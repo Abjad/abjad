@@ -18,7 +18,7 @@ def make_colored_text_spanner_with_nibs():
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \override TextSpanner.bound-details.left-broken.text = ##f
                 \override TextSpanner.bound-details.left.text = \markup {

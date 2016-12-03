@@ -19,7 +19,7 @@ def make_dynamic_spanner_below_with_nib_at_right(dynamic_text):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff {
                 \override TextSpanner.bound-details.left.text = \markup { \dynamic { mp } }
                 \override TextSpanner.bound-details.right-broken.text = ##f

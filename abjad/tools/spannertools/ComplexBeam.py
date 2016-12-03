@@ -16,7 +16,7 @@ class ComplexBeam(Beam):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -35,7 +35,7 @@ class ComplexBeam(Beam):
 
         ..  doctest::
 
-            >>> print(format(staff))
+            >>> f(staff)
             \new Staff \with {
                 autoBeaming = ##f
             } {
@@ -379,7 +379,7 @@ class ComplexBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 1/16
                     \set stemLeftBeamCount = #2
@@ -400,7 +400,7 @@ class ComplexBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 1/16
                     \set stemLeftBeamCount = #0
@@ -421,7 +421,7 @@ class ComplexBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 1/16
                     \set stemLeftBeamCount = #2
@@ -442,7 +442,7 @@ class ComplexBeam(Beam):
 
             ..  doctest::
 
-                >>> print(format(measure))
+                >>> f(measure)
                 {
                     \time 1/16
                     c'16

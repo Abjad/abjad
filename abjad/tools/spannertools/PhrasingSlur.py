@@ -109,7 +109,7 @@ class PhrasingSlur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 ^ \(
                     d'8
@@ -130,7 +130,7 @@ class PhrasingSlur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 _ \(
                     d'8
@@ -151,7 +151,7 @@ class PhrasingSlur(Spanner):
 
             ..  doctest::
 
-                >>> print(format(staff))
+                >>> f(staff)
                 \new Staff {
                     c'8 \(
                     d'8

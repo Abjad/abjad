@@ -17,7 +17,7 @@ class HorizontalBracketSpanner(Spanner):
 
         ..  doctest::
 
-            >>> print(format(voice))
+            >>> f(voice)
             \new Voice \with {
                 \consists Horizontal_bracket_engraver
             } {
