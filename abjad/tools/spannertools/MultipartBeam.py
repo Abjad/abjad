@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-from abjad.tools import scoretools
 from abjad.tools.spannertools.Beam import Beam
 
 
@@ -137,10 +136,9 @@ class MultipartBeam(Beam):
     def beam_rests(self):
         r'''Is true when beam should include rests. Otherwise false.
 
-
         ..  container:: example
 
-            **Example 1.** Without beamed rests:
+            Without beamed rests:
 
             ::
 
@@ -150,7 +148,7 @@ class MultipartBeam(Beam):
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -164,9 +162,13 @@ class MultipartBeam(Beam):
                     r4.
                 }
 
+            Abjad beams no rests.
+
+            LilyPond beams no rests.
+
         ..  container:: example
 
-            **Example 2.** With beamed rests:
+            With beamed rests:
 
             ::
 
@@ -176,7 +178,7 @@ class MultipartBeam(Beam):
                 >>> attach(beam, staff[:])
                 >>> show(staff) # doctest: +SKIP
 
-            ..  doctest::
+            ::
 
                 >>> f(staff)
                 \new Staff \with {
@@ -186,9 +188,73 @@ class MultipartBeam(Beam):
                     d'8
                     r8
                     f'8
-                    g'8 ]
-                    r4.
+                    g'8
+                    r4. ]
                 }
+
+            Abjad beams all rests.
+            
+            LilyPond beams only small-duration rests.
+
+        ..  container:: example
+
+            With beamed rests:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 r4. f'8 g'8 r8")
+                >>> set_(staff).auto_beaming = False
+                >>> beam = spannertools.MultipartBeam(beam_rests=True)
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> f(staff)
+                \new Staff \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    d'8
+                    r4.
+                    f'8
+                    g'8
+                    r8 ]
+                }
+
+            Abjad beams all rests.
+
+            LilyPond beams only small-duration rests.
+
+        ..  container:: example
+
+            With beamed skips:
+
+            ::
+
+                >>> staff = Staff("c'8 d'8 s4. f'8 g'8 s8")
+                >>> set_(staff).auto_beaming = False
+                >>> beam = spannertools.MultipartBeam(beam_rests=True)
+                >>> attach(beam, staff[:])
+                >>> show(staff) # doctest: +SKIP
+
+            ::
+
+                >>> f(staff)
+                \new Staff \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    d'8
+                    s4.
+                    f'8
+                    g'8
+                    s8 ]
+                }
+
+            Abjad beams all skips.
+
+            LilyPond beams all (internal) skips.
 
         Defaults to false.
 

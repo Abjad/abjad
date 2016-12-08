@@ -287,14 +287,17 @@ class GeneralizedBeam(Spanner):
             stop_piece = ']'
         return start_piece, stop_piece
 
-    def _is_beamable_component(self, expr):
-        r'''True if `expr` is beamable, otherwise false.
+    def _is_beamable_component(self, expr, beam_rests=False):
+        r'''Is true when `expr` is beamable. Otherwise false.
         '''
         from abjad.tools import scoretools
+        prototype = (scoretools.Rest, scoretools.Skip)
+        if beam_rests and isinstance(expr, prototype):
+            return True
         if isinstance(expr, scoretools.Leaf):
             if 0 < expr.written_duration.flag_count:
-                if hasattr(expr, 'written_pitch') or \
-                    hasattr(expr, 'written_pitches'):
+                if (hasattr(expr, 'written_pitch') or
+                    hasattr(expr, 'written_pitches')):
                     return True
                 elif self.use_stemlets:
                     return True

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from abjad.tools import markuptools
 from abjad.tools.spannertools.Spanner import Spanner
 
 
@@ -34,18 +35,24 @@ class HorizontalBracketSpanner(Spanner):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        '_markup',
+        )
 
     ### INITIALIZER ###
 
     def __init__(
         self,
         overrides=None,
+        markup=None,
         ):
         Spanner.__init__(
             self,
             overrides=overrides,
             )
+        if markup is not None:
+            markup = markuptools.Markup(markup)
+        self._markup = markup
 
     ### PRIVATE METHODS ###
 
@@ -56,3 +63,41 @@ class HorizontalBracketSpanner(Spanner):
         if self._is_my_last_leaf(leaf):
             result.append(r'\stopGroup')
         return result
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def markup(self):
+        r'''Gets horizonal bracket spanner markup.
+
+        ..  container:: example
+
+            Gets markup:
+
+            ::
+
+                >>> markup = Markup('3-1[012]').smaller()
+                >>> spanner = spannertools.HorizontalBracketSpanner(
+                ...     markup=markup,
+                ...     )
+
+            ::
+
+                >>> spanner.markup
+                Markup(contents=(MarkupCommand('smaller', '3-1[012]'),))
+
+        ..  container:: example
+
+            Defaults to none:
+
+            ::
+
+                >>> spanner = spannertools.HorizontalBracketSpanner()
+                >>> spanner.markup is None
+                True
+
+        Set to markup or none.
+
+        Returns markup or none.
+        '''
+        return self._markup

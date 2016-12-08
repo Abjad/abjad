@@ -112,7 +112,7 @@ class Beam(Spanner):
 
         ..  container:: example
 
-            **Example 1.** Without allowing for beamed rests:
+            Without allowing for beamed rests:
 
             ::
 
@@ -138,7 +138,7 @@ class Beam(Spanner):
 
         ..  container:: example
 
-            **Example 2.** Allowing for beamed rests:
+            Allowing for beamed rests:
 
             ::
 
@@ -167,29 +167,50 @@ class Beam(Spanner):
 
         ..  container:: example
 
-            **Example 3.** True for skips of any duration when `beam_rests` is
-            true:
+            True for skips of any duration when `beam_rests` is true:
 
             ::
 
-                >>> Beam._is_beamable_component(Skip((1, 32)), beam_rests=True)
+                >>> skip = Skip((1, 32))
+                >>> Beam._is_beamable_component(skip, beam_rests=True)
                 True
-                >>> Beam._is_beamable_component(Skip((1)), beam_rests=True)
+
+            ::
+
+                >>> skip = Skip((1))
+                >>> Beam._is_beamable_component(skip, beam_rests=True)
+                True
+
+        ..  container:: example
+
+            True for rests of any duration when `beam_rests` is true:
+
+            ::
+
+                >>> rest = Rest((1, 32))
+                >>> Beam._is_beamable_component(rest, beam_rests=True)
+                True
+
+            ::
+
+                >>> rest = Rest((1))
+                >>> Beam._is_beamable_component(rest, beam_rests=True)
                 True
 
         Returns true or false.
         '''
         from abjad.tools import scoretools
-        if beam_rests and isinstance(expr, scoretools.Skip):
-            return True
-        prototype = [scoretools.Note, scoretools.Chord]
-        if beam_rests:
-            prototype.append(scoretools.MultimeasureRest)
-            prototype.append(scoretools.Rest)
-        prototype = tuple(prototype)
+        prototype = (scoretools.Note, scoretools.Chord)
         if isinstance(expr, prototype):
             if 0 < expr.written_duration.flag_count:
                 return True
+        prototype = (
+            scoretools.MultimeasureRest,
+            scoretools.Rest,
+            scoretools.Skip,
+            )
+        if beam_rests and isinstance(expr, prototype):
+            return True
         return False
 
     ### PUBLIC PROPERTIES ###
