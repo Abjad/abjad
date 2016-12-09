@@ -98,6 +98,7 @@ from abjad.tools.topleveltools import select
 from abjad.tools.topleveltools import sequence
 from abjad.tools.topleveltools import set_
 from abjad.tools.topleveltools import show
+from abjad.tools.topleveltools import tweak
 
 # import custom exceptions into the builtins module
 import os

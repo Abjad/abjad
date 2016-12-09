@@ -244,7 +244,7 @@ class TimeSignature(AbjadValueObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         elif format_specification == 'lilypond':
-            return self._lilypond_format
+            return self._get_lilypond_format()
         return str(self)
 
     def __ge__(self, arg):
@@ -346,73 +346,15 @@ class TimeSignature(AbjadValueObject):
         '''
         return '{}/{}'.format(self.numerator, self.denominator)
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        storage_format_is_indented = False
-        if self.partial is not None or self.suppress is not None:
-            storage_format_is_indented = True
-        return systemtools.FormatSpecification(
-            client=self,
-            repr_is_indented=False,
-            storage_format_args_values=[self.pair],
-            storage_format_kwargs_names=['partial', 'suppress'],
-            storage_format_is_indented=storage_format_is_indented,
-            )
-
-    ### PUBLIC METHODS ###
-
-    def with_power_of_two_denominator(
-        self,
-        contents_multiplier=durationtools.Multiplier(1),
-        ):
-        r'''Makes new time signature equivalent to current
-        time signature with power-of-two denominator.
-
-        ..  container:: example
-
-            **Example 1.** Non-power-of-two denominator with power-of-two
-            denominator:
-
-                >>> time_signature = TimeSignature((3, 12))
-                >>> time_signature.with_power_of_two_denominator()
-                TimeSignature((2, 8))
-
-        Returns new time signature.
-        '''
-        # check input
-        contents_multiplier = durationtools.Multiplier(contents_multiplier)
-
-        # save non_power_of_two time_signature and denominator
-        non_power_of_two_denominator = self.denominator
-
-        # find power_of_two denominator
-        if contents_multiplier == durationtools.Multiplier(1):
-            power_of_two_denominator = \
-                mathtools.greatest_power_of_two_less_equal(
-                    non_power_of_two_denominator)
-        else:
-            power_of_two_denominator = \
-                mathtools.greatest_power_of_two_less_equal(
-                    non_power_of_two_denominator, 1)
-
-        # find power_of_two pair
-        non_power_of_two_pair = mathtools.NonreducedFraction(self.pair)
-        power_of_two_fraction = non_power_of_two_pair.with_denominator(
-            power_of_two_denominator)
-        power_of_two_pair = power_of_two_fraction.pair
-
-        # return new power_of_two time signature
-        return type(self)(power_of_two_pair)
-
     ### PRIVATE PROPERTIES ###
 
     @property
     def _contents_repr_string(self):
         return '{}/{}'.format(self.numerator, self.denominator)
 
-    @property
-    def _lilypond_format(self):
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
         if self.suppress:
             return []
         elif self.partial is None:
@@ -431,6 +373,18 @@ class TimeSignature(AbjadValueObject):
                 )
             result.append(string)
             return result
+
+    def _get_format_specification(self):
+        storage_format_is_indented = False
+        if self.partial is not None or self.suppress is not None:
+            storage_format_is_indented = True
+        return systemtools.FormatSpecification(
+            client=self,
+            repr_is_indented=False,
+            storage_format_args_values=[self.pair],
+            storage_format_kwargs_names=['partial', 'suppress'],
+            storage_format_is_indented=storage_format_is_indented,
+            )
 
     ### PUBLIC PROPERTIES ###
 
@@ -691,3 +645,48 @@ class TimeSignature(AbjadValueObject):
     @suppress.setter
     def suppress(self, expr):
         self._suppress = bool(expr)
+
+    ### PUBLIC METHODS ###
+
+    def with_power_of_two_denominator(
+        self,
+        contents_multiplier=durationtools.Multiplier(1),
+        ):
+        r'''Makes new time signature equivalent to current
+        time signature with power-of-two denominator.
+
+        ..  container:: example
+
+            **Example 1.** Non-power-of-two denominator with power-of-two
+            denominator:
+
+                >>> time_signature = TimeSignature((3, 12))
+                >>> time_signature.with_power_of_two_denominator()
+                TimeSignature((2, 8))
+
+        Returns new time signature.
+        '''
+        # check input
+        contents_multiplier = durationtools.Multiplier(contents_multiplier)
+
+        # save non_power_of_two time_signature and denominator
+        non_power_of_two_denominator = self.denominator
+
+        # find power_of_two denominator
+        if contents_multiplier == durationtools.Multiplier(1):
+            power_of_two_denominator = \
+                mathtools.greatest_power_of_two_less_equal(
+                    non_power_of_two_denominator)
+        else:
+            power_of_two_denominator = \
+                mathtools.greatest_power_of_two_less_equal(
+                    non_power_of_two_denominator, 1)
+
+        # find power_of_two pair
+        non_power_of_two_pair = mathtools.NonreducedFraction(self.pair)
+        power_of_two_fraction = non_power_of_two_pair.with_denominator(
+            power_of_two_denominator)
+        power_of_two_pair = power_of_two_fraction.pair
+
+        # return new power_of_two time signature
+        return type(self)(power_of_two_pair)

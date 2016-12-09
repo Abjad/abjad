@@ -178,10 +178,7 @@ class Context(Container):
     def _get_format_pieces(self):
         return self._format_component(pieces=True)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         self._update_now(indicators=True)
         return self._format_component()
 

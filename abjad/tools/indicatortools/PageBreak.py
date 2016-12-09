@@ -48,10 +48,9 @@ class PageBreak(AbjadValueObject):
         from abjad.tools import scoretools
         self._default_scope = scoretools.Staff
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         return r'\pageBreak'
 
     ### PUBLIC PROPERTIES ###

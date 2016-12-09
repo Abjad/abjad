@@ -51,7 +51,7 @@ class PackageGitCommitToken(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
@@ -69,6 +69,22 @@ class PackageGitCommitToken(AbjadValueObject):
     def _get_git_hash(self):
         command = 'git rev-parse HEAD'
         return self._run_command(command)
+
+    def _get_lilypond_format(self):
+        path = self._get_package_path()
+        with systemtools.TemporaryDirectoryChange(path):
+            git_branch = self._get_git_branch()
+            git_hash = self._get_git_hash()
+            timestamp = self._get_commit_timestamp(git_hash)
+            #print(git_branch, git_hash, timestamp)
+        date, time, _ = timestamp.split()
+        return 'package "{}" @ {} [{}] ({} {})'.format(
+            self._package_name,
+            git_hash[:7],
+            git_branch,
+            date,
+            time,
+            )
 
     def _get_package_path(self):
         module = importlib.import_module(self._package_name)
@@ -92,25 +108,6 @@ class PackageGitCommitToken(AbjadValueObject):
         if sys.version_info[0] == 3:
             result = result.decode('utf-8')
         return result
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        path = self._get_package_path()
-        with systemtools.TemporaryDirectoryChange(path):
-            git_branch = self._get_git_branch()
-            git_hash = self._get_git_hash()
-            timestamp = self._get_commit_timestamp(git_hash)
-            #print(git_branch, git_hash, timestamp)
-        date, time, _ = timestamp.split()
-        return 'package "{}" @ {} [{}] ({} {})'.format(
-            self._package_name,
-            git_hash[:7],
-            git_branch,
-            date,
-            time,
-            )
 
     ### PUBLIC PROPERTIES ###
 

@@ -91,7 +91,12 @@ class Markup(AbjadValueObject):
         '_contents',
         '_direction',
         '_format_slot',
+        '_lilypond_tweak_manager',
         '_stack_priority',
+        )
+
+    _private_attributes_to_copy = (
+        '_lilypond_tweak_manager',
         )
 
     ### INITIALIZER ###
@@ -136,6 +141,7 @@ class Markup(AbjadValueObject):
         direction = stringtools.expr_to_tridirectional_ordinal_constant(
             direction)
         self._direction = direction
+        self._lilypond_tweak_manager = None
         assert isinstance(stack_priority, int), repr(stack_priority)
         self._stack_priority = stack_priority
 
@@ -204,7 +210,7 @@ class Markup(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
@@ -266,21 +272,21 @@ class Markup(AbjadValueObject):
 
         Returns string.
         '''
-        return self._lilypond_format
+        return self._get_lilypond_format()
 
     ### PRIVATE METHODS ###
 
     def _get_format_pieces(self):
         from abjad.tools import systemtools
+        if self._lilypond_tweak_manager is None:
+            tweaks = []
+        else:
+            tweaks = self._lilypond_tweak_manager._list_format_contributions()
         indent = systemtools.LilyPondFormatManager.indent
         direction = ''
         if self.direction is not None:
             direction = stringtools.expr_to_tridirectional_lilypond_symbol(
                 self.direction)
-        # none
-        if self.contents is None:
-            return [r'\markup {}']
-        # a single string
         if len(self.contents) == 1 and isinstance(self.contents[0], str):
             content = self.contents[0]
             content = schemetools.Scheme.format_scheme_value(content)
@@ -289,9 +295,8 @@ class Markup(AbjadValueObject):
             else:
                 content = '{}'
             if direction:
-                return [r'{} \markup {}'.format(direction, content)]
-            return [r'\markup {}'.format(content)]
-        # multiple strings or markup commands
+                return tweaks + [r'{} \markup {}'.format(direction, content)]
+            return tweaks + [r'\markup {}'.format(content)]
         if direction:
             pieces = [r'{} \markup {{'.format(direction)]
         else:
@@ -304,7 +309,7 @@ class Markup(AbjadValueObject):
                 pieces.extend(['{}{}'.format(indent, x) for x in
                     content._get_format_pieces()])
         pieces.append('{}}}'.format(indent))
-        return pieces
+        return tweaks + pieces
 
     def _get_format_specification(self):
         agent = systemtools.StorageFormatAgent(self)
@@ -315,6 +320,9 @@ class Markup(AbjadValueObject):
             repr_is_indented=False,
             storage_format_kwargs_names=names,
             )
+
+    def _get_lilypond_format(self):
+        return '\n'.join(self._get_format_pieces())
 
     @staticmethod
     def _parse_markup_command_argument(argument):
@@ -2837,12 +2845,6 @@ class Markup(AbjadValueObject):
             )
         return new(self, contents=command)
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return '\n'.join(self._get_format_pieces())
-
     ### PUBLIC PROPERTIES ###
 
     @property
@@ -2893,13 +2895,14 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** ``'foo'`` appears higher in stack than ``'bar'``:
+            **Example 1.** ``'foo bar'`` appears higher in stack than
+            ``'text'``:
 
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> attach(Markup('foo', stack_priority=1000), staff[1])
-                >>> attach(Markup('bar', stack_priority=0), staff[1])
+                >>> attach(Markup(('foo',  'bar'), stack_priority=1000), staff[1])
+                >>> attach(Markup('text', stack_priority=0), staff[1])
 
             ::
 
@@ -2914,8 +2917,15 @@ class Markup(AbjadValueObject):
                         - \markup {
                             \column
                                 {
-                                    foo
-                                    bar
+                                    \line
+                                        {
+                                            foo
+                                            bar
+                                        }
+                                    \line
+                                        {
+                                            text
+                                        }
                                 }
                             }
                     e'8
@@ -2924,13 +2934,14 @@ class Markup(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** ``'foo'`` appears lower in stack than ``'bar'``:
+            **Example 2.** ``'foo bar'`` appears lower in stack than
+            ``'text'``:
 
             ::
 
                 >>> staff = Staff("c'8 d'8 e'8 f'8")
-                >>> attach(Markup('foo', stack_priority=0), staff[1])
-                >>> attach(Markup('bar', stack_priority=1000), staff[1])
+                >>> attach(Markup(('foo',  'bar'), stack_priority=0), staff[1])
+                >>> attach(Markup('text', stack_priority=1000), staff[1])
 
             ::
 
@@ -2945,14 +2956,20 @@ class Markup(AbjadValueObject):
                         - \markup {
                             \column
                                 {
-                                    bar
-                                    foo
+                                    \line
+                                        {
+                                            text
+                                        }
+                                    \line
+                                        {
+                                            foo
+                                            bar
+                                        }
                                 }
                             }
                     e'8
                     f'8
                 }
-
 
         Higher priority equals higher position.
 

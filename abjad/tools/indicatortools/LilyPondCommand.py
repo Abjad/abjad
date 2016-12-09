@@ -79,16 +79,31 @@ class LilyPondCommand(AbjadValueObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         elif format_specification == 'lilypond':
-            return self._lilypond_format
+            return self._get_lilypond_format()
         return str(self)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self.name)
+
     ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
+        command = self._name
+        if command.startswith('#'):
+            return command
+        elif ' ' not in command:
+            return self.prefix + stringtools.to_lower_camel_case(command)
+        else:
+            return self.prefix + command
 
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         format_slot = lilypond_format_bundle.get(self.format_slot)
-        format_slot.commands.append(self._lilypond_format)
+        format_slot.commands.append(self._get_lilypond_format())
         return lilypond_format_bundle
 
     def _get_format_specification(self):
@@ -124,22 +139,6 @@ class LilyPondCommand(AbjadValueObject):
         Returns tuple of strings.
         '''
         return LilyPondCommand._allowable_format_slots
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self.name)
-
-    @property
-    def _lilypond_format(self):
-        command = self._name
-        if command.startswith('#'):
-            return command
-        elif ' ' not in command:
-            return self.prefix + stringtools.to_lower_camel_case(command)
-        else:
-            return self.prefix + command
 
     ### PUBLIC PROPERTIES ###
 

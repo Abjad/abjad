@@ -346,10 +346,6 @@ class Accidental(AbjadValueObject):
     def _all_accidental_semitone_values(self):
         return list(self._semitones_to_abbreviation.keys())
 
-    @property
-    def _lilypond_format(self):
-        return self._abbreviation
-
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -362,46 +358,8 @@ class Accidental(AbjadValueObject):
             template_names=['abbreviation'],
             )
 
-    ### PUBLIC METHODS ###
-
-    @staticmethod
-    def is_abbreviation(expr):
-        '''Is true when `expr` is an alphabetic accidental abbreviation.
-        Otherwise false:
-
-        ::
-
-            >>> pitchtools.Accidental.is_abbreviation('tqs')
-            True
-
-        The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this
-        predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(expr, str):
-            return False
-        return bool(Accidental._alphabetic_accidental_regex.match(expr))
-
-    @staticmethod
-    def is_symbolic_string(expr):
-        '''Is true when `expr` is a symbolic accidental string. Otherwise false:
-
-        ::
-
-            >>> pitchtools.Accidental.is_symbolic_string('#+')
-            True
-
-        True on empty string.
-
-        The regex ``^([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)$`` underlies this
-        predicate.
-
-        Returns true or false.
-        '''
-        if not isinstance(expr, str):
-            return False
-        return bool(Accidental._symbolic_string_regex.match(expr))
+    def _get_lilypond_format(self):
+        return self._abbreviation
 
     ### PUBLIC PROPERTIES ###
 
@@ -489,3 +447,44 @@ class Accidental(AbjadValueObject):
         abbreviation = self._semitones_to_abbreviation[self.semitones]
         symbolic_string = self._abbreviation_to_symbolic_string[abbreviation]
         return symbolic_string
+
+    ### PUBLIC METHODS ###
+
+    @staticmethod
+    def is_abbreviation(expr):
+        '''Is true when `expr` is an alphabetic accidental abbreviation.
+        Otherwise false:
+
+        ::
+
+            >>> pitchtools.Accidental.is_abbreviation('tqs')
+            True
+
+        The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this
+        predicate.
+
+        Returns true or false.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Accidental._alphabetic_accidental_regex.match(expr))
+
+    @staticmethod
+    def is_symbolic_string(expr):
+        '''Is true when `expr` is a symbolic accidental string. Otherwise false:
+
+        ::
+
+            >>> pitchtools.Accidental.is_symbolic_string('#+')
+            True
+
+        True on empty string.
+
+        The regex ``^([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)$`` underlies this
+        predicate.
+
+        Returns true or false.
+        '''
+        if not isinstance(expr, str):
+            return False
+        return bool(Accidental._symbolic_string_regex.match(expr))

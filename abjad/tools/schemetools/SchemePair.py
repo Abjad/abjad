@@ -66,16 +66,6 @@ class SchemePair(Scheme):
         superclass = super(SchemePair, self)
         return superclass.__format__(format_specification=format_specification)
 
-    ### PRIVATE METHODS ###
-
-    def _get_format_specification(self):
-        specification = super(SchemePair, self)._get_format_specification()
-        return new(
-            specification,
-            repr_is_indented=False,
-            storage_format_is_indented=False,
-            )
-
     ### PRIVATE PROPERTIES ###
 
     @property
@@ -89,6 +79,15 @@ class SchemePair(Scheme):
             self._value[-1], force_quotes=True)
         return '({} . {})'.format(lhs, rhs)
 
-    @property
-    def _lilypond_format(self):
+    ### PRIVATE METHODS ###
+
+    def _get_format_specification(self):
+        specification = super(SchemePair, self)._get_format_specification()
+        return new(
+            specification,
+            repr_is_indented=False,
+            storage_format_is_indented=False,
+            )
+
+    def _get_lilypond_format(self):
         return "#'%s" % self._formatted_value

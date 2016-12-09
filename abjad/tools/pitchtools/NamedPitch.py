@@ -422,12 +422,6 @@ class NamedPitch(Pitch):
         pitch = interval.transpose(self)
         return pitch
 
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return str(self)
-
     ### PRIVATE METHODS ###
 
     def _initialize_by_named_pitch(self, named_pitch):
@@ -500,6 +494,9 @@ class NamedPitch(Pitch):
         diatonic_pitch_class_name = named_pitch_class.diatonic_pitch_class_name
         self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
             pitch_number, diatonic_pitch_class_name)
+
+    def _get_lilypond_format(self):
+        return str(self)
 
     @staticmethod
     def _spell_pitch_number(pitch_number, diatonic_pitch_class_name):

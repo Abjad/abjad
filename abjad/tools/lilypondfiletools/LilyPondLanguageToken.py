@@ -35,7 +35,7 @@ class LilyPondLanguageToken(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
@@ -55,9 +55,8 @@ class LilyPondLanguageToken(AbjadValueObject):
         '''
         return '{}()'.format(type(self).__name__)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         string = r'\language "english"'
         return string

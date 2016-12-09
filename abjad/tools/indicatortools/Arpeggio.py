@@ -57,6 +57,9 @@ class Arpeggio(AbjadValueObject):
 
     ### PRIVATE METHODS ###
 
+    def _get_lilypond_format(self):
+        return r'\arpeggio'
+
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
@@ -68,12 +71,6 @@ class Arpeggio(AbjadValueObject):
                 command = r'\arpeggioArrowDown'
             lilypond_format_bundle.before.commands.append(command)
         return lilypond_format_bundle
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _lilypond_format(self):
-        return r'\arpeggio'
 
     ### PUBLIC PROPERTIES ###
 

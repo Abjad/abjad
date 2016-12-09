@@ -490,7 +490,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     'show', 'spannertools', 'stringtools',
                     'systemtools', 'templatetools',
                     'timespantools', 'tonalanalysistools',
-                    'topleveltools']
+                    'topleveltools', 'tweak']
             """)
         assert actual == target, \
             systemtools.TestManager.diff(actual, target, 'Diff:')

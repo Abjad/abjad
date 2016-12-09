@@ -29,7 +29,7 @@ def test_abjad___format___01(class_):
     r'''All concrete classes have a storage format.
     '''
     if (
-        '_storage_format_specification' not in dir(class_) or
+        '_get_storage_format_specification' not in dir(class_) or
         '_get_format_specification' not in dir(class_)
         ):
         return
@@ -61,7 +61,7 @@ classes = documentationtools.list_all_abjad_classes(
 def test_abjad___format___02(class_):
     r'''All storage-formattable classes have evaluable storage format.
     '''
-    if '_storage_format_specification' not in dir(class_):
+    if '_get_storage_format_specification' not in dir(class_):
         return
     if inspect.isabstract(class_):
         return

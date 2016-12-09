@@ -8,10 +8,6 @@ class LilyPondSettingNameManager(LilyPondNameManager):
     '''LilyPond setting name manager.
     '''
 
-    ### CLASS VARIABLES ###
-
-    skeleton_string_prefix = 'set__'
-
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
@@ -61,22 +57,4 @@ class LilyPondSettingNameManager(LilyPondNameManager):
             else:
                 attribute_name, attribute_value = name, value
                 result.append((attribute_name, attribute_value))
-        return result
-
-    def _get_skeleton_strings(self):
-        result = []
-        for attribute_tuple in self._get_attribute_tuples():
-            if len(attribute_tuple) == 2:
-                attribute_name, attribute_value = attribute_tuple
-                string = '{}={}'.format(attribute_name, repr(attribute_value))
-                result.append(string)
-            elif len(attribute_tuple) == 3:
-                context_name, attribute_name, attribute_value = attribute_tuple
-                key = '__'.join((context_name, attribute_name))
-                string = '{}={}'.format(key, repr(attribute_value))
-                result.append(string)
-            else:
-                message = 'attribute tuple must have length 2 or 3.'
-                raise ValueError(message)
-        result = ['set__' + x for x in result]
         return result

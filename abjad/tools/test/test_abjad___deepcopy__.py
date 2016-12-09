@@ -38,7 +38,7 @@ def test_abjad___deepcopy___01(class_):
     r'''All concrete classes with a storage format can copy.
     '''
     if (
-        '_storage_format_specification' not in dir(class_) or
+        '_get_storage_format_specification' not in dir(class_) or
         '_get_format_specification' not in dir(class_)
         ):
         return

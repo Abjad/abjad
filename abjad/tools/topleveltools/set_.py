@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 def set_(expr):
     r'''Applies LilyPond context setting to `expr`.
 

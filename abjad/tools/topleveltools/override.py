@@ -1,3 +1,6 @@
+# -*- coding: utf-8 -*-
+
+
 def override(expr):
     r'''Overrides `expr`.
 

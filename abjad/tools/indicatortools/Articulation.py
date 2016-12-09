@@ -169,7 +169,7 @@ class Articulation(AbjadValueObject):
         if format_specification in ('', 'storage'):
             return systemtools.StorageFormatAgent(self).get_storage_format()
         elif format_specification == 'lilypond':
-            return self._lilypond_format
+            return self._get_lilypond_format()
         return str(self)
 
     def __illustrate__(self):
@@ -205,6 +205,15 @@ class Articulation(AbjadValueObject):
         else:
             return ''
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        if self.direction is not None:
+            return '{!r}, {!r}'.format(self.name, self.direction)
+        else:
+            return repr(self.name)
+
     ### PRIVATE METHODS ###
 
     def _get_format_specification(self):
@@ -217,24 +226,14 @@ class Articulation(AbjadValueObject):
             storage_format_is_indented=False,
             )
 
+    def _get_lilypond_format(self):
+        return str(self)
+
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
         lilypond_format_bundle = systemtools.LilyPondFormatBundle()
         lilypond_format_bundle.right.articulations.append(str(self))
         return lilypond_format_bundle
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        if self.direction is not None:
-            return '{!r}, {!r}'.format(self.name, self.direction)
-        else:
-            return repr(self.name)
-
-    @property
-    def _lilypond_format(self):
-        return str(self)
 
     ### PUBLIC PROPERTIES ###
 

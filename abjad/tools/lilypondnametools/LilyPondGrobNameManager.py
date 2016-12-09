@@ -8,10 +8,6 @@ class LilyPondGrobNameManager(LilyPondNameManager):
     '''LilyPond grob name manager.
     '''
 
-    ### CLASS VARIABLES ###
-
-    skeleton_string_prefix = 'override__'
-
     ### SPECIAL METHODS ###
 
     def __getattr__(self, name):
@@ -84,18 +80,6 @@ class LilyPondGrobNameManager(LilyPondNameManager):
                             )
                         result.append(quadruple)
         return tuple(result)
-
-    def _get_skeleton_strings(self):
-        skeleton_strings = []
-        grob_override_tuples = self._get_attribute_tuples()
-        for grob_override_tuple in grob_override_tuples:
-            most = '__'.join(grob_override_tuple[:-1])
-            value = grob_override_tuple[-1]
-            attribute_name = '_tools_package_qualified_repr'
-            value = getattr(value, attribute_name, repr(value))
-            string = 'override__{}={}'.format(most, value)
-            skeleton_strings.append(string)
-        return tuple(skeleton_strings)
 
     def _list_format_contributions(self, contribution_type, is_once=False):
         from abjad.tools import systemtools

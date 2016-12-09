@@ -56,8 +56,8 @@ class LilyPondFormatManager(AbjadObject):
         for expression in expressions:
             # skip nonprinting indicators like annotation
             indicator = expression.indicator
-            if not hasattr(indicator, '_lilypond_format') and \
-                not hasattr(indicator, '_get_lilypond_format_bundle'):
+            if (not hasattr(indicator, '_get_lilypond_format') and
+                not hasattr(indicator, '_get_lilypond_format_bundle')):
                 continue
             elif expression.is_annotation:
                 continue
@@ -194,6 +194,7 @@ class LilyPondFormatManager(AbjadObject):
                     direction = '-'
                 markup_list = markup_list[:]
                 markup_list.sort(key=lambda x: -x.stack_priority)
+                markup_list = [_.line() for _ in markup_list]
                 markup = markuptools.Markup.column(
                     markup_list,
                     direction=direction,
@@ -340,7 +341,7 @@ class LilyPondFormatManager(AbjadObject):
         Returns string.
         '''
         from abjad.tools import schemetools
-        if '_lilypond_format' in dir(expr) and not isinstance(expr, str):
+        if '_get_lilypond_format' in dir(expr) and not isinstance(expr, str):
             pass
         elif expr in (True, False):
             expr = schemetools.Scheme(expr)
@@ -370,21 +371,19 @@ class LilyPondFormatManager(AbjadObject):
         context_name=None,
         is_once=False,
         ):
-        '''Makes Lilypond override string.
+        r'''Makes Lilypond override string.
 
         Does not include 'once'.
 
         Returns string.
         '''
         from abjad.tools import stringtools
-        # parse input strings
         grob_name = stringtools.to_upper_camel_case(grob_name)
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
             grob_attribute)
         grob_value = LilyPondFormatManager.format_lilypond_value(grob_value)
         if context_name is not None:
-            context_prefix = \
-                stringtools.to_upper_camel_case(context_name)
+            context_prefix = stringtools.to_upper_camel_case(context_name)
             context_prefix += '.'
         else:
             context_prefix = ''
@@ -392,7 +391,6 @@ class LilyPondFormatManager(AbjadObject):
             once_prefix = r'\once '
         else:
             once_prefix = ''
-        # return override string
         result = r'{}\override {}{}.{} = {}'
         result = result.format(
             once_prefix,
@@ -409,12 +407,11 @@ class LilyPondFormatManager(AbjadObject):
         grob_attribute,
         context_name=None,
         ):
-        '''Makes LilyPond revert string.
+        r'''Makes LilyPond revert string.
 
         Returns string.
         '''
         from abjad.tools import stringtools
-        # parse input strings
         grob_name = stringtools.to_upper_camel_case(grob_name)
         grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
             grob_attribute)
@@ -424,10 +421,35 @@ class LilyPondFormatManager(AbjadObject):
         if context_name is not None:
             context_prefix = stringtools.to_upper_camel_case(context_name)
             context_prefix += '.'
-        # format revert string
         result = r'\revert {}{}.{}'
         result = result.format(context_prefix, grob_name, grob_attribute)
-        # return revert string
+        return result
+
+    @staticmethod
+    def make_lilypond_tweak_string(
+        grob_attribute,
+        grob_value,
+        grob_name=None,
+        ):
+        r'''Makes Lilypond \tweak string.
+
+        Returns string.
+        '''
+        from abjad.tools import stringtools
+        if grob_name is not None:
+            grob_name = stringtools.to_upper_camel_case(grob_name)
+            grob_string = grob_name + '.'
+        else:
+            grob_string = ''
+        grob_attribute = LilyPondFormatManager.format_lilypond_attribute(
+            grob_attribute)
+        grob_value = LilyPondFormatManager.format_lilypond_value(grob_value)
+        result = r'- \tweak {}{} {}'
+        result = result.format(
+            grob_string,
+            grob_attribute,
+            grob_value,
+            )
         return result
 
     @staticmethod

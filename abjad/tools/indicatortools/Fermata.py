@@ -138,7 +138,16 @@ class Fermata(AbjadValueObject):
         '''
         return r'\{}'.format(self.command)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return str(self)
+
     ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
+        return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
@@ -169,16 +178,6 @@ class Fermata(AbjadValueObject):
         Returns tuple of strings.
         '''
         return Fermata._allowable_commands
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
-    @property
-    def _lilypond_format(self):
-        return str(self)
 
     ### PUBLIC PROPERTIES ###
 

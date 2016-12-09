@@ -42,7 +42,7 @@ class DateTimeToken(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
@@ -62,10 +62,9 @@ class DateTimeToken(AbjadObject):
         date_string = self._date_string or ''
         return '{}({})'.format(type(self).__name__, date_string)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         return self.date_string
 
     ### PUBLIC PROPERTIES ###

@@ -110,10 +110,9 @@ class NumberedPitch(Pitch):
         interval = -interval
         return interval.transpose(self)
 
-    ### PRIVATE PROPERTIES ###
+    ### PRIVATE METHODS ###
 
-    @property
-    def _lilypond_format(self):
+    def _get_lilypond_format(self):
         return self.pitch_name
 
     ### PUBLIC PROPERTIES ###

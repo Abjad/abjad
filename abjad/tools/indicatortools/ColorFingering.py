@@ -105,7 +105,7 @@ class ColorFingering(AbjadValueObject):
         Returns string.
         '''
         if format_specification == 'lilypond':
-            return self._lilypond_format
+            return self._get_lilypond_format()
         superclass = super(ColorFingering, self)
         return superclass.__format__(format_specification=format_specification)
 
@@ -154,7 +154,16 @@ class ColorFingering(AbjadValueObject):
             return self.number < expr.number
         raise TypeError('unorderable types')
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return repr(self.number)
+
     ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
+        return format(self.markup, 'lilypond')
 
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
@@ -164,16 +173,6 @@ class ColorFingering(AbjadValueObject):
         markup_format_pieces = markup._get_format_pieces()
         lilypond_format_bundle.right.markup.extend(markup_format_pieces)
         return lilypond_format_bundle
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return repr(self.number)
-
-    @property
-    def _lilypond_format(self):
-        return format(self.markup, 'lilypond')
 
     ### PUBLIC PROPERTIES ###
 

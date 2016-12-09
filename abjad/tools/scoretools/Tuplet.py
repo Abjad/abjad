@@ -123,6 +123,63 @@ class Tuplet(Container):
         '''
         return (self.multiplier,)
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _compact_representation(self):
+        if not self:
+            return '{{ {!s} }}'.format(self.multiplier)
+        return '{{ {!s} {} }}'.format(self.multiplier, self._contents_summary)
+
+    @property
+    def _has_power_of_two_denominator(self):
+        if self.multiplier:
+            return mathtools.is_nonnegative_integer_power_of_two(
+                self.multiplier.numerator)
+        else:
+            return True
+
+    @property
+    def _is_rest_filled(self):
+        from abjad.tools import scoretools
+        return all(isinstance(_, scoretools.Rest) for _ in self)
+
+    @property
+    def _multiplier_fraction_string(self):
+        if self.preferred_denominator is not None:
+            inverse_multiplier = durationtools.Multiplier(
+                self.multiplier.denominator, self.multiplier.numerator)
+            nonreduced_fraction = \
+                mathtools.NonreducedFraction(inverse_multiplier)
+            nonreduced_fraction = nonreduced_fraction.with_denominator(
+                self.preferred_denominator)
+            d, n = nonreduced_fraction.pair
+        else:
+            n, d = self.multiplier.numerator, self.multiplier.denominator
+        return '%s/%s' % (n, d)
+
+    @property
+    def _preprolated_duration(self):
+        return self.multiplied_duration
+
+    @property
+    def _ratio_string(self):
+        multiplier = self.multiplier
+        if multiplier is not None:
+            numerator = multiplier.numerator
+            denominator = multiplier.denominator
+            ratio_string = '{}:{}'.format(denominator, numerator)
+            return ratio_string
+        else:
+            return None
+
+    @property
+    def _summary(self):
+        if 0 < len(self):
+            return ', '.join([str(x) for x in self._music])
+        else:
+            return ''
+
     ### PRIVATE METHODS ###
 
     def _as_graphviz_node(self):
@@ -254,6 +311,10 @@ class Tuplet(Container):
             storage_format_kwargs_names=[],
             )
 
+    def _get_lilypond_format(self):
+        self._update_now(indicators=True)
+        return self._format_component()
+
     def _get_scale_durations_command_string(self):
         multiplier = self.multiplier
         string = r"\scaleDurations #'({} . {}) {{"
@@ -301,6 +362,728 @@ class Tuplet(Container):
             self.target_duration = tuplet_duration
         else:
             self.multiplier = durationtools.Multiplier(1)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def force_fraction(self):
+        r'''Gets and sets flag to force fraction formatting of tuplet.
+
+        ..  container:: example
+
+            **Example 1.** Gets forced fraction formatting of tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(tuplet))
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+
+            ::
+
+                >>> tuplet.force_fraction
+                False
+
+        ..  container:: example
+
+            **Example 2.** Sets forced fraction formatting of tuplet:
+
+            ::
+
+                >>> tuplet.force_fraction = True
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(tuplet))
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+        ..  container:: example
+
+            **Example 3.** Ignored when tuplet number text is overridden
+            explicitly:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> duration = inspect_(tuplet).get_duration()
+                >>> markup = duration.to_score_markup()
+                >>> override(tuplet).tuplet_number.text = markup
+                >>> staff = Staff([tuplet])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \override TupletNumber.text = \markup {
+                        \score
+                            {
+                                \new Score \with {
+                                    \override SpacingSpanner.spacing-increment = #0.5
+                                    proportionalNotationDuration = ##f
+                                } <<
+                                    \new RhythmicStaff \with {
+                                        \remove Time_signature_engraver
+                                        \remove Staff_symbol_engraver
+                                        \override Stem.direction = #up
+                                        \override Stem.length = #5
+                                        \override TupletBracket.bracket-visibility = ##t
+                                        \override TupletBracket.direction = #up
+                                        \override TupletBracket.padding = #1.25
+                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                                        tupletFullLength = ##t
+                                    } {
+                                        c'4
+                                    }
+                                >>
+                                \layout {
+                                    indent = #0
+                                    ragged-right = ##t
+                                }
+                            }
+                        }
+                    \times 2/3 {
+                        c'8
+                        d'8
+                        e'8
+                    }
+                    \revert TupletNumber.text
+                }
+
+        Returns boolean or none.
+        '''
+        return self._force_fraction
+
+    @force_fraction.setter
+    def force_fraction(self, arg):
+        if isinstance(arg, (bool)):
+            self._force_fraction = arg
+        else:
+            message = 'must be true or false: {!r}.'
+            message = message.format(arg)
+            raise TypeError(message)
+
+    @property
+    def force_times_command(self):
+        r'''Is true when trivial tuplets print LilyPond ``\times`` command.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Trivial tuplets normally print as a LilyPond
+            container enclosed in ``{`` and ``}`` but without the LilyPond
+            ``\times`` command:
+
+            ::
+
+                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet.force_times_command
+                False
+
+            ::
+
+                >>> f(trivial_tuplet)
+                {
+                    c'4
+                    d'4
+                    e'4
+                }
+
+            ::
+
+                >>> show(trivial_tuplet) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 2.** But it is possible to force a trivial tuplet to
+            format the LilyPond ``\times`` command:
+
+            ::
+
+                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet.force_times_command = True
+
+            ::
+
+                >>> f(trivial_tuplet)
+                \times 1/1 {
+                    c'4
+                    d'4
+                    e'4
+                }
+
+
+                >>> show(trivial_tuplet) # doctest: +SKIP
+
+        ..  container:: example
+
+            **Example 3.** This makes it possible to override tuplet number
+            text:
+
+            ::
+
+                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
+                >>> trivial_tuplet.force_times_command = True
+                >>> duration = inspect_(trivial_tuplet).get_duration()
+                >>> markup = duration.to_score_markup()
+                >>> markup = markup.scale((0.75, 0.75))
+                >>> override(trivial_tuplet).tuplet_number.text = markup
+                >>> staff = Staff([trivial_tuplet])
+
+            ::
+
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \new Staff {
+                    \override TupletNumber.text = \markup {
+                        \scale
+                            #'(0.75 . 0.75)
+                            \score
+                                {
+                                    \new Score \with {
+                                        \override SpacingSpanner.spacing-increment = #0.5
+                                        proportionalNotationDuration = ##f
+                                    } <<
+                                        \new RhythmicStaff \with {
+                                            \remove Time_signature_engraver
+                                            \remove Staff_symbol_engraver
+                                            \override Stem.direction = #up
+                                            \override Stem.length = #5
+                                            \override TupletBracket.bracket-visibility = ##t
+                                            \override TupletBracket.direction = #up
+                                            \override TupletBracket.padding = #1.25
+                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
+                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
+                                            tupletFullLength = ##t
+                                        } {
+                                            c'2.
+                                        }
+                                    >>
+                                    \layout {
+                                        indent = #0
+                                        ragged-right = ##t
+                                    }
+                                }
+                        }
+                    \times 1/1 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \revert TupletNumber.text
+                }
+
+        Defaults to false.
+
+        Set to true or false.
+
+        Returns true or false.
+        '''
+        return self._force_times_command
+
+    @force_times_command.setter
+    def force_times_command(self, arg):
+        if isinstance(arg, (bool, type(None))):
+            self._force_times_command = arg
+        else:
+            message = 'must be true or false: {!r}.'
+            message = message.format(arg)
+            raise TypeError(message)
+
+    @property
+    def implied_prolation(self):
+        r'''Gets implied prolation of tuplet.
+
+        ..  container:: example
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.implied_prolation
+                Multiplier(2, 3)
+
+        Defined equal to tuplet multiplier.
+
+        Returns multiplier.
+        '''
+        return self.multiplier
+
+    @property
+    def is_augmentation(self):
+        r'''Is true when tuplet multiplier is greater than ``1``.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Augmented tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_augmentation
+                True
+
+        ..  container:: example
+
+            **Example 2.** Diminished tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_augmentation
+                False
+
+        ..  container:: example
+
+            **Example 3.** Trivial tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((1, 1), "c'8. d'8. e'8.")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_augmentation
+                False
+
+        Returns true or false.
+        '''
+        if self.multiplier:
+            return 1 < self.multiplier
+        else:
+            return False
+
+    @property
+    def is_diminution(self):
+        r'''Is true when tuplet multiplier is less than ``1``.
+        Otherwise false.
+
+        ..  container:: example
+
+            **Example 1.** Augmented tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_diminution
+                False
+
+        ..  container:: example
+
+            **Example 2.** Diminished tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_diminution
+                True
+
+        ..  container:: example
+
+            **Example 3.** Trivial tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((1, 1), "c'8. d'8. e'8.")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_diminution
+                False
+
+        Returns true or false.
+        '''
+        if self.multiplier:
+            return self.multiplier < 1
+        else:
+            return False
+
+    @property
+    def is_invisible(self):
+        r'''Gets and sets invisibility status of tuplet.
+
+        ..  container:: example
+
+            **Example 1.** Gets tuplet invisibility flag:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(tuplet))
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            ::
+
+                >>> tuplet.is_invisible
+                False
+
+        ..  container:: example
+
+            **Example 2.** Sets tuplet invisibility flag:
+
+            ::
+
+                >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
+                >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
+                >>> staff = Staff([tuplet_1, tuplet_2])
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \times 2/3 {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+            ::
+
+                >>> staff[0].is_invisible = True
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(staff))
+                \new Staff {
+                    \scaleDurations #'(2 . 3) {
+                        c'4
+                        d'4
+                        e'4
+                    }
+                    \times 2/3 {
+                        d'4
+                        e'4
+                        f'4
+                    }
+                }
+
+        Hides tuplet bracket and tuplet number when true.
+
+        Preserves tuplet duration when true.
+
+        Returns boolean or none.
+        '''
+        return self._is_invisible
+
+    @is_invisible.setter
+    def is_invisible(self, arg):
+        assert isinstance(arg, bool), repr(arg)
+        self._is_invisible = arg
+
+    @property
+    def is_redundant(self):
+        r'''Is true when tuplet is redundant. Otherwise false.
+
+        Two conditions must be true for Abjad to identify a tuplet as
+        redundant. First, the tuplet must contain only leaves (not other
+        tuplets). Second, the durations of all leaves contained in the tuplet
+        must be able to be rewritten without a tuplet bracket.
+
+
+        ..  container:: example
+
+            **Example 1.** Redudant tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet(Multiplier(3, 4), "c'4 c'4")
+                >>> measure = Measure((3, 8), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 3/8
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/4 {
+                        c'4
+                        c'4
+                    }
+                }
+
+            ::
+
+                >>> tuplet.is_redundant
+                True
+
+            Can be rewritten without a tuplet bracket:
+
+                >>> measure = Measure((3, 8), "c'8. c'8.")
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 3/8
+                    c'8.
+                    c'8.
+                }
+
+        ..  container:: example
+
+            **Example 2.** Nonredundant tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet(Multiplier(3, 5), "c'4 c'4 c'4 c'4 c'4")
+                >>> measure = Measure((3, 4), [tuplet])
+                >>> show(measure) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(measure))
+                {
+                    \time 3/4
+                    \tweak text #tuplet-number::calc-fraction-text
+                    \times 3/5 {
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                        c'4
+                    }
+                }
+
+            ::
+
+                >>> tuplet.is_redundant
+                False
+
+            Can not be rewritten without a tuplet bracket.
+
+        Returns true or false.
+        '''
+        logical_ties = iterate(self).by_logical_tie(parentage_mask=self)
+        return all(_.get_duration().is_assignable for _ in logical_ties)
+
+    @property
+    def is_trivial(self):
+        r'''Is true when tuplet multiplier is equal to ``1``.
+        Otherwise false:
+
+        ..  container:: example
+
+            ::
+
+                >>> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
+
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.is_trivial
+                True
+
+        Returns true or false.
+        '''
+        return self.multiplier == 1
+
+    @property
+    def multiplied_duration(self):
+        r'''Multiplied duration of tuplet.
+
+        ..  container:: example
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+
+            ::
+
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.multiplied_duration
+                Duration(1, 4)
+
+        Returns duration.
+        '''
+        return self.multiplier * self._contents_duration
+
+    @property
+    def multiplier(self):
+        r'''Gets and sets multiplier of tuplet.
+
+        ..  container:: example
+
+            **Example 1.** Gets tuplet multiplier:
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ::
+
+                >>> tuplet.multiplier
+                Multiplier(2, 3)
+
+        ..  container:: example
+
+            **Example 2.** Sets tuplet multiplier:
+
+                >>> tuplet.multiplier = Multiplier(4, 3)
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(tuplet))
+                \tweak text #tuplet-number::calc-fraction-text
+                \times 4/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+        Returns multiplier.
+        '''
+        return self._multiplier
+
+    @multiplier.setter
+    def multiplier(self, expr):
+        if isinstance(expr, (int, fractions.Fraction)):
+            rational = durationtools.Multiplier(expr)
+        elif isinstance(expr, tuple):
+            rational = durationtools.Multiplier(expr)
+        else:
+            message = 'can not set tuplet multiplier: {!r}.'
+            message = message.format(expr)
+            raise ValueError(message)
+        if 0 < rational:
+            self._multiplier = rational
+        else:
+            message = 'tuplet multiplier must be positive: {!r}.'
+            message = message.format(expr)
+            raise ValueError(message)
+
+    @property
+    def preferred_denominator(self):
+        r'''Gets and sets preferred denominator of tuplet.
+
+        ..  container:: example
+
+            **Example 1.** Gets preferred denominator of tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> tuplet.preferred_denominator is None
+                True
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(tuplet))
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+        ..  container:: example
+
+            **Example 2.** Sets preferred denominator of tuplet:
+
+            ::
+
+                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(tuplet))
+                \times 2/3 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+            ::
+
+                >>> tuplet.preferred_denominator = 4
+                >>> show(tuplet) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> print(format(tuplet))
+                \times 4/6 {
+                    c'8
+                    d'8
+                    e'8
+                }
+
+        Returns positive integer or none.
+        '''
+        return self._preferred_denominator
+
+    @preferred_denominator.setter
+    def preferred_denominator(self, arg):
+        if isinstance(arg, int):
+            if not 0 < arg:
+                raise ValueError(arg)
+        elif not isinstance(arg, type(None)):
+            raise TypeError(arg)
+        self._preferred_denominator = arg
 
     ### PUBLIC METHODS ###
 
@@ -663,7 +1446,7 @@ class Tuplet(Container):
                 for x in written_durations
                 ]
         except AssignabilityError:
-            denominator = duration.denominator
+            denominator = duration._denominator
             note_durations = [
                 durationtools.Duration(x, denominator)
                 for x in ratio.numbers
@@ -1410,788 +2193,3 @@ class Tuplet(Container):
                 self.multiplier /= 2
                 for leaf in iterate(self).by_leaf():
                     leaf.written_duration *= 2
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _compact_representation(self):
-        if not self:
-            return '{{ {!s} }}'.format(self.multiplier)
-        return '{{ {!s} {} }}'.format(self.multiplier, self._contents_summary)
-
-    @property
-    def _has_power_of_two_denominator(self):
-        if self.multiplier:
-            return mathtools.is_nonnegative_integer_power_of_two(
-                self.multiplier.numerator)
-        else:
-            return True
-
-    @property
-    def _is_rest_filled(self):
-        from abjad.tools import scoretools
-        return all(isinstance(_, scoretools.Rest) for _ in self)
-
-    @property
-    def _lilypond_format(self):
-        self._update_now(indicators=True)
-        return self._format_component()
-
-    @property
-    def _multiplier_fraction_string(self):
-        if self.preferred_denominator is not None:
-            inverse_multiplier = durationtools.Multiplier(
-                self.multiplier.denominator, self.multiplier.numerator)
-            nonreduced_fraction = \
-                mathtools.NonreducedFraction(inverse_multiplier)
-            nonreduced_fraction = nonreduced_fraction.with_denominator(
-                self.preferred_denominator)
-            d, n = nonreduced_fraction.pair
-        else:
-            n, d = self.multiplier.numerator, self.multiplier.denominator
-        return '%s/%s' % (n, d)
-
-    @property
-    def _preprolated_duration(self):
-        return self.multiplied_duration
-
-    @property
-    def _ratio_string(self):
-        multiplier = self.multiplier
-        if multiplier is not None:
-            numerator = multiplier.numerator
-            denominator = multiplier.denominator
-            ratio_string = '{}:{}'.format(denominator, numerator)
-            return ratio_string
-        else:
-            return None
-
-    @property
-    def _summary(self):
-        if 0 < len(self):
-            return ', '.join([str(x) for x in self._music])
-        else:
-            return ''
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def force_fraction(self):
-        r'''Gets and sets flag to force fraction formatting of tuplet.
-
-        ..  container:: example
-
-            **Example 1.** Gets forced fraction formatting of tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(tuplet))
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-
-            ::
-
-                >>> tuplet.force_fraction
-                False
-
-        ..  container:: example
-
-            **Example 2.** Sets forced fraction formatting of tuplet:
-
-            ::
-
-                >>> tuplet.force_fraction = True
-                >>> show(tuplet) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(tuplet))
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-        ..  container:: example
-
-            **Example 3.** Ignored when tuplet number text is overridden
-            explicitly:
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> duration = inspect_(tuplet).get_duration()
-                >>> markup = duration.to_score_markup()
-                >>> override(tuplet).tuplet_number.text = markup
-                >>> staff = Staff([tuplet])
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    \override TupletNumber.text = \markup {
-                        \score
-                            {
-                                \new Score \with {
-                                    \override SpacingSpanner.spacing-increment = #0.5
-                                    proportionalNotationDuration = ##f
-                                } <<
-                                    \new RhythmicStaff \with {
-                                        \remove Time_signature_engraver
-                                        \remove Staff_symbol_engraver
-                                        \override Stem.direction = #up
-                                        \override Stem.length = #5
-                                        \override TupletBracket.bracket-visibility = ##t
-                                        \override TupletBracket.direction = #up
-                                        \override TupletBracket.padding = #1.25
-                                        \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                        \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                        tupletFullLength = ##t
-                                    } {
-                                        c'4
-                                    }
-                                >>
-                                \layout {
-                                    indent = #0
-                                    ragged-right = ##t
-                                }
-                            }
-                        }
-                    \times 2/3 {
-                        c'8
-                        d'8
-                        e'8
-                    }
-                    \revert TupletNumber.text
-                }
-
-        Returns boolean or none.
-        '''
-        return self._force_fraction
-
-    @force_fraction.setter
-    def force_fraction(self, arg):
-        if isinstance(arg, (bool)):
-            self._force_fraction = arg
-        else:
-            message = 'must be true or false: {!r}.'
-            message = message.format(arg)
-            raise TypeError(message)
-
-    @property
-    def force_times_command(self):
-        r'''Is true when trivial tuplets print LilyPond ``\times`` command.
-        Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Trivial tuplets normally print as a LilyPond
-            container enclosed in ``{`` and ``}`` but without the LilyPond
-            ``\times`` command:
-
-            ::
-
-                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
-                >>> trivial_tuplet.force_times_command
-                False
-
-            ::
-
-                >>> f(trivial_tuplet)
-                {
-                    c'4
-                    d'4
-                    e'4
-                }
-
-            ::
-
-                >>> show(trivial_tuplet) # doctest: +SKIP
-
-        ..  container:: example
-
-            **Example 2.** But it is possible to force a trivial tuplet to
-            format the LilyPond ``\times`` command:
-
-            ::
-
-                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
-                >>> trivial_tuplet.force_times_command = True
-
-            ::
-
-                >>> f(trivial_tuplet)
-                \times 1/1 {
-                    c'4
-                    d'4
-                    e'4
-                }
-
-            ::
-
-                >>> show(trivial_tuplet) # doctest: +SKIP
-
-        ..  container:: example
-
-            **Example 3.** This makes it possible to override tuplet number
-            text:
-
-            ::
-
-                >>> trivial_tuplet = Tuplet((1, 1), "c'4 d' e'")
-                >>> trivial_tuplet.force_times_command = True
-                >>> duration = inspect_(trivial_tuplet).get_duration()
-                >>> markup = duration.to_score_markup()
-                >>> markup = markup.scale((0.75, 0.75))
-                >>> override(trivial_tuplet).tuplet_number.text = markup
-                >>> staff = Staff([trivial_tuplet])
-
-            ::
-
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> f(staff)
-                \new Staff {
-                    \override TupletNumber.text = \markup {
-                        \scale
-                            #'(0.75 . 0.75)
-                            \score
-                                {
-                                    \new Score \with {
-                                        \override SpacingSpanner.spacing-increment = #0.5
-                                        proportionalNotationDuration = ##f
-                                    } <<
-                                        \new RhythmicStaff \with {
-                                            \remove Time_signature_engraver
-                                            \remove Staff_symbol_engraver
-                                            \override Stem.direction = #up
-                                            \override Stem.length = #5
-                                            \override TupletBracket.bracket-visibility = ##t
-                                            \override TupletBracket.direction = #up
-                                            \override TupletBracket.padding = #1.25
-                                            \override TupletBracket.shorten-pair = #'(-1 . -1.5)
-                                            \override TupletNumber.text = #tuplet-number::calc-fraction-text
-                                            tupletFullLength = ##t
-                                        } {
-                                            c'2.
-                                        }
-                                    >>
-                                    \layout {
-                                        indent = #0
-                                        ragged-right = ##t
-                                    }
-                                }
-                        }
-                    \times 1/1 {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \revert TupletNumber.text
-                }
-
-        Defaults to false.
-
-        Set to true or false.
-
-        Returns true or false.
-        '''
-        return self._force_times_command
-
-    @force_times_command.setter
-    def force_times_command(self, arg):
-        if isinstance(arg, (bool, type(None))):
-            self._force_times_command = arg
-        else:
-            message = 'must be true or false: {!r}.'
-            message = message.format(arg)
-            raise TypeError(message)
-
-    @property
-    def implied_prolation(self):
-        r'''Gets implied prolation of tuplet.
-
-        ..  container:: example
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.implied_prolation
-                Multiplier(2, 3)
-
-        Defined equal to tuplet multiplier.
-
-        Returns multiplier.
-        '''
-        return self.multiplier
-
-    @property
-    def is_augmentation(self):
-        r'''Is true when tuplet multiplier is greater than ``1``.
-        Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Augmented tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.is_augmentation
-                True
-
-        ..  container:: example
-
-            **Example 2.** Diminished tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.is_augmentation
-                False
-
-        ..  container:: example
-
-            **Example 3.** Trivial tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((1, 1), "c'8. d'8. e'8.")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.is_augmentation
-                False
-
-        Returns true or false.
-        '''
-        if self.multiplier:
-            return 1 < self.multiplier
-        else:
-            return False
-
-    @property
-    def is_diminution(self):
-        r'''Is true when tuplet multiplier is less than ``1``.
-        Otherwise false.
-
-        ..  container:: example
-
-            **Example 1.** Augmented tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((4, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.is_diminution
-                False
-
-        ..  container:: example
-
-            **Example 2.** Diminished tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'4 d'4 e'4")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.is_diminution
-                True
-
-        ..  container:: example
-
-            **Example 3.** Trivial tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((1, 1), "c'8. d'8. e'8.")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.is_diminution
-                False
-
-        Returns true or false.
-        '''
-        if self.multiplier:
-            return self.multiplier < 1
-        else:
-            return False
-
-    @property
-    def is_invisible(self):
-        r'''Gets and sets invisibility status of tuplet.
-
-        ..  container:: example
-
-            **Example 1.** Gets tuplet invisibility flag:
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(tuplet))
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-            ::
-
-                >>> tuplet.is_invisible
-                False
-
-        ..  container:: example
-
-            **Example 2.** Sets tuplet invisibility flag:
-
-            ::
-
-                >>> tuplet_1 = Tuplet((2, 3), "c'4 d'4 e'4")
-                >>> tuplet_2 = Tuplet((2, 3), "d'4 e'4 f'4")
-                >>> staff = Staff([tuplet_1, tuplet_2])
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    \times 2/3 {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \times 2/3 {
-                        d'4
-                        e'4
-                        f'4
-                    }
-                }
-
-            ::
-
-                >>> staff[0].is_invisible = True
-                >>> show(staff) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(staff))
-                \new Staff {
-                    \scaleDurations #'(2 . 3) {
-                        c'4
-                        d'4
-                        e'4
-                    }
-                    \times 2/3 {
-                        d'4
-                        e'4
-                        f'4
-                    }
-                }
-
-        Hides tuplet bracket and tuplet number when true.
-
-        Preserves tuplet duration when true.
-
-        Returns boolean or none.
-        '''
-        return self._is_invisible
-
-    @is_invisible.setter
-    def is_invisible(self, arg):
-        assert isinstance(arg, bool), repr(arg)
-        self._is_invisible = arg
-
-    @property
-    def is_redundant(self):
-        r'''Is true when tuplet is redundant. Otherwise false.
-
-        Two conditions must be true for Abjad to identify a tuplet as
-        redundant. First, the tuplet must contain only leaves (not other
-        tuplets). Second, the durations of all leaves contained in the tuplet
-        must be able to be rewritten without a tuplet bracket.
-
-
-        ..  container:: example
-
-            **Example 1.** Redudant tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet(Multiplier(3, 4), "c'4 c'4")
-                >>> measure = Measure((3, 8), [tuplet])
-                >>> show(measure) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(measure))
-                {
-                    \time 3/8
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/4 {
-                        c'4
-                        c'4
-                    }
-                }
-
-            ::
-
-                >>> tuplet.is_redundant
-                True
-
-            Can be rewritten without a tuplet bracket:
-
-                >>> measure = Measure((3, 8), "c'8. c'8.")
-                >>> show(measure) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(measure))
-                {
-                    \time 3/8
-                    c'8.
-                    c'8.
-                }
-
-        ..  container:: example
-
-            **Example 2.** Nonredundant tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet(Multiplier(3, 5), "c'4 c'4 c'4 c'4 c'4")
-                >>> measure = Measure((3, 4), [tuplet])
-                >>> show(measure) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(measure))
-                {
-                    \time 3/4
-                    \tweak text #tuplet-number::calc-fraction-text
-                    \times 3/5 {
-                        c'4
-                        c'4
-                        c'4
-                        c'4
-                        c'4
-                    }
-                }
-
-            ::
-
-                >>> tuplet.is_redundant
-                False
-
-            Can not be rewritten without a tuplet bracket.
-
-        Returns true or false.
-        '''
-        logical_ties = iterate(self).by_logical_tie(parentage_mask=self)
-        return all(_.get_duration().is_assignable for _ in logical_ties)
-
-    @property
-    def is_trivial(self):
-        r'''Is true when tuplet multiplier is equal to ``1``.
-        Otherwise false:
-
-        ..  container:: example
-
-            ::
-
-                >>> tuplet = Tuplet((1, 1), "c'8 d'8 e'8")
-
-            ::
-
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.is_trivial
-                True
-
-        Returns true or false.
-        '''
-        return self.multiplier == 1
-
-    @property
-    def multiplied_duration(self):
-        r'''Multiplied duration of tuplet.
-
-        ..  container:: example
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-
-            ::
-
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.multiplied_duration
-                Duration(1, 4)
-
-        Returns duration.
-        '''
-        return self.multiplier * self._contents_duration
-
-    @property
-    def multiplier(self):
-        r'''Gets and sets multiplier of tuplet.
-
-        ..  container:: example
-
-            **Example 1.** Gets tuplet multiplier:
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ::
-
-                >>> tuplet.multiplier
-                Multiplier(2, 3)
-
-        ..  container:: example
-
-            **Example 2.** Sets tuplet multiplier:
-
-                >>> tuplet.multiplier = Multiplier(4, 3)
-                >>> show(tuplet) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(tuplet))
-                \tweak text #tuplet-number::calc-fraction-text
-                \times 4/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-        Returns multiplier.
-        '''
-        return self._multiplier
-
-    @multiplier.setter
-    def multiplier(self, expr):
-        if isinstance(expr, (int, Fraction)):
-            rational = durationtools.Multiplier(expr)
-        elif isinstance(expr, tuple):
-            rational = durationtools.Multiplier(expr)
-        else:
-            message = 'can not set tuplet multiplier: {!r}.'
-            message = message.format(expr)
-            raise ValueError(message)
-        if 0 < rational:
-            self._multiplier = rational
-        else:
-            message = 'tuplet multiplier must be positive: {!r}.'
-            message = message.format(expr)
-            raise ValueError(message)
-
-    @property
-    def preferred_denominator(self):
-        r'''Gets and sets preferred denominator of tuplet.
-
-        ..  container:: example
-
-            **Example 1.** Gets preferred denominator of tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> tuplet.preferred_denominator is None
-                True
-                >>> show(tuplet) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(tuplet))
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-        ..  container:: example
-
-            **Example 2.** Sets preferred denominator of tuplet:
-
-            ::
-
-                >>> tuplet = Tuplet((2, 3), "c'8 d'8 e'8")
-                >>> show(tuplet) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(tuplet))
-                \times 2/3 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-            ::
-
-                >>> tuplet.preferred_denominator = 4
-                >>> show(tuplet) # doctest: +SKIP
-
-            ..  doctest::
-
-                >>> print(format(tuplet))
-                \times 4/6 {
-                    c'8
-                    d'8
-                    e'8
-                }
-
-        Returns positive integer or none.
-        '''
-        return self._preferred_denominator
-
-    @preferred_denominator.setter
-    def preferred_denominator(self, arg):
-        if isinstance(arg, int):
-            if not 0 < arg:
-                raise ValueError(arg)
-        elif not isinstance(arg, type(None)):
-            raise TypeError(arg)
-        self._preferred_denominator = arg

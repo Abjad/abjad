@@ -93,7 +93,7 @@ class Pitch(AbjadValueObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
@@ -133,14 +133,6 @@ class Pitch(AbjadValueObject):
 
     ### PRIVATE PROPERTIES ###
 
-    @abc.abstractproperty
-    def _lilypond_format(self):
-        r'''LilyPond input format.
-        '''
-        raise NotImplementedError
-
-    ### PRIVATE METHODS ###
-
     def _get_format_specification(self):
         if type(self).__name__.startswith('Named'):
             values = [str(self)]
@@ -156,6 +148,12 @@ class Pitch(AbjadValueObject):
             storage_format_args_values=values,
             template_names=['pitch_name'],
             )
+
+    @abc.abstractmethod
+    def _get_lilypond_format(self):
+        r'''LilyPond input format.
+        '''
+        raise NotImplementedError
 
     ### PUBLIC PROPERTIES ###
 

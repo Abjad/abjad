@@ -106,8 +106,9 @@ class KeySignature(AbjadValueObject):
     def _contents_repr_string(self):
         return '{!r}, {!r}'.format(self.tonic, self.mode)
 
-    @property
-    def _lilypond_format(self):
+    ### PRIVATE METHODS ###
+
+    def _get_lilypond_format(self):
         return r'\key {!s} \{!s}'.format(self.tonic, self.mode)
 
     ### PUBLIC PROPERTIES ###

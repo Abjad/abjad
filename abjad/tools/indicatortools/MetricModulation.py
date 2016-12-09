@@ -852,6 +852,12 @@ class MetricModulation(AbjadValueObject):
         '''
         return str(self._get_markup())
 
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _contents_repr_string(self):
+        return str(self)
+
     ### PRIVATE METHODS ###
 
     def _get_left_markup(self):
@@ -859,6 +865,9 @@ class MetricModulation(AbjadValueObject):
             return self.left_markup
         markup = durationtools.Duration._to_score_markup(self.left_rhythm)
         return markup
+
+    def _get_lilypond_format(self):
+        return str(self)
 
     def _get_lilypond_format_bundle(self, component=None):
         from abjad.tools import systemtools
@@ -901,16 +910,6 @@ class MetricModulation(AbjadValueObject):
             raise TypeError(message)
         assert isinstance(selection, selectiontools.Selection)
         return selection
-
-    ### PRIVATE PROPERTIES ###
-
-    @property
-    def _contents_repr_string(self):
-        return str(self)
-
-    @property
-    def _lilypond_format(self):
-        return str(self)
 
     ### PUBLIC PROPERTIES ###
 

@@ -172,7 +172,7 @@ class LilyPondFile(AbjadObject):
         '''
         from abjad.tools import systemtools
         if format_specification in ('', 'lilypond'):
-            return self._lilypond_format
+            return self._get_lilypond_format()
         elif format_specification == 'storage':
             return systemtools.StorageFormatAgent(self).get_storage_format()
         return str(self)
@@ -354,7 +354,7 @@ class LilyPondFile(AbjadObject):
     def _formatted_blocks(self):
         result = []
         for x in self.items:
-            if '_lilypond_format' in dir(x) and not isinstance(x, str):
+            if '_get_lilypond_format' in dir(x) and not isinstance(x, str):
                 lilypond_format = format(x)
                 if lilypond_format:
                     result.append(lilypond_format)
@@ -366,8 +366,8 @@ class LilyPondFile(AbjadObject):
     def _formatted_comments(self):
         result = []
         for comment in self.comments:
-            if '_lilypond_format' in dir(comment) and \
-                not isinstance(comment, str):
+            if ('_get_lilypond_format' in dir(comment) and
+                not isinstance(comment, str)):
                 lilypond_format = format(comment)
                 if lilypond_format:
                     string = '% {}'.format(comment)
@@ -410,17 +410,7 @@ class LilyPondFile(AbjadObject):
             result = ['\n'.join(result)]
         return result
 
-    @property
-    def _lilypond_format(self):
-        return '\n\n'.join(self._get_format_pieces())
-
     ### PRIVATE METHODS ###
-
-    def _get_score(self):
-        from abjad.tools import scoretools
-        score = self.score_block.items[0]
-        assert isinstance(score, scoretools.Score)
-        return score
 
     def _get_first_voice(self):
         from abjad.tools import scoretools
@@ -453,6 +443,15 @@ class LilyPondFile(AbjadObject):
         result.extend(self._formatted_scheme_settings)
         result.extend(self._formatted_blocks)
         return result
+
+    def _get_lilypond_format(self):
+        return '\n\n'.join(self._get_format_pieces())
+
+    def _get_score(self):
+        from abjad.tools import scoretools
+        score = self.score_block.items[0]
+        assert isinstance(score, scoretools.Score)
+        return score
 
     ### PUBLIC PROPERTIES ###
 

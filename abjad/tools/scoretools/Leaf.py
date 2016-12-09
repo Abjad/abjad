@@ -201,7 +201,7 @@ class Leaf(Component):
         return result
 
     def _get_format_pieces(self):
-        return self._lilypond_format.split('\n')
+        return self._get_lilypond_format().split('\n')
 
     def _get_format_specification(self):
         summary = self._compact_representation

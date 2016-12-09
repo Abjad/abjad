@@ -56,7 +56,7 @@ class StorageFormatAgent(AbjadValueObject):
         elif isinstance(self._client, type):
             return self._format_class(as_storage_format, is_indented)
         elif as_storage_format and (
-            hasattr(self._client, '_storage_format_specification') or
+            hasattr(self._client, '_get_storage_format_specification') or
             hasattr(self._client, '_get_format_specification')
             ):
             pieces = self._format_specced_object(
@@ -259,10 +259,12 @@ class StorageFormatAgent(AbjadValueObject):
         # NOTE: This acts to abstract-away our competing spec-specs.
         #       It can probably be removed/reduced in the near future.
         if as_storage_format:
-            spec = getattr(self._client, '_storage_format_specification', None)
+            spec = None
+            if hasattr(self._client, '_get_storage_format_specification'):
+                spec = self._client._get_storage_format_specification()
             if spec:
                 #print('STORAGE', type(self._client), getattr(self._client, 'name', None))
-                via = '_storage_format_specification'
+                via = '_get_storage_format_specification()'
                 args_values = spec.positional_argument_values
                 is_bracketed = False
                 is_indented = spec.is_indented
@@ -405,8 +407,8 @@ class StorageFormatAgent(AbjadValueObject):
             return []
         arguments = []
         if not isinstance(subject, type_type):
-            if hasattr(subject, '_storage_format_specification'):
-                specification = subject._storage_format_specification
+            if hasattr(subject, '_get_storage_format_specification'):
+                specification = subject._get_storage_format_specification()
                 keyword_argument_names = specification.keyword_argument_names
                 if keyword_argument_names is None:
                     keyword_argument_names = agent.signature_keyword_names
@@ -599,8 +601,8 @@ class StorageFormatAgent(AbjadValueObject):
 
     def get_storage_format(self):
         assert (
-            '_storage_format_specification' in dir(self._client) or
-            hasattr(self._client, '_storage_format_specification') or
+            '_get_storage_format_specification' in dir(self._client) or
+            hasattr(self._client, '_get_storage_format_specification') or
             hasattr(self._client, '_get_format_specification')
             )
         pieces = self._format_specced_object(
@@ -613,8 +615,12 @@ class StorageFormatAgent(AbjadValueObject):
         from abjad.tools import systemtools
         names = self.specification.storage_format_kwargs_names
         if names is None:
-            specification = getattr(self.client, '_storage_format_specification',
-                systemtools.StorageFormatSpecification(self.client))
+            if hasattr(self.client, '_get_storage_format_specification'):
+                specification = self.client._get_storage_format_specification()
+            else:
+                specification = systemtools.StorageFormatSpecification(
+                    self.client
+                    )
             names = specification.keyword_argument_names or ()
         keyword_dict = {}
         for name in names:
@@ -625,8 +631,12 @@ class StorageFormatAgent(AbjadValueObject):
         from abjad.tools import systemtools
         values = self.specification.storage_format_args_values
         if values is None:
-            specification = getattr(self.client, '_storage_format_specification',
-                systemtools.StorageFormatSpecification(self.client))
+            if hasattr(self.client, '_get_storage_format_specification'):
+                specification = self.client._get_storage_format_specification()
+            else:
+                specification = systemtools.StorageFormatSpecification(
+                    self.client
+                    )
             values = specification.positional_argument_values or ()
         return tuple(values)
 
@@ -635,8 +645,8 @@ class StorageFormatAgent(AbjadValueObject):
         if template_names is None:
             template_names = self.signature_names
             # TODO: This will be factored out when SFS/SFM are removed.
-            if hasattr(self.client, '_storage_format_specification'):
-                specification = self.client._storage_format_specification
+            if hasattr(self.client, '_get_storage_format_specification'):
+                specification = self.client._get_storage_format_specification()
                 template_names.extend(
                     specification._keyword_argument_names or ()
                     )
@@ -703,6 +713,10 @@ class StorageFormatAgent(AbjadValueObject):
                     positional_names.append(name)
                 else:
                     keyword_names.append(name)
+            # Python 3 allow keyword only parameters:
+            elif (hasattr(funcsigs, '_KEYWORD_ONLY') and
+                parameter.kind == funcsigs._KEYWORD_ONLY):
+                keyword_names.append(name)
             elif parameter.kind == funcsigs._VAR_POSITIONAL:
                 accepts_args = True
             elif parameter.kind == funcsigs._VAR_KEYWORD:

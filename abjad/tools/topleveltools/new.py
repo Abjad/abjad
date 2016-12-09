@@ -46,4 +46,7 @@ def new(expr, **kwargs):
         if name in template_dict:
             positional_values.append(template_dict.pop(name))
     result = type(expr)(*positional_values, **template_dict)
+    for name in getattr(expr, '_private_attributes_to_copy', []):
+        value = getattr(expr, name, None)
+        setattr(result, name, value)
     return result
