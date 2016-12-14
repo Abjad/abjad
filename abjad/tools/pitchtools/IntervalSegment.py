@@ -11,7 +11,7 @@ class IntervalSegment(Segment):
 
     ..  container:: example
 
-        **Example 1.** Initializes from string:
+        Initializes from string:
 
         ::
 
@@ -21,7 +21,7 @@ class IntervalSegment(Segment):
 
     ..  container:: example
 
-        **Example 2.** Initializes from pitch segment:
+        Initializes from pitch segment:
 
         ::
 

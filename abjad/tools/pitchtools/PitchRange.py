@@ -17,7 +17,7 @@ class PitchRange(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Pitches from C3 to C7, inclusive:
+        Pitches from C3 to C7, inclusive:
 
         ::
 
@@ -580,7 +580,7 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Returns true:
+            Returns true:
 
             ::
 
@@ -589,7 +589,7 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Returns false:
+            Returns false:
 
             ::
 
@@ -611,7 +611,7 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Lists octave transpositions of three-pitch chord:
+            Lists octave transpositions of three-pitch chord:
 
             ::
 
@@ -668,7 +668,7 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Voices C three times:
+            Voices C three times:
 
             ::
 
@@ -678,7 +678,7 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Voices B two times:
+            Voices B two times:
 
             ::
 
@@ -688,7 +688,7 @@ class PitchRange(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 3.** Returns empty because B can not voice:
+            Returns empty because B can not voice:
 
             ::
 

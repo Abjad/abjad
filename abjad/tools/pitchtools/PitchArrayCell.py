@@ -8,7 +8,7 @@ class PitchArrayCell(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** A pitch array cell:
+        A pitch array cell:
 
         ::
 
@@ -301,7 +301,7 @@ class PitchArrayCell(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets column start and stop indices of cell in array:
+            Gets column start and stop indices of cell in array:
 
             ::
 
@@ -312,8 +312,7 @@ class PitchArrayCell(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Gets column start and stop indices of cell outside
-            array:
+            Gets column start and stop indices of cell outside array:
 
             ::
 
@@ -335,7 +334,7 @@ class PitchArrayCell(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets column start index of cell in array:
+            Gets column start index of cell in array:
 
             ::
 
@@ -346,7 +345,7 @@ class PitchArrayCell(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Gets column start index of cell outside array:
+            Gets column start index of cell outside array:
 
             ::
 
@@ -370,7 +369,7 @@ class PitchArrayCell(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Gets column stop index of cell in array:
+            Gets column stop index of cell in array:
 
             ::
 
@@ -381,7 +380,7 @@ class PitchArrayCell(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Gets column stop index of cell outside array:
+            Gets column stop index of cell outside array:
 
             ::
 

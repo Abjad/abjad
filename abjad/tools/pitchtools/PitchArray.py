@@ -11,7 +11,7 @@ class PitchArray(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** A two-by-three pitch array:
+        A two-by-three pitch array:
 
         ::
 
@@ -511,7 +511,7 @@ class PitchArray(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Makes empty pitch array from score:
+            Makes empty pitch array from score:
 
             ::
 
@@ -569,7 +569,7 @@ class PitchArray(AbjadObject):
 
         ..  container:: example
 
-            **Example 2.** Makes populated pitch array from `score`:
+            Makes populated pitch array from `score`:
 
             ::
 
@@ -675,7 +675,7 @@ class PitchArray(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Lists three nonspanning subarrays:
+            Lists three nonspanning subarrays:
 
             ::
 
@@ -800,7 +800,7 @@ class PitchArray(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Changes two-by-three pitch array to measures:
+            Changes two-by-three pitch array to measures:
 
             ::
 

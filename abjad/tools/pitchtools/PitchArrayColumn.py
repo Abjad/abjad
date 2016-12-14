@@ -9,7 +9,7 @@ class PitchArrayColumn(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** A pitch array column:
+        A pitch array column:
 
         ::
 

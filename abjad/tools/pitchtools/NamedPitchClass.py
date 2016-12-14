@@ -8,7 +8,7 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes from pitch-class name:
+        Initializes from pitch-class name:
 
         ::
 
@@ -17,7 +17,7 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 2.** Initializes from number of semitones:
+        Initializes from number of semitones:
 
         ::
 
@@ -26,7 +26,7 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 3.** Initializes from named pitch:
+        Initializes from named pitch:
 
         ::
 
@@ -35,7 +35,7 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 4.** Initializes from numbered pitch:
+        Initializes from numbered pitch:
 
         ::
 
@@ -44,7 +44,7 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 5.** Initializes from numbered pitch-class:
+        Initializes from numbered pitch-class:
 
         ::
 
@@ -53,7 +53,7 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 6.** Initializes from named pitch-class:
+        Initializes from named pitch-class:
 
 
         ::
@@ -64,7 +64,7 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 7.** Initializes from named pitch-class:
+        Initializes from named pitch-class:
 
         ::
 
@@ -73,7 +73,7 @@ class NamedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 9.** Initializes from pitch-class name:
+        Initializes from pitch-class name:
 
             >>> pitch_class = pitchtools.NamedPitchClass('cs')
             >>> pitch_class

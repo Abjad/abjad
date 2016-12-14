@@ -10,7 +10,7 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example**: Sharp.
+        Sharp:
 
         ::
 
@@ -19,7 +19,7 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example**: Quarter-sharp.
+        Quarter-sharp:
 
         ::
 
@@ -28,7 +28,7 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example**: Three-quarters-flat.
+        Three-quarters-flat:
 
         ::
 
@@ -37,7 +37,7 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example**: Three-quarters-sharp.
+        Three-quarters-sharp:
 
         ::
 
@@ -46,7 +46,7 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example**: Flat.
+        Flat:
 
         ::
 
@@ -55,7 +55,7 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example**: Double-sharp.
+        Double-sharp:
 
         ::
 
@@ -64,7 +64,7 @@ class Accidental(AbjadValueObject):
 
     ..  container:: example
 
-        **Example**: Four-and-a-half-sharp.
+        Four-and-a-half-sharps:
 
         ::
 
@@ -365,13 +365,15 @@ class Accidental(AbjadValueObject):
 
     @property
     def abbreviation(self):
-        r'''Abbreviation of accidental.
+        r'''Gets abbreviation of accidental.
 
-        ::
+        ..  container:: example
 
-            >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.abbreviation
-            's'
+            ::
+
+                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental.abbreviation
+                's'
 
         Returns string.
         '''
@@ -389,14 +391,16 @@ class Accidental(AbjadValueObject):
 
     @property
     def is_adjusted(self):
-        r'''True for all accidentals equal to a nonzero number of semitones.
-        Otherwise false:
+        r'''Is true for all accidentals equal to a nonzero number of semitones.
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.is_adjusted
-            True
+            ::
+
+                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental.is_adjusted
+                True
 
         Returns true or false.
         '''
@@ -404,13 +408,15 @@ class Accidental(AbjadValueObject):
 
     @property
     def name(self):
-        r'''Name of accidental.
+        r'''Gets name of accidental.
 
-        ::
+        ..  container:: example
 
-            >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.name
-            'sharp'
+            ::
+
+                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental.name
+                'sharp'
 
         Returns string.
         '''
@@ -420,13 +426,15 @@ class Accidental(AbjadValueObject):
 
     @property
     def semitones(self):
-        r'''Semitones of accidental.
+        r'''Gets semitones of accidental.
 
-        ::
+        ..  container:: example
 
-            >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.semitones
-            1
+            ::
+
+                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental.semitones
+                1
 
         Returns number.
         '''
@@ -434,13 +442,15 @@ class Accidental(AbjadValueObject):
 
     @property
     def symbolic_string(self):
-        r'''Symbolic string of accidental.
+        r'''Gets symbolic string of accidental.
 
-        ::
+        ..  container:: example
 
-            >>> accidental = pitchtools.Accidental('s')
-            >>> accidental.symbolic_string
-            '#'
+            ::
+
+                >>> accidental = pitchtools.Accidental('s')
+                >>> accidental.symbolic_string
+                '#'
 
         Returns string.
         '''
@@ -453,12 +463,14 @@ class Accidental(AbjadValueObject):
     @staticmethod
     def is_abbreviation(expr):
         '''Is true when `expr` is an alphabetic accidental abbreviation.
-        Otherwise false:
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Accidental.is_abbreviation('tqs')
-            True
+            ::
+
+                >>> pitchtools.Accidental.is_abbreviation('tqs')
+                True
 
         The regex ``^([s]{1,2}|[f]{1,2}|t?q?[fs])!?$`` underlies this
         predicate.
@@ -471,14 +483,17 @@ class Accidental(AbjadValueObject):
 
     @staticmethod
     def is_symbolic_string(expr):
-        '''Is true when `expr` is a symbolic accidental string. Otherwise false:
+        '''Is true when `expr` is a symbolic accidental string.
+        Otherwise false.
 
-        ::
+        ..  container:: example
 
-            >>> pitchtools.Accidental.is_symbolic_string('#+')
-            True
+            ::
 
-        True on empty string.
+                >>> pitchtools.Accidental.is_symbolic_string('#+')
+                True
+
+        Empty string returns true.
 
         The regex ``^([#]{1,2}|[b]{1,2}|[#]?[+]|[b]?[~]|)$`` underlies this
         predicate.

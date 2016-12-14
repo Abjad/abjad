@@ -9,7 +9,7 @@ class CompoundOperator(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Rotation followed by transposition:
+        Rotation followed by transposition:
 
         ::
 
@@ -224,7 +224,7 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Gets string:
+            Gets string:
 
             ::
 
@@ -239,7 +239,7 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets string of empty operator:
+            Gets string of empty operator:
 
             ::
 
@@ -310,7 +310,7 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.** Gets operators:
+            Gets operators:
 
             ::
 
@@ -337,7 +337,7 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Does not show identity operators:
+            Does not show identity operators:
 
             ::
 
@@ -352,7 +352,7 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Shows identity operators:
+            Shows identity operators:
 
             ::
 
@@ -382,7 +382,7 @@ class CompoundOperator(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.** Composes alpha transform:
+            Composes alpha transform:
 
             ::
 

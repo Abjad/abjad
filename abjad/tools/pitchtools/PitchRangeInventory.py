@@ -8,7 +8,7 @@ class PitchRangeInventory(TypedList):
 
     ..  container:: example
 
-        **Example 1.** Inventory of two pitch ranges:
+        Inventory of two pitch ranges:
 
         ::
 

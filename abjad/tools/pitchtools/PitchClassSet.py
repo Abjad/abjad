@@ -10,7 +10,7 @@ class PitchClassSet(Set):
 
     ..  container:: example
 
-        **Example 1.** Initializes numbered pitch-class set:
+        Initializes numbered pitch-class set:
 
         ::
 
@@ -23,7 +23,7 @@ class PitchClassSet(Set):
 
     ..  container:: example
 
-        **Example 2.** Initializes named pitch-class set:
+        Initializes named pitch-class set:
 
         ::
 
@@ -55,7 +55,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 1.** Gets string of set sorted at initialization:
+            Gets string of set sorted at initialization:
 
             ::
 
@@ -65,7 +65,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 2.** Gets string of set not sorted at initialization:
+            Gets string of set not sorted at initialization:
 
             ::
 
@@ -193,7 +193,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 0.** Gets normal order of empty pitch-class set:
+            Gets normal order of empty pitch-class set:
 
             ::
 
@@ -203,7 +203,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 1.** Gets normal order:
+            Gets normal order:
 
             ::
 
@@ -213,7 +213,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 2.** Gets normal order:
+            Gets normal order:
 
             ::
 
@@ -223,8 +223,8 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 3.** Gets normal order of pitch-class set with degree of
-            symmetry equal to 2:
+            Gets normal order of pitch-class set with degree of symmetry equal
+            to 2:
 
             ::
 
@@ -234,8 +234,8 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 4.** Gets normal order of pitch-class set with degree of
-            symmetry equal to 4:
+            Gets normal order of pitch-class set with degree of symmetry equal
+            to 4:
 
             ::
 
@@ -266,7 +266,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 0.** Gets prime form of empty pitch-class set:
+            Gets prime form of empty pitch-class set:
 
             ::
 
@@ -282,7 +282,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 1.** Gets prime form:
+            Gets prime form:
 
             ::
 
@@ -298,7 +298,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 2.** Gets prime form:
+            Gets prime form:
 
             ::
 
@@ -314,8 +314,8 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 3.** Gets prime form of pitch-class set with degree of
-            symmetry equal to 2:
+            Gets prime form of pitch-class set with degree of symmetry equal to
+            2:
 
             ::
 
@@ -331,8 +331,8 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 4.** Gets prime form of pitch-class set with degree of
-            symmetry equal to 4:
+            Gets prime form of pitch-class set with degree of symmetry equal to
+            4:
 
             ::
 
@@ -348,8 +348,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 4.** Gets prime form of pitch-class that is not
-            inversion-equivalent:
+            Gets prime form of pitch-class that is not inversion-equivalent:
 
             ::
 
@@ -498,7 +497,7 @@ class PitchClassSet(Set):
 
         ..  container:: example
 
-            **Example 1.** Yields all pitch-class sets:
+            Yields all pitch-class sets:
 
             ::
 

@@ -7,7 +7,7 @@ class PitchClassVector(Vector):
 
     ..  container:: example
 
-        **Example 1.**
+        Pitch-class vector:
 
         ::
 
@@ -75,8 +75,7 @@ class PitchClassVector(Vector):
 
         ..  container:: example
 
-            **Example 1.** Gets interpreter representation of pitch-class
-            vector:
+            Gets interpreter representation of pitch-class vector:
 
             ::
 
@@ -92,8 +91,7 @@ class PitchClassVector(Vector):
 
         ..  container:: example
 
-            **Example 2.** Initializes from interpreter representation of
-            pitch-class vector:
+            Initializes from interpreter representation of pitch-class vector:
 
 
                 >>> pitchtools.PitchClassVector(vector)

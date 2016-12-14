@@ -9,7 +9,7 @@ class IntervalClassSegment(Segment):
 
     ..  container:: example
 
-        **Example 1.** An interval-class segment:
+        An interval-class segment:
 
         ::
 
@@ -19,7 +19,7 @@ class IntervalClassSegment(Segment):
 
     ..  container:: example
 
-        **Example 2.** Another interval-class segment:
+        Another interval-class segment:
 
         ::
 

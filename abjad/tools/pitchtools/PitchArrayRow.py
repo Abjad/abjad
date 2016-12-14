@@ -10,7 +10,7 @@ class PitchArrayRow(AbjadObject):
 
     ..  container:: example
 
-        **Example 1.** A pitch array row:
+        A pitch array row:
 
         ::
 
@@ -532,7 +532,7 @@ class PitchArrayRow(AbjadObject):
 
         ..  container:: example
 
-            **Example 1.** Changes row to measure:
+            Changes row to measure:
 
             ::
 

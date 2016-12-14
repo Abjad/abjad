@@ -7,7 +7,7 @@ class RegistrationInventory(TypedList):
 
     ..  container:: example
 
-        **Example.** Inventory with two registrations:
+        Inventory with two registrations:
         
         ::
 

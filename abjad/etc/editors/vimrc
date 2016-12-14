@@ -86,20 +86,24 @@ noremap <leader>#OP /PRIVATE PROPERTIES<cr>
 noremap <leader>#PM /PUBLIC METHODS<cr>
 noremap <leader>#PP /PUBLIC PROPERTIES<cr>
 
-" debugging
-map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
 " comments
 noremap <F4> <Esc>:'a,'bs/#//<cr>
 noremap <F6> <Esc>:'a,'bs/^/#/<cr>
 vnoremap <F4> :s/#//<cr>
 vnoremap <F6> :s/^/#/<cr>
 
+" debugging
+map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
 " cursor vertical center
 :nnoremap <leader>zz :let &scrolloff=999-&scrolloff<cr>
 
 " folding
 noremap <leader>zm zMzr
+
+" headers
+nnoremap <C-t> :center 80<cr>hhv0r#A<space><esc>40A#<esc>kJ$d79<bar>YppVr#kk.
+nnoremap <C-y> :center 80<cr>hhv0r#A<space><esc>40A#<esc>kJ$d79<bar>^
 
 " hjkl navigation only
 " but note that arrow keys always work in paste mode

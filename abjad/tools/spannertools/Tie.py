@@ -37,7 +37,7 @@ class Tie(Spanner):
             >>> staff = Staff("c'4 d' e' f'")
             >>> attach(Tie(), staff[:])
             Traceback (most recent call last):
-            ...
+                ...
             Exception: Tie() attachment test fails for Selection([Note("c'4"), Note("d'4"), Note("e'4"), Note("f'4")]).
 
     ..  container:: example

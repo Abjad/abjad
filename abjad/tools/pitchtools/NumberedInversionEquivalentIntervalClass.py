@@ -9,7 +9,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes from integer:
+        Initializes from integer:
 
         ::
 
@@ -18,7 +18,7 @@ class NumberedInversionEquivalentIntervalClass(NumberedIntervalClass):
 
     ..  container:: example
 
-        **Example 2.** Initializes from string:
+        Initializes from string:
 
         ::
 

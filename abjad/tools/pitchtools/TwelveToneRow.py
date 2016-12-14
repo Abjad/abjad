@@ -8,7 +8,7 @@ class TwelveToneRow(PitchClassSegment):
 
     ..  container:: example
 
-        **Example 1.** Initializes from defaults:
+        Initializes from defaults:
 
         ::
 
@@ -17,7 +17,7 @@ class TwelveToneRow(PitchClassSegment):
 
     ..  container:: example
 
-        **Example 2.** Initializes from integers:
+        Initializes from integers:
 
         ::
 
@@ -27,7 +27,7 @@ class TwelveToneRow(PitchClassSegment):
 
     ..  container:: example
 
-        **Interpreter representation:**
+        Interpreter representation:
 
         ::
 
@@ -65,7 +65,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
 
             ::
 
@@ -75,7 +75,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Permutes pitch-classes:
+            Permutes pitch-classes:
             
             ::
 
@@ -94,7 +94,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Permutes pitch-class segment:
+            Permutes pitch-class segment:
             
             ::
 
@@ -124,7 +124,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 3.** Permutes row:
+            Permutes row:
 
             ::
 
@@ -181,7 +181,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 4.** Permutes row:
+            Permutes row:
 
             ::
 
@@ -238,7 +238,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 5.** Permutes row:
+            Permutes row:
 
             ::
 
@@ -311,7 +311,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
 
             ::
 
@@ -321,7 +321,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Gets first hexachord:
+            Gets first hexachord:
 
             ::
 
@@ -345,7 +345,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Gets second hexachord:
+            Gets second hexachord:
 
             ::
 
@@ -368,7 +368,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns pitch-class segment:**
+            Returns pitch-class segment:
 
             ::
 
@@ -391,7 +391,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Illustrates row:
+            Illustrates row:
 
             ::
 
@@ -422,7 +422,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Illustrates row: HERE
+            Illustrates row:
 
             ::
 
@@ -453,7 +453,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns LilyPond file:**
+            Returns LilyPond file:
 
             ::
 
@@ -469,7 +469,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Multiplies row:
+            Multiplies row:
 
             ::
 
@@ -516,7 +516,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Multiplies row:
+            Multiplies row:
 
             ::
 
@@ -565,7 +565,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns pitch-class segment:**
+            Returns pitch-class segment:
 
             ::
 
@@ -581,7 +581,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Multiplies integer by row:
+            Multiplies integer by row:
 
             ::
 
@@ -628,7 +628,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Multiplies integer by row:
+            Multiplies integer by row:
 
             ::
 
@@ -676,7 +676,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns pitch-class segment:**
+            Returns pitch-class segment:
 
             ::
 
@@ -711,7 +711,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Gets item class:
+            Gets item class:
 
             ::
 
@@ -725,7 +725,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Gets item class:
+            Gets item class:
 
             ::
 
@@ -740,7 +740,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns numbered pitch-class class:**
+            Returns numbered pitch-class class:
 
             ::
 
@@ -757,7 +757,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Gets items in row:
+            Gets items in row:
         
             ::
 
@@ -784,7 +784,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Gets items in row:
+            Gets items in row:
 
             ::
 
@@ -811,7 +811,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns list:**
+            Returns list:
 
             ::
 
@@ -829,7 +829,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
         
             ::
 
@@ -839,7 +839,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Gets alpha transform of row:
+            Gets alpha transform of row:
 
                 >>> alpha = row.alpha()
                 >>> show(alpha) # doctest: +SKIP
@@ -867,7 +867,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Gets alpha transform of alpha transform of row:
+            Gets alpha transform of alpha transform of row:
 
                 >>> alpha = row.alpha().alpha()
                 >>> show(alpha) # doctest: +SKIP
@@ -900,7 +900,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns twelve-tone row:**
+            Returns twelve-tone row:
 
             ::
 
@@ -916,7 +916,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
         
             ::
 
@@ -926,14 +926,14 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Counts pitch-class ``11`` in row:
+            Counts pitch-class ``11`` in row:
         
                 >>> row.count(11)
                 1
 
         ..  container:: example
 
-            **Example 2.** Counts pitch-class ``9`` in row:
+            Counts pitch-class ``9`` in row:
 
             ::
                 
@@ -942,7 +942,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 3.** Counts string in row:
+            Counts string in row:
 
             ::
                 
@@ -951,7 +951,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns nonnegative integer equal to 0 or 1:**
+            Returns nonnegative integer equal to 0 or 1:
 
             ::
 
@@ -981,7 +981,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Is false:
+            Is false:
 
             ::
             
@@ -995,7 +995,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Is false:
+            Is false:
 
             ::
             
@@ -1020,7 +1020,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
         
             ::
 
@@ -1030,7 +1030,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Gets index of pitch-class ``11``:
+            Gets index of pitch-class ``11``:
         
             ::
 
@@ -1039,7 +1039,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Gets index of pitch-class ``9``:
+            Gets index of pitch-class ``9``:
 
             ::
                 
@@ -1048,7 +1048,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns nonnegative integer less than 12:**
+            Returns nonnegative integer less than 12:
 
             ::
                 
@@ -1064,7 +1064,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
 
             ::
 
@@ -1074,7 +1074,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Inverts row about first pitch-class `axis` is none:
+            Inverts row about first pitch-class `axis` is none:
 
             ::
 
@@ -1111,7 +1111,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Inverts row about pitch-class ``1``:
+            Inverts row about pitch-class ``1``:
 
             ::
 
@@ -1144,7 +1144,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 3.** Inverts row about pitch-class ``0``:
+            Inverts row about pitch-class ``0``:
 
             ::
 
@@ -1174,7 +1174,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 4.** Inverts row about pitch-class ``5``:
+            Inverts row about pitch-class ``5``:
 
             ::
 
@@ -1204,7 +1204,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns twelve-tone row:**
+            Returns twelve-tone row:
 
             ::
 
@@ -1223,7 +1223,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
 
             ::
 
@@ -1233,7 +1233,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Multiplies pitch-classes in row by 5:
+            Multiplies pitch-classes in row by 5:
 
             ::
 
@@ -1263,7 +1263,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Multiplies pitch-classes in row by 7:
+            Multiplies pitch-classes in row by 7:
 
             ::
 
@@ -1293,7 +1293,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 3.** Multiplies pitch-classes in row by 1:
+            Multiplies pitch-classes in row by 1:
 
             ::
 
@@ -1323,7 +1323,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns twelve-tone row:**
+            Returns twelve-tone row:
 
             ::
 
@@ -1339,7 +1339,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
 
             ::
 
@@ -1349,7 +1349,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Gets retrograde of row:
+            Gets retrograde of row:
 
             ::
 
@@ -1379,7 +1379,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Gets retrograde of retrograde of row:
+            Gets retrograde of retrograde of row:
 
             ::
 
@@ -1414,7 +1414,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns row:**
+            Returns row:
 
             ::
 
@@ -1430,7 +1430,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
 
             ::
 
@@ -1440,7 +1440,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Rotates row to the right:
+            Rotates row to the right:
 
             ::
 
@@ -1470,7 +1470,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Rotates row to the left:
+            Rotates row to the left:
 
             ::
 
@@ -1500,7 +1500,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 3.** Rotates row by zero:
+            Rotates row by zero:
 
             ::
 
@@ -1535,8 +1535,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 4.** Stravinsky-style rotation back-transposes row to
-            zero:
+            Stravinsky-style rotation back-transposes row to zero:
 
             ::
 
@@ -1566,7 +1565,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns row:**
+            Returns row:
 
             ::
 
@@ -1582,7 +1581,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example row:**
+            Example row:
 
             ::
 
@@ -1592,7 +1591,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 1.** Transposes row by positive index:
+            Transposes row by positive index:
 
             ::
 
@@ -1622,7 +1621,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 2.** Transposes row by negative index:
+            Transposes row by negative index:
 
             ::
 
@@ -1652,7 +1651,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Example 3.** Transposes row by zero index:
+            Transposes row by zero index:
 
             ::
 
@@ -1687,7 +1686,7 @@ class TwelveToneRow(PitchClassSegment):
 
         ..  container:: example
 
-            **Returns row:**
+            Returns row:
 
             ::
 

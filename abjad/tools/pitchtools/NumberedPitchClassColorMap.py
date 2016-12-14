@@ -8,7 +8,7 @@ class NumberedPitchClassColorMap(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Maps pitch-classes to red, green and blue:
+        Maps pitch-classes to red, green and blue:
 
         ::
 

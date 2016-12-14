@@ -9,7 +9,7 @@ class NumberedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes from integer:
+        Initializes from integer:
 
         ::
 
@@ -18,7 +18,7 @@ class NumberedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        **Example 2.** Initializes from float:
+        Initializes from float:
 
         ::
 
@@ -27,7 +27,7 @@ class NumberedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        **Example 3.** Initializes from string:
+        Initializes from string:
 
         ::
 

@@ -57,7 +57,7 @@ class Transposition(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1:**
+            Successive transposition:
 
             ::
 
@@ -85,7 +85,7 @@ class Transposition(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Same as above because transposition commutes:
+            Same as above because transposition commutes:
 
             ::
 

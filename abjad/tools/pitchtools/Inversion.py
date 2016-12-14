@@ -60,7 +60,7 @@ class Inversion(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1:**
+            Transposition followed by inversion:
 
             ::
 
@@ -88,7 +88,7 @@ class Inversion(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2:**
+            Inversion followed by transposition:
 
             ::
 

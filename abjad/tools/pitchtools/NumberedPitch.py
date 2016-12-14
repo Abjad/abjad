@@ -10,7 +10,7 @@ class NumberedPitch(Pitch):
 
     ..  container:: example
 
-        **Example 1.** Initializes from pitch number:
+        Initializes from pitch number:
 
         ::
 
@@ -378,7 +378,7 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Interpolates up from C4 to C5:
+            Interpolates up from C4 to C5:
 
             ::
 
@@ -400,7 +400,7 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Interpolates down from C5 to C4:
+            Interpolates down from C5 to C4:
 
             ::
 
@@ -447,7 +447,7 @@ class NumberedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Inverts pitch-class about pitch-class 0 explicitly:
+            Inverts pitch-class about pitch-class 0 explicitly:
 
             ::
 
@@ -461,7 +461,7 @@ class NumberedPitch(Pitch):
 
             Default behavior.
 
-            **Example 2.** Inverts pitch-class about pitch-class 0 implicitly:
+            Inverts pitch-class about pitch-class 0 implicitly:
 
             ::
 
@@ -475,7 +475,7 @@ class NumberedPitch(Pitch):
 
             Default behavior.
 
-            **Example 3.** Inverts pitch-class about pitch-class -3:
+            Inverts pitch-class about pitch-class -3:
 
             ::
 

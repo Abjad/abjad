@@ -12,7 +12,7 @@ class NamedInterval(Interval):
 
     ..  container:: example
 
-        **Example 1.** Initializes ascending major ninth from string:
+        Initializes ascending major ninth from string:
 
         ::
 
@@ -22,8 +22,7 @@ class NamedInterval(Interval):
 
     ..  container:: example
 
-        **Example 2.** Initializes descending major third from number of
-        semitones:
+        Initializes descending major third from number of semitones:
 
         ::
 
@@ -624,7 +623,7 @@ class NamedInterval(Interval):
 
         ..  container:: example
 
-            **Example 1.** Transposes chord:
+            Transposes chord:
 
             ::
 

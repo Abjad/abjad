@@ -55,7 +55,7 @@ class Retrograde(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1:**
+            Transposition followed by retrograde:
 
             ::
 
@@ -83,8 +83,7 @@ class Retrograde(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Same as above because retrograde and transposition
-            commute:
+            Same as above because retrograde and transposition commute:
 
             ::
 

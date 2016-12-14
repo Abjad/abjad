@@ -8,7 +8,7 @@ class NamedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes descending major second from string:
+        Initializes descending major second from string:
 
         ::
 
@@ -17,8 +17,8 @@ class NamedIntervalClass(IntervalClass):
 
     ..  container:: example
 
-        **Example 2.** Initializes descending major second from quality string
-        and number of semitones:
+        Initializes descending major second from quality string and number of
+        semitones:
 
         ::
 

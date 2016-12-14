@@ -11,7 +11,7 @@ class NumberedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes from number of semitones:
+        Initializes from number of semitones:
 
         ::
 
@@ -20,7 +20,7 @@ class NumberedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 2.** Initializes from pitch name.
+        Initializes from pitch name.
 
         ::
 
@@ -29,7 +29,7 @@ class NumberedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 3.** Initializes from named pitch.
+        Initializes from named pitch.
 
         ::
 
@@ -38,7 +38,7 @@ class NumberedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 4.** Initializes from numbered pitch.
+        Initializes from numbered pitch.
 
         ::
 
@@ -47,7 +47,7 @@ class NumberedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 5.** Initializes from named pitch-class.
+        Initializes from named pitch-class.
 
         ::
 
@@ -56,7 +56,7 @@ class NumberedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 6.** Initializes from numbered pitch-class.
+        Initializes from numbered pitch-class.
 
         ::
 
@@ -65,7 +65,7 @@ class NumberedPitchClass(PitchClass):
 
     ..  container:: example
 
-        **Example 7.** Initializes from numbered pitch-class.
+        Initializes from numbered pitch-class.
 
         ::
 
@@ -200,7 +200,7 @@ class NumberedPitchClass(PitchClass):
 
         ..  container:: example
 
-            **Example 1.** Compares less than:
+            Compares less than:
 
             ::
 
@@ -209,7 +209,7 @@ class NumberedPitchClass(PitchClass):
 
         ..  container:: example
 
-            **Example 2.** Does not compare less than:
+            Does not compare less than:
 
             ::
 

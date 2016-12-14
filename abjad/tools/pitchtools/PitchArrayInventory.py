@@ -7,7 +7,7 @@ class PitchArrayInventory(TypedList):
 
     ..  container:: example
 
-        **Example 1.** A pitch array inventory:
+        A pitch array inventory:
 
         ::
 

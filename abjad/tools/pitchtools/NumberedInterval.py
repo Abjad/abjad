@@ -12,7 +12,7 @@ class NumberedInterval(Interval):
 
     ..  container:: example
 
-        **Example 1.** Initializes from number of semitones:
+        Initializes from number of semitones:
 
         ::
 
@@ -366,7 +366,7 @@ class NumberedInterval(Interval):
 
         ..  container:: example
 
-            **Example 1.** Transposes chord:
+            Transposes chord:
 
             ::
 

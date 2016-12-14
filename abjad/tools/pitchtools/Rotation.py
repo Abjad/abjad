@@ -67,7 +67,7 @@ class Rotation(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1:**
+            Transposition followed by rotation:
 
             ::
 
@@ -95,8 +95,7 @@ class Rotation(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Same as above because rotation and transposition
-            commute:
+            Same as above because rotation and transposition commute:
 
             ::
 

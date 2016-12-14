@@ -9,7 +9,7 @@ class Registration(TypedList):
 
     ..  container:: example
 
-        **Example 1.** Registration in two parts:
+        Registration in two parts:
 
         ::
 
@@ -50,7 +50,7 @@ class Registration(TypedList):
 
         ..  container:: example
 
-            **Example 1.** Transposes four pitches:
+            Transposes four pitches:
 
             ::
 
@@ -66,7 +66,7 @@ class Registration(TypedList):
 
         ..  container:: example
 
-            **Example 2.** Transposes four other pitches:
+            Transposes four other pitches:
 
             ::
 
@@ -82,7 +82,7 @@ class Registration(TypedList):
 
         ..  container:: example
 
-            **Example 3.** Transposes four quartertones:
+            Transposes four quartertones:
 
             ::
 

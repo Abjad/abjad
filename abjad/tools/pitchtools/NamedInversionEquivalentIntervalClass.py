@@ -8,7 +8,7 @@ class NamedInversionEquivalentIntervalClass(NamedIntervalClass):
 
     ..  container:: example
 
-        **Example 1.** Initializes from string:
+        Initializes from string:
 
         ::
 

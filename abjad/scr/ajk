@@ -1,24 +1,30 @@
 #! /usr/bin/env python
 from __future__ import print_function
+import abjad
 import sys
 import time
-from abjad.tools import systemtools
 
 
-systemtools.IOManager.clear_terminal()
+abjad.systemtools.IOManager.clear_terminal()
 start_time = time.time()
 argument = sys.argv[1]
+command = r'ack'
+command += r' --ignore-dir=build'
+command += r' --ignore-dir=_docs'
+command += r' --ignore-dir=docs'
+command += r' --ignore-file=ext:eps'
+command += r' --ignore-file=is:.coverage'
 if "'" in argument:
-    command = r'ack --ignore-dir=docs --ignore-dir=build --ignore-file=is:.coverage "{}"'
+    command += r' "{}"'
 else:
-    command = r"ack --ignore-dir=docs --ignore-dir=build --ignore-file=is:.coverage '{}'"
+    command += r" '{}'"
 command = command.format(argument)
 print('abjad-ack is running this command:')
 print()
 print('    ' + command)
 print()
 
-systemtools.IOManager.spawn_subprocess(command)
+abjad.systemtools.IOManager.spawn_subprocess(command)
 stop_time = time.time()
 total_time = stop_time - start_time
 

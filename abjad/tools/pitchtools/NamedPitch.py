@@ -12,7 +12,7 @@ class NamedPitch(Pitch):
 
     ..  container:: example
 
-        **Example 1.** Initializes from pitch name:
+        Initializes from pitch name:
 
         ::
 
@@ -21,7 +21,7 @@ class NamedPitch(Pitch):
 
     ..  container:: example
 
-        **Example 2.** Initializes from pitch-class / octave string:
+        Initializes from pitch-class / octave string:
 
         ::
 
@@ -106,7 +106,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Adds an ascending major second to C#5:
+            Adds an ascending major second to C#5:
 
             ::
 
@@ -115,7 +115,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Adds a descending major second to C#5:
+            Adds a descending major second to C#5:
 
             ::
 
@@ -134,7 +134,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Copies C#5:
+            Copies C#5:
 
             ::
 
@@ -144,7 +144,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Copies Db5:
+            Copies Db5:
 
             ::
 
@@ -161,7 +161,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** C#5 equals C#5:
+            C#5 equals C#5:
 
             ::
 
@@ -170,7 +170,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** C#5 does not equal Db5:
+            C#5 does not equal Db5:
 
             ::
 
@@ -192,7 +192,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Changes C#5 to float:
+            Changes C#5 to float:
 
             ::
 
@@ -201,7 +201,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Changes Ctqs5 to float:
+            Changes Ctqs5 to float:
 
             ::
 
@@ -273,7 +273,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Changes C#5 to integer:
+            Changes C#5 to integer:
 
             ::
 
@@ -282,7 +282,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Changes Db5 to integer:
+            Changes Db5 to integer:
 
             ::
 
@@ -346,7 +346,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** C#5 is not equal to D#5:
+            C#5 is not equal to D#5:
 
             ::
 
@@ -355,7 +355,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** C#5 is equal to C#5:
+            C#5 is equal to C#5:
 
             ::
 
@@ -371,7 +371,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets string representation of C#5:
+            Gets string representation of C#5:
 
             ::
 
@@ -380,7 +380,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets string representation of Db5:
+            Gets string representation of Db5:
 
             ::
 
@@ -396,7 +396,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Subtracts B4 from C#5:
+            Subtracts B4 from C#5:
 
             ::
 
@@ -405,7 +405,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Subtracts F#5 from C#5:
+            Subtracts F#5 from C#5:
 
             ::
 
@@ -540,7 +540,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets accidental of C#5:
+            Gets accidental of C#5:
 
             ::
 
@@ -549,7 +549,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets accidental of C5:
+            Gets accidental of C5:
 
             ::
 
@@ -567,7 +567,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets alteration of C#5 in semitones:
+            Gets alteration of C#5 in semitones:
 
             ::
 
@@ -576,7 +576,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets alteration of Ctqs5 in semitones:
+            Gets alteration of Ctqs5 in semitones:
 
             ::
 
@@ -593,7 +593,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets diatonic pitch-class name of C#5:
+            Gets diatonic pitch-class name of C#5:
 
             ::
 
@@ -602,7 +602,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets diatonic pitch-class names of many pitches:
+            Gets diatonic pitch-class names of many pitches:
 
             ::
 
@@ -652,7 +652,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets diatonic pitch-class number of C#5:
+            Gets diatonic pitch-class number of C#5:
 
             ::
 
@@ -661,7 +661,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets diatonic pitch-class numbers of many pitches:
+            Gets diatonic pitch-class numbers of many pitches:
 
             ::
 
@@ -708,7 +708,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets diatonic pitch name of C#5:
+            Gets diatonic pitch name of C#5:
 
             ::
 
@@ -717,7 +717,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets diatonic pitch names of many pitches:
+            Gets diatonic pitch names of many pitches:
 
             ::
 
@@ -767,7 +767,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets diatonic pitch number of C#5:
+            Gets diatonic pitch number of C#5:
 
             ::
 
@@ -776,7 +776,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets diatonic pitch numbers of many pitches:
+            Gets diatonic pitch numbers of many pitches:
 
             ::
 
@@ -825,7 +825,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets new named pitch from C#5:
+            Gets new named pitch from C#5:
 
             ::
 
@@ -834,7 +834,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets new named pitch from Db5:
+            Gets new named pitch from Db5:
 
             ::
 
@@ -851,7 +851,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets named pitch-class of C#5:
+            Gets named pitch-class of C#5:
 
             ::
 
@@ -860,7 +860,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets named pitch-class of Db5:
+            Gets named pitch-class of Db5:
 
             ::
 
@@ -878,7 +878,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets numbered pitch corresponding to C#5:
+            Gets numbered pitch corresponding to C#5:
 
             ::
 
@@ -887,7 +887,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets numbered pitch corresponding to Db5:
+            Gets numbered pitch corresponding to Db5:
 
             ::
 
@@ -905,7 +905,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets numbered pitch-class corresponding to C#5:
+            Gets numbered pitch-class corresponding to C#5:
 
             ::
 
@@ -914,7 +914,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets numbered pitch-class corresponding to Db5:
+            Gets numbered pitch-class corresponding to Db5:
 
             ::
 
@@ -932,7 +932,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets octave of C#5:
+            Gets octave of C#5:
 
             ::
 
@@ -941,7 +941,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets octave of Db5:
+            Gets octave of Db5:
 
             ::
 
@@ -959,7 +959,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets octave number of C#5:
+            Gets octave number of C#5:
 
             ::
 
@@ -968,7 +968,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets octave number of Db5:
+            Gets octave number of Db5:
 
             ::
 
@@ -985,7 +985,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets pitch-class name of C#5:
+            Gets pitch-class name of C#5:
 
             ::
 
@@ -994,7 +994,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets pitch-class name of Db5:
+            Gets pitch-class name of Db5:
 
             ::
 
@@ -1015,7 +1015,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets pitch-class number of C#5:
+            Gets pitch-class number of C#5:
 
             ::
 
@@ -1024,7 +1024,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets pitch-class number of Ctqs5:
+            Gets pitch-class number of Ctqs5:
 
             ::
 
@@ -1045,7 +1045,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets pitch-class / octave label of C#5:
+            Gets pitch-class / octave label of C#5:
 
             ::
 
@@ -1054,7 +1054,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets pitch-class / octave label of Ctqs5:
+            Gets pitch-class / octave label of Ctqs5:
 
             ::
 
@@ -1075,7 +1075,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets pitch name of C#5:
+            Gets pitch name of C#5:
 
             ::
 
@@ -1084,7 +1084,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets pitch name of Ctqs5:
+            Gets pitch name of Ctqs5:
 
             ::
 
@@ -1104,7 +1104,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Gets pitch number of C#5:
+            Gets pitch number of C#5:
 
             ::
 
@@ -1113,7 +1113,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Gets pitch number of Cbb5:
+            Gets pitch number of Cbb5:
 
             ::
 
@@ -1136,7 +1136,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Applies sharp to C#5:
+            Applies sharp to C#5:
 
             ::
 
@@ -1145,7 +1145,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Applies sharp to Db5:
+            Applies sharp to Db5:
 
             ::
 
@@ -1167,7 +1167,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Initializes named pitch from named pitch:
+            Initializes named pitch from named pitch:
 
             ::
 
@@ -1177,7 +1177,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Initializes named pitch from note:
+            Initializes named pitch from note:
 
             ::
 
@@ -1187,7 +1187,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 3.** Initializes named pitch from note head:
+            Initializes named pitch from note head:
 
             ::
 
@@ -1197,7 +1197,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 4.** Initializes named pitch from chord:
+            Initializes named pitch from chord:
 
             ::
 
@@ -1207,7 +1207,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 5.** Initializes named pitch from integer:
+            Initializes named pitch from integer:
 
             ::
 
@@ -1216,7 +1216,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 6.** Initializes named pitch from numbered pitch-class:
+            Initializes named pitch from numbered pitch-class:
 
             ::
 
@@ -1282,7 +1282,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Initializes notes from absolute staff positions:
+            Initializes notes from absolute staff positions:
 
             ::
 
@@ -1306,8 +1306,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Initializes notes inside treble staff from staff
-            positions:
+            Initializes notes inside treble staff from staff positions:
 
             ::
 
@@ -1335,8 +1334,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 3.** Initializes notes inside bass staff from staff
-            positions:
+            Initializes notes inside bass staff from staff positions:
 
             ::
 
@@ -1364,8 +1362,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 4.** Initializes notes inside alto staff from staff
-            positions:
+            Initializes notes inside alto staff from staff positions:
 
             ::
 
@@ -1417,7 +1414,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Inverts pitch around middle C explicitly:
+            Inverts pitch around middle C explicitly:
 
             ::
 
@@ -1433,7 +1430,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Inverts pitch around middle C implicitly:
+            Inverts pitch around middle C implicitly:
 
             ::
 
@@ -1449,7 +1446,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 3.** Inverts pitch around A3:
+            Inverts pitch around A3:
 
             ::
 
@@ -1473,7 +1470,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Multiplies D2 by 3:
+            Multiplies D2 by 3:
 
             ::
 
@@ -1482,7 +1479,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Multiplies D2 by 4:
+            Multiplies D2 by 4:
 
             ::
 
@@ -1500,7 +1497,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Respells C#5 with flats:
+            Respells C#5 with flats:
 
             ::
 
@@ -1509,7 +1506,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Respells Db5 with flats:
+            Respells Db5 with flats:
 
             ::
 
@@ -1532,7 +1529,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Respells Db5 with sharps:
+            Respells Db5 with sharps:
 
             ::
 
@@ -1541,7 +1538,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Respells C#5 with sharps:
+            Respells C#5 with sharps:
 
             ::
 
@@ -1564,7 +1561,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Changes C#5 to absolute staff position:
+            Changes C#5 to absolute staff position:
 
             ::
 
@@ -1573,7 +1570,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Changes C#5 to treble staff position:
+            Changes C#5 to treble staff position:
 
             ::
 
@@ -1583,7 +1580,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 3.** Changes C#5 to bass staff position:
+            Changes C#5 to bass staff position:
 
             ::
 
@@ -1593,7 +1590,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 4.** Marks up absolute staff position of many pitches:
+            Marks up absolute staff position of many pitches:
 
             ::
 
@@ -1632,7 +1629,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 5.** Marks up treble staff position of many pitches:
+            Marks up treble staff position of many pitches:
 
             ::
 
@@ -1674,7 +1671,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 6.** Marks up bass staff position of many pitches:
+            Marks up bass staff position of many pitches:
 
             ::
 
@@ -1730,7 +1727,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Transposes C4 up a minor second:
+            Transposes C4 up a minor second:
 
             ::
 
@@ -1739,7 +1736,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Transposes C4 down a major second:
+            Transposes C4 down a major second:
 
             ::
 
@@ -1758,8 +1755,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 1.** Transposes middle C but leaves at same staff
-            position:
+            Transposes middle C but leaves at same staff position:
 
             ::
 
@@ -1786,8 +1782,7 @@ class NamedPitch(Pitch):
 
         ..  container:: example
 
-            **Example 2.** Transposes middle C and then respells up 1 staff
-            position:
+            Transposes middle C and then respells up 1 staff position:
 
                 >>> pitch.transpose_staff_position(1, 0)
                 NamedPitch("dff'")

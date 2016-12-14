@@ -58,7 +58,7 @@ class Multiplication(AbjadValueObject):
         ..  container:: example
 
 
-            **Example 1:**
+            Transposition followed by multiplication:
 
             ::
 
@@ -86,8 +86,7 @@ class Multiplication(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Same as above because multiplication and
-            transposition commute:
+            Same as above because multiplication and transposition commute:
 
             ::
 

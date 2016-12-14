@@ -8,7 +8,7 @@ class IntervalVector(Vector):
 
     ..  container:: example
 
-        **Example 1.** Initializes from pitch segment:
+        Initializes from pitch segment:
 
         ::
 
@@ -76,8 +76,7 @@ class IntervalVector(Vector):
 
         ..  container:: example
 
-            **Example 1.** Gets interpreter representation of interval
-            vector:
+            Gets interpreter representation of interval vector:
 
             ::
 
@@ -96,8 +95,7 @@ class IntervalVector(Vector):
 
         ..  container:: example
 
-            **Example 2.** Initializes from interpreter representation of
-            interval vector:
+            Initializes from interpreter representation of interval vector:
 
                 >>> pitchtools.IntervalVector(vector)
                 IntervalVector({-11: 1, -10: 1, -9: 1, -8: 2, -7: 3, -6: 3, -5: 4, -4: 4, -3: 4, -2: 5, -1: 6, 1: 5, 2: 5, 3: 5, 4: 4, 5: 3, 6: 3, 7: 2, 8: 2, 9: 2, 10: 1}, item_class=NumberedInterval)

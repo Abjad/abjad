@@ -10,7 +10,7 @@ class PitchSegment(Segment):
 
     ..  container:: example
 
-        **Example 1.** Numbered pitch segment:
+        Numbered pitch segment:
 
         ::
 
@@ -27,7 +27,7 @@ class PitchSegment(Segment):
 
     ..  container:: example
 
-        **Example 2.** Named pitch segment:
+        Named pitch segment:
 
         ::
 

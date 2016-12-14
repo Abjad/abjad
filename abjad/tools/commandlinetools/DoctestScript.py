@@ -63,14 +63,18 @@ class DoctestScript(CommandlineScript):
                     file_paths.append(file_path)
         return file_paths
 
-    def _get_namespace(self):
+    def _get_namespace(self, abjad_only=False):
         globs = {}
-        for module_name in self._module_names_for_globs:
-            try:
-                module = importlib.import_module(module_name)
-                globs.update(module.__dict__)
-            except:
-                pass
+        if abjad_only:
+            globs['abjad'] = importlib.import_module('abjad')
+            globs['f'] = getattr(globs['abjad'], 'f')
+        else:
+            for module_name in self._module_names_for_globs:
+                try:
+                    module = importlib.import_module(module_name)
+                    globs.update(module.__dict__)
+                except:
+                    pass
         try:
             ide_module = importlib.import_module('ide')
             globs['ide'] = ide_module
@@ -107,7 +111,7 @@ class DoctestScript(CommandlineScript):
         ):
         assert not (args and file_paths)
         result = []
-        globs = self._get_namespace()
+        globs = self._get_namespace(abjad_only=args.abjad_only)
         optionflags = self._get_optionflags(args)
         total_failures = 0
         total_modules = 0
@@ -231,6 +235,11 @@ class DoctestScript(CommandlineScript):
             default=[os.getcwd()],
             help='directory tree to be recursed over',
             nargs='*',
+            )
+        parser.add_argument(
+            '--abjad-only',
+            action='store_true',
+            help='load abjad but not * from abjad.',
             )
         parser.add_argument(
             '--diff',

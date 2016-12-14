@@ -8,7 +8,7 @@ class IntervalClassVector(Vector):
 
     ..  container:: example
 
-        **Example 1.** An interval-class vector:
+        An interval-class vector:
 
         ::
 
@@ -65,8 +65,7 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 1.** Gets interpreter representation of interval-class
-            vector:
+            Gets interpreter representation of interval-class vector:
 
             ::
 
@@ -85,8 +84,8 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 2.** Initializes from interpreter representation of
-            interval-class vector:
+            Initializes from interpreter representation of interval-class
+            vector:
 
             ::
 
@@ -142,8 +141,8 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 1.** Makes numbered inversion-equivalent interval-class
-            vector from selection:
+            Makes numbered inversion-equivalent interval-class vector from
+            selection:
 
             ::
 
@@ -156,7 +155,7 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 2.** Makes numbered interval-class vector from selection:
+            Makes numbered interval-class vector from selection:
 
             ::
 
@@ -172,7 +171,7 @@ class IntervalClassVector(Vector):
 
         ..  container:: example
 
-            **Example 3.** Makes named interval-class vector from selection:
+            Makes named interval-class vector from selection:
 
             ::
 

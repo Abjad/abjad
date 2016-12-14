@@ -49,7 +49,7 @@ class Alpha(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1:**
+            Transposition followed by alpha:
 
             ::
 
@@ -77,7 +77,7 @@ class Alpha(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2:**
+            Alpha followed by transposition:
 
             ::
 

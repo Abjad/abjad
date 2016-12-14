@@ -11,7 +11,7 @@ class Octave(AbjadValueObject):
 
     ..  container:: example:
 
-        **Example 1.** Initializes octave from integer:
+        Initializes octave from integer:
 
         ::
 
@@ -20,7 +20,7 @@ class Octave(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 2.** Initializes octave from octave-tick string:
+        Initializes octave from octave-tick string:
 
         ::
 
@@ -29,7 +29,7 @@ class Octave(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 3.** Initializes octave from named pitch:
+        Initializes octave from named pitch:
 
         ::
 
@@ -38,7 +38,7 @@ class Octave(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 4.** Initializes octave from other octave:
+        Initializes octave from other octave:
 
         ::
 
