@@ -130,8 +130,8 @@ class InciseSpecifier(AbjadValueObject):
 
                 >>> f(specifier)
                 rhythmmakertools.InciseSpecifier(
-                    prefix_talea=(-1,),
-                    prefix_counts=(1,),
+                    prefix_talea=[-1],
+                    prefix_counts=[1],
                     talea_denominator=16,
                     )
 
@@ -153,10 +153,10 @@ class InciseSpecifier(AbjadValueObject):
 
                 >>> f(specifier)
                 rhythmmakertools.InciseSpecifier(
-                    prefix_talea=(-1,),
-                    prefix_counts=(0, 1),
-                    suffix_talea=(-1,),
-                    suffix_counts=(1,),
+                    prefix_talea=[-1],
+                    prefix_counts=[0, 1],
+                    suffix_talea=[-1],
+                    suffix_counts=[1],
                     talea_denominator=16,
                     )
 
@@ -247,8 +247,7 @@ class InciseSpecifier(AbjadValueObject):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/16
@@ -319,7 +318,8 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._prefix_counts
+        if self._prefix_counts:
+            return list(self._prefix_counts)
 
     @property
     def prefix_talea(self):
@@ -329,7 +329,8 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._prefix_talea
+        if self._prefix_talea:
+            return list(self._prefix_talea)
 
     @property
     def suffix_counts(self):
@@ -339,7 +340,8 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._suffix_counts
+        if self._suffix_counts:
+            return list(self._suffix_counts)
 
     @property
     def suffix_talea(self):
@@ -349,7 +351,8 @@ class InciseSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._suffix_talea
+        if self._suffix_talea:
+            return list(self._suffix_talea)
 
     @property
     def talea_denominator(self):

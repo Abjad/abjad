@@ -16,7 +16,7 @@ def select_first(n=1, inverted=None):
 
             >>> print(format(pattern))
             patterntools.Pattern(
-                indices=(0,),
+                indices=[0],
                 )
 
         ::
@@ -37,8 +37,7 @@ def select_first(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -70,7 +69,7 @@ def select_first(n=1, inverted=None):
 
             >>> print(format(pattern))
             patterntools.Pattern(
-                indices=(0, 1),
+                indices=[0, 1],
                 )
 
         ::
@@ -91,8 +90,7 @@ def select_first(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -124,7 +122,7 @@ def select_first(n=1, inverted=None):
 
             >>> print(format(pattern))
             patterntools.Pattern(
-                indices=(),
+                indices=[],
                 )
 
         ::
@@ -145,8 +143,7 @@ def select_first(n=1, inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

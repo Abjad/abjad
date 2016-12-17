@@ -16,7 +16,7 @@ def test_lilypondfiletools_make_basic_lily_file_01():
     lilypond_file.paper_block.top_margin = 15
     lilypond_file.paper_block.left_margin = 15
 
-    assert lilypond_file._get_score() is score
+    assert lilypond_file[Score] is score
 
     assert format(lilypond_file) == stringtools.normalize(
         r'''

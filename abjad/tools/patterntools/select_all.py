@@ -16,7 +16,7 @@ def select_all(inverted=None):
 
             >>> print(format(pattern))
             patterntools.Pattern(
-                indices=(0,),
+                indices=[0],
                 period=1,
                 )
 
@@ -38,8 +38,7 @@ def select_all(inverted=None):
 
         ..  doctest::
 
-            >>> staff = maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

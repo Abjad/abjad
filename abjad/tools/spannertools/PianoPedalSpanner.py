@@ -26,7 +26,7 @@ class PianoPedalSpanner(Spanner):
                 f'8 \sustainOff
             }
 
-    Formats LilyPond ``\sustainOn``, ``\sosenutoOn`` or ``\unaCora`` on first
+    Formats LilyPond ``\sustainOn``, ``\sosenutoOn`` or ``\unaCorda`` on first
     leaf in spanner.
 
     Formats LilyPond ``\sustainOff``, ``\sostenutoOff`` or ``\treCorde`` on

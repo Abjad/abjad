@@ -21,9 +21,9 @@ class LilyPondOutputProxy(ImageOutputProxy):
         >>> print(format(proxy))
         abjadbooktools.LilyPondOutputProxy(
             lilypondfiletools.LilyPondFile(
-                comments=(),
+                comments=[],
                 global_staff_size=12,
-                includes=(),
+                includes=[],
                 items=[
                     lilypondfiletools.Block(
                         name='header',

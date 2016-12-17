@@ -529,6 +529,7 @@ def _make_leaf_on_pitch(
         numbers.Number,
         str,
         pitchtools.NamedPitch,
+        pitchtools.NumberedPitch,
         pitchtools.PitchClass,
         )
     chord_prototype = (tuple, list)

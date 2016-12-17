@@ -357,7 +357,7 @@ class Expression(AbjadObject):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     g'8
                         ^ \markup {

@@ -5,7 +5,7 @@ from abjad import *
 def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
 
     talea = rhythmmakertools.Talea(
-        counts=(5,),
+        counts=[5],
         denominator=16,
         )
     rhythm_maker = rhythmmakertools.TaleaRhythmMaker(
@@ -49,7 +49,7 @@ def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_01():
 def test_rhythmmakertools_TaleaRhythmMaker_tie_split_notes_02():
 
     talea = rhythmmakertools.Talea(
-        counts=(5,),
+        counts=[5],
         denominator=16,
         )
     rhythm_maker = rhythmmakertools.TaleaRhythmMaker(

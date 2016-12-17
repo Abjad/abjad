@@ -109,7 +109,7 @@ class PianoStaffSegmentMaker(SegmentMaker):
             'stylesheets',
             'stylesheet.ily',
             )
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+        lilypond_file = lilypondfiletools.LilyPondFile.new(
             music=score,
             includes=(
                 stylesheet_path,

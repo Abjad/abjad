@@ -32,10 +32,10 @@ class CompoundPattern(TypedTuple):
             patterntools.CompoundPattern(
                 (
                     patterntools.Pattern(
-                        indices=(0, 1, 2),
+                        indices=[0, 1, 2],
                         ),
                     patterntools.Pattern(
-                        indices=(-3, -2, -1),
+                        indices=[-3, -2, -1],
                         ),
                     ),
                 operator='or',
@@ -68,11 +68,11 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=2,
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             inverted=True,
                             ),
                         ),
@@ -163,13 +163,13 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=2,
                             ),
                         ),
@@ -200,16 +200,16 @@ class CompoundPattern(TypedTuple):
                         patterntools.CompoundPattern(
                             (
                                 patterntools.Pattern(
-                                    indices=(0, 1, 2),
+                                    indices=[0, 1, 2],
                                     ),
                                 patterntools.Pattern(
-                                    indices=(-3, -2, -1),
+                                    indices=[-3, -2, -1],
                                     ),
                                 ),
                             operator='and',
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=2,
                             ),
                         ),
@@ -250,10 +250,10 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             ),
                         ),
                     operator='or',
@@ -276,10 +276,10 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             ),
                         ),
                     inverted=True,
@@ -317,13 +317,13 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=2,
                             ),
                         ),
@@ -352,15 +352,15 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.CompoundPattern(
                             (
                                 patterntools.Pattern(
-                                    indices=(-3, -2, -1),
+                                    indices=[-3, -2, -1],
                                     ),
                                 patterntools.Pattern(
-                                    indices=(0,),
+                                    indices=[0],
                                     period=2,
                                     ),
                                 ),
@@ -404,13 +404,13 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=2,
                             ),
                         ),
@@ -439,15 +439,15 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.CompoundPattern(
                             (
                                 patterntools.Pattern(
-                                    indices=(-3, -2, -1),
+                                    indices=[-3, -2, -1],
                                     ),
                                 patterntools.Pattern(
-                                    indices=(0,),
+                                    indices=[0],
                                     period=2,
                                     ),
                                 ),
@@ -582,11 +582,11 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=4,
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=5,
                             ),
                         ),
@@ -1172,18 +1172,18 @@ class CompoundPattern(TypedTuple):
                         patterntools.CompoundPattern(
                             (
                                 patterntools.Pattern(
-                                    indices=(0,),
+                                    indices=[0],
                                     period=2,
                                     ),
                                 patterntools.Pattern(
-                                    indices=(-3, -2, -1),
+                                    indices=[-3, -2, -1],
                                     inverted=True,
                                     ),
                                 ),
                             operator='and',
                             ),
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         ),
                     operator='or',
@@ -1310,11 +1310,11 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=2,
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             inverted=True,
                             ),
                         ),
@@ -1330,11 +1330,11 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(-1,),
+                            indices=[-1],
                             period=2,
                             ),
                         patterntools.Pattern(
-                            indices=(2, 1, 0),
+                            indices=[2, 1, 0],
                             inverted=True,
                             ),
                         ),
@@ -1379,11 +1379,11 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=2,
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             inverted=True,
                             ),
                         ),
@@ -1399,11 +1399,11 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(2,),
+                            indices=[2],
                             period=2,
                             ),
                         patterntools.Pattern(
-                            indices=(-1, 0, 1),
+                            indices=[-1, 0, 1],
                             inverted=True,
                             ),
                         ),
@@ -1498,11 +1498,11 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=4,
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=5,
                             ),
                         ),
@@ -1530,11 +1530,11 @@ class CompoundPattern(TypedTuple):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=4,
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             ),
                         ),
                     operator='or',

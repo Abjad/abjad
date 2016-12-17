@@ -109,12 +109,12 @@ class BurnishSpecifier(AbjadValueObject):
     __documentation_section__ = 'Specifiers'
 
     __slots__ = (
+        '_left_classes',
         '_left_counts',
-        '_lefts',
-        '_middles',
+        '_middle_classes',
         '_outer_divisions_only',
         '_right_counts',
-        '_rights',
+        '_right_classes',
         )
 
     _publish_storage_format = True
@@ -149,9 +149,9 @@ class BurnishSpecifier(AbjadValueObject):
         assert self._is_sign_tuple(right_classes)
         assert self._is_length_tuple(left_counts)
         assert self._is_length_tuple(right_counts)
-        self._lefts = left_classes
-        self._middles = middle_classes
-        self._rights = right_classes
+        self._left_classes = left_classes
+        self._middle_classes = middle_classes
+        self._right_classes = right_classes
         self._left_counts = left_counts
         self._right_counts = right_counts
 
@@ -184,11 +184,11 @@ class BurnishSpecifier(AbjadValueObject):
 
                 >>> f(burnish_specifier)
                 rhythmmakertools.BurnishSpecifier(
-                    left_classes=(
+                    left_classes=[
                         scoretools.Rest,
                         0,
-                        ),
-                    left_counts=(1,),
+                        ],
+                    left_counts=[1],
                     )
 
         Returns string.
@@ -213,7 +213,7 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier
-                BurnishSpecifier(left_classes=(Rest, 0), left_counts=(1,))
+                BurnishSpecifier(left_classes=[Rest, 0], left_counts=[1])
 
         Returns string.
         '''
@@ -464,11 +464,12 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.left_classes
-                (<class 'abjad.tools.scoretools.Rest.Rest'>, 0)
+                [<class 'abjad.tools.scoretools.Rest.Rest'>, 0]
 
         Returns tuple or none.
         '''
-        return self._lefts
+        if self._left_classes:
+            return list(self._left_classes)
 
     @property
     def left_counts(self):
@@ -488,11 +489,12 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.left_counts
-                (2,)
+                [2]
 
         Returns tuple or none.
         '''
-        return self._left_counts
+        if self._left_counts:
+            return list(self._left_counts)
 
     @property
     def middle_classes(self):
@@ -516,7 +518,8 @@ class BurnishSpecifier(AbjadValueObject):
 
         Returns tuple or none.
         '''
-        return self._middles
+        if self._middle_classes:
+            return list(self._middle_classes)
 
     @property
     def outer_divisions_only(self):
@@ -549,11 +552,12 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.right_classes
-                (<class 'abjad.tools.scoretools.Rest.Rest'>, <class 'abjad.tools.scoretools.Rest.Rest'>, 0)
+                [<class 'abjad.tools.scoretools.Rest.Rest'>, <class 'abjad.tools.scoretools.Rest.Rest'>, 0]
 
         Returns tuple or none.
         '''
-        return self._rights
+        if self._right_classes:
+            return list(self._right_classes)
 
     @property
     def right_counts(self):
@@ -573,8 +577,9 @@ class BurnishSpecifier(AbjadValueObject):
             ::
 
                 >>> burnish_specifier.right_counts
-                (1,)
+                [1]
 
         Returns tuple or none.
         '''
-        return self._right_counts
+        if self._right_counts:
+            return list(self._right_counts)

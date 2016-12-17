@@ -10,12 +10,10 @@ class Talea(AbjadValueObject):
 
     ..  container:: example
 
-        **Example.**
-
         ::
 
             >>> talea = rhythmmakertools.Talea(
-            ...    counts=(2, 1, 3, 2, 4, 1, 1),
+            ...    counts=[2, 1, 3, 2, 4, 1, 1],
             ...    denominator=16,
             ...    )
 
@@ -55,12 +53,12 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 1.** Gets item at index:
+            Gets item at index:
 
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 
@@ -71,7 +69,7 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example 2.** Gets items in slice:
+            Gets items in slice:
 
             ::
 
@@ -103,12 +101,10 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 
@@ -136,12 +132,10 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 
@@ -164,27 +158,26 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 
             ::
 
                 >>> talea.counts
-                (2, 1, 3, 2, 4, 1, 1)
+                [2, 1, 3, 2, 4, 1, 1]
 
         Set to integers.
 
-        Defaults to `(1,)`.
+        Defaults to `[1]`.
 
         Returns tuple.
         '''
-        return self._counts
+        if self._counts:
+            return list(self._counts)
 
     @property
     def denominator(self):
@@ -192,12 +185,10 @@ class Talea(AbjadValueObject):
 
         ..  container:: example
 
-            **Example.**
-
             ::
 
                 >>> talea = rhythmmakertools.Talea(
-                ...    counts=(2, 1, 3, 2, 4, 1, 1),
+                ...    counts=[2, 1, 3, 2, 4, 1, 1],
                 ...    denominator=16,
                 ...    )
 

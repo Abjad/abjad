@@ -216,15 +216,6 @@ class PitchClass(AbjadValueObject):
         '''
         raise NotImplementedError
 
-    @property
-    def accidental_spelling(self):
-        r'''Accidental spelling of pitch-class.
-
-        Returns string.
-        '''
-        from abjad import abjad_configuration
-        return abjad_configuration['accidental_spelling']
-
     @abc.abstractproperty
     def alteration_in_semitones(self):
         r'''Alteration of pitch-class in semitones.

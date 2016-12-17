@@ -19,7 +19,7 @@ def silence(indices=None, inverted=None):
             >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(1, 2),
+                    indices=[1, 2],
                     ),
                 )
 
@@ -38,8 +38,7 @@ def silence(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -72,7 +71,7 @@ def silence(indices=None, inverted=None):
             >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(-1, -2),
+                    indices=[-1, -2],
                     ),
                 )
 
@@ -93,8 +92,7 @@ def silence(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -133,14 +131,14 @@ def silence(indices=None, inverted=None):
                 pattern=patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=1,
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             ),
                         patterntools.Pattern(
-                            indices=(-1,),
+                            indices=[-1],
                             ),
                         ),
                     operator='xor',
@@ -164,8 +162,7 @@ def silence(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -204,14 +201,14 @@ def silence(indices=None, inverted=None):
                 pattern=patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             period=1,
                             ),
                         patterntools.Pattern(
-                            indices=(0,),
+                            indices=[0],
                             ),
                         patterntools.Pattern(
-                            indices=(-1,),
+                            indices=[-1],
                             ),
                         ),
                     inverted=True,
@@ -236,8 +233,7 @@ def silence(indices=None, inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> print(format(staff))
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

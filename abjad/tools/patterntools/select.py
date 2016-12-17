@@ -16,7 +16,7 @@ def select(indices=None, inverted=None):
 
             >>> print(format(pattern))
             patterntools.Pattern(
-                indices=(2,),
+                indices=[2],
                 )
 
     ..  container:: example
@@ -31,7 +31,7 @@ def select(indices=None, inverted=None):
 
             >>> print(format(pattern))
             patterntools.Pattern(
-                indices=(2, 3, 5),
+                indices=[2, 3, 5],
                 )
 
     Returns pattern.

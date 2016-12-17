@@ -26,7 +26,19 @@ class LogicalTie(Selection):
 
     ### CLASS VARIABLES ###
 
-    __slots__ = ()
+    __slots__ = (
+        )
+
+    ### PRIVATE PROPERTIES ###
+
+    @property
+    def _all_leaves_are_in_same_parent(self):
+        r'''Is true when all leaves in logical tie are in same parent.
+
+        Returns true or false.
+        '''
+        parents = [leaf._parent for leaf in self.leaves]
+        return mathtools.all_are_equal(parents)
 
     ### PRIVATE METHODS ###
 
@@ -90,7 +102,7 @@ class LogicalTie(Selection):
 
     def _fuse_leaves_by_immediate_parent(self):
         result = []
-        parts = self.leaves_grouped_by_immediate_parents
+        parts = self._leaves_grouped_by_immediate_parents
         for part in parts:
             result.append(part._fuse())
         return result
@@ -99,6 +111,97 @@ class LogicalTie(Selection):
         new_duration = multiplier * self.written_duration
         return self._add_or_remove_notes_to_achieve_written_duration(
             new_duration)
+
+    ### PUBLIC PROPERTIES ###
+
+    @property
+    def head(self):
+        r'''Reference to element ``0`` in logical tie.
+
+        Returns component.
+        '''
+        if self._music:
+            return self._music[0]
+
+    @property
+    def is_pitched(self):
+        r'''Is true when logical tie head is a note or chord.
+
+        Returns true or false.
+        '''
+        from abjad.tools import scoretools
+        return isinstance(self.head, (scoretools.Note, scoretools.Chord))
+
+    @property
+    def is_trivial(self):
+        r'''Is true when length of logical tie is less than or equal to ``1``.
+
+        Returns true or false.
+        '''
+        return len(self) <= 1
+
+    @property
+    def leaves(self):
+        r'''Leaves in logical tie.
+
+        Returns tuple.
+        '''
+        from abjad.tools import spannertools
+        prototype = (spannertools.Tie,)
+        try:
+            tie_spanner = self[0]._get_spanner(prototype=prototype)
+            return tuple(tie_spanner._get_leaves())
+        except MissingSpannerError:
+            assert self.is_trivial
+            return (self[0], )
+
+    @property
+    def _leaves_grouped_by_immediate_parents(self):
+        r'''Leaves in logical tie grouped by immediate parents of leaves.
+
+        Returns list of lists.
+        '''
+        from abjad.tools import selectiontools
+        result = []
+        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
+        for key, values_generator in pairs_generator:
+            group = selectiontools.Selection(list(values_generator))
+            result.append(group)
+        return result
+
+    @property
+    def tail(self):
+        r'''Reference to element ``-1`` in logical tie.
+
+        Returns component.
+        '''
+        if self._music:
+            return self._music[-1]
+
+    @property
+    def tie_spanner(self):
+        r'''Tie spanner governing logical tie.
+
+        Returns tie spanner.
+        '''
+        from abjad.tools import spannertools
+        if 1 < len(self):
+            prototype = (spannertools.Tie,)
+            for component in self[0].parentage:
+                try:
+                    tie_spanner = component._get_spanner(prototype)
+                    break
+                except MissingSpannerError:
+                    pass
+            return tie_spanner
+
+    @property
+    def written_duration(self):
+        r'''Sum of written duration of all components in logical tie.
+
+        Returns duration.
+        '''
+        return sum([x.written_duration for x in self])
 
     ### PUBLIC METHODS ###
 
@@ -282,103 +385,3 @@ class LogicalTie(Selection):
 
         # return tuplet
         return tuplet
-
-    ### PUBLIC PROPERTIES ###
-
-    @property
-    def all_leaves_are_in_same_parent(self):
-        r'''Is true when all leaves in logical tie are in same parent.
-
-        Returns true or false.
-        '''
-        return mathtools.all_are_equal(
-            [leaf._parent for leaf in self.leaves])
-
-    @property
-    def head(self):
-        r'''Reference to element ``0`` in logical tie.
-
-        Returns component.
-        '''
-        if self._music:
-            return self._music[0]
-
-    @property
-    def is_pitched(self):
-        r'''Is true when logical tie head is a note or chord.
-
-        Returns true or false.
-        '''
-        from abjad.tools import scoretools
-        return isinstance(self.head, (scoretools.Note, scoretools.Chord))
-
-    @property
-    def is_trivial(self):
-        r'''Is true when length of logical tie is less than or equal to ``1``.
-
-        Returns true or false.
-        '''
-        return len(self) <= 1
-
-    @property
-    def leaves(self):
-        r'''Leaves in logical tie.
-
-        Returns tuple.
-        '''
-        from abjad.tools import spannertools
-        prototype = (spannertools.Tie,)
-        try:
-            tie_spanner = self[0]._get_spanner(prototype=prototype)
-            return tuple(tie_spanner._get_leaves())
-        except MissingSpannerError:
-            assert self.is_trivial
-            return (self[0], )
-
-    @property
-    def leaves_grouped_by_immediate_parents(self):
-        r'''Leaves in logical tie grouped by immediate parents of leaves.
-
-        Returns list of lists.
-        '''
-        from abjad.tools import selectiontools
-        result = []
-        pairs_generator = itertools.groupby(self, lambda x: id(x._parent))
-        for key, values_generator in pairs_generator:
-            group = selectiontools.Selection(list(values_generator))
-            result.append(group)
-        return result
-
-    @property
-    def tail(self):
-        r'''Reference to element ``-1`` in logical tie.
-
-        Returns component.
-        '''
-        if self._music:
-            return self._music[-1]
-
-    @property
-    def tie_spanner(self):
-        r'''Tie spanner governing logical tie.
-
-        Returns tie spanner.
-        '''
-        from abjad.tools import spannertools
-        if 1 < len(self):
-            prototype = (spannertools.Tie,)
-            for component in self[0].parentage:
-                try:
-                    tie_spanner = component._get_spanner(prototype)
-                    break
-                except MissingSpannerError:
-                    pass
-            return tie_spanner
-
-    @property
-    def written_duration(self):
-        r'''Sum of written duration of all components in logical tie.
-
-        Returns duration.
-        '''
-        return sum([x.written_duration for x in self])

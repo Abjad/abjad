@@ -24,7 +24,7 @@ class PitchClassSegment(Segment):
         ..  doctest::
 
             >>> lilypond_file = segment.__illustrate__()
-            >>> f(lilypond_file._get_first_voice())
+            >>> f(lilypond_file[Voice])
             \new Voice {
                 bf'8
                 bqf'8
@@ -52,7 +52,7 @@ class PitchClassSegment(Segment):
         ..  doctest::
 
             >>> lilypond_file = segment.__illustrate__()
-            >>> f(lilypond_file._get_first_voice())
+            >>> f(lilypond_file[Voice])
             \new Voice {
                 c'8
                 ef'8
@@ -146,7 +146,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -186,7 +186,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     c'8
                         ^ \markup {
@@ -227,7 +227,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -278,7 +278,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     g'8
                         ^ \markup {
@@ -350,7 +350,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     g'8
                         ^ \markup {
@@ -420,7 +420,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     af'8
                         ^ \markup {
@@ -523,7 +523,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = J.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -573,7 +573,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = K.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     c'8
                         ^ \markup {
@@ -647,7 +647,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -684,7 +684,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     g'8
                         ^ \markup {
@@ -725,7 +725,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     g'8
                         ^ \markup {
@@ -832,7 +832,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -860,7 +860,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     c'8
                     ef'8
@@ -1058,7 +1058,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -1097,7 +1097,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                     bqf'8
@@ -1158,7 +1158,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     b'8
                         ^ \markup {
@@ -1200,7 +1200,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -1478,7 +1478,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     d'8
                         ^ \markup {
@@ -1520,7 +1520,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -1711,7 +1711,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -1755,7 +1755,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     d'8
                         ^ \markup {
@@ -1799,7 +1799,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -1843,7 +1843,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     d'8
                         ^ \markup {
@@ -1940,7 +1940,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     g'8
                         ^ \markup {
@@ -1982,7 +1982,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -2080,7 +2080,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     g'8
                         ^ \markup {
@@ -2126,7 +2126,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bqf'8
                         ^ \markup {
@@ -2172,7 +2172,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -2224,7 +2224,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     c'8
                         ^ \markup {
@@ -2340,7 +2340,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     b'8
                         ^ \markup {
@@ -2386,7 +2386,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     a'8
                         ^ \markup {
@@ -2432,7 +2432,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = segment.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     bf'8
                         ^ \markup {
@@ -2526,7 +2526,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = voiced_segment.__illustrate__()
-                >>> f(lilypond_file._get_score())
+                >>> f(lilypond_file[Score])
                 \new Score \with {
                     \override BarLine.stencil = ##f
                     \override BarNumber.transparent = ##t
@@ -2627,7 +2627,7 @@ class PitchClassSegment(Segment):
             ..  doctest::
 
                 >>> lilypond_file = voiced_segment.__illustrate__()
-                >>> f(lilypond_file._get_score())
+                >>> f(lilypond_file[Score])
                 \new Score \with {
                     \override BarLine.stencil = ##f
                     \override BarNumber.transparent = ##t

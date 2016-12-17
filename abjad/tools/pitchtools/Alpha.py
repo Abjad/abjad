@@ -65,7 +65,7 @@ class Alpha(AbjadValueObject):
             ..  doctest::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     d'8
                     e'8
@@ -93,7 +93,7 @@ class Alpha(AbjadValueObject):
             ..  doctest::
 
                 >>> lilypond_file = segment_.__illustrate__()
-                >>> f(lilypond_file._get_first_voice())
+                >>> f(lilypond_file[Voice])
                 \new Voice {
                     e'8
                     fs'8

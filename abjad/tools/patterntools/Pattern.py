@@ -165,10 +165,10 @@ class Pattern(AbjadValueObject):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             ),
                         ),
                     operator='and',
@@ -191,7 +191,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern = patterntools.select_first(3)
                 >>> print(format(pattern))
                 patterntools.Pattern(
-                    indices=(0, 1, 2),
+                    indices=[0, 1, 2],
                     )
 
             ::
@@ -199,7 +199,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern = ~pattern
                 >>> print(format(pattern))
                 patterntools.Pattern(
-                    indices=(0, 1, 2),
+                    indices=[0, 1, 2],
                     inverted=True,
                     )
 
@@ -208,7 +208,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern = ~pattern
                 >>> print(format(pattern))
                 patterntools.Pattern(
-                    indices=(0, 1, 2),
+                    indices=[0, 1, 2],
                     inverted=False,
                     )
 
@@ -312,10 +312,10 @@ class Pattern(AbjadValueObject):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             ),
                         ),
                     operator='or',
@@ -345,10 +345,10 @@ class Pattern(AbjadValueObject):
                 patterntools.CompoundPattern(
                     (
                         patterntools.Pattern(
-                            indices=(0, 1, 2),
+                            indices=[0, 1, 2],
                             ),
                         patterntools.Pattern(
-                            indices=(-3, -2, -1),
+                            indices=[-3, -2, -1],
                             ),
                         ),
                     operator='xor',
@@ -375,7 +375,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern = patterntools.Pattern.from_vector(pattern)
                 >>> print(format(pattern))
                 patterntools.Pattern(
-                    indices=(0, 3, 4),
+                    indices=[0, 3, 4],
                     period=5,
                     )
 
@@ -407,7 +407,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern = patterntools.Pattern.from_vector(pattern)
                 >>> print(format(pattern))
                 patterntools.Pattern(
-                    indices=(0, 3, 4),
+                    indices=[0, 3, 4],
                     period=6,
                     )
 
@@ -862,7 +862,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern = pattern.reverse()
                 >>> print(format(pattern))
                 patterntools.Pattern(
-                    indices=(-1, -2, -8),
+                    indices=[-1, -2, -8],
                     period=8,
                     )
 
@@ -947,7 +947,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern = pattern.rotate(n=2)
                 >>> print(format(pattern))
                 patterntools.Pattern(
-                    indices=(2, 3, 9),
+                    indices=[2, 3, 9],
                     period=8,
                     )
 
@@ -1025,7 +1025,7 @@ class Pattern(AbjadValueObject):
                 >>> pattern = pattern.rotate(n=2)
                 >>> print(format(pattern))
                 patterntools.Pattern(
-                    indices=(-1, 0, 1),
+                    indices=[-1, 0, 1],
                     period=8,
                     )
 
@@ -1078,7 +1078,7 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern.indices
-                (0, 1, 7)
+                [0, 1, 7]
 
         ..  container:: example
 
@@ -1094,7 +1094,7 @@ class Pattern(AbjadValueObject):
             ::
 
                 >>> pattern.indices
-                (0, 1, 7)
+                [0, 1, 7]
 
         Defaults to none.
 
@@ -1102,7 +1102,9 @@ class Pattern(AbjadValueObject):
 
         Returns integers or none.
         '''
-        return self._indices
+        if self._indices:
+            return list(self._indices)
+        return []
 
     @property
     def inverted(self):

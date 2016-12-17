@@ -25,8 +25,7 @@ def sustain_all(inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -75,7 +74,7 @@ def sustain_all(inverted=None):
             >>> f(mask)
             rhythmmakertools.SustainMask(
                 pattern=patterntools.Pattern(
-                    indices=(0,),
+                    indices=[0],
                     period=1,
                     ),
                 )
@@ -99,8 +98,7 @@ def sustain_all(inverted=None):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

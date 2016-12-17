@@ -147,7 +147,7 @@ def make_lilypond_file(input_text, base_duration=Duration(1, 16)):
     override(staff_1).staff_symbol.line_count = 4
     override(staff_2).staff_symbol.line_count = 4
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+    lilypond_file = lilypondfiletools.LilyPondFile.new(score)
     format_score(score)
     format_lilypond_file(lilypond_file)
     return lilypond_file

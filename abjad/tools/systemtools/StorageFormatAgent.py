@@ -520,14 +520,14 @@ class StorageFormatAgent(AbjadValueObject):
                 ...     )
                 >>> print(format(rhythm_maker))
                 rhythmmakertools.TupletRhythmMaker(
-                    tuplet_ratios=(
+                    tuplet_ratios=[
                         mathtools.Ratio((3, 2)),
-                        ),
+                        ],
                     division_masks=patterntools.PatternInventory(
                         (
                             rhythmmakertools.SilenceMask(
                                 pattern=patterntools.Pattern(
-                                    indices=(1,),
+                                    indices=[1],
                                     period=2,
                                     ),
                                 ),

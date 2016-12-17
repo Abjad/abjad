@@ -23,7 +23,7 @@ def silence_every(
             >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(1,),
+                    indices=[1],
                     period=2,
                     ),
                 )
@@ -43,8 +43,7 @@ def silence_every(
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -77,7 +76,7 @@ def silence_every(
             >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(1, 2),
+                    indices=[1, 2],
                     period=3,
                     ),
                 )
@@ -97,8 +96,7 @@ def silence_every(
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16
@@ -131,7 +129,7 @@ def silence_every(
             >>> f(mask)
             rhythmmakertools.SilenceMask(
                 pattern=patterntools.Pattern(
-                    indices=(-1,),
+                    indices=[-1],
                     inverted=True,
                     ),
                 )
@@ -151,8 +149,7 @@ def silence_every(
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 7/16

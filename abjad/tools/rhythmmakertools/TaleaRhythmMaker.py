@@ -44,8 +44,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
         ..  doctest::
 
-            >>> staff = rhythm_maker._get_staff(lilypond_file)
-            >>> f(staff)
+            >>> f(lilypond_file[Staff])
             \new RhythmicStaff {
                 {
                     \time 3/8
@@ -92,7 +91,7 @@ class TaleaRhythmMaker(RhythmMaker):
             >>> f(rhythm_maker)
             rhythmmakertools.TaleaRhythmMaker(
                 talea=rhythmmakertools.Talea(
-                    counts=(1, 2, 3, 4),
+                    counts=[1, 2, 3, 4],
                     denominator=16,
                     ),
                 )
@@ -297,7 +296,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> f(rhythm_maker)
                 rhythmmakertools.TaleaRhythmMaker(
                     talea=rhythmmakertools.Talea(
-                        counts=(1, 2, 3, 4),
+                        counts=[1, 2, 3, 4],
                         denominator=16,
                         ),
                     )
@@ -318,7 +317,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 >>> f(rhythm_maker)
                 rhythmmakertools.TaleaRhythmMaker(
                     talea=rhythmmakertools.Talea(
-                        counts=(1, 2, 3, 4),
+                        counts=[1, 2, 3, 4],
                         denominator=16,
                         ),
                     )
@@ -346,8 +345,7 @@ class TaleaRhythmMaker(RhythmMaker):
             ..  doctest::
 
                 >>> lilypond_file = rhythm_maker.__illustrate__()
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -393,7 +391,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         denominator=16,
                 ...         ),
                 ...     )
-                TaleaRhythmMaker(talea=Talea(counts=(1, 2, 3, 4), denominator=16))
+                TaleaRhythmMaker(talea=Talea(counts=[1, 2, 3, 4], denominator=16))
 
         Returns string.
         '''
@@ -711,8 +709,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -786,8 +783,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -916,8 +912,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -989,8 +984,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1063,8 +1057,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1138,8 +1131,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1234,8 +1226,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff) # doctest: +SKIP
+                >>> f(lilypond_file[Staff]) # doctest: +SKIP
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1294,8 +1285,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1359,8 +1349,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1419,8 +1408,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1471,8 +1459,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1526,8 +1513,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1589,8 +1575,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -1665,8 +1650,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1720,8 +1704,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 5/8
@@ -1772,8 +1755,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1822,8 +1804,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1876,8 +1857,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1931,8 +1911,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -1982,8 +1961,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/4
@@ -2044,8 +2022,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2085,7 +2062,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     extra_counts_per_division=(0, 1,),
+                ...     extra_counts_per_division=[0, 1],
                 ...     )
 
             ::
@@ -2100,8 +2077,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2149,7 +2125,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     extra_counts_per_division=(0, 2,),
+                ...     extra_counts_per_division=[0, 2],
                 ...     )
 
             ::
@@ -2164,8 +2140,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2218,7 +2193,7 @@ class TaleaRhythmMaker(RhythmMaker):
                 ...         counts=[1, 2, 3, 4],
                 ...         denominator=16,
                 ...         ),
-                ...     extra_counts_per_division=(0, -1),
+                ...     extra_counts_per_division=[0, -1],
                 ...     )
 
             ::
@@ -2233,8 +2208,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2276,7 +2250,8 @@ class TaleaRhythmMaker(RhythmMaker):
 
         Returns integer tuple or none.
         '''
-        return self._extra_counts_per_division
+        if self._extra_counts_per_division:
+            return list(self._extra_counts_per_division)
 
     @property
     def helper_functions(self):
@@ -2320,8 +2295,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2376,8 +2350,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2437,8 +2410,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2534,8 +2506,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2587,8 +2558,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2655,8 +2625,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2724,8 +2693,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2797,8 +2765,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2883,8 +2850,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2927,8 +2893,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -2989,8 +2954,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3046,8 +3010,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3105,8 +3068,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3161,8 +3123,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3216,8 +3177,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -3293,8 +3253,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -3355,8 +3314,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -3415,8 +3373,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -3482,8 +3439,7 @@ class TaleaRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8

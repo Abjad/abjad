@@ -15,39 +15,36 @@ class BeamSpecifier(AbjadValueObject):
 
     ..  container:: example
 
-        **Example 1.** Beams notes in each division together but does not beam
-        between divisions:
+        Beams each division by default:
 
         ::
 
-            >>> specifier = rhythmmakertools.BeamSpecifier(
-            ...     beam_each_division=True,
-            ...     beam_divisions_together=False
-            ...     )
+            >>> staff = Staff(name='RhythmicStaff')
+            >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
+            >>> set_(staff).auto_beaming = False
+            >>> selections = [staff[:4], staff[4:]]
+            >>> specifier = rhythmmakertools.BeamSpecifier()
+            >>> specifier(selections)
+            >>> show(staff) # doctest: +SKIP
 
-    ..  container:: example
+        ..  doctest::
 
-        **Example 2.** Beams everything:
+            >>> f(staff)
+            \context Staff = "RhythmicStaff" \with {
+                autoBeaming = ##f
+            } {
+                c'8 [
+                c'8
+                c'16
+                c'16 ]
+                c'16 [
+                c'16
+                c'8
+                c'8
+                c'8
+                c'8 ]
+            }
 
-        ::
-
-            >>> specifier = rhythmmakertools.BeamSpecifier(
-            ...     beam_each_division=True,
-            ...     beam_divisions_together=True
-            ...     )
-
-    ..  container:: example
-
-        **Example 3.** Beams nothing:
-
-        ::
-
-            >>> specifier = rhythmmakertools.BeamSpecifier(
-            ...     beam_each_division=False,
-            ...     beam_divisions_together=False
-            ...     )
-
-    Beam specifiers are immutable.
     '''
 
     ### CLASS VARIABLES ###
@@ -74,10 +71,6 @@ class BeamSpecifier(AbjadValueObject):
         stemlet_length=None,
         use_feather_beams=None,
         ):
-        # assert isinstance(beam_each_division, bool)
-        # assert isinstance(beam_divisions_together, bool)
-        # assert isinstance(beam_rests, bool)
-        # assert isinstance(use_feather_beams, bool)
         if beam_each_division is None:
             beam_each_division = bool(beam_each_division)
         self._beam_each_division = beam_each_division
@@ -110,6 +103,7 @@ class BeamSpecifier(AbjadValueObject):
                     duration = selection._get_duration()
                 durations.append(duration)
             beam = spannertools.DuratedComplexBeam(
+                beam_rests=self.beam_rests,
                 durations=durations,
                 span_beam_count=1,
                 )
@@ -125,7 +119,6 @@ class BeamSpecifier(AbjadValueObject):
                 grob_proxy = override(beam).staff.stem
                 grob_proxy.stemlet_length = self.stemlet_length
             leaves = select(components).by_leaf()
-            #attach(beam, components)
             attach(beam, leaves)
         elif self.beam_each_division:
             for selection in selections:
@@ -157,7 +150,7 @@ class BeamSpecifier(AbjadValueObject):
             )
 
     def __repr__(self):
-        r'''Gets interpreter representation.
+        r'''Gets interpreter representation of beam specifier.
 
         ..  container:: example
 
@@ -184,13 +177,151 @@ class BeamSpecifier(AbjadValueObject):
 
         ..  container:: example
 
+            Does not beam divisions together:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    c'8
+                    c'16
+                    c'16 ]
+                    c'16 [
+                    c'16
+                    c'8
+                    c'8
+                    c'8
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Beams divisions together (but excludes rests):
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_divisions_together=True,
+                ...     beam_rests=False,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #1
+                    c'8 [
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    c'8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    c'16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    c'16
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    c'16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    c'16
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    c'8 ]
+                    r8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    c'8 [
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #0
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Beams divisions together (and includes rests):
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_divisions_together=True,
+                ...     beam_rests=True,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    \set stemLeftBeamCount = #0
+                    \set stemRightBeamCount = #1
+                    c'8 [
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    c'8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    c'16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    c'16
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #2
+                    c'16
+                    \set stemLeftBeamCount = #2
+                    \set stemRightBeamCount = #1
+                    c'16
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    c'8
+                    r8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #1
+                    c'8
+                    \set stemLeftBeamCount = #1
+                    \set stemRightBeamCount = #0
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Defaults to none:
+
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
                 >>> specifier.beam_divisions_together is None
                 True
-
-        Defaults to none.
 
         Set to true, false or none.
 
@@ -200,17 +331,121 @@ class BeamSpecifier(AbjadValueObject):
 
     @property
     def beam_each_division(self):
-        r'''Is true when each division should be beamed. Otherwise false.
+        r'''Is true when specifier beams each division. Otherwise false.
 
         ..  container:: example
+
+            Beams nothing:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 c' c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_each_division=False,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8
+                    c'8
+                    c'16
+                    c'16
+                    c'16
+                    c'16
+                    c'8
+                    c'8
+                    c'8
+                    c'8
+                }
+
+        ..  container:: example
+
+            Beams each division (but excludes rests):
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_each_division=True,
+                ...     beam_rests=False,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    c'8
+                    c'16
+                    c'16 ]
+                    c'16 [
+                    c'16
+                    c'8 ]
+                    r8
+                    c'8 [
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Beams each division (and includes rests):
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_each_division=True,
+                ...     beam_rests=True,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    c'8
+                    c'16
+                    c'16 ]
+                    c'16 [
+                    c'16
+                    c'8
+                    r8
+                    c'8
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Defaults to true:
 
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
                 >>> specifier.beam_each_division
                 True
-
-        Defaults to true.
 
         Set to true or false.
 
@@ -224,13 +459,113 @@ class BeamSpecifier(AbjadValueObject):
 
         ..  container:: example
 
+            Does not beam rests:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier()
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    c'8
+                    c'16
+                    c'16 ]
+                    c'16 [
+                    c'16
+                    c'8 ]
+                    r8
+                    c'8 [
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Beams rests:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_rests=True,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    c'8
+                    c'16
+                    c'16 ]
+                    c'16 [
+                    c'16
+                    c'8
+                    r8
+                    c'8
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Beams skips:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 s c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_rests=True,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    c'8
+                    c'16
+                    c'16 ]
+                    c'16 [
+                    c'16
+                    c'8
+                    s8
+                    c'8
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Defaults to none:
+
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
                 >>> specifier.beam_rests is None
                 True
-
-        Defaults to none.
 
         Set to true, false or none.
 
@@ -244,19 +579,92 @@ class BeamSpecifier(AbjadValueObject):
 
         ..  container:: example
 
+            Beams rests without stemlets:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_rests=True,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    c'8 [
+                    c'8
+                    c'16
+                    c'16 ]
+                    c'16 [
+                    c'16
+                    c'8
+                    r8
+                    c'8
+                    c'8 ]
+                }
+
+        ..  container:: example
+
+            Beams rests with stemlets:
+
+            ::
+
+                >>> staff = Staff(name='RhythmicStaff')
+                >>> staff.extend("c'8 c' c'16 c' c' c' c'8 r c' c'")
+                >>> set_(staff).auto_beaming = False
+                >>> selections = [staff[:4], staff[4:]]
+                >>> specifier = rhythmmakertools.BeamSpecifier(
+                ...     beam_rests=True,
+                ...     stemlet_length=2,
+                ...     )
+                >>> specifier(selections)
+                >>> show(staff) # doctest: +SKIP
+
+            ..  doctest::
+
+                >>> f(staff)
+                \context Staff = "RhythmicStaff" \with {
+                    autoBeaming = ##f
+                } {
+                    \override Staff.Stem.stemlet-length = #2
+                    c'8 [
+                    c'8
+                    c'16
+                    c'16 ]
+                    \revert Staff.Stem.stemlet-length
+                    \override Staff.Stem.stemlet-length = #2
+                    c'16 [
+                    c'16
+                    c'8
+                    r8
+                    c'8
+                    c'8 ]
+                    \revert Staff.Stem.stemlet-length
+                }
+
+        Stemlets appear only when `beam_rests` is set to true.
+
+        ..  container:: example
+
+            Defaults to none:
+
             ::
 
                 >>> specifier = rhythmmakertools.BeamSpecifier()
                 >>> specifier.stemlet_length is None
                 True
 
-        Defaults to none.
+        Set to integer, float or none.
 
-        Set to none, integer or float.
-
-        Note that stemlets appear only when `beam_rests` is set to true.
-
-        Returns none, integer or float.
+        Returns integer, float or none.
         '''
         return self._stemlet_length
 

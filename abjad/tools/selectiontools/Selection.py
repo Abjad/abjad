@@ -745,8 +745,8 @@ class Selection(object):
             message = 'unknown tuplet type.'
             raise TypeError(message)
         wrapped = False
-        if self[0]._get_parentage().root is not \
-            self[-1]._get_parentage().root:
+        if (self[0]._get_parentage().root is not
+            self[-1]._get_parentage().root):
             dummy_container = scoretools.Container(self)
             wrapped = True
         mutate(self).swap(new_tuplet)

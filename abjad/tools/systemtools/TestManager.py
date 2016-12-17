@@ -189,7 +189,7 @@ class TestManager(AbjadObject):
         from abjad.tools import scoretools
         from abjad.tools import topleveltools
         # configure multiple-voice rhythmic staves
-        score = lilypond_file._get_score()
+        score = lilypond_file[Score]
         for staff in topleveltools.iterate(score).by_class(scoretools.Staff):
             if staff.is_simultaneous:
                 assert len(staff) == 2
@@ -203,7 +203,7 @@ class TestManager(AbjadObject):
                 manager = topleveltools.override(staff)
                 manager.vertical_axis_group.staff_staff_spacing = spacing_vector
         # provide more space between staves with pitched notes
-        score = lilypond_file._get_score()
+        score = lilypond_file[Score]
         for staff in topleveltools.iterate(score).by_class(scoretools.Staff):
             if not (isinstance(staff, scoretools.Staff) and
                 staff.context_name == 'RhythmicStaff'):
@@ -356,9 +356,9 @@ class TestManager(AbjadObject):
             Diff:
               rhythmmakertools.TaleaRhythmMaker(
                   talea=rhythmmakertools.Talea(
-            -         counts=(1, 2, 3),
+            -         counts=[1, 2, 3],
             ?                    ^
-            +         counts=(1, 5, 3),
+            +         counts=[1, 5, 3],
             ?                    ^
             -         denominator=8,
             ?                     ^
@@ -505,7 +505,7 @@ class TestManager(AbjadObject):
             score = output
         elif isinstance(output, lilypondfiletools.LilyPondFile):
             lilypond_file = output
-            score = lilypond_file._get_score()
+            score = lilypond_file[Score]
         else:
             message = 'output must be score or LilyPond file: {!r}.'
             message = message.format(output)

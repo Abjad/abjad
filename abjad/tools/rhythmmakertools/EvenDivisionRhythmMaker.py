@@ -101,8 +101,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -173,8 +172,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -524,8 +522,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -577,8 +574,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 7/8
@@ -620,8 +616,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/8
@@ -690,8 +685,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -754,8 +748,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -810,8 +803,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -861,8 +853,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 3/16
@@ -889,7 +880,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         Returns tuple of nonnegative integer powers of two.
         '''
-        return self._denominators
+        if self._denominators:
+            return list(self._denominators)
 
     @property
     def division_masks(self):
@@ -915,8 +907,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -978,8 +969,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1031,8 +1021,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1082,8 +1071,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1163,8 +1151,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1232,8 +1219,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1301,8 +1287,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1369,8 +1354,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1438,8 +1422,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1507,8 +1490,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1582,8 +1564,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1659,8 +1640,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1737,8 +1717,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 1/16
@@ -1791,7 +1770,8 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
         Returns (possibly empty) tuple of integers or none.
         '''
-        return self._extra_counts_per_division
+        if self._extra_counts_per_division:
+            return list(self._extra_counts_per_division)
 
     @property
     def logical_tie_masks(self):
@@ -1817,8 +1797,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1880,8 +1859,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -1947,8 +1925,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2010,8 +1987,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2075,8 +2051,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> f(staff)
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2150,8 +2125,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2248,8 +2222,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2341,8 +2314,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2434,8 +2406,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
@@ -2530,8 +2501,7 @@ class EvenDivisionRhythmMaker(RhythmMaker):
 
             ..  doctest::
 
-                >>> staff = rhythm_maker._get_staff(lilypond_file)
-                >>> print(format(staff))
+                >>> f(lilypond_file[Staff])
                 \new RhythmicStaff {
                     {
                         \time 4/8
