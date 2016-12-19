@@ -131,7 +131,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     >>> for note in staff:
                     ...     show(note)
                     ...
-                <abjad_output_block image_layout_specifier image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -152,7 +152,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             c'1
                         }
                     }
-                <abjad_output_block image_layout_specifier image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(stylesheet='default.ly')" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -203,7 +203,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                     >>> for note in staff:
                     ...     show(note)
                     ...
-                <abjad_output_block image_layout_specifier image_render_specifier="ImageRenderSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -220,7 +220,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             c'1
                         }
                     }
-                <abjad_output_block image_layout_specifier image_render_specifier="ImageRenderSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
+                <abjad_output_block image_layout_specifier="True" image_render_specifier="ImageRenderSpecifier(no_stylesheet=True)" renderer="lilypond" xml:space="preserve">
                     \version "2.19.0"
                     \language "english"
 
@@ -315,7 +315,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             1/4))
                     <literal_block xml:space="preserve">
                         >>> graph(meter) # doctest: +SKIP
-                    <abjad_output_block image_layout_specifier image_render_specifier layout="dot" renderer="graphviz" xml:space="preserve">
+                    <abjad_output_block image_layout_specifier="True" image_render_specifier="True" layout="dot" renderer="graphviz" xml:space="preserve">
                         digraph G {
                             graph [bgcolor=transparent,
                                 fontname=Arial,
@@ -375,7 +375,7 @@ class SphinxDocumentHandlerTests(unittest.TestCase):
                             1/4))
                     <literal_block xml:space="preserve">
                         >>> graph(meter) # doctest: +SKIP
-                    <abjad_output_block image_layout_specifier image_render_specifier layout="dot" renderer="graphviz" xml:space="preserve">
+                    <abjad_output_block image_layout_specifier="True" image_render_specifier="True" layout="dot" renderer="graphviz" xml:space="preserve">
                         digraph G {
                             graph [bgcolor=transparent,
                                 fontname=Arial,
