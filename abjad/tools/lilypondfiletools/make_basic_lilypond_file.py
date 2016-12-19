@@ -33,6 +33,7 @@ def make_basic_lilypond_file(
             >>> print(format(lilypond_file)) # doctest: +SKIP
             \header {
                 composer = \markup { Josquin }
+                tagline = ##f
                 title = \markup { Missa sexti tonus }
             }
 
@@ -68,24 +69,14 @@ def make_basic_lilypond_file(
     Returns LilyPond file.
     '''
     from abjad.tools import lilypondfiletools
-    if isinstance(music, lilypondfiletools.LilyPondFile):
-        return music
-    lilypond_file = lilypondfiletools.LilyPondFile(
+    return lilypondfiletools.LilyPondFile.new(
+        music=music,
         date_time_token=date_time_token,
         default_paper_size=default_paper_size,
         comments=comments,
         includes=includes,
-        items=[
-            lilypondfiletools.Block(name='header'),
-            lilypondfiletools.Block(name='layout'),
-            lilypondfiletools.Block(name='paper'),
-            lilypondfiletools.Block(name='score'),
-            ],
         global_staff_size=global_staff_size,
         lilypond_language_token=lilypond_language_token,
         lilypond_version_token=lilypond_version_token,
         use_relative_includes=use_relative_includes,
         )
-    if music is not None:
-        lilypond_file.score_block.items.append(music)
-    return lilypond_file

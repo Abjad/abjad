@@ -22,6 +22,7 @@ def test_lilypondfiletools_make_basic_lily_file_01():
         r'''
         \header {
             composer = \markup { Josquin }
+            tagline = ##f
         }
 
         \layout {

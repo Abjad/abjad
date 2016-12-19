@@ -326,12 +326,19 @@ class LilyPondFile(AbjadObject):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
-            music=music,
+        if isinstance(music, lilypondfiletools.LilyPondFile):
+            return music
+        lilypond_file = cls(
             date_time_token=date_time_token,
             default_paper_size=default_paper_size,
             comments=comments,
             includes=includes,
+            items=[
+                lilypondfiletools.Block(name='header'),
+                lilypondfiletools.Block(name='layout'),
+                lilypondfiletools.Block(name='paper'),
+                lilypondfiletools.Block(name='score'),
+                ],
             global_staff_size=global_staff_size,
             lilypond_language_token=lilypond_language_token,
             lilypond_version_token=lilypond_version_token,
