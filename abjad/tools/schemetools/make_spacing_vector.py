@@ -18,7 +18,7 @@ def make_spacing_vector(
     ::
 
         >>> staff = Staff("c'8 d'8 e'8 f'8")
-        >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+        >>> lilypond_file = LilyPondFile.new(staff)
         >>> spacing_vector = schemetools.make_spacing_vector(0, 0, 12, 0)
         >>> lilypond_file.paper_block.system_system_spacing = spacing_vector
 

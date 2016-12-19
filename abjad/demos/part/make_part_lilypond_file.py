@@ -17,6 +17,6 @@ def make_part_lilypond_file():
     abjad.demos.part.apply_rehearsal_marks(score)
     abjad.demos.part.apply_final_bar_lines(score)
     abjad.demos.part.configure_score(score)
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+    lilypond_file = lilypondfiletools.LilyPondFile.new(score)
     abjad.demos.part.configure_lilypond_file(lilypond_file)
     return lilypond_file

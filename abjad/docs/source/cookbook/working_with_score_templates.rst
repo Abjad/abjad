@@ -84,7 +84,7 @@ Context concatenation
 
 ..  abjad::
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+    lilypond_file = lilypondfiletools.LilyPondFile.new()
     both_scores = [score_one, score_two]
     lilypond_file.score_block.items.append(both_scores)
     show(lilypond_file)

@@ -10,7 +10,7 @@ Make a basic LilyPond file with the ``lilypondfiletools`` package:
 ..  abjad::
 
     staff = Staff("c'4 d'4 e'4 f'4")
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+    lilypond_file = lilypondfiletools.LilyPondFile.new(staff)
 
 ..  abjad::
 
@@ -63,7 +63,7 @@ When instantiating:
 
 ..  abjad::
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+    lilypond_file = lilypondfiletools.LilyPondFile.new(
         staff,
         global_staff_size=14,
         default_paper_size=('A7', 'portrait'),

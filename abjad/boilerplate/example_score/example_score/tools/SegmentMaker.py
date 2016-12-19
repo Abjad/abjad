@@ -20,7 +20,7 @@ class SegmentMaker(abctools.AbjadObject):
         ):
         score = self.score_template()
         score['Example Voice'].extend("c'4 ( d'4 e'4 f'4 )")
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+        lilypond_file = lilypondfiletools.LilyPondFile.new(
             score,
             includes=['../../stylesheets/stylesheet.ily'],
             )

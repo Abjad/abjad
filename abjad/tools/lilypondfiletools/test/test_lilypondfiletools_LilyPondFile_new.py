@@ -5,7 +5,7 @@ from abjad import *
 def test_lilypondfiletools_make_basic_lily_file_01():
 
     score = Score([Staff("c'8 d'8 e'8 f'8")])
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+    lilypond_file = lilypondfiletools.LilyPondFile.new(
         music=score,
         date_time_token=False,
         lilypond_language_token=False,

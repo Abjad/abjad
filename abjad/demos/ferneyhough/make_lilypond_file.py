@@ -13,6 +13,6 @@ def make_lilypond_file(tuplet_duration, row_count, column_count):
         column_count,
         )
     abjad.demos.ferneyhough.configure_score(score)
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+    lilypond_file = lilypondfiletools.LilyPondFile.new(score)
     abjad.demos.ferneyhough.configure_lilypond_file(lilypond_file)
     return lilypond_file

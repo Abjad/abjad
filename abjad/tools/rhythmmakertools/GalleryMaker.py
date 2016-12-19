@@ -30,7 +30,7 @@ class GalleryMaker(AbjadValueObject):
 
         Returns LilyPond file.
         '''
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file = lilypondfiletools.LilyPondFile.new()
         lilypond_file.items.remove(lilypond_file.header_block)
         lilypond_file.items.remove(lilypond_file.layout_block)
         lilypond_file.items.remove(lilypond_file.paper_block)

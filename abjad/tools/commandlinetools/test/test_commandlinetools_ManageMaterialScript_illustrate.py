@@ -54,7 +54,7 @@ class Test(ScorePackageScriptTestCase):
             from abjad.tools import lilypondfiletools
 
 
-            test_material = lilypondfiletools.make_basic_lilypond_file()
+            test_material = lilypondfiletools.LilyPondFile.new()
             test_material.items.append(r'\this-does-not-exist')
             '''))
         script = commandlinetools.ManageMaterialScript()

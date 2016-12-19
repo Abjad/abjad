@@ -91,7 +91,7 @@ class Segment(TypedTuple):
         attach(command, last_leaf)
         moment = schemetools.SchemeMoment((1, 12))
         set_(score).proportional_notation_duration = moment
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+        lilypond_file = lilypondfiletools.LilyPondFile.new(
             global_staff_size=12,
             music=score,
             )

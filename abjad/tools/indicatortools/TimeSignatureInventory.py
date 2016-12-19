@@ -62,7 +62,7 @@ class TimeSignatureInventory(TypedList):
         staff = scoretools.Staff(measures)
         staff.context_name = 'RhythmicStaff'
         score = scoretools.Score([staff])
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
         return lilypond_file
 
     ### PRIVATE PROPERTIES ###

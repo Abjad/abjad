@@ -83,7 +83,7 @@ def make_piano_sketch_score_from_leaves(leaves, lowest_treble_pitch=None):
     override(score).span_bar.stencil = False
 
     # make and configure lily file
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+    lilypond_file = lilypondfiletools.LilyPondFile.new(score)
     lilypond_file.layout_block.indent = 0
     lilypond_file.paper_block.tagline = markuptools.Markup('')
 

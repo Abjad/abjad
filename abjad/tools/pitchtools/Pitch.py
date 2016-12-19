@@ -118,7 +118,7 @@ class Pitch(AbjadValueObject):
         attach(clef, staff)
         staff.append(note)
         override(staff).time_signature.stencil = False
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+        lilypond_file = lilypondfiletools.LilyPondFile.new(staff)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 

@@ -183,7 +183,7 @@ class Articulation(AbjadValueObject):
         note = scoretools.Note("c'4")
         articulation = copy.copy(self)
         topleveltools.attach(articulation, note)
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(note)
+        lilypond_file = lilypondfiletools.LilyPondFile.new(note)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 

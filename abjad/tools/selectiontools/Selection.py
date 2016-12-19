@@ -150,7 +150,7 @@ class Selection(object):
         if not found_different_pitch:
             staff.context_name = 'RhythmicStaff'
         score = scoretools.Score([staff])
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 
