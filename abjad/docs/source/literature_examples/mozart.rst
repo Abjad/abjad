@@ -257,7 +257,7 @@ controlling the overall *look* of a musical document, often through its
 object-oriented access to these settings through the its `lilypondfiletools`
 module.
 
-We'll use :py:func:`abjad.tools.lilypondfiletools.make_basic_lilypond_file` to
+We'll use :py:func:`abjad.tools.lilypondfiletools.LilyPondFile.new` to
 wrap our :py:class:`~abjad.tools.scoretools.Score` inside a
 :py:class:`~abjad.tools.lilypondfiletools.LilyPondFile` instance.  From there
 we can access the other "blocks" of our document to add a title, a composer's

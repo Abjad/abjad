@@ -157,7 +157,7 @@ def make_floating_time_signature_lilypond_file(music=None):
     '''
     from abjad.tools import lilypondfiletools
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+    lilypond_file = lilypondfiletools.LilyPondFile.new(
         music=music,
         default_paper_size=('letter', 'portrait'),
         global_staff_size=12,

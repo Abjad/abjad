@@ -75,7 +75,7 @@ class Test(ScorePackageScriptTestCase):
                     segment_metadata=None,
                     previous_segment_metadata=None,
                     ):
-                    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+                    lilypond_file = lilypondfiletools.LilyPondFile.new(
                         scoretools.Staff("c'4 ( d'4 e'4 f'4 )")
                         )
                     lilypond_file.items.append(r'\this-does-not-exist')

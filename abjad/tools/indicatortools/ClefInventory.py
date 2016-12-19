@@ -66,7 +66,7 @@ class ClefInventory(TypedList):
         override(staff).clef.full_size_change = True
         override(staff).rest.transparent = True
         override(staff).time_signature.stencil = False
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(staff)
+        lilypond_file = lilypondfiletools.LilyPondFile.new(staff)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 

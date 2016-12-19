@@ -242,7 +242,7 @@ class PitchRange(AbjadValueObject):
         override(score).span_bar.stencil = False
         override(score).glissando.thickness = 2
         override(score).time_signature.stencil = False
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 

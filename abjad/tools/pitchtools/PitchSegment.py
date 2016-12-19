@@ -94,7 +94,7 @@ class PitchSegment(Segment):
         for leaf in iterate(score).by_class(scoretools.Leaf):
             attach(durationtools.Multiplier(1, 8), leaf)
         override(score).rest.transparent = True
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
         lilypond_file.header_block.tagline = False
         return lilypond_file
 

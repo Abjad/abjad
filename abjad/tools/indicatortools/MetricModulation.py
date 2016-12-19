@@ -763,7 +763,7 @@ class MetricModulation(AbjadValueObject):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file = lilypondfiletools.LilyPondFile.new()
         lilypond_file.header_block.tagline = False
         lilypond_file.items.append(self._get_markup())
         return lilypond_file

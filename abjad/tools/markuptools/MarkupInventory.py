@@ -39,7 +39,7 @@ class MarkupInventory(TypedList):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file = lilypondfiletools.LilyPondFile.new()
         for name in ('layout', 'paper', 'score'):
             block = lilypond_file[name]
             lilypond_file.items.remove(block)

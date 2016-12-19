@@ -236,7 +236,7 @@ class Markup(AbjadValueObject):
         Returns LilyPond file.
         '''
         from abjad.tools import lilypondfiletools
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+        lilypond_file = lilypondfiletools.LilyPondFile.new()
         lilypond_file.header_block.tagline = False
         markup = new(self, direction=None)
         lilypond_file.items.append(markup)

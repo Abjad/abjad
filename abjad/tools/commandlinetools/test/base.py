@@ -85,7 +85,7 @@ class ScorePackageScriptTestCase(systemtools.TestCase):
                     for voice in iterate(score).by_class(scoretools.Voice):
                         measure = scoretools.Measure((4, 4), "c'1")
                         voice.append(measure)
-                lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+                lilypond_file = lilypondfiletools.LilyPondFile.new(
                     score,
                     includes=['../../stylesheets/stylesheet.ily'],
                     )

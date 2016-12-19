@@ -80,7 +80,7 @@ def test_custom_score_template_class_02():
 
     score = custom_context_score_template()
     score[0][0].append("c'4 ( d'4 e'4 f'4 )")
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+    lilypond_file = lilypondfiletools.LilyPondFile.new(score)
 
     context_block = lilypondfiletools.ContextBlock(
         source_context_name='Voice',

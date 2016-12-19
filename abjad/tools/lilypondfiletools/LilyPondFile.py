@@ -20,7 +20,7 @@ class LilyPondFile(AbjadObject):
             ...     'external-settings-file-1.ly',
             ...     'external-settings-file-2.ly',
             ...     ]
-            >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+            >>> lilypond_file = LilyPondFile.new(
             ...     music=staff,
             ...     default_paper_size=('a5', 'portrait'),
             ...     comments=comments,
@@ -152,7 +152,7 @@ class LilyPondFile(AbjadObject):
 
             **Example 1.** Gets format:
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -184,7 +184,7 @@ class LilyPondFile(AbjadObject):
 
             **Example 1.** Gets header block:
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -212,7 +212,7 @@ class LilyPondFile(AbjadObject):
 
             **Example 1.** Gets interpreter representation:
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -426,7 +426,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -447,7 +447,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -468,7 +468,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -493,7 +493,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -518,7 +518,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -543,7 +543,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -564,7 +564,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -590,7 +590,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -615,7 +615,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -636,7 +636,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -657,7 +657,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -682,7 +682,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 
@@ -707,7 +707,7 @@ class LilyPondFile(AbjadObject):
 
             ::
 
-                >>> lilypond_file = lilypondfiletools.make_basic_lilypond_file()
+                >>> lilypond_file = LilyPondFile.new()
 
             ::
 

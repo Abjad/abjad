@@ -70,7 +70,7 @@ class TempoInventory(TypedList):
         override(score).staff_symbol.transparent = True
         override(score).stem.transparent = True
         override(score).time_signature.stencil = False
-        lilypond_file = lilypondfiletools.make_basic_lilypond_file(score)
+        lilypond_file = lilypondfiletools.LilyPondFile.new(score)
         lilypond_file.layout_block.indent = 0
         lilypond_file.layout_block.ragged_right = True
         lilypond_file.items.remove(lilypond_file['paper'])

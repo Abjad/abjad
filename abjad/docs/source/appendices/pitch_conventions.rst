@@ -46,7 +46,7 @@ Abjad numbers pitches like this:
 
 ..  abjad::
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+    lilypond_file = lilypondfiletools.LilyPondFile.new(
         score,
         global_staff_size=15,
         )
@@ -104,7 +104,7 @@ Abjad numbers diatonic pitches like this:
 
 ..  abjad::
 
-    lilypond_file = lilypondfiletools.make_basic_lilypond_file(
+    lilypond_file = lilypondfiletools.LilyPondFile.new(
         score,
         global_staff_size=15,
         )
