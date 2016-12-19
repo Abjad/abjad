@@ -50,6 +50,7 @@ from abjad.tools.indicatortools import LilyPondCommand
 from abjad.tools.indicatortools import Ritardando
 from abjad.tools.indicatortools import Tempo
 from abjad.tools.indicatortools import TimeSignature
+from abjad.tools.lilypondfiletools import LilyPondFile
 from abjad.tools.markuptools import Markup
 from abjad.tools.pitchtools import NamedPitch
 from abjad.tools.scoretools import Chord
