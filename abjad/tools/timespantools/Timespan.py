@@ -213,14 +213,17 @@ class Timespan(BoundedObject):
         hash_values = systemtools.StorageFormatAgent(self).get_hash_values()
         return hash(hash_values)
 
-    def __illustrate__(self, range_=None):
+    def __illustrate__(self, range_=None, scale=None):
         r'''Illustrates timespan.
 
         Returns LilyPond file.
         '''
         from abjad.tools import timespantools
         timespan_inventory = timespantools.TimespanInventory([self])
-        return timespan_inventory.__illustrate__(range_=range_)
+        return timespan_inventory.__illustrate__(
+            range_=range_,
+            scale=scale,
+            )
 
     def __le__(self, expr):
         r'''Is true when `expr` start offset is less than or equal to
