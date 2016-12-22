@@ -83,6 +83,9 @@ class NamedPitch(Pitch):
                 if isinstance(arguments[1], str):
                     self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
                         *arguments)
+                elif isinstance(arguments[1], (int, float)):
+                    self._initialize_by_pitch_number_and_octave_number(
+                        *arguments)
                 elif isinstance(arguments[1], pitchtools.NamedPitchClass):
                     self._initialize_by_pitch_number_and_named_pitch_class(
                         *arguments)
@@ -426,6 +429,9 @@ class NamedPitch(Pitch):
 
     ### PRIVATE METHODS ###
 
+    def _get_lilypond_format(self):
+        return str(self)
+
     def _initialize_by_named_pitch(self, named_pitch):
         self._alteration_in_semitones = named_pitch._alteration_in_semitones
         self._diatonic_pitch_class_number = \
@@ -496,8 +502,12 @@ class NamedPitch(Pitch):
         self._initialize_by_pitch_number_and_diatonic_pitch_class_name(
             pitch_number, diatonic_pitch_class_name)
 
-    def _get_lilypond_format(self):
-        return str(self)
+    def _initialize_by_pitch_number_and_octave_number(
+        self, pitch_number, octave_number):
+        pitch_class_name = type(self)(pitch_number).pitch_class_name
+        octave_number = int(octave_number)
+        self._initialize_by_pitch_class_name_and_octave_number(
+            pitch_class_name, octave_number)
 
     @staticmethod
     def _spell_pitch_number(pitch_number, diatonic_pitch_class_name):
@@ -1080,7 +1090,7 @@ class NamedPitch(Pitch):
         from abjad.tools import pitchtools
         class_ = pitchtools.PitchClass
         return (class_._diatonic_pitch_class_number_to_pitch_class_number[
-            self._diatonic_pitch_class_number] + \
+            self._diatonic_pitch_class_number] +
             self._alteration_in_semitones) % 12
 
     @property
